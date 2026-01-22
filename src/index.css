@@ -2,42 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-/* Women's Health Tools - Professional Medical Design System */
+/* Pregnancy Toolkits - Feminine & Premium Design System */
 
 @layer base {
   :root {
-    /* Primary - Teal/Cyan for trust and health */
-    --primary: 187 91% 37%;
+    /* Primary - Rose/Pink for feminine appeal */
+    --primary: 330 85% 52%;
     --primary-foreground: 0 0% 100%;
     
-    /* Secondary - Soft teal */
-    --secondary: 187 30% 95%;
-    --secondary-foreground: 187 91% 25%;
+    /* Secondary - Soft blush */
+    --secondary: 330 40% 96%;
+    --secondary-foreground: 330 85% 40%;
     
-    /* Background - Clean white/gray */
-    --background: 210 20% 98%;
-    --foreground: 220 20% 15%;
+    /* Background - Warm cream */
+    --background: 30 30% 98%;
+    --foreground: 330 25% 15%;
     
-    /* Cards - Pure white */
+    /* Cards - Pure white with warmth */
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
+    --card-foreground: 330 25% 15%;
     
-    /* Muted - Soft gray */
-    --muted: 210 15% 94%;
-    --muted-foreground: 220 10% 45%;
+    /* Muted - Soft rose gray */
+    --muted: 330 15% 94%;
+    --muted-foreground: 330 10% 45%;
     
-    /* Accent - Warm coral for highlights */
-    --accent: 350 80% 65%;
+    /* Accent - Coral/peach for highlights */
+    --accent: 15 90% 65%;
     --accent-foreground: 0 0% 100%;
     
-    /* Success - Medical green */
-    --success: 158 64% 42%;
+    /* Success - Soft green */
+    --success: 150 60% 45%;
     --success-foreground: 0 0% 100%;
     
-    /* Warning - Amber */
+    /* Warning - Warm amber */
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
     
@@ -47,64 +46,65 @@
     
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
+    --popover-foreground: 330 25% 15%;
     
     /* Border */
-    --border: 210 15% 90%;
-    --input: 210 15% 90%;
-    --ring: 187 91% 37%;
+    --border: 330 20% 90%;
+    --input: 330 20% 90%;
+    --ring: 330 85% 52%;
     
-    --radius: 0.75rem;
+    --radius: 1rem;
     
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 20% 25%;
-    --sidebar-primary: 187 91% 37%;
+    --sidebar-foreground: 330 25% 25%;
+    --sidebar-primary: 330 85% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 187 30% 95%;
-    --sidebar-accent-foreground: 187 91% 25%;
-    --sidebar-border: 210 15% 92%;
-    --sidebar-ring: 187 91% 37%;
+    --sidebar-accent: 330 40% 96%;
+    --sidebar-accent-foreground: 330 85% 40%;
+    --sidebar-border: 330 20% 92%;
+    --sidebar-ring: 330 85% 52%;
     
     /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(187 91% 37%), hsl(187 91% 45%));
-    --gradient-hero: linear-gradient(180deg, hsl(187 30% 97%) 0%, hsl(210 20% 98%) 100%);
-    --gradient-card-hover: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(187 30% 98%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(330 85% 52%), hsl(350 85% 60%));
+    --gradient-hero: linear-gradient(180deg, hsl(330 40% 98%) 0%, hsl(30 30% 98%) 100%);
+    --gradient-card-hover: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(330 40% 99%) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(330 85% 52%), hsl(280 70% 55%));
     
     /* Shadows */
-    --shadow-card: 0 1px 3px 0 hsl(220 20% 15% / 0.05), 0 1px 2px -1px hsl(220 20% 15% / 0.05);
-    --shadow-card-hover: 0 10px 30px -10px hsl(187 91% 37% / 0.15), 0 4px 10px -5px hsl(220 20% 15% / 0.08);
-    --shadow-elevated: 0 20px 50px -20px hsl(220 20% 15% / 0.15);
+    --shadow-card: 0 2px 8px 0 hsl(330 25% 15% / 0.04), 0 1px 3px -1px hsl(330 25% 15% / 0.06);
+    --shadow-card-hover: 0 20px 40px -15px hsl(330 85% 52% / 0.2), 0 8px 20px -8px hsl(330 25% 15% / 0.08);
+    --shadow-elevated: 0 25px 60px -20px hsl(330 85% 52% / 0.25);
   }
 
   .dark {
-    --background: 220 20% 10%;
-    --foreground: 210 20% 95%;
-    --card: 220 20% 13%;
-    --card-foreground: 210 20% 95%;
-    --popover: 220 20% 13%;
-    --popover-foreground: 210 20% 95%;
-    --primary: 187 91% 45%;
+    --background: 330 20% 8%;
+    --foreground: 330 20% 95%;
+    --card: 330 20% 11%;
+    --card-foreground: 330 20% 95%;
+    --popover: 330 20% 11%;
+    --popover-foreground: 330 20% 95%;
+    --primary: 330 85% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 187 91% 65%;
-    --muted: 220 15% 18%;
-    --muted-foreground: 220 10% 60%;
-    --accent: 350 80% 65%;
+    --secondary: 330 15% 18%;
+    --secondary-foreground: 330 85% 70%;
+    --muted: 330 15% 16%;
+    --muted-foreground: 330 10% 60%;
+    --accent: 15 90% 65%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 187 91% 45%;
-    --sidebar-background: 220 20% 10%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 187 91% 45%;
+    --border: 330 15% 18%;
+    --input: 330 15% 18%;
+    --ring: 330 85% 60%;
+    --sidebar-background: 330 20% 8%;
+    --sidebar-foreground: 330 20% 90%;
+    --sidebar-primary: 330 85% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 18%;
-    --sidebar-accent-foreground: 187 91% 65%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 187 91% 45%;
+    --sidebar-accent: 330 15% 16%;
+    --sidebar-accent-foreground: 330 85% 70%;
+    --sidebar-border: 330 15% 18%;
+    --sidebar-ring: 330 85% 60%;
   }
 }
 
@@ -120,12 +120,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
-
-  /* RTL Support */
-  [dir="rtl"] body {
-    font-family: 'IBM Plex Sans Arabic', 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   /* iOS Safe Areas */
@@ -137,7 +132,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-foreground;
+    @apply font-bold tracking-tight text-foreground;
   }
 }
 
@@ -148,6 +143,10 @@
   
   .gradient-hero {
     background: var(--gradient-hero);
+  }
+  
+  .gradient-premium {
+    background: var(--gradient-premium);
   }
   
   .shadow-card {

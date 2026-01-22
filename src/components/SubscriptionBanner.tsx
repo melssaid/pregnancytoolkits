@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Crown, Sparkles } from "lucide-react";
+import { Crown, Sparkles, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useSubscription from "@/hooks/useSubscription";
 
@@ -17,11 +17,9 @@ export const SubscriptionBanner = ({ onSubscribe }: SubscriptionBannerProps) => 
 
   const handleSubscribe = () => {
     // This will trigger Google Play In-App Billing
-    // For now, we'll just show a message
     if (onSubscribe) {
       onSubscribe();
     } else {
-      // Placeholder for Google Play billing
       console.log("Trigger Google Play In-App Billing for $1.99/month subscription");
     }
   };
@@ -30,46 +28,47 @@ export const SubscriptionBanner = ({ onSubscribe }: SubscriptionBannerProps) => 
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`rounded-lg p-4 ${
+      className={`rounded-2xl p-4 ${
         isTrialActive 
-          ? "bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20" 
-          : "bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20"
+          ? "bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20" 
+          : "gradient-premium"
       }`}
     >
-      <div className="flex items-center justify-between gap-4 flex-wrap">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          {isTrialActive ? (
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-              <Sparkles className="h-5 w-5 text-primary" />
-            </div>
-          ) : (
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/10">
-              <Crown className="h-5 w-5 text-amber-500" />
-            </div>
-          )}
+          <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${
+            isTrialActive ? "gradient-primary shadow-lg" : "bg-white/20"
+          }`}>
+            {isTrialActive ? (
+              <Gift className="h-6 w-6 text-white" />
+            ) : (
+              <Crown className="h-6 w-6 text-white" />
+            )}
+          </div>
           <div>
-            <p className="font-medium text-foreground">
-              {isTrialActive 
-                ? t('subscription.trialActive') 
-                : t('subscription.trialExpired')}
-            </p>
-            <p className="text-sm text-muted-foreground">
+            <h3 className={`font-bold text-base ${isTrialActive ? "text-foreground" : "text-white"}`}>
+              {isTrialActive ? t('subscription.trialActive') : t('subscription.trialExpired')}
+            </h3>
+            <p className={`text-sm ${isTrialActive ? "text-muted-foreground" : "text-white/80"}`}>
               {isTrialActive 
                 ? t('subscription.trialDaysLeft', { days: trialDaysLeft })
-                : t('subscription.unlockAccess')}
+                : t('subscription.unlockAccess')
+              }
             </p>
           </div>
         </div>
         
-        {!isTrialActive && (
-          <Button 
-            onClick={handleSubscribe}
-            className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
-          >
-            <Crown className="h-4 w-4 me-2" />
-            {t('subscription.subscribeNow')}
-          </Button>
-        )}
+        <Button
+          onClick={handleSubscribe}
+          className={`rounded-full font-bold px-6 transition-all duration-300 ${
+            isTrialActive 
+              ? "gradient-premium text-white shadow-lg hover:shadow-xl hover:scale-105" 
+              : "bg-white text-primary hover:bg-white/90 shadow-lg"
+          }`}
+        >
+          <Sparkles className="h-4 w-4 mr-2" />
+          {t('subscription.subscribeNow')}
+        </Button>
       </div>
     </motion.div>
   );
