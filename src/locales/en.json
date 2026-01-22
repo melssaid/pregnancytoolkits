@@ -1,0 +1,209 @@
+{
+  "app": {
+    "name": "WellMama",
+    "tagline": "Trusted by thousands of mothers",
+    "title": "Your Complete",
+    "titleHighlight": "Women's Health",
+    "titleEnd": "Toolkit",
+    "description": "Professional-grade health calculators and trackers designed for every stage of your journey — from fertility planning to postpartum care.",
+    "searchPlaceholder": "Search tools...",
+    "allTools": "All Tools",
+    "toolsAvailable": "{{count}} tools available",
+    "noToolsFound": "No tools found matching your search.",
+    "medicalDisclaimer": "These tools are for informational and educational purposes only. They do not constitute medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.",
+    "footer": "For informational purposes only. Always consult your healthcare provider.",
+    "back": "Back",
+    "allToolsBtn": "All Tools"
+  },
+  "categories": {
+    "all": "All",
+    "fertility": "Fertility",
+    "pregnancy": "Pregnancy",
+    "labor": "Labor",
+    "postpartum": "Postpartum",
+    "riskAssessment": "Risk Assessment",
+    "mentalHealth": "Mental Health",
+    "wellness": "Wellness",
+    "reference": "Reference",
+    "preparation": "Preparation",
+    "genetics": "Genetics",
+    "menstrualHealth": "Menstrual Health"
+  },
+  "tools": {
+    "dueDateCalculator": {
+      "title": "Due Date Calculator",
+      "description": "Calculate your estimated due date based on your last menstrual period or conception date.",
+      "category": "Pregnancy"
+    },
+    "pregnancyBmi": {
+      "title": "Pregnancy BMI",
+      "description": "Calculate your BMI and recommended weight gain during pregnancy.",
+      "category": "Pregnancy"
+    },
+    "fetalGrowth": {
+      "title": "Fetal Growth Tracker",
+      "description": "Track your baby's growth week by week with size comparisons.",
+      "category": "Pregnancy"
+    },
+    "kickCounter": {
+      "title": "Kick Counter",
+      "description": "Track your baby's movements to monitor fetal activity and wellbeing.",
+      "category": "Pregnancy"
+    },
+    "gestationalDiabetes": {
+      "title": "GDM Risk Assessment",
+      "description": "Assess your risk factors for gestational diabetes mellitus.",
+      "category": "Risk Assessment"
+    },
+    "preeclampsiaRisk": {
+      "title": "Preeclampsia Risk",
+      "description": "Evaluate risk factors for preeclampsia during pregnancy.",
+      "category": "Risk Assessment"
+    },
+    "safeMedications": {
+      "title": "Safe Medications",
+      "description": "Quick reference guide for medication safety during pregnancy and breastfeeding.",
+      "category": "Reference"
+    },
+    "exerciseGuide": {
+      "title": "Exercise Guide",
+      "description": "Safe exercise recommendations for each trimester of pregnancy.",
+      "category": "Wellness"
+    },
+    "waterIntake": {
+      "title": "Water Intake Tracker",
+      "description": "Track daily hydration goals especially important during pregnancy.",
+      "category": "Wellness"
+    },
+    "vaccinationSchedule": {
+      "title": "Vaccination Schedule",
+      "description": "Recommended vaccination timeline during pregnancy and for newborns.",
+      "category": "Reference"
+    },
+    "hospitalBag": {
+      "title": "Hospital Bag Checklist",
+      "description": "Complete checklist to prepare your hospital bag for delivery.",
+      "category": "Preparation"
+    },
+    "contractionTimer": {
+      "title": "Contraction Timer",
+      "description": "Time your contractions to know when it's time to head to the hospital.",
+      "category": "Labor"
+    },
+    "ppdScreener": {
+      "title": "PPD Screener (EPDS)",
+      "description": "Edinburgh Postnatal Depression Scale screening questionnaire.",
+      "category": "Mental Health"
+    },
+    "breastfeedingTracker": {
+      "title": "Breastfeeding Tracker",
+      "description": "Log feeding sessions, duration, and track your baby's feeding patterns.",
+      "category": "Postpartum"
+    },
+    "ovulationCalculator": {
+      "title": "Ovulation Calculator",
+      "description": "Track your fertile window and predict ovulation dates based on your menstrual cycle.",
+      "category": "Fertility"
+    },
+    "cycleTracker": {
+      "title": "Cycle Tracker",
+      "description": "Log and track your menstrual cycles, symptoms, and patterns over time.",
+      "category": "Menstrual Health"
+    },
+    "bloodType": {
+      "title": "Blood Type Calculator",
+      "description": "Predict possible blood types for your baby based on parents' blood types.",
+      "category": "Genetics"
+    }
+  },
+  "common": {
+    "calculate": "Calculate",
+    "results": "Your Results",
+    "info": "Information",
+    "warning": "Warning",
+    "success": "Success",
+    "error": "Error",
+    "save": "Save",
+    "reset": "Reset",
+    "start": "Start",
+    "stop": "Stop",
+    "clear": "Clear",
+    "delete": "Delete",
+    "add": "Add",
+    "remove": "Remove",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "week": "Week",
+    "weeks": "Weeks",
+    "day": "Day",
+    "days": "Days",
+    "month": "Month",
+    "months": "Months",
+    "minutes": "minutes",
+    "seconds": "seconds",
+    "hours": "hours"
+  },
+  "dueDatePage": {
+    "title": "Due Date Calculator",
+    "subtitle": "Estimate when your baby will arrive",
+    "lmpTab": "Last Period",
+    "conceptionTab": "Conception Date",
+    "lmpLabel": "First Day of Last Menstrual Period",
+    "conceptionLabel": "Conception Date",
+    "calculateBtn": "Calculate Due Date",
+    "timeline": "Your Pregnancy Timeline",
+    "estimatedDueDate": "Estimated Due Date",
+    "currentlyAt": "You are currently",
+    "weeksAndDays": "{{weeks}} weeks, {{days}} days",
+    "trimester": "Trimester {{number}}",
+    "conception": "Conception",
+    "secondTrimester": "2nd Trimester",
+    "thirdTrimester": "3rd Trimester",
+    "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your healthcare provider may adjust your due date based on ultrasound measurements."
+  },
+  "kickCounterPage": {
+    "title": "Kick Counter",
+    "subtitle": "Count 10 kicks to monitor fetal activity",
+    "timeElapsed": "Time Elapsed",
+    "startCounting": "Start Counting",
+    "kicks": "kicks",
+    "endSession": "End Session",
+    "goal": "Goal: 10 kicks in 2 hours or less",
+    "moreToGo": "{{count}} more kicks to go",
+    "recentSessions": "Recent Sessions",
+    "info": "Starting at 28 weeks, count fetal movements daily. Contact your healthcare provider if you notice decreased movement or don't reach 10 kicks in 2 hours."
+  },
+  "contractionPage": {
+    "title": "Contraction Timer",
+    "subtitle": "Track duration and frequency of contractions",
+    "contractionStarted": "Contraction Started",
+    "contractionEnded": "Contraction Ended",
+    "avgDuration": "Avg Duration",
+    "avgInterval": "Avg Interval",
+    "contractionLog": "Contraction Log",
+    "sinceLastContraction": "{{minutes}} min since last",
+    "duration": "duration",
+    "callProvider": "Time to Call Your Provider",
+    "callProviderDesc": "Contractions are 5 minutes apart and lasting 45+ seconds. Consider heading to the hospital.",
+    "rule511": "5-1-1 Rule",
+    "rule511Desc": "Call your provider when contractions are 5 minutes apart, lasting 1 minute each, for at least 1 hour."
+  },
+  "waterPage": {
+    "title": "Water Intake Tracker",
+    "subtitle": "Stay hydrated during pregnancy — aim for 10+ glasses daily",
+    "dailyGoalReached": "Daily goal reached!",
+    "eachTapAdds": "Each tap adds 8 oz (1 glass)",
+    "thisWeek": "This Week",
+    "glasses": "glasses"
+  },
+  "hospitalBagPage": {
+    "title": "Hospital Bag Checklist",
+    "packingProgress": "Packing Progress",
+    "itemsPacked": "Items packed",
+    "allPacked": "You're all packed and ready!",
+    "momEssentials": "Mom's Essentials",
+    "babyItems": "Baby Items",
+    "partnerItems": "Partner/Support Person",
+    "info": "Pack your bag around 36 weeks. Keep it somewhere easy to grab, and make sure your partner knows where it is!"
+  }
+}

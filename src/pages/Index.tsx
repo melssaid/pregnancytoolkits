@@ -1,20 +1,26 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Heart, Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
-import { toolsData, categories } from "@/lib/tools-data";
+import { getSortedTools, categoryKeys } from "@/lib/tools-data";
 import { Input } from "@/components/ui/input";
 
 const Index = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("categories.all");
 
-  const filteredTools = toolsData.filter((tool) => {
+  const sortedTools = getSortedTools();
+
+  const filteredTools = sortedTools.filter((tool) => {
+    const title = t(tool.titleKey).toLowerCase();
+    const description = t(tool.descriptionKey).toLowerCase();
     const matchesSearch = 
-      tool.title.toLowerCase().includes(search.toLowerCase()) ||
-      tool.description.toLowerCase().includes(search.toLowerCase());
-    const matchesCategory = activeCategory === "All" || tool.category === activeCategory;
+      title.includes(search.toLowerCase()) ||
+      description.includes(search.toLowerCase());
+    const matchesCategory = activeCategory === "categories.all" || tool.categoryKey === activeCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -31,18 +37,17 @@ const Index = () => {
             >
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground">
                 <Heart className="h-4 w-4 text-primary" />
-                Trusted by thousands of mothers
+                {t('app.tagline')}
               </div>
               
               <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl text-balance">
-                Your Complete{" "}
-                <span className="text-primary">Women's Health</span>{" "}
-                Toolkit
+                {t('app.title')}{" "}
+                <span className="text-primary">{t('app.titleHighlight')}</span>{" "}
+                {t('app.titleEnd')}
               </h1>
               
               <p className="mb-8 text-lg text-muted-foreground md:text-xl text-balance">
-                Professional-grade health calculators and trackers designed for every stage 
-                of your journey — from fertility planning to postpartum care.
+                {t('app.description')}
               </p>
             </motion.div>
 
@@ -53,13 +58,13 @@ const Index = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="relative mx-auto max-w-md"
             >
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+              <Search className="absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder="Search tools..."
+                placeholder={t('app.searchPlaceholder')}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="h-12 pl-12 text-base bg-card border-border shadow-card"
+                className="h-12 ps-12 text-base bg-card border-border shadow-card"
               />
             </motion.div>
           </div>
@@ -70,17 +75,17 @@ const Index = () => {
       <section className="border-b border-border bg-card">
         <div className="container py-4">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            {categories.map((category) => (
+            {categoryKeys.map((categoryKey) => (
               <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
+                key={categoryKey}
+                onClick={() => setActiveCategory(categoryKey)}
                 className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  activeCategory === category
+                  activeCategory === categoryKey
                     ? "bg-primary text-primary-foreground"
                     : "bg-secondary text-secondary-foreground hover:bg-muted"
                 }`}
               >
-                {category}
+                {t(categoryKey)}
               </button>
             ))}
           </div>
@@ -92,10 +97,10 @@ const Index = () => {
         <div className="container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-foreground">
-              {activeCategory === "All" ? "All Tools" : activeCategory}
+              {activeCategory === "categories.all" ? t('app.allTools') : t(activeCategory)}
             </h2>
             <span className="text-sm text-muted-foreground">
-              {filteredTools.length} tools available
+              {t('app.toolsAvailable', { count: filteredTools.length })}
             </span>
           </div>
 
@@ -104,11 +109,11 @@ const Index = () => {
               {filteredTools.map((tool, index) => (
                 <ToolCard
                   key={tool.id}
-                  title={tool.title}
-                  description={tool.description}
+                  titleKey={tool.titleKey}
+                  descriptionKey={tool.descriptionKey}
                   icon={tool.icon}
                   href={tool.href}
-                  category={tool.category}
+                  categoryKey={tool.categoryKey}
                   index={index}
                 />
               ))}
@@ -116,7 +121,7 @@ const Index = () => {
           ) : (
             <div className="py-16 text-center">
               <p className="text-lg text-muted-foreground">
-                No tools found matching your search.
+                {t('app.noToolsFound')}
               </p>
             </div>
           )}
@@ -128,10 +133,7 @@ const Index = () => {
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">Medical Disclaimer:</strong> These tools are for 
-              informational and educational purposes only. They do not constitute medical advice, 
-              diagnosis, or treatment. Always consult with qualified healthcare professionals 
-              for medical decisions.
+              <strong className="text-foreground">{t('common.warning')}:</strong> {t('app.medicalDisclaimer')}
             </p>
           </div>
         </div>
