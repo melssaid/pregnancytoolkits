@@ -1,17 +1,20 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ToolCardProps {
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   icon: LucideIcon;
   href: string;
-  category: string;
+  categoryKey: string;
   index: number;
 }
 
-export function ToolCard({ title, description, icon: Icon, href, category, index }: ToolCardProps) {
+export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryKey, index }: ToolCardProps) {
+  const { t } = useTranslation();
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,15 +31,15 @@ export function ToolCard({ title, description, icon: Icon, href, category, index
             </div>
             
             <span className="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              {category}
+              {t(categoryKey)}
             </span>
             
             <h3 className="mb-2 text-lg font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300">
-              {title}
+              {t(titleKey)}
             </h3>
             
             <p className="text-sm text-muted-foreground leading-relaxed">
-              {description}
+              {t(descriptionKey)}
             </p>
           </div>
         </div>

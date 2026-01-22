@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   Calendar,
   Baby,
@@ -16,158 +17,206 @@ import {
   Dumbbell,
   Syringe,
   CheckSquare,
+  LucideIcon,
 } from "lucide-react";
 
-export const toolsData = [
-  {
-    id: "ovulation-calculator",
-    title: "Ovulation Calculator",
-    description: "Track your fertile window and predict ovulation dates based on your menstrual cycle.",
-    icon: Calendar,
-    category: "Fertility",
-    href: "/tools/ovulation-calculator",
-  },
+export interface Tool {
+  id: string;
+  titleKey: string;
+  descriptionKey: string;
+  icon: LucideIcon;
+  categoryKey: string;
+  href: string;
+  priority: number; // Lower number = higher priority
+}
+
+// Tools ordered by pregnancy journey priority
+export const toolsData: Tool[] = [
+  // 1. PREGNANCY STAGE - Most used during active pregnancy
   {
     id: "due-date-calculator",
-    title: "Due Date Calculator",
-    description: "Calculate your estimated due date based on your last menstrual period or conception date.",
+    titleKey: "tools.dueDateCalculator.title",
+    descriptionKey: "tools.dueDateCalculator.description",
     icon: Baby,
-    category: "Pregnancy",
+    categoryKey: "categories.pregnancy",
     href: "/tools/due-date-calculator",
-  },
-  {
-    id: "cycle-tracker",
-    title: "Cycle Tracker",
-    description: "Log and track your menstrual cycles, symptoms, and patterns over time.",
-    icon: Activity,
-    category: "Menstrual Health",
-    href: "/tools/cycle-tracker",
+    priority: 1,
   },
   {
     id: "pregnancy-bmi",
-    title: "Pregnancy BMI",
-    description: "Calculate your BMI and recommended weight gain during pregnancy.",
+    titleKey: "tools.pregnancyBmi.title",
+    descriptionKey: "tools.pregnancyBmi.description",
     icon: Calculator,
-    category: "Pregnancy",
+    categoryKey: "categories.pregnancy",
     href: "/tools/pregnancy-bmi",
-  },
-  {
-    id: "kick-counter",
-    title: "Kick Counter",
-    description: "Track your baby's movements to monitor fetal activity and wellbeing.",
-    icon: Hand,
-    category: "Pregnancy",
-    href: "/tools/kick-counter",
-  },
-  {
-    id: "contraction-timer",
-    title: "Contraction Timer",
-    description: "Time your contractions to know when it's time to head to the hospital.",
-    icon: Timer,
-    category: "Labor",
-    href: "/tools/contraction-timer",
+    priority: 2,
   },
   {
     id: "fetal-growth",
-    title: "Fetal Growth Tracker",
-    description: "Track your baby's growth week by week with size comparisons.",
+    titleKey: "tools.fetalGrowth.title",
+    descriptionKey: "tools.fetalGrowth.description",
     icon: TrendingUp,
-    category: "Pregnancy",
+    categoryKey: "categories.pregnancy",
     href: "/tools/fetal-growth",
+    priority: 3,
   },
   {
-    id: "blood-type",
-    title: "Blood Type Calculator",
-    description: "Predict possible blood types for your baby based on parents' blood types.",
-    icon: Droplet,
-    category: "Genetics",
-    href: "/tools/blood-type",
+    id: "kick-counter",
+    titleKey: "tools.kickCounter.title",
+    descriptionKey: "tools.kickCounter.description",
+    icon: Hand,
+    categoryKey: "categories.pregnancy",
+    href: "/tools/kick-counter",
+    priority: 4,
   },
+  
+  // 2. RISK ASSESSMENT - Important health monitoring
   {
     id: "gestational-diabetes",
-    title: "GDM Risk Assessment",
-    description: "Assess your risk factors for gestational diabetes mellitus.",
+    titleKey: "tools.gestationalDiabetes.title",
+    descriptionKey: "tools.gestationalDiabetes.description",
     icon: AlertTriangle,
-    category: "Risk Assessment",
+    categoryKey: "categories.riskAssessment",
     href: "/tools/gestational-diabetes",
+    priority: 5,
   },
   {
     id: "preeclampsia-risk",
-    title: "Preeclampsia Risk",
-    description: "Evaluate risk factors for preeclampsia during pregnancy.",
+    titleKey: "tools.preeclampsiaRisk.title",
+    descriptionKey: "tools.preeclampsiaRisk.description",
     icon: Heart,
-    category: "Risk Assessment",
+    categoryKey: "categories.riskAssessment",
     href: "/tools/preeclampsia-risk",
+    priority: 6,
   },
+  
+  // 3. WELLNESS & REFERENCE - Daily use tools
   {
     id: "safe-medications",
-    title: "Safe Medications",
-    description: "Quick reference guide for medication safety during pregnancy and breastfeeding.",
+    titleKey: "tools.safeMedications.title",
+    descriptionKey: "tools.safeMedications.description",
     icon: Pill,
-    category: "Reference",
+    categoryKey: "categories.reference",
     href: "/tools/safe-medications",
-  },
-  {
-    id: "ppd-screener",
-    title: "PPD Screener (EPDS)",
-    description: "Edinburgh Postnatal Depression Scale screening questionnaire.",
-    icon: Brain,
-    category: "Mental Health",
-    href: "/tools/ppd-screener",
-  },
-  {
-    id: "breastfeeding-tracker",
-    title: "Breastfeeding Tracker",
-    description: "Log feeding sessions, duration, and track your baby's feeding patterns.",
-    icon: CircleDot,
-    category: "Postpartum",
-    href: "/tools/breastfeeding-tracker",
-  },
-  {
-    id: "water-intake",
-    title: "Water Intake Tracker",
-    description: "Track daily hydration goals especially important during pregnancy.",
-    icon: GlassWater,
-    category: "Wellness",
-    href: "/tools/water-intake",
+    priority: 7,
   },
   {
     id: "exercise-guide",
-    title: "Exercise Guide",
-    description: "Safe exercise recommendations for each trimester of pregnancy.",
+    titleKey: "tools.exerciseGuide.title",
+    descriptionKey: "tools.exerciseGuide.description",
     icon: Dumbbell,
-    category: "Wellness",
+    categoryKey: "categories.wellness",
     href: "/tools/exercise-guide",
+    priority: 8,
+  },
+  {
+    id: "water-intake",
+    titleKey: "tools.waterIntake.title",
+    descriptionKey: "tools.waterIntake.description",
+    icon: GlassWater,
+    categoryKey: "categories.wellness",
+    href: "/tools/water-intake",
+    priority: 9,
   },
   {
     id: "vaccination-schedule",
-    title: "Vaccination Schedule",
-    description: "Recommended vaccination timeline during pregnancy and for newborns.",
+    titleKey: "tools.vaccinationSchedule.title",
+    descriptionKey: "tools.vaccinationSchedule.description",
     icon: Syringe,
-    category: "Reference",
+    categoryKey: "categories.reference",
     href: "/tools/vaccination-schedule",
+    priority: 10,
   },
+  
+  // 4. PREPARATION & LABOR
   {
     id: "hospital-bag",
-    title: "Hospital Bag Checklist",
-    description: "Complete checklist to prepare your hospital bag for delivery.",
+    titleKey: "tools.hospitalBag.title",
+    descriptionKey: "tools.hospitalBag.description",
     icon: CheckSquare,
-    category: "Preparation",
+    categoryKey: "categories.preparation",
     href: "/tools/hospital-bag",
+    priority: 11,
+  },
+  {
+    id: "contraction-timer",
+    titleKey: "tools.contractionTimer.title",
+    descriptionKey: "tools.contractionTimer.description",
+    icon: Timer,
+    categoryKey: "categories.labor",
+    href: "/tools/contraction-timer",
+    priority: 12,
+  },
+  
+  // 5. POSTPARTUM
+  {
+    id: "ppd-screener",
+    titleKey: "tools.ppdScreener.title",
+    descriptionKey: "tools.ppdScreener.description",
+    icon: Brain,
+    categoryKey: "categories.mentalHealth",
+    href: "/tools/ppd-screener",
+    priority: 13,
+  },
+  {
+    id: "breastfeeding-tracker",
+    titleKey: "tools.breastfeedingTracker.title",
+    descriptionKey: "tools.breastfeedingTracker.description",
+    icon: CircleDot,
+    categoryKey: "categories.postpartum",
+    href: "/tools/breastfeeding-tracker",
+    priority: 14,
+  },
+  
+  // 6. FERTILITY & PLANNING (Pre-pregnancy)
+  {
+    id: "ovulation-calculator",
+    titleKey: "tools.ovulationCalculator.title",
+    descriptionKey: "tools.ovulationCalculator.description",
+    icon: Calendar,
+    categoryKey: "categories.fertility",
+    href: "/tools/ovulation-calculator",
+    priority: 15,
+  },
+  {
+    id: "cycle-tracker",
+    titleKey: "tools.cycleTracker.title",
+    descriptionKey: "tools.cycleTracker.description",
+    icon: Activity,
+    categoryKey: "categories.menstrualHealth",
+    href: "/tools/cycle-tracker",
+    priority: 16,
+  },
+  
+  // 7. GENETICS
+  {
+    id: "blood-type",
+    titleKey: "tools.bloodType.title",
+    descriptionKey: "tools.bloodType.description",
+    icon: Droplet,
+    categoryKey: "categories.genetics",
+    href: "/tools/blood-type",
+    priority: 17,
   },
 ];
 
-export const categories = [
-  "All",
-  "Fertility",
-  "Pregnancy",
-  "Labor",
-  "Postpartum",
-  "Risk Assessment",
-  "Mental Health",
-  "Wellness",
-  "Reference",
-  "Preparation",
-  "Genetics",
-  "Menstrual Health",
+// Category keys for filtering
+export const categoryKeys = [
+  "categories.all",
+  "categories.pregnancy",
+  "categories.riskAssessment",
+  "categories.wellness",
+  "categories.reference",
+  "categories.preparation",
+  "categories.labor",
+  "categories.postpartum",
+  "categories.mentalHealth",
+  "categories.fertility",
+  "categories.menstrualHealth",
+  "categories.genetics",
 ];
+
+// Get sorted tools by priority
+export const getSortedTools = () => {
+  return [...toolsData].sort((a, b) => a.priority - b.priority);
+};

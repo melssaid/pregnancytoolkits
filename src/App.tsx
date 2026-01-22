@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import OvulationCalculator from "./pages/tools/OvulationCalculator";
 import DueDateCalculator from "./pages/tools/DueDateCalculator";
 import CycleTracker from "./pages/tools/CycleTracker";
@@ -33,6 +35,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
           <Route path="/tools/ovulation-calculator" element={<OvulationCalculator />} />
           <Route path="/tools/due-date-calculator" element={<DueDateCalculator />} />
           <Route path="/tools/cycle-tracker" element={<CycleTracker />} />
