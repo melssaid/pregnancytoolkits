@@ -1,0 +1,331 @@
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Activity, Plus, Calendar, TrendingUp, Info } from "lucide-react";
+import { Layout } from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { format, subMonths, addDays, differenceInDays } from "date-fns";
+
+interface CycleEntry {
+  id: string;
+  startDate: string;
+  endDate?: string;
+  flowIntensity: "light" | "medium" | "heavy";
+  symptoms?: string[];
+}
+
+const STORAGE_KEY = "cycle-tracker-data";
+
+const symptomOptions = [
+  "Cramps",
+  "Headache",
+  "Bloating",
+  "Mood swings",
+  "Fatigue",
+  "Breast tenderness",
+  "Acne",
+  "Back pain",
+];
+
+export default function CycleTracker() {
+  const [cycles, setCycles] = useState<CycleEntry[]>([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [flowIntensity, setFlowIntensity] = useState<"light" | "medium" | "heavy">("medium");
+  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      setCycles(JSON.parse(saved));
+    }
+  }, []);
+
+  const saveCycles = (newCycles: CycleEntry[]) => {
+    setCycles(newCycles);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newCycles));
+  };
+
+  const addCycle = () => {
+    if (!startDate) return;
+
+    const newCycle: CycleEntry = {
+      id: Date.now().toString(),
+      startDate,
+      endDate: endDate || undefined,
+      flowIntensity,
+      symptoms: selectedSymptoms.length > 0 ? selectedSymptoms : undefined,
+    };
+
+    const newCycles = [newCycle, ...cycles].slice(0, 12);
+    saveCycles(newCycles);
+
+    // Reset form
+    setStartDate("");
+    setEndDate("");
+    setFlowIntensity("medium");
+    setSelectedSymptoms([]);
+  };
+
+  const deleteCycle = (id: string) => {
+    const newCycles = cycles.filter((c) => c.id !== id);
+    saveCycles(newCycles);
+  };
+
+  const toggleSymptom = (symptom: string) => {
+    setSelectedSymptoms((prev) =>
+      prev.includes(symptom)
+        ? prev.filter((s) => s !== symptom)
+        : [...prev, symptom]
+    );
+  };
+
+  const getStats = () => {
+    if (cycles.length < 2) return null;
+
+    const cycleLengths: number[] = [];
+    for (let i = 0; i < cycles.length - 1; i++) {
+      const current = new Date(cycles[i].startDate);
+      const previous = new Date(cycles[i + 1].startDate);
+      const length = differenceInDays(current, previous);
+      if (length > 0 && length < 60) {
+        cycleLengths.push(length);
+      }
+    }
+
+    if (cycleLengths.length === 0) return null;
+
+    const avgCycleLength = Math.round(
+      cycleLengths.reduce((a, b) => a + b, 0) / cycleLengths.length
+    );
+
+    const periodLengths = cycles
+      .filter((c) => c.endDate)
+      .map((c) => differenceInDays(new Date(c.endDate!), new Date(c.startDate)) + 1);
+    
+    const avgPeriodLength = periodLengths.length > 0
+      ? Math.round(periodLengths.reduce((a, b) => a + b, 0) / periodLengths.length)
+      : null;
+
+    // Predict next period
+    const lastPeriod = new Date(cycles[0].startDate);
+    const nextPeriod = addDays(lastPeriod, avgCycleLength);
+
+    return { avgCycleLength, avgPeriodLength, nextPeriod };
+  };
+
+  const stats = getStats();
+
+  const getFlowColor = (intensity: string) => {
+    switch (intensity) {
+      case "light": return "bg-primary/30";
+      case "medium": return "bg-primary/60";
+      case "heavy": return "bg-primary";
+      default: return "bg-primary/50";
+    }
+  };
+
+  return (
+    <Layout title="Menstrual Cycle Tracker" showBack>
+      <div className="container py-8">
+        <div className="mx-auto max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {/* Stats Overview */}
+            {stats && (
+              <div className="grid gap-4 sm:grid-cols-3 mb-6">
+                <Card className="bg-secondary/50">
+                  <CardContent className="pt-4 text-center">
+                    <TrendingUp className="h-5 w-5 text-primary mx-auto mb-2" />
+                    <p className="text-2xl font-bold text-foreground">{stats.avgCycleLength}</p>
+                    <p className="text-xs text-muted-foreground">Avg Cycle Length</p>
+                  </CardContent>
+                </Card>
+                
+                {stats.avgPeriodLength && (
+                  <Card className="bg-secondary/50">
+                    <CardContent className="pt-4 text-center">
+                      <Activity className="h-5 w-5 text-primary mx-auto mb-2" />
+                      <p className="text-2xl font-bold text-foreground">{stats.avgPeriodLength}</p>
+                      <p className="text-xs text-muted-foreground">Avg Period Length</p>
+                    </CardContent>
+                  </Card>
+                )}
+
+                <Card className="bg-primary/10 border-primary/20">
+                  <CardContent className="pt-4 text-center">
+                    <Calendar className="h-5 w-5 text-primary mx-auto mb-2" />
+                    <p className="text-lg font-bold text-primary">
+                      {format(stats.nextPeriod, "MMM d")}
+                    </p>
+                    <p className="text-xs text-muted-foreground">Next Period</p>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
+            {/* Add New Period */}
+            <Card className="mb-6">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Plus className="h-5 w-5 text-primary" />
+                  Log Period
+                </CardTitle>
+                <CardDescription>
+                  Record the start and end of your menstrual cycle
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="startDate">Start Date</Label>
+                    <Input
+                      id="startDate"
+                      type="date"
+                      value={startDate}
+                      onChange={(e) => setStartDate(e.target.value)}
+                      max={format(new Date(), "yyyy-MM-dd")}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="endDate">End Date (optional)</Label>
+                    <Input
+                      id="endDate"
+                      type="date"
+                      value={endDate}
+                      onChange={(e) => setEndDate(e.target.value)}
+                      min={startDate}
+                      max={format(new Date(), "yyyy-MM-dd")}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Flow Intensity</Label>
+                  <Select value={flowIntensity} onValueChange={(v) => setFlowIntensity(v as any)}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="light">Light</SelectItem>
+                      <SelectItem value="medium">Medium</SelectItem>
+                      <SelectItem value="heavy">Heavy</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Symptoms (optional)</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {symptomOptions.map((symptom) => (
+                      <button
+                        key={symptom}
+                        type="button"
+                        onClick={() => toggleSymptom(symptom)}
+                        className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                          selectedSymptoms.includes(symptom)
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-secondary text-secondary-foreground hover:bg-muted"
+                        }`}
+                      >
+                        {symptom}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <Button onClick={addCycle} disabled={!startDate} className="w-full">
+                  Log Period
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Cycle History */}
+            {cycles.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Cycle History</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {cycles.map((cycle, index) => {
+                      const cycleLength = index < cycles.length - 1
+                        ? differenceInDays(
+                            new Date(cycle.startDate),
+                            new Date(cycles[index + 1].startDate)
+                          )
+                        : null;
+
+                      return (
+                        <div
+                          key={cycle.id}
+                          className="flex items-start justify-between rounded-lg bg-muted p-4"
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className={`h-3 w-3 rounded-full mt-1.5 ${getFlowColor(cycle.flowIntensity)}`} />
+                            <div>
+                              <p className="font-medium text-foreground">
+                                {format(new Date(cycle.startDate), "MMM d, yyyy")}
+                                {cycle.endDate && (
+                                  <span className="text-muted-foreground">
+                                    {" "}– {format(new Date(cycle.endDate), "MMM d")}
+                                  </span>
+                                )}
+                              </p>
+                              <div className="flex flex-wrap gap-2 mt-1">
+                                <span className="text-xs text-muted-foreground capitalize">
+                                  {cycle.flowIntensity} flow
+                                </span>
+                                {cycleLength && (
+                                  <span className="text-xs text-primary">
+                                    • {cycleLength} day cycle
+                                  </span>
+                                )}
+                              </div>
+                              {cycle.symptoms && cycle.symptoms.length > 0 && (
+                                <div className="flex flex-wrap gap-1 mt-2">
+                                  {cycle.symptoms.map((s) => (
+                                    <span
+                                      key={s}
+                                      className="rounded bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"
+                                    >
+                                      {s}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => deleteCycle(cycle.id)}
+                            className="text-xs text-muted-foreground hover:text-destructive transition-colors"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            <div className="mt-6 flex items-start gap-3 rounded-lg bg-muted p-4">
+              <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-muted-foreground">
+                Track at least 3-6 cycles for more accurate predictions. Cycle length can 
+                vary due to stress, illness, or other factors.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </Layout>
+  );
+}
