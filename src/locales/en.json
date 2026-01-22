@@ -114,6 +114,76 @@
       "title": "Blood Type Calculator",
       "description": "Predict possible blood types for your baby based on parents' blood types.",
       "category": "Genetics"
+    },
+    "weightGain": {
+      "title": "Weight Gain Calculator",
+      "description": "Track healthy weight gain during pregnancy based on your BMI.",
+      "category": "Pregnancy"
+    },
+    "pregnancyDiary": {
+      "title": "Pregnancy Diary",
+      "description": "Document your pregnancy journey with notes, symptoms, and memories.",
+      "category": "Pregnancy"
+    },
+    "nutritionGuide": {
+      "title": "Nutrition Guide",
+      "description": "Essential nutrients and dietary recommendations for a healthy pregnancy.",
+      "category": "Wellness"
+    },
+    "forbiddenFoods": {
+      "title": "Forbidden Foods",
+      "description": "List of foods to avoid during pregnancy for safety.",
+      "category": "Reference"
+    },
+    "babySleepTracker": {
+      "title": "Baby Sleep Tracker",
+      "description": "Track your baby's sleep patterns and duration.",
+      "category": "Postpartum"
+    },
+    "diaperTracker": {
+      "title": "Diaper Tracker",
+      "description": "Log diaper changes to monitor your baby's health.",
+      "category": "Postpartum"
+    },
+    "babyGrowth": {
+      "title": "Baby Growth Calculator",
+      "description": "Track your baby's growth with WHO standard percentiles.",
+      "category": "Postpartum"
+    },
+    "vaccinationGuide": {
+      "title": "Vaccination Guide",
+      "description": "Comprehensive vaccination schedule for your baby's first years.",
+      "category": "Reference"
+    },
+    "genderPredictor": {
+      "title": "Gender Predictor",
+      "description": "Fun Chinese calendar prediction for baby's gender (for entertainment only).",
+      "category": "Pregnancy"
+    },
+    "conceptionCalculator": {
+      "title": "Conception Calculator",
+      "description": "Estimate your conception date based on due date or last period.",
+      "category": "Fertility"
+    },
+    "breathingExercises": {
+      "title": "Breathing Exercises",
+      "description": "Guided breathing techniques for relaxation during pregnancy and labor.",
+      "category": "Wellness"
+    },
+    "moodDiary": {
+      "title": "Mood Diary",
+      "description": "Track your emotional wellbeing throughout pregnancy and postpartum.",
+      "category": "Mental Health"
+    },
+    "yogaGuide": {
+      "title": "Prenatal Yoga",
+      "description": "Safe yoga poses for each trimester to stay active and relaxed.",
+      "category": "Wellness"
+    },
+    "affirmations": {
+      "title": "Positive Affirmations",
+      "description": "Daily affirmations to support your mental wellbeing during pregnancy.",
+      "category": "Mental Health"
     }
   },
   "common": {
@@ -141,7 +211,21 @@
     "months": "Months",
     "minutes": "minutes",
     "seconds": "seconds",
-    "hours": "hours"
+    "hours": "hours",
+    "premium": "Premium",
+    "freeTrial": "Free Trial",
+    "subscribe": "Subscribe",
+    "unlock": "Unlock All Tools",
+    "month": "month"
+  },
+  "subscription": {
+    "trialActive": "Free Trial Active",
+    "trialDaysLeft": "{{days}} days left in your free trial",
+    "trialExpired": "Trial Expired",
+    "subscribeNow": "Subscribe for $1.99/month",
+    "premiumFeature": "Premium Feature",
+    "unlockAccess": "Unlock access to all 31 tools",
+    "subscribeToAccess": "Subscribe to access this tool"
   },
   "dueDatePage": {
     "title": "Due Date Calculator",
@@ -205,5 +289,131 @@
     "babyItems": "Baby Items",
     "partnerItems": "Partner/Support Person",
     "info": "Pack your bag around 36 weeks. Keep it somewhere easy to grab, and make sure your partner knows where it is!"
+  },
+  "conceptionPage": {
+    "fromDueDate": "From Due Date",
+    "fromLMP": "From Last Period",
+    "knowDueDate": "I know my due date",
+    "planningPregnancy": "Planning or tracking",
+    "dueDate": "Your Due Date",
+    "lmpDate": "First Day of Last Period",
+    "cycleLength": "Cycle Length (days)",
+    "estimatedConception": "Estimated Conception Date",
+    "fertileWindow": "Your Fertile Window",
+    "info": "Conception typically occurs around ovulation, 14 days before your next expected period. The fertile window spans 5 days before and 1 day after ovulation."
+  },
+  "weightGainPage": {
+    "title": "Weight Gain Calculator",
+    "prePregnancyWeight": "Pre-Pregnancy Weight (kg)",
+    "currentWeight": "Current Weight (kg)",
+    "height": "Height (cm)",
+    "currentWeek": "Current Week",
+    "bmiCategory": "Your BMI Category",
+    "recommendedGain": "Recommended Total Gain",
+    "currentGain": "Your Current Gain",
+    "onTrack": "You're on track!",
+    "underGain": "Consider gaining a bit more",
+    "overGain": "Weight gain is slightly high"
+  },
+  "diaryPage": {
+    "title": "Pregnancy Diary",
+    "addEntry": "Add Entry",
+    "mood": "Mood",
+    "symptoms": "Symptoms",
+    "notes": "Notes",
+    "photo": "Add Photo",
+    "week": "Week",
+    "noEntries": "No entries yet. Start documenting your journey!"
+  },
+  "nutritionPage": {
+    "title": "Nutrition Guide",
+    "dailyNeeds": "Daily Nutritional Needs",
+    "keyNutrients": "Key Nutrients",
+    "folicAcid": "Folic Acid",
+    "iron": "Iron",
+    "calcium": "Calcium",
+    "protein": "Protein",
+    "omega3": "Omega-3"
+  },
+  "forbiddenFoodsPage": {
+    "title": "Foods to Avoid",
+    "searchPlaceholder": "Search foods...",
+    "avoid": "Avoid",
+    "caution": "Use Caution",
+    "safe": "Generally Safe",
+    "reason": "Reason"
+  },
+  "babySleepPage": {
+    "title": "Baby Sleep Tracker",
+    "logSleep": "Log Sleep",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "duration": "Duration",
+    "totalToday": "Total Sleep Today",
+    "sleepLog": "Sleep Log"
+  },
+  "diaperPage": {
+    "title": "Diaper Tracker",
+    "logChange": "Log Change",
+    "wet": "Wet",
+    "dirty": "Dirty",
+    "both": "Both",
+    "todayCount": "Today's Changes",
+    "recentChanges": "Recent Changes"
+  },
+  "babyGrowthPage": {
+    "title": "Baby Growth",
+    "age": "Baby's Age",
+    "weight": "Weight (kg)",
+    "height": "Length (cm)",
+    "headCircumference": "Head Circumference (cm)",
+    "percentile": "Percentile",
+    "trackGrowth": "Track Growth"
+  },
+  "genderPredictorPage": {
+    "title": "Gender Predictor",
+    "disclaimer": "For entertainment only - not medically accurate",
+    "motherAge": "Mother's Age at Conception",
+    "conceptionMonth": "Conception Month",
+    "predict": "Predict Gender",
+    "result": "Prediction"
+  },
+  "breathingPage": {
+    "title": "Breathing Exercises",
+    "selectExercise": "Select Exercise",
+    "relaxation": "Relaxation Breathing",
+    "labor": "Labor Breathing",
+    "stress": "Stress Relief",
+    "inhale": "Inhale",
+    "hold": "Hold",
+    "exhale": "Exhale",
+    "cycles": "Cycles"
+  },
+  "moodPage": {
+    "title": "Mood Diary",
+    "howAreYou": "How are you feeling today?",
+    "great": "Great",
+    "good": "Good",
+    "okay": "Okay",
+    "notGreat": "Not Great",
+    "struggling": "Struggling",
+    "notes": "Add notes (optional)",
+    "history": "Mood History"
+  },
+  "yogaPage": {
+    "title": "Prenatal Yoga",
+    "selectTrimester": "Select Trimester",
+    "firstTrimester": "First Trimester",
+    "secondTrimester": "Second Trimester",
+    "thirdTrimester": "Third Trimester",
+    "duration": "Duration",
+    "difficulty": "Difficulty"
+  },
+  "affirmationsPage": {
+    "title": "Daily Affirmations",
+    "todaysAffirmation": "Today's Affirmation",
+    "newAffirmation": "New Affirmation",
+    "favorites": "Favorites",
+    "categories": "Categories"
   }
 }
