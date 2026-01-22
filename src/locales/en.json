@@ -1,16 +1,16 @@
 {
   "app": {
-    "name": "WellMama",
+    "name": "PREGNANCY TOOLKITS",
     "tagline": "Trusted by thousands of mothers",
     "title": "Your Complete",
-    "titleHighlight": "Women's Health",
-    "titleEnd": "Toolkit",
-    "description": "Professional-grade health calculators and trackers designed for every stage of your journey — from fertility planning to postpartum care.",
+    "titleHighlight": "Pregnancy",
+    "titleEnd": "Companion",
+    "description": "31 essential tools for your pregnancy journey — from fertility to postpartum care.",
     "searchPlaceholder": "Search tools...",
     "allTools": "All Tools",
     "toolsAvailable": "{{count}} tools available",
     "noToolsFound": "No tools found matching your search.",
-    "medicalDisclaimer": "These tools are for informational and educational purposes only. They do not constitute medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.",
+    "medicalDisclaimer": "These tools are for informational purposes only. Always consult your healthcare provider.",
     "footer": "For informational purposes only. Always consult your healthcare provider.",
     "back": "Back",
     "allToolsBtn": "All Tools"
@@ -20,169 +20,169 @@
     "fertility": "Fertility",
     "pregnancy": "Pregnancy",
     "labor": "Labor",
-    "postpartum": "Postpartum",
+    "postpartum": "Baby Care",
     "riskAssessment": "Risk Assessment",
     "mentalHealth": "Mental Health",
     "wellness": "Wellness",
     "reference": "Reference",
     "preparation": "Preparation",
     "genetics": "Genetics",
-    "menstrualHealth": "Menstrual Health"
+    "menstrualHealth": "Cycle Health"
   },
   "tools": {
     "dueDateCalculator": {
       "title": "Due Date Calculator",
-      "description": "Calculate your estimated due date based on your last menstrual period or conception date.",
+      "description": "Find out when your little one will arrive.",
       "category": "Pregnancy"
     },
     "pregnancyBmi": {
       "title": "Pregnancy BMI",
-      "description": "Calculate your BMI and recommended weight gain during pregnancy.",
+      "description": "Track your healthy weight gain journey.",
       "category": "Pregnancy"
     },
     "fetalGrowth": {
       "title": "Fetal Growth Tracker",
-      "description": "Track your baby's growth week by week with size comparisons.",
+      "description": "See how big your baby is this week!",
       "category": "Pregnancy"
     },
     "kickCounter": {
       "title": "Kick Counter",
-      "description": "Track your baby's movements to monitor fetal activity and wellbeing.",
+      "description": "Track your baby's precious movements.",
       "category": "Pregnancy"
     },
     "gestationalDiabetes": {
       "title": "GDM Risk Assessment",
-      "description": "Assess your risk factors for gestational diabetes mellitus.",
+      "description": "Know your gestational diabetes risk factors.",
       "category": "Risk Assessment"
     },
     "preeclampsiaRisk": {
       "title": "Preeclampsia Risk",
-      "description": "Evaluate risk factors for preeclampsia during pregnancy.",
+      "description": "Check your preeclampsia risk factors.",
       "category": "Risk Assessment"
     },
     "safeMedications": {
       "title": "Safe Medications",
-      "description": "Quick reference guide for medication safety during pregnancy and breastfeeding.",
+      "description": "Quick guide for safe medications.",
       "category": "Reference"
     },
     "exerciseGuide": {
       "title": "Exercise Guide",
-      "description": "Safe exercise recommendations for each trimester of pregnancy.",
+      "description": "Safe workouts for each trimester.",
       "category": "Wellness"
     },
     "waterIntake": {
-      "title": "Water Intake Tracker",
-      "description": "Track daily hydration goals especially important during pregnancy.",
+      "title": "Water Intake",
+      "description": "Stay hydrated for you and baby!",
       "category": "Wellness"
     },
     "vaccinationSchedule": {
       "title": "Vaccination Schedule",
-      "description": "Recommended vaccination timeline during pregnancy and for newborns.",
+      "description": "Important vaccines timeline.",
       "category": "Reference"
     },
     "hospitalBag": {
-      "title": "Hospital Bag Checklist",
-      "description": "Complete checklist to prepare your hospital bag for delivery.",
+      "title": "Hospital Bag",
+      "description": "Never forget anything important!",
       "category": "Preparation"
     },
     "contractionTimer": {
       "title": "Contraction Timer",
-      "description": "Time your contractions to know when it's time to head to the hospital.",
+      "description": "Know when it's time to go!",
       "category": "Labor"
     },
     "ppdScreener": {
-      "title": "PPD Screener (EPDS)",
-      "description": "Edinburgh Postnatal Depression Scale screening questionnaire.",
+      "title": "PPD Screener",
+      "description": "Check your emotional wellbeing.",
       "category": "Mental Health"
     },
     "breastfeedingTracker": {
       "title": "Breastfeeding Tracker",
-      "description": "Log feeding sessions, duration, and track your baby's feeding patterns.",
-      "category": "Postpartum"
+      "description": "Log and track feeding sessions.",
+      "category": "Baby Care"
     },
     "ovulationCalculator": {
       "title": "Ovulation Calculator",
-      "description": "Track your fertile window and predict ovulation dates based on your menstrual cycle.",
+      "description": "Find your most fertile days.",
       "category": "Fertility"
     },
     "cycleTracker": {
       "title": "Cycle Tracker",
-      "description": "Log and track your menstrual cycles, symptoms, and patterns over time.",
-      "category": "Menstrual Health"
+      "description": "Track your monthly cycle easily.",
+      "category": "Cycle Health"
     },
     "bloodType": {
       "title": "Blood Type Calculator",
-      "description": "Predict possible blood types for your baby based on parents' blood types.",
+      "description": "Predict baby's blood type.",
       "category": "Genetics"
     },
     "weightGain": {
-      "title": "Weight Gain Calculator",
-      "description": "Track healthy weight gain during pregnancy based on your BMI.",
+      "title": "Weight Gain Tracker",
+      "description": "Monitor healthy pregnancy weight.",
       "category": "Pregnancy"
     },
     "pregnancyDiary": {
       "title": "Pregnancy Diary",
-      "description": "Document your pregnancy journey with notes, symptoms, and memories.",
+      "description": "Document your beautiful journey.",
       "category": "Pregnancy"
     },
     "nutritionGuide": {
       "title": "Nutrition Guide",
-      "description": "Essential nutrients and dietary recommendations for a healthy pregnancy.",
+      "description": "Eat right for you and baby.",
       "category": "Wellness"
     },
     "forbiddenFoods": {
-      "title": "Forbidden Foods",
-      "description": "List of foods to avoid during pregnancy for safety.",
+      "title": "Foods to Avoid",
+      "description": "Know what's safe to eat.",
       "category": "Reference"
     },
     "babySleepTracker": {
       "title": "Baby Sleep Tracker",
-      "description": "Track your baby's sleep patterns and duration.",
-      "category": "Postpartum"
+      "description": "Track your baby's sleep patterns.",
+      "category": "Baby Care"
     },
     "diaperTracker": {
       "title": "Diaper Tracker",
-      "description": "Log diaper changes to monitor your baby's health.",
-      "category": "Postpartum"
+      "description": "Log changes, monitor health.",
+      "category": "Baby Care"
     },
     "babyGrowth": {
-      "title": "Baby Growth Calculator",
-      "description": "Track your baby's growth with WHO standard percentiles.",
-      "category": "Postpartum"
+      "title": "Baby Growth",
+      "description": "Track growth with WHO charts.",
+      "category": "Baby Care"
     },
     "vaccinationGuide": {
-      "title": "Vaccination Guide",
-      "description": "Comprehensive vaccination schedule for your baby's first years.",
+      "title": "Baby Vaccines",
+      "description": "Complete vaccination schedule.",
       "category": "Reference"
     },
     "genderPredictor": {
       "title": "Gender Predictor",
-      "description": "Fun Chinese calendar prediction for baby's gender (for entertainment only).",
+      "description": "Fun prediction for baby's gender!",
       "category": "Pregnancy"
     },
     "conceptionCalculator": {
       "title": "Conception Calculator",
-      "description": "Estimate your conception date based on due date or last period.",
+      "description": "Estimate your conception date.",
       "category": "Fertility"
     },
     "breathingExercises": {
       "title": "Breathing Exercises",
-      "description": "Guided breathing techniques for relaxation during pregnancy and labor.",
+      "description": "Relax and prepare for labor.",
       "category": "Wellness"
     },
     "moodDiary": {
       "title": "Mood Diary",
-      "description": "Track your emotional wellbeing throughout pregnancy and postpartum.",
+      "description": "Track your emotional wellness.",
       "category": "Mental Health"
     },
     "yogaGuide": {
       "title": "Prenatal Yoga",
-      "description": "Safe yoga poses for each trimester to stay active and relaxed.",
+      "description": "Safe poses for every trimester.",
       "category": "Wellness"
     },
     "affirmations": {
-      "title": "Positive Affirmations",
-      "description": "Daily affirmations to support your mental wellbeing during pregnancy.",
+      "title": "Daily Affirmations",
+      "description": "Positive vibes for your journey.",
       "category": "Mental Health"
     }
   },
@@ -190,7 +190,7 @@
     "calculate": "Calculate",
     "results": "Your Results",
     "info": "Information",
-    "warning": "Warning",
+    "warning": "Important",
     "success": "Success",
     "error": "Error",
     "save": "Save",
@@ -215,17 +215,16 @@
     "premium": "Premium",
     "freeTrial": "Free Trial",
     "subscribe": "Subscribe",
-    "unlock": "Unlock All Tools",
-    "month": "month"
+    "unlock": "Unlock All Tools"
   },
   "subscription": {
-    "trialActive": "Free Trial Active",
-    "trialDaysLeft": "{{days}} days left in your free trial",
-    "trialExpired": "Trial Expired",
-    "subscribeNow": "Subscribe for $1.99/month",
+    "trialActive": "Free Trial",
+    "trialDaysLeft": "{{days}} days left",
+    "trialExpired": "Upgrade Now",
+    "subscribeNow": "Get Premium - $1.99/mo",
     "premiumFeature": "Premium Feature",
-    "unlockAccess": "Unlock access to all 31 tools",
-    "subscribeToAccess": "Subscribe to access this tool"
+    "unlockAccess": "Unlock all 31 tools",
+    "subscribeToAccess": "Subscribe to unlock"
   },
   "dueDatePage": {
     "title": "Due Date Calculator",

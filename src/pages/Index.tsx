@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Heart, Search } from "lucide-react";
+import { Heart, Search, Sparkles, Crown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
@@ -25,32 +25,33 @@ const Index = () => {
     return matchesSearch && matchesCategory;
   });
 
-  // Find tool data to get isPremium flag
-  const getToolById = (id: string) => toolsData.find(t => t.id === id);
-
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="gradient-hero border-b border-border">
-        <div className="container py-16 md:py-24">
+      <section className="gradient-hero border-b border-border relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+        
+        <div className="container py-16 md:py-20 relative">
           <div className="mx-auto max-w-3xl text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground">
-                <Heart className="h-4 w-4 text-primary" />
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg">
+                <Sparkles className="h-4 w-4" />
                 {t('app.tagline')}
               </div>
               
-              <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl text-balance">
+              <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl text-balance">
                 {t('app.title')}{" "}
-                <span className="text-primary">{t('app.titleHighlight')}</span>{" "}
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{t('app.titleHighlight')}</span>{" "}
                 {t('app.titleEnd')}
               </h1>
               
-              <p className="mb-8 text-lg text-muted-foreground md:text-xl text-balance">
+              <p className="mb-8 text-lg text-muted-foreground md:text-xl text-balance max-w-xl mx-auto">
                 {t('app.description')}
               </p>
             </motion.div>
@@ -62,13 +63,13 @@ const Index = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="relative mx-auto max-w-md"
             >
-              <Search className="absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="text"
                 placeholder={t('app.searchPlaceholder')}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="h-12 ps-12 text-base bg-card border-border shadow-card"
+                className="h-14 pl-12 text-base bg-card border-2 border-border shadow-card rounded-2xl focus:border-primary transition-colors"
               />
             </motion.div>
           </div>
@@ -76,23 +77,23 @@ const Index = () => {
       </section>
 
       {/* Subscription Banner */}
-      <section className="border-b border-border">
+      <section className="border-b border-border bg-card">
         <div className="container py-4">
           <SubscriptionBanner />
         </div>
       </section>
 
       {/* Category Filter */}
-      <section className="border-b border-border bg-card">
+      <section className="border-b border-border bg-background sticky top-16 z-40">
         <div className="container py-4">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
             {categoryKeys.map((categoryKey) => (
               <button
                 key={categoryKey}
                 onClick={() => setActiveCategory(categoryKey)}
-                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
                   activeCategory === categoryKey
-                    ? "bg-primary text-primary-foreground"
+                    ? "gradient-primary text-white shadow-lg"
                     : "bg-secondary text-secondary-foreground hover:bg-muted"
                 }`}
               >
@@ -107,10 +108,10 @@ const Index = () => {
       <section className="py-12 md:py-16">
         <div className="container">
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-foreground">
+            <h2 className="text-2xl font-bold text-foreground">
               {activeCategory === "categories.all" ? t('app.allTools') : t(activeCategory)}
             </h2>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-full">
               {t('app.toolsAvailable', { count: filteredTools.length })}
             </span>
           </div>
