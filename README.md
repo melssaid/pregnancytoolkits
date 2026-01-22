@@ -1,73 +1,207 @@
-# Welcome to your Lovable project
+# WellMama - Women's Health Tools App
 
-## Project info
+![WellMama](https://img.shields.io/badge/WellMama-Women's%20Health-0891B2?style=for-the-badge)
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+تطبيق شامل لأدوات صحة المرأة يوفر 17 أداة احترافية لمتابعة صحة المرأة من مرحلة التخطيط للحمل وحتى ما بعد الولادة.
 
-## How can I edit this code?
+A comprehensive Women's Health toolkit providing 17 professional-grade calculators and trackers designed for every stage of a woman's journey — from fertility planning to postpartum care.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🌟 المميزات | Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- ✅ **17 أداة صحية متكاملة** | 17 comprehensive health tools
+- ✅ **تصميم طبي احترافي** | Professional medical design
+- ✅ **حفظ البيانات محلياً** | LocalStorage persistence
+- ✅ **تصميم متجاوب** | Responsive design
+- ✅ **رسوم متحركة سلسة** | Smooth Framer Motion animations
+- ✅ **واجهة سهلة الاستخدام** | User-friendly interface
+- ✅ **بحث وفلترة حسب الفئة** | Search and category filtering
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🛠️ الأدوات المتاحة | Available Tools
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🌸 الخصوبة | Fertility
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| حاسبة الإباضة | Ovulation Calculator | تتبع فترة الخصوبة وتوقع موعد الإباضة |
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🤰 الحمل | Pregnancy
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| حاسبة موعد الولادة | Due Date Calculator | حساب موعد الولادة المتوقع |
+| حاسبة مؤشر كتلة الجسم للحامل | Pregnancy BMI | حساب الوزن المثالي خلال الحمل |
+| عداد ركلات الجنين | Kick Counter | تتبع حركات الجنين |
+| متتبع نمو الجنين | Fetal Growth Tracker | متابعة نمو الجنين أسبوعياً |
 
-Follow these steps:
+### ⏱️ المخاض | Labor
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| مؤقت الانقباضات | Contraction Timer | قياس توقيت ومدة الانقباضات |
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 👶 ما بعد الولادة | Postpartum
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| متتبع الرضاعة | Breastfeeding Tracker | تسجيل جلسات الرضاعة |
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### ⚠️ تقييم المخاطر | Risk Assessment
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| تقييم سكري الحمل | GDM Risk Assessment | تقييم عوامل خطر سكري الحمل |
+| تقييم تسمم الحمل | Preeclampsia Risk | تقييم عوامل خطر تسمم الحمل |
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 🧠 الصحة النفسية | Mental Health
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| فحص اكتئاب ما بعد الولادة | PPD Screener (EPDS) | استبيان إدنبرة لاكتئاب ما بعد الولادة |
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 💪 العافية | Wellness
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| متتبع شرب الماء | Water Intake Tracker | تتبع كمية الماء اليومية |
+| دليل التمارين | Exercise Guide | تمارين آمنة لكل مرحلة من الحمل |
+
+### 📚 مراجع | Reference
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| دليل الأدوية الآمنة | Safe Medications | مرجع سريع للأدوية أثناء الحمل والرضاعة |
+| جدول التطعيمات | Vaccination Schedule | جدول التطعيمات للحامل والمولود |
+
+### 📋 التحضير | Preparation
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| قائمة حقيبة المستشفى | Hospital Bag Checklist | قائمة شاملة لتجهيز حقيبة الولادة |
+
+### 🧬 الوراثة | Genetics
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| حاسبة فصيلة الدم | Blood Type Calculator | توقع فصيلة دم الطفل |
+
+### 🔴 صحة الدورة الشهرية | Menstrual Health
+| الأداة | Tool | الوصف |
+|--------|------|--------|
+| متتبع الدورة الشهرية | Cycle Tracker | تتبع الدورة الشهرية والأعراض |
+
+---
+
+## 🚀 كيفية الاستخدام | How to Use
+
+### التشغيل المحلي | Local Development
+
+```bash
+# تثبيت الحزم | Install dependencies
+npm install
+
+# تشغيل التطبيق | Start development server
 npm run dev
+
+# بناء للإنتاج | Build for production
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+### استخدام التطبيق | Using the App
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **الصفحة الرئيسية**: تعرض جميع الأدوات الـ 17 في شبكة منظمة
+2. **البحث**: استخدم شريط البحث للعثور على أداة محددة
+3. **الفلترة**: اختر فئة معينة لعرض الأدوات ذات الصلة
+4. **الأدوات**: انقر على أي بطاقة للدخول إلى الأداة واستخدامها
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🛠️ التقنيات المستخدمة | Tech Stack
 
-## What technologies are used for this project?
+| التقنية | الاستخدام |
+|---------|----------|
+| **React 18** | إطار العمل الأساسي |
+| **TypeScript** | لغة البرمجة |
+| **Vite** | أداة البناء |
+| **Tailwind CSS** | تنسيق الواجهة |
+| **Framer Motion** | الرسوم المتحركة |
+| **shadcn/ui** | مكتبة المكونات |
+| **React Router** | التنقل بين الصفحات |
+| **date-fns** | معالجة التواريخ |
+| **Lucide React** | الأيقونات |
+| **LocalStorage** | حفظ البيانات محلياً |
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📁 هيكل المشروع | Project Structure
 
-## How can I deploy this project?
+```
+src/
+├── components/
+│   ├── Layout.tsx          # التخطيط العام
+│   ├── ToolCard.tsx        # بطاقة الأداة
+│   └── ui/                 # مكونات shadcn
+├── lib/
+│   ├── tools-data.ts       # بيانات الأدوات
+│   └── utils.ts            # دوال مساعدة
+├── pages/
+│   ├── Index.tsx           # الصفحة الرئيسية
+│   └── tools/
+│       ├── OvulationCalculator.tsx
+│       ├── DueDateCalculator.tsx
+│       ├── CycleTracker.tsx
+│       ├── PregnancyBMI.tsx
+│       ├── KickCounter.tsx
+│       ├── ContractionTimer.tsx
+│       ├── FetalGrowth.tsx
+│       ├── BloodType.tsx
+│       ├── GestationalDiabetes.tsx
+│       ├── PreeclampsiaRisk.tsx
+│       ├── SafeMedications.tsx
+│       ├── PPDScreener.tsx
+│       ├── BreastfeedingTracker.tsx
+│       ├── WaterIntake.tsx
+│       ├── ExerciseGuide.tsx
+│       ├── VaccinationSchedule.tsx
+│       └── HospitalBag.tsx
+└── App.tsx                 # التوجيه الرئيسي
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 🎨 نظام التصميم | Design System
 
-Yes, you can!
+### الألوان | Colors
+- **Primary**: Teal (`#0891B2`) - اللون الأساسي للثقة والصحة
+- **Success**: Green - للنتائج الإيجابية
+- **Warning**: Amber - للتحذيرات
+- **Destructive**: Red - للمخاطر العالية
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### المبادئ | Principles
+- تصميم نظيف وموثوق مستوحى من Mayo Clinic/WebMD
+- مسافات بيضاء واسعة
+- بطاقات بيضاء على خلفية رمادية فاتحة
+- طباعة واضحة مع تدرج هرمي
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+
+## ⚠️ إخلاء المسؤولية الطبية | Medical Disclaimer
+
+> **هام**: هذه الأدوات للأغراض المعلوماتية والتعليمية فقط. لا تشكل نصيحة طبية أو تشخيصاً أو علاجاً. استشر دائماً مقدمي الرعاية الصحية المؤهلين لاتخاذ القرارات الطبية.
+
+> **Important**: These tools are for informational and educational purposes only. They do not constitute medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.
+
+---
+
+## 📝 الترخيص | License
+
+هذا المشروع مفتوح المصدر ومتاح للاستخدام والتعديل.
+
+---
+
+## 🤝 المساهمة | Contributing
+
+نرحب بالمساهمات! يرجى فتح issue أو pull request لأي اقتراحات أو تحسينات.
+
+---
+
+<div align="center">
+
+**صُنع بـ ❤️ لدعم صحة المرأة**
+
+**Made with ❤️ to support women's health**
+
+</div>
