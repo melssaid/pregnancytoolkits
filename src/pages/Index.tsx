@@ -4,7 +4,8 @@ import { Heart, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
-import { getSortedTools, categoryKeys } from "@/lib/tools-data";
+import { SubscriptionBanner } from "@/components/SubscriptionBanner";
+import { getSortedTools, categoryKeys, toolsData } from "@/lib/tools-data";
 import { Input } from "@/components/ui/input";
 
 const Index = () => {
@@ -23,6 +24,9 @@ const Index = () => {
     const matchesCategory = activeCategory === "categories.all" || tool.categoryKey === activeCategory;
     return matchesSearch && matchesCategory;
   });
+
+  // Find tool data to get isPremium flag
+  const getToolById = (id: string) => toolsData.find(t => t.id === id);
 
   return (
     <Layout>
@@ -71,6 +75,13 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Subscription Banner */}
+      <section className="border-b border-border">
+        <div className="container py-4">
+          <SubscriptionBanner />
+        </div>
+      </section>
+
       {/* Category Filter */}
       <section className="border-b border-border bg-card">
         <div className="container py-4">
@@ -115,6 +126,7 @@ const Index = () => {
                   href={tool.href}
                   categoryKey={tool.categoryKey}
                   index={index}
+                  isPremium={tool.isPremium}
                 />
               ))}
             </div>

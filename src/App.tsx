@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+
+// Pregnancy Tools
 import OvulationCalculator from "./pages/tools/OvulationCalculator";
 import DueDateCalculator from "./pages/tools/DueDateCalculator";
 import CycleTracker from "./pages/tools/CycleTracker";
@@ -25,6 +27,22 @@ import ExerciseGuide from "./pages/tools/ExerciseGuide";
 import VaccinationSchedule from "./pages/tools/VaccinationSchedule";
 import HospitalBag from "./pages/tools/HospitalBag";
 
+// New Premium Tools
+import WeightGain from "./pages/tools/WeightGain";
+import PregnancyDiary from "./pages/tools/PregnancyDiary";
+import NutritionGuide from "./pages/tools/NutritionGuide";
+import ForbiddenFoods from "./pages/tools/ForbiddenFoods";
+import BabySleepTracker from "./pages/tools/BabySleepTracker";
+import DiaperTracker from "./pages/tools/DiaperTracker";
+import BabyGrowth from "./pages/tools/BabyGrowth";
+import VaccinationGuide from "./pages/tools/VaccinationGuide";
+import GenderPredictor from "./pages/tools/GenderPredictor";
+import ConceptionCalculator from "./pages/tools/ConceptionCalculator";
+import BreathingExercises from "./pages/tools/BreathingExercises";
+import MoodDiary from "./pages/tools/MoodDiary";
+import YogaGuide from "./pages/tools/YogaGuide";
+import Affirmations from "./pages/tools/Affirmations";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -37,6 +55,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
+          
+          {/* Core Tools */}
           <Route path="/tools/ovulation-calculator" element={<OvulationCalculator />} />
           <Route path="/tools/due-date-calculator" element={<DueDateCalculator />} />
           <Route path="/tools/cycle-tracker" element={<CycleTracker />} />
@@ -54,6 +74,23 @@ const App = () => (
           <Route path="/tools/exercise-guide" element={<ExerciseGuide />} />
           <Route path="/tools/vaccination-schedule" element={<VaccinationSchedule />} />
           <Route path="/tools/hospital-bag" element={<HospitalBag />} />
+          
+          {/* New Premium Tools */}
+          <Route path="/tools/weight-gain" element={<WeightGain />} />
+          <Route path="/tools/pregnancy-diary" element={<PregnancyDiary />} />
+          <Route path="/tools/nutrition-guide" element={<NutritionGuide />} />
+          <Route path="/tools/forbidden-foods" element={<ForbiddenFoods />} />
+          <Route path="/tools/baby-sleep-tracker" element={<BabySleepTracker />} />
+          <Route path="/tools/diaper-tracker" element={<DiaperTracker />} />
+          <Route path="/tools/baby-growth" element={<BabyGrowth />} />
+          <Route path="/tools/vaccination-guide" element={<VaccinationGuide />} />
+          <Route path="/tools/gender-predictor" element={<GenderPredictor />} />
+          <Route path="/tools/conception-calculator" element={<ConceptionCalculator />} />
+          <Route path="/tools/breathing-exercises" element={<BreathingExercises />} />
+          <Route path="/tools/mood-diary" element={<MoodDiary />} />
+          <Route path="/tools/yoga-guide" element={<YogaGuide />} />
+          <Route path="/tools/affirmations" element={<Affirmations />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

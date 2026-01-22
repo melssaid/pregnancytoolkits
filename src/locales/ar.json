@@ -114,6 +114,76 @@
       "title": "حاسبة فصيلة الدم",
       "description": "توقعي فصائل الدم المحتملة لطفلك بناءً على فصيلتي الوالدين.",
       "category": "الوراثة"
+    },
+    "weightGain": {
+      "title": "حاسبة زيادة الوزن",
+      "description": "تتبعي زيادة الوزن الصحية خلال الحمل بناءً على مؤشر كتلة جسمك.",
+      "category": "الحمل"
+    },
+    "pregnancyDiary": {
+      "title": "مذكرة الحمل",
+      "description": "وثّقي رحلة حملك بالملاحظات والأعراض والذكريات.",
+      "category": "الحمل"
+    },
+    "nutritionGuide": {
+      "title": "دليل التغذية",
+      "description": "العناصر الغذائية الأساسية والتوصيات الغذائية لحمل صحي.",
+      "category": "العافية"
+    },
+    "forbiddenFoods": {
+      "title": "الأطعمة الممنوعة",
+      "description": "قائمة الأطعمة التي يجب تجنبها خلال الحمل للسلامة.",
+      "category": "مراجع"
+    },
+    "babySleepTracker": {
+      "title": "متتبع نوم الطفل",
+      "description": "تتبعي أنماط نوم طفلك ومدته.",
+      "category": "ما بعد الولادة"
+    },
+    "diaperTracker": {
+      "title": "متتبع الحفاضات",
+      "description": "سجلي تغييرات الحفاضات لمراقبة صحة طفلك.",
+      "category": "ما بعد الولادة"
+    },
+    "babyGrowth": {
+      "title": "حاسبة نمو الطفل",
+      "description": "تتبعي نمو طفلك مع معايير منظمة الصحة العالمية.",
+      "category": "ما بعد الولادة"
+    },
+    "vaccinationGuide": {
+      "title": "دليل التطعيمات الموسع",
+      "description": "جدول التطعيمات الشامل لسنوات طفلك الأولى.",
+      "category": "مراجع"
+    },
+    "genderPredictor": {
+      "title": "حاسبة جنس المولود",
+      "description": "تنبؤ ممتع بجنس الطفل حسب التقويم الصيني (للتسلية فقط).",
+      "category": "الحمل"
+    },
+    "conceptionCalculator": {
+      "title": "حاسبة موعد الحمل",
+      "description": "قدّري تاريخ الحمل بناءً على موعد الولادة أو آخر دورة.",
+      "category": "الخصوبة"
+    },
+    "breathingExercises": {
+      "title": "تمارين التنفس",
+      "description": "تقنيات تنفس موجهة للاسترخاء خلال الحمل والمخاض.",
+      "category": "العافية"
+    },
+    "moodDiary": {
+      "title": "مذكرة المزاج",
+      "description": "تتبعي صحتك العاطفية طوال فترة الحمل وما بعد الولادة.",
+      "category": "الصحة النفسية"
+    },
+    "yogaGuide": {
+      "title": "يوغا الحمل",
+      "description": "وضعيات يوغا آمنة لكل ثلث للحفاظ على نشاطك واسترخائك.",
+      "category": "العافية"
+    },
+    "affirmations": {
+      "title": "تأكيدات إيجابية",
+      "description": "تأكيدات يومية لدعم صحتك النفسية خلال الحمل.",
+      "category": "الصحة النفسية"
     }
   },
   "common": {
@@ -141,7 +211,21 @@
     "months": "أشهر",
     "minutes": "دقائق",
     "seconds": "ثواني",
-    "hours": "ساعات"
+    "hours": "ساعات",
+    "premium": "مميز",
+    "freeTrial": "تجربة مجانية",
+    "subscribe": "اشترك",
+    "unlock": "افتح جميع الأدوات",
+    "month": "شهر"
+  },
+  "subscription": {
+    "trialActive": "التجربة المجانية فعالة",
+    "trialDaysLeft": "{{days}} أيام متبقية في تجربتك المجانية",
+    "trialExpired": "انتهت التجربة",
+    "subscribeNow": "اشترك بـ $1.99/شهر",
+    "premiumFeature": "ميزة مميزة",
+    "unlockAccess": "افتح الوصول لجميع الـ 31 أداة",
+    "subscribeToAccess": "اشترك للوصول لهذه الأداة"
   },
   "dueDatePage": {
     "title": "حاسبة موعد الولادة",
@@ -205,5 +289,131 @@
     "babyItems": "أغراض الطفل",
     "partnerItems": "أغراض المرافق",
     "info": "جهزي حقيبتك حوالي الأسبوع 36. ضعيها في مكان سهل الوصول، وتأكدي أن شريكك يعرف مكانها!"
+  },
+  "conceptionPage": {
+    "fromDueDate": "من موعد الولادة",
+    "fromLMP": "من آخر دورة",
+    "knowDueDate": "أعرف موعد ولادتي",
+    "planningPregnancy": "تخطيط أو متابعة",
+    "dueDate": "موعد ولادتك",
+    "lmpDate": "أول يوم من آخر دورة",
+    "cycleLength": "طول الدورة (أيام)",
+    "estimatedConception": "تاريخ الحمل المقدر",
+    "fertileWindow": "فترة الخصوبة",
+    "info": "يحدث الحمل عادةً حول الإباضة، قبل 14 يوماً من موعد الدورة التالية. تمتد فترة الخصوبة 5 أيام قبل ويوم واحد بعد الإباضة."
+  },
+  "weightGainPage": {
+    "title": "حاسبة زيادة الوزن",
+    "prePregnancyWeight": "الوزن قبل الحمل (كجم)",
+    "currentWeight": "الوزن الحالي (كجم)",
+    "height": "الطول (سم)",
+    "currentWeek": "الأسبوع الحالي",
+    "bmiCategory": "تصنيف مؤشر كتلة جسمك",
+    "recommendedGain": "الزيادة الموصى بها",
+    "currentGain": "زيادتك الحالية",
+    "onTrack": "أنتِ على المسار الصحيح!",
+    "underGain": "فكري بزيادة الوزن قليلاً",
+    "overGain": "زيادة الوزن أعلى قليلاً"
+  },
+  "diaryPage": {
+    "title": "مذكرة الحمل",
+    "addEntry": "إضافة تدوينة",
+    "mood": "المزاج",
+    "symptoms": "الأعراض",
+    "notes": "ملاحظات",
+    "photo": "إضافة صورة",
+    "week": "الأسبوع",
+    "noEntries": "لا توجد تدوينات. ابدئي بتوثيق رحلتك!"
+  },
+  "nutritionPage": {
+    "title": "دليل التغذية",
+    "dailyNeeds": "الاحتياجات الغذائية اليومية",
+    "keyNutrients": "العناصر الغذائية الأساسية",
+    "folicAcid": "حمض الفوليك",
+    "iron": "الحديد",
+    "calcium": "الكالسيوم",
+    "protein": "البروتين",
+    "omega3": "أوميغا-3"
+  },
+  "forbiddenFoodsPage": {
+    "title": "الأطعمة الممنوعة",
+    "searchPlaceholder": "ابحث عن طعام...",
+    "avoid": "تجنبي",
+    "caution": "احذري",
+    "safe": "آمن عموماً",
+    "reason": "السبب"
+  },
+  "babySleepPage": {
+    "title": "متتبع نوم الطفل",
+    "logSleep": "تسجيل نوم",
+    "startTime": "وقت البدء",
+    "endTime": "وقت الانتهاء",
+    "duration": "المدة",
+    "totalToday": "إجمالي النوم اليوم",
+    "sleepLog": "سجل النوم"
+  },
+  "diaperPage": {
+    "title": "متتبع الحفاضات",
+    "logChange": "تسجيل تغيير",
+    "wet": "مبللة",
+    "dirty": "متسخة",
+    "both": "كلاهما",
+    "todayCount": "تغييرات اليوم",
+    "recentChanges": "التغييرات الأخيرة"
+  },
+  "babyGrowthPage": {
+    "title": "نمو الطفل",
+    "age": "عمر الطفل",
+    "weight": "الوزن (كجم)",
+    "height": "الطول (سم)",
+    "headCircumference": "محيط الرأس (سم)",
+    "percentile": "النسبة المئوية",
+    "trackGrowth": "تتبع النمو"
+  },
+  "genderPredictorPage": {
+    "title": "حاسبة جنس المولود",
+    "disclaimer": "للتسلية فقط - ليس دقيقاً طبياً",
+    "motherAge": "عمر الأم عند الحمل",
+    "conceptionMonth": "شهر الحمل",
+    "predict": "توقع الجنس",
+    "result": "التوقع"
+  },
+  "breathingPage": {
+    "title": "تمارين التنفس",
+    "selectExercise": "اختر تمرين",
+    "relaxation": "تنفس الاسترخاء",
+    "labor": "تنفس المخاض",
+    "stress": "تخفيف التوتر",
+    "inhale": "شهيق",
+    "hold": "احبسي",
+    "exhale": "زفير",
+    "cycles": "دورات"
+  },
+  "moodPage": {
+    "title": "مذكرة المزاج",
+    "howAreYou": "كيف تشعرين اليوم؟",
+    "great": "رائع",
+    "good": "جيد",
+    "okay": "عادي",
+    "notGreat": "ليس جيداً",
+    "struggling": "صعب",
+    "notes": "أضف ملاحظات (اختياري)",
+    "history": "سجل المزاج"
+  },
+  "yogaPage": {
+    "title": "يوغا الحمل",
+    "selectTrimester": "اختر الثلث",
+    "firstTrimester": "الثلث الأول",
+    "secondTrimester": "الثلث الثاني",
+    "thirdTrimester": "الثلث الثالث",
+    "duration": "المدة",
+    "difficulty": "الصعوبة"
+  },
+  "affirmationsPage": {
+    "title": "تأكيدات يومية",
+    "todaysAffirmation": "تأكيد اليوم",
+    "newAffirmation": "تأكيد جديد",
+    "favorites": "المفضلة",
+    "categories": "الفئات"
   }
 }
