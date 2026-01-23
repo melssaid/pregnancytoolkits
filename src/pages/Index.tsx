@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, forwardRef, memo } from "react";
 import { motion } from "framer-motion";
 import { Search, Sparkles, Crown, CheckCircle, Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
-import { UrgencyBanner } from "@/components/UrgencyBanner";
 import { getSortedTools, categoryKeys } from "@/lib/tools-data";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -34,9 +33,6 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Urgency Banner */}
-      <UrgencyBanner />
-
       {/* Hero Section */}
       <section className="gradient-hero border-b border-border relative overflow-hidden">
         {/* Decorative elements */}
