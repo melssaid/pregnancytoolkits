@@ -364,15 +364,17 @@
     "underGain": "Consider gaining a bit more",
     "overGain": "Weight gain is slightly high"
   },
-  "diaryPage": {
+  "pregnancyDiaryPage": {
     "title": "Pregnancy Diary",
-    "addEntry": "Add Entry",
-    "mood": "Mood",
+    "newEntry": "New Entry",
+    "week": "Pregnancy Week",
+    "mood": "How are you feeling?",
     "symptoms": "Symptoms",
-    "notes": "Notes",
-    "photo": "Add Photo",
-    "week": "Week",
-    "noEntries": "No entries yet. Start documenting your journey!"
+    "symptomsPlaceholder": "e.g., nausea, fatigue, back pain",
+    "note": "Your Thoughts",
+    "notePlaceholder": "Write about your day, feelings, or memories...",
+    "save": "Save Entry",
+    "myEntries": "My Diary Entries"
   },
   "nutritionPage": {
     "title": "Nutrition Guide",
@@ -387,10 +389,53 @@
   "forbiddenFoodsPage": {
     "title": "Foods to Avoid",
     "searchPlaceholder": "Search foods...",
-    "avoid": "Avoid",
-    "caution": "Use Caution",
-    "safe": "Generally Safe",
-    "reason": "Reason"
+    "forbidden": "Avoid",
+    "caution": "Caution",
+    "safe": "Safe",
+    "forbiddenTitle": "Foods to Avoid",
+    "cautionTitle": "Use With Caution",
+    "safeTitle": "Safe Alternatives",
+    "disclaimer": "This is a general guide. Always consult your healthcare provider about dietary restrictions specific to your pregnancy.",
+    "foods": {
+      "rawFish": "Raw Fish & Sushi",
+      "rawMeat": "Raw or Undercooked Meat",
+      "rawEggs": "Raw Eggs",
+      "unpasteurizedMilk": "Unpasteurized Milk",
+      "softCheese": "Soft Cheese (Brie, Feta)",
+      "deli": "Deli Meats & Hot Dogs",
+      "alcohol": "Alcohol",
+      "highMercuryFish": "High Mercury Fish (Shark, Swordfish)",
+      "rawSprouts": "Raw Sprouts",
+      "caffeine": "Caffeine (limit 200mg/day)",
+      "herbalTea": "Herbal Teas",
+      "liver": "Liver & Liver Products",
+      "tuna": "Canned Tuna (limit portions)",
+      "artificialSweeteners": "Artificial Sweeteners",
+      "cookedFish": "Cooked Low-Mercury Fish",
+      "pasteurizedDairy": "Pasteurized Dairy",
+      "wellCookedMeat": "Well-Cooked Meat",
+      "hardCheese": "Hard Cheese (Cheddar, Swiss)"
+    },
+    "reasons": {
+      "rawFishReason": "May contain parasites and bacteria harmful to baby",
+      "rawMeatReason": "Risk of toxoplasmosis and E. coli infection",
+      "rawEggsReason": "Risk of salmonella infection",
+      "unpasteurizedReason": "May contain listeria bacteria",
+      "softCheeseReason": "Higher risk of listeria contamination",
+      "deliReason": "Risk of listeria unless heated until steaming",
+      "alcoholReason": "No safe amount during pregnancy",
+      "mercuryReason": "High mercury levels can harm baby's development",
+      "sproutsReason": "Bacteria can grow in sprout seeds",
+      "caffeineReason": "Limit to 200mg daily (about 1 cup coffee)",
+      "herbalTeaReason": "Some herbs may be unsafe - check with doctor",
+      "liverReason": "Very high in Vitamin A which can harm baby",
+      "tunaReason": "Contains moderate mercury - limit to 2-3 portions weekly",
+      "sweetenersReason": "Some may cross placenta - use in moderation",
+      "cookedFishReason": "Great source of omega-3 for baby's brain",
+      "pasteurizedReason": "Safe and good source of calcium",
+      "cookedMeatReason": "Safe source of protein and iron",
+      "hardCheeseReason": "Made with pasteurized milk, safe to eat"
+    }
   },
   "babySleepPage": {
     "title": "Baby Sleep Tracker",
@@ -421,11 +466,34 @@
   },
   "genderPredictorPage": {
     "title": "Gender Predictor",
-    "disclaimer": "For entertainment only - not medically accurate",
+    "disclaimer": "This is for entertainment purposes only. The only accurate way to determine baby's gender is through medical testing like ultrasound or genetic screening.",
+    "funNote": "This is just for fun! Based on the ancient Chinese Gender Prediction Chart - not scientifically proven but entertaining to try!",
     "motherAge": "Mother's Age at Conception",
     "conceptionMonth": "Conception Month",
     "predict": "Predict Gender",
-    "result": "Prediction"
+    "result": {
+      "boy": "It's a Boy!",
+      "girl": "It's a Girl!"
+    },
+    "resultNote": "Remember, this is just for fun! Only medical tests can confirm your baby's gender.",
+    "selectAge": "Select age",
+    "selectMonth": "Select month",
+    "years": "years",
+    "chineseMethod": "Chinese Gender Predictor",
+    "months": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    }
   },
   "breathingPage": {
     "title": "Breathing Exercises",

@@ -99,6 +99,15 @@ const App = () => (
           <Route path="/tools/mood-diary" element={<MoodDiary />} />
           <Route path="/tools/yoga-guide" element={<YogaGuide />} />
           <Route path="/tools/affirmations" element={<Affirmations />} />
+          <Route path="/tools/bump-photos" element={<BumpPhotos />} />
+          <Route path="/tools/pregnancy-milestones" element={<PregnancyMilestones />} />
+          <Route path="/tools/meal-planner" element={<MealPlanner />} />
+          <Route path="/tools/vitamin-tracker" element={<VitaminTracker />} />
+          <Route path="/tools/kegel-exercises" element={<KegelExercises />} />
+          <Route path="/tools/birth-plan" element={<BirthPlan />} />
+          <Route path="/tools/nursery-checklist" element={<NurseryChecklist />} />
+          <Route path="/tools/baby-budget" element={<BabyBudget />} />
+          <Route path="/tools/doctor-questions" element={<DoctorQuestions />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
