@@ -1,4 +1,4 @@
-import { useState, forwardRef, memo } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Search, Sparkles, Crown, CheckCircle, Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,11 @@ import { getSortedTools, categoryKeys } from "@/lib/tools-data";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useSubscription from "@/hooks/useSubscription";
+
+const getCategoryId = (categoryKey: string) => {
+  if (categoryKey === "categories.all") return "tools-sections";
+  return `cat-${categoryKey.replace("categories.", "")}`;
+};
 
 const Index = () => {
   const { t } = useTranslation();
@@ -21,15 +26,43 @@ const Index = () => {
     console.log("Trigger Google Play In-App Billing");
   };
 
-  const filteredTools = sortedTools.filter((tool) => {
-    const title = t(tool.titleKey).toLowerCase();
-    const description = t(tool.descriptionKey).toLowerCase();
-    const matchesSearch = 
-      title.includes(search.toLowerCase()) ||
-      description.includes(search.toLowerCase());
-    const matchesCategory = activeCategory === "categories.all" || tool.categoryKey === activeCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const normalizedSearch = search.trim().toLowerCase();
+
+  const filteredTools = useMemo(() => {
+    return sortedTools.filter((tool) => {
+      const title = t(tool.titleKey).toLowerCase();
+      const description = t(tool.descriptionKey).toLowerCase();
+      return (
+        title.includes(normalizedSearch) ||
+        description.includes(normalizedSearch)
+      );
+    });
+  }, [sortedTools, t, normalizedSearch]);
+
+  const categoriesForSections = useMemo(
+    () => categoryKeys.filter((k) => k !== "categories.all"),
+    []
+  );
+
+  const groupedSections = useMemo(() => {
+    return categoriesForSections
+      .map((categoryKey) => {
+        const tools = filteredTools.filter((tool) => tool.categoryKey === categoryKey);
+        return { categoryKey, tools };
+      })
+      .filter((section) => section.tools.length > 0);
+  }, [categoriesForSections, filteredTools]);
+
+  const scrollToCategory = (categoryKey: string) => {
+    setActiveCategory(categoryKey);
+
+    const id = getCategoryId(categoryKey);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const totalToolsCount = filteredTools.length;
+  const isSearching = normalizedSearch.length > 0;
 
   return (
     <Layout>
@@ -38,7 +71,7 @@ const Index = () => {
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-        
+
         <div className="container py-12 md:py-16 relative">
           <div className="mx-auto max-w-3xl text-center">
             <motion.div
@@ -48,17 +81,19 @@ const Index = () => {
             >
               <div className="mb-6 inline-flex items-center gap-2 rounded-full gradient-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg">
                 <Sparkles className="h-4 w-4" />
-                {t('app.tagline')}
+                {t("app.tagline")}
               </div>
-              
+
               <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl text-balance">
-                {t('app.title')}{" "}
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{t('app.titleHighlight')}</span>{" "}
-                {t('app.titleEnd')}
+                {t("app.title")} {" "}
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  {t("app.titleHighlight")}
+                </span>{" "}
+                {t("app.titleEnd")}
               </h1>
-              
+
               <p className="mb-8 text-lg text-muted-foreground md:text-xl text-balance max-w-xl mx-auto">
-                {t('app.description')}
+                {t("app.description")}
               </p>
             </motion.div>
 
@@ -72,7 +107,7 @@ const Index = () => {
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder={t('app.searchPlaceholder')}
+                placeholder={t("app.searchPlaceholder")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="h-14 pl-12 text-base bg-card border-2 border-border shadow-card rounded-2xl focus:border-primary transition-colors"
@@ -82,40 +117,49 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="border-b border-border bg-background sticky top-16 z-40">
-        <div className="container py-4">
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            {categoryKeys.map((categoryKey) => (
-              <button
-                key={categoryKey}
-                onClick={() => setActiveCategory(categoryKey)}
-                className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
-                  activeCategory === categoryKey
-                    ? "gradient-primary text-white shadow-lg"
-                    : "bg-secondary text-secondary-foreground hover:bg-muted"
-                }`}
-              >
-                {t(categoryKey)}
-              </button>
-            ))}
+      {/* Category Quick Nav */}
+      {!isSearching && (
+        <section className="border-b border-border bg-background sticky top-16 z-40">
+          <div className="container py-4">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              {categoryKeys.map((categoryKey) => (
+                <button
+                  key={categoryKey}
+                  onClick={() => scrollToCategory(categoryKey)}
+                  className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
+                    activeCategory === categoryKey
+                      ? "gradient-primary text-white shadow-lg"
+                      : "bg-secondary text-secondary-foreground hover:bg-muted"
+                  }`}
+                >
+                  {t(categoryKey)}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Tools Grid */}
+      {/* Tools */}
       <section className="py-12 md:py-16">
         <div className="container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-foreground">
-              {activeCategory === "categories.all" ? t('app.allTools') : t(activeCategory)}
+              {isSearching ? `Search results for \"${search.trim()}\"` : t("app.allTools")}
             </h2>
             <span className="text-sm font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-full">
-              {t('app.toolsAvailable', { count: filteredTools.length })}
+              {t("app.toolsAvailable", { count: totalToolsCount })}
             </span>
           </div>
 
-          {filteredTools.length > 0 ? (
+          {/* Anchor for "All" */}
+          <div id="tools-sections" className="scroll-mt-28" />
+
+          {totalToolsCount === 0 ? (
+            <div className="py-16 text-center">
+              <p className="text-lg text-muted-foreground">{t("app.noToolsFound")}</p>
+            </div>
+          ) : isSearching ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredTools.map((tool, index) => (
                 <ToolCard
@@ -131,10 +175,47 @@ const Index = () => {
               ))}
             </div>
           ) : (
-            <div className="py-16 text-center">
-              <p className="text-lg text-muted-foreground">
-                {t('app.noToolsFound')}
-              </p>
+            <div className="space-y-8">
+              {groupedSections.map((section, sectionIndex) => {
+                const sectionId = getCategoryId(section.categoryKey);
+
+                return (
+                  <details
+                    key={section.categoryKey}
+                    id={sectionId}
+                    className="scroll-mt-28 rounded-3xl border border-border bg-card/40"
+                    defaultOpen={sectionIndex < 2}
+                  >
+                    <summary className="cursor-pointer select-none list-none px-6 py-5">
+                      <div className="flex items-center justify-between gap-4">
+                        <h3 className="text-xl font-bold text-foreground">
+                          {t(section.categoryKey)}
+                        </h3>
+                        <span className="text-xs font-semibold text-muted-foreground bg-secondary px-3 py-1 rounded-full">
+                          {section.tools.length}
+                        </span>
+                      </div>
+                    </summary>
+
+                    <div className="px-6 pb-6">
+                      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {section.tools.map((tool, toolIndex) => (
+                          <ToolCard
+                            key={tool.id}
+                            titleKey={tool.titleKey}
+                            descriptionKey={tool.descriptionKey}
+                            icon={tool.icon}
+                            href={tool.href}
+                            categoryKey={tool.categoryKey}
+                            index={toolIndex}
+                            isPremium={tool.isPremium}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </details>
+                );
+              })}
             </div>
           )}
         </div>
@@ -206,7 +287,7 @@ const Index = () => {
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">{t('common.warning')}:</strong> {t('app.medicalDisclaimer')}
+              <strong className="text-foreground">{t("common.warning")}:</strong> {t("app.medicalDisclaimer")}
             </p>
           </div>
         </div>
