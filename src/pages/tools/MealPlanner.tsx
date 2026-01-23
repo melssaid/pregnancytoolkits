@@ -163,19 +163,19 @@ const MealPlanner = () => {
         </div>
 
         {/* Calorie Summary */}
-        <Card className="bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
+        <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
           <CardContent className="py-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-full bg-green-100">
-                  <Leaf className="h-5 w-5 text-green-600" />
+                <div className="p-2.5 rounded-full bg-primary/10">
+                  <Leaf className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Total Calories</p>
-                  <p className="text-2xl font-bold text-green-700">{getTotalCalories()} cal</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Total Calories</p>
+                  <p className="text-2xl font-bold text-foreground">{getTotalCalories()} <span className="text-sm font-normal text-muted-foreground">cal</span></p>
                 </div>
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-xs text-muted-foreground bg-background/50 px-3 py-1.5 rounded-full">
                 Recommended: 2200-2500 cal/day
               </div>
             </div>
@@ -194,39 +194,41 @@ const MealPlanner = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: catIndex * 0.1 }}
             >
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <IconComp className="h-5 w-5 text-primary" />
+              <Card className="overflow-hidden">
+                <CardHeader className="pb-2 bg-muted/30">
+                  <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                    <div className="p-1.5 rounded-lg bg-primary/10">
+                      <IconComp className="h-4 w-4 text-primary" />
+                    </div>
                     {categoryNames[category]}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
+                <CardContent className="p-3">
+                  <div className="space-y-2">
                     {filteredMeals.map((meal) => {
                       const isSelected = selectedMeals[category].includes(meal.id);
                       return (
                         <div
                           key={meal.id}
-                          className={`p-3 rounded-xl border-2 cursor-pointer transition-all ${
+                          className={`p-3 rounded-lg border cursor-pointer transition-all ${
                             isSelected 
-                              ? 'border-primary bg-primary/5' 
-                              : 'border-transparent bg-muted/30 hover:bg-muted/50'
+                              ? 'border-primary bg-primary/5 shadow-sm' 
+                              : 'border-border/50 bg-background hover:border-primary/30 hover:bg-muted/30'
                           }`}
                           onClick={() => toggleMeal(category, meal.id)}
                         >
                           <div className="flex items-start gap-3">
-                            <Checkbox checked={isSelected} className="mt-1" />
-                            <div className="flex-1">
-                              <div className="flex items-center justify-between">
-                                <h4 className="font-medium">{meal.name}</h4>
-                                <span className="text-sm text-muted-foreground">{meal.calories} cal</span>
+                            <Checkbox checked={isSelected} className="mt-0.5" />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between gap-2">
+                                <h4 className="font-medium text-sm text-foreground leading-tight">{meal.name}</h4>
+                                <span className="text-xs font-medium text-muted-foreground whitespace-nowrap bg-muted px-2 py-0.5 rounded">{meal.calories} cal</span>
                               </div>
-                              <div className="flex flex-wrap gap-1 mt-1">
+                              <div className="flex flex-wrap gap-1 mt-2">
                                 {meal.nutrients.map((nutrient, idx) => (
                                   <span 
                                     key={idx}
-                                    className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary"
+                                    className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-secondary text-secondary-foreground"
                                   >
                                     {nutrient}
                                   </span>
@@ -245,16 +247,27 @@ const MealPlanner = () => {
         })}
 
         {/* Tips */}
-        <Card className="bg-gradient-to-r from-amber-50 to-orange-50 border-amber-200">
+        <Card className="bg-secondary/50 border-secondary">
           <CardContent className="pt-4">
             <div className="flex gap-3">
-              <Utensils className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div className="p-2 rounded-lg bg-primary/10 h-fit">
+                <Utensils className="h-4 w-4 text-primary" />
+              </div>
               <div>
-                <p className="font-medium text-amber-900">Nutrition Tips</p>
-                <ul className="text-sm text-amber-700 mt-1 space-y-1 list-disc list-inside">
-                  <li>Eat 5-6 small meals instead of 3 large ones</li>
-                  <li>Drink 8-10 glasses of water daily</li>
-                  <li>Avoid raw and unpasteurized foods</li>
+                <p className="font-semibold text-sm text-foreground">Nutrition Tips</p>
+                <ul className="text-xs text-muted-foreground mt-2 space-y-1.5">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">•</span>
+                    Eat 5-6 small meals instead of 3 large ones
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">•</span>
+                    Drink 8-10 glasses of water daily
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">•</span>
+                    Avoid raw and unpasteurized foods
+                  </li>
                 </ul>
               </div>
             </div>

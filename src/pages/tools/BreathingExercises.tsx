@@ -111,30 +111,40 @@ const BreathingExercises = () => {
     return 1;
   };
 
+  const patternEmojis: Record<string, string> = {
+    relaxing: "😌",
+    box: "📦",
+    calming: "🧘",
+    energizing: "⚡",
+    labor: "👶",
+  };
+
   return (
     <Layout title={t('tools.breathingExercises.title')} showBack>
-      <div className="container max-w-2xl py-8">
+      <div className="container max-w-2xl py-6 px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="space-y-6"
         >
           {/* Pattern Selection */}
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold mb-3">{t('breathingPage.selectPattern')}</h2>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div>
+            <h2 className="text-base font-semibold mb-3 text-foreground">{t('breathingPage.selectPattern')}</h2>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
               {patterns.map((pattern) => (
                 <Card
                   key={pattern.id}
                   className={`cursor-pointer transition-all ${
                     selectedPattern.id === pattern.id
-                      ? "border-primary bg-primary/5"
-                      : "hover:border-primary/50"
-                  }`}
+                      ? "border-primary bg-primary/5 shadow-sm"
+                      : "border-border/50 hover:border-primary/30 hover:bg-muted/30"
+                  } ${isRunning ? "opacity-50 pointer-events-none" : ""}`}
                   onClick={() => !isRunning && setSelectedPattern(pattern)}
                 >
                   <CardContent className="p-3 text-center">
-                    <p className="font-medium text-sm">
+                    <span className="text-xl mb-1 block">{patternEmojis[pattern.id]}</span>
+                    <p className="font-medium text-xs text-foreground leading-tight">
                       {t(`breathingPage.patterns.${pattern.nameKey}`)}
                     </p>
                   </CardContent>
@@ -144,25 +154,25 @@ const BreathingExercises = () => {
           </div>
 
           {/* Exercise Area */}
-          <Card className="mb-6">
-            <CardContent className="py-8">
+          <Card>
+            <CardContent className="py-8 px-4">
               <div className="flex flex-col items-center">
                 {/* Breathing Circle */}
                 <motion.div
                   animate={{ scale: isRunning ? getCircleScale() : 1 }}
-                  transition={{ duration: phase === "inhale" ? selectedPattern.inhale : phase === "exhale" ? selectedPattern.exhale : 0.3 }}
-                  className="relative mb-8"
+                  transition={{ duration: phase === "inhale" ? selectedPattern.inhale : phase === "exhale" ? selectedPattern.exhale : 0.3, ease: "easeInOut" }}
+                  className="relative mb-6"
                 >
-                  <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/40 to-primary/60 flex items-center justify-center">
+                  <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-gradient-to-br from-primary/10 to-primary/30 flex items-center justify-center shadow-lg">
+                    <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-gradient-to-br from-primary/30 to-primary/50 flex items-center justify-center">
                       <div className="text-center">
                         {isRunning ? (
                           <>
-                            <p className="text-3xl font-bold text-primary">{timeLeft}</p>
-                            <p className="text-sm text-primary/80">{getPhaseText()}</p>
+                            <p className="text-4xl font-bold text-primary">{timeLeft}</p>
+                            <p className="text-sm font-medium text-primary/80 mt-1">{getPhaseText()}</p>
                           </>
                         ) : (
-                          <Wind className="h-12 w-12 text-primary/60" />
+                          <Wind className="h-10 w-10 text-primary/60" />
                         )}
                       </div>
                     </div>
@@ -171,52 +181,64 @@ const BreathingExercises = () => {
 
                 {/* Cycle Counter */}
                 {isRunning && (
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {t('breathingPage.cycle')} {currentCycle}/{selectedPattern.cycles}
-                  </p>
+                  <div className="bg-secondary/50 px-4 py-2 rounded-full mb-4">
+                    <p className="text-sm font-medium text-foreground">
+                      {t('breathingPage.cycle')} {currentCycle}/{selectedPattern.cycles}
+                    </p>
+                  </div>
                 )}
 
                 {/* Pattern Info */}
                 {!isRunning && (
-                  <div className="text-center mb-6">
-                    <h3 className="font-semibold mb-1">
+                  <div className="text-center mb-6 max-w-xs">
+                    <h3 className="font-semibold text-foreground mb-1">
                       {t(`breathingPage.patterns.${selectedPattern.nameKey}`)}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-2">
+                    <p className="text-sm text-muted-foreground mb-3">
                       {t(`breathingPage.patterns.${selectedPattern.descKey}`)}
                     </p>
-                    <p className="text-xs text-muted-foreground">
-                      {t('breathingPage.inhale')}: {selectedPattern.inhale}s
-                      {selectedPattern.hold > 0 && ` • ${t('breathingPage.hold')}: ${selectedPattern.hold}s`}
-                      {` • ${t('breathingPage.exhale')}: ${selectedPattern.exhale}s`}
-                      {selectedPattern.holdAfter > 0 && ` • ${t('breathingPage.hold')}: ${selectedPattern.holdAfter}s`}
-                    </p>
+                    <div className="flex flex-wrap justify-center gap-2 text-xs">
+                      <span className="bg-primary/10 text-primary px-2 py-1 rounded-full font-medium">
+                        {t('breathingPage.inhale')}: {selectedPattern.inhale}s
+                      </span>
+                      {selectedPattern.hold > 0 && (
+                        <span className="bg-secondary text-secondary-foreground px-2 py-1 rounded-full font-medium">
+                          {t('breathingPage.hold')}: {selectedPattern.hold}s
+                        </span>
+                      )}
+                      <span className="bg-primary/10 text-primary px-2 py-1 rounded-full font-medium">
+                        {t('breathingPage.exhale')}: {selectedPattern.exhale}s
+                      </span>
+                      {selectedPattern.holdAfter > 0 && (
+                        <span className="bg-secondary text-secondary-foreground px-2 py-1 rounded-full font-medium">
+                          {t('breathingPage.hold')}: {selectedPattern.holdAfter}s
+                        </span>
+                      )}
+                    </div>
                   </div>
                 )}
 
                 {/* Controls */}
                 <div className="flex gap-3">
                   {!isRunning ? (
-                    <Button onClick={startExercise} size="lg">
+                    <Button onClick={startExercise} size="lg" className="px-8">
                       <Play className="h-5 w-5 me-2" />
                       {t('common.start')}
                     </Button>
                   ) : (
-                    <>
-                      <Button onClick={stopExercise} variant="outline" size="lg">
-                        <RotateCcw className="h-5 w-5 me-2" />
-                        {t('common.reset')}
-                      </Button>
-                    </>
+                    <Button onClick={stopExercise} variant="outline" size="lg" className="px-8">
+                      <RotateCcw className="h-5 w-5 me-2" />
+                      {t('common.reset')}
+                    </Button>
                   )}
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-muted/50">
-            <CardContent className="pt-4">
-              <p className="text-sm text-muted-foreground">
+          <Card className="bg-secondary/30 border-secondary">
+            <CardContent className="py-4">
+              <p className="text-sm text-muted-foreground text-center">
                 {t('breathingPage.benefits')}
               </p>
             </CardContent>
