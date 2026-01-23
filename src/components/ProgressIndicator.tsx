@@ -1,0 +1,120 @@
+import { motion } from "framer-motion";
+import { Baby, Heart, Sparkles, Star } from "lucide-react";
+
+interface ProgressIndicatorProps {
+  currentWeek: number;
+  totalWeeks?: number;
+  showMilestones?: boolean;
+}
+
+const milestones = [
+  { week: 4, label: "بداية النبض", icon: Heart },
+  { week: 12, label: "نهاية الثلث الأول", icon: Star },
+  { week: 20, label: "منتصف الرحلة", icon: Sparkles },
+  { week: 28, label: "الثلث الأخير", icon: Baby },
+  { week: 40, label: "موعد الولادة", icon: Baby },
+];
+
+export function ProgressIndicator({ 
+  currentWeek, 
+  totalWeeks = 40,
+  showMilestones = true 
+}: ProgressIndicatorProps) {
+  const progress = Math.min((currentWeek / totalWeeks) * 100, 100);
+  const daysRemaining = Math.max((totalWeeks - currentWeek) * 7, 0);
+
+  return (
+    <div className="space-y-4">
+      {/* Main Progress Bar */}
+      <div className="relative">
+        <div className="flex justify-between text-sm text-muted-foreground mb-2">
+          <span>الأسبوع {currentWeek}</span>
+          <span>{Math.round(progress)}% من الرحلة</span>
+        </div>
+        
+        <div className="h-4 bg-secondary/50 rounded-full overflow-hidden relative">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="h-full bg-gradient-to-r from-primary via-pink-400 to-rose-400 rounded-full relative"
+          >
+            {/* Shimmer Effect */}
+            <motion.div
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+            />
+          </motion.div>
+
+          {/* Baby Icon at Progress Point */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1, left: `${Math.min(progress, 95)}%` }}
+            transition={{ delay: 0.5, type: "spring" }}
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
+          >
+            <div className="p-1 bg-white rounded-full shadow-lg border-2 border-primary">
+              <Baby className="h-4 w-4 text-primary" />
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="flex justify-between text-xs text-muted-foreground mt-1">
+          <span>بداية الحمل</span>
+          <span>الولادة</span>
+        </div>
+      </div>
+
+      {/* Days Remaining */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center py-3 px-4 bg-gradient-to-r from-primary/5 to-pink-50 rounded-xl"
+      >
+        <p className="text-2xl font-bold text-primary">{daysRemaining}</p>
+        <p className="text-sm text-muted-foreground">يوم متبقي للقاء طفلك 💕</p>
+      </motion.div>
+
+      {/* Milestones */}
+      {showMilestones && (
+        <div className="space-y-2">
+          <p className="text-sm font-medium text-muted-foreground">المراحل المهمة:</p>
+          <div className="grid grid-cols-5 gap-1">
+            {milestones.map((milestone, index) => {
+              const isPassed = currentWeek >= milestone.week;
+              const isCurrent = currentWeek >= milestone.week - 2 && currentWeek < milestone.week;
+              
+              return (
+                <motion.div
+                  key={milestone.week}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`text-center p-2 rounded-lg transition-all ${
+                    isPassed 
+                      ? "bg-primary/10 border border-primary/20" 
+                      : isCurrent
+                        ? "bg-amber-50 border border-amber-200 animate-pulse"
+                        : "bg-secondary/30 border border-transparent"
+                  }`}
+                >
+                  <milestone.icon className={`h-4 w-4 mx-auto mb-1 ${
+                    isPassed ? "text-primary" : isCurrent ? "text-amber-500" : "text-muted-foreground/50"
+                  }`} />
+                  <p className={`text-xs font-medium ${
+                    isPassed ? "text-primary" : isCurrent ? "text-amber-600" : "text-muted-foreground/50"
+                  }`}>
+                    {milestone.week}w
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default ProgressIndicator;
