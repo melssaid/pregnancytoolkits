@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Heart, Search, Sparkles, Crown, CheckCircle, Shield } from "lucide-react";
+import { Search, Sparkles, Crown, CheckCircle, Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
-import { SubscriptionBanner } from "@/components/SubscriptionBanner";
 import { UrgencyBanner } from "@/components/UrgencyBanner";
-import { SocialProof } from "@/components/SocialProof";
-import { getSortedTools, categoryKeys, toolsData } from "@/lib/tools-data";
+import { getSortedTools, categoryKeys } from "@/lib/tools-data";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useSubscription from "@/hooks/useSubscription";
@@ -45,7 +43,7 @@ const Index = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
         
-        <div className="container py-16 md:py-20 relative">
+        <div className="container py-12 md:py-16 relative">
           <div className="mx-auto max-w-3xl text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -85,13 +83,6 @@ const Index = () => {
               />
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Subscription Banner */}
-      <section className="border-b border-border bg-card">
-        <div className="container py-4">
-          <SubscriptionBanner />
         </div>
       </section>
 
@@ -153,10 +144,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Social Proof Section */}
-      <SocialProof />
-
-      {/* Premium CTA Section */}
+      {/* Premium CTA Section - At the end */}
       {!isSubscribed && (
         <section className="py-16 bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10">
           <div className="container">
@@ -165,42 +153,31 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               className="max-w-2xl mx-auto text-center"
             >
-              <div className="inline-flex items-center gap-2 bg-success/10 text-success rounded-full px-4 py-2 text-sm font-semibold mb-6">
-                <CheckCircle className="h-4 w-4" />
-                Limited Time: 60% OFF
-              </div>
-
               <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-                Unlock Your Complete{" "}
+                Unlock All{" "}
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Pregnancy Journey
+                  Premium Tools
                 </span>
               </h2>
 
               <p className="text-lg text-muted-foreground mb-8">
-                Join 500,000+ moms who trust our premium tools for a healthier pregnancy
+                Get access to 52 tools for your pregnancy journey
               </p>
 
               {/* Pricing Card */}
               <div className="bg-card rounded-3xl p-8 shadow-elevated border-2 border-primary/20 max-w-md mx-auto">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <span className="text-4xl font-extrabold text-foreground">$0.79</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-                <div className="text-sm text-muted-foreground line-through mb-2">
-                  Regular price: $1.99/month
-                </div>
-                <div className="bg-destructive/10 text-destructive rounded-full px-3 py-1 text-xs font-bold inline-block mb-6">
-                  SAVE 60% TODAY ONLY
+                <div className="flex items-center justify-center gap-2 mb-6">
+                  <span className="text-5xl font-extrabold text-foreground">$1.99</span>
+                  <span className="text-muted-foreground text-lg">/month</span>
                 </div>
 
                 <ul className="space-y-3 text-left mb-8">
                   {[
-                    "Access all 31 premium tools",
+                    "Access all 52 pregnancy tools",
                     "Unlimited tracking & logging",
                     "Personalized insights",
                     "Export data for your doctor",
-                    "Priority support 24/7",
+                    "Cancel anytime",
                   ].map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm text-foreground">
                       <CheckCircle className="h-5 w-5 text-success flex-shrink-0" />
@@ -215,19 +192,13 @@ const Index = () => {
                   className="w-full gradient-primary text-white font-bold text-lg h-14 shadow-lg hover:shadow-xl transition-all"
                 >
                   <Crown className="h-5 w-5 mr-2" />
-                  Start Premium Now
+                  Get Premium — $1.99/mo
                 </Button>
 
                 <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                   <Shield className="h-4 w-4" />
-                  <span>Cancel anytime • Secure payment</span>
+                  <span>Secure payment via Google Play</span>
                 </div>
-              </div>
-
-              {/* Money-back guarantee */}
-              <div className="mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground">
-                <span>🛡️</span>
-                <span>30-day money-back guarantee. No questions asked.</span>
               </div>
             </motion.div>
           </div>

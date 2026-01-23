@@ -48,7 +48,7 @@ export const SubscriptionBanner = ({ onSubscribe }: SubscriptionBannerProps) => 
           className="rounded-full font-bold px-6 bg-white text-primary hover:bg-white/90 shadow-lg transition-all duration-300"
         >
           <Sparkles className="h-4 w-4 mr-2" />
-          Only $0.79/mo
+          $1.99/mo
         </Button>
       </div>
     </motion.div>
