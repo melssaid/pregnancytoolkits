@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, ArrowLeft, Home, Shield, Star, Users, Award } from "lucide-react";
+import { Heart, Home, Shield, Star, Users, Award } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { BackButton } from "./BackButton";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -17,7 +18,7 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Top Trust Bar */}
-      <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-white py-2 px-4">
+      <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-2 px-4">
         <div className="container flex items-center justify-center gap-4 sm:gap-6 text-xs font-medium">
           <div className="flex items-center gap-1.5">
             <Shield className="h-3.5 w-3.5" />
@@ -42,24 +43,18 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-md shadow-sm">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
-            {showBack && (
-              <Link 
-                to="/"
-                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                {t('app.back')}
+            {showBack && <BackButton />}
+            
+            {!showBack && (
+              <Link to="/" className="flex items-center gap-2">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary shadow-lg">
+                  <Heart className="h-5 w-5 text-primary-foreground" />
+                </div>
+                <span className="text-lg font-bold text-foreground">
+                  {t('app.name')}
+                </span>
               </Link>
             )}
-            
-            <Link to="/" className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary shadow-lg">
-                <Heart className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="text-lg font-bold text-foreground">
-                {t('app.name')}
-              </span>
-            </Link>
           </div>
 
           <div className="flex items-center gap-2">
