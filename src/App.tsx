@@ -42,6 +42,15 @@ import BreathingExercises from "./pages/tools/BreathingExercises";
 import MoodDiary from "./pages/tools/MoodDiary";
 import YogaGuide from "./pages/tools/YogaGuide";
 import Affirmations from "./pages/tools/Affirmations";
+import BumpPhotos from "./pages/tools/BumpPhotos";
+import PregnancyMilestones from "./pages/tools/PregnancyMilestones";
+import MealPlanner from "./pages/tools/MealPlanner";
+import VitaminTracker from "./pages/tools/VitaminTracker";
+import KegelExercises from "./pages/tools/KegelExercises";
+import BirthPlan from "./pages/tools/BirthPlan";
+import NurseryChecklist from "./pages/tools/NurseryChecklist";
+import BabyBudget from "./pages/tools/BabyBudget";
+import DoctorQuestions from "./pages/tools/DoctorQuestions";
 
 const queryClient = new QueryClient();
 
