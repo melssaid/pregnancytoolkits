@@ -8,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Smile, Trash2, TrendingUp, Calendar, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 import { format, eachDayOfInterval, subDays } from "date-fns";
-import { ar } from "date-fns/locale";
 import { MoodChart } from "@/components/charts/MoodChart";
 
 interface MoodEntry {
@@ -19,11 +18,11 @@ interface MoodEntry {
 }
 
 const MOODS = [
-  { value: 1, emoji: "😢", label: "سيء جداً" },
-  { value: 2, emoji: "😔", label: "سيء" },
-  { value: 3, emoji: "😐", label: "عادي" },
-  { value: 4, emoji: "🙂", label: "جيد" },
-  { value: 5, emoji: "😊", label: "ممتاز" },
+  { value: 1, emoji: "😢", label: "Very Bad" },
+  { value: 2, emoji: "😔", label: "Bad" },
+  { value: 3, emoji: "😐", label: "Okay" },
+  { value: 4, emoji: "🙂", label: "Good" },
+  { value: 5, emoji: "😊", label: "Great" },
 ];
 
 const MoodDiary = () => {
@@ -119,15 +118,15 @@ const MoodDiary = () => {
             <TabsList className="grid w-full grid-cols-3 mb-6">
               <TabsTrigger value="today" className="gap-2">
                 <Smile className="h-4 w-4" />
-                اليوم
+                Today
               </TabsTrigger>
               <TabsTrigger value="chart" className="gap-2">
                 <BarChart3 className="h-4 w-4" />
-                الرسم البياني
+                Chart
               </TabsTrigger>
               <TabsTrigger value="history" className="gap-2">
                 <TrendingUp className="h-4 w-4" />
-                السجل
+                History
               </TabsTrigger>
             </TabsList>
 
@@ -137,7 +136,7 @@ const MoodDiary = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Smile className="h-5 w-5 text-primary" />
-                    كيف حالك اليوم؟
+                    How are you feeling today?
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -163,14 +162,14 @@ const MoodDiary = () => {
                       animate={{ opacity: 1, height: "auto" }}
                     >
                       <Textarea
-                        placeholder="أضيفي ملاحظة (اختياري)..."
+                        placeholder="Add a note (optional)..."
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
                         rows={3}
                         className="mb-4"
                       />
                       <Button onClick={saveMood} className="w-full">
-                        {todayEntry ? "تحديث" : "حفظ"}
+                        {todayEntry ? "Update" : "Save"}
                       </Button>
                     </motion.div>
                   )}
@@ -182,7 +181,7 @@ const MoodDiary = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <Calendar className="h-5 w-5 text-primary" />
-                    هذا الأسبوع
+                    This Week
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -193,7 +192,7 @@ const MoodDiary = () => {
                       return (
                         <div key={day.toISOString()} className="text-center">
                           <p className="text-xs text-muted-foreground mb-1">
-                            {format(day, "EEE", { locale: ar })}
+                            {format(day, "EEE")}
                           </p>
                           <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                             mood ? "bg-secondary" : "bg-muted"
@@ -212,7 +211,7 @@ const MoodDiary = () => {
                   {avgMood > 0 && (
                     <div className="rounded-lg bg-secondary p-3 flex items-center justify-between">
                       <span className="text-sm text-muted-foreground">
-                        متوسط الأسبوع
+                        Weekly Average
                       </span>
                       <div className="flex items-center gap-2">
                         <span className="text-lg">
@@ -243,7 +242,7 @@ const MoodDiary = () => {
                               <span className="text-2xl">{moodData?.emoji}</span>
                               <div>
                                 <p className="font-medium">
-                                  {format(new Date(entry.date), "EEEE، d MMMM", { locale: ar })}
+                                  {format(new Date(entry.date), "EEEE, MMMM d")}
                                 </p>
                                 {entry.note && (
                                   <p className="text-sm text-muted-foreground mt-1">
@@ -269,7 +268,7 @@ const MoodDiary = () => {
                 <Card>
                   <CardContent className="py-8 text-center">
                     <p className="text-muted-foreground">
-                      لم تسجلي أي مزاج بعد
+                      No mood entries yet
                     </p>
                   </CardContent>
                 </Card>

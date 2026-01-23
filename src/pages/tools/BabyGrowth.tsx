@@ -10,7 +10,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Baby, TrendingUp, Plus, Trash2, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { ar } from "date-fns/locale";
 import { BabyGrowthChart } from "@/components/charts/BabyGrowthChart";
 
 interface GrowthEntry {
@@ -153,9 +152,9 @@ const BabyGrowth = () => {
   };
 
   const getStatusText = (status: string) => {
-    if (status === "normal") return "طبيعي";
-    if (status === "underweight") return "أقل من الطبيعي";
-    return "أعلى من الطبيعي";
+    if (status === "normal") return "Normal";
+    if (status === "underweight") return "Below Normal";
+    return "Above Normal";
   };
 
   return (
@@ -170,15 +169,15 @@ const BabyGrowth = () => {
             <TabsList className="grid w-full grid-cols-3 mb-6">
               <TabsTrigger value="add" className="gap-2">
                 <Plus className="h-4 w-4" />
-                إضافة قياس
+                Add Measurement
               </TabsTrigger>
               <TabsTrigger value="chart" className="gap-2">
                 <BarChart3 className="h-4 w-4" />
-                منحنى النمو
+                Growth Chart
               </TabsTrigger>
               <TabsTrigger value="history" className="gap-2">
                 <TrendingUp className="h-4 w-4" />
-                السجل
+                History
               </TabsTrigger>
             </TabsList>
 
@@ -187,25 +186,25 @@ const BabyGrowth = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Baby className="h-5 w-5 text-primary" />
-                    قياسات الطفل
+                    Baby Measurements
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label>الجنس</Label>
+                    <Label>Gender</Label>
                     <Select value={gender} onValueChange={(v) => setGender(v as "boy" | "girl")}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="boy">ذكر 👦</SelectItem>
-                        <SelectItem value="girl">أنثى 👧</SelectItem>
+                        <SelectItem value="boy">Boy 👦</SelectItem>
+                        <SelectItem value="girl">Girl 👧</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label>العمر (شهور)</Label>
+                    <Label>Age (months)</Label>
                     <Input
                       type="number"
                       min="0"
@@ -218,31 +217,31 @@ const BabyGrowth = () => {
 
                   <div className="grid grid-cols-3 gap-4">
                     <div className="space-y-2">
-                      <Label>الوزن (كجم) *</Label>
+                      <Label>Weight (kg) *</Label>
                       <Input
                         type="number"
                         step="0.1"
-                        placeholder="كجم"
+                        placeholder="kg"
                         value={weight}
                         onChange={(e) => setWeight(e.target.value)}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>الطول (سم)</Label>
+                      <Label>Height (cm)</Label>
                       <Input
                         type="number"
                         step="0.1"
-                        placeholder="سم"
+                        placeholder="cm"
                         value={height}
                         onChange={(e) => setHeight(e.target.value)}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>محيط الرأس (سم)</Label>
+                      <Label>Head Circ. (cm)</Label>
                       <Input
                         type="number"
                         step="0.1"
-                        placeholder="سم"
+                        placeholder="cm"
                         value={headCirc}
                         onChange={(e) => setHeadCirc(e.target.value)}
                       />
@@ -250,7 +249,7 @@ const BabyGrowth = () => {
                   </div>
 
                   <Button onClick={calculate} className="w-full">
-                    حساب النتيجة
+                    Calculate Result
                   </Button>
                 </CardContent>
               </Card>
@@ -264,13 +263,13 @@ const BabyGrowth = () => {
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <TrendingUp className="h-5 w-5 text-primary" />
-                        النتيجة
+                        Result
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="rounded-lg bg-secondary p-4 text-center">
                         <p className="text-sm text-muted-foreground mb-1">
-                          موقع الوزن من منحنى النمو
+                          Weight Percentile on Growth Chart
                         </p>
                         <p className="text-2xl font-bold text-primary">
                           {result.weightPercentile}
@@ -282,20 +281,20 @@ const BabyGrowth = () => {
 
                       <div className="rounded-lg bg-muted p-4">
                         <p className="text-sm text-muted-foreground">
-                          النطاق الطبيعي لهذا العمر
+                          Normal Range for This Age
                         </p>
                         <p className="font-medium">
-                          {result.expectedRange.min} - {result.expectedRange.max} كجم
+                          {result.expectedRange.min} - {result.expectedRange.max} kg
                         </p>
                       </div>
 
                       <Button onClick={saveEntry} className="w-full">
                         <Plus className="h-4 w-4 mr-2" />
-                        حفظ في السجل
+                        Save to History
                       </Button>
 
                       <p className="text-sm text-muted-foreground text-center">
-                        معايير منظمة الصحة العالمية WHO
+                        Based on WHO Growth Standards
                       </p>
                     </CardContent>
                   </Card>
@@ -325,21 +324,21 @@ const BabyGrowth = () => {
                               </div>
                               <div>
                                 <p className="font-medium">
-                                  الشهر {entry.ageMonths}
+                                  Month {entry.ageMonths}
                                 </p>
                                 <p className="text-sm text-muted-foreground">
-                                  {format(new Date(entry.date), "d MMMM yyyy", { locale: ar })}
+                                  {format(new Date(entry.date), "d MMM yyyy")}
                                 </p>
                               </div>
                             </div>
                             <div className="flex items-center gap-3">
                               <div className="text-right">
                                 <p className={`text-xl font-bold ${isNormal ? "text-success" : "text-warning"}`}>
-                                  {entry.weight} كجم
+                                  {entry.weight} kg
                                 </p>
                                 {entry.height && (
                                   <p className="text-xs text-muted-foreground">
-                                    الطول: {entry.height} سم
+                                    Height: {entry.height} cm
                                   </p>
                                 )}
                               </div>
@@ -362,14 +361,14 @@ const BabyGrowth = () => {
                   <CardContent className="py-8 text-center">
                     <Baby className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
                     <p className="text-muted-foreground">
-                      لم تضيفي أي قياسات بعد
+                      No measurements added yet
                     </p>
                     <Button
                       variant="link"
                       onClick={() => setActiveTab("add")}
                       className="mt-2"
                     >
-                      أضيفي القياس الأول
+                      Add First Measurement
                     </Button>
                   </CardContent>
                 </Card>
