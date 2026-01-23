@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Heart, Sparkles, Baby, Shield, Star, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Heart, Sparkles, Baby, Shield, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { BackButton } from "./BackButton";
 
 interface ToolFrameProps {
   children: React.ReactNode;
@@ -38,13 +38,6 @@ const moodStyles = {
   },
 };
 
-const floatingElements = [
-  { icon: Heart, delay: 0, x: "10%", y: "20%" },
-  { icon: Sparkles, delay: 0.5, x: "85%", y: "15%" },
-  { icon: Baby, delay: 1, x: "90%", y: "60%" },
-  { icon: Star, delay: 1.5, x: "5%", y: "70%" },
-];
-
 export function ToolFrame({ 
   children, 
   title, 
@@ -57,50 +50,16 @@ export function ToolFrame({
 
   return (
     <div className={`min-h-screen bg-gradient-to-br ${styles.gradient} relative overflow-hidden`}>
-      {/* Floating Decorative Elements */}
-      {floatingElements.map((item, index) => (
-        <motion.div
-          key={index}
-          className="absolute pointer-events-none opacity-20"
-          style={{ left: item.x, top: item.y }}
-          animate={{
-            y: [0, -10, 0],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 4,
-            delay: item.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <item.icon className="h-8 w-8 text-primary" />
-        </motion.div>
-      ))}
-
-      {/* Soft Gradient Orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-pink-200/20 to-transparent rounded-full blur-3xl" />
+      {/* Soft Gradient Orbs - Static to prevent scroll issues */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-secondary/20 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       {/* Content Container */}
       <div className="relative z-10">
         {/* Header with Back Button */}
-        <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-white/50 shadow-sm">
-          <div className="container py-4">
-            <div className="flex items-center gap-4">
-              <Link 
-                to="/"
-                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
-              >
-                <motion.div
-                  whileHover={{ x: -3 }}
-                  className="flex items-center gap-2"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  <span>{t('app.back')}</span>
-                </motion.div>
-              </Link>
-            </div>
+        <div className="sticky top-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border/50 shadow-sm">
+          <div className="container py-3">
+            <BackButton />
           </div>
         </div>
 
@@ -144,7 +103,7 @@ export function ToolFrame({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className={`bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border ${styles.border} p-6 md:p-8`}
+            className={`bg-card/90 backdrop-blur-sm rounded-3xl shadow-xl border ${styles.border} p-6 md:p-8`}
           >
             {children}
           </motion.div>
@@ -158,8 +117,8 @@ export function ToolFrame({
           className="container pb-8"
         >
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/50 shadow-sm">
-              <Shield className="h-4 w-4 text-green-500" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/60 backdrop-blur-sm border border-border/50 shadow-sm">
+              <Shield className="h-4 w-4 text-primary" />
               <span className="text-sm text-muted-foreground">
                 {t('app.medicalDisclaimer')}
               </span>
