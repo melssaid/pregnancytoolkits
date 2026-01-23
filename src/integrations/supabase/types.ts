@@ -14,7 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      tool_analytics: {
+        Row: {
+          action_type: string
+          created_at: string
+          id: string
+          metadata: Json | null
+          session_id: string
+          tool_id: string
+        }
+        Insert: {
+          action_type?: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          session_id: string
+          tool_id: string
+        }
+        Update: {
+          action_type?: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          session_id?: string
+          tool_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -5,7 +5,7 @@
     "title": "Your Complete",
     "titleHighlight": "Pregnancy",
     "titleEnd": "Companion",
-    "description": "31 essential tools for your pregnancy journey — from fertility to postpartum care.",
+    "description": "52 essential tools for your pregnancy journey — from fertility to postpartum care.",
     "searchPlaceholder": "Search tools...",
     "allTools": "All Tools",
     "toolsAvailable": "{{count}} tools available",
@@ -27,163 +27,217 @@
     "reference": "Reference",
     "preparation": "Preparation",
     "genetics": "Genetics",
-    "menstrualHealth": "Cycle Health"
+    "menstrualHealth": "Cycle Health",
+    "support": "Support"
   },
   "tools": {
     "dueDateCalculator": {
       "title": "Due Date Calculator",
-      "description": "Find out when your little one will arrive.",
-      "category": "Pregnancy"
+      "description": "Find out when your little one will arrive."
     },
     "pregnancyBmi": {
       "title": "Pregnancy BMI",
-      "description": "Track your healthy weight gain journey.",
-      "category": "Pregnancy"
+      "description": "Track your healthy weight gain journey."
     },
     "fetalGrowth": {
       "title": "Fetal Growth Tracker",
-      "description": "See how big your baby is this week!",
-      "category": "Pregnancy"
+      "description": "See how big your baby is this week!"
     },
     "kickCounter": {
       "title": "Kick Counter",
-      "description": "Track your baby's precious movements.",
-      "category": "Pregnancy"
+      "description": "Track your baby's precious movements."
     },
     "gestationalDiabetes": {
       "title": "GDM Risk Assessment",
-      "description": "Know your gestational diabetes risk factors.",
-      "category": "Risk Assessment"
+      "description": "Know your gestational diabetes risk factors."
     },
     "preeclampsiaRisk": {
       "title": "Preeclampsia Risk",
-      "description": "Check your preeclampsia risk factors.",
-      "category": "Risk Assessment"
+      "description": "Check your preeclampsia risk factors."
     },
     "safeMedications": {
       "title": "Safe Medications",
-      "description": "Quick guide for safe medications.",
-      "category": "Reference"
+      "description": "Quick guide for safe medications."
     },
     "exerciseGuide": {
       "title": "Exercise Guide",
-      "description": "Safe workouts for each trimester.",
-      "category": "Wellness"
+      "description": "Safe workouts for each trimester."
     },
     "waterIntake": {
       "title": "Water Intake",
-      "description": "Stay hydrated for you and baby!",
-      "category": "Wellness"
+      "description": "Stay hydrated for you and baby!"
     },
     "vaccinationSchedule": {
       "title": "Vaccination Schedule",
-      "description": "Important vaccines timeline.",
-      "category": "Reference"
+      "description": "Important vaccines timeline."
     },
     "hospitalBag": {
       "title": "Hospital Bag",
-      "description": "Never forget anything important!",
-      "category": "Preparation"
+      "description": "Never forget anything important!"
     },
     "contractionTimer": {
       "title": "Contraction Timer",
-      "description": "Know when it's time to go!",
-      "category": "Labor"
+      "description": "Know when it's time to go!"
     },
     "ppdScreener": {
       "title": "PPD Screener",
-      "description": "Check your emotional wellbeing.",
-      "category": "Mental Health"
+      "description": "Check your emotional wellbeing."
     },
     "breastfeedingTracker": {
       "title": "Breastfeeding Tracker",
-      "description": "Log and track feeding sessions.",
-      "category": "Baby Care"
+      "description": "Log and track feeding sessions."
     },
     "ovulationCalculator": {
       "title": "Ovulation Calculator",
-      "description": "Find your most fertile days.",
-      "category": "Fertility"
+      "description": "Find your most fertile days."
     },
     "cycleTracker": {
       "title": "Cycle Tracker",
-      "description": "Track your monthly cycle easily.",
-      "category": "Cycle Health"
+      "description": "Track your monthly cycle easily."
     },
     "bloodType": {
       "title": "Blood Type Calculator",
-      "description": "Predict baby's blood type.",
-      "category": "Genetics"
+      "description": "Predict baby's blood type."
     },
     "weightGain": {
       "title": "Weight Gain Tracker",
-      "description": "Monitor healthy pregnancy weight.",
-      "category": "Pregnancy"
+      "description": "Monitor healthy pregnancy weight."
     },
     "pregnancyDiary": {
       "title": "Pregnancy Diary",
-      "description": "Document your beautiful journey.",
-      "category": "Pregnancy"
+      "description": "Document your beautiful journey."
     },
     "nutritionGuide": {
       "title": "Nutrition Guide",
-      "description": "Eat right for you and baby.",
-      "category": "Wellness"
+      "description": "Eat right for you and baby."
     },
     "forbiddenFoods": {
       "title": "Foods to Avoid",
-      "description": "Know what's safe to eat.",
-      "category": "Reference"
+      "description": "Know what's safe to eat."
     },
     "babySleepTracker": {
       "title": "Baby Sleep Tracker",
-      "description": "Track your baby's sleep patterns.",
-      "category": "Baby Care"
+      "description": "Track your baby's sleep patterns."
     },
     "diaperTracker": {
       "title": "Diaper Tracker",
-      "description": "Log changes, monitor health.",
-      "category": "Baby Care"
+      "description": "Log changes, monitor health."
     },
     "babyGrowth": {
       "title": "Baby Growth",
-      "description": "Track growth with WHO charts.",
-      "category": "Baby Care"
+      "description": "Track growth with WHO charts."
     },
     "vaccinationGuide": {
       "title": "Baby Vaccines",
-      "description": "Complete vaccination schedule.",
-      "category": "Reference"
+      "description": "Complete vaccination schedule."
     },
     "genderPredictor": {
       "title": "Gender Predictor",
-      "description": "Fun prediction for baby's gender!",
-      "category": "Pregnancy"
+      "description": "Fun prediction for baby's gender!"
     },
     "conceptionCalculator": {
       "title": "Conception Calculator",
-      "description": "Estimate your conception date.",
-      "category": "Fertility"
+      "description": "Estimate your conception date."
     },
     "breathingExercises": {
       "title": "Breathing Exercises",
-      "description": "Relax and prepare for labor.",
-      "category": "Wellness"
+      "description": "Relax and prepare for labor."
     },
     "moodDiary": {
       "title": "Mood Diary",
-      "description": "Track your emotional wellness.",
-      "category": "Mental Health"
+      "description": "Track your emotional wellness."
     },
     "yogaGuide": {
       "title": "Prenatal Yoga",
-      "description": "Safe poses for every trimester.",
-      "category": "Wellness"
+      "description": "Safe poses for every trimester."
     },
     "affirmations": {
       "title": "Daily Affirmations",
-      "description": "Positive vibes for your journey.",
-      "category": "Mental Health"
+      "description": "Positive vibes for your journey."
+    },
+    "babyNames": {
+      "title": "Baby Names",
+      "description": "Find the perfect name for your baby."
+    },
+    "bumpPhotos": {
+      "title": "Bump Photos",
+      "description": "Document your growing belly."
+    },
+    "pregnancyMilestones": {
+      "title": "Pregnancy Milestones",
+      "description": "Track important moments."
+    },
+    "bloodPressure": {
+      "title": "Blood Pressure Log",
+      "description": "Monitor your blood pressure."
+    },
+    "symptomChecker": {
+      "title": "Symptom Checker",
+      "description": "Check if symptoms need attention."
+    },
+    "mealPlanner": {
+      "title": "Meal Planner",
+      "description": "Plan healthy pregnancy meals."
+    },
+    "vitaminTracker": {
+      "title": "Vitamin Tracker",
+      "description": "Never miss your prenatal vitamins."
+    },
+    "kegelExercises": {
+      "title": "Kegel Exercises",
+      "description": "Strengthen your pelvic floor."
+    },
+    "sleepTracker": {
+      "title": "Sleep Tracker",
+      "description": "Track your sleep quality."
+    },
+    "relaxationSounds": {
+      "title": "Relaxation Sounds",
+      "description": "Calming sounds for rest."
+    },
+    "gratitudeJournal": {
+      "title": "Gratitude Journal",
+      "description": "Focus on the positive moments."
+    },
+    "birthPlan": {
+      "title": "Birth Plan",
+      "description": "Plan your ideal birth experience."
+    },
+    "nurseryChecklist": {
+      "title": "Nursery Checklist",
+      "description": "Prepare baby's room perfectly."
+    },
+    "babyBudget": {
+      "title": "Baby Budget",
+      "description": "Plan expenses for your baby."
+    },
+    "babyMilestones": {
+      "title": "Baby Milestones",
+      "description": "Track development achievements."
+    },
+    "tummyTime": {
+      "title": "Tummy Time",
+      "description": "Track tummy time sessions."
+    },
+    "emergencyGuide": {
+      "title": "Emergency Guide",
+      "description": "Know when to seek help."
+    },
+    "fertilityDiet": {
+      "title": "Fertility Diet",
+      "description": "Foods that boost fertility."
+    },
+    "eyeColorPredictor": {
+      "title": "Eye Color Predictor",
+      "description": "Predict baby's eye color."
+    },
+    "partnerTips": {
+      "title": "Partner Tips",
+      "description": "How partners can help."
+    },
+    "doctorQuestions": {
+      "title": "Doctor Questions",
+      "description": "Questions to ask your doctor."
     }
   },
   "common": {
@@ -223,7 +277,7 @@
     "trialExpired": "Upgrade Now",
     "subscribeNow": "Get Premium - $1.99/mo",
     "premiumFeature": "Premium Feature",
-    "unlockAccess": "Unlock all 31 tools",
+    "unlockAccess": "Unlock all 52 tools",
     "subscribeToAccess": "Subscribe to unlock"
   },
   "dueDatePage": {
