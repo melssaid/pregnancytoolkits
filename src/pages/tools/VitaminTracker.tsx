@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
-import { Pill, Check, Clock, AlertCircle, Sparkles, Calendar } from "lucide-react";
+import { Pill, Check, Clock, AlertCircle, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
-import { ar } from "date-fns/locale";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface Vitamin {
@@ -28,21 +26,21 @@ interface DailyLog {
 const STORAGE_KEY = "vitamin-tracker-data";
 
 const vitamins: Vitamin[] = [
-  { id: "folic", name: "حمض الفوليك", dosage: "400-800 mcg", importance: "ضروري لتطور الجهاز العصبي", timing: "morning", notes: "يؤخذ قبل وأثناء الحمل" },
-  { id: "iron", name: "الحديد", dosage: "27 mg", importance: "يمنع فقر الدم ويدعم نمو الجنين", timing: "morning", notes: "يؤخذ مع فيتامين C لامتصاص أفضل" },
-  { id: "calcium", name: "الكالسيوم", dosage: "1000 mg", importance: "لنمو عظام وأسنان الجنين", timing: "evening", notes: "لا يؤخذ مع الحديد" },
-  { id: "vitd", name: "فيتامين D", dosage: "600 IU", importance: "يساعد امتصاص الكالسيوم", timing: "morning" },
-  { id: "omega3", name: "أوميغا 3 (DHA)", dosage: "200-300 mg", importance: "لتطور دماغ وعيني الجنين", timing: "afternoon" },
-  { id: "prenatal", name: "فيتامين ما قبل الولادة", dosage: "حسب العبوة", importance: "فيتامينات شاملة للحمل", timing: "morning" },
-  { id: "b12", name: "فيتامين B12", dosage: "2.6 mcg", importance: "لتطور الجهاز العصبي", timing: "anytime" },
-  { id: "zinc", name: "الزنك", dosage: "11 mg", importance: "لنمو الخلايا والمناعة", timing: "evening" },
+  { id: "folic", name: "Folic Acid", dosage: "400-800 mcg", importance: "Essential for neural tube development", timing: "morning", notes: "Take before and during pregnancy" },
+  { id: "iron", name: "Iron", dosage: "27 mg", importance: "Prevents anemia and supports fetal growth", timing: "morning", notes: "Take with Vitamin C for better absorption" },
+  { id: "calcium", name: "Calcium", dosage: "1000 mg", importance: "For baby's bone and teeth development", timing: "evening", notes: "Don't take with iron" },
+  { id: "vitd", name: "Vitamin D", dosage: "600 IU", importance: "Helps calcium absorption", timing: "morning" },
+  { id: "omega3", name: "Omega-3 (DHA)", dosage: "200-300 mg", importance: "For baby's brain and eye development", timing: "afternoon" },
+  { id: "prenatal", name: "Prenatal Vitamin", dosage: "As directed", importance: "Complete pregnancy vitamins", timing: "morning" },
+  { id: "b12", name: "Vitamin B12", dosage: "2.6 mcg", importance: "For nervous system development", timing: "anytime" },
+  { id: "zinc", name: "Zinc", dosage: "11 mg", importance: "For cell growth and immunity", timing: "evening" },
 ];
 
 const timingLabels = {
-  morning: { label: "صباحاً", icon: "🌅" },
-  afternoon: { label: "ظهراً", icon: "☀️" },
-  evening: { label: "مساءً", icon: "🌙" },
-  anytime: { label: "أي وقت", icon: "⏰" },
+  morning: { label: "Morning", icon: "🌅" },
+  afternoon: { label: "Afternoon", icon: "☀️" },
+  evening: { label: "Evening", icon: "🌙" },
+  anytime: { label: "Anytime", icon: "⏰" },
 };
 
 const VitaminTracker = () => {
@@ -79,7 +77,7 @@ const VitaminTracker = () => {
     const newLogs = logs.filter(l => l.date !== today);
     newLogs.push({ date: today, taken: newTaken });
     
-    saveData(newLogs.slice(-30), selectedVitamins); // Keep 30 days
+    saveData(newLogs.slice(-30), selectedVitamins);
     trackAction("vitamin_logged", { vitaminId, taken: !takenToday.includes(vitaminId) });
   };
 
@@ -128,12 +126,12 @@ const VitaminTracker = () => {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="font-bold text-lg">تقدم اليوم</h3>
+                <h3 className="font-bold text-lg">Today's Progress</h3>
                 <p className="text-sm text-muted-foreground">
-                  {format(new Date(), "EEEE، d MMMM", { locale: ar })}
+                  {format(new Date(), "EEEE, MMMM d")}
                 </p>
               </div>
-              <div className="text-left">
+              <div className="text-right">
                 <div className="text-3xl font-bold text-primary">
                   {Math.round(progress)}%
                 </div>
@@ -147,7 +145,7 @@ const VitaminTracker = () => {
             {getStreak() > 0 && (
               <div className="mt-4 flex items-center gap-2 text-amber-600">
                 <Sparkles className="h-4 w-4" />
-                <span className="text-sm font-medium">🔥 {getStreak()} أيام متتالية!</span>
+                <span className="text-sm font-medium">🔥 {getStreak()} day streak!</span>
               </div>
             )}
           </CardContent>
@@ -225,7 +223,7 @@ const VitaminTracker = () => {
         {/* Customize List */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">تخصيص قائمة الفيتامينات</CardTitle>
+            <CardTitle className="text-lg">Customize Vitamin List</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-2">
@@ -251,11 +249,11 @@ const VitaminTracker = () => {
             <div className="flex gap-3">
               <Clock className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-blue-900">نصائح لتناول الفيتامينات</p>
+                <p className="font-medium text-blue-900">Vitamin Tips</p>
                 <ul className="text-sm text-blue-700 mt-1 space-y-1 list-disc list-inside">
-                  <li>تناولي الحديد على معدة فارغة مع عصير برتقال</li>
-                  <li>افصلي بين الكالسيوم والحديد بساعتين على الأقل</li>
-                  <li>استشيري طبيبك قبل إضافة أي مكمل جديد</li>
+                  <li>Take iron on an empty stomach with orange juice</li>
+                  <li>Separate calcium and iron by at least 2 hours</li>
+                  <li>Consult your doctor before adding new supplements</li>
                 </ul>
               </div>
             </div>

@@ -28,32 +28,32 @@ const STORAGE_KEY = "meal-planner-data";
 
 const mealOptions: Record<string, Meal[]> = {
   breakfast: [
-    { id: "b1", name: "شوفان بالفواكه والعسل", calories: 350, nutrients: ["ألياف", "حديد", "فيتامينات"], trimester: [1, 2, 3] },
-    { id: "b2", name: "بيض مسلوق مع خبز أسمر", calories: 300, nutrients: ["بروتين", "كولين", "فيتامين D"], trimester: [1, 2, 3] },
-    { id: "b3", name: "زبادي يوناني مع المكسرات", calories: 280, nutrients: ["كالسيوم", "بروتين", "أوميغا 3"], trimester: [1, 2, 3] },
-    { id: "b4", name: "سموثي الموز والسبانخ", calories: 250, nutrients: ["حمض الفوليك", "بوتاسيوم", "حديد"], trimester: [1, 2, 3] },
-    { id: "b5", name: "توست الأفوكادو", calories: 320, nutrients: ["دهون صحية", "ألياف", "فيتامين E"], trimester: [2, 3] },
+    { id: "b1", name: "Oatmeal with Fruits & Honey", calories: 350, nutrients: ["Fiber", "Iron", "Vitamins"], trimester: [1, 2, 3] },
+    { id: "b2", name: "Boiled Eggs with Whole Wheat Toast", calories: 300, nutrients: ["Protein", "Choline", "Vitamin D"], trimester: [1, 2, 3] },
+    { id: "b3", name: "Greek Yogurt with Nuts", calories: 280, nutrients: ["Calcium", "Protein", "Omega-3"], trimester: [1, 2, 3] },
+    { id: "b4", name: "Banana & Spinach Smoothie", calories: 250, nutrients: ["Folic Acid", "Potassium", "Iron"], trimester: [1, 2, 3] },
+    { id: "b5", name: "Avocado Toast", calories: 320, nutrients: ["Healthy Fats", "Fiber", "Vitamin E"], trimester: [2, 3] },
   ],
   lunch: [
-    { id: "l1", name: "سلمون مشوي مع خضار", calories: 450, nutrients: ["أوميغا 3", "بروتين", "فيتامين D"], trimester: [1, 2, 3] },
-    { id: "l2", name: "دجاج مشوي مع أرز بني", calories: 480, nutrients: ["بروتين", "حديد", "فيتامين B"], trimester: [1, 2, 3] },
-    { id: "l3", name: "سلطة العدس والخضار", calories: 380, nutrients: ["حديد", "بروتين نباتي", "ألياف"], trimester: [1, 2, 3] },
-    { id: "l4", name: "شوربة الخضار مع خبز", calories: 320, nutrients: ["فيتامينات", "ألياف", "معادن"], trimester: [1, 2, 3] },
-    { id: "l5", name: "معكرونة بصلصة الطماطم والسبانخ", calories: 420, nutrients: ["كربوهيدرات", "حديد", "فيتامين C"], trimester: [2, 3] },
+    { id: "l1", name: "Grilled Salmon with Vegetables", calories: 450, nutrients: ["Omega-3", "Protein", "Vitamin D"], trimester: [1, 2, 3] },
+    { id: "l2", name: "Grilled Chicken with Brown Rice", calories: 480, nutrients: ["Protein", "Iron", "Vitamin B"], trimester: [1, 2, 3] },
+    { id: "l3", name: "Lentil & Vegetable Salad", calories: 380, nutrients: ["Iron", "Plant Protein", "Fiber"], trimester: [1, 2, 3] },
+    { id: "l4", name: "Vegetable Soup with Bread", calories: 320, nutrients: ["Vitamins", "Fiber", "Minerals"], trimester: [1, 2, 3] },
+    { id: "l5", name: "Pasta with Tomato & Spinach Sauce", calories: 420, nutrients: ["Carbs", "Iron", "Vitamin C"], trimester: [2, 3] },
   ],
   dinner: [
-    { id: "d1", name: "سمك مشوي مع بطاطا حلوة", calories: 400, nutrients: ["بروتين", "فيتامين A", "أوميغا 3"], trimester: [1, 2, 3] },
-    { id: "d2", name: "لحم مفروم مع خضار مشوية", calories: 420, nutrients: ["حديد", "زنك", "بروتين"], trimester: [2, 3] },
-    { id: "d3", name: "فلافل مع حمص وسلطة", calories: 380, nutrients: ["بروتين نباتي", "ألياف", "حديد"], trimester: [1, 2, 3] },
-    { id: "d4", name: "شوربة العدس مع خبز", calories: 350, nutrients: ["حديد", "بروتين", "حمض الفوليك"], trimester: [1, 2, 3] },
-    { id: "d5", name: "بيتزا منزلية بالخضار", calories: 450, nutrients: ["كالسيوم", "فيتامينات", "كربوهيدرات"], trimester: [2, 3] },
+    { id: "d1", name: "Grilled Fish with Sweet Potato", calories: 400, nutrients: ["Protein", "Vitamin A", "Omega-3"], trimester: [1, 2, 3] },
+    { id: "d2", name: "Ground Beef with Roasted Vegetables", calories: 420, nutrients: ["Iron", "Zinc", "Protein"], trimester: [2, 3] },
+    { id: "d3", name: "Falafel with Hummus & Salad", calories: 380, nutrients: ["Plant Protein", "Fiber", "Iron"], trimester: [1, 2, 3] },
+    { id: "d4", name: "Lentil Soup with Bread", calories: 350, nutrients: ["Iron", "Protein", "Folic Acid"], trimester: [1, 2, 3] },
+    { id: "d5", name: "Homemade Vegetable Pizza", calories: 450, nutrients: ["Calcium", "Vitamins", "Carbs"], trimester: [2, 3] },
   ],
   snacks: [
-    { id: "s1", name: "تفاحة مع زبدة الفول السوداني", calories: 200, nutrients: ["ألياف", "بروتين", "دهون صحية"], trimester: [1, 2, 3] },
-    { id: "s2", name: "جزر مع حمص", calories: 150, nutrients: ["فيتامين A", "بروتين", "ألياف"], trimester: [1, 2, 3] },
-    { id: "s3", name: "مكسرات متنوعة", calories: 180, nutrients: ["أوميغا 3", "بروتين", "معادن"], trimester: [1, 2, 3] },
-    { id: "s4", name: "تمر مع لوز", calories: 160, nutrients: ["حديد", "طاقة", "ألياف"], trimester: [2, 3] },
-    { id: "s5", name: "زبادي بالفواكه", calories: 140, nutrients: ["كالسيوم", "بروتين", "بروبيوتيك"], trimester: [1, 2, 3] },
+    { id: "s1", name: "Apple with Peanut Butter", calories: 200, nutrients: ["Fiber", "Protein", "Healthy Fats"], trimester: [1, 2, 3] },
+    { id: "s2", name: "Carrots with Hummus", calories: 150, nutrients: ["Vitamin A", "Protein", "Fiber"], trimester: [1, 2, 3] },
+    { id: "s3", name: "Mixed Nuts", calories: 180, nutrients: ["Omega-3", "Protein", "Minerals"], trimester: [1, 2, 3] },
+    { id: "s4", name: "Dates with Almonds", calories: 160, nutrients: ["Iron", "Energy", "Fiber"], trimester: [2, 3] },
+    { id: "s5", name: "Fruit Yogurt", calories: 140, nutrients: ["Calcium", "Protein", "Probiotics"], trimester: [1, 2, 3] },
   ],
 };
 
@@ -130,10 +130,10 @@ const MealPlanner = () => {
   };
 
   const categoryNames = {
-    breakfast: "الفطور",
-    lunch: "الغداء",
-    dinner: "العشاء",
-    snacks: "الوجبات الخفيفة",
+    breakfast: "Breakfast",
+    lunch: "Lunch",
+    dinner: "Dinner",
+    snacks: "Snacks",
   };
 
   return (
@@ -147,18 +147,18 @@ const MealPlanner = () => {
         {/* Trimester Selector & Quick Generate */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <span className="text-sm text-muted-foreground">الثلث:</span>
+            <span className="text-sm text-muted-foreground">Trimester:</span>
             <Tabs value={trimester.toString()} onValueChange={(v) => setTrimester(Number(v))}>
               <TabsList>
-                <TabsTrigger value="1">الأول</TabsTrigger>
-                <TabsTrigger value="2">الثاني</TabsTrigger>
-                <TabsTrigger value="3">الثالث</TabsTrigger>
+                <TabsTrigger value="1">First</TabsTrigger>
+                <TabsTrigger value="2">Second</TabsTrigger>
+                <TabsTrigger value="3">Third</TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
           <Button onClick={generateRandomPlan} variant="outline" className="gap-2">
             <RefreshCw className="h-4 w-4" />
-            إنشاء خطة عشوائية
+            Generate Random Plan
           </Button>
         </div>
 
@@ -171,12 +171,12 @@ const MealPlanner = () => {
                   <Leaf className="h-5 w-5 text-green-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">إجمالي السعرات</p>
-                  <p className="text-2xl font-bold text-green-700">{getTotalCalories()} سعرة</p>
+                  <p className="text-sm text-muted-foreground">Total Calories</p>
+                  <p className="text-2xl font-bold text-green-700">{getTotalCalories()} cal</p>
                 </div>
               </div>
               <div className="text-sm text-muted-foreground">
-                الموصى به: 2200-2500 سعرة/يوم
+                Recommended: 2200-2500 cal/day
               </div>
             </div>
           </CardContent>
@@ -220,7 +220,7 @@ const MealPlanner = () => {
                             <div className="flex-1">
                               <div className="flex items-center justify-between">
                                 <h4 className="font-medium">{meal.name}</h4>
-                                <span className="text-sm text-muted-foreground">{meal.calories} سعرة</span>
+                                <span className="text-sm text-muted-foreground">{meal.calories} cal</span>
                               </div>
                               <div className="flex flex-wrap gap-1 mt-1">
                                 {meal.nutrients.map((nutrient, idx) => (
@@ -250,11 +250,11 @@ const MealPlanner = () => {
             <div className="flex gap-3">
               <Utensils className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-amber-900">نصائح غذائية</p>
+                <p className="font-medium text-amber-900">Nutrition Tips</p>
                 <ul className="text-sm text-amber-700 mt-1 space-y-1 list-disc list-inside">
-                  <li>تناولي 5-6 وجبات صغيرة بدلاً من 3 وجبات كبيرة</li>
-                  <li>اشربي 8-10 أكواب ماء يومياً</li>
-                  <li>تجنبي الأطعمة النيئة والمبسترة</li>
+                  <li>Eat 5-6 small meals instead of 3 large ones</li>
+                  <li>Drink 8-10 glasses of water daily</li>
+                  <li>Avoid raw and unpasteurized foods</li>
                 </ul>
               </div>
             </div>

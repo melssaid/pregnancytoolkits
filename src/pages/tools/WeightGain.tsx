@@ -154,12 +154,12 @@ const WeightGain = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Scale className="h-5 w-5 text-primary" />
-                  إعداد ملف الوزن
+                  Setup Weight Profile
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground text-sm">
-                  أدخلي وزنك قبل الحمل وطولك لحساب نطاق الزيادة الموصى به
+                  Enter your pre-pregnancy weight and height to calculate your recommended gain
                 </p>
                 
                 <div className="grid grid-cols-2 gap-4">
@@ -167,7 +167,7 @@ const WeightGain = () => {
                     <Label>{t('weightGainPage.prePregnancyWeight')}</Label>
                     <Input
                       type="number"
-                      placeholder="كجم"
+                      placeholder="kg"
                       value={prePregnancyWeight}
                       onChange={(e) => setPrePregnancyWeight(e.target.value)}
                     />
@@ -176,7 +176,7 @@ const WeightGain = () => {
                     <Label>{t('weightGainPage.height')}</Label>
                     <Input
                       type="number"
-                      placeholder="سم"
+                      placeholder="cm"
                       value={height}
                       onChange={(e) => setHeight(e.target.value)}
                     />
@@ -184,7 +184,7 @@ const WeightGain = () => {
                 </div>
 
                 <Button onClick={setupProfile} className="w-full">
-                  بدء التتبع
+                  Start Tracking
                 </Button>
               </CardContent>
             </Card>
@@ -196,9 +196,9 @@ const WeightGain = () => {
                   <div className="flex items-center justify-between">
                     <div className="grid grid-cols-3 gap-4 flex-1">
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">وزن ما قبل الحمل</p>
+                        <p className="text-sm text-muted-foreground">Pre-Pregnancy Weight</p>
                         <p className="text-lg font-bold text-foreground">
-                          {settings.prePregnancyWeight} كجم
+                          {settings.prePregnancyWeight} kg
                         </p>
                       </div>
                       <div className="text-center">
@@ -211,11 +211,11 @@ const WeightGain = () => {
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">الزيادة الموصى بها</p>
+                        <p className="text-sm text-muted-foreground">Recommended Gain</p>
                         <p className="text-lg font-bold text-success">
                           {settings.recommendedGain.min}-{settings.recommendedGain.max}
                         </p>
-                        <p className="text-xs text-muted-foreground">كجم</p>
+                        <p className="text-xs text-muted-foreground">kg</p>
                       </div>
                     </div>
                     <Button
@@ -242,12 +242,12 @@ const WeightGain = () => {
               {showAddForm ? (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-lg">إضافة قياس جديد</CardTitle>
+                    <CardTitle className="text-lg">Add New Measurement</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label>الأسبوع الحالي</Label>
+                        <Label>Current Week</Label>
                         <Input
                           type="number"
                           placeholder="1-40"
@@ -258,11 +258,11 @@ const WeightGain = () => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label>الوزن الحالي (كجم)</Label>
+                        <Label>Current Weight (kg)</Label>
                         <Input
                           type="number"
                           step="0.1"
-                          placeholder="كجم"
+                          placeholder="kg"
                           value={currentWeight}
                           onChange={(e) => setCurrentWeight(e.target.value)}
                         />
@@ -270,13 +270,13 @@ const WeightGain = () => {
                     </div>
                     <div className="flex gap-2">
                       <Button onClick={addEntry} className="flex-1">
-                        حفظ
+                        Save
                       </Button>
                       <Button
                         variant="outline"
                         onClick={() => setShowAddForm(false)}
                       >
-                        إلغاء
+                        Cancel
                       </Button>
                     </div>
                   </CardContent>
@@ -288,7 +288,7 @@ const WeightGain = () => {
                   variant="outline"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  إضافة قياس جديد
+                  Add New Measurement
                 </Button>
               )}
 
@@ -298,7 +298,7 @@ const WeightGain = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-lg">
                       <TrendingUp className="h-5 w-5 text-primary" />
-                      سجل القياسات
+                      Measurement History
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -310,7 +310,7 @@ const WeightGain = () => {
                         >
                           <div>
                             <p className="font-medium text-foreground">
-                              الأسبوع {entry.week}
+                              Week {entry.week}
                             </p>
                             <p className="text-sm text-muted-foreground">
                               {format(new Date(entry.date), "d MMM yyyy")}
@@ -319,10 +319,10 @@ const WeightGain = () => {
                           <div className="flex items-center gap-3">
                             <div className="text-right">
                               <p className={`text-xl font-bold ${getStatusColor(entry)}`}>
-                                {entry.weight} كجم
+                                {entry.weight} kg
                               </p>
                               <p className="text-xs text-muted-foreground">
-                                +{(entry.weight - settings.prePregnancyWeight).toFixed(1)} كجم
+                                +{(entry.weight - settings.prePregnancyWeight).toFixed(1)} kg
                               </p>
                             </div>
                             <Button
