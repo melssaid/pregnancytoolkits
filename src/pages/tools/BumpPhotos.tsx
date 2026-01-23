@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Camera, Plus, Trash2, Image, Calendar, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
-import { ar } from "date-fns/locale";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface BumpPhoto {
@@ -95,7 +94,7 @@ const BumpPhotos = () => {
                   className="rounded-full px-8 py-6 bg-gradient-to-r from-primary to-pink-500 hover:from-primary/90 hover:to-pink-400"
                 >
                   <Camera className="h-6 w-6 mr-2" />
-                  التقطي صورة جديدة
+                  Take New Photo
                 </Button>
               </motion.div>
               <input
@@ -109,19 +108,19 @@ const BumpPhotos = () => {
               
               <div className="flex items-center justify-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">الأسبوع:</span>
+                  <span className="text-sm text-muted-foreground">Week:</span>
                   <select
                     value={currentWeek}
                     onChange={(e) => setCurrentWeek(Number(e.target.value))}
                     className="rounded-lg border border-input bg-background px-3 py-2"
                   >
                     {weekOptions.map(week => (
-                      <option key={week} value={week}>الأسبوع {week}</option>
+                      <option key={week} value={week}>Week {week}</option>
                     ))}
                   </select>
                 </div>
                 <Input
-                  placeholder="أضيفي ملاحظة (اختياري)"
+                  placeholder="Add a note (optional)"
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   className="max-w-xs"
@@ -155,9 +154,9 @@ const BumpPhotos = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-2 left-2 right-2">
                     <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-                      <p className="text-sm font-bold text-primary">الأسبوع {photo.week}</p>
+                      <p className="text-sm font-bold text-primary">Week {photo.week}</p>
                       <p className="text-xs text-muted-foreground">
-                        {format(new Date(photo.date), "d MMMM", { locale: ar })}
+                        {format(new Date(photo.date), "MMM d, yyyy")}
                       </p>
                     </div>
                   </div>
@@ -169,9 +168,9 @@ const BumpPhotos = () => {
           <Card className="bg-muted/30">
             <CardContent className="py-12 text-center">
               <Image className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-              <h3 className="font-semibold text-lg mb-2">ابدئي ألبوم صور البطن</h3>
+              <h3 className="font-semibold text-lg mb-2">Start Your Bump Album</h3>
               <p className="text-muted-foreground max-w-sm mx-auto">
-                وثّقي رحلة حملك الجميلة بالتقاط صورة كل أسبوع لمتابعة نمو بطنك
+                Document your beautiful pregnancy journey by taking a photo each week to track your growing belly
               </p>
             </CardContent>
           </Card>
@@ -201,9 +200,9 @@ const BumpPhotos = () => {
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 flex items-center justify-between">
                   <div>
-                    <p className="font-bold text-lg text-primary">الأسبوع {selectedPhoto.week}</p>
+                    <p className="font-bold text-lg text-primary">Week {selectedPhoto.week}</p>
                     <p className="text-sm text-muted-foreground">
-                      {format(new Date(selectedPhoto.date), "d MMMM yyyy", { locale: ar })}
+                      {format(new Date(selectedPhoto.date), "MMMM d, yyyy")}
                     </p>
                     {selectedPhoto.note && (
                       <p className="text-sm mt-1">{selectedPhoto.note}</p>
@@ -228,9 +227,9 @@ const BumpPhotos = () => {
             <div className="flex gap-3">
               <Heart className="h-5 w-5 text-pink-500 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-pink-900">نصيحة لصور أفضل</p>
+                <p className="font-medium text-pink-900">Tips for Better Photos</p>
                 <p className="text-sm text-pink-700 mt-1">
-                  التقطي الصور في نفس المكان وبنفس الوضعية كل أسبوع للحصول على مقارنة رائعة لنمو بطنك
+                  Take photos in the same spot and pose each week for a beautiful comparison of your growing bump
                 </p>
               </div>
             </div>

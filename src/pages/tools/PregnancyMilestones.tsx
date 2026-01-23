@@ -21,29 +21,29 @@ const STORAGE_KEY = "pregnancy-milestones-completed";
 
 const milestones: MilestoneItem[] = [
   // First Trimester
-  { id: "m1", week: 4, titleKey: "اكتشاف الحمل", descriptionKey: "تأكيد الحمل باختبار منزلي أو مخبري", icon: "sparkles", category: "personal" },
-  { id: "m2", week: 6, titleKey: "أول موعد طبي", descriptionKey: "زيارة الطبيب الأولى والفحوصات المبدئية", icon: "heart", category: "checkup" },
-  { id: "m3", week: 8, titleKey: "سماع نبض القلب", descriptionKey: "أول مرة تسمعين فيها نبض قلب طفلك", icon: "heart", category: "development" },
-  { id: "m4", week: 10, titleKey: "فحص الموجات الأولى", descriptionKey: "السونار الأول ورؤية الجنين", icon: "baby", category: "checkup" },
-  { id: "m5", week: 12, titleKey: "نهاية الثلث الأول", descriptionKey: "انتهاء مرحلة الغثيان وبداية الطاقة", icon: "star", category: "development" },
+  { id: "m1", week: 4, titleKey: "Pregnancy Discovery", descriptionKey: "Confirm pregnancy with home or lab test", icon: "sparkles", category: "personal" },
+  { id: "m2", week: 6, titleKey: "First Prenatal Visit", descriptionKey: "First doctor visit and initial tests", icon: "heart", category: "checkup" },
+  { id: "m3", week: 8, titleKey: "First Heartbeat", descriptionKey: "Hear baby's heartbeat for the first time", icon: "heart", category: "development" },
+  { id: "m4", week: 10, titleKey: "First Ultrasound", descriptionKey: "First scan and seeing your baby", icon: "baby", category: "checkup" },
+  { id: "m5", week: 12, titleKey: "End of First Trimester", descriptionKey: "Morning sickness fades, energy returns", icon: "star", category: "development" },
   
   // Second Trimester
-  { id: "m6", week: 14, titleKey: "بداية الثلث الثاني", descriptionKey: "الفترة الذهبية للحمل", icon: "sparkles", category: "development" },
-  { id: "m7", week: 16, titleKey: "أول حركة للجنين", descriptionKey: "الشعور بأول ركلات خفيفة", icon: "baby", category: "development" },
-  { id: "m8", week: 18, titleKey: "فحص التشوهات", descriptionKey: "السونار المفصل للأعضاء", icon: "heart", category: "checkup" },
-  { id: "m9", week: 20, titleKey: "منتصف الحمل", descriptionKey: "معرفة جنس الجنين (اختياري)", icon: "star", category: "development" },
-  { id: "m10", week: 24, titleKey: "قابلية الحياة", descriptionKey: "الجنين قادر على الحياة خارج الرحم", icon: "baby", category: "development" },
-  { id: "m11", week: 26, titleKey: "فحص سكر الحمل", descriptionKey: "اختبار تحمل الجلوكوز", icon: "heart", category: "checkup" },
+  { id: "m6", week: 14, titleKey: "Second Trimester Begins", descriptionKey: "The golden period of pregnancy", icon: "sparkles", category: "development" },
+  { id: "m7", week: 16, titleKey: "First Baby Movements", descriptionKey: "Feeling the first gentle kicks", icon: "baby", category: "development" },
+  { id: "m8", week: 18, titleKey: "Anatomy Scan", descriptionKey: "Detailed ultrasound of organs", icon: "heart", category: "checkup" },
+  { id: "m9", week: 20, titleKey: "Halfway Point", descriptionKey: "Find out baby's gender (optional)", icon: "star", category: "development" },
+  { id: "m10", week: 24, titleKey: "Viability Milestone", descriptionKey: "Baby can survive outside the womb", icon: "baby", category: "development" },
+  { id: "m11", week: 26, titleKey: "Glucose Screening", descriptionKey: "Gestational diabetes test", icon: "heart", category: "checkup" },
   
   // Third Trimester
-  { id: "m12", week: 28, titleKey: "بداية الثلث الأخير", descriptionKey: "بدء العد التنازلي للولادة", icon: "sparkles", category: "development" },
-  { id: "m13", week: 30, titleKey: "تجهيز غرفة الطفل", descriptionKey: "إعداد الحضانة والملابس", icon: "star", category: "preparation" },
-  { id: "m14", week: 32, titleKey: "فحوصات ما قبل الولادة", descriptionKey: "زيارات أسبوعية للطبيب", icon: "heart", category: "checkup" },
-  { id: "m15", week: 34, titleKey: "تحضير حقيبة المستشفى", descriptionKey: "جهزي كل ما تحتاجينه للولادة", icon: "star", category: "preparation" },
-  { id: "m16", week: 36, titleKey: "وضعية الرأس للأسفل", descriptionKey: "الجنين يستعد للولادة", icon: "baby", category: "development" },
-  { id: "m17", week: 37, titleKey: "اكتمال النمو", descriptionKey: "الجنين مكتمل النمو", icon: "sparkles", category: "development" },
-  { id: "m18", week: 38, titleKey: "الانتظار", descriptionKey: "جاهزة للولادة في أي وقت", icon: "heart", category: "preparation" },
-  { id: "m19", week: 40, titleKey: "موعد الولادة المتوقع", descriptionKey: "اليوم الذي تنتظرينه!", icon: "baby", category: "development" },
+  { id: "m12", week: 28, titleKey: "Third Trimester Begins", descriptionKey: "Countdown to delivery begins", icon: "sparkles", category: "development" },
+  { id: "m13", week: 30, titleKey: "Prepare Nursery", descriptionKey: "Set up baby's room and clothes", icon: "star", category: "preparation" },
+  { id: "m14", week: 32, titleKey: "Prenatal Checkups", descriptionKey: "Weekly doctor visits begin", icon: "heart", category: "checkup" },
+  { id: "m15", week: 34, titleKey: "Pack Hospital Bag", descriptionKey: "Prepare everything for delivery", icon: "star", category: "preparation" },
+  { id: "m16", week: 36, titleKey: "Baby Drops", descriptionKey: "Baby moves into position for birth", icon: "baby", category: "development" },
+  { id: "m17", week: 37, titleKey: "Full Term", descriptionKey: "Baby is fully developed", icon: "sparkles", category: "development" },
+  { id: "m18", week: 38, titleKey: "Ready & Waiting", descriptionKey: "Ready for delivery anytime", icon: "heart", category: "preparation" },
+  { id: "m19", week: 40, titleKey: "Due Date", descriptionKey: "The day you've been waiting for!", icon: "baby", category: "development" },
 ];
 
 const iconComponents = {
@@ -101,9 +101,9 @@ const PregnancyMilestones = () => {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="font-bold text-lg">تقدم رحلتك</h3>
+                <h3 className="font-bold text-lg">Your Progress</h3>
                 <p className="text-sm text-muted-foreground">
-                  أنجزتِ {completedIds.length} من {milestones.length} إنجاز
+                  Completed {completedIds.length} of {milestones.length} milestones
                 </p>
               </div>
               <div className="text-3xl font-bold text-primary">
@@ -116,14 +116,14 @@ const PregnancyMilestones = () => {
 
         {/* Current Week Selector */}
         <div className="flex items-center gap-3 justify-center">
-          <span className="text-sm text-muted-foreground">أسبوعك الحالي:</span>
+          <span className="text-sm text-muted-foreground">Current week:</span>
           <select
             value={currentWeek}
             onChange={(e) => setCurrentWeek(Number(e.target.value))}
             className="rounded-lg border border-input bg-background px-4 py-2 font-medium"
           >
             {Array.from({ length: 40 }, (_, i) => i + 1).map(week => (
-              <option key={week} value={week}>الأسبوع {week}</option>
+              <option key={week} value={week}>Week {week}</option>
             ))}
           </select>
         </div>
@@ -133,7 +133,7 @@ const PregnancyMilestones = () => {
           <div>
             <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-amber-500" />
-              الإنجازات القادمة
+              Upcoming Milestones
             </h3>
             <div className="space-y-3">
               {upcomingMilestones.map((milestone, index) => {
@@ -153,8 +153,8 @@ const PregnancyMilestones = () => {
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center gap-2">
-                              <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary/10 text-primary">
-                                الأسبوع {milestone.week}
+                            <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary/10 text-primary">
+                                Week {milestone.week}
                               </span>
                             </div>
                             <h4 className="font-semibold mt-1">{milestone.titleKey}</h4>
@@ -176,7 +176,7 @@ const PregnancyMilestones = () => {
 
         {/* All Milestones Timeline */}
         <div>
-          <h3 className="font-bold text-lg mb-3">جميع الإنجازات</h3>
+          <h3 className="font-bold text-lg mb-3">All Milestones</h3>
           <div className="relative">
             <div className="absolute right-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-pink-400 to-purple-400" />
             <div className="space-y-4">
@@ -220,9 +220,9 @@ const PregnancyMilestones = () => {
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
-                              <span className="text-xs text-muted-foreground">الأسبوع {milestone.week}</span>
+                              <span className="text-xs text-muted-foreground">Week {milestone.week}</span>
                               {isCompleted && (
-                                <span className="text-xs text-primary font-medium">✓ مكتمل</span>
+                                <span className="text-xs text-primary font-medium">✓ Done</span>
                               )}
                             </div>
                             <h4 className={`font-medium truncate ${isCompleted ? 'line-through text-muted-foreground' : ''}`}>
