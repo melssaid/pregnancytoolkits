@@ -133,25 +133,26 @@ const MoodDiary = () => {
             <TabsContent value="today" className="space-y-6">
               {/* Today's Mood */}
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
                     <Smile className="h-5 w-5 text-primary" />
                     How are you feeling today?
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex justify-center gap-4">
+                  <div className="grid grid-cols-5 gap-2">
                     {MOODS.map((mood) => (
                       <button
                         key={mood.value}
                         onClick={() => setSelectedMood(mood.value)}
-                        className={`text-3xl p-3 rounded-full transition-all ${
+                        className={`flex flex-col items-center p-2 sm:p-3 rounded-xl transition-all ${
                           selectedMood === mood.value
-                            ? "bg-primary/20 scale-125 ring-2 ring-primary"
-                            : "hover:bg-secondary hover:scale-110"
+                            ? "bg-primary/15 ring-2 ring-primary scale-105"
+                            : "bg-muted/30 hover:bg-muted/50 hover:scale-105"
                         }`}
                       >
-                        {mood.emoji}
+                        <span className="text-2xl sm:text-3xl mb-1">{mood.emoji}</span>
+                        <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">{mood.label}</span>
                       </button>
                     ))}
                   </div>
@@ -160,16 +161,17 @@ const MoodDiary = () => {
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
+                      className="space-y-3"
                     >
                       <Textarea
-                        placeholder="Add a note (optional)..."
+                        placeholder="Add a note about how you're feeling (optional)..."
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
                         rows={3}
-                        className="mb-4"
+                        className="resize-none"
                       />
                       <Button onClick={saveMood} className="w-full">
-                        {todayEntry ? "Update" : "Save"}
+                        {todayEntry ? "Update Mood" : "Save Mood"}
                       </Button>
                     </motion.div>
                   )}
@@ -178,29 +180,30 @@ const MoodDiary = () => {
 
               {/* Week Overview */}
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base">
                     <Calendar className="h-5 w-5 text-primary" />
                     This Week
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex justify-between mb-4">
+                  <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-4">
                     {last7Days.map((day) => {
                       const mood = getMoodForDate(day);
                       const moodData = MOODS.find((m) => m.value === mood);
+                      const isToday = day.toDateString() === new Date().toDateString();
                       return (
                         <div key={day.toISOString()} className="text-center">
-                          <p className="text-xs text-muted-foreground mb-1">
+                          <p className={`text-[10px] sm:text-xs mb-1 ${isToday ? "font-bold text-primary" : "text-muted-foreground"}`}>
                             {format(day, "EEE")}
                           </p>
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                            mood ? "bg-secondary" : "bg-muted"
-                          }`}>
+                          <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center mx-auto ${
+                            mood ? "bg-primary/10" : "bg-muted/50"
+                          } ${isToday ? "ring-2 ring-primary" : ""}`}>
                             {moodData ? (
-                              <span className="text-lg">{moodData.emoji}</span>
+                              <span className="text-base sm:text-xl">{moodData.emoji}</span>
                             ) : (
-                              <span className="text-muted-foreground">-</span>
+                              <span className="text-xs text-muted-foreground">-</span>
                             )}
                           </div>
                         </div>
@@ -209,15 +212,15 @@ const MoodDiary = () => {
                   </div>
 
                   {avgMood > 0 && (
-                    <div className="rounded-lg bg-secondary p-3 flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
+                    <div className="rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 p-3 flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground font-medium">
                         Weekly Average
                       </span>
                       <div className="flex items-center gap-2">
-                        <span className="text-lg">
+                        <span className="text-xl">
                           {MOODS.find((m) => m.value === Math.round(avgMood))?.emoji}
                         </span>
-                        <span className="font-medium">{avgMood.toFixed(1)}/5</span>
+                        <span className="font-bold text-foreground">{avgMood.toFixed(1)}/5</span>
                       </div>
                     </div>
                   )}
