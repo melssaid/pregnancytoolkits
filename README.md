@@ -1,4 +1,4 @@
-# WellMama - Women's Health Tools App
+# pregnancy toolkit- Women's Health Tools App
 
 ![WellMama](https://img.shields.io/badge/WellMama-Women's%20Health-0891B2?style=for-the-badge)
 
