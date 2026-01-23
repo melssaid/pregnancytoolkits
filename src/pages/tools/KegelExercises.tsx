@@ -1,19 +1,18 @@
 import { useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Activity, Play, Pause, RotateCcw, Timer, Award, TrendingUp, Info } from "lucide-react";
-import { motion } from "framer-motion";
+import { Activity, Play, Pause, Timer, Award, TrendingUp, Info, CheckCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
-import { ar } from "date-fns/locale";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface ExerciseSession {
   date: string;
   reps: number;
   duration: number;
+  program: string;
 }
 
 interface ExerciseProgram {
@@ -24,18 +23,45 @@ interface ExerciseProgram {
   restTime: number;
   reps: number;
   level: "beginner" | "intermediate" | "advanced";
+  color: string;
 }
 
 const STORAGE_KEY = "kegel-exercises-data";
 
 const programs: ExerciseProgram[] = [
-  { id: "beginner", name: "المبتدئ", description: "مثالي للبدء", holdTime: 3, restTime: 3, reps: 10, level: "beginner" },
-  { id: "intermediate", name: "المتوسط", description: "لتقوية أكثر", holdTime: 5, restTime: 5, reps: 15, level: "intermediate" },
-  { id: "advanced", name: "المتقدم", description: "للقوة القصوى", holdTime: 10, restTime: 5, reps: 20, level: "advanced" },
+  { 
+    id: "beginner", 
+    name: "Beginner", 
+    description: "Perfect for starting out", 
+    holdTime: 3, 
+    restTime: 3, 
+    reps: 10, 
+    level: "beginner",
+    color: "from-green-400 to-emerald-500"
+  },
+  { 
+    id: "intermediate", 
+    name: "Intermediate", 
+    description: "Build more strength", 
+    holdTime: 5, 
+    restTime: 5, 
+    reps: 15, 
+    level: "intermediate",
+    color: "from-blue-400 to-indigo-500"
+  },
+  { 
+    id: "advanced", 
+    name: "Advanced", 
+    description: "Maximum strengthening", 
+    holdTime: 10, 
+    restTime: 5, 
+    reps: 20, 
+    level: "advanced",
+    color: "from-purple-400 to-pink-500"
+  },
 ];
 
 const KegelExercises = () => {
-  const { t } = useTranslation();
   const { trackAction } = useAnalytics("kegel-exercises");
   
   const [sessions, setSessions] = useState<ExerciseSession[]>([]);
@@ -44,6 +70,7 @@ const KegelExercises = () => {
   const [phase, setPhase] = useState<"hold" | "rest">("hold");
   const [timeLeft, setTimeLeft] = useState(0);
   const [currentRep, setCurrentRep] = useState(0);
+  const [showComplete, setShowComplete] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -69,6 +96,7 @@ const KegelExercises = () => {
     setPhase("hold");
     setTimeLeft(selectedProgram.holdTime);
     setCurrentRep(1);
+    setShowComplete(false);
     trackAction("exercise_started", { program: selectedProgram.id });
     runTimer();
   };
@@ -105,15 +133,19 @@ const KegelExercises = () => {
   const completeExercise = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     setIsActive(false);
+    setShowComplete(true);
     
     const newSession: ExerciseSession = {
       date: new Date().toISOString(),
       reps: selectedProgram.reps,
       duration: (selectedProgram.holdTime + selectedProgram.restTime) * selectedProgram.reps,
+      program: selectedProgram.name,
     };
     
     saveSessions([newSession, ...sessions]);
     trackAction("exercise_completed", { program: selectedProgram.id, reps: selectedProgram.reps });
+    
+    setTimeout(() => setShowComplete(false), 3000);
   };
 
   const stopExercise = () => {
@@ -144,26 +176,46 @@ const KegelExercises = () => {
 
   return (
     <ToolFrame
-      title={t('tools.kegelExercises.title')}
-      subtitle={t('tools.kegelExercises.description')}
+      title="Kegel Exercises"
+      subtitle="Strengthen your pelvic floor for labor and recovery"
       icon={Activity}
       mood="empowering"
     >
       <div className="space-y-6">
+        {/* Completion Animation */}
+        <AnimatePresence>
+          {showComplete && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+            >
+              <Card className="mx-4 p-8 text-center">
+                <CheckCircle className="h-16 w-16 mx-auto text-green-500 mb-4" />
+                <h2 className="text-2xl font-bold mb-2">Great Job!</h2>
+                <p className="text-muted-foreground">
+                  You completed {selectedProgram.reps} reps!
+                </p>
+              </Card>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Stats Cards */}
         <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-gradient-to-br from-primary/10 to-pink-100/50">
+          <Card className="bg-gradient-to-br from-primary/10 to-primary/5">
             <CardContent className="pt-4 text-center">
               <TrendingUp className="h-6 w-6 mx-auto text-primary mb-2" />
               <p className="text-2xl font-bold text-primary">{getTodayReps()}</p>
-              <p className="text-xs text-muted-foreground">تكرار اليوم</p>
+              <p className="text-xs text-muted-foreground">Today's Reps</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-amber-100/50 to-orange-100/50">
+          <Card className="bg-gradient-to-br from-amber-100/50 to-orange-100/50 dark:from-amber-900/20 dark:to-orange-900/20">
             <CardContent className="pt-4 text-center">
               <Award className="h-6 w-6 mx-auto text-amber-600 mb-2" />
               <p className="text-2xl font-bold text-amber-600">{getWeeklyStreak()}</p>
-              <p className="text-xs text-muted-foreground">أيام متتالية</p>
+              <p className="text-xs text-muted-foreground">Day Streak</p>
             </CardContent>
           </Card>
         </div>
@@ -171,7 +223,7 @@ const KegelExercises = () => {
         {/* Program Selection */}
         {!isActive && (
           <div>
-            <h3 className="font-semibold mb-3">اختاري البرنامج</h3>
+            <h3 className="font-semibold mb-3">Choose Your Program</h3>
             <div className="grid gap-3">
               {programs.map((program) => (
                 <motion.div
@@ -181,7 +233,7 @@ const KegelExercises = () => {
                   <Card
                     className={`cursor-pointer transition-all ${
                       selectedProgram.id === program.id
-                        ? 'border-2 border-primary bg-primary/5'
+                        ? 'ring-2 ring-primary bg-primary/5'
                         : 'hover:border-primary/50'
                     }`}
                     onClick={() => setSelectedProgram(program)}
@@ -192,9 +244,9 @@ const KegelExercises = () => {
                           <h4 className="font-semibold">{program.name}</h4>
                           <p className="text-sm text-muted-foreground">{program.description}</p>
                         </div>
-                        <div className="text-left text-sm">
-                          <p className="text-primary font-medium">{program.reps} تكرار</p>
-                          <p className="text-muted-foreground">{program.holdTime}s شد / {program.restTime}s راحة</p>
+                        <div className="text-right text-sm">
+                          <p className="text-primary font-medium">{program.reps} reps</p>
+                          <p className="text-muted-foreground">{program.holdTime}s hold / {program.restTime}s rest</p>
                         </div>
                       </div>
                     </CardContent>
@@ -208,7 +260,9 @@ const KegelExercises = () => {
         {/* Exercise Timer */}
         {isActive ? (
           <Card className="overflow-hidden">
-            <div className={`p-8 text-center ${phase === "hold" ? 'bg-gradient-to-br from-primary to-pink-500' : 'bg-gradient-to-br from-blue-400 to-cyan-500'} text-white`}>
+            <div className={`p-8 text-center bg-gradient-to-br ${
+              phase === "hold" ? selectedProgram.color : 'from-slate-400 to-slate-500'
+            } text-white`}>
               <motion.div
                 key={phase}
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -216,7 +270,7 @@ const KegelExercises = () => {
                 className="space-y-4"
               >
                 <h3 className="text-2xl font-bold">
-                  {phase === "hold" ? "🔥 شدّي" : "😮‍💨 استرخي"}
+                  {phase === "hold" ? "🔥 SQUEEZE" : "😮‍💨 RELAX"}
                 </h3>
                 <div className="relative w-32 h-32 mx-auto">
                   <motion.div
@@ -234,7 +288,7 @@ const KegelExercises = () => {
                   </div>
                 </div>
                 <p className="text-lg">
-                  التكرار {currentRep} من {selectedProgram.reps}
+                  Rep {currentRep} of {selectedProgram.reps}
                 </p>
               </motion.div>
             </div>
@@ -243,7 +297,7 @@ const KegelExercises = () => {
               <div className="flex justify-center gap-4">
                 <Button variant="destructive" onClick={stopExercise}>
                   <Pause className="h-4 w-4 mr-2" />
-                  إيقاف
+                  Stop
                 </Button>
               </div>
             </CardContent>
@@ -255,11 +309,11 @@ const KegelExercises = () => {
           >
             <Button
               size="lg"
-              className="w-full py-8 text-xl bg-gradient-to-r from-primary to-pink-500 hover:from-primary/90 hover:to-pink-400"
+              className={`w-full py-8 text-xl bg-gradient-to-r ${selectedProgram.color} hover:opacity-90`}
               onClick={startExercise}
             >
               <Play className="h-6 w-6 mr-3" />
-              ابدئي التمرين
+              Start Exercise
             </Button>
           </motion.div>
         )}
@@ -270,17 +324,20 @@ const KegelExercises = () => {
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
                 <Timer className="h-5 w-5 text-primary" />
-                آخر التمارين
+                Recent Sessions
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
                 {sessions.slice(0, 5).map((session, index) => (
                   <div key={index} className="flex items-center justify-between py-2 border-b last:border-0">
-                    <span className="text-sm text-muted-foreground">
-                      {format(new Date(session.date), "EEEE، d MMMM", { locale: ar })}
-                    </span>
-                    <span className="font-medium text-primary">{session.reps} تكرار</span>
+                    <div>
+                      <span className="text-sm font-medium">
+                        {format(new Date(session.date), "EEEE, MMM d")}
+                      </span>
+                      <p className="text-xs text-muted-foreground">{session.program}</p>
+                    </div>
+                    <span className="font-medium text-primary">{session.reps} reps</span>
                   </div>
                 ))}
               </div>
@@ -289,17 +346,17 @@ const KegelExercises = () => {
         )}
 
         {/* Benefits Info */}
-        <Card className="bg-gradient-to-r from-purple-50 to-pink-50 border-purple-200">
+        <Card className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200 dark:border-purple-800">
           <CardContent className="pt-4">
             <div className="flex gap-3">
-              <Info className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+              <Info className="h-5 w-5 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-purple-900">فوائد تمارين كيجل</p>
-                <ul className="text-sm text-purple-700 mt-1 space-y-1 list-disc list-inside">
-                  <li>تقوية عضلات قاع الحوض</li>
-                  <li>تسهيل الولادة والتعافي</li>
-                  <li>منع سلس البول أثناء وبعد الحمل</li>
-                  <li>تحسين الدورة الدموية</li>
+                <p className="font-medium text-purple-900 dark:text-purple-100">Benefits of Kegel Exercises</p>
+                <ul className="text-sm text-purple-700 dark:text-purple-300 mt-1 space-y-1 list-disc list-inside">
+                  <li>Strengthens pelvic floor muscles</li>
+                  <li>Prepares for easier labor and recovery</li>
+                  <li>Prevents urinary incontinence during and after pregnancy</li>
+                  <li>Improves blood circulation</li>
                 </ul>
               </div>
             </div>
