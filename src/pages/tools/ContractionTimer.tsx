@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Timer, Play, Square, Trash2, Info, AlertTriangle } from "lucide-react";
+import { Timer, Play, Square, Trash2, Info, AlertTriangle, Share2, Phone } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { format } from "date-fns";
+import { toast } from "sonner";
 
 interface Contraction {
   id: string;
@@ -93,6 +94,63 @@ export default function ContractionTimer() {
   const averages = getAverages();
   const shouldCallHospital = averages && averages.avgInterval <= 5 && averages.avgDuration >= 45;
 
+  const generateHospitalAlert = () => {
+    const now = new Date();
+    let message = `🏥 CONTRACTION ALERT\n`;
+    message += `Time: ${format(now, 'MMM d, yyyy h:mm a')}\n\n`;
+    
+    if (averages) {
+      message += `📊 Current Pattern:\n`;
+      message += `• Avg Duration: ${Math.round(averages.avgDuration)} seconds\n`;
+      message += `• Avg Interval: ${Math.round(averages.avgInterval)} minutes\n\n`;
+    }
+    
+    message += `Last ${Math.min(5, contractions.length)} contractions:\n`;
+    contractions.slice(0, 5).forEach((c, i) => {
+      const interval = calculateInterval(i);
+      message += `• ${format(c.startTime, 'h:mm a')} - ${c.duration}s`;
+      if (interval !== null) message += ` (${interval}min interval)`;
+      message += '\n';
+    });
+    
+    if (shouldCallHospital) {
+      message += `\n⚠️ 5-1-1 RULE MET: Consider heading to hospital!`;
+    }
+    
+    return message;
+  };
+
+  const shareHospitalAlert = async () => {
+    const message = generateHospitalAlert();
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Contraction Alert',
+          text: message,
+        });
+        toast.success("Alert shared!");
+      } catch (err) {
+        navigator.clipboard.writeText(message);
+        toast.success("Alert copied to clipboard!");
+      }
+    } else {
+      navigator.clipboard.writeText(message);
+      toast.success("Alert copied to clipboard!");
+    }
+  };
+
+  const callHospital = () => {
+    // This would integrate with native phone capabilities
+    toast.info("Tap to call your healthcare provider", {
+      description: "Make sure you have their number saved",
+      action: {
+        label: "Copy Alert",
+        onClick: shareHospitalAlert,
+      },
+    });
+  };
+
   return (
     <Layout title="Contraction Timer" showBack>
       <div className="container py-8">
@@ -106,15 +164,27 @@ export default function ContractionTimer() {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-4 rounded-lg bg-warning/10 border border-warning/30 p-4 flex items-start gap-3"
+                className="mb-4 rounded-lg bg-warning/10 border border-warning/30 p-4"
               >
-                <AlertTriangle className="h-5 w-5 text-warning flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-semibold text-foreground">Time to Call Your Provider</p>
-                  <p className="text-sm text-muted-foreground">
-                    Contractions are 5 minutes apart and lasting 45+ seconds. 
-                    Consider heading to the hospital.
-                  </p>
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="h-5 w-5 text-warning flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="font-semibold text-foreground">Time to Call Your Provider</p>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      Contractions are 5 minutes apart and lasting 45+ seconds. 
+                      Consider heading to the hospital.
+                    </p>
+                    <div className="flex gap-2">
+                      <Button size="sm" onClick={callHospital} className="gap-2">
+                        <Phone className="h-4 w-4" />
+                        Call Provider
+                      </Button>
+                      <Button size="sm" variant="outline" onClick={shareHospitalAlert} className="gap-2">
+                        <Share2 className="h-4 w-4" />
+                        Share Alert
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -181,10 +251,18 @@ export default function ContractionTimer() {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle className="text-lg">Contraction Log</CardTitle>
-                  <Button variant="ghost" size="sm" onClick={clearAll} className="text-destructive">
-                    <Trash2 className="h-4 w-4 mr-1" />
-                    Clear
-                  </Button>
+                  <div className="flex gap-2">
+                    {contractions.length >= 3 && (
+                      <Button variant="outline" size="sm" onClick={shareHospitalAlert}>
+                        <Share2 className="h-4 w-4 mr-1" />
+                        Share
+                      </Button>
+                    )}
+                    <Button variant="ghost" size="sm" onClick={clearAll} className="text-destructive">
+                      <Trash2 className="h-4 w-4 mr-1" />
+                      Clear
+                    </Button>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">

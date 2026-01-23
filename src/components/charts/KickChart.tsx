@@ -12,8 +12,7 @@ import {
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Activity } from "lucide-react";
-import { format, parseISO } from "date-fns";
-import { ar } from "date-fns/locale";
+import { format } from "date-fns";
 
 interface KickSession {
   id: string;
@@ -33,8 +32,8 @@ export function KickChart({ sessions }: KickChartProps) {
     const recentSessions = sessions.slice(0, 7).reverse();
     
     return recentSessions.map((session) => ({
-      date: format(session.startTime, "EEE", { locale: ar }),
-      fullDate: format(session.startTime, "d MMM", { locale: ar }),
+      date: format(session.startTime, "EEE"),
+      fullDate: format(session.startTime, "MMM d"),
       kicks: session.kicks,
       duration: Math.round(session.duration / 60), // Convert to minutes
       isGood: session.kicks >= 10 && session.duration <= 7200,
@@ -51,27 +50,27 @@ export function KickChart({ sessions }: KickChartProps) {
       <Card>
         <CardContent className="py-8 text-center">
           <p className="text-muted-foreground">
-            سجّلي جلستين على الأقل لعرض الرسم البياني
+            Record at least 2 sessions to view the chart
           </p>
         </CardContent>
       </Card>
     );
   }
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
         <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
           <p className="font-semibold text-foreground">{data.fullDate}</p>
           <p className="text-primary">
-            {data.kicks} ركلة
+            {data.kicks} kicks
           </p>
           <p className="text-muted-foreground text-sm">
-            المدة: {data.duration} دقيقة
+            Duration: {data.duration} min
           </p>
           {data.isGood && (
-            <p className="text-success text-sm mt-1">✓ نشاط ممتاز</p>
+            <p className="text-success text-sm mt-1">✓ Excellent activity</p>
           )}
         </div>
       );
@@ -84,7 +83,7 @@ export function KickChart({ sessions }: KickChartProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <Activity className="h-5 w-5 text-primary" />
-          نشاط الجنين - آخر 7 جلسات
+          Fetal Activity - Last 7 Sessions
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -125,7 +124,7 @@ export function KickChart({ sessions }: KickChartProps) {
                 stroke="hsl(var(--success))"
                 strokeDasharray="5 5"
                 label={{
-                  value: "الهدف: 10 ركلات",
+                  value: "Goal: 10 kicks",
                   fill: "hsl(var(--success))",
                   fontSize: 10,
                   position: "right",
@@ -152,13 +151,13 @@ export function KickChart({ sessions }: KickChartProps) {
         <div className="grid grid-cols-2 gap-4 mt-4">
           <div className="bg-secondary rounded-lg p-3 text-center">
             <p className="text-2xl font-bold text-primary">{averageKicks.toFixed(0)}</p>
-            <p className="text-xs text-muted-foreground">متوسط الركلات</p>
+            <p className="text-xs text-muted-foreground">Avg Kicks</p>
           </div>
           <div className="bg-secondary rounded-lg p-3 text-center">
             <p className="text-2xl font-bold text-success">
               {chartData.filter(d => d.isGood).length}
             </p>
-            <p className="text-xs text-muted-foreground">جلسات ممتازة</p>
+            <p className="text-xs text-muted-foreground">Excellent Sessions</p>
           </div>
         </div>
       </CardContent>

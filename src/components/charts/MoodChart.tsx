@@ -12,7 +12,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { format, subDays, eachDayOfInterval } from "date-fns";
-import { ar } from "date-fns/locale";
 
 interface MoodEntry {
   id: string;
@@ -26,11 +25,11 @@ interface MoodChartProps {
 }
 
 const MOODS = [
-  { value: 1, emoji: "😢", label: "سيء جداً", color: "hsl(var(--destructive))" },
-  { value: 2, emoji: "😔", label: "سيء", color: "hsl(var(--warning))" },
-  { value: 3, emoji: "😐", label: "عادي", color: "hsl(var(--muted-foreground))" },
-  { value: 4, emoji: "🙂", label: "جيد", color: "hsl(var(--primary))" },
-  { value: 5, emoji: "😊", label: "ممتاز", color: "hsl(var(--success))" },
+  { value: 1, emoji: "😢", label: "Very Bad", color: "hsl(var(--destructive))" },
+  { value: 2, emoji: "😔", label: "Bad", color: "hsl(var(--warning))" },
+  { value: 3, emoji: "😐", label: "Okay", color: "hsl(var(--muted-foreground))" },
+  { value: 4, emoji: "🙂", label: "Good", color: "hsl(var(--primary))" },
+  { value: 5, emoji: "😊", label: "Great", color: "hsl(var(--success))" },
 ];
 
 export function MoodChart({ entries }: MoodChartProps) {
@@ -47,8 +46,8 @@ export function MoodChart({ entries }: MoodChartProps) {
       );
       
       return {
-        date: format(day, "EEE", { locale: ar }),
-        fullDate: format(day, "d MMM", { locale: ar }),
+        date: format(day, "EEE"),
+        fullDate: format(day, "MMM d"),
         mood: entry?.mood || null,
         note: entry?.note,
       };
@@ -81,7 +80,7 @@ export function MoodChart({ entries }: MoodChartProps) {
       <Card>
         <CardContent className="py-8 text-center">
           <p className="text-muted-foreground">
-            سجّلي مزاجك 3 مرات على الأقل لعرض الرسم البياني
+            Record your mood at least 3 times to view the chart
           </p>
         </CardContent>
       </Card>
@@ -137,7 +136,7 @@ export function MoodChart({ entries }: MoodChartProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <Heart className="h-5 w-5 text-primary" />
-          تتبع المزاج - آخر أسبوعين
+          Mood Tracking - Last 2 Weeks
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -200,7 +199,7 @@ export function MoodChart({ entries }: MoodChartProps) {
               <p className="font-semibold text-foreground">
                 {stats.avg.toFixed(1)}/5
               </p>
-              <p className="text-xs text-muted-foreground">المتوسط</p>
+              <p className="text-xs text-muted-foreground">Average</p>
             </div>
           </div>
           
@@ -210,19 +209,19 @@ export function MoodChart({ entries }: MoodChartProps) {
             {stats.trend === "up" && (
               <>
                 <TrendingUp className="h-5 w-5 text-success" />
-                <span className="text-success text-sm">تحسّن</span>
+                <span className="text-success text-sm">Improving</span>
               </>
             )}
             {stats.trend === "down" && (
               <>
                 <TrendingDown className="h-5 w-5 text-warning" />
-                <span className="text-warning text-sm">انخفاض</span>
+                <span className="text-warning text-sm">Declining</span>
               </>
             )}
             {stats.trend === "neutral" && (
               <>
                 <Minus className="h-5 w-5 text-muted-foreground" />
-                <span className="text-muted-foreground text-sm">مستقر</span>
+                <span className="text-muted-foreground text-sm">Stable</span>
               </>
             )}
           </div>

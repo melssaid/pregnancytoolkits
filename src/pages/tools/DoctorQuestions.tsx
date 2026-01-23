@@ -5,10 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MessageCircle, Plus, Trash2, Check, Stethoscope, Calendar, AlertCircle, Baby } from "lucide-react";
+import { MessageCircle, Plus, Trash2, Check, Stethoscope, Calendar, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { format } from "date-fns";
 
 interface Question {
   id: string;
@@ -30,25 +30,25 @@ interface Visit {
 const STORAGE_KEY = "doctor-questions-data";
 
 const suggestedQuestions = [
-  { text: "ما هي الفحوصات المطلوبة في هذه المرحلة؟", category: "checkups", priority: "high" as const },
-  { text: "هل نمو الجنين طبيعي؟", category: "development", priority: "high" as const },
-  { text: "ما هي الأعراض التي تستدعي الاتصال فوراً؟", category: "warning", priority: "high" as const },
-  { text: "هل يمكنني ممارسة الرياضة؟", category: "lifestyle", priority: "medium" as const },
-  { text: "ما هي الأطعمة التي يجب تجنبها؟", category: "nutrition", priority: "medium" as const },
-  { text: "هل أدويتي آمنة أثناء الحمل؟", category: "medications", priority: "high" as const },
-  { text: "متى يجب أن أسجل في دورة الولادة؟", category: "preparation", priority: "low" as const },
-  { text: "ما هي علامات المخاض المبكر؟", category: "warning", priority: "high" as const },
+  { text: "What tests are needed at this stage?", category: "checkups", priority: "high" as const },
+  { text: "Is baby's growth on track?", category: "development", priority: "high" as const },
+  { text: "What symptoms require immediate attention?", category: "warning", priority: "high" as const },
+  { text: "Can I continue exercising?", category: "lifestyle", priority: "medium" as const },
+  { text: "What foods should I avoid?", category: "nutrition", priority: "medium" as const },
+  { text: "Are my medications safe during pregnancy?", category: "medications", priority: "high" as const },
+  { text: "When should I register for birth classes?", category: "preparation", priority: "low" as const },
+  { text: "What are signs of early labor?", category: "warning", priority: "high" as const },
 ];
 
 const categoryLabels = {
-  checkups: { label: "الفحوصات", icon: "🔬" },
-  development: { label: "نمو الجنين", icon: "👶" },
-  warning: { label: "تحذيرات", icon: "⚠️" },
-  lifestyle: { label: "نمط الحياة", icon: "🏃" },
-  nutrition: { label: "التغذية", icon: "🥗" },
-  medications: { label: "الأدوية", icon: "💊" },
-  preparation: { label: "التحضير", icon: "📋" },
-  other: { label: "أخرى", icon: "❓" },
+  checkups: { label: "Checkups", icon: "🔬" },
+  development: { label: "Baby Growth", icon: "👶" },
+  warning: { label: "Warning Signs", icon: "⚠️" },
+  lifestyle: { label: "Lifestyle", icon: "🏃" },
+  nutrition: { label: "Nutrition", icon: "🥗" },
+  medications: { label: "Medications", icon: "💊" },
+  preparation: { label: "Preparation", icon: "📋" },
+  other: { label: "Other", icon: "❓" },
 };
 
 const priorityColors = {
@@ -88,7 +88,7 @@ const DoctorQuestions = () => {
     const visit: Visit = {
       id: Date.now().toString(),
       date: new Date().toISOString(),
-      week: 20, // Default, can be changed
+      week: 20,
       questions: [],
     };
     setCurrentVisit(visit);
@@ -165,7 +165,7 @@ const DoctorQuestions = () => {
                 className="w-full py-8 text-lg bg-gradient-to-r from-primary to-pink-500"
               >
                 <Calendar className="h-6 w-6 mr-3" />
-                بدء زيارة جديدة
+                Start New Visit
               </Button>
             </motion.div>
 
@@ -174,12 +174,12 @@ const DoctorQuestions = () => {
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Stethoscope className="h-5 w-5 text-primary" />
-                  أسئلة مقترحة
+                  Suggested Questions
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
-                  ابدئي زيارة جديدة لإضافة هذه الأسئلة إلى قائمتك
+                  Start a new visit to add these questions to your list
                 </p>
                 <div className="space-y-2">
                   {suggestedQuestions.slice(0, 5).map((q, index) => (
@@ -195,20 +195,20 @@ const DoctorQuestions = () => {
             {visits.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">الزيارات السابقة</CardTitle>
+                  <CardTitle className="text-lg">Past Visits</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     {visits.slice(0, 5).map((visit) => (
                       <div key={visit.id} className="p-3 rounded-lg border flex items-center justify-between">
                         <div>
-                          <p className="font-medium">الأسبوع {visit.week}</p>
+                          <p className="font-medium">Week {visit.week}</p>
                           <p className="text-sm text-muted-foreground">
-                            {new Date(visit.date).toLocaleDateString('ar-SA')}
+                            {format(new Date(visit.date), 'MMM d, yyyy')}
                           </p>
                         </div>
                         <span className="text-sm text-primary">
-                          {visit.questions.length} أسئلة
+                          {visit.questions.length} questions
                         </span>
                       </div>
                     ))}
@@ -224,9 +224,9 @@ const DoctorQuestions = () => {
               <CardContent className="pt-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-lg">زيارة الطبيب</h3>
+                    <h3 className="font-bold text-lg">Doctor Visit</h3>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-sm text-muted-foreground">الأسبوع:</span>
+                      <span className="text-sm text-muted-foreground">Week:</span>
                       <Input
                         type="number"
                         value={currentVisit.week}
@@ -237,9 +237,9 @@ const DoctorQuestions = () => {
                       />
                     </div>
                   </div>
-                  <div className="text-left">
+                  <div className="text-right">
                     <span className="text-3xl font-bold text-primary">{unansweredCount}</span>
-                    <p className="text-xs text-muted-foreground">أسئلة متبقية</p>
+                    <p className="text-xs text-muted-foreground">questions left</p>
                   </div>
                 </div>
               </CardContent>
@@ -251,7 +251,7 @@ const DoctorQuestions = () => {
                 <Input
                   value={newQuestion}
                   onChange={(e) => setNewQuestion(e.target.value)}
-                  placeholder="اكتبي سؤالك هنا..."
+                  placeholder="Type your question here..."
                   onKeyPress={(e) => e.key === 'Enter' && addQuestion(newQuestion, selectedCategory, selectedPriority)}
                 />
                 <div className="flex flex-wrap gap-2">
@@ -272,7 +272,7 @@ const DoctorQuestions = () => {
                   className="w-full"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  إضافة السؤال
+                  Add Question
                 </Button>
               </CardContent>
             </Card>
@@ -280,7 +280,7 @@ const DoctorQuestions = () => {
             {/* Suggested Questions */}
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-muted-foreground">أسئلة مقترحة - اضغطي للإضافة</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">Suggested - Tap to add</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -307,7 +307,7 @@ const DoctorQuestions = () => {
             {currentVisit.questions.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">أسئلتك ({currentVisit.questions.length})</CardTitle>
+                  <CardTitle className="text-lg">Your Questions ({currentVisit.questions.length})</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <AnimatePresence>
@@ -342,7 +342,7 @@ const DoctorQuestions = () => {
                                   {catInfo.icon} {catInfo.label}
                                 </span>
                                 <span className={`text-xs px-2 py-0.5 rounded-full border ${priorityColors[question.priority]}`}>
-                                  {question.priority === 'high' ? 'مهم' : question.priority === 'medium' ? 'متوسط' : 'عادي'}
+                                  {question.priority === 'high' ? 'Important' : question.priority === 'medium' ? 'Medium' : 'Normal'}
                                 </span>
                               </div>
                             </div>
@@ -370,14 +370,14 @@ const DoctorQuestions = () => {
                 onClick={() => saveData(visits, null)}
                 className="flex-1"
               >
-                إلغاء الزيارة
+                Cancel Visit
               </Button>
               <Button
                 onClick={completeVisit}
                 className="flex-1 bg-green-600 hover:bg-green-700"
               >
                 <Check className="h-4 w-4 mr-2" />
-                إنهاء الزيارة
+                Complete Visit
               </Button>
             </div>
           </>
@@ -389,12 +389,12 @@ const DoctorQuestions = () => {
             <div className="flex gap-3">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-blue-900">نصائح لزيارة الطبيب</p>
+                <p className="font-medium text-blue-900">Doctor Visit Tips</p>
                 <ul className="text-sm text-blue-700 mt-1 space-y-1 list-disc list-inside">
-                  <li>جهزي أسئلتك قبل الزيارة</li>
-                  <li>اكتبي إجابات الطبيب فوراً</li>
-                  <li>لا تتردي في طلب توضيح</li>
-                  <li>اصطحبي شريكك معك إذا أمكن</li>
+                  <li>Prepare your questions before the visit</li>
+                  <li>Write down the doctor's answers immediately</li>
+                  <li>Don't hesitate to ask for clarification</li>
+                  <li>Bring your partner if possible</li>
                 </ul>
               </div>
             </div>

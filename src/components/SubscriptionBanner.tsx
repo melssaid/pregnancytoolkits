@@ -1,6 +1,5 @@
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Crown, Sparkles, Gift } from "lucide-react";
+import { Crown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useSubscription from "@/hooks/useSubscription";
 
@@ -9,8 +8,7 @@ interface SubscriptionBannerProps {
 }
 
 export const SubscriptionBanner = ({ onSubscribe }: SubscriptionBannerProps) => {
-  const { t } = useTranslation();
-  const { isTrialActive, trialDaysLeft, isSubscribed } = useSubscription();
+  const { isSubscribed } = useSubscription();
 
   // Don't show if subscribed
   if (isSubscribed) return null;
@@ -20,46 +18,10 @@ export const SubscriptionBanner = ({ onSubscribe }: SubscriptionBannerProps) => 
     if (onSubscribe) {
       onSubscribe();
     } else {
-      console.log("Trigger Google Play In-App Billing for $1.99/month subscription");
+      console.log("Trigger Google Play In-App Billing for $0.79/month subscription");
     }
   };
 
-  // During trial - show benefits reminder (not urgency)
-  if (isTrialActive) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="rounded-2xl p-4 bg-gradient-to-r from-success/10 via-success/5 to-success/10 border-2 border-success/20"
-      >
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success/20">
-              <Gift className="h-6 w-6 text-success" />
-            </div>
-            <div>
-              <h3 className="font-bold text-base text-foreground">
-                ✨ استمتعي بجميع المميزات مجاناً!
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                متبقي {trialDaysLeft} {trialDaysLeft === 1 ? 'يوم' : 'أيام'} من التجربة المجانية
-              </p>
-            </div>
-          </div>
-          
-          <Button
-            onClick={handleSubscribe}
-            className="rounded-full font-bold px-6 gradient-premium text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-          >
-            <Crown className="h-4 w-4 mr-2" />
-            اشتركي للحفاظ على الوصول
-          </Button>
-        </div>
-      </motion.div>
-    );
-  }
-
-  // Trial expired - show urgency
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
@@ -73,10 +35,10 @@ export const SubscriptionBanner = ({ onSubscribe }: SubscriptionBannerProps) => 
           </div>
           <div>
             <h3 className="font-bold text-base text-white">
-              ⏰ انتهت الفترة التجريبية
+              🌟 Unlock All Premium Tools
             </h3>
             <p className="text-sm text-white/80">
-              اشتركي الآن لاستعادة الوصول الكامل
+              Get access to 52 tools for your pregnancy journey
             </p>
           </div>
         </div>
@@ -86,7 +48,7 @@ export const SubscriptionBanner = ({ onSubscribe }: SubscriptionBannerProps) => 
           className="rounded-full font-bold px-6 bg-white text-primary hover:bg-white/90 shadow-lg transition-all duration-300"
         >
           <Sparkles className="h-4 w-4 mr-2" />
-          فقط $0.79/شهر
+          Only $0.79/mo
         </Button>
       </div>
     </motion.div>
