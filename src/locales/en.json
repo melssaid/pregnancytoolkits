@@ -267,15 +267,11 @@
     "seconds": "seconds",
     "hours": "hours",
     "premium": "Premium",
-    "freeTrial": "Free Trial",
     "subscribe": "Subscribe",
     "unlock": "Unlock All Tools"
   },
   "subscription": {
-    "trialActive": "Free Trial",
-    "trialDaysLeft": "{{days}} days left",
-    "trialExpired": "Upgrade Now",
-    "subscribeNow": "Get Premium - $1.99/mo",
+    "subscribeNow": "Get Premium - $0.79/mo",
     "premiumFeature": "Premium Feature",
     "unlockAccess": "Unlock all 52 tools",
     "subscribeToAccess": "Subscribe to unlock"

@@ -1,21 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
 
-const INSTALLATION_KEY = "wellmama_install_date";
-const SUBSCRIPTION_KEY = "wellmama_subscription";
-const TRIAL_DAYS = 3;
+const INSTALLATION_KEY = "pregnancy_toolkit_install_date";
+const SUBSCRIPTION_KEY = "pregnancy_toolkit_subscription";
 
 interface SubscriptionState {
   isTrialActive: boolean;
   isSubscribed: boolean;
-  trialDaysLeft: number;
   installDate: Date | null;
 }
 
 export const useSubscription = () => {
   const [state, setState] = useState<SubscriptionState>({
-    isTrialActive: true,
+    isTrialActive: false,
     isSubscribed: false,
-    trialDaysLeft: TRIAL_DAYS,
     installDate: null,
   });
 
@@ -29,26 +26,22 @@ export const useSubscription = () => {
     }
 
     const install = new Date(installDate);
-    const now = new Date();
-    const daysSinceInstall = Math.floor((now.getTime() - install.getTime()) / (1000 * 60 * 60 * 24));
-    const trialDaysLeft = Math.max(0, TRIAL_DAYS - daysSinceInstall);
     
     // Check subscription status (will be set by Google Play billing)
     const subscription = localStorage.getItem(SUBSCRIPTION_KEY);
     const isSubscribed = subscription === "active";
 
     setState({
-      isTrialActive: trialDaysLeft > 0,
+      isTrialActive: false, // No trial - direct premium model
       isSubscribed,
-      trialDaysLeft,
       installDate: install,
     });
   }, []);
 
   const hasAccess = useCallback((isPremium?: boolean): boolean => {
     if (!isPremium) return true; // Free tools always accessible
-    return state.isTrialActive || state.isSubscribed;
-  }, [state.isTrialActive, state.isSubscribed]);
+    return state.isSubscribed;
+  }, [state.isSubscribed]);
 
   // This will be called by Google Play In-App Billing
   const activateSubscription = useCallback(() => {
@@ -61,19 +54,11 @@ export const useSubscription = () => {
     setState(prev => ({ ...prev, isSubscribed: false }));
   }, []);
 
-  // For testing - reset trial
-  const resetTrial = useCallback(() => {
-    localStorage.removeItem(INSTALLATION_KEY);
-    localStorage.removeItem(SUBSCRIPTION_KEY);
-    window.location.reload();
-  }, []);
-
   return {
     ...state,
     hasAccess,
     activateSubscription,
     deactivateSubscription,
-    resetTrial,
   };
 };
 
