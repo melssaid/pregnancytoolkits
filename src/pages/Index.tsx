@@ -1,19 +1,28 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Heart, Search, Sparkles, Crown } from "lucide-react";
+import { Heart, Search, Sparkles, Crown, CheckCircle, Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
 import { SubscriptionBanner } from "@/components/SubscriptionBanner";
+import { UrgencyBanner } from "@/components/UrgencyBanner";
+import { SocialProof } from "@/components/SocialProof";
 import { getSortedTools, categoryKeys, toolsData } from "@/lib/tools-data";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import useSubscription from "@/hooks/useSubscription";
 
 const Index = () => {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("categories.all");
+  const { isSubscribed } = useSubscription();
 
   const sortedTools = getSortedTools();
+
+  const handleSubscribe = () => {
+    console.log("Trigger Google Play In-App Billing");
+  };
 
   const filteredTools = sortedTools.filter((tool) => {
     const title = t(tool.titleKey).toLowerCase();
@@ -27,6 +36,9 @@ const Index = () => {
 
   return (
     <Layout>
+      {/* Urgency Banner */}
+      <UrgencyBanner />
+
       {/* Hero Section */}
       <section className="gradient-hero border-b border-border relative overflow-hidden">
         {/* Decorative elements */}
@@ -140,6 +152,87 @@ const Index = () => {
           )}
         </div>
       </section>
+
+      {/* Social Proof Section */}
+      <SocialProof />
+
+      {/* Premium CTA Section */}
+      {!isSubscribed && (
+        <section className="py-16 bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10">
+          <div className="container">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="max-w-2xl mx-auto text-center"
+            >
+              <div className="inline-flex items-center gap-2 bg-success/10 text-success rounded-full px-4 py-2 text-sm font-semibold mb-6">
+                <CheckCircle className="h-4 w-4" />
+                Limited Time: 60% OFF
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
+                Unlock Your Complete{" "}
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Pregnancy Journey
+                </span>
+              </h2>
+
+              <p className="text-lg text-muted-foreground mb-8">
+                Join 500,000+ moms who trust our premium tools for a healthier pregnancy
+              </p>
+
+              {/* Pricing Card */}
+              <div className="bg-card rounded-3xl p-8 shadow-elevated border-2 border-primary/20 max-w-md mx-auto">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <span className="text-4xl font-extrabold text-foreground">$0.79</span>
+                  <span className="text-muted-foreground">/month</span>
+                </div>
+                <div className="text-sm text-muted-foreground line-through mb-2">
+                  Regular price: $1.99/month
+                </div>
+                <div className="bg-destructive/10 text-destructive rounded-full px-3 py-1 text-xs font-bold inline-block mb-6">
+                  SAVE 60% TODAY ONLY
+                </div>
+
+                <ul className="space-y-3 text-left mb-8">
+                  {[
+                    "Access all 31 premium tools",
+                    "Unlimited tracking & logging",
+                    "Personalized insights",
+                    "Export data for your doctor",
+                    "Priority support 24/7",
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm text-foreground">
+                      <CheckCircle className="h-5 w-5 text-success flex-shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  onClick={handleSubscribe}
+                  size="lg"
+                  className="w-full gradient-primary text-white font-bold text-lg h-14 shadow-lg hover:shadow-xl transition-all"
+                >
+                  <Crown className="h-5 w-5 mr-2" />
+                  Start Premium Now
+                </Button>
+
+                <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                  <Shield className="h-4 w-4" />
+                  <span>Cancel anytime • Secure payment</span>
+                </div>
+              </div>
+
+              {/* Money-back guarantee */}
+              <div className="mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground">
+                <span>🛡️</span>
+                <span>30-day money-back guarantee. No questions asked.</span>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Trust Banner */}
       <section className="border-t border-border bg-card py-12">
