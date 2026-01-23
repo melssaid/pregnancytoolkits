@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Lock, Crown } from "lucide-react";
+import { Lock, Crown, Store, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import useSubscription from "@/hooks/useSubscription";
@@ -10,17 +10,17 @@ interface PremiumGateProps {
   toolName?: string;
 }
 
-export const PremiumGate = ({ children, isPremium, toolName }: PremiumGateProps) => {
-  const { hasAccess } = useSubscription();
+const PRICE_TEXT = "$1.99/month";
 
-  // If tool is not premium or user has access, show the content
+export const PremiumGate = ({ children, isPremium, toolName }: PremiumGateProps) => {
+  const { hasAccess, startGooglePlayBilling, trialDaysLeft, isTrialActive } = useSubscription();
+
   if (!isPremium || hasAccess(isPremium)) {
     return <>{children}</>;
   }
 
   const handleSubscribe = () => {
-    // This will trigger Google Play In-App Billing
-    console.log("Trigger Google Play In-App Billing for $1.99/month subscription");
+    startGooglePlayBilling("pregnancy_toolkit_premium_monthly");
   };
 
   return (
@@ -35,45 +35,42 @@ export const PremiumGate = ({ children, isPremium, toolName }: PremiumGateProps)
             <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
               <Lock className="h-8 w-8 text-primary" />
             </div>
-            
-            <h2 className="mb-2 text-2xl font-bold text-foreground">
-              Premium Feature
-            </h2>
-            
-            {toolName && (
-              <p className="mb-4 text-lg text-muted-foreground">
-                {toolName}
-              </p>
-            )}
-            
-            <p className="mb-6 text-muted-foreground">
-              Subscribe to unlock this tool
-            </p>
+
+            <h2 className="mb-2 text-2xl font-bold text-foreground">Premium Feature</h2>
+
+            {toolName && <p className="mb-4 text-lg text-muted-foreground">{toolName}</p>}
+
+            <p className="mb-6 text-muted-foreground">Subscribe to unlock this tool</p>
 
             <div className="mb-6 rounded-lg bg-card p-4 text-start">
-              <p className="mb-2 text-sm font-medium text-foreground">
-                Unlock all 52 tools
-              </p>
+              <p className="mb-2 text-sm font-medium text-foreground">Unlock all tools</p>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <Crown className="h-4 w-4 text-primary" />
-                  31 premium tools
+                  Full access to all premium tools
                 </li>
                 <li className="flex items-center gap-2">
                   <Crown className="h-4 w-4 text-primary" />
-                  Only $0.79/month
+                  Price: {PRICE_TEXT}
                 </li>
+                {isTrialActive && (
+                  <li className="flex items-center gap-2">
+                    <Crown className="h-4 w-4 text-primary" />
+                    Trial remaining: {trialDaysLeft} day(s)
+                  </li>
+                )}
               </ul>
             </div>
 
-            <Button 
-              onClick={handleSubscribe}
-              size="lg"
-              className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90"
-            >
-              <Crown className="h-5 w-5 me-2" />
-              Get Premium - $0.79/mo
+            <Button onClick={handleSubscribe} size="lg" className="w-full gradient-primary text-white font-bold h-14">
+              <Store className="h-5 w-5 me-2" />
+              Pay with Google Play
             </Button>
+
+            <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+              <ShieldCheck className="h-4 w-4" />
+              <span>Google Play Billing ready</span>
+            </div>
           </CardContent>
         </Card>
       </motion.div>
