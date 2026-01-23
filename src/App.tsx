@@ -46,7 +46,6 @@ import BirthPlan from "./pages/tools/BirthPlan";
 import NurseryChecklist from "./pages/tools/NurseryChecklist";
 import BabyBudget from "./pages/tools/BabyBudget";
 import DoctorQuestions from "./pages/tools/DoctorQuestions";
-import AIMaternityApps from "./pages/tools/AIMaternityApps";
 
 const queryClient = new QueryClient();
 
@@ -99,9 +98,6 @@ const App = () => (
           <Route path="/tools/nursery-checklist" element={<NurseryChecklist />} />
           <Route path="/tools/baby-budget" element={<BabyBudget />} />
           <Route path="/tools/doctor-questions" element={<DoctorQuestions />} />
-
-          {/* External AI Apps Directory */}
-          <Route path="/tools/ai-maternity-apps" element={<AIMaternityApps />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

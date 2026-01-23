@@ -124,7 +124,6 @@ export const toolsData: Tool[] = [
   // ADDITIONAL: DOCTOR & SUPPORT
   // ═══════════════════════════════════════════════════════════════
   { id: "doctor-questions", titleKey: "tools.doctorQuestions.title", descriptionKey: "tools.doctorQuestions.description", icon: MessageCircle, categoryKey: "categories.support", href: "/tools/doctor-questions", priority: 40, isPremium: true },
-  { id: "ai-maternity-apps", titleKey: "tools.aiMaternityApps.title", descriptionKey: "tools.aiMaternityApps.description", icon: Sparkles, categoryKey: "categories.support", href: "/tools/ai-maternity-apps", priority: 41 },
 ];
 
 // Simplified categories organized by journey stage
@@ -145,7 +144,7 @@ export const getSortedTools = () => {
   return [...toolsData].sort((a, b) => a.priority - b.priority);
 };
 
-export const getFreeTools = () => toolsData.filter(t => !t.isPremium);
-export const getPremiumTools = () => toolsData.filter(t => t.isPremium);
-export const getToolsByCategory = (categoryKey: string) => 
-  toolsData.filter(t => t.categoryKey === categoryKey);
+export const getFreeTools = () => toolsData.filter((t) => !t.isPremium);
+export const getPremiumTools = () => toolsData.filter((t) => t.isPremium);
+export const getToolsByCategory = (categoryKey: string) =>
+  toolsData.filter((t) => t.categoryKey === categoryKey);

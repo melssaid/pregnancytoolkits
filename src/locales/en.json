@@ -178,10 +178,6 @@
     "doctorQuestions": {
       "title": "Doctor Questions",
       "description": "Questions to ask your doctor."
-    },
-    "aiMaternityApps": {
-      "title": "AI Maternity Apps",
-      "description": "Recommended AI apps for pregnancy and postpartum support."
     }
   },
   "common": {
