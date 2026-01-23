@@ -60,13 +60,6 @@ export interface Tool {
 // Tools organized by pregnancy journey stage for logical flow
 export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
-  // STAGE 1: PRE-PREGNANCY & FERTILITY (Trying to Conceive)
-  // ═══════════════════════════════════════════════════════════════
-  { id: "ovulation-calculator", titleKey: "tools.ovulationCalculator.title", descriptionKey: "tools.ovulationCalculator.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/ovulation-calculator", priority: 1, isPremium: true },
-  { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Activity, categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 2, isPremium: true },
-  { id: "conception-calculator", titleKey: "tools.conceptionCalculator.title", descriptionKey: "tools.conceptionCalculator.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/conception-calculator", priority: 3, isPremium: true },
-  
-  // ═══════════════════════════════════════════════════════════════
   // STAGE 2: EARLY PREGNANCY (Finding Out & First Steps)
   // ═══════════════════════════════════════════════════════════════
   { id: "due-date-calculator", titleKey: "tools.dueDateCalculator.title", descriptionKey: "tools.dueDateCalculator.description", icon: Baby, categoryKey: "categories.pregnancy", href: "/tools/due-date-calculator", priority: 4 },
@@ -74,7 +67,7 @@ export const toolsData: Tool[] = [
   { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 6 },
   { id: "gender-predictor", titleKey: "tools.genderPredictor.title", descriptionKey: "tools.genderPredictor.description", icon: Sparkles, categoryKey: "categories.pregnancy", href: "/tools/gender-predictor", priority: 7, isPremium: true },
   { id: "pregnancy-diary", titleKey: "tools.pregnancyDiary.title", descriptionKey: "tools.pregnancyDiary.description", icon: BookOpen, categoryKey: "categories.pregnancy", href: "/tools/pregnancy-diary", priority: 8, isPremium: true },
-  
+
   // ═══════════════════════════════════════════════════════════════
   // STAGE 3: ONGOING PREGNANCY (Daily Tracking & Health)
   // ═══════════════════════════════════════════════════════════════
@@ -84,7 +77,7 @@ export const toolsData: Tool[] = [
   { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.wellness", href: "/tools/vitamin-tracker", priority: 12, isPremium: true },
   { id: "bump-photos", titleKey: "tools.bumpPhotos.title", descriptionKey: "tools.bumpPhotos.description", icon: Camera, categoryKey: "categories.pregnancy", href: "/tools/bump-photos", priority: 13, isPremium: true },
   { id: "pregnancy-milestones", titleKey: "tools.pregnancyMilestones.title", descriptionKey: "tools.pregnancyMilestones.description", icon: Milestone, categoryKey: "categories.pregnancy", href: "/tools/pregnancy-milestones", priority: 14, isPremium: true },
-  
+
   // ═══════════════════════════════════════════════════════════════
   // STAGE 4: HEALTH & NUTRITION
   // ═══════════════════════════════════════════════════════════════
@@ -92,7 +85,7 @@ export const toolsData: Tool[] = [
   { id: "forbidden-foods", titleKey: "tools.forbiddenFoods.title", descriptionKey: "tools.forbiddenFoods.description", icon: Ban, categoryKey: "categories.wellness", href: "/tools/forbidden-foods", priority: 16, isPremium: true },
   { id: "meal-planner", titleKey: "tools.mealPlanner.title", descriptionKey: "tools.mealPlanner.description", icon: Utensils, categoryKey: "categories.wellness", href: "/tools/meal-planner", priority: 17, isPremium: true },
   { id: "safe-medications", titleKey: "tools.safeMedications.title", descriptionKey: "tools.safeMedications.description", icon: Pill, categoryKey: "categories.reference", href: "/tools/safe-medications", priority: 18, isPremium: true },
-  
+
   // ═══════════════════════════════════════════════════════════════
   // STAGE 5: FITNESS & WELLNESS
   // ═══════════════════════════════════════════════════════════════
@@ -100,21 +93,14 @@ export const toolsData: Tool[] = [
   { id: "yoga-guide", titleKey: "tools.yogaGuide.title", descriptionKey: "tools.yogaGuide.description", icon: Flower2, categoryKey: "categories.wellness", href: "/tools/yoga-guide", priority: 20, isPremium: true },
   { id: "breathing-exercises", titleKey: "tools.breathingExercises.title", descriptionKey: "tools.breathingExercises.description", icon: Wind, categoryKey: "categories.wellness", href: "/tools/breathing-exercises", priority: 21, isPremium: true },
   { id: "kegel-exercises", titleKey: "tools.kegelExercises.title", descriptionKey: "tools.kegelExercises.description", icon: Activity, categoryKey: "categories.wellness", href: "/tools/kegel-exercises", priority: 22, isPremium: true },
-  
-  // ═══════════════════════════════════════════════════════════════
-  // STAGE 6: MENTAL HEALTH & WELLBEING
-  // ═══════════════════════════════════════════════════════════════
-  { id: "mood-diary", titleKey: "tools.moodDiary.title", descriptionKey: "tools.moodDiary.description", icon: Smile, categoryKey: "categories.mentalHealth", href: "/tools/mood-diary", priority: 23, isPremium: true },
-  { id: "affirmations", titleKey: "tools.affirmations.title", descriptionKey: "tools.affirmations.description", icon: Heart, categoryKey: "categories.mentalHealth", href: "/tools/affirmations", priority: 24, isPremium: true },
-  { id: "ppd-screener", titleKey: "tools.ppdScreener.title", descriptionKey: "tools.ppdScreener.description", icon: Brain, categoryKey: "categories.mentalHealth", href: "/tools/ppd-screener", priority: 25, isPremium: true },
-  
+
   // ═══════════════════════════════════════════════════════════════
   // STAGE 7: RISK ASSESSMENT
   // ═══════════════════════════════════════════════════════════════
   { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.riskAssessment", href: "/tools/gestational-diabetes", priority: 26, isPremium: true },
   { id: "preeclampsia-risk", titleKey: "tools.preeclampsiaRisk.title", descriptionKey: "tools.preeclampsiaRisk.description", icon: Heart, categoryKey: "categories.riskAssessment", href: "/tools/preeclampsia-risk", priority: 27, isPremium: true },
   { id: "blood-type", titleKey: "tools.bloodType.title", descriptionKey: "tools.bloodType.description", icon: Droplet, categoryKey: "categories.riskAssessment", href: "/tools/blood-type", priority: 28, isPremium: true },
-  
+
   // ═══════════════════════════════════════════════════════════════
   // STAGE 8: BIRTH PREPARATION (Third Trimester)
   // ═══════════════════════════════════════════════════════════════
@@ -123,7 +109,7 @@ export const toolsData: Tool[] = [
   { id: "birth-plan", titleKey: "tools.birthPlan.title", descriptionKey: "tools.birthPlan.description", icon: FileText, categoryKey: "categories.preparation", href: "/tools/birth-plan", priority: 31, isPremium: true },
   { id: "nursery-checklist", titleKey: "tools.nurseryChecklist.title", descriptionKey: "tools.nurseryChecklist.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/nursery-checklist", priority: 32, isPremium: true },
   { id: "baby-budget", titleKey: "tools.babyBudget.title", descriptionKey: "tools.babyBudget.description", icon: Calculator, categoryKey: "categories.preparation", href: "/tools/baby-budget", priority: 33, isPremium: true },
-  
+
   // ═══════════════════════════════════════════════════════════════
   // STAGE 9: POSTPARTUM & BABY CARE
   // ═══════════════════════════════════════════════════════════════
@@ -133,11 +119,12 @@ export const toolsData: Tool[] = [
   { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 37, isPremium: true },
   { id: "vaccination-schedule", titleKey: "tools.vaccinationSchedule.title", descriptionKey: "tools.vaccinationSchedule.description", icon: Syringe, categoryKey: "categories.postpartum", href: "/tools/vaccination-schedule", priority: 38, isPremium: true },
   { id: "vaccination-guide", titleKey: "tools.vaccinationGuide.title", descriptionKey: "tools.vaccinationGuide.description", icon: Syringe, categoryKey: "categories.postpartum", href: "/tools/vaccination-guide", priority: 39, isPremium: true },
-  
+
   // ═══════════════════════════════════════════════════════════════
   // ADDITIONAL: DOCTOR & SUPPORT
   // ═══════════════════════════════════════════════════════════════
   { id: "doctor-questions", titleKey: "tools.doctorQuestions.title", descriptionKey: "tools.doctorQuestions.description", icon: MessageCircle, categoryKey: "categories.support", href: "/tools/doctor-questions", priority: 40, isPremium: true },
+  { id: "ai-maternity-apps", titleKey: "tools.aiMaternityApps.title", descriptionKey: "tools.aiMaternityApps.description", icon: Sparkles, categoryKey: "categories.support", href: "/tools/ai-maternity-apps", priority: 41 },
 ];
 
 // Simplified categories organized by journey stage

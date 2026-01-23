@@ -135,29 +135,13 @@
       "title": "Gender Predictor",
       "description": "Fun prediction for baby's gender!"
     },
-    "conceptionCalculator": {
-      "title": "Conception Calculator",
-      "description": "Estimate your conception date."
-    },
     "breathingExercises": {
       "title": "Breathing Exercises",
       "description": "Relax and prepare for labor."
     },
-    "moodDiary": {
-      "title": "Mood Diary",
-      "description": "Track your emotional wellness."
-    },
     "yogaGuide": {
       "title": "Prenatal Yoga",
       "description": "Safe poses for every trimester."
-    },
-    "affirmations": {
-      "title": "Daily Affirmations",
-      "description": "Positive vibes for your journey."
-    },
-    "babyNames": {
-      "title": "Baby Names",
-      "description": "Find the perfect name for your baby."
     },
     "bumpPhotos": {
       "title": "Bump Photos",
@@ -166,14 +150,6 @@
     "pregnancyMilestones": {
       "title": "Pregnancy Milestones",
       "description": "Track important moments."
-    },
-    "bloodPressure": {
-      "title": "Blood Pressure Log",
-      "description": "Monitor your blood pressure."
-    },
-    "symptomChecker": {
-      "title": "Symptom Checker",
-      "description": "Check if symptoms need attention."
     },
     "mealPlanner": {
       "title": "Meal Planner",
@@ -187,18 +163,6 @@
       "title": "Kegel Exercises",
       "description": "Strengthen your pelvic floor."
     },
-    "sleepTracker": {
-      "title": "Sleep Tracker",
-      "description": "Track your sleep quality."
-    },
-    "relaxationSounds": {
-      "title": "Relaxation Sounds",
-      "description": "Calming sounds for rest."
-    },
-    "gratitudeJournal": {
-      "title": "Gratitude Journal",
-      "description": "Focus on the positive moments."
-    },
     "birthPlan": {
       "title": "Birth Plan",
       "description": "Plan your ideal birth experience."
@@ -211,33 +175,13 @@
       "title": "Baby Budget",
       "description": "Plan expenses for your baby."
     },
-    "babyMilestones": {
-      "title": "Baby Milestones",
-      "description": "Track development achievements."
-    },
-    "tummyTime": {
-      "title": "Tummy Time",
-      "description": "Track tummy time sessions."
-    },
-    "emergencyGuide": {
-      "title": "Emergency Guide",
-      "description": "Know when to seek help."
-    },
-    "fertilityDiet": {
-      "title": "Fertility Diet",
-      "description": "Foods that boost fertility."
-    },
-    "eyeColorPredictor": {
-      "title": "Eye Color Predictor",
-      "description": "Predict baby's eye color."
-    },
-    "partnerTips": {
-      "title": "Partner Tips",
-      "description": "How partners can help."
-    },
     "doctorQuestions": {
       "title": "Doctor Questions",
       "description": "Questions to ask your doctor."
+    },
+    "aiMaternityApps": {
+      "title": "AI Maternity Apps",
+      "description": "Recommended AI apps for pregnancy and postpartum support."
     }
   },
   "common": {
