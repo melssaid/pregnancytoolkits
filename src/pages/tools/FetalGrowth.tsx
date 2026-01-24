@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { TrendingUp, Baby, Info } from "lucide-react";
 import { Layout } from "@/components/Layout";
@@ -55,13 +56,14 @@ const fetalGrowthData: FetalData[] = [
 ];
 
 export default function FetalGrowth() {
+  const { t } = useTranslation();
   const [selectedWeek, setSelectedWeek] = useState<string>("20");
   
   const currentData = fetalGrowthData.find((d) => d.week === parseInt(selectedWeek));
   const prevData = fetalGrowthData.find((d) => d.week === parseInt(selectedWeek) - 1);
 
   return (
-    <Layout title="Fetal Growth Tracker" showBack>
+    <Layout title={t("tools.fetalGrowth.title")} showBack>
       <div className="container py-8">
         <div className="mx-auto max-w-2xl">
           <motion.div
