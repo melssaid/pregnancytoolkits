@@ -37,7 +37,7 @@ import BabySleepTracker from "./pages/tools/BabySleepTracker";
 import DiaperTracker from "./pages/tools/DiaperTracker";
 import BabyGrowth from "./pages/tools/BabyGrowth";
 
-import GenderPredictor from "./pages/tools/GenderPredictor";
+
 import ConceptionCalculator from "./pages/tools/ConceptionCalculator";
 import BreathingExercises from "./pages/tools/BreathingExercises";
 import MoodDiary from "./pages/tools/MoodDiary";
@@ -99,7 +99,7 @@ const App = () => (
           <Route path="/tools/diaper-tracker" element={<DiaperTracker />} />
           <Route path="/tools/baby-growth" element={<BabyGrowth />} />
           
-          <Route path="/tools/gender-predictor" element={<GenderPredictor />} />
+          
           <Route path="/tools/conception-calculator" element={<ConceptionCalculator />} />
           <Route path="/tools/breathing-exercises" element={<BreathingExercises />} />
           <Route path="/tools/mood-diary" element={<MoodDiary />} />
