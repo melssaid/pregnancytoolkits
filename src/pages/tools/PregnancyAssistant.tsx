@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Layout } from "@/components/Layout";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 interface Message {
   role: "user" | "assistant";
@@ -139,9 +140,13 @@ export default function PregnancyAssistant() {
                               : "bg-muted rounded-bl-md"
                           }`}
                         >
-                          <p className="text-sm whitespace-pre-wrap leading-relaxed">
-                            {msg.content}
-                          </p>
+                          {msg.role === "assistant" ? (
+                            <MarkdownRenderer content={msg.content} accentColor="primary" />
+                          ) : (
+                            <p className="text-sm whitespace-pre-wrap leading-relaxed">
+                              {msg.content}
+                            </p>
+                          )}
                         </div>
                       </motion.div>
                     ))}

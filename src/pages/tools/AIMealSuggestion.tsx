@@ -22,6 +22,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Layout } from "@/components/Layout";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 const mealTypes = [
   { id: "breakfast", label: "Breakfast", icon: "🌅" },
@@ -233,14 +234,11 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="prose prose-sm max-w-none">
-                    <p className="whitespace-pre-wrap text-sm leading-relaxed">
-                      {suggestion}
-                      {isLoading && (
-                        <span className="inline-block w-2 h-4 bg-green-500/50 animate-pulse ml-1" />
-                      )}
-                    </p>
-                  </div>
+                  <MarkdownRenderer 
+                    content={suggestion} 
+                    isLoading={isLoading} 
+                    accentColor="green-500" 
+                  />
                 </CardContent>
               </Card>
             </motion.div>

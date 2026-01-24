@@ -37,7 +37,7 @@ export function usePregnancyAI() {
 
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai`,
+          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
           {
             method: "POST",
             headers: {

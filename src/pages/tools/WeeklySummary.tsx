@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Progress } from "@/components/ui/progress";
 import { Layout } from "@/components/Layout";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 const STORAGE_KEY = "weekly-summary-data";
 
@@ -189,12 +190,11 @@ export default function WeeklySummary() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="prose prose-sm max-w-none">
-                    <p className="whitespace-pre-wrap text-sm leading-relaxed">
-                      {summary}
-                      {isLoading && <span className="inline-block w-2 h-4 bg-purple-500/50 animate-pulse ml-1" />}
-                    </p>
-                  </div>
+                  <MarkdownRenderer 
+                    content={summary} 
+                    isLoading={isLoading} 
+                    accentColor="purple-500" 
+                  />
                 </CardContent>
               </Card>
             </motion.div>
