@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { 
-  Utensils, 
-  Sparkles, 
-  Loader2, 
-  Leaf, 
+import {
+  Utensils,
+  Sparkles,
+  Loader2,
+  Leaf,
   Apple,
   ChefHat,
-  Clock,
-  Flame
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Layout } from "@/components/Layout";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
@@ -54,7 +58,7 @@ export default function AIMealSuggestion() {
 
   const togglePreference = (id: string) => {
     setPreferences((prev) =>
-      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id],
     );
   };
 
@@ -68,7 +72,9 @@ export default function AIMealSuggestion() {
       .join(", ");
     const cravingText = cravings.find((c) => c.id === selectedCraving)?.label;
 
-    const prompt = `I am pregnant in the ${trimester === "1" ? "first" : trimester === "2" ? "second" : "third"} trimester.
+    const prompt = `I am pregnant in the ${
+      trimester === "1" ? "first" : trimester === "2" ? "second" : "third"
+    } trimester.
 I want a healthy ${mealLabel} suggestion.
 ${prefsText ? `My preferences: ${prefsText}.` : ""}
 ${cravingText ? `I'm craving something ${cravingText.toLowerCase()}.` : ""}
@@ -85,7 +91,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
   };
 
   return (
-    <Layout title={t("tools.ai-meal-suggestion")} showBack>
+    <Layout title={t("tools.aiMealSuggestion.title")} showBack>
       <div className="space-y-4">
         {/* Header */}
         <motion.div
@@ -95,7 +101,9 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
         >
           <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-4 py-2 rounded-full">
             <ChefHat className="w-5 h-5 text-green-600" />
-            <span className="text-sm font-medium text-green-700">AI-Powered Meal Suggestions</span>
+            <span className="text-sm font-medium text-green-700">
+              AI-Powered Meal Suggestions
+            </span>
           </div>
         </motion.div>
 
@@ -105,7 +113,9 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             <div className="grid grid-cols-2 gap-3">
               <Card className="border-border/50">
                 <CardContent className="p-4 space-y-2">
-                  <label className="text-xs text-muted-foreground">Pregnancy Stage</label>
+                  <label className="text-xs text-muted-foreground">
+                    Pregnancy Stage
+                  </label>
                   <Select value={trimester} onValueChange={setTrimester}>
                     <SelectTrigger>
                       <SelectValue />
@@ -150,7 +160,9 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                       key={c.id}
                       variant={selectedCraving === c.id ? "default" : "outline"}
                       size="sm"
-                      onClick={() => setSelectedCraving(selectedCraving === c.id ? "" : c.id)}
+                      onClick={() =>
+                        setSelectedCraving(selectedCraving === c.id ? "" : c.id)
+                      }
                       className="gap-1"
                     >
                       {c.icon} {c.label}
@@ -204,10 +216,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
         ) : (
           <>
             {/* Suggestion Result */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <Card className="border-green-500/20 bg-green-50/50 dark:bg-green-950/20">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
@@ -227,7 +236,9 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                   <div className="prose prose-sm max-w-none">
                     <p className="whitespace-pre-wrap text-sm leading-relaxed">
                       {suggestion}
-                      {isLoading && <span className="inline-block w-2 h-4 bg-green-500/50 animate-pulse ml-1" />}
+                      {isLoading && (
+                        <span className="inline-block w-2 h-4 bg-green-500/50 animate-pulse ml-1" />
+                      )}
                     </p>
                   </div>
                 </CardContent>
@@ -236,11 +247,19 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
 
             {/* Actions */}
             <div className="flex gap-2">
-              <Button onClick={() => setSuggestion("")} variant="outline" className="flex-1">
+              <Button
+                onClick={() => setSuggestion("")}
+                variant="outline"
+                className="flex-1"
+              >
                 Different Suggestion
               </Button>
               <Button onClick={getSuggestion} disabled={isLoading} className="flex-1 gap-2">
-                {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                {isLoading ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Sparkles className="w-4 h-4" />
+                )}
                 Refresh
               </Button>
             </div>
