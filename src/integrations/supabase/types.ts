@@ -46,7 +46,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      cleanup_old_analytics: { Args: never; Returns: number }
     }
     Enums: {
       [_ in never]: never
