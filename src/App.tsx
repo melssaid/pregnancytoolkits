@@ -36,7 +36,7 @@ import ForbiddenFoods from "./pages/tools/ForbiddenFoods";
 import BabySleepTracker from "./pages/tools/BabySleepTracker";
 import DiaperTracker from "./pages/tools/DiaperTracker";
 import BabyGrowth from "./pages/tools/BabyGrowth";
-import VaccinationGuide from "./pages/tools/VaccinationGuide";
+
 import GenderPredictor from "./pages/tools/GenderPredictor";
 import ConceptionCalculator from "./pages/tools/ConceptionCalculator";
 import BreathingExercises from "./pages/tools/BreathingExercises";
@@ -52,6 +52,10 @@ import BirthPlan from "./pages/tools/BirthPlan";
 import NurseryChecklist from "./pages/tools/NurseryChecklist";
 import BabyBudget from "./pages/tools/BabyBudget";
 import DoctorQuestions from "./pages/tools/DoctorQuestions";
+import PregnancyAssistant from "./pages/tools/PregnancyAssistant";
+import SymptomAnalyzer from "./pages/tools/SymptomAnalyzer";
+import AIMealSuggestion from "./pages/tools/AIMealSuggestion";
+import WeeklySummary from "./pages/tools/WeeklySummary";
 
 const queryClient = new QueryClient();
 
@@ -94,7 +98,7 @@ const App = () => (
           <Route path="/tools/baby-sleep-tracker" element={<BabySleepTracker />} />
           <Route path="/tools/diaper-tracker" element={<DiaperTracker />} />
           <Route path="/tools/baby-growth" element={<BabyGrowth />} />
-          <Route path="/tools/vaccination-guide" element={<VaccinationGuide />} />
+          
           <Route path="/tools/gender-predictor" element={<GenderPredictor />} />
           <Route path="/tools/conception-calculator" element={<ConceptionCalculator />} />
           <Route path="/tools/breathing-exercises" element={<BreathingExercises />} />
@@ -110,6 +114,10 @@ const App = () => (
           <Route path="/tools/nursery-checklist" element={<NurseryChecklist />} />
           <Route path="/tools/baby-budget" element={<BabyBudget />} />
           <Route path="/tools/doctor-questions" element={<DoctorQuestions />} />
+          <Route path="/tools/pregnancy-assistant" element={<PregnancyAssistant />} />
+          <Route path="/tools/symptom-analyzer" element={<SymptomAnalyzer />} />
+          <Route path="/tools/ai-meal-suggestion" element={<AIMealSuggestion />} />
+          <Route path="/tools/weekly-summary" element={<WeeklySummary />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
