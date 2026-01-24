@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Sparkles, Crown, CheckCircle, Shield, ChevronDown, Store } from "lucide-react";
+import { Search, Sparkles, CheckCircle, Shield, ChevronDown, Store } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
@@ -27,6 +27,7 @@ const Index = () => {
   };
 
   const normalizedSearch = search.trim().toLowerCase();
+  const isSearching = normalizedSearch.length > 0;
 
   const filteredTools = useMemo(() => {
     return sortedTools.filter((tool) => {
@@ -36,10 +37,7 @@ const Index = () => {
     });
   }, [sortedTools, t, normalizedSearch]);
 
-  const categoriesForSections = useMemo(
-    () => categoryKeys.filter((k) => k !== "categories.all"),
-    []
-  );
+  const categoriesForSections = useMemo(() => categoryKeys.filter((k) => k !== "categories.all"), []);
 
   const groupedSections = useMemo(() => {
     return categoriesForSections
@@ -50,6 +48,11 @@ const Index = () => {
       .filter((section) => section.tools.length > 0);
   }, [categoriesForSections, filteredTools]);
 
+  // Only show categories that actually exist on screen (prevents "dead" tabs)
+  const visibleCategoryKeys = useMemo(() => {
+    return ["categories.all", ...groupedSections.map((s) => s.categoryKey)];
+  }, [groupedSections]);
+
   const scrollToCategory = (categoryKey: string) => {
     setActiveCategory(categoryKey);
 
@@ -59,7 +62,13 @@ const Index = () => {
   };
 
   const totalToolsCount = filteredTools.length;
-  const isSearching = normalizedSearch.length > 0;
+
+  // When searching, reset category highlight to "All" to avoid confusing state
+  useEffect(() => {
+    if (isSearching && activeCategory !== "categories.all") {
+      setActiveCategory("categories.all");
+    }
+  }, [isSearching, activeCategory]);
 
   const activeCategoryRef = useRef(activeCategory);
   useEffect(() => {
@@ -70,12 +79,13 @@ const Index = () => {
   useEffect(() => {
     if (isSearching) return;
 
-    const sections = groupedSections
-      .map((s) => ({
+    const sections = [
+      { id: getCategoryId("categories.all"), categoryKey: "categories.all" },
+      ...groupedSections.map((s) => ({
         id: getCategoryId(s.categoryKey),
         categoryKey: s.categoryKey,
-      }))
-      .filter((s) => !!document.getElementById(s.id));
+      })),
+    ].filter((s) => !!document.getElementById(s.id));
 
     if (sections.length === 0) return;
 
@@ -139,7 +149,7 @@ const Index = () => {
 
               {isTrialActive && !isSubscribed && (
                 <div className="mx-auto mb-6 max-w-md rounded-2xl border border-border bg-card/60 px-4 py-3 text-sm text-muted-foreground">
-                  Trial active: <span className="font-semibold text-foreground">{trialDaysLeft}</span> day(s) left.
+                  {t("subscription.trialActive", { days: trialDaysLeft })}
                 </div>
               )}
             </motion.div>
@@ -168,7 +178,7 @@ const Index = () => {
         <section className="border-b border-border bg-background sticky top-16 z-40">
           <div className="container py-4">
             <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-              {categoryKeys.map((categoryKey) => (
+              {visibleCategoryKeys.map((categoryKey) => (
                 <button
                   key={categoryKey}
                   onClick={() => scrollToCategory(categoryKey)}
@@ -191,14 +201,15 @@ const Index = () => {
         <div className="container">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-foreground">
-              {isSearching ? `Search results for \"${search.trim()}\"` : t("app.allTools")}
+              {isSearching ? t("app.searchResultsTitle", { query: search.trim() }) : t("app.allTools")}
             </h2>
             <span className="text-sm font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-full">
               {t("app.toolsAvailable", { count: totalToolsCount })}
             </span>
           </div>
 
-          <div id="tools-sections" className="scroll-mt-28" />
+          {/* Sentinel for "All" (must have height for IntersectionObserver) */}
+          <div id="tools-sections" className="scroll-mt-28 h-px" />
 
           {totalToolsCount === 0 ? (
             <div className="py-16 text-center">

@@ -10,6 +10,7 @@
     "allTools": "All Tools",
     "toolsAvailable": "{{count}} tools available",
     "noToolsFound": "No tools found matching your search.",
+    "searchResultsTitle": "Search results for \"{{query}}\"",
     "medicalDisclaimer": "These tools are for informational purposes only. Always consult your healthcare provider.",
     "footer": "For informational purposes only. Always consult your healthcare provider.",
     "back": "Back",
@@ -214,7 +215,8 @@
     "subscribeNow": "Get Premium - $0.79/mo",
     "premiumFeature": "Premium Feature",
     "unlockAccess": "Unlock all 52 tools",
-    "subscribeToAccess": "Subscribe to unlock"
+    "subscribeToAccess": "Subscribe to unlock",
+    "trialActive": "Trial active: {{days}} day(s) left."
   },
   "dueDatePage": {
     "title": "Due Date Calculator",
