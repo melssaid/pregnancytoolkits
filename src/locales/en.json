@@ -1,11 +1,11 @@
 {
   "app": {
-    "name": "PREGNANCY TOOLKITS",
+    "name": "Pregnancy Toolkits",
     "tagline": "Your Complete Pregnancy Companion",
     "title": "Your Complete",
     "titleHighlight": "Pregnancy",
     "titleEnd": "Companion",
-    "description": "52 essential tools for your pregnancy journey — from fertility to postpartum care.",
+    "description": "40+ essential tools for your pregnancy journey — from fertility to postpartum care.",
     "searchPlaceholder": "Search tools...",
     "allTools": "All Tools",
     "toolsAvailable": "{{count}} tools available",

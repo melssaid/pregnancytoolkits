@@ -72,70 +72,56 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section - Modernized */}
-      <section className="relative overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background">
+        {/* Subtle Background */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-primary/8 to-transparent rounded-full blur-3xl pointer-events-none" />
         
-        <div className="container relative py-16 md:py-24">
-          <div className="mx-auto max-w-3xl text-center">
+        <div className="container relative py-12 md:py-20">
+          <div className="mx-auto max-w-2xl text-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.5 }}
             >
+              {/* Badge - Clean & Professional */}
               <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="mb-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 px-6 py-3 text-sm font-semibold text-primary backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="mb-5 md:mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs md:text-sm font-medium text-primary"
               >
-                <Sparkles className="h-4 w-4" />
-                {t('app.tagline')}
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>{t('app.tagline')}</span>
               </motion.div>
               
-              <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+              {/* Title - Clean & Readable */}
+              <h1 className="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
                 {t('app.title')}{" "}
-                <span className="relative">
-                  <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-                    {t('app.titleHighlight')}
-                  </span>
-                  <motion.span 
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full origin-left"
-                  />
-                </span>{" "}
+                <span className="text-primary">{t('app.titleHighlight')}</span>{" "}
                 {t('app.titleEnd')}
               </h1>
               
-              <p className="mb-10 text-lg text-muted-foreground md:text-xl max-w-xl mx-auto leading-relaxed">
+              {/* Description */}
+              <p className="mb-8 text-sm text-muted-foreground sm:text-base md:text-lg max-w-md mx-auto">
                 {t('app.description')}
               </p>
             </motion.div>
 
-            {/* Search - Glassmorphism Style */}
+            {/* Search - Simple & Effective */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative mx-auto max-w-lg"
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="relative mx-auto max-w-md"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-xl" />
-              <div className="relative bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-xl p-1.5">
-                <div className="relative">
-                  <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    type="text"
-                    placeholder={t('app.searchPlaceholder')}
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="h-14 pl-12 pr-4 text-base bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground/60"
-                  />
-                </div>
-              </div>
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder={t('app.searchPlaceholder')}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="h-12 pl-11 text-sm bg-card border-border rounded-xl shadow-sm focus:border-primary transition-colors"
+              />
             </motion.div>
           </div>
         </div>
