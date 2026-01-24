@@ -2,8 +2,8 @@ import { createContext, useContext, ReactNode } from "react";
 import { useSettings } from "@/hooks/useSettings";
 
 interface SettingsContextType {
-  settings: any;
-  updateSettings: (newSettings: any) => Promise<void>;
+  settings: Record<string, unknown>;
+  updateSettings: (newSettings: Record<string, unknown>) => void;
   isLoading: boolean;
   isAuthenticated: boolean;
 }
