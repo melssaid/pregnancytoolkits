@@ -60,11 +60,19 @@ export interface Tool {
 // Tools organized by pregnancy journey stage for logical flow
 export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
+  // 🤖 AI-POWERED TOOLS (Featured)
+  // ═══════════════════════════════════════════════════════════════
+  { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, categoryKey: "categories.ai", href: "/tools/pregnancy-assistant", priority: 1, isPremium: true },
+  { id: "symptom-analyzer", titleKey: "tools.symptomAnalyzer.title", descriptionKey: "tools.symptomAnalyzer.description", icon: Stethoscope, categoryKey: "categories.ai", href: "/tools/symptom-analyzer", priority: 2, isPremium: true },
+  { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, categoryKey: "categories.ai", href: "/tools/ai-meal-suggestion", priority: 3, isPremium: true },
+  { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, categoryKey: "categories.ai", href: "/tools/weekly-summary", priority: 4, isPremium: true },
+
+  // ═══════════════════════════════════════════════════════════════
   // STAGE 1: PRE-PREGNANCY & FERTILITY (Trying to Conceive)
   // ═══════════════════════════════════════════════════════════════
-  { id: "ovulation-calculator", titleKey: "tools.ovulationCalculator.title", descriptionKey: "tools.ovulationCalculator.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/ovulation-calculator", priority: 1, isPremium: true },
-  { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Activity, categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 2, isPremium: true },
-  { id: "conception-calculator", titleKey: "tools.conceptionCalculator.title", descriptionKey: "tools.conceptionCalculator.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/conception-calculator", priority: 3, isPremium: true },
+  { id: "ovulation-calculator", titleKey: "tools.ovulationCalculator.title", descriptionKey: "tools.ovulationCalculator.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/ovulation-calculator", priority: 5, isPremium: true },
+  { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Activity, categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 6, isPremium: true },
+  { id: "conception-calculator", titleKey: "tools.conceptionCalculator.title", descriptionKey: "tools.conceptionCalculator.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/conception-calculator", priority: 7, isPremium: true },
   
   // ═══════════════════════════════════════════════════════════════
   // STAGE 2: EARLY PREGNANCY (Finding Out & First Steps)
@@ -132,7 +140,7 @@ export const toolsData: Tool[] = [
   { id: "diaper-tracker", titleKey: "tools.diaperTracker.title", descriptionKey: "tools.diaperTracker.description", icon: Droplet, categoryKey: "categories.postpartum", href: "/tools/diaper-tracker", priority: 36, isPremium: true },
   { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 37, isPremium: true },
   { id: "vaccination-schedule", titleKey: "tools.vaccinationSchedule.title", descriptionKey: "tools.vaccinationSchedule.description", icon: Syringe, categoryKey: "categories.postpartum", href: "/tools/vaccination-schedule", priority: 38, isPremium: true },
-  { id: "vaccination-guide", titleKey: "tools.vaccinationGuide.title", descriptionKey: "tools.vaccinationGuide.description", icon: Syringe, categoryKey: "categories.postpartum", href: "/tools/vaccination-guide", priority: 39, isPremium: true },
+  
   
   // ═══════════════════════════════════════════════════════════════
   // ADDITIONAL: DOCTOR & SUPPORT
@@ -143,6 +151,7 @@ export const toolsData: Tool[] = [
 // Simplified categories organized by journey stage
 export const categoryKeys = [
   "categories.all",
+  "categories.ai",
   "categories.fertility",
   "categories.pregnancy",
   "categories.wellness",

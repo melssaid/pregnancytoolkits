@@ -1,1 +1,4 @@
 project_id = "hfwuufkkfijtponcmbyj"
+
+[functions.pregnancy-ai]
+verify_jwt = false
