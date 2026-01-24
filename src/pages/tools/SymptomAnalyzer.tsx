@@ -80,7 +80,7 @@ Please analyze these symptoms and provide advice.`;
   };
 
   return (
-    <Layout title={t("tools.symptom-analyzer")} showBack>
+    <Layout title={t("tools.symptomAnalyzer.title")} showBack>
       <div className="space-y-4">
         {/* Header */}
         <motion.div
