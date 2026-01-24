@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Stethoscope,
   AlertTriangle,
-  CheckCircle,
+  CheckCircle2,
   Sparkles,
   Loader2,
-  ThermometerSun,
   Baby,
   Brain,
+  HeartPulse,
+  Activity,
+  Zap,
+  Moon,
+  Flame,
+  CloudRain,
+  Frown,
+  Wind,
+  Droplets,
+  CircleDot,
+  RefreshCw,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -26,18 +36,18 @@ import { Layout } from "@/components/Layout";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 
 const commonSymptoms = [
-  { id: "nausea", label: "Nausea", icon: "🤢" },
-  { id: "fatigue", label: "Fatigue", icon: "😴" },
-  { id: "headache", label: "Headache", icon: "🤕" },
-  { id: "back-pain", label: "Back Pain", icon: "💆" },
-  { id: "swelling", label: "Swollen Feet", icon: "🦶" },
-  { id: "cramps", label: "Cramps", icon: "⚡" },
-  { id: "heartburn", label: "Heartburn", icon: "🔥" },
-  { id: "insomnia", label: "Insomnia", icon: "🌙" },
-  { id: "mood-swings", label: "Mood Swings", icon: "😢" },
-  { id: "dizziness", label: "Dizziness", icon: "💫" },
-  { id: "bleeding", label: "Light Bleeding", icon: "🩸" },
-  { id: "discharge", label: "Unusual Discharge", icon: "💧" },
+  { id: "nausea", label: "Nausea", icon: CloudRain, color: "text-green-500" },
+  { id: "fatigue", label: "Fatigue", icon: Moon, color: "text-indigo-500" },
+  { id: "headache", label: "Headache", icon: Zap, color: "text-amber-500" },
+  { id: "back-pain", label: "Back Pain", icon: Activity, color: "text-blue-500" },
+  { id: "swelling", label: "Swollen Feet", icon: Droplets, color: "text-cyan-500" },
+  { id: "cramps", label: "Cramps", icon: Zap, color: "text-orange-500" },
+  { id: "heartburn", label: "Heartburn", icon: Flame, color: "text-red-500" },
+  { id: "insomnia", label: "Insomnia", icon: Moon, color: "text-purple-500" },
+  { id: "mood-swings", label: "Mood Swings", icon: Frown, color: "text-pink-500" },
+  { id: "dizziness", label: "Dizziness", icon: Wind, color: "text-teal-500" },
+  { id: "bleeding", label: "Light Bleeding", icon: HeartPulse, color: "text-rose-500" },
+  { id: "discharge", label: "Unusual Discharge", icon: CircleDot, color: "text-violet-500" },
 ];
 
 export default function SymptomAnalyzer() {
@@ -87,164 +97,224 @@ Please analyze these symptoms and provide general, informational guidance (not m
 
   return (
     <Layout title={pageTitle} showBack>
-      <div className="space-y-4">
+      <div className="space-y-5">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center space-y-2"
+          className="text-center space-y-3"
         >
-          <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-4 py-2 rounded-full">
-            <Stethoscope className="w-5 h-5 text-amber-600" />
-            <span className="text-sm font-medium text-amber-700">{pageTitle}</span>
+          <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary/20 via-primary/10 to-accent/20 px-5 py-2.5 rounded-full border border-primary/20 shadow-sm">
+            <Stethoscope className="w-5 h-5 text-primary" />
+            <span className="text-sm font-semibold text-primary">AI Symptom Analyzer</span>
           </div>
+          <p className="text-xs text-muted-foreground max-w-xs mx-auto">
+            Select your symptoms and get personalized insights powered by AI
+          </p>
         </motion.div>
 
-        {!analysis ? (
-          <>
-            {/* Week Selector */}
-            <Card className="border-border/50">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <Baby className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium">Pregnancy Week:</span>
-                  <Select value={week} onValueChange={setWeek}>
-                    <SelectTrigger className="w-36">
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Array.from({ length: 40 }, (_, i) => (
-                        <SelectItem key={i + 1} value={String(i + 1)}>
-                          Week {i + 1}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Symptoms Grid */}
-            <Card className="border-border/50">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <ThermometerSun className="w-5 h-5 text-primary" />
-                  Select the symptoms you're experiencing
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-2">
-                  {commonSymptoms.map((symptom) => (
-                    <motion.button
-                      key={symptom.id}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => toggleSymptom(symptom.id)}
-                      className={`flex items-center gap-2 p-3 rounded-xl border transition-all ${
-                        selectedSymptoms.includes(symptom.id)
-                          ? "bg-primary/10 border-primary"
-                          : "bg-card border-border/50 hover:border-primary/30"
-                      }`}
-                    >
-                      <span className="text-lg">{symptom.icon}</span>
-                      <span className="text-sm">{symptom.label}</span>
-                      {selectedSymptoms.includes(symptom.id) && (
-                        <CheckCircle className="w-4 h-4 text-primary ml-auto" />
-                      )}
-                    </motion.button>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Additional Notes */}
-            <Card className="border-border/50">
-              <CardContent className="p-4">
-                <Textarea
-                  value={additionalNotes}
-                  onChange={(e) => setAdditionalNotes(e.target.value)}
-                  placeholder="Add any additional notes about your symptoms..."
-                  className="min-h-[80px]"
-                />
-              </CardContent>
-            </Card>
-
-            {/* Analyze Button */}
-            <Button
-              onClick={analyzeSymptoms}
-              disabled={selectedSymptoms.length === 0 || isLoading}
-              className="w-full gap-2"
-              size="lg"
+        <AnimatePresence mode="wait">
+          {!analysis ? (
+            <motion.div
+              key="input"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="space-y-4"
             >
-              {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <Sparkles className="w-4 h-4" />
-              )}
-              Analyze Symptoms with AI
-            </Button>
-          </>
-        ) : (
-          <>
-            {/* Analysis Result */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <Card className="border-primary/20 bg-primary/5">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <Brain className="w-5 h-5 text-primary" />
-                    Analysis Result
+              {/* Week Selector */}
+              <Card className="border-border/50 overflow-hidden">
+                <div className="bg-gradient-to-r from-primary/5 to-transparent p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Baby className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-sm font-medium">Pregnancy Week</span>
+                      <p className="text-xs text-muted-foreground">For accurate analysis</p>
+                    </div>
+                    <Select value={week} onValueChange={setWeek}>
+                      <SelectTrigger className="w-28 bg-background">
+                        <SelectValue placeholder="Week" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Array.from({ length: 40 }, (_, i) => (
+                          <SelectItem key={i + 1} value={String(i + 1)}>
+                            Week {i + 1}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Symptoms Grid */}
+              <Card className="border-border/50">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm flex items-center gap-2">
+                    <HeartPulse className="w-4 h-4 text-primary" />
+                    What are you experiencing?
                   </CardTitle>
-                  <div className="flex flex-wrap gap-1 mt-2">
+                  {selectedSymptoms.length > 0 && (
+                    <Badge variant="secondary" className="w-fit text-xs">
+                      {selectedSymptoms.length} selected
+                    </Badge>
+                  )}
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="grid grid-cols-2 gap-2">
+                    {commonSymptoms.map((symptom, index) => {
+                      const isSelected = selectedSymptoms.includes(symptom.id);
+                      const IconComponent = symptom.icon;
+                      return (
+                        <motion.button
+                          key={symptom.id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.03 }}
+                          whileTap={{ scale: 0.97 }}
+                          onClick={() => toggleSymptom(symptom.id)}
+                          className={`relative flex items-center gap-2.5 p-3 rounded-xl border-2 transition-all duration-200 ${
+                            isSelected
+                              ? "bg-primary/10 border-primary shadow-sm"
+                              : "bg-card border-border/50 hover:border-primary/40 hover:bg-muted/50"
+                          }`}
+                        >
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                            isSelected ? "bg-primary/20" : "bg-muted"
+                          }`}>
+                            <IconComponent className={`w-4 h-4 ${isSelected ? "text-primary" : symptom.color}`} />
+                          </div>
+                          <span className={`text-xs font-medium flex-1 text-left ${
+                            isSelected ? "text-primary" : "text-foreground"
+                          }`}>
+                            {symptom.label}
+                          </span>
+                          {isSelected && (
+                            <motion.div
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              className="absolute top-1.5 right-1.5"
+                            >
+                              <CheckCircle2 className="w-4 h-4 text-primary" />
+                            </motion.div>
+                          )}
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Additional Notes */}
+              <Card className="border-border/50">
+                <CardContent className="p-4">
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">
+                    Additional Details (Optional)
+                  </label>
+                  <Textarea
+                    value={additionalNotes}
+                    onChange={(e) => setAdditionalNotes(e.target.value)}
+                    placeholder="Describe your symptoms in more detail..."
+                    className="min-h-[80px] resize-none text-sm"
+                  />
+                </CardContent>
+              </Card>
+
+              {/* Analyze Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Button
+                  onClick={analyzeSymptoms}
+                  disabled={selectedSymptoms.length === 0 || isLoading}
+                  className="w-full gap-2 h-12 text-sm font-semibold shadow-lg"
+                  size="lg"
+                >
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Sparkles className="w-4 h-4" />
+                  )}
+                  Analyze with AI
+                </Button>
+              </motion.div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="result"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="space-y-4"
+            >
+              {/* Analysis Result */}
+              <Card className="border-primary/30 bg-gradient-to-br from-primary/5 via-background to-accent/5 overflow-hidden">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                      <Brain className="w-4 h-4 text-primary" />
+                    </div>
+                    <CardTitle className="text-sm">AI Analysis</CardTitle>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mt-3">
                     {selectedSymptoms.map((id) => {
                       const symptom = commonSymptoms.find((s) => s.id === id);
+                      const IconComponent = symptom?.icon;
                       return (
-                        <Badge key={id} variant="secondary" className="text-xs">
-                          {symptom?.icon} {symptom?.label}
+                        <Badge key={id} variant="secondary" className="text-xs gap-1 py-1">
+                          {IconComponent && <IconComponent className="w-3 h-3" />}
+                          {symptom?.label}
                         </Badge>
                       );
                     })}
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="prose prose-sm max-w-none">
-                    <p className="whitespace-pre-wrap text-sm leading-relaxed">
+                  <div className="bg-background/60 rounded-xl p-4 border border-border/30">
+                    <p className="whitespace-pre-wrap text-sm leading-relaxed text-foreground/90">
                       {analysis}
                       {isLoading && (
-                        <span className="inline-block w-2 h-4 bg-primary/50 animate-pulse ml-1" />
+                        <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-0.5 rounded-full" />
                       )}
                     </p>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
 
-            {/* Actions */}
-            <div className="flex gap-2">
-              <Button onClick={reset} variant="outline" className="flex-1">
-                New Analysis
+              {/* Actions */}
+              <Button onClick={reset} variant="outline" className="w-full gap-2 h-11">
+                <RefreshCw className="w-4 h-4" />
+                Start New Analysis
               </Button>
-            </div>
-          </>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Error Display */}
         {error && (
-          <Card className="border-destructive/50 bg-destructive/10">
-            <CardContent className="p-4">
-              <p className="text-sm text-destructive text-center">{error}</p>
-            </CardContent>
-          </Card>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <Card className="border-destructive/50 bg-destructive/10">
+              <CardContent className="p-4">
+                <p className="text-sm text-destructive text-center">{error}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
         )}
 
         {/* Warning */}
-        <Card className="border-amber-500/30 bg-amber-50 dark:bg-amber-950/20">
+        <Card className="border-amber-500/30 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/20">
           <CardContent className="p-4 flex gap-3">
-            <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0" />
-            <div className="text-xs text-amber-800 dark:text-amber-200">
-              <p className="font-medium">Important Notice:</p>
-              <p>
-                This analysis is for informational purposes only and is not a substitute
-                for medical examination. In case of severe symptoms, bleeding, or acute
-                pain, consult your doctor immediately.
+            <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center shrink-0">
+              <AlertTriangle className="w-4 h-4 text-amber-600" />
+            </div>
+            <div className="text-xs text-amber-800 dark:text-amber-200 space-y-1">
+              <p className="font-semibold">Medical Disclaimer</p>
+              <p className="leading-relaxed opacity-90">
+                This is for informational purposes only. For severe symptoms, bleeding, or acute pain, 
+                consult your healthcare provider immediately.
               </p>
             </div>
           </CardContent>
