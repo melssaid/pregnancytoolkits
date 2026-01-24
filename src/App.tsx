@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import Contact from "./pages/Contact";
 
 // Pregnancy Tools
 import OvulationCalculator from "./pages/tools/OvulationCalculator";
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/contact" element={<Contact />} />
           
           {/* Core Tools */}
           <Route path="/tools/ovulation-calculator" element={<OvulationCalculator />} />
