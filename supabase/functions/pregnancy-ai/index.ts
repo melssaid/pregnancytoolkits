@@ -33,54 +33,52 @@ serve(async (req) => {
     
     switch (type) {
       case "symptom-analysis":
-        systemPrompt = `أنت طبيب نساء وتوليد افتراضي متخصص في صحة الحمل. 
-مهمتك تحليل الأعراض التي تصفها المرأة الحامل وتقديم:
-1. شرح مبسط للأعراض
-2. هل هي طبيعية أم تحتاج استشارة طبيب
-3. نصائح للتخفيف من الأعراض
-4. علامات تحذيرية يجب الانتباه لها
+        systemPrompt = `You are a virtual OB-GYN specialist in pregnancy health.
+Your task is to analyze the symptoms described by the pregnant woman and provide:
+1. A simple explanation of the symptoms
+2. Whether they are normal or require a doctor's consultation
+3. Tips to relieve the symptoms
+4. Warning signs to watch for
 
-⚠️ تذكير: هذه نصائح عامة وليست بديلاً عن استشارة الطبيب.
-أجب بالعربية بشكل واضح ومطمئن.`;
+⚠️ Reminder: This is general advice and not a substitute for consulting a doctor.
+Respond in a clear and reassuring manner.`;
         break;
         
       case "meal-suggestion":
-        systemPrompt = `أنت أخصائي تغذية متخصص في تغذية الحوامل.
-قدم اقتراحات وجبات صحية ومتوازنة مع مراعاة:
-1. مرحلة الحمل (الثلث الأول/الثاني/الثالث)
-2. الاحتياجات الغذائية للأم والجنين
-3. الأطعمة الممنوعة أثناء الحمل
-4. بدائل صحية للرغبات الشديدة
+        systemPrompt = `You are a nutrition specialist for pregnant women.
+Provide healthy and balanced meal suggestions considering:
+1. Pregnancy stage (first/second/third trimester)
+2. Nutritional needs of mother and baby
+3. Foods to avoid during pregnancy
+4. Healthy alternatives for cravings
 
-قدم وجبات سهلة التحضير مع القيم الغذائية.
-أجب بالعربية.`;
+Provide easy-to-prepare meals with nutritional values.`;
         break;
         
       case "pregnancy-assistant":
-        systemPrompt = `أنت مساعد ذكي متخصص في الحمل والأمومة.
-يمكنك الإجابة على أسئلة حول:
-- مراحل نمو الجنين
-- التغيرات الجسدية والنفسية
-- التمارين الآمنة
-- التحضير للولادة
-- الرضاعة الطبيعية
-- العناية بالمولود
+        systemPrompt = `You are an intelligent assistant specialized in pregnancy and motherhood.
+You can answer questions about:
+- Fetal development stages
+- Physical and emotional changes
+- Safe exercises
+- Birth preparation
+- Breastfeeding
+- Newborn care
 
-أجب بلغة بسيطة ومطمئنة. تجنب التخويف.
-ذكّري دائماً بأهمية متابعة الطبيب.
-أجب بالعربية.`;
+Respond in simple and reassuring language. Avoid alarming statements.
+Always remind about the importance of following up with a doctor.`;
         break;
         
       case "weekly-summary":
         const week = context?.week || 20;
-        systemPrompt = `أنت خبير في تطور الحمل. قدم ملخص أسبوعي للأسبوع ${week} يتضمن:
-1. 🍼 حجم الجنين ومقارنة بفاكهة/خضار
-2. 👶 تطورات الجنين هذا الأسبوع
-3. 🤰 تغيرات جسم الأم
-4. 💡 نصيحة الأسبوع
-5. ✅ مهام يجب إنجازها
+        systemPrompt = `You are a pregnancy development expert. Provide a weekly summary for week ${week} including:
+1. 🍼 Baby's size and comparison to a fruit/vegetable
+2. 👶 Baby's developments this week
+3. 🤰 Mother's body changes
+4. 💡 Tip of the week
+5. ✅ Tasks to complete
 
-اجعل المحتوى إيجابي ومشجع. أجب بالعربية.`;
+Keep the content positive and encouraging.`;
         break;
     }
 
@@ -103,20 +101,20 @@ serve(async (req) => {
     if (!response.ok) {
       if (response.status === 429) {
         return new Response(
-          JSON.stringify({ error: "تم تجاوز حد الطلبات، يرجى المحاولة لاحقاً" }),
+          JSON.stringify({ error: "Rate limit exceeded, please try again later" }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "يرجى إضافة رصيد لحساب Lovable AI" }),
+          JSON.stringify({ error: "Please add credit to Lovable AI account" }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       const errorText = await response.text();
       console.error("AI gateway error:", response.status, errorText);
       return new Response(
-        JSON.stringify({ error: "خطأ في خدمة الذكاء الاصطناعي" }),
+        JSON.stringify({ error: "AI service error" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -127,7 +125,7 @@ serve(async (req) => {
   } catch (error) {
     console.error("pregnancy-ai error:", error);
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : "خطأ غير معروف" }),
+      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }

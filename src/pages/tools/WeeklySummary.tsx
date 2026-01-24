@@ -21,7 +21,7 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 
 const STORAGE_KEY = "weekly-summary-data";
 
-interface WeeklySummary {
+interface WeeklySummaryData {
   week: number;
   content: string;
   generatedAt: string;
@@ -32,7 +32,7 @@ export default function WeeklySummary() {
   const { streamChat, isLoading, error } = usePregnancyAI();
   const [week, setWeek] = useState<string>("20");
   const [summary, setSummary] = useState<string>("");
-  const [savedSummaries, setSavedSummaries] = useState<WeeklySummary[]>([]);
+  const [savedSummaries, setSavedSummaries] = useState<WeeklySummaryData[]>([]);
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -44,7 +44,7 @@ export default function WeeklySummary() {
   const getSummary = async () => {
     setSummary("");
 
-    const prompt = `قدمي لي ملخص شامل للأسبوع ${week} من الحمل.`;
+    const prompt = `Please provide a comprehensive summary for week ${week} of pregnancy.`;
 
     await streamChat({
       type: "weekly-summary",
@@ -53,7 +53,7 @@ export default function WeeklySummary() {
       onDelta: (chunk) => setSummary((prev) => prev + chunk),
       onDone: () => {
         // Save to history
-        const newSummary: WeeklySummary = {
+        const newSummary: WeeklySummaryData = {
           week: parseInt(week),
           content: summary,
           generatedAt: new Date().toISOString(),
@@ -66,9 +66,9 @@ export default function WeeklySummary() {
   };
 
   const getTrimester = (w: number) => {
-    if (w <= 12) return { label: "الثلث الأول", color: "bg-pink-500" };
-    if (w <= 27) return { label: "الثلث الثاني", color: "bg-purple-500" };
-    return { label: "الثلث الثالث", color: "bg-blue-500" };
+    if (w <= 12) return { label: "First Trimester", color: "bg-pink-500" };
+    if (w <= 27) return { label: "Second Trimester", color: "bg-purple-500" };
+    return { label: "Third Trimester", color: "bg-blue-500" };
   };
 
   const trimesterInfo = getTrimester(parseInt(week));
@@ -76,7 +76,7 @@ export default function WeeklySummary() {
   const daysRemaining = (40 - parseInt(week)) * 7;
 
   return (
-    <Layout title="ملخص الأسبوع" showBack>
+    <Layout title={t("tools.weekly-summary")} showBack>
       <div className="space-y-4">
         {/* Header */}
         <motion.div
@@ -86,7 +86,7 @@ export default function WeeklySummary() {
         >
           <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 px-4 py-2 rounded-full">
             <Calendar className="w-5 h-5 text-purple-600" />
-            <span className="text-sm font-medium text-purple-700">تتبع أسبوعي ذكي</span>
+            <span className="text-sm font-medium text-purple-700">Smart Weekly Tracking</span>
           </div>
         </motion.div>
 
@@ -100,7 +100,7 @@ export default function WeeklySummary() {
                   <Baby className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">أسبوع الحمل</p>
+                  <p className="text-sm text-muted-foreground">Pregnancy Week</p>
                   <Select value={week} onValueChange={setWeek}>
                     <SelectTrigger className="w-32 h-8 text-lg font-bold border-0 p-0 shadow-none">
                       <SelectValue />
@@ -108,7 +108,7 @@ export default function WeeklySummary() {
                     <SelectContent>
                       {Array.from({ length: 40 }, (_, i) => (
                         <SelectItem key={i + 1} value={String(i + 1)}>
-                          الأسبوع {i + 1}
+                          Week {i + 1}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -121,12 +121,12 @@ export default function WeeklySummary() {
             {/* Progress */}
             <div className="space-y-2">
               <div className="flex justify-between text-xs text-muted-foreground">
-                <span>التقدم</span>
+                <span>Progress</span>
                 <span>{Math.round(progress)}%</span>
               </div>
               <Progress value={progress} className="h-2" />
               <p className="text-xs text-center text-muted-foreground">
-                باقي تقريباً {daysRemaining} يوم 💫
+                Approximately {daysRemaining} days remaining 💫
               </p>
             </div>
           </CardContent>
@@ -146,7 +146,7 @@ export default function WeeklySummary() {
               ) : (
                 <Sparkles className="w-4 h-4" />
               )}
-              اعرض ملخص الأسبوع {week}
+              Show Week {week} Summary
             </Button>
 
             {/* Quick Stats */}
@@ -154,22 +154,22 @@ export default function WeeklySummary() {
               <Card className="border-border/50">
                 <CardContent className="p-3 text-center">
                   <TrendingUp className="w-5 h-5 mx-auto text-green-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">نمو الجنين</p>
-                  <p className="text-sm font-medium">طبيعي</p>
+                  <p className="text-xs text-muted-foreground">Baby Growth</p>
+                  <p className="text-sm font-medium">Normal</p>
                 </CardContent>
               </Card>
               <Card className="border-border/50">
                 <CardContent className="p-3 text-center">
                   <Heart className="w-5 h-5 mx-auto text-red-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">صحة الأم</p>
-                  <p className="text-sm font-medium">جيدة</p>
+                  <p className="text-xs text-muted-foreground">Mom's Health</p>
+                  <p className="text-sm font-medium">Good</p>
                 </CardContent>
               </Card>
               <Card className="border-border/50">
                 <CardContent className="p-3 text-center">
                   <CheckCircle className="w-5 h-5 mx-auto text-blue-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">الفحوصات</p>
-                  <p className="text-sm font-medium">مكتملة</p>
+                  <p className="text-xs text-muted-foreground">Checkups</p>
+                  <p className="text-sm font-medium">Complete</p>
                 </CardContent>
               </Card>
             </div>
@@ -185,7 +185,7 @@ export default function WeeklySummary() {
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
                     <Baby className="w-5 h-5 text-purple-600" />
-                    ملخص الأسبوع {week}
+                    Week {week} Summary
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -202,11 +202,11 @@ export default function WeeklySummary() {
             {/* Actions */}
             <div className="flex gap-2">
               <Button onClick={() => setSummary("")} variant="outline" className="flex-1">
-                أسبوع آخر
+                Different Week
               </Button>
               <Button onClick={getSummary} disabled={isLoading} className="flex-1 gap-2">
                 <RefreshCw className="w-4 h-4" />
-                تحديث
+                Refresh
               </Button>
             </div>
           </>
@@ -225,7 +225,7 @@ export default function WeeklySummary() {
         <Card className="border-border/50">
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground text-center">
-              💡 تتبعي أسبوعك للحصول على معلومات مخصصة عن نمو جنينك وتغيرات جسمك
+              💡 Track your week to get personalized information about your baby's growth and your body changes
             </p>
           </CardContent>
         </Card>

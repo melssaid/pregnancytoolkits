@@ -15,10 +15,10 @@ interface Message {
 }
 
 const quickQuestions = [
-  "ما هي أعراض الحمل في الشهر الأول؟",
-  "هل القهوة آمنة أثناء الحمل؟",
-  "كيف أستعد للولادة؟",
-  "ما هي الفيتامينات المهمة للحامل؟",
+  "What are the symptoms of pregnancy in the first month?",
+  "Is coffee safe during pregnancy?",
+  "How do I prepare for labor?",
+  "What vitamins are important for pregnant women?",
 ];
 
 export default function PregnancyAssistant() {
@@ -63,7 +63,7 @@ export default function PregnancyAssistant() {
   };
 
   return (
-    <Layout title="المساعد الذكي" showBack>
+    <Layout title={t("tools.pregnancy-assistant")} showBack>
       <div className="space-y-4">
         {/* Header */}
         <motion.div
@@ -73,10 +73,10 @@ export default function PregnancyAssistant() {
         >
           <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary/20 to-accent/20 px-4 py-2 rounded-full">
             <Sparkles className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium text-primary">مدعوم بالذكاء الاصطناعي</span>
+            <span className="text-sm font-medium text-primary">Powered by AI</span>
           </div>
           <p className="text-muted-foreground text-sm">
-            اسألي أي سؤال عن الحمل والأمومة
+            Ask any question about pregnancy and motherhood
           </p>
         </motion.div>
 
@@ -88,9 +88,9 @@ export default function PregnancyAssistant() {
                 <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
                   <Bot className="w-16 h-16 text-muted-foreground/30" />
                   <div className="space-y-2">
-                    <p className="text-muted-foreground">مرحباً! أنا مساعدك الذكي 👋</p>
+                    <p className="text-muted-foreground">Hello! I'm your smart assistant 👋</p>
                     <p className="text-sm text-muted-foreground/70">
-                      يمكنني الإجابة على أسئلتك حول الحمل والتغذية والتحضير للولادة
+                      I can answer your questions about pregnancy, nutrition, and birth preparation
                     </p>
                   </div>
                   
@@ -174,7 +174,7 @@ export default function PregnancyAssistant() {
                 <Textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="اكتبي سؤالك هنا..."
+                  placeholder="Type your question here..."
                   className="min-h-[44px] max-h-[120px] resize-none"
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
@@ -202,7 +202,7 @@ export default function PregnancyAssistant() {
 
         {/* Disclaimer */}
         <p className="text-xs text-muted-foreground text-center">
-          ⚠️ هذه نصائح عامة وليست بديلاً عن استشارة الطبيب
+          ⚠️ This is general advice and not a substitute for consulting a doctor
         </p>
       </div>
     </Layout>

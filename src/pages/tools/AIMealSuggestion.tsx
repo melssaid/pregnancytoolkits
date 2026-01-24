@@ -20,27 +20,27 @@ import { Layout } from "@/components/Layout";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 
 const mealTypes = [
-  { id: "breakfast", label: "فطور", icon: "🌅" },
-  { id: "lunch", label: "غداء", icon: "☀️" },
-  { id: "dinner", label: "عشاء", icon: "🌙" },
-  { id: "snack", label: "وجبة خفيفة", icon: "🍎" },
+  { id: "breakfast", label: "Breakfast", icon: "🌅" },
+  { id: "lunch", label: "Lunch", icon: "☀️" },
+  { id: "dinner", label: "Dinner", icon: "🌙" },
+  { id: "snack", label: "Snack", icon: "🍎" },
 ];
 
 const dietaryPreferences = [
-  { id: "vegetarian", label: "نباتي" },
-  { id: "low-sugar", label: "قليل السكر" },
-  { id: "high-protein", label: "غني بالبروتين" },
-  { id: "low-sodium", label: "قليل الملح" },
-  { id: "iron-rich", label: "غني بالحديد" },
-  { id: "calcium-rich", label: "غني بالكالسيوم" },
+  { id: "vegetarian", label: "Vegetarian" },
+  { id: "low-sugar", label: "Low Sugar" },
+  { id: "high-protein", label: "High Protein" },
+  { id: "low-sodium", label: "Low Sodium" },
+  { id: "iron-rich", label: "Iron Rich" },
+  { id: "calcium-rich", label: "Calcium Rich" },
 ];
 
 const cravings = [
-  { id: "sweet", label: "حلو", icon: "🍫" },
-  { id: "salty", label: "مالح", icon: "🥨" },
-  { id: "sour", label: "حامض", icon: "🍋" },
-  { id: "spicy", label: "حار", icon: "🌶️" },
-  { id: "creamy", label: "كريمي", icon: "🍦" },
+  { id: "sweet", label: "Sweet", icon: "🍫" },
+  { id: "salty", label: "Salty", icon: "🥨" },
+  { id: "sour", label: "Sour", icon: "🍋" },
+  { id: "spicy", label: "Spicy", icon: "🌶️" },
+  { id: "creamy", label: "Creamy", icon: "🍦" },
 ];
 
 export default function AIMealSuggestion() {
@@ -65,15 +65,15 @@ export default function AIMealSuggestion() {
     const prefsText = preferences
       .map((id) => dietaryPreferences.find((p) => p.id === id)?.label)
       .filter(Boolean)
-      .join("، ");
+      .join(", ");
     const cravingText = cravings.find((c) => c.id === selectedCraving)?.label;
 
-    const prompt = `أنا حامل في الثلث ${trimester === "1" ? "الأول" : trimester === "2" ? "الثاني" : "الثالث"}.
-أريد اقتراح ${mealLabel} صحي.
-${prefsText ? `تفضيلاتي: ${prefsText}.` : ""}
-${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
+    const prompt = `I am pregnant in the ${trimester === "1" ? "first" : trimester === "2" ? "second" : "third"} trimester.
+I want a healthy ${mealLabel} suggestion.
+${prefsText ? `My preferences: ${prefsText}.` : ""}
+${cravingText ? `I'm craving something ${cravingText.toLowerCase()}.` : ""}
 
-قدمي لي وصفة سهلة مع المكونات وطريقة التحضير والقيم الغذائية.`;
+Please provide an easy recipe with ingredients, preparation steps, and nutritional values.`;
 
     await streamChat({
       type: "meal-suggestion",
@@ -85,7 +85,7 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
   };
 
   return (
-    <Layout title="اقتراحات الوجبات الذكية" showBack>
+    <Layout title={t("tools.ai-meal-suggestion")} showBack>
       <div className="space-y-4">
         {/* Header */}
         <motion.div
@@ -95,7 +95,7 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
         >
           <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-4 py-2 rounded-full">
             <ChefHat className="w-5 h-5 text-green-600" />
-            <span className="text-sm font-medium text-green-700">وجبات مخصصة بالذكاء الاصطناعي</span>
+            <span className="text-sm font-medium text-green-700">AI-Powered Meal Suggestions</span>
           </div>
         </motion.div>
 
@@ -105,15 +105,15 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
             <div className="grid grid-cols-2 gap-3">
               <Card className="border-border/50">
                 <CardContent className="p-4 space-y-2">
-                  <label className="text-xs text-muted-foreground">مرحلة الحمل</label>
+                  <label className="text-xs text-muted-foreground">Pregnancy Stage</label>
                   <Select value={trimester} onValueChange={setTrimester}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="1">الثلث الأول</SelectItem>
-                      <SelectItem value="2">الثلث الثاني</SelectItem>
-                      <SelectItem value="3">الثلث الثالث</SelectItem>
+                      <SelectItem value="1">First Trimester</SelectItem>
+                      <SelectItem value="2">Second Trimester</SelectItem>
+                      <SelectItem value="3">Third Trimester</SelectItem>
                     </SelectContent>
                   </Select>
                 </CardContent>
@@ -121,7 +121,7 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
 
               <Card className="border-border/50">
                 <CardContent className="p-4 space-y-2">
-                  <label className="text-xs text-muted-foreground">نوع الوجبة</label>
+                  <label className="text-xs text-muted-foreground">Meal Type</label>
                   <Select value={mealType} onValueChange={setMealType}>
                     <SelectTrigger>
                       <SelectValue />
@@ -141,7 +141,7 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
             {/* Cravings */}
             <Card className="border-border/50">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base">ماذا تشتهين؟ 😋</CardTitle>
+                <CardTitle className="text-base">What are you craving? 😋</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -165,7 +165,7 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Leaf className="w-4 h-4 text-green-600" />
-                  تفضيلات غذائية
+                  Dietary Preferences
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -198,7 +198,7 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
               ) : (
                 <Sparkles className="w-4 h-4" />
               )}
-              اقترحي لي وجبة صحية
+              Suggest a Healthy Meal
             </Button>
           </>
         ) : (
@@ -213,7 +213,7 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-base flex items-center gap-2">
                       <Utensils className="w-5 h-5 text-green-600" />
-                      اقتراح الوجبة
+                      Meal Suggestion
                     </CardTitle>
                     <div className="flex gap-1">
                       <Badge variant="secondary" className="text-xs">
@@ -237,11 +237,11 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
             {/* Actions */}
             <div className="flex gap-2">
               <Button onClick={() => setSuggestion("")} variant="outline" className="flex-1">
-                اقتراح آخر
+                Different Suggestion
               </Button>
               <Button onClick={getSuggestion} disabled={isLoading} className="flex-1 gap-2">
                 {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-                تجديد
+                Refresh
               </Button>
             </div>
           </>
@@ -262,11 +262,11 @@ ${cravingText ? `أشتهي شيء ${cravingText}.` : ""}
             <div className="flex items-start gap-3">
               <Apple className="w-5 h-5 text-green-600 shrink-0" />
               <div className="text-xs text-muted-foreground space-y-1">
-                <p className="font-medium text-foreground">نصائح سريعة:</p>
+                <p className="font-medium text-foreground">Quick Tips:</p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>تناولي 5-6 وجبات صغيرة يومياً</li>
-                  <li>اشربي 8-10 أكواب ماء</li>
-                  <li>تجنبي الأطعمة النيئة</li>
+                  <li>Eat 5-6 small meals daily</li>
+                  <li>Drink 8-10 glasses of water</li>
+                  <li>Avoid raw foods</li>
                 </ul>
               </div>
             </div>
