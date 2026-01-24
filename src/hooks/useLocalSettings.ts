@@ -11,7 +11,15 @@ export function useLocalSettings() {
   const [settings, setSettings] = useState<LocalSettings>(() => {
     try {
       const saved = typeof window !== "undefined" ? localStorage.getItem(LOCAL_KEY) : null;
-      return saved ? JSON.parse(saved) : { language: "en", theme: "system" };
+      const parsed = saved ? (JSON.parse(saved) as Partial<LocalSettings> | null) : null;
+
+      // This app is English-only.
+      const theme: LocalSettings["theme"] =
+        parsed?.theme === "light" || parsed?.theme === "dark" || parsed?.theme === "system"
+          ? parsed.theme
+          : "system";
+
+      return { language: "en", theme };
     } catch {
       return { language: "en", theme: "system" };
     }

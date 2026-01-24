@@ -42,9 +42,9 @@ export function PelvicFloorCoach() {
   };
 
   return (
-    <div dir="rtl" style={{ padding: "20px", maxWidth: "500px", margin: "0 auto" }}>
-      <h2>مدرب تمارين الحوض</h2>
-      <p>التكرار: {rep}/10</p>
+    <div style={{ padding: "20px", maxWidth: "500px", margin: "0 auto" }}>
+      <h2>Pelvic Floor Coach</h2>
+      <p>Reps: {rep}/10</p>
       
       <div style={{ 
         padding: "30px", 
@@ -55,23 +55,23 @@ export function PelvicFloorCoach() {
         fontSize: "24px",
         fontWeight: "bold"
       }}>
-        {phase === "squeeze" && "اعصري عضلات الحوض"}
-        {phase === "hold" && "استمري في الضغط"}
-        {phase === "relax" && "استرخي"}
+        {phase === "squeeze" && "Squeeze your pelvic floor"}
+        {phase === "hold" && "Hold"}
+        {phase === "relax" && "Relax"}
       </div>
 
       {!isRunning ? (
         <button onClick={startSession} style={{ padding: "10px 20px", fontSize: "16px" }}>
-          ابدئي الجلسة
+          Start session
         </button>
       ) : (
         <button onClick={stopSession} style={{ padding: "10px 20px", fontSize: "16px" }}>
-          أوقفي الجلسة
+          Stop session
         </button>
       )}
 
       <div style={{ fontSize: "12px", color: "gray", marginTop: "20px" }}>
-        ⚠️ هذه التمارين للأغراض الإعلامية. استشيري طبيبك قبل البدء.
+        ⚠️ These exercises are for informational purposes only. Consult your healthcare provider before starting.
       </div>
     </div>
   );

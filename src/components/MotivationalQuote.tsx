@@ -4,36 +4,36 @@ import { useMemo } from "react";
 
 const quotes = [
   {
-    text: "كل يوم يقربك أكثر من لحظة الفرح الكبرى 💕",
-    author: "للأم المنتظرة",
+    text: "Every day brings you closer to your beautiful moment 💕",
+    author: "For the expecting mom",
   },
   {
-    text: "أنتِ تصنعين معجزة الحياة بداخلك ✨",
-    author: "تذكري دائماً",
+    text: "You’re creating a miracle of life within you ✨",
+    author: "A gentle reminder",
   },
   {
-    text: "طفلك يشعر بحبك حتى قبل أن يراك 👶",
-    author: "حقيقة جميلة",
+    text: "Your baby feels your love even before seeing you 👶",
+    author: "A beautiful truth",
   },
   {
-    text: "استمتعي بكل لحظة، فهي رحلة لا تُنسى 🌸",
-    author: "نصيحة من القلب",
+    text: "Savor every moment—this journey is unforgettable 🌸",
+    author: "From the heart",
   },
   {
-    text: "قوتك كأم تبدأ من هذه اللحظة 💪",
-    author: "إيماناً بكِ",
+    text: "Your strength as a mother begins right now 💪",
+    author: "We believe in you",
   },
   {
-    text: "كل حركة صغيرة هي رسالة حب منه إليكِ 💗",
-    author: "من طفلك",
+    text: "Every little movement is a love note from your baby 💗",
+    author: "From your baby",
   },
   {
-    text: "أنتِ البطلة في قصة حياة جديدة 🌟",
-    author: "حقيقة",
+    text: "You are the hero of a brand‑new story 🌟",
+    author: "A simple truth",
   },
   {
-    text: "اعتني بنفسك، فأنتِ الأهم لطفلك 🤱",
-    author: "تذكير مهم",
+    text: "Take care of yourself—you’re your baby’s whole world 🤱",
+    author: "An important reminder",
   },
 ];
 

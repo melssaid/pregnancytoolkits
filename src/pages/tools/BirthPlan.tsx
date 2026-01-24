@@ -65,6 +65,68 @@ const defaultPlan: BirthPlanData = {
   additionalNotes: "",
 };
 
+const mapString = (value: unknown, map: Record<string, string>): string => {
+  if (typeof value !== "string") return "";
+  return map[value] ?? value;
+};
+
+// Backward compatibility: migrate older Arabic values stored in localStorage.
+const normalizeBirthPlan = (raw: any): BirthPlanData => {
+  const environmentMap: Record<string, string> = {
+    "إضاءة خافتة": "Dim lighting",
+    "موسيقى هادئة": "Calm music",
+    "صمت تام": "Complete silence",
+    "طبيعية": "No preference",
+  };
+
+  const mobilityMap: Record<string, string> = {
+    "المشي": "Walking",
+    "الكرة": "Birth ball",
+    "الماء الدافئ": "Warm shower/water",
+    "تغيير الوضعيات": "Changing positions",
+  };
+
+  const positionMap: Record<string, string> = {
+    "مستلقية": "Lying down",
+    "نصف جالسة": "Semi-sitting",
+    "جانبية": "Side-lying",
+    "رباعية": "Hands and knees",
+  };
+
+  const safeRaw = typeof raw === "object" && raw ? raw : {};
+
+  const mobilityRaw = safeRaw?.laborPreferences?.mobility;
+  const normalizedMobility = Array.isArray(mobilityRaw)
+    ? mobilityRaw.map((m) => mapString(m, mobilityMap)).filter(Boolean)
+    : [];
+
+  return {
+    laborPreferences: {
+      environment: mapString(safeRaw?.laborPreferences?.environment, environmentMap),
+      mobility: normalizedMobility,
+      painRelief: typeof safeRaw?.laborPreferences?.painRelief === "string" ? safeRaw.laborPreferences.painRelief : "",
+      monitoring: typeof safeRaw?.laborPreferences?.monitoring === "string" ? safeRaw.laborPreferences.monitoring : "",
+    },
+    deliveryPreferences: {
+      position: mapString(safeRaw?.deliveryPreferences?.position, positionMap),
+      episiotomy: typeof safeRaw?.deliveryPreferences?.episiotomy === "string" ? safeRaw.deliveryPreferences.episiotomy : "",
+      cordClamping: typeof safeRaw?.deliveryPreferences?.cordClamping === "string" ? safeRaw.deliveryPreferences.cordClamping : "",
+      skinToSkin: typeof safeRaw?.deliveryPreferences?.skinToSkin === "boolean" ? safeRaw.deliveryPreferences.skinToSkin : true,
+    },
+    babyPreferences: {
+      feeding: typeof safeRaw?.babyPreferences?.feeding === "string" ? safeRaw.babyPreferences.feeding : "",
+      rooming: typeof safeRaw?.babyPreferences?.rooming === "string" ? safeRaw.babyPreferences.rooming : "",
+      circumcision: typeof safeRaw?.babyPreferences?.circumcision === "string" ? safeRaw.babyPreferences.circumcision : "",
+      vaccinations: typeof safeRaw?.babyPreferences?.vaccinations === "boolean" ? safeRaw.babyPreferences.vaccinations : true,
+    },
+    emergencyPreferences: {
+      csection: typeof safeRaw?.emergencyPreferences?.csection === "string" ? safeRaw.emergencyPreferences.csection : "",
+      companion: typeof safeRaw?.emergencyPreferences?.companion === "string" ? safeRaw.emergencyPreferences.companion : "",
+    },
+    additionalNotes: typeof safeRaw?.additionalNotes === "string" ? safeRaw.additionalNotes : "",
+  };
+};
+
 const BirthPlan = () => {
   const { t } = useTranslation();
   const { trackAction } = useAnalytics("birth-plan");
@@ -73,9 +135,14 @@ const BirthPlan = () => {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      setPlan(JSON.parse(saved));
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setPlan(normalizeBirthPlan(parsed));
+      }
+    } catch {
+      // ignore invalid localStorage
     }
   }, []);
 
@@ -106,40 +173,40 @@ const BirthPlan = () => {
 
   const exportPlan = () => {
     const content = `
-خطة الولادة
-============
+Birth Plan
+==========
 
-تفضيلات المخاض:
-- بيئة الغرفة: ${plan.laborPreferences.environment || 'غير محدد'}
-- الحركة: ${plan.laborPreferences.mobility.join(', ') || 'غير محدد'}
-- تخفيف الألم: ${plan.laborPreferences.painRelief || 'غير محدد'}
-- المراقبة: ${plan.laborPreferences.monitoring || 'غير محدد'}
+Labor preferences:
+- Room environment: ${plan.laborPreferences.environment || 'Not specified'}
+- Mobility: ${plan.laborPreferences.mobility.join(', ') || 'Not specified'}
+- Pain relief: ${plan.laborPreferences.painRelief || 'Not specified'}
+- Monitoring: ${plan.laborPreferences.monitoring || 'Not specified'}
 
-تفضيلات الولادة:
-- وضعية الولادة: ${plan.deliveryPreferences.position || 'غير محدد'}
-- شق العجان: ${plan.deliveryPreferences.episiotomy || 'غير محدد'}
-- قطع الحبل السري: ${plan.deliveryPreferences.cordClamping || 'غير محدد'}
-- ملامسة الجلد: ${plan.deliveryPreferences.skinToSkin ? 'نعم' : 'لا'}
+Delivery preferences:
+- Preferred position: ${plan.deliveryPreferences.position || 'Not specified'}
+- Episiotomy: ${plan.deliveryPreferences.episiotomy || 'Not specified'}
+- Cord clamping: ${plan.deliveryPreferences.cordClamping || 'Not specified'}
+- Skin-to-skin: ${plan.deliveryPreferences.skinToSkin ? 'Yes' : 'No'}
 
-تفضيلات الطفل:
-- الرضاعة: ${plan.babyPreferences.feeding || 'غير محدد'}
-- الإقامة: ${plan.babyPreferences.rooming || 'غير محدد'}
-- الختان: ${plan.babyPreferences.circumcision || 'غير محدد'}
-- التطعيمات: ${plan.babyPreferences.vaccinations ? 'نعم' : 'لا'}
+Baby care preferences:
+- Feeding: ${plan.babyPreferences.feeding || 'Not specified'}
+- Rooming: ${plan.babyPreferences.rooming || 'Not specified'}
+- Circumcision: ${plan.babyPreferences.circumcision || 'Not specified'}
+- Vaccinations: ${plan.babyPreferences.vaccinations ? 'Yes' : 'No'}
 
-حالات الطوارئ:
-- القيصرية: ${plan.emergencyPreferences.csection || 'غير محدد'}
-- المرافق: ${plan.emergencyPreferences.companion || 'غير محدد'}
+Emergency preferences:
+- C-section: ${plan.emergencyPreferences.csection || 'Not specified'}
+- Support person: ${plan.emergencyPreferences.companion || 'Not specified'}
 
-ملاحظات إضافية:
-${plan.additionalNotes || 'لا توجد'}
+Additional notes:
+${plan.additionalNotes || 'None'}
     `;
     
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'خطة-الولادة.txt';
+    a.download = 'birth-plan.txt';
     a.click();
     trackAction("plan_exported");
   };
@@ -156,11 +223,11 @@ ${plan.additionalNotes || 'لا توجد'}
         <div className="flex justify-end gap-2">
           <Button variant="outline" onClick={exportPlan}>
             <Download className="h-4 w-4 mr-2" />
-            تصدير
+            Export
           </Button>
           <Button onClick={savePlan} className={saved ? 'bg-green-500' : ''}>
             {saved ? <Sparkles className="h-4 w-4 mr-2" /> : <Save className="h-4 w-4 mr-2" />}
-            {saved ? 'تم الحفظ!' : 'حفظ'}
+            {saved ? 'Saved!' : 'Save'}
           </Button>
         </div>
 
@@ -170,19 +237,19 @@ ${plan.additionalNotes || 'لا توجد'}
             <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50">
               <CardTitle className="flex items-center gap-2">
                 <Heart className="h-5 w-5 text-blue-500" />
-                تفضيلات المخاض
+                Labor Preferences
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
               <div>
-                <Label className="font-medium">بيئة غرفة الولادة</Label>
+                <Label className="font-medium">Room environment</Label>
                 <RadioGroup
                   value={plan.laborPreferences.environment}
                   onValueChange={(v) => updatePlan('laborPreferences', 'environment', v)}
                   className="mt-2 grid grid-cols-2 gap-2"
                 >
-                  {["إضاءة خافتة", "موسيقى هادئة", "صمت تام", "طبيعية"].map(option => (
-                    <div key={option} className="flex items-center space-x-2 space-x-reverse">
+                  {["Dim lighting", "Calm music", "Complete silence", "No preference"].map(option => (
+                    <div key={option} className="flex items-center space-x-2">
                       <RadioGroupItem value={option} id={`env-${option}`} />
                       <Label htmlFor={`env-${option}`}>{option}</Label>
                     </div>
@@ -191,9 +258,9 @@ ${plan.additionalNotes || 'لا توجد'}
               </div>
 
               <div>
-                <Label className="font-medium">الحركة أثناء المخاض</Label>
+                <Label className="font-medium">Mobility during labor</Label>
                 <div className="mt-2 grid grid-cols-2 gap-2">
-                  {["المشي", "الكرة", "الماء الدافئ", "تغيير الوضعيات"].map(option => (
+                  {["Walking", "Birth ball", "Warm shower/water", "Changing positions"].map(option => (
                     <div key={option} className="flex items-center gap-2">
                       <Checkbox
                         checked={plan.laborPreferences.mobility.includes(option)}
@@ -206,19 +273,19 @@ ${plan.additionalNotes || 'لا توجد'}
               </div>
 
               <div>
-                <Label className="font-medium">تخفيف الألم</Label>
+                <Label className="font-medium">Pain relief</Label>
                 <RadioGroup
                   value={plan.laborPreferences.painRelief}
                   onValueChange={(v) => updatePlan('laborPreferences', 'painRelief', v)}
                   className="mt-2 space-y-2"
                 >
                   {[
-                    { value: "natural", label: "طبيعي بدون تدخل" },
-                    { value: "epidural", label: "إبرة الظهر" },
-                    { value: "gas", label: "غاز الضحك" },
-                    { value: "flexible", label: "أقرر لاحقاً" },
+                    { value: "natural", label: "Natural / no medication" },
+                    { value: "epidural", label: "Epidural" },
+                    { value: "gas", label: "Nitrous oxide" },
+                    { value: "flexible", label: "Decide later" },
                   ].map(option => (
-                    <div key={option.value} className="flex items-center space-x-2 space-x-reverse">
+                    <div key={option.value} className="flex items-center space-x-2">
                       <RadioGroupItem value={option.value} id={`pain-${option.value}`} />
                       <Label htmlFor={`pain-${option.value}`}>{option.label}</Label>
                     </div>
@@ -235,19 +302,19 @@ ${plan.additionalNotes || 'لا توجد'}
             <CardHeader className="bg-gradient-to-r from-pink-50 to-rose-50">
               <CardTitle className="flex items-center gap-2">
                 <Baby className="h-5 w-5 text-pink-500" />
-                تفضيلات الولادة
+                Delivery Preferences
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
               <div>
-                <Label className="font-medium">وضعية الولادة المفضلة</Label>
+                <Label className="font-medium">Preferred birth position</Label>
                 <RadioGroup
                   value={plan.deliveryPreferences.position}
                   onValueChange={(v) => updatePlan('deliveryPreferences', 'position', v)}
                   className="mt-2 grid grid-cols-2 gap-2"
                 >
-                  {["مستلقية", "نصف جالسة", "جانبية", "رباعية"].map(option => (
-                    <div key={option} className="flex items-center space-x-2 space-x-reverse">
+                  {["Lying down", "Semi-sitting", "Side-lying", "Hands and knees"].map(option => (
+                    <div key={option} className="flex items-center space-x-2">
                       <RadioGroupItem value={option} id={`pos-${option}`} />
                       <Label htmlFor={`pos-${option}`}>{option}</Label>
                     </div>
@@ -256,18 +323,18 @@ ${plan.additionalNotes || 'لا توجد'}
               </div>
 
               <div>
-                <Label className="font-medium">قطع الحبل السري</Label>
+                <Label className="font-medium">Cord clamping</Label>
                 <RadioGroup
                   value={plan.deliveryPreferences.cordClamping}
                   onValueChange={(v) => updatePlan('deliveryPreferences', 'cordClamping', v)}
                   className="mt-2 space-y-2"
                 >
                   {[
-                    { value: "delayed", label: "تأخير القطع (1-3 دقائق)" },
-                    { value: "immediate", label: "قطع فوري" },
-                    { value: "partner", label: "الزوج يقطع الحبل" },
+                    { value: "delayed", label: "Delayed clamping (1–3 minutes)" },
+                    { value: "immediate", label: "Immediate clamping" },
+                    { value: "partner", label: "Partner cuts the cord" },
                   ].map(option => (
-                    <div key={option.value} className="flex items-center space-x-2 space-x-reverse">
+                    <div key={option.value} className="flex items-center space-x-2">
                       <RadioGroupItem value={option.value} id={`cord-${option.value}`} />
                       <Label htmlFor={`cord-${option.value}`}>{option.label}</Label>
                     </div>
@@ -280,7 +347,7 @@ ${plan.additionalNotes || 'لا توجد'}
                   checked={plan.deliveryPreferences.skinToSkin}
                   onCheckedChange={(v) => updatePlan('deliveryPreferences', 'skinToSkin', v)}
                 />
-                <Label>ملامسة الجلد للجلد فوراً بعد الولادة</Label>
+                <Label>Skin-to-skin contact immediately after birth</Label>
               </div>
             </CardContent>
           </Card>
@@ -292,23 +359,23 @@ ${plan.additionalNotes || 'لا توجد'}
             <CardHeader className="bg-gradient-to-r from-amber-50 to-orange-50">
               <CardTitle className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-amber-500" />
-                تفضيلات العناية بالطفل
+                Baby Care Preferences
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
               <div>
-                <Label className="font-medium">الرضاعة</Label>
+                <Label className="font-medium">Feeding</Label>
                 <RadioGroup
                   value={plan.babyPreferences.feeding}
                   onValueChange={(v) => updatePlan('babyPreferences', 'feeding', v)}
                   className="mt-2 space-y-2"
                 >
                   {[
-                    { value: "breast", label: "رضاعة طبيعية حصرية" },
-                    { value: "formula", label: "رضاعة صناعية" },
-                    { value: "mixed", label: "مختلطة" },
+                    { value: "breast", label: "Exclusive breastfeeding" },
+                    { value: "formula", label: "Formula feeding" },
+                    { value: "mixed", label: "Mixed feeding" },
                   ].map(option => (
-                    <div key={option.value} className="flex items-center space-x-2 space-x-reverse">
+                    <div key={option.value} className="flex items-center space-x-2">
                       <RadioGroupItem value={option.value} id={`feed-${option.value}`} />
                       <Label htmlFor={`feed-${option.value}`}>{option.label}</Label>
                     </div>
@@ -317,18 +384,18 @@ ${plan.additionalNotes || 'لا توجد'}
               </div>
 
               <div>
-                <Label className="font-medium">إقامة الطفل</Label>
+                <Label className="font-medium">Rooming</Label>
                 <RadioGroup
                   value={plan.babyPreferences.rooming}
                   onValueChange={(v) => updatePlan('babyPreferences', 'rooming', v)}
                   className="mt-2 space-y-2"
                 >
                   {[
-                    { value: "rooming-in", label: "في الغرفة معي 24 ساعة" },
-                    { value: "nursery-night", label: "الحضانة ليلاً فقط" },
-                    { value: "nursery", label: "الحضانة" },
+                    { value: "rooming-in", label: "Rooming-in (24 hours)" },
+                    { value: "nursery-night", label: "Nursery at night only" },
+                    { value: "nursery", label: "Nursery" },
                   ].map(option => (
-                    <div key={option.value} className="flex items-center space-x-2 space-x-reverse">
+                    <div key={option.value} className="flex items-center space-x-2">
                       <RadioGroupItem value={option.value} id={`room-${option.value}`} />
                       <Label htmlFor={`room-${option.value}`}>{option.label}</Label>
                     </div>
@@ -341,7 +408,7 @@ ${plan.additionalNotes || 'لا توجد'}
                   checked={plan.babyPreferences.vaccinations}
                   onCheckedChange={(v) => updatePlan('babyPreferences', 'vaccinations', v as boolean)}
                 />
-                <Label>الموافقة على التطعيمات الأولية</Label>
+                <Label>Agree to routine newborn vaccinations</Label>
               </div>
             </CardContent>
           </Card>
@@ -350,13 +417,13 @@ ${plan.additionalNotes || 'لا توجد'}
         {/* Additional Notes */}
         <Card>
           <CardHeader>
-            <CardTitle>ملاحظات إضافية</CardTitle>
+            <CardTitle>Additional Notes</CardTitle>
           </CardHeader>
           <CardContent>
             <Textarea
               value={plan.additionalNotes}
               onChange={(e) => setPlan(prev => ({ ...prev, additionalNotes: e.target.value }))}
-              placeholder="أي تفضيلات أو طلبات إضافية..."
+              placeholder="Any extra preferences or requests..."
               className="min-h-[100px]"
             />
           </CardContent>
@@ -368,7 +435,7 @@ ${plan.additionalNotes || 'لا توجد'}
             <div className="flex gap-3">
               <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-amber-700">
-                <strong>تذكري:</strong> هذه خطة مبدئية وقد تتغير حسب الظروف الطبية. ناقشي خطتك مع طبيبك ومستشفى الولادة.
+                <strong>Reminder:</strong> This is a draft plan and may change depending on medical circumstances. Discuss it with your healthcare provider and birthing facility.
               </p>
             </div>
           </CardContent>
