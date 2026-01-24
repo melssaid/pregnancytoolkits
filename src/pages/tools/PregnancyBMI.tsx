@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Calculator, Info } from "lucide-react";
 import { Layout } from "@/components/Layout";
@@ -16,6 +17,7 @@ interface Result {
 }
 
 export default function PregnancyBMI() {
+  const { t } = useTranslation();
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [unit, setUnit] = useState<"imperial" | "metric">("imperial");
@@ -75,7 +77,7 @@ export default function PregnancyBMI() {
   };
 
   return (
-    <Layout title="Pregnancy BMI Calculator" showBack>
+    <Layout title={t("tools.pregnancyBmi.title")} showBack>
       <div className="container py-8">
         <div className="mx-auto max-w-2xl">
           <motion.div

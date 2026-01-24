@@ -64,7 +64,7 @@ export default function PregnancyAssistant() {
   };
 
   return (
-    <Layout title={t("tools.pregnancy-assistant")} showBack>
+    <Layout title={t("tools.pregnancyAssistant.title")} showBack>
       <div className="space-y-4">
         {/* Header */}
         <motion.div

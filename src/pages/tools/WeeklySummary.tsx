@@ -77,7 +77,7 @@ export default function WeeklySummary() {
   const daysRemaining = (40 - parseInt(week)) * 7;
 
   return (
-    <Layout title={t("tools.weekly-summary")} showBack>
+    <Layout title={t("tools.weeklySummary.title")} showBack>
       <div className="space-y-4">
         {/* Header */}
         <motion.div
