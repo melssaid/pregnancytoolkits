@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 interface Settings {
   language?: string;
   theme?: "light" | "dark" | "system";
   [key: string]: any;
 }
+
+const LOCAL_KEY = "pregnancytools_user_settings";
 
 export function useSettings() {
   const [settings, setSettings] = useState<Settings>({});
@@ -14,55 +15,29 @@ export function useSettings() {
 
   useEffect(() => {
     const initialize = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession();
-      
-      if (error) {
-        console.error("Auth error:", error);
-        setIsLoading(false);
-        return;
+      try {
+        const saved = localStorage.getItem(LOCAL_KEY);
+        if (saved) {
+          setSettings(JSON.parse(saved));
+        }
+      } catch (err) {
+        console.warn("Failed to load settings:", err);
       }
-
-      if (!session) {
-        setIsLoading(false);
-        return;
-      }
-
-      setIsAuthenticated(true);
-      await loadSettings(session.user.id);
+      setIsLoading(false);
     };
 
     initialize();
   }, []);
 
-  const loadSettings = async (userId: string) => {
-    const { data, error } = await supabase
-      .from("user_settings")
-      .select("settings")
-      .single();
-
-    if (error && error.code !== "PGRST116") {
-      console.warn("Settings fetch error:", error.message);
-    }
-
-    if (data) {
-      setSettings(data.settings);
-    }
-    setIsLoading(false);
-  };
-
   const updateSettings = async (newSettings: Partial<Settings>) => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) throw new Error("يجب تسجيل الدخول أولاً");
-
     const updated = { ...settings, ...newSettings };
-    const { error } = await supabase.from("user_settings").upsert({
-      user_id: user.id,
-      settings: updated,
-      updated_at: new Date().toISOString(),
-    });
-
-    if (error) throw error;
     setSettings(updated);
+    
+    try {
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(updated));
+    } catch (err) {
+      console.warn("Failed to save settings:", err);
+    }
   };
 
   return { settings, updateSettings, isLoading, isAuthenticated };
