@@ -1,23 +1,27 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { 
-  Stethoscope, 
-  AlertTriangle, 
-  CheckCircle, 
-  Sparkles, 
+import {
+  Stethoscope,
+  AlertTriangle,
+  CheckCircle,
+  Sparkles,
   Loader2,
   ThermometerSun,
-  Heart,
   Baby,
-  Brain
+  Brain,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Layout } from "@/components/Layout";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 
@@ -46,7 +50,7 @@ export default function SymptomAnalyzer() {
 
   const toggleSymptom = (id: string) => {
     setSelectedSymptoms((prev) =>
-      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id],
     );
   };
 
@@ -62,7 +66,7 @@ export default function SymptomAnalyzer() {
 I am experiencing the following symptoms: ${symptomsText}.
 ${additionalNotes ? `Additional notes: ${additionalNotes}` : ""}
 
-Please analyze these symptoms and provide advice.`;
+Please analyze these symptoms and provide general, informational guidance (not medical diagnosis).`;
 
     await streamChat({
       type: "symptom-analysis",
@@ -79,8 +83,10 @@ Please analyze these symptoms and provide advice.`;
     setAnalysis("");
   };
 
+  const pageTitle = t("tools.symptomAnalyzer.title");
+
   return (
-    <Layout title={t("tools.symptomAnalyzer.title")} showBack>
+    <Layout title={pageTitle} showBack>
       <div className="space-y-4">
         {/* Header */}
         <motion.div
@@ -90,7 +96,7 @@ Please analyze these symptoms and provide advice.`;
         >
           <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 px-4 py-2 rounded-full">
             <Stethoscope className="w-5 h-5 text-amber-600" />
-            <span className="text-sm font-medium text-amber-700">Smart Symptom Analysis</span>
+            <span className="text-sm font-medium text-amber-700">{pageTitle}</span>
           </div>
         </motion.div>
 
@@ -103,7 +109,7 @@ Please analyze these symptoms and provide advice.`;
                   <Baby className="w-5 h-5 text-primary" />
                   <span className="text-sm font-medium">Pregnancy Week:</span>
                   <Select value={week} onValueChange={setWeek}>
-                    <SelectTrigger className="w-32">
+                    <SelectTrigger className="w-36">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
@@ -180,10 +186,7 @@ Please analyze these symptoms and provide advice.`;
         ) : (
           <>
             {/* Analysis Result */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <Card className="border-primary/20 bg-primary/5">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
@@ -205,7 +208,9 @@ Please analyze these symptoms and provide advice.`;
                   <div className="prose prose-sm max-w-none">
                     <p className="whitespace-pre-wrap text-sm leading-relaxed">
                       {analysis}
-                      {isLoading && <span className="inline-block w-2 h-4 bg-primary/50 animate-pulse ml-1" />}
+                      {isLoading && (
+                        <span className="inline-block w-2 h-4 bg-primary/50 animate-pulse ml-1" />
+                      )}
                     </p>
                   </div>
                 </CardContent>
@@ -236,7 +241,11 @@ Please analyze these symptoms and provide advice.`;
             <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0" />
             <div className="text-xs text-amber-800 dark:text-amber-200">
               <p className="font-medium">Important Notice:</p>
-              <p>This analysis is for informational purposes only and is not a substitute for medical examination. In case of severe symptoms, bleeding, or acute pain, consult your doctor immediately.</p>
+              <p>
+                This analysis is for informational purposes only and is not a substitute
+                for medical examination. In case of severe symptoms, bleeding, or acute
+                pain, consult your doctor immediately.
+              </p>
             </div>
           </CardContent>
         </Card>
