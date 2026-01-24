@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/select";
 import { Layout } from "@/components/Layout";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 const commonSymptoms = [
   { id: "nausea", label: "Nausea", icon: CloudRain, color: "text-green-500" },
@@ -274,12 +275,11 @@ Please analyze these symptoms and provide general, informational guidance (not m
                 </CardHeader>
                 <CardContent>
                   <div className="bg-background/60 rounded-xl p-4 border border-border/30">
-                    <p className="whitespace-pre-wrap text-sm leading-relaxed text-foreground/90">
-                      {analysis}
-                      {isLoading && (
-                        <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-0.5 rounded-full" />
-                      )}
-                    </p>
+                    <MarkdownRenderer 
+                      content={analysis} 
+                      isLoading={isLoading} 
+                      accentColor="primary" 
+                    />
                   </div>
                 </CardContent>
               </Card>
