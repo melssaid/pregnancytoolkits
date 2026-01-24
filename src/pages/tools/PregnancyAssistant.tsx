@@ -16,10 +16,10 @@ interface Message {
 }
 
 const quickQuestions = [
-  { icon: Baby, text: "First month pregnancy symptoms?", color: "from-pink-500 to-rose-500" },
-  { icon: Coffee, text: "Is coffee safe during pregnancy?", color: "from-amber-500 to-orange-500" },
-  { icon: Stethoscope, text: "How to prepare for labor?", color: "from-blue-500 to-indigo-500" },
-  { icon: Apple, text: "Important vitamins for pregnancy?", color: "from-green-500 to-emerald-500" },
+  { icon: Baby, text: "First month symptoms?", color: "from-pink-500 to-rose-500" },
+  { icon: Coffee, text: "Is coffee safe?", color: "from-amber-500 to-orange-500" },
+  { icon: Stethoscope, text: "Prepare for labor?", color: "from-blue-500 to-indigo-500" },
+  { icon: Apple, text: "Important vitamins?", color: "from-green-500 to-emerald-500" },
 ];
 
 export default function PregnancyAssistant() {
@@ -66,45 +66,36 @@ export default function PregnancyAssistant() {
   return (
     <ToolFrame 
       title={t("tools.pregnancyAssistant.title")} 
-      subtitle="Your 24/7 AI-powered pregnancy companion with expert answers"
+      subtitle="Your 24/7 AI-powered pregnancy companion"
       icon={MessageCircle}
       mood="nurturing"
       toolId="pregnancy-assistant"
     >
-      <div className="space-y-6">
-        {/* AI Badge */}
+      <div className="space-y-4">
+        {/* AI Badge - Compact */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="flex justify-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 via-pink-500/10 to-purple-500/10 border border-primary/20">
-            <div className="relative">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <motion.div 
-                className="absolute inset-0"
-                animate={{ scale: [1, 1.4, 1], opacity: [1, 0, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Sparkles className="w-4 h-4 text-primary" />
-              </motion.div>
-            </div>
-            <span className="text-sm font-semibold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Powered by Advanced AI
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/10 via-pink-500/10 to-purple-500/10 border border-primary/20">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
+            <span className="text-xs font-semibold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              Powered by AI
             </span>
           </div>
         </motion.div>
 
-        {/* Chat Container */}
-        <Card className="border-2 border-primary/10 shadow-xl shadow-primary/5 overflow-hidden bg-gradient-to-b from-white to-rose-50/30">
+        {/* Chat Container - Full Height Mobile */}
+        <Card className="border border-primary/10 shadow-lg overflow-hidden bg-gradient-to-b from-white to-rose-50/20">
           <CardContent className="p-0">
-            <ScrollArea className="h-[450px]" ref={scrollRef}>
-              <div className="p-5">
+            <ScrollArea className="h-[calc(100vh-380px)] min-h-[350px] max-h-[500px]" ref={scrollRef}>
+              <div className="p-3 sm:p-4">
                 {messages.length === 0 ? (
                   <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="flex flex-col items-center justify-center min-h-[380px] text-center space-y-6"
+                    className="flex flex-col items-center justify-center min-h-[300px] text-center space-y-5"
                   >
                     {/* Welcome Icon */}
                     <motion.div
@@ -113,44 +104,44 @@ export default function PregnancyAssistant() {
                       transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
                       className="relative"
                     >
-                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center shadow-2xl shadow-primary/30">
-                        <Bot className="w-10 h-10 text-white" />
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center shadow-xl shadow-primary/30">
+                        <Bot className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                       </div>
                       <motion.div
-                        className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center shadow-lg ring-4 ring-white"
+                        className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center shadow-lg ring-2 ring-white"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.5 }}
                       >
-                        <Zap className="w-3.5 h-3.5 text-white" />
+                        <Zap className="w-3 h-3 text-white" />
                       </motion.div>
                     </motion.div>
 
                     {/* Welcome Text */}
-                    <div className="space-y-2 max-w-sm">
-                      <h3 className="text-xl font-bold text-foreground">
-                        Hello! I'm Your Pregnancy Assistant 👋
+                    <div className="space-y-1.5 max-w-xs">
+                      <h3 className="text-lg sm:text-xl font-bold text-foreground">
+                        Hello! I'm Here to Help 👋
                       </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        Ask me anything about pregnancy, nutrition, baby development, or birth preparation
+                      <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                        Ask anything about pregnancy, nutrition, or baby care
                       </p>
                     </div>
 
-                    {/* Quick Questions Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md pt-2">
+                    {/* Quick Questions - 2x2 Grid */}
+                    <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
                       {quickQuestions.map((q, i) => (
                         <motion.button
                           key={i}
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={{ opacity: 0, y: 15 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3 + i * 0.1 }}
+                          transition={{ delay: 0.3 + i * 0.08 }}
                           onClick={() => sendMessage(q.text)}
-                          className="group flex items-center gap-3 p-3 rounded-xl bg-white border-2 border-transparent hover:border-primary/30 shadow-md hover:shadow-xl transition-all duration-300 text-left"
+                          className="group flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100 hover:border-primary/30 shadow-sm hover:shadow-md transition-all duration-200 text-left"
                         >
-                          <div className={`p-2 rounded-lg bg-gradient-to-br ${q.color} shadow-lg group-hover:scale-110 transition-transform`}>
-                            <q.icon className="w-4 h-4 text-white" />
+                          <div className={`p-1.5 rounded-lg bg-gradient-to-br ${q.color} shadow group-hover:scale-105 transition-transform`}>
+                            <q.icon className="w-3.5 h-3.5 text-white" />
                           </div>
-                          <span className="text-xs font-medium text-foreground/80 group-hover:text-foreground leading-tight">
+                          <span className="text-[11px] sm:text-xs font-medium text-foreground/80 leading-tight line-clamp-2">
                             {q.text}
                           </span>
                         </motion.button>
@@ -158,43 +149,41 @@ export default function PregnancyAssistant() {
                     </div>
                   </motion.div>
                 ) : (
-                  <div className="space-y-5">
+                  <div className="space-y-4">
                     <AnimatePresence mode="popLayout">
                       {messages.map((msg, i) => (
                         <motion.div
                           key={i}
-                          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                          initial={{ opacity: 0, y: 15, scale: 0.97 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          transition={{ duration: 0.3 }}
-                          className={`flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
+                          transition={{ duration: 0.25 }}
+                          className={`flex gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
                         >
                           {/* Avatar */}
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-lg ${
+                          <div
+                            className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow ${
                               msg.role === "user"
                                 ? "bg-gradient-to-br from-primary to-pink-500"
                                 : "bg-gradient-to-br from-slate-600 to-slate-700"
                             }`}
                           >
                             {msg.role === "user" ? (
-                              <User className="w-5 h-5 text-white" />
+                              <User className="w-4 h-4 text-white" />
                             ) : (
-                              <Bot className="w-5 h-5 text-white" />
+                              <Bot className="w-4 h-4 text-white" />
                             )}
-                          </motion.div>
+                          </div>
 
                           {/* Message Bubble */}
                           <div
-                            className={`max-w-[80%] rounded-2xl px-4 py-3 shadow-md ${
+                            className={`max-w-[85%] rounded-2xl px-3 py-2.5 shadow-sm ${
                               msg.role === "user"
                                 ? "bg-gradient-to-br from-primary to-pink-500 text-white rounded-tr-sm"
                                 : "bg-white border border-gray-100 rounded-tl-sm"
                             }`}
                           >
                             {msg.role === "assistant" ? (
-                              <div className="prose prose-sm max-w-none">
+                              <div className="prose prose-sm max-w-none text-sm">
                                 <MarkdownRenderer content={msg.content} accentColor="primary" />
                               </div>
                             ) : (
@@ -212,19 +201,19 @@ export default function PregnancyAssistant() {
                       <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex gap-3"
+                        className="flex gap-2.5"
                       >
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center shadow-lg">
-                          <Bot className="w-5 h-5 text-white" />
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center shadow">
+                          <Bot className="w-4 h-4 text-white" />
                         </div>
-                        <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-5 py-4 shadow-md">
-                          <div className="flex gap-1.5">
+                        <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+                          <div className="flex gap-1">
                             {[0, 1, 2].map((i) => (
                               <motion.div
                                 key={i}
-                                className="w-2 h-2 rounded-full bg-primary"
-                                animate={{ y: [0, -8, 0] }}
-                                transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
+                                className="w-1.5 h-1.5 rounded-full bg-primary"
+                                animate={{ y: [0, -6, 0] }}
+                                transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.12 }}
                               />
                             ))}
                           </div>
@@ -238,45 +227,39 @@ export default function PregnancyAssistant() {
 
             {/* Error Display */}
             {error && (
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="px-5 pb-3"
-              >
-                <div className="flex items-center gap-2 p-3 rounded-xl bg-destructive/10 border border-destructive/20">
-                  <Heart className="w-4 h-4 text-destructive" />
+              <div className="px-3 pb-2">
+                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-destructive/10 border border-destructive/20">
+                  <Heart className="w-3.5 h-3.5 text-destructive shrink-0" />
                   <p className="text-xs text-destructive font-medium">{error}</p>
                 </div>
-              </motion.div>
+              </div>
             )}
 
-            {/* Input Area */}
-            <div className="p-4 border-t-2 border-primary/5 bg-gradient-to-t from-rose-50/50 to-transparent">
-              <div className="flex gap-3">
-                <div className="flex-1 relative">
-                  <Textarea
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type your question here..."
-                    className="min-h-[52px] max-h-[120px] resize-none pr-4 rounded-xl border-2 border-primary/10 focus:border-primary/30 bg-white shadow-inner text-sm"
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        sendMessage(input);
-                      }
-                    }}
-                  />
-                </div>
+            {/* Input Area - Mobile Optimized */}
+            <div className="p-3 border-t border-primary/5 bg-gradient-to-t from-rose-50/30 to-transparent">
+              <div className="flex gap-2">
+                <Textarea
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Type your question..."
+                  className="min-h-[44px] max-h-[100px] resize-none rounded-xl border border-primary/10 focus:border-primary/30 bg-white shadow-inner text-sm flex-1"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      sendMessage(input);
+                    }
+                  }}
+                />
                 <Button
                   onClick={() => sendMessage(input)}
                   disabled={!input.trim() || isLoading}
                   size="icon"
-                  className="h-[52px] w-[52px] rounded-xl bg-gradient-to-br from-primary to-pink-500 hover:from-primary/90 hover:to-pink-500/90 shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+                  className="h-[44px] w-[44px] rounded-xl bg-gradient-to-br from-primary to-pink-500 hover:from-primary/90 hover:to-pink-500/90 shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shrink-0"
                 >
                   {isLoading ? (
-                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin" />
                   ) : (
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4" />
                   )}
                 </Button>
               </div>
@@ -284,26 +267,21 @@ export default function PregnancyAssistant() {
           </CardContent>
         </Card>
 
-        {/* Trust Indicators */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground"
-        >
-          <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-green-500" />
+        {/* Trust Indicators - Compact */}
+        <div className="flex flex-wrap justify-center gap-3 text-[10px] sm:text-xs text-muted-foreground">
+          <div className="flex items-center gap-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
             <span>24/7 Available</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-blue-500" />
+          <div className="flex items-center gap-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
             <span>Medical Knowledge</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-purple-500" />
+          <div className="flex items-center gap-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
             <span>Private & Secure</span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </ToolFrame>
   );
