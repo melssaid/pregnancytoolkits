@@ -101,10 +101,21 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
               <Heart className="h-5 w-5 text-primary" />
               <span className="text-sm font-bold text-foreground">{t('app.name')}</span>
             </div>
-            <p className="text-sm text-muted-foreground text-center">
-              {t('app.footer')}
-            </p>
+            <div className="flex items-center gap-4 text-sm">
+              <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">
+                Terms of Service
+              </Link>
+              <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                Contact
+              </Link>
+            </div>
           </div>
+          <p className="text-sm text-muted-foreground text-center mt-4">
+            {t('app.footer')}
+          </p>
         </div>
       </footer>
     </div>
