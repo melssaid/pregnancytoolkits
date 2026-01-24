@@ -12,6 +12,27 @@ interface SubscriptionState {
   installDate: Date | null;
 }
 
+const computeState = () => {
+  // Get or set installation date
+  let installDate = localStorage.getItem(INSTALLATION_KEY);
+
+  if (!installDate) {
+    installDate = new Date().toISOString();
+    localStorage.setItem(INSTALLATION_KEY, installDate);
+  }
+
+  const install = new Date(installDate);
+
+  // Check subscription status (will be set by Google Play Billing)
+  const subscription = localStorage.getItem(SUBSCRIPTION_KEY);
+  const isSubscribed = subscription === "active";
+
+  const elapsedMs = Date.now() - install.getTime();
+  const isTrialActive = !isSubscribed && elapsedMs < TRIAL_DAYS * MS_PER_DAY;
+
+  return { install, isSubscribed, isTrialActive };
+};
+
 export const useSubscription = () => {
   const [state, setState] = useState<SubscriptionState>({
     isTrialActive: false,
@@ -20,28 +41,25 @@ export const useSubscription = () => {
   });
 
   useEffect(() => {
-    // Get or set installation date
-    let installDate = localStorage.getItem(INSTALLATION_KEY);
+    const refresh = () => {
+      const next = computeState();
+      setState({
+        isTrialActive: next.isTrialActive,
+        isSubscribed: next.isSubscribed,
+        installDate: next.install,
+      });
+    };
 
-    if (!installDate) {
-      installDate = new Date().toISOString();
-      localStorage.setItem(INSTALLATION_KEY, installDate);
-    }
+    refresh();
 
-    const install = new Date(installDate);
+    // Keep trial/subscription state accurate without requiring a reload
+    const interval = window.setInterval(refresh, 60_000);
+    window.addEventListener("storage", refresh);
 
-    // Check subscription status (will be set by Google Play Billing)
-    const subscription = localStorage.getItem(SUBSCRIPTION_KEY);
-    const isSubscribed = subscription === "active";
-
-    const elapsedMs = Date.now() - install.getTime();
-    const isTrialActive = !isSubscribed && elapsedMs < TRIAL_DAYS * MS_PER_DAY;
-
-    setState({
-      isTrialActive,
-      isSubscribed,
-      installDate: install,
-    });
+    return () => {
+      window.clearInterval(interval);
+      window.removeEventListener("storage", refresh);
+    };
   }, []);
 
   const trialDaysLeft = useMemo(() => {
@@ -55,8 +73,11 @@ export const useSubscription = () => {
 
   const hasAccess = useCallback(
     (isPremium?: boolean): boolean => {
+      // Requirement: all tools are free during the 3-day trial
+      if (state.isTrialActive) return true;
+
       if (!isPremium) return true; // Free tools always accessible
-      return state.isSubscribed || state.isTrialActive;
+      return state.isSubscribed;
     },
     [state.isSubscribed, state.isTrialActive]
   );

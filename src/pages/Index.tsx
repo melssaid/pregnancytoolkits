@@ -137,15 +137,11 @@ const Index = () => {
 
               <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl lg:text-6xl text-balance">
                 {t("app.title")} {" "}
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  {t("app.titleHighlight")}
-                </span>{" "}
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{t("app.titleHighlight")}</span>{" "}
                 {t("app.titleEnd")}
               </h1>
 
-              <p className="mb-8 text-lg text-muted-foreground md:text-xl text-balance max-w-xl mx-auto">
-                {t("app.description")}
-              </p>
+              <p className="mb-8 text-lg text-muted-foreground md:text-xl text-balance max-w-xl mx-auto">{t("app.description")}</p>
 
               {isTrialActive && !isSubscribed && (
                 <div className="mx-auto mb-6 max-w-md rounded-2xl border border-border bg-card/60 px-4 py-3 text-sm text-muted-foreground">
@@ -279,16 +275,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Premium CTA Section */}
-      {!isSubscribed && (
+      {/* Premium CTA Section (hide during trial, because all tools are free) */}
+      {!isSubscribed && !isTrialActive && (
         <section id="premium-cta" className="py-16 bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 scroll-mt-28">
           <div className="container">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
                 Unlock All{" "}
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Premium Tools
-                </span>
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Premium Tools</span>
               </h2>
 
               <p className="text-lg text-muted-foreground mb-8">Get access to all tools for your pregnancy journey</p>
@@ -314,7 +308,11 @@ const Index = () => {
                   ))}
                 </ul>
 
-                <Button onClick={handleSubscribe} size="lg" className="w-full gradient-primary text-white font-bold text-lg h-14 shadow-lg hover:shadow-xl transition-all">
+                <Button
+                  onClick={handleSubscribe}
+                  size="lg"
+                  className="w-full gradient-primary text-white font-bold text-lg h-14 shadow-lg hover:shadow-xl transition-all"
+                >
                   <Store className="h-5 w-5 mr-2" />
                   Pay with Google Play
                 </Button>
