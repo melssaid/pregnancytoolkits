@@ -66,82 +66,68 @@ export default function PregnancyAssistant() {
   return (
     <ToolFrame 
       title={t("tools.pregnancyAssistant.title")} 
-      subtitle="Your 24/7 AI-powered pregnancy companion"
+      subtitle="Your 24/7 pregnancy companion"
       icon={MessageCircle}
       mood="nurturing"
       toolId="pregnancy-assistant"
     >
-      <div className="space-y-4">
-        {/* AI Badge - Compact */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="flex justify-center"
-        >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/10 via-pink-500/10 to-purple-500/10 border border-primary/20">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-semibold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Powered by AI
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Chat Container - Full Height Mobile */}
-        <Card className="border border-primary/10 shadow-lg overflow-hidden bg-gradient-to-b from-white to-rose-50/20">
+      <div className="space-y-3">
+        {/* Chat Container */}
+        <Card className="border border-primary/10 shadow-sm overflow-hidden">
           <CardContent className="p-0">
-            <ScrollArea className="h-[calc(100vh-380px)] min-h-[350px] max-h-[500px]" ref={scrollRef}>
-              <div className="p-3 sm:p-4">
+            <ScrollArea className="h-[calc(100vh-320px)] min-h-[320px] max-h-[450px]" ref={scrollRef}>
+              <div className="p-3">
                 {messages.length === 0 ? (
                   <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="flex flex-col items-center justify-center min-h-[300px] text-center space-y-5"
+                    className="flex flex-col items-center justify-center min-h-[280px] text-center space-y-4"
                   >
-                    {/* Welcome Icon */}
+                    {/* Welcome Icon - Smaller */}
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+                      transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
                       className="relative"
                     >
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center shadow-xl shadow-primary/30">
-                        <Bot className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center shadow-lg shadow-primary/25">
+                        <Bot className="w-7 h-7 text-white" />
                       </div>
                       <motion.div
-                        className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center shadow-lg ring-2 ring-white"
+                        className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center shadow ring-2 ring-white"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ delay: 0.5 }}
+                        transition={{ delay: 0.3 }}
                       >
-                        <Zap className="w-3 h-3 text-white" />
+                        <Zap className="w-2.5 h-2.5 text-white" />
                       </motion.div>
                     </motion.div>
 
-                    {/* Welcome Text */}
-                    <div className="space-y-1.5 max-w-xs">
-                      <h3 className="text-lg sm:text-xl font-bold text-foreground">
+                    {/* Welcome Text - Compact */}
+                    <div className="space-y-1 max-w-xs">
+                      <h3 className="text-base font-bold text-foreground">
                         Hello! I'm Here to Help 👋
                       </h3>
-                      <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                      <p className="text-muted-foreground text-xs leading-relaxed">
                         Ask anything about pregnancy, nutrition, or baby care
                       </p>
                     </div>
 
                     {/* Quick Questions - 2x2 Grid */}
-                    <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
+                    <div className="grid grid-cols-2 gap-2 w-full max-w-xs">
                       {quickQuestions.map((q, i) => (
                         <motion.button
                           key={i}
-                          initial={{ opacity: 0, y: 15 }}
+                          initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3 + i * 0.08 }}
+                          transition={{ delay: 0.2 + i * 0.05 }}
                           onClick={() => sendMessage(q.text)}
-                          className="group flex items-center gap-2 p-2.5 rounded-xl bg-white border border-gray-100 hover:border-primary/30 shadow-sm hover:shadow-md transition-all duration-200 text-left"
+                          className="group flex items-center gap-2 p-2 rounded-lg bg-muted/50 border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-left"
                         >
-                          <div className={`p-1.5 rounded-lg bg-gradient-to-br ${q.color} shadow group-hover:scale-105 transition-transform`}>
-                            <q.icon className="w-3.5 h-3.5 text-white" />
+                          <div className={`p-1.5 rounded-md bg-gradient-to-br ${q.color} shadow-sm`}>
+                            <q.icon className="w-3 h-3 text-white" />
                           </div>
-                          <span className="text-[11px] sm:text-xs font-medium text-foreground/80 leading-tight line-clamp-2">
+                          <span className="text-[10px] font-medium text-foreground/80 leading-tight line-clamp-2">
                             {q.text}
                           </span>
                         </motion.button>
