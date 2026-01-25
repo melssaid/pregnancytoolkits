@@ -279,97 +279,54 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Premium CTA Section - Modernized */}
+      {/* Premium Access Section - Simple & Professional */}
       {!isSubscribed && (
-        <section className="py-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl" />
-          
-          <div className="container relative">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl mx-auto text-center"
-            >
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold"
-              >
-                <Crown className="h-4 w-4" />
-                Premium Access
-              </motion.div>
-              
-              <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-                Unlock All{" "}
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Premium Tools
-                </span>
-              </h2>
-
-              <p className="text-lg text-muted-foreground mb-10">
-                Get access to 40+ tools for your pregnancy journey
-              </p>
-
-              {/* Pricing Card - Glass Effect */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="relative max-w-md mx-auto"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-xl" />
-                <div className="relative bg-card/90 backdrop-blur-xl rounded-3xl p-8 border border-primary/20 shadow-2xl">
-                  <div className="flex items-baseline justify-center gap-2 mb-8">
-                    <span className="text-5xl font-extrabold text-foreground">$1.99</span>
-                    <span className="text-muted-foreground text-lg">/month</span>
-                  </div>
-
-                  <ul className="space-y-4 text-left mb-8">
-                    {[
-                      "Access all 40+ pregnancy tools",
-                      "AI-powered insights & recommendations",
-                      "Unlimited tracking & logging",
-                      "Export data for your doctor",
-                      "Cancel anytime",
-                    ].map((feature, i) => (
-                      <motion.li 
-                        key={i} 
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: 0.3 + i * 0.1 }}
-                        className="flex items-center gap-3 text-sm text-foreground"
-                      >
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-success/20">
-                          <CheckCircle className="h-3.5 w-3.5 text-success" />
-                        </div>
-                        {feature}
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    onClick={handleSubscribe}
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-bold text-lg h-14 shadow-lg shadow-primary/25 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30"
-                  >
-                    <Crown className="h-5 w-5 mr-2" />
-                    Get Premium — $1.99/mo
-                  </Button>
-
-                  <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                    <Shield className="h-4 w-4" />
-                    <span>Secure payment via Google Play</span>
-                  </div>
+        <section className="py-10 border-t border-border/50">
+          <div className="container">
+            <div className="max-w-lg mx-auto bg-card rounded-2xl border border-border p-6">
+              {/* Header */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                  <Crown className="h-5 w-5 text-primary" />
                 </div>
-              </motion.div>
-            </motion.div>
+                <div>
+                  <h3 className="text-lg font-bold text-foreground">Premium Access</h3>
+                  <p className="text-xs text-muted-foreground">Unlock all pregnancy tools</p>
+                </div>
+              </div>
+
+              {/* Free Trial Info */}
+              <div className="bg-success/10 rounded-lg px-4 py-2.5 mb-4">
+                <p className="text-sm text-success font-medium">
+                  ✨ 3-day free trial — Try all tools free
+                </p>
+              </div>
+
+              {/* Pricing Options */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="bg-muted/50 rounded-xl p-3 text-center">
+                  <p className="text-2xl font-bold text-foreground">$1.99</p>
+                  <p className="text-xs text-muted-foreground">per month</p>
+                </div>
+                <div className="bg-primary/5 rounded-xl p-3 text-center border border-primary/20">
+                  <p className="text-2xl font-bold text-primary">$14</p>
+                  <p className="text-xs text-muted-foreground">per year <span className="text-primary font-medium">(Save 40%)</span></p>
+                </div>
+              </div>
+
+              {/* Subscribe Button */}
+              <Button
+                onClick={handleSubscribe}
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold h-11"
+              >
+                Start Free Trial
+              </Button>
+
+              {/* Footer */}
+              <p className="text-center text-xs text-muted-foreground mt-3">
+                Cancel anytime • Secure via Google Play
+              </p>
+            </div>
           </div>
         </section>
       )}
