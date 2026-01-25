@@ -1,51 +1,79 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Dumbbell, Play, Pause, RotateCcw, AlertTriangle, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, Dumbbell, Play, Pause, RotateCcw, CheckCircle, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 
 interface Exercise {
   id: string;
   name: string;
-  duration: number;
-  trimester: number[];
-  difficulty: 'easy' | 'moderate';
+  duration: number; // seconds
   description: string;
-  icon: string;
+  category: 'strength' | 'cardio' | 'flexibility';
+  difficulty: 'beginner' | 'intermediate';
 }
 
-const exercises: Exercise[] = [
-  { id: '1', name: 'Pelvic Tilts', duration: 60, trimester: [1, 2, 3], difficulty: 'easy', description: 'Gentle core strengthening', icon: '🧘' },
-  { id: '2', name: 'Cat-Cow Stretch', duration: 90, trimester: [1, 2, 3], difficulty: 'easy', description: 'Spine flexibility', icon: '🐱' },
-  { id: '3', name: 'Prenatal Squats', duration: 60, trimester: [1, 2], difficulty: 'moderate', description: 'Lower body strength', icon: '🏋️' },
-  { id: '4', name: 'Arm Circles', duration: 45, trimester: [1, 2, 3], difficulty: 'easy', description: 'Upper body mobility', icon: '💪' },
-  { id: '5', name: 'Side Leg Lifts', duration: 60, trimester: [1, 2, 3], difficulty: 'easy', description: 'Hip strengthening', icon: '🦵' },
-  { id: '6', name: 'Deep Breathing', duration: 120, trimester: [1, 2, 3], difficulty: 'easy', description: 'Relaxation & oxygen flow', icon: '🌬️' },
+const exerciseDatabase: Exercise[] = [
+  { id: 'squat', name: 'Prenatal Squats', duration: 45, description: 'Stand with feet shoulder-width apart. Lower gently as if sitting in a chair.', category: 'strength', difficulty: 'beginner' },
+  { id: 'bird-dog', name: 'Bird Dog', duration: 30, description: 'On hands and knees, extend opposite arm and leg. Hold for balance.', category: 'strength', difficulty: 'intermediate' },
+  { id: 'pelvic-tilt', name: 'Pelvic Tilts', duration: 60, description: 'Gently rock your pelvis forward and back to relieve lower back pressure.', category: 'flexibility', difficulty: 'beginner' },
+  { id: 'wall-pushup', name: 'Wall Pushups', duration: 45, description: 'Stand arm-length from wall. Lean in and push back out.', category: 'strength', difficulty: 'beginner' },
+  { id: 'butterfly', name: 'Butterfly Stretch', duration: 60, description: 'Sit with feet together, knees out. Gently lean forward.', category: 'flexibility', difficulty: 'beginner' },
+  { id: 'marching', name: 'Seated Marching', duration: 60, description: 'Sit on a stable chair or ball. Lift knees alternately.', category: 'cardio', difficulty: 'beginner' },
 ];
 
 const AIFitnessCoach: React.FC = () => {
   const navigate = useNavigate();
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
-  const [currentTrimester, setCurrentTrimester] = useState(2);
-  const [activeExercise, setActiveExercise] = useState<string | null>(null);
+  const [currentWeek, setCurrentWeek] = useState(20);
+  const [fitnessLevel, setFitnessLevel] = useState<'beginner' | 'intermediate'>('beginner');
+  const [generatedWorkout, setGeneratedWorkout] = useState<Exercise[]>([]);
+  const [activeExerciseIndex, setActiveExerciseIndex] = useState<number | null>(null);
   const [timer, setTimer] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
 
-  const filteredExercises = exercises.filter(e => e.trimester.includes(currentTrimester));
+  // Generate workout based on week and level
+  const generateWorkout = () => {
+    // Filter exercises appropriate for the level
+    // (In a real AI app, this would be more complex)
+    let exercises = exerciseDatabase.filter(e => 
+      fitnessLevel === 'intermediate' ? true : e.difficulty === 'beginner'
+    );
+    
+    // Customize by trimester
+    if (currentWeek > 28) {
+      // 3rd trimester: focus on flexibility and gentle movement
+      exercises = exercises.filter(e => e.category !== 'cardio');
+    }
 
-  const startExercise = (exerciseId: string, duration: number) => {
-    setActiveExercise(exerciseId);
-    setTimer(duration);
-    setIsPlaying(true);
+    // Shuffle and pick 3-4 exercises
+    const shuffled = [...exercises].sort(() => 0.5 - Math.random());
+    setGeneratedWorkout(shuffled.slice(0, 4));
+    setActiveExerciseIndex(null);
+    setTimer(0);
+    setIsPaused(true);
   };
 
-  const togglePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
+  useEffect(() => {
+    generateWorkout();
+  }, [currentWeek, fitnessLevel]);
 
-  const resetTimer = () => {
-    const exercise = exercises.find(e => e.id === activeExercise);
-    if (exercise) setTimer(exercise.duration);
-    setIsPlaying(false);
+  // Timer logic
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (!isPaused && activeExerciseIndex !== null && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+    } else if (timer === 0 && activeExerciseIndex !== null && !isPaused) {
+      setIsPaused(true);
+    }
+    return () => clearInterval(interval);
+  }, [isPaused, timer, activeExerciseIndex]);
+
+  const startExercise = (index: number) => {
+    setActiveExerciseIndex(index);
+    setTimer(generatedWorkout[index].duration);
+    setIsPaused(false);
   };
 
   if (!disclaimerAccepted) {
@@ -53,7 +81,7 @@ const AIFitnessCoach: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* Header */}
       <div className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
@@ -61,112 +89,126 @@ const AIFitnessCoach: React.FC = () => {
             <ArrowLeft className="w-6 h-6 text-gray-600" />
           </button>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
-              <Dumbbell className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+              <Dumbbell className="w-5 h-5 text-purple-600" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900">AI Fitness Coach</h1>
-              <p className="text-xs text-gray-500">Safe pregnancy exercises</p>
+              <h1 className="text-lg font-bold text-gray-900">Fitness Coach</h1>
+              <p className="text-xs text-gray-500">Safe workouts for Week {currentWeek}</p>
             </div>
           </div>
         </div>
       </div>
 
       <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
-        {/* Warning Banner */}
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex gap-3">
-          <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0" />
-          <div className="text-sm text-red-800">
-            <strong>Important:</strong> Get your doctor's approval before starting any exercise program during pregnancy. Stop immediately if you feel pain or discomfort.
+        {/* Controls */}
+        <div className="bg-white rounded-2xl p-5 shadow-sm space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Pregnancy Week: {currentWeek}</label>
+            <input
+              type="range"
+              min="4"
+              max="40"
+              value={currentWeek}
+              onChange={(e) => setCurrentWeek(Number(e.target.value))}
+              className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer"
+            />
           </div>
-        </div>
-
-        {/* Trimester Selector */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm">
-          <h2 className="text-sm font-medium text-gray-700 mb-3">Select Trimester</h2>
-          <div className="grid grid-cols-3 gap-2">
-            {[1, 2, 3].map((t) => (
-              <button
-                key={t}
-                onClick={() => setCurrentTrimester(t)}
-                className={`py-3 rounded-xl font-semibold transition-all ${
-                  currentTrimester === t
-                    ? 'bg-orange-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {t}st Trimester
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Active Timer */}
-        {activeExercise && (
-          <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-6 text-white text-center">
-            <p className="text-sm opacity-90 mb-2">
-              {exercises.find(e => e.id === activeExercise)?.name}
-            </p>
-            <p className="text-5xl font-bold mb-4">
-              {Math.floor(timer / 60)}:{(timer % 60).toString().padStart(2, '0')}
-            </p>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={togglePlayPause}
-                className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-              >
-                {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
-              </button>
-              <button
-                onClick={resetTimer}
-                className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-              >
-                <RotateCcw className="w-6 h-6" />
-              </button>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Fitness Level</label>
+            <div className="flex gap-2">
+              {(['beginner', 'intermediate'] as const).map(level => (
+                <button
+                  key={level}
+                  onClick={() => setFitnessLevel(level)}
+                  className={`flex-1 py-2 rounded-lg text-sm font-medium capitalize transition-all ${
+                    fitnessLevel === level 
+                      ? 'bg-purple-600 text-white shadow-md' 
+                      : 'bg-gray-100 text-gray-600'
+                  }`}
+                >
+                  {level}
+                </button>
+              ))}
             </div>
           </div>
-        )}
-
-        {/* Exercise List */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Recommended Exercises</h2>
-          <div className="space-y-3">
-            {filteredExercises.map((exercise) => (
-              <button
-                key={exercise.id}
-                onClick={() => startExercise(exercise.id, exercise.duration)}
-                className={`w-full p-4 rounded-xl text-left transition-all flex items-center gap-4 ${
-                  activeExercise === exercise.id
-                    ? 'bg-orange-100 border-2 border-orange-500'
-                    : 'bg-gray-50 hover:bg-gray-100'
-                }`}
-              >
-                <span className="text-3xl">{exercise.icon}</span>
-                <div className="flex-1">
-                  <p className="font-medium text-gray-900">{exercise.name}</p>
-                  <p className="text-sm text-gray-500">{exercise.description}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-orange-600">{exercise.duration}s</p>
-                  <p className="text-xs text-gray-400">{exercise.difficulty}</p>
-                </div>
-              </button>
-            ))}
-          </div>
         </div>
 
-        {/* Safety Tips */}
-        <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <CheckCircle className="w-5 h-5 text-green-600" />
-            <h3 className="font-semibold text-green-800">Safety Tips</h3>
-          </div>
-          <ul className="text-sm text-green-700 space-y-1 ml-7">
-            <li>• Stay hydrated before, during, and after exercise</li>
-            <li>• Avoid exercises lying flat on your back after 1st trimester</li>
-            <li>• Listen to your body and rest when needed</li>
-            <li>• Wear comfortable, supportive clothing</li>
-          </ul>
+        {/* Workout List */}
+        <div className="space-y-4">
+          {generatedWorkout.map((exercise, index) => {
+            const isActive = activeExerciseIndex === index;
+            const isCompleted = false; // Could add state for this
+
+            return (
+              <div 
+                key={exercise.id}
+                className={`bg-white rounded-2xl overflow-hidden shadow-sm transition-all ${
+                  isActive ? 'ring-2 ring-purple-500 transform scale-102' : ''
+                }`}
+              >
+                <div className="p-5">
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                        isActive ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-500'
+                      }`}>
+                        {index + 1}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">{exercise.name}</h3>
+                        <span className="text-xs text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full capitalize">
+                          {exercise.category}
+                        </span>
+                      </div>
+                    </div>
+                    {isActive && (
+                      <span className="text-2xl font-mono font-bold text-purple-600">
+                        00:{timer.toString().padStart(2, '0')}
+                      </span>
+                    )}
+                  </div>
+                  
+                  <p className="text-gray-600 text-sm mb-4 ml-11">{exercise.description}</p>
+                  
+                  <div className="ml-11 flex gap-2">
+                    {isActive ? (
+                      <button
+                        onClick={() => setIsPaused(!isPaused)}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 ${
+                          isPaused ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                        }`}
+                      >
+                        {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+                        {isPaused ? 'Resume' : 'Pause'}
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => startExercise(index)}
+                        className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-purple-700 transition-colors"
+                      >
+                        <Play className="w-4 h-4" /> Start ({exercise.duration}s)
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <button 
+          onClick={generateWorkout}
+          className="w-full py-3 bg-white border border-gray-200 text-gray-600 rounded-xl font-medium hover:bg-gray-50 flex items-center justify-center gap-2"
+        >
+          <RotateCcw className="w-4 h-4" /> Generate New Workout
+        </button>
+
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3">
+          <Info className="w-5 h-5 text-blue-600 flex-shrink-0" />
+          <p className="text-sm text-blue-800">
+            <strong>Safety First:</strong> Stop immediately if you feel dizziness, pain, or shortness of breath. Keep water nearby.
+          </p>
         </div>
       </div>
     </div>
