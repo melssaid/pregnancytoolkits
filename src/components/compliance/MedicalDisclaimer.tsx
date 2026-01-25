@@ -1,60 +1,56 @@
-import React, { useState } from 'react';
-import { AlertTriangle, X } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface MedicalDisclaimerProps {
-  toolName: string;
+  toolName?: string;
   onAccept: () => void;
 }
 
-const MedicalDisclaimer: React.FC<MedicalDisclaimerProps> = ({ toolName, onAccept }) => {
-  const [isVisible, setIsVisible] = useState(true);
-
-  if (!isVisible) return null;
-
-  const handleAccept = () => {
-    setIsVisible(false);
-    onAccept();
-  };
-
+export default function MedicalDisclaimer({ toolName, onAccept }: MedicalDisclaimerProps) {
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
-            <AlertTriangle className="w-6 h-6 text-amber-600" />
+    <div className="min-h-screen flex items-center justify-center bg-muted/40 px-4 py-8">
+      <Card className="max-w-lg w-full mx-auto">
+        <CardContent className="p-6 space-y-6">
+          <div className="text-center">
+            <h1 className="text-xl font-bold text-foreground mb-2">Medical Disclaimer</h1>
+            <p className="text-sm text-muted-foreground">
+              {toolName ? `${toolName} - ` : ''}Health & Safety Information
+            </p>
           </div>
-          <h2 className="text-xl font-bold text-gray-900">Medical Disclaimer</h2>
-        </div>
-        
-        <div className="space-y-4 text-gray-600 text-sm leading-relaxed">
-          <p>
-            <strong>{toolName}</strong> is designed for <strong>educational and informational purposes only</strong>.
-          </p>
-          
-          <p>
-            This tool does <strong>NOT</strong> provide medical advice, diagnosis, or treatment recommendations.
-          </p>
-          
-          <p>
-            Always consult with a qualified healthcare professional for any medical concerns or before making any decisions related to your health or pregnancy.
-          </p>
-          
-          <p className="text-xs text-gray-500">
-            By continuing, you acknowledge that you have read and understood this disclaimer.
-          </p>
-        </div>
-        
-        <div className="mt-6 flex gap-3">
-          <button
-            onClick={handleAccept}
-            className="flex-1 bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-4 rounded-xl transition-colors"
-          >
+
+          <div className="space-y-4 text-sm text-muted-foreground">
+            <p>
+              <strong className="text-foreground">Important:</strong> This tool is designed for educational and informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment.
+            </p>
+
+            <div className="bg-muted/50 rounded-lg p-4 space-y-2">
+              <p className="font-medium text-foreground">Always consult with your healthcare provider if you have concerns about your health or pregnancy.</p>
+              <ul className="list-disc list-inside space-y-1 text-xs">
+                <li>Never disregard professional medical advice based on app results</li>
+                <li>Seek immediate medical attention for any concerning symptoms</li>
+                <li>This tool does not replace regular prenatal care</li>
+                <li>Information provided is general and may not apply to your specific situation</li>
+              </ul>
+            </div>
+
+            <p className="text-xs">
+              By continuing, you acknowledge that you understand this tool is for informational purposes only and that you should consult healthcare professionals for medical decisions.
+            </p>
+          </div>
+
+          {toolName && (
+            <div className="bg-primary/5 rounded-lg p-3">
+              <p className="text-xs text-foreground">
+                Tool: <span className="font-semibold">{toolName}</span>
+              </p>
+            </div>
+          )}
+
+          <Button className="w-full" onClick={onAccept}>
             I Understand & Accept
-          </button>
-        </div>
-      </div>
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
-};
-
-export default MedicalDisclaimer;
+}
