@@ -107,6 +107,8 @@ export const toolsData: Tool[] = [
   // STAGE 6: MENTAL HEALTH & WELLBEING
   // ═══════════════════════════════════════════════════════════════
   { id: "affirmations", titleKey: "tools.affirmations.title", descriptionKey: "tools.affirmations.description", icon: Heart, categoryKey: "categories.mentalHealth", href: "/tools/affirmations", priority: 20 },
+  { id: "mood-tracker", titleKey: "tools.moodTracker.title", descriptionKey: "tools.moodTracker.description", icon: Smile, categoryKey: "categories.mentalHealth", href: "/tools/mood-tracker", priority: 21 },
+  { id: "weight-gain", titleKey: "tools.weightGain.title", descriptionKey: "tools.weightGain.description", icon: Scale, categoryKey: "categories.wellness", href: "/tools/weight-gain", priority: 22 },
   
   // ═══════════════════════════════════════════════════════════════
   // STAGE 7: RISK ASSESSMENT (Educational - Not Diagnostic)
@@ -119,6 +121,8 @@ export const toolsData: Tool[] = [
   // STAGE 8: BIRTH PREPARATION (Third Trimester)
   // ═══════════════════════════════════════════════════════════════
   { id: "contraction-timer", titleKey: "tools.contractionTimer.title", descriptionKey: "tools.contractionTimer.description", icon: Timer, categoryKey: "categories.labor", href: "/tools/contraction-timer", priority: 24 },
+  { id: "labor-breathing", titleKey: "tools.laborBreathing.title", descriptionKey: "tools.laborBreathing.description", icon: Wind, categoryKey: "categories.labor", href: "/tools/labor-breathing", priority: 25 },
+  { id: "birth-prep", titleKey: "tools.birthPrep.title", descriptionKey: "tools.birthPrep.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/birth-prep", priority: 26 },
   
   // ═══════════════════════════════════════════════════════════════
   // STAGE 9: POSTPARTUM & BABY CARE
