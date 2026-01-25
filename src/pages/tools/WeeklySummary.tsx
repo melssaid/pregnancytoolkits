@@ -77,17 +77,37 @@ export default function WeeklySummary() {
   const daysRemaining = (40 - parseInt(week)) * 7;
 
   return (
-    <Layout title={t("tools.weeklySummary.title")} showBack>
-      <div className="space-y-4">
-        {/* Header */}
+    <Layout showBack>
+      <div className="container py-6 space-y-5">
+        {/* Header - Consistent Smart Tool Style */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center space-y-2"
+          className="space-y-2"
         >
-          <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 px-4 py-2 rounded-full">
-            <Calendar className="w-5 h-5 text-purple-600" />
-            <span className="text-sm font-medium text-purple-700">Smart Weekly Tracking</span>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
+              <Calendar className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-foreground">{t("tools.weeklySummary.title")}</h1>
+              <p className="text-xs text-muted-foreground">
+                Smart weekly tracking for your pregnancy
+              </p>
+            </div>
+          </div>
+        </motion.div>
+        
+        {/* Week Selector & Progress */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="space-y-3"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 dark:bg-violet-900/30">
+            <Badge className={`${trimesterInfo.color} text-white text-xs`}>{trimesterInfo.label}</Badge>
+            <span className="text-xs text-muted-foreground">{daysRemaining} days to go</span>
           </div>
         </motion.div>
 
