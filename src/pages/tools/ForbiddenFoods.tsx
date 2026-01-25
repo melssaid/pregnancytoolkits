@@ -1,148 +1,159 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Layout } from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { AlertTriangle, Search, XCircle, AlertCircle, CheckCircle } from "lucide-react";
-import { motion } from "framer-motion";
-
-type SafetyLevel = "forbidden" | "caution" | "safe";
+import React, { useState } from 'react';
+import { ArrowLeft, Ban, CheckCircle, Search, AlertCircle, HelpCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 
 interface FoodItem {
-  nameKey: string;
-  level: SafetyLevel;
-  reasonKey: string;
+  id: string;
+  name: string;
+  category: 'fish' | 'dairy' | 'meat' | 'drinks' | 'other';
+  status: 'safe' | 'avoid' | 'limit';
+  reason: string;
 }
 
-const ForbiddenFoods = () => {
-  const { t } = useTranslation();
-  const [search, setSearch] = useState("");
+const foodDatabase: FoodItem[] = [
+  { id: '1', name: 'Sushi (Raw Fish)', category: 'fish', status: 'avoid', reason: 'Risk of parasites and bacteria like Listeria' },
+  { id: '2', name: 'Soft Cheese (Unpasteurized)', category: 'dairy', status: 'avoid', reason: 'Risk of Listeria contamination' },
+  { id: '3', name: 'Coffee', category: 'drinks', status: 'limit', reason: 'Limit caffeine to 200mg/day to reduce risk of low birth weight' },
+  { id: '4', name: 'Salmon (Cooked)', category: 'fish', status: 'safe', reason: 'Great source of Omega-3s. Ensure it is fully cooked.' },
+  { id: '5', name: 'Deli Meat', category: 'meat', status: 'avoid', reason: 'Listeria risk unless heated until steaming hot' },
+  { id: '6', name: 'Raw Eggs', category: 'other', status: 'avoid', reason: 'Risk of Salmonella' },
+  { id: '7', name: 'Tuna (Albacore)', category: 'fish', status: 'limit', reason: 'Higher mercury content. Limit to 6oz per week.' },
+  { id: '8', name: 'Alcohol', category: 'drinks', status: 'avoid', reason: 'No known safe amount. Can cause fetal alcohol spectrum disorders.' },
+  { id: '9', name: 'Hard Cheeses', category: 'dairy', status: 'safe', reason: 'Generally safe as they are pasteurized and have low moisture' },
+  { id: '10', name: 'Chicken', category: 'meat', status: 'safe', reason: 'Excellent protein source. Must be fully cooked.' },
+];
 
-  const foods: FoodItem[] = [
-    // Forbidden
-    { nameKey: "rawFish", level: "forbidden", reasonKey: "rawFishReason" },
-    { nameKey: "rawMeat", level: "forbidden", reasonKey: "rawMeatReason" },
-    { nameKey: "rawEggs", level: "forbidden", reasonKey: "rawEggsReason" },
-    { nameKey: "unpasteurizedMilk", level: "forbidden", reasonKey: "unpasteurizedReason" },
-    { nameKey: "softCheese", level: "forbidden", reasonKey: "softCheeseReason" },
-    { nameKey: "deli", level: "forbidden", reasonKey: "deliReason" },
-    { nameKey: "alcohol", level: "forbidden", reasonKey: "alcoholReason" },
-    { nameKey: "highMercuryFish", level: "forbidden", reasonKey: "mercuryReason" },
-    { nameKey: "rawSprouts", level: "forbidden", reasonKey: "sproutsReason" },
-    // Caution
-    { nameKey: "caffeine", level: "caution", reasonKey: "caffeineReason" },
-    { nameKey: "herbalTea", level: "caution", reasonKey: "herbalTeaReason" },
-    { nameKey: "liver", level: "caution", reasonKey: "liverReason" },
-    { nameKey: "tuna", level: "caution", reasonKey: "tunaReason" },
-    { nameKey: "artificialSweeteners", level: "caution", reasonKey: "sweetenersReason" },
-    // Safe alternatives
-    { nameKey: "cookedFish", level: "safe", reasonKey: "cookedFishReason" },
-    { nameKey: "pasteurizedDairy", level: "safe", reasonKey: "pasteurizedReason" },
-    { nameKey: "wellCookedMeat", level: "safe", reasonKey: "cookedMeatReason" },
-    { nameKey: "hardCheese", level: "safe", reasonKey: "hardCheeseReason" },
-  ];
+const ForbiddenFoods: React.FC = () => {
+  const navigate = useNavigate();
+  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState<'all' | 'safe' | 'avoid' | 'limit'>('all');
 
-  const filteredFoods = foods.filter((food) =>
-    t(`forbiddenFoodsPage.foods.${food.nameKey}`).toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredFoods = foodDatabase.filter(food => {
+    const matchesSearch = food.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesFilter = filter === 'all' || food.status === filter;
+    return matchesSearch && matchesFilter;
+  });
 
-  const getLevelIcon = (level: SafetyLevel) => {
-    switch (level) {
-      case "forbidden":
-        return <XCircle className="h-5 w-5 text-destructive" />;
-      case "caution":
-        return <AlertCircle className="h-5 w-5 text-yellow-500" />;
-      case "safe":
-        return <CheckCircle className="h-5 w-5 text-green-500" />;
+  if (!disclaimerAccepted) {
+    return <MedicalDisclaimer toolName="Foods to Avoid Guide" onAccept={() => setDisclaimerAccepted(true)} />;
+  }
+
+  const getStatusColor = (status: string) => {
+    switch(status) {
+      case 'safe': return 'bg-green-100 text-green-700 border-green-200';
+      case 'avoid': return 'bg-red-100 text-red-700 border-red-200';
+      case 'limit': return 'bg-amber-100 text-amber-700 border-amber-200';
+      default: return 'bg-gray-100 text-gray-700';
     }
   };
 
-  const getLevelBadge = (level: SafetyLevel) => {
-    switch (level) {
-      case "forbidden":
-        return <Badge variant="destructive">{t('forbiddenFoodsPage.forbidden')}</Badge>;
-      case "caution":
-        return <Badge className="bg-yellow-500">{t('forbiddenFoodsPage.caution')}</Badge>;
-      case "safe":
-        return <Badge className="bg-green-500">{t('forbiddenFoodsPage.safe')}</Badge>;
+  const getStatusIcon = (status: string) => {
+    switch(status) {
+      case 'safe': return <CheckCircle className="w-5 h-5" />;
+      case 'avoid': return <Ban className="w-5 h-5" />;
+      case 'limit': return <AlertCircle className="w-5 h-5" />;
+      default: return <HelpCircle className="w-5 h-5" />;
     }
-  };
-
-  const groupedFoods = {
-    forbidden: filteredFoods.filter((f) => f.level === "forbidden"),
-    caution: filteredFoods.filter((f) => f.level === "caution"),
-    safe: filteredFoods.filter((f) => f.level === "safe"),
   };
 
   return (
-    <Layout title={t('tools.forbiddenFoods.title')} showBack>
-      <div className="container max-w-2xl py-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="relative mb-6">
-            <Search className="absolute start-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              placeholder={t('forbiddenFoodsPage.searchPlaceholder')}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="ps-10"
+    <div className="min-h-screen bg-gray-50">
+      <div className="bg-white shadow-sm sticky top-0 z-40">
+        <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
+          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
+            <ArrowLeft className="w-6 h-6 text-gray-600" />
+          </button>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+              <Ban className="w-5 h-5 text-red-600" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-gray-900">Food Safety Guide</h1>
+              <p className="text-xs text-gray-500">What to eat & avoid</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
+        {/* Search & Filter */}
+        <div className="bg-white rounded-2xl p-4 shadow-sm space-y-4">
+          <div className="relative">
+            <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input 
+              type="text" 
+              placeholder="Search foods (e.g. sushi, cheese)..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition-all"
             />
           </div>
+          
+          <div className="flex gap-2 overflow-x-auto pb-1 hide-scrollbar">
+            {(['all', 'safe', 'limit', 'avoid'] as const).map(f => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize whitespace-nowrap transition-colors ${
+                  filter === f 
+                    ? 'bg-gray-900 text-white' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+        </div>
 
-          {Object.entries(groupedFoods).map(([level, items]) => (
-            items.length > 0 && (
-              <div key={level} className="mb-6">
-                <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                  {getLevelIcon(level as SafetyLevel)}
-                  {t(`forbiddenFoodsPage.${level}Title`)}
-                </h2>
-                <div className="space-y-2">
-                  {items.map((food, index) => (
-                    <motion.div
-                      key={food.nameKey}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <Card>
-                        <CardContent className="py-3">
-                          <div className="flex items-start justify-between gap-2">
-                            <div className="flex-1">
-                              <p className="font-medium">
-                                {t(`forbiddenFoodsPage.foods.${food.nameKey}`)}
-                              </p>
-                              <p className="text-sm text-muted-foreground">
-                                {t(`forbiddenFoodsPage.reasons.${food.reasonKey}`)}
-                              </p>
-                            </div>
-                            {getLevelBadge(food.level)}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  ))}
-                </div>
+        {/* List */}
+        <div className="space-y-3">
+          {filteredFoods.map(food => (
+            <div key={food.id} className="bg-white rounded-2xl p-4 shadow-sm flex items-start gap-4">
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${getStatusColor(food.status)}`}>
+                {getStatusIcon(food.status)}
               </div>
-            )
-          ))}
-
-          <Card className="mt-6 border-primary/20 bg-primary/5">
-            <CardContent className="pt-4">
-              <div className="flex gap-2">
-                <AlertTriangle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <p className="text-sm text-muted-foreground">
-                  {t('forbiddenFoodsPage.disclaimer')}
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="font-semibold text-gray-900">{food.name}</h3>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold ${getStatusColor(food.status)} border-0`}>
+                    {food.status}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {food.reason}
                 </p>
               </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+            </div>
+          ))}
+          
+          {filteredFoods.length === 0 && (
+            <div className="text-center py-10">
+              <p className="text-gray-500">No foods found matching "{searchTerm}"</p>
+              {searchTerm && (
+                <button className="mt-4 text-red-600 font-medium text-sm">
+                  Ask AI about "{searchTerm}"
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Legend/Info */}
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+          <h4 className="font-medium text-blue-900 mb-2 flex items-center gap-2">
+            <Info className="w-4 h-4" /> Quick Rules
+          </h4>
+          <ul className="space-y-2 text-sm text-blue-800">
+            <li className="flex items-start gap-2">• <strong>Avoid:</strong> Raw meat/fish, unpasteurized dairy, deli meats (cold).</li>
+            <li className="flex items-start gap-2">• <strong>Cook:</strong> Meats to 165°F (75°C).</li>
+            <li className="flex items-start gap-2">• <strong>Wash:</strong> All fruits and vegetables thoroughly.</li>
+          </ul>
+        </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
