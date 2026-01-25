@@ -35,13 +35,32 @@ export default function AdvancedMoodTracker() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [aiInsight, setAiInsight] = useState<string | null>(null);
 
+  // Safe localStorage read with fallback
   useEffect(() => {
-    const saved = localStorage.getItem('moodEntries');
-    if (saved) setMoodEntries(JSON.parse(saved));
+    try {
+      const saved = localStorage.getItem('moodEntries');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          setMoodEntries(parsed);
+        } else {
+          localStorage.removeItem('moodEntries');
+        }
+      }
+    } catch {
+      // If data is corrupted, clear it so the page does not crash
+      localStorage.removeItem('moodEntries');
+      setMoodEntries([]);
+    }
   }, []);
 
+  // Safe localStorage write
   useEffect(() => {
-    localStorage.setItem('moodEntries', JSON.stringify(moodEntries));
+    try {
+      localStorage.setItem('moodEntries', JSON.stringify(moodEntries));
+    } catch {
+      // Ignore storage quota or serialization errors
+    }
   }, [moodEntries]);
 
   const addEntry = () => {
