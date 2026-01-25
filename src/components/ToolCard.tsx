@@ -107,8 +107,8 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                 )}
               </motion.div>
               
-              {/* Smart Tool Badge or Premium Badge */}
-              {isSmartTool ? (
+              {/* Smart Tool Badge */}
+              {isSmartTool && (
                 <motion.div 
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -118,32 +118,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                   <Brain className="h-3.5 w-3.5" />
                   <span>Smart</span>
                 </motion.div>
-              ) : isPremium ? (
-                <motion.div 
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.03 + 0.2 }}
-                  className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ${
-                    isLocked
-                      ? "bg-muted text-muted-foreground"
-                      : isTrialActive
-                        ? "bg-gradient-to-r from-primary to-accent text-white"
-                        : "bg-primary/10 text-primary"
-                  }`}
-                >
-                  {isLocked ? (
-                    <>
-                      <Crown className="h-3 w-3" />
-                      <span>PRO</span>
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="h-3 w-3" />
-                      <span>{isTrialActive ? 'Trial' : 'PRO'}</span>
-                    </>
-                  )}
-                </motion.div>
-              ) : null}
+              )}
             </div>
             
             {/* Category */}
