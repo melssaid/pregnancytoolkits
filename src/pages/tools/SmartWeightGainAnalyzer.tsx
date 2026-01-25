@@ -1,0 +1,398 @@
+import React, { useState, useEffect } from 'react';
+import { ToolFrame } from '@/components/ToolFrame';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Scale, TrendingUp, AlertCircle, CheckCircle, Target } from 'lucide-react';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ReferenceLine,
+  Area,
+  ComposedChart,
+} from 'recharts';
+
+interface WeightEntry {
+  id: string;
+  date: string;
+  weight: number;
+  week: number;
+}
+
+interface WeightRange {
+  min: number;
+  max: number;
+  category: string;
+}
+
+const BMI_WEIGHT_GAIN: Record<string, WeightRange> = {
+  underweight: { min: 12.7, max: 18.1, category: 'Underweight (BMI < 18.5)' },
+  normal: { min: 11.3, max: 15.9, category: 'Normal (BMI 18.5-24.9)' },
+  overweight: { min: 6.8, max: 11.3, category: 'Overweight (BMI 25-29.9)' },
+  obese: { min: 5.0, max: 9.1, category: 'Obese (BMI ≥ 30)' },
+};
+
+export default function SmartWeightGainAnalyzer() {
+  const [prePregnancyWeight, setPrePregnancyWeight] = useState<string>('');
+  const [height, setHeight] = useState<string>('');
+  const [currentWeight, setCurrentWeight] = useState<string>('');
+  const [currentWeek, setCurrentWeek] = useState<string>('');
+  const [entries, setEntries] = useState<WeightEntry[]>([]);
+  const [bmiCategory, setBmiCategory] = useState<string>('normal');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('weightGainEntries');
+    if (saved) setEntries(JSON.parse(saved));
+    
+    const savedProfile = localStorage.getItem('weightGainProfile');
+    if (savedProfile) {
+      const profile = JSON.parse(savedProfile);
+      setPrePregnancyWeight(profile.prePregnancyWeight || '');
+      setHeight(profile.height || '');
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('weightGainEntries', JSON.stringify(entries));
+  }, [entries]);
+
+  useEffect(() => {
+    if (prePregnancyWeight && height) {
+      const weightKg = parseFloat(prePregnancyWeight);
+      const heightM = parseFloat(height) / 100;
+      const bmi = weightKg / (heightM * heightM);
+      
+      if (bmi < 18.5) setBmiCategory('underweight');
+      else if (bmi < 25) setBmiCategory('normal');
+      else if (bmi < 30) setBmiCategory('overweight');
+      else setBmiCategory('obese');
+      
+      localStorage.setItem('weightGainProfile', JSON.stringify({
+        prePregnancyWeight,
+        height,
+      }));
+    }
+  }, [prePregnancyWeight, height]);
+
+  const addEntry = () => {
+    if (!currentWeight || !currentWeek) return;
+    
+    const entry: WeightEntry = {
+      id: Date.now().toString(),
+      date: new Date().toISOString(),
+      weight: parseFloat(currentWeight),
+      week: parseInt(currentWeek),
+    };
+    
+    setEntries([...entries, entry].sort((a, b) => a.week - b.week));
+    setCurrentWeight('');
+  };
+
+  const getRecommendedRange = () => {
+    return BMI_WEIGHT_GAIN[bmiCategory];
+  };
+
+  const getTotalGain = () => {
+    if (entries.length === 0 || !prePregnancyWeight) return 0;
+    const latestWeight = entries[entries.length - 1].weight;
+    return latestWeight - parseFloat(prePregnancyWeight);
+  };
+
+  const getExpectedGainForWeek = (week: number) => {
+    const range = getRecommendedRange();
+    // First trimester: ~0.5-2kg total
+    // Second & Third trimester: ~0.4-0.5kg per week
+    if (week <= 13) {
+      return {
+        min: (range.min / 40) * week * 0.5,
+        max: (range.max / 40) * week * 0.8,
+      };
+    }
+    const firstTrimesterMin = range.min * 0.1;
+    const firstTrimesterMax = range.max * 0.15;
+    const weeklyRateMin = (range.min - firstTrimesterMin) / 27;
+    const weeklyRateMax = (range.max - firstTrimesterMax) / 27;
+    
+    return {
+      min: firstTrimesterMin + weeklyRateMin * (week - 13),
+      max: firstTrimesterMax + weeklyRateMax * (week - 13),
+    };
+  };
+
+  const getChartData = () => {
+    const data = [];
+    for (let week = 1; week <= 40; week++) {
+      const expected = getExpectedGainForWeek(week);
+      const entry = entries.find(e => e.week === week);
+      data.push({
+        week,
+        expectedMin: expected.min,
+        expectedMax: expected.max,
+        actual: entry ? entry.weight - parseFloat(prePregnancyWeight || '0') : null,
+      });
+    }
+    return data;
+  };
+
+  const getStatus = () => {
+    if (entries.length === 0 || !prePregnancyWeight) return null;
+    
+    const latestEntry = entries[entries.length - 1];
+    const totalGain = getTotalGain();
+    const expected = getExpectedGainForWeek(latestEntry.week);
+    
+    if (totalGain < expected.min) {
+      return {
+        status: 'below',
+        message: 'Your weight gain is below the recommended range.',
+        recommendation: 'Consider consulting your healthcare provider about nutrition.',
+        color: 'text-yellow-600',
+        bgColor: 'bg-yellow-50 border-yellow-200',
+      };
+    } else if (totalGain > expected.max) {
+      return {
+        status: 'above',
+        message: 'Your weight gain is above the recommended range.',
+        recommendation: 'Discuss with your doctor about healthy eating habits.',
+        color: 'text-orange-600',
+        bgColor: 'bg-orange-50 border-orange-200',
+      };
+    }
+    return {
+      status: 'normal',
+      message: 'Your weight gain is within the healthy range!',
+      recommendation: 'Keep up the good work with balanced nutrition.',
+      color: 'text-green-600',
+      bgColor: 'bg-green-50 border-green-200',
+    };
+  };
+
+  const range = getRecommendedRange();
+  const status = getStatus();
+
+  return (
+    <ToolFrame
+      title="Smart Weight Gain Analyzer"
+      subtitle="Track and analyze your pregnancy weight gain with personalized recommendations"
+      icon={Scale}
+      mood="nurturing"
+      toolId="smart-weight-gain"
+    >
+      <div className="space-y-6">
+        {/* Profile Setup */}
+        <Card>
+          <CardContent className="p-6 space-y-4">
+            <h3 className="text-lg font-semibold flex items-center gap-2">
+              <Target className="w-5 h-5 text-primary" />
+              Your Profile
+            </h3>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="height">Height (cm)</Label>
+                <Input
+                  id="height"
+                  type="number"
+                  placeholder="165"
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                />
+              </div>
+              <div>
+                <Label htmlFor="preWeight">Pre-Pregnancy Weight (kg)</Label>
+                <Input
+                  id="preWeight"
+                  type="number"
+                  placeholder="60"
+                  value={prePregnancyWeight}
+                  onChange={(e) => setPrePregnancyWeight(e.target.value)}
+                />
+              </div>
+            </div>
+            
+            {prePregnancyWeight && height && (
+              <div className="p-3 bg-muted/50 rounded-lg">
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground">BMI Category:</span> {range.category}
+                </p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  <span className="font-medium text-foreground">Recommended Total Gain:</span> {range.min} - {range.max} kg
+                </p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Add New Entry */}
+        <Card>
+          <CardContent className="p-6 space-y-4">
+            <h3 className="text-lg font-semibold">Add Weight Entry</h3>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="week">Pregnancy Week</Label>
+                <Input
+                  id="week"
+                  type="number"
+                  min="1"
+                  max="42"
+                  placeholder="12"
+                  value={currentWeek}
+                  onChange={(e) => setCurrentWeek(e.target.value)}
+                />
+              </div>
+              <div>
+                <Label htmlFor="weight">Current Weight (kg)</Label>
+                <Input
+                  id="weight"
+                  type="number"
+                  step="0.1"
+                  placeholder="62.5"
+                  value={currentWeight}
+                  onChange={(e) => setCurrentWeight(e.target.value)}
+                />
+              </div>
+            </div>
+            
+            <Button onClick={addEntry} className="w-full" disabled={!currentWeight || !currentWeek}>
+              Add Entry
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Status Card */}
+        {status && (
+          <Card>
+            <CardContent className={`p-6 ${status.bgColor} border rounded-lg`}>
+              <div className="flex items-start gap-3">
+                {status.status === 'normal' ? (
+                  <CheckCircle className={`w-6 h-6 ${status.color}`} />
+                ) : (
+                  <AlertCircle className={`w-6 h-6 ${status.color}`} />
+                )}
+                <div>
+                  <p className={`font-semibold ${status.color}`}>{status.message}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{status.recommendation}</p>
+                  <p className="text-sm font-medium mt-2">
+                    Total Weight Gain: {getTotalGain().toFixed(1)} kg
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Weight Trend Chart */}
+        {entries.length > 0 && prePregnancyWeight && (
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
+                <TrendingUp className="w-5 h-5 text-primary" />
+                Weight Gain Trend
+              </h3>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <ComposedChart data={getChartData()}>
+                    <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
+                    <XAxis 
+                      dataKey="week" 
+                      tick={{ fontSize: 11 }}
+                      label={{ value: 'Week', position: 'bottom', fontSize: 12 }}
+                    />
+                    <YAxis 
+                      tick={{ fontSize: 11 }}
+                      label={{ value: 'Weight Gain (kg)', angle: -90, position: 'insideLeft', fontSize: 12 }}
+                    />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'hsl(var(--background))', 
+                        border: '1px solid hsl(var(--border))',
+                        borderRadius: '8px'
+                      }}
+                      formatter={(value: number | null) => value !== null ? `${value.toFixed(1)} kg` : 'N/A'}
+                    />
+                    <Area 
+                      type="monotone" 
+                      dataKey="expectedMax" 
+                      stroke="none"
+                      fill="hsl(var(--primary) / 0.1)"
+                    />
+                    <Area 
+                      type="monotone" 
+                      dataKey="expectedMin" 
+                      stroke="none"
+                      fill="hsl(var(--background))"
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="expectedMin" 
+                      stroke="hsl(var(--primary) / 0.5)" 
+                      strokeDasharray="5 5"
+                      strokeWidth={1}
+                      dot={false}
+                      name="Min Recommended"
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="expectedMax" 
+                      stroke="hsl(var(--primary) / 0.5)" 
+                      strokeDasharray="5 5"
+                      strokeWidth={1}
+                      dot={false}
+                      name="Max Recommended"
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="actual" 
+                      stroke="hsl(var(--primary))" 
+                      strokeWidth={2}
+                      dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 4 }}
+                      connectNulls
+                      name="Your Weight"
+                    />
+                  </ComposedChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="text-xs text-muted-foreground text-center mt-2">
+                Shaded area shows the recommended weight gain range
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Recent Entries */}
+        {entries.length > 0 && (
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold mb-4">Recent Entries</h3>
+              <div className="space-y-2">
+                {entries.slice(-5).reverse().map((entry) => (
+                  <div key={entry.id} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                    <div>
+                      <span className="font-medium">Week {entry.week}</span>
+                      <span className="text-sm text-muted-foreground ml-2">
+                        {new Date(entry.date).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-semibold">{entry.weight} kg</span>
+                      <span className="text-sm text-muted-foreground ml-2">
+                        (+{(entry.weight - parseFloat(prePregnancyWeight || '0')).toFixed(1)} kg)
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </ToolFrame>
+  );
+}

@@ -43,6 +43,9 @@ import SmartKickCounter from "@/pages/tools/SmartKickCounter";
 import PelvicFloorCoach from "@/pages/tools/PelvicFloorCoach";
 import SleepPatternAnalyzer from "@/pages/tools/SleepPatternAnalyzer";
 import AdvancedMoodTracker from "@/pages/tools/AdvancedMoodTracker";
+import SmartWeightGainAnalyzer from "@/pages/tools/SmartWeightGainAnalyzer";
+import LaborBreathingCoach from "@/pages/tools/LaborBreathingCoach";
+import BirthPrepGuide from "@/pages/tools/BirthPrepGuide";
 
 export function AnimatedRoutes() {
   const location = useLocation();
@@ -92,6 +95,13 @@ export function AnimatedRoutes() {
         <Route path="/tools/sleep-analyzer" element={<PageTransition><SleepPatternAnalyzer /></PageTransition>} />
         <Route path="/tools/mood-tracker" element={<PageTransition><AdvancedMoodTracker /></PageTransition>} />
         <Route path="/tools/advanced-mood-tracker" element={<PageTransition><AdvancedMoodTracker /></PageTransition>} />
+        <Route path="/tools/weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
+        <Route path="/tools/smart-weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
+        <Route path="/tools/labor-breathing" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
+        <Route path="/tools/breathing-exercises" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
+        <Route path="/tools/birth-prep" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
+        <Route path="/tools/birth-plan" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
+        <Route path="/tools/hospital-bag" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
         
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>

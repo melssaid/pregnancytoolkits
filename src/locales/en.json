@@ -255,6 +255,18 @@
     "doctorQuestions": {
       "title": "Doctor Questions",
       "description": "Questions to ask your doctor."
+    },
+    "moodTracker": {
+      "title": "Advanced Mood Tracker",
+      "description": "Track your mental wellbeing with AI insights."
+    },
+    "laborBreathing": {
+      "title": "Labor Breathing Coach",
+      "description": "Guided breathing for every labor stage."
+    },
+    "birthPrep": {
+      "title": "Birth Preparation Guide",
+      "description": "Complete checklist for labor and delivery."
     }
   },
   "common": {
