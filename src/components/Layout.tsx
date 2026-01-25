@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, Home, Shield, Award } from "lucide-react";
+import { Heart, Home, Shield, Award, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
+import { SearchDialog } from "./SearchDialog";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,6 +16,7 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
   const { t } = useTranslation();
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -54,6 +57,18 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
           </div>
 
           <div className="flex items-center gap-2">
+            {/* Smart Search Button */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-2 rounded-xl bg-muted/60 hover:bg-muted px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-200 border border-transparent hover:border-border"
+            >
+              <Search className="h-4 w-4" />
+              <span className="hidden sm:inline">Search tools...</span>
+              <kbd className="hidden md:inline-flex items-center gap-0.5 rounded bg-background/80 px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground border border-border/50">
+                ⌘K
+              </kbd>
+            </button>
+
             {!isHome && (
               <Link 
                 to="/"
@@ -66,6 +81,9 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
           </div>
         </div>
       </header>
+
+      {/* Search Dialog */}
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
 
       {/* Decorative Side Borders */}
       <div className="hidden lg:block fixed left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/30 via-primary/50 to-primary/30 z-40" />

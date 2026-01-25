@@ -1,11 +1,10 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Sparkles, Crown, CheckCircle, Shield, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Package, Clock, Users, MessageCircle, LayoutGrid, List } from "lucide-react";
+import { Sparkles, Crown, CheckCircle, Shield, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Package, Clock, Users, MessageCircle, LayoutGrid, List, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
 import { getSortedTools, categoryKeys, toolsData } from "@/lib/tools-data";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useSubscription from "@/hooks/useSubscription";
 
@@ -71,12 +70,12 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero Section - Modernized */}
+      {/* Hero Section - Compact & Clean */}
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background">
         {/* Subtle Background */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-primary/8 to-transparent rounded-full blur-3xl pointer-events-none" />
         
-        <div className="container relative py-12 md:py-20">
+        <div className="container relative py-10 md:py-14">
           <div className="mx-auto max-w-2xl text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -88,40 +87,23 @@ const Index = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="mb-5 md:mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs md:text-sm font-medium text-primary"
+                className="mb-4 md:mb-5 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs md:text-sm font-medium text-primary"
               >
                 <Sparkles className="h-3.5 w-3.5" />
                 <span>{t('app.tagline')}</span>
               </motion.div>
               
               {/* Title - Clean & Readable */}
-              <h1 className="mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
+              <h1 className="mb-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
                 {t('app.title')}{" "}
                 <span className="text-primary">{t('app.titleHighlight')}</span>{" "}
                 {t('app.titleEnd')}
               </h1>
               
               {/* Description */}
-              <p className="mb-8 text-sm text-muted-foreground sm:text-base md:text-lg max-w-md mx-auto">
+              <p className="text-sm text-muted-foreground sm:text-base md:text-lg max-w-md mx-auto">
                 {t('app.description')}
               </p>
-            </motion.div>
-
-            {/* Search - Simple & Effective */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="relative mx-auto max-w-md"
-            >
-              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder={t('app.searchPlaceholder')}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="h-12 pl-11 text-sm bg-card border-border rounded-xl shadow-sm focus:border-primary transition-colors"
-              />
             </motion.div>
           </div>
         </div>
