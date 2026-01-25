@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ToolFrame } from '@/components/ToolFrame';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Camera, Plus, Trash2, Calendar, Download, Image } from 'lucide-react';
+import { Camera, Plus, Trash2, Calendar, Image } from 'lucide-react';
 
 interface PhotoEntry {
   id: string;
@@ -14,24 +14,34 @@ interface PhotoEntry {
 }
 
 export default function PregnancyPhotoTimeline() {
+  const navigate = useNavigate();
   const [photos, setPhotos] = useState<PhotoEntry[]>([]);
   const [currentWeek, setCurrentWeek] = useState(20);
   const [caption, setCaption] = useState('');
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem('pregnancyPhotoTimeline');
-    if (saved) {
-      try {
-        setPhotos(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to load photos');
+    try {
+      const saved = localStorage.getItem('pregnancyPhotoTimeline');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          setPhotos(parsed);
+        }
       }
+    } catch {
+      // If storage is corrupted, clear it
+      localStorage.removeItem('pregnancyPhotoTimeline');
+      setPhotos([]);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('pregnancyPhotoTimeline', JSON.stringify(photos));
+    try {
+      localStorage.setItem('pregnancyPhotoTimeline', JSON.stringify(photos));
+    } catch {
+      // Ignore storage errors
+    }
   }, [photos]);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,14 +103,25 @@ export default function PregnancyPhotoTimeline() {
   };
 
   return (
-    <ToolFrame
-      title="Pregnancy Photo Timeline"
-      subtitle="Document your bump journey with beautiful photo memories"
-      icon={Camera}
-      mood="joyful"
-      toolId="pregnancy-photo-timeline"
-    >
-      <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+      <div className="bg-white shadow-sm sticky top-0 z-40">
+        <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
+          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
+            <Camera className="w-6 h-6 text-gray-600" />
+          </button>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+              <Image className="w-5 h-5 text-purple-600" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-gray-900">Pregnancy Photo Timeline</h1>
+              <p className="text-xs text-gray-500">Document your bump journey week by week</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
         {/* Week Selector */}
         <Card>
           <CardContent className="p-4">
@@ -236,6 +257,6 @@ export default function PregnancyPhotoTimeline() {
           </CardContent>
         </Card>
       </div>
-    </ToolFrame>
+    </div>
   );
 }
