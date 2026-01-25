@@ -19,7 +19,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const tools = getSortedTools();
 
   const filteredTools = useMemo(() => {
-    if (!search.trim()) return tools.slice(0, 6);
+    if (!search.trim()) return tools;
     
     return tools.filter((tool) => {
       const title = t(tool.titleKey).toLowerCase();
