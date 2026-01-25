@@ -1,6 +1,5 @@
 # pregnancy toolkits- Women's Health Tools App
 
-![ALL TOOLKITY](https://img.shields.io/badge/WellMama-Women's%20Health-0891B2?style=for-the-badge)
 
 تطبيق شامل لأدوات صحة المرأة يوفر 40 أداة احترافية لمتابعة صحة المرأة من مرحلة التخطيط للحمل وحتى ما بعد الولادة.
 
