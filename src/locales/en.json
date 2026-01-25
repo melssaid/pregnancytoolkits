@@ -267,6 +267,10 @@
     "birthPrep": {
       "title": "Birth Preparation Guide",
       "description": "Complete checklist for labor and delivery."
+    },
+    "meditationYoga": {
+      "title": "Meditation & Yoga",
+      "description": "Guided relaxation for each trimester."
     }
   },
   "common": {
