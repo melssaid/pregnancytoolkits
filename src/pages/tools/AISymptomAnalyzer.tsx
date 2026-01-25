@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Brain, AlertTriangle, CheckCircle, Info } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, Brain, AlertTriangle, CheckCircle, Info, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 
@@ -29,11 +29,14 @@ const AISymptomAnalyzer: React.FC = () => {
   const [selectedSymptoms, setSelectedSymptoms] = useState<Symptom[]>([]);
   const [currentWeek, setCurrentWeek] = useState(20);
   const [analyzed, setAnalyzed] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState<Record<string, string>>({});
 
   const toggleSymptom = (symptomId: string, symptomName: string) => {
     const exists = selectedSymptoms.find(s => s.id === symptomId);
     if (exists) {
       setSelectedSymptoms(selectedSymptoms.filter(s => s.id !== symptomId));
+      setAnalyzed(false); // Reset analysis when selection changes
     } else {
       setSelectedSymptoms([...selectedSymptoms, {
         id: symptomId,
@@ -41,11 +44,52 @@ const AISymptomAnalyzer: React.FC = () => {
         severity: 'mild',
         frequency: 'occasionally'
       }]);
+      setAnalyzed(false);
     }
   };
 
-  const analyzeSymptoms = () => {
-    setAnalyzed(true);
+  const analyzeSymptoms = async () => {
+    if (selectedSymptoms.length === 0) return;
+    
+    setIsAnalyzing(true);
+    setAnalyzed(false);
+
+    // Simulate AI processing delay
+    setTimeout(() => {
+      const results: Record<string, string> = {};
+      
+      selectedSymptoms.forEach(symptom => {
+        // Simple rule-based logic to simulate AI analysis
+        // In a real app, this would call an AI backend
+        let insight = "";
+        
+        switch(symptom.id) {
+          case 'nausea':
+            insight = currentWeek < 14 
+              ? "Very common in the first trimester. Try small, frequent meals and ginger." 
+              : "Less common in week " + currentWeek + ". If severe or accompanied by other symptoms, consult your doctor.";
+            break;
+          case 'fatigue':
+            insight = (currentWeek < 14 || currentWeek > 28)
+              ? "Normal for this stage. Your body is working hard! Prioritize rest."
+              : "You might be in the 'honeymoon phase', but listen to your body if you need rest.";
+            break;
+          case 'backpain':
+             insight = currentWeek > 20
+              ? "Common as baby grows and center of gravity shifts. Gentle stretching and good posture help."
+              : "Monitor closely. If accompanied by cramping, contact your provider.";
+            break;
+          default:
+            insight = `${symptom.name} is a known pregnancy symptom. Monitor intensity and frequency.`;
+        }
+        
+        results[symptom.id] = insight;
+      });
+
+      setAnalysisResult(results);
+      setIsAnalyzing(false);
+      setAnalyzed(true);
+    }, 1500);
   };
 
   if (!disclaimerAccepted) {
@@ -89,7 +133,10 @@ const AISymptomAnalyzer: React.FC = () => {
             min="1"
             max="42"
             value={currentWeek}
-            onChange={(e) => setCurrentWeek(Number(e.target.value))}
+            onChange={(e) => {
+              setCurrentWeek(Number(e.target.value));
+              setAnalyzed(false); // Reset analysis on week change
+            }}
             className="w-full h-2 bg-pink-100 rounded-lg appearance-none cursor-pointer"
           />
           <div className="text-center mt-2">
@@ -124,29 +171,41 @@ const AISymptomAnalyzer: React.FC = () => {
         {selectedSymptoms.length > 0 && (
           <button
             onClick={analyzeSymptoms}
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all"
+            disabled={isAnalyzing}
+            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            Analyze {selectedSymptoms.length} Symptom{selectedSymptoms.length > 1 ? 's' : ''}
+            {isAnalyzing ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Analyzing...
+              </>
+            ) : (
+              `Analyze ${selectedSymptoms.length} Symptom${selectedSymptoms.length > 1 ? 's' : ''}`
+            )}
           </button>
         )}
 
         {/* Analysis Results */}
         {analyzed && (
-          <div className="bg-white rounded-2xl p-4 shadow-sm space-y-4">
+          <div className="bg-white rounded-2xl p-4 shadow-sm space-y-4 animate-fade-in">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-green-500" />
-              <h2 className="text-lg font-semibold text-gray-900">Educational Insights</h2>
+              <h2 className="text-lg font-semibold text-gray-900">Analysis Results (Week {currentWeek})</h2>
             </div>
             
             {selectedSymptoms.map((symptom) => (
-              <div key={symptom.id} className="bg-gray-50 rounded-xl p-4">
-                <h3 className="font-medium text-gray-900 mb-2">{symptom.name}</h3>
-                <p className="text-sm text-gray-600">
-                  {symptom.name} during week {currentWeek} is commonly reported by pregnant women. 
-                  This is typically related to hormonal changes and physical adaptations during pregnancy.
+              <div key={symptom.id} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                <h3 className="font-medium text-gray-900 mb-2 flex items-center justify-between">
+                  {symptom.name}
+                  <span className="text-xs bg-gray-200 px-2 py-1 rounded-full text-gray-600 uppercase tracking-wide">
+                    {symptomDatabase.find(d => d.id === symptom.id)?.category || 'general'}
+                  </span>
+                </h3>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {analysisResult[symptom.id] || "Symptom noted. Discuss persistence with your doctor."}
                 </p>
-                <div className="mt-3 flex items-center gap-2 text-xs text-blue-600">
-                  <Info className="w-4 h-4" />
+                <div className="mt-3 flex items-center gap-2 text-xs text-blue-600 bg-blue-50 p-2 rounded-lg">
+                  <Info className="w-4 h-4 flex-shrink-0" />
                   <span>Discuss with your healthcare provider for personalized advice</span>
                 </div>
               </div>
