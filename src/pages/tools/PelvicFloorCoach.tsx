@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function PelvicFloorCoach() {
+const PelvicFloorCoach = () => {
   const [phase, setPhase] = useState<"squeeze" | "hold" | "relax">("squeeze");
   const [rep, setRep] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
@@ -75,4 +75,6 @@ export function PelvicFloorCoach() {
       </div>
     </div>
   );
-}
+};
+
+export default PelvicFloorCoach;
