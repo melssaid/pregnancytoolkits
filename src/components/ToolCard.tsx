@@ -41,7 +41,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
       <Link to={href} className="block h-full">
         <div className={`group relative h-full overflow-hidden rounded-2xl bg-card border transition-all duration-300 ${
           isSmartTool
-            ? "border-violet-300/50 bg-gradient-to-br from-violet-50/80 via-card to-purple-50/50 shadow-md hover:shadow-2xl hover:shadow-violet-500/20 hover:border-violet-400/60"
+            ? "border-primary/30 bg-gradient-to-br from-primary/5 via-card to-accent/5 shadow-md hover:shadow-xl hover:shadow-primary/15 hover:border-primary/50"
             : isLocked 
               ? "border-border/50 opacity-75 hover:opacity-100" 
               : isPremium
@@ -49,12 +49,12 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                 : "border-border/50 hover:border-primary/30 shadow-sm hover:shadow-lg"
         }`}>
           
-          {/* Smart Tools Special Background */}
+          {/* Smart Tools Special Background - Rose/Gold Theme */}
           {isSmartTool && (
             <>
-              {/* Animated gradient orbs */}
-              <div className="absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br from-violet-400/30 to-purple-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
-              <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-tr from-indigo-400/25 to-violet-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500" />
+              {/* Animated gradient orbs matching primary theme */}
+              <div className="absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br from-primary/20 to-accent/15 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+              <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-tr from-primary/15 to-pink-400/10 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500" />
               {/* Shimmer effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
             </>
@@ -63,14 +63,14 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
           {/* Standard animated gradient background */}
           <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
             isSmartTool 
-              ? "bg-gradient-to-br from-violet-100/50 via-transparent to-purple-100/50" 
+              ? "bg-gradient-to-br from-primary/10 via-transparent to-accent/10" 
               : "bg-gradient-to-br from-transparent via-transparent to-primary/5"
           }`} />
           
           {/* Glow effect on hover */}
           <div className={`absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl ${
             isSmartTool
-              ? "bg-gradient-to-r from-violet-400/20 via-purple-400/15 to-indigo-400/20"
+              ? "bg-gradient-to-r from-primary/15 via-accent/10 to-primary/15"
               : "bg-gradient-to-r from-primary/0 via-primary/10 to-accent/0"
           }`} />
           
@@ -81,7 +81,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
               <motion.div 
                 className={`relative flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 ${
                   isSmartTool
-                    ? "bg-gradient-to-br from-violet-500 via-purple-500 to-indigo-600 text-white shadow-lg shadow-violet-500/30 group-hover:shadow-xl group-hover:shadow-violet-500/40"
+                    ? "bg-gradient-to-br from-primary via-pink-500 to-accent text-white shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/35"
                     : isPremium 
                       ? "bg-gradient-to-br from-primary to-accent text-white shadow-lg group-hover:shadow-xl group-hover:shadow-primary/25" 
                       : "bg-secondary text-primary group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-accent group-hover:text-white"
@@ -93,9 +93,9 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                 {/* Special pulse for Smart Tools */}
                 {isSmartTool && (
                   <>
-                    <span className="absolute inset-0 rounded-xl animate-ping bg-violet-400/30 opacity-75" style={{ animationDuration: '2s' }} />
+                    <span className="absolute inset-0 rounded-xl animate-ping bg-primary/25 opacity-75" style={{ animationDuration: '2s' }} />
                     <motion.span 
-                      className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full shadow-lg"
+                      className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full shadow-lg ring-2 ring-white"
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     />
@@ -113,7 +113,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.03 + 0.2 }}
-                  className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/25"
+                  className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20"
                 >
                   <Brain className="h-3.5 w-3.5" />
                   <span>Smart</span>
@@ -148,16 +148,16 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
             
             {/* Category */}
             <span className={`inline-flex items-center gap-1.5 mb-2 text-[10px] font-bold uppercase tracking-widest ${
-              isSmartTool ? "text-violet-600" : "text-primary/60"
+              isSmartTool ? "text-primary" : "text-primary/60"
             }`}>
-              <span className={`h-1.5 w-1.5 rounded-full ${isSmartTool ? "bg-violet-500" : "bg-primary/40"}`} />
+              <span className={`h-1.5 w-1.5 rounded-full ${isSmartTool ? "bg-primary" : "bg-primary/40"}`} />
               {t(categoryKey)}
             </span>
             
             {/* Title */}
             <h3 className={`mb-2 text-base font-bold transition-colors duration-300 line-clamp-2 ${
               isSmartTool 
-                ? "text-violet-900 group-hover:text-violet-700" 
+                ? "text-foreground group-hover:text-primary" 
                 : "text-card-foreground group-hover:text-primary"
             }`}>
               {t(titleKey)}
@@ -165,18 +165,18 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
             
             {/* Description */}
             <p className={`text-xs leading-relaxed flex-grow line-clamp-2 ${
-              isSmartTool ? "text-violet-700/70" : "text-muted-foreground"
+              isSmartTool ? "text-muted-foreground" : "text-muted-foreground"
             }`}>
               {t(descriptionKey)}
             </p>
             
             {/* CTA */}
             <div className={`mt-4 pt-4 border-t flex items-center justify-between ${
-              isSmartTool ? "border-violet-200/50" : "border-border/50"
+              isSmartTool ? "border-primary/20" : "border-border/50"
             }`}>
               <span className={`text-xs font-semibold ${
                 isSmartTool 
-                  ? "text-violet-600" 
+                  ? "text-primary" 
                   : isLocked 
                     ? "text-muted-foreground" 
                     : "text-primary"
@@ -190,7 +190,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
               >
                 <ArrowRight className={`h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 ${
                   isSmartTool 
-                    ? "text-violet-500" 
+                    ? "text-primary" 
                     : isLocked 
                       ? "text-muted-foreground" 
                       : "text-primary"
