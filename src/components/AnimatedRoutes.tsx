@@ -9,7 +9,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import Contact from "@/pages/Contact";
 
-// Pregnancy Tools - Core (Retained)
+// Pregnancy Tools - Core
 import OvulationCalculator from "@/pages/tools/OvulationCalculator";
 import DueDateCalculator from "@/pages/tools/DueDateCalculator";
 import CycleTracker from "@/pages/tools/CycleTracker";
@@ -21,17 +21,19 @@ import WaterIntake from "@/pages/tools/WaterIntake";
 import ForbiddenFoods from "@/pages/tools/ForbiddenFoods";
 import BabySleepTracker from "@/pages/tools/BabySleepTracker";
 import DiaperTracker from "@/pages/tools/DiaperTracker";
+import BabyGrowth from "@/pages/tools/BabyGrowth";
 import ConceptionCalculator from "@/pages/tools/ConceptionCalculator";
 import Affirmations from "@/pages/tools/Affirmations";
 import BumpPhotos from "@/pages/tools/BumpPhotos";
 import PregnancyMilestones from "@/pages/tools/PregnancyMilestones";
 import VitaminTracker from "@/pages/tools/VitaminTracker";
+import KegelExercises from "@/pages/tools/KegelExercises";
 import DoctorQuestions from "@/pages/tools/DoctorQuestions";
 import PregnancyAssistant from "@/pages/tools/PregnancyAssistant";
 import AIMealSuggestion from "@/pages/tools/AIMealSuggestion";
 import WeeklySummary from "@/pages/tools/WeeklySummary";
 
-// Smart/AI Tools (Replacements)
+// Smart/AI Tools (replacements for old tools)
 import AISymptomAnalyzer from "@/pages/tools/AISymptomAnalyzer";
 import FetalDevelopment3D from "@/pages/tools/FetalDevelopment3D";
 import SmartNutritionOptimizer from "@/pages/tools/SmartNutritionOptimizer";
@@ -45,8 +47,6 @@ import SmartWeightGainAnalyzer from "@/pages/tools/SmartWeightGainAnalyzer";
 import LaborBreathingCoach from "@/pages/tools/LaborBreathingCoach";
 import BirthPrepGuide from "@/pages/tools/BirthPrepGuide";
 import PregnancyMeditationYoga from "@/pages/tools/PregnancyMeditationYoga";
-import HospitalBagChecklist from "@/pages/tools/HospitalBagChecklist";
-import MedicationSafetyChecker from "@/pages/tools/MedicationSafetyChecker";
 
 export function AnimatedRoutes() {
   const location = useLocation();
@@ -71,19 +71,20 @@ export function AnimatedRoutes() {
         <Route path="/tools/forbidden-foods" element={<PageTransition><ForbiddenFoods /></PageTransition>} />
         <Route path="/tools/baby-sleep-tracker" element={<PageTransition><BabySleepTracker /></PageTransition>} />
         <Route path="/tools/diaper-tracker" element={<PageTransition><DiaperTracker /></PageTransition>} />
+        <Route path="/tools/baby-growth" element={<PageTransition><BabyGrowth /></PageTransition>} />
         <Route path="/tools/conception-calculator" element={<PageTransition><ConceptionCalculator /></PageTransition>} />
         <Route path="/tools/affirmations" element={<PageTransition><Affirmations /></PageTransition>} />
         <Route path="/tools/bump-photos" element={<PageTransition><BumpPhotos /></PageTransition>} />
         <Route path="/tools/pregnancy-milestones" element={<PageTransition><PregnancyMilestones /></PageTransition>} />
         <Route path="/tools/vitamin-tracker" element={<PageTransition><VitaminTracker /></PageTransition>} />
+        <Route path="/tools/kegel-exercises" element={<PageTransition><KegelExercises /></PageTransition>} />
         <Route path="/tools/doctor-questions" element={<PageTransition><DoctorQuestions /></PageTransition>} />
         <Route path="/tools/pregnancy-assistant" element={<PageTransition><PregnancyAssistant /></PageTransition>} />
         <Route path="/tools/ai-meal-suggestion" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
         <Route path="/tools/weekly-summary" element={<PageTransition><WeeklySummary /></PageTransition>} />
         
-        {/* Smart/AI Tools & Redirections */}
+        {/* Smart/AI Tools (replacements) */}
         <Route path="/tools/symptom-analyzer" element={<PageTransition><AISymptomAnalyzer /></PageTransition>} />
-        <Route path="/tools/baby-growth" element={<PageTransition><FetalDevelopment3D /></PageTransition>} />
         <Route path="/tools/fetal-growth" element={<PageTransition><FetalDevelopment3D /></PageTransition>} />
         <Route path="/tools/nutrition-guide" element={<PageTransition><SmartNutritionOptimizer /></PageTransition>} />
         <Route path="/tools/meal-planner" element={<PageTransition><SmartNutritionOptimizer /></PageTransition>} />
@@ -91,7 +92,6 @@ export function AnimatedRoutes() {
         <Route path="/tools/yoga-guide" element={<PageTransition><AIFitnessCoach /></PageTransition>} />
         <Route path="/tools/contraction-timer" element={<PageTransition><ContractionPatternAnalyzer /></PageTransition>} />
         <Route path="/tools/kick-counter" element={<PageTransition><SmartKickCounter /></PageTransition>} />
-        <Route path="/tools/kegel-exercises" element={<PageTransition><PelvicFloorCoach /></PageTransition>} />
         <Route path="/tools/kegel-coach" element={<PageTransition><PelvicFloorCoach /></PageTransition>} />
         <Route path="/tools/sleep-analyzer" element={<PageTransition><SleepPatternAnalyzer /></PageTransition>} />
         <Route path="/tools/mood-tracker" element={<PageTransition><AdvancedMoodTracker /></PageTransition>} />
@@ -102,11 +102,9 @@ export function AnimatedRoutes() {
         <Route path="/tools/breathing-exercises" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
         <Route path="/tools/birth-prep" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
         <Route path="/tools/birth-plan" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
-        <Route path="/tools/hospital-bag" element={<PageTransition><HospitalBagChecklist /></PageTransition>} />
+        <Route path="/tools/hospital-bag" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
         <Route path="/tools/meditation-yoga" element={<PageTransition><PregnancyMeditationYoga /></PageTransition>} />
         <Route path="/tools/pregnancy-meditation" element={<PageTransition><PregnancyMeditationYoga /></PageTransition>} />
-        <Route path="/tools/safe-medications" element={<PageTransition><MedicationSafetyChecker /></PageTransition>} />
-        <Route path="/tools/medication-checker" element={<PageTransition><MedicationSafetyChecker /></PageTransition>} />
         
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
