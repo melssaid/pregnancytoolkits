@@ -102,6 +102,7 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   { id: "exercise-guide", titleKey: "tools.exerciseGuide.title", descriptionKey: "tools.exerciseGuide.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/exercise-guide", priority: 18 },
   { id: "kegel-exercises", titleKey: "tools.kegelExercises.title", descriptionKey: "tools.kegelExercises.description", icon: Activity, categoryKey: "categories.wellness", href: "/tools/kegel-exercises", priority: 19 },
+  { id: "meditation-yoga", titleKey: "tools.meditationYoga.title", descriptionKey: "tools.meditationYoga.description", icon: Flower2, categoryKey: "categories.wellness", href: "/tools/meditation-yoga", priority: 20 },
   
   // ═══════════════════════════════════════════════════════════════
   // STAGE 6: MENTAL HEALTH & WELLBEING
