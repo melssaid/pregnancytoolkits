@@ -1,369 +1,215 @@
-import { useState, useEffect, useRef } from "react";
-import { ToolFrame } from "@/components/ToolFrame";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Activity, Play, Pause, Timer, Award, TrendingUp, Info, CheckCircle } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { format } from "date-fns";
-import { useAnalytics } from "@/hooks/useAnalytics";
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowLeft, Activity, Play, Pause, Volume2, VolumeX, Info } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 
-interface ExerciseSession {
-  date: string;
-  reps: number;
-  duration: number;
-  program: string;
-}
-
-interface ExerciseProgram {
-  id: string;
-  name: string;
-  description: string;
-  holdTime: number;
-  restTime: number;
-  reps: number;
-  level: "beginner" | "intermediate" | "advanced";
-  color: string;
-}
-
-const STORAGE_KEY = "kegel-exercises-data";
-
-const programs: ExerciseProgram[] = [
-  { 
-    id: "beginner", 
-    name: "Beginner", 
-    description: "Perfect for starting out", 
-    holdTime: 3, 
-    restTime: 3, 
-    reps: 10, 
-    level: "beginner",
-    color: "from-green-400 to-emerald-500"
-  },
-  { 
-    id: "intermediate", 
-    name: "Intermediate", 
-    description: "Build more strength", 
-    holdTime: 5, 
-    restTime: 5, 
-    reps: 15, 
-    level: "intermediate",
-    color: "from-blue-400 to-indigo-500"
-  },
-  { 
-    id: "advanced", 
-    name: "Advanced", 
-    description: "Maximum strengthening", 
-    holdTime: 10, 
-    restTime: 5, 
-    reps: 20, 
-    level: "advanced",
-    color: "from-purple-400 to-pink-500"
-  },
-];
-
-const KegelExercises = () => {
-  const { trackAction } = useAnalytics("kegel-exercises");
-  
-  const [sessions, setSessions] = useState<ExerciseSession[]>([]);
-  const [selectedProgram, setSelectedProgram] = useState<ExerciseProgram>(programs[0]);
+const KegelExercises: React.FC = () => {
+  const navigate = useNavigate();
+  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [phase, setPhase] = useState<"hold" | "rest">("hold");
+  const [phase, setPhase] = useState<'squeeze' | 'relax' | 'ready'>('ready');
   const [timeLeft, setTimeLeft] = useState(0);
-  const [currentRep, setCurrentRep] = useState(0);
-  const [showComplete, setShowComplete] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [reps, setReps] = useState(0);
+  const [level, setLevel] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
+  const [soundEnabled, setSoundEnabled] = useState(true);
 
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      setSessions(JSON.parse(saved));
-    }
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, []);
-
-  const saveSessions = (newSessions: ExerciseSession[]) => {
-    setSessions(newSessions);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newSessions.slice(-30)));
+  // Configuration for levels
+  const levels = {
+    beginner: { squeeze: 3, relax: 5, targetReps: 10, name: 'Beginner (3s hold)' },
+    intermediate: { squeeze: 5, relax: 5, targetReps: 15, name: 'Intermediate (5s hold)' },
+    advanced: { squeeze: 10, relax: 10, targetReps: 20, name: 'Advanced (10s hold)' }
   };
 
-  const startExercise = () => {
-    setIsActive(true);
-    setPhase("hold");
-    setTimeLeft(selectedProgram.holdTime);
-    setCurrentRep(1);
-    setShowComplete(false);
-    trackAction("exercise_started", { program: selectedProgram.id });
-    runTimer();
+  const currentConfig = levels[level];
+
+  // Sound effects
+  // In a real app, use useSound hook or HTML5 Audio
+  const playSound = (type: 'beep' | 'start' | 'end') => {
+    if (!soundEnabled) return;
+    // Mock sound function - visual cue is primary for now
   };
 
-  const runTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    
-    timerRef.current = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) {
-          setPhase(currentPhase => {
-            if (currentPhase === "hold") {
-              setTimeLeft(selectedProgram.restTime);
-              return "rest";
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (isActive) {
+      interval = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev > 1) return prev - 1;
+
+          // Phase transition logic
+          if (phase === 'ready') {
+            setPhase('squeeze');
+            playSound('start');
+            return currentConfig.squeeze;
+          } else if (phase === 'squeeze') {
+            setPhase('relax');
+            playSound('beep');
+            return currentConfig.relax;
+          } else { // phase === 'relax'
+            setReps(r => {
+              const newReps = r + 1;
+              if (newReps >= currentConfig.targetReps) {
+                setIsActive(false);
+                setPhase('ready');
+                playSound('end');
+                return newReps; // Done
+              }
+              return newReps;
+            });
+            
+            // If not done, go back to squeeze
+            if (reps < currentConfig.targetReps - 1) {
+              setPhase('squeeze');
+              playSound('start');
+              return currentConfig.squeeze;
             } else {
-              setCurrentRep(rep => {
-                if (rep >= selectedProgram.reps) {
-                  completeExercise();
-                  return rep;
-                }
-                setTimeLeft(selectedProgram.holdTime);
-                return rep + 1;
-              });
-              return "hold";
+               // Finished last rep
+               return 0;
             }
-          });
-          return prev;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  };
-
-  const completeExercise = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    setIsActive(false);
-    setShowComplete(true);
-    
-    const newSession: ExerciseSession = {
-      date: new Date().toISOString(),
-      reps: selectedProgram.reps,
-      duration: (selectedProgram.holdTime + selectedProgram.restTime) * selectedProgram.reps,
-      program: selectedProgram.name,
-    };
-    
-    saveSessions([newSession, ...sessions]);
-    trackAction("exercise_completed", { program: selectedProgram.id, reps: selectedProgram.reps });
-    
-    setTimeout(() => setShowComplete(false), 3000);
-  };
-
-  const stopExercise = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    setIsActive(false);
-    setCurrentRep(0);
-  };
-
-  const getTodayReps = () => {
-    const today = format(new Date(), "yyyy-MM-dd");
-    return sessions
-      .filter(s => s.date.startsWith(today))
-      .reduce((sum, s) => sum + s.reps, 0);
-  };
-
-  const getWeeklyStreak = () => {
-    let streak = 0;
-    const now = new Date();
-    for (let i = 0; i < 7; i++) {
-      const date = format(new Date(now.getTime() - i * 86400000), "yyyy-MM-dd");
-      if (sessions.some(s => s.date.startsWith(date))) streak++;
-      else break;
+          }
+        });
+      }, 1000);
     }
-    return streak;
+
+    return () => clearInterval(interval);
+  }, [isActive, phase, currentConfig, reps, soundEnabled]);
+
+  const toggleSession = () => {
+    if (isActive) {
+      setIsActive(false);
+      setPhase('ready');
+    } else {
+      if (reps >= currentConfig.targetReps) setReps(0); // Reset if starting new
+      setIsActive(true);
+      setPhase('ready');
+      setTimeLeft(3); // 3s countdown
+    }
   };
 
-  const progress = isActive ? ((currentRep - 1) / selectedProgram.reps) * 100 : 0;
+  const getCircleStyle = () => {
+    const baseStyle = "w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 ease-in-out border-4 ";
+    
+    if (phase === 'squeeze') {
+      return baseStyle + "bg-pink-100 border-pink-500 scale-110 shadow-pink-200 shadow-xl";
+    } else if (phase === 'relax') {
+      return baseStyle + "bg-blue-50 border-blue-300 scale-100";
+    } else {
+      return baseStyle + "bg-gray-50 border-gray-200";
+    }
+  };
+
+  if (!disclaimerAccepted) {
+    return <MedicalDisclaimer toolName="Kegel Trainer" onAccept={() => setDisclaimerAccepted(true)} />;
+  }
 
   return (
-    <ToolFrame
-      title="Kegel Exercises"
-      subtitle="Strengthen your pelvic floor for labor and recovery"
-      icon={Activity}
-      mood="empowering"
-    >
-      <div className="space-y-6">
-        {/* Completion Animation */}
-        <AnimatePresence>
-          {showComplete && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-            >
-              <Card className="mx-4 p-8 text-center">
-                <CheckCircle className="h-16 w-16 mx-auto text-green-500 mb-4" />
-                <h2 className="text-2xl font-bold mb-2">Great Job!</h2>
-                <p className="text-muted-foreground">
-                  You completed {selectedProgram.reps} reps!
-                </p>
-              </Card>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-gradient-to-br from-primary/10 to-primary/5">
-            <CardContent className="pt-4 text-center">
-              <TrendingUp className="h-6 w-6 mx-auto text-primary mb-2" />
-              <p className="text-2xl font-bold text-primary">{getTodayReps()}</p>
-              <p className="text-xs text-muted-foreground">Today's Reps</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-gradient-to-br from-amber-100/50 to-orange-100/50 dark:from-amber-900/20 dark:to-orange-900/20">
-            <CardContent className="pt-4 text-center">
-              <Award className="h-6 w-6 mx-auto text-amber-600 mb-2" />
-              <p className="text-2xl font-bold text-amber-600">{getWeeklyStreak()}</p>
-              <p className="text-xs text-muted-foreground">Day Streak</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Program Selection */}
-        {!isActive && (
-          <div>
-            <h3 className="font-semibold mb-3">Choose Your Program</h3>
-            <div className="grid gap-3">
-              {programs.map((program) => (
-                <motion.div
-                  key={program.id}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Card
-                    className={`cursor-pointer transition-all ${
-                      selectedProgram.id === program.id
-                        ? 'ring-2 ring-primary bg-primary/5'
-                        : 'hover:border-primary/50'
-                    }`}
-                    onClick={() => setSelectedProgram(program)}
-                  >
-                    <CardContent className="py-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="font-semibold">{program.name}</h4>
-                          <p className="text-sm text-muted-foreground">{program.description}</p>
-                        </div>
-                        <div className="text-right text-sm">
-                          <p className="text-primary font-medium">{program.reps} reps</p>
-                          <p className="text-muted-foreground">{program.holdTime}s hold / {program.restTime}s rest</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white">
+      <div className="bg-white shadow-sm sticky top-0 z-40">
+        <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
+          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
+            <ArrowLeft className="w-6 h-6 text-gray-600" />
+          </button>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center">
+              <Activity className="w-5 h-5 text-pink-600" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-gray-900">Kegel Trainer</h1>
+              <p className="text-xs text-gray-500">Strengthen pelvic floor</p>
             </div>
           </div>
-        )}
-
-        {/* Exercise Timer */}
-        {isActive ? (
-          <Card className="overflow-hidden">
-            <div className={`p-8 text-center bg-gradient-to-br ${
-              phase === "hold" ? selectedProgram.color : 'from-slate-400 to-slate-500'
-            } text-white`}>
-              <motion.div
-                key={phase}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="space-y-4"
-              >
-                <h3 className="text-2xl font-bold">
-                  {phase === "hold" ? "🔥 SQUEEZE" : "😮‍💨 RELAX"}
-                </h3>
-                <div className="relative w-32 h-32 mx-auto">
-                  <motion.div
-                    className="absolute inset-0 rounded-full border-4 border-white/30"
-                    animate={{
-                      scale: phase === "hold" ? [1, 1.1, 1] : [1, 0.9, 1],
-                    }}
-                    transition={{
-                      duration: 1,
-                      repeat: Infinity,
-                    }}
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-5xl font-bold">{timeLeft}</span>
-                  </div>
-                </div>
-                <p className="text-lg">
-                  Rep {currentRep} of {selectedProgram.reps}
-                </p>
-              </motion.div>
-            </div>
-            <CardContent className="pt-4">
-              <Progress value={progress} className="h-2 mb-4" />
-              <div className="flex justify-center gap-4">
-                <Button variant="destructive" onClick={stopExercise}>
-                  <Pause className="h-4 w-4 mr-2" />
-                  Stop
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ) : (
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Button
-              size="lg"
-              className={`w-full py-8 text-xl bg-gradient-to-r ${selectedProgram.color} hover:opacity-90`}
-              onClick={startExercise}
-            >
-              <Play className="h-6 w-6 mr-3" />
-              Start Exercise
-            </Button>
-          </motion.div>
-        )}
-
-        {/* Recent Sessions */}
-        {sessions.length > 0 && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Timer className="h-5 w-5 text-primary" />
-                Recent Sessions
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                {sessions.slice(0, 5).map((session, index) => (
-                  <div key={index} className="flex items-center justify-between py-2 border-b last:border-0">
-                    <div>
-                      <span className="text-sm font-medium">
-                        {format(new Date(session.date), "EEEE, MMM d")}
-                      </span>
-                      <p className="text-xs text-muted-foreground">{session.program}</p>
-                    </div>
-                    <span className="font-medium text-primary">{session.reps} reps</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Benefits Info */}
-        <Card className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200 dark:border-purple-800">
-          <CardContent className="pt-4">
-            <div className="flex gap-3">
-              <Info className="h-5 w-5 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-medium text-purple-900 dark:text-purple-100">Benefits of Kegel Exercises</p>
-                <ul className="text-sm text-purple-700 dark:text-purple-300 mt-1 space-y-1 list-disc list-inside">
-                  <li>Strengthens pelvic floor muscles</li>
-                  <li>Prepares for easier labor and recovery</li>
-                  <li>Prevents urinary incontinence during and after pregnancy</li>
-                  <li>Improves blood circulation</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        </div>
       </div>
-    </ToolFrame>
+
+      <div className="max-w-lg mx-auto px-4 py-8 space-y-8 flex flex-col items-center">
+        {/* Level Selector */}
+        <div className="w-full bg-white p-2 rounded-xl shadow-sm flex gap-1">
+          {(Object.keys(levels) as Array<keyof typeof levels>).map((l) => (
+            <button
+              key={l}
+              onClick={() => {
+                setLevel(l);
+                setIsActive(false);
+                setPhase('ready');
+                setReps(0);
+              }}
+              className={`flex-1 py-2 rounded-lg text-sm font-medium capitalize transition-all ${
+                level === l ? 'bg-pink-600 text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50'
+              }`}
+            >
+              {l}
+            </button>
+          ))}
+        </div>
+
+        {/* Visualizer */}
+        <div className="relative py-8">
+          <div className={getCircleStyle()}>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-gray-800 mb-1">
+                {phase === 'ready' ? (isActive ? timeLeft : 'Start') : timeLeft}
+              </p>
+              <p className="text-sm font-medium uppercase tracking-wider text-gray-500">
+                {phase === 'ready' ? (isActive ? 'Get Ready' : 'Ready') : phase}
+              </p>
+            </div>
+          </div>
+          
+          {/* Ripples for squeeze */}
+          {phase === 'squeeze' && (
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-pink-400 rounded-full opacity-20 animate-ping" />
+          )}
+        </div>
+
+        {/* Controls */}
+        <div className="w-full space-y-6">
+          <div className="flex justify-center gap-4">
+            <button
+              onClick={toggleSession}
+              className={`w-20 h-20 rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-95 ${
+                isActive 
+                  ? 'bg-white border-2 border-red-100 text-red-500 hover:bg-red-50' 
+                  : 'bg-pink-600 text-white hover:bg-pink-700'
+              }`}
+            >
+              {isActive ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
+            </button>
+            
+            <button
+              onClick={() => setSoundEnabled(!soundEnabled)}
+              className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 absolute right-8"
+            >
+              {soundEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white p-4 rounded-2xl shadow-sm text-center">
+              <p className="text-xs text-gray-500 uppercase tracking-wider">Reps Completed</p>
+              <p className="text-2xl font-bold text-gray-900">{reps} <span className="text-sm text-gray-400 font-normal">/ {currentConfig.targetReps}</span></p>
+            </div>
+            <div className="bg-white p-4 rounded-2xl shadow-sm text-center">
+              <p className="text-xs text-gray-500 uppercase tracking-wider">Session Time</p>
+              <p className="text-2xl font-bold text-gray-900">
+                {Math.floor(((reps * (currentConfig.squeeze + currentConfig.relax)) + (isActive ? (currentConfig.squeeze + currentConfig.relax - timeLeft) : 0)) / 60)}:
+                {(((reps * (currentConfig.squeeze + currentConfig.relax)) + (isActive ? (currentConfig.squeeze + currentConfig.relax - timeLeft) : 0)) % 60).toString().padStart(2, '0')}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 w-full">
+          <h4 className="font-medium text-blue-900 mb-2 flex items-center gap-2">
+            <Info className="w-4 h-4" /> How to do it
+          </h4>
+          <p className="text-sm text-blue-800 leading-relaxed">
+            Imagine you are trying to stop the flow of urine or stop yourself from passing gas. Squeeze and lift those muscles inward. Don't hold your breath or tighten your stomach/thighs.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
