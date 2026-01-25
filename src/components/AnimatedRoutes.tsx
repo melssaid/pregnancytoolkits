@@ -48,6 +48,12 @@ import LaborBreathingCoach from "@/pages/tools/LaborBreathingCoach";
 import BirthPrepGuide from "@/pages/tools/BirthPrepGuide";
 import PregnancyMeditationYoga from "@/pages/tools/PregnancyMeditationYoga";
 
+// New 2026 AI Tools
+import AILaborProgressTracker from "@/pages/tools/AILaborProgressTracker";
+import PostpartumMentalHealthCoach from "@/pages/tools/PostpartumMentalHealthCoach";
+import BabyGearRecommender from "@/pages/tools/BabyGearRecommender";
+import PersonalizedWorkoutPlanner from "@/pages/tools/PersonalizedWorkoutPlanner";
+
 export function AnimatedRoutes() {
   const location = useLocation();
 
@@ -105,6 +111,12 @@ export function AnimatedRoutes() {
         <Route path="/tools/hospital-bag" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
         <Route path="/tools/meditation-yoga" element={<PageTransition><PregnancyMeditationYoga /></PageTransition>} />
         <Route path="/tools/pregnancy-meditation" element={<PageTransition><PregnancyMeditationYoga /></PageTransition>} />
+        
+        {/* New 2026 AI Tools */}
+        <Route path="/tools/labor-progress" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
+        <Route path="/tools/mental-health-coach" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
+        <Route path="/tools/baby-gear" element={<PageTransition><BabyGearRecommender /></PageTransition>} />
+        <Route path="/tools/workout-planner" element={<PageTransition><PersonalizedWorkoutPlanner /></PageTransition>} />
         
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
