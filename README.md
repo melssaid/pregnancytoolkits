@@ -1,199 +1,374 @@
-# pregnancy toolkits- Women's Health Tools App
+# 👶 Pregnancy Tools - تطبيق شامل لصحة المرأة
 
+> **تطبيق متكامل وآمن لمتابعة صحة المرأة من مرحلة التخطيط للحمل وحتى ما بعد الولادة**
 
-تطبيق شامل لأدوات صحة المرأة يوفر 40 أداة احترافية لمتابعة صحة المرأة من مرحلة التخطيط للحمل وحتى ما بعد الولادة.
-
-A comprehensive Women's Health toolkit providing 40 professional-grade calculators and trackers designed for every stage of a woman's journey — from fertility planning to postpartum care.
-
----
-
-## 🌟 المميزات | Features
-
-- ✅ **17 أداة صحية متكاملة** | 17 comprehensive health tools
-- ✅ **تصميم طبي احترافي** | Professional medical design
-- ✅ **حفظ البيانات محلياً** | LocalStorage persistence
-- ✅ **تصميم متجاوب** | Responsive design
-- ✅ **رسوم متحركة سلسة** | Smooth Framer Motion animations
-- ✅ **واجهة سهلة الاستخدام** | User-friendly interface
-- ✅ **بحث وفلترة حسب الفئة** | Search and category filtering
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18.3-blue.svg)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-5.4-purple.svg)](https://vitejs.dev)
 
 ---
 
-## 🛠️ الأدوات المتاحة | Available Tools
+## 🌟 نظرة عامة
 
-### 🌸 الخصوبة | Fertility
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| حاسبة الإباضة | Ovulation Calculator | تتبع فترة الخصوبة وتوقع موعد الإباضة |
+**Pregnancy Tools** هو تطبيق ويب شامل وموثوق يوفر **37 أداة متخصصة** في مجال صحة المرأة والحمل. تم تصميم التطبيق بمعايير طبية عالية ويجمع بين الدقة والسهولة في الاستخدام.
 
-### 🤰 الحمل | Pregnancy
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| حاسبة موعد الولادة | Due Date Calculator | حساب موعد الولادة المتوقع |
-| حاسبة مؤشر كتلة الجسم للحامل | Pregnancy BMI | حساب الوزن المثالي خلال الحمل |
-| عداد ركلات الجنين | Kick Counter | تتبع حركات الجنين |
-| متتبع نمو الجنين | Fetal Growth Tracker | متابعة نمو الجنين أسبوعياً |
+### لماذا Pregnancy Tools؟
 
-### ⏱️ المخاض | Labor
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| مؤقت الانقباضات | Contraction Timer | قياس توقيت ومدة الانقباضات |
-
-### 👶 ما بعد الولادة | Postpartum
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| متتبع الرضاعة | Breastfeeding Tracker | تسجيل جلسات الرضاعة |
-
-### ⚠️ تقييم المخاطر | Risk Assessment
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| تقييم سكري الحمل | GDM Risk Assessment | تقييم عوامل خطر سكري الحمل |
-| تقييم تسمم الحمل | Preeclampsia Risk | تقييم عوامل خطر تسمم الحمل |
-
-### 🧠 الصحة النفسية | Mental Health
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| فحص اكتئاب ما بعد الولادة | PPD Screener (EPDS) | استبيان إدنبرة لاكتئاب ما بعد الولادة |
-
-### 💪 العافية | Wellness
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| متتبع شرب الماء | Water Intake Tracker | تتبع كمية الماء اليومية |
-| دليل التمارين | Exercise Guide | تمارين آمنة لكل مرحلة من الحمل |
-
-### 📚 مراجع | Reference
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| دليل الأدوية الآمنة | Safe Medications | مرجع سريع للأدوية أثناء الحمل والرضاعة |
-| جدول التطعيمات | Vaccination Schedule | جدول التطعيمات للحامل والمولود |
-
-### 📋 التحضير | Preparation
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| قائمة حقيبة المستشفى | Hospital Bag Checklist | قائمة شاملة لتجهيز حقيبة الولادة |
-
-### 🧬 الوراثة | Genetics
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| حاسبة فصيلة الدم | Blood Type Calculator | توقع فصيلة دم الطفل |
-
-### 🔴 صحة الدورة الشهرية | Menstrual Health
-| الأداة | Tool | الوصف |
-|--------|------|--------|
-| متتبع الدورة الشهرية | Cycle Tracker | تتبع الدورة الشهرية والأعراض |
+✅ **37 أداة متخصصة** - تغطي جميع مراحل رحلة المرأة  
+✅ **تصميم طبي احترافي** - واجهة نظيفة وموثوقة مثل Mayo Clinic و WebMD  
+✅ **حفظ البيانات محلياً** - خصوصيتك محمية دائماً  
+✅ **تعدد اللغات** - دعم كامل للعربية والإنجليزية  
+✅ **رسوم متحركة سلسة** - تجربة استخدام ممتعة  
+✅ **مفتوح المصدر** - شفاف وآمن  
+✅ **مجاني بالكامل** - بدون رسوم مخفية  
 
 ---
 
-## 🚀 كيفية الاستخدام | How to Use
+## 🎯 الأدوات المتاحة (37 أداة متخصصة)
 
-### التشغيل المحلي | Local Development
+### 🤖 أدوات مدعومة بالذكاء الاصطناعي (8 أدوات)
+
+| الأداة | الوصف |
+|--------|-------|
+| 🤖 Pregnancy Assistant | مساعد شخصي ذكي يجيب على أسئلتك عن الحمل |
+| 🔍 AI Symptom Analyzer | تحليل الأعراض وتقديم نصائح فورية |
+| 🍽️ AI Meal Suggestion | اقتراحات وجبات صحية ومتوازنة |
+| 📊 Weekly Summary | ملخص أسبوعي ذكي لتقدم الحمل |
+| 📔 AI Pregnancy Journal | مذكرات حمل بمساعدة الذكاء الاصطناعي |
+| 📅 Smart Appointment Reminder | تذكيرات ذكية للمواعيد الطبية |
+| 📖 AI Birth Story Generator | توليد قصة الولادة الشخصية |
+| 📸 Pregnancy Photo Timeline | جدول زمني لصور الحمل تلقائياً |
+
+### 🔄 الخصوبة ومتابعة الدورة (3 أدوات)
+
+| الأداة | الوصف |
+|--------|-------|
+| 📅 Ovulation Calculator | حساب فترة الإباضة والخصوبة بدقة |
+| 📊 Cycle Tracker | تتبع شامل للدورة الشهرية والأعراض |
+| 👶 Baby Name Finder | إيجاد أسماء جميلة وبمعانٍ خاصة |
+
+### 🤰 متابعة الحمل (6 أدوات)
+
+| الأداة | الوصف |
+|--------|-------|
+| 📅 Due Date Calculator | حساب موعد الولادة المتوقع |
+| ⚖️ Pregnancy BMI Calculator | حساب الوزن المثالي خلال الحمل |
+| 👣 Fetal Growth Tracker | متابعة نمو الجنين أسبوع بأسبوع |
+| 🎯 Smart Kick Counter | تسجيل ومتابعة حركات الجنين |
+| 📸 Bump Photos | ألبوم صور البطن خلال مراحل الحمل |
+| 🎪 Pregnancy Milestones | معالم مهمة في رحلة الحمل |
+
+### 💪 العافية واللياقة (7 أدوات)
+
+| الأداة | الوصف |
+|--------|-------|
+| 💧 Water Intake Tracker | متابعة شرب الماء اليومي |
+| 💊 Vitamin Tracker | تسجيل الفيتامينات والمكملات |
+| 🍎 Nutrition Guide | دليل التغذية الصحية المتوازنة |
+| 🚫 Forbidden Foods List | قائمة الأطعمة الممنوعة أثناء الحمل |
+| 🏃 Exercise & Fitness Guide | تمارين آمنة في كل مرحلة |
+| 🧘 Kegel & Pelvic Floor | تمارين قاع الحوض الموصى بها |
+| 🕉️ Meditation & Yoga | تأمل ويوجا آمنة للحامل |
+
+### 🧠 الصحة النفسية (3 أدوات)
+
+| الأداة | الوصف |
+|--------|-------|
+| ✨ Affirmations | تأكيدات إيجابية يومية |
+| 😊 Mood Tracker | تتبع الحالة المزاجية والمشاعر |
+| 🎨 Personalized Support | دعم شخصي بناءً على احتياجاتك |
+
+### ⚠️ تقييم المخاطر (3 أدوات)
+
+| الأداة | الوصف |
+|--------|-------|
+| 🩺 Gestational Diabetes Risk | تقييم خطر سكري الحمل |
+| 💓 Preeclampsia Risk Assessment | تقييم تسمم الحمل (قبل الارتعاج) |
+| 🩸 Blood Type Compatibility | توقع فصيلة دم الطفل |
+
+### 🏥 المخاض والتحضير (3 أدوات)
+
+| الأداة | الوصف |
+|--------|-------|
+| ⏱️ Contraction Timer | قياس فترات الانقباضات الرحمية |
+| 🌬️ Labor Breathing Exercises | تمارين التنفس أثناء المخاض |
+| ✅ Birth Prep Checklist | قائمة التحضير الشاملة للولادة |
+
+### 👶 ما بعد الولادة ورعاية المولود (4 أدوات)
+
+| الأداة | الوصف |
+|--------|-------|
+| 🌙 Baby Sleep Tracker | تتبع نوم المولود والأنماط |
+| 💧 Diaper Tracker | تسجيل تغييرات الحفاضات |
+| 📏 Baby Growth Monitor | متابعة نمو الطفل والوزن |
+| ❓ Doctor Questions | أسئلة مهمة لطبيبك |
+
+---
+
+## 🚀 البدء السريع
+
+### المتطلبات
+
+- Node.js 18.0+
+- npm أو yarn
+
+### التثبيت والتشغيل
 
 ```bash
-# تثبيت الحزم | Install dependencies
+# 1. استنساخ المستودع
+git clone https://github.com/melssaid/pregnancytools.git
+cd pregnancytools
+
+# 2. تثبيت الحزم
 npm install
 
-# تشغيل التطبيق | Start development server
+# 3. تشغيل الخادم المحلي
 npm run dev
 
-# بناء للإنتاج | Build for production
+# 4. فتح المتصفح
+# اذهب إلى: http://localhost:5173
+```
+
+### البناء للإنتاج
+
+```bash
 npm run build
-```
-
-### استخدام التطبيق | Using the App
-
-1. **الصفحة الرئيسية**: تعرض جميع الأدوات الـ 17 في شبكة منظمة
-2. **البحث**: استخدم شريط البحث للعثور على أداة محددة
-3. **الفلترة**: اختر فئة معينة لعرض الأدوات ذات الصلة
-4. **الأدوات**: انقر على أي بطاقة للدخول إلى الأداة واستخدامها
-
----
-
-## 🛠️ التقنيات المستخدمة | Tech Stack
-
-| التقنية | الاستخدام |
-|---------|----------|
-| **React 18** | إطار العمل الأساسي |
-| **TypeScript** | لغة البرمجة |
-| **Vite** | أداة البناء |
-| **Tailwind CSS** | تنسيق الواجهة |
-| **Framer Motion** | الرسوم المتحركة |
-| **shadcn/ui** | مكتبة المكونات |
-| **React Router** | التنقل بين الصفحات |
-| **date-fns** | معالجة التواريخ |
-| **Lucide React** | الأيقونات |
-| **LocalStorage** | حفظ البيانات محلياً |
-
----
-
-## 📁 هيكل المشروع | Project Structure
-
-```
-src/
-├── components/
-│   ├── Layout.tsx          # التخطيط العام
-│   ├── ToolCard.tsx        # بطاقة الأداة
-│   └── ui/                 # مكونات shadcn
-├── lib/
-│   ├── tools-data.ts       # بيانات الأدوات
-│   └── utils.ts            # دوال مساعدة
-├── pages/
-│   ├── Index.tsx           # الصفحة الرئيسية
-│   └── tools/
-│       ├── OvulationCalculator.tsx
-│       ├── DueDateCalculator.tsx
-│       ├── CycleTracker.tsx
-│       ├── PregnancyBMI.tsx
-│       ├── KickCounter.tsx
-│       ├── ContractionTimer.tsx
-│       ├── FetalGrowth.tsx
-│       ├── BloodType.tsx
-│       ├── GestationalDiabetes.tsx
-│       ├── PreeclampsiaRisk.tsx
-│       ├── SafeMedications.tsx
-│       ├── PPDScreener.tsx
-│       ├── BreastfeedingTracker.tsx
-│       ├── WaterIntake.tsx
-│       ├── ExerciseGuide.tsx
-│       ├── VaccinationSchedule.tsx
-│       └── HospitalBag.tsx
-└── App.tsx                 # التوجيه الرئيسي
+npm run preview
 ```
 
 ---
 
-## 🎨 نظام التصميم | Design System
+## 🛠️ المعمارية التقنية
 
-### الألوان | Colors
-- **Primary**: Teal (`#0891B2`) - اللون الأساسي للثقة والصحة
-- **Success**: Green - للنتائج الإيجابية
-- **Warning**: Amber - للتحذيرات
-- **Destructive**: Red - للمخاطر العالية
+### الجك التقني
 
-### المبادئ | Principles
-- تصميم نظيف وموثوق مستوحى من Mayo Clinic/WebMD
-- مسافات بيضاء واسعة
-- بطاقات بيضاء على خلفية رمادية فاتحة
-- طباعة واضحة مع تدرج هرمي
+| التقنية | الإصدار | الاستخدام |
+|---------|---------|----------|
+| **React** | 18.3.1 | إطار العمل الأساسي |
+| **TypeScript** | 5.8.3 | البرمجة الآمنة |
+| **Vite** | 5.4.19 | أداة البناء السريعة |
+| **Tailwind CSS** | 3.4.17 | تصميم الواجهة |
+| **shadcn/ui** | آخر إصدار | مكونات واجهة متقدمة |
+| **Framer Motion** | 12.29.0 | الرسوم المتحركة |
+| **Recharts** | 2.15.4 | المخططات البيانية |
+| **i18next** | 25.8.0 | تعدد اللغات |
+| **Supabase** | 2.91.0 | قاعدة البيانات السحابية |
+| **React Query** | 5.83.0 | إدارة البيانات |
+
+### هيكل المشروع
+
+```
+pregnancytools/
+├── src/
+│   ├── components/           # مكونات قابلة لإعادة الاستخدام
+│   │   ├── Layout.tsx
+│   │   ├── ToolCard.tsx
+│   │   └── ui/              # مكونات shadcn
+│   ├── pages/
+│   │   ├── Index.tsx        # الصفحة الرئيسية
+│   │   └── tools/           # 37 أداة
+│   ├── lib/
+│   │   ├── tools-data.ts    # قائمة الأدوات
+│   │   └── utils.ts         # دوال مساعدة
+│   ├── locales/             # ملفات الترجمة
+│   │   ├── ar.json
+│   │   └── en.json
+│   ├── integrations/        # تكامل خارجي
+│   ├── hooks/               # React Hooks مخصصة
+│   ├── providers/           # Context Providers
+│   └── App.tsx
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+└── vite.config.ts
+```
 
 ---
 
-## ⚠️ إخلاء المسؤولية الطبية | Medical Disclaimer
+## 📱 المميزات الرئيسية
 
-> **هام**: هذه الأدوات للأغراض المعلوماتية والتعليمية فقط. لا تشكل نصيحة طبية أو تشخيصاً أو علاجاً. استشر دائماً مقدمي الرعاية الصحية المؤهلين لاتخاذ القرارات الطبية.
+### 1. تصميم متجاوب
 
-> **Important**: These tools are for informational and educational purposes only. They do not constitute medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.
+✓ يعمل بسلاسة على الهواتف والأجهزة اللوحية وأجهزة الكمبيوتر  
+✓ تصميم Responsive بمعايير عالية  
+✓ واجهة سهلة الاستخدام  
+
+### 2. حفظ البيانات محلياً
+
+✓ جميع البيانات تُحفظ على جهازك فقط  
+✓ لا توجد بيانات تُرسل إلى الخادم (اختياري مع Supabase)  
+✓ الخصوصية مضمونة 100%  
+
+### 3. تعدد اللغات
+
+✓ دعم كامل للعربية والإنجليزية  
+✓ كشف تلقائي للغة المفضلة  
+✓ يمكن التبديل في أي وقت  
+
+### 4. رسوم متحركة احترافية
+
+✓ انتقالات سلسة بين الصفحات  
+✓ تأثيرات بصرية جميلة  
+✓ أداء محسّن للرسوم المتحركة  
+
+### 5. بحث وتصفية ذكي
+
+✓ بحث فوري عن الأدوات  
+✓ تصفية حسب الفئة  
+✓ عرض الأدوات الموصى بها  
 
 ---
 
-## 📝 الترخيص | License
+## 🎨 نظام التصميم
 
-هذا المشروع مفتوح المصدر ومتاح للاستخدام والتعديل.
+### الألوان الرئيسية
+
+```
+🟦 الأساسي (Teal):    #2180B0
+🟩 النجاح:           #22C55E  
+🟨 التحذير:          #F59E0B
+🔴 الخطأ:            #EF4444
+```
+
+### المبادئ التصميمية
+
+✓ تصميم نظيف وموثوق  
+✓ مسافات بيضاء واسعة  
+✓ بطاقات بيضاء على خلفية فاتحة  
+✓ طباعة واضحة مع تدرج هرمي  
+✓ يدعم الوضع الفاتح والوضع الغامق  
 
 ---
 
-## 🤝 المساهمة | Contributing
+## 📚 كيفية الاستخدام
 
-نرحب بالمساهمات! يرجى فتح issue أو pull request لأي اقتراحات أو تحسينات.
+### للمستخدمين
+
+1. **افتح التطبيق**: اذهب إلى الموقع
+2. **تصفح الأدوات**: شاهد جميع الأدوات المتاحة
+3. **ابحث**: استخدم شريط البحث للعثور على أداة محددة
+4. **صفّي**: اختر فئة محددة من الفئات
+5. **استخدم الأداة**: انقر على الأداة التي تريدها
+6. **احفظ بياناتك**: سيتم حفظ بياناتك محلياً تلقائياً
+
+### للمطورين
+
+#### إضافة أداة جديدة
+
+```typescript
+// 1. أضف في src/lib/tools-data.ts
+{
+  id: "tool-name",
+  titleKey: "tools.toolName.title",
+  descriptionKey: "tools.toolName.description",
+  icon: IconName,
+  categoryKey: "categories.wellness",
+  href: "/tools/tool-name",
+  priority: 100
+}
+
+// 2. أضف الترجمات في src/locales/ar.json و en.json
+"tools.toolName": {
+  "title": "اسم الأداة",
+  "description": "وصف الأداة"
+}
+
+// 3. أنشئ ملف الأداة في src/pages/tools/ToolName.tsx
+```
+
+#### تشغيل الاختبارات
+
+```bash
+npm run test        # تشغيل الاختبارات
+npm run test:watch  # المراقبة المستمرة
+```
+
+#### التحقق من الكود
+
+```bash
+npm run lint       # فحص الأخطاء
+npm run lint:fix   # إصلاح الأخطاء تلقائياً
+```
+
+---
+
+## ⚠️ إخلاء المسؤولية الطبية
+
+**مهم جداً:** هذا التطبيق للأغراض التعليمية والمعلوماتية فقط. لا يشكل استبدالاً للاستشارة الطبية المهنية.
+
+### ⚖️ تنويه قانوني
+
+- 🏥 استشر طبيبك قبل استخدام نتائج أي أداة
+- 📋 لا تستخدم بدلاً من الفحص الطبي المتخصص
+- ⚠️ في حالة الطوارئ، اتصل برقم الطوارئ فوراً
+- 📞 للاستفسارات الطبية، تحدث مع متخصصك
+
+---
+
+## 🤝 المساهمة
+
+نرحب بمساهماتك! يمكنك المساهمة بعدة طرق:
+
+### كيفية المساهمة
+
+1. **Fork المستودع**
+   ```bash
+   git clone https://github.com/yourusername/pregnancytools.git
+   ```
+
+2. **أنشئ فرعاً جديداً**
+   ```bash
+   git checkout -b feature/new-feature
+   ```
+
+3. **قم بالتغييرات والـ Commit**
+   ```bash
+   git add .
+   git commit -m "✨ أضفت ميزة جديدة"
+   ```
+
+4. **Push إلى الفرع**
+   ```bash
+   git push origin feature/new-feature
+   ```
+
+5. **فتح Pull Request**
+
+### معايير المساهمة
+
+- 🎨 اتبع أسلوب الكود الموجود
+- 📝 أضف تعليقات واضحة
+- ✅ اختبر التغييرات قبل الإرسال
+- 🌐 أضف ترجمات (عربي + إنجليزي)
+- 📱 تأكد من العمل على الهاتف والكمبيوتر
+
+---
+
+## 📄 الترخيص
+
+هذا المشروع مرخص تحت رخصة MIT - انظر ملف [LICENSE](LICENSE) للتفاصيل.
+
+---
+
+## 📞 التواصل والدعم
+
+- 🐛 **الإبلاغ عن مشاكل**: [GitHub Issues](https://github.com/melssaid/pregnancytools/issues)
+- 💬 **النقاشات**: [GitHub Discussions](https://github.com/melssaid/pregnancytools/discussions)
+- 📧 **البريد الإلكتروني**: melssaid@example.com
+- 🌐 **الموقع**: [pregnancytools.app](https://pregnancytools.app)
+
+---
+
+## 🙏 شكر وتقدير
+
+شكر خاص إلى:
+
+- React و TypeScript و Vite
+- Tailwind CSS و shadcn/ui
+- Framer Motion و Recharts
+- مجتمع المطورين العرب
+- جميع المساهمين والداعمين
 
 ---
 
@@ -202,5 +377,9 @@ src/
 **صُنع بـ ❤️ لدعم صحة المرأة**
 
 **Made with ❤️ to support women's health**
+
+### ⭐ إذا أعجبك المشروع، لا تنسَ إضافة نجمة!
+
+[⬆ العودة للأعلى](#-pregnancy-tools--تطبيق-شامل-لصحة-المرأة)
 
 </div>
