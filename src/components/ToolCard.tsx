@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { LucideIcon, Crown, Sparkles, ArrowRight, Brain } from "lucide-react";
+import { LucideIcon, ArrowRight, Brain } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import useSubscription from "@/hooks/useSubscription";
 
 interface ToolCardProps {
   titleKey: string;
@@ -11,14 +10,11 @@ interface ToolCardProps {
   href: string;
   categoryKey: string;
   index: number;
-  isPremium?: boolean;
 }
 
-export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryKey, index, isPremium }: ToolCardProps) {
+export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryKey, index }: ToolCardProps) {
   const { t } = useTranslation();
-  const { hasAccess, isTrialActive } = useSubscription();
   
-  const isLocked = isPremium && !hasAccess(isPremium);
   const isSmartTool = categoryKey === "categories.ai";
   
   return (
@@ -42,11 +38,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
         <div className={`group relative h-full overflow-hidden rounded-2xl bg-card border transition-all duration-300 ${
           isSmartTool
             ? "border-primary/30 bg-gradient-to-br from-primary/5 via-card to-accent/5 shadow-md hover:shadow-xl hover:shadow-primary/15 hover:border-primary/50"
-            : isLocked 
-              ? "border-border/50 opacity-75 hover:opacity-100" 
-              : isPremium
-                ? "border-primary/20 hover:border-primary/40 shadow-sm hover:shadow-xl hover:shadow-primary/15"
-                : "border-border/50 hover:border-primary/30 shadow-sm hover:shadow-lg"
+            : "border-border/50 hover:border-primary/30 shadow-sm hover:shadow-lg"
         }`}>
           
           {/* Smart Tools Special Background - Rose/Gold Theme */}
@@ -82,9 +74,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                 className={`relative flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 ${
                   isSmartTool
                     ? "bg-gradient-to-br from-primary via-pink-500 to-accent text-white shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/35"
-                    : isPremium 
-                      ? "bg-gradient-to-br from-primary to-accent text-white shadow-lg group-hover:shadow-xl group-hover:shadow-primary/25" 
-                      : "bg-secondary text-primary group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-accent group-hover:text-white"
+                    : "bg-secondary text-primary group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-accent group-hover:text-white"
                 }`}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ duration: 0.25, type: "spring", stiffness: 300 }}
@@ -100,10 +90,6 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                       transition={{ duration: 2, repeat: Infinity }}
                     />
                   </>
-                )}
-                {/* Pulse ring for premium */}
-                {isPremium && !isLocked && !isSmartTool && (
-                  <span className="absolute inset-0 rounded-xl animate-ping bg-primary/20 opacity-75" style={{ animationDuration: '3s' }} />
                 )}
               </motion.div>
               
@@ -139,9 +125,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
             </h3>
             
             {/* Description */}
-            <p className={`text-xs leading-relaxed flex-grow line-clamp-2 ${
-              isSmartTool ? "text-muted-foreground" : "text-muted-foreground"
-            }`}>
+            <p className="text-xs leading-relaxed flex-grow line-clamp-2 text-muted-foreground">
               {t(descriptionKey)}
             </p>
             
@@ -149,27 +133,15 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
             <div className={`mt-4 pt-4 border-t flex items-center justify-between ${
               isSmartTool ? "border-primary/20" : "border-border/50"
             }`}>
-              <span className={`text-xs font-semibold ${
-                isSmartTool 
-                  ? "text-primary" 
-                  : isLocked 
-                    ? "text-muted-foreground" 
-                    : "text-primary"
-              }`}>
-                {isLocked ? 'Unlock with Pro' : isSmartTool ? 'Try Now' : 'Open Tool'}
+              <span className="text-xs font-semibold text-primary">
+                {isSmartTool ? 'Try Now' : 'Open Tool'}
               </span>
               <motion.div
                 className="flex items-center gap-1"
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.2 }}
               >
-                <ArrowRight className={`h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 ${
-                  isSmartTool 
-                    ? "text-primary" 
-                    : isLocked 
-                      ? "text-muted-foreground" 
-                      : "text-primary"
-                }`} />
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 text-primary" />
               </motion.div>
             </div>
           </div>

@@ -73,7 +73,6 @@ export function CategorySection({
               href={tool.href}
               categoryKey={tool.categoryKey}
               index={index}
-              isPremium={tool.isPremium}
             />
           ))}
         </motion.div>

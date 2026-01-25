@@ -181,7 +181,6 @@ const Index = () => {
                         href={tool.href}
                         categoryKey={tool.categoryKey}
                         index={index}
-                        isPremium={tool.isPremium}
                       />
                     ))}
                   </div>
@@ -251,7 +250,6 @@ const Index = () => {
                             href={tool.href}
                             categoryKey={tool.categoryKey}
                             index={index}
-                            isPremium={tool.isPremium}
                           />
                         ))}
                       </div>
