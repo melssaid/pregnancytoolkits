@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, Home, Shield, Star, Users, Award } from "lucide-react";
+import { Heart, Home, Shield, Award } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 
@@ -17,24 +17,20 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Top Trust Bar */}
+      {/* Top Trust Bar - Simplified for Compliance */}
       <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-2 px-4">
         <div className="container flex items-center justify-center gap-4 sm:gap-6 text-xs font-medium">
           <div className="flex items-center gap-1.5">
             <Shield className="h-3.5 w-3.5" />
-            <span>Doctor Approved</span>
+            <span>Evidence-Based Tools</span>
           </div>
           <div className="hidden sm:flex items-center gap-1.5">
-            <Users className="h-3.5 w-3.5" />
-            <span>500K+ Moms</span>
+            <Heart className="h-3.5 w-3.5" />
+            <span>42 Wellness Tools</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Star className="h-3.5 w-3.5 fill-current" />
-            <span>4.9★ Rating</span>
-          </div>
-          <div className="hidden md:flex items-center gap-1.5">
             <Award className="h-3.5 w-3.5" />
-            <span>Award Winning</span>
+            <span>Professional Quality</span>
           </div>
         </div>
       </div>

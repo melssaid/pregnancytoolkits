@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Star, Baby, Heart, Sparkles } from "lucide-react";
 
 const features = [
-  { icon: Baby, label: "52 Tools", description: "For your journey" },
+  { icon: Baby, label: "42 Tools", description: "For your journey" },
   { icon: Heart, label: "Track Everything", description: "Kick counts, contractions & more" },
   { icon: Sparkles, label: "Export Reports", description: "Share with your doctor" },
   { icon: Star, label: "No Ads", description: "Premium experience" },
