@@ -9,8 +9,11 @@ interface MedicalDisclaimerProps {
 
 export default function MedicalDisclaimer({ toolName, onAccept }: MedicalDisclaimerProps) {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-muted/30 to-background p-6">
-      <Card className="w-full max-w-2xl mx-auto shadow-xl">
+    <div 
+      className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-muted/30 to-background p-6"
+      style={{ minHeight: '100vh', minWidth: '100vw', position: 'fixed', top: 0, left: 0, zIndex: 50 }}
+    >
+      <Card className="w-full max-w-2xl mx-auto shadow-xl" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
         <CardContent className="p-8 space-y-8">
           {/* Header with Icon */}
           <div className="text-center space-y-4">
