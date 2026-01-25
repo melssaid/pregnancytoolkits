@@ -17,7 +17,7 @@
   },
   "categories": {
     "all": "All",
-    "ai": "AI Tools ✨",
+    "ai": "Smart Tools ✨",
     "fertility": "Fertility",
     "pregnancy": "Pregnancy",
     "labor": "Labor",
@@ -33,20 +33,20 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "AI Pregnancy Assistant",
+      "title": "Smart Pregnancy Guide",
       "description": "Ask any pregnancy question and get instant answers."
     },
     "symptomAnalyzer": {
       "title": "Smart Symptom Analysis",
-      "description": "Analyze your symptoms with AI-powered insights."
+      "description": "Analyze your symptoms with intelligent insights."
     },
     "aiMealSuggestion": {
-      "title": "AI Meal Planner",
+      "title": "Smart Meal Planner",
       "description": "Get personalized meal suggestions for your trimester."
     },
     "weeklySummary": {
-      "title": "Weekly Summary",
-      "description": "AI-powered weekly updates on your baby's growth."
+      "title": "Weekly Insights",
+      "description": "Smart weekly updates on your baby's growth."
     },
     "dueDateCalculator": {
       "title": "Due Date Calculator",
