@@ -42,6 +42,7 @@ import ContractionPatternAnalyzer from "@/pages/tools/ContractionPatternAnalyzer
 import SmartKickCounter from "@/pages/tools/SmartKickCounter";
 import PelvicFloorCoach from "@/pages/tools/PelvicFloorCoach";
 import SleepPatternAnalyzer from "@/pages/tools/SleepPatternAnalyzer";
+import AdvancedMoodTracker from "@/pages/tools/AdvancedMoodTracker";
 
 export function AnimatedRoutes() {
   const location = useLocation();
@@ -89,6 +90,8 @@ export function AnimatedRoutes() {
         <Route path="/tools/kick-counter" element={<PageTransition><SmartKickCounter /></PageTransition>} />
         <Route path="/tools/kegel-coach" element={<PageTransition><PelvicFloorCoach /></PageTransition>} />
         <Route path="/tools/sleep-analyzer" element={<PageTransition><SleepPatternAnalyzer /></PageTransition>} />
+        <Route path="/tools/mood-tracker" element={<PageTransition><AdvancedMoodTracker /></PageTransition>} />
+        <Route path="/tools/advanced-mood-tracker" element={<PageTransition><AdvancedMoodTracker /></PageTransition>} />
         
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
