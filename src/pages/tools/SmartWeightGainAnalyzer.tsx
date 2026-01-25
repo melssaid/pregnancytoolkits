@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ToolFrame } from '@/components/ToolFrame';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Scale, TrendingUp, AlertCircle, CheckCircle, Target } from 'lucide-react';
+import { Scale, TrendingUp, AlertCircle, CheckCircle, Target, ArrowLeft } from 'lucide-react';
 import {
   LineChart,
   Line,
@@ -13,7 +13,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceLine,
   Area,
   ComposedChart,
 } from 'recharts';
@@ -39,6 +38,7 @@ const BMI_WEIGHT_GAIN: Record<string, WeightRange> = {
 };
 
 export default function SmartWeightGainAnalyzer() {
+  const navigate = useNavigate();
   const [prePregnancyWeight, setPrePregnancyWeight] = useState<string>('');
   const [height, setHeight] = useState<string>('');
   const [currentWeight, setCurrentWeight] = useState<string>('');
@@ -106,8 +106,6 @@ export default function SmartWeightGainAnalyzer() {
 
   const getExpectedGainForWeek = (week: number) => {
     const range = getRecommendedRange();
-    // First trimester: ~0.5-2kg total
-    // Second & Third trimester: ~0.4-0.5kg per week
     if (week <= 13) {
       return {
         min: (range.min / 40) * week * 0.5,
@@ -177,19 +175,29 @@ export default function SmartWeightGainAnalyzer() {
   const status = getStatus();
 
   return (
-    <ToolFrame
-      title="Smart Weight Gain Analyzer"
-      subtitle="Track and analyze your pregnancy weight gain with personalized recommendations"
-      icon={Scale}
-      mood="nurturing"
-      toolId="smart-weight-gain"
-    >
-      <div className="space-y-6">
-        {/* Profile Setup */}
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+      <div className="bg-white shadow-sm sticky top-0 z-40">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center gap-4">
+          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
+            <ArrowLeft className="w-6 h-6 text-gray-600" />
+          </button>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+              <Scale className="w-5 h-5 text-purple-600" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-gray-900">Smart Weight Gain Analyzer</h1>
+              <p className="text-xs text-gray-500">Track and analyze your pregnancy weight gain</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         <Card>
           <CardContent className="p-6 space-y-4">
             <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Target className="w-5 h-5 text-primary" />
+              <Target className="w-5 h-5 text-purple-600" />
               Your Profile
             </h3>
             
@@ -202,6 +210,7 @@ export default function SmartWeightGainAnalyzer() {
                   placeholder="165"
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
+                  className="mt-1"
                 />
               </div>
               <div>
@@ -212,24 +221,24 @@ export default function SmartWeightGainAnalyzer() {
                   placeholder="60"
                   value={prePregnancyWeight}
                   onChange={(e) => setPrePregnancyWeight(e.target.value)}
+                  className="mt-1"
                 />
               </div>
             </div>
             
             {prePregnancyWeight && height && (
-              <div className="p-3 bg-muted/50 rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-medium text-foreground">BMI Category:</span> {range.category}
+              <div className="p-4 bg-purple-50 rounded-lg border border-purple-100">
+                <p className="text-sm text-gray-600">
+                  <span className="font-medium text-gray-900">BMI Category:</span> {range.category}
                 </p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  <span className="font-medium text-foreground">Recommended Total Gain:</span> {range.min} - {range.max} kg
+                <p className="text-sm text-gray-600 mt-1">
+                  <span className="font-medium text-gray-900">Recommended Total Gain:</span> {range.min} - {range.max} kg
                 </p>
               </div>
             )}
           </CardContent>
         </Card>
 
-        {/* Add New Entry */}
         <Card>
           <CardContent className="p-6 space-y-4">
             <h3 className="text-lg font-semibold">Add Weight Entry</h3>
@@ -245,6 +254,7 @@ export default function SmartWeightGainAnalyzer() {
                   placeholder="12"
                   value={currentWeek}
                   onChange={(e) => setCurrentWeek(e.target.value)}
+                  className="mt-1"
                 />
               </div>
               <div>
@@ -256,6 +266,7 @@ export default function SmartWeightGainAnalyzer() {
                   placeholder="62.5"
                   value={currentWeight}
                   onChange={(e) => setCurrentWeight(e.target.value)}
+                  className="mt-1"
                 />
               </div>
             </div>
@@ -266,7 +277,6 @@ export default function SmartWeightGainAnalyzer() {
           </CardContent>
         </Card>
 
-        {/* Status Card */}
         {status && (
           <Card>
             <CardContent className={`p-6 ${status.bgColor} border rounded-lg`}>
@@ -278,7 +288,7 @@ export default function SmartWeightGainAnalyzer() {
                 )}
                 <div>
                   <p className={`font-semibold ${status.color}`}>{status.message}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{status.recommendation}</p>
+                  <p className="text-sm text-gray-600 mt-1">{status.recommendation}</p>
                   <p className="text-sm font-medium mt-2">
                     Total Weight Gain: {getTotalGain().toFixed(1)} kg
                   </p>
@@ -288,22 +298,21 @@ export default function SmartWeightGainAnalyzer() {
           </Card>
         )}
 
-        {/* Weight Trend Chart */}
         {entries.length > 0 && prePregnancyWeight && (
           <Card>
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
-                <TrendingUp className="w-5 h-5 text-primary" />
+                <TrendingUp className="w-5 h-5 text-purple-600" />
                 Weight Gain Trend
               </h3>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={getChartData()}>
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
+                    <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200" />
                     <XAxis 
                       dataKey="week" 
                       tick={{ fontSize: 11 }}
-                      label={{ value: 'Week', position: 'bottom', fontSize: 12 }}
+                      label={{ value: 'Week', position: 'insideBottom', offset: -5, fontSize: 12 }}
                     />
                     <YAxis 
                       tick={{ fontSize: 11 }}
@@ -311,8 +320,8 @@ export default function SmartWeightGainAnalyzer() {
                     />
                     <Tooltip 
                       contentStyle={{ 
-                        backgroundColor: 'hsl(var(--background))', 
-                        border: '1px solid hsl(var(--border))',
+                        backgroundColor: 'white', 
+                        border: '1px solid #e5e7eb',
                         borderRadius: '8px'
                       }}
                       formatter={(value: number | null) => value !== null ? `${value.toFixed(1)} kg` : 'N/A'}
@@ -321,18 +330,19 @@ export default function SmartWeightGainAnalyzer() {
                       type="monotone" 
                       dataKey="expectedMax" 
                       stroke="none"
-                      fill="hsl(var(--primary) / 0.1)"
+                      fill="#a855f7"
+                      fillOpacity={0.1}
                     />
                     <Area 
                       type="monotone" 
                       dataKey="expectedMin" 
                       stroke="none"
-                      fill="hsl(var(--background))"
+                      fill="#ffffff"
                     />
                     <Line 
                       type="monotone" 
                       dataKey="expectedMin" 
-                      stroke="hsl(var(--primary) / 0.5)" 
+                      stroke="#a855f7" 
                       strokeDasharray="5 5"
                       strokeWidth={1}
                       dot={false}
@@ -341,7 +351,7 @@ export default function SmartWeightGainAnalyzer() {
                     <Line 
                       type="monotone" 
                       dataKey="expectedMax" 
-                      stroke="hsl(var(--primary) / 0.5)" 
+                      stroke="#a855f7" 
                       strokeDasharray="5 5"
                       strokeWidth={1}
                       dot={false}
@@ -350,39 +360,38 @@ export default function SmartWeightGainAnalyzer() {
                     <Line 
                       type="monotone" 
                       dataKey="actual" 
-                      stroke="hsl(var(--primary))" 
+                      stroke="#9333ea" 
                       strokeWidth={2}
-                      dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 4 }}
+                      dot={{ fill: '#9333ea', strokeWidth: 2, r: 4 }}
                       connectNulls
                       name="Your Weight"
                     />
                   </ComposedChart>
                 </ResponsiveContainer>
               </div>
-              <p className="text-xs text-muted-foreground text-center mt-2">
+              <p className="text-xs text-gray-500 text-center mt-2">
                 Shaded area shows the recommended weight gain range
               </p>
             </CardContent>
           </Card>
         )}
 
-        {/* Recent Entries */}
         {entries.length > 0 && (
           <Card>
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold mb-4">Recent Entries</h3>
               <div className="space-y-2">
                 {entries.slice(-5).reverse().map((entry) => (
-                  <div key={entry.id} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                  <div key={entry.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                     <div>
                       <span className="font-medium">Week {entry.week}</span>
-                      <span className="text-sm text-muted-foreground ml-2">
+                      <span className="text-sm text-gray-500 ml-2">
                         {new Date(entry.date).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="text-right">
                       <span className="font-semibold">{entry.weight} kg</span>
-                      <span className="text-sm text-muted-foreground ml-2">
+                      <span className="text-sm text-gray-500 ml-2">
                         (+{(entry.weight - parseFloat(prePregnancyWeight || '0')).toFixed(1)} kg)
                       </span>
                     </div>
@@ -393,6 +402,6 @@ export default function SmartWeightGainAnalyzer() {
           </Card>
         )}
       </div>
-    </ToolFrame>
+    </div>
   );
 }
