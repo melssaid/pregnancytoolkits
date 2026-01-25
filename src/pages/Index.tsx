@@ -40,13 +40,9 @@ const Index = () => {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("categories.all");
   const [viewMode, setViewMode] = useState<"grid" | "grouped">("grid");
-  const { isSubscribed } = useSubscription();
+  const { isSubscribed, isTrialActive, trialDaysLeft, subscribeMonthly, subscribeYearly } = useSubscription();
 
   const sortedTools = getSortedTools();
-
-  const handleSubscribe = () => {
-    console.log("Trigger Google Play In-App Billing");
-  };
 
   const filteredTools = useMemo(() => {
     return sortedTools.filter((tool) => {
@@ -82,17 +78,6 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              {/* Badge - Clean & Professional */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="mb-4 md:mb-5 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs md:text-sm font-medium text-primary"
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>{t('app.tagline')}</span>
-              </motion.div>
-              
               {/* Title - Clean & Readable */}
               <h1 className="mb-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
                 {t('app.title')}{" "}
@@ -298,28 +283,37 @@ const Index = () => {
               {/* Free Trial Info */}
               <div className="bg-success/10 rounded-lg px-4 py-2.5 mb-4">
                 <p className="text-sm text-success font-medium">
-                  ✨ 3-day free trial — Try all tools free
+                  {isTrialActive 
+                    ? `✨ ${trialDaysLeft} days left in your free trial`
+                    : "✨ Start with 3-day free trial"
+                  }
                 </p>
               </div>
 
               {/* Pricing Options */}
               <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <button 
+                  onClick={subscribeMonthly}
+                  className="bg-muted/50 rounded-xl p-3 text-center hover:bg-muted transition-colors"
+                >
                   <p className="text-2xl font-bold text-foreground">$1.99</p>
                   <p className="text-xs text-muted-foreground">per month</p>
-                </div>
-                <div className="bg-primary/5 rounded-xl p-3 text-center border border-primary/20">
+                </button>
+                <button 
+                  onClick={subscribeYearly}
+                  className="bg-primary/5 rounded-xl p-3 text-center border border-primary/20 hover:bg-primary/10 transition-colors"
+                >
                   <p className="text-2xl font-bold text-primary">$14</p>
                   <p className="text-xs text-muted-foreground">per year <span className="text-primary font-medium">(Save 40%)</span></p>
-                </div>
+                </button>
               </div>
 
               {/* Subscribe Button */}
               <Button
-                onClick={handleSubscribe}
+                onClick={subscribeMonthly}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold h-11"
               >
-                Start Free Trial
+                {isTrialActive ? "Subscribe Now" : "Start Free Trial"}
               </Button>
 
               {/* Footer */}
