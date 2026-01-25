@@ -46,6 +46,7 @@ const MoodDiary = () => {
       if (existing) {
         setTodayEntry(existing);
         setSelectedMood(existing.mood);
+        setNote(existing.note || "");
       }
     }
   }, []);
