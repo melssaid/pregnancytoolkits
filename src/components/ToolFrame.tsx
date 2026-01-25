@@ -94,38 +94,32 @@ export function ToolFrame({
           </div>
         </motion.header>
 
-        {/* Hero Section - Mobile First */}
+        {/* Hero Section - Compact and Consistent */}
         <motion.section 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          className="px-4 py-5 md:py-8"
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+          className="px-4 py-4"
         >
-          <div className="flex items-start gap-4">
+          <div className="flex items-center gap-3">
             {Icon && (
               <motion.div 
-                initial={{ scale: 0, rotate: -15 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 }}
-                className="relative shrink-0"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.15 }}
+                className="shrink-0"
               >
-                <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl ${styles.iconBg} shadow-xl shadow-primary/20 ring-2 md:ring-4 ring-white`}>
-                  <Icon className="h-6 w-6 md:h-8 md:w-8 text-white" strokeWidth={2.5} />
+                <div className={`p-2.5 rounded-xl ${styles.iconBg} shadow-lg shadow-primary/20 ring-2 ring-white`}>
+                  <Icon className="h-5 w-5 text-white" strokeWidth={2.5} />
                 </div>
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className={`absolute -top-0.5 -right-0.5 w-3 h-3 md:w-4 md:h-4 rounded-full bg-gradient-to-r ${styles.accent} shadow-lg ring-2 ring-white`} 
-                />
               </motion.div>
             )}
-            <div className="flex-1 min-w-0 space-y-1">
+            <div className="flex-1 min-w-0">
               <motion.h1 
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                className="text-xl sm:text-2xl md:text-3xl font-extrabold text-foreground tracking-tight leading-tight"
+                transition={{ duration: 0.3, delay: 0.2 }}
+                className="text-lg sm:text-xl font-bold text-foreground tracking-tight leading-tight"
               >
                 {title}
               </motion.h1>
@@ -133,8 +127,8 @@ export function ToolFrame({
                 <motion.p 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.4 }}
-                  className="text-muted-foreground text-xs sm:text-sm md:text-base leading-relaxed line-clamp-2"
+                  transition={{ duration: 0.3, delay: 0.25 }}
+                  className="text-muted-foreground text-[11px] sm:text-xs leading-relaxed line-clamp-1"
                 >
                   {subtitle}
                 </motion.p>
@@ -143,19 +137,16 @@ export function ToolFrame({
           </div>
         </motion.section>
 
-        {/* Main Content Card - Full Width on Mobile */}
-        <section className="px-3 md:px-4 pb-6">
+        {/* Main Content Card - Compact */}
+        <section className="px-3 pb-4">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-            className={`relative bg-white/95 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-xl shadow-black/[0.06] ${styles.border} border overflow-hidden`}
+            transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
+            className={`relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/[0.04] ${styles.border} border overflow-hidden`}
           >
-            {/* Decorative Corner Accents */}
-            <div className={`absolute top-0 right-0 w-32 md:w-48 h-32 md:h-48 bg-gradient-to-bl ${styles.glow} to-transparent rounded-bl-full pointer-events-none opacity-50`} />
-            
-            {/* Content - Tighter padding on mobile */}
-            <div className="relative z-10 p-4 sm:p-5 md:p-6 lg:p-8">
+            {/* Content - Tighter padding */}
+            <div className="relative z-10 p-4 sm:p-5">
               {children}
             </div>
           </motion.div>
