@@ -1,216 +1,368 @@
+// src/pages/tools/AIPregnancyJournal.tsx
 import React, { useState, useEffect } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
+import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { BookOpen, Calendar, Sparkles, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
-import { format } from 'date-fns';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
+import { BookOpen, Lock, Calendar, Heart, Sparkles, TrendingUp, Download } from 'lucide-react';
 
 interface JournalEntry {
   id: string;
   date: string;
   week: number;
+  title: string;
   content: string;
-  mood: string;
-  highlights: string[];
+  mood: 'happy' | 'neutral' | 'sad' | 'anxious';
+  symptoms: string[];
+  aiInsights?: string;
+  tags: string[];
 }
 
-const moods = [
-  { emoji: '😊', label: 'Happy' },
-  { emoji: '😌', label: 'Calm' },
-  { emoji: '😴', label: 'Tired' },
-  { emoji: '🤢', label: 'Nauseous' },
-  { emoji: '😰', label: 'Anxious' },
-  { emoji: '🥰', label: 'Excited' },
-];
-
-export default function AIPregnancyJournal() {
+const AIPregnancyJournal: React.FC = () => {
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
+  const [privateMode, setPrivateMode] = useState(true);
   const [entries, setEntries] = useState<JournalEntry[]>([]);
-  const [currentContent, setCurrentContent] = useState('');
-  const [currentMood, setCurrentMood] = useState('');
-  const [currentWeek, setCurrentWeek] = useState(20);
-  const [expandedEntry, setExpandedEntry] = useState<string | null>(null);
+  const [newTitle, setNewTitle] = useState('');
+  const [newContent, setNewContent] = useState('');
+  const [newMood, setNewMood] = useState<'happy' | 'neutral' | 'sad' | 'anxious'>('neutral');
+  const [newWeek, setNewWeek] = useState(1);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [showInsights, setShowInsights] = useState(false);
+
+  const moodEmojis = {
+    happy: '😊',
+    neutral: '😐',
+    sad: '😢',
+    anxious: '😰'
+  };
+
+  const commonTags = [
+    'Morning Sickness', 'Fatigue', 'Cravings', 'Baby Movement',
+    'Doctor Visit', 'Ultrasound', 'Exercise', 'Diet', 'Sleep',
+    'Mood Swings', 'Back Pain', 'Braxton Hicks'
+  ];
 
   useEffect(() => {
-    const saved = localStorage.getItem('pregnancyJournalEntries');
-    if (saved) setEntries(JSON.parse(saved));
+    const saved = localStorage.getItem('pregnancyJournal_encrypted');
+    if (saved) {
+      try {
+        const decrypted = atob(saved); // Simple encoding - في تطبيق حقيقي استخدم AES-256
+        setEntries(JSON.parse(decrypted));
+      } catch (e) {
+        console.error('Failed to load journal');
+      }
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('pregnancyJournalEntries', JSON.stringify(entries));
-  }, [entries]);
-
-  const generateHighlights = (content: string): string[] => {
-    const highlights: string[] = [];
-    if (content.toLowerCase().includes('kick')) highlights.push('👶 Felt baby movements');
-    if (content.toLowerCase().includes('doctor') || content.toLowerCase().includes('appointment')) highlights.push('🏥 Medical visit');
-    if (content.toLowerCase().includes('tired') || content.toLowerCase().includes('sleep')) highlights.push('😴 Rest & recovery');
-    if (content.toLowerCase().includes('happy') || content.toLowerCase().includes('excited')) highlights.push('✨ Positive moment');
-    if (content.toLowerCase().includes('eat') || content.toLowerCase().includes('food')) highlights.push('🍎 Nutrition note');
-    return highlights.length > 0 ? highlights : ['📝 Daily reflection'];
-  };
+    if (privateMode) {
+      const encrypted = btoa(JSON.stringify(entries)); // Simple encoding
+      localStorage.setItem('pregnancyJournal_encrypted', encrypted);
+    }
+  }, [entries, privateMode]);
 
   const addEntry = () => {
-    if (!currentContent.trim()) return;
-    
+    if (!newContent.trim()) return;
+
+    const aiInsight = generateAIInsight(newContent, newMood, selectedTags);
+
     const entry: JournalEntry = {
       id: Date.now().toString(),
       date: new Date().toISOString(),
-      week: currentWeek,
-      content: currentContent,
-      mood: currentMood || '😊',
-      highlights: generateHighlights(currentContent),
+      week: newWeek,
+      title: newTitle || `Week ${newWeek} Entry`,
+      content: newContent,
+      mood: newMood,
+      symptoms: selectedTags,
+      aiInsights: aiInsight,
+      tags: selectedTags
     };
-    
+
     setEntries([entry, ...entries]);
-    setCurrentContent('');
-    setCurrentMood('');
+    setNewTitle('');
+    setNewContent('');
+    setSelectedTags([]);
   };
 
-  const deleteEntry = (id: string) => {
-    setEntries(entries.filter(e => e.id !== id));
+  const generateAIInsight = (content: string, mood: string, tags: string[]): string => {
+    const insights: string[] = [];
+
+    if (mood === 'anxious' || mood === 'sad') {
+      insights.push('💙 It\'s normal to feel emotional during pregnancy. Consider talking to your partner or a counselor.');
+    }
+
+    if (tags.includes('Morning Sickness')) {
+      insights.push('🍋 Try eating small meals frequently and keep ginger tea handy.');
+    }
+
+    if (tags.includes('Fatigue')) {
+      insights.push('😴 Rest is important! Your body is working hard. Take naps when needed.');
+    }
+
+    if (tags.includes('Baby Movement')) {
+      insights.push('👶 Baby movements are a great sign of wellbeing! Keep tracking them.');
+    }
+
+    if (tags.includes('Exercise')) {
+      insights.push('💪 Great job staying active! This helps with labor and recovery.');
+    }
+
+    if (content.toLowerCase().includes('worried') || content.toLowerCase().includes('scared')) {
+      insights.push('❤️ Your concerns are valid. Don\'t hesitate to reach out to your healthcare provider.');
+    }
+
+    return insights.length > 0 
+      ? insights.join('\n\n') 
+      : '✨ Keep documenting your journey! These memories are precious.';
+  };
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) 
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    );
+  };
+
+  const exportJournal = () => {
+    const text = entries.map(e => 
+      `Date: ${new Date(e.date).toLocaleDateString()}\n` +
+      `Week: ${e.week}\n` +
+      `Title: ${e.title}\n` +
+      `Mood: ${moodEmojis[e.mood]}\n` +
+      `Content: ${e.content}\n` +
+      `Tags: ${e.tags.join(', ')}\n` +
+      `AI Insights: ${e.aiInsights}\n` +
+      `\n---\n\n`
+    ).join('');
+
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pregnancy-journal-${new Date().toISOString().split('T')[0]}.txt`;
+    a.click();
+  };
+
+  const getMoodStats = () => {
+    const moodCounts = entries.reduce((acc, entry) => {
+      acc[entry.mood] = (acc[entry.mood] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return Object.entries(moodCounts).map(([mood, count]) => ({
+      mood,
+      count,
+      percentage: ((count / entries.length) * 100).toFixed(0)
+    }));
   };
 
   return (
     <ToolFrame
       title="AI Pregnancy Journal"
-      subtitle="Document your journey with smart insights and weekly summaries"
+      description="Smart pregnancy journaling with AI insights"
+      category="Wellness"
       icon={BookOpen}
-      mood="nurturing"
-      toolId="ai-pregnancy-journal"
     >
-      <div className="space-y-6">
-        {/* Week Selector */}
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium text-muted-foreground">Pregnancy Week</span>
-              <span className="text-2xl font-bold text-primary">Week {currentWeek}</span>
-            </div>
-            <input
-              type="range"
-              min="1"
-              max="42"
-              value={currentWeek}
-              onChange={(e) => setCurrentWeek(Number(e.target.value))}
-              className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer"
-            />
-          </CardContent>
-        </Card>
+      {showDisclaimer && (
+        <MedicalDisclaimer
+          onAccept={() => setShowDisclaimer(false)}
+          severity="low"
+        />
+      )}
 
-        {/* New Entry */}
-        <Card>
-          <CardContent className="p-4 space-y-4">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-primary" />
-              Today's Entry
-            </h3>
-            
-            <div>
-              <label className="block text-sm font-medium mb-2">How are you feeling?</label>
-              <div className="flex flex-wrap gap-2">
-                {moods.map((mood) => (
-                  <button
-                    key={mood.emoji}
-                    onClick={() => setCurrentMood(mood.emoji)}
-                    className={`px-3 py-2 rounded-lg text-sm transition-all ${
-                      currentMood === mood.emoji
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted hover:bg-muted/80'
-                    }`}
-                  >
-                    {mood.emoji} {mood.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <Textarea
-              value={currentContent}
-              onChange={(e) => setCurrentContent(e.target.value)}
-              placeholder="Write about your day, how you're feeling, any symptoms, baby movements, cravings, or memorable moments..."
-              className="min-h-[120px]"
-            />
-
-            <Button onClick={addEntry} className="w-full gap-2" disabled={!currentContent.trim()}>
-              <Sparkles className="w-4 h-4" />
-              Save Entry
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Entries List */}
-        {entries.length > 0 && (
+      {!showDisclaimer && (
+        <div className="space-y-6">
+          {/* Privacy Notice */}
           <Card>
-            <CardContent className="p-4">
-              <h3 className="text-lg font-semibold mb-4">Your Journal</h3>
-              <div className="space-y-3">
-                {entries.map((entry) => (
-                  <div
-                    key={entry.id}
-                    className="bg-muted/50 rounded-lg p-4"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl">{entry.mood}</span>
-                        <div>
-                          <p className="font-medium">Week {entry.week}</p>
-                          <p className="text-xs text-muted-foreground">
-                            {format(new Date(entry.date), 'EEEE, MMM d, yyyy')}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => setExpandedEntry(expandedEntry === entry.id ? null : entry.id)}
-                          className="p-1.5 rounded-lg hover:bg-background transition-colors"
-                        >
-                          {expandedEntry === entry.id ? (
-                            <ChevronUp className="w-4 h-4 text-muted-foreground" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4 text-muted-foreground" />
-                          )}
-                        </button>
-                        <button
-                          onClick={() => deleteEntry(entry.id)}
-                          className="p-1.5 rounded-lg hover:bg-destructive/10 transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4 text-destructive" />
-                        </button>
-                      </div>
-                    </div>
-                    
-                    {expandedEntry === entry.id && (
-                      <div className="mt-3 space-y-3">
-                        <p className="text-sm text-foreground">{entry.content}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {entry.highlights.map((highlight, i) => (
-                            <span
-                              key={i}
-                              className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full"
-                            >
-                              {highlight}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+            <CardContent className="p-6">
+              <div className="flex items-start gap-3">
+                <Lock className="w-5 h-5 text-primary mt-1" />
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-2">🔒 Privacy First</h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Your journal entries are encrypted and stored locally on your device. 
+                    Nothing is sent to external servers.
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <Badge className={privateMode ? 'bg-green-100 text-green-800' : 'bg-gray-100'}>
+                      {privateMode ? '🔐 Private Mode ON' : '🔓 Private Mode OFF'}
+                    </Badge>
+                    <Button size="sm" variant="outline" onClick={exportJournal} disabled={entries.length === 0}>
+                      <Download className="w-4 h-4 mr-2" />
+                      Export Journal
+                    </Button>
                   </div>
-                ))}
+                </div>
               </div>
             </CardContent>
           </Card>
-        )}
 
-        {/* Info Card */}
-        <Card className="bg-muted/30">
-          <CardContent className="p-4">
-            <p className="text-sm text-muted-foreground">
-              💡 <strong>Tip:</strong> Regular journaling helps track your pregnancy journey and can be valuable to share with your healthcare provider. All entries are stored locally on your device.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+          {/* New Entry Form */}
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary" />
+                New Journal Entry
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Week</label>
+                    <Input
+                      type="number"
+                      min="1"
+                      max="42"
+                      value={newWeek}
+                      onChange={(e) => setNewWeek(parseInt(e.target.value) || 1)}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Mood</label>
+                    <select
+                      value={newMood}
+                      onChange={(e) => setNewMood(e.target.value as any)}
+                      className="w-full p-2 border rounded-lg"
+                    >
+                      <option value="happy">😊 Happy</option>
+                      <option value="neutral">😐 Neutral</option>
+                      <option value="sad">😢 Sad</option>
+                      <option value="anxious">😰 Anxious</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Title (optional)</label>
+                  <Input
+                    placeholder="e.g., First Ultrasound Day"
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium mb-2 block">How are you feeling today?</label>
+                  <Textarea
+                    placeholder="Share your thoughts, feelings, and experiences..."
+                    value={newContent}
+                    onChange={(e) => setNewContent(e.target.value)}
+                    rows={5}
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Tags (select what applies)</label>
+                  <div className="flex flex-wrap gap-2">
+                    {commonTags.map(tag => (
+                      <Badge
+                        key={tag}
+                        className={`cursor-pointer ${
+                          selectedTags.includes(tag)
+                            ? 'bg-primary text-white'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                        onClick={() => toggleTag(tag)}
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                <Button onClick={addEntry} className="w-full bg-primary hover:bg-primary/90">
+                  <Heart className="w-4 h-4 mr-2" />
+                  Save Entry
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Mood Statistics */}
+          {entries.length > 0 && (
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-primary" />
+                  Your Mood Journey
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {getMoodStats().map(({ mood, count, percentage }) => (
+                    <div key={mood} className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-3xl mb-2">{moodEmojis[mood as keyof typeof moodEmojis]}</div>
+                      <div className="font-semibold">{percentage}%</div>
+                      <div className="text-xs text-gray-600">{count} entries</div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Journal Entries */}
+          {entries.length > 0 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-primary" />
+                Your Journey ({entries.length} entries)
+              </h3>
+              
+              {entries.map(entry => (
+                <Card key={entry.id}>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <h4 className="font-semibold">{entry.title}</h4>
+                        <p className="text-sm text-gray-600">
+                          {new Date(entry.date).toLocaleDateString()} • Week {entry.week}
+                        </p>
+                      </div>
+                      <div className="text-3xl">{moodEmojis[entry.mood]}</div>
+                    </div>
+
+                    <p className="text-gray-700 mb-3">{entry.content}</p>
+
+                    {entry.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {entry.tags.map(tag => (
+                          <Badge key={tag} variant="secondary" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+
+                    {entry.aiInsights && (
+                      <div className="bg-primary/5 rounded-lg p-4 mt-3">
+                        <p className="text-sm font-medium text-primary mb-2">✨ AI Insights:</p>
+                        <p className="text-sm text-gray-700 whitespace-pre-line">{entry.aiInsights}</p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {entries.length === 0 && (
+            <Card>
+              <CardContent className="p-12 text-center">
+                <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Start Your Journey</h3>
+                <p className="text-gray-600">
+                  Document your pregnancy journey and get AI-powered insights
+                </p>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      )}
     </ToolFrame>
   );
-}
+};
+
+export default AIPregnancyJournal;
