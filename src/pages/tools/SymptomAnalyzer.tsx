@@ -97,21 +97,25 @@ Please analyze these symptoms and provide general, informational guidance (not m
   const pageTitle = t("tools.symptomAnalyzer.title");
 
   return (
-    <Layout title={pageTitle} showBack>
-      <div className="space-y-5">
-        {/* Header */}
+    <Layout showBack>
+      <div className="container py-6 space-y-5">
+        {/* Header - Clean and consistent */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center space-y-3"
+          className="space-y-2"
         >
-          <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary/20 via-primary/10 to-accent/20 px-5 py-2.5 rounded-full border border-primary/20 shadow-sm">
-            <Stethoscope className="w-5 h-5 text-primary" />
-            <span className="text-sm font-semibold text-primary">AI Symptom Analyzer</span>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
+              <Stethoscope className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-foreground">{pageTitle}</h1>
+              <p className="text-xs text-muted-foreground">
+                Select symptoms for personalized insights
+              </p>
+            </div>
           </div>
-          <p className="text-xs text-muted-foreground max-w-xs mx-auto">
-            Select your symptoms and get personalized insights powered by AI
-          </p>
         </motion.div>
 
         <AnimatePresence mode="wait">

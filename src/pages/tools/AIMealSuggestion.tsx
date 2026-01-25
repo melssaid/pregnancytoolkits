@@ -92,19 +92,24 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
   };
 
   return (
-    <Layout title={t("tools.aiMealSuggestion.title")} showBack>
-      <div className="space-y-4">
-        {/* Header */}
+    <Layout showBack>
+      <div className="container py-6 space-y-5">
+        {/* Header - Consistent Smart Tool Style */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center space-y-2"
+          className="space-y-2"
         >
-          <div className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-4 py-2 rounded-full">
-            <ChefHat className="w-5 h-5 text-green-600" />
-            <span className="text-sm font-medium text-green-700">
-              AI-Powered Meal Suggestions
-            </span>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
+              <Utensils className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-foreground">{t("tools.aiMealSuggestion.title")}</h1>
+              <p className="text-xs text-muted-foreground">
+                Smart meal suggestions for your pregnancy
+              </p>
+            </div>
           </div>
         </motion.div>
 

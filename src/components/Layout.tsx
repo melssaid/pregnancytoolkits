@@ -74,15 +74,17 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
       {/* Main Content */}
       <main className="flex-1">
         {title && (
-          <div className="border-b border-border bg-card">
-            <div className="container py-8">
-              <motion.h1 
+          <div className="bg-gradient-to-b from-card to-background border-b border-border/50">
+            <div className="container py-6">
+              <motion.div 
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-3xl font-bold text-foreground"
+                className="flex items-center gap-4"
               >
-                {title}
-              </motion.h1>
+                <h1 className="text-2xl font-bold text-foreground tracking-tight">
+                  {title}
+                </h1>
+              </motion.div>
             </div>
           </div>
         )}
