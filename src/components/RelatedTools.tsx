@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Brain } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { getRelatedTools } from "@/lib/tools-data";
 
@@ -48,11 +48,6 @@ export const RelatedTools = forwardRef<HTMLDivElement, RelatedToolsProps>(
                 >
                   <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-primary group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-pink-500 group-hover:text-white transition-all duration-300">
                     <Icon className="h-5 w-5" />
-                    {tool.hasAI && (
-                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full flex items-center justify-center">
-                        <Brain className="h-2.5 w-2.5 text-white" />
-                      </div>
-                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
