@@ -52,53 +52,21 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative pt-6 pb-4 overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background">
-        <div className="container relative z-10">
-          <div className="max-w-lg mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium mb-2">
-                <Sparkles className="w-3 h-3" />
-                <span>{aiToolsCount} AI-Powered Tools</span>
-              </div>
-              <h1 className="text-xl md:text-2xl font-extrabold tracking-tight text-foreground mb-1">
-                {t('app.title', 'Pregnancy')} <span className="text-primary">{t('app.titleHighlight', 'Tools')}</span>
-              </h1>
-              <p className="text-xs text-muted-foreground mb-3">
-                {t('app.description', 'Comprehensive AI-powered pregnancy tools')}
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400 text-[10px]">
-                  <CheckCircle className="w-3 h-3" /> Free
-                </span>
-                <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-[10px]">
-                  <Shield className="w-3 h-3" /> Private
-                </span>
-                <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-violet-50 text-violet-600 dark:bg-violet-950/50 dark:text-violet-400 text-[10px]">
-                  <Zap className="w-3 h-3" /> AI Smart
-                </span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Search Bar */}
-      <section className="sticky top-16 z-30 bg-background/95 backdrop-blur-xl border-b border-border/50 py-2">
+      {/* Hero Section - Minimal */}
+      <section className="pt-4 pb-2">
         <div className="container">
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder={t('app.searchPlaceholder', 'Search tools...')}
-              className="pl-9 h-10 rounded-xl bg-muted/50 border-none focus-visible:ring-primary/20"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <h1 className="text-lg font-bold text-foreground">
+              {t('app.title', 'Pregnancy')} <span className="text-primary">{t('app.titleHighlight', 'Tools')}</span>
+            </h1>
+            <p className="text-xs text-muted-foreground">
+              {aiToolsCount} AI-Powered Tools
+            </p>
+          </motion.div>
         </div>
       </section>
 
