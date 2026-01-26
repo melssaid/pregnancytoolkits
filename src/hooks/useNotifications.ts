@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
+import { playNotificationSound } from '@/lib/notificationSound';
 
 export interface Notification {
   id: string;
@@ -201,6 +202,10 @@ export function useNotifications() {
       read: false,
     };
     setNotifications(prev => [newNotification, ...prev].slice(0, 50));
+    
+    // Play notification sound based on type
+    const soundType = notification.type === 'appointment' ? 'reminder' : 'gentle';
+    playNotificationSound(soundType);
   }, []);
 
   const markAsRead = useCallback((id: string) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, Check, Plus, Apple, Milk, Egg, Fish, Leaf, Trash2, Sparkles } from 'lucide-react';
+import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
+import { toast } from 'sonner';
 
 interface GroceryItem {
   id: string;
@@ -38,24 +40,51 @@ const categoryIcons: Record<string, React.ElementType> = {
   other: ShoppingCart
 };
 
+// Validator for grocery items
+const isGroceryItemArray = (data: unknown): data is GroceryItem[] => {
+  return Array.isArray(data) && data.every(item =>
+    typeof item === 'object' &&
+    item !== null &&
+    'id' in item &&
+    'name' in item &&
+    'category' in item &&
+    typeof (item as GroceryItem).isChecked === 'boolean'
+  );
+};
+
 export default function SmartGroceryList() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [items, setItems] = useState<GroceryItem[]>([]);
   const [newItem, setNewItem] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'produce' | 'dairy' | 'protein' | 'grains' | 'other'>('all');
+  
+  // Track initialization to prevent saving empty state
+  const isInitialized = useRef(false);
 
+  // Load from localStorage with safe parsing
   useEffect(() => {
-    const saved = localStorage.getItem('pregnancyGroceryList');
-    if (saved) {
-      setItems(JSON.parse(saved));
-    } else {
-      setItems(suggestedItems);
+    const saved = safeParseLocalStorage<GroceryItem[]>(
+      'pregnancyGroceryList',
+      suggestedItems,
+      isGroceryItemArray
+    );
+    setItems(saved);
+    isInitialized.current = true;
+  }, []);
+
+  // Save to localStorage only after initial load
+  const saveItems = useCallback((newItems: GroceryItem[]) => {
+    const success = safeSaveToLocalStorage('pregnancyGroceryList', newItems);
+    if (!success) {
+      toast.error('Failed to save list. Storage may be full.');
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('pregnancyGroceryList', JSON.stringify(items));
-  }, [items]);
+    if (isInitialized.current) {
+      saveItems(items);
+    }
+  }, [items, saveItems]);
 
   const addItem = () => {
     if (!newItem.trim()) return;

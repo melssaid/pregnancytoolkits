@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import {
   Utensils,
   Sparkles,
   Loader2,
   Leaf,
   Apple,
-  ChefHat,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,7 +18,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Layout } from "@/components/Layout";
+import { ToolFrame } from "@/components/ToolFrame";
+import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
@@ -51,6 +50,7 @@ const cravings = [
 export default function AIMealSuggestion() {
   const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [trimester, setTrimester] = useState<string>("2");
   const [mealType, setMealType] = useState<string>("lunch");
   const [preferences, setPreferences] = useState<string[]>([]);
@@ -91,33 +91,29 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
     });
   };
 
-  return (
-    <Layout showBack>
-      <div className="container py-6 space-y-5">
-        {/* Header - Consistent Smart Tool Style */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-2"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
-              <Utensils className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-foreground">{t("tools.aiMealSuggestion.title")}</h1>
-              <p className="text-xs text-muted-foreground">
-                Smart meal suggestions for your pregnancy
-              </p>
-            </div>
-          </div>
-        </motion.div>
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="AI Meal Suggestion"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
 
+  return (
+    <ToolFrame
+      title={t("tools.aiMealSuggestion.title")}
+      subtitle="Smart meal suggestions for your pregnancy"
+      icon={Utensils}
+      mood="joyful"
+      toolId="ai-meal-suggestion"
+    >
+      <div className="space-y-6">
         {!suggestion ? (
           <>
             {/* Trimester & Meal Type */}
             <div className="grid grid-cols-2 gap-3">
-              <Card className="border-border/50">
+              <Card>
                 <CardContent className="p-4 space-y-2">
                   <label className="text-xs text-muted-foreground">
                     Pregnancy Stage
@@ -135,7 +131,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                 </CardContent>
               </Card>
 
-              <Card className="border-border/50">
+              <Card>
                 <CardContent className="p-4 space-y-2">
                   <label className="text-xs text-muted-foreground">Meal Type</label>
                   <Select value={mealType} onValueChange={setMealType}>
@@ -155,7 +151,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             </div>
 
             {/* Cravings */}
-            <Card className="border-border/50">
+            <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">What are you craving? 😋</CardTitle>
               </CardHeader>
@@ -179,7 +175,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             </Card>
 
             {/* Dietary Preferences */}
-            <Card className="border-border/50">
+            <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Leaf className="w-4 h-4 text-green-600" />
@@ -222,31 +218,29 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
         ) : (
           <>
             {/* Suggestion Result */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <Card className="border-green-500/20 bg-green-50/50 dark:bg-green-950/20">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-base flex items-center gap-2">
-                      <Utensils className="w-5 h-5 text-green-600" />
-                      Meal Suggestion
-                    </CardTitle>
-                    <div className="flex gap-1">
-                      <Badge variant="secondary" className="text-xs">
-                        {mealTypes.find((m) => m.id === mealType)?.icon}{" "}
-                        {mealTypes.find((m) => m.id === mealType)?.label}
-                      </Badge>
-                    </div>
+            <Card className="border-green-200 bg-green-50/50">
+              <CardHeader className="pb-2">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-base flex items-center gap-2">
+                    <Utensils className="w-5 h-5 text-green-600" />
+                    Meal Suggestion
+                  </CardTitle>
+                  <div className="flex gap-1">
+                    <Badge variant="secondary" className="text-xs">
+                      {mealTypes.find((m) => m.id === mealType)?.icon}{" "}
+                      {mealTypes.find((m) => m.id === mealType)?.label}
+                    </Badge>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <MarkdownRenderer 
-                    content={suggestion} 
-                    isLoading={isLoading} 
-                    accentColor="green-500" 
-                  />
-                </CardContent>
-              </Card>
-            </motion.div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <MarkdownRenderer 
+                  content={suggestion} 
+                  isLoading={isLoading} 
+                  accentColor="green-500" 
+                />
+              </CardContent>
+            </Card>
 
             {/* Actions */}
             <div className="flex gap-2">
@@ -279,7 +273,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
         )}
 
         {/* Tips */}
-        <Card className="border-border/50">
+        <Card>
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
               <Apple className="w-5 h-5 text-green-600 shrink-0" />
@@ -295,6 +289,6 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
           </CardContent>
         </Card>
       </div>
-    </Layout>
+    </ToolFrame>
   );
 }
