@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { LucideIcon, Brain, Sparkles, ChevronRight, Info } from "lucide-react";
+import { LucideIcon, ChevronRight, Info } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface ToolCardProps {
@@ -110,11 +110,6 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                 : "bg-secondary text-primary group-hover:bg-primary group-hover:text-white"
             }`}>
               <Icon className="h-5 w-5" />
-              {isAITool && (
-                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-gradient-to-r from-violet-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm ring-2 ring-card">
-                  <Brain className="h-2 w-2 text-white" />
-                </span>
-              )}
             </div>
             
             {/* Content */}
@@ -127,12 +122,6 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
                 }`}>
                   {t(titleKey)}
                 </h3>
-                {isAITool && (
-                  <span className="flex-shrink-0 flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[8px] font-bold bg-gradient-to-r from-violet-500 to-purple-600 text-white">
-                    <Sparkles className="h-2 w-2" />
-                    AI
-                  </span>
-                )}
               </div>
               <p className="text-[11px] text-muted-foreground truncate mt-0.5">
                 {t(descriptionKey)}
