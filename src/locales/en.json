@@ -335,6 +335,18 @@
     "workoutPlanner": {
       "title": "Personalized Workout Planner",
       "description": "Safe pregnancy exercises for each trimester."
+    },
+    "aiPregnancyTips": {
+      "title": "AI Daily Pregnancy Tips",
+      "description": "Personalized daily tips based on your trimester."
+    },
+    "smartGroceryList": {
+      "title": "Smart Grocery List",
+      "description": "AI-powered shopping list for pregnancy nutrition."
+    },
+    "pregnancySmoothieAI": {
+      "title": "Pregnancy Smoothie AI",
+      "description": "Healthy smoothie recipes for every trimester."
     }
   },
   "common": {
