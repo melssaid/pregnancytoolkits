@@ -160,6 +160,15 @@ const AIPregnancyJournal: React.FC = () => {
     }));
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="AI Pregnancy Journal"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="AI Pregnancy Journal"
@@ -168,15 +177,7 @@ const AIPregnancyJournal: React.FC = () => {
       toolId="ai-pregnancy-journal"
       icon={BookOpen}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="AI Pregnancy Journal"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {/* Privacy Notice */}
           <Card>
             <CardContent className="p-6">
@@ -360,8 +361,7 @@ const AIPregnancyJournal: React.FC = () => {
               </CardContent>
             </Card>
           )}
-        </div>
-      )}
+      </div>
     </ToolFrame>
   );
 };

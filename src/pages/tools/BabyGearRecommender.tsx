@@ -179,6 +179,15 @@ export default function BabyGearRecommender() {
     return Math.round((checkedEssentials.length / essentials.length) * 100);
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Baby Gear Recommender"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Baby Gear Recommender"
@@ -187,15 +196,7 @@ export default function BabyGearRecommender() {
       toolId="baby-gear"
       icon={Package}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Baby Gear Recommender"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {/* Progress */}
           <Card>
             <CardContent className="p-6">
@@ -322,10 +323,9 @@ export default function BabyGearRecommender() {
             <p className="text-xs text-muted-foreground">
               💡 This is a general guide. Your specific needs may vary. 
               Consider borrowing or buying secondhand for items used briefly.
-            </p>
-          </div>
+          </p>
         </div>
-      )}
+      </div>
     </ToolFrame>
   );
 }

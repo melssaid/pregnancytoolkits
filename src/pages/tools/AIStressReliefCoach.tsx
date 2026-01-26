@@ -146,6 +146,15 @@ export default function AIStressReliefCoach() {
     }
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="AI Stress Relief Coach"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="AI Stress Relief Coach"
@@ -154,15 +163,7 @@ export default function AIStressReliefCoach() {
       toolId="stress-relief"
       icon={Heart}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="AI Stress Relief Coach"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {/* Daily Affirmation */}
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
             <CardContent className="p-6">
@@ -287,11 +288,10 @@ export default function AIStressReliefCoach() {
           <div className="bg-muted/30 rounded-xl p-4 text-center">
             <p className="text-xs text-muted-foreground">
               ⚠️ These exercises are for general relaxation. If you experience severe anxiety or depression, 
-              please consult your healthcare provider.
-            </p>
-          </div>
+            please consult your healthcare provider.
+          </p>
         </div>
-      )}
+      </div>
     </ToolFrame>
   );
 }

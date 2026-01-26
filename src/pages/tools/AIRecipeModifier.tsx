@@ -87,6 +87,15 @@ export default function AIRecipeModifier() {
     setAnalysis(null);
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="AI Recipe Modifier"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="AI Recipe Modifier"
@@ -95,15 +104,7 @@ export default function AIRecipeModifier() {
       toolId="recipe-modifier"
       icon={ChefHat}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="AI Recipe Modifier"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {!analysis ? (
             <>
               {/* Input */}
@@ -252,9 +253,8 @@ export default function AIRecipeModifier() {
               ⚠️ This tool provides general guidance. Always consult your healthcare provider 
               about specific dietary restrictions during your pregnancy.
             </p>
-          </div>
         </div>
-      )}
+      </div>
     </ToolFrame>
   );
 }

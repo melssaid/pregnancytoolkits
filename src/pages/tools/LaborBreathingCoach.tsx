@@ -179,6 +179,15 @@ export default function LaborBreathingCoach() {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Labor Breathing Coach"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Labor Breathing Coach"
@@ -187,15 +196,7 @@ export default function LaborBreathingCoach() {
       toolId="labor-breathing"
       icon={Wind}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Labor Breathing Coach"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {/* Pattern Selection */}
           <Card>
             <CardContent className="p-4">
@@ -335,10 +336,9 @@ export default function LaborBreathingCoach() {
             <p className="text-xs text-muted-foreground">
               ⚠️ Practice these techniques regularly before labor. During actual labor, 
               follow the guidance of your healthcare provider and birthing team.
-            </p>
-          </div>
+          </p>
         </div>
-      )}
+      </div>
     </ToolFrame>
   );
 }
