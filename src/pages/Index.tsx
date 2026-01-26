@@ -8,7 +8,7 @@ import { getSortedTools, categoryKeys, getAITools, getToolsByCategory } from "@/
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-
+import { SubscriptionModal } from "@/components/SubscriptionModal";
 interface CategoryConfig {
   key: string;
   icon: any;
@@ -33,7 +33,7 @@ const Index = () => {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
+  const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
   const sortedTools = getSortedTools();
   const aiToolsCount = getAITools().length;
 
@@ -182,7 +182,7 @@ const Index = () => {
       {/* Premium Banner */}
       <section className="py-4 border-t border-border/50">
         <div className="container">
-          <div className="bg-gradient-to-r from-primary to-accent rounded-2xl p-5 text-white relative overflow-hidden shadow-xl">
+          <div className="bg-gradient-to-r from-primary to-accent rounded-2xl p-5 text-primary-foreground relative overflow-hidden shadow-xl">
             <div className="relative z-10">
               <div className="flex items-center gap-2 mb-2">
                 <Crown className="w-5 h-5" />
@@ -191,25 +191,38 @@ const Index = () => {
               <h2 className="text-lg font-bold mb-1">Unlock Full AI Power</h2>
               
               {/* Free Trial Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm mb-3">
+              <button 
+                onClick={() => setShowSubscriptionModal(true)}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/20 backdrop-blur-sm mb-3 hover:bg-background/30 transition-colors"
+              >
                 <Sparkles className="w-4 h-4" />
                 <span className="text-xs font-semibold">3 Days Free Trial - Full Access!</span>
-              </div>
+              </button>
               
               <p className="text-xs opacity-90 mb-3">
-                Try all AI features free for 3 days. Unlimited consultations, personalized meal plans, symptom analysis, and more.
+                Try all AI features free for 3 days. Then $1.99/month or $14.99/year.
               </p>
               
               <div className="flex gap-2">
-                <Button size="sm" variant="secondary" className="rounded-full px-4 text-xs h-8">
+                <Button 
+                  size="sm" 
+                  variant="secondary" 
+                  className="rounded-full px-4 text-xs h-8"
+                  onClick={() => setShowSubscriptionModal(true)}
+                >
                   Start Free Trial
                 </Button>
-                <Button size="sm" variant="ghost" className="rounded-full text-white border-white/20 hover:bg-white/10 text-xs h-8">
+                <Button 
+                  size="sm" 
+                  variant="ghost" 
+                  className="rounded-full text-primary-foreground border-primary-foreground/20 hover:bg-background/10 text-xs h-8"
+                  onClick={() => setShowSubscriptionModal(true)}
+                >
                   View Plans
                 </Button>
               </div>
             </div>
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-white/10 -skew-x-12 translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-background/10 -skew-x-12 translate-x-1/2 pointer-events-none" />
           </div>
         </div>
       </section>
@@ -227,6 +240,12 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Subscription Modal */}
+      <SubscriptionModal 
+        isOpen={showSubscriptionModal} 
+        onClose={() => setShowSubscriptionModal(false)} 
+      />
     </Layout>
   );
 };
