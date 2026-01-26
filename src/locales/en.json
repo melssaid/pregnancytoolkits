@@ -271,6 +271,70 @@
     "meditationYoga": {
       "title": "Meditation & Yoga",
       "description": "Guided relaxation for each trimester."
+    },
+    "aiPregnancyJournal": {
+      "title": "AI Pregnancy Journal",
+      "description": "Smart journaling with AI insights and mood tracking."
+    },
+    "smartAppointmentReminder": {
+      "title": "Smart Appointment Reminder",
+      "description": "Never miss a prenatal appointment."
+    },
+    "aiBirthStory": {
+      "title": "AI Birth Story Generator",
+      "description": "Create a beautiful keepsake of your birth experience."
+    },
+    "pregnancyPhotoTimeline": {
+      "title": "Pregnancy Photo Timeline",
+      "description": "Document your bump journey week by week."
+    },
+    "aiBabyNameFinder": {
+      "title": "AI Baby Name Finder",
+      "description": "Discover the perfect name with AI suggestions."
+    },
+    "aiPostureCoach": {
+      "title": "AI Posture Coach",
+      "description": "Improve your posture and reduce back strain."
+    },
+    "smartStretchReminder": {
+      "title": "Smart Stretch Reminder",
+      "description": "Timely reminders for pregnancy-safe stretches."
+    },
+    "aiBackPainRelief": {
+      "title": "AI Back Pain Relief",
+      "description": "Personalized exercises for pregnancy back pain."
+    },
+    "pregnancyMassageGuide": {
+      "title": "Pregnancy Massage Guide",
+      "description": "Safe massage techniques for comfort and relaxation."
+    },
+    "aiLegCrampPreventer": {
+      "title": "AI Leg Cramp Preventer",
+      "description": "Prevent and relieve pregnancy leg cramps."
+    },
+    "smartWalkingCoach": {
+      "title": "Smart Walking Coach",
+      "description": "Guided walking sessions for pregnancy fitness."
+    },
+    "aiCravingAlternatives": {
+      "title": "AI Craving Alternatives",
+      "description": "Healthy swaps for your pregnancy cravings."
+    },
+    "aiLaborProgress": {
+      "title": "AI Labor Progress Tracker",
+      "description": "Track contractions and monitor labor progress."
+    },
+    "postpartumMentalHealth": {
+      "title": "Postpartum Mental Health Coach",
+      "description": "EPDS screening and mental health support."
+    },
+    "babyGearRecommender": {
+      "title": "Baby Gear Recommender",
+      "description": "Essential items checklist for your new arrival."
+    },
+    "workoutPlanner": {
+      "title": "Personalized Workout Planner",
+      "description": "Safe pregnancy exercises for each trimester."
     }
   },
   "common": {
