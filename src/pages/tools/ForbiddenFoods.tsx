@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Ban, CheckCircle, Search, AlertCircle, HelpCircle } from 'lucide-react';
+import { ArrowLeft, Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 

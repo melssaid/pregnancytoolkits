@@ -163,14 +163,15 @@ const AIPregnancyJournal: React.FC = () => {
   return (
     <ToolFrame
       title="AI Pregnancy Journal"
-      description="Smart pregnancy journaling with AI insights"
-      category="Wellness"
+      subtitle="Smart pregnancy journaling with AI insights"
+      mood="nurturing"
+      toolId="ai-pregnancy-journal"
       icon={BookOpen}
     >
       {showDisclaimer && (
         <MedicalDisclaimer
+          toolName="AI Pregnancy Journal"
           onAccept={() => setShowDisclaimer(false)}
-          severity="low"
         />
       )}
 

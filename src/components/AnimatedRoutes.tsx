@@ -47,12 +47,24 @@ import SmartWeightGainAnalyzer from "@/pages/tools/SmartWeightGainAnalyzer";
 import LaborBreathingCoach from "@/pages/tools/LaborBreathingCoach";
 import BirthPrepGuide from "@/pages/tools/BirthPrepGuide";
 import PregnancyMeditationYoga from "@/pages/tools/PregnancyMeditationYoga";
-
-// New 2026 AI Tools
 import AILaborProgressTracker from "@/pages/tools/AILaborProgressTracker";
 import PostpartumMentalHealthCoach from "@/pages/tools/PostpartumMentalHealthCoach";
 import BabyGearRecommender from "@/pages/tools/BabyGearRecommender";
 import PersonalizedWorkoutPlanner from "@/pages/tools/PersonalizedWorkoutPlanner";
+
+// New 2026 AI Tools
+import AIPregnancyJournal from "@/pages/tools/AIPregnancyJournal";
+import SmartAppointmentReminder from "@/pages/tools/SmartAppointmentReminder";
+import AIBirthStoryGenerator from "@/pages/tools/AIBirthStoryGenerator";
+import PregnancyPhotoTimeline from "@/pages/tools/PregnancyPhotoTimeline";
+import AIBabyNameFinder from "@/pages/tools/AIBabyNameFinder";
+import AIPostureCoach from "@/pages/tools/AIPostureCoach";
+import SmartStretchReminder from "@/pages/tools/SmartStretchReminder";
+import AIBackPainRelief from "@/pages/tools/AIBackPainRelief";
+import PregnancyMassageGuide from "@/pages/tools/PregnancyMassageGuide";
+import AILegCrampPreventer from "@/pages/tools/AILegCrampPreventer";
+import SmartWalkingCoach from "@/pages/tools/SmartWalkingCoach";
+import AICravingAlternatives from "@/pages/tools/AICravingAlternatives";
 
 export function AnimatedRoutes() {
   const location = useLocation();

@@ -156,9 +156,12 @@ const Index = () => {
               {filteredTools.map((tool, index) => (
                 <ToolCard
                   key={tool.id}
-                  {...tool}
+                  titleKey={tool.titleKey}
+                  descriptionKey={tool.descriptionKey}
+                  icon={tool.icon}
+                  href={tool.href}
+                  categoryKey={tool.categoryKey}
                   index={index}
-                  variant={viewMode}
                 />
               ))}
               
