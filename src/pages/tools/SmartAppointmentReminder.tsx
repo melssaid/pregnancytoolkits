@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -60,6 +60,9 @@ export default function SmartAppointmentReminder() {
 
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { addNotification, settings } = useNotifications();
+  
+  // Track if initial load is complete
+  const isInitialized = useRef(false);
 
   // Load appointments from localStorage with safe parsing
   useEffect(() => {
@@ -73,6 +76,8 @@ export default function SmartAppointmentReminder() {
       );
     });
     setAppointments(saved);
+    // Mark as initialized after loading
+    isInitialized.current = true;
   }, []);
 
   // Save appointments to localStorage with validation
@@ -84,9 +89,9 @@ export default function SmartAppointmentReminder() {
     return success;
   }, []);
 
-  // Save whenever appointments change
+  // Save whenever appointments change (only after initial load)
   useEffect(() => {
-    if (appointments.length > 0) {
+    if (isInitialized.current) {
       saveAppointments(appointments);
     }
   }, [appointments, saveAppointments]);

@@ -181,8 +181,35 @@ export default function PrivacyPolicy() {
           <h3>Our AI Products</h3>
           <p>Our AI Products are designed for the following functions:</p>
           <ul>
-            <li>AI bots</li>
+            <li>AI Pregnancy Assistant - General pregnancy guidance</li>
+            <li>AI Baby Name Finder - Name suggestions</li>
+            <li>AI Symptom Analyzer - Symptom information (not diagnosis)</li>
+            <li>AI Meal Suggestion - Pregnancy-safe meal ideas</li>
+            <li>AI Birth Story Generator - Birth plan storytelling</li>
+            <li>Smart Appointment Reminder - Appointment preparation assistance</li>
+            <li>AI Fitness & Wellness Coaches - Exercise and relaxation guidance</li>
+            <li>AI Nutrition Tools - Dietary information and tracking</li>
+            <li>AI Labor Progress Tracker - Labor information (not medical monitoring)</li>
+            <li>Postpartum Mental Health Coach - Emotional wellness resources</li>
           </ul>
+          
+          <h3>Local Data Storage</h3>
+          <p>
+            <strong>Important:</strong> All personal health data, appointments, and tracking information 
+            you enter into our tools is stored <strong>locally on your device only</strong> using browser 
+            localStorage/JSON. This data:
+          </p>
+          <ul>
+            <li>Never leaves your device</li>
+            <li>Is not uploaded to our servers</li>
+            <li>Is not shared with any third parties</li>
+            <li>Can be deleted at any time by clearing your browser data or using the app's clear data function</li>
+          </ul>
+          <p>
+            When you use AI-powered features, only your specific query (anonymized and without personal identifiers) 
+            is processed by our AI service providers. Your stored health data, appointment details, and personal 
+            tracking information remain on your device and are never transmitted.
+          </p>
 
           <h3>How We Process Your Data Using AI</h3>
           <p>
