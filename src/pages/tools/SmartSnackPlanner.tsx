@@ -132,6 +132,15 @@ export default function SmartSnackPlanner() {
     ? snacks 
     : snacks.filter(s => s.category === selectedCategory);
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Smart Snack Planner"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Smart Snack Planner"
@@ -140,15 +149,7 @@ export default function SmartSnackPlanner() {
       toolId="snack-planner"
       icon={Cookie}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Smart Snack Planner"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {/* Random Generator */}
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
             <CardContent className="p-6 text-center">
@@ -257,20 +258,19 @@ export default function SmartSnackPlanner() {
             })}
           </div>
 
-          {/* Tips */}
-          <Card>
-            <CardContent className="p-4">
-              <h4 className="font-medium mb-2">💡 Snacking Tips</h4>
-              <ul className="text-sm text-muted-foreground space-y-1">
-                <li>• Eat every 2-3 hours to maintain energy</li>
-                <li>• Keep snacks by your bedside for morning sickness</li>
-                <li>• Stay hydrated between snacks</li>
-                <li>• Listen to your cravings but balance with nutrition</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+        {/* Tips */}
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="font-medium mb-2">💡 Snacking Tips</h4>
+            <ul className="text-sm text-muted-foreground space-y-1">
+              <li>• Eat every 2-3 hours to maintain energy</li>
+              <li>• Keep snacks by your bedside for morning sickness</li>
+              <li>• Stay hydrated between snacks</li>
+              <li>• Listen to your cravings but balance with nutrition</li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
     </ToolFrame>
   );
 }

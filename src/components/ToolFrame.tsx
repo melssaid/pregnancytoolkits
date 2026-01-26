@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Sparkles } from "lucide-react";
+import { Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { RelatedTools } from "./RelatedTools";
@@ -81,15 +81,6 @@ export function ToolFrame({
           <div className="px-4 py-3">
             <div className="flex items-center justify-between">
               <BackButton />
-              <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r ${styles.badge} backdrop-blur-sm`}
-              >
-                <Sparkles className="w-3 h-3 text-primary" />
-                <span className="text-[10px] font-semibold text-primary tracking-wide uppercase">Premium</span>
-              </motion.div>
             </div>
           </div>
         </motion.header>

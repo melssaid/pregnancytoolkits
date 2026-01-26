@@ -107,6 +107,15 @@ export default function AIPregnancyTipsDaily() {
 
   const filteredTips = tips.filter(t => t.trimester.includes(currentTrimester));
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Daily Pregnancy Tips"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Daily Pregnancy Tips"
@@ -115,15 +124,7 @@ export default function AIPregnancyTipsDaily() {
       toolId="daily-tips"
       icon={Lightbulb}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Daily Pregnancy Tips"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {/* Trimester Selection */}
           <div className="flex gap-2">
             {[1, 2, 3].map(t => (
@@ -252,11 +253,10 @@ export default function AIPregnancyTipsDaily() {
                     </Button>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
-          </div>
+            </Card>
+          ))}
         </div>
-      )}
+      </div>
     </ToolFrame>
   );
 }

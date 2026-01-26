@@ -138,6 +138,15 @@ export default function PostpartumMentalHealthCoach() {
     setShowEmergency(false);
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Postpartum Mental Health Coach"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Postpartum Mental Health Coach"
@@ -146,15 +155,7 @@ export default function PostpartumMentalHealthCoach() {
       toolId="mental-health-coach"
       icon={Heart}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Postpartum Mental Health Coach"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {/* Emergency Alert */}
           {showEmergency && (
             <Card className="border-destructive bg-destructive/5">
@@ -315,12 +316,11 @@ export default function PostpartumMentalHealthCoach() {
           {/* Important Note */}
           <div className="bg-muted/30 rounded-xl p-4 text-center">
             <p className="text-xs text-muted-foreground">
-              ⚠️ This is a screening tool based on the Edinburgh Postnatal Depression Scale (EPDS). 
-              It does not provide a diagnosis. Always consult with a healthcare professional for proper evaluation.
-            </p>
-          </div>
+            ⚠️ This is a screening tool based on the Edinburgh Postnatal Depression Scale (EPDS). 
+            It does not provide a diagnosis. Always consult with a healthcare professional for proper evaluation.
+          </p>
         </div>
-      )}
+      </div>
     </ToolFrame>
   );
 }
