@@ -3,8 +3,10 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Activity, Play, Pause, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { Activity, Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface Exercise {
   id: string;
@@ -122,6 +124,11 @@ export default function AIBackPainRelief() {
   const [isActive, setIsActive] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [completedExercises, setCompletedExercises] = useState<string[]>([]);
+  const [showAIAdvice, setShowAIAdvice] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  const [painLocation, setPainLocation] = useState<string>('lower back');
+  
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   useEffect(() => {
     const saved = localStorage.getItem('backPainCompletedToday');
@@ -163,6 +170,27 @@ export default function AIBackPainRelief() {
     setIsActive(true);
   };
 
+  const getAIReliefAdvice = async () => {
+    setShowAIAdvice(true);
+    setAiResponse('');
+    
+    const completedNames = completedExercises.map(id => 
+      backPainExercises.find(e => e.id === id)?.name
+    ).filter(Boolean);
+
+    await streamChat({
+      type: 'back-pain-relief' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I'm pregnant and experiencing ${painLocation} pain. I've completed these exercises today: ${completedNames.join(', ') || 'none yet'}. Please give me personalized back pain relief advice and additional exercises I should try.`
+        }
+      ],
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
+  };
+
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
@@ -181,10 +209,32 @@ export default function AIBackPainRelief() {
       toolId="ai-back-pain-relief"
     >
       <div className="space-y-6">
+        {/* Pain Location Selector */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">Where does it hurt?</h3>
+            <div className="grid grid-cols-2 gap-2">
+              {['Lower Back', 'Upper Back', 'Full Back', 'Hips & Sciatic'].map((loc) => (
+                <button
+                  key={loc}
+                  onClick={() => setPainLocation(loc.toLowerCase())}
+                  className={`py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                    painLocation === loc.toLowerCase()
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted hover:bg-muted/80'
+                  }`}
+                >
+                  {loc}
+                </button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Progress */}
         <Card className="bg-gradient-to-r from-primary/10 to-primary/5">
           <CardContent className="p-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-3">
               <div>
                 <h3 className="font-semibold">Today's Relief Routine</h3>
                 <p className="text-sm text-muted-foreground">
@@ -195,8 +245,42 @@ export default function AIBackPainRelief() {
                 {Math.round((completedExercises.length / backPainExercises.length) * 100)}%
               </div>
             </div>
+            <Button 
+              onClick={getAIReliefAdvice} 
+              disabled={isLoading}
+              className="w-full gap-2"
+              variant="outline"
+            >
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Brain className="w-4 h-4" />
+              )}
+              Get AI Pain Relief Advice
+            </Button>
           </CardContent>
         </Card>
+
+        {/* AI Response */}
+        {showAIAdvice && aiResponse && (
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Brain className="w-5 h-5 text-primary" />
+                <h3 className="font-semibold">AI Pain Relief Coach</h3>
+              </div>
+              <MarkdownRenderer content={aiResponse} />
+            </CardContent>
+          </Card>
+        )}
+
+        {error && (
+          <Card className="border-destructive/30 bg-destructive/5">
+            <CardContent className="p-4 text-destructive text-sm">
+              {error}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Active Exercise */}
         {selectedExercise && isActive && (

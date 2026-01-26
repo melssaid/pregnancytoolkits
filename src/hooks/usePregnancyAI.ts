@@ -12,6 +12,9 @@ interface AIContext {
   trimester?: number;
   symptoms?: string[];
   preferences?: string[];
+  walkMinutes?: number;
+  contractionData?: any;
+  sleepData?: any;
 }
 
 export function usePregnancyAI() {

@@ -4,7 +4,9 @@ import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { CupSoda, Sparkles, RefreshCw, Heart, Zap, Moon, Sun } from 'lucide-react';
+import { CupSoda, Sparkles, RefreshCw, Heart, Zap, Moon, Sun, Brain, Loader2 } from 'lucide-react';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface Smoothie {
   id: string;
@@ -23,14 +25,7 @@ const smoothies: Smoothie[] = [
     name: 'Morning Energy Boost',
     benefit: 'Fights fatigue and provides sustained energy',
     icon: Sun,
-    ingredients: [
-      '1 banana',
-      '1 cup spinach',
-      '1/2 cup Greek yogurt',
-      '1 tbsp almond butter',
-      '1 cup almond milk',
-      '1 tbsp honey'
-    ],
+    ingredients: ['1 banana', '1 cup spinach', '1/2 cup Greek yogurt', '1 tbsp almond butter', '1 cup almond milk', '1 tbsp honey'],
     instructions: 'Blend all ingredients until smooth. Add ice for a colder smoothie.',
     nutrients: [
       { name: 'Folate', value: '25% DV' },
@@ -45,13 +40,7 @@ const smoothies: Smoothie[] = [
     name: 'Iron Power Blend',
     benefit: 'Boosts iron levels and prevents anemia',
     icon: Heart,
-    ingredients: [
-      '1 cup strawberries',
-      '1/2 cup beets (cooked)',
-      '1 orange',
-      '1/2 cup pomegranate juice',
-      '1 tbsp chia seeds'
-    ],
+    ingredients: ['1 cup strawberries', '1/2 cup beets (cooked)', '1 orange', '1/2 cup pomegranate juice', '1 tbsp chia seeds'],
     instructions: 'Blend beets first with juice, then add remaining ingredients.',
     nutrients: [
       { name: 'Iron', value: '30% DV' },
@@ -65,14 +54,7 @@ const smoothies: Smoothie[] = [
     name: 'Sleep Better Smoothie',
     benefit: 'Promotes relaxation and better sleep',
     icon: Moon,
-    ingredients: [
-      '1 banana',
-      '1 cup cherries',
-      '1/2 cup milk',
-      '1 tbsp honey',
-      '1/4 tsp cinnamon',
-      '1 tbsp oats'
-    ],
+    ingredients: ['1 banana', '1 cup cherries', '1/2 cup milk', '1 tbsp honey', '1/4 tsp cinnamon', '1 tbsp oats'],
     instructions: 'Blend until smooth. Best consumed 1 hour before bed.',
     nutrients: [
       { name: 'Melatonin', value: 'Natural' },
@@ -86,14 +68,7 @@ const smoothies: Smoothie[] = [
     name: 'Nausea Relief Green',
     benefit: 'Helps calm morning sickness',
     icon: Zap,
-    ingredients: [
-      '1/2 cucumber',
-      '1 green apple',
-      '1 inch fresh ginger',
-      '1/2 lemon (juiced)',
-      '1 cup coconut water',
-      'Fresh mint leaves'
-    ],
+    ingredients: ['1/2 cucumber', '1 green apple', '1 inch fresh ginger', '1/2 lemon (juiced)', '1 cup coconut water', 'Fresh mint leaves'],
     instructions: 'Blend ginger with coconut water first, then add remaining ingredients.',
     nutrients: [
       { name: 'Electrolytes', value: 'High' },
@@ -107,14 +82,7 @@ const smoothies: Smoothie[] = [
     name: 'Brain Builder Blend',
     benefit: 'Supports baby brain development with Omega-3s',
     icon: Sparkles,
-    ingredients: [
-      '1 cup blueberries',
-      '1/4 avocado',
-      '1 tbsp flaxseed',
-      '1 tbsp walnuts',
-      '1 cup milk',
-      '1 tbsp maple syrup'
-    ],
+    ingredients: ['1 cup blueberries', '1/4 avocado', '1 tbsp flaxseed', '1 tbsp walnuts', '1 cup milk', '1 tbsp maple syrup'],
     instructions: 'Blend walnuts and flaxseed first, then add remaining ingredients.',
     nutrients: [
       { name: 'Omega-3', value: '1.5g' },
@@ -128,14 +96,7 @@ const smoothies: Smoothie[] = [
     name: 'Calcium Crush',
     benefit: 'Strengthens bones for you and baby',
     icon: Heart,
-    ingredients: [
-      '1 cup Greek yogurt',
-      '1 banana',
-      '2 tbsp almond butter',
-      '1 cup fortified almond milk',
-      '1 tbsp sesame seeds',
-      'Honey to taste'
-    ],
+    ingredients: ['1 cup Greek yogurt', '1 banana', '2 tbsp almond butter', '1 cup fortified almond milk', '1 tbsp sesame seeds', 'Honey to taste'],
     instructions: 'Blend all ingredients until creamy smooth.',
     nutrients: [
       { name: 'Calcium', value: '45% DV' },
@@ -151,11 +112,36 @@ export default function PregnancySmoothieAI() {
   const [selectedTrimester, setSelectedTrimester] = useState(2);
   const [currentSmoothie, setCurrentSmoothie] = useState<Smoothie | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [showAIRecipe, setShowAIRecipe] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  const [preference, setPreference] = useState('');
+  
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   const getRandomSmoothie = () => {
     const filtered = smoothies.filter(s => s.trimester.includes(selectedTrimester));
     const random = filtered[Math.floor(Math.random() * filtered.length)];
     setCurrentSmoothie(random);
+    setShowAIRecipe(false);
+  };
+
+  const generateAISmoothie = async () => {
+    setShowAIRecipe(true);
+    setAiResponse('');
+    setCurrentSmoothie(null);
+
+    await streamChat({
+      type: 'smoothie-generator' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I'm in trimester ${selectedTrimester} of my pregnancy. ${preference ? `I prefer: ${preference}.` : ''} Create a unique, delicious, and nutritious smoothie recipe perfect for this stage.`
+        }
+      ],
+      context: { trimester: selectedTrimester },
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
   };
 
   const toggleFavorite = (id: string) => {
@@ -195,6 +181,7 @@ export default function PregnancySmoothieAI() {
                     onClick={() => {
                       setSelectedTrimester(t);
                       setCurrentSmoothie(null);
+                      setShowAIRecipe(false);
                     }}
                   >
                     Trimester {t}
@@ -204,16 +191,54 @@ export default function PregnancySmoothieAI() {
             </CardContent>
           </Card>
 
-          {/* Random Generator */}
+          {/* AI Generator */}
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
             <CardContent className="p-6 text-center">
-              <h3 className="font-semibold mb-3">What should I blend today?</h3>
-              <Button onClick={getRandomSmoothie} size="lg" className="rounded-full">
-                <RefreshCw className="w-4 h-4 mr-2" />
-                Generate Smoothie
-              </Button>
+              <h3 className="font-semibold mb-3">Create a Custom AI Smoothie</h3>
+              <input
+                type="text"
+                placeholder="Any preferences? (e.g., high protein, low sugar)"
+                value={preference}
+                onChange={(e) => setPreference(e.target.value)}
+                className="w-full p-2 mb-3 rounded-lg border border-border bg-background text-sm"
+              />
+              <div className="flex gap-2">
+                <Button onClick={getRandomSmoothie} variant="outline" className="flex-1">
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  Random Recipe
+                </Button>
+                <Button onClick={generateAISmoothie} disabled={isLoading} className="flex-1">
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  ) : (
+                    <Brain className="w-4 h-4 mr-2" />
+                  )}
+                  AI Generate
+                </Button>
+              </div>
             </CardContent>
           </Card>
+
+          {/* AI Generated Recipe */}
+          {showAIRecipe && aiResponse && (
+            <Card className="border-primary/30 bg-primary/5">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Brain className="w-5 h-5 text-primary" />
+                  <h3 className="font-semibold">AI-Generated Recipe</h3>
+                </div>
+                <MarkdownRenderer content={aiResponse} />
+              </CardContent>
+            </Card>
+          )}
+
+          {error && (
+            <Card className="border-destructive/30 bg-destructive/5">
+              <CardContent className="p-4 text-destructive text-sm">
+                {error}
+              </CardContent>
+            </Card>
+          )}
 
           {/* Current Smoothie */}
           {currentSmoothie && (
@@ -278,7 +303,10 @@ export default function PregnancySmoothieAI() {
               <Card 
                 key={smoothie.id}
                 className="cursor-pointer hover:border-primary/30 transition-colors"
-                onClick={() => setCurrentSmoothie(smoothie)}
+                onClick={() => {
+                  setCurrentSmoothie(smoothie);
+                  setShowAIRecipe(false);
+                }}
               >
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">

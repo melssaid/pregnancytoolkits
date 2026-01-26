@@ -4,7 +4,9 @@ import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Lightbulb, RefreshCw, Heart, Star, Share2, Calendar } from 'lucide-react';
+import { Lightbulb, RefreshCw, Star, Calendar, Brain, Loader2 } from 'lucide-react';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface DailyTip {
   id: string;
@@ -33,11 +35,11 @@ const tips: DailyTip[] = [
 ];
 
 const categoryColors: Record<string, string> = {
-  health: 'bg-emerald-100 text-emerald-700',
-  nutrition: 'bg-amber-100 text-amber-700',
+  health: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',
+  nutrition: 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',
   exercise: 'bg-primary/10 text-primary',
-  mental: 'bg-purple-100 text-purple-700',
-  baby: 'bg-rose-100 text-rose-700'
+  mental: 'bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300',
+  baby: 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300'
 };
 
 export default function AIPregnancyTipsDaily() {
@@ -45,17 +47,18 @@ export default function AIPregnancyTipsDaily() {
   const [currentTrimester, setCurrentTrimester] = useState(2);
   const [dailyTip, setDailyTip] = useState<DailyTip | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [viewedToday, setViewedToday] = useState(false);
+  const [showAITip, setShowAITip] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   useEffect(() => {
-    // Get tip of the day based on date
     const today = new Date().toDateString();
     const savedDate = localStorage.getItem('tipOfTheDayDate');
     const savedTip = localStorage.getItem('tipOfTheDay');
     
     if (savedDate === today && savedTip) {
       setDailyTip(JSON.parse(savedTip));
-      setViewedToday(true);
     } else {
       getNewTip();
     }
@@ -72,10 +75,28 @@ export default function AIPregnancyTipsDaily() {
     const filtered = tips.filter(t => t.trimester.includes(currentTrimester));
     const random = filtered[Math.floor(Math.random() * filtered.length)];
     setDailyTip(random);
+    setShowAITip(false);
     
     localStorage.setItem('tipOfTheDayDate', new Date().toDateString());
     localStorage.setItem('tipOfTheDay', JSON.stringify(random));
-    setViewedToday(true);
+  };
+
+  const generateAITip = async () => {
+    setShowAITip(true);
+    setAiResponse('');
+
+    await streamChat({
+      type: 'daily-tips' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I'm in trimester ${currentTrimester} of my pregnancy. Give me a unique, helpful tip I might not have heard before. Make it specific and actionable.`
+        }
+      ],
+      context: { trimester: currentTrimester },
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
   };
 
   const toggleFavorite = (id: string) => {
@@ -118,8 +139,49 @@ export default function AIPregnancyTipsDaily() {
             ))}
           </div>
 
+          {/* AI Tip Generator */}
+          <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
+            <CardContent className="p-4">
+              <div className="flex gap-2">
+                <Button onClick={getNewTip} variant="outline" className="flex-1">
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  Random Tip
+                </Button>
+                <Button onClick={generateAITip} disabled={isLoading} className="flex-1">
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  ) : (
+                    <Brain className="w-4 h-4 mr-2" />
+                  )}
+                  AI Tip
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* AI Generated Tip */}
+          {showAITip && aiResponse && (
+            <Card className="border-primary/30 bg-primary/5">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Brain className="w-5 h-5 text-primary" />
+                  <h3 className="font-semibold">AI-Powered Tip</h3>
+                </div>
+                <MarkdownRenderer content={aiResponse} />
+              </CardContent>
+            </Card>
+          )}
+
+          {error && (
+            <Card className="border-destructive/30 bg-destructive/5">
+              <CardContent className="p-4 text-destructive text-sm">
+                {error}
+              </CardContent>
+            </Card>
+          )}
+
           {/* Tip of the Day */}
-          {dailyTip && (
+          {dailyTip && !showAITip && (
             <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-3">
@@ -134,22 +196,13 @@ export default function AIPregnancyTipsDaily() {
                   <Badge className={categoryColors[dailyTip.category]}>
                     {dailyTip.category}
                   </Badge>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => toggleFavorite(dailyTip.id)}
-                    >
-                      <Star className={`w-4 h-4 ${favorites.includes(dailyTip.id) ? 'fill-amber-400 text-amber-400' : ''}`} />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={getNewTip}
-                    >
-                      <RefreshCw className="w-4 h-4" />
-                    </Button>
-                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => toggleFavorite(dailyTip.id)}
+                  >
+                    <Star className={`w-4 h-4 ${favorites.includes(dailyTip.id) ? 'fill-amber-400 text-amber-400' : ''}`} />
+                  </Button>
                 </div>
               </CardContent>
             </Card>

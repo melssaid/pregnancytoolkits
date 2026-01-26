@@ -3,7 +3,9 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Zap, Moon, Droplet, AlertTriangle, CheckCircle, Info } from 'lucide-react';
+import { Zap, Moon, AlertTriangle, CheckCircle, Brain, Loader2 } from 'lucide-react';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface PreventionTip {
   id: string;
@@ -37,6 +39,10 @@ export default function AILegCrampPreventer() {
   const [tips, setTips] = useState(preventionTips);
   const [episodes, setEpisodes] = useState<CrampEpisode[]>([]);
   const [showReliefGuide, setShowReliefGuide] = useState(false);
+  const [showAIAdvice, setShowAIAdvice] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   useEffect(() => {
     const savedTips = localStorage.getItem('legCrampTips');
@@ -74,6 +80,26 @@ export default function AILegCrampPreventer() {
 
   const completedTips = tips.filter(t => t.checked).length;
 
+  const getAICrampAdvice = async () => {
+    setShowAIAdvice(true);
+    setAiResponse('');
+    
+    const completedPreventions = tips.filter(t => t.checked).map(t => t.title);
+    const recentCramps = episodes.slice(0, 5).map(e => `${e.location} (${e.timeOfDay})`);
+
+    await streamChat({
+      type: 'leg-cramp-preventer' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I'm pregnant and dealing with leg cramps. Recent cramp locations and times: ${recentCramps.join(', ') || 'none logged'}. Prevention steps I've completed today: ${completedPreventions.join(', ') || 'none yet'}. Give me personalized advice to prevent and relieve leg cramps.`
+        }
+      ],
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
+  };
+
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
@@ -99,14 +125,48 @@ export default function AILegCrampPreventer() {
               <h3 className="font-semibold">Prevention Progress</h3>
               <span className="text-primary font-bold">{completedTips}/{tips.length}</span>
             </div>
-            <div className="w-full h-2 bg-primary/20 rounded-full">
+            <div className="w-full h-2 bg-primary/20 rounded-full mb-3">
               <div 
                 className="h-full bg-primary rounded-full transition-all"
                 style={{ width: `${(completedTips / tips.length) * 100}%` }}
               />
             </div>
+            <Button 
+              onClick={getAICrampAdvice} 
+              disabled={isLoading}
+              className="w-full gap-2"
+              variant="outline"
+            >
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Brain className="w-4 h-4" />
+              )}
+              Get AI Cramp Prevention Advice
+            </Button>
           </CardContent>
         </Card>
+
+        {/* AI Response */}
+        {showAIAdvice && aiResponse && (
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Brain className="w-5 h-5 text-primary" />
+                <h3 className="font-semibold">AI Cramp Prevention Coach</h3>
+              </div>
+              <MarkdownRenderer content={aiResponse} />
+            </CardContent>
+          </Card>
+        )}
+
+        {error && (
+          <Card className="border-destructive/30 bg-destructive/5">
+            <CardContent className="p-4 text-destructive text-sm">
+              {error}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Quick Relief Button */}
         <Button 
