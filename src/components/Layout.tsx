@@ -5,6 +5,7 @@ import { Heart, Home, Shield, Award, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { SearchDialog } from "./SearchDialog";
+import { NotificationCenter } from "./NotificationCenter";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -56,18 +57,21 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
             )}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {/* Smart Search Button */}
             <button
               onClick={() => setSearchOpen(true)}
               className="flex items-center gap-2 rounded-xl bg-muted/60 hover:bg-muted px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-200 border border-transparent hover:border-border"
             >
               <Search className="h-4 w-4" />
-              <span className="hidden sm:inline">Search tools...</span>
+              <span className="hidden sm:inline">Search...</span>
               <kbd className="hidden md:inline-flex items-center gap-0.5 rounded bg-background/80 px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground border border-border/50">
                 ⌘K
               </kbd>
             </button>
+
+            {/* Notification Center */}
+            <NotificationCenter />
 
             {!isHome && (
               <Link 
