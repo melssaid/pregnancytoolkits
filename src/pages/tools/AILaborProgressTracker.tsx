@@ -3,9 +3,10 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Activity, Clock, AlertTriangle, Phone, TrendingUp, Timer, Baby } from 'lucide-react';
+import { Activity, Clock, AlertTriangle, Phone, TrendingUp, Timer, Baby, Brain, Loader2 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface Contraction {
   id: string;
@@ -21,8 +22,11 @@ export default function AILaborProgressTracker() {
   const [isTracking, setIsTracking] = useState(false);
   const [currentStart, setCurrentStart] = useState<Date | null>(null);
   const [timer, setTimer] = useState(0);
-  const [cervicalDilation, setCervicalDilation] = useState('');
   const [showHospitalAlert, setShowHospitalAlert] = useState(false);
+  const [showAIAnalysis, setShowAIAnalysis] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   useEffect(() => {
     const saved = localStorage.getItem('laborContractions');
@@ -97,7 +101,6 @@ export default function AILaborProgressTracker() {
     }
     avgInterval = avgInterval / (recent.length - 1);
 
-    // 5-1-1 Rule: contractions 5 min apart, lasting 1 min, for 1 hour
     if (avgInterval <= 5 && avgDuration >= 60) {
       setShowHospitalAlert(true);
     }
@@ -124,8 +127,6 @@ export default function AILaborProgressTracker() {
 
   const getLaborPhase = () => {
     const avgInterval = getAverageInterval();
-    const avgDuration = getAverageDuration();
-
     if (avgInterval > 10) return { phase: 'Early Labor', color: 'text-emerald-600', desc: 'Stay home, rest, and hydrate' };
     if (avgInterval > 5) return { phase: 'Active Labor', color: 'text-amber-600', desc: 'Consider heading to the hospital' };
     return { phase: 'Transition', color: 'text-destructive', desc: 'Go to the hospital now' };
@@ -141,10 +142,31 @@ export default function AILaborProgressTracker() {
     return contractions.slice(0, 10).reverse().map((c, index) => ({
       index: index + 1,
       duration: c.duration,
-      interval: index > 0 ? 
-        Math.round((new Date(contractions[contractions.length - 1 - index].startTime).getTime() - 
-          new Date(contractions[contractions.length - index].startTime).getTime()) / 60000) : 0
     }));
+  };
+
+  const getAILaborAnalysis = async () => {
+    setShowAIAnalysis(true);
+    setAiResponse('');
+
+    const recentContractions = contractions.slice(0, 10).map(c => ({
+      duration: c.duration,
+      intensity: c.intensity,
+      time: new Date(c.startTime).toLocaleTimeString()
+    }));
+
+    await streamChat({
+      type: 'labor-tracker' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I'm tracking my labor contractions. Here's my recent data: ${JSON.stringify(recentContractions)}. Average interval: ${getAverageInterval()} minutes. Average duration: ${getAverageDuration()} seconds. Total contractions: ${contractions.length}. Please analyze my labor progress and give me personalized guidance.`
+        }
+      ],
+      context: { contractionData: recentContractions },
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
   };
 
   return (
@@ -225,6 +247,44 @@ export default function AILaborProgressTracker() {
               </Button>
             </CardContent>
           </Card>
+
+          {/* AI Analysis Button */}
+          {contractions.length >= 3 && (
+            <Button 
+              onClick={getAILaborAnalysis} 
+              disabled={isLoading}
+              className="w-full gap-2"
+              variant="outline"
+            >
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Brain className="w-4 h-4" />
+              )}
+              Get AI Labor Analysis
+            </Button>
+          )}
+
+          {/* AI Response */}
+          {showAIAnalysis && aiResponse && (
+            <Card className="border-primary/30 bg-primary/5">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Brain className="w-5 h-5 text-primary" />
+                  <h3 className="font-semibold">AI Labor Analysis</h3>
+                </div>
+                <MarkdownRenderer content={aiResponse} />
+              </CardContent>
+            </Card>
+          )}
+
+          {error && (
+            <Card className="border-destructive/30 bg-destructive/5">
+              <CardContent className="p-4 text-destructive text-sm">
+                {error}
+              </CardContent>
+            </Card>
+          )}
 
           {/* Stats Overview */}
           {contractions.length > 0 && (
@@ -311,7 +371,7 @@ export default function AILaborProgressTracker() {
                   Recent Contractions
                 </h3>
                 <div className="space-y-2">
-                  {contractions.slice(0, 5).map((c, index) => (
+                  {contractions.slice(0, 5).map((c) => (
                     <div 
                       key={c.id}
                       className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
@@ -322,7 +382,7 @@ export default function AILaborProgressTracker() {
                         </span>
                         <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
                           c.intensity === 'very-strong' ? 'bg-destructive/10 text-destructive' :
-                          c.intensity === 'strong' ? 'bg-amber-100 text-amber-700' :
+                          c.intensity === 'strong' ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300' :
                           c.intensity === 'moderate' ? 'bg-primary/10 text-primary' :
                           'bg-muted text-muted-foreground'
                         }`}>

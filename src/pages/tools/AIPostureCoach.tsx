@@ -3,7 +3,9 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { User, CheckCircle, AlertTriangle, Clock, Play, RefreshCw } from 'lucide-react';
+import { User, CheckCircle, AlertTriangle, Clock, Play, RefreshCw, Brain, Loader2 } from 'lucide-react';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface PostureExercise {
   id: string;
@@ -100,6 +102,10 @@ export default function AIPostureCoach() {
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [completedToday, setCompletedToday] = useState<string[]>([]);
+  const [showAIAdvice, setShowAIAdvice] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   useEffect(() => {
     const saved = localStorage.getItem('postureCompletedToday');
@@ -138,6 +144,28 @@ export default function AIPostureCoach() {
   };
 
   const filteredExercises = postureExercises.filter(e => e.trimester.includes(currentTrimester));
+
+  const getAIPostureAdvice = async () => {
+    setShowAIAdvice(true);
+    setAiResponse('');
+    
+    const completedNames = completedToday.map(id => 
+      postureExercises.find(e => e.id === id)?.name
+    ).filter(Boolean);
+
+    await streamChat({
+      type: 'posture-coach' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I'm in trimester ${currentTrimester} of my pregnancy. Today I completed these posture exercises: ${completedNames.join(', ') || 'none yet'}. Total exercises available: ${filteredExercises.length}. Give me personalized posture improvement advice.`
+        }
+      ],
+      context: { trimester: currentTrimester },
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
+  };
 
   if (showDisclaimer) {
     return (
@@ -179,23 +207,57 @@ export default function AIPostureCoach() {
           </CardContent>
         </Card>
 
-        {/* Progress */}
+        {/* Progress + AI Button */}
         <Card>
           <CardContent className="p-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold">Today's Progress</h3>
               <span className="text-primary font-bold">
                 {completedToday.length}/{filteredExercises.length}
               </span>
             </div>
-            <div className="w-full h-2 bg-muted rounded-full mt-2">
+            <div className="w-full h-2 bg-muted rounded-full mb-4">
               <div 
                 className="h-full bg-primary rounded-full transition-all"
                 style={{ width: `${(completedToday.length / filteredExercises.length) * 100}%` }}
               />
             </div>
+            <Button 
+              onClick={getAIPostureAdvice} 
+              disabled={isLoading}
+              className="w-full gap-2"
+              variant="outline"
+            >
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Brain className="w-4 h-4" />
+              )}
+              Get AI Posture Advice
+            </Button>
           </CardContent>
         </Card>
+
+        {/* AI Response */}
+        {showAIAdvice && aiResponse && (
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Brain className="w-5 h-5 text-primary" />
+                <h3 className="font-semibold">AI Posture Coach</h3>
+              </div>
+              <MarkdownRenderer content={aiResponse} />
+            </CardContent>
+          </Card>
+        )}
+
+        {error && (
+          <Card className="border-destructive/30 bg-destructive/5">
+            <CardContent className="p-4 text-destructive text-sm">
+              {error}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Active Exercise */}
         {activeExercise && isActive && (

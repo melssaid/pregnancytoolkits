@@ -3,12 +3,14 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Footprints, Play, Pause, Clock, TrendingUp, MapPin, AlertCircle } from 'lucide-react';
+import { Footprints, Play, Pause, Clock, TrendingUp, MapPin, AlertCircle, Brain, Loader2 } from 'lucide-react';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface WalkSession {
   id: string;
   date: string;
-  duration: number; // in seconds
+  duration: number;
   goal: number;
 }
 
@@ -16,9 +18,13 @@ export default function SmartWalkingCoach() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [isWalking, setIsWalking] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [goal, setGoal] = useState(15); // minutes
+  const [goal, setGoal] = useState(15);
   const [sessions, setSessions] = useState<WalkSession[]>([]);
   const [currentTrimester, setCurrentTrimester] = useState(2);
+  const [showAICoach, setShowAICoach] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   useEffect(() => {
     const saved = localStorage.getItem('walkingSessions');
@@ -46,7 +52,7 @@ export default function SmartWalkingCoach() {
 
   const endWalk = () => {
     setIsWalking(false);
-    if (currentTime > 60) { // At least 1 minute
+    if (currentTime > 60) {
       const session: WalkSession = {
         id: Date.now().toString(),
         date: new Date().toISOString(),
@@ -86,6 +92,27 @@ export default function SmartWalkingCoach() {
 
   const currentGoal = trimesterGoals[currentTrimester as keyof typeof trimesterGoals];
   const progress = Math.min((currentTime / (goal * 60)) * 100, 100);
+
+  const getAIWalkingAdvice = async () => {
+    setShowAICoach(true);
+    setAiResponse('');
+    
+    const todayMinutes = Math.round(getTodayTotal() / 60);
+    const weekMinutes = Math.round(getWeekTotal() / 60);
+
+    await streamChat({
+      type: 'walking-coach' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I'm in trimester ${currentTrimester}. Today I walked ${todayMinutes} minutes. This week total: ${weekMinutes} minutes. My daily goal is ${goal} minutes. Give me personalized walking advice and motivation.`
+        }
+      ],
+      context: { trimester: currentTrimester, walkMinutes: todayMinutes },
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
+  };
 
   if (showDisclaimer) {
     return (
@@ -200,6 +227,42 @@ export default function SmartWalkingCoach() {
             )}
           </CardContent>
         </Card>
+
+        {/* AI Coach Button */}
+        <Button 
+          onClick={getAIWalkingAdvice} 
+          disabled={isLoading}
+          className="w-full gap-2"
+          variant="outline"
+        >
+          {isLoading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <Brain className="w-4 h-4" />
+          )}
+          Get AI Walking Coach Advice
+        </Button>
+
+        {/* AI Response */}
+        {showAICoach && aiResponse && (
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Brain className="w-5 h-5 text-primary" />
+                <h3 className="font-semibold">AI Walking Coach</h3>
+              </div>
+              <MarkdownRenderer content={aiResponse} />
+            </CardContent>
+          </Card>
+        )}
+
+        {error && (
+          <Card className="border-destructive/30 bg-destructive/5">
+            <CardContent className="p-4 text-destructive text-sm">
+              {error}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4">
