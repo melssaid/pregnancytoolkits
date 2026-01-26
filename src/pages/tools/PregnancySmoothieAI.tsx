@@ -152,6 +152,15 @@ export default function PregnancySmoothieAI() {
 
   const filteredSmoothies = smoothies.filter(s => s.trimester.includes(selectedTrimester));
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Pregnancy Smoothie AI"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Pregnancy Smoothie AI"
@@ -160,14 +169,6 @@ export default function PregnancySmoothieAI() {
       toolId="smoothie-ai"
       icon={CupSoda}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Pregnancy Smoothie AI"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
         <div className="space-y-6">
           {/* Trimester Selection */}
           <Card>
@@ -326,7 +327,6 @@ export default function PregnancySmoothieAI() {
             ))}
           </div>
         </div>
-      )}
     </ToolFrame>
   );
 }
