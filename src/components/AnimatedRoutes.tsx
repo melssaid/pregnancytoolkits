@@ -40,9 +40,6 @@ import SmartNutritionOptimizer from "@/pages/tools/SmartNutritionOptimizer";
 import AIFitnessCoach from "@/pages/tools/AIFitnessCoach";
 import ContractionPatternAnalyzer from "@/pages/tools/ContractionPatternAnalyzer";
 import SmartKickCounter from "@/pages/tools/SmartKickCounter";
-import PelvicFloorCoach from "@/pages/tools/PelvicFloorCoach";
-import SleepPatternAnalyzer from "@/pages/tools/SleepPatternAnalyzer";
-import AdvancedMoodTracker from "@/pages/tools/AdvancedMoodTracker";
 import SmartWeightGainAnalyzer from "@/pages/tools/SmartWeightGainAnalyzer";
 import LaborBreathingCoach from "@/pages/tools/LaborBreathingCoach";
 import BirthPrepGuide from "@/pages/tools/BirthPrepGuide";
@@ -116,10 +113,9 @@ export function AnimatedRoutes() {
         <Route path="/tools/yoga-guide" element={<PageTransition><AIFitnessCoach /></PageTransition>} />
         <Route path="/tools/contraction-timer" element={<PageTransition><ContractionPatternAnalyzer /></PageTransition>} />
         <Route path="/tools/kick-counter" element={<PageTransition><SmartKickCounter /></PageTransition>} />
-        <Route path="/tools/kegel-coach" element={<PageTransition><PelvicFloorCoach /></PageTransition>} />
-        <Route path="/tools/sleep-analyzer" element={<PageTransition><SleepPatternAnalyzer /></PageTransition>} />
-        <Route path="/tools/mood-tracker" element={<PageTransition><AdvancedMoodTracker /></PageTransition>} />
-        <Route path="/tools/advanced-mood-tracker" element={<PageTransition><AdvancedMoodTracker /></PageTransition>} />
+        <Route path="/tools/kegel-coach" element={<PageTransition><KegelExercises /></PageTransition>} />
+        <Route path="/tools/mood-tracker" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
+        <Route path="/tools/weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
         <Route path="/tools/weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
         <Route path="/tools/smart-weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
         <Route path="/tools/labor-breathing" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
