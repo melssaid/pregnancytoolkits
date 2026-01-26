@@ -11,10 +11,8 @@ import {
   Heart,
   Pill,
   Brain,
-  CircleDot,
   GlassWater,
   Dumbbell,
-  Syringe,
   CheckSquare,
   LucideIcon,
   Scale,
@@ -28,22 +26,19 @@ import {
   Flower2,
   Ruler,
   Stethoscope,
-  Thermometer,
   Clock,
   Camera,
-  Music,
-  Users,
   MessageCircle,
-  Lightbulb,
   Star,
   FileText,
   HeartPulse,
-  Ribbon,
-  Palette,
-  BedDouble,
   Footprints,
   Milestone,
   Utensils,
+  Salad,
+  ShoppingCart,
+  Lightbulb,
+  Users,
 } from "lucide-react";
 
 export interface Tool {
@@ -54,96 +49,80 @@ export interface Tool {
   categoryKey: string;
   href: string;
   priority: number;
+  hasAI?: boolean;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PREGNANCY TOOLS - 37 SPECIALIZED TOOLS
-// Organized by pregnancy journey stage for logical flow
-// All tools are FREE - Premium features will be added later via Google Play
-// Duplicate/redundant tools have been consolidated for better UX
+// PROFESSIONAL PREGNANCY TOOLS - 28 CURATED TOOLS
+// Optimized for Google Play compliance with AI integration
+// Duplicates removed, advanced versions prioritized
 // ═══════════════════════════════════════════════════════════════════════════
 
 export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
-  // 🤖 AI-POWERED TOOLS (8 tools)
+  // 🤖 AI-POWERED TOOLS (8 tools) - Primary AI Features
   // ═══════════════════════════════════════════════════════════════
-  { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, categoryKey: "categories.ai", href: "/tools/pregnancy-assistant", priority: 1 },
-  { id: "symptom-analyzer", titleKey: "tools.symptomAnalyzer.title", descriptionKey: "tools.symptomAnalyzer.description", icon: Stethoscope, categoryKey: "categories.ai", href: "/tools/symptom-analyzer", priority: 2 },
-  { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, categoryKey: "categories.ai", href: "/tools/ai-meal-suggestion", priority: 3 },
-  { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, categoryKey: "categories.ai", href: "/tools/weekly-summary", priority: 4 },
-  { id: "ai-pregnancy-journal", titleKey: "tools.aiPregnancyJournal.title", descriptionKey: "tools.aiPregnancyJournal.description", icon: BookOpen, categoryKey: "categories.ai", href: "/tools/ai-pregnancy-journal", priority: 5 },
-  { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Calendar, categoryKey: "categories.ai", href: "/tools/smart-appointment-reminder", priority: 6 },
-  { id: "ai-birth-story", titleKey: "tools.aiBirthStory.title", descriptionKey: "tools.aiBirthStory.description", icon: FileText, categoryKey: "categories.ai", href: "/tools/ai-birth-story", priority: 7 },
-  { id: "pregnancy-photo-timeline", titleKey: "tools.pregnancyPhotoTimeline.title", descriptionKey: "tools.pregnancyPhotoTimeline.description", icon: Camera, categoryKey: "categories.ai", href: "/tools/pregnancy-photo-timeline", priority: 8 },
+  { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, categoryKey: "categories.ai", href: "/tools/pregnancy-assistant", priority: 1, hasAI: true },
+  { id: "symptom-analyzer", titleKey: "tools.symptomAnalyzer.title", descriptionKey: "tools.symptomAnalyzer.description", icon: Stethoscope, categoryKey: "categories.ai", href: "/tools/symptom-analyzer", priority: 2, hasAI: true },
+  { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, categoryKey: "categories.ai", href: "/tools/ai-meal-suggestion", priority: 3, hasAI: true },
+  { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, categoryKey: "categories.ai", href: "/tools/weekly-summary", priority: 4, hasAI: true },
+  { id: "ai-pregnancy-journal", titleKey: "tools.aiPregnancyJournal.title", descriptionKey: "tools.aiPregnancyJournal.description", icon: BookOpen, categoryKey: "categories.ai", href: "/tools/ai-pregnancy-journal", priority: 5, hasAI: true },
+  { id: "ai-baby-name-finder", titleKey: "tools.aiBabyNameFinder.title", descriptionKey: "tools.aiBabyNameFinder.description", icon: Sparkles, categoryKey: "categories.ai", href: "/tools/ai-baby-name-finder", priority: 6, hasAI: true },
+  { id: "ai-birth-story", titleKey: "tools.aiBirthStory.title", descriptionKey: "tools.aiBirthStory.description", icon: FileText, categoryKey: "categories.ai", href: "/tools/ai-birth-story", priority: 7, hasAI: true },
+  { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: ShoppingCart, categoryKey: "categories.ai", href: "/tools/smart-grocery-list", priority: 8, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // 🔄 FERTILITY & CYCLE TRACKING (3 tools)
+  // 🔄 FERTILITY & PLANNING (3 tools)
+  // ConceptionCalculator merged into DueDateCalculator
   // ═══════════════════════════════════════════════════════════════
-  { id: "ovulation-calculator", titleKey: "tools.ovulationCalculator.title", descriptionKey: "tools.ovulationCalculator.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/ovulation-calculator", priority: 20 },
-  { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Activity, categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 21 },
-  { id: "ai-baby-name-finder", titleKey: "tools.aiBabyNameFinder.title", descriptionKey: "tools.aiBabyNameFinder.description", icon: Sparkles, categoryKey: "categories.fertility", href: "/tools/ai-baby-name-finder", priority: 22 },
+  { id: "ovulation-calculator", titleKey: "tools.ovulationCalculator.title", descriptionKey: "tools.ovulationCalculator.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/ovulation-calculator", priority: 10 },
+  { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Activity, categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 11 },
+  { id: "due-date-calculator", titleKey: "tools.dueDateCalculator.title", descriptionKey: "tools.dueDateCalculator.description", icon: Baby, categoryKey: "categories.fertility", href: "/tools/due-date-calculator", priority: 12 },
 
   // ═══════════════════════════════════════════════════════════════
-  // 🤰 PREGNANCY TRACKING (6 tools)
+  // 🤰 PREGNANCY TRACKING (5 tools) - With AI enhancements
   // ═══════════════════════════════════════════════════════════════
-  { id: "due-date-calculator", titleKey: "tools.dueDateCalculator.title", descriptionKey: "tools.dueDateCalculator.description", icon: Baby, categoryKey: "categories.pregnancy", href: "/tools/due-date-calculator", priority: 23 },
+  { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 20, hasAI: true },
+  { id: "kick-counter", titleKey: "tools.kickCounter.title", descriptionKey: "tools.kickCounter.description", icon: Hand, categoryKey: "categories.pregnancy", href: "/tools/kick-counter", priority: 21, hasAI: true },
+  { id: "pregnancy-milestones", titleKey: "tools.pregnancyMilestones.title", descriptionKey: "tools.pregnancyMilestones.description", icon: Milestone, categoryKey: "categories.pregnancy", href: "/tools/pregnancy-milestones", priority: 22 },
+  { id: "bump-photos", titleKey: "tools.bumpPhotos.title", descriptionKey: "tools.bumpPhotos.description", icon: Camera, categoryKey: "categories.pregnancy", href: "/tools/bump-photos", priority: 23 },
   { id: "pregnancy-bmi", titleKey: "tools.pregnancyBmi.title", descriptionKey: "tools.pregnancyBmi.description", icon: Calculator, categoryKey: "categories.pregnancy", href: "/tools/pregnancy-bmi", priority: 24 },
-  { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 25 },
-  { id: "kick-counter", titleKey: "tools.kickCounter.title", descriptionKey: "tools.kickCounter.description", icon: Hand, categoryKey: "categories.pregnancy", href: "/tools/kick-counter", priority: 26 },
-  { id: "bump-photos", titleKey: "tools.bumpPhotos.title", descriptionKey: "tools.bumpPhotos.description", icon: Camera, categoryKey: "categories.pregnancy", href: "/tools/bump-photos", priority: 27 },
-  { id: "pregnancy-milestones", titleKey: "tools.pregnancyMilestones.title", descriptionKey: "tools.pregnancyMilestones.description", icon: Milestone, categoryKey: "categories.pregnancy", href: "/tools/pregnancy-milestones", priority: 28 },
 
   // ═══════════════════════════════════════════════════════════════
-  // 💪 WELLNESS & FITNESS (7 tools)
-  // NOTE: ConsolidAted AIFitnessCoach + Exercise Guide into one
-  // NOTE: Consolidated SmartWalkingCoach + Kegel into wellness category
+  // 💪 WELLNESS & NUTRITION (5 tools) - AI-enhanced
   // ═══════════════════════════════════════════════════════════════
   { id: "water-intake", titleKey: "tools.waterIntake.title", descriptionKey: "tools.waterIntake.description", icon: GlassWater, categoryKey: "categories.wellness", href: "/tools/water-intake", priority: 30 },
-  { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.wellness", href: "/tools/vitamin-tracker", priority: 31 },
-  { id: "nutrition-guide", titleKey: "tools.nutritionGuide.title", descriptionKey: "tools.nutritionGuide.description", icon: Apple, categoryKey: "categories.wellness", href: "/tools/nutrition-guide", priority: 32 },
-  { id: "forbidden-foods", titleKey: "tools.forbiddenFoods.title", descriptionKey: "tools.forbiddenFoods.description", icon: Ban, categoryKey: "categories.wellness", href: "/tools/forbidden-foods", priority: 33 },
-  { id: "exercise-guide", titleKey: "tools.exerciseGuide.title", descriptionKey: "tools.exerciseGuide.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/exercise-guide", priority: 34 },
-  { id: "meditation-yoga", titleKey: "tools.meditationYoga.title", descriptionKey: "tools.meditationYoga.description", icon: Flower2, categoryKey: "categories.wellness", href: "/tools/meditation-yoga", priority: 35 },
-  { id: "ai-posture-coach", titleKey: "tools.aiPostureCoach.title", descriptionKey: "tools.aiPostureCoach.description", icon: Users, categoryKey: "categories.wellness", href: "/tools/ai-posture-coach", priority: 36 },
-  { id: "smart-stretch-reminder", titleKey: "tools.smartStretchReminder.title", descriptionKey: "tools.smartStretchReminder.description", icon: Activity, categoryKey: "categories.wellness", href: "/tools/smart-stretch-reminder", priority: 37 },
-  { id: "ai-back-pain-relief", titleKey: "tools.aiBackPainRelief.title", descriptionKey: "tools.aiBackPainRelief.description", icon: HeartPulse, categoryKey: "categories.wellness", href: "/tools/ai-back-pain-relief", priority: 38 },
-  { id: "pregnancy-massage-guide", titleKey: "tools.pregnancyMassageGuide.title", descriptionKey: "tools.pregnancyMassageGuide.description", icon: Hand, categoryKey: "categories.wellness", href: "/tools/pregnancy-massage-guide", priority: 39 },
-  { id: "ai-leg-cramp-preventer", titleKey: "tools.aiLegCrampPreventer.title", descriptionKey: "tools.aiLegCrampPreventer.description", icon: Footprints, categoryKey: "categories.wellness", href: "/tools/ai-leg-cramp-preventer", priority: 40 },
-  { id: "smart-walking-coach", titleKey: "tools.smartWalkingCoach.title", descriptionKey: "tools.smartWalkingCoach.description", icon: Footprints, categoryKey: "categories.wellness", href: "/tools/smart-walking-coach", priority: 41 },
-  { id: "ai-craving-alternatives", titleKey: "tools.aiCravingAlternatives.title", descriptionKey: "tools.aiCravingAlternatives.description", icon: Apple, categoryKey: "categories.wellness", href: "/tools/ai-craving-alternatives", priority: 42 },
-  { id: "workout-planner", titleKey: "tools.workoutPlanner.title", descriptionKey: "tools.workoutPlanner.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/workout-planner", priority: 43 },
+  { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.wellness", href: "/tools/vitamin-tracker", priority: 31, hasAI: true },
+  { id: "forbidden-foods", titleKey: "tools.forbiddenFoods.title", descriptionKey: "tools.forbiddenFoods.description", icon: Ban, categoryKey: "categories.wellness", href: "/tools/forbidden-foods", priority: 32 },
+  { id: "exercise-guide", titleKey: "tools.exerciseGuide.title", descriptionKey: "tools.exerciseGuide.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/exercise-guide", priority: 33, hasAI: true },
+  { id: "meditation-yoga", titleKey: "tools.meditationYoga.title", descriptionKey: "tools.meditationYoga.description", icon: Flower2, categoryKey: "categories.wellness", href: "/tools/meditation-yoga", priority: 34 },
 
   // ═══════════════════════════════════════════════════════════════
-  // 🧠 MENTAL HEALTH (4 tools)
+  // 🧠 MENTAL HEALTH (3 tools)
   // ═══════════════════════════════════════════════════════════════
-  { id: "affirmations", titleKey: "tools.affirmations.title", descriptionKey: "tools.affirmations.description", icon: Heart, categoryKey: "categories.mentalHealth", href: "/tools/affirmations", priority: 50 },
-  { id: "mood-tracker", titleKey: "tools.moodTracker.title", descriptionKey: "tools.moodTracker.description", icon: Smile, categoryKey: "categories.mentalHealth", href: "/tools/mood-tracker", priority: 51 },
-  { id: "weight-gain", titleKey: "tools.weightGain.title", descriptionKey: "tools.weightGain.description", icon: Scale, categoryKey: "categories.mentalHealth", href: "/tools/weight-gain", priority: 52 },
-  { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Heart, categoryKey: "categories.mentalHealth", href: "/tools/mental-health-coach", priority: 53 },
+  { id: "affirmations", titleKey: "tools.affirmations.title", descriptionKey: "tools.affirmations.description", icon: Heart, categoryKey: "categories.mentalHealth", href: "/tools/affirmations", priority: 40 },
+  { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, categoryKey: "categories.mentalHealth", href: "/tools/mental-health-coach", priority: 41, hasAI: true },
+  { id: "weight-gain", titleKey: "tools.weightGain.title", descriptionKey: "tools.weightGain.description", icon: Scale, categoryKey: "categories.mentalHealth", href: "/tools/weight-gain", priority: 42, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // ⚠️ RISK ASSESSMENT (3 tools)
+  // ⚠️ HEALTH MONITORING (2 tools) - With medical disclaimers
   // ═══════════════════════════════════════════════════════════════
-  { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.riskAssessment", href: "/tools/gestational-diabetes", priority: 60 },
-  { id: "preeclampsia-risk", titleKey: "tools.preeclampsiaRisk.title", descriptionKey: "tools.preeclampsiaRisk.description", icon: Heart, categoryKey: "categories.riskAssessment", href: "/tools/preeclampsia-risk", priority: 61 },
-  { id: "blood-type", titleKey: "tools.bloodType.title", descriptionKey: "tools.bloodType.description", icon: Droplet, categoryKey: "categories.riskAssessment", href: "/tools/blood-type", priority: 62 },
+  { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.riskAssessment", href: "/tools/gestational-diabetes", priority: 50 },
+  { id: "blood-type", titleKey: "tools.bloodType.title", descriptionKey: "tools.bloodType.description", icon: Droplet, categoryKey: "categories.riskAssessment", href: "/tools/blood-type", priority: 51 },
 
   // ═══════════════════════════════════════════════════════════════
-  // 🏥 LABOR & PREPARATION (4 tools)
+  // 🏥 LABOR & PREPARATION (3 tools)
   // ═══════════════════════════════════════════════════════════════
-  { id: "contraction-timer", titleKey: "tools.contractionTimer.title", descriptionKey: "tools.contractionTimer.description", icon: Timer, categoryKey: "categories.labor", href: "/tools/contraction-timer", priority: 70 },
-  { id: "labor-breathing", titleKey: "tools.laborBreathing.title", descriptionKey: "tools.laborBreathing.description", icon: Wind, categoryKey: "categories.labor", href: "/tools/labor-breathing", priority: 71 },
-  { id: "birth-prep", titleKey: "tools.birthPrep.title", descriptionKey: "tools.birthPrep.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/birth-prep", priority: 72 },
-  { id: "labor-progress", titleKey: "tools.aiLaborProgress.title", descriptionKey: "tools.aiLaborProgress.description", icon: Activity, categoryKey: "categories.labor", href: "/tools/labor-progress", priority: 73 },
+  { id: "contraction-timer", titleKey: "tools.contractionTimer.title", descriptionKey: "tools.contractionTimer.description", icon: Timer, categoryKey: "categories.labor", href: "/tools/contraction-timer", priority: 60, hasAI: true },
+  { id: "labor-breathing", titleKey: "tools.laborBreathing.title", descriptionKey: "tools.laborBreathing.description", icon: Wind, categoryKey: "categories.labor", href: "/tools/labor-breathing", priority: 61 },
+  { id: "birth-prep", titleKey: "tools.birthPrep.title", descriptionKey: "tools.birthPrep.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/birth-prep", priority: 62 },
 
   // ═══════════════════════════════════════════════════════════════
-  // 👶 POSTPARTUM & BABY CARE (5 tools)
+  // 👶 POSTPARTUM & BABY (3 tools)
   // ═══════════════════════════════════════════════════════════════
-  { id: "baby-sleep-tracker", titleKey: "tools.babySleepTracker.title", descriptionKey: "tools.babySleepTracker.description", icon: Moon, categoryKey: "categories.postpartum", href: "/tools/baby-sleep-tracker", priority: 80 },
-  { id: "diaper-tracker", titleKey: "tools.diaperTracker.title", descriptionKey: "tools.diaperTracker.description", icon: Droplet, categoryKey: "categories.postpartum", href: "/tools/diaper-tracker", priority: 81 },
-  { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 82 },
-  { id: "doctor-questions", titleKey: "tools.doctorQuestions.title", descriptionKey: "tools.doctorQuestions.description", icon: MessageCircle, categoryKey: "categories.postpartum", href: "/tools/doctor-questions", priority: 83 },
-  { id: "baby-gear", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, categoryKey: "categories.postpartum", href: "/tools/baby-gear", priority: 84 },
+  { id: "baby-sleep-tracker", titleKey: "tools.babySleepTracker.title", descriptionKey: "tools.babySleepTracker.description", icon: Moon, categoryKey: "categories.postpartum", href: "/tools/baby-sleep-tracker", priority: 70, hasAI: true },
+  { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 71 },
+  { id: "doctor-questions", titleKey: "tools.doctorQuestions.title", descriptionKey: "tools.doctorQuestions.description", icon: MessageCircle, categoryKey: "categories.postpartum", href: "/tools/doctor-questions", priority: 72, hasAI: true },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -158,8 +137,8 @@ export const categoryKeys = [
   "categories.wellness",
   "categories.mentalHealth",
   "categories.riskAssessment",
-  "categories.preparation",
   "categories.labor",
+  "categories.preparation",
   "categories.postpartum",
 ];
 
@@ -171,15 +150,72 @@ export const getSortedTools = () => {
   return [...toolsData].sort((a, b) => a.priority - b.priority);
 };
 
-// All tools are free now
+export const getAITools = () => toolsData.filter((t) => t.hasAI);
 export const getFreeTools = () => toolsData;
 export const getPremiumTools = () => [] as Tool[];
+
 export const getToolsByCategory = (categoryKey: string) =>
   toolsData.filter((t) => t.categoryKey === categoryKey);
 
-// Get tools count by category
 export const getToolsCountByCategory = (categoryKey: string) =>
   getToolsByCategory(categoryKey).length;
 
-// Get all tools count
 export const getTotalToolsCount = () => toolsData.length;
+
+export const getRelatedTools = (currentToolId: string, maxItems = 3): Tool[] => {
+  const relationships: Record<string, string[]> = {
+    // AI Tools linking
+    "pregnancy-assistant": ["symptom-analyzer", "weekly-summary", "ai-meal-suggestion"],
+    "symptom-analyzer": ["pregnancy-assistant", "doctor-questions", "gestational-diabetes"],
+    "ai-meal-suggestion": ["forbidden-foods", "smart-grocery-list", "vitamin-tracker"],
+    "weekly-summary": ["fetal-growth", "pregnancy-milestones", "pregnancy-assistant"],
+    "ai-pregnancy-journal": ["bump-photos", "pregnancy-milestones", "affirmations"],
+    "ai-baby-name-finder": ["due-date-calculator", "ai-birth-story", "baby-growth"],
+    "ai-birth-story": ["labor-breathing", "birth-prep", "contraction-timer"],
+    "smart-grocery-list": ["ai-meal-suggestion", "forbidden-foods", "vitamin-tracker"],
+    
+    // Fertility linking
+    "ovulation-calculator": ["cycle-tracker", "due-date-calculator", "fetal-growth"],
+    "cycle-tracker": ["ovulation-calculator", "due-date-calculator", "pregnancy-bmi"],
+    "due-date-calculator": ["fetal-growth", "pregnancy-milestones", "weekly-summary"],
+    
+    // Pregnancy tracking linking
+    "fetal-growth": ["kick-counter", "weekly-summary", "bump-photos"],
+    "kick-counter": ["fetal-growth", "contraction-timer", "pregnancy-milestones"],
+    "pregnancy-milestones": ["bump-photos", "weekly-summary", "ai-pregnancy-journal"],
+    "bump-photos": ["pregnancy-milestones", "ai-pregnancy-journal", "fetal-growth"],
+    "pregnancy-bmi": ["weight-gain", "exercise-guide", "vitamin-tracker"],
+    
+    // Wellness linking
+    "water-intake": ["vitamin-tracker", "ai-meal-suggestion", "exercise-guide"],
+    "vitamin-tracker": ["water-intake", "ai-meal-suggestion", "forbidden-foods"],
+    "forbidden-foods": ["ai-meal-suggestion", "smart-grocery-list", "gestational-diabetes"],
+    "exercise-guide": ["meditation-yoga", "pregnancy-bmi", "weight-gain"],
+    "meditation-yoga": ["affirmations", "exercise-guide", "labor-breathing"],
+    
+    // Mental health linking
+    "affirmations": ["meditation-yoga", "postpartum-mental-health", "ai-pregnancy-journal"],
+    "postpartum-mental-health": ["affirmations", "doctor-questions", "baby-sleep-tracker"],
+    "weight-gain": ["pregnancy-bmi", "exercise-guide", "ai-meal-suggestion"],
+    
+    // Health monitoring linking
+    "gestational-diabetes": ["ai-meal-suggestion", "exercise-guide", "doctor-questions"],
+    "blood-type": ["doctor-questions", "gestational-diabetes", "symptom-analyzer"],
+    
+    // Labor linking
+    "contraction-timer": ["labor-breathing", "birth-prep", "ai-birth-story"],
+    "labor-breathing": ["contraction-timer", "meditation-yoga", "birth-prep"],
+    "birth-prep": ["contraction-timer", "labor-breathing", "baby-sleep-tracker"],
+    
+    // Postpartum linking
+    "baby-sleep-tracker": ["baby-growth", "postpartum-mental-health", "doctor-questions"],
+    "baby-growth": ["baby-sleep-tracker", "doctor-questions", "ai-baby-name-finder"],
+    "doctor-questions": ["symptom-analyzer", "postpartum-mental-health", "baby-growth"],
+  };
+
+  const relatedIds = relationships[currentToolId] || [];
+  return relatedIds
+    .map((id) => toolsData.find((tool) => tool.id === id))
+    .filter((tool): tool is Tool => tool !== undefined)
+    .slice(0, maxItems);
+};
