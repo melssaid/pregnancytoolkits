@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
+import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Calendar, Clock, Bell, Plus, Trash2, CheckCircle, AlertCircle } from 'lucide-react';
+import { Calendar, Clock, Bell, Plus, Trash2, CheckCircle, AlertCircle, Brain, Loader2 } from 'lucide-react';
 import { format, isBefore, isToday, addDays } from 'date-fns';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface Appointment {
   id: string;
@@ -36,8 +39,13 @@ const suggestedQuestions = [
 ];
 
 export default function SmartAppointmentReminder() {
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const [currentWeek, setCurrentWeek] = useState(20);
+  const [showAIPrep, setShowAIPrep] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [newAppointment, setNewAppointment] = useState({
     title: '',
     date: '',
@@ -46,6 +54,8 @@ export default function SmartAppointmentReminder() {
     notes: '',
     questions: [] as string[],
   });
+
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   useEffect(() => {
     const saved = localStorage.getItem('pregnancyAppointments');
@@ -91,8 +101,38 @@ export default function SmartAppointmentReminder() {
     setAppointments(appointments.filter(a => a.id !== id));
   };
 
+  const getAIAppointmentPrep = async (apt: Appointment) => {
+    setSelectedAppointment(apt);
+    setShowAIPrep(true);
+    setAiResponse('');
+
+    const aptType = appointmentTypes.find(t => t.id === apt.type);
+
+    await streamChat({
+      type: 'appointment-prep' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I have a ${aptType?.label || apt.type} appointment coming up on ${apt.date}. I'm currently at week ${currentWeek} of my pregnancy. The appointment is titled "${apt.title}". My prepared questions are: ${apt.questions.join(', ') || 'none yet'}. Please help me prepare for this appointment with personalized questions and tips.`
+        }
+      ],
+      context: { week: currentWeek },
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
+  };
+
   const upcomingAppointments = appointments.filter(a => !a.completed && !isBefore(new Date(a.date), new Date()));
   const pastAppointments = appointments.filter(a => a.completed || isBefore(new Date(a.date), new Date()));
+
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Smart Appointment Reminder"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
 
   return (
     <ToolFrame
@@ -103,6 +143,21 @@ export default function SmartAppointmentReminder() {
       toolId="smart-appointment-reminder"
     >
       <div className="space-y-6">
+        {/* Week Selector */}
+        <Card>
+          <CardContent className="p-4">
+            <label className="block text-sm font-medium mb-2">Current Pregnancy Week</label>
+            <Input
+              type="number"
+              min={1}
+              max={42}
+              value={currentWeek}
+              onChange={(e) => setCurrentWeek(Number(e.target.value))}
+              className="w-full"
+            />
+          </CardContent>
+        </Card>
+
         {/* Add Button */}
         {!showForm && (
           <Button onClick={() => setShowForm(true)} className="w-full gap-2">
@@ -117,19 +172,19 @@ export default function SmartAppointmentReminder() {
             <CardContent className="p-4 space-y-4">
               <h3 className="text-lg font-semibold">New Appointment</h3>
               
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2">
                 {appointmentTypes.map((type) => (
                   <button
                     key={type.id}
                     onClick={() => setNewAppointment(prev => ({ ...prev, type: type.id }))}
-                    className={`p-3 rounded-lg text-left transition-all ${
+                    className={`p-2 rounded-lg text-left transition-all text-sm ${
                       newAppointment.type === type.id
                         ? 'bg-primary text-primary-foreground'
                         : 'bg-muted hover:bg-muted/80'
                     }`}
                   >
-                    <span className="text-lg">{type.icon}</span>
-                    <span className="text-sm ml-2">{type.label}</span>
+                    <span>{type.icon}</span>
+                    <span className="ml-1">{type.label}</span>
                   </button>
                 ))}
               </div>
@@ -184,6 +239,32 @@ export default function SmartAppointmentReminder() {
           </Card>
         )}
 
+        {/* AI Preparation */}
+        {showAIPrep && aiResponse && (
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <Brain className="w-5 h-5 text-primary" />
+                  <h3 className="font-semibold">AI Appointment Prep</h3>
+                </div>
+                <Button variant="ghost" size="sm" onClick={() => setShowAIPrep(false)}>
+                  Close
+                </Button>
+              </div>
+              <MarkdownRenderer content={aiResponse} />
+            </CardContent>
+          </Card>
+        )}
+
+        {error && (
+          <Card className="border-destructive/30 bg-destructive/5">
+            <CardContent className="p-4 text-destructive text-sm">
+              {error}
+            </CardContent>
+          </Card>
+        )}
+
         {/* Upcoming Appointments */}
         {upcomingAppointments.length > 0 && (
           <Card>
@@ -214,7 +295,18 @@ export default function SmartAppointmentReminder() {
                             </p>
                           </div>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-1">
+                          <button
+                            onClick={() => getAIAppointmentPrep(apt)}
+                            disabled={isLoading}
+                            className="p-1.5 rounded-lg hover:bg-primary/10 transition-colors"
+                          >
+                            {isLoading && selectedAppointment?.id === apt.id ? (
+                              <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                            ) : (
+                              <Brain className="w-4 h-4 text-primary" />
+                            )}
+                          </button>
                           <button
                             onClick={() => markComplete(apt.id)}
                             className="p-1.5 rounded-lg hover:bg-background transition-colors"
