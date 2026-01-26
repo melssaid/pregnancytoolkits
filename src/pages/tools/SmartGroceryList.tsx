@@ -126,6 +126,15 @@ export default function SmartGroceryList() {
 
   const checkedCount = items.filter(i => i.isChecked).length;
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Smart Grocery List"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Smart Grocery List"
@@ -134,147 +143,138 @@ export default function SmartGroceryList() {
       toolId="grocery-list"
       icon={ShoppingCart}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Smart Grocery List"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
-          {/* Add Item */}
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex gap-2">
-                <Input
-                  placeholder="Add item to list..."
-                  value={newItem}
-                  onChange={(e) => setNewItem(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && addItem()}
-                />
-                <Button onClick={addItem}>
-                  <Plus className="w-4 h-4" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Progress */}
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-2xl font-bold text-primary">{checkedCount}</span>
-                  <span className="text-muted-foreground"> / {items.length} items</span>
-                </div>
-                {checkedCount > 0 && (
-                  <Button variant="outline" size="sm" onClick={clearChecked}>
-                    <Trash2 className="w-4 h-4 mr-1" />
-                    Clear Done
-                  </Button>
-                )}
-              </div>
-              <div className="w-full h-2 bg-muted rounded-full mt-2 overflow-hidden">
-                <div 
-                  className="h-full bg-primary transition-all"
-                  style={{ width: `${items.length > 0 ? (checkedCount / items.length) * 100 : 0}%` }}
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Category Filter */}
-          <div className="flex gap-2 overflow-x-auto pb-1">
-            {(['all', 'produce', 'dairy', 'protein', 'grains', 'other'] as const).map(cat => (
-              <Button
-                key={cat}
-                variant={selectedCategory === cat ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSelectedCategory(cat)}
-                className="capitalize whitespace-nowrap"
-              >
-                {cat}
+      <div className="space-y-6">
+        {/* Add Item */}
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex gap-2">
+              <Input
+                placeholder="Add item to list..."
+                value={newItem}
+                onChange={(e) => setNewItem(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && addItem()}
+              />
+              <Button onClick={addItem}>
+                <Plus className="w-4 h-4" />
               </Button>
-            ))}
-          </div>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Shopping List */}
-          <Card>
-            <CardContent className="p-4">
-              <h3 className="font-semibold mb-4">Your List</h3>
-              {filteredItems.length === 0 ? (
-                <p className="text-center text-muted-foreground py-8">
-                  No items in this category
-                </p>
-              ) : (
-                <div className="space-y-2">
-                  {filteredItems.map(item => {
-                    const Icon = categoryIcons[item.category];
-                    return (
-                      <div 
-                        key={item.id}
-                        className={`flex items-center gap-3 p-3 rounded-lg border transition-all ${
-                          item.isChecked ? 'bg-muted/50 border-primary/20' : 'border-border'
+        {/* Progress */}
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-2xl font-bold text-primary">{checkedCount}</span>
+                <span className="text-muted-foreground"> / {items.length} items</span>
+              </div>
+              {checkedCount > 0 && (
+                <Button variant="outline" size="sm" onClick={clearChecked}>
+                  <Trash2 className="w-4 h-4 mr-1" />
+                  Clear Done
+                </Button>
+              )}
+            </div>
+            <div className="w-full h-2 bg-muted rounded-full mt-2 overflow-hidden">
+              <div 
+                className="h-full bg-primary transition-all"
+                style={{ width: `${items.length > 0 ? (checkedCount / items.length) * 100 : 0}%` }}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Category Filter */}
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {(['all', 'produce', 'dairy', 'protein', 'grains', 'other'] as const).map(cat => (
+            <Button
+              key={cat}
+              variant={selectedCategory === cat ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setSelectedCategory(cat)}
+              className="capitalize whitespace-nowrap"
+            >
+              {cat}
+            </Button>
+          ))}
+        </div>
+
+        {/* Shopping List */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="font-semibold mb-4">Your List</h3>
+            {filteredItems.length === 0 ? (
+              <p className="text-center text-muted-foreground py-8">
+                No items in this category
+              </p>
+            ) : (
+              <div className="space-y-2">
+                {filteredItems.map(item => {
+                  const Icon = categoryIcons[item.category];
+                  return (
+                    <div 
+                      key={item.id}
+                      className={`flex items-center gap-3 p-3 rounded-lg border transition-all ${
+                        item.isChecked ? 'bg-muted/50 border-primary/20' : 'border-border'
+                      }`}
+                    >
+                      <button
+                        onClick={() => toggleItem(item.id)}
+                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                          item.isChecked 
+                            ? 'bg-primary border-primary text-primary-foreground' 
+                            : 'border-muted-foreground'
                         }`}
                       >
-                        <button
-                          onClick={() => toggleItem(item.id)}
-                          className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                            item.isChecked 
-                              ? 'bg-primary border-primary text-primary-foreground' 
-                              : 'border-muted-foreground'
-                          }`}
-                        >
-                          {item.isChecked && <Check className="w-4 h-4" />}
-                        </button>
-                        <Icon className="w-4 h-4 text-muted-foreground" />
-                        <div className="flex-1">
-                          <span className={item.isChecked ? 'line-through text-muted-foreground' : ''}>
-                            {item.name}
-                          </span>
-                          {item.pregnancyBenefit && (
-                            <p className="text-xs text-primary">{item.pregnancyBenefit}</p>
-                          )}
-                        </div>
-                        <button
-                          onClick={() => removeItem(item.id)}
-                          className="text-muted-foreground hover:text-destructive"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        {item.isChecked && <Check className="w-4 h-4" />}
+                      </button>
+                      <Icon className="w-4 h-4 text-muted-foreground" />
+                      <div className="flex-1">
+                        <span className={item.isChecked ? 'line-through text-muted-foreground' : ''}>
+                          {item.name}
+                        </span>
+                        {item.pregnancyBenefit && (
+                          <p className="text-xs text-primary">{item.pregnancyBenefit}</p>
+                        )}
                       </div>
-                    );
-                  })}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* AI Suggestions */}
-          <Card>
-            <CardContent className="p-4">
-              <h3 className="font-semibold mb-3 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-primary" />
-                Pregnancy Superfoods
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {suggestedItems.filter(s => !items.find(i => i.name === s.name)).slice(0, 6).map(item => (
-                  <Badge 
-                    key={item.id}
-                    variant="outline"
-                    className="cursor-pointer hover:bg-primary/10 py-1.5"
-                    onClick={() => addSuggested(item)}
-                  >
-                    <Plus className="w-3 h-3 mr-1" />
-                    {item.name}
-                  </Badge>
-                ))}
+                      <button
+                        onClick={() => removeItem(item.id)}
+                        className="text-muted-foreground hover:text-destructive"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+            )}
+          </CardContent>
+        </Card>
+
+        {/* AI Suggestions */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="font-semibold mb-3 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-primary" />
+              Pregnancy Superfoods
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {suggestedItems.filter(s => !items.find(i => i.name === s.name)).slice(0, 6).map(item => (
+                <Badge 
+                  key={item.id}
+                  variant="outline"
+                  className="cursor-pointer hover:bg-primary/10 py-1.5"
+                  onClick={() => addSuggested(item)}
+                >
+                  <Plus className="w-3 h-3 mr-1" />
+                  {item.name}
+                </Badge>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </ToolFrame>
   );
 }
