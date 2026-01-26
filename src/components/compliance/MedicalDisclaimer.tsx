@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { AlertTriangle, Shield } from 'lucide-react';
+import { AlertTriangle, Shield, CheckCircle2 } from 'lucide-react';
 
 interface MedicalDisclaimerProps {
   toolName?: string;
@@ -9,85 +9,58 @@ interface MedicalDisclaimerProps {
 
 export default function MedicalDisclaimer({ toolName, onAccept }: MedicalDisclaimerProps) {
   return (
-    <div 
-      className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-muted/30 to-background p-6"
-      style={{ minHeight: '100vh', minWidth: '100vw', position: 'fixed', top: 0, left: 0, zIndex: 50 }}
-    >
-      <Card className="w-full max-w-2xl mx-auto shadow-xl" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
-        <CardContent className="p-8 space-y-8">
-          {/* Header with Icon */}
-          <div className="text-center space-y-4">
-            <div className="mx-auto w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center">
-              <Shield className="w-8 h-8 text-destructive" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4">
+      <Card className="w-full max-w-md mx-auto shadow-2xl border-0 bg-card animate-scale-in">
+        <CardContent className="p-6 space-y-5">
+          {/* Header */}
+          <div className="text-center space-y-3">
+            <div className="mx-auto w-14 h-14 bg-destructive/10 rounded-full flex items-center justify-center">
+              <Shield className="w-7 h-7 text-destructive" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground mb-2">Medical Disclaimer</h1>
-              <p className="text-sm text-muted-foreground">
-                {toolName ? `${toolName} - ` : ''}Health & Safety Information
-              </p>
+              <h1 className="text-xl font-bold text-foreground">Medical Disclaimer</h1>
+              {toolName && (
+                <p className="text-xs text-muted-foreground mt-1">{toolName}</p>
+              )}
             </div>
           </div>
 
-          {/* Warning Content */}
-          <div className="space-y-6 text-foreground">
-            <div className="bg-destructive/5 border border-destructive/20 rounded-lg p-6">
-              <div className="flex items-start gap-3 mb-4">
-                <AlertTriangle className="w-5 h-5 text-destructive mt-1 flex-shrink-0" />
-                <p className="font-semibold text-destructive">
-                  Important: This tool is designed for educational and informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment.
-                </p>
-              </div>
-
-              <div className="space-y-3 text-sm">
-                <p className="font-medium">Always consult with your healthcare provider if you have concerns about your health or pregnancy.</p>
-                
-                <div className="bg-background rounded-lg p-4 space-y-2">
-                  <p className="font-medium text-foreground mb-2">Key Points:</p>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">•</span>
-                      <span>Never disregard professional medical advice based on app results</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">•</span>
-                      <span>Seek immediate medical attention for any concerning symptoms</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">•</span>
-                      <span>This tool does not replace regular prenatal care</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">•</span>
-                      <span>Information provided is general and may not apply to your specific situation</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-muted/30 rounded-lg p-4">
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                By continuing, you acknowledge that you understand this tool is for informational purposes only and that you should consult healthcare professionals for medical decisions.
+          {/* Warning Box */}
+          <div className="bg-destructive/5 border border-destructive/20 rounded-xl p-4 space-y-3">
+            <div className="flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
+              <p className="text-sm font-medium text-destructive leading-relaxed">
+                This tool is for educational purposes only. Not a substitute for medical advice.
               </p>
             </div>
 
-            {toolName && (
-              <div className="bg-primary/5 rounded-lg p-4">
-                <p className="text-sm">
-                  <span className="text-muted-foreground">Tool: </span>
-                  <span className="font-semibold text-primary">{toolName}</span>
-                </p>
+            <div className="space-y-2 text-xs text-muted-foreground">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                <span>Always consult your healthcare provider</span>
               </div>
-            )}
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                <span>Seek immediate care for concerning symptoms</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                <span>This does not replace regular prenatal care</span>
+              </div>
+            </div>
           </div>
 
-          {/* Action Button */}
+          {/* Consent Text */}
+          <p className="text-[11px] text-center text-muted-foreground leading-relaxed">
+            By continuing, you acknowledge this tool is for informational purposes only.
+          </p>
+
+          {/* Accept Button */}
           <Button 
-            className="w-full h-12 text-base font-semibold" 
+            className="w-full h-11 text-sm font-semibold rounded-xl" 
             onClick={onAccept}
-            size="lg"
           >
-            I Understand & Accept
+            I Understand & Continue
           </Button>
         </CardContent>
       </Card>
