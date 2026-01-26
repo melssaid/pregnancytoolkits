@@ -183,18 +183,30 @@ const Index = () => {
       <section className="py-4 border-t border-border/50">
         <div className="container">
           <div className="bg-gradient-to-r from-primary to-accent rounded-2xl p-5 text-white relative overflow-hidden shadow-xl">
-            <div className="relative z-10 max-w-md">
-              <div className="flex items-center gap-2 mb-1">
-                <Crown className="w-4 h-4" />
+            <div className="relative z-10">
+              <div className="flex items-center gap-2 mb-2">
+                <Crown className="w-5 h-5" />
                 <span className="uppercase tracking-widest text-[10px] font-bold opacity-90">Premium</span>
               </div>
               <h2 className="text-lg font-bold mb-1">Unlock Full AI Power</h2>
+              
+              {/* Free Trial Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm mb-3">
+                <Sparkles className="w-4 h-4" />
+                <span className="text-xs font-semibold">3 Days Free Trial - Full Access!</span>
+              </div>
+              
               <p className="text-xs opacity-90 mb-3">
-                Unlimited AI consultations and personalized guidance.
+                Try all AI features free for 3 days. Unlimited consultations, personalized meal plans, symptom analysis, and more.
               </p>
+              
               <div className="flex gap-2">
-                <Button size="sm" variant="secondary" className="rounded-full px-4 text-xs h-8">Upgrade</Button>
-                <Button size="sm" variant="ghost" className="rounded-full text-white border-white/20 hover:bg-white/10 text-xs h-8">Learn More</Button>
+                <Button size="sm" variant="secondary" className="rounded-full px-4 text-xs h-8">
+                  Start Free Trial
+                </Button>
+                <Button size="sm" variant="ghost" className="rounded-full text-white border-white/20 hover:bg-white/10 text-xs h-8">
+                  View Plans
+                </Button>
               </div>
             </div>
             <div className="absolute top-0 right-0 w-1/2 h-full bg-white/10 -skew-x-12 translate-x-1/2 pointer-events-none" />

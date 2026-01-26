@@ -13,26 +13,68 @@ interface ToolCardProps {
   hasAI?: boolean;
 }
 
-// Tool explanations for each tool
+// Tool explanations organized by category
 const toolExplanations: Record<string, string> = {
-  "tools.dueDateCalculator.title": "Enter your last period date to calculate your estimated due date and track pregnancy progress.",
-  "tools.pregnancyBmi.title": "Calculate your BMI for personalized weight gain recommendations during pregnancy.",
-  "tools.waterIntake.title": "Track daily water intake with smart reminders to stay hydrated.",
+  // 🤖 AI Core Tools
+  "tools.pregnancyAssistant.title": "Ask any pregnancy question and get instant AI-powered answers tailored to your stage.",
+  "tools.symptomAnalyzer.title": "Describe your symptoms and receive AI analysis with relief tips and when to seek care.",
+  "tools.aiMealSuggestion.title": "Get personalized meal ideas based on your trimester, cravings, and nutritional needs.",
+  "tools.weeklySummary.title": "Receive a personalized weekly update on your baby's development and body changes.",
+  "tools.aiPregnancyJournal.title": "Document your pregnancy journey with AI-enhanced prompts and memory keeping.",
+  "tools.smartAppointmentReminder.title": "Never miss an appointment with smart reminders and AI-generated doctor questions.",
+  "tools.aiBabyNameFinder.title": "Discover perfect baby names with AI suggestions based on your preferences.",
+  "tools.aiPregnancyTips.title": "Get daily AI-curated tips personalized to your pregnancy stage.",
+  "tools.aiBirthStory.title": "Create a beautiful birth story with AI-assisted writing and prompts.",
+  "tools.smartGroceryList.title": "Generate smart pregnancy-safe grocery lists based on your meal plans.",
+
+  // 💪 AI Wellness & Fitness
+  "tools.aiPostureCoach.title": "Improve your pregnancy posture with guided exercises to reduce back pain.",
+  "tools.smartStretchReminder.title": "Get personalized stretching routines with AI recommendations for your trimester.",
+  "tools.aiBackPainRelief.title": "Safe exercises and AI tips to relieve pregnancy-related back pain.",
+  "tools.aiLegCrampPreventer.title": "Prevent and manage leg cramps with smart prevention checklist and relief tips.",
+  "tools.smartWalkingCoach.title": "Personalized walking program with AI coaching adapted to each trimester.",
+  "tools.pregnancySmoothieAI.title": "AI-generated nutritious smoothie recipes tailored for each pregnancy stage.",
+  "tools.exerciseGuide.title": "Safe workout routines designed specifically for pregnant women.",
+
+  // 🏥 Labor & Monitoring
+  "tools.aiLaborProgress.title": "Track contractions and get AI analysis of your labor progress with hospital alerts.",
+  "tools.contractionTimer.title": "Time your contractions accurately to know when it's time for the hospital.",
+  "tools.laborBreathing.title": "Guided breathing exercises to help manage labor pain and stay calm.",
+
+  // 🔄 Fertility & Planning
+  "tools.ovulationCalculator.title": "Calculate your fertile window to maximize your chances of conception.",
+  "tools.cycleTracker.title": "Track your menstrual cycle to understand your fertility patterns.",
+  "tools.dueDateCalculator.title": "Enter your last period date to calculate your estimated due date.",
+
+  // 🤰 Pregnancy Tracking
+  "tools.fetalGrowth.title": "See your baby's weekly growth with size comparisons and development updates.",
   "tools.kickCounter.title": "Monitor your baby's movements to ensure healthy activity patterns.",
-  "tools.babyGrowth.title": "Track your baby's weekly growth with size comparisons and milestones.",
-  "tools.symptomAnalyzer.title": "Get AI-powered analysis of pregnancy symptoms with personalized advice.",
-  "tools.mealSuggestion.title": "Receive personalized meal ideas based on your nutritional needs.",
-  "tools.pregnancyAssistant.title": "Ask any pregnancy question and get instant AI answers.",
-  "tools.weeklySummary.title": "Get personalized weekly updates on baby's development.",
-  "tools.laborTracker.title": "Time contractions and track labor progress with smart alerts.",
-  "tools.posture.title": "Improve pregnancy posture with guided exercises to reduce back pain.",
-  "tools.walkingCoach.title": "Personalized walking program with AI coaching for each trimester.",
-  "tools.backPainRelief.title": "Safe exercises and AI tips to relieve pregnancy-related back pain.",
-  "tools.legCrampPreventer.title": "Prevent and manage leg cramps with smart prevention tips.",
-  "tools.smoothieAI.title": "AI-generated nutritious smoothie recipes for each trimester.",
-  "tools.dailyTips.title": "Daily AI-curated pregnancy tips personalized to your stage.",
-  "tools.stretchReminder.title": "Guided stretching routines with AI recommendations.",
-  "tools.appointmentReminder.title": "Smart reminders and AI-generated questions for doctor visits.",
+  "tools.pregnancyMilestones.title": "Track important pregnancy milestones and celebrate each achievement.",
+  "tools.bumpPhotos.title": "Create a beautiful photo timeline of your growing bump.",
+  "tools.pregnancyBmi.title": "Calculate your BMI for personalized weight gain recommendations.",
+
+  // 🥗 Nutrition & Hydration
+  "tools.waterIntake.title": "Track daily water intake with smart reminders to stay hydrated.",
+  "tools.vitaminTracker.title": "Track your prenatal vitamins with AI advice on optimal timing.",
+  "tools.forbiddenFoods.title": "Quick reference guide for foods to avoid during pregnancy.",
+  "tools.meditationYoga.title": "Guided meditation and yoga sessions designed for pregnancy.",
+
+  // 🧠 Mental Health
+  "tools.affirmations.title": "Daily positive affirmations to boost your mood and confidence.",
+  "tools.postpartumMentalHealth.title": "AI-powered mental health screening and support resources.",
+  "tools.weightGain.title": "Track your pregnancy weight gain with personalized recommendations.",
+
+  // ⚠️ Health Monitoring
+  "tools.gestationalDiabetes.title": "Risk assessment tool for gestational diabetes with lifestyle tips.",
+  "tools.bloodType.title": "Blood type compatibility information for you and your baby.",
+
+  // 📋 Preparation
+  "tools.birthPrep.title": "Complete birth preparation checklist and planning guide.",
+
+  // 👶 Postpartum & Baby
+  "tools.babySleepTracker.title": "Track your baby's sleep patterns with AI-powered insights.",
+  "tools.babyGrowth.title": "Monitor your baby's growth with percentile charts and milestones.",
+  "tools.doctorQuestions.title": "AI-generated questions to ask at your next doctor appointment.",
 };
 
 export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryKey, index, hasAI }: ToolCardProps) {
