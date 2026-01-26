@@ -267,17 +267,25 @@ export default function SmartAppointmentReminder() {
                 onChange={(e) => setNewAppointment(prev => ({ ...prev, title: e.target.value }))}
               />
 
-              <div className="grid grid-cols-2 gap-3">
-                <Input
-                  type="date"
-                  value={newAppointment.date}
-                  onChange={(e) => setNewAppointment(prev => ({ ...prev, date: e.target.value }))}
-                />
-                <Input
-                  type="time"
-                  value={newAppointment.time}
-                  onChange={(e) => setNewAppointment(prev => ({ ...prev, time: e.target.value }))}
-                />
+              <div className="grid grid-cols-2 gap-2">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                  <Input
+                    type="date"
+                    value={newAppointment.date}
+                    onChange={(e) => setNewAppointment(prev => ({ ...prev, date: e.target.value }))}
+                    className="flex-1"
+                  />
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                  <Input
+                    type="time"
+                    value={newAppointment.time}
+                    onChange={(e) => setNewAppointment(prev => ({ ...prev, time: e.target.value }))}
+                    className="flex-1"
+                  />
+                </div>
               </div>
 
               <div>
