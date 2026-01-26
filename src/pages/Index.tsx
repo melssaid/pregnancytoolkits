@@ -167,10 +167,7 @@ const Index = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className={viewMode === "grid" 
-                ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5" 
-                : "space-y-2"
-              }
+              className="space-y-2"
             >
               {filteredTools.map((tool, index) => (
                 <ToolCard

@@ -3,7 +3,9 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Clock, Play, CheckCircle, RotateCcw, Bell, AlertCircle } from 'lucide-react';
+import { Sparkles, Clock, Play, CheckCircle, RotateCcw, Bell, AlertCircle, Brain, Loader2 } from 'lucide-react';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface Stretch {
   id: string;
@@ -32,6 +34,11 @@ export default function SmartStretchReminder() {
   const [isActive, setIsActive] = useState(false);
   const [completedStretches, setCompletedStretches] = useState<string[]>([]);
   const [lastStretchTime, setLastStretchTime] = useState<Date | null>(null);
+  const [showAIAdvice, setShowAIAdvice] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  const [currentTrimester, setCurrentTrimester] = useState(2);
+
+  const { streamChat, isLoading, error } = usePregnancyAI();
 
   useEffect(() => {
     const saved = localStorage.getItem('stretchCompletedToday');
@@ -94,6 +101,32 @@ export default function SmartStretchReminder() {
     return `${minutes}m ago`;
   };
 
+  const getAIStretchAdvice = async () => {
+    setShowAIAdvice(true);
+    setAiResponse('');
+
+    const completedNames = completedStretches.map(id => 
+      stretches.find(s => s.id === id)?.name
+    ).filter(Boolean);
+
+    const bodyParts = completedStretches.map(id =>
+      stretches.find(s => s.id === id)?.bodyPart
+    ).filter(Boolean);
+
+    await streamChat({
+      type: 'stretch-reminder' as any,
+      messages: [
+        {
+          role: 'user',
+          content: `I'm in trimester ${currentTrimester} of my pregnancy. Today I completed these stretches: ${completedNames.join(', ') || 'none yet'}. Body parts targeted: ${[...new Set(bodyParts)].join(', ') || 'none'}. Total available stretches: ${stretches.length}. Give me personalized stretching advice and recommendations for what to do next.`
+        }
+      ],
+      context: { trimester: currentTrimester },
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
+  };
+
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
@@ -112,6 +145,28 @@ export default function SmartStretchReminder() {
       toolId="smart-stretch-reminder"
     >
       <div className="space-y-6">
+        {/* Trimester Selector */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">Your Trimester</h3>
+            <div className="grid grid-cols-3 gap-2">
+              {[1, 2, 3].map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setCurrentTrimester(t)}
+                  className={`py-2 rounded-lg font-semibold transition-all ${
+                    currentTrimester === t
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted hover:bg-muted/80'
+                  }`}
+                >
+                  Trimester {t}
+                </button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Status Card */}
         <Card className="bg-gradient-to-r from-primary/10 to-primary/5">
           <CardContent className="p-4">
@@ -139,10 +194,45 @@ export default function SmartStretchReminder() {
         </Card>
 
         {/* Quick Start */}
-        <Button onClick={startQuickRoutine} className="w-full gap-2" size="lg">
-          <Play className="w-5 h-5" />
-          Start Quick Stretch Routine
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={startQuickRoutine} className="flex-1 gap-2" size="lg" disabled={isActive}>
+            <Play className="w-5 h-5" />
+            Start Routine
+          </Button>
+          <Button onClick={getAIStretchAdvice} variant="outline" size="lg" disabled={isLoading}>
+            {isLoading ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <Brain className="w-5 h-5" />
+            )}
+          </Button>
+        </div>
+
+        {/* AI Response */}
+        {showAIAdvice && aiResponse && (
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <Brain className="w-5 h-5 text-primary" />
+                  <h3 className="font-semibold">AI Stretch Coach</h3>
+                </div>
+                <Button variant="ghost" size="sm" onClick={() => setShowAIAdvice(false)}>
+                  Close
+                </Button>
+              </div>
+              <MarkdownRenderer content={aiResponse} />
+            </CardContent>
+          </Card>
+        )}
+
+        {error && (
+          <Card className="border-destructive/30 bg-destructive/5">
+            <CardContent className="p-4 text-destructive text-sm">
+              {error}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Active Stretch */}
         {activeStretch && isActive && (
@@ -166,7 +256,7 @@ export default function SmartStretchReminder() {
         <Card>
           <CardContent className="p-4">
             <h3 className="text-lg font-semibold mb-4">All Stretches</h3>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
               {stretches.map((stretch) => {
                 const isCompleted = completedStretches.includes(stretch.id);
                 return (
@@ -174,17 +264,21 @@ export default function SmartStretchReminder() {
                     key={stretch.id}
                     onClick={() => startStretch(stretch)}
                     disabled={isActive}
-                    className={`p-4 rounded-lg text-center transition-all ${
+                    className={`w-full p-3 rounded-lg flex items-center gap-3 transition-all ${
                       isCompleted 
                         ? 'bg-green-500/10 border border-green-500/20' 
                         : 'bg-muted/50 hover:bg-muted'
                     }`}
                   >
-                    <span className="text-3xl block mb-2">{stretch.icon}</span>
-                    <p className="font-medium text-sm">{stretch.name}</p>
-                    <p className="text-xs text-muted-foreground">{stretch.duration}s</p>
-                    {isCompleted && (
-                      <CheckCircle className="w-4 h-4 text-green-600 mx-auto mt-2" />
+                    <span className="text-2xl">{stretch.icon}</span>
+                    <div className="flex-1 text-left">
+                      <p className="font-medium text-sm">{stretch.name}</p>
+                      <p className="text-xs text-muted-foreground">{stretch.duration}s • {stretch.bodyPart}</p>
+                    </div>
+                    {isCompleted ? (
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                    ) : (
+                      <Play className="w-4 h-4 text-muted-foreground" />
                     )}
                   </button>
                 );
