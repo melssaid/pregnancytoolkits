@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Camera, Plus, Trash2, Image, Calendar, Heart } from "lucide-react";
+import { Camera, Trash2, Image, Heart, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
+import { compressImage, formatBytes, estimateDataUrlSize } from "@/lib/imageCompression";
+import { toast } from "sonner";
 
 interface BumpPhoto {
   id: string;
@@ -19,47 +22,99 @@ interface BumpPhoto {
 
 const STORAGE_KEY = "bump-photos-data";
 
+// Validator for bump photos
+const isBumpPhotoArray = (data: unknown): data is BumpPhoto[] => {
+  return Array.isArray(data) && data.every(item =>
+    typeof item === 'object' &&
+    item !== null &&
+    'id' in item &&
+    'week' in item &&
+    'date' in item &&
+    'imageData' in item
+  );
+};
+
 const BumpPhotos = () => {
   const { t } = useTranslation();
   const { trackAction } = useAnalytics("bump-photos");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const isInitialized = useRef(false);
   
   const [photos, setPhotos] = useState<BumpPhoto[]>([]);
   const [currentWeek, setCurrentWeek] = useState<number>(12);
   const [note, setNote] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState<BumpPhoto | null>(null);
+  const [isCompressing, setIsCompressing] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      setPhotos(JSON.parse(saved));
-    }
+    const saved = safeParseLocalStorage<BumpPhoto[]>(
+      STORAGE_KEY,
+      [],
+      isBumpPhotoArray
+    );
+    setPhotos(saved);
+    isInitialized.current = true;
   }, []);
 
   const savePhotos = (newPhotos: BumpPhoto[]) => {
     setPhotos(newPhotos);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newPhotos));
+    if (isInitialized.current) {
+      const success = safeSaveToLocalStorage(STORAGE_KEY, newPhotos);
+      if (!success) {
+        toast.error('Failed to save photos. Storage may be full.');
+      }
+    }
   };
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const newPhoto: BumpPhoto = {
-        id: Date.now().toString(),
-        week: currentWeek,
-        date: new Date().toISOString(),
-        imageData: reader.result as string,
-        note: note || undefined,
+    setIsCompressing(true);
+    
+    try {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        try {
+          const originalData = reader.result as string;
+          const originalSize = estimateDataUrlSize(originalData);
+          
+          // Compress the image
+          const compressedData = await compressImage(originalData, 800, 1000, 0.7);
+          const compressedSize = estimateDataUrlSize(compressedData);
+          
+          console.log(`Image compressed: ${formatBytes(originalSize)} → ${formatBytes(compressedSize)}`);
+          
+          const newPhoto: BumpPhoto = {
+            id: Date.now().toString(),
+            week: currentWeek,
+            date: new Date().toISOString(),
+            imageData: compressedData,
+            note: note || undefined,
+          };
+          
+          const newPhotos = [newPhoto, ...photos].sort((a, b) => b.week - a.week);
+          savePhotos(newPhotos);
+          setNote("");
+          trackAction("photo_added", { week: currentWeek });
+          toast.success('Photo added successfully!');
+        } catch (error) {
+          console.error('Compression error:', error);
+          toast.error('Failed to process image');
+        } finally {
+          setIsCompressing(false);
+        }
       };
-      const newPhotos = [newPhoto, ...photos].sort((a, b) => b.week - a.week);
-      savePhotos(newPhotos);
-      setNote("");
-      trackAction("photo_added", { week: currentWeek });
-    };
-    reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
+    } catch (error) {
+      setIsCompressing(false);
+      toast.error('Failed to read image file');
+    }
+    
+    // Reset input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   const deletePhoto = (id: string) => {
@@ -67,9 +122,10 @@ const BumpPhotos = () => {
     savePhotos(newPhotos);
     setSelectedPhoto(null);
     trackAction("photo_deleted");
+    toast.success('Photo deleted');
   };
 
-  const weekOptions = Array.from({ length: 32 }, (_, i) => i + 8); // weeks 8-40
+  const weekOptions = Array.from({ length: 32 }, (_, i) => i + 8);
 
   return (
     <ToolFrame
@@ -77,6 +133,7 @@ const BumpPhotos = () => {
       subtitle={t('tools.bumpPhotos.description')}
       icon={Camera}
       mood="joyful"
+      toolId="bump-photos"
     >
       <div className="space-y-6">
         {/* Add Photo Section */}
@@ -90,11 +147,16 @@ const BumpPhotos = () => {
               >
                 <Button
                   onClick={() => fileInputRef.current?.click()}
+                  disabled={isCompressing}
                   size="lg"
                   className="rounded-full px-8 py-6 bg-gradient-to-r from-primary to-pink-500 hover:from-primary/90 hover:to-pink-400"
                 >
-                  <Camera className="h-6 w-6 mr-2" />
-                  Take New Photo
+                  {isCompressing ? (
+                    <Loader2 className="h-6 w-6 mr-2 animate-spin" />
+                  ) : (
+                    <Camera className="h-6 w-6 mr-2" />
+                  )}
+                  {isCompressing ? 'Processing...' : 'Take New Photo'}
                 </Button>
               </motion.div>
               <input
@@ -235,6 +297,13 @@ const BumpPhotos = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Storage Info */}
+        {photos.length > 0 && (
+          <div className="text-center text-xs text-muted-foreground">
+            📷 {photos.length} photos stored locally on your device
+          </div>
+        )}
       </div>
     </ToolFrame>
   );

@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Camera, Plus, Trash2, Calendar, Image } from 'lucide-react';
+import { Camera, Plus, Trash2, Image, Loader2 } from 'lucide-react';
+import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
+import { compressImage, formatBytes, estimateDataUrlSize } from '@/lib/imageCompression';
+import { toast } from 'sonner';
 
 interface PhotoEntry {
   id: string;
@@ -13,51 +16,80 @@ interface PhotoEntry {
   imageData: string;
 }
 
+const STORAGE_KEY = 'pregnancyPhotoTimeline';
+
+// Validator for photo entries
+const isPhotoEntryArray = (data: unknown): data is PhotoEntry[] => {
+  return Array.isArray(data) && data.every(item =>
+    typeof item === 'object' &&
+    item !== null &&
+    'id' in item &&
+    'week' in item &&
+    'date' in item &&
+    'imageData' in item
+  );
+};
+
 export default function PregnancyPhotoTimeline() {
-  const navigate = useNavigate();
   const [photos, setPhotos] = useState<PhotoEntry[]>([]);
   const [currentWeek, setCurrentWeek] = useState(20);
   const [caption, setCaption] = useState('');
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [isCompressing, setIsCompressing] = useState(false);
+  const isInitialized = useRef(false);
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('pregnancyPhotoTimeline');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
-          setPhotos(parsed);
-        }
-      }
-    } catch {
-      // If storage is corrupted, clear it
-      localStorage.removeItem('pregnancyPhotoTimeline');
-      setPhotos([]);
-    }
+    const saved = safeParseLocalStorage<PhotoEntry[]>(
+      STORAGE_KEY,
+      [],
+      isPhotoEntryArray
+    );
+    setPhotos(saved);
+    isInitialized.current = true;
   }, []);
 
-  useEffect(() => {
-    try {
-      localStorage.setItem('pregnancyPhotoTimeline', JSON.stringify(photos));
-    } catch {
-      // Ignore storage errors
+  const savePhotos = (newPhotos: PhotoEntry[]) => {
+    setPhotos(newPhotos);
+    if (isInitialized.current) {
+      const success = safeSaveToLocalStorage(STORAGE_KEY, newPhotos);
+      if (!success) {
+        toast.error('Failed to save photos. Storage may be full.');
+      }
     }
-  }, [photos]);
+  };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 2 * 1024 * 1024) {
-      alert('Image size should be less than 2MB for optimal storage');
-      return;
-    }
+    setIsCompressing(true);
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewImage(reader.result as string);
-    };
-    reader.readAsDataURL(file);
+    try {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        try {
+          const originalData = reader.result as string;
+          const originalSize = estimateDataUrlSize(originalData);
+          
+          // Compress the image
+          const compressedData = await compressImage(originalData, 800, 1000, 0.7);
+          const compressedSize = estimateDataUrlSize(compressedData);
+          
+          console.log(`Image compressed: ${formatBytes(originalSize)} → ${formatBytes(compressedSize)}`);
+          
+          setPreviewImage(compressedData);
+        } catch (error) {
+          console.error('Compression error:', error);
+          toast.error('Failed to process image');
+        } finally {
+          setIsCompressing(false);
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      setIsCompressing(false);
+      toast.error('Failed to read image file');
+    }
   };
 
   const addPhoto = () => {
@@ -71,13 +103,17 @@ export default function PregnancyPhotoTimeline() {
       imageData: previewImage,
     };
 
-    setPhotos([...photos, newPhoto].sort((a, b) => a.week - b.week));
+    const newPhotos = [...photos, newPhoto].sort((a, b) => a.week - b.week);
+    savePhotos(newPhotos);
     setPreviewImage(null);
     setCaption('');
+    toast.success('Photo added to timeline!');
   };
 
   const deletePhoto = (id: string) => {
-    setPhotos(photos.filter(p => p.id !== id));
+    const newPhotos = photos.filter(p => p.id !== id);
+    savePhotos(newPhotos);
+    toast.success('Photo deleted');
   };
 
   const generateCaptions = (week: number): string[] => {
@@ -103,25 +139,14 @@ export default function PregnancyPhotoTimeline() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
-      <div className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
-          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
-            <Camera className="w-6 h-6 text-gray-600" />
-          </button>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
-              <Image className="w-5 h-5 text-purple-600" />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">Pregnancy Photo Timeline</h1>
-              <p className="text-xs text-gray-500">Document your bump journey week by week</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
+    <ToolFrame
+      title="Pregnancy Photo Timeline"
+      subtitle="Document your bump journey week by week"
+      icon={Image}
+      mood="joyful"
+      toolId="photo-timeline"
+    >
+      <div className="space-y-6">
         {/* Week Selector */}
         <Card>
           <CardContent className="p-4">
@@ -150,14 +175,24 @@ export default function PregnancyPhotoTimeline() {
 
             {!previewImage ? (
               <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-primary/30 rounded-lg cursor-pointer hover:bg-primary/5 transition-colors">
-                <Camera className="w-12 h-12 text-primary/50 mb-2" />
-                <span className="text-sm text-muted-foreground">Tap to add photo</span>
-                <span className="text-xs text-muted-foreground mt-1">Max 2MB</span>
+                {isCompressing ? (
+                  <>
+                    <Loader2 className="w-12 h-12 text-primary/50 mb-2 animate-spin" />
+                    <span className="text-sm text-muted-foreground">Processing image...</span>
+                  </>
+                ) : (
+                  <>
+                    <Camera className="w-12 h-12 text-primary/50 mb-2" />
+                    <span className="text-sm text-muted-foreground">Tap to add photo</span>
+                    <span className="text-xs text-muted-foreground mt-1">Auto-compressed for storage</span>
+                  </>
+                )}
                 <input
                   type="file"
                   accept="image/*"
                   className="hidden"
                   onChange={handleImageUpload}
+                  disabled={isCompressing}
                 />
               </label>
             ) : (
@@ -252,11 +287,11 @@ export default function PregnancyPhotoTimeline() {
         <Card className="bg-muted/30">
           <CardContent className="p-4">
             <p className="text-sm text-muted-foreground">
-              📸 <strong>Tip:</strong> For the best timeline, try to take photos from the same angle and position each week. All photos are stored locally on your device.
+              📸 <strong>Tip:</strong> For the best timeline, try to take photos from the same angle and position each week. All photos are stored locally on your device and automatically compressed for optimal storage.
             </p>
           </CardContent>
         </Card>
       </div>
-    </div>
+    </ToolFrame>
   );
 }

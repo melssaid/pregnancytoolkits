@@ -169,6 +169,15 @@ export default function AILaborProgressTracker() {
     });
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="AI Labor Progress Tracker"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="AI Labor Progress Tracker"
@@ -177,15 +186,7 @@ export default function AILaborProgressTracker() {
       toolId="labor-progress"
       icon={Activity}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="AI Labor Progress Tracker"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
-        <div className="space-y-6">
+      <div className="space-y-6">
           {/* Hospital Alert */}
           {showHospitalAlert && (
             <Card className="border-destructive bg-destructive/5">
@@ -415,8 +416,7 @@ export default function AILaborProgressTracker() {
               provider's guidance about when to go to the hospital.
             </p>
           </div>
-        </div>
-      )}
+      </div>
     </ToolFrame>
   );
 }
