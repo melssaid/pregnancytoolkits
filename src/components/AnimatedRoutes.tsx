@@ -65,6 +65,12 @@ import PregnancyMassageGuide from "@/pages/tools/PregnancyMassageGuide";
 import AILegCrampPreventer from "@/pages/tools/AILegCrampPreventer";
 import SmartWalkingCoach from "@/pages/tools/SmartWalkingCoach";
 import AICravingAlternatives from "@/pages/tools/AICravingAlternatives";
+import AIStressReliefCoach from "@/pages/tools/AIStressReliefCoach";
+import SmartGroceryList from "@/pages/tools/SmartGroceryList";
+import AIRecipeModifier from "@/pages/tools/AIRecipeModifier";
+import PregnancySmoothieAI from "@/pages/tools/PregnancySmoothieAI";
+import SmartSnackPlanner from "@/pages/tools/SmartSnackPlanner";
+import AIPregnancyTipsDaily from "@/pages/tools/AIPregnancyTipsDaily";
 
 export function AnimatedRoutes() {
   const location = useLocation();
@@ -129,6 +135,18 @@ export function AnimatedRoutes() {
         <Route path="/tools/mental-health-coach" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
         <Route path="/tools/baby-gear" element={<PageTransition><BabyGearRecommender /></PageTransition>} />
         <Route path="/tools/workout-planner" element={<PageTransition><PersonalizedWorkoutPlanner /></PageTransition>} />
+        <Route path="/tools/ai-pregnancy-journal" element={<PageTransition><AIPregnancyJournal /></PageTransition>} />
+        <Route path="/tools/smart-appointment-reminder" element={<PageTransition><SmartAppointmentReminder /></PageTransition>} />
+        <Route path="/tools/ai-birth-story" element={<PageTransition><AIBirthStoryGenerator /></PageTransition>} />
+        <Route path="/tools/pregnancy-photo-timeline" element={<PageTransition><PregnancyPhotoTimeline /></PageTransition>} />
+        <Route path="/tools/ai-baby-name-finder" element={<PageTransition><AIBabyNameFinder /></PageTransition>} />
+        <Route path="/tools/ai-posture-coach" element={<PageTransition><AIPostureCoach /></PageTransition>} />
+        <Route path="/tools/smart-stretch-reminder" element={<PageTransition><SmartStretchReminder /></PageTransition>} />
+        <Route path="/tools/ai-back-pain-relief" element={<PageTransition><AIBackPainRelief /></PageTransition>} />
+        <Route path="/tools/pregnancy-massage-guide" element={<PageTransition><PregnancyMassageGuide /></PageTransition>} />
+        <Route path="/tools/ai-leg-cramp-preventer" element={<PageTransition><AILegCrampPreventer /></PageTransition>} />
+        <Route path="/tools/smart-walking-coach" element={<PageTransition><SmartWalkingCoach /></PageTransition>} />
+        <Route path="/tools/ai-craving-alternatives" element={<PageTransition><AICravingAlternatives /></PageTransition>} />
         
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
