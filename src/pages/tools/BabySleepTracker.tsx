@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Clock, Trash2, TrendingUp, Baby, BarChart3 } from "lucide-react";
+import { Moon, Sun, Clock, Trash2, TrendingUp, Baby, BarChart3, Sparkles, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, differenceInMinutes, startOfDay, subDays, eachDayOfInterval } from "date-fns";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 
 interface SleepSession {
   id: string;
@@ -18,9 +19,12 @@ const STORAGE_KEY = "baby-sleep-tracker-data";
 
 const BabySleepTracker = () => {
   const { trackAction } = useAnalytics("baby-sleep-tracker");
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [sessions, setSessions] = useState<SleepSession[]>([]);
   const [activeSleep, setActiveSleep] = useState<SleepSession | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
+  const [aiAdvice, setAiAdvice] = useState<string>("");
+  const [showAiAdvice, setShowAiAdvice] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -83,8 +87,9 @@ const BabySleepTracker = () => {
   };
 
   const formatDuration = (mins: number) => {
+    if (mins < 0) mins = 0;
     const hours = Math.floor(mins / 60);
-    const remaining = mins % 60;
+    const remaining = Math.abs(mins % 60);
     if (hours > 0) {
       return `${hours}h ${remaining}m`;
     }
@@ -103,7 +108,7 @@ const BabySleepTracker = () => {
     
     todaySessions.forEach((s) => {
       if (s.endTime) {
-        const mins = differenceInMinutes(new Date(s.endTime), new Date(s.startTime));
+        const mins = Math.max(0, differenceInMinutes(new Date(s.endTime), new Date(s.startTime)));
         totalMinutes += mins;
         if (s.type === "nap") napMinutes += mins;
         else nightMinutes += mins;
@@ -118,6 +123,7 @@ const BabySleepTracker = () => {
     };
   };
 
+  // Fixed 7-day average calculation - includes all 7 days even with no data
   const getLast7DaysAverage = () => {
     const days = eachDayOfInterval({
       start: subDays(new Date(), 6),
@@ -125,26 +131,81 @@ const BabySleepTracker = () => {
     });
     
     let totalMinutes = 0;
-    let daysWithData = 0;
     
     days.forEach(day => {
       const dayStart = startOfDay(day);
+      const nextDay = new Date(dayStart);
+      nextDay.setDate(nextDay.getDate() + 1);
+      
       const daySessions = sessions.filter(s => {
-        const sessionDate = startOfDay(new Date(s.startTime));
-        return sessionDate.getTime() === dayStart.getTime() && s.endTime;
+        const sessionDate = new Date(s.startTime);
+        return sessionDate >= dayStart && sessionDate < nextDay && s.endTime;
       });
       
-      if (daySessions.length > 0) {
-        daysWithData++;
-        daySessions.forEach(s => {
-          if (s.endTime) {
-            totalMinutes += differenceInMinutes(new Date(s.endTime), new Date(s.startTime));
-          }
-        });
-      }
+      daySessions.forEach(s => {
+        if (s.endTime) {
+          const mins = Math.max(0, differenceInMinutes(new Date(s.endTime), new Date(s.startTime)));
+          totalMinutes += mins;
+        }
+      });
     });
     
-    return daysWithData > 0 ? Math.round(totalMinutes / daysWithData) : 0;
+    // Always divide by 7 for true weekly average
+    return Math.round(totalMinutes / 7);
+  };
+
+  // Get baby's age category based on sleep patterns for AI
+  const getBabyAgeEstimate = () => {
+    const avgDailyMinutes = getLast7DaysAverage();
+    const avgHours = avgDailyMinutes / 60;
+    
+    if (avgHours >= 14) return "newborn (0-3 months)";
+    if (avgHours >= 12) return "infant (4-12 months)";
+    if (avgHours >= 11) return "toddler (1-2 years)";
+    return "child (2+ years)";
+  };
+
+  // AI-powered personalized advice
+  const getAIAdvice = async () => {
+    if (sessions.length < 2) {
+      setAiAdvice("💡 Record at least 2-3 sleep sessions to get personalized AI advice based on your baby's patterns.");
+      setShowAiAdvice(true);
+      return;
+    }
+
+    const stats = getTodayStats();
+    const weeklyAvg = getLast7DaysAverage();
+    const ageEstimate = getBabyAgeEstimate();
+    
+    // Analyze patterns
+    const recentSessions = sessions.slice(0, 10);
+    const napCount = recentSessions.filter(s => s.type === "nap").length;
+    const nightCount = recentSessions.filter(s => s.type === "night").length;
+    
+    const avgNapDuration = napCount > 0 
+      ? recentSessions.filter(s => s.type === "nap" && s.endTime)
+          .reduce((sum, s) => sum + differenceInMinutes(new Date(s.endTime!), new Date(s.startTime)), 0) / napCount
+      : 0;
+
+    const prompt = `As a pediatric sleep specialist, analyze this baby's sleep data and provide brief, actionable advice:
+
+Baby's estimated age: ${ageEstimate}
+Today's total sleep: ${formatDuration(stats.totalMinutes)}
+7-day daily average: ${formatDuration(weeklyAvg)}
+Recent naps: ${napCount} (avg ${Math.round(avgNapDuration)} mins each)
+Recent night sleeps: ${nightCount}
+
+Provide 3 specific tips to improve this baby's sleep schedule. Keep response under 150 words. Be encouraging and supportive.`;
+
+    setAiAdvice("");
+    setShowAiAdvice(true);
+    
+    await streamChat({
+      type: "pregnancy-assistant",
+      messages: [{ role: "user", content: prompt }],
+      onDelta: (text) => setAiAdvice(prev => prev + text),
+      onDone: () => {},
+    });
   };
 
   const stats = getTodayStats();
@@ -153,7 +214,7 @@ const BabySleepTracker = () => {
   return (
     <ToolFrame
       title="Baby Sleep Tracker"
-      subtitle="Monitor your baby's sleep patterns and habits"
+      subtitle="AI-powered sleep pattern analysis for your baby"
       icon={Baby}
       mood="nurturing"
     >
@@ -177,7 +238,7 @@ const BabySleepTracker = () => {
                     {activeSleep.type === "night" ? (
                       <Moon className="h-16 w-16 mx-auto text-primary" />
                     ) : (
-                      <Sun className="h-16 w-16 mx-auto text-yellow-500" />
+                      <Sun className="h-16 w-16 mx-auto text-amber-500" />
                     )}
                   </motion.div>
                   <h3 className="text-xl font-semibold mb-2">
@@ -215,9 +276,9 @@ const BabySleepTracker = () => {
                       <Button
                         onClick={() => startSleep("nap")}
                         variant="outline"
-                        className="h-28 w-full flex-col gap-3 border-2 hover:border-yellow-500 hover:bg-yellow-50 dark:hover:bg-yellow-900/20"
+                        className="h-28 w-full flex-col gap-3 border-2 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20"
                       >
-                        <Sun className="h-10 w-10 text-yellow-500" />
+                        <Sun className="h-10 w-10 text-amber-500" />
                         <span className="font-semibold">Start Nap</span>
                       </Button>
                     </motion.div>
@@ -251,10 +312,47 @@ const BabySleepTracker = () => {
             <CardContent className="pt-4 text-center">
               <BarChart3 className="h-6 w-6 mx-auto text-muted-foreground mb-2" />
               <p className="text-2xl font-bold">{formatDuration(weeklyAvg)}</p>
-              <p className="text-xs text-muted-foreground">7-Day Average</p>
+              <p className="text-xs text-muted-foreground">7-Day Avg/Day</p>
             </CardContent>
           </Card>
         </div>
+
+        {/* AI Advice Button */}
+        <Button
+          onClick={getAIAdvice}
+          disabled={aiLoading}
+          className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+        >
+          {aiLoading ? (
+            <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+          ) : (
+            <Sparkles className="h-5 w-5 mr-2" />
+          )}
+          Get AI Sleep Advice
+        </Button>
+
+        {/* AI Advice Card */}
+        <AnimatePresence>
+          {showAiAdvice && aiAdvice && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <Card className="border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Sparkles className="h-5 w-5 text-violet-500" />
+                    AI Sleep Advisor
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-sm whitespace-pre-wrap">{aiAdvice}</div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Today Breakdown */}
         {stats.count > 0 && (
@@ -268,8 +366,8 @@ const BabySleepTracker = () => {
                   <p className="text-xl font-bold">{stats.count}</p>
                   <p className="text-xs text-muted-foreground">Sessions</p>
                 </div>
-                <div className="p-3 rounded-lg bg-yellow-100 dark:bg-yellow-900/20">
-                  <p className="text-xl font-bold text-yellow-600">{formatDuration(stats.napMinutes)}</p>
+                <div className="p-3 rounded-lg bg-amber-100 dark:bg-amber-900/20">
+                  <p className="text-xl font-bold text-amber-600">{formatDuration(stats.napMinutes)}</p>
                   <p className="text-xs text-muted-foreground">Naps</p>
                 </div>
                 <div className="p-3 rounded-lg bg-primary/10">
@@ -299,7 +397,7 @@ const BabySleepTracker = () => {
                     {session.type === "night" ? (
                       <Moon className="h-5 w-5 text-primary" />
                     ) : (
-                      <Sun className="h-5 w-5 text-yellow-500" />
+                      <Sun className="h-5 w-5 text-amber-500" />
                     )}
                     <div>
                       <p className="font-medium text-sm">
@@ -308,7 +406,7 @@ const BabySleepTracker = () => {
                       </p>
                       <p className="text-xs text-muted-foreground capitalize">
                         {session.type} • {session.endTime && formatDuration(
-                          differenceInMinutes(new Date(session.endTime), new Date(session.startTime))
+                          Math.max(0, differenceInMinutes(new Date(session.endTime), new Date(session.startTime)))
                         )}
                       </p>
                     </div>
@@ -327,16 +425,31 @@ const BabySleepTracker = () => {
           </Card>
         )}
 
-        {/* Sleep Tips */}
-        <Card className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+        {/* Sleep Reference Guide */}
+        <Card className="bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-sky-900/20 dark:to-indigo-900/20">
           <CardContent className="pt-4">
-            <h4 className="font-medium mb-2">💤 Healthy Sleep Tips for Babies</h4>
-            <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-              <li>Newborns need 14-17 hours of sleep per day</li>
-              <li>Infants (4-12 months) need 12-16 hours including naps</li>
-              <li>Create a consistent bedtime routine</li>
-              <li>Keep the room dark and cool for better sleep</li>
-            </ul>
+            <h4 className="font-medium mb-3">💤 Recommended Sleep by Age (AAP Guidelines)</h4>
+            <div className="space-y-2 text-sm text-muted-foreground">
+              <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
+                <span>Newborn (0-3 months)</span>
+                <span className="font-medium">14-17 hours</span>
+              </div>
+              <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
+                <span>Infant (4-12 months)</span>
+                <span className="font-medium">12-16 hours</span>
+              </div>
+              <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
+                <span>Toddler (1-2 years)</span>
+                <span className="font-medium">11-14 hours</span>
+              </div>
+              <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
+                <span>Preschool (3-5 years)</span>
+                <span className="font-medium">10-13 hours</span>
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground mt-3 italic">
+              ⚠️ These are general guidelines. Every baby is unique. Consult your pediatrician for personalized advice.
+            </p>
           </CardContent>
         </Card>
       </div>
