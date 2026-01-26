@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Droplet, Info } from "lucide-react";
-import { Layout } from "@/components/Layout";
+import { Droplet, Info, AlertTriangle } from "lucide-react";
+import { ToolFrame } from "@/components/ToolFrame";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type BloodType = "A" | "B" | "AB" | "O";
@@ -34,7 +34,7 @@ const rhOutcomes: Record<string, { positive: number; negative: number }> = {
   "---": { positive: 0, negative: 100 },
 };
 
-export default function BloodType() {
+export default function BloodTypeCalculator() {
   const [parent1, setParent1] = useState<ParentBlood>({ type: "A", rh: "+" });
   const [parent2, setParent2] = useState<ParentBlood>({ type: "B", rh: "+" });
 
@@ -51,178 +51,182 @@ export default function BloodType() {
 
   const possibleTypes = getPossibleTypes();
   const rhProbs = getRhProbabilities();
-
   const needsRhWarning = parent1.rh === "-" && parent2.rh === "+";
 
   return (
-    <Layout title="Blood Type Calculator" showBack>
-      <div className="container py-8">
-        <div className="mx-auto max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Droplet className="h-5 w-5 text-primary" />
-                  Predict Baby's Blood Type
-                </CardTitle>
-                <CardDescription>
-                  Enter both parents' blood types to see possible outcomes
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid gap-6 sm:grid-cols-2">
-                  {/* Parent 1 */}
-                  <div className="space-y-4 p-4 rounded-lg bg-secondary/30">
-                    <p className="font-medium text-foreground">Mother</p>
-                    <div className="space-y-2">
-                      <Label>Blood Type</Label>
-                      <Select 
-                        value={parent1.type} 
-                        onValueChange={(v) => setParent1({ ...parent1, type: v as BloodType })}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="A">Type A</SelectItem>
-                          <SelectItem value="B">Type B</SelectItem>
-                          <SelectItem value="AB">Type AB</SelectItem>
-                          <SelectItem value="O">Type O</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label>Rh Factor</Label>
-                      <Select 
-                        value={parent1.rh} 
-                        onValueChange={(v) => setParent1({ ...parent1, rh: v as RhFactor })}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="+">Positive (+)</SelectItem>
-                          <SelectItem value="-">Negative (-)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
+    <ToolFrame
+      title="Blood Type Calculator"
+      subtitle="Predict your baby's possible blood type"
+      icon={Droplet}
+      mood="calm"
+      toolId="blood-type"
+    >
+      <div className="space-y-6">
+        {/* Parents Selection */}
+        <div className="grid gap-4 sm:grid-cols-2">
+          {/* Parent 1 - Mother */}
+          <Card>
+            <CardContent className="pt-4 space-y-4">
+              <p className="font-semibold text-foreground">Mother</p>
+              <div className="space-y-2">
+                <Label>Blood Type</Label>
+                <Select 
+                  value={parent1.type} 
+                  onValueChange={(v) => setParent1({ ...parent1, type: v as BloodType })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="A">Type A</SelectItem>
+                    <SelectItem value="B">Type B</SelectItem>
+                    <SelectItem value="AB">Type AB</SelectItem>
+                    <SelectItem value="O">Type O</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label>Rh Factor</Label>
+                <Select 
+                  value={parent1.rh} 
+                  onValueChange={(v) => setParent1({ ...parent1, rh: v as RhFactor })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="+">Positive (+)</SelectItem>
+                    <SelectItem value="-">Negative (-)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="text-center pt-2">
+                <span className="text-3xl font-bold text-primary">
+                  {parent1.type}{parent1.rh}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
 
-                  {/* Parent 2 */}
-                  <div className="space-y-4 p-4 rounded-lg bg-secondary/30">
-                    <p className="font-medium text-foreground">Father</p>
-                    <div className="space-y-2">
-                      <Label>Blood Type</Label>
-                      <Select 
-                        value={parent2.type} 
-                        onValueChange={(v) => setParent2({ ...parent2, type: v as BloodType })}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="A">Type A</SelectItem>
-                          <SelectItem value="B">Type B</SelectItem>
-                          <SelectItem value="AB">Type AB</SelectItem>
-                          <SelectItem value="O">Type O</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label>Rh Factor</Label>
-                      <Select 
-                        value={parent2.rh} 
-                        onValueChange={(v) => setParent2({ ...parent2, rh: v as RhFactor })}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="+">Positive (+)</SelectItem>
-                          <SelectItem value="-">Negative (-)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Parent 2 - Father */}
+          <Card>
+            <CardContent className="pt-4 space-y-4">
+              <p className="font-semibold text-foreground">Father</p>
+              <div className="space-y-2">
+                <Label>Blood Type</Label>
+                <Select 
+                  value={parent2.type} 
+                  onValueChange={(v) => setParent2({ ...parent2, type: v as BloodType })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="A">Type A</SelectItem>
+                    <SelectItem value="B">Type B</SelectItem>
+                    <SelectItem value="AB">Type AB</SelectItem>
+                    <SelectItem value="O">Type O</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label>Rh Factor</Label>
+                <Select 
+                  value={parent2.rh} 
+                  onValueChange={(v) => setParent2({ ...parent2, rh: v as RhFactor })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="+">Positive (+)</SelectItem>
+                    <SelectItem value="-">Negative (-)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="text-center pt-2">
+                <span className="text-3xl font-bold text-primary">
+                  {parent2.type}{parent2.rh}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
-            {/* Results */}
-            <motion.div
-              key={`${parent1.type}${parent1.rh}${parent2.type}${parent2.rh}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Card className="border-primary/20 bg-secondary/30">
-                <CardHeader>
-                  <CardTitle className="text-lg">Possible Blood Types for Baby</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex flex-wrap gap-3">
-                    {possibleTypes.map((type) => (
-                      <div key={type} className="space-y-2">
-                        {rhProbs.positive > 0 && (
-                          <div className="rounded-lg bg-card p-4 shadow-card text-center min-w-[80px]">
-                            <p className="text-2xl font-bold text-primary">{type}+</p>
-                          </div>
-                        )}
-                        {rhProbs.negative > 0 && (
-                          <div className="rounded-lg bg-card p-4 shadow-card text-center min-w-[80px]">
-                            <p className="text-2xl font-bold text-primary">{type}-</p>
-                          </div>
-                        )}
+        {/* Results */}
+        <motion.div
+          key={`${parent1.type}${parent1.rh}${parent2.type}${parent2.rh}`}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-4">Possible Blood Types for Baby</h3>
+              <div className="flex flex-wrap gap-3 justify-center mb-6">
+                {possibleTypes.map((type) => (
+                  <div key={type} className="space-y-2">
+                    {rhProbs.positive > 0 && (
+                      <div className="rounded-xl bg-card p-4 shadow-sm text-center min-w-[70px]">
+                        <p className="text-2xl font-bold text-primary">{type}+</p>
                       </div>
-                    ))}
+                    )}
+                    {rhProbs.negative > 0 && (
+                      <div className="rounded-xl bg-card p-4 shadow-sm text-center min-w-[70px]">
+                        <p className="text-2xl font-bold text-primary">{type}-</p>
+                      </div>
+                    )}
                   </div>
+                ))}
+              </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2 pt-2">
-                    <div className="rounded-lg bg-card p-3 shadow-card">
-                      <p className="text-sm text-muted-foreground">Rh Positive Chance</p>
-                      <p className="text-xl font-bold text-foreground">{rhProbs.positive}%</p>
-                    </div>
-                    <div className="rounded-lg bg-card p-3 shadow-card">
-                      <p className="text-sm text-muted-foreground">Rh Negative Chance</p>
-                      <p className="text-xl font-bold text-foreground">{rhProbs.negative}%</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-xl bg-card p-4 text-center">
+                  <p className="text-sm text-muted-foreground">Rh+ Chance</p>
+                  <p className="text-2xl font-bold text-foreground">{rhProbs.positive}%</p>
+                </div>
+                <div className="rounded-xl bg-card p-4 text-center">
+                  <p className="text-sm text-muted-foreground">Rh- Chance</p>
+                  <p className="text-2xl font-bold text-foreground">{rhProbs.negative}%</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
-            {needsRhWarning && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 rounded-lg bg-warning/10 border border-warning/30 p-4 flex items-start gap-3"
-              >
-                <Info className="h-5 w-5 text-warning flex-shrink-0 mt-0.5" />
+        {/* Rh Warning */}
+        {needsRhWarning && (
+          <Card className="bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
+            <CardContent className="pt-4">
+              <div className="flex gap-3">
+                <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-foreground">Rh Incompatibility Consideration</p>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="font-semibold text-amber-900 dark:text-amber-200">Rh Incompatibility</p>
+                  <p className="text-sm text-amber-800 dark:text-amber-300 mt-1">
                     When the mother is Rh-negative and father is Rh-positive, the baby may be 
                     Rh-positive. Your doctor may recommend RhoGAM injections during pregnancy 
                     to prevent complications.
                   </p>
                 </div>
-              </motion.div>
-            )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
-            <div className="mt-6 flex items-start gap-3 rounded-lg bg-muted p-4">
-              <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
-              <p className="text-sm text-muted-foreground">
+        {/* Info Note */}
+        <Card className="bg-muted/30">
+          <CardContent className="pt-4">
+            <div className="flex gap-3">
+              <Info className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-muted-foreground">
                 This calculator shows possible blood types based on genetics. The actual 
-                blood type will be confirmed through testing after birth.
+                blood type will be confirmed through testing after birth. Always consult 
+                your healthcare provider for medical advice.
               </p>
             </div>
-          </motion.div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
-    </Layout>
+    </ToolFrame>
   );
 }
