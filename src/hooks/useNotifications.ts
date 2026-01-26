@@ -1,11 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 
 export interface Notification {
   id: string;
   type: 'appointment' | 'vitamin' | 'exercise' | 'water' | 'stretch' | 'general';
   title: string;
   message: string;
-  time: Date;
+  time: string; // Store as ISO string for safer serialization
   read: boolean;
   actionUrl?: string;
 }
@@ -26,48 +27,81 @@ const DEFAULT_SETTINGS: NotificationSettings = {
   stretchReminders: true,
 };
 
+// Validators for type-safe parsing
+const isNotification = (data: unknown): data is Notification => {
+  if (typeof data !== 'object' || data === null) return false;
+  const n = data as Record<string, unknown>;
+  return (
+    typeof n.id === 'string' &&
+    typeof n.type === 'string' &&
+    typeof n.title === 'string' &&
+    typeof n.message === 'string' &&
+    typeof n.time === 'string' &&
+    typeof n.read === 'boolean'
+  );
+};
+
+const isNotificationArray = (data: unknown): data is Notification[] => {
+  return Array.isArray(data) && data.every(isNotification);
+};
+
+const isSettings = (data: unknown): data is NotificationSettings => {
+  if (typeof data !== 'object' || data === null) return false;
+  const s = data as Record<string, unknown>;
+  return (
+    typeof s.appointmentReminders === 'boolean' &&
+    typeof s.vitaminReminders === 'boolean' &&
+    typeof s.exerciseReminders === 'boolean' &&
+    typeof s.waterReminders === 'boolean' &&
+    typeof s.stretchReminders === 'boolean'
+  );
+};
+
 export function useNotifications() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [settings, setSettings] = useState<NotificationSettings>(DEFAULT_SETTINGS);
   const [unreadCount, setUnreadCount] = useState(0);
+  const isInitialized = useRef(false);
 
-  // Load from localStorage
+  // Load from localStorage with safe parsing
   useEffect(() => {
-    const savedNotifications = localStorage.getItem('pregnancyNotifications');
-    const savedSettings = localStorage.getItem('notificationSettings');
+    const savedNotifications = safeParseLocalStorage<Notification[]>(
+      'pregnancyNotifications',
+      [],
+      isNotificationArray
+    );
+    setNotifications(savedNotifications);
+
+    const savedSettings = safeParseLocalStorage<NotificationSettings>(
+      'notificationSettings',
+      DEFAULT_SETTINGS,
+      isSettings
+    );
+    setSettings(savedSettings);
     
-    if (savedNotifications) {
-      try {
-        const parsed = JSON.parse(savedNotifications);
-        setNotifications(parsed.map((n: any) => ({ ...n, time: new Date(n.time) })));
-      } catch (e) {
-        console.error('Failed to parse notifications');
-      }
-    }
-    
-    if (savedSettings) {
-      try {
-        setSettings(JSON.parse(savedSettings));
-      } catch (e) {
-        console.error('Failed to parse notification settings');
-      }
-    }
+    isInitialized.current = true;
   }, []);
 
-  // Save to localStorage
+  // Save notifications to localStorage
   useEffect(() => {
-    localStorage.setItem('pregnancyNotifications', JSON.stringify(notifications));
+    if (!isInitialized.current) return;
+    safeSaveToLocalStorage('pregnancyNotifications', notifications);
     setUnreadCount(notifications.filter(n => !n.read).length);
   }, [notifications]);
 
+  // Save settings to localStorage
   useEffect(() => {
-    localStorage.setItem('notificationSettings', JSON.stringify(settings));
+    if (!isInitialized.current) return;
+    safeSaveToLocalStorage('notificationSettings', settings);
   }, [settings]);
 
   // Generate smart reminders
   useEffect(() => {
+    if (!isInitialized.current) return;
+
     const generateSmartReminders = () => {
       const now = new Date();
+      const nowISO = now.toISOString();
       const hour = now.getHours();
       const newNotifications: Notification[] = [];
 
@@ -79,11 +113,11 @@ export function useNotifications() {
         );
         if (!lastVitaminReminder) {
           newNotifications.push({
-            id: `vitamin-${Date.now()}`,
+            id: `vitamin-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'vitamin',
             title: '💊 Vitamin Reminder',
             message: "Don't forget to take your prenatal vitamins!",
-            time: now,
+            time: nowISO,
             read: false,
             actionUrl: '/tools/vitamin-tracker',
           });
@@ -99,11 +133,11 @@ export function useNotifications() {
         );
         if (!lastStretchReminder) {
           newNotifications.push({
-            id: `stretch-${Date.now()}`,
+            id: `stretch-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'stretch',
             title: '🧘 Time to Stretch',
             message: 'Take a quick stretch break to stay comfortable!',
-            time: now,
+            time: nowISO,
             read: false,
             actionUrl: '/tools/smart-stretch-reminder',
           });
@@ -118,11 +152,11 @@ export function useNotifications() {
         );
         if (!recentWaterReminder) {
           newNotifications.push({
-            id: `water-${Date.now()}`,
+            id: `water-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'water',
             title: '💧 Stay Hydrated',
             message: 'Time for a glass of water!',
-            time: now,
+            time: nowISO,
             read: false,
             actionUrl: '/tools/water-intake',
           });
@@ -137,11 +171,11 @@ export function useNotifications() {
         );
         if (!lastExerciseReminder) {
           newNotifications.push({
-            id: `exercise-${Date.now()}`,
+            id: `exercise-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'exercise',
             title: '🚶‍♀️ Walking Time',
             message: 'A short walk will boost your energy and mood!',
-            time: now,
+            time: nowISO,
             read: false,
             actionUrl: '/tools/smart-walking-coach',
           });
@@ -162,8 +196,8 @@ export function useNotifications() {
   const addNotification = useCallback((notification: Omit<Notification, 'id' | 'time' | 'read'>) => {
     const newNotification: Notification = {
       ...notification,
-      id: `${notification.type}-${Date.now()}`,
-      time: new Date(),
+      id: `${notification.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      time: new Date().toISOString(),
       read: false,
     };
     setNotifications(prev => [newNotification, ...prev].slice(0, 50));

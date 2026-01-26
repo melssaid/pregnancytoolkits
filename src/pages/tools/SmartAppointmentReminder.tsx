@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,6 +8,9 @@ import { Calendar, Clock, Bell, Plus, Trash2, CheckCircle, AlertCircle, Brain, L
 import { format, isBefore, isToday, addDays } from 'date-fns';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
+import { useNotifications } from '@/hooks/useNotifications';
+import { toast } from 'sonner';
 
 interface Appointment {
   id: string;
@@ -56,31 +59,93 @@ export default function SmartAppointmentReminder() {
   });
 
   const { streamChat, isLoading, error } = usePregnancyAI();
+  const { addNotification, settings } = useNotifications();
 
+  // Load appointments from localStorage with safe parsing
   useEffect(() => {
-    const saved = localStorage.getItem('pregnancyAppointments');
-    if (saved) setAppointments(JSON.parse(saved));
+    const saved = safeParseLocalStorage<Appointment[]>('pregnancyAppointments', [], (data): data is Appointment[] => {
+      return Array.isArray(data) && data.every(item => 
+        typeof item === 'object' && 
+        item !== null && 
+        'id' in item && 
+        'title' in item &&
+        'date' in item
+      );
+    });
+    setAppointments(saved);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('pregnancyAppointments', JSON.stringify(appointments));
-  }, [appointments]);
+  // Save appointments to localStorage with validation
+  const saveAppointments = useCallback((newAppointments: Appointment[]) => {
+    const success = safeSaveToLocalStorage('pregnancyAppointments', newAppointments);
+    if (!success) {
+      toast.error('Failed to save appointments. Storage may be full.');
+    }
+    return success;
+  }, []);
 
-  const addAppointment = () => {
-    if (!newAppointment.title || !newAppointment.date) return;
+  // Save whenever appointments change
+  useEffect(() => {
+    if (appointments.length > 0) {
+      saveAppointments(appointments);
+    }
+  }, [appointments, saveAppointments]);
+
+  // Schedule notifications for upcoming appointments
+  useEffect(() => {
+    if (!settings.appointmentReminders) return;
+
+    const now = new Date();
+    const upcoming = appointments.filter(apt => {
+      if (apt.completed) return false;
+      const aptDate = new Date(apt.date);
+      const timeDiff = aptDate.getTime() - now.getTime();
+      const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+      return daysDiff <= 1 && daysDiff > 0;
+    });
+
+    upcoming.forEach(apt => {
+      const aptType = appointmentTypes.find(t => t.id === apt.type);
+      addNotification({
+        type: 'appointment',
+        title: `📅 Appointment Tomorrow`,
+        message: `${aptType?.icon || '🏥'} ${apt.title} at ${apt.time || 'scheduled time'}`,
+        actionUrl: '/tools/smart-appointment-reminder',
+      });
+    });
+  }, [appointments, settings.appointmentReminders, addNotification]);
+
+  const addAppointment = useCallback(() => {
+    if (!newAppointment.title || !newAppointment.date) {
+      toast.error('Please enter appointment title and date');
+      return;
+    }
     
     const appointment: Appointment = {
-      id: Date.now().toString(),
+      id: `apt-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       ...newAppointment,
       completed: false,
     };
     
-    setAppointments([...appointments, appointment].sort((a, b) => 
+    const updatedAppointments = [...appointments, appointment].sort((a, b) => 
       new Date(a.date).getTime() - new Date(b.date).getTime()
-    ));
+    );
+    
+    setAppointments(updatedAppointments);
     setNewAppointment({ title: '', date: '', time: '', type: 'prenatal', notes: '', questions: [] });
     setShowForm(false);
-  };
+    
+    toast.success('Appointment saved successfully!');
+    
+    // Add notification for the new appointment
+    const aptType = appointmentTypes.find(t => t.id === newAppointment.type);
+    addNotification({
+      type: 'appointment',
+      title: `📅 New Appointment Added`,
+      message: `${aptType?.icon || '🏥'} ${newAppointment.title} on ${format(new Date(newAppointment.date), 'MMM d, yyyy')}`,
+      actionUrl: '/tools/smart-appointment-reminder',
+    });
+  }, [newAppointment, appointments, addNotification]);
 
   const toggleQuestion = (question: string) => {
     setNewAppointment(prev => ({
@@ -91,15 +156,17 @@ export default function SmartAppointmentReminder() {
     }));
   };
 
-  const markComplete = (id: string) => {
-    setAppointments(appointments.map(a => 
+  const markComplete = useCallback((id: string) => {
+    setAppointments(prev => prev.map(a => 
       a.id === id ? { ...a, completed: true } : a
     ));
-  };
+    toast.success('Appointment marked as complete!');
+  }, []);
 
-  const deleteAppointment = (id: string) => {
-    setAppointments(appointments.filter(a => a.id !== id));
-  };
+  const deleteAppointment = useCallback((id: string) => {
+    setAppointments(prev => prev.filter(a => a.id !== id));
+    toast.success('Appointment deleted');
+  }, []);
 
   const getAIAppointmentPrep = async (apt: Appointment) => {
     setSelectedAppointment(apt);
