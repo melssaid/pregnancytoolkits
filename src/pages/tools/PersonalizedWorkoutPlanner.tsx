@@ -238,6 +238,15 @@ export default function PersonalizedWorkoutPlanner() {
     setCompletedExercises([]);
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Personalized Workout Planner"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Personalized Workout Planner"
@@ -246,14 +255,7 @@ export default function PersonalizedWorkoutPlanner() {
       toolId="workout-planner"
       icon={Dumbbell}
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Personalized Workout Planner"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && !activeWorkout && (
+      {!activeWorkout && (
         <div className="space-y-6">
           {/* Trimester Selection */}
           <Card>
@@ -332,7 +334,7 @@ export default function PersonalizedWorkoutPlanner() {
         </div>
       )}
 
-      {!showDisclaimer && activeWorkout && (
+      {activeWorkout && (
         <div className="space-y-6">
           {/* Workout Header */}
           <Card className="bg-primary text-primary-foreground">

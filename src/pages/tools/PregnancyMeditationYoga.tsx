@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, RefreshCw, Heart, Brain, Wind, Calendar, Clock, CheckCircle } from 'lucide-react';
+import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 
 interface Session {
   id: string;
@@ -129,14 +130,20 @@ export default function PregnancyMeditationYoga() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [completedSessions, setCompletedSessions] = useState<string[]>([]);
+  const isInitialized = useRef(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('completedMeditationSessions');
-    if (saved) setCompletedSessions(JSON.parse(saved));
+    const saved = safeParseLocalStorage<string[]>('completedMeditationSessions', [], (data): data is string[] => {
+      return Array.isArray(data) && data.every(item => typeof item === 'string');
+    });
+    setCompletedSessions(saved);
+    isInitialized.current = true;
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('completedMeditationSessions', JSON.stringify(completedSessions));
+    if (isInitialized.current) {
+      safeSaveToLocalStorage('completedMeditationSessions', completedSessions);
+    }
   }, [completedSessions]);
 
   useEffect(() => {
@@ -217,6 +224,15 @@ export default function PregnancyMeditationYoga() {
     }
   };
 
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Pregnancy Meditation & Yoga"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
+
   return (
     <ToolFrame
       title="Pregnancy Meditation & Yoga"
@@ -225,14 +241,6 @@ export default function PregnancyMeditationYoga() {
       mood="calm"
       toolId="pregnancy-meditation-yoga"
     >
-      {showDisclaimer && (
-        <MedicalDisclaimer
-          toolName="Pregnancy Meditation & Yoga"
-          onAccept={() => setShowDisclaimer(false)}
-        />
-      )}
-
-      {!showDisclaimer && (
         <div className="space-y-6">
           {/* Active Session Player */}
           {selectedSession && (
@@ -415,7 +423,6 @@ export default function PregnancyMeditationYoga() {
             ))}
           </div>
         </div>
-      )}
     </ToolFrame>
   );
 }
