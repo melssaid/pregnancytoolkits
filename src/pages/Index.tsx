@@ -95,33 +95,36 @@ const Index = () => {
                 transition={{ duration: 0.3, delay: catIndex * 0.03 }}
               >
                 {/* Category Header */}
-                <div className={`rounded-lg ${cat.bgColor} p-3 mb-2`}>
+                <div className={`rounded-xl ${cat.bgColor} p-3 mb-2`}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className={`w-8 h-8 rounded-lg ${cat.iconBg} flex items-center justify-center text-white shadow-sm`}>
-                        <Icon className="w-4 h-4" />
+                      <div className={`w-9 h-9 rounded-xl ${cat.iconBg} flex items-center justify-center text-white shadow-md`}>
+                        <Icon className="w-4.5 h-4.5" />
                       </div>
-                      <div>
-                        <h2 className="text-sm font-bold text-foreground">{t(cat.key)}</h2>
-                        <p className="text-[10px] text-muted-foreground">{totalCount} tools</p>
-                      </div>
+                      <h2 className="text-sm font-bold text-foreground">{t(cat.key)}</h2>
                     </div>
                     {totalCount > 4 && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-[10px] h-7 px-2"
+                      <button
                         onClick={() => handleCategoryToggle(cat.key)}
+                        className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-medium transition-all duration-300 ${
+                          activeCategory === cat.key 
+                            ? "bg-primary text-primary-foreground shadow-md" 
+                            : "bg-background/80 text-muted-foreground hover:bg-primary/10 hover:text-primary border border-border/50"
+                        }`}
                       >
-                        {activeCategory === cat.key ? 'Less' : 'All'}
-                        <ChevronRight className={`w-3 h-3 ml-0.5 transition-transform ${activeCategory === cat.key ? 'rotate-90' : ''}`} />
-                      </Button>
+                        {activeCategory === cat.key ? 'Show Less' : `+${totalCount - 4} More`}
+                        <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-300 ${activeCategory === cat.key ? 'rotate-90' : ''}`} />
+                      </button>
                     )}
                   </div>
                 </div>
 
-                {/* Tools List */}
-                <div className="space-y-1.5">
+                {/* Tools List with Animation */}
+                <motion.div 
+                  className="space-y-1.5"
+                  layout
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
                   {(activeCategory === cat.key ? allTools : tools).map((tool, index) => (
                     <MemoizedToolCard
                       key={tool.id}
@@ -131,10 +134,10 @@ const Index = () => {
                       href={tool.href}
                       categoryKey={tool.categoryKey}
                       index={index}
-                      hasAI={tool.hasAI}
+                      hasAI={false}
                     />
                   ))}
-                </div>
+                </motion.div>
               </motion.div>
             );
           })}
