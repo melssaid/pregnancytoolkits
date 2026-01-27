@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Heart, Sparkles, Baby, Flower2 } from "lucide-react";
+import { Calendar, Heart, Sparkles, Baby, Flower2, Save, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -9,11 +9,33 @@ import { addDays, format, subDays, differenceInDays } from "date-fns";
 import ToolFrame from "@/components/ToolFrame";
 import MotivationalQuote from "@/components/MotivationalQuote";
 import useAnalytics from "@/hooks/useAnalytics";
+import { useToast } from "@/components/ui/use-toast";
+import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
+
+interface OvulationResult {
+  id: string;
+  lastPeriod: string;
+  cycleLength: number;
+  ovulationDate: string;
+  fertileStart: string;
+  fertileEnd: string;
+  nextPeriod: string;
+  calculatedAt: string;
+}
+
+const isValidResults = (data: unknown): data is OvulationResult[] => {
+  return Array.isArray(data) && data.every(item => 
+    typeof item === 'object' && item !== null && 
+    typeof (item as OvulationResult).id === 'string'
+  );
+};
 
 export default function OvulationCalculator() {
   const { trackAction } = useAnalytics("ovulation-calculator");
+  const { toast } = useToast();
   const [lastPeriod, setLastPeriod] = useState("");
   const [cycleLength, setCycleLength] = useState("28");
+  const [savedResults, setSavedResults] = useState<OvulationResult[]>([]);
   const [result, setResult] = useState<{
     ovulationDate: Date;
     fertileStart: Date;
@@ -21,6 +43,18 @@ export default function OvulationCalculator() {
     nextPeriod: Date;
     daysUntilOvulation: number;
   } | null>(null);
+  const isInitialized = useRef(false);
+
+  useEffect(() => {
+    const saved = safeParseLocalStorage<OvulationResult[]>('ovulationResults', [], isValidResults);
+    setSavedResults(saved);
+    isInitialized.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!isInitialized.current) return;
+    safeSaveToLocalStorage('ovulationResults', savedResults);
+  }, [savedResults]);
 
   const calculate = () => {
     if (!lastPeriod) return;
@@ -45,6 +79,29 @@ export default function OvulationCalculator() {
     trackAction("calculate", { cycleLength: cycle });
   };
 
+  const saveResult = () => {
+    if (!result || !lastPeriod) return;
+
+    const newResult: OvulationResult = {
+      id: Date.now().toString(),
+      lastPeriod,
+      cycleLength: parseInt(cycleLength),
+      ovulationDate: result.ovulationDate.toISOString(),
+      fertileStart: result.fertileStart.toISOString(),
+      fertileEnd: result.fertileEnd.toISOString(),
+      nextPeriod: result.nextPeriod.toISOString(),
+      calculatedAt: new Date().toISOString(),
+    };
+
+    setSavedResults(prev => [newResult, ...prev].slice(0, 10));
+    toast({ title: 'Saved!', description: 'Your ovulation calculation has been saved.' });
+  };
+
+  const deleteResult = (id: string) => {
+    setSavedResults(prev => prev.filter(r => r.id !== id));
+    toast({ title: 'Deleted', description: 'Result removed from history.' });
+  };
+
   return (
     <ToolFrame
       title="Ovulation Calculator"
@@ -53,14 +110,12 @@ export default function OvulationCalculator() {
       mood="nurturing"
     >
       <div className="space-y-6">
-        {/* Motivational Quote */}
         <MotivationalQuote variant="banner" />
 
-        {/* Input Card */}
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-rose-50/30">
+        <Card className="border-0 shadow-lg bg-gradient-to-br from-card to-secondary/30">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-3 text-xl">
-              <div className="p-2 rounded-xl bg-gradient-to-br from-primary/10 to-pink-100">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5">
                 <Flower2 className="h-5 w-5 text-primary" />
               </div>
               Calculate Your Fertile Window
@@ -103,7 +158,7 @@ export default function OvulationCalculator() {
 
             <Button 
               onClick={calculate} 
-              className="w-full h-14 text-lg font-semibold rounded-xl bg-gradient-to-r from-primary to-pink-500 hover:from-primary/90 hover:to-pink-500/90 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="w-full h-14 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <Heart className="h-5 w-5 mr-2" />
               Calculate Ovulation
@@ -111,19 +166,22 @@ export default function OvulationCalculator() {
           </CardContent>
         </Card>
 
-        {/* Results */}
         {result && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            {/* Countdown Card */}
+            <Button onClick={saveResult} variant="outline" className="w-full gap-2">
+              <Save className="h-4 w-4" />
+              Save This Calculation
+            </Button>
+
             {result.daysUntilOvulation > 0 && (
               <motion.div
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
-                className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-pink-500 to-rose-400 p-6 text-white shadow-xl"
+                className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary/80 to-primary/60 p-6 text-primary-foreground shadow-xl"
               >
                 <motion.div
                   animate={{ rotate: 360 }}
@@ -133,20 +191,19 @@ export default function OvulationCalculator() {
                   <Sparkles className="h-40 w-40" />
                 </motion.div>
                 <div className="relative z-10 text-center">
-                  <p className="text-white/80 text-sm font-medium mb-1">Days Until Ovulation</p>
+                  <p className="text-primary-foreground/80 text-sm font-medium mb-1">Days Until Ovulation</p>
                   <p className="text-5xl font-bold mb-2">{result.daysUntilOvulation}</p>
-                  <p className="text-white/90">Get ready for your fertile window! 🌸</p>
+                  <p className="text-primary-foreground/90">Get ready for your fertile window! 🌸</p>
                 </div>
               </motion.div>
             )}
 
-            {/* Key Dates */}
             <div className="grid gap-4 sm:grid-cols-2">
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
-                className="rounded-2xl bg-gradient-to-br from-primary/10 to-pink-50 p-5 border border-primary/20 shadow-md"
+                className="rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/50 p-5 border border-primary/20 shadow-md"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <Heart className="h-5 w-5 text-primary" />
@@ -164,13 +221,13 @@ export default function OvulationCalculator() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="rounded-2xl bg-gradient-to-br from-purple-50 to-blue-50 p-5 border border-purple-200/50 shadow-md"
+                className="rounded-2xl bg-gradient-to-br from-secondary to-muted p-5 border border-border shadow-md"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="h-5 w-5 text-purple-500" />
+                  <Calendar className="h-5 w-5 text-primary" />
                   <p className="text-sm font-medium text-muted-foreground">Next Period</p>
                 </div>
-                <p className="text-2xl font-bold text-purple-600">
+                <p className="text-2xl font-bold text-foreground">
                   {format(result.nextPeriod, "MMM d")}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
@@ -179,52 +236,50 @@ export default function OvulationCalculator() {
               </motion.div>
             </div>
 
-            {/* Fertile Window */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="rounded-2xl bg-gradient-to-r from-green-50 via-emerald-50 to-teal-50 p-6 border border-green-200/50 shadow-md"
+              className="rounded-2xl bg-gradient-to-r from-accent/50 to-secondary p-6 border border-accent/30 shadow-md"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-xl bg-green-100">
-                  <Baby className="h-6 w-6 text-green-600" />
+                <div className="p-2 rounded-xl bg-accent">
+                  <Baby className="h-6 w-6 text-accent-foreground" />
                 </div>
                 <div>
-                  <p className="font-bold text-green-700 text-lg">Fertile Window</p>
-                  <p className="text-sm text-green-600/80">Your best days for conception</p>
+                  <p className="font-bold text-foreground text-lg">Fertile Window</p>
+                  <p className="text-sm text-muted-foreground">Your best days for conception</p>
                 </div>
               </div>
               
               <div className="flex items-center justify-center gap-4 py-4">
                 <div className="text-center">
                   <p className="text-sm text-muted-foreground">Start</p>
-                  <p className="text-xl font-bold text-green-700">{format(result.fertileStart, "MMM d")}</p>
+                  <p className="text-xl font-bold text-foreground">{format(result.fertileStart, "MMM d")}</p>
                 </div>
-                <div className="flex items-center gap-1 text-green-400">
+                <div className="flex items-center gap-1 text-primary/60">
                   <span>→</span>
                   <Heart className="h-4 w-4 animate-pulse" />
                   <span>→</span>
                 </div>
                 <div className="text-center">
                   <p className="text-sm text-muted-foreground">End</p>
-                  <p className="text-xl font-bold text-green-700">{format(result.fertileEnd, "MMM d")}</p>
+                  <p className="text-xl font-bold text-foreground">{format(result.fertileEnd, "MMM d")}</p>
                 </div>
               </div>
               
-              <p className="text-sm text-center text-green-600/80 mt-2">
+              <p className="text-sm text-center text-muted-foreground mt-2">
                 6 days of peak fertility 💕
               </p>
             </motion.div>
 
-            {/* Tips */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="rounded-xl bg-amber-50/80 border border-amber-200/50 p-4"
+              className="rounded-xl bg-muted border border-border p-4"
             >
-              <p className="text-sm text-amber-800 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 <span className="font-semibold">💡 Tip:</span> For the best chances, 
                 try to be intimate during your fertile window, especially 1-2 days before ovulation.
               </p>
@@ -232,7 +287,42 @@ export default function OvulationCalculator() {
           </motion.div>
         )}
 
-        {/* Info Footer */}
+        {savedResults.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Saved Calculations</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {savedResults.map((saved) => (
+                  <div
+                    key={saved.id}
+                    className="flex items-start justify-between rounded-lg bg-muted p-4"
+                  >
+                    <div>
+                      <p className="font-medium text-foreground">
+                        Ovulation: {format(new Date(saved.ovulationDate), "MMM d, yyyy")}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Cycle: {saved.cycleLength} days • LMP: {format(new Date(saved.lastPeriod), "MMM d")}
+                      </p>
+                      <p className="text-xs text-primary mt-1">
+                        Fertile: {format(new Date(saved.fertileStart), "MMM d")} - {format(new Date(saved.fertileEnd), "MMM d")}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => deleteResult(saved.id)}
+                      className="text-xs text-muted-foreground hover:text-destructive transition-colors p-2"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         <div className="flex items-start gap-3 rounded-xl bg-muted/50 p-4 text-sm text-muted-foreground">
           <Sparkles className="h-5 w-5 mt-0.5 flex-shrink-0 text-primary/50" />
           <p>

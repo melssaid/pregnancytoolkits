@@ -1,17 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Baby, Info, Calendar } from "lucide-react";
+import { Baby, Info, Calendar, Save, Bell, Trash2, Share2 } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { addDays, addWeeks, differenceInWeeks, differenceInDays, format } from "date-fns";
+import { addDays, addWeeks, differenceInDays, format } from "date-fns";
+import { useToast } from "@/components/ui/use-toast";
+import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
+import { useNotifications } from "@/hooks/useNotifications";
+
+interface SavedDueDate {
+  id: string;
+  lmpDate: string;
+  dueDate: string;
+  calculatedAt: string;
+  reminderSet: boolean;
+}
+
+const isValidSaved = (data: unknown): data is SavedDueDate[] => {
+  return Array.isArray(data) && data.every(item => 
+    typeof item === 'object' && item !== null && 
+    typeof (item as SavedDueDate).id === 'string'
+  );
+};
 
 export default function DueDateCalculator() {
+  const { toast } = useToast();
+  const { addNotification } = useNotifications();
   const [lmpDate, setLmpDate] = useState("");
   const [conceptionDate, setConceptionDate] = useState("");
+  const [savedDates, setSavedDates] = useState<SavedDueDate[]>([]);
   const [result, setResult] = useState<{
     dueDate: Date;
     currentWeeks: number;
@@ -21,22 +42,34 @@ export default function DueDateCalculator() {
     firstTrimesterEnd: Date;
     secondTrimesterEnd: Date;
   } | null>(null);
+  const isInitialized = useRef(false);
+
+  useEffect(() => {
+    const saved = safeParseLocalStorage<SavedDueDate[]>('savedDueDates', [], isValidSaved);
+    setSavedDates(saved);
+    isInitialized.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!isInitialized.current) return;
+    safeSaveToLocalStorage('savedDueDates', savedDates);
+  }, [savedDates]);
 
   const calculateFromLMP = () => {
     if (!lmpDate) return;
     const lmp = new Date(lmpDate);
-    calculate(lmp, addWeeks(lmp, 2)); // Conception ~2 weeks after LMP
+    calculate(lmp, addWeeks(lmp, 2));
   };
 
   const calculateFromConception = () => {
     if (!conceptionDate) return;
     const conception = new Date(conceptionDate);
-    const lmp = addWeeks(conception, -2); // LMP ~2 weeks before conception
+    const lmp = addWeeks(conception, -2);
     calculate(lmp, conception);
   };
 
   const calculate = (lmp: Date, conception: Date) => {
-    const dueDate = addDays(lmp, 280); // 40 weeks from LMP
+    const dueDate = addDays(lmp, 280);
     const today = new Date();
     
     const totalDaysPregnant = differenceInDays(today, lmp);
@@ -56,6 +89,61 @@ export default function DueDateCalculator() {
       firstTrimesterEnd: addWeeks(lmp, 13),
       secondTrimesterEnd: addWeeks(lmp, 27),
     });
+  };
+
+  const saveResult = () => {
+    if (!result || !lmpDate) return;
+
+    const newSaved: SavedDueDate = {
+      id: Date.now().toString(),
+      lmpDate,
+      dueDate: result.dueDate.toISOString(),
+      calculatedAt: new Date().toISOString(),
+      reminderSet: false,
+    };
+
+    setSavedDates(prev => [newSaved, ...prev].slice(0, 5));
+    toast({ title: 'Saved!', description: 'Your due date has been saved.' });
+  };
+
+  const setReminder = (saved: SavedDueDate) => {
+    const dueDate = new Date(saved.dueDate);
+    const formattedDate = format(dueDate, "MMMM d, yyyy");
+    
+    addNotification({
+      type: 'appointment',
+      title: '📅 Due Date Reminder',
+      message: `Your baby's due date is ${formattedDate}. Get ready!`,
+      actionUrl: '/tools/birth-prep',
+    });
+
+    setSavedDates(prev => prev.map(s => 
+      s.id === saved.id ? { ...s, reminderSet: true } : s
+    ));
+
+    toast({ 
+      title: 'Reminder Set!', 
+      description: `We'll remind you about your due date: ${formattedDate}` 
+    });
+  };
+
+  const deleteResult = (id: string) => {
+    setSavedDates(prev => prev.filter(s => s.id !== id));
+    toast({ title: 'Deleted', description: 'Due date removed from history.' });
+  };
+
+  const shareResult = async () => {
+    if (!result) return;
+    const text = `🤰 My Baby's Due Date: ${format(result.dueDate, "MMMM d, yyyy")}\n📅 Currently: ${result.currentWeeks} weeks, ${result.currentDays} days\n💕 Trimester ${result.trimester}`;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "My Due Date", text });
+      } catch (err) {}
+    } else {
+      await navigator.clipboard.writeText(text);
+      toast({ title: 'Copied!', description: 'Due date info copied to clipboard.' });
+    }
   };
 
   return (
@@ -122,7 +210,7 @@ export default function DueDateCalculator() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <Card className="border-primary/20 bg-secondary/30">
+                <Card className="border-primary/20 bg-secondary/30 mb-6">
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
                       <Calendar className="h-5 w-5 text-primary" />
@@ -169,12 +257,74 @@ export default function DueDateCalculator() {
                         </p>
                       </div>
                     </div>
+
+                    <div className="flex gap-2">
+                      <Button onClick={saveResult} variant="outline" className="flex-1 gap-2">
+                        <Save className="h-4 w-4" />
+                        Save
+                      </Button>
+                      <Button onClick={shareResult} variant="outline" className="flex-1 gap-2">
+                        <Share2 className="h-4 w-4" />
+                        Share
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            <div className="mt-6 flex items-start gap-3 rounded-lg bg-muted p-4">
+            {savedDates.length > 0 && (
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg">Saved Due Dates</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {savedDates.map((saved) => (
+                      <div
+                        key={saved.id}
+                        className="flex items-center justify-between rounded-lg bg-muted p-4"
+                      >
+                        <div>
+                          <p className="font-medium text-foreground">
+                            Due: {format(new Date(saved.dueDate), "MMMM d, yyyy")}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Calculated: {format(new Date(saved.calculatedAt), "MMM d, yyyy")}
+                          </p>
+                        </div>
+                        <div className="flex gap-2">
+                          {!saved.reminderSet && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => setReminder(saved)}
+                              className="gap-1"
+                            >
+                              <Bell className="h-4 w-4" />
+                              Remind
+                            </Button>
+                          )}
+                          {saved.reminderSet && (
+                            <span className="text-xs text-primary px-2 py-1 bg-primary/10 rounded-full">
+                              ✓ Reminder Set
+                            </span>
+                          )}
+                          <button
+                            onClick={() => deleteResult(saved.id)}
+                            className="text-muted-foreground hover:text-destructive transition-colors p-2"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            <div className="flex items-start gap-3 rounded-lg bg-muted p-4">
               <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
               <p className="text-sm text-muted-foreground">
                 Only about 5% of babies are born on their exact due date. Most are born 

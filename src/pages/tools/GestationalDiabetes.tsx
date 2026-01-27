@@ -97,22 +97,23 @@ export default function GestationalDiabetes() {
             <h3 className="font-semibold mb-4">Check Your Risk Factors</h3>
             <div className="space-y-3">
               {riskFactors.map((factor) => (
-                <div
+                <button
                   key={factor.id}
-                  className={`flex items-start gap-3 p-3 rounded-lg transition-colors cursor-pointer ${
+                  type="button"
+                  className={`flex items-start gap-3 p-4 rounded-xl transition-all w-full text-left border-2 ${
                     selectedFactors.includes(factor.id)
-                      ? "bg-primary/10 border border-primary/20"
-                      : "bg-muted/50 hover:bg-muted"
+                      ? "bg-primary/10 border-primary/40 shadow-sm"
+                      : "bg-muted/50 hover:bg-muted border-transparent"
                   }`}
                   onClick={() => toggleFactor(factor.id)}
                 >
                   <Checkbox
                     checked={selectedFactors.includes(factor.id)}
                     onCheckedChange={() => toggleFactor(factor.id)}
-                    className="mt-0.5"
+                    className="mt-0.5 pointer-events-none"
                   />
-                  <span className="text-sm text-foreground">{factor.label}</span>
-                </div>
+                  <span className="text-sm text-foreground font-medium">{factor.label}</span>
+                </button>
               ))}
             </div>
           </CardContent>
