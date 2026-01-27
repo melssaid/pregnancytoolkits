@@ -71,18 +71,18 @@ const Index = () => {
 
             return (
               <div key={cat.key} className="overflow-hidden">
-                {/* Category Card - Elegant light frame */}
-                <div className="rounded-2xl bg-card/90 backdrop-blur-sm border border-border/30 shadow-sm p-4">
-                  {/* Category Header - Refined design */}
-                  <div className="flex items-center gap-2.5 mb-3 pb-2.5 border-b border-border/30">
-                    <div className={`w-7 h-7 rounded-lg ${cat.iconBg} flex items-center justify-center`}>
-                      <Icon className="w-3.5 h-3.5 text-primary" />
+                {/* Category Card - Elegant frame */}
+                <div className="rounded-2xl bg-card border border-border/40 shadow-sm overflow-hidden">
+                  {/* Category Header - Professional attractive frame */}
+                  <div className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-primary/5 via-primary/3 to-transparent border-b border-border/30">
+                    <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-primary" />
                     </div>
-                    <h2 className="text-base font-bold text-foreground tracking-tight">{t(cat.key)}</h2>
+                    <h2 className="text-[15px] font-bold text-foreground">{t(cat.key)}</h2>
                   </div>
-
-                  {/* Tools List */}
-                  <div className="space-y-1.5">
+                  
+                  {/* Tools Container */}
+                  <div className="p-3 space-y-1.5">
                     <AnimatePresence initial={false} mode="sync">
                       {displayTools.map((tool, index) => (
                         <motion.div
@@ -105,11 +105,11 @@ const Index = () => {
                       ))}
                     </AnimatePresence>
                     
-                    {/* Show More Button - Professional design */}
+                    {/* Show More Button */}
                     {allTools.length > 3 && (
                       <motion.button
                         onClick={() => toggleCategory(cat.key)}
-                        className="w-full py-2.5 mt-2 rounded-lg bg-background/60 hover:bg-background/80 border border-border/50 flex items-center justify-center gap-2 transition-all duration-200 group"
+                        className="w-full py-2.5 mt-2 rounded-lg bg-muted/50 hover:bg-muted border border-border/30 flex items-center justify-center gap-2 transition-all duration-200 group"
                         whileTap={{ scale: 0.98 }}
                       >
                         <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">

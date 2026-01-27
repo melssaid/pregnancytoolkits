@@ -118,17 +118,9 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium text-foreground text-sm truncate">
-                            {t(tool.titleKey)}
-                          </span>
-                          {isSmartTool && (
-                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-primary/15 text-primary text-[10px] font-semibold">
-                              <Sparkles className="h-2.5 w-2.5" />
-                              AI
-                            </span>
-                          )}
-                        </div>
+                        <span className="font-medium text-foreground text-sm truncate block">
+                          {t(tool.titleKey)}
+                        </span>
                         <p className="text-xs text-muted-foreground truncate mt-0.5">
                           {t(tool.descriptionKey)}
                         </p>
