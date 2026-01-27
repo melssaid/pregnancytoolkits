@@ -1,12 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Sparkles, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Bell, Flower2, ChevronRight, X } from "lucide-react";
+import { Sparkles, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Bell, Flower2, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
-import { getSortedTools, categoryKeys, getAITools, getToolsByCategory } from "@/lib/tools-data";
+import { getSortedTools, getAITools, getToolsByCategory } from "@/lib/tools-data";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { SubscriptionModal } from "@/components/SubscriptionModal";
 
@@ -30,90 +29,89 @@ const categoryConfig: CategoryConfig[] = [
   { key: "categories.postpartum", icon: Flower2, gradient: "from-fuchsia-500 to-purple-600", bgColor: "bg-fuchsia-50 dark:bg-fuchsia-950/30", iconBg: "bg-gradient-to-br from-fuchsia-500 to-purple-600" },
 ];
 
+// Memoized ToolCard for performance
+const MemoizedToolCard = memo(ToolCard);
+
 const Index = () => {
   const { t } = useTranslation();
-  const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
-  const sortedTools = getSortedTools();
-  const aiToolsCount = getAITools().length;
+  const sortedTools = useMemo(() => getSortedTools(), []);
+  const aiToolsCount = useMemo(() => getAITools().length, []);
   const totalTools = sortedTools.length;
 
-  const filteredTools = useMemo(() => {
-    if (!search) return [];
-    return sortedTools.filter((tool) => {
-      const title = t(tool.titleKey).toLowerCase();
-      const description = t(tool.descriptionKey).toLowerCase();
-      return title.includes(search.toLowerCase()) || description.includes(search.toLowerCase());
-    });
-  }, [sortedTools, search, t]);
-
-  const getCategoryTools = (categoryKey: string) => {
+  const getCategoryTools = useMemo(() => (categoryKey: string) => {
     return getToolsByCategory(categoryKey).slice(0, 4);
-  };
+  }, []);
 
   return (
     <Layout>
-      {/* Hero Section with Search */}
-      <section className="pt-6 pb-4">
+      {/* Hero Section */}
+      <section className="pt-4 pb-2">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-4"
+            className="text-center"
           >
-            <h1 className="text-xl font-bold text-foreground mb-1">
+            <h1 className="text-lg font-bold text-foreground">
               {t('app.title', 'Pregnancy')} <span className="text-primary">{t('app.titleHighlight', 'Toolkits')}</span>
             </h1>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-[10px] text-muted-foreground mt-0.5">
               {totalTools} Tools • {aiToolsCount} AI-Powered
             </p>
-          </motion.div>
-
-          {/* Search Bar - Now Visible */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="relative max-w-md mx-auto"
-          >
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder={t('app.searchPlaceholder', 'Search tools...')}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 pr-10 h-11 rounded-xl border-2 border-primary/20 focus:border-primary/50 bg-background"
-            />
-            {search && (
-              <button
-                onClick={() => setSearch("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
           </motion.div>
         </div>
       </section>
 
-      {/* Search Results */}
-      <AnimatePresence>
-        {search && (
-          <motion.section
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="py-4"
-          >
-            <div className="container">
-              <h3 className="text-sm font-semibold mb-3 text-muted-foreground">
-                {filteredTools.length} results for "{search}"
-              </h3>
-              {filteredTools.length > 0 ? (
-                <div className="space-y-2">
-                  {filteredTools.map((tool, index) => (
-                    <ToolCard
+      {/* Categories with Tools */}
+      <section className="py-3">
+        <div className="container space-y-4">
+          {categoryConfig.map((cat, catIndex) => {
+            const tools = getCategoryTools(cat.key);
+            const allTools = getToolsByCategory(cat.key);
+            const totalCount = allTools.length;
+            const Icon = cat.icon;
+            
+            if (tools.length === 0) return null;
+
+            return (
+              <motion.div
+                key={cat.key}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: catIndex * 0.03 }}
+              >
+                {/* Category Header */}
+                <div className={`rounded-lg ${cat.bgColor} p-3 mb-2`}>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-8 h-8 rounded-lg ${cat.iconBg} flex items-center justify-center text-white shadow-sm`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h2 className="text-sm font-bold text-foreground">{t(cat.key)}</h2>
+                        <p className="text-[10px] text-muted-foreground">{totalCount} tools</p>
+                      </div>
+                    </div>
+                    {totalCount > 4 && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-[10px] h-7 px-2"
+                        onClick={() => setActiveCategory(activeCategory === cat.key ? null : cat.key)}
+                      >
+                        {activeCategory === cat.key ? 'Less' : 'All'}
+                        <ChevronRight className={`w-3 h-3 ml-0.5 transition-transform ${activeCategory === cat.key ? 'rotate-90' : ''}`} />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Tools List */}
+                <div className="space-y-1.5">
+                  {(activeCategory === cat.key ? allTools : tools).map((tool, index) => (
+                    <MemoizedToolCard
                       key={tool.id}
                       titleKey={tool.titleKey}
                       descriptionKey={tool.descriptionKey}
@@ -125,105 +123,32 @@ const Index = () => {
                     />
                   ))}
                 </div>
-              ) : (
-                <div className="text-center py-8">
-                  <p className="text-muted-foreground">{t('app.noToolsFound', 'No tools found')}</p>
-                </div>
-              )}
-            </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
-
-      {/* Categories with Tools */}
-      {!search && (
-        <section className="py-4">
-          <div className="container space-y-6">
-            {categoryConfig.map((cat, catIndex) => {
-              const tools = getCategoryTools(cat.key);
-              const totalCount = getToolsByCategory(cat.key).length;
-              const Icon = cat.icon;
-              
-              if (tools.length === 0) return null;
-
-              return (
-                <motion.div
-                  key={cat.key}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: catIndex * 0.05 }}
-                >
-                  {/* Category Header */}
-                  <div className={`rounded-xl ${cat.bgColor} p-4 mb-3`}>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-xl ${cat.iconBg} flex items-center justify-center text-white shadow-lg`}>
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h2 className="font-bold text-foreground">{t(cat.key)}</h2>
-                          <p className="text-xs text-muted-foreground">{totalCount} tools</p>
-                        </div>
-                      </div>
-                      {totalCount > 4 && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-xs"
-                          onClick={() => setActiveCategory(activeCategory === cat.key ? null : cat.key)}
-                        >
-                          {activeCategory === cat.key ? 'Show Less' : 'View All'}
-                          <ChevronRight className={`w-4 h-4 ml-1 transition-transform ${activeCategory === cat.key ? 'rotate-90' : ''}`} />
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Tools List */}
-                  <div className="space-y-2">
-                    {(activeCategory === cat.key ? getToolsByCategory(cat.key) : tools).map((tool, index) => (
-                      <ToolCard
-                        key={tool.id}
-                        titleKey={tool.titleKey}
-                        descriptionKey={tool.descriptionKey}
-                        icon={tool.icon}
-                        href={tool.href}
-                        categoryKey={tool.categoryKey}
-                        index={index}
-                        hasAI={tool.hasAI}
-                      />
-                    ))}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </section>
-      )}
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
 
       {/* Quick Access Banner */}
-      {!search && (
-        <section className="py-4">
-          <div className="container">
-            <Link to="/tools/smart-appointment-reminder">
-              <div className="bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border border-primary/20 rounded-xl p-4 flex items-center gap-4 hover:border-primary/40 transition-colors">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-lg">
-                  <Bell className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-foreground">Smart Reminders</h3>
-                  <p className="text-xs text-muted-foreground">Get reminders for appointments, vitamins & exercises</p>
-                </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+      <section className="py-3">
+        <div className="container">
+          <Link to="/tools/smart-appointment-reminder">
+            <div className="bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border border-primary/20 rounded-lg p-3 flex items-center gap-3 hover:border-primary/40 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-md">
+                <Bell className="w-5 h-5" />
               </div>
-            </Link>
-          </div>
-        </section>
-      )}
+              <div className="flex-1">
+                <h3 className="text-sm font-bold text-foreground">Smart Reminders</h3>
+                <p className="text-[10px] text-muted-foreground">Appointments, vitamins & exercises</p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-muted-foreground" />
+            </div>
+          </Link>
+        </div>
+      </section>
 
       {/* Premium Banner */}
-      {!search && (
-        <section className="py-4 border-t border-border/50">
+      <section className="py-3 border-t border-border/50">
           <div className="container">
             <div className="bg-gradient-to-r from-primary to-accent rounded-2xl p-5 text-primary-foreground relative overflow-hidden shadow-xl">
               <div className="relative z-10">
@@ -260,7 +185,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-      )}
 
       {/* Footer */}
       <footer className="py-4 border-t border-border bg-muted/30">

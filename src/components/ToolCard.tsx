@@ -16,65 +16,76 @@ interface ToolCardProps {
 // Tool explanations organized by category
 const toolExplanations: Record<string, string> = {
   // 🤖 AI Core Tools
-  "tools.pregnancyAssistant.title": "Ask any pregnancy question and get instant AI-powered answers tailored to your stage.",
-  "tools.symptomAnalyzer.title": "Describe your symptoms and receive AI analysis with relief tips and when to seek care.",
-  "tools.aiMealSuggestion.title": "Get personalized meal ideas based on your trimester, cravings, and nutritional needs.",
-  "tools.weeklySummary.title": "Receive a personalized weekly update on your baby's development and body changes.",
-  "tools.aiPregnancyJournal.title": "Document your pregnancy journey with AI-enhanced prompts and memory keeping.",
-  "tools.smartAppointmentReminder.title": "Never miss an appointment with smart reminders and AI-generated doctor questions.",
-  "tools.aiBabyNameFinder.title": "Discover perfect baby names with AI suggestions based on your preferences.",
-  "tools.aiPregnancyTips.title": "Get daily AI-curated tips personalized to your pregnancy stage.",
-  "tools.aiBirthStory.title": "Create a beautiful birth story with AI-assisted writing and prompts.",
-  "tools.smartGroceryList.title": "Generate smart pregnancy-safe grocery lists based on your meal plans.",
+  "tools.pregnancyAssistant.title": "Ask any pregnancy question and get instant AI-powered answers.",
+  "tools.symptomAnalyzer.title": "Describe symptoms and receive AI analysis with relief tips.",
+  "tools.aiMealSuggestion.title": "Get personalized meal ideas based on your trimester.",
+  "tools.weeklySummary.title": "Receive a personalized weekly update on your baby's development.",
+  "tools.aiPregnancyJournal.title": "Document your journey with AI-enhanced prompts.",
+  "tools.smartAppointmentReminder.title": "Never miss an appointment with smart reminders.",
+  "tools.aiBabyNameFinder.title": "Discover perfect baby names with AI suggestions.",
+  "tools.aiPregnancyTips.title": "Get daily AI-curated tips for your pregnancy stage.",
+  "tools.aiBirthStory.title": "Create a beautiful birth story with AI assistance.",
+  "tools.smartGroceryList.title": "Generate smart pregnancy-safe grocery lists.",
+
+  // 🆕 10 NEW AI TOOLS 2026
+  "tools.aiSleepOptimizer.title": "AI-powered sleep analysis with relaxation techniques.",
+  "tools.aiHospitalBag.title": "Smart hospital bag checklist personalized for you.",
+  "tools.aiPartnerGuide.title": "Support tips for partners during pregnancy.",
+  "tools.aiBirthPosition.title": "Optimal birth positions based on your situation.",
+  "tools.aiPregnancySkincare.title": "Safe skincare routine for your pregnancy stage.",
+  "tools.aiPelvicFloor.title": "Guided pelvic floor exercises with progress tracking.",
+  "tools.aiNauseaRelief.title": "Personalized tips to manage morning sickness.",
+  "tools.aiBudgetPlanner.title": "Plan your pregnancy and baby budget smartly.",
+  "tools.aiBabyRoom.title": "AI-generated nursery design ideas.",
+  "tools.aiLactationPrep.title": "Prepare for breastfeeding with expert AI guidance.",
 
   // 💪 AI Wellness & Fitness
-  "tools.aiPostureCoach.title": "Improve your pregnancy posture with guided exercises to reduce back pain.",
-  "tools.smartStretchReminder.title": "Get personalized stretching routines with AI recommendations for your trimester.",
-  "tools.aiBackPainRelief.title": "Safe exercises and AI tips to relieve pregnancy-related back pain.",
-  "tools.aiLegCrampPreventer.title": "Prevent and manage leg cramps with smart prevention checklist and relief tips.",
-  "tools.smartWalkingCoach.title": "Personalized walking program with AI coaching adapted to each trimester.",
-  "tools.pregnancySmoothieAI.title": "AI-generated nutritious smoothie recipes tailored for each pregnancy stage.",
-  "tools.exerciseGuide.title": "Safe workout routines designed specifically for pregnant women.",
+  "tools.aiPostureCoach.title": "Improve posture with guided exercises.",
+  "tools.smartStretchReminder.title": "Personalized stretching routines for your trimester.",
+  "tools.aiBackPainRelief.title": "Safe exercises to relieve pregnancy back pain.",
+  "tools.aiMobilityCoach.title": "Walking and leg cramp prevention program.",
+  "tools.pregnancySmoothieAI.title": "Nutritious smoothie recipes for each stage.",
+  "tools.exerciseGuide.title": "Safe workout routines for pregnant women.",
 
   // 🏥 Labor & Monitoring
-  "tools.aiLaborProgress.title": "Track contractions and get AI analysis of your labor progress with hospital alerts.",
-  "tools.contractionTimer.title": "Time your contractions accurately to know when it's time for the hospital.",
-  "tools.laborBreathing.title": "Guided breathing exercises to help manage labor pain and stay calm.",
+  "tools.aiLaborProgress.title": "Track contractions and get AI analysis.",
+  "tools.contractionTimer.title": "Time contractions to know when to go.",
+  "tools.laborBreathing.title": "Guided breathing for labor pain management.",
 
   // 🔄 Fertility & Planning
-  "tools.ovulationCalculator.title": "Calculate your fertile window to maximize your chances of conception.",
-  "tools.cycleTracker.title": "Track your menstrual cycle to understand your fertility patterns.",
-  "tools.dueDateCalculator.title": "Enter your last period date to calculate your estimated due date.",
+  "tools.ovulationCalculator.title": "Calculate your fertile window.",
+  "tools.cycleTracker.title": "Track your menstrual cycle patterns.",
+  "tools.dueDateCalculator.title": "Calculate your estimated due date.",
 
   // 🤰 Pregnancy Tracking
-  "tools.fetalGrowth.title": "See your baby's weekly growth with size comparisons and development updates.",
-  "tools.kickCounter.title": "Monitor your baby's movements to ensure healthy activity patterns.",
-  "tools.pregnancyMilestones.title": "Track important pregnancy milestones and celebrate each achievement.",
-  "tools.bumpPhotos.title": "Create a beautiful photo timeline of your growing bump.",
-  "tools.pregnancyBmi.title": "Calculate your BMI for personalized weight gain recommendations.",
+  "tools.fetalGrowth.title": "See your baby's weekly growth updates.",
+  "tools.kickCounter.title": "Monitor your baby's movement patterns.",
+  "tools.pregnancyMilestones.title": "Track important pregnancy milestones.",
+  "tools.bumpPhotos.title": "Create a photo timeline of your bump.",
+  "tools.pregnancyBmi.title": "Calculate BMI for weight recommendations.",
+  "tools.weightGain.title": "Track weight gain with recommendations.",
 
   // 🥗 Nutrition & Hydration
-  "tools.waterIntake.title": "Track daily water intake with smart reminders to stay hydrated.",
-  "tools.vitaminTracker.title": "Track your prenatal vitamins with AI advice on optimal timing.",
-  "tools.forbiddenFoods.title": "Quick reference guide for foods to avoid during pregnancy.",
-  "tools.meditationYoga.title": "Guided meditation and yoga sessions designed for pregnancy.",
+  "tools.waterIntake.title": "Track water intake with reminders.",
+  "tools.vitaminTracker.title": "Track prenatal vitamins with AI advice.",
+  "tools.forbiddenFoods.title": "Foods to avoid during pregnancy.",
+  "tools.meditationYoga.title": "Guided meditation and yoga sessions.",
 
   // 🧠 Mental Health
-  "tools.affirmations.title": "Daily positive affirmations to boost your mood and confidence.",
-  "tools.postpartumMentalHealth.title": "AI-powered mental health screening and support resources.",
-  "tools.weightGain.title": "Track your pregnancy weight gain with personalized recommendations.",
+  "tools.affirmations.title": "Daily positive affirmations for you.",
+  "tools.postpartumMentalHealth.title": "AI mental health screening and support.",
 
   // ⚠️ Health Monitoring
-  "tools.gestationalDiabetes.title": "Risk assessment tool for gestational diabetes with lifestyle tips.",
-  "tools.bloodType.title": "Blood type compatibility information for you and your baby.",
+  "tools.gestationalDiabetes.title": "Risk assessment for gestational diabetes.",
+  "tools.bloodType.title": "Blood type compatibility information.",
 
   // 📋 Preparation
-  "tools.birthPrep.title": "Complete birth preparation checklist and planning guide.",
+  "tools.birthPrep.title": "Complete birth preparation checklist.",
 
   // 👶 Postpartum & Baby
-  "tools.babySleepTracker.title": "Track your baby's sleep patterns with AI-powered insights.",
-  "tools.babyGrowth.title": "Monitor your baby's growth with percentile charts and milestones.",
-  "tools.doctorQuestions.title": "AI-generated questions to ask at your next doctor appointment.",
+  "tools.babySleepTracker.title": "Track baby's sleep with AI insights.",
+  "tools.babyGrowth.title": "Monitor baby growth with percentiles.",
+  "tools.doctorQuestions.title": "AI-generated questions for your doctor.",
 };
 
 export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryKey, index, hasAI }: ToolCardProps) {
@@ -85,59 +96,53 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, categoryK
   
   return (
     <motion.div
-      initial={{ opacity: 0, x: -10 }}
+      initial={{ opacity: 0, x: -8 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ 
-        duration: 0.3, 
-        delay: index * 0.02,
-        ease: "easeOut"
-      }}
+      transition={{ duration: 0.2, delay: Math.min(index * 0.015, 0.15) }}
       whileTap={{ scale: 0.98 }}
     >
       <Link to={href} className="block">
-        <div className={`group relative p-3 rounded-xl bg-card border transition-all duration-200 ${
+        <div className={`group relative p-2.5 rounded-lg bg-card border transition-all duration-150 ${
           isAITool
-            ? "border-primary/20 bg-gradient-to-r from-primary/5 to-transparent hover:border-primary/40 hover:shadow-md hover:shadow-primary/10"
-            : "border-border/50 hover:border-primary/20 hover:bg-muted/30"
+            ? "border-primary/15 bg-gradient-to-r from-primary/5 to-transparent hover:border-primary/30"
+            : "border-border/40 hover:border-primary/20 hover:bg-muted/20"
         }`}>
           
           {/* Main Row */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             {/* Icon */}
-            <div className={`relative flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-200 ${
+            <div className={`relative flex-shrink-0 flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-150 ${
               isAITool
-                ? "bg-gradient-to-br from-primary to-accent text-white shadow-md shadow-primary/20"
+                ? "bg-gradient-to-br from-primary to-accent text-white shadow-sm"
                 : "bg-secondary text-primary group-hover:bg-primary group-hover:text-white"
             }`}>
-              <Icon className="h-5 w-5" />
+              <Icon className="h-4 w-4" />
             </div>
             
             {/* Content */}
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <h3 className={`text-sm font-semibold truncate transition-colors ${
-                  isAITool 
-                    ? "text-foreground group-hover:text-primary" 
-                    : "text-card-foreground group-hover:text-primary"
-                }`}>
-                  {t(titleKey)}
-                </h3>
-              </div>
-              <p className="text-[11px] text-muted-foreground truncate mt-0.5">
+              <h3 className={`text-xs font-semibold truncate transition-colors ${
+                isAITool 
+                  ? "text-foreground group-hover:text-primary" 
+                  : "text-card-foreground group-hover:text-primary"
+              }`}>
+                {t(titleKey)}
+              </h3>
+              <p className="text-[10px] text-muted-foreground truncate">
                 {t(descriptionKey)}
               </p>
             </div>
             
             {/* Arrow */}
-            <ChevronRight className="flex-shrink-0 h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+            <ChevronRight className="flex-shrink-0 h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
           </div>
 
-          {/* Explanation Box */}
+          {/* Explanation Box - Compact */}
           {explanation && (
-            <div className="mt-2.5 p-2.5 rounded-lg bg-gradient-to-r from-muted/80 to-muted/40 border border-border/30">
-              <div className="flex items-start gap-2">
-                <Info className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-[10px] text-muted-foreground leading-relaxed">
+            <div className="mt-2 p-2 rounded-md bg-muted/50 border border-border/20">
+              <div className="flex items-start gap-1.5">
+                <Info className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
+                <p className="text-[9px] text-muted-foreground leading-relaxed line-clamp-2">
                   {explanation}
                 </p>
               </div>
