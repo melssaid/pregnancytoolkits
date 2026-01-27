@@ -210,6 +210,22 @@ export default function PrivacyPolicy() {
             is processed by our AI service providers. Your stored health data, appointment details, and personal 
             tracking information remain on your device and are never transmitted.
           </p>
+          
+          <h3>Notification Sounds & Alerts</h3>
+          <p>
+            Our application may use <strong>audio notification sounds</strong> to alert you about:
+          </p>
+          <ul>
+            <li>Appointment reminders</li>
+            <li>Vitamin/medication reminders</li>
+            <li>Water intake reminders</li>
+            <li>Stretch and exercise reminders</li>
+          </ul>
+          <p>
+            These sounds are generated locally using the Web Audio API and do not require any data transmission. 
+            You can enable or disable notification sounds in the app's notification settings. No audio data is 
+            collected, stored, or transmitted to any servers.
+          </p>
 
           <h3>How We Process Your Data Using AI</h3>
           <p>

@@ -42,10 +42,10 @@ const ForbiddenFoods: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch(status) {
-      case 'safe': return 'bg-green-100 text-green-700 border-green-200';
-      case 'avoid': return 'bg-red-100 text-red-700 border-red-200';
-      case 'limit': return 'bg-amber-100 text-amber-700 border-amber-200';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'safe': return 'bg-accent/50 text-accent-foreground border-accent';
+      case 'avoid': return 'bg-destructive/10 text-destructive border-destructive/30';
+      case 'limit': return 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-700';
+      default: return 'bg-muted text-muted-foreground';
     }
   };
 
@@ -59,19 +59,19 @@ const ForbiddenFoods: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm sticky top-0 z-40">
+    <div className="min-h-screen bg-background">
+      <div className="bg-card shadow-sm sticky top-0 z-40">
         <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
-          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
-            <ArrowLeft className="w-6 h-6 text-gray-600" />
+          <button onClick={() => navigate('/')} className="p-2 hover:bg-muted rounded-full">
+            <ArrowLeft className="w-6 h-6 text-muted-foreground" />
           </button>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
-              <Ban className="w-5 h-5 text-red-600" />
+            <div className="w-10 h-10 bg-destructive/10 rounded-xl flex items-center justify-center">
+              <Ban className="w-5 h-5 text-destructive" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900">Food Safety Guide</h1>
-              <p className="text-xs text-gray-500">What to eat & avoid</p>
+              <h1 className="text-lg font-bold text-foreground">Food Safety Guide</h1>
+              <p className="text-xs text-muted-foreground">What to eat & avoid</p>
             </div>
           </div>
         </div>
@@ -79,15 +79,15 @@ const ForbiddenFoods: React.FC = () => {
 
       <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
         {/* Search & Filter */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm space-y-4">
+        <div className="bg-card rounded-2xl p-4 shadow-sm space-y-4">
           <div className="relative">
-            <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-5 h-5 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
             <input 
               type="text" 
               placeholder="Search foods (e.g. sushi, cheese)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition-all"
+              className="w-full pl-10 pr-4 py-3 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all"
             />
           </div>
           
@@ -96,10 +96,10 @@ const ForbiddenFoods: React.FC = () => {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize whitespace-nowrap transition-colors ${
+                className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize whitespace-nowrap transition-colors border-2 ${
                   filter === f 
-                    ? 'bg-gray-900 text-white' 
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    ? 'bg-primary text-primary-foreground border-primary' 
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80 border-transparent'
                 }`}
               >
                 {f}
@@ -111,18 +111,18 @@ const ForbiddenFoods: React.FC = () => {
         {/* List */}
         <div className="space-y-3">
           {filteredFoods.map(food => (
-            <div key={food.id} className="bg-white rounded-2xl p-4 shadow-sm flex items-start gap-4">
+            <div key={food.id} className="bg-card rounded-2xl p-4 shadow-sm flex items-start gap-4">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${getStatusColor(food.status)}`}>
                 {getStatusIcon(food.status)}
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-semibold text-gray-900">{food.name}</h3>
+                  <h3 className="font-semibold text-foreground">{food.name}</h3>
                   <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold ${getStatusColor(food.status)} border-0`}>
                     {food.status}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {food.reason}
                 </p>
               </div>
@@ -131,9 +131,9 @@ const ForbiddenFoods: React.FC = () => {
           
           {filteredFoods.length === 0 && (
             <div className="text-center py-10">
-              <p className="text-gray-500">No foods found matching "{searchTerm}"</p>
+              <p className="text-muted-foreground">No foods found matching "{searchTerm}"</p>
               {searchTerm && (
-                <button className="mt-4 text-red-600 font-medium text-sm">
+                <button className="mt-4 text-primary font-medium text-sm">
                   Ask AI about "{searchTerm}"
                 </button>
               )}
@@ -142,11 +142,11 @@ const ForbiddenFoods: React.FC = () => {
         </div>
 
         {/* Legend/Info */}
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
-          <h4 className="font-medium text-blue-900 mb-2 flex items-center gap-2">
-            <Info className="w-4 h-4" /> Quick Rules
+        <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
+          <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
+            <Info className="w-4 h-4 text-primary" /> Quick Rules
           </h4>
-          <ul className="space-y-2 text-sm text-blue-800">
+          <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-start gap-2">• <strong>Avoid:</strong> Raw meat/fish, unpasteurized dairy, deli meats (cold).</li>
             <li className="flex items-start gap-2">• <strong>Cook:</strong> Meats to 165°F (75°C).</li>
             <li className="flex items-start gap-2">• <strong>Wash:</strong> All fruits and vegetables thoroughly.</li>
