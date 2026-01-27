@@ -272,6 +272,16 @@
       "title": "Meditation & Yoga",
       "description": "Guided relaxation for each trimester."
     },
+    "aiSleepOptimizer": { "title": "AI Sleep Optimizer", "description": "Personalized sleep guidance for pregnancy." },
+    "aiHospitalBag": { "title": "AI Hospital Bag", "description": "Smart packing list for delivery day." },
+    "aiPartnerGuide": { "title": "AI Partner Guide", "description": "Support tips for partners and spouses." },
+    "aiBirthPosition": { "title": "AI Birth Positions", "description": "Optimal positions for your labor." },
+    "aiSkincare": { "title": "AI Skincare", "description": "Pregnancy-safe skincare routine." },
+    "aiPelvicFloor": { "title": "AI Pelvic Floor", "description": "Kegel exercises with AI coaching." },
+    "aiNauseaRelief": { "title": "AI Nausea Relief", "description": "Morning sickness remedies and tips." },
+    "aiBudgetPlanner": { "title": "AI Budget Planner", "description": "Plan baby expenses smartly." },
+    "aiBabyRoom": { "title": "AI Baby Room", "description": "Design your perfect nursery." },
+    "aiLactationPrep": { "title": "AI Lactation Prep", "description": "Breastfeeding preparation guide." },
     "aiPregnancyJournal": {
       "title": "AI Pregnancy Journal",
       "description": "Smart journaling with AI insights and mood tracking."

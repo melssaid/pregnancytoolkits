@@ -34,6 +34,20 @@ import PregnancySmoothieAI from "@/pages/tools/PregnancySmoothieAI";
 import AIFitnessCoach from "@/pages/tools/AIFitnessCoach";
 
 // ═══════════════════════════════════════════════════════════════
+// NEW 2026 AI TOOLS (10 tools)
+// ═══════════════════════════════════════════════════════════════
+import AISleepOptimizer from "@/pages/tools/AISleepOptimizer";
+import AIHospitalBag from "@/pages/tools/AIHospitalBag";
+import AIPartnerGuide from "@/pages/tools/AIPartnerGuide";
+import AIBirthPosition from "@/pages/tools/AIBirthPosition";
+import AIPregnancySkincare from "@/pages/tools/AIPregnancySkincare";
+import AIPelvicFloor from "@/pages/tools/AIPelvicFloor";
+import AINauseaRelief from "@/pages/tools/AINauseaRelief";
+import AIBudgetPlanner from "@/pages/tools/AIBudgetPlanner";
+import AIBabyRoom from "@/pages/tools/AIBabyRoom";
+import AILactationPrep from "@/pages/tools/AILactationPrep";
+
+// ═══════════════════════════════════════════════════════════════
 // AI LABOR & MONITORING (3 tools)
 // ═══════════════════════════════════════════════════════════════
 import AILaborProgressTracker from "@/pages/tools/AILaborProgressTracker";
@@ -184,7 +198,21 @@ export function AnimatedRoutes() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         <Route path="/tools/birth-prep" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
         <Route path="/tools/birth-plan" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
-        <Route path="/tools/hospital-bag" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* NEW 2026 AI TOOLS */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        <Route path="/tools/ai-sleep-optimizer" element={<PageTransition><AISleepOptimizer /></PageTransition>} />
+        <Route path="/tools/ai-hospital-bag" element={<PageTransition><AIHospitalBag /></PageTransition>} />
+        <Route path="/tools/hospital-bag" element={<PageTransition><AIHospitalBag /></PageTransition>} />
+        <Route path="/tools/ai-partner-guide" element={<PageTransition><AIPartnerGuide /></PageTransition>} />
+        <Route path="/tools/ai-birth-position" element={<PageTransition><AIBirthPosition /></PageTransition>} />
+        <Route path="/tools/ai-skincare" element={<PageTransition><AIPregnancySkincare /></PageTransition>} />
+        <Route path="/tools/ai-pelvic-floor" element={<PageTransition><AIPelvicFloor /></PageTransition>} />
+        <Route path="/tools/ai-nausea-relief" element={<PageTransition><AINauseaRelief /></PageTransition>} />
+        <Route path="/tools/ai-budget-planner" element={<PageTransition><AIBudgetPlanner /></PageTransition>} />
+        <Route path="/tools/ai-baby-room" element={<PageTransition><AIBabyRoom /></PageTransition>} />
+        <Route path="/tools/ai-lactation-prep" element={<PageTransition><AILactationPrep /></PageTransition>} />
         <Route path="/tools/breathing-exercises" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
 
         {/* ═══════════════════════════════════════════════════════════════ */}
