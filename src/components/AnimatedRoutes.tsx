@@ -57,6 +57,7 @@ const AILactationPrep = lazy(() => import("@/pages/tools/AILactationPrep"));
 const AILaborProgressTracker = lazy(() => import("@/pages/tools/AILaborProgressTracker"));
 const ContractionPatternAnalyzer = lazy(() => import("@/pages/tools/ContractionPatternAnalyzer"));
 const LaborBreathingCoach = lazy(() => import("@/pages/tools/LaborBreathingCoach"));
+const AIBirthPlanGenerator = lazy(() => import("@/pages/tools/AIBirthPlanGenerator"));
 
 // FERTILITY & PLANNING
 const OvulationCalculator = lazy(() => import("@/pages/tools/OvulationCalculator"));
@@ -163,7 +164,8 @@ export function AnimatedRoutes() {
 
           {/* PREPARATION */}
           <Route path="/tools/birth-prep" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
-          <Route path="/tools/birth-plan" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
+          <Route path="/tools/birth-plan" element={<PageTransition><AIBirthPlanGenerator /></PageTransition>} />
+          <Route path="/tools/ai-birth-plan" element={<PageTransition><AIBirthPlanGenerator /></PageTransition>} />
 
           {/* 2026 AI TOOLS */}
           <Route path="/tools/ai-sleep-optimizer" element={<PageTransition><AISleepOptimizer /></PageTransition>} />

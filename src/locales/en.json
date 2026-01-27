@@ -48,6 +48,10 @@
       "title": "Weekly Insights",
       "description": "Smart weekly updates on your baby's growth."
     },
+    "aiBirthPlan": {
+      "title": "AI Birth Plan Generator",
+      "description": "Create your personalized birth plan with AI guidance."
+    },
     "dueDateCalculator": {
       "title": "Due Date Calculator",
       "description": "Find out when your little one will arrive."
