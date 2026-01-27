@@ -1,15 +1,16 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "./PageTransition";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, forwardRef } from "react";
 import { Loader2 } from "lucide-react";
 
-// Loading Component
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
+// Loading Component with forwardRef for AnimatePresence compatibility
+const PageLoader = forwardRef<HTMLDivElement>((_, ref) => (
+  <div ref={ref} className="min-h-screen flex items-center justify-center bg-background">
     <Loader2 className="w-8 h-8 animate-spin text-primary" />
   </div>
-);
+));
+PageLoader.displayName = "PageLoader";
 
 // ═══════════════════════════════════════════════════════════════
 // LAZY LOADED PAGES - Performance Optimization
