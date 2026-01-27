@@ -47,15 +47,20 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
             {showBack && <BackButton />}
             
             {!showBack && (
-              <Link to="/" className="flex items-center gap-2">
+              <Link to="/" className="flex items-center gap-2.5">
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
-                  className="h-10 w-10 rounded-full shadow-lg object-cover"
+                  className="h-11 w-11 rounded-full shadow-lg object-cover"
                 />
-                <span className="text-lg font-bold text-foreground">
-                  {t('app.name')}
-                </span>
+                <div className="flex flex-col">
+                  <span className="text-sm sm:text-base font-bold text-foreground leading-tight">
+                    Pregnancy Toolkits
+                  </span>
+                  <span className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
+                    Your complete pregnancy companion
+                  </span>
+                </div>
               </Link>
             )}
           </div>
