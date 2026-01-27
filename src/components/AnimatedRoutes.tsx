@@ -26,7 +26,7 @@ const PregnancyAssistant = lazy(() => import("@/pages/tools/PregnancyAssistant")
 const AISymptomAnalyzer = lazy(() => import("@/pages/tools/AISymptomAnalyzer"));
 const AIMealSuggestion = lazy(() => import("@/pages/tools/AIMealSuggestion"));
 const WeeklySummary = lazy(() => import("@/pages/tools/WeeklySummary"));
-const AIPregnancyJournal = lazy(() => import("@/pages/tools/AIPregnancyJournal"));
+
 const SmartAppointmentReminder = lazy(() => import("@/pages/tools/SmartAppointmentReminder"));
 const AIBabyNameFinder = lazy(() => import("@/pages/tools/AIBabyNameFinder"));
 const AIPregnancyTipsDaily = lazy(() => import("@/pages/tools/AIPregnancyTipsDaily"));
@@ -108,7 +108,7 @@ export function AnimatedRoutes() {
           <Route path="/tools/symptom-analyzer" element={<PageTransition><AISymptomAnalyzer /></PageTransition>} />
           <Route path="/tools/ai-meal-suggestion" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
           <Route path="/tools/weekly-summary" element={<PageTransition><WeeklySummary /></PageTransition>} />
-          <Route path="/tools/ai-pregnancy-journal" element={<PageTransition><AIPregnancyJournal /></PageTransition>} />
+          
           <Route path="/tools/smart-appointment-reminder" element={<PageTransition><SmartAppointmentReminder /></PageTransition>} />
           <Route path="/tools/ai-baby-name-finder" element={<PageTransition><AIBabyNameFinder /></PageTransition>} />
           <Route path="/tools/ai-pregnancy-tips" element={<PageTransition><AIPregnancyTipsDaily /></PageTransition>} />
