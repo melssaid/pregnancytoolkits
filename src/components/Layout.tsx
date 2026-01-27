@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, Home, Shield, Award, Search } from "lucide-react";
+import { Home, Shield, Award, Search, Heart } from "lucide-react";
+import logoImage from "@/assets/logo.png";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { SearchDialog } from "./SearchDialog";
@@ -47,9 +48,11 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
             
             {!showBack && (
               <Link to="/" className="flex items-center gap-2">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary shadow-lg">
-                  <Heart className="h-5 w-5 text-primary-foreground" />
-                </div>
+                <img 
+                  src={logoImage} 
+                  alt="Pregnancy Toolkits" 
+                  className="h-10 w-10 rounded-full shadow-lg object-cover"
+                />
                 <span className="text-lg font-bold text-foreground">
                   {t('app.name')}
                 </span>
@@ -118,7 +121,7 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
         <div className="container">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2">
-              <Heart className="h-5 w-5 text-primary" />
+              <img src={logoImage} alt="Logo" className="h-6 w-6 rounded-full object-cover" />
               <span className="text-sm font-bold text-foreground">{t('app.name')}</span>
             </div>
             <div className="flex items-center gap-4 text-sm">
