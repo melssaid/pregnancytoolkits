@@ -56,20 +56,9 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Compact Hero */}
-      <section className="pt-6 pb-4">
-        <div className="container text-center">
-          <h1 className="text-xl font-bold text-foreground mb-1">
-            Pregnancy <span className="text-primary">Toolkits</span>
-          </h1>
-          <p className="text-xs text-muted-foreground">
-            Your complete pregnancy companion
-          </p>
-        </div>
-      </section>
+      {/* Categories - No duplicate hero */}
 
-      {/* Categories */}
-      <section className="pb-6">
+      <section className="py-4">
         <div className="container space-y-3">
           {categoryConfig.map((cat) => {
             const allTools = getToolsByCategory(cat.key);
@@ -82,11 +71,11 @@ const Index = () => {
 
             return (
               <div key={cat.key} className="overflow-hidden">
-                {/* Category Header - Clean design without tool count */}
-                <div className={`rounded-xl ${cat.bgColor} p-3`}>
+                {/* Category Card - Elegant light frame */}
+                <div className="rounded-2xl bg-card/80 backdrop-blur-sm border border-border/40 shadow-sm p-4">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-10 h-10 rounded-xl ${cat.iconBg} flex items-center justify-center text-white shadow-sm`}>
-                      <Icon className="w-5 h-5" />
+                    <div className={`w-9 h-9 rounded-xl ${cat.iconBg} flex items-center justify-center text-white shadow-sm`}>
+                      <Icon className="w-4 h-4" />
                     </div>
                     <h2 className="text-sm font-semibold text-foreground">{t(cat.key)}</h2>
                   </div>
