@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { LucideIcon, ChevronRight, Info } from "lucide-react";
+import { LucideIcon, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface ToolCardProps {
@@ -13,130 +13,34 @@ interface ToolCardProps {
   hasAI?: boolean;
 }
 
-// Tool explanations organized by category
-const toolExplanations: Record<string, string> = {
-  // 🤖 AI Core Tools
-  "tools.pregnancyAssistant.title": "Ask any pregnancy question and get instant AI-powered answers.",
-  "tools.symptomAnalyzer.title": "Describe symptoms and receive AI analysis with relief tips.",
-  "tools.aiMealSuggestion.title": "Get personalized meal ideas based on your trimester.",
-  "tools.weeklySummary.title": "Receive a personalized weekly update on your baby's development.",
-  "tools.aiPregnancyJournal.title": "Document your journey with AI-enhanced prompts.",
-  "tools.smartAppointmentReminder.title": "Never miss an appointment with smart reminders.",
-  "tools.aiBabyNameFinder.title": "Discover perfect baby names with AI suggestions.",
-  "tools.aiPregnancyTips.title": "Get daily AI-curated tips for your pregnancy stage.",
-  "tools.aiBirthStory.title": "Create a beautiful birth story with AI assistance.",
-  "tools.smartGroceryList.title": "Generate smart pregnancy-safe grocery lists.",
-
-  // 🆕 10 NEW AI TOOLS 2026
-  "tools.aiSleepOptimizer.title": "AI-powered sleep analysis with relaxation techniques.",
-  "tools.aiHospitalBag.title": "Smart hospital bag checklist personalized for you.",
-  "tools.aiPartnerGuide.title": "Support tips for partners during pregnancy.",
-  "tools.aiBirthPosition.title": "Optimal birth positions based on your situation.",
-  "tools.aiPregnancySkincare.title": "Safe skincare routine for your pregnancy stage.",
-  "tools.aiPelvicFloor.title": "Guided pelvic floor exercises with progress tracking.",
-  "tools.aiNauseaRelief.title": "Personalized tips to manage morning sickness.",
-  "tools.aiBudgetPlanner.title": "Plan your pregnancy and baby budget smartly.",
-  "tools.aiBabyRoom.title": "AI-generated nursery design ideas.",
-  "tools.aiLactationPrep.title": "Prepare for breastfeeding with expert AI guidance.",
-
-  // 💪 AI Wellness & Fitness
-  "tools.aiPostureCoach.title": "Improve posture with guided exercises.",
-  "tools.smartStretchReminder.title": "Personalized stretching routines for your trimester.",
-  "tools.aiBackPainRelief.title": "Safe exercises to relieve pregnancy back pain.",
-  "tools.aiMobilityCoach.title": "Walking and leg cramp prevention program.",
-  "tools.pregnancySmoothieAI.title": "Nutritious smoothie recipes for each stage.",
-  "tools.exerciseGuide.title": "Safe workout routines for pregnant women.",
-
-  // 🏥 Labor & Monitoring
-  "tools.aiLaborProgress.title": "Track contractions and get AI analysis.",
-  "tools.contractionTimer.title": "Time contractions to know when to go.",
-  "tools.laborBreathing.title": "Guided breathing for labor pain management.",
-
-  // 🔄 Fertility & Planning
-  "tools.ovulationCalculator.title": "Calculate your fertile window.",
-  "tools.cycleTracker.title": "Track your menstrual cycle patterns.",
-  "tools.dueDateCalculator.title": "Calculate your estimated due date.",
-
-  // 🤰 Pregnancy Tracking
-  "tools.fetalGrowth.title": "See your baby's weekly growth updates.",
-  "tools.kickCounter.title": "Monitor your baby's movement patterns.",
-  "tools.pregnancyMilestones.title": "Track important pregnancy milestones.",
-  "tools.bumpPhotos.title": "Create a photo timeline of your bump.",
-  "tools.pregnancyBmi.title": "Calculate BMI for weight recommendations.",
-  "tools.weightGain.title": "Track weight gain with recommendations.",
-
-  // 🥗 Nutrition & Hydration
-  "tools.waterIntake.title": "Track water intake with reminders.",
-  "tools.vitaminTracker.title": "Track prenatal vitamins with AI advice.",
-  "tools.forbiddenFoods.title": "Foods to avoid during pregnancy.",
-  "tools.meditationYoga.title": "Guided meditation and yoga sessions.",
-
-  // 🧠 Mental Health
-  "tools.affirmations.title": "Daily positive affirmations for you.",
-  "tools.postpartumMentalHealth.title": "AI mental health screening and support.",
-
-  // ⚠️ Health Monitoring
-  "tools.gestationalDiabetes.title": "Risk assessment for gestational diabetes.",
-  "tools.bloodType.title": "Blood type compatibility information.",
-
-  // 📋 Preparation
-  "tools.birthPrep.title": "Complete birth preparation checklist.",
-
-  // 👶 Postpartum & Baby
-  "tools.babySleepTracker.title": "Track baby's sleep with AI insights.",
-  "tools.babyGrowth.title": "Monitor baby growth with percentiles.",
-  "tools.doctorQuestions.title": "AI-generated questions for your doctor.",
-};
-
 export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index }: ToolCardProps) {
   const { t } = useTranslation();
   
-  const explanation = toolExplanations[titleKey];
-  
   return (
     <motion.div
-      initial={{ opacity: 0, x: -8 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.2, delay: Math.min(index * 0.015, 0.15) }}
-      whileTap={{ scale: 0.98 }}
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, delay: Math.min(index * 0.02, 0.1) }}
     >
       <Link to={href} className="block">
-        <div className="group relative p-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 hover:bg-muted/20 transition-all duration-200 hover:shadow-sm">
-          
-          {/* Main Row */}
-          <div className="flex items-center gap-2.5">
-            {/* Icon */}
-            <div className="relative flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-xl bg-secondary text-primary group-hover:bg-primary group-hover:text-white transition-all duration-200 shadow-sm">
-              <Icon className="h-4 w-4" />
-            </div>
-            
-            {/* Content */}
-            <div className="flex-1 min-w-0">
-              <h3 className="text-xs font-semibold truncate text-card-foreground group-hover:text-primary transition-colors">
-                {t(titleKey)}
-              </h3>
-              <p className="text-[10px] text-muted-foreground truncate">
-                {t(descriptionKey)}
-              </p>
-            </div>
-            
-            {/* Arrow */}
-            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-muted/50 group-hover:bg-primary/10 flex items-center justify-center transition-all duration-200">
-              <ChevronRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
-            </div>
+        <div className="group flex items-center gap-3 p-3 rounded-xl bg-card border border-border/50 hover:border-primary/30 hover:bg-muted/30 transition-all duration-200">
+          {/* Icon */}
+          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-200">
+            <Icon className="w-5 h-5" />
           </div>
-
-          {/* Explanation Box - Compact */}
-          {explanation && (
-            <div className="mt-2 p-2 rounded-lg bg-muted/30 border border-border/10">
-              <div className="flex items-start gap-1.5">
-                <Info className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-[9px] text-muted-foreground leading-relaxed line-clamp-2">
-                  {explanation}
-                </p>
-              </div>
-            </div>
-          )}
+          
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+              {t(titleKey)}
+            </h3>
+            <p className="text-[11px] text-muted-foreground truncate">
+              {t(descriptionKey)}
+            </p>
+          </div>
+          
+          {/* Arrow */}
+          <ChevronRight className="flex-shrink-0 w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
         </div>
       </Link>
     </motion.div>
