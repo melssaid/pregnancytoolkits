@@ -1,5 +1,5 @@
-import { useState, useMemo, memo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useMemo, memo, useCallback } from "react";
+import { motion } from "framer-motion";
 import { Sparkles, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Bell, Flower2, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
@@ -11,7 +11,7 @@ import { SubscriptionModal } from "@/components/SubscriptionModal";
 
 interface CategoryConfig {
   key: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   gradient: string;
   bgColor: string;
   iconBg: string;
@@ -36,11 +36,23 @@ const Index = () => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
+  
+  // Memoize expensive calculations
   const sortedTools = useMemo(() => getSortedTools(), []);
   const aiToolsCount = useMemo(() => getAITools().length, []);
   const totalTools = sortedTools.length;
 
-  const getCategoryTools = useMemo(() => (categoryKey: string) => {
+  // Memoize category toggle handler
+  const handleCategoryToggle = useCallback((categoryKey: string) => {
+    setActiveCategory(prev => prev === categoryKey ? null : categoryKey);
+  }, []);
+  
+  // Memoize modal handlers
+  const openModal = useCallback(() => setShowSubscriptionModal(true), []);
+  const closeModal = useCallback(() => setShowSubscriptionModal(false), []);
+
+  // Memoize category tools getter
+  const getCategoryTools = useCallback((categoryKey: string) => {
     return getToolsByCategory(categoryKey).slice(0, 4);
   }, []);
 
@@ -99,7 +111,7 @@ const Index = () => {
                         variant="ghost"
                         size="sm"
                         className="text-[10px] h-7 px-2"
-                        onClick={() => setActiveCategory(activeCategory === cat.key ? null : cat.key)}
+                        onClick={() => handleCategoryToggle(cat.key)}
                       >
                         {activeCategory === cat.key ? 'Less' : 'All'}
                         <ChevronRight className={`w-3 h-3 ml-0.5 transition-transform ${activeCategory === cat.key ? 'rotate-90' : ''}`} />
@@ -159,7 +171,7 @@ const Index = () => {
                 <h2 className="text-lg font-bold mb-1">Unlock Full Access</h2>
                 
                 <button 
-                  onClick={() => setShowSubscriptionModal(true)}
+                  onClick={openModal}
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/20 backdrop-blur-sm mb-3 hover:bg-background/30 transition-colors"
                 >
                   <Sparkles className="w-4 h-4" />
@@ -175,7 +187,7 @@ const Index = () => {
                     size="sm" 
                     variant="secondary" 
                     className="rounded-full px-4 text-xs h-8"
-                    onClick={() => setShowSubscriptionModal(true)}
+                    onClick={openModal}
                   >
                     Start Free Trial
                   </Button>
@@ -202,7 +214,7 @@ const Index = () => {
 
       <SubscriptionModal 
         isOpen={showSubscriptionModal} 
-        onClose={() => setShowSubscriptionModal(false)} 
+        onClose={closeModal} 
       />
     </Layout>
   );

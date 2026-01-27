@@ -1,230 +1,191 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "./PageTransition";
+import { Suspense, lazy } from "react";
+import { Loader2 } from "lucide-react";
 
-// Pages
-import Index from "@/pages/Index";
-import NotFound from "@/pages/NotFound";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import TermsOfService from "@/pages/TermsOfService";
-import Contact from "@/pages/Contact";
-
-// ═══════════════════════════════════════════════════════════════
-// AI-POWERED CORE TOOLS (10 tools)
-// ═══════════════════════════════════════════════════════════════
-import PregnancyAssistant from "@/pages/tools/PregnancyAssistant";
-import AISymptomAnalyzer from "@/pages/tools/AISymptomAnalyzer";
-import AIMealSuggestion from "@/pages/tools/AIMealSuggestion";
-import WeeklySummary from "@/pages/tools/WeeklySummary";
-import AIPregnancyJournal from "@/pages/tools/AIPregnancyJournal";
-import SmartAppointmentReminder from "@/pages/tools/SmartAppointmentReminder";
-import AIBabyNameFinder from "@/pages/tools/AIBabyNameFinder";
-import AIPregnancyTipsDaily from "@/pages/tools/AIPregnancyTipsDaily";
-import AIBirthStoryGenerator from "@/pages/tools/AIBirthStoryGenerator";
-import SmartGroceryList from "@/pages/tools/SmartGroceryList";
+// Loading Component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+  </div>
+);
 
 // ═══════════════════════════════════════════════════════════════
-// AI WELLNESS & FITNESS TOOLS (6 tools) - CONSOLIDATED
+// LAZY LOADED PAGES - Performance Optimization
 // ═══════════════════════════════════════════════════════════════
-import AIPostureCoach from "@/pages/tools/AIPostureCoach";
-import SmartStretchReminder from "@/pages/tools/SmartStretchReminder";
-import AIBackPainRelief from "@/pages/tools/AIBackPainRelief";
-import AIMobilityCoach from "@/pages/tools/AIMobilityCoach";
-import PregnancySmoothieAI from "@/pages/tools/PregnancySmoothieAI";
-import AIFitnessCoach from "@/pages/tools/AIFitnessCoach";
+const Index = lazy(() => import("@/pages/Index"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
+const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
+const Contact = lazy(() => import("@/pages/Contact"));
 
-// ═══════════════════════════════════════════════════════════════
-// NEW 2026 AI TOOLS (10 tools)
-// ═══════════════════════════════════════════════════════════════
-import AISleepOptimizer from "@/pages/tools/AISleepOptimizer";
-import AIHospitalBag from "@/pages/tools/AIHospitalBag";
-import AIPartnerGuide from "@/pages/tools/AIPartnerGuide";
-import AIBirthPosition from "@/pages/tools/AIBirthPosition";
-import AIPregnancySkincare from "@/pages/tools/AIPregnancySkincare";
-import AIPelvicFloor from "@/pages/tools/AIPelvicFloor";
-import AINauseaRelief from "@/pages/tools/AINauseaRelief";
-import AIBudgetPlanner from "@/pages/tools/AIBudgetPlanner";
-import AIBabyRoom from "@/pages/tools/AIBabyRoom";
-import AILactationPrep from "@/pages/tools/AILactationPrep";
+// AI-POWERED CORE TOOLS
+const PregnancyAssistant = lazy(() => import("@/pages/tools/PregnancyAssistant"));
+const AISymptomAnalyzer = lazy(() => import("@/pages/tools/AISymptomAnalyzer"));
+const AIMealSuggestion = lazy(() => import("@/pages/tools/AIMealSuggestion"));
+const WeeklySummary = lazy(() => import("@/pages/tools/WeeklySummary"));
+const AIPregnancyJournal = lazy(() => import("@/pages/tools/AIPregnancyJournal"));
+const SmartAppointmentReminder = lazy(() => import("@/pages/tools/SmartAppointmentReminder"));
+const AIBabyNameFinder = lazy(() => import("@/pages/tools/AIBabyNameFinder"));
+const AIPregnancyTipsDaily = lazy(() => import("@/pages/tools/AIPregnancyTipsDaily"));
+const AIBirthStoryGenerator = lazy(() => import("@/pages/tools/AIBirthStoryGenerator"));
+const SmartGroceryList = lazy(() => import("@/pages/tools/SmartGroceryList"));
 
-// ═══════════════════════════════════════════════════════════════
-// AI LABOR & MONITORING (3 tools)
-// ═══════════════════════════════════════════════════════════════
-import AILaborProgressTracker from "@/pages/tools/AILaborProgressTracker";
-import ContractionPatternAnalyzer from "@/pages/tools/ContractionPatternAnalyzer";
-import LaborBreathingCoach from "@/pages/tools/LaborBreathingCoach";
+// AI WELLNESS & FITNESS TOOLS
+const AIPostureCoach = lazy(() => import("@/pages/tools/AIPostureCoach"));
+const SmartStretchReminder = lazy(() => import("@/pages/tools/SmartStretchReminder"));
+const AIBackPainRelief = lazy(() => import("@/pages/tools/AIBackPainRelief"));
+const AIMobilityCoach = lazy(() => import("@/pages/tools/AIMobilityCoach"));
+const PregnancySmoothieAI = lazy(() => import("@/pages/tools/PregnancySmoothieAI"));
+const AIFitnessCoach = lazy(() => import("@/pages/tools/AIFitnessCoach"));
 
-// ═══════════════════════════════════════════════════════════════
-// FERTILITY & PLANNING (3 tools)
-// ═══════════════════════════════════════════════════════════════
-import OvulationCalculator from "@/pages/tools/OvulationCalculator";
-import CycleTracker from "@/pages/tools/CycleTracker";
-import DueDateCalculator from "@/pages/tools/DueDateCalculator";
+// 2026 AI TOOLS
+const AISleepOptimizer = lazy(() => import("@/pages/tools/AISleepOptimizer"));
+const AIHospitalBag = lazy(() => import("@/pages/tools/AIHospitalBag"));
+const AIPartnerGuide = lazy(() => import("@/pages/tools/AIPartnerGuide"));
+const AIBirthPosition = lazy(() => import("@/pages/tools/AIBirthPosition"));
+const AIPregnancySkincare = lazy(() => import("@/pages/tools/AIPregnancySkincare"));
+const AIPelvicFloor = lazy(() => import("@/pages/tools/AIPelvicFloor"));
+const AINauseaRelief = lazy(() => import("@/pages/tools/AINauseaRelief"));
+const AIBudgetPlanner = lazy(() => import("@/pages/tools/AIBudgetPlanner"));
+const AIBabyRoom = lazy(() => import("@/pages/tools/AIBabyRoom"));
+const AILactationPrep = lazy(() => import("@/pages/tools/AILactationPrep"));
 
-// ═══════════════════════════════════════════════════════════════
-// PREGNANCY TRACKING (5 tools)
-// ═══════════════════════════════════════════════════════════════
-import FetalDevelopment3D from "@/pages/tools/FetalDevelopment3D";
-import SmartKickCounter from "@/pages/tools/SmartKickCounter";
-import PregnancyMilestones from "@/pages/tools/PregnancyMilestones";
-import BumpPhotos from "@/pages/tools/BumpPhotos";
-import PregnancyBMI from "@/pages/tools/PregnancyBMI";
+// AI LABOR & MONITORING
+const AILaborProgressTracker = lazy(() => import("@/pages/tools/AILaborProgressTracker"));
+const ContractionPatternAnalyzer = lazy(() => import("@/pages/tools/ContractionPatternAnalyzer"));
+const LaborBreathingCoach = lazy(() => import("@/pages/tools/LaborBreathingCoach"));
 
-// ═══════════════════════════════════════════════════════════════
-// NUTRITION & WELLNESS (4 tools)
-// ═══════════════════════════════════════════════════════════════
-import WaterIntake from "@/pages/tools/WaterIntake";
-import VitaminTracker from "@/pages/tools/VitaminTracker";
-import ForbiddenFoods from "@/pages/tools/ForbiddenFoods";
-import PregnancyMeditationYoga from "@/pages/tools/PregnancyMeditationYoga";
+// FERTILITY & PLANNING
+const OvulationCalculator = lazy(() => import("@/pages/tools/OvulationCalculator"));
+const CycleTracker = lazy(() => import("@/pages/tools/CycleTracker"));
+const DueDateCalculator = lazy(() => import("@/pages/tools/DueDateCalculator"));
 
-// ═══════════════════════════════════════════════════════════════
-// MENTAL HEALTH (3 tools)
-// ═══════════════════════════════════════════════════════════════
-import Affirmations from "@/pages/tools/Affirmations";
-import PostpartumMentalHealthCoach from "@/pages/tools/PostpartumMentalHealthCoach";
-import SmartWeightGainAnalyzer from "@/pages/tools/SmartWeightGainAnalyzer";
+// PREGNANCY TRACKING
+const FetalDevelopment3D = lazy(() => import("@/pages/tools/FetalDevelopment3D"));
+const SmartKickCounter = lazy(() => import("@/pages/tools/SmartKickCounter"));
+const PregnancyMilestones = lazy(() => import("@/pages/tools/PregnancyMilestones"));
+const BumpPhotos = lazy(() => import("@/pages/tools/BumpPhotos"));
 
-// ═══════════════════════════════════════════════════════════════
-// HEALTH MONITORING (2 tools)
-// ═══════════════════════════════════════════════════════════════
-import GestationalDiabetes from "@/pages/tools/GestationalDiabetes";
-import BloodType from "@/pages/tools/BloodType";
+// NUTRITION & WELLNESS
+const WaterIntake = lazy(() => import("@/pages/tools/WaterIntake"));
+const VitaminTracker = lazy(() => import("@/pages/tools/VitaminTracker"));
+const PregnancyMeditationYoga = lazy(() => import("@/pages/tools/PregnancyMeditationYoga"));
 
-// ═══════════════════════════════════════════════════════════════
-// PREPARATION (1 tool)
-// ═══════════════════════════════════════════════════════════════
-import BirthPrepGuide from "@/pages/tools/BirthPrepGuide";
+// MENTAL HEALTH
+const Affirmations = lazy(() => import("@/pages/tools/Affirmations"));
+const PostpartumMentalHealthCoach = lazy(() => import("@/pages/tools/PostpartumMentalHealthCoach"));
+const SmartWeightGainAnalyzer = lazy(() => import("@/pages/tools/SmartWeightGainAnalyzer"));
 
-// ═══════════════════════════════════════════════════════════════
-// POSTPARTUM & BABY (3 tools)
-// ═══════════════════════════════════════════════════════════════
-import BabySleepTracker from "@/pages/tools/BabySleepTracker";
-import BabyGrowth from "@/pages/tools/BabyGrowth";
-import DoctorQuestions from "@/pages/tools/DoctorQuestions";
+// HEALTH MONITORING
+const GestationalDiabetes = lazy(() => import("@/pages/tools/GestationalDiabetes"));
+
+// PREPARATION
+const BirthPrepGuide = lazy(() => import("@/pages/tools/BirthPrepGuide"));
+
+// POSTPARTUM & BABY
+const BabySleepTracker = lazy(() => import("@/pages/tools/BabySleepTracker"));
+const BabyGrowth = lazy(() => import("@/pages/tools/BabyGrowth"));
+const DoctorQuestions = lazy(() => import("@/pages/tools/DoctorQuestions"));
 
 export function AnimatedRoutes() {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Routes location={location} key={location.pathname}>
-        {/* Main Pages */}
-        <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-        <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
-        <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-        
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* AI-POWERED CORE TOOLS */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/pregnancy-assistant" element={<PageTransition><PregnancyAssistant /></PageTransition>} />
-        <Route path="/tools/symptom-analyzer" element={<PageTransition><AISymptomAnalyzer /></PageTransition>} />
-        <Route path="/tools/ai-meal-suggestion" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
-        <Route path="/tools/weekly-summary" element={<PageTransition><WeeklySummary /></PageTransition>} />
-        <Route path="/tools/ai-pregnancy-journal" element={<PageTransition><AIPregnancyJournal /></PageTransition>} />
-        <Route path="/tools/smart-appointment-reminder" element={<PageTransition><SmartAppointmentReminder /></PageTransition>} />
-        <Route path="/tools/ai-baby-name-finder" element={<PageTransition><AIBabyNameFinder /></PageTransition>} />
-        <Route path="/tools/ai-pregnancy-tips" element={<PageTransition><AIPregnancyTipsDaily /></PageTransition>} />
-        <Route path="/tools/ai-birth-story" element={<PageTransition><AIBirthStoryGenerator /></PageTransition>} />
-        <Route path="/tools/smart-grocery-list" element={<PageTransition><SmartGroceryList /></PageTransition>} />
+      <Suspense fallback={<PageLoader />}>
+        <Routes location={location} key={location.pathname}>
+          {/* Main Pages */}
+          <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+          <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
+          <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
+          <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+          
+          {/* AI-POWERED CORE TOOLS */}
+          <Route path="/tools/pregnancy-assistant" element={<PageTransition><PregnancyAssistant /></PageTransition>} />
+          <Route path="/tools/symptom-analyzer" element={<PageTransition><AISymptomAnalyzer /></PageTransition>} />
+          <Route path="/tools/ai-meal-suggestion" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
+          <Route path="/tools/weekly-summary" element={<PageTransition><WeeklySummary /></PageTransition>} />
+          <Route path="/tools/ai-pregnancy-journal" element={<PageTransition><AIPregnancyJournal /></PageTransition>} />
+          <Route path="/tools/smart-appointment-reminder" element={<PageTransition><SmartAppointmentReminder /></PageTransition>} />
+          <Route path="/tools/ai-baby-name-finder" element={<PageTransition><AIBabyNameFinder /></PageTransition>} />
+          <Route path="/tools/ai-pregnancy-tips" element={<PageTransition><AIPregnancyTipsDaily /></PageTransition>} />
+          <Route path="/tools/ai-birth-story" element={<PageTransition><AIBirthStoryGenerator /></PageTransition>} />
+          <Route path="/tools/smart-grocery-list" element={<PageTransition><SmartGroceryList /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* AI WELLNESS & FITNESS TOOLS (Consolidated) */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/ai-posture-coach" element={<PageTransition><AIPostureCoach /></PageTransition>} />
-        <Route path="/tools/smart-stretch-reminder" element={<PageTransition><SmartStretchReminder /></PageTransition>} />
-        <Route path="/tools/ai-back-pain-relief" element={<PageTransition><AIBackPainRelief /></PageTransition>} />
-        <Route path="/tools/ai-mobility-coach" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
-        {/* Aliases for merged tools */}
-        <Route path="/tools/ai-leg-cramp-preventer" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
-        <Route path="/tools/smart-walking-coach" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
-        <Route path="/tools/pregnancy-smoothie-ai" element={<PageTransition><PregnancySmoothieAI /></PageTransition>} />
-        <Route path="/tools/exercise-guide" element={<PageTransition><AIFitnessCoach /></PageTransition>} />
+          {/* AI WELLNESS & FITNESS TOOLS */}
+          <Route path="/tools/ai-posture-coach" element={<PageTransition><AIPostureCoach /></PageTransition>} />
+          <Route path="/tools/smart-stretch-reminder" element={<PageTransition><SmartStretchReminder /></PageTransition>} />
+          <Route path="/tools/ai-back-pain-relief" element={<PageTransition><AIBackPainRelief /></PageTransition>} />
+          <Route path="/tools/ai-mobility-coach" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
+          <Route path="/tools/ai-leg-cramp-preventer" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
+          <Route path="/tools/smart-walking-coach" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
+          <Route path="/tools/pregnancy-smoothie-ai" element={<PageTransition><PregnancySmoothieAI /></PageTransition>} />
+          <Route path="/tools/exercise-guide" element={<PageTransition><AIFitnessCoach /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* AI LABOR & MONITORING */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/labor-progress" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
-        <Route path="/tools/contraction-timer" element={<PageTransition><ContractionPatternAnalyzer /></PageTransition>} />
-        <Route path="/tools/labor-breathing" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
+          {/* AI LABOR & MONITORING */}
+          <Route path="/tools/labor-progress" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
+          <Route path="/tools/contraction-timer" element={<PageTransition><ContractionPatternAnalyzer /></PageTransition>} />
+          <Route path="/tools/labor-breathing" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
+          <Route path="/tools/breathing-exercises" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* FERTILITY & PLANNING */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/ovulation-calculator" element={<PageTransition><OvulationCalculator /></PageTransition>} />
-        <Route path="/tools/cycle-tracker" element={<PageTransition><CycleTracker /></PageTransition>} />
-        <Route path="/tools/due-date-calculator" element={<PageTransition><DueDateCalculator /></PageTransition>} />
-        <Route path="/tools/conception-calculator" element={<PageTransition><DueDateCalculator /></PageTransition>} />
+          {/* FERTILITY & PLANNING */}
+          <Route path="/tools/ovulation-calculator" element={<PageTransition><OvulationCalculator /></PageTransition>} />
+          <Route path="/tools/cycle-tracker" element={<PageTransition><CycleTracker /></PageTransition>} />
+          <Route path="/tools/due-date-calculator" element={<PageTransition><DueDateCalculator /></PageTransition>} />
+          <Route path="/tools/conception-calculator" element={<PageTransition><DueDateCalculator /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* PREGNANCY TRACKING */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/fetal-growth" element={<PageTransition><FetalDevelopment3D /></PageTransition>} />
-        <Route path="/tools/kick-counter" element={<PageTransition><SmartKickCounter /></PageTransition>} />
-        <Route path="/tools/pregnancy-milestones" element={<PageTransition><PregnancyMilestones /></PageTransition>} />
-        <Route path="/tools/bump-photos" element={<PageTransition><BumpPhotos /></PageTransition>} />
-        <Route path="/tools/pregnancy-bmi" element={<PageTransition><PregnancyBMI /></PageTransition>} />
+          {/* PREGNANCY TRACKING */}
+          <Route path="/tools/fetal-growth" element={<PageTransition><FetalDevelopment3D /></PageTransition>} />
+          <Route path="/tools/kick-counter" element={<PageTransition><SmartKickCounter /></PageTransition>} />
+          <Route path="/tools/pregnancy-milestones" element={<PageTransition><PregnancyMilestones /></PageTransition>} />
+          <Route path="/tools/bump-photos" element={<PageTransition><BumpPhotos /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* NUTRITION & WELLNESS */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/water-intake" element={<PageTransition><WaterIntake /></PageTransition>} />
-        <Route path="/tools/vitamin-tracker" element={<PageTransition><VitaminTracker /></PageTransition>} />
-        <Route path="/tools/forbidden-foods" element={<PageTransition><ForbiddenFoods /></PageTransition>} />
-        <Route path="/tools/meditation-yoga" element={<PageTransition><PregnancyMeditationYoga /></PageTransition>} />
-        {/* Aliases */}
-        <Route path="/tools/nutrition-guide" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
-        <Route path="/tools/meal-planner" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
-        <Route path="/tools/yoga-guide" element={<PageTransition><PregnancyMeditationYoga /></PageTransition>} />
+          {/* NUTRITION & WELLNESS */}
+          <Route path="/tools/water-intake" element={<PageTransition><WaterIntake /></PageTransition>} />
+          <Route path="/tools/vitamin-tracker" element={<PageTransition><VitaminTracker /></PageTransition>} />
+          <Route path="/tools/meditation-yoga" element={<PageTransition><PregnancyMeditationYoga /></PageTransition>} />
+          <Route path="/tools/nutrition-guide" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
+          <Route path="/tools/meal-planner" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
+          <Route path="/tools/yoga-guide" element={<PageTransition><PregnancyMeditationYoga /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* MENTAL HEALTH */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/affirmations" element={<PageTransition><Affirmations /></PageTransition>} />
-        <Route path="/tools/mental-health-coach" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
-        <Route path="/tools/weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
-        <Route path="/tools/mood-tracker" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
-        <Route path="/tools/smart-weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
+          {/* MENTAL HEALTH */}
+          <Route path="/tools/affirmations" element={<PageTransition><Affirmations /></PageTransition>} />
+          <Route path="/tools/mental-health-coach" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
+          <Route path="/tools/weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
+          <Route path="/tools/mood-tracker" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
+          <Route path="/tools/smart-weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* HEALTH MONITORING */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/gestational-diabetes" element={<PageTransition><GestationalDiabetes /></PageTransition>} />
-        <Route path="/tools/blood-type" element={<PageTransition><BloodType /></PageTransition>} />
+          {/* HEALTH MONITORING */}
+          <Route path="/tools/gestational-diabetes" element={<PageTransition><GestationalDiabetes /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* PREPARATION */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/birth-prep" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
-        <Route path="/tools/birth-plan" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
+          {/* PREPARATION */}
+          <Route path="/tools/birth-prep" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
+          <Route path="/tools/birth-plan" element={<PageTransition><BirthPrepGuide /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* NEW 2026 AI TOOLS */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/ai-sleep-optimizer" element={<PageTransition><AISleepOptimizer /></PageTransition>} />
-        <Route path="/tools/ai-hospital-bag" element={<PageTransition><AIHospitalBag /></PageTransition>} />
-        <Route path="/tools/hospital-bag" element={<PageTransition><AIHospitalBag /></PageTransition>} />
-        <Route path="/tools/ai-partner-guide" element={<PageTransition><AIPartnerGuide /></PageTransition>} />
-        <Route path="/tools/ai-birth-position" element={<PageTransition><AIBirthPosition /></PageTransition>} />
-        <Route path="/tools/ai-skincare" element={<PageTransition><AIPregnancySkincare /></PageTransition>} />
-        <Route path="/tools/ai-pelvic-floor" element={<PageTransition><AIPelvicFloor /></PageTransition>} />
-        <Route path="/tools/ai-nausea-relief" element={<PageTransition><AINauseaRelief /></PageTransition>} />
-        <Route path="/tools/ai-budget-planner" element={<PageTransition><AIBudgetPlanner /></PageTransition>} />
-        <Route path="/tools/ai-baby-room" element={<PageTransition><AIBabyRoom /></PageTransition>} />
-        <Route path="/tools/ai-lactation-prep" element={<PageTransition><AILactationPrep /></PageTransition>} />
-        <Route path="/tools/breathing-exercises" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
+          {/* 2026 AI TOOLS */}
+          <Route path="/tools/ai-sleep-optimizer" element={<PageTransition><AISleepOptimizer /></PageTransition>} />
+          <Route path="/tools/ai-hospital-bag" element={<PageTransition><AIHospitalBag /></PageTransition>} />
+          <Route path="/tools/hospital-bag" element={<PageTransition><AIHospitalBag /></PageTransition>} />
+          <Route path="/tools/ai-partner-guide" element={<PageTransition><AIPartnerGuide /></PageTransition>} />
+          <Route path="/tools/ai-birth-position" element={<PageTransition><AIBirthPosition /></PageTransition>} />
+          <Route path="/tools/ai-skincare" element={<PageTransition><AIPregnancySkincare /></PageTransition>} />
+          <Route path="/tools/ai-pelvic-floor" element={<PageTransition><AIPelvicFloor /></PageTransition>} />
+          <Route path="/tools/ai-nausea-relief" element={<PageTransition><AINauseaRelief /></PageTransition>} />
+          <Route path="/tools/ai-budget-planner" element={<PageTransition><AIBudgetPlanner /></PageTransition>} />
+          <Route path="/tools/ai-baby-room" element={<PageTransition><AIBabyRoom /></PageTransition>} />
+          <Route path="/tools/ai-lactation-prep" element={<PageTransition><AILactationPrep /></PageTransition>} />
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* POSTPARTUM & BABY */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <Route path="/tools/baby-sleep-tracker" element={<PageTransition><BabySleepTracker /></PageTransition>} />
-        <Route path="/tools/baby-growth" element={<PageTransition><BabyGrowth /></PageTransition>} />
-        <Route path="/tools/doctor-questions" element={<PageTransition><DoctorQuestions /></PageTransition>} />
+          {/* POSTPARTUM & BABY */}
+          <Route path="/tools/baby-sleep-tracker" element={<PageTransition><BabySleepTracker /></PageTransition>} />
+          <Route path="/tools/baby-growth" element={<PageTransition><BabyGrowth /></PageTransition>} />
+          <Route path="/tools/doctor-questions" element={<PageTransition><DoctorQuestions /></PageTransition>} />
 
-        {/* 404 */}
-        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
-      </Routes>
+          {/* 404 */}
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+        </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 }
