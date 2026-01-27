@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { FileText, Sparkles, Download, Heart, Baby } from 'lucide-react';
+import { FileText, Sparkles, Download, Heart, Baby, Share2 } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
+import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 
 interface BirthStoryData {
   babyName: string;
@@ -19,82 +21,133 @@ interface BirthStoryData {
   dedicatedTo: string;
 }
 
+const DEFAULT_DATA: BirthStoryData = {
+  babyName: '',
+  birthDate: '',
+  birthTime: '',
+  weight: '',
+  length: '',
+  location: '',
+  deliveryType: 'natural',
+  specialMoments: '',
+  firstFeeling: '',
+  dedicatedTo: '',
+};
+
+const isValidData = (data: unknown): data is BirthStoryData => {
+  if (typeof data !== 'object' || data === null) return false;
+  const d = data as Record<string, unknown>;
+  return typeof d.babyName === 'string' && typeof d.birthDate === 'string';
+};
+
 export default function AIBirthStoryGenerator() {
-  const [storyData, setStoryData] = useState<BirthStoryData>({
-    babyName: '',
-    birthDate: '',
-    birthTime: '',
-    weight: '',
-    length: '',
-    location: '',
-    deliveryType: 'natural',
-    specialMoments: '',
-    firstFeeling: '',
-    dedicatedTo: '',
-  });
+  const [storyData, setStoryData] = useState<BirthStoryData>(DEFAULT_DATA);
   const [generatedStory, setGeneratedStory] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
+  const isInitialized = useRef(false);
+  const { toast } = useToast();
 
   useEffect(() => {
-    const saved = localStorage.getItem('birthStoryData');
-    if (saved) setStoryData(JSON.parse(saved));
+    const saved = safeParseLocalStorage<BirthStoryData>('birthStoryData', DEFAULT_DATA, isValidData);
+    setStoryData(saved);
     const savedStory = localStorage.getItem('generatedBirthStory');
     if (savedStory) setGeneratedStory(savedStory);
+    isInitialized.current = true;
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('birthStoryData', JSON.stringify(storyData));
+    if (!isInitialized.current) return;
+    safeSaveToLocalStorage('birthStoryData', storyData);
   }, [storyData]);
 
   const generateStory = () => {
     setIsGenerating(true);
     
-    // Generate story locally (no AI call needed for this simple template)
     setTimeout(() => {
+      const formattedDate = storyData.birthDate 
+        ? new Date(storyData.birthDate).toLocaleDateString('en-US', { 
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+          }) 
+        : 'a beautiful day';
+
       const story = `
-# The Day ${storyData.babyName || 'Our Baby'} Arrived
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║               ✨ THE DAY ${(storyData.babyName || 'OUR BABY').toUpperCase()} ARRIVED ✨              ║
+║                                                                  ║
+║                   A Story of Love & New Beginnings               ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
 
-## A Story of Love and New Beginnings
+═══════════════════════════════════════════════════════════════════
+                         📅 THE MOMENT
+═══════════════════════════════════════════════════════════════════
 
-On ${storyData.birthDate ? new Date(storyData.birthDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'a beautiful day'}, at ${storyData.birthTime || 'a moment we\'ll never forget'}, our world changed forever.
+On ${formattedDate}${storyData.birthTime ? ` at ${storyData.birthTime}` : ''}, our world changed forever.
 
-${storyData.location ? `At ${storyData.location}, surrounded by love and care, ` : ''}we welcomed our precious ${storyData.babyName || 'little one'} into the world.
+${storyData.location ? `📍 Location: ${storyData.location}\n` : ''}${storyData.weight ? `⚖️  Weight: ${storyData.weight}\n` : ''}${storyData.length ? `📏 Length: ${storyData.length}\n` : ''}
+${storyData.deliveryType === 'natural' ? '🌸 Delivery: Natural Birth' : storyData.deliveryType === 'csection' ? '💜 Delivery: C-Section' : storyData.deliveryType === 'water' ? '💧 Delivery: Water Birth' : '🏠 Delivery: Home Birth'}
 
-### The First Moments
+═══════════════════════════════════════════════════════════════════
+                      💕 FIRST MOMENTS
+═══════════════════════════════════════════════════════════════════
 
-${storyData.deliveryType === 'natural' ? 'After hours of anticipation and strength,' : storyData.deliveryType === 'csection' ? 'Through careful medical care and preparation,' : 'With courage and hope,'} ${storyData.babyName || 'our baby'} made their grand entrance.
+${storyData.firstFeeling 
+  ? storyData.firstFeeling 
+  : `The moment we held ${storyData.babyName || 'our baby'} for the first time, our hearts overflowed with a love we never knew existed. Every tiny finger, every soft breath became a treasure.`}
 
-${storyData.weight || storyData.length ? `Weighing ${storyData.weight || '—'} and measuring ${storyData.length || '—'}, ${storyData.babyName || 'they'} was absolutely perfect.` : ''}
+═══════════════════════════════════════════════════════════════════
+                    🌟 SPECIAL MEMORIES
+═══════════════════════════════════════════════════════════════════
 
-### A Heart Full of Emotion
+${storyData.specialMoments 
+  ? storyData.specialMoments 
+  : `These first moments together marked the beginning of our greatest adventure. A story we will cherish forever.`}
 
-${storyData.firstFeeling ? `The moment we saw ${storyData.babyName || 'our baby'}, ${storyData.firstFeeling}` : `The moment we held our baby for the first time, our hearts overflowed with a love we never knew existed.`}
+═══════════════════════════════════════════════════════════════════
 
-### Precious Memories
+${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo}\n` : ''}
+                 Welcome to the world, ${storyData.babyName || 'little one'}!
+                      You are loved beyond measure.
 
-${storyData.specialMoments || `Every tiny finger, every soft breath, every little sound became a treasure we hold dear. These first moments together marked the beginning of our greatest adventure.`}
-
----
-
-${storyData.dedicatedTo ? `*Dedicated with love to ${storyData.dedicatedTo}*` : '*This is our story of love, hope, and new beginnings.*'}
-
-💕 Welcome to the world, ${storyData.babyName || 'little one'}. You are loved beyond measure.
+═══════════════════════════════════════════════════════════════════
+                    Pregnancy Toolkits © 2026
+═══════════════════════════════════════════════════════════════════
       `.trim();
       
       setGeneratedStory(story);
       localStorage.setItem('generatedBirthStory', story);
       setIsGenerating(false);
+      toast({ title: 'Story generated!', description: 'Your beautiful birth story is ready.' });
     }, 1500);
   };
 
   const downloadStory = () => {
-    const blob = new Blob([generatedStory], { type: 'text/markdown' });
+    const content = `BIRTH STORY - ${storyData.babyName || 'Baby'}\n${'═'.repeat(50)}\n\n${generatedStory}`;
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${storyData.babyName || 'birth'}-story.md`;
+    a.download = `${storyData.babyName || 'birth'}-story.txt`;
     a.click();
     URL.revokeObjectURL(url);
+    toast({ title: 'Downloaded!', description: 'Your birth story has been saved.' });
+  };
+
+  const shareStory = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${storyData.babyName || 'Baby'}'s Birth Story`,
+          text: generatedStory.slice(0, 500) + '...',
+        });
+      } catch (err) {
+        // User cancelled sharing
+      }
+    } else {
+      await navigator.clipboard.writeText(generatedStory);
+      toast({ title: 'Copied!', description: 'Story copied to clipboard.' });
+    }
   };
 
   const deliveryTypes = [
@@ -142,6 +195,7 @@ ${storyData.dedicatedTo ? `*Dedicated with love to ${storyData.dedicatedTo}*` : 
                   type="time"
                   value={storyData.birthTime}
                   onChange={(e) => setStoryData(prev => ({ ...prev, birthTime: e.target.value }))}
+                  className="min-w-[120px]"
                 />
               </div>
             </div>
@@ -176,10 +230,10 @@ ${storyData.dedicatedTo ? `*Dedicated with love to ${storyData.dedicatedTo}*` : 
                 <button
                   key={type.id}
                   onClick={() => setStoryData(prev => ({ ...prev, deliveryType: type.id }))}
-                  className={`p-3 rounded-lg text-center transition-all ${
+                  className={`p-3 rounded-xl text-center transition-all border-2 ${
                     storyData.deliveryType === type.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted hover:bg-muted/80'
+                      ? 'bg-primary text-primary-foreground border-primary'
+                      : 'bg-muted hover:bg-muted/80 border-transparent'
                   }`}
                 >
                   <span className="text-xl">{type.icon}</span>
@@ -242,13 +296,19 @@ ${storyData.dedicatedTo ? `*Dedicated with love to ${storyData.dedicatedTo}*` : 
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">Your Birth Story</h3>
-                <Button variant="outline" size="sm" onClick={downloadStory} className="gap-2">
-                  <Download className="w-4 h-4" />
-                  Download
-                </Button>
+                <div className="flex gap-2">
+                  <Button variant="outline" size="sm" onClick={shareStory} className="gap-2">
+                    <Share2 className="w-4 h-4" />
+                    Share
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={downloadStory} className="gap-2">
+                    <Download className="w-4 h-4" />
+                    Download
+                  </Button>
+                </div>
               </div>
               <div className="prose prose-sm max-w-none">
-                <pre className="whitespace-pre-wrap text-sm bg-muted/50 p-4 rounded-lg font-sans">
+                <pre className="whitespace-pre-wrap text-sm bg-gradient-to-br from-primary/5 to-secondary/10 p-4 rounded-xl font-mono border border-primary/10 leading-relaxed">
                   {generatedStory}
                 </pre>
               </div>

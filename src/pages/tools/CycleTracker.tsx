@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Activity, Plus, Calendar, TrendingUp, Info } from "lucide-react";
+import { Activity, Plus, Calendar, TrendingUp, Info, Share2, Trash2 } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { format, subMonths, addDays, differenceInDays } from "date-fns";
+import { format, addDays, differenceInDays } from "date-fns";
+import { useToast } from "@/components/ui/use-toast";
+import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 
 interface CycleEntry {
   id: string;
@@ -30,24 +32,33 @@ const symptomOptions = [
   "Back pain",
 ];
 
+const isValidCycles = (data: unknown): data is CycleEntry[] => {
+  return Array.isArray(data) && data.every(item => 
+    typeof item === 'object' && item !== null && 
+    typeof (item as CycleEntry).id === 'string' &&
+    typeof (item as CycleEntry).startDate === 'string'
+  );
+};
+
 export default function CycleTracker() {
+  const { toast } = useToast();
   const [cycles, setCycles] = useState<CycleEntry[]>([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [flowIntensity, setFlowIntensity] = useState<"light" | "medium" | "heavy">("medium");
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
+  const isInitialized = useRef(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      setCycles(JSON.parse(saved));
-    }
+    const saved = safeParseLocalStorage<CycleEntry[]>(STORAGE_KEY, [], isValidCycles);
+    setCycles(saved);
+    isInitialized.current = true;
   }, []);
 
-  const saveCycles = (newCycles: CycleEntry[]) => {
-    setCycles(newCycles);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newCycles));
-  };
+  useEffect(() => {
+    if (!isInitialized.current) return;
+    safeSaveToLocalStorage(STORAGE_KEY, cycles);
+  }, [cycles]);
 
   const addCycle = () => {
     if (!startDate) return;
@@ -60,10 +71,9 @@ export default function CycleTracker() {
       symptoms: selectedSymptoms.length > 0 ? selectedSymptoms : undefined,
     };
 
-    const newCycles = [newCycle, ...cycles].slice(0, 12);
-    saveCycles(newCycles);
+    setCycles(prev => [newCycle, ...prev].slice(0, 12));
+    toast({ title: 'Saved!', description: 'Cycle entry has been recorded.' });
 
-    // Reset form
     setStartDate("");
     setEndDate("");
     setFlowIntensity("medium");
@@ -71,8 +81,8 @@ export default function CycleTracker() {
   };
 
   const deleteCycle = (id: string) => {
-    const newCycles = cycles.filter((c) => c.id !== id);
-    saveCycles(newCycles);
+    setCycles(prev => prev.filter((c) => c.id !== id));
+    toast({ title: 'Deleted', description: 'Cycle entry removed.' });
   };
 
   const toggleSymptom = (symptom: string) => {
@@ -110,7 +120,6 @@ export default function CycleTracker() {
       ? Math.round(periodLengths.reduce((a, b) => a + b, 0) / periodLengths.length)
       : null;
 
-    // Predict next period
     const lastPeriod = new Date(cycles[0].startDate);
     const nextPeriod = addDays(lastPeriod, avgCycleLength);
 
@@ -128,6 +137,27 @@ export default function CycleTracker() {
     }
   };
 
+  const shareStats = async () => {
+    if (!stats) return;
+    
+    const text = `📊 My Cycle Stats
+
+🔄 Average Cycle: ${stats.avgCycleLength} days
+${stats.avgPeriodLength ? `🩸 Average Period: ${stats.avgPeriodLength} days\n` : ''}📅 Next Period: ${format(stats.nextPeriod, "MMMM d, yyyy")}
+
+Tracked ${cycles.length} cycles
+— via Pregnancy Toolkits`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'My Cycle Stats', text });
+      } catch (err) {}
+    } else {
+      await navigator.clipboard.writeText(text);
+      toast({ title: 'Copied!', description: 'Stats copied to clipboard.' });
+    }
+  };
+
   return (
     <Layout title="Menstrual Cycle Tracker" showBack>
       <div className="container py-8">
@@ -137,40 +167,47 @@ export default function CycleTracker() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {/* Stats Overview */}
             {stats && (
-              <div className="grid gap-4 sm:grid-cols-3 mb-6">
-                <Card className="bg-secondary/50">
-                  <CardContent className="pt-4 text-center">
-                    <TrendingUp className="h-5 w-5 text-primary mx-auto mb-2" />
-                    <p className="text-2xl font-bold text-foreground">{stats.avgCycleLength}</p>
-                    <p className="text-xs text-muted-foreground">Avg Cycle Length</p>
-                  </CardContent>
-                </Card>
-                
-                {stats.avgPeriodLength && (
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-medium text-muted-foreground">Your Statistics</h3>
+                  <Button variant="ghost" size="sm" onClick={shareStats} className="gap-1">
+                    <Share2 className="h-4 w-4" />
+                    Share
+                  </Button>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-3">
                   <Card className="bg-secondary/50">
                     <CardContent className="pt-4 text-center">
-                      <Activity className="h-5 w-5 text-primary mx-auto mb-2" />
-                      <p className="text-2xl font-bold text-foreground">{stats.avgPeriodLength}</p>
-                      <p className="text-xs text-muted-foreground">Avg Period Length</p>
+                      <TrendingUp className="h-5 w-5 text-primary mx-auto mb-2" />
+                      <p className="text-2xl font-bold text-foreground">{stats.avgCycleLength}</p>
+                      <p className="text-xs text-muted-foreground">Avg Cycle Length</p>
                     </CardContent>
                   </Card>
-                )}
+                  
+                  {stats.avgPeriodLength && (
+                    <Card className="bg-secondary/50">
+                      <CardContent className="pt-4 text-center">
+                        <Activity className="h-5 w-5 text-primary mx-auto mb-2" />
+                        <p className="text-2xl font-bold text-foreground">{stats.avgPeriodLength}</p>
+                        <p className="text-xs text-muted-foreground">Avg Period Length</p>
+                      </CardContent>
+                    </Card>
+                  )}
 
-                <Card className="bg-primary/10 border-primary/20">
-                  <CardContent className="pt-4 text-center">
-                    <Calendar className="h-5 w-5 text-primary mx-auto mb-2" />
-                    <p className="text-lg font-bold text-primary">
-                      {format(stats.nextPeriod, "MMM d")}
-                    </p>
-                    <p className="text-xs text-muted-foreground">Next Period</p>
-                  </CardContent>
-                </Card>
+                  <Card className="bg-primary/10 border-primary/20">
+                    <CardContent className="pt-4 text-center">
+                      <Calendar className="h-5 w-5 text-primary mx-auto mb-2" />
+                      <p className="text-lg font-bold text-primary">
+                        {format(stats.nextPeriod, "MMM d")}
+                      </p>
+                      <p className="text-xs text-muted-foreground">Next Period</p>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             )}
 
-            {/* Add New Period */}
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -208,7 +245,7 @@ export default function CycleTracker() {
 
                 <div className="space-y-2">
                   <Label>Flow Intensity</Label>
-                  <Select value={flowIntensity} onValueChange={(v) => setFlowIntensity(v as any)}>
+                  <Select value={flowIntensity} onValueChange={(v) => setFlowIntensity(v as "light" | "medium" | "heavy")}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -228,10 +265,10 @@ export default function CycleTracker() {
                         key={symptom}
                         type="button"
                         onClick={() => toggleSymptom(symptom)}
-                        className={`rounded-full px-3 py-1 text-sm transition-colors ${
+                        className={`rounded-full px-3 py-1.5 text-sm transition-all border-2 ${
                           selectedSymptoms.includes(symptom)
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-secondary text-secondary-foreground hover:bg-muted"
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-secondary text-secondary-foreground hover:bg-muted border-transparent"
                         }`}
                       >
                         {symptom}
@@ -246,7 +283,6 @@ export default function CycleTracker() {
               </CardContent>
             </Card>
 
-            {/* Cycle History */}
             {cycles.length > 0 && (
               <Card>
                 <CardHeader>
@@ -265,7 +301,7 @@ export default function CycleTracker() {
                       return (
                         <div
                           key={cycle.id}
-                          className="flex items-start justify-between rounded-lg bg-muted p-4"
+                          className="flex items-start justify-between rounded-xl bg-muted p-4"
                         >
                           <div className="flex items-start gap-3">
                             <div className={`h-3 w-3 rounded-full mt-1.5 ${getFlowColor(cycle.flowIntensity)}`} />
@@ -304,9 +340,9 @@ export default function CycleTracker() {
                           </div>
                           <button
                             onClick={() => deleteCycle(cycle.id)}
-                            className="text-xs text-muted-foreground hover:text-destructive transition-colors"
+                            className="text-muted-foreground hover:text-destructive transition-colors p-2"
                           >
-                            Remove
+                            <Trash2 className="h-4 w-4" />
                           </button>
                         </div>
                       );
