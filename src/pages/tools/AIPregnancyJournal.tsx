@@ -1,7 +1,7 @@
 // src/pages/tools/AIPregnancyJournal.tsx
 import React, { useState, useEffect } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
-import { MedicalDisclaimer } from '@/components/compliance';
+import { MedicalInfoBar } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -22,7 +22,6 @@ interface JournalEntry {
 }
 
 const AIPregnancyJournal: React.FC = () => {
-  const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [privateMode, setPrivateMode] = useState(true);
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [newTitle, setNewTitle] = useState('');
@@ -186,15 +185,6 @@ const AIPregnancyJournal: React.FC = () => {
     }));
   };
 
-  if (showDisclaimer) {
-    return (
-      <MedicalDisclaimer
-        toolName="AI Pregnancy Journal"
-        onAccept={() => setShowDisclaimer(false)}
-      />
-    );
-  }
-
   return (
     <ToolFrame
       title="AI Pregnancy Journal"
@@ -204,6 +194,9 @@ const AIPregnancyJournal: React.FC = () => {
       icon={BookOpen}
     >
       <div className="space-y-6">
+          {/* Medical Info Bar */}
+          <MedicalInfoBar compact />
+          
           {/* Privacy Notice */}
           <Card>
             <CardContent className="p-6">
