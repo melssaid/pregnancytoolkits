@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
-import { MedicalDisclaimer } from '@/components/compliance';
+import { MedicalInfoBar } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, RefreshCw, Heart, Brain, Wind, Calendar, Clock, CheckCircle } from 'lucide-react';
+import { Play, Pause, RefreshCw, Heart, Brain, Wind, Calendar, Clock, CheckCircle, Video, Image as ImageIcon, ExternalLink } from 'lucide-react';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 
 interface Session {
@@ -16,6 +16,8 @@ interface Session {
   trimester: number[];
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   instructions: string[];
+  videoUrl?: string;
+  thumbnailUrl?: string;
 }
 
 const sessions: Session[] = [
@@ -34,7 +36,9 @@ const sessions: Session[] = [
       'Focus on your breathing pattern',
       'Visualize positive energy flowing through your body',
       'Set daily intentions for you and your baby'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/inpok4MKVLM',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=225&fit=crop'
   },
   {
     id: 'yoga-first-trimester',
@@ -51,7 +55,9 @@ const sessions: Session[] = [
       'Do seated side stretches',
       'Try gentle hip circles',
       'End with child pose relaxation'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/B10taRSlbio',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=225&fit=crop'
   },
   {
     id: 'breathing-labor-prep',
@@ -68,7 +74,9 @@ const sessions: Session[] = [
       'Learn patterned breathing for contractions',
       'Practice exhaling with pursed lips',
       'Combine breathing with visualization'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/tybOi4hjZFQ',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=225&fit=crop'
   },
   {
     id: 'yoga-second-trimester',
@@ -85,7 +93,9 @@ const sessions: Session[] = [
       'Do modified triangle pose',
       'Try gentle pigeon pose for hip opening',
       'Finish with relaxation pose'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/Ryxj3pzrRqk',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=225&fit=crop'
   },
   {
     id: 'meditation-sleep',
@@ -102,7 +112,9 @@ const sessions: Session[] = [
       'Practice progressive muscle relaxation',
       'Use guided imagery of peaceful scenes',
       'End with gratitude meditation'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/aEqlQvczMJQ',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1493836512294-502baa1986e2?w=400&h=225&fit=crop'
   },
   {
     id: 'yoga-third-trimester',
@@ -119,17 +131,19 @@ const sessions: Session[] = [
       'Do gentle pelvic tilts',
       'Try side-lying leg exercises',
       'End with supported relaxation pose'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/dWsLIYQ8m4s',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=225&fit=crop'
   }
 ];
 
 export default function PregnancyMeditationYoga() {
-  const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
   const [currentTrimester, setCurrentTrimester] = useState(2);
   const [isPlaying, setIsPlaying] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [completedSessions, setCompletedSessions] = useState<string[]>([]);
+  const [showVideo, setShowVideo] = useState(false);
   const isInitialized = useRef(false);
 
   useEffect(() => {
@@ -168,7 +182,8 @@ export default function PregnancyMeditationYoga() {
   const startSession = (session: Session) => {
     setSelectedSession(session);
     setTimeRemaining(session.duration);
-    setIsPlaying(true);
+    setIsPlaying(false);
+    setShowVideo(false);
   };
 
   const togglePause = () => {
@@ -186,6 +201,7 @@ export default function PregnancyMeditationYoga() {
     setIsPlaying(false);
     setSelectedSession(null);
     setTimeRemaining(0);
+    setShowVideo(false);
   };
 
   const formatTime = (seconds: number) => {
@@ -214,215 +230,254 @@ export default function PregnancyMeditationYoga() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'meditation':
-        return 'bg-purple-500/10 text-purple-600 border-purple-500/20';
+        return 'bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20';
       case 'yoga':
-        return 'bg-pink-500/10 text-pink-600 border-pink-500/20';
+        return 'bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/20';
       case 'breathing':
-        return 'bg-blue-500/10 text-blue-600 border-blue-500/20';
+        return 'bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20';
       default:
         return 'bg-primary/10 text-primary border-primary/20';
     }
   };
 
-  if (showDisclaimer) {
-    return (
-      <MedicalDisclaimer
-        toolName="Pregnancy Meditation & Yoga"
-        onAccept={() => setShowDisclaimer(false)}
-      />
-    );
-  }
-
   return (
     <ToolFrame
       title="Pregnancy Meditation & Yoga"
-      subtitle="Guided meditation and yoga sessions tailored for each trimester"
+      subtitle="Guided sessions with video demonstrations"
       icon={Heart}
       mood="calm"
       toolId="pregnancy-meditation-yoga"
     >
-        <div className="space-y-6">
-          {/* Active Session Player */}
-          {selectedSession && (
-            <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
-                      {getSessionIcon(selectedSession.type)}
-                      {selectedSession.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {selectedSession.description}
-                    </p>
-                  </div>
-                  <Button variant="ghost" size="sm" onClick={closePlayer}>
-                    ✕
+      <div className="space-y-6">
+        <MedicalInfoBar compact />
+        
+        {/* Active Session Player */}
+        {selectedSession && (
+          <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+            <CardContent className="p-4">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold flex items-center gap-2">
+                    {getSessionIcon(selectedSession.type)}
+                    {selectedSession.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {selectedSession.description}
+                  </p>
+                </div>
+                <Button variant="ghost" size="sm" onClick={closePlayer}>
+                  ✕
+                </Button>
+              </div>
+
+              {/* Video Player */}
+              {selectedSession.videoUrl && (
+                <div className="mb-4">
+                  {showVideo ? (
+                    <div className="aspect-video rounded-lg overflow-hidden bg-black">
+                      <iframe
+                        src={selectedSession.videoUrl}
+                        title={selectedSession.title}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <div 
+                      className="relative aspect-video rounded-lg overflow-hidden cursor-pointer group"
+                      onClick={() => setShowVideo(true)}
+                    >
+                      <img 
+                        src={selectedSession.thumbnailUrl} 
+                        alt={selectedSession.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
+                        <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
+                          <Play className="w-8 h-8 text-primary ml-1" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white text-sm">
+                        <Video className="w-4 h-4" />
+                        Watch Video Guide
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Timer Display */}
+              <div className="text-center py-6 bg-background/50 rounded-xl">
+                <div className="text-4xl font-bold text-primary mb-4">
+                  {formatTime(timeRemaining)}
+                </div>
+                <div className="flex justify-center gap-3">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={resetSession}
+                  >
+                    <RefreshCw className="w-5 h-5" />
+                  </Button>
+                  <Button
+                    size="lg"
+                    onClick={togglePause}
+                    className="px-8"
+                  >
+                    {isPlaying ? (
+                      <Pause className="w-5 h-5 mr-2" />
+                    ) : (
+                      <Play className="w-5 h-5 mr-2" />
+                    )}
+                    {isPlaying ? 'Pause' : 'Start Timer'}
                   </Button>
                 </div>
+              </div>
 
-                {/* Timer Display */}
-                <div className="text-center py-8">
-                  <div className="text-5xl font-bold text-primary mb-4">
-                    {formatTime(timeRemaining)}
-                  </div>
-                  <div className="flex justify-center gap-3">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={resetSession}
-                    >
-                      <RefreshCw className="w-5 h-5" />
-                    </Button>
-                    <Button
-                      size="lg"
-                      onClick={togglePause}
-                      className="px-8"
-                    >
-                      {isPlaying ? (
-                        <Pause className="w-5 h-5 mr-2" />
-                      ) : (
-                        <Play className="w-5 h-5 mr-2" />
-                      )}
-                      {isPlaying ? 'Pause' : 'Play'}
-                    </Button>
-                  </div>
+              {/* Instructions */}
+              <div className="mt-4">
+                <h4 className="font-medium mb-3 text-sm">Follow Along:</h4>
+                <ol className="space-y-2">
+                  {selectedSession.instructions.map((instruction, index) => (
+                    <li key={index} className="flex gap-3 text-sm text-muted-foreground">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-medium">
+                        {index + 1}
+                      </span>
+                      {instruction}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Trimester Selector */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-primary" />
+              Select Your Trimester
+            </h3>
+            <div className="grid grid-cols-3 gap-2">
+              {[1, 2, 3].map((trimester) => (
+                <Button
+                  key={trimester}
+                  variant={currentTrimester === trimester ? 'default' : 'outline'}
+                  onClick={() => setCurrentTrimester(trimester)}
+                  className="flex flex-col h-auto py-2"
+                  size="sm"
+                >
+                  <span className="text-base font-bold">{trimester}</span>
+                  <span className="text-[10px] opacity-80">
+                    {trimester === 1 ? 'Weeks 1-12' : trimester === 2 ? 'Weeks 13-26' : 'Weeks 27-40'}
+                  </span>
+                </Button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Progress Overview */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-emerald-500" />
+              Your Progress
+            </h3>
+            <div className="grid grid-cols-3 gap-3 text-center">
+              <div className="p-2 bg-muted/50 rounded-lg">
+                <div className="text-xl font-bold text-primary">
+                  {completedSessions.length}
                 </div>
+                <div className="text-[10px] text-muted-foreground">Completed</div>
+              </div>
+              <div className="p-2 bg-muted/50 rounded-lg">
+                <div className="text-xl font-bold text-primary">
+                  {sessions.length}
+                </div>
+                <div className="text-[10px] text-muted-foreground">Total</div>
+              </div>
+              <div className="p-2 bg-muted/50 rounded-lg">
+                <div className="text-xl font-bold text-primary">
+                  {Math.round((completedSessions.length / sessions.length) * 100)}%
+                </div>
+                <div className="text-[10px] text-muted-foreground">Complete</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-                {/* Instructions */}
-                <div className="mt-6">
-                  <h4 className="font-medium mb-3">Instructions:</h4>
-                  <ol className="space-y-2">
-                    {selectedSession.instructions.map((instruction, index) => (
-                      <li key={index} className="flex gap-3 text-sm text-muted-foreground">
-                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-medium">
-                          {index + 1}
-                        </span>
-                        {instruction}
-                      </li>
-                    ))}
-                  </ol>
+        {/* Session List */}
+        <div className="space-y-3">
+          <h3 className="text-sm font-semibold">
+            Sessions for Trimester {currentTrimester}
+          </h3>
+          {getFilteredSessions().map((session) => (
+            <Card 
+              key={session.id}
+              className={completedSessions.includes(session.id) ? 'border-emerald-500/30' : ''}
+            >
+              <CardContent className="p-3">
+                {/* Thumbnail */}
+                {session.thumbnailUrl && (
+                  <div className="relative aspect-video rounded-lg overflow-hidden mb-3">
+                    <img 
+                      src={session.thumbnailUrl} 
+                      alt={session.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {session.videoUrl && (
+                      <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                        <Video className="w-3 h-3" />
+                        Video
+                      </div>
+                    )}
+                    {completedSessions.includes(session.id) && (
+                      <div className="absolute top-2 left-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                        <CheckCircle className="w-3 h-3" />
+                        Done
+                      </div>
+                    )}
+                  </div>
+                )}
+                
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className={`p-1 rounded border ${getTypeColor(session.type)}`}>
+                        {getSessionIcon(session.type)}
+                      </span>
+                      <h4 className="font-semibold text-sm truncate">{session.title}</h4>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-2 line-clamp-2">
+                      {session.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-[10px] px-2 py-0.5 bg-muted rounded-full flex items-center gap-1">
+                        <Clock className="w-2.5 h-2.5" />
+                        {Math.floor(session.duration / 60)} min
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 bg-muted rounded-full capitalize">
+                        {session.difficulty}
+                      </span>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => startSession(session)}
+                    size="sm"
+                    className="flex-shrink-0"
+                  >
+                    <Play className="w-3 h-3 mr-1" />
+                    Start
+                  </Button>
                 </div>
               </CardContent>
             </Card>
-          )}
-
-          {/* Trimester Selector */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-primary" />
-                Select Your Trimester
-              </h3>
-              <div className="grid grid-cols-3 gap-3">
-                {[1, 2, 3].map((trimester) => (
-                  <Button
-                    key={trimester}
-                    variant={currentTrimester === trimester ? 'default' : 'outline'}
-                    onClick={() => setCurrentTrimester(trimester)}
-                    className="flex flex-col h-auto py-3"
-                  >
-                    <span className="text-lg font-bold">{trimester}</span>
-                    <span className="text-xs opacity-80">
-                      {trimester === 1 ? 'Weeks 1-12' : trimester === 2 ? 'Weeks 13-26' : 'Weeks 27-40'}
-                    </span>
-                  </Button>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Progress Overview */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                Your Progress
-              </h3>
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="p-3 bg-muted/50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">
-                    {completedSessions.length}
-                  </div>
-                  <div className="text-xs text-muted-foreground">Completed</div>
-                </div>
-                <div className="p-3 bg-muted/50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">
-                    {sessions.length}
-                  </div>
-                  <div className="text-xs text-muted-foreground">Total Sessions</div>
-                </div>
-                <div className="p-3 bg-muted/50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">
-                    {Math.round((completedSessions.length / sessions.length) * 100)}%
-                  </div>
-                  <div className="text-xs text-muted-foreground">Complete</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Session List */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">
-              Available Sessions for Trimester {currentTrimester}
-            </h3>
-            {getFilteredSessions().map((session) => (
-              <Card 
-                key={session.id}
-                className={completedSessions.includes(session.id) ? 'border-green-500/30' : ''}
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className={`p-1.5 rounded-lg border ${getTypeColor(session.type)}`}>
-                          {getSessionIcon(session.type)}
-                        </span>
-                        <h4 className="font-semibold">{session.title}</h4>
-                        {completedSessions.includes(session.id) && (
-                          <CheckCircle className="w-4 h-4 text-green-500" />
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        {session.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        <span className="text-xs px-2 py-1 bg-muted rounded-full flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          {Math.floor(session.duration / 60)} min
-                        </span>
-                        <span className="text-xs px-2 py-1 bg-muted rounded-full capitalize">
-                          {session.difficulty}
-                        </span>
-                        <span className="text-xs px-2 py-1 bg-muted rounded-full capitalize">
-                          {session.type}
-                        </span>
-                      </div>
-                      <div className="flex flex-wrap gap-1">
-                        {session.benefits.map((benefit, index) => (
-                          <span
-                            key={index}
-                            className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full"
-                          >
-                            {benefit}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <Button
-                      onClick={() => startSession(session)}
-                      className="flex-shrink-0"
-                    >
-                      <Play className="w-4 h-4 mr-1" />
-                      Start
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          ))}
         </div>
+      </div>
     </ToolFrame>
   );
 }

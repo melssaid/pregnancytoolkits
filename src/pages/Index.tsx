@@ -1,10 +1,10 @@
 import { useState, useMemo, memo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronDown, Search } from "lucide-react";
+import { Sparkles, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
-import { getSortedTools, getAITools, getToolsByCategory } from "@/lib/tools-data";
+import { getSortedTools, getToolsByCategory } from "@/lib/tools-data";
 import { Button } from "@/components/ui/button";
 import { SubscriptionModal } from "@/components/SubscriptionModal";
 
@@ -15,15 +15,16 @@ interface CategoryConfig {
   iconBg: string;
 }
 
+// Reordered categories: AI first, then most used
 const categoryConfig: CategoryConfig[] = [
   { key: "categories.ai", icon: Brain, bgColor: "bg-violet-50 dark:bg-violet-950/30", iconBg: "bg-gradient-to-br from-violet-500 to-purple-600" },
   { key: "categories.pregnancy", icon: Baby, bgColor: "bg-pink-50 dark:bg-pink-950/30", iconBg: "bg-gradient-to-br from-pink-500 to-rose-600" },
-  { key: "categories.wellness", icon: Dumbbell, bgColor: "bg-emerald-50 dark:bg-emerald-950/30", iconBg: "bg-gradient-to-br from-emerald-500 to-teal-600" },
-  { key: "categories.fertility", icon: Activity, bgColor: "bg-sky-50 dark:bg-sky-950/30", iconBg: "bg-gradient-to-br from-sky-500 to-blue-600" },
   { key: "categories.labor", icon: Clock, bgColor: "bg-orange-50 dark:bg-orange-950/30", iconBg: "bg-gradient-to-br from-orange-500 to-red-600" },
+  { key: "categories.wellness", icon: Dumbbell, bgColor: "bg-emerald-50 dark:bg-emerald-950/30", iconBg: "bg-gradient-to-br from-emerald-500 to-teal-600" },
   { key: "categories.mentalHealth", icon: Heart, bgColor: "bg-rose-50 dark:bg-rose-950/30", iconBg: "bg-gradient-to-br from-rose-500 to-pink-600" },
-  { key: "categories.riskAssessment", icon: AlertTriangle, bgColor: "bg-amber-50 dark:bg-amber-950/30", iconBg: "bg-gradient-to-br from-amber-500 to-orange-600" },
+  { key: "categories.fertility", icon: Activity, bgColor: "bg-sky-50 dark:bg-sky-950/30", iconBg: "bg-gradient-to-br from-sky-500 to-blue-600" },
   { key: "categories.preparation", icon: CheckCircle, bgColor: "bg-indigo-50 dark:bg-indigo-950/30", iconBg: "bg-gradient-to-br from-indigo-500 to-blue-600" },
+  { key: "categories.riskAssessment", icon: AlertTriangle, bgColor: "bg-amber-50 dark:bg-amber-950/30", iconBg: "bg-gradient-to-br from-amber-500 to-orange-600" },
   { key: "categories.postpartum", icon: Flower2, bgColor: "bg-fuchsia-50 dark:bg-fuchsia-950/30", iconBg: "bg-gradient-to-br from-fuchsia-500 to-purple-600" },
 ];
 
@@ -62,7 +63,7 @@ const Index = () => {
             Pregnancy <span className="text-primary">Toolkits</span>
           </h1>
           <p className="text-xs text-muted-foreground">
-            {totalTools} professional tools for your journey
+            Your complete pregnancy companion
           </p>
         </div>
       </section>
@@ -74,66 +75,66 @@ const Index = () => {
             const allTools = getToolsByCategory(cat.key);
             const isExpanded = expandedCategories.has(cat.key);
             const displayTools = isExpanded ? allTools : allTools.slice(0, 3);
+            const remainingCount = allTools.length - 3;
             const Icon = cat.icon;
             
             if (allTools.length === 0) return null;
 
             return (
               <div key={cat.key} className="overflow-hidden">
-                {/* Category Header */}
-                <button
-                  onClick={() => toggleCategory(cat.key)}
-                  className={`w-full rounded-xl ${cat.bgColor} p-3 flex items-center justify-between transition-all duration-200 hover:opacity-90`}
-                >
-                  <div className="flex items-center gap-3">
+                {/* Category Header - Clean design without tool count */}
+                <div className={`rounded-xl ${cat.bgColor} p-3`}>
+                  <div className="flex items-center gap-3 mb-3">
                     <div className={`w-10 h-10 rounded-xl ${cat.iconBg} flex items-center justify-center text-white shadow-sm`}>
                       <Icon className="w-5 h-5" />
                     </div>
-                    <div className="text-left">
-                      <h2 className="text-sm font-semibold text-foreground">{t(cat.key)}</h2>
-                      <p className="text-[10px] text-muted-foreground">{allTools.length} tools</p>
-                    </div>
+                    <h2 className="text-sm font-semibold text-foreground">{t(cat.key)}</h2>
                   </div>
-                  <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
-                </button>
 
-                {/* Tools List */}
-                <AnimatePresence initial={false}>
-                  <motion.div
-                    initial={false}
-                    animate={{ 
-                      height: "auto",
-                      opacity: 1 
-                    }}
-                    className="mt-2 space-y-1.5"
-                  >
-                    {displayTools.map((tool, index) => (
-                      <MemoizedToolCard
-                        key={tool.id}
-                        titleKey={tool.titleKey}
-                        descriptionKey={tool.descriptionKey}
-                        icon={tool.icon}
-                        href={tool.href}
-                        categoryKey={tool.categoryKey}
-                        index={index}
-                        hasAI={false}
-                      />
-                    ))}
+                  {/* Tools List */}
+                  <div className="space-y-1.5">
+                    <AnimatePresence initial={false} mode="sync">
+                      {displayTools.map((tool, index) => (
+                        <motion.div
+                          key={tool.id}
+                          initial={index >= 3 ? { opacity: 0, height: 0 } : false}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+                          <MemoizedToolCard
+                            titleKey={tool.titleKey}
+                            descriptionKey={tool.descriptionKey}
+                            icon={tool.icon}
+                            href={tool.href}
+                            categoryKey={tool.categoryKey}
+                            index={index}
+                            hasAI={false}
+                          />
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
                     
-                    {/* Show More Button */}
-                    {allTools.length > 3 && !isExpanded && (
+                    {/* Show More Button - Professional design */}
+                    {allTools.length > 3 && (
                       <motion.button
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
                         onClick={() => toggleCategory(cat.key)}
-                        className="w-full py-2 text-xs font-medium text-primary hover:text-primary/80 flex items-center justify-center gap-1 transition-colors"
+                        className="w-full py-2.5 mt-2 rounded-lg bg-background/60 hover:bg-background/80 border border-border/50 flex items-center justify-center gap-2 transition-all duration-200 group"
+                        whileTap={{ scale: 0.98 }}
                       >
-                        Show {allTools.length - 3} more
-                        <ChevronDown className="w-3.5 h-3.5" />
+                        <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                          {isExpanded ? 'Show Less' : `+${remainingCount} More`}
+                        </span>
+                        <motion.div
+                          animate={{ rotate: isExpanded ? 90 : 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                        </motion.div>
                       </motion.button>
                     )}
-                  </motion.div>
-                </AnimatePresence>
+                  </div>
+                </div>
               </div>
             );
           })}
@@ -151,7 +152,7 @@ const Index = () => {
               </div>
               <h2 className="text-lg font-bold mb-2">3 Days Free Access</h2>
               <p className="text-xs opacity-90 mb-4">
-                All {totalTools} tools • Then $1.99/month
+                Full access to all tools • Then $1.99/month
               </p>
               <Button 
                 size="sm" 
