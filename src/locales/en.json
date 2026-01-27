@@ -309,12 +309,16 @@
       "description": "Safe massage techniques for comfort and relaxation."
     },
     "aiLegCrampPreventer": {
-      "title": "AI Leg Cramp Preventer",
-      "description": "Prevent and relieve pregnancy leg cramps."
+      "title": "AI Mobility Coach",
+      "description": "Walking tips & leg cramp prevention."
     },
     "smartWalkingCoach": {
-      "title": "Smart Walking Coach",
-      "description": "Guided walking sessions for pregnancy fitness."
+      "title": "AI Mobility Coach",
+      "description": "Walking tips & leg cramp prevention."
+    },
+    "aiMobilityCoach": {
+      "title": "AI Mobility Coach",
+      "description": "Walking tips & leg cramp prevention for pregnancy."
     },
     "aiCravingAlternatives": {
       "title": "AI Craving Alternatives",

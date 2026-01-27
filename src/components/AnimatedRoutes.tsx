@@ -24,13 +24,12 @@ import AIBirthStoryGenerator from "@/pages/tools/AIBirthStoryGenerator";
 import SmartGroceryList from "@/pages/tools/SmartGroceryList";
 
 // ═══════════════════════════════════════════════════════════════
-// AI WELLNESS & FITNESS TOOLS (7 tools)
+// AI WELLNESS & FITNESS TOOLS (6 tools) - CONSOLIDATED
 // ═══════════════════════════════════════════════════════════════
 import AIPostureCoach from "@/pages/tools/AIPostureCoach";
 import SmartStretchReminder from "@/pages/tools/SmartStretchReminder";
 import AIBackPainRelief from "@/pages/tools/AIBackPainRelief";
-import AILegCrampPreventer from "@/pages/tools/AILegCrampPreventer";
-import SmartWalkingCoach from "@/pages/tools/SmartWalkingCoach";
+import AIMobilityCoach from "@/pages/tools/AIMobilityCoach";
 import PregnancySmoothieAI from "@/pages/tools/PregnancySmoothieAI";
 import AIFitnessCoach from "@/pages/tools/AIFitnessCoach";
 
@@ -117,13 +116,15 @@ export function AnimatedRoutes() {
         <Route path="/tools/smart-grocery-list" element={<PageTransition><SmartGroceryList /></PageTransition>} />
 
         {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* AI WELLNESS & FITNESS TOOLS */}
+        {/* AI WELLNESS & FITNESS TOOLS (Consolidated) */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <Route path="/tools/ai-posture-coach" element={<PageTransition><AIPostureCoach /></PageTransition>} />
         <Route path="/tools/smart-stretch-reminder" element={<PageTransition><SmartStretchReminder /></PageTransition>} />
         <Route path="/tools/ai-back-pain-relief" element={<PageTransition><AIBackPainRelief /></PageTransition>} />
-        <Route path="/tools/ai-leg-cramp-preventer" element={<PageTransition><AILegCrampPreventer /></PageTransition>} />
-        <Route path="/tools/smart-walking-coach" element={<PageTransition><SmartWalkingCoach /></PageTransition>} />
+        <Route path="/tools/ai-mobility-coach" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
+        {/* Aliases for merged tools */}
+        <Route path="/tools/ai-leg-cramp-preventer" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
+        <Route path="/tools/smart-walking-coach" element={<PageTransition><AIMobilityCoach /></PageTransition>} />
         <Route path="/tools/pregnancy-smoothie-ai" element={<PageTransition><PregnancySmoothieAI /></PageTransition>} />
         <Route path="/tools/exercise-guide" element={<PageTransition><AIFitnessCoach /></PageTransition>} />
 
