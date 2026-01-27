@@ -45,21 +45,47 @@ const AIPregnancyJournal: React.FC = () => {
     'Mood Swings', 'Back Pain', 'Braxton Hicks'
   ];
 
+  // UTF-8 safe Base64 encoding/decoding
+  const encodeUTF8 = (str: string): string => {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) => 
+      String.fromCharCode(parseInt(p1, 16))
+    ));
+  };
+
+  const decodeUTF8 = (str: string): string => {
+    return decodeURIComponent(
+      atob(str).split('').map(c => 
+        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      ).join('')
+    );
+  };
+
   useEffect(() => {
     const saved = localStorage.getItem('pregnancyJournal_encrypted');
     if (saved) {
       try {
-        const decrypted = atob(saved); // Simple encoding - في تطبيق حقيقي استخدم AES-256
+        const decrypted = decodeUTF8(saved);
         setEntries(JSON.parse(decrypted));
       } catch (e) {
         console.error('Failed to load journal');
+        // Try plain JSON as fallback for legacy data
+        try {
+          const legacy = localStorage.getItem('pregnancyJournal_encrypted');
+          if (legacy) {
+            const parsed = JSON.parse(atob(legacy));
+            setEntries(parsed);
+          }
+        } catch {
+          // Clear corrupted data
+          localStorage.removeItem('pregnancyJournal_encrypted');
+        }
       }
     }
   }, []);
 
   useEffect(() => {
-    if (privateMode) {
-      const encrypted = btoa(JSON.stringify(entries)); // Simple encoding
+    if (privateMode && entries.length > 0) {
+      const encrypted = encodeUTF8(JSON.stringify(entries));
       localStorage.setItem('pregnancyJournal_encrypted', encrypted);
     }
   }, [entries, privateMode]);
