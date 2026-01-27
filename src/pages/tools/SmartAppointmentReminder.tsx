@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
-import { MedicalDisclaimer } from '@/components/compliance';
+import { MedicalInfoBar } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Calendar, Clock, Bell, Plus, Trash2, CheckCircle, AlertCircle, Brain, Loader2 } from 'lucide-react';
+import { Calendar, Clock, Bell, Plus, Trash2, CheckCircle, AlertCircle, Brain, Loader2, Archive, ChevronDown, ChevronUp } from 'lucide-react';
 import { format, isBefore, isToday, addDays } from 'date-fns';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -42,9 +42,9 @@ const suggestedQuestions = [
 ];
 
 export default function SmartAppointmentReminder() {
-  const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const [showArchive, setShowArchive] = useState(false);
   const [currentWeek, setCurrentWeek] = useState(20);
   const [showAIPrep, setShowAIPrep] = useState(false);
   const [aiResponse, setAiResponse] = useState('');
@@ -140,14 +140,24 @@ export default function SmartAppointmentReminder() {
     setNewAppointment({ title: '', date: '', time: '', type: 'prenatal', notes: '', questions: [] });
     setShowForm(false);
     
-    toast.success('Appointment saved successfully!');
+    // Show success message with appointment details
+    const aptType = appointmentTypes.find(t => t.id === newAppointment.type);
+    const formattedDate = format(new Date(newAppointment.date), 'EEE, MMM d, yyyy');
+    const timeStr = newAppointment.time ? ` at ${newAppointment.time}` : '';
+    
+    toast.success(
+      `✅ Appointment Added Successfully!`,
+      {
+        description: `${aptType?.icon || '📅'} ${newAppointment.title} on ${formattedDate}${timeStr}`,
+        duration: 5000,
+      }
+    );
     
     // Add notification for the new appointment
-    const aptType = appointmentTypes.find(t => t.id === newAppointment.type);
     addNotification({
       type: 'appointment',
       title: `📅 New Appointment Added`,
-      message: `${aptType?.icon || '🏥'} ${newAppointment.title} on ${format(new Date(newAppointment.date), 'MMM d, yyyy')}`,
+      message: `${aptType?.icon || '🏥'} ${newAppointment.title} on ${formattedDate}`,
       actionUrl: '/tools/smart-appointment-reminder',
     });
   }, [newAppointment, appointments, addNotification]);
@@ -197,15 +207,6 @@ export default function SmartAppointmentReminder() {
   const upcomingAppointments = appointments.filter(a => !a.completed && !isBefore(new Date(a.date), new Date()));
   const pastAppointments = appointments.filter(a => a.completed || isBefore(new Date(a.date), new Date()));
 
-  if (showDisclaimer) {
-    return (
-      <MedicalDisclaimer
-        toolName="Smart Appointment Reminder"
-        onAccept={() => setShowDisclaimer(false)}
-      />
-    );
-  }
-
   return (
     <ToolFrame
       title="Smart Appointment Reminder"
@@ -215,6 +216,9 @@ export default function SmartAppointmentReminder() {
       toolId="smart-appointment-reminder"
     >
       <div className="space-y-6">
+        {/* Medical Info Bar */}
+        <MedicalInfoBar compact />
+        
         {/* Week Selector */}
         <Card>
           <CardContent className="p-4">
@@ -267,8 +271,8 @@ export default function SmartAppointmentReminder() {
                 onChange={(e) => setNewAppointment(prev => ({ ...prev, title: e.target.value }))}
               />
 
-              <div className="grid grid-cols-2 gap-2">
-                <div className="flex items-center gap-1.5">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                   <Input
                     type="date"
@@ -277,13 +281,14 @@ export default function SmartAppointmentReminder() {
                     className="flex-1"
                   />
                 </div>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                   <Input
                     type="time"
                     value={newAppointment.time}
                     onChange={(e) => setNewAppointment(prev => ({ ...prev, time: e.target.value }))}
-                    className="flex-1 min-w-[120px]"
+                    className="flex-1"
+                    style={{ minWidth: '140px' }}
                   />
                 </div>
               </div>
@@ -391,7 +396,7 @@ export default function SmartAppointmentReminder() {
                             onClick={() => markComplete(apt.id)}
                             className="p-1.5 rounded-lg hover:bg-background transition-colors"
                           >
-                            <CheckCircle className="w-4 h-4 text-green-600" />
+                            <CheckCircle className="w-4 h-4 text-emerald-600" />
                           </button>
                           <button
                             onClick={() => deleteAppointment(apt.id)}
@@ -423,6 +428,68 @@ export default function SmartAppointmentReminder() {
           </Card>
         )}
 
+        {/* Archive Section - Past/Completed Appointments */}
+        {pastAppointments.length > 0 && (
+          <Card>
+            <CardContent className="p-4">
+              <button
+                onClick={() => setShowArchive(!showArchive)}
+                className="w-full flex items-center justify-between"
+              >
+                <h3 className="text-lg font-semibold flex items-center gap-2">
+                  <Archive className="w-5 h-5 text-muted-foreground" />
+                  Archive ({pastAppointments.length})
+                </h3>
+                {showArchive ? (
+                  <ChevronUp className="w-5 h-5 text-muted-foreground" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                )}
+              </button>
+              
+              {showArchive && (
+                <div className="mt-4 space-y-3">
+                  {pastAppointments.map((apt) => {
+                    const aptType = appointmentTypes.find(t => t.id === apt.type);
+                    
+                    return (
+                      <div
+                        key={apt.id}
+                        className="p-3 rounded-lg bg-muted/30 opacity-75"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className="text-xl">{aptType?.icon}</span>
+                            <div>
+                              <p className="font-medium text-sm line-through">{apt.title}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {format(new Date(apt.date), 'EEE, MMM d')} {apt.time && `at ${apt.time}`}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {apt.completed && (
+                              <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full dark:bg-emerald-900/30 dark:text-emerald-400">
+                                ✓ Done
+                              </span>
+                            )}
+                            <button
+                              onClick={() => deleteAppointment(apt.id)}
+                              className="p-1 rounded-lg hover:bg-destructive/10 transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4 text-muted-foreground" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
         {/* Empty State */}
         {appointments.length === 0 && !showForm && (
           <Card>
@@ -435,19 +502,6 @@ export default function SmartAppointmentReminder() {
             </CardContent>
           </Card>
         )}
-
-        {/* Disclaimer */}
-        <Card className="bg-muted/30">
-          <CardContent className="p-4">
-            <div className="flex gap-3">
-              <AlertCircle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-              <p className="text-xs text-muted-foreground">
-                This tool helps you organize appointments but does not provide medical reminders. 
-                Always follow your healthcare provider's schedule and recommendations.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </ToolFrame>
   );
