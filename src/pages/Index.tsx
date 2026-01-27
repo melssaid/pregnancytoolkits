@@ -15,17 +15,17 @@ interface CategoryConfig {
   iconBg: string;
 }
 
-// Reordered categories: AI first, then most used
+// Reordered categories with harmonious theme colors
 const categoryConfig: CategoryConfig[] = [
-  { key: "categories.ai", icon: Brain, bgColor: "bg-violet-50 dark:bg-violet-950/30", iconBg: "bg-gradient-to-br from-violet-500 to-purple-600" },
-  { key: "categories.pregnancy", icon: Baby, bgColor: "bg-pink-50 dark:bg-pink-950/30", iconBg: "bg-gradient-to-br from-pink-500 to-rose-600" },
-  { key: "categories.labor", icon: Clock, bgColor: "bg-orange-50 dark:bg-orange-950/30", iconBg: "bg-gradient-to-br from-orange-500 to-red-600" },
-  { key: "categories.wellness", icon: Dumbbell, bgColor: "bg-emerald-50 dark:bg-emerald-950/30", iconBg: "bg-gradient-to-br from-emerald-500 to-teal-600" },
-  { key: "categories.mentalHealth", icon: Heart, bgColor: "bg-rose-50 dark:bg-rose-950/30", iconBg: "bg-gradient-to-br from-rose-500 to-pink-600" },
-  { key: "categories.fertility", icon: Activity, bgColor: "bg-sky-50 dark:bg-sky-950/30", iconBg: "bg-gradient-to-br from-sky-500 to-blue-600" },
-  { key: "categories.preparation", icon: CheckCircle, bgColor: "bg-indigo-50 dark:bg-indigo-950/30", iconBg: "bg-gradient-to-br from-indigo-500 to-blue-600" },
-  { key: "categories.riskAssessment", icon: AlertTriangle, bgColor: "bg-amber-50 dark:bg-amber-950/30", iconBg: "bg-gradient-to-br from-amber-500 to-orange-600" },
-  { key: "categories.postpartum", icon: Flower2, bgColor: "bg-fuchsia-50 dark:bg-fuchsia-950/30", iconBg: "bg-gradient-to-br from-fuchsia-500 to-purple-600" },
+  { key: "categories.ai", icon: Brain, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
+  { key: "categories.pregnancy", icon: Baby, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
+  { key: "categories.labor", icon: Clock, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
+  { key: "categories.wellness", icon: Dumbbell, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
+  { key: "categories.mentalHealth", icon: Heart, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
+  { key: "categories.fertility", icon: Activity, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
+  { key: "categories.preparation", icon: CheckCircle, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
+  { key: "categories.riskAssessment", icon: AlertTriangle, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
+  { key: "categories.postpartum", icon: Flower2, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
 ];
 
 // Memoized ToolCard for performance
@@ -72,12 +72,13 @@ const Index = () => {
             return (
               <div key={cat.key} className="overflow-hidden">
                 {/* Category Card - Elegant light frame */}
-                <div className="rounded-2xl bg-card/80 backdrop-blur-sm border border-border/40 shadow-sm p-4">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-9 h-9 rounded-xl ${cat.iconBg} flex items-center justify-center text-white shadow-sm`}>
-                      <Icon className="w-4 h-4" />
+                <div className="rounded-2xl bg-card/90 backdrop-blur-sm border border-border/30 shadow-sm p-4">
+                  {/* Category Header - Refined design */}
+                  <div className="flex items-center gap-2.5 mb-3 pb-2.5 border-b border-border/30">
+                    <div className={`w-7 h-7 rounded-lg ${cat.iconBg} flex items-center justify-center`}>
+                      <Icon className="w-3.5 h-3.5 text-primary" />
                     </div>
-                    <h2 className="text-sm font-semibold text-foreground">{t(cat.key)}</h2>
+                    <h2 className="text-base font-bold text-foreground tracking-tight">{t(cat.key)}</h2>
                   </div>
 
                   {/* Tools List */}
