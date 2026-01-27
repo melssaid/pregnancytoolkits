@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Salad, Apple, Info, Check, AlertCircle, ShoppingBasket } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
+import { Salad, Apple, Info, Check, AlertCircle, ShoppingBasket } from 'lucide-react';
+import { ToolFrame } from '@/components/ToolFrame';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import MedicalDisclaimer from '@/components/compliance/MedicalDisclaimer';
 
-// Types
 interface NutrientInfo {
   name: string;
   amount: string;
@@ -18,21 +20,16 @@ interface MealPlan {
   dinner: string[];
 }
 
-const SmartNutritionOptimizer: React.FC = () => {
-  const navigate = useNavigate();
-  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
+export default function SmartNutritionOptimizer() {
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentWeek, setCurrentWeek] = useState(12);
-  const [dietaryPref, setDietaryPref] = useState('standard'); // standard, vegetarian, vegan, gluten-free
+  const [dietaryPref, setDietaryPref] = useState('standard');
   const [plan, setPlan] = useState<MealPlan | null>(null);
   const [nutrients, setNutrients] = useState<NutrientInfo[]>([]);
 
-  // Function to generate data based on week and preferences
-  // This simulates the "Smart" part that was broken before
   const generateNutritionData = (week: number, diet: string) => {
-    // 1. Determine Trimester
     const trimester = week <= 13 ? 1 : week <= 26 ? 2 : 3;
 
-    // 2. Select key nutrients based on trimester
     let keyNutrients: NutrientInfo[] = [];
     if (trimester === 1) {
       keyNutrients = [
@@ -51,7 +48,6 @@ const SmartNutritionOptimizer: React.FC = () => {
       ];
     }
 
-    // 3. Generate Meal Plan based on Diet
     const baseMeals = {
       standard: {
         breakfast: ['Oatmeal with berries', 'Greek yogurt parfait'],
@@ -75,149 +71,156 @@ const SmartNutritionOptimizer: React.FC = () => {
 
     const selectedPlan = baseMeals[diet as keyof typeof baseMeals] || baseMeals.standard;
 
-    // Adjust meals slightly for trimester ( caloric needs)
     if (trimester > 1) {
-      // Add extra snack for 2nd/3rd trimester
-      selectedPlan.snack.push('Cheese stick or trail mix');
+      selectedPlan.snack.push('Extra fruit or yogurt (300+ kcal)');
     }
 
-    setNutrients(keyNutrients);
     setPlan(selectedPlan);
+    setNutrients(keyNutrients);
   };
 
-  // EFFECT: Update data whenever week or diet changes
   useEffect(() => {
     generateNutritionData(currentWeek, dietaryPref);
   }, [currentWeek, dietaryPref]);
 
-  if (!disclaimerAccepted) {
-    return <MedicalDisclaimer toolName="Smart Nutrition Optimizer" onAccept={() => setDisclaimerAccepted(true)} />;
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName="Smart Nutrition Optimizer"
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
   }
 
+  const trimester = currentWeek <= 13 ? 1 : currentWeek <= 26 ? 2 : 3;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
-      {/* Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
-          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
-            <ArrowLeft className="w-6 h-6 text-gray-600" />
-          </button>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
-              <Salad className="w-5 h-5 text-green-600" />
-            </div>
+    <ToolFrame
+      title="Smart Nutrition Optimizer"
+      subtitle="Personalized meal planning for your pregnancy week"
+      icon={Salad}
+      mood="joyful"
+      toolId="smart-nutrition"
+    >
+      <div className="space-y-6">
+        {/* Week Selector */}
+        <Card>
+          <CardContent className="p-4 space-y-4">
             <div>
-              <h1 className="text-lg font-bold text-gray-900">Nutrition Optimizer</h1>
-              <p className="text-xs text-gray-500">Tailored to your week</p>
+              <label className="block text-sm font-medium mb-2">
+                Pregnancy Week: <span className="text-primary font-bold">{currentWeek}</span>
+              </label>
+              <input
+                type="range"
+                min="4"
+                max="42"
+                value={currentWeek}
+                onChange={(e) => setCurrentWeek(Number(e.target.value))}
+                className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+              />
+              <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                <span>Week 4</span>
+                <span className="font-medium text-primary">Trimester {trimester}</span>
+                <span>Week 42</span>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
-        {/* Controls */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Pregnancy Week: <span className="text-green-600 font-bold">{currentWeek}</span>
-            </label>
-            <input
-              type="range"
-              min="4"
-              max="42"
-              value={currentWeek}
-              onChange={(e) => setCurrentWeek(Number(e.target.value))}
-              className="w-full h-2 bg-green-100 rounded-lg appearance-none cursor-pointer accent-green-600"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Dietary Preference</label>
-            <div className="flex flex-wrap gap-2">
-              {['standard', 'vegetarian', 'vegan'].map((type) => (
-                <button
-                  key={type}
-                  onClick={() => setDietaryPref(type)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium capitalize transition-colors ${
-                    dietaryPref === type
-                      ? 'bg-green-600 text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
-                >
-                  {type}
-                </button>
-              ))}
+            <div>
+              <label className="block text-sm font-medium mb-2">Dietary Preference</label>
+              <div className="flex flex-wrap gap-2">
+                {['standard', 'vegetarian', 'vegan'].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setDietaryPref(type)}
+                    className={`px-4 py-2 rounded-full text-sm capitalize transition-all border-2 ${
+                      dietaryPref === type
+                        ? 'bg-primary text-primary-foreground border-primary'
+                        : 'bg-muted hover:bg-muted/80 border-transparent'
+                    }`}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Key Nutrients */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <Apple className="w-5 h-5 text-green-500" />
-            Essential Nutrients for Week {currentWeek}
-          </h2>
-          <div className="space-y-3">
-            {nutrients.map((item, index) => (
-              <div key={index} className="bg-green-50 rounded-xl p-3 border border-green-100">
-                <div className="flex justify-between items-start mb-1">
-                  <h3 className="font-semibold text-green-900">{item.name}</h3>
-                  <span className="text-xs bg-white px-2 py-0.5 rounded-full text-green-700 border border-green-200 font-medium">
-                    {item.amount}
-                  </span>
-                </div>
-                <p className="text-sm text-green-800 mb-2">{item.benefits}</p>
-                <div className="flex flex-wrap gap-1">
-                  {item.sources.map((source, i) => (
-                    <span key={i} className="text-xs text-gray-600 bg-white px-2 py-1 rounded-md">
-                      {source}
-                    </span>
-                  ))}
-                </div>
+        {nutrients.length > 0 && (
+          <Card>
+            <CardContent className="p-4 space-y-4">
+              <h3 className="font-semibold flex items-center gap-2">
+                <Apple className="w-5 h-5 text-primary" />
+                Key Nutrients for Week {currentWeek}
+              </h3>
+              <div className="space-y-3">
+                {nutrients.map((nutrient, idx) => (
+                  <div key={idx} className="bg-muted/50 rounded-xl p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium">{nutrient.name}</span>
+                      <span className="text-sm text-primary font-semibold">{nutrient.amount}</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-2">{nutrient.benefits}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {nutrient.sources.map((source, i) => (
+                        <span key={i} className="text-xs px-2 py-1 bg-background rounded-full">
+                          {source}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Meal Plan */}
         {plan && (
-          <div className="bg-white rounded-2xl p-5 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <ShoppingBasket className="w-5 h-5 text-orange-500" />
-              Suggested Daily Plan
-            </h2>
-            <div className="space-y-4">
-              <MealSection title="Breakfast" items={plan.breakfast} />
-              <MealSection title="Lunch" items={plan.lunch} />
-              <MealSection title="Dinner" items={plan.dinner} />
-              <MealSection title="Snacks" items={plan.snack} />
-            </div>
-          </div>
+          <Card>
+            <CardContent className="p-4 space-y-4">
+              <h3 className="font-semibold flex items-center gap-2">
+                <ShoppingBasket className="w-5 h-5 text-primary" />
+                Sample Meal Plan
+              </h3>
+              
+              {(['breakfast', 'lunch', 'snack', 'dinner'] as const).map((meal) => (
+                <div key={meal} className="bg-muted/50 rounded-xl p-4">
+                  <h4 className="font-medium capitalize mb-2 flex items-center gap-2">
+                    {meal === 'breakfast' && '🌅'}
+                    {meal === 'lunch' && '☀️'}
+                    {meal === 'snack' && '🍎'}
+                    {meal === 'dinner' && '🌙'}
+                    {meal}
+                  </h4>
+                  <ul className="space-y-1">
+                    {plan[meal].map((item, i) => (
+                      <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                        <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
         )}
 
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3">
-          <Info className="w-5 h-5 text-blue-600 flex-shrink-0" />
-          <p className="text-sm text-blue-800">
-            <strong>Hydration Tip:</strong> Don't forget to drink plenty of water! Aim for 8-10 glasses a day to support your increased blood volume.
-          </p>
-        </div>
+        {/* Tips */}
+        <Card className="bg-muted/30">
+          <CardContent className="p-4">
+            <div className="flex items-start gap-3">
+              <Info className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-muted-foreground">
+                These are general recommendations. Always consult with your healthcare provider 
+                for personalized nutrition advice during pregnancy.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
       </div>
-    </div>
+    </ToolFrame>
   );
-};
-
-const MealSection = ({ title, items }: { title: string; items: string[] }) => (
-  <div className="border-b border-gray-100 last:border-0 pb-3 last:pb-0">
-    <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">{title}</h3>
-    <ul className="space-y-2">
-      {items.map((item, idx) => (
-        <li key={idx} className="flex items-start gap-2 text-gray-800">
-          <Check className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
-          <span className="text-sm">{item}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-
-export default SmartNutritionOptimizer;
+}
