@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion';
-import { Sparkles, Baby, Moon, Star, Heart } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import type { ReactNode } from 'react';
+import { Sparkles, Baby, Moon, Star, Heart, Waves } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { PlacedFurniture, RoomTheme } from './types';
 import { ROOM_THEMES, FURNITURE_ASSETS } from './types';
@@ -9,7 +8,7 @@ export interface DesignTemplate {
   id: string;
   name: string;
   description: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   theme: RoomTheme;
   furniture: Omit<PlacedFurniture, 'instanceId'>[];
   preview: string;
@@ -120,7 +119,7 @@ export const DESIGN_TEMPLATES: DesignTemplate[] = [
     id: 'ocean-dreams',
     name: 'Ocean Dreams',
     description: 'Calming ocean-themed nursery',
-    icon: <span className="text-lg">🌊</span>,
+    icon: <Waves className="w-5 h-5" />,
     theme: ROOM_THEMES.find(t => t.id === 'ocean-teal') || ROOM_THEMES[0],
     preview: '🌊☁️💤',
     furniture: [
