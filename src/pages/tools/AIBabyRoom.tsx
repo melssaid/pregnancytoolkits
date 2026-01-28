@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Home, Sparkles, Shield, Lightbulb, Wand2, Save, Download, FolderOpen } from "lucide-react";
+import { Home, Sparkles, Shield, Lightbulb, Wand2, Save, Download, Layout } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -16,10 +16,12 @@ import {
   RoomCanvas,
   AssetLibrary,
   ThemeSelector,
+  TemplateGallery,
   ROOM_THEMES,
   type PlacedFurniture,
   type FurnitureAsset,
   type RoomTheme,
+  type DesignTemplate,
 } from "@/components/room-designer";
 
 const safetyChecklist = [
@@ -45,6 +47,7 @@ const AIBabyRoom = () => {
   const [placedFurniture, setPlacedFurniture] = useState<PlacedFurniture[]>([]);
   const [response, setResponse] = useState("");
   const [showDesignPanel, setShowDesignPanel] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(true);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   // Load saved design on mount
@@ -81,6 +84,7 @@ const AIBabyRoom = () => {
       scale: 1,
     };
     setPlacedFurniture((prev) => [...prev, newItem]);
+    setShowTemplates(false);
     toast.success(`${asset.name} added!`);
   }, []);
 
@@ -103,9 +107,21 @@ const AIBabyRoom = () => {
     setPlacedFurniture([]);
     setResponse("");
     setShowDesignPanel(false);
+    setShowTemplates(true);
     setHasUnsavedChanges(false);
     clearDesign();
   }, [clearDesign]);
+
+  const handleSelectTemplate = useCallback((template: DesignTemplate) => {
+    const furnitureWithIds: PlacedFurniture[] = template.furniture.map((item, index) => ({
+      ...item,
+      instanceId: `${item.id}-template-${Date.now()}-${index}`,
+    }));
+    setPlacedFurniture(furnitureWithIds);
+    setSelectedTheme(template.theme);
+    setShowTemplates(false);
+    toast.success(`Template "${template.name}" applied!`);
+  }, []);
 
   const getAIDesignPlan = async () => {
     const furnitureList = placedFurniture.map((f) => f.name).join(", ");
@@ -170,6 +186,16 @@ Include specific product recommendations and estimated costs where helpful.`;
             </p>
           </div>
         </div>
+
+        {/* Template Gallery - shown when no design started */}
+        {showTemplates && !roomImage && placedFurniture.length === 0 && (
+          <Card className="p-4">
+            <TemplateGallery
+              onSelectTemplate={handleSelectTemplate}
+              currentTheme={selectedTheme}
+            />
+          </Card>
+        )}
 
         {/* Main Workspace */}
         <div ref={canvasContainerRef} className="relative min-h-[400px] rounded-2xl overflow-hidden border bg-muted/30">
@@ -253,6 +279,15 @@ Include specific product recommendations and estimated costs where helpful.`;
             >
               <Download className="w-4 h-4" />
               Export JPG
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowTemplates(true)}
+              className="gap-1.5"
+            >
+              <Layout className="w-4 h-4" />
+              Templates
             </Button>
             <Button
               variant="outline"
