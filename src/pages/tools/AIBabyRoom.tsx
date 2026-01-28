@@ -17,7 +17,6 @@ import {
   AssetLibrary,
   ThemeSelector,
   TemplateGallery,
-  MobileAssetPicker,
   ROOM_THEMES,
   type PlacedFurniture,
   type FurnitureAsset,
@@ -48,7 +47,6 @@ const AIBabyRoom = () => {
   const [placedFurniture, setPlacedFurniture] = useState<PlacedFurniture[]>([]);
   const [response, setResponse] = useState("");
   const [showDesignPanel, setShowDesignPanel] = useState(false);
-  const [showTemplates, setShowTemplates] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   // Load saved design on mount
@@ -85,7 +83,6 @@ const AIBabyRoom = () => {
       scale: 1,
     };
     setPlacedFurniture((prev) => [...prev, newItem]);
-    setShowTemplates(false);
     toast.success(`${asset.name} added!`);
   }, []);
 
@@ -108,7 +105,6 @@ const AIBabyRoom = () => {
     setPlacedFurniture([]);
     setResponse("");
     setShowDesignPanel(false);
-    setShowTemplates(false);
     setHasUnsavedChanges(false);
     clearDesign();
   }, [clearDesign]);
@@ -120,7 +116,6 @@ const AIBabyRoom = () => {
     }));
     setPlacedFurniture(furnitureWithIds);
     setSelectedTheme(template.theme);
-    setShowTemplates(false);
     toast.success(`Template "${template.name}" applied!`);
   }, []);
 
@@ -173,94 +168,91 @@ Include specific product recommendations and estimated costs where helpful.`;
     <ToolFrame title="AI Baby Room Designer" icon={Home} mood="joyful">
       <div className="space-y-4">
         
-        {/* Step 1: Theme Selection */}
-        <Card className="p-4">
+        {/* Theme Selection - Compact */}
+        <Card className="p-3">
           <ThemeSelector
             selectedTheme={selectedTheme}
             onThemeChange={setSelectedTheme}
           />
         </Card>
 
-        {/* Step 2: Start Designing */}
+        {/* Quick Start or Workspace */}
         {!hasDesign ? (
-          <>
+          <div className="space-y-4">
+            {/* Upload Zone */}
             <Card className="p-4">
-              <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+              <div className="flex items-center gap-2 mb-3">
                 <ImageUp className="w-4 h-4 text-primary" />
-                Upload Your Room
-              </h3>
+                <h3 className="text-sm font-semibold">Upload Your Room</h3>
+              </div>
               <UploadZone
                 onImageUploaded={handleImageUploaded}
                 themeColor={selectedTheme.primaryColor}
               />
             </Card>
 
+            {/* Templates */}
             <Card className="p-4">
               <TemplateGallery
                 onSelectTemplate={handleSelectTemplate}
                 currentTheme={selectedTheme}
               />
             </Card>
-          </>
+          </div>
         ) : (
           <>
-            {/* Design Workspace */}
+            {/* Workspace Header with Actions */}
             <Card className="p-3">
-              <div className="flex items-start justify-between gap-2 mb-3">
-                <span className="text-xs font-semibold text-muted-foreground">
-                  Add Furniture ({placedFurniture.length} items)
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-muted-foreground">
+                  {placedFurniture.length} items placed
                 </span>
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <div className="relative">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={handleSaveDesign}
-                      className="h-9 w-9"
-                      aria-label="Save design"
-                    >
-                      <Save className="w-4 h-4" />
-                    </Button>
+                <div className="flex items-center gap-1.5">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleSaveDesign}
+                    className="h-8 w-8 relative"
+                    aria-label="Save"
+                  >
+                    <Save className="w-4 h-4" />
                     {hasUnsavedChanges && (
-                      <span
-                        className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full"
-                        style={{ background: `hsl(${selectedTheme.accentColor})` }}
-                        aria-hidden
+                      <span 
+                        className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-primary"
                       />
                     )}
-                  </div>
+                  </Button>
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="icon"
                     onClick={handleExportDesign}
-                    className="h-9 w-9"
-                    aria-label="Export as JPG"
+                    className="h-8 w-8"
+                    aria-label="Export JPG"
                   >
                     <Download className="w-4 h-4" />
                   </Button>
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="icon"
                     onClick={handleStartOver}
-                    className="h-9 w-9 text-destructive hover:text-destructive"
-                    aria-label="Start over"
+                    className="h-8 w-8 text-destructive hover:text-destructive"
+                    aria-label="Reset"
                   >
                     <RotateCcw className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
-              <MobileAssetPicker 
-                onAssetSelect={handleAddFurniture} 
-                theme={selectedTheme} 
-              />
             </Card>
 
-            {/* Canvas */}
+            {/* Canvas with Built-in Asset Library */}
             <div ref={canvasContainerRef}>
               <Card className="overflow-hidden">
-                <div className="hidden md:block relative">
+                {/* Desktop: Side Asset Library */}
+                <div className="hidden md:block">
                   <AssetLibrary onAssetSelect={handleAddFurniture} theme={selectedTheme} />
                 </div>
+                
+                {/* Mobile: Tap canvas to add items */}
                 <div className="p-2 md:pl-[230px]">
                   <RoomCanvas
                     roomImage={roomImage}
@@ -275,84 +267,59 @@ Include specific product recommendations and estimated costs where helpful.`;
           </>
         )}
 
-        {/* Step 3: Get AI Design Plan */}
+        {/* AI Design Plan Button */}
         {hasDesign && (
-          <Card className="p-4">
-            <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-              <Sparkles className="w-4 h-4" style={{ color: `hsl(${selectedTheme.accentColor})` }} />
-              AI Design Recommendations
-            </h3>
-            <Button
-              onClick={getAIDesignPlan}
-              disabled={isLoading}
-              className="w-full h-10 text-primary-foreground"
-              style={{
-                background: `linear-gradient(135deg, hsl(${selectedTheme.primaryColor}), hsl(${selectedTheme.accentColor}))`,
-              }}
-            >
-              <Sparkles className="w-4 h-4 mr-2" />
-              {isLoading ? "Analyzing your design..." : "Get Professional Design Plan"}
-            </Button>
-          </Card>
+          <Button
+            onClick={getAIDesignPlan}
+            disabled={isLoading}
+            className="w-full h-11"
+            style={{
+              background: `linear-gradient(135deg, hsl(${selectedTheme.primaryColor}), hsl(${selectedTheme.accentColor}))`,
+            }}
+          >
+            <Sparkles className="w-4 h-4 mr-2" />
+            {isLoading ? "Generating Plan..." : "Get AI Design Plan"}
+          </Button>
         )}
 
         {/* AI Response */}
         {showDesignPanel && (response || isLoading) && (
-          <Card
-            className="p-4 border-2"
-            style={{
-              background: `hsl(${selectedTheme.primaryColor} / 0.03)`,
-              borderColor: `hsl(${selectedTheme.primaryColor} / 0.25)`,
-            }}
-          >
-            <div className="flex items-center gap-2 mb-3 pb-2 border-b">
+          <Card className="p-4 border-l-4" style={{ borderLeftColor: `hsl(${selectedTheme.accentColor})` }}>
+            <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-4 h-4" style={{ color: `hsl(${selectedTheme.accentColor})` }} />
-              <h4 className="font-semibold text-sm">Your Personalized Design Plan</h4>
+              <h4 className="font-semibold text-sm">Your Design Plan</h4>
             </div>
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
-        {/* Step 4: Safety & Tips */}
-        <div className="space-y-3">
-          <details className="group">
-            <summary 
-              className="flex items-center gap-2 p-3 bg-muted/40 rounded-lg cursor-pointer list-none hover:bg-muted/60 transition-colors"
-            >
-              <Shield className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">Safety Checklist</span>
-              <span className="ml-auto text-xs text-muted-foreground group-open:hidden">Tap to view</span>
-              <span className="ml-auto text-xs text-muted-foreground hidden group-open:inline">Tap to hide</span>
-            </summary>
-            <Card className="mt-2 p-3">
-              <ul className="space-y-2">
-                {safetyChecklist.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <Checkbox id={`safety-${i}`} className="mt-0.5" />
-                    <label
-                      htmlFor={`safety-${i}`}
-                      className="text-xs text-muted-foreground cursor-pointer leading-relaxed"
-                    >
-                      {item}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          </details>
+        {/* Safety & Tips - Collapsible */}
+        <details className="group">
+          <summary className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg cursor-pointer list-none">
+            <Shield className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium">Safety Checklist</span>
+            <span className="ml-auto text-xs text-muted-foreground group-open:hidden">+</span>
+            <span className="ml-auto text-xs text-muted-foreground hidden group-open:inline">−</span>
+          </summary>
+          <Card className="mt-2 p-3">
+            <ul className="space-y-2">
+              {safetyChecklist.map((item, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <Checkbox id={`safety-${i}`} className="mt-0.5" />
+                  <label htmlFor={`safety-${i}`} className="text-xs text-muted-foreground cursor-pointer">
+                    {item}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </details>
 
-          <div
-            className="flex items-start gap-2 p-3 rounded-lg border bg-muted/30"
-            style={{ borderColor: `hsl(${selectedTheme.primaryColor} / 0.18)` }}
-          >
-            <Lightbulb
-              className="w-4 h-4 flex-shrink-0 mt-0.5"
-              style={{ color: `hsl(${selectedTheme.accentColor})` }}
-            />
-            <p className="text-xs text-muted-foreground">
-              <strong>Pro tip:</strong> Set up the nursery by week 34-36 to have time for adjustments before baby arrives!
-            </p>
-          </div>
+        <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/20 border border-border/50">
+          <Lightbulb className="w-4 h-4 flex-shrink-0 mt-0.5 text-primary" />
+          <p className="text-xs text-muted-foreground">
+            <strong>Pro tip:</strong> Set up the nursery by week 34-36 to have time for adjustments!
+          </p>
         </div>
       </div>
     </ToolFrame>
