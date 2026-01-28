@@ -128,8 +128,8 @@ Include safety considerations and when to change positions.`;
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/j7YucfJuziU"
-              title="Birth Positions Guide"
+              src="https://www.youtube.com/embed/goqbMfKoglc"
+              title="Best Labor Positions For Each Phase"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

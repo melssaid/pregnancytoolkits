@@ -115,18 +115,35 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
       mood="nurturing"
     >
       <div className="space-y-6">
-        {/* Hero Image */}
-        <Card className="overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=800&h=300&fit=crop"
-            alt="Mother and baby breastfeeding"
-            className="w-full h-40 object-cover"
-          />
-          <div className="p-4 bg-gradient-to-r from-rose-500/10 to-pink-500/10">
-            <h3 className="font-semibold">Preparing for Breastfeeding</h3>
-            <p className="text-sm text-muted-foreground">
-              AI-powered guidance for your feeding journey
-            </p>
+        {/* Interactive Hero Section */}
+        <Card className="overflow-hidden border-0 shadow-lg">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-500 via-pink-500 to-purple-500 opacity-90" />
+            <div className="relative p-6 text-white">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
+                  <Baby className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold">Breastfeeding Preparation</h3>
+                  <p className="text-white/80 text-sm">AI-Powered Guidance</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3 mt-4">
+                <div className="bg-white/10 backdrop-blur rounded-xl p-3 text-center">
+                  <div className="text-2xl mb-1">🤱</div>
+                  <p className="text-xs font-medium">Latch Tips</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur rounded-xl p-3 text-center">
+                  <div className="text-2xl mb-1">📅</div>
+                  <p className="text-xs font-medium">Timeline</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur rounded-xl p-3 text-center">
+                  <div className="text-2xl mb-1">💪</div>
+                  <p className="text-xs font-medium">Support</p>
+                </div>
+              </div>
+            </div>
           </div>
         </Card>
 
