@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Home, Sparkles, Shield, Lightbulb, Wand2, Save, Download, Layout } from "lucide-react";
+import { Home, Sparkles, Shield, Lightbulb, Wand2, Save, Download, Layout, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -17,6 +17,7 @@ import {
   AssetLibrary,
   ThemeSelector,
   TemplateGallery,
+  MobileAssetPicker,
   ROOM_THEMES,
   type PlacedFurniture,
   type FurnitureAsset,
@@ -47,7 +48,7 @@ const AIBabyRoom = () => {
   const [placedFurniture, setPlacedFurniture] = useState<PlacedFurniture[]>([]);
   const [response, setResponse] = useState("");
   const [showDesignPanel, setShowDesignPanel] = useState(false);
-  const [showTemplates, setShowTemplates] = useState(true);
+  const [showTemplates, setShowTemplates] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   // Load saved design on mount
@@ -107,7 +108,7 @@ const AIBabyRoom = () => {
     setPlacedFurniture([]);
     setResponse("");
     setShowDesignPanel(false);
-    setShowTemplates(true);
+    setShowTemplates(false);
     setHasUnsavedChanges(false);
     clearDesign();
   }, [clearDesign]);
@@ -157,6 +158,8 @@ Include specific product recommendations and estimated costs where helpful.`;
     });
   };
 
+  const hasDesign = roomImage || placedFurniture.length > 0;
+
   if (!disclaimerAccepted) {
     return (
       <MedicalDisclaimer
@@ -168,99 +171,107 @@ Include specific product recommendations and estimated costs where helpful.`;
 
   return (
     <ToolFrame title="AI Baby Room Designer" icon={Home} mood="joyful">
-      <div className="space-y-5">
-        {/* Compact Hero Header */}
-        <div
-          className="flex items-center gap-3 p-3 rounded-xl shadow-md"
-          style={{
-            background: `linear-gradient(135deg, hsl(${selectedTheme.primaryColor}), hsl(${selectedTheme.accentColor}))`,
-          }}
-        >
-          <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
-            <Wand2 className="w-5 h-5 text-white" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-bold text-white">AI Interior Designer</h3>
-            <p className="text-white/80 text-xs truncate">
-              Drag furniture • Choose themes • Get AI tips
-            </p>
-          </div>
-        </div>
-
-        {/* Template Gallery - shown when no design started */}
-        {showTemplates && !roomImage && placedFurniture.length === 0 && (
-          <Card className="p-4">
-            <TemplateGallery
-              onSelectTemplate={handleSelectTemplate}
-              currentTheme={selectedTheme}
-            />
-          </Card>
-        )}
-
-        {/* Main Workspace */}
-        <div ref={canvasContainerRef} className="relative min-h-[400px] rounded-2xl overflow-hidden border bg-muted/30">
-          {/* Theme Selector */}
+      <div className="space-y-4">
+        
+        {/* Step 1: Theme Selection */}
+        <Card className="p-4">
           <ThemeSelector
             selectedTheme={selectedTheme}
             onThemeChange={setSelectedTheme}
           />
+        </Card>
 
-          {/* Asset Library - hidden on mobile, shown on larger screens */}
-          <div className="hidden md:block">
-            <AssetLibrary onAssetSelect={handleAddFurniture} theme={selectedTheme} />
-          </div>
-
-          {/* Upload Zone or Canvas */}
-          <div className="p-4 md:pl-[240px]">
-            {!roomImage && placedFurniture.length === 0 ? (
+        {/* Step 2: Quick Start Options */}
+        {!hasDesign && (
+          <Card className="p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Wand2 className="w-5 h-5" style={{ color: `hsl(${selectedTheme.accentColor})` }} />
+              <h3 className="font-semibold">Start Designing</h3>
+            </div>
+            
+            <div className="space-y-3">
+              {/* Upload Option */}
               <UploadZone
                 onImageUploaded={handleImageUploaded}
                 themeColor={selectedTheme.primaryColor}
               />
-            ) : (
-              <RoomCanvas
-                roomImage={roomImage}
-                placedFurniture={placedFurniture}
-                onFurnitureUpdate={setPlacedFurniture}
-                theme={selectedTheme}
-                onAddFurniture={handleAddFurniture}
-              />
-            )}
-          </div>
-        </div>
-
-        {/* Mobile Asset Library - collapsible horizontal scroll */}
-        <div className="md:hidden">
-          <Card className="p-3" style={{ borderColor: `hsl(${selectedTheme.primaryColor} / 0.2)` }}>
-            <p className="text-xs text-muted-foreground mb-2 font-medium">Tap to add furniture:</p>
-            <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
-              {[
-                { id: 'crib', name: 'Crib', icon: '🛏️', category: 'furniture' as const, defaultSize: { width: 120, height: 80 } },
-                { id: 'rocking-crib', name: 'Rocker', icon: '🛌', category: 'furniture' as const, defaultSize: { width: 110, height: 75 } },
-                { id: 'nursing-chair', name: 'Chair', icon: '🪑', category: 'furniture' as const, defaultSize: { width: 80, height: 80 } },
-                { id: 'play-table', name: 'Play Table', icon: '🎲', category: 'furniture' as const, defaultSize: { width: 80, height: 60 } },
-                { id: 'small-wardrobe', name: 'Wardrobe', icon: '🚪', category: 'furniture' as const, defaultSize: { width: 90, height: 120 } },
-                { id: 'rug', name: 'Rug', icon: '🟫', category: 'textile' as const, defaultSize: { width: 140, height: 100 } },
-                { id: 'floor-lamp', name: 'Lamp', icon: '🪔', category: 'lighting' as const, defaultSize: { width: 40, height: 40 } },
-                { id: 'plant', name: 'Plant', icon: '🪴', category: 'decor' as const, defaultSize: { width: 40, height: 50 } },
-              ].map((asset) => (
-                <button
-                  key={asset.id}
-                  onClick={() => handleAddFurniture(asset)}
-                  className="flex-shrink-0 w-14 h-14 rounded-xl border bg-card flex flex-col items-center justify-center gap-0.5 hover:bg-muted transition-colors"
-                  style={{ borderColor: `hsl(${selectedTheme.primaryColor} / 0.2)` }}
-                >
-                  <span className="text-xl">{asset.icon}</span>
-                  <span className="text-[9px] text-muted-foreground">{asset.name}</span>
-                </button>
-              ))}
+              
+              {/* Or use templates */}
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-card px-2 text-muted-foreground">or choose a template</span>
+                </div>
+              </div>
+              
+              <Button
+                variant="outline"
+                className="w-full gap-2"
+                onClick={() => setShowTemplates(!showTemplates)}
+                style={{ borderColor: `hsl(${selectedTheme.primaryColor} / 0.3)` }}
+              >
+                <Layout className="w-4 h-4" />
+                {showTemplates ? "Hide Templates" : "Browse Ready Templates"}
+              </Button>
+              
+              {showTemplates && (
+                <div className="pt-2">
+                  <TemplateGallery
+                    onSelectTemplate={handleSelectTemplate}
+                    currentTheme={selectedTheme}
+                  />
+                </div>
+              )}
             </div>
           </Card>
-        </div>
+        )}
 
-        {/* Action Buttons */}
-        {(roomImage || placedFurniture.length > 0) && (
-          <div className="flex flex-wrap gap-2 justify-center">
+        {/* Step 3: Add Furniture (when design started) */}
+        {hasDesign && (
+          <Card className="p-4">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-lg">🪑</span>
+                <h3 className="font-semibold text-sm">Add Furniture</h3>
+              </div>
+              <span className="text-xs text-muted-foreground">
+                {placedFurniture.length} items
+              </span>
+            </div>
+            <MobileAssetPicker 
+              onAssetSelect={handleAddFurniture} 
+              theme={selectedTheme} 
+            />
+          </Card>
+        )}
+
+        {/* Step 4: Room Canvas (when design started) */}
+        {hasDesign && (
+          <div ref={canvasContainerRef}>
+            <Card className="overflow-hidden">
+              {/* Desktop: show asset library sidebar */}
+              <div className="hidden md:block relative">
+                <AssetLibrary onAssetSelect={handleAddFurniture} theme={selectedTheme} />
+              </div>
+              
+              <div className="p-2 md:pl-[230px]">
+                <RoomCanvas
+                  roomImage={roomImage}
+                  placedFurniture={placedFurniture}
+                  onFurnitureUpdate={setPlacedFurniture}
+                  theme={selectedTheme}
+                  onAddFurniture={handleAddFurniture}
+                />
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {/* Step 5: Action Buttons */}
+        {hasDesign && (
+          <div className="grid grid-cols-2 gap-2">
             <Button
               variant="outline"
               size="sm"
@@ -268,7 +279,7 @@ Include specific product recommendations and estimated costs where helpful.`;
               className="gap-1.5"
             >
               <Save className="w-4 h-4" />
-              Save Design
+              Save
               {hasUnsavedChanges && <span className="w-2 h-2 rounded-full bg-amber-500" />}
             </Button>
             <Button
@@ -283,7 +294,7 @@ Include specific product recommendations and estimated costs where helpful.`;
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setShowTemplates(true)}
+              onClick={() => setShowTemplates(!showTemplates)}
               className="gap-1.5"
             >
               <Layout className="w-4 h-4" />
@@ -293,44 +304,29 @@ Include specific product recommendations and estimated costs where helpful.`;
               variant="outline"
               size="sm"
               onClick={handleStartOver}
+              className="gap-1.5 text-destructive hover:text-destructive"
             >
+              <RotateCcw className="w-4 h-4" />
               Start Over
             </Button>
           </div>
         )}
 
-        {/* Safety Checklist */}
-        <Card
-          className="p-4 border"
-          style={{
-            background: `hsl(${selectedTheme.primaryColor} / 0.1)`,
-            borderColor: `hsl(${selectedTheme.primaryColor} / 0.3)`,
-          }}
-        >
-          <h4 className="font-medium mb-3 flex items-center gap-2">
-            <Shield className="w-4 h-4" style={{ color: `hsl(${selectedTheme.accentColor})` }} />
-            Safety Checklist
-          </h4>
-          <ul className="space-y-1.5 text-sm">
-            {safetyChecklist.map((item, i) => (
-              <li key={i} className="flex items-center gap-2">
-                <Checkbox id={`safety-${i}`} />
-                <label
-                  htmlFor={`safety-${i}`}
-                  className="text-muted-foreground cursor-pointer"
-                >
-                  {item}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </Card>
+        {/* Templates Modal (when design exists) */}
+        {hasDesign && showTemplates && (
+          <Card className="p-4">
+            <TemplateGallery
+              onSelectTemplate={handleSelectTemplate}
+              currentTheme={selectedTheme}
+            />
+          </Card>
+        )}
 
-        {/* Get AI Design Plan Button */}
+        {/* Step 6: Get AI Plan */}
         <Button
           onClick={getAIDesignPlan}
           disabled={isLoading}
-          className="w-full"
+          className="w-full text-white"
           size="lg"
           style={{
             background: `linear-gradient(135deg, hsl(${selectedTheme.primaryColor}), hsl(${selectedTheme.accentColor}))`,
@@ -352,14 +348,40 @@ Include specific product recommendations and estimated costs where helpful.`;
           </Card>
         )}
 
+        {/* Safety Checklist */}
+        <Card
+          className="p-4 border"
+          style={{
+            background: `hsl(${selectedTheme.primaryColor} / 0.05)`,
+            borderColor: `hsl(${selectedTheme.primaryColor} / 0.2)`,
+          }}
+        >
+          <h4 className="font-medium mb-3 flex items-center gap-2 text-sm">
+            <Shield className="w-4 h-4" style={{ color: `hsl(${selectedTheme.accentColor})` }} />
+            Safety Checklist
+          </h4>
+          <ul className="space-y-2">
+            {safetyChecklist.map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <Checkbox id={`safety-${i}`} className="mt-0.5" />
+                <label
+                  htmlFor={`safety-${i}`}
+                  className="text-xs text-muted-foreground cursor-pointer leading-relaxed"
+                >
+                  {item}
+                </label>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
         {/* Pro Tip */}
-        <Card className="p-4 bg-muted/50">
-          <div className="flex items-start gap-3">
-            <Lightbulb className="w-5 h-5 text-amber-500 flex-shrink-0" />
-            <p className="text-sm text-muted-foreground">
+        <Card className="p-3 bg-muted/50">
+          <div className="flex items-start gap-2">
+            <Lightbulb className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+            <p className="text-xs text-muted-foreground">
               <strong>Pro tip:</strong> Set up the nursery by week 34-36 to have
-              time for any final adjustments and to enjoy the space before baby
-              arrives!
+              time for adjustments before baby arrives!
             </p>
           </div>
         </Card>
