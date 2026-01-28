@@ -71,18 +71,18 @@ const Index = () => {
 
             return (
               <div key={cat.key} className="overflow-hidden">
-                {/* Category Card - Elegant frame */}
-                <div className="rounded-2xl bg-card border border-border/40 shadow-sm overflow-hidden">
-                  {/* Category Header - Professional attractive frame */}
-                  <div className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-primary/5 via-primary/3 to-transparent border-b border-border/30">
-                    <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-primary" />
+                {/* Category Card - Professional minimal frame */}
+                <div className="rounded-xl bg-card border border-border/30 overflow-hidden">
+                  {/* Category Header - Clean professional design */}
+                  <div className="flex items-center gap-3 px-4 py-2.5 border-b border-border/20 bg-muted/30">
+                    <div className="w-7 h-7 rounded-lg bg-foreground/5 border border-border/30 flex items-center justify-center">
+                      <Icon className="w-3.5 h-3.5 text-foreground/70" />
                     </div>
-                    <h2 className="text-[15px] font-bold text-foreground">{t(cat.key)}</h2>
+                    <h2 className="text-sm font-semibold text-foreground tracking-tight">{t(cat.key)}</h2>
                   </div>
                   
                   {/* Tools Container */}
-                  <div className="p-3 space-y-1.5">
+                  <div className="p-2.5 space-y-1">
                     <AnimatePresence initial={false} mode="sync">
                       {displayTools.map((tool, index) => (
                         <motion.div
@@ -105,21 +105,21 @@ const Index = () => {
                       ))}
                     </AnimatePresence>
                     
-                    {/* Show More Button */}
+                    {/* Show More Button - Minimal */}
                     {allTools.length > 3 && (
                       <motion.button
                         onClick={() => toggleCategory(cat.key)}
-                        className="w-full py-2.5 mt-2 rounded-lg bg-muted/50 hover:bg-muted border border-border/30 flex items-center justify-center gap-2 transition-all duration-200 group"
+                        className="w-full py-2 mt-1.5 rounded-lg border border-border/20 bg-muted/20 hover:bg-muted/40 flex items-center justify-center gap-1.5 transition-all duration-200 group"
                         whileTap={{ scale: 0.98 }}
                       >
-                        <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                        <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                           {isExpanded ? 'Show Less' : `+${remainingCount} More`}
                         </span>
                         <motion.div
                           animate={{ rotate: isExpanded ? 90 : 0 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                          <ChevronRight className="w-3 h-3 text-muted-foreground group-hover:text-foreground transition-colors" />
                         </motion.div>
                       </motion.button>
                     )}
