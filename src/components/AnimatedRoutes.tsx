@@ -49,7 +49,7 @@ const AIBirthPosition = lazy(() => import("@/pages/tools/AIBirthPosition"));
 const AIPregnancySkincare = lazy(() => import("@/pages/tools/AIPregnancySkincare"));
 const AINauseaRelief = lazy(() => import("@/pages/tools/AINauseaRelief"));
 const AIBudgetPlanner = lazy(() => import("@/pages/tools/AIBudgetPlanner"));
-const AIBabyRoom = lazy(() => import("@/pages/tools/AIBabyRoom"));
+
 const AILactationPrep = lazy(() => import("@/pages/tools/AILactationPrep"));
 
 // AI LABOR & MONITORING
@@ -175,7 +175,7 @@ export function AnimatedRoutes() {
           <Route path="/tools/ai-skincare" element={<PageTransition><AIPregnancySkincare /></PageTransition>} />
           <Route path="/tools/ai-nausea-relief" element={<PageTransition><AINauseaRelief /></PageTransition>} />
           <Route path="/tools/ai-budget-planner" element={<PageTransition><AIBudgetPlanner /></PageTransition>} />
-          <Route path="/tools/ai-baby-room" element={<PageTransition><AIBabyRoom /></PageTransition>} />
+          
           <Route path="/tools/ai-lactation-prep" element={<PageTransition><AILactationPrep /></PageTransition>} />
 
           {/* POSTPARTUM & BABY */}
