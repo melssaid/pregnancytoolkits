@@ -1,326 +1,233 @@
-import { useState, useCallback, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { Home, Sparkles, Shield, Lightbulb, Save, Download, RotateCcw, ImageUp } from "lucide-react";
+import { useState, useCallback, useRef } from "react";
+import { Home, Sparkles, Wand2, Download, RotateCcw, Plus, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
-import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
-import { useRoomDesignStorage } from "@/hooks/useRoomDesignStorage";
+import { useDisclaimerAccepted } from "@/hooks/useDisclaimerAccepted";
 import { useExportDesign } from "@/hooks/useExportDesign";
+import { InlineDisclaimer } from "@/components/compliance/InlineDisclaimer";
+import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { toast } from "sonner";
-import {
-  UploadZone,
-  RoomCanvas,
-  AssetLibrary,
-  ThemeSelector,
-  TemplateGallery,
-  ROOM_THEMES,
-  type PlacedFurniture,
-  type FurnitureAsset,
-  type RoomTheme,
-  type DesignTemplate,
-} from "@/components/room-designer";
-
-const safetyChecklist = [
-  "Crib meets current safety standards",
-  "No loose bedding, pillows, or toys in crib",
-  "Furniture anchored to walls",
-  "Outlet covers installed",
-  "Blind cords out of reach",
-  "Room temperature 68-72°F",
-  "Smoke detector in/near nursery",
-];
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  ROOM_THEMES, 
+  FURNITURE_ASSETS,
+  type PlacedFurniture, 
+  type RoomTheme 
+} from "@/components/room-designer/types";
 
 const AIBabyRoom = () => {
-  const { t } = useTranslation();
   const { streamChat, isLoading } = usePregnancyAI();
-  const { saveDesign, loadDesign, clearDesign, hasSavedDesign, isLoaded } = useRoomDesignStorage();
+  const { isAccepted, isLoading: disclaimerLoading, accept } = useDisclaimerAccepted();
   const { exportAsImage } = useExportDesign();
-  const canvasContainerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
 
-  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState<RoomTheme>(ROOM_THEMES[0]);
-  const [roomImage, setRoomImage] = useState<string | null>(null);
-  const [placedFurniture, setPlacedFurniture] = useState<PlacedFurniture[]>([]);
+  const [placedItems, setPlacedItems] = useState<PlacedFurniture[]>([]);
   const [response, setResponse] = useState("");
-  const [showDesignPanel, setShowDesignPanel] = useState(false);
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [showAIPlan, setShowAIPlan] = useState(false);
 
-  // Load saved design on mount
-  useEffect(() => {
-    if (isLoaded && hasSavedDesign()) {
-      const saved = loadDesign();
-      if (saved) {
-        setPlacedFurniture(saved.placedFurniture);
-        setSelectedTheme(saved.theme);
-        setRoomImage(saved.roomImage);
-        toast.success("Previous design restored!");
-      }
-    }
-  }, [isLoaded, hasSavedDesign, loadDesign]);
-
-  // Track unsaved changes
-  useEffect(() => {
-    if (placedFurniture.length > 0 || roomImage) {
-      setHasUnsavedChanges(true);
-    }
-  }, [placedFurniture, roomImage, selectedTheme]);
-
-  const handleImageUploaded = useCallback((imageUrl: string) => {
-    setRoomImage(imageUrl);
-    toast.success("Room ready for design!");
-  }, []);
-
-  const handleAddFurniture = useCallback((asset: FurnitureAsset) => {
+  const handleAddItem = useCallback((assetId: string) => {
+    const asset = FURNITURE_ASSETS.find(a => a.id === assetId);
+    if (!asset) return;
+    
     const newItem: PlacedFurniture = {
       ...asset,
       instanceId: `${asset.id}-${Date.now()}`,
-      position: { x: 50, y: 50 },
+      position: { x: 30 + Math.random() * 40, y: 30 + Math.random() * 40 },
       rotation: 0,
       scale: 1,
     };
-    setPlacedFurniture((prev) => [...prev, newItem]);
-    toast.success(`${asset.name} added!`);
+    setPlacedItems(prev => [...prev, newItem]);
+    toast.success(`${asset.name} added`);
   }, []);
 
-  const handleSaveDesign = useCallback(() => {
-    const success = saveDesign(placedFurniture, selectedTheme, roomImage);
-    if (success) {
-      setHasUnsavedChanges(false);
-      toast.success("Design saved!");
-    } else {
-      toast.error("Failed to save design");
-    }
-  }, [placedFurniture, selectedTheme, roomImage, saveDesign]);
+  const handleRemoveItem = useCallback((instanceId: string) => {
+    setPlacedItems(prev => prev.filter(item => item.instanceId !== instanceId));
+  }, []);
 
-  const handleExportDesign = useCallback(async () => {
-    await exportAsImage(canvasContainerRef, 'baby-room-design');
+  const handleReset = useCallback(() => {
+    setPlacedItems([]);
+    setResponse("");
+    setShowAIPlan(false);
+  }, []);
+
+  const handleExport = useCallback(async () => {
+    await exportAsImage(canvasRef, 'nursery-design');
   }, [exportAsImage]);
 
-  const handleStartOver = useCallback(() => {
-    setRoomImage(null);
-    setPlacedFurniture([]);
-    setResponse("");
-    setShowDesignPanel(false);
-    setHasUnsavedChanges(false);
-    clearDesign();
-  }, [clearDesign]);
+  const generateAIPlan = async () => {
+    const items = placedItems.map(p => p.name).join(", ");
+    const prompt = `As a professional nursery designer, create a complete baby room design plan.
 
-  const handleSelectTemplate = useCallback((template: DesignTemplate) => {
-    const furnitureWithIds: PlacedFurniture[] = template.furniture.map((item, index) => ({
-      ...item,
-      instanceId: `${item.id}-template-${Date.now()}-${index}`,
-    }));
-    setPlacedFurniture(furnitureWithIds);
-    setSelectedTheme(template.theme);
-    toast.success(`Template "${template.name}" applied!`);
-  }, []);
-
-  const getAIDesignPlan = async () => {
-    const furnitureList = placedFurniture.map((f) => f.name).join(", ");
-
-    const prompt = `As a professional nursery interior designer, create a personalized baby room design plan based on:
-
-**Selected Theme:** ${selectedTheme.name} (${selectedTheme.icon})
+**Theme:** ${selectedTheme.name}
 **Color Palette:** Primary: hsl(${selectedTheme.primaryColor}), Accent: hsl(${selectedTheme.accentColor})
-**Furniture Already Placed:** ${furnitureList || "None yet"}
-${roomImage ? "**Note:** User has uploaded a room photo for reference." : ""}
+**Items Chosen:** ${items || "None yet - suggest essential items"}
 
-Provide a complete, actionable nursery design plan:
+Provide a detailed, actionable plan:
 
-1. **Color Harmony** - How to extend the ${selectedTheme.name} theme throughout the room
-2. **Furniture Arrangement** - Optimal placement for safety, flow, and aesthetics
-3. **Wall Treatment** - Paint, wallpaper, or decal recommendations
-4. **Lighting Design** - Natural light optimization + artificial lighting layers
-5. **Textile Coordination** - Curtains, rugs, bedding that complement the theme
-6. **Storage Solutions** - Clever organization for baby essentials
-7. **Safety Considerations** - Theme-specific safety notes
-8. **Final Touches** - Decor accessories and personal touches
+1. **Layout Recommendation** - Where to place each piece
+2. **Color Coordination** - Wall colors, accents to match theme
+3. **Essential Additions** - What else is needed
+4. **Safety Tips** - Theme-specific safety considerations
+5. **Decor Ideas** - Wall art, textiles, finishing touches
+6. **Budget Estimate** - Approximate costs
 
-Include specific product recommendations and estimated costs where helpful.`;
+Be specific and practical.`;
 
     setResponse("");
-    setShowDesignPanel(true);
+    setShowAIPlan(true);
     
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
-      onDelta: (text) => setResponse((prev) => prev + text),
+      onDelta: (text) => setResponse(prev => prev + text),
       onDone: () => {},
     });
   };
 
-  const hasDesign = roomImage || placedFurniture.length > 0;
-
-  if (!disclaimerAccepted) {
+  if (disclaimerLoading) {
     return (
-      <MedicalDisclaimer
-        onAccept={() => setDisclaimerAccepted(true)}
-        toolName="AI Baby Room Designer"
-      />
+      <ToolFrame title="AI Baby Room Designer" icon={Home} mood="joyful">
+        <div className="flex items-center justify-center py-12">
+          <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+      </ToolFrame>
     );
+  }
+
+  if (!isAccepted) {
+    return <MedicalDisclaimer onAccept={accept} toolName="AI Baby Room Designer" />;
   }
 
   return (
     <ToolFrame title="AI Baby Room Designer" icon={Home} mood="joyful">
       <div className="space-y-4">
         
-        {/* Theme Selection - Compact */}
-        <Card className="p-3">
-          <ThemeSelector
-            selectedTheme={selectedTheme}
-            onThemeChange={setSelectedTheme}
-          />
+        {/* Theme Selection - Minimal */}
+        <div className="flex items-center justify-between gap-2 p-3 bg-muted/30 rounded-xl">
+          <span className="text-xs font-medium text-muted-foreground">Theme</span>
+          <div className="flex gap-1.5">
+            {ROOM_THEMES.map(theme => (
+              <button
+                key={theme.id}
+                onClick={() => setSelectedTheme(theme)}
+                className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-all ${
+                  selectedTheme.id === theme.id 
+                    ? 'ring-2 ring-primary ring-offset-1 scale-110' 
+                    : 'hover:scale-105'
+                }`}
+                style={{ background: `linear-gradient(135deg, hsl(${theme.primaryColor}), hsl(${theme.accentColor}))` }}
+                title={theme.name}
+              >
+                {theme.icon}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Design Canvas */}
+        <Card className="overflow-hidden" ref={canvasRef}>
+          <div 
+            className="relative aspect-[4/3] p-4"
+            style={{ 
+              background: `linear-gradient(135deg, hsl(${selectedTheme.secondaryColor}), hsl(${selectedTheme.primaryColor} / 0.4))` 
+            }}
+          >
+            {/* Placed Items */}
+            <AnimatePresence>
+              {placedItems.map(item => (
+                <motion.button
+                  key={item.instanceId}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  onClick={() => handleRemoveItem(item.instanceId)}
+                  className="absolute w-12 h-12 flex items-center justify-center text-2xl bg-background/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 hover:bg-destructive/20 hover:border-destructive/50 transition-colors cursor-pointer"
+                  style={{ 
+                    left: `${item.position.x}%`, 
+                    top: `${item.position.y}%`,
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                  title={`${item.name} - Tap to remove`}
+                >
+                  {item.icon}
+                </motion.button>
+              ))}
+            </AnimatePresence>
+
+            {/* Empty State */}
+            {placedItems.length === 0 && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-sm text-muted-foreground/60 text-center px-4">
+                  Tap items below to add them to your room
+                </p>
+              </div>
+            )}
+
+            {/* Item Count */}
+            {placedItems.length > 0 && (
+              <div className="absolute bottom-2 right-2 px-2 py-1 bg-background/80 backdrop-blur-sm rounded-full text-xs font-medium">
+                {placedItems.length} items
+              </div>
+            )}
+          </div>
+
+          {/* Quick Add Bar */}
+          <div className="p-3 border-t bg-background/50">
+            <div className="flex gap-2 overflow-x-auto pb-1">
+              {FURNITURE_ASSETS.map(asset => (
+                <button
+                  key={asset.id}
+                  onClick={() => handleAddItem(asset.id)}
+                  className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-muted/50 hover:bg-muted rounded-full text-xs font-medium transition-colors"
+                >
+                  <span>{asset.icon}</span>
+                  <span>{asset.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </Card>
 
-        {/* Quick Start or Workspace */}
-        {!hasDesign ? (
-          <div className="space-y-4">
-            {/* Upload Zone */}
-            <Card className="p-4">
-              <div className="flex items-center gap-2 mb-3">
-                <ImageUp className="w-4 h-4 text-primary" />
-                <h3 className="text-sm font-semibold">Upload Your Room</h3>
-              </div>
-              <UploadZone
-                onImageUploaded={handleImageUploaded}
-                themeColor={selectedTheme.primaryColor}
-              />
-            </Card>
-
-            {/* Templates */}
-            <Card className="p-4">
-              <TemplateGallery
-                onSelectTemplate={handleSelectTemplate}
-                currentTheme={selectedTheme}
-              />
-            </Card>
-          </div>
-        ) : (
-          <>
-            {/* Workspace Header with Actions */}
-            <Card className="p-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-muted-foreground">
-                  {placedFurniture.length} items placed
-                </span>
-                <div className="flex items-center gap-1.5">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={handleSaveDesign}
-                    className="h-8 w-8 relative"
-                    aria-label="Save"
-                  >
-                    <Save className="w-4 h-4" />
-                    {hasUnsavedChanges && (
-                      <span 
-                        className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-primary"
-                      />
-                    )}
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={handleExportDesign}
-                    className="h-8 w-8"
-                    aria-label="Export JPG"
-                  >
-                    <Download className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={handleStartOver}
-                    className="h-8 w-8 text-destructive hover:text-destructive"
-                    aria-label="Reset"
-                  >
-                    <RotateCcw className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-
-            {/* Canvas with Built-in Asset Library */}
-            <div ref={canvasContainerRef}>
-              <Card className="overflow-hidden">
-                {/* Desktop: Side Asset Library */}
-                <div className="hidden md:block">
-                  <AssetLibrary onAssetSelect={handleAddFurniture} theme={selectedTheme} />
-                </div>
-                
-                {/* Mobile: Tap canvas to add items */}
-                <div className="p-2 md:pl-[230px]">
-                  <RoomCanvas
-                    roomImage={roomImage}
-                    placedFurniture={placedFurniture}
-                    onFurnitureUpdate={setPlacedFurniture}
-                    theme={selectedTheme}
-                    onAddFurniture={handleAddFurniture}
-                  />
-                </div>
-              </Card>
-            </div>
-          </>
-        )}
-
-        {/* AI Design Plan Button */}
-        {hasDesign && (
+        {/* Actions */}
+        <div className="flex gap-2">
           <Button
-            onClick={getAIDesignPlan}
+            onClick={generateAIPlan}
             disabled={isLoading}
-            className="w-full h-11"
+            className="flex-1 h-11"
             style={{
               background: `linear-gradient(135deg, hsl(${selectedTheme.primaryColor}), hsl(${selectedTheme.accentColor}))`,
             }}
           >
-            <Sparkles className="w-4 h-4 mr-2" />
-            {isLoading ? "Generating Plan..." : "Get AI Design Plan"}
+            <Wand2 className="w-4 h-4 mr-2" />
+            {isLoading ? "Generating..." : "Get AI Design Plan"}
           </Button>
-        )}
+          
+          <Button variant="outline" size="icon" onClick={handleExport} className="h-11 w-11">
+            <Download className="w-4 h-4" />
+          </Button>
+          
+          <Button variant="outline" size="icon" onClick={handleReset} className="h-11 w-11">
+            <RotateCcw className="w-4 h-4" />
+          </Button>
+        </div>
 
         {/* AI Response */}
-        {showDesignPanel && (response || isLoading) && (
+        {showAIPlan && (response || isLoading) && (
           <Card className="p-4 border-l-4" style={{ borderLeftColor: `hsl(${selectedTheme.accentColor})` }}>
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-4 h-4" style={{ color: `hsl(${selectedTheme.accentColor})` }} />
-              <h4 className="font-semibold text-sm">Your Design Plan</h4>
+              <h4 className="font-semibold text-sm">Your Personalized Design Plan</h4>
             </div>
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
-        {/* Safety & Tips - Collapsible */}
-        <details className="group">
-          <summary className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg cursor-pointer list-none">
-            <Shield className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">Safety Checklist</span>
-            <span className="ml-auto text-xs text-muted-foreground group-open:hidden">+</span>
-            <span className="ml-auto text-xs text-muted-foreground hidden group-open:inline">−</span>
-          </summary>
-          <Card className="mt-2 p-3">
-            <ul className="space-y-2">
-              {safetyChecklist.map((item, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <Checkbox id={`safety-${i}`} className="mt-0.5" />
-                  <label htmlFor={`safety-${i}`} className="text-xs text-muted-foreground cursor-pointer">
-                    {item}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        </details>
-
-        <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/20 border border-border/50">
-          <Lightbulb className="w-4 h-4 flex-shrink-0 mt-0.5 text-primary" />
-          <p className="text-xs text-muted-foreground">
-            <strong>Pro tip:</strong> Set up the nursery by week 34-36 to have time for adjustments!
-          </p>
-        </div>
+        {/* Inline Disclaimer */}
+        <InlineDisclaimer compact />
       </div>
     </ToolFrame>
   );
