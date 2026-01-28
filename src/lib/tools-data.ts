@@ -43,7 +43,6 @@ import {
   CircleDot,
   Leaf,
   Wallet,
-  Home,
   Milk,
 } from "lucide-react";
 
@@ -87,7 +86,7 @@ export const toolsData: Tool[] = [
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.ai", href: "/tools/ai-skincare", priority: 15, hasAI: true },
   { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.ai", href: "/tools/ai-nausea-relief", priority: 16, hasAI: true },
   { id: "ai-budget-planner", titleKey: "tools.aiBudgetPlanner.title", descriptionKey: "tools.aiBudgetPlanner.description", icon: Wallet, categoryKey: "categories.ai", href: "/tools/ai-budget-planner", priority: 17, hasAI: true },
-  { id: "ai-baby-room", titleKey: "tools.aiBabyRoom.title", descriptionKey: "tools.aiBabyRoom.description", icon: Home, categoryKey: "categories.ai", href: "/tools/ai-baby-room", priority: 18, hasAI: true },
+  
   { id: "ai-lactation-prep", titleKey: "tools.aiLactationPrep.title", descriptionKey: "tools.aiLactationPrep.description", icon: Milk, categoryKey: "categories.ai", href: "/tools/ai-lactation-prep", priority: 19, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
