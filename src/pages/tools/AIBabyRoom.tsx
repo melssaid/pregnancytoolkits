@@ -1,6 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Home, Sparkles, Shield, Lightbulb, Wand2 } from "lucide-react";
+import { Home, Sparkles, Shield, Lightbulb, Wand2, Save, Download, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -8,6 +8,8 @@ import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useRoomDesignStorage } from "@/hooks/useRoomDesignStorage";
+import { useExportDesign } from "@/hooks/useExportDesign";
 import { toast } from "sonner";
 import {
   UploadZone,
@@ -33,13 +35,37 @@ const safetyChecklist = [
 const AIBabyRoom = () => {
   const { t } = useTranslation();
   const { streamChat, isLoading } = usePregnancyAI();
+  const { saveDesign, loadDesign, clearDesign, hasSavedDesign, isLoaded } = useRoomDesignStorage();
+  const { exportAsImage } = useExportDesign();
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
 
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
-  const [selectedTheme, setSelectedTheme] = useState<RoomTheme>(ROOM_THEMES[0]); // Soft Pink default
+  const [selectedTheme, setSelectedTheme] = useState<RoomTheme>(ROOM_THEMES[0]);
   const [roomImage, setRoomImage] = useState<string | null>(null);
   const [placedFurniture, setPlacedFurniture] = useState<PlacedFurniture[]>([]);
   const [response, setResponse] = useState("");
   const [showDesignPanel, setShowDesignPanel] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+  // Load saved design on mount
+  useEffect(() => {
+    if (isLoaded && hasSavedDesign()) {
+      const saved = loadDesign();
+      if (saved) {
+        setPlacedFurniture(saved.placedFurniture);
+        setSelectedTheme(saved.theme);
+        setRoomImage(saved.roomImage);
+        toast.success("Previous design restored!");
+      }
+    }
+  }, [isLoaded, hasSavedDesign, loadDesign]);
+
+  // Track unsaved changes
+  useEffect(() => {
+    if (placedFurniture.length > 0 || roomImage) {
+      setHasUnsavedChanges(true);
+    }
+  }, [placedFurniture, roomImage, selectedTheme]);
 
   const handleImageUploaded = useCallback((imageUrl: string) => {
     setRoomImage(imageUrl);
@@ -57,6 +83,29 @@ const AIBabyRoom = () => {
     setPlacedFurniture((prev) => [...prev, newItem]);
     toast.success(`${asset.name} added!`);
   }, []);
+
+  const handleSaveDesign = useCallback(() => {
+    const success = saveDesign(placedFurniture, selectedTheme, roomImage);
+    if (success) {
+      setHasUnsavedChanges(false);
+      toast.success("Design saved!");
+    } else {
+      toast.error("Failed to save design");
+    }
+  }, [placedFurniture, selectedTheme, roomImage, saveDesign]);
+
+  const handleExportDesign = useCallback(async () => {
+    await exportAsImage(canvasContainerRef, 'baby-room-design');
+  }, [exportAsImage]);
+
+  const handleStartOver = useCallback(() => {
+    setRoomImage(null);
+    setPlacedFurniture([]);
+    setResponse("");
+    setShowDesignPanel(false);
+    setHasUnsavedChanges(false);
+    clearDesign();
+  }, [clearDesign]);
 
   const getAIDesignPlan = async () => {
     const furnitureList = placedFurniture.map((f) => f.name).join(", ");
@@ -123,7 +172,7 @@ Include specific product recommendations and estimated costs where helpful.`;
         </div>
 
         {/* Main Workspace */}
-        <div className="relative min-h-[400px] rounded-2xl overflow-hidden border bg-muted/30">
+        <div ref={canvasContainerRef} className="relative min-h-[400px] rounded-2xl overflow-hidden border bg-muted/30">
           {/* Theme Selector */}
           <ThemeSelector
             selectedTheme={selectedTheme}
@@ -161,8 +210,10 @@ Include specific product recommendations and estimated costs where helpful.`;
             <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
               {[
                 { id: 'crib', name: 'Crib', icon: '🛏️', category: 'furniture' as const, defaultSize: { width: 120, height: 80 } },
+                { id: 'rocking-crib', name: 'Rocker', icon: '🛌', category: 'furniture' as const, defaultSize: { width: 110, height: 75 } },
                 { id: 'nursing-chair', name: 'Chair', icon: '🪑', category: 'furniture' as const, defaultSize: { width: 80, height: 80 } },
-                { id: 'dresser', name: 'Dresser', icon: '🗃️', category: 'furniture' as const, defaultSize: { width: 100, height: 50 } },
+                { id: 'play-table', name: 'Play Table', icon: '🎲', category: 'furniture' as const, defaultSize: { width: 80, height: 60 } },
+                { id: 'small-wardrobe', name: 'Wardrobe', icon: '🚪', category: 'furniture' as const, defaultSize: { width: 90, height: 120 } },
                 { id: 'rug', name: 'Rug', icon: '🟫', category: 'textile' as const, defaultSize: { width: 140, height: 100 } },
                 { id: 'floor-lamp', name: 'Lamp', icon: '🪔', category: 'lighting' as const, defaultSize: { width: 40, height: 40 } },
                 { id: 'plant', name: 'Plant', icon: '🪴', category: 'decor' as const, defaultSize: { width: 40, height: 50 } },
@@ -181,18 +232,32 @@ Include specific product recommendations and estimated costs where helpful.`;
           </Card>
         </div>
 
-        {/* Reset button if image is uploaded */}
+        {/* Action Buttons */}
         {(roomImage || placedFurniture.length > 0) && (
-          <div className="flex justify-center">
+          <div className="flex flex-wrap gap-2 justify-center">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => {
-                setRoomImage(null);
-                setPlacedFurniture([]);
-                setResponse("");
-                setShowDesignPanel(false);
-              }}
+              onClick={handleSaveDesign}
+              className="gap-1.5"
+            >
+              <Save className="w-4 h-4" />
+              Save Design
+              {hasUnsavedChanges && <span className="w-2 h-2 rounded-full bg-amber-500" />}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleExportDesign}
+              className="gap-1.5"
+            >
+              <Download className="w-4 h-4" />
+              Export JPG
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleStartOver}
             >
               Start Over
             </Button>

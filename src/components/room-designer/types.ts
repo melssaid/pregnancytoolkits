@@ -114,24 +114,32 @@ export const ROOM_THEMES: RoomTheme[] = [
 export const FURNITURE_ASSETS: FurnitureAsset[] = [
   // Furniture
   { id: 'crib', name: 'Modern Crib', icon: '🛏️', category: 'furniture', defaultSize: { width: 120, height: 80 } },
+  { id: 'rocking-crib', name: 'Rocking Crib', icon: '🛌', category: 'furniture', defaultSize: { width: 110, height: 75 } },
   { id: 'nursing-chair', name: 'Nursing Chair', icon: '🪑', category: 'furniture', defaultSize: { width: 80, height: 80 } },
   { id: 'changing-table', name: 'Changing Table', icon: '🗄️', category: 'furniture', defaultSize: { width: 100, height: 60 } },
   { id: 'dresser', name: 'Dresser', icon: '🗃️', category: 'furniture', defaultSize: { width: 100, height: 50 } },
+  { id: 'small-wardrobe', name: 'Small Wardrobe', icon: '🚪', category: 'furniture', defaultSize: { width: 90, height: 120 } },
+  { id: 'play-table', name: 'Play Table', icon: '🎲', category: 'furniture', defaultSize: { width: 80, height: 60 } },
   { id: 'bookshelf', name: 'Bookshelf', icon: '📚', category: 'furniture', defaultSize: { width: 80, height: 40 } },
+  { id: 'toy-box', name: 'Toy Box', icon: '🧸', category: 'furniture', defaultSize: { width: 70, height: 50 } },
   
   // Decor
   { id: 'mobile', name: 'Mobile', icon: '🎠', category: 'decor', defaultSize: { width: 50, height: 50 } },
   { id: 'wall-art', name: 'Wall Art', icon: '🖼️', category: 'decor', defaultSize: { width: 60, height: 60 } },
   { id: 'mirror', name: 'Mirror', icon: '🪞', category: 'decor', defaultSize: { width: 50, height: 70 } },
   { id: 'plant', name: 'Plant', icon: '🪴', category: 'decor', defaultSize: { width: 40, height: 50 } },
+  { id: 'clock', name: 'Wall Clock', icon: '🕐', category: 'decor', defaultSize: { width: 40, height: 40 } },
+  { id: 'photo-frame', name: 'Photo Frame', icon: '📷', category: 'decor', defaultSize: { width: 35, height: 45 } },
   
   // Lighting
   { id: 'floor-lamp', name: 'Floor Lamp', icon: '🪔', category: 'lighting', defaultSize: { width: 40, height: 40 } },
   { id: 'night-light', name: 'Night Light', icon: '💡', category: 'lighting', defaultSize: { width: 30, height: 30 } },
   { id: 'ceiling-light', name: 'Pendant Light', icon: '💫', category: 'lighting', defaultSize: { width: 50, height: 30 } },
+  { id: 'star-lamp', name: 'Star Projector', icon: '⭐', category: 'lighting', defaultSize: { width: 35, height: 35 } },
   
   // Textiles
   { id: 'rug', name: 'Area Rug', icon: '🟫', category: 'textile', defaultSize: { width: 140, height: 100 } },
   { id: 'curtains', name: 'Curtains', icon: '🪟', category: 'textile', defaultSize: { width: 80, height: 120 } },
   { id: 'blanket', name: 'Baby Blanket', icon: '🧶', category: 'textile', defaultSize: { width: 60, height: 60 } },
+  { id: 'pillow', name: 'Floor Pillow', icon: '🛋️', category: 'textile', defaultSize: { width: 50, height: 50 } },
 ];
