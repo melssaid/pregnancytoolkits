@@ -69,6 +69,46 @@ export const ROOM_THEMES: RoomTheme[] = [
     accentColor: '270 60% 70%',
     icon: '💜'
   },
+  {
+    id: 'mint-fresh',
+    name: 'Mint Fresh',
+    primaryColor: '168 60% 80%',
+    secondaryColor: '168 50% 90%',
+    accentColor: '168 70% 55%',
+    icon: '🍃'
+  },
+  {
+    id: 'sunny-yellow',
+    name: 'Sunny Yellow',
+    primaryColor: '45 90% 85%',
+    secondaryColor: '45 80% 92%',
+    accentColor: '45 95% 60%',
+    icon: '🌻'
+  },
+  {
+    id: 'ocean-teal',
+    name: 'Ocean Teal',
+    primaryColor: '180 50% 78%',
+    secondaryColor: '180 40% 88%',
+    accentColor: '180 60% 50%',
+    icon: '🌊'
+  },
+  {
+    id: 'warm-coral',
+    name: 'Warm Coral',
+    primaryColor: '15 80% 85%',
+    secondaryColor: '15 70% 92%',
+    accentColor: '15 85% 65%',
+    icon: '🧡'
+  },
+  {
+    id: 'nordic-gray',
+    name: 'Nordic Gray',
+    primaryColor: '220 15% 85%',
+    secondaryColor: '220 10% 92%',
+    accentColor: '220 20% 60%',
+    icon: '🪨'
+  },
 ];
 
 export const FURNITURE_ASSETS: FurnitureAsset[] = [

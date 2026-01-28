@@ -47,53 +47,37 @@ export const ThemeSelector = ({ selectedTheme, onThemeChange }: ThemeSelectorPro
           </CollapsibleTrigger>
           
           <CollapsibleContent>
-            <div className="p-2 border-t bg-muted/30">
-              <div className="grid gap-1">
-                {ROOM_THEMES.map((theme) => (
-                  <motion.button
-                    key={theme.id}
-                    onClick={() => onThemeChange(theme)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`flex items-center gap-3 w-full p-2 rounded-xl transition-all ${
-                      selectedTheme.id === theme.id 
-                        ? 'bg-primary/10 ring-1 ring-primary/30' 
-                        : 'hover:bg-muted'
-                    }`}
-                  >
-                    <div 
-                      className="w-8 h-8 rounded-lg flex items-center justify-center text-lg shadow-sm"
-                      style={{ 
-                        background: `linear-gradient(135deg, hsl(${theme.primaryColor}), hsl(${theme.accentColor}))` 
+            <div className="p-2 border-t bg-muted/30 max-h-[280px] overflow-y-auto">
+              <div className="grid grid-cols-2 gap-1.5">
+                {ROOM_THEMES.map((theme) => {
+                  const isActive = selectedTheme.id === theme.id;
+                  return (
+                    <motion.button
+                      key={theme.id}
+                      onClick={() => onThemeChange(theme)}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className={`flex flex-col items-center gap-1.5 p-2 rounded-xl transition-all ${
+                        isActive 
+                          ? 'ring-2 ring-offset-1 ring-primary' 
+                          : 'hover:bg-muted'
+                      }`}
+                      style={{
+                        background: isActive ? `hsl(${theme.primaryColor} / 0.15)` : undefined,
                       }}
                     >
-                      {theme.icon}
-                    </div>
-                    <span className="text-sm font-medium">{theme.name}</span>
-                    {selectedTheme.id === theme.id && (
-                      <motion.div
-                        layoutId="theme-check"
-                        className="ml-auto w-2 h-2 rounded-full bg-primary"
-                      />
-                    )}
-                  </motion.button>
-                ))}
-              </div>
-              
-              {/* Custom color picker hint */}
-              <div className="mt-2 pt-2 border-t border-border/50">
-                <div className="flex items-center gap-2 px-2 py-1.5 text-xs text-muted-foreground">
-                  <div className="flex -space-x-1">
-                    {ROOM_THEMES.slice(0, 3).map((t) => (
-                      <div
-                        key={t.id}
-                        className="w-4 h-4 rounded-full border-2 border-background"
-                        style={{ background: `hsl(${t.accentColor})` }}
-                      />
-                    ))}
-                  </div>
-                  <span>Colors apply to furniture & UI</span>
-                </div>
+                      <div 
+                        className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-sm"
+                        style={{ 
+                          background: `linear-gradient(135deg, hsl(${theme.primaryColor}), hsl(${theme.accentColor}))` 
+                        }}
+                      >
+                        {theme.icon}
+                      </div>
+                      <span className="text-[10px] font-medium text-center leading-tight">{theme.name}</span>
+                    </motion.button>
+                  );
+                })}
               </div>
             </div>
           </CollapsibleContent>

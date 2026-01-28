@@ -89,16 +89,20 @@ export const DraggableFurniture = ({
       >
         {/* Furniture item */}
         <motion.div
-          className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg"
+          className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg cursor-grab active:cursor-grabbing"
           style={{
             background: isTintable 
               ? `linear-gradient(135deg, hsl(${theme.primaryColor}), hsl(${theme.secondaryColor}))` 
-              : 'hsl(var(--background))',
-            border: `2px solid hsl(${theme.primaryColor} / 0.3)`,
+              : 'hsl(var(--card))',
+            border: `2px solid hsl(${theme.primaryColor} / 0.4)`,
+            boxShadow: isSelected 
+              ? `0 0 0 2px hsl(${theme.accentColor}), 0 4px 12px hsl(${theme.primaryColor} / 0.3)` 
+              : '0 2px 8px rgba(0,0,0,0.1)',
           }}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.08, rotate: 2 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <span className="text-3xl select-none">{item.icon}</span>
+          <span className="text-2xl select-none drop-shadow-sm">{item.icon}</span>
         </motion.div>
 
         {/* Controls - only show when selected */}
