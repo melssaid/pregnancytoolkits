@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
-import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
+import { MedicalInfoBar } from "@/components/compliance";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
@@ -40,7 +40,6 @@ const AIBirthPosition = () => {
   const { settings } = useSettings();
   const { streamChat, isLoading } = usePregnancyAI();
   
-  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [birthPlan, setBirthPlan] = useState("natural");
   const [conditions, setConditions] = useState<string[]>([]);
   const [laborStage, setLaborStage] = useState("early");
@@ -85,15 +84,6 @@ Include safety considerations and when to change positions.`;
     });
   };
 
-  if (!disclaimerAccepted) {
-    return (
-      <MedicalDisclaimer
-        onAccept={() => setDisclaimerAccepted(true)}
-        toolName="AI Birth Position Recommender"
-      />
-    );
-  }
-
   return (
     <ToolFrame
       title="Birth Positions"
@@ -101,6 +91,9 @@ Include safety considerations and when to change positions.`;
       mood="empowering"
     >
       <div className="space-y-6">
+        {/* Non-intrusive Medical Reminder */}
+        <MedicalInfoBar compact />
+        
         {/* Position Gallery */}
         <div className="grid grid-cols-2 gap-3">
           {positions.map((pos) => (
