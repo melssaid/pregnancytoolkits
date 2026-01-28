@@ -5,7 +5,7 @@ export default function TermsOfService() {
     <Layout title="Terms of Service" showBack>
       <div className="container py-8">
         <div className="mx-auto max-w-3xl prose prose-slate dark:prose-invert">
-          <p className="text-muted-foreground text-sm">Last updated: January 2024</p>
+          <p className="text-muted-foreground text-sm">Last updated: January 2026</p>
           
           <h2>Acceptance of Terms</h2>
           <p>

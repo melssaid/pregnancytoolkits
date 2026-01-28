@@ -37,7 +37,7 @@ const sessions: Session[] = [
       'Visualize positive energy flowing through your body',
       'Set daily intentions for you and your baby'
     ],
-    videoUrl: 'https://www.youtube.com/embed/inpok4MKVLM',
+    videoUrl: 'https://www.youtube.com/embed/4YSdGFNmvIQ',
     thumbnailUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=225&fit=crop'
   },
   {
@@ -56,7 +56,7 @@ const sessions: Session[] = [
       'Try gentle hip circles',
       'End with child pose relaxation'
     ],
-    videoUrl: 'https://www.youtube.com/embed/B10taRSlbio',
+    videoUrl: 'https://www.youtube.com/embed/IG2Oc0jE0xo',
     thumbnailUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=225&fit=crop'
   },
   {
@@ -75,7 +75,7 @@ const sessions: Session[] = [
       'Practice exhaling with pursed lips',
       'Combine breathing with visualization'
     ],
-    videoUrl: 'https://www.youtube.com/embed/tybOi4hjZFQ',
+    videoUrl: 'https://www.youtube.com/embed/GYrVTrqC810',
     thumbnailUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=225&fit=crop'
   },
   {
@@ -94,7 +94,7 @@ const sessions: Session[] = [
       'Try gentle pigeon pose for hip opening',
       'Finish with relaxation pose'
     ],
-    videoUrl: 'https://www.youtube.com/embed/Ryxj3pzrRqk',
+    videoUrl: 'https://www.youtube.com/embed/_GFkKV9MCyk',
     thumbnailUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=225&fit=crop'
   },
   {
@@ -113,7 +113,7 @@ const sessions: Session[] = [
       'Use guided imagery of peaceful scenes',
       'End with gratitude meditation'
     ],
-    videoUrl: 'https://www.youtube.com/embed/aEqlQvczMJQ',
+    videoUrl: 'https://www.youtube.com/embed/4YSdGFNmvIQ',
     thumbnailUrl: 'https://images.unsplash.com/photo-1493836512294-502baa1986e2?w=400&h=225&fit=crop'
   },
   {
@@ -132,7 +132,7 @@ const sessions: Session[] = [
       'Try side-lying leg exercises',
       'End with supported relaxation pose'
     ],
-    videoUrl: 'https://www.youtube.com/embed/dWsLIYQ8m4s',
+    videoUrl: 'https://www.youtube.com/embed/GYrVTrqC810',
     thumbnailUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=225&fit=crop'
   }
 ];

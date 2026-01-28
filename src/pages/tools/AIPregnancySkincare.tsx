@@ -183,14 +183,14 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         <Card className="p-4">
           <h3 className="font-medium mb-3 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-primary" />
-            Pregnancy Skincare Basics
+            Pregnancy-Safe Skincare Guide
           </h3>
           <div className="aspect-video rounded-lg overflow-hidden">
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/iiNXSCrfqPI"
-              title="Pregnancy Skincare Guide"
+              src="https://www.youtube.com/embed/uhMQWyHlrmk"
+              title="Pregnancy Safe Skincare Guide"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

@@ -107,8 +107,27 @@ Be warm, practical, and specific. Include real examples.`;
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/LLiLLjHHZPQ"
-              title="Partner Support During Pregnancy"
+              src="https://www.youtube.com/embed/DugH6BxEWeE"
+              title="How to Support Your Partner During Labor"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </Card>
+
+        {/* Second Video - For Dads */}
+        <Card className="p-4">
+          <h3 className="font-medium mb-3 flex items-center gap-2">
+            <Heart className="w-4 h-4 text-primary" />
+            Ultimate Guide for Expecting Dads
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/asxKTBCs1vk"
+              title="Ultimate Guide for Expecting Fathers"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

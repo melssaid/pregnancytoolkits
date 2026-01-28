@@ -127,8 +127,8 @@ Be compassionate - morning sickness is exhausting!`;
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/rDQ6KOqfYNI"
-              title="Acupressure for Nausea"
+              src="https://www.youtube.com/embed/lh6FdzbbS20"
+              title="Stop Nausea Fast With Acupressure"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

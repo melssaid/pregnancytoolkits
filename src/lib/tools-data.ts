@@ -84,12 +84,11 @@ export const toolsData: Tool[] = [
   { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, categoryKey: "categories.ai", href: "/tools/ai-hospital-bag", priority: 12, hasAI: true },
   { id: "ai-partner-guide", titleKey: "tools.aiPartnerGuide.title", descriptionKey: "tools.aiPartnerGuide.description", icon: HeartHandshake, categoryKey: "categories.ai", href: "/tools/ai-partner-guide", priority: 13, hasAI: true },
   { id: "ai-birth-position", titleKey: "tools.aiBirthPosition.title", descriptionKey: "tools.aiBirthPosition.description", icon: PersonStanding, categoryKey: "categories.ai", href: "/tools/ai-birth-position", priority: 14, hasAI: true },
-  { id: "ai-pregnancy-skincare", titleKey: "tools.aiPregnancySkincare.title", descriptionKey: "tools.aiPregnancySkincare.description", icon: Palette, categoryKey: "categories.ai", href: "/tools/ai-skincare", priority: 15, hasAI: true },
-  { id: "ai-pelvic-floor", titleKey: "tools.aiPelvicFloor.title", descriptionKey: "tools.aiPelvicFloor.description", icon: CircleDot, categoryKey: "categories.ai", href: "/tools/ai-pelvic-floor", priority: 16, hasAI: true },
-  { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.ai", href: "/tools/ai-nausea-relief", priority: 17, hasAI: true },
-  { id: "ai-budget-planner", titleKey: "tools.aiBudgetPlanner.title", descriptionKey: "tools.aiBudgetPlanner.description", icon: Wallet, categoryKey: "categories.ai", href: "/tools/ai-budget-planner", priority: 18, hasAI: true },
-  { id: "ai-baby-room", titleKey: "tools.aiBabyRoom.title", descriptionKey: "tools.aiBabyRoom.description", icon: Home, categoryKey: "categories.ai", href: "/tools/ai-baby-room", priority: 19, hasAI: true },
-  { id: "ai-lactation-prep", titleKey: "tools.aiLactationPrep.title", descriptionKey: "tools.aiLactationPrep.description", icon: Milk, categoryKey: "categories.ai", href: "/tools/ai-lactation-prep", priority: 20, hasAI: true },
+  { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.ai", href: "/tools/ai-skincare", priority: 15, hasAI: true },
+  { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.ai", href: "/tools/ai-nausea-relief", priority: 16, hasAI: true },
+  { id: "ai-budget-planner", titleKey: "tools.aiBudgetPlanner.title", descriptionKey: "tools.aiBudgetPlanner.description", icon: Wallet, categoryKey: "categories.ai", href: "/tools/ai-budget-planner", priority: 17, hasAI: true },
+  { id: "ai-baby-room", titleKey: "tools.aiBabyRoom.title", descriptionKey: "tools.aiBabyRoom.description", icon: Home, categoryKey: "categories.ai", href: "/tools/ai-baby-room", priority: 18, hasAI: true },
+  { id: "ai-lactation-prep", titleKey: "tools.aiLactationPrep.title", descriptionKey: "tools.aiLactationPrep.description", icon: Milk, categoryKey: "categories.ai", href: "/tools/ai-lactation-prep", priority: 19, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // 💪 AI WELLNESS & FITNESS TOOLS (Priority 21-26)

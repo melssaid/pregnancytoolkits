@@ -47,7 +47,6 @@ const AIHospitalBag = lazy(() => import("@/pages/tools/AIHospitalBag"));
 const AIPartnerGuide = lazy(() => import("@/pages/tools/AIPartnerGuide"));
 const AIBirthPosition = lazy(() => import("@/pages/tools/AIBirthPosition"));
 const AIPregnancySkincare = lazy(() => import("@/pages/tools/AIPregnancySkincare"));
-const AIPelvicFloor = lazy(() => import("@/pages/tools/AIPelvicFloor"));
 const AINauseaRelief = lazy(() => import("@/pages/tools/AINauseaRelief"));
 const AIBudgetPlanner = lazy(() => import("@/pages/tools/AIBudgetPlanner"));
 const AIBabyRoom = lazy(() => import("@/pages/tools/AIBabyRoom"));
@@ -174,7 +173,6 @@ export function AnimatedRoutes() {
           <Route path="/tools/ai-partner-guide" element={<PageTransition><AIPartnerGuide /></PageTransition>} />
           <Route path="/tools/ai-birth-position" element={<PageTransition><AIBirthPosition /></PageTransition>} />
           <Route path="/tools/ai-skincare" element={<PageTransition><AIPregnancySkincare /></PageTransition>} />
-          <Route path="/tools/ai-pelvic-floor" element={<PageTransition><AIPelvicFloor /></PageTransition>} />
           <Route path="/tools/ai-nausea-relief" element={<PageTransition><AINauseaRelief /></PageTransition>} />
           <Route path="/tools/ai-budget-planner" element={<PageTransition><AIBudgetPlanner /></PageTransition>} />
           <Route path="/tools/ai-baby-room" element={<PageTransition><AIBabyRoom /></PageTransition>} />
