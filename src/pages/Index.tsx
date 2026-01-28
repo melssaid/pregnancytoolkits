@@ -58,8 +58,8 @@ const Index = () => {
     <Layout>
       {/* Categories - No duplicate hero */}
 
-      <section className="py-4">
-        <div className="container space-y-3">
+      <section className="py-3">
+        <div className="container space-y-4">
           {categoryConfig.map((cat) => {
             const allTools = getToolsByCategory(cat.key);
             const isExpanded = expandedCategories.has(cat.key);
@@ -70,19 +70,19 @@ const Index = () => {
             if (allTools.length === 0) return null;
 
             return (
-              <div key={cat.key} className="overflow-hidden">
-                {/* Category Card - Professional minimal frame */}
-                <div className="rounded-xl bg-card border border-border/30 overflow-hidden">
-                  {/* Category Header - Clean professional design */}
-                  <div className="flex items-center gap-3 px-4 py-2.5 border-b border-border/20 bg-muted/30">
-                    <div className="w-7 h-7 rounded-lg bg-foreground/5 border border-border/30 flex items-center justify-center">
-                      <Icon className="w-3.5 h-3.5 text-foreground/70" />
+              <div key={cat.key}>
+                {/* Unified Category Container */}
+                <div className="rounded-2xl border border-border/40 bg-card overflow-hidden shadow-sm">
+                  {/* Category Header - Integrated aesthetic frame */}
+                  <div className="flex items-center gap-2.5 px-4 py-3 bg-gradient-to-b from-muted/40 to-muted/20">
+                    <div className="w-8 h-8 rounded-xl bg-card border border-border/50 flex items-center justify-center shadow-sm">
+                      <Icon className="w-4 h-4 text-foreground/60" />
                     </div>
-                    <h2 className="text-sm font-semibold text-foreground tracking-tight">{t(cat.key)}</h2>
+                    <h2 className="text-[13px] font-semibold text-foreground/90 tracking-wide uppercase">{t(cat.key)}</h2>
                   </div>
                   
-                  {/* Tools Container */}
-                  <div className="p-2.5 space-y-1">
+                  {/* Tools List - Connected seamlessly */}
+                  <div className="divide-y divide-border/20">
                     <AnimatePresence initial={false} mode="sync">
                       {displayTools.map((tool, index) => (
                         <motion.div
@@ -91,6 +91,7 @@ const Index = () => {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
+                          className="px-3 py-1.5"
                         >
                           <MemoizedToolCard
                             titleKey={tool.titleKey}
@@ -104,26 +105,26 @@ const Index = () => {
                         </motion.div>
                       ))}
                     </AnimatePresence>
-                    
-                    {/* Show More Button - Minimal */}
-                    {allTools.length > 3 && (
-                      <motion.button
-                        onClick={() => toggleCategory(cat.key)}
-                        className="w-full py-2 mt-1.5 rounded-lg border border-border/20 bg-muted/20 hover:bg-muted/40 flex items-center justify-center gap-1.5 transition-all duration-200 group"
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                          {isExpanded ? 'Show Less' : `+${remainingCount} More`}
-                        </span>
-                        <motion.div
-                          animate={{ rotate: isExpanded ? 90 : 0 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <ChevronRight className="w-3 h-3 text-muted-foreground group-hover:text-foreground transition-colors" />
-                        </motion.div>
-                      </motion.button>
-                    )}
                   </div>
+                  
+                  {/* Expand Button - Integrated footer */}
+                  {allTools.length > 3 && (
+                    <motion.button
+                      onClick={() => toggleCategory(cat.key)}
+                      className="w-full py-2.5 bg-muted/30 hover:bg-muted/50 border-t border-border/20 flex items-center justify-center gap-1.5 transition-all duration-200 group"
+                      whileTap={{ scale: 0.99 }}
+                    >
+                      <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground/80 tracking-wide">
+                        {isExpanded ? 'Show Less' : `+${remainingCount} More`}
+                      </span>
+                      <motion.div
+                        animate={{ rotate: isExpanded ? 90 : 0 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <ChevronRight className="w-3 h-3 text-muted-foreground group-hover:text-foreground/80" />
+                      </motion.div>
+                    </motion.button>
+                  )}
                 </div>
               </div>
             );
