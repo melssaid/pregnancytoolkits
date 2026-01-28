@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Home, Sparkles, Shield, Lightbulb, Wand2, Save, Download, Layout, RotateCcw } from "lucide-react";
+import { Home, Sparkles, Shield, Lightbulb, Save, Download, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -173,72 +173,71 @@ Include specific product recommendations and estimated costs where helpful.`;
     <ToolFrame title="AI Baby Room Designer" icon={Home} mood="joyful">
       <div className="space-y-4">
         
-        {/* Step 1: Theme Selection */}
-        <Card className="p-4">
-          <ThemeSelector
-            selectedTheme={selectedTheme}
-            onThemeChange={setSelectedTheme}
-          />
+        {/* Theme + Quick Actions Row */}
+        <Card className="p-3">
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <ThemeSelector
+              selectedTheme={selectedTheme}
+              onThemeChange={setSelectedTheme}
+            />
+            {hasDesign && (
+              <div className="flex gap-1.5">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleSaveDesign}
+                  className="h-8 px-2.5 text-xs"
+                >
+                  <Save className="w-3.5 h-3.5 mr-1" />
+                  Save
+                  {hasUnsavedChanges && <span className="w-1.5 h-1.5 ml-1 rounded-full bg-amber-500" />}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleExportDesign}
+                  className="h-8 px-2.5 text-xs"
+                >
+                  <Download className="w-3.5 h-3.5 mr-1" />
+                  PNG
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleStartOver}
+                  className="h-8 px-2.5 text-xs text-destructive hover:text-destructive"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </Button>
+              </div>
+            )}
+          </div>
+
+          {/* Upload Zone */}
+          {!hasDesign && (
+            <UploadZone
+              onImageUploaded={handleImageUploaded}
+              themeColor={selectedTheme.primaryColor}
+            />
+          )}
         </Card>
 
-        {/* Step 2: Quick Start Options */}
+        {/* Templates - Only show when no design yet */}
         {!hasDesign && (
-          <Card className="p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Wand2 className="w-5 h-5" style={{ color: `hsl(${selectedTheme.accentColor})` }} />
-              <h3 className="font-semibold">Start Designing</h3>
-            </div>
-            
-            <div className="space-y-3">
-              {/* Upload Option */}
-              <UploadZone
-                onImageUploaded={handleImageUploaded}
-                themeColor={selectedTheme.primaryColor}
-              />
-              
-              {/* Or use templates */}
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">or choose a template</span>
-                </div>
-              </div>
-              
-              <Button
-                variant="outline"
-                className="w-full gap-2"
-                onClick={() => setShowTemplates(!showTemplates)}
-                style={{ borderColor: `hsl(${selectedTheme.primaryColor} / 0.3)` }}
-              >
-                <Layout className="w-4 h-4" />
-                {showTemplates ? "Hide Templates" : "Browse Ready Templates"}
-              </Button>
-              
-              {showTemplates && (
-                <div className="pt-2">
-                  <TemplateGallery
-                    onSelectTemplate={handleSelectTemplate}
-                    currentTheme={selectedTheme}
-                  />
-                </div>
-              )}
-            </div>
+          <Card className="p-3">
+            <TemplateGallery
+              onSelectTemplate={handleSelectTemplate}
+              currentTheme={selectedTheme}
+            />
           </Card>
         )}
 
-        {/* Step 3: Add Furniture (when design started) */}
+        {/* Furniture Picker - Compact when design exists */}
         {hasDesign && (
-          <Card className="p-4">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <span className="text-lg">🪑</span>
-                <h3 className="font-semibold text-sm">Add Furniture</h3>
-              </div>
-              <span className="text-xs text-muted-foreground">
-                {placedFurniture.length} items
-              </span>
+          <Card className="p-3">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-medium text-muted-foreground">Add Furniture</span>
+              <span className="text-[10px] text-muted-foreground">{placedFurniture.length} items</span>
             </div>
             <MobileAssetPicker 
               onAssetSelect={handleAddFurniture} 
@@ -247,15 +246,13 @@ Include specific product recommendations and estimated costs where helpful.`;
           </Card>
         )}
 
-        {/* Step 4: Room Canvas (when design started) */}
+        {/* Room Canvas */}
         {hasDesign && (
           <div ref={canvasContainerRef}>
             <Card className="overflow-hidden">
-              {/* Desktop: show asset library sidebar */}
               <div className="hidden md:block relative">
                 <AssetLibrary onAssetSelect={handleAddFurniture} theme={selectedTheme} />
               </div>
-              
               <div className="p-2 md:pl-[230px]">
                 <RoomCanvas
                   roomImage={roomImage}
@@ -269,65 +266,11 @@ Include specific product recommendations and estimated costs where helpful.`;
           </div>
         )}
 
-        {/* Step 5: Action Buttons */}
-        {hasDesign && (
-          <div className="grid grid-cols-2 gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleSaveDesign}
-              className="gap-1.5"
-            >
-              <Save className="w-4 h-4" />
-              Save
-              {hasUnsavedChanges && <span className="w-2 h-2 rounded-full bg-amber-500" />}
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleExportDesign}
-              className="gap-1.5"
-            >
-              <Download className="w-4 h-4" />
-              Export JPG
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowTemplates(!showTemplates)}
-              className="gap-1.5"
-            >
-              <Layout className="w-4 h-4" />
-              Templates
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleStartOver}
-              className="gap-1.5 text-destructive hover:text-destructive"
-            >
-              <RotateCcw className="w-4 h-4" />
-              Start Over
-            </Button>
-          </div>
-        )}
-
-        {/* Templates Modal (when design exists) */}
-        {hasDesign && showTemplates && (
-          <Card className="p-4">
-            <TemplateGallery
-              onSelectTemplate={handleSelectTemplate}
-              currentTheme={selectedTheme}
-            />
-          </Card>
-        )}
-
-        {/* Step 6: Get AI Plan */}
+        {/* Get AI Plan Button */}
         <Button
           onClick={getAIDesignPlan}
           disabled={isLoading}
-          className="w-full text-white"
-          size="lg"
+          className="w-full text-white h-11"
           style={{
             background: `linear-gradient(135deg, hsl(${selectedTheme.primaryColor}), hsl(${selectedTheme.accentColor}))`,
           }}
@@ -339,52 +282,50 @@ Include specific product recommendations and estimated costs where helpful.`;
         {/* AI Response */}
         {showDesignPanel && response && (
           <Card
-            className="p-4"
+            className="p-3"
             style={{
-              background: `linear-gradient(135deg, hsl(${selectedTheme.primaryColor} / 0.1), hsl(${selectedTheme.secondaryColor} / 0.1))`,
+              background: `hsl(${selectedTheme.primaryColor} / 0.05)`,
+              borderColor: `hsl(${selectedTheme.primaryColor} / 0.2)`,
             }}
           >
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
-        {/* Safety Checklist */}
-        <Card
-          className="p-4 border"
-          style={{
-            background: `hsl(${selectedTheme.primaryColor} / 0.05)`,
-            borderColor: `hsl(${selectedTheme.primaryColor} / 0.2)`,
-          }}
-        >
-          <h4 className="font-medium mb-3 flex items-center gap-2 text-sm">
+        {/* Safety Checklist - Collapsible */}
+        <details className="group">
+          <summary 
+            className="flex items-center gap-2 p-3 bg-muted/30 rounded-lg cursor-pointer list-none"
+            style={{ borderColor: `hsl(${selectedTheme.primaryColor} / 0.2)` }}
+          >
             <Shield className="w-4 h-4" style={{ color: `hsl(${selectedTheme.accentColor})` }} />
-            Safety Checklist
-          </h4>
-          <ul className="space-y-2">
-            {safetyChecklist.map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <Checkbox id={`safety-${i}`} className="mt-0.5" />
-                <label
-                  htmlFor={`safety-${i}`}
-                  className="text-xs text-muted-foreground cursor-pointer leading-relaxed"
-                >
-                  {item}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </Card>
+            <span className="text-sm font-medium">Safety Checklist</span>
+            <span className="ml-auto text-xs text-muted-foreground">Tap to expand</span>
+          </summary>
+          <Card className="mt-2 p-3 border" style={{ borderColor: `hsl(${selectedTheme.primaryColor} / 0.15)` }}>
+            <ul className="space-y-2">
+              {safetyChecklist.map((item, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <Checkbox id={`safety-${i}`} className="mt-0.5" />
+                  <label
+                    htmlFor={`safety-${i}`}
+                    className="text-xs text-muted-foreground cursor-pointer leading-relaxed"
+                  >
+                    {item}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </details>
 
         {/* Pro Tip */}
-        <Card className="p-3 bg-muted/50">
-          <div className="flex items-start gap-2">
-            <Lightbulb className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-            <p className="text-xs text-muted-foreground">
-              <strong>Pro tip:</strong> Set up the nursery by week 34-36 to have
-              time for adjustments before baby arrives!
-            </p>
-          </div>
-        </Card>
+        <div className="flex items-start gap-2 p-3 bg-muted/30 rounded-lg">
+          <Lightbulb className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-muted-foreground">
+            <strong>Pro tip:</strong> Set up the nursery by week 34-36 to have time for adjustments before baby arrives!
+          </p>
+        </div>
       </div>
     </ToolFrame>
   );

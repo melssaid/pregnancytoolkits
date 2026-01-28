@@ -143,91 +143,40 @@ interface TemplateGalleryProps {
 
 export const TemplateGallery = ({ onSelectTemplate, currentTheme }: TemplateGalleryProps) => {
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2">
-        <Sparkles className="w-5 h-5" style={{ color: `hsl(${currentTheme.accentColor})` }} />
-        <h3 className="font-semibold text-lg">Ready-Made Templates</h3>
+    <div className="space-y-3">
+      <div className="flex items-center gap-2 mb-2">
+        <Sparkles className="w-4 h-4" style={{ color: `hsl(${currentTheme.accentColor})` }} />
+        <h3 className="font-medium text-sm">Quick Start Templates</h3>
       </div>
-      
-      <p className="text-sm text-muted-foreground">
-        Start with a pre-designed layout and customize it to your liking
-      </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {DESIGN_TEMPLATES.map((template, index) => (
-          <motion.div
+      <div className="grid grid-cols-2 gap-2">
+        {DESIGN_TEMPLATES.map((template) => (
+          <Button
             key={template.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
+            variant="outline"
+            className="h-auto py-3 px-3 flex flex-col items-start gap-1 hover:shadow-md transition-all"
+            style={{
+              borderColor: `hsl(${template.theme.primaryColor} / 0.3)`,
+              background: `hsl(${template.theme.primaryColor} / 0.05)`,
+            }}
+            onClick={() => onSelectTemplate(template)}
           >
-            <Card
-              className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-              style={{
-                borderColor: `hsl(${template.theme.primaryColor} / 0.3)`,
-              }}
-              onClick={() => onSelectTemplate(template)}
-            >
-              {/* Preview Header */}
+            <div className="flex items-center gap-2 w-full">
               <div
-                className="h-20 flex items-center justify-center text-3xl gap-2 transition-transform group-hover:scale-110"
-                style={{
-                  background: `linear-gradient(135deg, hsl(${template.theme.primaryColor}), hsl(${template.theme.accentColor}))`,
+                className="p-1.5 rounded-md"
+                style={{ 
+                  background: `hsl(${template.theme.primaryColor} / 0.2)`,
+                  color: `hsl(${template.theme.accentColor})`,
                 }}
               >
-                {template.preview.split('').filter(c => c.trim()).map((emoji, i) => (
-                  <span key={i} className="drop-shadow-md">{emoji}</span>
-                ))}
+                {template.icon}
               </div>
-
-              {/* Content */}
-              <div className="p-3 space-y-2">
-                <div className="flex items-center gap-2">
-                  <div
-                    className="p-1.5 rounded-lg"
-                    style={{ 
-                      background: `hsl(${template.theme.primaryColor} / 0.2)`,
-                      color: `hsl(${template.theme.accentColor})`,
-                    }}
-                  >
-                    {template.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-sm">{template.name}</h4>
-                    <p className="text-xs text-muted-foreground line-clamp-1">
-                      {template.description}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    <span
-                      className="w-3 h-3 rounded-full"
-                      style={{ background: `hsl(${template.theme.primaryColor})` }}
-                    />
-                    <span className="text-xs text-muted-foreground">
-                      {template.theme.name}
-                    </span>
-                  </div>
-                  <span className="text-xs text-muted-foreground">
-                    {template.furniture.length} items
-                  </span>
-                </div>
-
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full text-xs h-8 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                  style={{
-                    borderColor: `hsl(${template.theme.primaryColor} / 0.3)`,
-                  }}
-                >
-                  Use This Template
-                </Button>
-              </div>
-            </Card>
-          </motion.div>
+              <span className="font-medium text-xs">{template.name}</span>
+            </div>
+            <span className="text-[10px] text-muted-foreground text-left line-clamp-1">
+              {template.furniture.length} items • {template.theme.name}
+            </span>
+          </Button>
         ))}
       </div>
     </div>
