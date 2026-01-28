@@ -287,8 +287,7 @@ export default function SmartAppointmentReminder() {
                     type="time"
                     value={newAppointment.time}
                     onChange={(e) => setNewAppointment(prev => ({ ...prev, time: e.target.value }))}
-                    className="flex-1"
-                    style={{ minWidth: '140px' }}
+                    className="flex-1 min-w-[160px] text-base [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:cursor-pointer"
                   />
                 </div>
               </div>
