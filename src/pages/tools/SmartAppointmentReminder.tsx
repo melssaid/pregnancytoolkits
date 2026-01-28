@@ -4,7 +4,8 @@ import { MedicalInfoBar } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Calendar, Clock, Bell, Plus, Trash2, CheckCircle, AlertCircle, Brain, Loader2, Archive, ChevronDown, ChevronUp } from 'lucide-react';
+import { TimePicker } from '@/components/ui/time-picker';
+import { Calendar, Bell, Plus, Trash2, CheckCircle, AlertCircle, Brain, Loader2, Archive, ChevronDown, ChevronUp } from 'lucide-react';
 import { format, isBefore, isToday, addDays } from 'date-fns';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -281,15 +282,11 @@ export default function SmartAppointmentReminder() {
                     className="flex-1"
                   />
                 </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                  <Input
-                    type="time"
-                    value={newAppointment.time}
-                    onChange={(e) => setNewAppointment(prev => ({ ...prev, time: e.target.value }))}
-                    className="flex-1 min-w-[160px] text-base [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:cursor-pointer"
-                  />
-                </div>
+                <TimePicker
+                  value={newAppointment.time}
+                  onChange={(time) => setNewAppointment(prev => ({ ...prev, time }))}
+                  placeholder="Select time"
+                />
               </div>
 
               <div>
