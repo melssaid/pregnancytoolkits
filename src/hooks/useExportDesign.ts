@@ -13,24 +13,46 @@ export const useExportDesign = () => {
     }
 
     try {
-      toast.loading('Preparing high-quality image...', { id: 'export' });
+      toast.loading('Preparing high-quality JPG...', { id: 'export' });
       
-      const canvas = await html2canvas(canvasRef.current, {
+      const node = canvasRef.current;
+      const canvas = await html2canvas(node, {
         backgroundColor: '#ffffff',
-        scale: 3, // Higher resolution for better quality
+        scale: 3,
         useCORS: true,
         allowTaint: true,
         logging: false,
-        width: canvasRef.current.offsetWidth,
-        height: canvasRef.current.offsetHeight,
+        width: node.scrollWidth,
+        height: node.scrollHeight,
       });
 
-      const link = document.createElement('a');
-      link.download = `${filename}-${Date.now()}.png`;
-      link.href = canvas.toDataURL('image/png', 1.0); // PNG for better quality
-      link.click();
+      const download = (url: string) => {
+        const link = document.createElement('a');
+        link.download = `${filename}-${Date.now()}.jpg`;
+        link.href = url;
+        link.click();
+      };
 
-      toast.success('Design exported in HD!', { id: 'export' });
+      // Prefer blob to avoid huge data URLs on mobile
+      if (canvas.toBlob) {
+        await new Promise<void>((resolve, reject) => {
+          canvas.toBlob(
+            (blob) => {
+              if (!blob) return reject(new Error('Failed to create JPG blob'));
+              const url = URL.createObjectURL(blob);
+              download(url);
+              setTimeout(() => URL.revokeObjectURL(url), 5000);
+              resolve();
+            },
+            'image/jpeg',
+            0.95
+          );
+        });
+      } else {
+        download(canvas.toDataURL('image/jpeg', 0.95));
+      }
+
+      toast.success('Design exported!', { id: 'export' });
       return true;
     } catch (error) {
       console.error('Export failed:', error);
