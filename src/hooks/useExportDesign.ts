@@ -13,22 +13,24 @@ export const useExportDesign = () => {
     }
 
     try {
-      toast.loading('Preparing image...', { id: 'export' });
+      toast.loading('Preparing high-quality image...', { id: 'export' });
       
       const canvas = await html2canvas(canvasRef.current, {
         backgroundColor: '#ffffff',
-        scale: 2,
+        scale: 3, // Higher resolution for better quality
         useCORS: true,
         allowTaint: true,
         logging: false,
+        width: canvasRef.current.offsetWidth,
+        height: canvasRef.current.offsetHeight,
       });
 
       const link = document.createElement('a');
-      link.download = `${filename}-${Date.now()}.jpg`;
-      link.href = canvas.toDataURL('image/jpeg', 0.9);
+      link.download = `${filename}-${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png', 1.0); // PNG for better quality
       link.click();
 
-      toast.success('Design exported!', { id: 'export' });
+      toast.success('Design exported in HD!', { id: 'export' });
       return true;
     } catch (error) {
       console.error('Export failed:', error);
