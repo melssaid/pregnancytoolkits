@@ -74,7 +74,7 @@ const Index = () => {
                 {/* Section Header - Tech-forward connected design */}
                 <div className="flex items-center gap-2 mb-2 px-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-1 h-4 rounded-full bg-foreground/20" />
+                    <div className="w-1 h-4 rounded-full bg-rose-700" />
                     <Icon className="w-4 h-4 text-foreground/50" />
                     <h2 className="text-xs font-semibold text-foreground/70 tracking-widest uppercase">
                       {t(cat.key)}
