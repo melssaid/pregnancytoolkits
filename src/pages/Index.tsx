@@ -58,8 +58,8 @@ const Index = () => {
     <Layout>
       {/* Categories - No duplicate hero */}
 
-      <section className="py-3">
-        <div className="container space-y-4">
+      <section className="py-4">
+        <div className="container space-y-5">
           {categoryConfig.map((cat) => {
             const allTools = getToolsByCategory(cat.key);
             const isExpanded = expandedCategories.has(cat.key);
@@ -71,18 +71,21 @@ const Index = () => {
 
             return (
               <div key={cat.key}>
-                {/* Unified Category Container */}
-                <div className="rounded-2xl border border-border/40 bg-card overflow-hidden shadow-sm">
-                  {/* Category Header - Integrated aesthetic frame */}
-                  <div className="flex items-center gap-2.5 px-4 py-3 bg-gradient-to-b from-muted/40 to-muted/20">
-                    <div className="w-8 h-8 rounded-xl bg-card border border-border/50 flex items-center justify-center shadow-sm">
-                      <Icon className="w-4 h-4 text-foreground/60" />
-                    </div>
-                    <h2 className="text-[13px] font-semibold text-foreground/90 tracking-wide uppercase">{t(cat.key)}</h2>
+                {/* Section Header - Tech-forward connected design */}
+                <div className="flex items-center gap-2 mb-2 px-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1 h-4 rounded-full bg-foreground/20" />
+                    <Icon className="w-4 h-4 text-foreground/50" />
+                    <h2 className="text-xs font-semibold text-foreground/70 tracking-widest uppercase">
+                      {t(cat.key)}
+                    </h2>
                   </div>
-                  
-                  {/* Tools List - Connected seamlessly */}
-                  <div className="divide-y divide-border/20">
+                  <div className="flex-1 h-px bg-gradient-to-r from-border/50 to-transparent" />
+                </div>
+                
+                {/* Tools Container - Clean connected layout */}
+                <div className="rounded-2xl border border-border/40 bg-card overflow-hidden">
+                  <div className="divide-y divide-border/30">
                     <AnimatePresence initial={false} mode="sync">
                       {displayTools.map((tool, index) => (
                         <motion.div
@@ -91,7 +94,7 @@ const Index = () => {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="px-3 py-1.5"
+                          className="px-2 py-1"
                         >
                           <MemoizedToolCard
                             titleKey={tool.titleKey}
@@ -107,21 +110,21 @@ const Index = () => {
                     </AnimatePresence>
                   </div>
                   
-                  {/* Expand Button - Integrated footer */}
+                  {/* Expand Button */}
                   {allTools.length > 3 && (
                     <motion.button
                       onClick={() => toggleCategory(cat.key)}
-                      className="w-full py-2.5 bg-muted/30 hover:bg-muted/50 border-t border-border/20 flex items-center justify-center gap-1.5 transition-all duration-200 group"
+                      className="w-full py-2.5 bg-muted/20 hover:bg-muted/40 border-t border-border/30 flex items-center justify-center gap-1.5 transition-all duration-200 group"
                       whileTap={{ scale: 0.99 }}
                     >
-                      <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground/80 tracking-wide">
+                      <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground tracking-wide">
                         {isExpanded ? 'Show Less' : `+${remainingCount} More`}
                       </span>
                       <motion.div
                         animate={{ rotate: isExpanded ? 90 : 0 }}
                         transition={{ duration: 0.15 }}
                       >
-                        <ChevronRight className="w-3 h-3 text-muted-foreground group-hover:text-foreground/80" />
+                        <ChevronRight className="w-3 h-3 text-muted-foreground group-hover:text-foreground" />
                       </motion.div>
                     </motion.button>
                   )}
