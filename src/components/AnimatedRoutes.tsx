@@ -49,7 +49,6 @@ const AIBirthPosition = lazy(() => import("@/pages/tools/AIBirthPosition"));
 const AIPregnancySkincare = lazy(() => import("@/pages/tools/AIPregnancySkincare"));
 const AINauseaRelief = lazy(() => import("@/pages/tools/AINauseaRelief"));
 const AIBudgetPlanner = lazy(() => import("@/pages/tools/AIBudgetPlanner"));
-
 const AILactationPrep = lazy(() => import("@/pages/tools/AILactationPrep"));
 
 // AI LABOR & MONITORING
