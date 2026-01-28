@@ -104,39 +104,23 @@ Include specific product recommendations and estimated costs where helpful.`;
   return (
     <ToolFrame title="AI Baby Room Designer" icon={Home} mood="joyful">
       <div className="space-y-5">
-        {/* Hero Header */}
-        <Card
-          className="overflow-hidden border-0 shadow-lg"
+        {/* Compact Hero Header */}
+        <div
+          className="flex items-center gap-3 p-3 rounded-xl shadow-md"
           style={{
             background: `linear-gradient(135deg, hsl(${selectedTheme.primaryColor}), hsl(${selectedTheme.accentColor}))`,
           }}
         >
-          <div className="p-5 text-white">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
-                <Wand2 className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold">AI Interior Designer</h3>
-                <p className="text-white/80 text-sm">
-                  Upload, arrange, and get AI-powered recommendations
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 text-xs">
-              <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur">
-                🎨 Smart Theming
-              </span>
-              <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur">
-                🪑 Drag & Drop
-              </span>
-              <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur">
-                ✨ Auto-Arrange
-              </span>
-            </div>
+          <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
+            <Wand2 className="w-5 h-5 text-white" />
           </div>
-        </Card>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-bold text-white">AI Interior Designer</h3>
+            <p className="text-white/80 text-xs truncate">
+              Drag furniture • Choose themes • Get AI tips
+            </p>
+          </div>
+        </div>
 
         {/* Main Workspace */}
         <div className="relative min-h-[400px] rounded-2xl overflow-hidden border bg-muted/30">
