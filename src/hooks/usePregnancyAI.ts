@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary";
+type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | "bump-photos";
 
 interface Message {
   role: "user" | "assistant";
@@ -111,5 +111,36 @@ export function usePregnancyAI() {
     []
   );
 
-  return { streamChat, isLoading, error };
+  // Simple non-streaming content generation
+  const generateContent = useCallback(
+    async (prompt: string): Promise<string | null> => {
+      setIsLoading(true);
+      setError(null);
+      let result = "";
+
+      try {
+        await new Promise<void>((resolve) => {
+          streamChat({
+            type: "pregnancy-assistant",
+            messages: [{ role: "user", content: prompt }],
+            onDelta: (text) => {
+              result += text;
+            },
+            onDone: () => {
+              resolve();
+            },
+          });
+        });
+
+        return result || null;
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "خطأ غير معروف";
+        setError(message);
+        return null;
+      }
+    },
+    [streamChat]
+  );
+
+  return { streamChat, generateContent, isLoading, error };
 }
