@@ -75,31 +75,37 @@ export function TimePicker({ value, onChange, placeholder = "Select time", class
           {formatDisplayTime() || <span>{placeholder}</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
-        <div className="p-4 space-y-4">
+      <PopoverContent 
+        className="w-[280px] p-0" 
+        align="center" 
+        side="bottom"
+        sideOffset={8}
+        collisionPadding={16}
+      >
+        <div className="p-3 space-y-3">
           {/* Time Display */}
-          <div className="text-center bg-muted rounded-lg p-3">
-            <span className="text-3xl font-bold tabular-nums">
+          <div className="text-center bg-muted rounded-lg p-2">
+            <span className="text-2xl font-bold tabular-nums">
               {selectedHour || "--"}:{selectedMinute || "--"}
             </span>
-            <span className="ml-2 text-lg font-medium text-muted-foreground">
+            <span className="ml-2 text-base font-medium text-muted-foreground">
               {period}
             </span>
           </div>
 
           {/* Selectors Row */}
-          <div className="flex gap-2">
+          <div className="flex gap-1.5">
             {/* Hours */}
             <div className="flex-1">
-              <p className="text-xs font-medium text-muted-foreground mb-2 text-center">Hour</p>
-              <ScrollArea className="h-[180px] rounded-md border">
-                <div className="p-1">
+              <p className="text-[10px] font-medium text-muted-foreground mb-1 text-center uppercase">Hour</p>
+              <ScrollArea className="h-[140px] rounded-md border">
+                <div className="p-0.5">
                   {hours.map((hour) => (
                     <button
                       key={hour}
                       onClick={() => setSelectedHour(hour)}
                       className={cn(
-                        "w-full px-3 py-2 text-center rounded-md text-sm transition-colors",
+                        "w-full px-2 py-1.5 text-center rounded text-sm transition-colors",
                         selectedHour === hour
                           ? "bg-primary text-primary-foreground"
                           : "hover:bg-muted"
@@ -112,17 +118,17 @@ export function TimePicker({ value, onChange, placeholder = "Select time", class
               </ScrollArea>
             </div>
 
-            {/* Minutes */}
+            {/* Minutes - show only 5-minute intervals for simplicity */}
             <div className="flex-1">
-              <p className="text-xs font-medium text-muted-foreground mb-2 text-center">Minute</p>
-              <ScrollArea className="h-[180px] rounded-md border">
-                <div className="p-1">
-                  {minutes.map((minute) => (
+              <p className="text-[10px] font-medium text-muted-foreground mb-1 text-center uppercase">Min</p>
+              <ScrollArea className="h-[140px] rounded-md border">
+                <div className="p-0.5">
+                  {minutes.filter((_, i) => i % 5 === 0).map((minute) => (
                     <button
                       key={minute}
                       onClick={() => setSelectedMinute(minute)}
                       className={cn(
-                        "w-full px-3 py-2 text-center rounded-md text-sm transition-colors",
+                        "w-full px-2 py-1.5 text-center rounded text-sm transition-colors",
                         selectedMinute === minute
                           ? "bg-primary text-primary-foreground"
                           : "hover:bg-muted"
@@ -136,13 +142,13 @@ export function TimePicker({ value, onChange, placeholder = "Select time", class
             </div>
 
             {/* AM/PM */}
-            <div className="w-16">
-              <p className="text-xs font-medium text-muted-foreground mb-2 text-center">Period</p>
+            <div className="w-14">
+              <p className="text-[10px] font-medium text-muted-foreground mb-1 text-center uppercase">AM/PM</p>
               <div className="space-y-1">
                 <button
                   onClick={() => setPeriod("AM")}
                   className={cn(
-                    "w-full px-3 py-3 rounded-md text-sm font-medium transition-colors",
+                    "w-full px-2 py-2 rounded text-sm font-medium transition-colors",
                     period === "AM"
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted hover:bg-muted/80"
@@ -153,7 +159,7 @@ export function TimePicker({ value, onChange, placeholder = "Select time", class
                 <button
                   onClick={() => setPeriod("PM")}
                   className={cn(
-                    "w-full px-3 py-3 rounded-md text-sm font-medium transition-colors",
+                    "w-full px-2 py-2 rounded text-sm font-medium transition-colors",
                     period === "PM"
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted hover:bg-muted/80"
@@ -169,15 +175,17 @@ export function TimePicker({ value, onChange, placeholder = "Select time", class
           <div className="flex gap-2 pt-2 border-t">
             <Button
               variant="outline"
+              size="sm"
               onClick={() => setOpen(false)}
-              className="flex-1"
+              className="flex-1 h-9"
             >
               Cancel
             </Button>
             <Button
+              size="sm"
               onClick={handleConfirm}
               disabled={!selectedHour || !selectedMinute}
-              className="flex-1"
+              className="flex-1 h-9"
             >
               Set Time
             </Button>
