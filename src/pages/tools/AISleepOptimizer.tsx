@@ -86,8 +86,10 @@ Include specific product recommendations (pillows, white noise) and YouTube link
   return (
     <ToolFrame
       title="AI Sleep Optimizer"
-      icon={Moon}
+      subtitle="Personalized sleep advice for pregnancy"
+      customIcon="pregnant-woman"
       mood="calm"
+      toolId="ai-sleep-optimizer"
     >
       <div className="space-y-6">
         {/* Sleep Video Guide */}

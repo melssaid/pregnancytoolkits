@@ -192,9 +192,9 @@ export default function LaborBreathingCoach() {
     <ToolFrame
       title="Labor Breathing Coach"
       subtitle="Guided breathing techniques for pregnancy and labor"
+      customIcon="pregnant-woman"
       mood="calm"
       toolId="labor-breathing"
-      icon={Wind}
     >
       <div className="space-y-6">
           {/* Pattern Selection */}

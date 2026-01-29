@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Layout } from "@/components/Layout";
+import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Droplet, Circle, Trash2, TrendingUp } from "lucide-react";
@@ -74,12 +74,18 @@ const DiaperTracker = () => {
   };
 
   return (
-    <Layout title={t('tools.diaperTracker.title')} showBack>
-      <div className="container max-w-2xl py-8">
+    <ToolFrame 
+      title={t('tools.diaperTracker.title')} 
+      subtitle="Track your baby's diaper changes"
+      customIcon="mother-baby"
+      mood="nurturing"
+      toolId="diaper-tracker"
+    >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="space-y-6"
         >
           {/* Quick Add */}
           <Card className="mb-6">
@@ -191,8 +197,7 @@ const DiaperTracker = () => {
             </div>
           )}
         </motion.div>
-      </div>
-    </Layout>
+    </ToolFrame>
   );
 };
 

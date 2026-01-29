@@ -76,7 +76,7 @@ export default function PregnancyBMI() {
     <ToolFrame
       title="Pregnancy BMI Calculator"
       subtitle="Calculate your pre-pregnancy BMI and weight gain recommendations"
-      icon={Calculator}
+      customIcon="weight-scale"
       mood="calm"
       toolId="pregnancy-bmi"
     >

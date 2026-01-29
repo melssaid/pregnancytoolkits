@@ -151,9 +151,9 @@ export default function PostpartumMentalHealthCoach() {
     <ToolFrame
       title="Postpartum Mental Health Coach"
       subtitle="Edinburgh Postnatal Depression Scale screening"
+      customIcon="health-shield"
       mood="nurturing"
       toolId="mental-health-coach"
-      icon={Heart}
     >
       <div className="space-y-6">
           {/* Emergency Alert */}

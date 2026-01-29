@@ -97,7 +97,7 @@ export default function AIBabyNameFinder() {
     <ToolFrame
       title="AI Baby Name Finder"
       subtitle="Discover the perfect name with meanings and cultural origins"
-      icon={Sparkles}
+      customIcon="baby-growth"
       mood="joyful"
       toolId="ai-baby-name-finder"
     >

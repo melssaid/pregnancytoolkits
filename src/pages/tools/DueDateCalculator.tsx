@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Baby, Info, Calendar, Save, Bell, Trash2, Share2 } from "lucide-react";
-import { Layout } from "@/components/Layout";
+import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -147,14 +147,19 @@ export default function DueDateCalculator() {
   };
 
   return (
-    <Layout title="Due Date Calculator" showBack>
-      <div className="container py-8">
-        <div className="mx-auto max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
+    <ToolFrame 
+      title="Due Date Calculator" 
+      subtitle="Estimate your baby's arrival date"
+      customIcon="calendar"
+      mood="nurturing"
+      toolId="due-date-calculator"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-6"
+      >
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -332,9 +337,7 @@ export default function DueDateCalculator() {
                 due date based on ultrasound measurements.
               </p>
             </div>
-          </motion.div>
-        </div>
-      </div>
-    </Layout>
+        </motion.div>
+    </ToolFrame>
   );
 }

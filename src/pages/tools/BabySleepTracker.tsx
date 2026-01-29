@@ -215,8 +215,9 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
     <ToolFrame
       title="Baby Sleep Tracker"
       subtitle="AI-powered sleep pattern analysis for your baby"
-      icon={Baby}
+      customIcon="mother-baby"
       mood="nurturing"
+      toolId="baby-sleep-tracker"
     >
       <div className="space-y-6">
         {/* Active Session */}

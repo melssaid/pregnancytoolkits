@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Layout } from "@/components/Layout";
+import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -158,13 +158,19 @@ const BabyGrowth = () => {
   };
 
   return (
-    <Layout title={t('tools.babyGrowth.title')} showBack>
-      <div className="container max-w-2xl py-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+    <ToolFrame 
+      title={t('tools.babyGrowth.title')} 
+      subtitle="Track your baby's growth milestones"
+      customIcon="baby-growth"
+      mood="joyful"
+      toolId="baby-growth"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="space-y-6"
+      >
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-3 mb-6">
               <TabsTrigger value="add" className="gap-2">
@@ -376,8 +382,7 @@ const BabyGrowth = () => {
             </TabsContent>
           </Tabs>
         </motion.div>
-      </div>
-    </Layout>
+    </ToolFrame>
   );
 };
 

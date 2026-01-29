@@ -92,8 +92,9 @@ const PregnancyMilestones = () => {
     <ToolFrame
       title={t('tools.pregnancyMilestones.title')}
       subtitle={t('tools.pregnancyMilestones.description')}
-      icon={Milestone}
+      customIcon="checklist"
       mood="empowering"
+      toolId="pregnancy-milestones"
     >
       <div className="space-y-6">
         {/* Progress Overview */}

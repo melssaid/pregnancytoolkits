@@ -171,8 +171,9 @@ const Affirmations = () => {
     <ToolFrame
       title="Daily Affirmations"
       subtitle="Positive thoughts for your pregnancy journey"
-      icon={Sparkles}
+      customIcon="pregnant-woman"
       mood="calm"
+      toolId="affirmations"
     >
       <div className="space-y-5">
         {/* Stats Row */}

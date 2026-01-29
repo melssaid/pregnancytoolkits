@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Heart, CheckCircle, AlertTriangle, Info } from "lucide-react";
-import { Layout } from "@/components/Layout";
+import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -78,14 +78,19 @@ export default function PreeclampsiaRisk() {
   const result = calculateRisk();
 
   return (
-    <Layout title="Preeclampsia Risk Calculator" showBack>
-      <div className="container py-8">
-        <div className="mx-auto max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
+    <ToolFrame 
+      title="Preeclampsia Risk Calculator" 
+      subtitle="Evaluate your risk factors for preeclampsia"
+      customIcon="health-shield"
+      mood="calm"
+      toolId="preeclampsia-risk"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-6"
+      >
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -212,8 +217,6 @@ export default function PreeclampsiaRisk() {
               </p>
             </div>
           </motion.div>
-        </div>
-      </div>
-    </Layout>
+    </ToolFrame>
   );
 }

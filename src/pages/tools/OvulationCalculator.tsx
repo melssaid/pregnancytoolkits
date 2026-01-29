@@ -106,8 +106,9 @@ export default function OvulationCalculator() {
     <ToolFrame
       title="Ovulation Calculator"
       subtitle="Find your most fertile days"
-      icon={Calendar}
+      customIcon="calendar"
       mood="nurturing"
+      toolId="ovulation-calculator"
     >
       <div className="space-y-6">
         <MotivationalQuote variant="banner" />

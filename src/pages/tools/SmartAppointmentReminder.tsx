@@ -212,7 +212,7 @@ export default function SmartAppointmentReminder() {
     <ToolFrame
       title="Smart Appointment Reminder"
       subtitle="Never miss a prenatal appointment with AI-powered preparation"
-      icon={Calendar}
+      customIcon="calendar"
       mood="calm"
       toolId="smart-appointment-reminder"
     >
