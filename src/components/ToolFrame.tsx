@@ -88,58 +88,32 @@ export function ToolFrame({
           </div>
         </motion.header>
 
-        {/* Hero Section - Compact and Consistent */}
+        {/* Hero Section - Title Only */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           className="px-4 py-4"
         >
-          <div className="flex items-center gap-3">
-            {/* Custom Pregnancy Icon or Lucide Icon */}
-            {customIcon ? (
-              <motion.div 
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.15 }}
-                className="shrink-0"
+          <div className="flex-1 min-w-0">
+            <motion.h1 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="text-lg sm:text-xl font-bold text-foreground tracking-tight leading-tight"
+            >
+              {title}
+            </motion.h1>
+            {subtitle && (
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.25 }}
+                className="text-muted-foreground text-[11px] sm:text-xs leading-relaxed line-clamp-1"
               >
-                <div className="p-1.5 rounded-xl bg-white/80 shadow-lg ring-2 ring-white/50">
-                  <PregnancyIcon name={customIcon} size={28} />
-                </div>
-              </motion.div>
-            ) : Icon && (
-              <motion.div 
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.15 }}
-                className="shrink-0"
-              >
-                <div className={`p-2.5 rounded-xl ${styles.iconBg} shadow-lg shadow-primary/20 ring-2 ring-white`}>
-                  <Icon className="h-5 w-5 text-white" strokeWidth={2.5} />
-                </div>
-              </motion.div>
+                {subtitle}
+              </motion.p>
             )}
-            <div className="flex-1 min-w-0">
-              <motion.h1 
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-                className="text-lg sm:text-xl font-bold text-foreground tracking-tight leading-tight"
-              >
-                {title}
-              </motion.h1>
-              {subtitle && (
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.25 }}
-                  className="text-muted-foreground text-[11px] sm:text-xs leading-relaxed line-clamp-1"
-                >
-                  {subtitle}
-                </motion.p>
-              )}
-            </div>
           </div>
         </motion.section>
 
@@ -151,6 +125,25 @@ export function ToolFrame({
             transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
             className={`relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/[0.04] ${styles.border} border overflow-hidden`}
           >
+            {/* Centered Icon */}
+            {(customIcon || Icon) && (
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.3 }}
+                className="flex justify-center pt-6 pb-2"
+              >
+                {customIcon ? (
+                  <div className="p-3 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 shadow-sm ring-1 ring-primary/10">
+                    <PregnancyIcon name={customIcon} size={48} />
+                  </div>
+                ) : Icon && (
+                  <div className={`p-3 rounded-2xl ${styles.iconBg} shadow-lg shadow-primary/20`}>
+                    <Icon className="h-10 w-10 text-white" strokeWidth={2} />
+                  </div>
+                )}
+              </motion.div>
+            )}
             {/* Content - Tighter padding */}
             <div className="relative z-10 p-4 sm:p-5">
               {children}
