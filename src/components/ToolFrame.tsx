@@ -136,16 +136,18 @@ export function ToolFrame({
                 transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
                 className="flex justify-center pt-8 pb-4"
               >
-                <div className={`relative p-5 rounded-full bg-white shadow-xl shadow-primary/10 ring-4 ring-white`}>
+                <div className={`relative rounded-full bg-white shadow-xl shadow-primary/10 ring-4 ring-white overflow-hidden`}>
                   {/* Glow Effect */}
                   <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${styles.glow} to-transparent blur-xl opacity-50`} />
                   
                   {/* Icon Container */}
                   <div className="relative z-10">
                     {hasCustomIcon && toolId ? (
-                      <ToolIcon toolId={toolId} size={64} />
+                      <ToolIcon toolId={toolId} size={120} />
                     ) : Icon && (
-                      <Icon className="h-16 w-16 text-primary" strokeWidth={1.5} />
+                      <div className="p-6">
+                        <Icon className="h-20 w-20 text-primary" strokeWidth={1.5} />
+                      </div>
                     )}
                   </div>
                 </div>
