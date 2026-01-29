@@ -134,7 +134,9 @@ export function ToolFrame({
                 className="flex justify-center pt-6 pb-2"
               >
                 {customIcon ? (
-                  <PregnancyIcon name={customIcon} size={48} />
+                  <div className="p-2 rounded-xl bg-white">
+                    <PregnancyIcon name={customIcon} size={48} />
+                  </div>
                 ) : Icon && (
                   <Icon className="h-12 w-12 text-primary" strokeWidth={1.5} />
                 )}
