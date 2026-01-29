@@ -154,7 +154,7 @@ interface ToolIconProps {
 
 export const ToolIcon: React.FC<ToolIconProps> = ({ 
   toolId, 
-  size = 64,
+  size = 100,
   className = ''
 }) => {
   const iconSrc = toolIconMap[toolId];
@@ -167,7 +167,7 @@ export const ToolIcon: React.FC<ToolIconProps> = ({
     <img 
       src={iconSrc}
       alt={toolId}
-      className={`object-contain ${className}`}
+      className={`object-cover ${className}`}
       style={{
         width: size,
         height: size,
