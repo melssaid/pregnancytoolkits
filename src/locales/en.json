@@ -365,6 +365,10 @@
     "pregnancySmoothieAI": {
       "title": "Pregnancy Smoothie AI",
       "description": "Healthy smoothie recipes for every trimester."
+    },
+    "aiBumpPhotos": {
+      "title": "AI Bump Photos",
+      "description": "Smart pregnancy photo timeline with AI insights and growth analysis."
     }
   },
   "common": {
