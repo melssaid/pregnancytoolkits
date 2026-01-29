@@ -128,31 +128,6 @@ export function ToolFrame({
             transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
             className={`relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/[0.04] ${styles.border} border overflow-hidden`}
           >
-            {/* Centered Icon with Circular Frame */}
-            {(hasCustomIcon || Icon) && (
-              <motion.div 
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
-                className="flex justify-center pt-8 pb-4"
-              >
-                <div className={`relative rounded-full bg-white shadow-xl shadow-primary/10 ring-4 ring-white overflow-hidden`}>
-                  {/* Glow Effect */}
-                  <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${styles.glow} to-transparent blur-xl opacity-50`} />
-                  
-                  {/* Icon Container */}
-                  <div className="relative z-10">
-                    {hasCustomIcon && toolId ? (
-                      <ToolIcon toolId={toolId} size={120} />
-                    ) : Icon && (
-                      <div className="p-6">
-                        <Icon className="h-20 w-20 text-primary" strokeWidth={1.5} />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            )}
             {/* Content - Tighter padding */}
             <div className="relative z-10 p-4 sm:p-5">
               {children}
