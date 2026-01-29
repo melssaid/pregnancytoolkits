@@ -25,34 +25,34 @@ const educationalVideos: Video[] = [
   {
     id: 'kick-1',
     title: 'How to Count Baby Kicks',
-    description: 'Step-by-step guide to monitoring fetal movement',
-    youtubeId: 'dQw4w9WgXcQ',
-    duration: '4:32',
+    description: 'Step-by-step guide to monitoring fetal movement for baby health',
+    youtubeId: 'Ej0Yef2sDFM',
+    duration: '5:42',
     category: 'Getting Started'
   },
   {
     id: 'kick-2',
-    title: 'When to Start Kick Counting',
-    description: 'Understanding the best time to begin tracking',
-    youtubeId: 'dQw4w9WgXcQ',
-    duration: '3:15',
+    title: 'Fetal Kick Counts Explained',
+    description: 'Understanding when and how to monitor baby movements',
+    youtubeId: 'pBUXzJURch4',
+    duration: '4:18',
     category: 'Getting Started'
   },
   {
     id: 'kick-3',
-    title: 'Understanding Fetal Movement Patterns',
-    description: 'What normal movement looks like throughout pregnancy',
-    youtubeId: 'dQw4w9WgXcQ',
-    duration: '6:48',
-    category: 'Education'
+    title: 'Kick Counting: 10 Kicks in 60 Minutes',
+    description: 'Dr. Thomas Moore explains the importance of fetal kick counting',
+    youtubeId: 'kXbrD8eu5H4',
+    duration: '3:52',
+    category: 'Medical Guidance'
   },
   {
     id: 'kick-4',
-    title: 'When to Call Your Doctor',
-    description: 'Important signs that need medical attention',
-    youtubeId: 'dQw4w9WgXcQ',
-    duration: '5:20',
-    category: 'Safety'
+    title: 'How to Check Baby Kicks',
+    description: 'Sarah Lavonne explains proper kick counting technique',
+    youtubeId: 'LTjgHYnMP5s',
+    duration: '8:15',
+    category: 'Expert Tips'
   }
 ];
 
