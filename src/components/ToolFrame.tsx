@@ -3,14 +3,14 @@ import { Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { RelatedTools } from "./RelatedTools";
-import { PregnancyIcon, PregnancyIconName } from "./PregnancyIcon";
+import { ToolIcon, hasToolIcon } from "./ToolIcon";
 
 interface ToolFrameProps {
   children: React.ReactNode;
   title: string;
   subtitle?: string;
   icon?: React.ElementType;
-  customIcon?: PregnancyIconName;
+  customIcon?: string; // Legacy support - now uses toolId for icons
   mood?: "calm" | "nurturing" | "empowering" | "joyful";
   toolId?: string;
   showRelated?: boolean;
@@ -56,13 +56,16 @@ export function ToolFrame({
   title, 
   subtitle, 
   icon: Icon,
-  customIcon,
+  customIcon, // Legacy - kept for compatibility
   mood = "nurturing",
   toolId,
   showRelated = true 
 }: ToolFrameProps) {
   const { t } = useTranslation();
   const styles = moodStyles[mood];
+  
+  // Check if we have a custom icon for this tool
+  const hasCustomIcon = toolId && hasToolIcon(toolId);
 
   return (
     <div className={`min-h-screen bg-gradient-to-br ${styles.gradient}`}>
@@ -126,7 +129,7 @@ export function ToolFrame({
             className={`relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/[0.04] ${styles.border} border overflow-hidden`}
           >
             {/* Centered Icon with Circular Frame */}
-            {(customIcon || Icon) && (
+            {(hasCustomIcon || Icon) && (
               <motion.div 
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -139,8 +142,8 @@ export function ToolFrame({
                   
                   {/* Icon Container */}
                   <div className="relative z-10">
-                    {customIcon ? (
-                      <PregnancyIcon name={customIcon} size={64} />
+                    {hasCustomIcon && toolId ? (
+                      <ToolIcon toolId={toolId} size={64} />
                     ) : Icon && (
                       <Icon className="h-16 w-16 text-primary" strokeWidth={1.5} />
                     )}
