@@ -245,31 +245,132 @@ const FetalDevelopment3D: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* Week Timeline - Compact */}
-        <Card>
-          <CardContent className="py-4">
-            <h3 className="text-sm font-medium text-muted-foreground mb-3">Jump to Week</h3>
-            <div className="flex gap-1 overflow-x-auto pb-2 scrollbar-thin">
-              {weeklyData.map((data, index) => {
-                const isActive = index === currentIndex;
-                const isUserWeek = userWeek === data.week;
-                return (
-                  <button
-                    key={data.week}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`flex-shrink-0 w-10 h-10 rounded-full text-xs font-medium transition-all relative ${
-                      isActive
-                        ? 'bg-primary text-primary-foreground shadow-lg scale-110'
-                        : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                    }`}
-                  >
-                    {data.week}
-                    {isUserWeek && !isActive && (
-                      <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full" />
-                    )}
-                  </button>
-                );
-              })}
+        {/* Professional Timeline */}
+        <Card className="overflow-hidden">
+          <CardContent className="py-5">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-sm font-semibold text-foreground">Pregnancy Timeline</h3>
+              <div className="flex items-center gap-3 text-xs">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  <span className="text-muted-foreground">1st</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                  <span className="text-muted-foreground">2nd</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                  <span className="text-muted-foreground">3rd</span>
+                </span>
+              </div>
+            </div>
+            
+            {/* Timeline Container */}
+            <div className="relative overflow-x-auto pb-3 scrollbar-hide">
+              <div className="flex items-center min-w-max px-2">
+                {weeklyData.map((data, index) => {
+                  const isActive = index === currentIndex;
+                  const isUserWeek = userWeek === data.week;
+                  const isPast = index < currentIndex;
+                  const trimesterColor = data.week <= 12 
+                    ? 'bg-emerald-500' 
+                    : data.week <= 27 
+                      ? 'bg-amber-500' 
+                      : 'bg-rose-500';
+                  const trimesterBorder = data.week <= 12 
+                    ? 'border-emerald-500' 
+                    : data.week <= 27 
+                      ? 'border-amber-500' 
+                      : 'border-rose-500';
+                  
+                  return (
+                    <div key={data.week} className="flex items-center">
+                      {/* Timeline Node */}
+                      <motion.button
+                        onClick={() => setCurrentIndex(index)}
+                        className="relative flex flex-col items-center group"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {/* Week Circle */}
+                        <div
+                          className={`
+                            relative z-10 flex items-center justify-center transition-all duration-300
+                            ${isActive 
+                              ? `w-14 h-14 ${trimesterColor} text-white shadow-lg ring-4 ring-primary/20` 
+                              : isPast 
+                                ? `w-10 h-10 ${trimesterColor}/80 text-white` 
+                                : `w-10 h-10 border-2 ${trimesterBorder} bg-card text-muted-foreground hover:bg-muted`
+                            }
+                            rounded-full font-semibold text-sm
+                          `}
+                        >
+                          {data.week}
+                          {isUserWeek && (
+                            <motion.span 
+                              className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                            >
+                              <Calendar className="w-2.5 h-2.5 text-primary-foreground" />
+                            </motion.span>
+                          )}
+                        </div>
+                        
+                        {/* Emoji & Size (shown on active) */}
+                        <AnimatePresence>
+                          {isActive && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -5 }}
+                              className="absolute -top-8 text-2xl"
+                            >
+                              {data.emoji}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                        
+                        {/* Size Label (shown on hover/active) */}
+                        <div className={`
+                          mt-2 text-[10px] font-medium text-center max-w-[60px] leading-tight
+                          transition-opacity duration-200
+                          ${isActive ? 'opacity-100 text-foreground' : 'opacity-0 group-hover:opacity-100 text-muted-foreground'}
+                        `}>
+                          {data.size}
+                        </div>
+                      </motion.button>
+                      
+                      {/* Connector Line */}
+                      {index < weeklyData.length - 1 && (
+                        <div className="relative w-6 h-0.5 mx-0.5">
+                          <div className="absolute inset-0 bg-muted" />
+                          <motion.div 
+                            className={`absolute inset-0 ${trimesterColor}`}
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: isPast ? 1 : 0 }}
+                            style={{ transformOrigin: 'left' }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            
+            {/* Trimester Markers */}
+            <div className="flex justify-between mt-3 px-2">
+              <div className="text-center">
+                <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">Week 4-12</span>
+              </div>
+              <div className="text-center">
+                <span className="text-[10px] font-medium text-amber-600 dark:text-amber-400">Week 13-27</span>
+              </div>
+              <div className="text-center">
+                <span className="text-[10px] font-medium text-rose-600 dark:text-rose-400">Week 28-40</span>
+              </div>
             </div>
           </CardContent>
         </Card>
