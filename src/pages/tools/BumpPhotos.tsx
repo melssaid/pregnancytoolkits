@@ -131,7 +131,7 @@ const BumpPhotos = () => {
     <ToolFrame
       title={t('tools.bumpPhotos.title')}
       subtitle={t('tools.bumpPhotos.description')}
-      icon={Camera}
+      customIcon="pregnancy-profile"
       mood="joyful"
       toolId="bump-photos"
     >

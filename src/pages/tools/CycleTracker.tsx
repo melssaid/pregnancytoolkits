@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Activity, Plus, Calendar, TrendingUp, Info, Share2, Trash2 } from "lucide-react";
-import { Layout } from "@/components/Layout";
+import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -159,14 +159,19 @@ Tracked ${cycles.length} cycles
   };
 
   return (
-    <Layout title="Menstrual Cycle Tracker" showBack>
-      <div className="container py-8">
-        <div className="mx-auto max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
+    <ToolFrame 
+      title="Menstrual Cycle Tracker" 
+      subtitle="Track your cycle and predict your period"
+      customIcon="calendar"
+      mood="nurturing"
+      toolId="cycle-tracker"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-6"
+      >
             {stats && (
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-3">
@@ -360,8 +365,6 @@ Tracked ${cycles.length} cycles
               </p>
             </div>
           </motion.div>
-        </div>
-      </div>
-    </Layout>
+    </ToolFrame>
   );
 }

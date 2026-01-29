@@ -244,7 +244,7 @@ export default function PregnancyMeditationYoga() {
     <ToolFrame
       title="Pregnancy Meditation & Yoga"
       subtitle="Guided sessions with video demonstrations"
-      icon={Heart}
+      customIcon="pregnant-woman"
       mood="calm"
       toolId="pregnancy-meditation-yoga"
     >

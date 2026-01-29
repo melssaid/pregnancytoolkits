@@ -132,8 +132,10 @@ Include seasonal considerations and hospital-specific recommendations.`;
   return (
     <ToolFrame
       title="AI Hospital Bag"
-      icon={Briefcase}
+      subtitle="Smart packing checklist for your delivery"
+      customIcon="checklist"
       mood="empowering"
+      toolId="ai-hospital-bag"
     >
       <div className="space-y-6">
         {/* Progress Card */}

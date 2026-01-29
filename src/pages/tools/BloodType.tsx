@@ -57,7 +57,7 @@ export default function BloodTypeCalculator() {
     <ToolFrame
       title="Blood Type Calculator"
       subtitle="Predict your baby's possible blood type"
-      icon={Droplet}
+      customIcon="blood-type"
       mood="calm"
       toolId="blood-type"
     >

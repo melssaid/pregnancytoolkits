@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GlassWater, Plus, Minus, RotateCcw, Droplets } from "lucide-react";
-import { Layout } from "@/components/Layout";
+import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -65,8 +65,14 @@ export default function WaterIntake() {
   const goalGlasses = DAILY_GOAL / GLASS_SIZE;
 
   return (
-    <Layout title="Water Intake Tracker" showBack>
-      <div className="container py-8">
+    <ToolFrame 
+      title="Water Intake Tracker" 
+      subtitle="Stay hydrated during pregnancy"
+      customIcon="health-shield"
+      mood="calm"
+      toolId="water-intake"
+    >
+      <div className="space-y-6">
         <div className="mx-auto max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -219,6 +225,6 @@ export default function WaterIntake() {
           </motion.div>
         </div>
       </div>
-    </Layout>
+    </ToolFrame>
   );
 }

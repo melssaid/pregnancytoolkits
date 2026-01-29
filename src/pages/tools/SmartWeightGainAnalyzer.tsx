@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Scale, TrendingUp, AlertCircle, CheckCircle, Target, ArrowLeft } from 'lucide-react';
+import { Scale, TrendingUp, AlertCircle, CheckCircle, Target } from 'lucide-react';
 import {
   LineChart,
   Line,
@@ -38,7 +38,6 @@ const BMI_WEIGHT_GAIN: Record<string, WeightRange> = {
 };
 
 export default function SmartWeightGainAnalyzer() {
-  const navigate = useNavigate();
   const [prePregnancyWeight, setPrePregnancyWeight] = useState<string>('');
   const [height, setHeight] = useState<string>('');
   const [currentWeight, setCurrentWeight] = useState<string>('');
@@ -175,25 +174,14 @@ export default function SmartWeightGainAnalyzer() {
   const status = getStatus();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
-      <div className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center gap-4">
-          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
-            <ArrowLeft className="w-6 h-6 text-gray-600" />
-          </button>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
-              <Scale className="w-5 h-5 text-purple-600" />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">Smart Weight Gain Analyzer</h1>
-              <p className="text-xs text-gray-500">Track and analyze your pregnancy weight gain</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
+    <ToolFrame 
+      title="Smart Weight Gain Analyzer" 
+      subtitle="Track and analyze your pregnancy weight gain"
+      customIcon="weight-scale"
+      mood="calm"
+      toolId="weight-gain"
+    >
+      <div className="space-y-6">
         <Card>
           <CardContent className="p-6 space-y-4">
             <h3 className="text-lg font-semibold flex items-center gap-2">
@@ -402,6 +390,6 @@ export default function SmartWeightGainAnalyzer() {
           </Card>
         )}
       </div>
-    </div>
+    </ToolFrame>
   );
 }

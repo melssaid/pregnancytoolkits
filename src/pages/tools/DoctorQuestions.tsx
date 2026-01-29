@@ -148,8 +148,9 @@ const DoctorQuestions = () => {
     <ToolFrame
       title={t('tools.doctorQuestions.title')}
       subtitle={t('tools.doctorQuestions.description')}
-      icon={MessageCircle}
+      customIcon="medical-report"
       mood="calm"
+      toolId="doctor-questions"
     >
       <div className="space-y-6">
         {!currentVisit ? (

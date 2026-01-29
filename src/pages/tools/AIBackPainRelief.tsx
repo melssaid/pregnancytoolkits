@@ -204,7 +204,7 @@ export default function AIBackPainRelief() {
     <ToolFrame
       title="AI Back Pain Relief"
       subtitle="Safe exercises to relieve pregnancy-related back pain"
-      icon={Activity}
+      customIcon="pregnant-woman"
       mood="calm"
       toolId="ai-back-pain-relief"
     >
