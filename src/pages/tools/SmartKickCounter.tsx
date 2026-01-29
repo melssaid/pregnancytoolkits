@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Baby, Clock, TrendingUp, AlertTriangle, Sparkles, Brain } from 'lucide-react';
+import { Baby, Clock, TrendingUp, AlertTriangle, Sparkles, BarChart3 } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { RelatedTools } from '@/components/RelatedTools';
 import MedicalDisclaimer from '@/components/compliance/MedicalDisclaimer';
+import { KickPatternVisualizer } from '@/components/kick-counter/KickPatternVisualizer';
+import { AIMovementAnalysis } from '@/components/kick-counter/AIMovementAnalysis';
+import { VideoLibrary, Video } from '@/components/VideoLibrary';
 
 interface KickSession {
   date: string;
@@ -19,21 +21,52 @@ interface KickSession {
 
 const STORAGE_KEY = 'smart-kick-counter-sessions';
 
+const educationalVideos: Video[] = [
+  {
+    id: 'kick-1',
+    title: 'How to Count Baby Kicks',
+    description: 'Step-by-step guide to monitoring fetal movement',
+    youtubeId: 'dQw4w9WgXcQ',
+    duration: '4:32',
+    category: 'Getting Started'
+  },
+  {
+    id: 'kick-2',
+    title: 'When to Start Kick Counting',
+    description: 'Understanding the best time to begin tracking',
+    youtubeId: 'dQw4w9WgXcQ',
+    duration: '3:15',
+    category: 'Getting Started'
+  },
+  {
+    id: 'kick-3',
+    title: 'Understanding Fetal Movement Patterns',
+    description: 'What normal movement looks like throughout pregnancy',
+    youtubeId: 'dQw4w9WgXcQ',
+    duration: '6:48',
+    category: 'Education'
+  },
+  {
+    id: 'kick-4',
+    title: 'When to Call Your Doctor',
+    description: 'Important signs that need medical attention',
+    youtubeId: 'dQw4w9WgXcQ',
+    duration: '5:20',
+    category: 'Safety'
+  }
+];
+
 const SmartKickCounter: React.FC = () => {
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [isTracking, setIsTracking] = useState(false);
   const [kickCount, setKickCount] = useState(0);
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [elapsed, setElapsed] = useState(0);
+  const [activeTab, setActiveTab] = useState('counter');
   const [sessions, setSessions] = useState<KickSession[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : [];
   });
-  
-  // AI Analysis
-  const { streamChat, isLoading } = usePregnancyAI();
-  const [aiAnalysis, setAiAnalysis] = useState('');
-  const [showAI, setShowAI] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
@@ -54,8 +87,6 @@ const SmartKickCounter: React.FC = () => {
     setStartTime(new Date());
     setKickCount(0);
     setElapsed(0);
-    setShowAI(false);
-    setAiAnalysis('');
   };
 
   const recordKick = () => {
@@ -98,44 +129,6 @@ const SmartKickCounter: React.FC = () => {
   const avgDuration = recentSessions.length > 0
     ? recentSessions.reduce((acc, s) => acc + s.duration, 0) / recentSessions.length
     : 0;
-  const avgKicks = recentSessions.length > 0
-    ? recentSessions.reduce((acc, s) => acc + s.kicks, 0) / recentSessions.length
-    : 0;
-
-  // AI Analysis
-  const getAIAnalysis = async () => {
-    if (sessions.length === 0) return;
-    
-    setShowAI(true);
-    setAiAnalysis('');
-    
-    const sessionData = recentSessions.map(s => 
-      `Date: ${s.date}, Time: ${s.startTime}, Kicks: ${s.kicks}, Duration: ${s.duration}min`
-    ).join('\n');
-
-    await streamChat({
-      type: 'symptom-analysis',
-      messages: [{
-        role: 'user',
-        content: `As a prenatal health advisor, analyze these fetal movement tracking sessions and provide insights:
-
-${sessionData}
-
-Average duration for 10 kicks: ${avgDuration.toFixed(1)} minutes
-Average kicks per session: ${avgKicks.toFixed(1)}
-
-Provide:
-1. Pattern analysis (is movement consistent?)
-2. Comparison to healthy ranges (10 kicks in 2 hours is normal)
-3. Any concerns or positive observations
-4. Tips for optimal kick counting times
-
-Keep response concise and supportive. Use markdown formatting.`
-      }],
-      onDelta: (text) => setAiAnalysis(prev => prev + text),
-      onDone: () => {}
-    });
-  };
 
   if (!disclaimerAccepted) {
     return <MedicalDisclaimer toolName="Smart Kick Counter" onAccept={() => setDisclaimerAccepted(true)} />;
@@ -159,169 +152,183 @@ Keep response concise and supportive. Use markdown formatting.`
           </p>
         </div>
 
-        {/* Counter Display */}
-        {!isTracking ? (
-          <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 border-blue-200/50">
-            <CardContent className="pt-8 pb-8 text-center">
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Baby className="w-16 h-16 text-blue-400 mx-auto mb-4" />
-              </motion.div>
-              <h2 className="text-xl font-semibold text-foreground mb-2">Ready to Count?</h2>
-              <p className="text-muted-foreground text-sm mb-6 max-w-xs mx-auto">
-                Tap the button to start counting kicks. Goal: 10 movements within 2 hours.
-              </p>
-              <Button
-                onClick={startSession}
-                size="lg"
-                className="w-full max-w-xs bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
-              >
-                <Sparkles className="w-5 h-5 mr-2" />
-                Start Counting
-              </Button>
-            </CardContent>
-          </Card>
-        ) : (
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-          >
-            <Card className="bg-gradient-to-br from-blue-500 to-cyan-500 border-0 text-white overflow-hidden">
-              <CardContent className="pt-6 pb-8">
-                <div className="flex justify-between items-center mb-6">
-                  <div className="flex items-center gap-2 bg-white/20 rounded-full px-3 py-1">
-                    <Clock className="w-4 h-4" />
-                    <span className="font-mono">{formatTime(elapsed)}</span>
-                  </div>
+        {/* Tabs Navigation */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-3 mb-4">
+            <TabsTrigger value="counter" className="text-xs">
+              <Baby className="w-4 h-4 mr-1.5" />
+              Counter
+            </TabsTrigger>
+            <TabsTrigger value="analysis" className="text-xs">
+              <BarChart3 className="w-4 h-4 mr-1.5" />
+              Analysis
+            </TabsTrigger>
+            <TabsTrigger value="history" className="text-xs">
+              <Clock className="w-4 h-4 mr-1.5" />
+              History
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Counter Tab */}
+          <TabsContent value="counter" className="space-y-4">
+            {!isTracking ? (
+              <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 border-blue-200/50">
+                <CardContent className="pt-8 pb-8 text-center">
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Baby className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                  </motion.div>
+                  <h2 className="text-xl font-semibold text-foreground mb-2">Ready to Count?</h2>
+                  <p className="text-muted-foreground text-sm mb-6 max-w-xs mx-auto">
+                    Tap the button to start counting kicks. Goal: 10 movements within 2 hours.
+                  </p>
                   <Button
-                    onClick={() => endSession()}
-                    variant="ghost"
-                    size="sm"
-                    className="text-white hover:bg-white/20"
+                    onClick={startSession}
+                    size="lg"
+                    className="w-full max-w-xs bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
                   >
-                    End Session
+                    <Sparkles className="w-5 h-5 mr-2" />
+                    Start Counting
                   </Button>
-                </div>
-                
-                <motion.button
-                  onClick={recordKick}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-40 h-40 bg-white rounded-full flex flex-col items-center justify-center mx-auto shadow-2xl"
-                >
-                  <motion.span 
-                    key={kickCount}
-                    initial={{ scale: 1.3 }}
-                    animate={{ scale: 1 }}
-                    className="text-5xl font-bold text-blue-500"
-                  >
-                    {kickCount}
-                  </motion.span>
-                  <span className="text-sm text-blue-400">kicks</span>
-                </motion.button>
-                
-                <p className="mt-6 text-center text-white/80">
-                  {10 - kickCount > 0 ? `${10 - kickCount} more to reach goal` : '🎉 Goal reached!'}
-                </p>
-                
-                <div className="mt-4">
-                  <Progress value={progress} className="h-3 bg-white/30" />
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
-
-        {/* Stats */}
-        {sessions.length > 0 && (
-          <div className="grid grid-cols-2 gap-4">
-            <Card>
-              <CardContent className="pt-4">
-                <div className="flex items-center gap-2 text-blue-600 mb-2">
-                  <TrendingUp className="w-5 h-5" />
-                  <span className="text-sm font-medium">Sessions</span>
-                </div>
-                <p className="text-3xl font-bold text-foreground">{sessions.length}</p>
-                <p className="text-xs text-muted-foreground">Total recorded</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-4">
-                <div className="flex items-center gap-2 text-cyan-600 mb-2">
-                  <Clock className="w-5 h-5" />
-                  <span className="text-sm font-medium">Avg Time</span>
-                </div>
-                <p className="text-3xl font-bold text-foreground">{avgDuration.toFixed(0)}</p>
-                <p className="text-xs text-muted-foreground">min for 10 kicks</p>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
-        {/* AI Analysis Button */}
-        {sessions.length >= 3 && !isTracking && (
-          <Button
-            onClick={getAIAnalysis}
-            disabled={isLoading}
-            className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
-          >
-            <Brain className="w-5 h-5 mr-2" />
-            {isLoading ? 'Analyzing...' : 'Get AI Pattern Analysis'}
-          </Button>
-        )}
-
-        {/* AI Analysis Result */}
-        <AnimatePresence>
-          {showAI && aiAnalysis && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-            >
-              <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
-                <CardContent className="pt-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="p-2 rounded-lg bg-gradient-to-r from-violet-500 to-purple-500">
-                      <Brain className="w-4 h-4 text-white" />
-                    </div>
-                    <h3 className="font-semibold text-foreground">AI Analysis</h3>
-                  </div>
-                  <MarkdownRenderer content={aiAnalysis} />
                 </CardContent>
               </Card>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            ) : (
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+              >
+                <Card className="bg-gradient-to-br from-blue-500 to-cyan-500 border-0 text-white overflow-hidden">
+                  <CardContent className="pt-6 pb-8">
+                    <div className="flex justify-between items-center mb-6">
+                      <div className="flex items-center gap-2 bg-white/20 rounded-full px-3 py-1">
+                        <Clock className="w-4 h-4" />
+                        <span className="font-mono">{formatTime(elapsed)}</span>
+                      </div>
+                      <Button
+                        onClick={() => endSession()}
+                        variant="ghost"
+                        size="sm"
+                        className="text-white hover:bg-white/20"
+                      >
+                        End Session
+                      </Button>
+                    </div>
+                    
+                    <motion.button
+                      onClick={recordKick}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-40 h-40 bg-white rounded-full flex flex-col items-center justify-center mx-auto shadow-2xl"
+                    >
+                      <motion.span 
+                        key={kickCount}
+                        initial={{ scale: 1.3 }}
+                        animate={{ scale: 1 }}
+                        className="text-5xl font-bold text-blue-500"
+                      >
+                        {kickCount}
+                      </motion.span>
+                      <span className="text-sm text-blue-400">kicks</span>
+                    </motion.button>
+                    
+                    <p className="mt-6 text-center text-white/80">
+                      {10 - kickCount > 0 ? `${10 - kickCount} more to reach goal` : '🎉 Goal reached!'}
+                    </p>
+                    
+                    <div className="mt-4">
+                      <Progress value={progress} className="h-3 bg-white/30" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
 
-        {/* Recent Sessions */}
-        {sessions.length > 0 && (
-          <Card>
-            <CardContent className="pt-4">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Recent Sessions</h2>
-              <div className="space-y-3">
-                {sessions.slice(0, 5).map((session, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-muted/50 rounded-xl p-4 flex justify-between items-center"
-                  >
-                    <div>
-                      <p className="font-medium text-foreground">{session.date}</p>
-                      <p className="text-sm text-muted-foreground">{session.startTime}</p>
+            {/* Stats */}
+            {sessions.length > 0 && !isTracking && (
+              <div className="grid grid-cols-2 gap-4">
+                <Card>
+                  <CardContent className="pt-4">
+                    <div className="flex items-center gap-2 text-blue-600 mb-2">
+                      <TrendingUp className="w-5 h-5" />
+                      <span className="text-sm font-medium">Sessions</span>
                     </div>
-                    <div className="text-right">
-                      <p className="font-semibold text-blue-600">{session.kicks} kicks</p>
-                      <p className="text-sm text-muted-foreground">{session.duration} min</p>
+                    <p className="text-3xl font-bold text-foreground">{sessions.length}</p>
+                    <p className="text-xs text-muted-foreground">Total recorded</p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="pt-4">
+                    <div className="flex items-center gap-2 text-cyan-600 mb-2">
+                      <Clock className="w-5 h-5" />
+                      <span className="text-sm font-medium">Avg Time</span>
                     </div>
-                  </motion.div>
-                ))}
+                    <p className="text-3xl font-bold text-foreground">{avgDuration.toFixed(0)}</p>
+                    <p className="text-xs text-muted-foreground">min for 10 kicks</p>
+                  </CardContent>
+                </Card>
               </div>
-            </CardContent>
-          </Card>
-        )}
+            )}
+          </TabsContent>
+
+          {/* Analysis Tab */}
+          <TabsContent value="analysis" className="space-y-4">
+            {/* Visual Pattern Analysis */}
+            <KickPatternVisualizer sessions={sessions} />
+            
+            {/* AI Movement Analysis */}
+            <AIMovementAnalysis sessions={sessions} currentWeek={28} />
+          </TabsContent>
+
+          {/* History Tab */}
+          <TabsContent value="history" className="space-y-4">
+            {sessions.length > 0 ? (
+              <Card>
+                <CardContent className="pt-4">
+                  <h2 className="text-lg font-semibold text-foreground mb-4">Session History</h2>
+                  <div className="space-y-3">
+                    {sessions.slice(0, 10).map((session, index) => (
+                      <motion.div 
+                        key={index}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="bg-muted/50 rounded-xl p-4 flex justify-between items-center"
+                      >
+                        <div>
+                          <p className="font-medium text-foreground">{session.date}</p>
+                          <p className="text-sm text-muted-foreground">{session.startTime}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-semibold text-blue-600">{session.kicks} kicks</p>
+                          <p className="text-sm text-muted-foreground">{session.duration} min</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card className="bg-muted/30">
+                <CardContent className="pt-8 pb-8 text-center">
+                  <Clock className="w-12 h-12 text-muted-foreground/50 mx-auto mb-3" />
+                  <p className="text-muted-foreground">No sessions recorded yet</p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Start counting to build your history
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+        </Tabs>
+
+        {/* Video Library */}
+        <VideoLibrary
+          videos={educationalVideos}
+          title="Learn About Kick Counting"
+          subtitle="Expert guidance for tracking fetal movement"
+          accentColor="blue"
+        />
 
         {/* Info */}
         <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200/50">
