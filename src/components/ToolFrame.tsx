@@ -134,13 +134,9 @@ export function ToolFrame({
                 className="flex justify-center pt-6 pb-2"
               >
                 {customIcon ? (
-                  <div className="p-3 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 shadow-sm ring-1 ring-primary/10">
-                    <PregnancyIcon name={customIcon} size={48} />
-                  </div>
+                  <PregnancyIcon name={customIcon} size={48} />
                 ) : Icon && (
-                  <div className={`p-3 rounded-2xl ${styles.iconBg} shadow-lg shadow-primary/20`}>
-                    <Icon className="h-10 w-10 text-white" strokeWidth={2} />
-                  </div>
+                  <Icon className="h-12 w-12 text-primary" strokeWidth={1.5} />
                 )}
               </motion.div>
             )}
