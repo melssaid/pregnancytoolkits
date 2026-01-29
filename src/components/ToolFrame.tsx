@@ -125,21 +125,27 @@ export function ToolFrame({
             transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
             className={`relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/[0.04] ${styles.border} border overflow-hidden`}
           >
-            {/* Centered Icon */}
+            {/* Centered Icon with Circular Frame */}
             {(customIcon || Icon) && (
               <motion.div 
-                initial={{ scale: 0.8, opacity: 0 }}
+                initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.3 }}
-                className="flex justify-center pt-6 pb-2"
+                transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
+                className="flex justify-center pt-8 pb-4"
               >
-                {customIcon ? (
-                  <div className="p-2 rounded-xl bg-white">
-                    <PregnancyIcon name={customIcon} size={48} />
+                <div className={`relative p-5 rounded-full bg-white shadow-xl shadow-primary/10 ring-4 ring-white`}>
+                  {/* Glow Effect */}
+                  <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${styles.glow} to-transparent blur-xl opacity-50`} />
+                  
+                  {/* Icon Container */}
+                  <div className="relative z-10">
+                    {customIcon ? (
+                      <PregnancyIcon name={customIcon} size={64} />
+                    ) : Icon && (
+                      <Icon className="h-16 w-16 text-primary" strokeWidth={1.5} />
+                    )}
                   </div>
-                ) : Icon && (
-                  <Icon className="h-12 w-12 text-primary" strokeWidth={1.5} />
-                )}
+                </div>
               </motion.div>
             )}
             {/* Content - Tighter padding */}
