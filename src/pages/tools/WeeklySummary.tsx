@@ -93,7 +93,7 @@ export default function WeeklySummary() {
     <ToolFrame
       title={t("tools.weeklySummary.title")}
       subtitle="Smart weekly tracking for your pregnancy"
-      icon={Calendar}
+      customIcon="calendar"
       mood="nurturing"
       toolId="weekly-summary"
     >

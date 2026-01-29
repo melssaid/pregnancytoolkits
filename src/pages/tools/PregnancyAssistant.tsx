@@ -67,7 +67,7 @@ export default function PregnancyAssistant() {
     <ToolFrame 
       title={t("tools.pregnancyAssistant.title")} 
       subtitle="Your 24/7 pregnancy companion"
-      icon={MessageCircle}
+      customIcon="chat-assistant"
       mood="nurturing"
       toolId="pregnancy-assistant"
     >

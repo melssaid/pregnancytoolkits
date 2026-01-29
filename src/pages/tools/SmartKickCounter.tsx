@@ -140,7 +140,7 @@ const SmartKickCounter: React.FC = () => {
     <ToolFrame
       title="Smart Kick Counter"
       subtitle="AI-powered fetal movement tracking"
-      icon={Baby}
+      customIcon="heartbeat"
       mood="nurturing"
     >
       <div className="space-y-6">

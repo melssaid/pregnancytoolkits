@@ -105,7 +105,7 @@ const AISymptomAnalyzer: React.FC = () => {
     <ToolFrame
       title="AI Symptom Analyzer"
       subtitle="Educational insights for pregnancy symptoms"
-      icon={Brain}
+      customIcon="heartbeat"
       mood="calm"
       toolId="ai-symptom-analyzer"
     >

@@ -104,7 +104,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
     <ToolFrame
       title={t("tools.aiMealSuggestion.title")}
       subtitle="Smart meal suggestions for your pregnancy"
-      icon={Utensils}
+      customIcon="nutrition"
       mood="joyful"
       toolId="ai-meal-suggestion"
     >

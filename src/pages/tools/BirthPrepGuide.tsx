@@ -229,7 +229,7 @@ Overall: ${getTotalProgress()}% complete!
     <ToolFrame
       title="Birth Preparation Guide"
       subtitle="Complete checklist to prepare for labor, delivery, and bringing baby home"
-      icon={ClipboardCheck}
+      customIcon="checklist"
       mood="empowering"
       toolId="birth-prep-guide"
     >
