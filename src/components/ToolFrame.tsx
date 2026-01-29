@@ -3,12 +3,14 @@ import { Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { RelatedTools } from "./RelatedTools";
+import { PregnancyIcon, PregnancyIconName } from "./PregnancyIcon";
 
 interface ToolFrameProps {
   children: React.ReactNode;
   title: string;
   subtitle?: string;
   icon?: React.ElementType;
+  customIcon?: PregnancyIconName;
   mood?: "calm" | "nurturing" | "empowering" | "joyful";
   toolId?: string;
   showRelated?: boolean;
@@ -54,6 +56,7 @@ export function ToolFrame({
   title, 
   subtitle, 
   icon: Icon,
+  customIcon,
   mood = "nurturing",
   toolId,
   showRelated = true 
@@ -93,7 +96,19 @@ export function ToolFrame({
           className="px-4 py-4"
         >
           <div className="flex items-center gap-3">
-            {Icon && (
+            {/* Custom Pregnancy Icon or Lucide Icon */}
+            {customIcon ? (
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.15 }}
+                className="shrink-0"
+              >
+                <div className="p-1.5 rounded-xl bg-white/80 shadow-lg ring-2 ring-white/50">
+                  <PregnancyIcon name={customIcon} size={28} />
+                </div>
+              </motion.div>
+            ) : Icon && (
               <motion.div 
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}

@@ -141,7 +141,7 @@ export default function SmartGroceryList() {
       subtitle="Pregnancy-optimized shopping list"
       mood="joyful"
       toolId="grocery-list"
-      icon={ShoppingCart}
+      customIcon="shopping"
     >
       <div className="space-y-6">
         {/* Add Item */}

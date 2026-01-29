@@ -73,7 +73,7 @@ export default function GestationalDiabetes() {
     <ToolFrame
       title="Gestational Diabetes Risk"
       subtitle="Assess your risk factors for gestational diabetes"
-      icon={AlertTriangle}
+      customIcon="medical-report"
       mood="calm"
       toolId="gestational-diabetes"
     >

@@ -132,7 +132,7 @@ Keep response concise and practical. Use markdown formatting.`
     <ToolFrame
       title="Smart Vitamin Tracker"
       subtitle="AI-powered supplement management"
-      icon={Pill}
+      customIcon="health-shield"
       mood="nurturing"
     >
       <div className="space-y-6">

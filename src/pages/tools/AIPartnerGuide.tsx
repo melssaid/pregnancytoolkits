@@ -75,7 +75,7 @@ Be warm, practical, and specific. Include real examples.`;
   return (
     <ToolFrame
       title="AI Partner Guide"
-      icon={Heart}
+      customIcon="partner-guide"
       mood="nurturing"
     >
       <div className="space-y-6">

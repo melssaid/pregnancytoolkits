@@ -52,7 +52,7 @@ const FetalDevelopment3D: React.FC = () => {
     <ToolFrame
       title="Fetal Development"
       subtitle="Week by week baby growth tracker"
-      icon={TrendingUp}
+      customIcon="baby-growth"
       mood="nurturing"
       toolId="fetal-development"
     >

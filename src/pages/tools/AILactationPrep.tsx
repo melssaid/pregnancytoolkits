@@ -111,7 +111,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
   return (
     <ToolFrame
       title="Lactation Prep"
-      icon={Heart}
+      customIcon="breastfeeding"
       mood="nurturing"
     >
       <div className="space-y-6">
