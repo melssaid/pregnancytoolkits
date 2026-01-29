@@ -97,7 +97,7 @@ export const toolsData: Tool[] = [
   { id: "ai-back-pain-relief", titleKey: "tools.aiBackPainRelief.title", descriptionKey: "tools.aiBackPainRelief.description", icon: HeartPulse, categoryKey: "categories.wellness", href: "/tools/ai-back-pain-relief", priority: 23, hasAI: true },
   { id: "ai-mobility-coach", titleKey: "tools.aiMobilityCoach.title", descriptionKey: "tools.aiMobilityCoach.description", icon: Footprints, categoryKey: "categories.wellness", href: "/tools/ai-mobility-coach", priority: 24, hasAI: true },
   { id: "pregnancy-smoothie-ai", titleKey: "tools.pregnancySmoothieAI.title", descriptionKey: "tools.pregnancySmoothieAI.description", icon: Salad, categoryKey: "categories.wellness", href: "/tools/pregnancy-smoothie-ai", priority: 25, hasAI: true },
-  { id: "exercise-guide", titleKey: "tools.exerciseGuide.title", descriptionKey: "tools.exerciseGuide.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/exercise-guide", priority: 26, hasAI: true },
+  
 
   // ═══════════════════════════════════════════════════════════════
   // 🏥 AI LABOR & MONITORING (Priority 27-29)
@@ -119,7 +119,7 @@ export const toolsData: Tool[] = [
   { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 33, hasAI: true },
   { id: "kick-counter", titleKey: "tools.kickCounter.title", descriptionKey: "tools.kickCounter.description", icon: Hand, categoryKey: "categories.pregnancy", href: "/tools/kick-counter", priority: 34, hasAI: true },
   { id: "pregnancy-milestones", titleKey: "tools.pregnancyMilestones.title", descriptionKey: "tools.pregnancyMilestones.description", icon: Milestone, categoryKey: "categories.pregnancy", href: "/tools/pregnancy-milestones", priority: 35 },
-  { id: "bump-photos", titleKey: "tools.bumpPhotos.title", descriptionKey: "tools.bumpPhotos.description", icon: Camera, categoryKey: "categories.pregnancy", href: "/tools/bump-photos", priority: 36 },
+  
   { id: "weight-gain", titleKey: "tools.weightGain.title", descriptionKey: "tools.weightGain.description", icon: Scale, categoryKey: "categories.pregnancy", href: "/tools/weight-gain", priority: 37, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
@@ -127,7 +127,7 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   { id: "water-intake", titleKey: "tools.waterIntake.title", descriptionKey: "tools.waterIntake.description", icon: GlassWater, categoryKey: "categories.wellness", href: "/tools/water-intake", priority: 38 },
   { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.wellness", href: "/tools/vitamin-tracker", priority: 39, hasAI: true },
-  { id: "meditation-yoga", titleKey: "tools.meditationYoga.title", descriptionKey: "tools.meditationYoga.description", icon: Flower2, categoryKey: "categories.wellness", href: "/tools/meditation-yoga", priority: 40 },
+  
 
   // ═══════════════════════════════════════════════════════════════
   // 🧠 MENTAL HEALTH (Priority 41-42)
@@ -143,7 +143,7 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // 📋 PREPARATION (Priority 44)
   // ═══════════════════════════════════════════════════════════════
-  { id: "birth-prep", titleKey: "tools.birthPrep.title", descriptionKey: "tools.birthPrep.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/birth-prep", priority: 44 },
+  
 
   // ═══════════════════════════════════════════════════════════════
   // 👶 POSTPARTUM & BABY (Priority 45-47)
