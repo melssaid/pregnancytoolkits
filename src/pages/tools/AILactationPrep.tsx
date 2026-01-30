@@ -242,21 +242,43 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         <Card className="p-4 border-dashed">
           <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
             <Baby className="w-4 h-4" />
-            Learn More: Getting a Good Latch
+            Breastfeeding Tips 101: Latch, Positions & More
           </h3>
           <div className="aspect-video rounded-lg overflow-hidden bg-muted">
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/56YzjsZr4hQ"
-              title="Breastfeeding Latch Tutorial"
+              src="https://www.youtube.com/embed/-Ds3QW3CWJ0"
+              title="Breastfeeding Tips 101 for New Moms: Latch, Positions, Pumping"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - consult a lactation consultant for personalized support
+            نصائح شاملة للأمهات الجدد: الرضاعة، الوضعيات، والشفط
+          </p>
+        </Card>
+
+        {/* Second Educational Video */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Baby className="w-4 h-4" />
+            Common Breastfeeding Positions
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/or4OnMxihUg"
+              title="Breastfeeding Tips: Common Breastfeeding Positions"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            ⚠️ محتوى تعليمي فقط - استشيري أخصائية الرضاعة للدعم الشخصي
           </p>
         </Card>
       </div>

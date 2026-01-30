@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      bump_photos: {
+        Row: {
+          ai_analysis: string | null
+          caption: string | null
+          created_at: string
+          id: string
+          public_url: string
+          storage_path: string
+          updated_at: string
+          user_id: string
+          week: number
+        }
+        Insert: {
+          ai_analysis?: string | null
+          caption?: string | null
+          created_at?: string
+          id?: string
+          public_url: string
+          storage_path: string
+          updated_at?: string
+          user_id: string
+          week: number
+        }
+        Update: {
+          ai_analysis?: string | null
+          caption?: string | null
+          created_at?: string
+          id?: string
+          public_url?: string
+          storage_path?: string
+          updated_at?: string
+          user_id?: string
+          week?: number
+        }
+        Relationships: []
+      }
       tool_analytics: {
         Row: {
           action_type: string

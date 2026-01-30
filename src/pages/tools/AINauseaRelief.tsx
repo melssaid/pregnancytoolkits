@@ -231,15 +231,37 @@ Be compassionate - morning sickness is exhausting!`;
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/lh6FdzbbS20"
-              title="Stop Nausea Fast With Acupressure"
+              src="https://www.youtube.com/embed/dHDFqaov73c"
+              title="3 Pressure Points for Morning Sickness Relief"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            Press the P6 point (3 finger-widths below wrist) for 2-3 minutes
+            3 نقاط ضغط فعالة للتخفيف من غثيان الحمل
+          </p>
+        </Card>
+
+        {/* Second Educational Video */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Heart className="w-4 h-4" />
+            BabyCenter: Acupressure Guide
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/eByC7Hf9nOs"
+              title="Acupressure for Morning Sickness - BabyCenter"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            دليل BabyCenter للعلاج بالضغط
           </p>
         </Card>
       </div>
