@@ -80,6 +80,7 @@ const GestationalDiabetes = lazy(() => import("@/pages/tools/GestationalDiabetes
 const BabySleepTracker = lazy(() => import("@/pages/tools/BabySleepTracker"));
 const BabyGrowth = lazy(() => import("@/pages/tools/BabyGrowth"));
 const DoctorQuestions = lazy(() => import("@/pages/tools/DoctorQuestions"));
+const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 
 export function AnimatedRoutes() {
   const location = useLocation();
@@ -171,6 +172,9 @@ export function AnimatedRoutes() {
           <Route path="/tools/baby-sleep-tracker" element={<PageTransition><BabySleepTracker /></PageTransition>} />
           <Route path="/tools/baby-growth" element={<PageTransition><BabyGrowth /></PageTransition>} />
           <Route path="/tools/doctor-questions" element={<PageTransition><DoctorQuestions /></PageTransition>} />
+
+          {/* VIDEO LIBRARY */}
+          <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />
 
           {/* 404 */}
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
