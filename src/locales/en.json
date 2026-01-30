@@ -286,6 +286,7 @@
     "aiBudgetPlanner": { "title": "AI Budget Planner", "description": "Plan baby expenses smartly." },
     "aiBabyRoom": { "title": "AI Baby Room", "description": "Design your perfect nursery." },
     "aiLactationPrep": { "title": "AI Lactation Prep", "description": "Breastfeeding preparation guide." },
+    "aiNutritionTracker": { "title": "AI Nutrition Tracker", "description": "Smart food analysis with pregnancy-safe tracking." },
     "aiPregnancyJournal": {
       "title": "AI Pregnancy Journal",
       "description": "Smart journaling with AI insights and mood tracking."
