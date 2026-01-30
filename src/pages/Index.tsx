@@ -72,15 +72,19 @@ const Index = () => {
             return (
               <div key={cat.key}>
                 {/* Section Header - Tech-forward connected design */}
-                <div className="flex items-center gap-2 mb-2 px-1">
+                <div className="flex flex-col gap-1 mb-2 px-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-1 h-4 rounded-full bg-rose-700" />
-                    <Icon className="w-4 h-4 text-foreground/50" />
-                    <h2 className="text-xs font-semibold text-foreground/70 tracking-widest uppercase">
-                      {t(cat.key)}
-                    </h2>
+                    <div className="flex items-center gap-2">
+                      <div className="w-1 h-4 rounded-full bg-rose-700" />
+                      <Icon className="w-4 h-4 text-foreground/50" />
+                      <h2 className="text-xs font-semibold text-foreground/70 tracking-widest uppercase">
+                        {t(cat.key)}
+                      </h2>
+                    </div>
+                    <div className="flex-1 h-px bg-gradient-to-r from-border/50 to-transparent" />
                   </div>
-                  <div className="flex-1 h-px bg-gradient-to-r from-border/50 to-transparent" />
+                  {/* Red underline under section title */}
+                  <div className="h-0.5 w-24 bg-red-500 rounded-full ml-3" />
                 </div>
                 
                 {/* Tools Container - Clean connected layout */}
