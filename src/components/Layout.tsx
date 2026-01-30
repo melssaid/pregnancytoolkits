@@ -51,6 +51,10 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
+                  width={44}
+                  height={44}
+                  loading="eager"
+                  decoding="async"
                   className="h-11 w-11 rounded-full shadow-lg object-cover"
                 />
                 <div className="flex flex-col">
@@ -126,7 +130,7 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
         <div className="container">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2">
-              <img src={logoImage} alt="Logo" className="h-6 w-6 rounded-full object-cover" />
+              <img src={logoImage} alt="Logo" width={24} height={24} loading="lazy" decoding="async" className="h-6 w-6 rounded-full object-cover" />
               <span className="text-sm font-bold text-foreground">{t('app.name')}</span>
             </div>
             <div className="flex items-center gap-4 text-sm">
