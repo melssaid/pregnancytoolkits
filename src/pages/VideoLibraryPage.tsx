@@ -70,23 +70,23 @@ export default function VideoLibraryPage() {
     : videos.filter(v => v.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-background">
+    <div className="min-h-screen bg-gradient-to-b from-muted/50 to-background">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center gap-4">
           <button 
             onClick={() => navigate('/')} 
-            className="p-2 hover:bg-white/10 rounded-full transition-colors"
+            className="p-2 hover:bg-primary-foreground/10 rounded-full transition-colors"
           >
             <ArrowLeft className="w-6 h-6" />
           </button>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-primary-foreground/20 rounded-xl flex items-center justify-center">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
               <h1 className="text-lg font-bold">فيديوهات تعليمية</h1>
-              <p className="text-xs opacity-80">محتوى متخصص للحوامل</p>
+              <p className="text-xs text-primary-foreground/80">محتوى متخصص للحوامل</p>
             </div>
           </div>
         </div>
@@ -94,11 +94,11 @@ export default function VideoLibraryPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         {/* Medical Disclaimer Banner */}
-        <div className="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-gradient-to-r from-slate-50 to-slate-100/80 dark:from-slate-900 dark:to-slate-800/80 shadow-sm">
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-400 to-teal-500" />
+        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-r from-muted to-muted/80 shadow-sm">
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-primary/70" />
           <div className="flex items-center gap-3 p-4 pl-5">
-            <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
+            <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0" />
+            <p className="text-sm font-medium text-muted-foreground">
               ⚠️ محتوى تعليمي فقط - استشيري طبيبك دائماً قبل اتباع أي نصائح
             </p>
           </div>
@@ -141,12 +141,12 @@ export default function VideoLibraryPage() {
                     className="w-full h-40 object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-0 bg-foreground/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="p-4 rounded-full bg-primary">
                       <Play className="w-6 h-6 text-primary-foreground" fill="currentColor" />
                     </div>
                   </div>
-                  <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                  <div className="absolute bottom-2 right-2 bg-foreground/70 text-background text-xs px-2 py-1 rounded">
                     {video.duration}
                   </div>
                 </div>
@@ -175,9 +175,9 @@ export default function VideoLibraryPage() {
           </DialogHeader>
           <div className="px-4 pb-4">
             {/* Medical Disclaimer */}
-            <div className="mb-3 p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg flex items-start gap-2">
-              <span className="text-amber-600 text-lg">⚠️</span>
-              <p className="text-xs text-amber-800 dark:text-amber-200">
+            <div className="mb-3 p-3 bg-destructive/10 border border-destructive/20 rounded-lg flex items-start gap-2">
+              <span className="text-destructive text-lg">⚠️</span>
+              <p className="text-xs text-destructive">
                 هذه الفيديوهات تعليمية فقط ولا تغني عن استشارة طبيبك المختص.
               </p>
             </div>
