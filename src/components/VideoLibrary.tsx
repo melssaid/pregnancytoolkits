@@ -183,6 +183,14 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
             <DialogTitle className="text-base pr-6">{selectedVideo?.title}</DialogTitle>
           </DialogHeader>
           <div className="px-4 pb-4">
+            {/* Medical Disclaimer Alert */}
+            <div className="mb-3 p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg flex items-start gap-2">
+              <span className="text-amber-600 text-lg">⚠️</span>
+              <p className="text-xs text-amber-800 dark:text-amber-200">
+                هذه الفيديوهات تعليمية فقط ولا تغني عن استشارة طبيبك المختص.
+              </p>
+            </div>
+            
             <AspectRatio ratio={16 / 9}>
               {selectedVideo && (
                 <iframe
