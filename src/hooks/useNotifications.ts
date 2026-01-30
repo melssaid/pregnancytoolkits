@@ -145,11 +145,11 @@ export function useNotifications() {
         }
       }
 
-      // Water reminders (every 2 hours during daytime)
-      if (settings.waterReminders && hour >= 8 && hour <= 20 && hour % 2 === 0) {
+      // Water reminders (every 3 hours during daytime - reduced frequency)
+      if (settings.waterReminders && hour >= 9 && hour <= 18 && hour % 3 === 0) {
         const recentWaterReminder = notifications.find(
           n => n.type === 'water' && 
-          (now.getTime() - new Date(n.time).getTime()) < 2 * 60 * 60 * 1000
+          (now.getTime() - new Date(n.time).getTime()) < 3 * 60 * 60 * 1000
         );
         if (!recentWaterReminder) {
           newNotifications.push({
@@ -159,7 +159,7 @@ export function useNotifications() {
             message: 'Time for a glass of water!',
             time: nowISO,
             read: false,
-            actionUrl: '/tools/water-intake',
+            actionUrl: '/tools/vitamin-tracker',
           });
         }
       }
