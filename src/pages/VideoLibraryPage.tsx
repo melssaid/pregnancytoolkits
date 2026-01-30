@@ -48,9 +48,17 @@ const videos: VideoItem[] = [
   { id: "21", youtubeId: "O-6f5wQXSu8", title: "التعامل مع القلق", description: "نصائح لتخفيف قلق الحمل", category: "الصحة النفسية", duration: "12:00" },
   { id: "22", youtubeId: "4pLUleLdwY4", title: "النوم الصحي", description: "تحسين جودة النوم أثناء الحمل", category: "الصحة النفسية", duration: "10:30" },
   { id: "23", youtubeId: "1ZYbU82GVz4", title: "الترابط مع الجنين", description: "تقنيات للتواصل مع طفلك", category: "الصحة النفسية", duration: "8:45" },
+  
+  // Newborn Care
+  { id: "24", youtubeId: "jmVAkH_s3Vw", title: "الرضاعة الطبيعية", description: "أساسيات الرضاعة الصحيحة", category: "رعاية المولود", duration: "15:00" },
+  { id: "25", youtubeId: "zWjQGhVq0Rc", title: "تغيير الحفاض", description: "الطريقة الصحيحة لتغيير الحفاض", category: "رعاية المولود", duration: "8:30" },
+  { id: "26", youtubeId: "mCJxPfTS1nQ", title: "تحميم المولود", description: "خطوات آمنة لتحميم الرضيع", category: "رعاية المولود", duration: "10:00" },
+  { id: "27", youtubeId: "G2cZpAGQy08", title: "نوم المولود", description: "تنظيم نوم الرضيع بشكل آمن", category: "رعاية المولود", duration: "12:30" },
+  { id: "28", youtubeId: "Q2M0N4_ZNLY", title: "بكاء الرضيع", description: "فهم أسباب البكاء وتهدئته", category: "رعاية المولود", duration: "9:45" },
+  { id: "29", youtubeId: "Rz0go1pTda8", title: "العناية بالسرة", description: "كيفية العناية بسرة المولود", category: "رعاية المولود", duration: "7:00" },
 ];
 
-const categories = ["الكل", "التغذية", "التمارين", "التحضير", "الصحة النفسية"];
+const categories = ["الكل", "التغذية", "التمارين", "التحضير", "الصحة النفسية", "رعاية المولود"];
 
 export default function VideoLibraryPage() {
   const navigate = useNavigate();
