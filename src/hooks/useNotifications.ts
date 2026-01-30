@@ -106,7 +106,7 @@ export function useNotifications() {
       const hour = now.getHours();
       const newNotifications: Notification[] = [];
 
-      // Morning vitamin reminder (8-9 AM)
+      // Morning vitamin reminder (8 AM only - once daily)
       if (settings.vitaminReminders && hour === 8) {
         const lastVitaminReminder = notifications.find(
           n => n.type === 'vitamin' && 
@@ -125,12 +125,11 @@ export function useNotifications() {
         }
       }
 
-      // Mid-morning stretch (10-11 AM)
+      // Stretch reminder (once daily at 10 AM)
       if (settings.stretchReminders && hour === 10) {
         const lastStretchReminder = notifications.find(
           n => n.type === 'stretch' && 
-          new Date(n.time).toDateString() === now.toDateString() &&
-          new Date(n.time).getHours() >= 10
+          new Date(n.time).toDateString() === now.toDateString()
         );
         if (!lastStretchReminder) {
           newNotifications.push({
@@ -145,11 +144,11 @@ export function useNotifications() {
         }
       }
 
-      // Water reminders (every 3 hours during daytime - reduced frequency)
-      if (settings.waterReminders && hour >= 9 && hour <= 18 && hour % 3 === 0) {
+      // Water reminders (every 6 hours - 8 AM, 2 PM, 8 PM)
+      if (settings.waterReminders && (hour === 8 || hour === 14 || hour === 20)) {
         const recentWaterReminder = notifications.find(
           n => n.type === 'water' && 
-          (now.getTime() - new Date(n.time).getTime()) < 3 * 60 * 60 * 1000
+          (now.getTime() - new Date(n.time).getTime()) < 6 * 60 * 60 * 1000
         );
         if (!recentWaterReminder) {
           newNotifications.push({
@@ -164,8 +163,8 @@ export function useNotifications() {
         }
       }
 
-      // Afternoon exercise (3-4 PM)
-      if (settings.exerciseReminders && hour === 15) {
+      // Exercise reminder (once daily at 4 PM)
+      if (settings.exerciseReminders && hour === 16) {
         const lastExerciseReminder = notifications.find(
           n => n.type === 'exercise' && 
           new Date(n.time).toDateString() === now.toDateString()
