@@ -21,15 +21,33 @@ const videos: VideoItem[] = [
   // Nutrition Videos
   { id: "1", youtubeId: "3fYsj_Bk6mk", title: "التغذية أثناء الحمل", description: "العناصر الغذائية الأساسية لحمل صحي", category: "التغذية", duration: "8:42" },
   { id: "2", youtubeId: "0DUzm3Fhzz4", title: "أطعمة الثلث الأول", description: "أفضل الأطعمة للحمل المبكر", category: "التغذية", duration: "10:15" },
+  { id: "3", youtubeId: "Ry7xDEv2Uxc", title: "الفيتامينات الضرورية", description: "أهم الفيتامينات والمعادن للحامل", category: "التغذية", duration: "7:30" },
+  { id: "4", youtubeId: "sB7M_ofGC2k", title: "أطعمة يجب تجنبها", description: "الأطعمة الممنوعة أثناء الحمل", category: "التغذية", duration: "9:15" },
+  { id: "5", youtubeId: "1_9pJe5VZXE", title: "وجبات صحية سريعة", description: "وصفات سهلة ومغذية للحوامل", category: "التغذية", duration: "12:00" },
+  
   // Exercise Videos  
-  { id: "3", youtubeId: "FaGK52oo36I", title: "تمارين آمنة للحوامل", description: "تمارين كاملة للجسم", category: "التمارين", duration: "25:00" },
-  { id: "4", youtubeId: "B0NOxSdCrVg", title: "تمارين الإطالة", description: "تمارين لطيفة لكل ثلث", category: "التمارين", duration: "15:30" },
+  { id: "6", youtubeId: "FaGK52oo36I", title: "تمارين آمنة للحوامل", description: "تمارين كاملة للجسم", category: "التمارين", duration: "25:00" },
+  { id: "7", youtubeId: "B0NOxSdCrVg", title: "تمارين الإطالة", description: "تمارين لطيفة لكل ثلث", category: "التمارين", duration: "15:30" },
+  { id: "8", youtubeId: "4xyOBe7PLWU", title: "يوغا للحوامل", description: "تمارين يوغا آمنة ومريحة", category: "التمارين", duration: "20:00" },
+  { id: "9", youtubeId: "jO8vyXj_wLY", title: "تمارين الظهر", description: "تخفيف آلام الظهر أثناء الحمل", category: "التمارين", duration: "18:00" },
+  { id: "10", youtubeId: "hMc-8mpvL2U", title: "تمارين التنفس", description: "تقنيات التنفس للولادة", category: "التمارين", duration: "14:00" },
+  { id: "11", youtubeId: "fLsGp1mCvAc", title: "تمارين الحوض", description: "تقوية عضلات قاع الحوض", category: "التمارين", duration: "10:30" },
+  
   // Preparation Videos
-  { id: "5", youtubeId: "VKmxG3nZP2E", title: "حقيبة المستشفى", description: "الأساسيات التي لا تنسيها", category: "التحضير", duration: "12:30" },
-  { id: "6", youtubeId: "j1p5O7cozdo", title: "التحضير للولادة", description: "نصائح للاستعداد للمستشفى", category: "التحضير", duration: "18:20" },
+  { id: "12", youtubeId: "VKmxG3nZP2E", title: "حقيبة المستشفى", description: "الأساسيات التي لا تنسيها", category: "التحضير", duration: "12:30" },
+  { id: "13", youtubeId: "j1p5O7cozdo", title: "التحضير للولادة", description: "نصائح للاستعداد للمستشفى", category: "التحضير", duration: "18:20" },
+  { id: "14", youtubeId: "eLqJYpMJWyQ", title: "غرفة المولود", description: "تجهيز غرفة الطفل", category: "التحضير", duration: "15:00" },
+  { id: "15", youtubeId: "c2NvYvjKXxU", title: "مستلزمات المولود", description: "قائمة أساسيات المولود الجديد", category: "التحضير", duration: "11:45" },
+  { id: "16", youtubeId: "WdRpX4X-p8k", title: "علامات الولادة", description: "كيف تعرفين أن الولادة قريبة", category: "التحضير", duration: "13:20" },
+  { id: "17", youtubeId: "f7H7nL_V2sQ", title: "خطة الولادة", description: "كيفية كتابة خطة ولادتك", category: "التحضير", duration: "16:00" },
+  
   // Mental Health
-  { id: "7", youtubeId: "8GqVkn1v1ac", title: "الصحة النفسية بعد الولادة", description: "فهم اكتئاب ما بعد الولادة", category: "الصحة النفسية", duration: "14:30" },
-  { id: "8", youtubeId: "aV1yGDUDNNk", title: "تمارين الاسترخاء", description: "تقنيات التنفس والتأمل", category: "الصحة النفسية", duration: "18:00" },
+  { id: "18", youtubeId: "8GqVkn1v1ac", title: "الصحة النفسية بعد الولادة", description: "فهم اكتئاب ما بعد الولادة", category: "الصحة النفسية", duration: "14:30" },
+  { id: "19", youtubeId: "aV1yGDUDNNk", title: "تمارين الاسترخاء", description: "تقنيات التنفس والتأمل", category: "الصحة النفسية", duration: "18:00" },
+  { id: "20", youtubeId: "inpok4MKVLM", title: "التأمل للحوامل", description: "جلسة تأمل مهدئة", category: "الصحة النفسية", duration: "20:00" },
+  { id: "21", youtubeId: "O-6f5wQXSu8", title: "التعامل مع القلق", description: "نصائح لتخفيف قلق الحمل", category: "الصحة النفسية", duration: "12:00" },
+  { id: "22", youtubeId: "4pLUleLdwY4", title: "النوم الصحي", description: "تحسين جودة النوم أثناء الحمل", category: "الصحة النفسية", duration: "10:30" },
+  { id: "23", youtubeId: "1ZYbU82GVz4", title: "الترابط مع الجنين", description: "تقنيات للتواصل مع طفلك", category: "الصحة النفسية", duration: "8:45" },
 ];
 
 const categories = ["الكل", "التغذية", "التمارين", "التحضير", "الصحة النفسية"];
