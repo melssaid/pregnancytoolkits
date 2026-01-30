@@ -22,6 +22,15 @@ import { ToolFrame } from "@/components/ToolFrame";
 import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { VideoLibrary, Video } from "@/components/VideoLibrary";
+
+const nutritionVideos: Video[] = [
+  { id: "1", title: "Pregnancy Nutrition Basics", description: "Essential nutrients for a healthy pregnancy", youtubeId: "3fYsj_Bk6mk", duration: "8:42", category: "Nutrition" },
+  { id: "2", title: "First Trimester Foods", description: "Best foods for early pregnancy", youtubeId: "0DUzm3Fhzz4", duration: "10:15", category: "Trimester Guide" },
+  { id: "3", title: "Iron-Rich Pregnancy Meals", description: "Prevent anemia with these recipes", youtubeId: "hnqLZBJLxUI", duration: "7:30", category: "Nutrition" },
+  { id: "4", title: "Healthy Pregnancy Snacks", description: "Quick and nutritious snack ideas", youtubeId: "gKfqTPKMFqE", duration: "6:45", category: "Recipes" },
+  { id: "5", title: "Foods to Avoid During Pregnancy", description: "What to skip for baby's safety", youtubeId: "N-7mKfT_Wt4", duration: "9:20", category: "Safety" },
+];
 
 const mealTypes = [
   { id: "breakfast", label: "Breakfast", icon: "🌅" },
@@ -288,6 +297,14 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             </div>
           </CardContent>
         </Card>
+
+        {/* Educational Videos */}
+        <VideoLibrary
+          videos={nutritionVideos}
+          title="Pregnancy Nutrition Videos"
+          subtitle="Expert guidance on healthy eating"
+          accentColor="emerald"
+        />
       </div>
     </ToolFrame>
   );
