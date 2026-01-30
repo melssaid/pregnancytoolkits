@@ -159,7 +159,7 @@ Return ONLY valid JSON (no markdown, no explanation):
     if (!file) return;
 
     setIsScanning(true);
-    toast.info('جاري تحليل الصورة...');
+    toast.info('Analyzing image...');
 
     // Simulate image analysis (in production, send to AI vision API)
     setTimeout(async () => {
@@ -167,7 +167,7 @@ Return ONLY valid JSON (no markdown, no explanation):
       const analyzed = await analyzeFoodWithAI(mockFoodName);
       if (analyzed) {
         setTodaysFoods(prev => [...prev, analyzed]);
-        toast.success(`تمت إضافة: ${analyzed.name}`);
+        toast.success(`Added: ${analyzed.name}`);
       }
       setIsScanning(false);
     }, 2000);
@@ -175,13 +175,13 @@ Return ONLY valid JSON (no markdown, no explanation):
 
   const handleVoiceInput = () => {
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      toast.error('المتصفح لا يدعم التعرف الصوتي');
+      toast.error('Browser does not support speech recognition');
       return;
     }
 
     const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
     const recognition = new SpeechRecognition();
-    recognition.lang = 'ar-SA';
+    recognition.lang = 'en-US';
     recognition.continuous = false;
 
     setIsListening(true);
@@ -194,14 +194,14 @@ Return ONLY valid JSON (no markdown, no explanation):
       const analyzed = await analyzeFoodWithAI(transcript);
       if (analyzed) {
         setTodaysFoods(prev => [...prev, analyzed]);
-        toast.success(`تمت إضافة: ${analyzed.name}`);
+        toast.success(`Added: ${analyzed.name}`);
         setManualInput('');
       }
     };
 
     recognition.onerror = () => {
       setIsListening(false);
-      toast.error('فشل التعرف الصوتي');
+      toast.error('Speech recognition failed');
     };
 
     recognition.onend = () => setIsListening(false);
@@ -214,14 +214,14 @@ Return ONLY valid JSON (no markdown, no explanation):
     const analyzed = await analyzeFoodWithAI(manualInput);
     if (analyzed) {
       setTodaysFoods(prev => [...prev, analyzed]);
-      toast.success(`تمت إضافة: ${analyzed.name}`);
+      toast.success(`Added: ${analyzed.name}`);
       setManualInput('');
     }
   };
 
   const removeFood = (id: string) => {
     setTodaysFoods(prev => prev.filter(f => f.id !== id));
-    toast.info('تم حذف العنصر');
+    toast.info('Item removed');
   };
 
   const goals = getNutritionalGoals();
@@ -234,8 +234,8 @@ Return ONLY valid JSON (no markdown, no explanation):
 
   return (
     <ToolFrame
-      title="تتبع التغذية الذكي"
-      subtitle="تحليل ذكي للطعام مع تتبع العناصر الغذائية للحمل"
+      title="Smart Nutrition Tracker"
+      subtitle="AI-powered food analysis with pregnancy nutrition tracking"
       toolId="ai-nutrition-tracker"
     >
       <div className="space-y-6">
@@ -243,18 +243,18 @@ Return ONLY valid JSON (no markdown, no explanation):
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">الثلث الحالي:</span>
+              <span className="text-sm font-medium">Current Trimester:</span>
               <Select
                 value={currentTrimester.toString()}
                 onValueChange={(v) => setCurrentTrimester(parseInt(v) as 1 | 2 | 3)}
               >
-                <SelectTrigger className="w-40">
+                <SelectTrigger className="w-44">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1">الأول (1-12 أسبوع)</SelectItem>
-                  <SelectItem value="2">الثاني (13-26 أسبوع)</SelectItem>
-                  <SelectItem value="3">الثالث (27-40 أسبوع)</SelectItem>
+                  <SelectItem value="1">First (Weeks 1-12)</SelectItem>
+                  <SelectItem value="2">Second (Weeks 13-26)</SelectItem>
+                  <SelectItem value="3">Third (Weeks 27-40)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -266,20 +266,20 @@ Return ONLY valid JSON (no markdown, no explanation):
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-primary" />
-              تقدم اليوم
+              Today's Progress
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <div className="flex justify-between text-sm mb-1">
-                <span>السعرات</span>
-                <span>{totals.calories} / {goals.calories} سعرة</span>
+                <span>Calories</span>
+                <span>{totals.calories} / {goals.calories} cal</span>
               </div>
               <Progress value={calorieProgress} className="h-3" />
             </div>
             <div>
               <div className="flex justify-between text-sm mb-1">
-                <span>البروتين</span>
+                <span>Protein</span>
                 <span>{totals.protein.toFixed(1)} / {goals.protein}g</span>
               </div>
               <Progress value={proteinProgress} className="h-3" />
@@ -287,11 +287,11 @@ Return ONLY valid JSON (no markdown, no explanation):
             <div className="grid grid-cols-2 gap-4 pt-2">
               <div className="text-center p-3 bg-muted rounded-lg">
                 <p className="text-2xl font-bold text-primary">{totals.carbs.toFixed(0)}g</p>
-                <p className="text-xs text-muted-foreground">كربوهيدرات</p>
+                <p className="text-xs text-muted-foreground">Carbs</p>
               </div>
               <div className="text-center p-3 bg-muted rounded-lg">
                 <p className="text-2xl font-bold text-primary">{totals.fats.toFixed(0)}g</p>
-                <p className="text-xs text-muted-foreground">دهون</p>
+                <p className="text-xs text-muted-foreground">Fats</p>
               </div>
             </div>
           </CardContent>
@@ -300,7 +300,7 @@ Return ONLY valid JSON (no markdown, no explanation):
         {/* Food Input Section */}
         <Card>
           <CardHeader>
-            <CardTitle>إضافة طعام</CardTitle>
+            <CardTitle>Add Food</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Meal Type Selector */}
@@ -308,10 +308,10 @@ Return ONLY valid JSON (no markdown, no explanation):
               {(['breakfast', 'lunch', 'dinner', 'snack'] as const).map((meal) => {
                 const Icon = MEAL_ICONS[meal];
                 const labels = {
-                  breakfast: 'فطور',
-                  lunch: 'غداء',
-                  dinner: 'عشاء',
-                  snack: 'وجبة خفيفة',
+                  breakfast: 'Breakfast',
+                  lunch: 'Lunch',
+                  dinner: 'Dinner',
+                  snack: 'Snack',
                 };
                 return (
                   <Button
@@ -321,7 +321,7 @@ Return ONLY valid JSON (no markdown, no explanation):
                     onClick={() => setSelectedMealType(meal)}
                     className="flex-1 min-w-[70px]"
                   >
-                    <Icon className="w-4 h-4 ml-1" />
+                    <Icon className="w-4 h-4 mr-1" />
                     {labels[meal]}
                   </Button>
                 );
@@ -331,7 +331,7 @@ Return ONLY valid JSON (no markdown, no explanation):
             {/* Input Methods */}
             <div className="flex gap-2">
               <Input
-                placeholder="اكتب اسم الطعام..."
+                placeholder="Enter food name..."
                 value={manualInput}
                 onChange={(e) => setManualInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleManualAdd()}
@@ -353,11 +353,11 @@ Return ONLY valid JSON (no markdown, no explanation):
                 disabled={isScanning}
               >
                 {isScanning ? (
-                  <Loader2 className="w-4 h-4 ml-2 animate-spin" />
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 ) : (
-                  <Camera className="w-4 h-4 ml-2" />
+                  <Camera className="w-4 h-4 mr-2" />
                 )}
-                <span className="truncate">{isScanning ? 'جاري المسح...' : 'مسح بالكاميرا'}</span>
+                <span className="truncate">{isScanning ? 'Scanning...' : 'Camera Scan'}</span>
               </Button>
               <Button
                 variant="outline"
@@ -366,11 +366,11 @@ Return ONLY valid JSON (no markdown, no explanation):
                 disabled={isListening}
               >
                 {isListening ? (
-                  <Loader2 className="w-4 h-4 ml-2 animate-spin" />
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 ) : (
-                  <Mic className="w-4 h-4 ml-2" />
+                  <Mic className="w-4 h-4 mr-2" />
                 )}
-                <span className="truncate">{isListening ? 'جاري الاستماع...' : 'إدخال صوتي'}</span>
+                <span className="truncate">{isListening ? 'Listening...' : 'Voice Input'}</span>
               </Button>
             </div>
 
@@ -388,11 +388,11 @@ Return ONLY valid JSON (no markdown, no explanation):
         {/* Today's Foods by Meal */}
         <Tabs defaultValue="all" className="w-full">
           <TabsList className="grid grid-cols-5 w-full">
-            <TabsTrigger value="all">الكل</TabsTrigger>
-            <TabsTrigger value="breakfast">فطور</TabsTrigger>
-            <TabsTrigger value="lunch">غداء</TabsTrigger>
-            <TabsTrigger value="dinner">عشاء</TabsTrigger>
-            <TabsTrigger value="snack">خفيف</TabsTrigger>
+            <TabsTrigger value="all">All</TabsTrigger>
+            <TabsTrigger value="breakfast">Breakfast</TabsTrigger>
+            <TabsTrigger value="lunch">Lunch</TabsTrigger>
+            <TabsTrigger value="dinner">Dinner</TabsTrigger>
+            <TabsTrigger value="snack">Snack</TabsTrigger>
           </TabsList>
 
           {['all', 'breakfast', 'lunch', 'dinner', 'snack'].map((tab) => (
@@ -403,8 +403,8 @@ Return ONLY valid JSON (no markdown, no explanation):
                     <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
                       <Apple className="w-8 h-8 text-muted-foreground/50" />
                     </div>
-                    <p className="text-muted-foreground font-medium mb-1">لم تضف أي طعام بعد</p>
-                    <p className="text-xs text-muted-foreground/70">استخدم الحقل أعلاه لإضافة وجباتك اليومية</p>
+                    <p className="text-muted-foreground font-medium mb-1">No food added yet</p>
+                    <p className="text-xs text-muted-foreground/70">Use the input above to add your daily meals</p>
                   </CardContent>
                 </Card>
               ) : (
@@ -416,14 +416,14 @@ Return ONLY valid JSON (no markdown, no explanation):
                           <div className="flex items-center gap-2">
                             <h4 className="font-medium">{food.name}</h4>
                             {food.isSafe ? (
-                              <Badge variant="outline" className="text-green-600 border-green-600">
-                                <Check className="w-3 h-3 ml-1" />
-                                آمن
+                              <Badge variant="outline" className="text-primary border-primary">
+                                <Check className="w-3 h-3 mr-1" />
+                                Safe
                               </Badge>
                             ) : (
                               <Badge variant="destructive">
-                                <AlertCircle className="w-3 h-3 ml-1" />
-                                تحذير
+                                <AlertCircle className="w-3 h-3 mr-1" />
+                                Warning
                               </Badge>
                             )}
                           </div>
@@ -431,11 +431,11 @@ Return ONLY valid JSON (no markdown, no explanation):
                             <p className="text-xs text-destructive mt-1">{food.safetyNote}</p>
                           )}
                           <div className="flex gap-3 mt-2 text-xs text-muted-foreground">
-                            <span>{food.calories} سعرة</span>
+                            <span>{food.calories} cal</span>
                             <span>•</span>
-                            <span>{food.protein}g بروتين</span>
+                            <span>{food.protein}g protein</span>
                             <span>•</span>
-                            <span>{food.carbs}g كربو</span>
+                            <span>{food.carbs}g carbs</span>
                           </div>
                           {food.vitamins.length > 0 && (
                             <div className="flex gap-1 mt-2 flex-wrap">
@@ -471,9 +471,9 @@ Return ONLY valid JSON (no markdown, no explanation):
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-medium text-destructive">تنبيه السلامة</h4>
+                  <h4 className="font-medium text-destructive">Safety Alert</h4>
                   <p className="text-sm text-muted-foreground mt-1">
-                    بعض الأطعمة المضافة قد لا تكون آمنة أثناء الحمل. يرجى استشارة طبيبك.
+                    Some foods you've added may not be safe during pregnancy. Please consult your doctor.
                   </p>
                 </div>
               </div>
@@ -484,29 +484,29 @@ Return ONLY valid JSON (no markdown, no explanation):
         {/* Daily Tips */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">نصائح التغذية للثلث {currentTrimester === 1 ? 'الأول' : currentTrimester === 2 ? 'الثاني' : 'الثالث'}</CardTitle>
+            <CardTitle className="text-base">Nutrition Tips for {currentTrimester === 1 ? 'First' : currentTrimester === 2 ? 'Second' : 'Third'} Trimester</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="text-sm space-y-2 text-muted-foreground">
               {currentTrimester === 1 && (
                 <>
-                  <li>• ركزي على حمض الفوليك (600 ميكروغرام يومياً)</li>
-                  <li>• تناولي وجبات صغيرة متكررة للتغلب على الغثيان</li>
-                  <li>• اشربي الزنجبيل أو النعناع لتخفيف الغثيان</li>
+                  <li>• Focus on folic acid (600 mcg daily)</li>
+                  <li>• Eat small, frequent meals to combat nausea</li>
+                  <li>• Try ginger or peppermint tea for morning sickness</li>
                 </>
               )}
               {currentTrimester === 2 && (
                 <>
-                  <li>• زيدي السعرات بـ 340 سعرة إضافية يومياً</li>
-                  <li>• ركزي على الحديد والكالسيوم لنمو العظام</li>
-                  <li>• تناولي أوميغا-3 لتطور دماغ الجنين</li>
+                  <li>• Increase calories by 340 extra per day</li>
+                  <li>• Focus on iron and calcium for bone development</li>
+                  <li>• Include omega-3 for baby's brain development</li>
                 </>
               )}
               {currentTrimester === 3 && (
                 <>
-                  <li>• زيدي السعرات بـ 450 سعرة إضافية يومياً</li>
-                  <li>• ركزي على البروتين لنمو الجنين السريع</li>
-                  <li>• تناولي وجبات صغيرة لتجنب الحموضة</li>
+                  <li>• Increase calories by 450 extra per day</li>
+                  <li>• Focus on protein for rapid fetal growth</li>
+                  <li>• Eat smaller meals to avoid heartburn</li>
                 </>
               )}
             </ul>
