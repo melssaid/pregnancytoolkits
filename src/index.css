@@ -123,9 +123,10 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     background: linear-gradient(
       90deg,
-      hsl(330 10% 92%) 0%,
-      hsl(330 10% 95%) 15%,
-      hsl(var(--background)) 40%,
+      hsl(330 8% 85%) 0%,
+      hsl(330 10% 88%) 10%,
+      hsl(330 12% 92%) 25%,
+      hsl(var(--background)) 55%,
       hsl(var(--background)) 100%
     );
   }
@@ -133,9 +134,10 @@
   .dark body {
     background: linear-gradient(
       90deg,
-      hsl(330 15% 6%) 0%,
-      hsl(330 15% 7%) 15%,
-      hsl(var(--background)) 40%,
+      hsl(330 12% 4%) 0%,
+      hsl(330 12% 5%) 10%,
+      hsl(330 12% 6%) 25%,
+      hsl(var(--background)) 55%,
       hsl(var(--background)) 100%
     );
   }
