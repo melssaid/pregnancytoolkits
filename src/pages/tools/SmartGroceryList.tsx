@@ -261,15 +261,14 @@ export default function SmartGroceryList() {
             </h3>
             <div className="flex flex-wrap gap-2">
               {suggestedItems.filter(s => !items.find(i => i.name === s.name)).slice(0, 6).map(item => (
-                <Badge 
+                <button
                   key={item.id}
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary/10 py-1.5"
                   onClick={() => addSuggested(item)}
+                  className="inline-flex items-center rounded-full border border-input bg-background px-2.5 py-1 text-xs font-semibold transition-colors hover:bg-primary/10 hover:border-primary cursor-pointer"
                 >
                   <Plus className="w-3 h-3 mr-1" />
                   {item.name}
-                </Badge>
+                </button>
               ))}
             </div>
           </CardContent>
