@@ -79,62 +79,6 @@ Be warm, practical, and specific. Include real examples.`;
       mood="nurturing"
     >
       <div className="space-y-6">
-        {/* Hero Image */}
-        <Card className="overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?w=800&h=350&fit=crop"
-            alt="Couple expecting baby"
-            className="w-full h-48 object-cover"
-          />
-          <div className="p-4 bg-gradient-to-r from-pink-500/10 to-rose-500/10">
-            <h3 className="font-semibold flex items-center gap-2">
-              <HandHeart className="w-5 h-5 text-pink-500" />
-              Supporting Your Partner Through Pregnancy
-            </h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              AI-powered guidance for being the best support person
-            </p>
-          </div>
-        </Card>
-
-        {/* Video Resource */}
-        <Card className="p-4">
-          <h3 className="font-medium mb-3 flex items-center gap-2">
-            <MessageCircle className="w-4 h-4 text-primary" />
-            Partner Communication Tips
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/DugH6BxEWeE"
-              title="How to Support Your Partner During Labor"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </Card>
-
-        {/* Second Video - For Dads */}
-        <Card className="p-4">
-          <h3 className="font-medium mb-3 flex items-center gap-2">
-            <Heart className="w-4 h-4 text-primary" />
-            Ultimate Guide for Expecting Dads
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/asxKTBCs1vk"
-              title="Ultimate Guide for Expecting Fathers"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </Card>
-
         {/* Settings */}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -192,7 +136,7 @@ Be warm, practical, and specific. Include real examples.`;
         <Button
           onClick={getAdvice}
           disabled={isLoading || !selectedTopic}
-          className="w-full bg-gradient-to-r from-pink-500 to-rose-600"
+          className="w-full"
           size="lg"
         >
           <Sparkles className="w-4 h-4 mr-2" />
@@ -201,13 +145,13 @@ Be warm, practical, and specific. Include real examples.`;
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/30 dark:to-rose-950/30">
+          <Card className="p-4 bg-muted/50">
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
         {/* Quick Tips */}
-        <Card className="p-4 bg-muted/50">
+        <Card className="p-4 bg-muted/30">
           <h4 className="font-medium mb-3">💡 Quick Daily Actions</h4>
           <ul className="space-y-2 text-sm">
             <li className="flex items-center gap-2">
@@ -227,6 +171,46 @@ Be warm, practical, and specific. Include real examples.`;
               Read to the baby bump together
             </li>
           </ul>
+        </Card>
+
+        {/* Educational Videos - At the end */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <MessageCircle className="w-4 h-4" />
+            Learn More: Partner Communication Tips
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/DugH6BxEWeE"
+              title="How to Support Your Partner During Labor"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            ⚠️ Educational content only
+          </p>
+        </Card>
+
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Heart className="w-4 h-4" />
+            Ultimate Guide for Expecting Dads
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/asxKTBCs1vk"
+              title="Ultimate Guide for Expecting Fathers"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </Card>
       </div>
     </ToolFrame>
