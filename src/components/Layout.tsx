@@ -22,20 +22,20 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Top Trust Bar - Simplified for Compliance */}
-      <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-2 px-4">
-        <div className="container flex items-center justify-center gap-4 sm:gap-6 text-xs font-medium">
-          <div className="flex items-center gap-1.5">
-            <Shield className="h-3.5 w-3.5" />
-            <span>Evidence-Based Tools</span>
+      {/* Top Trust Bar - Compact & Professional */}
+      <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-1 px-3">
+        <div className="container flex items-center justify-center gap-3 sm:gap-5 text-[10px] font-medium tracking-wide">
+          <div className="flex items-center gap-1">
+            <Shield className="h-3 w-3" />
+            <span>Science-Backed</span>
           </div>
-          <div className="hidden sm:flex items-center gap-1.5">
-            <Heart className="h-3.5 w-3.5" />
-            <span>42 Wellness Tools</span>
+          <div className="hidden sm:flex items-center gap-1">
+            <Heart className="h-3 w-3" />
+            <span>42+ AI Tools</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Award className="h-3.5 w-3.5" />
-            <span>Professional Quality</span>
+          <div className="flex items-center gap-1">
+            <Award className="h-3 w-3" />
+            <span>Premium Experience</span>
           </div>
         </div>
       </div>
