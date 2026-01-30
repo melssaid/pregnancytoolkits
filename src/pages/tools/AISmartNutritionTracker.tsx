@@ -398,10 +398,15 @@ Return ONLY valid JSON (no markdown, no explanation):
           {['all', 'breakfast', 'lunch', 'dinner', 'snack'].map((tab) => (
             <TabsContent key={tab} value={tab} className="space-y-3 mt-4">
               {(tab === 'all' ? todaysFoods : getMealFoods(tab)).length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">
-                  <Apple className="w-12 h-12 mx-auto mb-2 opacity-30" />
-                  <p>لم تضف أي طعام بعد</p>
-                </div>
+                <Card className="border-dashed border-2 border-muted-foreground/20">
+                  <CardContent className="flex flex-col items-center justify-center py-12">
+                    <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
+                      <Apple className="w-8 h-8 text-muted-foreground/50" />
+                    </div>
+                    <p className="text-muted-foreground font-medium mb-1">لم تضف أي طعام بعد</p>
+                    <p className="text-xs text-muted-foreground/70">استخدم الحقل أعلاه لإضافة وجباتك اليومية</p>
+                  </CardContent>
+                </Card>
               ) : (
                 (tab === 'all' ? todaysFoods : getMealFoods(tab)).map((food) => (
                   <Card key={food.id} className={!food.isSafe ? 'border-destructive/50 bg-destructive/5' : ''}>
