@@ -100,11 +100,10 @@ export const toolsData: Tool[] = [
   
 
   // ═══════════════════════════════════════════════════════════════
-  // 🏥 AI LABOR & MONITORING (Priority 27-29)
+  // 🏥 AI LABOR & MONITORING (Priority 27-28)
   // ═══════════════════════════════════════════════════════════════
   { id: "ai-labor-progress", titleKey: "tools.aiLaborProgress.title", descriptionKey: "tools.aiLaborProgress.description", icon: Activity, categoryKey: "categories.labor", href: "/tools/labor-progress", priority: 27, hasAI: true },
-  { id: "contraction-timer", titleKey: "tools.contractionTimer.title", descriptionKey: "tools.contractionTimer.description", icon: Timer, categoryKey: "categories.labor", href: "/tools/contraction-timer", priority: 28, hasAI: true },
-  { id: "labor-breathing", titleKey: "tools.laborBreathing.title", descriptionKey: "tools.laborBreathing.description", icon: Wind, categoryKey: "categories.labor", href: "/tools/labor-breathing", priority: 29 },
+  { id: "labor-breathing", titleKey: "tools.laborBreathing.title", descriptionKey: "tools.laborBreathing.description", icon: Wind, categoryKey: "categories.labor", href: "/tools/labor-breathing", priority: 28 },
 
   // ═══════════════════════════════════════════════════════════════
   // 🔄 FERTILITY & PLANNING (Priority 30-32)

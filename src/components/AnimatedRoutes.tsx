@@ -54,7 +54,6 @@ const AIBumpPhotos = lazy(() => import("@/pages/tools/AIBumpPhotos"));
 
 // AI LABOR & MONITORING
 const AILaborProgressTracker = lazy(() => import("@/pages/tools/AILaborProgressTracker"));
-const ContractionPatternAnalyzer = lazy(() => import("@/pages/tools/ContractionPatternAnalyzer"));
 const LaborBreathingCoach = lazy(() => import("@/pages/tools/LaborBreathingCoach"));
 const AIBirthPlanGenerator = lazy(() => import("@/pages/tools/AIBirthPlanGenerator"));
 
@@ -122,7 +121,7 @@ export function AnimatedRoutes() {
 
           {/* AI LABOR & MONITORING */}
           <Route path="/tools/labor-progress" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
-          <Route path="/tools/contraction-timer" element={<PageTransition><ContractionPatternAnalyzer /></PageTransition>} />
+          <Route path="/tools/contraction-timer" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
           <Route path="/tools/labor-breathing" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
           <Route path="/tools/breathing-exercises" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
 
