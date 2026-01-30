@@ -11,6 +11,15 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
+import { VideoLibrary, Video } from "@/components/VideoLibrary";
+
+const hospitalBagVideos: Video[] = [
+  { id: "1", title: "Hospital Bag Must-Haves", description: "Essential items you can't forget", youtubeId: "VKmxG3nZP2E", duration: "12:30", category: "Essentials" },
+  { id: "2", title: "What I Actually Used", description: "Real mom's hospital bag review", youtubeId: "1SBW80P6VLQ", duration: "15:45", category: "Reviews" },
+  { id: "3", title: "Labor & Delivery Prep", description: "Preparing for your hospital stay", youtubeId: "j1p5O7cozdo", duration: "18:20", category: "Preparation" },
+  { id: "4", title: "Newborn Essentials", description: "What to pack for baby", youtubeId: "N-7mKfT_Wt4", duration: "10:15", category: "Baby" },
+  { id: "5", title: "Partner's Hospital Bag", description: "What dad or partner should bring", youtubeId: "3fYsj_Bk6mk", duration: "8:45", category: "Partner" },
+];
 
 interface BagItem {
   id: string;
@@ -232,6 +241,14 @@ Include seasonal considerations and hospital-specific recommendations.`;
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
+
+        {/* Educational Videos */}
+        <VideoLibrary
+          videos={hospitalBagVideos}
+          title="Hospital Bag Prep Videos"
+          subtitle="Tips from experienced moms"
+          accentColor="blue"
+        />
       </div>
     </ToolFrame>
   );

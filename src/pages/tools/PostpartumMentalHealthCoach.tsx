@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, AlertTriangle, Phone, CheckCircle, HelpCircle, Brain, MessageCircle, Sun } from 'lucide-react';
+import { VideoLibrary, Video } from '@/components/VideoLibrary';
+
+const mentalHealthVideos: Video[] = [
+  { id: "1", title: "Understanding Postpartum Depression", description: "Signs, symptoms, and when to seek help", youtubeId: "8GqVkn1v1ac", duration: "14:30", category: "Education" },
+  { id: "2", title: "Self-Care for New Moms", description: "Practical tips for mental wellness", youtubeId: "B0NOxSdCrVg", duration: "12:15", category: "Self-Care" },
+  { id: "3", title: "Postpartum Anxiety Explained", description: "Coping with anxiety after birth", youtubeId: "aV1yGDUDNNk", duration: "10:45", category: "Education" },
+  { id: "4", title: "Mindfulness for New Parents", description: "Relaxation and breathing exercises", youtubeId: "0DUzm3Fhzz4", duration: "18:00", category: "Relaxation" },
+  { id: "5", title: "Partner Support Tips", description: "How partners can help with PPD", youtubeId: "FaGK52oo36I", duration: "11:30", category: "Support" },
+];
 
 interface ScreeningQuestion {
   id: string;
@@ -318,8 +327,16 @@ export default function PostpartumMentalHealthCoach() {
             <p className="text-xs text-muted-foreground">
             ⚠️ This is a screening tool based on the Edinburgh Postnatal Depression Scale (EPDS). 
             It does not provide a diagnosis. Always consult with a healthcare professional for proper evaluation.
-          </p>
-        </div>
+            </p>
+          </div>
+
+          {/* Educational Videos */}
+          <VideoLibrary
+            videos={mentalHealthVideos}
+            title="Mental Wellness Videos"
+            subtitle="Support and self-care resources"
+            accentColor="rose"
+          />
       </div>
     </ToolFrame>
   );
