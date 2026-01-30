@@ -25,11 +25,33 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const nutritionVideos: Video[] = [
+  // Nutrition Basics
   { id: "1", title: "Pregnancy Nutrition Basics", description: "Essential nutrients for a healthy pregnancy", youtubeId: "3fYsj_Bk6mk", duration: "8:42", category: "Nutrition" },
-  { id: "2", title: "First Trimester Foods", description: "Best foods for early pregnancy", youtubeId: "0DUzm3Fhzz4", duration: "10:15", category: "Trimester Guide" },
-  { id: "3", title: "Iron-Rich Pregnancy Meals", description: "Prevent anemia with these recipes", youtubeId: "hnqLZBJLxUI", duration: "7:30", category: "Nutrition" },
-  { id: "4", title: "Healthy Pregnancy Snacks", description: "Quick and nutritious snack ideas", youtubeId: "gKfqTPKMFqE", duration: "6:45", category: "Recipes" },
-  { id: "5", title: "Foods to Avoid During Pregnancy", description: "What to skip for baby's safety", youtubeId: "N-7mKfT_Wt4", duration: "9:20", category: "Safety" },
+  { id: "2", title: "Vitamins & Minerals Guide", description: "Key supplements during pregnancy", youtubeId: "Ry7xDEv2Uxc", duration: "7:30", category: "Nutrition" },
+  { id: "3", title: "Iron-Rich Pregnancy Meals", description: "Prevent anemia with these foods", youtubeId: "1_9pJe5VZXE", duration: "12:00", category: "Nutrition" },
+  { id: "4", title: "Calcium for Strong Bones", description: "Best calcium sources for mom and baby", youtubeId: "0DUzm3Fhzz4", duration: "10:15", category: "Nutrition" },
+  
+  // Trimester Guide
+  { id: "5", title: "First Trimester Foods", description: "Best foods for early pregnancy", youtubeId: "sB7M_ofGC2k", duration: "9:15", category: "Trimester Guide" },
+  { id: "6", title: "Second Trimester Nutrition", description: "Eating for growth and energy", youtubeId: "hnqLZBJLxUI", duration: "11:20", category: "Trimester Guide" },
+  { id: "7", title: "Third Trimester Diet", description: "Preparing your body for birth", youtubeId: "gKfqTPKMFqE", duration: "10:45", category: "Trimester Guide" },
+  
+  // Recipes
+  { id: "8", title: "Healthy Pregnancy Breakfast", description: "Energizing morning meal ideas", youtubeId: "N-7mKfT_Wt4", duration: "8:30", category: "Recipes" },
+  { id: "9", title: "Nutritious Lunch Ideas", description: "Quick and balanced lunch recipes", youtubeId: "FaGK52oo36I", duration: "12:15", category: "Recipes" },
+  { id: "10", title: "Easy Dinner Recipes", description: "Simple dinners for tired moms", youtubeId: "B0NOxSdCrVg", duration: "14:00", category: "Recipes" },
+  { id: "11", title: "Healthy Pregnancy Snacks", description: "Quick and nutritious snack ideas", youtubeId: "4xyOBe7PLWU", duration: "6:45", category: "Recipes" },
+  { id: "12", title: "Pregnancy Smoothie Recipes", description: "Delicious nutrient-packed smoothies", youtubeId: "jO8vyXj_wLY", duration: "7:30", category: "Recipes" },
+  
+  // Safety
+  { id: "13", title: "Foods to Avoid During Pregnancy", description: "What to skip for baby's safety", youtubeId: "hMc-8mpvL2U", duration: "9:20", category: "Safety" },
+  { id: "14", title: "Safe Food Handling", description: "Prevent foodborne illness", youtubeId: "fLsGp1mCvAc", duration: "8:00", category: "Safety" },
+  { id: "15", title: "Reading Food Labels", description: "Understanding ingredients and additives", youtubeId: "VKmxG3nZP2E", duration: "7:45", category: "Safety" },
+  
+  // Special Diets
+  { id: "16", title: "Vegetarian Pregnancy Diet", description: "Getting enough protein without meat", youtubeId: "j1p5O7cozdo", duration: "11:30", category: "Special Diets" },
+  { id: "17", title: "Managing Gestational Diabetes", description: "Diet tips for blood sugar control", youtubeId: "eLqJYpMJWyQ", duration: "13:00", category: "Special Diets" },
+  { id: "18", title: "Dealing with Food Aversions", description: "Getting nutrients when nauseous", youtubeId: "c2NvYvjKXxU", duration: "9:45", category: "Special Diets" },
 ];
 
 const mealTypes = [
