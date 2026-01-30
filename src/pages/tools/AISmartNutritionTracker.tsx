@@ -345,10 +345,10 @@ Return ONLY valid JSON (no markdown, no explanation):
               </Button>
             </div>
 
-            <div className="flex gap-2">
+            <div className="grid grid-cols-2 gap-2">
               <Button
                 variant="outline"
-                className="flex-1"
+                className="w-full"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isScanning}
               >
@@ -357,11 +357,11 @@ Return ONLY valid JSON (no markdown, no explanation):
                 ) : (
                   <Camera className="w-4 h-4 ml-2" />
                 )}
-                {isScanning ? 'جاري المسح...' : 'مسح بالكاميرا'}
+                <span className="truncate">{isScanning ? 'جاري المسح...' : 'مسح بالكاميرا'}</span>
               </Button>
               <Button
                 variant="outline"
-                className="flex-1"
+                className="w-full"
                 onClick={handleVoiceInput}
                 disabled={isListening}
               >
@@ -370,7 +370,7 @@ Return ONLY valid JSON (no markdown, no explanation):
                 ) : (
                   <Mic className="w-4 h-4 ml-2" />
                 )}
-                {isListening ? 'جاري الاستماع...' : 'إدخال صوتي'}
+                <span className="truncate">{isListening ? 'جاري الاستماع...' : 'إدخال صوتي'}</span>
               </Button>
             </div>
 
