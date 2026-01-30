@@ -177,40 +177,43 @@ Be warm, practical, and specific. Include real examples.`;
         <Card className="p-4 border-dashed">
           <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
             <MessageCircle className="w-4 h-4" />
-            Learn More: Partner Communication Tips
+            5 Tips to Be the Best Labor Partner
           </h3>
           <div className="aspect-video rounded-lg overflow-hidden bg-muted">
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/DugH6BxEWeE"
-              title="How to Support Your Partner During Labor"
+              src="https://www.youtube.com/embed/tKFP8aOvzlE"
+              title="Make Dad The Best Labor Partner With These 5 Tips"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only
+            ⚠️ محتوى تعليمي فقط - Built To Birth
           </p>
         </Card>
 
         <Card className="p-4 border-dashed">
           <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
             <Heart className="w-4 h-4" />
-            Ultimate Guide for Expecting Dads
+            How to Push During Labor - Best Positions
           </h3>
           <div className="aspect-video rounded-lg overflow-hidden bg-muted">
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/asxKTBCs1vk"
-              title="Ultimate Guide for Expecting Fathers"
+              src="https://www.youtube.com/embed/LL-FkZJce2k"
+              title="How to Push in Labor - Best Positions for Easier Birth"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            كيف تدعم شريكتك أثناء الدفع في الولادة
+          </p>
         </Card>
       </div>
     </ToolFrame>

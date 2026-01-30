@@ -192,21 +192,43 @@ Include safety considerations and when to change positions.`;
         <Card className="p-4 border-dashed">
           <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
             <Activity className="w-4 h-4" />
-            Learn More: Birth Positions Demonstration
+            7 Labor Positions for Easier Birth
           </h3>
           <div className="aspect-video rounded-lg overflow-hidden bg-muted">
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/goqbMfKoglc"
-              title="Best Labor Positions For Each Phase"
+              src="https://www.youtube.com/embed/FdaWVReVm6k"
+              title="7 Labor Positions for Easier Birth - Open Pelvis & Reduce Pain"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - discuss positions with your healthcare provider
+            وضعيات تفتح الحوض وتقلل الألم أثناء الولادة
+          </p>
+        </Card>
+
+        {/* Second Educational Video */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Activity className="w-4 h-4" />
+            How to Open Your Pelvis for Birth
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/UKkjGZEEnow"
+              title="How to Open Your Pelvis for Birth - MamasteFit"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            ⚠️ محتوى تعليمي فقط - ناقشي الوضعيات مع طبيبتك
           </p>
         </Card>
       </div>

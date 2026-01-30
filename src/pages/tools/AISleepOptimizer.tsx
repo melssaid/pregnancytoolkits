@@ -182,21 +182,43 @@ Include specific product recommendations (pillows, white noise) and YouTube link
         <Card className="p-4 border-dashed">
           <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
             <Volume2 className="w-4 h-4" />
-            Learn More: Pregnancy Sleep Meditation
+            Doctor-Approved Sleep Tips for Pregnancy
           </h3>
           <div className="aspect-video rounded-lg overflow-hidden bg-muted">
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/aEqlQvczMJQ"
-              title="Pregnancy Sleep Meditation"
+              src="https://www.youtube.com/embed/s8lz6f01OIU"
+              title="Pregnancy Insomnia? Sleep Like a Baby with These Proven Tips"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - consult your doctor for sleep issues
+            نصائح معتمدة من الأطباء للنوم بشكل أفضل أثناء الحمل
+          </p>
+        </Card>
+
+        {/* Second Educational Video */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Volume2 className="w-4 h-4" />
+            Best Sleep Positions - Tommy's Guide
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/IZbVmEh5H6A"
+              title="How to Sleep When Pregnant - Best Position for Third Trimester"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            ⚠️ محتوى تعليمي فقط - استشيري طبيبتك لمشاكل النوم
           </p>
         </Card>
       </div>
