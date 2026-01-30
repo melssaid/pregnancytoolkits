@@ -88,6 +88,7 @@ export const toolsData: Tool[] = [
   { id: "ai-budget-planner", titleKey: "tools.aiBudgetPlanner.title", descriptionKey: "tools.aiBudgetPlanner.description", icon: Wallet, categoryKey: "categories.ai", href: "/tools/ai-budget-planner", priority: 17, hasAI: true },
   { id: "ai-bump-photos", titleKey: "tools.aiBumpPhotos.title", descriptionKey: "tools.aiBumpPhotos.description", icon: Camera, categoryKey: "categories.ai", href: "/tools/ai-bump-photos", priority: 18, hasAI: true },
   { id: "ai-lactation-prep", titleKey: "tools.aiLactationPrep.title", descriptionKey: "tools.aiLactationPrep.description", icon: Milk, categoryKey: "categories.ai", href: "/tools/ai-lactation-prep", priority: 19, hasAI: true },
+  { id: "ai-nutrition-tracker", titleKey: "tools.aiNutritionTracker.title", descriptionKey: "tools.aiNutritionTracker.description", icon: Utensils, categoryKey: "categories.ai", href: "/tools/ai-nutrition-tracker", priority: 20, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // 💪 AI WELLNESS & FITNESS TOOLS (Priority 21-26)
