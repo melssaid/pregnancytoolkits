@@ -54,7 +54,6 @@ const AIBumpPhotos = lazy(() => import("@/pages/tools/AIBumpPhotos"));
 
 // AI LABOR & MONITORING
 const AILaborProgressTracker = lazy(() => import("@/pages/tools/AILaborProgressTracker"));
-const LaborBreathingCoach = lazy(() => import("@/pages/tools/LaborBreathingCoach"));
 const AIBirthPlanGenerator = lazy(() => import("@/pages/tools/AIBirthPlanGenerator"));
 
 // FERTILITY & PLANNING
@@ -65,14 +64,11 @@ const DueDateCalculator = lazy(() => import("@/pages/tools/DueDateCalculator"));
 // PREGNANCY TRACKING
 const FetalDevelopment3D = lazy(() => import("@/pages/tools/FetalDevelopment3D"));
 const SmartKickCounter = lazy(() => import("@/pages/tools/SmartKickCounter"));
-const PregnancyMilestones = lazy(() => import("@/pages/tools/PregnancyMilestones"));
 
 // NUTRITION & WELLNESS
-const WaterIntake = lazy(() => import("@/pages/tools/WaterIntake"));
 const VitaminTracker = lazy(() => import("@/pages/tools/VitaminTracker"));
 
 // MENTAL HEALTH
-const Affirmations = lazy(() => import("@/pages/tools/Affirmations"));
 const PostpartumMentalHealthCoach = lazy(() => import("@/pages/tools/PostpartumMentalHealthCoach"));
 const SmartWeightGainAnalyzer = lazy(() => import("@/pages/tools/SmartWeightGainAnalyzer"));
 
@@ -122,8 +118,8 @@ export function AnimatedRoutes() {
           {/* AI LABOR & MONITORING */}
           <Route path="/tools/labor-progress" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
           <Route path="/tools/contraction-timer" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
-          <Route path="/tools/labor-breathing" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
-          <Route path="/tools/breathing-exercises" element={<PageTransition><LaborBreathingCoach /></PageTransition>} />
+          <Route path="/tools/labor-breathing" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
+          <Route path="/tools/breathing-exercises" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
 
           {/* FERTILITY & PLANNING */}
           <Route path="/tools/ovulation-calculator" element={<PageTransition><OvulationCalculator /></PageTransition>} />
@@ -134,16 +130,16 @@ export function AnimatedRoutes() {
           {/* PREGNANCY TRACKING */}
           <Route path="/tools/fetal-growth" element={<PageTransition><FetalDevelopment3D /></PageTransition>} />
           <Route path="/tools/kick-counter" element={<PageTransition><SmartKickCounter /></PageTransition>} />
-          <Route path="/tools/pregnancy-milestones" element={<PageTransition><PregnancyMilestones /></PageTransition>} />
+          <Route path="/tools/pregnancy-milestones" element={<PageTransition><WeeklySummary /></PageTransition>} />
 
           {/* NUTRITION & WELLNESS */}
-          <Route path="/tools/water-intake" element={<PageTransition><WaterIntake /></PageTransition>} />
+          <Route path="/tools/water-intake" element={<PageTransition><VitaminTracker /></PageTransition>} />
           <Route path="/tools/vitamin-tracker" element={<PageTransition><VitaminTracker /></PageTransition>} />
           <Route path="/tools/nutrition-guide" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
           <Route path="/tools/meal-planner" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
 
           {/* MENTAL HEALTH */}
-          <Route path="/tools/affirmations" element={<PageTransition><Affirmations /></PageTransition>} />
+          <Route path="/tools/affirmations" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
           <Route path="/tools/mental-health-coach" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
           <Route path="/tools/weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
           <Route path="/tools/mood-tracker" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
