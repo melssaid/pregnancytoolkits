@@ -111,25 +111,6 @@ Include safety considerations and when to change positions.`;
           ))}
         </div>
 
-        {/* Video Guide */}
-        <Card className="p-4">
-          <h3 className="font-medium mb-3 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-primary" />
-            Birth Positions Demonstration
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/goqbMfKoglc"
-              title="Best Labor Positions For Each Phase"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </Card>
-
         {/* Birth Preference */}
         <div className="space-y-3">
           <Label>Birth Preference</Label>
@@ -193,7 +174,7 @@ Include safety considerations and when to change positions.`;
         <Button
           onClick={getRecommendations}
           disabled={isLoading}
-          className="w-full bg-gradient-to-r from-violet-500 to-purple-600"
+          className="w-full"
           size="lg"
         >
           <Sparkles className="w-4 h-4 mr-2" />
@@ -202,10 +183,32 @@ Include safety considerations and when to change positions.`;
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30">
+          <Card className="p-4 bg-muted/50">
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
+
+        {/* Educational Video - At the end */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Activity className="w-4 h-4" />
+            Learn More: Birth Positions Demonstration
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/goqbMfKoglc"
+              title="Best Labor Positions For Each Phase"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            ⚠️ Educational content only - discuss positions with your healthcare provider
+          </p>
+        </Card>
       </div>
     </ToolFrame>
   );

@@ -115,57 +115,6 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
       mood="nurturing"
     >
       <div className="space-y-6">
-        {/* Interactive Hero Section */}
-        <Card className="overflow-hidden border-0 shadow-lg">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-rose-500 via-pink-500 to-purple-500 opacity-90" />
-            <div className="relative p-6 text-white">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
-                  <Baby className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">Breastfeeding Preparation</h3>
-                  <p className="text-white/80 text-sm">AI-Powered Guidance</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-3 mt-4">
-                <div className="bg-white/10 backdrop-blur rounded-xl p-3 text-center">
-                  <div className="text-2xl mb-1">🤱</div>
-                  <p className="text-xs font-medium">Latch Tips</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur rounded-xl p-3 text-center">
-                  <div className="text-2xl mb-1">📅</div>
-                  <p className="text-xs font-medium">Timeline</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur rounded-xl p-3 text-center">
-                  <div className="text-2xl mb-1">💪</div>
-                  <p className="text-xs font-medium">Support</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        {/* Video Tutorial */}
-        <Card className="p-4">
-          <h3 className="font-medium mb-3 flex items-center gap-2">
-            <Baby className="w-4 h-4 text-primary" />
-            Getting a Good Latch
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/56YzjsZr4hQ"
-              title="Breastfeeding Latch Tutorial"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </Card>
-
         {/* Feeding Goal */}
         <div className="space-y-3">
           <Label>Your Feeding Goal</Label>
@@ -240,7 +189,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         </div>
 
         {/* Essential Supplies */}
-        <Card className="p-4 bg-muted/50">
+        <Card className="p-4 bg-muted/30">
           <h4 className="font-medium mb-3 flex items-center gap-2">
             <ShoppingBag className="w-4 h-4 text-primary" />
             Breastfeeding Supplies Checklist
@@ -248,7 +197,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
           <div className="grid grid-cols-2 gap-2">
             {essentialSupplies.map((item, i) => (
               <div key={i} className="flex items-center gap-2 text-sm">
-                <span className={item.essential ? "text-amber-500" : "text-muted-foreground"}>
+                <span className={item.essential ? "text-primary" : "text-muted-foreground"}>
                   {item.essential ? "★" : "○"}
                 </span>
                 {item.name}
@@ -261,7 +210,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         <Button
           onClick={getLactationPlan}
           disabled={isLoading}
-          className="w-full bg-gradient-to-r from-rose-500 to-pink-600"
+          className="w-full"
           size="lg"
         >
           <Sparkles className="w-4 h-4 mr-2" />
@@ -270,23 +219,45 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/30 dark:to-pink-950/30">
+          <Card className="p-4 bg-muted/50">
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
         {/* Support Note */}
-        <Card className="p-4 bg-amber-50 dark:bg-amber-950/30 border-amber-200">
+        <Card className="p-4 bg-muted/30 border-primary/20">
           <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
+            <AlertCircle className="w-5 h-5 text-primary flex-shrink-0" />
             <div>
-              <h4 className="font-medium text-amber-800 dark:text-amber-200">Need Support?</h4>
+              <h4 className="font-medium">Need Support?</h4>
               <p className="text-sm text-muted-foreground mt-1">
                 If you're struggling with breastfeeding, reach out to a lactation consultant (IBCLC). 
                 Many hospitals offer free support. Fed is best - whatever works for you and baby!
               </p>
             </div>
           </div>
+        </Card>
+
+        {/* Educational Video - At the end */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Baby className="w-4 h-4" />
+            Learn More: Getting a Good Latch
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/56YzjsZr4hQ"
+              title="Breastfeeding Latch Tutorial"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            ⚠️ Educational content only - consult a lactation consultant for personalized support
+          </p>
         </Card>
       </div>
     </ToolFrame>

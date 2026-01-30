@@ -92,26 +92,6 @@ Include specific product recommendations (pillows, white noise) and YouTube link
       toolId="ai-sleep-optimizer"
     >
       <div className="space-y-6">
-        {/* Sleep Video Guide */}
-        <Card className="p-4 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border-indigo-200">
-          <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-            <Volume2 className="w-4 h-4" />
-            Pregnancy Sleep Meditation
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/aEqlQvczMJQ"
-              title="Pregnancy Sleep Meditation"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="rounded-lg"
-            />
-          </div>
-        </Card>
-
         {/* Sleep Hours */}
         <div className="space-y-3">
           <Label className="flex items-center gap-2">
@@ -173,7 +153,7 @@ Include specific product recommendations (pillows, white noise) and YouTube link
         <Button
           onClick={analyzeSleep}
           disabled={isLoading}
-          className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700"
+          className="w-full"
           size="lg"
         >
           <Sparkles className="w-4 h-4 mr-2" />
@@ -182,24 +162,41 @@ Include specific product recommendations (pillows, white noise) and YouTube link
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30">
-          <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-primary" />
-            Your Personalized Sleep Plan
-          </h3>
-          <MarkdownRenderer content={response} isLoading={isLoading} />
-        </Card>
+          <Card className="p-4 bg-muted/50">
+            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-primary" />
+              Your Personalized Sleep Plan
+            </h3>
+            <MarkdownRenderer content={response} isLoading={isLoading} />
+          </Card>
         )}
 
-        {/* Sleep Tips Image */}
-        <Card className="p-4 bg-muted/50">
-          <img
-            src="https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=800&h=400&fit=crop"
-            alt="Pregnancy sleep positions"
-            className="w-full rounded-lg mb-3"
-          />
+        {/* Sleep Tips */}
+        <Card className="p-4 bg-muted/30">
           <p className="text-sm text-muted-foreground text-center">
             💡 Left-side sleeping is recommended after week 20 for optimal blood flow
+          </p>
+        </Card>
+
+        {/* Educational Video - At the end */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Volume2 className="w-4 h-4" />
+            Learn More: Pregnancy Sleep Meditation
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/aEqlQvczMJQ"
+              title="Pregnancy Sleep Meditation"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            ⚠️ Educational content only - consult your doctor for sleep issues
           </p>
         </Card>
       </div>

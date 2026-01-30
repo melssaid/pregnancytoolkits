@@ -98,15 +98,6 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
       mood="nurturing"
     >
       <div className="space-y-6">
-        {/* Hero Image */}
-        <Card className="overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=800&h=300&fit=crop"
-            alt="Pregnancy skincare"
-            className="w-full h-40 object-cover"
-          />
-        </Card>
-
         {/* Unsafe Ingredients Warning */}
         <Card className="p-4 bg-destructive/5 border-destructive/20">
           <h3 className="font-semibold flex items-center gap-2 text-destructive mb-3">
@@ -179,13 +170,45 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
           </div>
         </div>
 
-        {/* Video Tutorial */}
-        <Card className="p-4">
-          <h3 className="font-medium mb-3 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-primary" />
-            Pregnancy-Safe Skincare Guide
+        {/* Get Routine */}
+        <Button
+          onClick={getSkincareRoutine}
+          disabled={isLoading}
+          className="w-full"
+          size="lg"
+        >
+          <Sparkles className="w-4 h-4 mr-2" />
+          {isLoading ? "Creating Routine..." : "Get AI Skincare Routine"}
+        </Button>
+
+        {/* AI Response */}
+        {response && (
+          <Card className="p-4 bg-muted/50">
+            <MarkdownRenderer content={response} isLoading={isLoading} />
+          </Card>
+        )}
+
+        {/* Daily/Nightly Quick Reference */}
+        <div className="grid grid-cols-2 gap-4">
+          <Card className="p-4 text-center bg-muted/30">
+            <Sun className="w-8 h-8 text-primary mx-auto mb-2" />
+            <h4 className="font-medium">Morning</h4>
+            <p className="text-xs text-muted-foreground">Cleanse → Hydrate → SPF</p>
+          </Card>
+          <Card className="p-4 text-center bg-muted/30">
+            <MoonIcon className="w-8 h-8 text-primary mx-auto mb-2" />
+            <h4 className="font-medium">Evening</h4>
+            <p className="text-xs text-muted-foreground">Cleanse → Treat → Nourish</p>
+          </Card>
+        </div>
+
+        {/* Educational Video - At the end as supplementary content */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Sparkles className="w-4 h-4" />
+            Learn More: Pregnancy-Safe Skincare
           </h3>
-          <div className="aspect-video rounded-lg overflow-hidden">
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
             <iframe
               width="100%"
               height="100%"
@@ -196,39 +219,10 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
               allowFullScreen
             />
           </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            ⚠️ Educational content only - consult your dermatologist for personalized advice
+          </p>
         </Card>
-
-        {/* Get Routine */}
-        <Button
-          onClick={getSkincareRoutine}
-          disabled={isLoading}
-          className="w-full bg-gradient-to-r from-rose-400 to-pink-500"
-          size="lg"
-        >
-          <Sparkles className="w-4 h-4 mr-2" />
-          {isLoading ? "Creating Routine..." : "Get AI Skincare Routine"}
-        </Button>
-
-        {/* AI Response */}
-        {response && (
-          <Card className="p-4 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/30 dark:to-pink-950/30">
-            <MarkdownRenderer content={response} isLoading={isLoading} />
-          </Card>
-        )}
-
-        {/* Daily/Nightly Icons */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card className="p-4 text-center bg-amber-50 dark:bg-amber-950/30">
-            <Sun className="w-8 h-8 text-amber-500 mx-auto mb-2" />
-            <h4 className="font-medium">Morning</h4>
-            <p className="text-xs text-muted-foreground">Cleanse → Hydrate → SPF</p>
-          </Card>
-          <Card className="p-4 text-center bg-indigo-50 dark:bg-indigo-950/30">
-            <MoonIcon className="w-8 h-8 text-indigo-500 mx-auto mb-2" />
-            <h4 className="font-medium">Evening</h4>
-            <p className="text-xs text-muted-foreground">Cleanse → Treat → Nourish</p>
-          </Card>
-        </div>
       </div>
     </ToolFrame>
   );

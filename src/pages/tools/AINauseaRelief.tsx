@@ -101,9 +101,9 @@ Be compassionate - morning sickness is exhausting!`;
     >
       <div className="space-y-6">
         {/* Quick Relief Card */}
-        <Card className="p-4 bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-200">
+        <Card className="p-4 bg-muted/30 border-primary/20">
           <h3 className="font-semibold flex items-center gap-2 mb-3">
-            <Wind className="w-4 h-4 text-green-600" />
+            <Wind className="w-4 h-4 text-primary" />
             Quick Relief Remedies
           </h3>
           <div className="grid grid-cols-3 gap-2">
@@ -117,35 +117,13 @@ Be compassionate - morning sickness is exhausting!`;
           </div>
         </Card>
 
-        {/* Acupressure Video */}
-        <Card className="p-4">
-          <h3 className="font-medium mb-3 flex items-center gap-2">
-            <Clock className="w-4 h-4 text-primary" />
-            P6 Acupressure Point for Nausea
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/lh6FdzbbS20"
-              title="Stop Nausea Fast With Acupressure"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-sm text-muted-foreground mt-2">
-            Press the P6 point (3 finger-widths below wrist) for 2-3 minutes
-          </p>
-        </Card>
-
         {/* Severity Slider */}
         <div className="space-y-3">
           <Label className="flex items-center justify-between">
             <span>Nausea Severity</span>
             <span className={`font-bold ${
-              severity[0] <= 3 ? "text-green-600" : 
-              severity[0] <= 6 ? "text-amber-600" : "text-red-600"
+              severity[0] <= 3 ? "text-primary" : 
+              severity[0] <= 6 ? "text-primary/70" : "text-destructive"
             }`}>
               {severity[0]}/10
             </span>
@@ -221,7 +199,7 @@ Be compassionate - morning sickness is exhausting!`;
         <Button
           onClick={getReliefPlan}
           disabled={isLoading}
-          className="w-full bg-gradient-to-r from-green-500 to-emerald-600"
+          className="w-full"
           size="lg"
         >
           <Sparkles className="w-4 h-4 mr-2" />
@@ -230,16 +208,38 @@ Be compassionate - morning sickness is exhausting!`;
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30">
+          <Card className="p-4 bg-muted/50">
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
         {/* Encouraging Note */}
-        <Card className="p-4 bg-muted/50 text-center">
+        <Card className="p-4 bg-muted/30 text-center">
           <p className="text-sm text-muted-foreground">
             💚 Remember: Morning sickness usually peaks around weeks 8-10 and 
             improves significantly by week 12-14. You've got this!
+          </p>
+        </Card>
+
+        {/* Educational Video - At the end */}
+        <Card className="p-4 border-dashed">
+          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <Clock className="w-4 h-4" />
+            Learn More: P6 Acupressure for Nausea
+          </h3>
+          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/lh6FdzbbS20"
+              title="Stop Nausea Fast With Acupressure"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-2 text-center">
+            Press the P6 point (3 finger-widths below wrist) for 2-3 minutes
           </p>
         </Card>
       </div>
