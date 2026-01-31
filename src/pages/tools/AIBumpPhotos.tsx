@@ -5,8 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
-import { BumpPhotoService, UserProfileService } from '@/services/supabaseServices';
-import { AIService } from '@/services/aiService';
+import { BumpPhotoService, UserProfileService, AIService } from '@/services/localStorageServices';
 
 interface BumpPhoto {
   id: string;

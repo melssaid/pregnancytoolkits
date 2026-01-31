@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
-// Get or create user ID
+// Get or create user ID (stored locally)
 export const getUserId = (): string => {
   let userId = localStorage.getItem('pregnancy_user_id');
   if (!userId) {
@@ -12,23 +11,19 @@ export const getUserId = (): string => {
   return userId;
 };
 
-// Hook for user profile
+// Hook for user profile (localStorage-based)
 export const useUserProfile = () => {
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  const loadProfile = useCallback(async () => {
+  const loadProfile = useCallback(() => {
     try {
       const userId = getUserId();
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('user_id', userId)
-        .single();
-      
-      if (error && error.code !== 'PGRST116') throw error;
-      setProfile(data);
+      const stored = localStorage.getItem(`profile_${userId}`);
+      if (stored) {
+        setProfile(JSON.parse(stored));
+      }
     } catch (error: any) {
       console.error('Error loading profile:', error);
     } finally {
@@ -39,15 +34,10 @@ export const useUserProfile = () => {
   const updateProfile = useCallback(async (updates: any) => {
     try {
       const userId = getUserId();
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .upsert({ ...updates, user_id: userId, updated_at: new Date().toISOString() })
-        .select()
-        .single();
-      
-      if (error) throw error;
-      setProfile(data);
-      return data;
+      const newProfile = { ...profile, ...updates, user_id: userId, updated_at: new Date().toISOString() };
+      localStorage.setItem(`profile_${userId}`, JSON.stringify(newProfile));
+      setProfile(newProfile);
+      return newProfile;
     } catch (error: any) {
       toast({
         title: 'خطأ في الحفظ',
@@ -56,7 +46,7 @@ export const useUserProfile = () => {
       });
       throw error;
     }
-  }, [toast]);
+  }, [toast, profile]);
 
   useEffect(() => {
     loadProfile();
@@ -84,56 +74,51 @@ export const usePregnancyWeek = () => {
   return { week, setWeek: setPregnancyWeek };
 };
 
-// Generic data fetching hook
-export const useSupabaseQuery = <T>(tableName: string, options?: {
-  filter?: { column: string; value: any };
-  orderBy?: { column: string; ascending?: boolean };
-  limit?: number;
-}) => {
+// Generic localStorage-based data hook
+export const useLocalData = <T extends { id: string }>(key: string) => {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  const fetchData = useCallback(async () => {
+  const load = useCallback(() => {
     try {
-      setLoading(true);
       const userId = getUserId();
-      
-      let query = supabase
-        .from(tableName)
-        .select('*')
-        .eq('user_id', userId);
-      
-      if (options?.filter) {
-        query = query.eq(options.filter.column, options.filter.value);
+      const stored = localStorage.getItem(`${key}_${userId}`);
+      if (stored) {
+        setData(JSON.parse(stored));
       }
-      
-      if (options?.orderBy) {
-        query = query.order(options.orderBy.column, { ascending: options.orderBy.ascending ?? false });
-      }
-      
-      if (options?.limit) {
-        query = query.limit(options.limit);
-      }
-      
-      const { data: result, error: err } = await query;
-      
-      if (err) throw err;
-      setData(result || []);
-      setError(null);
-    } catch (err: any) {
-      setError(err.message);
-      console.error(`Error fetching ${tableName}:`, err);
+    } catch (e) {
+      console.error(`Error loading ${key}:`, e);
     } finally {
       setLoading(false);
     }
-  }, [tableName, options?.filter?.column, options?.filter?.value, options?.orderBy?.column, options?.limit]);
+  }, [key]);
+
+  const save = useCallback((items: T[]) => {
+    const userId = getUserId();
+    localStorage.setItem(`${key}_${userId}`, JSON.stringify(items));
+    setData(items);
+  }, [key]);
+
+  const add = useCallback((item: Omit<T, 'id'>) => {
+    const newItem = { ...item, id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}` } as T;
+    const updated = [...data, newItem];
+    save(updated);
+    return newItem;
+  }, [data, save]);
+
+  const remove = useCallback((id: string) => {
+    const updated = data.filter(item => item.id !== id);
+    save(updated);
+  }, [data, save]);
+
+  const update = useCallback((id: string, updates: Partial<T>) => {
+    const updated = data.map(item => item.id === id ? { ...item, ...updates } : item);
+    save(updated);
+  }, [data, save]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    load();
+  }, [load]);
 
-  return { data, loading, error, refetch: fetchData };
+  return { data, loading, add, remove, update, refetch: load };
 };
-
-export { supabase };
