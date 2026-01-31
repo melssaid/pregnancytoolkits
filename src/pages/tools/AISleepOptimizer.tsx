@@ -218,7 +218,7 @@ Include specific product recommendations (pillows, white noise) and YouTube link
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ محتوى تعليمي فقط - استشيري طبيبتك لمشاكل النوم
+            ⚠️ Educational content only - Consult your doctor for sleep issues
           </p>
         </Card>
       </div>

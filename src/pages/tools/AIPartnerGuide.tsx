@@ -191,7 +191,7 @@ Be warm, practical, and specific. Include real examples.`;
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ محتوى تعليمي فقط - Built To Birth
+            ⚠️ Educational content only - Built To Birth
           </p>
         </Card>
 

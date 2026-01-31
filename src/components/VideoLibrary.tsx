@@ -187,7 +187,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
             <div className="mb-3 p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg flex items-start gap-2">
               <span className="text-amber-600 text-lg">⚠️</span>
               <p className="text-xs text-amber-800 dark:text-amber-200">
-                هذه الفيديوهات تعليمية فقط ولا تغني عن استشارة طبيبك المختص.
+                These videos are for educational purposes only and do not replace professional medical advice.
               </p>
             </div>
             

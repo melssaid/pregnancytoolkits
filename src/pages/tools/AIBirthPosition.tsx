@@ -228,7 +228,7 @@ Include safety considerations and when to change positions.`;
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ محتوى تعليمي فقط - ناقشي الوضعيات مع طبيبتك
+            ⚠️ Educational content only - Discuss positions with your doctor
           </p>
         </Card>
       </div>

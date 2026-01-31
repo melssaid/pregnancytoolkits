@@ -278,7 +278,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ محتوى تعليمي فقط - استشيري أخصائية الرضاعة للدعم الشخصي
+            ⚠️ Educational content only - Consult a lactation specialist for personalized support
           </p>
         </Card>
       </div>
