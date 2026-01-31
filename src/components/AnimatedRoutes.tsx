@@ -16,6 +16,7 @@ PageLoader.displayName = "PageLoader";
 // LAZY LOADED PAGES - Performance Optimization
 // ═══════════════════════════════════════════════════════════════
 const Index = lazy(() => import("@/pages/Index"));
+const SmartDashboard = lazy(() => import("@/pages/SmartDashboard"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
@@ -91,6 +92,7 @@ export function AnimatedRoutes() {
         <Routes location={location} key={location.pathname}>
           {/* Main Pages */}
           <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+          <Route path="/dashboard" element={<PageTransition><SmartDashboard /></PageTransition>} />
           <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
           <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
