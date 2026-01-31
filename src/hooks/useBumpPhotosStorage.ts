@@ -126,12 +126,13 @@ export function useBumpPhotosStorage(): UseBumpPhotosStorageReturn {
 
       if (uploadError) throw uploadError;
 
-      // Get public URL
-      const { data: urlData } = supabase.storage
+      // Get signed URL (bucket is private for security)
+      const { data: urlData, error: urlError } = await supabase.storage
         .from('bump-photos')
-        .getPublicUrl(fileName);
+        .createSignedUrl(fileName, 86400); // 24 hour expiry
 
-      const publicUrl = urlData.publicUrl;
+      if (urlError) throw urlError;
+      const publicUrl = urlData.signedUrl;
 
       // Save metadata to database
       const { data: photoData, error: dbError } = await supabase
