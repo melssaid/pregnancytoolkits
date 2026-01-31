@@ -1,721 +1,443 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ToolFrame } from '@/components/ToolFrame';
-import { Card, CardContent } from '@/components/ui/card';
+import { Camera, Upload, Trash2, Download, Sparkles, ChevronLeft, ChevronRight, Loader2, Image, Calendar, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Camera, Plus, Trash2, Image, Loader2, Sparkles, TrendingUp, Calendar, ArrowLeftRight, Cloud, CloudOff } from 'lucide-react';
-import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
-import { compressImage, estimateDataUrlSize, formatBytes } from '@/lib/imageCompression';
-import { toast } from 'sonner';
-import { motion, AnimatePresence } from 'framer-motion';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-import { useBumpPhotosStorage, BumpPhoto } from '@/hooks/useBumpPhotosStorage';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
+import { BumpPhotoService, UserProfileService } from '@/services/supabaseServices';
+import { AIService } from '@/services/aiService';
 
-// Local storage interface for offline/guest mode
-interface LocalPhotoEntry {
+interface BumpPhoto {
   id: string;
+  user_id: string;
   week: number;
-  date: string;
-  caption: string;
-  imageData: string;
-  aiAnalysis?: string;
+  public_url: string;
+  storage_path: string;
+  caption: string | null;
+  ai_analysis: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
-const STORAGE_KEY = 'aiBumpPhotosTimeline';
-
-const isPhotoEntryArray = (data: unknown): data is LocalPhotoEntry[] => {
-  return Array.isArray(data) && data.every(item =>
-    typeof item === 'object' &&
-    item !== null &&
-    'id' in item &&
-    'week' in item &&
-    'date' in item &&
-    'imageData' in item
-  );
-};
-
-// Unified photo type for UI
-interface UnifiedPhoto {
-  id: string;
-  week: number;
-  caption: string;
-  imageUrl: string;
-  date: string;
-  aiAnalysis?: string;
-  isCloud: boolean;
-  originalData?: BumpPhoto | LocalPhotoEntry;
-}
-
-export default function AIBumpPhotos() {
-  // Cloud storage
-  const {
-    photos: cloudPhotos,
-    isLoading: isCloudLoading,
-    isUploading,
-    uploadPhoto: uploadToCloud,
-    deletePhoto: deleteFromCloud,
-    isAuthenticated
-  } = useBumpPhotosStorage();
-
-  // Local storage for guests
-  const [localPhotos, setLocalPhotos] = useState<LocalPhotoEntry[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(12);
+const AIBumpPhotos: React.FC = () => {
+  const [photos, setPhotos] = useState<BumpPhoto[]>([]);
+  const [currentWeek, setCurrentWeek] = useState(20);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<BumpPhoto | null>(null);
   const [caption, setCaption] = useState('');
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const [previewFile, setPreviewFile] = useState<File | null>(null);
-  const [isCompressing, setIsCompressing] = useState(false);
-  const [selectedTab, setSelectedTab] = useState('add');
-  const [viewingPhoto, setViewingPhoto] = useState<UnifiedPhoto | null>(null);
-  const [growthAnalysis, setGrowthAnalysis] = useState<string | null>(null);
-  const isInitialized = useRef(false);
-  
-  const { generateContent, isLoading: isAILoading } = usePregnancyAI();
+  const [aiAnalysis, setAiAnalysis] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
-  // Load local photos for guest mode
   useEffect(() => {
-    const saved = safeParseLocalStorage<LocalPhotoEntry[]>(STORAGE_KEY, [], isPhotoEntryArray);
-    setLocalPhotos(saved);
-    isInitialized.current = true;
+    loadData();
   }, []);
 
-  // Combine photos from both sources
-  const unifiedPhotos: UnifiedPhoto[] = React.useMemo(() => {
-    const cloud = cloudPhotos.map(p => ({
-      id: p.id,
-      week: p.week,
-      caption: p.caption || '',
-      imageUrl: p.public_url,
-      date: p.created_at,
-      aiAnalysis: p.ai_analysis,
-      isCloud: true,
-      originalData: p
-    }));
+  const loadData = async () => {
+    try {
+      setIsLoading(true);
+      
+      const profile = await UserProfileService.get();
+      if (profile?.pregnancy_week) {
+        setCurrentWeek(profile.pregnancy_week);
+      }
+      
+      const loadedPhotos = await BumpPhotoService.getAll();
+      setPhotos(loadedPhotos);
+      
+    } catch (error: any) {
+      console.error('Error loading data:', error);
+      toast({
+        title: 'خطأ في التحميل',
+        description: error.message,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    const local = localPhotos.map(p => ({
-      id: p.id,
-      week: p.week,
-      caption: p.caption,
-      imageUrl: p.imageData,
-      date: p.date,
-      aiAnalysis: p.aiAnalysis,
-      isCloud: false,
-      originalData: p
-    }));
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
 
-    // If authenticated, show only cloud photos
-    // If not authenticated, show only local photos
-    return (isAuthenticated ? cloud : local).sort((a, b) => a.week - b.week);
-  }, [cloudPhotos, localPhotos, isAuthenticated]);
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: 'خطأ',
+        description: 'يرجى اختيار ملف صورة',
+        variant: 'destructive'
+      });
+      return;
+    }
 
-  const saveLocalPhotos = (newPhotos: LocalPhotoEntry[]) => {
-    setLocalPhotos(newPhotos);
-    if (isInitialized.current) {
-      const success = safeSaveToLocalStorage(STORAGE_KEY, newPhotos);
-      if (!success) {
-        toast.error('Failed to save photos. Storage may be full.');
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: 'خطأ',
+        description: 'حجم الصورة كبير جداً. الحد الأقصى 5 ميجابايت',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    try {
+      setIsUploading(true);
+      
+      const newPhoto = await BumpPhotoService.upload(file, currentWeek, caption);
+      
+      setPhotos(prev => [...prev, newPhoto]);
+      setCaption('');
+      
+      toast({
+        title: 'تم الرفع بنجاح! ✨',
+        description: `تمت إضافة صورة الأسبوع ${currentWeek}`
+      });
+
+      analyzePhoto(newPhoto);
+      
+    } catch (error: any) {
+      console.error('Upload error:', error);
+      toast({
+        title: 'فشل الرفع',
+        description: error.message,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
       }
     }
   };
 
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  const analyzePhoto = async (photo: BumpPhoto) => {
+    try {
+      setIsAnalyzing(true);
+      setSelectedPhoto(photo);
+      
+      const previousPhoto = photos.find(p => p.week < photo.week);
+      
+      const response = await AIService.analyzeBumpProgress(
+        photo.week,
+        previousPhoto?.week
+      );
+      
+      setAiAnalysis(response.content);
+      
+      await BumpPhotoService.updateAnalysis(photo.id, response.content);
+      
+      setPhotos(prev => prev.map(p => 
+        p.id === photo.id ? { ...p, ai_analysis: response.content } : p
+      ));
+      
+    } catch (error: any) {
+      console.error('Analysis error:', error);
+      toast({
+        title: 'فشل التحليل',
+        description: error.message,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
 
-    setIsCompressing(true);
-    setPreviewFile(file);
+  const handleDelete = async (photo: BumpPhoto) => {
+    if (!confirm('هل أنتِ متأكدة من حذف هذه الصورة؟')) return;
 
     try {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        try {
-          const originalData = reader.result as string;
-          const originalSize = estimateDataUrlSize(originalData);
-          const compressedData = await compressImage(originalData, 800, 1000, 0.7);
-          const compressedSize = estimateDataUrlSize(compressedData);
-          console.log(`Image compressed: ${formatBytes(originalSize)} → ${formatBytes(compressedSize)}`);
-          setPreviewImage(compressedData);
-        } catch (error) {
-          console.error('Compression error:', error);
-          toast.error('Failed to process image');
-        } finally {
-          setIsCompressing(false);
-        }
-      };
-      reader.readAsDataURL(file);
-    } catch (error) {
-      setIsCompressing(false);
-      toast.error('Failed to read image file');
+      await BumpPhotoService.delete(photo.id, photo.storage_path);
+      setPhotos(prev => prev.filter(p => p.id !== photo.id));
+      
+      if (selectedPhoto?.id === photo.id) {
+        setSelectedPhoto(null);
+        setAiAnalysis('');
+      }
+      
+      toast({
+        title: 'تم الحذف',
+        description: 'تم حذف الصورة بنجاح'
+      });
+    } catch (error: any) {
+      toast({
+        title: 'فشل الحذف',
+        description: error.message,
+        variant: 'destructive'
+      });
     }
   };
 
-  const generateAICaption = async () => {
-    if (!previewImage) return;
-    
-    const prompt = `Generate a short, sweet, and encouraging caption for a week ${currentWeek} bump photo. 
-    Include an emoji. Keep it under 15 words. Make it personal and celebratory.
-    Examples: "Week 20: Halfway there! 🎉", "Growing stronger every day 💕"`;
-    
-    const response = await generateContent(prompt);
-    if (response) {
-      const cleanCaption = response.replace(/^["']|["']$/g, '').trim();
-      setCaption(cleanCaption);
-    }
+  const handleDownload = (photo: BumpPhoto) => {
+    const link = document.createElement('a');
+    link.href = photo.public_url;
+    link.download = `bump-week-${photo.week}.jpg`;
+    link.click();
   };
 
-  const addPhoto = async () => {
-    if (!previewImage) return;
-
-    if (isAuthenticated && previewFile) {
-      // Upload to Supabase
-      await uploadToCloud(previewFile, currentWeek, caption || `Week ${currentWeek} bump photo`);
-    } else {
-      // Save locally
-      const newPhoto: LocalPhotoEntry = {
-        id: Date.now().toString(),
-        week: currentWeek,
-        date: new Date().toISOString(),
-        caption: caption || `Week ${currentWeek} bump photo`,
-        imageData: previewImage,
-      };
-
-      const newPhotos = [...localPhotos, newPhoto].sort((a, b) => a.week - b.week);
-      saveLocalPhotos(newPhotos);
-      toast.success('Photo added to timeline! ✨');
-    }
-
-    setPreviewImage(null);
-    setPreviewFile(null);
-    setCaption('');
-  };
-
-  const deletePhoto = async (photo: UnifiedPhoto) => {
-    if (photo.isCloud && photo.originalData) {
-      await deleteFromCloud(photo.originalData as BumpPhoto);
-    } else {
-      const newPhotos = localPhotos.filter(p => p.id !== photo.id);
-      saveLocalPhotos(newPhotos);
-      toast.success('Photo deleted');
-    }
-    setViewingPhoto(null);
-  };
-
-  const generateGrowthAnalysis = async () => {
-    if (unifiedPhotos.length < 2) {
-      toast.error('Need at least 2 photos for growth analysis');
-      return;
-    }
-
-    const weeksData = unifiedPhotos.map(p => `Week ${p.week}`).join(', ');
-    const prompt = `As a pregnancy wellness coach, provide a brief, encouraging growth journey summary for a mother who has documented her bump at weeks: ${weeksData}. 
-    
-    Include:
-    - A warm acknowledgment of her journey
-    - General information about typical bump growth during these weeks
-    - An encouraging message about the remaining journey
-    - Tips for taking the best bump photos
-    
-    Keep it warm, supportive, and under 150 words.`;
-
-    const analysis = await generateContent(prompt);
-    if (analysis) {
-      setGrowthAnalysis(analysis);
-      toast.success('Growth analysis generated!');
-    }
-  };
-
-  const suggestedCaptions = [
-    `Week ${currentWeek} magic ✨`,
-    `Growing stronger 💪`,
-    `Hello little one! 👶`,
-    `Bump update 📸`,
-    `${currentWeek} weeks of love 💕`,
-  ];
-
-  const getWeekMilestone = (week: number): string => {
-    if (week <= 12) return 'First Trimester';
-    if (week <= 27) return 'Second Trimester';
-    return 'Third Trimester';
-  };
-
-  const isLoading = isCloudLoading || isUploading;
-
-  return (
-    <ToolFrame
-      title="AI Bump Photos"
-      subtitle="Smart pregnancy photo timeline with AI insights"
-      icon={Camera}
-      mood="joyful"
-      toolId="ai-bump-photos"
-    >
-      <div className="space-y-6">
-        {/* Cloud Status Banner */}
-        <Card className={`p-3 ${isAuthenticated ? 'bg-primary/10 border-primary/30' : 'bg-muted/50'}`}>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {isAuthenticated ? (
-                <>
-                  <Cloud className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">Cloud Sync Active</span>
-                </>
-              ) : (
-                <>
-                  <CloudOff className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">Local Storage Mode</span>
-                </>
-              )}
-            </div>
-            {!isAuthenticated && (
-              <span className="text-xs text-muted-foreground">
-                Sign in to sync photos to cloud
-              </span>
-            )}
-          </div>
-        </Card>
-
-        <Tabs value={selectedTab} onValueChange={setSelectedTab}>
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="add" className="flex items-center gap-2">
-              <Plus className="w-4 h-4" />
-              Add Photo
-            </TabsTrigger>
-            <TabsTrigger value="timeline" className="flex items-center gap-2">
-              <Image className="w-4 h-4" />
-              Timeline
-            </TabsTrigger>
-            <TabsTrigger value="compare" className="flex items-center gap-2">
-              <ArrowLeftRight className="w-4 h-4" />
-              Compare
-            </TabsTrigger>
-          </TabsList>
-
-          {/* ADD PHOTO TAB */}
-          <TabsContent value="add" className="space-y-4 mt-4">
-            {/* Week Selector */}
-            <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium text-muted-foreground">Photo Week</span>
-                  <div className="text-right">
-                    <span className="text-2xl font-bold text-primary">Week {currentWeek}</span>
-                    <p className="text-xs text-muted-foreground">{getWeekMilestone(currentWeek)}</p>
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  min="1"
-                  max="42"
-                  value={currentWeek}
-                  onChange={(e) => setCurrentWeek(Number(e.target.value))}
-                  className="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary"
-                />
-              </CardContent>
-            </Card>
-
-            {/* Photo Upload */}
-            <Card>
-              <CardContent className="p-4 space-y-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2">
-                  <Camera className="w-5 h-5 text-primary" />
-                  Add Bump Photo
-                </h3>
-
-                {!previewImage ? (
-                  <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-primary/30 rounded-lg cursor-pointer hover:bg-primary/5 transition-colors">
-                    {isCompressing ? (
-                      <>
-                        <Loader2 className="w-12 h-12 text-primary/50 mb-2 animate-spin" />
-                        <span className="text-sm text-muted-foreground">Processing image...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Camera className="w-12 h-12 text-primary/50 mb-2" />
-                        <span className="text-sm text-muted-foreground">Tap to add photo</span>
-                        <span className="text-xs text-muted-foreground mt-1">
-                          {isAuthenticated ? 'Saved to cloud ☁️' : 'Auto-compressed for storage'}
-                        </span>
-                      </>
-                    )}
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={handleImageUpload}
-                      disabled={isCompressing}
-                    />
-                  </label>
-                ) : (
-                  <div className="relative">
-                    <img
-                      src={previewImage}
-                      alt="Preview"
-                      className="w-full h-48 object-cover rounded-lg"
-                    />
-                    <button
-                      onClick={() => {
-                        setPreviewImage(null);
-                        setPreviewFile(null);
-                      }}
-                      className="absolute top-2 right-2 p-2 bg-destructive text-destructive-foreground rounded-full"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
-
-                {/* Caption with AI */}
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <label className="block text-sm font-medium">Caption</label>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={generateAICaption}
-                      disabled={!previewImage || isAILoading}
-                      className="text-xs"
-                    >
-                      <Sparkles className="w-3 h-3 mr-1" />
-                      AI Suggest
-                    </Button>
-                  </div>
-                  <Input
-                    placeholder="Add a caption..."
-                    value={caption}
-                    onChange={(e) => setCaption(e.target.value)}
-                  />
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {suggestedCaptions.map((c, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setCaption(c)}
-                        className="text-xs px-2 py-1 bg-muted rounded-full hover:bg-primary/10 transition-colors"
-                      >
-                        {c}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <Button onClick={addPhoto} className="w-full" disabled={!previewImage || isLoading}>
-                  {isLoading ? (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  ) : (
-                    <Plus className="w-4 h-4 mr-2" />
-                  )}
-                  {isAuthenticated ? 'Save to Cloud' : 'Save to Timeline'}
-                </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* TIMELINE TAB */}
-          <TabsContent value="timeline" className="space-y-4 mt-4">
-            {unifiedPhotos.length > 0 ? (
-              <>
-                {/* AI Growth Analysis */}
-                <Card className="bg-gradient-to-br from-primary/5 to-primary/10">
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-semibold flex items-center gap-2">
-                        <TrendingUp className="w-5 h-5 text-primary" />
-                        AI Growth Journey
-                      </h3>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={generateGrowthAnalysis}
-                        disabled={isAILoading || unifiedPhotos.length < 2}
-                      >
-                        {isAILoading ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : (
-                          <Sparkles className="w-4 h-4" />
-                        )}
-                      </Button>
-                    </div>
-                    
-                    {growthAnalysis ? (
-                      <div className="text-sm">
-                        <MarkdownRenderer content={growthAnalysis} />
-                      </div>
-                    ) : (
-                      <p className="text-sm text-muted-foreground">
-                        {unifiedPhotos.length < 2 
-                          ? 'Add at least 2 photos to see your growth analysis'
-                          : 'Tap the sparkle button to generate your personalized growth journey analysis'
-                        }
-                      </p>
-                    )}
-                  </CardContent>
-                </Card>
-
-                {/* Timeline Stats */}
-                <div className="grid grid-cols-3 gap-3">
-                  <Card>
-                    <CardContent className="p-3 text-center">
-                      <p className="text-2xl font-bold text-primary">{unifiedPhotos.length}</p>
-                      <p className="text-xs text-muted-foreground">Photos</p>
-                    </CardContent>
-                  </Card>
-                  <Card>
-                    <CardContent className="p-3 text-center">
-                      <p className="text-2xl font-bold text-primary">
-                        {unifiedPhotos.length > 0 ? Math.min(...unifiedPhotos.map(p => p.week)) : 0}
-                      </p>
-                      <p className="text-xs text-muted-foreground">First Week</p>
-                    </CardContent>
-                  </Card>
-                  <Card>
-                    <CardContent className="p-3 text-center">
-                      <p className="text-2xl font-bold text-primary">
-                        {unifiedPhotos.length > 0 ? Math.max(...unifiedPhotos.map(p => p.week)) : 0}
-                      </p>
-                      <p className="text-xs text-muted-foreground">Latest Week</p>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* Photo Grid */}
-                <Card>
-                  <CardContent className="p-4">
-                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-primary" />
-                      Your Timeline ({unifiedPhotos.length} photos)
-                    </h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <AnimatePresence>
-                        {unifiedPhotos.map((photo, index) => (
-                          <motion.div
-                            key={photo.id}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ delay: index * 0.05 }}
-                            className="relative group cursor-pointer"
-                            onClick={() => setViewingPhoto(photo)}
-                          >
-                            <img
-                              src={photo.imageUrl}
-                              alt={`Week ${photo.week}`}
-                              className="w-full aspect-[3/4] object-cover rounded-lg"
-                            />
-                            <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent rounded-b-lg">
-                              <div className="flex items-center gap-1">
-                                <p className="text-white text-sm font-medium">Week {photo.week}</p>
-                                {photo.isCloud && <Cloud className="w-3 h-3 text-white/80" />}
-                              </div>
-                              <p className="text-white/80 text-xs truncate">{photo.caption}</p>
-                            </div>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                deletePhoto(photo);
-                              }}
-                              className="absolute top-2 right-2 p-1.5 bg-destructive/90 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                            >
-                              <Trash2 className="w-3 h-3" />
-                            </button>
-                          </motion.div>
-                        ))}
-                      </AnimatePresence>
-                    </div>
-                  </CardContent>
-                </Card>
-              </>
-            ) : (
-              <Card>
-                <CardContent className="p-8 text-center">
-                  <Camera className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="font-semibold mb-2">Start Your Photo Journey</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Document your bump week by week to create beautiful memories.
-                  </p>
-                  <Button 
-                    variant="outline" 
-                    className="mt-4"
-                    onClick={() => setSelectedTab('add')}
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add First Photo
-                  </Button>
-                </CardContent>
-              </Card>
-            )}
-          </TabsContent>
-
-          {/* COMPARE TAB */}
-          <TabsContent value="compare" className="space-y-4 mt-4">
-            <ComparePhotos photos={unifiedPhotos} />
-          </TabsContent>
-        </Tabs>
-
-        {/* Photo Tips */}
-        <Card className="bg-muted/30">
-          <CardContent className="p-4">
-            <p className="text-sm text-muted-foreground">
-              📸 <strong>Pro Tips:</strong> Take photos from the same angle each week for the best comparison. 
-              Natural lighting works best, and wearing fitted clothing helps show your beautiful bump progress!
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Photo Viewer Modal */}
-      <AnimatePresence>
-        {viewingPhoto && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-            onClick={() => setViewingPhoto(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="max-w-lg w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={viewingPhoto.imageUrl}
-                alt={`Week ${viewingPhoto.week}`}
-                className="w-full rounded-lg"
-              />
-              <div className="mt-4 text-center text-white">
-                <h3 className="text-xl font-bold flex items-center justify-center gap-2">
-                  Week {viewingPhoto.week}
-                  {viewingPhoto.isCloud && <Cloud className="w-4 h-4" />}
-                </h3>
-                <p className="text-white/80">{viewingPhoto.caption}</p>
-                <p className="text-white/60 text-sm mt-1">
-                  {new Date(viewingPhoto.date).toLocaleDateString()}
-                </p>
-              </div>
-              <div className="flex gap-3 mt-4 justify-center">
-                <Button
-                  variant="destructive"
-                  size="sm"
-                  onClick={() => deletePhoto(viewingPhoto)}
-                >
-                  <Trash2 className="w-4 h-4 mr-2" />
-                  Delete
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => setViewingPhoto(null)}
-                >
-                  Close
-                </Button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </ToolFrame>
-  );
-}
-
-// Compare Photos Component
-function ComparePhotos({ photos }: { photos: UnifiedPhoto[] }) {
-  const [comparePhotos, setComparePhotos] = useState<[UnifiedPhoto | null, UnifiedPhoto | null]>([null, null]);
-
-  if (photos.length < 2) {
+  if (isLoading) {
     return (
-      <Card>
-        <CardContent className="p-4">
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-            <ArrowLeftRight className="w-5 h-5 text-primary" />
-            Compare Photos
-          </h3>
-          <div className="text-center py-8">
-            <ArrowLeftRight className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-            <p className="text-sm text-muted-foreground">
-              Add at least 2 photos to compare your bump growth
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-pink-500 mx-auto mb-4" />
+          <p className="text-gray-600">جاري تحميل الصور...</p>
+        </div>
+      </div>
     );
   }
 
   return (
-    <Card>
-      <CardContent className="p-4">
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <ArrowLeftRight className="w-5 h-5 text-primary" />
-          Compare Photos
-        </h3>
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 md:p-8">
+      <div className="max-w-6xl mx-auto space-y-6">
+        
+        {/* Back Button */}
+        <Button
+          variant="ghost"
+          onClick={() => navigate(-1)}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 ml-2" />
+          رجوع
+        </Button>
 
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            {/* Left Photo Selector */}
-            <div>
-              <label className="text-sm font-medium mb-2 block">Before</label>
-              <select
-                className="w-full p-2 rounded-lg border bg-background text-sm"
-                value={comparePhotos[0]?.id || ''}
-                onChange={(e) => {
-                  const photo = photos.find(p => p.id === e.target.value);
-                  setComparePhotos([photo || null, comparePhotos[1]]);
-                }}
-              >
-                <option value="">Select week...</option>
-                {photos.map(p => (
-                  <option key={p.id} value={p.id}>Week {p.week}</option>
-                ))}
-              </select>
-              {comparePhotos[0] && (
-                <img
-                  src={comparePhotos[0].imageUrl}
-                  alt={`Week ${comparePhotos[0].week}`}
-                  className="w-full aspect-[3/4] object-cover rounded-lg mt-2"
-                />
-              )}
-            </div>
+        {/* Header */}
+        <Card className="bg-gradient-to-r from-pink-500 to-purple-600 text-white border-0">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-2xl">
+              <Camera className="w-8 h-8" />
+              📸 ألبوم صور البطن
+            </CardTitle>
+            <p className="text-pink-100">
+              وثّقي رحلة حملك أسبوعاً بأسبوع مع تحليل AI ذكي
+            </p>
+          </CardHeader>
+        </Card>
 
-            {/* Right Photo Selector */}
-            <div>
-              <label className="text-sm font-medium mb-2 block">After</label>
-              <select
-                className="w-full p-2 rounded-lg border bg-background text-sm"
-                value={comparePhotos[1]?.id || ''}
-                onChange={(e) => {
-                  const photo = photos.find(p => p.id === e.target.value);
-                  setComparePhotos([comparePhotos[0], photo || null]);
-                }}
-              >
-                <option value="">Select week...</option>
-                {photos.map(p => (
-                  <option key={p.id} value={p.id}>Week {p.week}</option>
-                ))}
-              </select>
-              {comparePhotos[1] && (
-                <img
-                  src={comparePhotos[1].imageUrl}
-                  alt={`Week ${comparePhotos[1].week}`}
-                  className="w-full aspect-[3/4] object-cover rounded-lg mt-2"
-                />
-              )}
-            </div>
-          </div>
-
-          {comparePhotos[0] && comparePhotos[1] && (
-            <Card className="bg-muted/30">
-              <CardContent className="p-3">
-                <p className="text-sm text-center">
-                  <span className="font-medium">
-                    {Math.abs(comparePhotos[1].week - comparePhotos[0].week)} weeks
-                  </span>
-                  <span className="text-muted-foreground"> of growth between these photos</span>
-                </p>
-              </CardContent>
-            </Card>
-          )}
+        {/* Disclaimer */}
+        <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-4 text-center">
+          <p className="text-amber-800 font-medium">
+            ⚠️ صورك محفوظة بأمان في السحابة. لا نشارك بياناتك مع أي طرف ثالث.
+          </p>
         </div>
-      </CardContent>
-    </Card>
+
+        {/* Upload Section */}
+        <Card>
+          <CardContent className="p-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  📅 الأسبوع الحالي
+                </label>
+                <div className="flex items-center gap-4">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setCurrentWeek(w => Math.max(1, w - 1))}
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                  <span className="text-3xl font-bold text-purple-600 min-w-[60px] text-center">
+                    {currentWeek}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setCurrentWeek(w => Math.min(42, w + 1))}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </Button>
+                </div>
+                
+                <Textarea
+                  placeholder="أضيفي تعليقاً على الصورة (اختياري)..."
+                  value={caption}
+                  onChange={(e) => setCaption(e.target.value)}
+                  className="resize-none"
+                  rows={2}
+                />
+              </div>
+              
+              <div className="flex flex-col items-center justify-center border-2 border-dashed border-pink-300 rounded-xl p-6 bg-pink-50/50 hover:bg-pink-100/50 transition-colors cursor-pointer"
+                   onClick={() => fileInputRef.current?.click()}>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleUpload}
+                  className="hidden"
+                />
+                {isUploading ? (
+                  <Loader2 className="w-12 h-12 text-pink-500 animate-spin" />
+                ) : (
+                  <Upload className="w-12 h-12 text-pink-500" />
+                )}
+                <span className="text-pink-600 font-medium mt-3">
+                  {isUploading ? 'جاري الرفع...' : 'اضغطي لرفع صورة'}
+                </span>
+                <span className="text-xs text-gray-500 mt-1">
+                  الحد الأقصى: 5 ميجابايت
+                </span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Photos Grid */}
+        {photos.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {photos.map((photo) => (
+              <Card
+                key={photo.id}
+                className={`overflow-hidden cursor-pointer transition-all hover:scale-105 ${
+                  selectedPhoto?.id === photo.id ? 'ring-4 ring-purple-500' : ''
+                }`}
+                onClick={() => {
+                  setSelectedPhoto(photo);
+                  setAiAnalysis(photo.ai_analysis || '');
+                }}
+              >
+                <div className="relative aspect-square">
+                  <img
+                    src={photo.public_url}
+                    alt={`Week ${photo.week}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-2 right-2 bg-purple-600 text-white px-2 py-1 rounded-full text-xs font-bold">
+                    أسبوع {photo.week}
+                  </div>
+                  {photo.ai_analysis && (
+                    <div className="absolute top-2 left-2 bg-green-500 text-white p-1 rounded-full">
+                      <Sparkles className="w-3 h-3" />
+                    </div>
+                  )}
+                </div>
+                <div className="p-2 flex justify-between items-center">
+                  <span className="text-xs text-gray-500">
+                    {new Date(photo.created_at).toLocaleDateString('ar-SA')}
+                  </span>
+                  <div className="flex gap-1">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDownload(photo);
+                      }}
+                    >
+                      <Download className="w-3 h-3" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 text-red-500 hover:text-red-700"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(photo);
+                      }}
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 text-gray-500">
+            <Image className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+            <p className="text-lg font-medium">لم تضيفي أي صور بعد</p>
+            <p className="text-sm">ابدئي بتوثيق رحلة حملك الآن!</p>
+          </div>
+        )}
+
+        {/* AI Analysis Panel */}
+        {selectedPhoto && (
+          <Card className="bg-gradient-to-br from-purple-50 to-pink-50">
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-purple-500" />
+                  تحليل AI - الأسبوع {selectedPhoto.week}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => analyzePhoto(selectedPhoto)}
+                  disabled={isAnalyzing}
+                >
+                  {isAnalyzing ? (
+                    <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                  ) : (
+                    <Sparkles className="w-4 h-4 ml-2" />
+                  )}
+                  {isAnalyzing ? 'جاري التحليل...' : 'تحليل جديد'}
+                </Button>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {selectedPhoto.caption && (
+                <div className="mb-4 p-3 bg-white rounded-lg">
+                  <p className="text-sm text-gray-600">💬 {selectedPhoto.caption}</p>
+                </div>
+              )}
+              
+              {aiAnalysis ? (
+                <div className="prose prose-pink max-w-none">
+                  <div className="whitespace-pre-wrap text-gray-700 leading-relaxed bg-white p-4 rounded-lg">
+                    {aiAnalysis}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-6 text-gray-500">
+                  <Sparkles className="w-8 h-8 mx-auto mb-2 text-gray-300" />
+                  <p>اضغطي "تحليل جديد" للحصول على نصائح مخصصة</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Progress Timeline */}
+        {photos.length > 1 && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-purple-500" />
+                📊 تطور رحلتك
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex overflow-x-auto gap-4 pb-2">
+                {photos.map((photo) => (
+                  <div
+                    key={photo.id}
+                    className="flex-shrink-0 text-center cursor-pointer"
+                    onClick={() => {
+                      setSelectedPhoto(photo);
+                      setAiAnalysis(photo.ai_analysis || '');
+                    }}
+                  >
+                    <img
+                      src={photo.public_url}
+                      alt={`Week ${photo.week}`}
+                      className={`w-16 h-16 rounded-full object-cover border-2 transition-all ${
+                        selectedPhoto?.id === photo.id ? 'border-purple-500 scale-110' : 'border-purple-300'
+                      }`}
+                    />
+                    <p className="text-xs mt-1 font-medium">أسبوع {photo.week}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </div>
   );
-}
+};
+
+export default AIBumpPhotos;
