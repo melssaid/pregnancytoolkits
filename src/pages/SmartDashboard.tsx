@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Send, Bot, User, Home, MessageCircle, Heart, Utensils, Dumbbell, 
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
-  Baby, Pill, Stethoscope, Salad, ChevronRight, Waves
+  Baby, Pill, Stethoscope, Salad, ChevronRight, Waves, CalendarCheck
 } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Layout } from "@/components/Layout";
@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 
@@ -77,6 +77,7 @@ const SmartDashboard = () => {
   });
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -217,11 +218,26 @@ const SmartDashboard = () => {
                   Quick Actions
                 </h3>
                 <div className="grid grid-cols-2 gap-2">
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    onClick={() => navigate("/tools/smart-plan")}
+                    className="col-span-2 flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 hover:from-primary/20 hover:to-purple-500/20 transition-all group border border-primary/20"
+                  >
+                    <div className="p-2 rounded-lg bg-primary/20 group-hover:bg-primary/30 transition-colors">
+                      <CalendarCheck className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <span className="text-sm font-bold text-foreground block">Smart Plan</span>
+                      <span className="text-xs text-muted-foreground">My Daily Plan & PDF Report</span>
+                    </div>
+                  </motion.button>
+
                   {[
                     { icon: Bot, title: "AI Chat", tab: "chat" as TabType },
                     { icon: Activity, title: "Health", tab: "health" as TabType },
-                    { icon: Utensils, title: "Nutrition", tab: "nutrition" as TabType },
-                    { icon: Dumbbell, title: "Exercise", tab: "exercise" as TabType },
+                    { icon: Utensils, title: \"Nutrition\", tab: \"nutrition\" as TabType },
+                    { icon: Dumbbell, title: \"Exercise\", tab: \"exercise\" as TabType },
                   ].map((feature, i) => (
                     <motion.button
                       key={i}
@@ -229,12 +245,12 @@ const SmartDashboard = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.1 * i }}
                       onClick={() => setActiveTab(feature.tab)}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 hover:bg-primary/10 transition-all group"
+                      className=\"flex items-center gap-3 p-3 rounded-xl bg-muted/50 hover:bg-primary/10 transition-all group\"
                     >
-                      <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <feature.icon className="w-4 h-4 text-primary" />
+                      <div className=\"p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors\">
+                        <feature.icon className=\"w-4 h-4 text-primary\" />
                       </div>
-                      <span className="text-sm font-medium text-foreground">{feature.title}</span>
+                      <span className=\"text-sm font-medium text-foreground\">{feature.title}</span>
                     </motion.button>
                   ))}
                 </div>
@@ -243,24 +259,25 @@ const SmartDashboard = () => {
 
             {/* AI Tools Links */}
             <Card>
-              <CardContent className="p-4">
-                <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                  <Brain className="w-4 h-4 text-primary" />
+              <CardContent className=\"p-4\">
+                <h3 className=\"text-sm font-semibold mb-3 flex items-center gap-2\">
+                  <Brain className=\"w-4 h-4 text-primary\" />
                   AI-Powered Tools
                 </h3>
-                <div className="space-y-2">
+                <div className=\"space-y-2\">
                   {[
-                    { title: "AI Assistant", href: "/tools/pregnancy-assistant" },
-                    { title: "Symptom Analyzer", href: "/tools/symptom-analyzer" },
-                    { title: "Weekly Summary", href: "/tools/weekly-summary" },
+                    { title: \"Smart Pregnancy Plan\", href: \"/tools/smart-plan\" },
+                    { title: \"AI Assistant\", href: \"/tools/pregnancy-assistant\" },
+                    { title: \"Symptom Analyzer\", href: \"/tools/symptom-analyzer\" },
+                    { title: \"Weekly Summary\", href: \"/tools/weekly-summary\" },
                   ].map((link, i) => (
                     <Link
                       key={i}
                       to={link.href}
-                      className="flex items-center justify-between p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+                      className=\"flex items-center justify-between p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors\"
                     >
-                      <span className="text-sm font-medium">{link.title}</span>
-                      <ChevronRight className="w-4 h-4 text-muted-foreground" />
+                      <span className=\"text-sm font-medium\">{link.title}</span>
+                      <ChevronRight className=\"w-4 h-4 text-muted-foreground\" />
                     </Link>
                   ))}
                 </div>
@@ -351,8 +368,7 @@ const SmartDashboard = () => {
                                 animate={{ y: [0, -4, 0] }}
                                 transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.1 }}
                               />
-                            ))}
-                          </div>
+                            ))}\n                          </div>
                         </div>
                       </div>
                     )}
@@ -372,10 +388,10 @@ const SmartDashboard = () => {
                     <Input
                       value={userInput}
                       onChange={(e) => setUserInput(e.target.value)}
-                      placeholder="Type your question..."
-                      className="text-sm"
+                      placeholder=\"Type your question...\"
+                      className=\"text-sm\"
                       onKeyDown={(e) => {
-                        if (e.key === "Enter" && !e.shiftKey) {
+                        if (e.key === \"Enter\" && !e.shiftKey) {
                           e.preventDefault();
                           sendMessage(userInput);
                         }
@@ -384,10 +400,10 @@ const SmartDashboard = () => {
                     <Button
                       onClick={() => sendMessage(userInput)}
                       disabled={!userInput.trim() || isLoading}
-                      size="icon"
-                      className="shrink-0"
+                      size=\"icon\"
+                      className=\"shrink-0\"
                     >
-                      {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                      {isLoading ? <Loader2 className=\"w-4 h-4 animate-spin\" /> : <Send className=\"w-4 h-4\" />}
                     </Button>
                   </div>
                 </div>
@@ -397,56 +413,56 @@ const SmartDashboard = () => {
         )}
 
         {/* Health Tab */}
-        {activeTab === "health" && (
+        {activeTab === \"health\" && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-4"
+            className=\"space-y-4\"
           >
             <Card>
-              <CardContent className="p-4">
-                <h2 className="text-base font-bold mb-4 flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-primary" />
+              <CardContent className=\"p-4\">
+                <h2 className=\"text-base font-bold mb-4 flex items-center gap-2\">
+                  <Heart className=\"w-5 h-5 text-primary\" />
                   AI Health Tracking
                 </h2>
 
-                <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className=\"grid grid-cols-2 gap-3 mb-4\">
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Week of Pregnancy</label>
+                    <label className=\"text-xs font-medium text-muted-foreground mb-1 block\">Week of Pregnancy</label>
                     <Input
-                      type="number"
-                      min="1"
-                      max="42"
+                      type=\"number\"
+                      min=\"1\"
+                      max=\"42\"
                       value={healthData.weekOfPregnancy}
                       onChange={(e) => setHealthData({ ...healthData, weekOfPregnancy: parseInt(e.target.value) || 1 })}
-                      className="text-sm"
+                      className=\"text-sm\"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Weight (kg)</label>
+                    <label className=\"text-xs font-medium text-muted-foreground mb-1 block\">Weight (kg)</label>
                     <Input
-                      type="number"
-                      placeholder="65"
+                      type=\"number\"
+                      placeholder=\"65\"
                       value={healthData.weight}
                       onChange={(e) => setHealthData({ ...healthData, weight: e.target.value })}
-                      className="text-sm"
+                      className=\"text-sm\"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Blood Pressure</label>
+                    <label className=\"text-xs font-medium text-muted-foreground mb-1 block\">Blood Pressure</label>
                     <Input
-                      placeholder="120/80"
+                      placeholder=\"120/80\"
                       value={healthData.bloodPressure}
                       onChange={(e) => setHealthData({ ...healthData, bloodPressure: e.target.value })}
-                      className="text-sm"
+                      className=\"text-sm\"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Mood</label>
+                    <label className=\"text-xs font-medium text-muted-foreground mb-1 block\">Mood</label>
                     <select
                       value={healthData.mood}
                       onChange={(e) => setHealthData({ ...healthData, mood: e.target.value })}
-                      className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
+                      className=\"w-full h-10 rounded-md border border-input bg-background px-3 text-sm\"
                     >
                       <option>Excellent</option>
                       <option>Good</option>
@@ -457,23 +473,21 @@ const SmartDashboard = () => {
                   </div>
                 </div>
 
-                <div className="mb-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Today's Symptoms</label>
-                  <div className="flex flex-wrap gap-2">
+                <div className=\"mb-4\">
+                  <label className=\"text-xs font-medium text-muted-foreground mb-2 block\">Today's Symptoms</label>
+                  <div className=\"flex flex-wrap gap-2\">
                     {symptoms.map(symptom => (
                       <button
                         key={symptom}
                         onClick={() => {
-                          if (healthData.symptoms.includes(symptom)) {
-                            setHealthData({ ...healthData, symptoms: healthData.symptoms.filter(s => s !== symptom) });
-                          } else {
-                            setHealthData({ ...healthData, symptoms: [...healthData.symptoms, symptom] });
+                          if (healthData.symptoms.includes(symptom)) {\n                            setHealthData({ ...healthData, symptoms: healthData.symptoms.filter(s => s !== symptom) });
+                          } else {\n                            setHealthData({ ...healthData, symptoms: [...healthData.symptoms, symptom] });
                           }
                         }}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                           healthData.symptoms.includes(symptom)
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-muted text-muted-foreground hover:bg-muted/80"
+                            ? \"bg-primary text-primary-foreground\"
+                            : \"bg-muted text-muted-foreground hover:bg-muted/80\"
                         }`}
                       >
                         {symptom}
@@ -482,23 +496,23 @@ const SmartDashboard = () => {
                   </div>
                 </div>
 
-                <Button className="w-full" onClick={() => {}}>
-                  <Scale className="w-4 h-4 mr-2" />
+                <Button className=\"w-full\" onClick={() => {}}>
+                  <Scale className=\"w-4 h-4 mr-2\" />
                   Save & Analyze
                 </Button>
               </CardContent>
             </Card>
 
             {/* AI Analysis */}
-            <Card className="bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardContent className="p-4">
-                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
-                  <Brain className="w-4 h-4 text-primary" />
+            <Card className=\"bg-gradient-to-br from-primary/5 to-accent/5\">
+              <CardContent className=\"p-4\">
+                <h3 className=\"text-sm font-bold mb-3 flex items-center gap-2\">
+                  <Brain className=\"w-4 h-4 text-primary\" />
                   Smart Analysis
                 </h3>
-                <div className="space-y-2">
+                <div className=\"space-y-2\">
                   {getHealthAnalysis().map((item, i) => (
-                    <div key={i} className="bg-background p-3 rounded-lg text-sm">
+                    <div key={i} className=\"bg-background p-3 rounded-lg text-sm\">
                       {item}
                     </div>
                   ))}
@@ -509,87 +523,83 @@ const SmartDashboard = () => {
         )}
 
         {/* Nutrition Tab */}
-        {activeTab === "nutrition" && (
+        {activeTab === \"nutrition\" && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <Card>
-              <CardContent className="p-4">
-                <h2 className="text-base font-bold mb-1 flex items-center gap-2">
-                  <Utensils className="w-5 h-5 text-primary" />
-                  Smart Nutrition Plan
+              <CardContent className=\"p-4\">
+                <h2 className=\"text-base font-bold mb-1 flex items-center gap-2\">
+                  <Utensils className=\"w-5 h-5 text-primary\" />\n                  Smart Nutrition Plan
                 </h2>
-                <p className="text-xs text-muted-foreground mb-4">
+                <p className=\"text-xs text-muted-foreground mb-4\">
                   Customized plan for week {healthData.weekOfPregnancy} of pregnancy
                 </p>
 
-                <div className="space-y-3">
+                <div className=\"space-y-3\">
                   {nutritionPlan.map((meal, i) => (
-                    <div key={i} className="flex items-center gap-3 p-3 bg-primary/5 rounded-xl">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Salad className="w-5 h-5 text-primary" />
+                    <div key={i} className=\"flex items-center gap-3 p-3 bg-primary/5 rounded-xl\">
+                      <div className=\"w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center\">
+                        <Salad className=\"w-5 h-5 text-primary\" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-sm font-semibold text-foreground">{meal.meal}</h3>
-                        <p className="text-xs text-muted-foreground truncate">{meal.suggestion}</p>
+                      <div className=\"flex-1 min-w-0\">
+                        <h3 className=\"text-sm font-semibold text-foreground\">{meal.meal}</h3>
+                        <p className=\"text-xs text-muted-foreground truncate\">{meal.suggestion}</p>
                       </div>
-                      <div className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-bold shrink-0">
+                      <div className=\"bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-bold shrink-0\">
                         {meal.calories} cal
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-4 p-3 bg-primary/10 rounded-xl text-center">
-                  <p className="text-sm font-semibold text-foreground">
+                <div className=\"mt-4 p-3 bg-primary/10 rounded-xl text-center\">
+                  <p className=\"text-sm font-semibold text-foreground\">
                     Total Daily Calories: {nutritionPlan.reduce((a, b) => a + b.calories, 0)} cal
-                  </p>
-                </div>
+                  </p>\n                </div>
 
-                <Link to="/tools/ai-meal-suggestion">
-                  <Button className="w-full mt-4" variant="outline">
+                <Link to=\"/tools/ai-meal-suggestion\">
+                  <Button className=\"w-full mt-4\" variant=\"outline\">
                     More AI Suggestions
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    <ChevronRight className=\"w-4 h-4 ml-2\" />
                   </Button>
                 </Link>
-              </CardContent>
-            </Card>
+              </CardContent>\n            </Card>
           </motion.div>
         )}
 
         {/* Exercise Tab */}
-        {activeTab === "exercise" && (
+        {activeTab === \"exercise\" && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <Card>
-              <CardContent className="p-4">
-                <h2 className="text-base font-bold mb-4 flex items-center gap-2">
-                  <Dumbbell className="w-5 h-5 text-primary" />
+              <CardContent className=\"p-4\">
+                <h2 className=\"text-base font-bold mb-4 flex items-center gap-2\">
+                  <Dumbbell className=\"w-5 h-5 text-primary\" />
                   Safe Pregnancy Exercises
                 </h2>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className=\"grid grid-cols-2 gap-3\">
                   {exercises.map((ex, i) => (
                     <Link key={i} to={ex.href}>
-                      <div className="bg-primary/5 hover:bg-primary/10 p-4 rounded-xl text-center transition-all">
-                        <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center">
-                          <Activity className="w-5 h-5 text-primary" />
-                        </div>
-                        <h3 className="text-sm font-semibold text-foreground">{ex.name}</h3>
-                        <p className="text-xs text-muted-foreground mt-1">{ex.duration}</p>
-                        <p className="text-[10px] text-primary mt-1">{ex.benefit}</p>
+                      <div className=\"bg-primary/5 hover:bg-primary/10 p-4 rounded-xl text-center transition-all\">
+                        <div className=\"w-10 h-10 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center\">
+                          <Activity className=\"w-5 h-5 text-primary\" />\n                        </div>
+                        <h3 className=\"text-sm font-semibold text-foreground\">{ex.name}</h3>
+                        <p className=\"text-xs text-muted-foreground mt-1\">{ex.duration}</p>
+                        <p className=\"text-[10px] text-primary mt-1\">{ex.benefit}</p>
                       </div>
                     </Link>
                   ))}
                 </div>
 
-                <Link to="/tools/exercise-guide">
-                  <Button className="w-full mt-4" variant="outline">
+                <Link to=\"/tools/exercise-guide\">
+                  <Button className=\"w-full mt-4\" variant=\"outline\">
                     More Exercises
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    <ChevronRight className=\"w-4 h-4 ml-2\" />
                   </Button>
                 </Link>
               </CardContent>
@@ -598,61 +608,60 @@ const SmartDashboard = () => {
         )}
 
         {/* Videos Tab */}
-        {activeTab === "videos" && (
+        {activeTab === \"videos\" && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <Card>
-              <CardContent className="p-4">
-                <h2 className="text-base font-bold mb-4 flex items-center gap-2">
-                  <Play className="w-5 h-5 text-primary" />
+              <CardContent className=\"p-4\">
+                <h2 className=\"text-base font-bold mb-4 flex items-center gap-2\">
+                  <Play className=\"w-5 h-5 text-primary\" />
                   Educational Videos
                 </h2>
 
-                <div className="space-y-4">
+                <div className=\"space-y-4\">
                   {videos.map((video) => (
-                    <div key={video.id} className="rounded-xl overflow-hidden bg-muted/30">
+                    <div key={video.id} className=\"rounded-xl overflow-hidden bg-muted/30\">
                       {playingVideo === video.youtubeId ? (
                         <AspectRatio ratio={16 / 9}>
                           <iframe
                             src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
                             title={video.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"
                             allowFullScreen
-                            className="w-full h-full rounded-xl"
+                            className=\"w-full h-full rounded-xl\"
                           />
                         </AspectRatio>
                       ) : (
                         <button
                           onClick={() => setPlayingVideo(video.youtubeId)}
-                          className="w-full relative group"
+                          className=\"w-full relative group\"
                         >
                           <AspectRatio ratio={16 / 9}>
                             <img
                               src={`https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`}
                               alt={video.title}
-                              className="w-full h-full object-cover rounded-xl"
+                              className=\"w-full h-full object-cover rounded-xl\"
                             />
-                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors rounded-xl">
-                              <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <Play className="w-8 h-8 text-primary-foreground fill-primary-foreground" />
+                            <div className=\"absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors rounded-xl\">
+                              <div className=\"w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform\">
+                                <Play className=\"w-8 h-8 text-primary-foreground fill-primary-foreground\" />
                               </div>
                             </div>
-                            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent rounded-b-xl">
-                              <p className="text-primary-foreground text-sm font-medium">{video.title}</p>
-                            </div>
-                          </AspectRatio>
+                            <div className=\"absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent rounded-b-xl\">
+                              <p className=\"text-primary-foreground text-sm font-medium\">{video.title}</p>
+                            </div>\n                          </AspectRatio>
                         </button>
                       )}
                     </div>
                   ))}
                 </div>
 
-                <Link to="/videos">
-                  <Button className="w-full mt-4" variant="outline">
+                <Link to=\"/videos\">
+                  <Button className=\"w-full mt-4\" variant=\"outline\">
                     Full Library
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    <ChevronRight className=\"w-4 h-4 ml-2\" />
                   </Button>
                 </Link>
               </CardContent>
