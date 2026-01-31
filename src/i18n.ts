@@ -15,10 +15,11 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
+    lng: 'en', // Force English as default
     fallbackLng: 'en',
     supportedLngs: ['en', 'ar'],
     detection: {
-      order: ['navigator', 'htmlTag', 'localStorage'],
+      order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
     },
     interpolation: {
