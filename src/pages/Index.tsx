@@ -135,32 +135,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Premium Banner - Simplified */}
-      <section className="py-4 border-t border-border/50">
-        <div className="container">
-          <div className="bg-gradient-to-r from-primary to-accent rounded-2xl p-5 text-primary-foreground relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="w-5 h-5" />
-                <span className="text-xs font-bold opacity-90">FREE TRIAL</span>
-              </div>
-              <h2 className="text-lg font-bold mb-2">3 Days Free Access</h2>
-              <p className="text-xs opacity-90 mb-4">
-                Full access to all tools • Then $1.99/month
-              </p>
-              <Button 
-                size="sm" 
-                variant="secondary" 
-                className="rounded-full px-5 text-xs"
-                onClick={openModal}
-              >
-                Start Free Trial
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="py-4 border-t border-border bg-muted/30">
         <div className="container text-center">
