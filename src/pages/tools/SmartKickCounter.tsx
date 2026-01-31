@@ -1,10 +1,16 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Baby, Play, Pause, RotateCcw, TrendingUp, Clock, Loader2, Save } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Baby, Play, TrendingUp, Clock, Loader2, Save, Sparkles, AlertTriangle, Activity, BarChart3, Brain, RefreshCw, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { KickService, UserProfileService, AIService } from '@/services/localStorageServices';
+import { KickService, UserProfileService } from '@/services/localStorageServices';
+import { ToolFrame } from '@/components/ToolFrame';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const SmartKickCounter: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
@@ -17,8 +23,14 @@ const SmartKickCounter: React.FC = () => {
   const [notes, setNotes] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
-  const [aiAnalysis, setAiAnalysis] = useState('');
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  
+  // AI States
+  const [aiPatternAnalysis, setAiPatternAnalysis] = useState('');
+  const [aiHealthInsight, setAiHealthInsight] = useState('');
+  const [aiActiveTab, setAiActiveTab] = useState<'pattern' | 'health' | 'tips'>('pattern');
+  const [aiTips, setAiTips] = useState('');
+  
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -45,7 +57,6 @@ const SmartKickCounter: React.FC = () => {
         setCurrentWeek(profile.pregnancy_week);
       }
       
-      // Check for active session
       const activeSession = await KickService.getActiveSession();
       if (activeSession) {
         setSessionId(activeSession.id);
@@ -94,7 +105,6 @@ const SmartKickCounter: React.FC = () => {
     const newKicks = await KickService.addKick(sessionId, kicks, timestamp);
     setKicks(newKicks);
     
-    // Haptic feedback if available
     if (navigator.vibrate) {
       navigator.vibrate(50);
     }
@@ -117,13 +127,12 @@ const SmartKickCounter: React.FC = () => {
         description: `You recorded ${kicks.length} movements in ${durationMinutes} minutes`
       });
       
-      // Reload history
       const sessionHistory = await KickService.getHistory(10);
       setHistory(sessionHistory);
       
-      // Analyze if enough data
-      if (sessionHistory.length >= 3) {
-        analyzeKicks(sessionHistory);
+      // Auto-analyze if enough data
+      if (sessionHistory.length >= 2) {
+        analyzePatterns(sessionHistory);
       }
       
     } catch (error: any) {
@@ -134,18 +143,6 @@ const SmartKickCounter: React.FC = () => {
       });
     } finally {
       setIsSaving(false);
-    }
-  };
-
-  const analyzeKicks = async (sessions: any[]) => {
-    try {
-      setIsAnalyzing(true);
-      const response = await AIService.analyzeKickPatterns(sessions, currentWeek);
-      setAiAnalysis(response.content);
-    } catch (error) {
-      console.error('Analysis error:', error);
-    } finally {
-      setIsAnalyzing(false);
     }
   };
 
@@ -161,105 +158,329 @@ const SmartKickCounter: React.FC = () => {
     return Math.round(total / history.length);
   };
 
+  const getMovementScore = () => {
+    if (history.length === 0) return 0;
+    const avgKicks = getAverageKicks();
+    const avgDuration = history.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / history.length;
+    
+    // Score based on kicks per hour ratio (10 kicks in 2 hours = 100%)
+    const kicksPerHour = avgDuration > 0 ? (avgKicks / avgDuration) * 60 : 0;
+    const score = Math.min(100, Math.round((kicksPerHour / 5) * 100));
+    return score;
+  };
+
+  const getScoreColor = (score: number) => {
+    if (score >= 80) return 'text-emerald-500';
+    if (score >= 50) return 'text-amber-500';
+    return 'text-rose-500';
+  };
+
+  // AI Pattern Analysis
+  const analyzePatterns = async (sessions: any[]) => {
+    setAiActiveTab('pattern');
+    setAiPatternAnalysis('');
+
+    const sessionData = sessions.slice(0, 7).map(s => ({
+      kicks: s.total_kicks,
+      duration: s.duration_minutes,
+      date: new Date(s.started_at).toLocaleDateString(),
+      time: new Date(s.started_at).toLocaleTimeString(),
+      week: s.week
+    }));
+
+    const avgKicks = sessions.reduce((sum, s) => sum + s.total_kicks, 0) / sessions.length;
+    const avgDuration = sessions.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / sessions.length;
+
+    const prompt = `As a fetal movement specialist, analyze this kick counting data for a pregnancy at week ${currentWeek}:
+
+**Session Data (Last ${sessions.length} sessions):**
+${sessionData.map(s => `- ${s.date} at ${s.time}: ${s.kicks} kicks in ${s.duration} minutes`).join('\n')}
+
+**Statistics:**
+- Average kicks per session: ${avgKicks.toFixed(1)}
+- Average session duration: ${avgDuration.toFixed(1)} minutes
+- Kicks per hour rate: ${avgDuration > 0 ? ((avgKicks / avgDuration) * 60).toFixed(1) : 'N/A'}
+
+Provide a comprehensive analysis including:
+
+1. **📊 Pattern Assessment**
+   - Daily movement trends
+   - Time-of-day patterns (if visible)
+   - Consistency analysis
+
+2. **🔬 Clinical Interpretation**
+   - How this compares to normal fetal activity at week ${currentWeek}
+   - Movement score interpretation
+   - Any concerning patterns
+
+3. **📈 Trend Analysis**
+   - Is activity increasing, stable, or decreasing?
+   - Expected patterns for this gestational age
+
+4. **✅ What This Means**
+   - Clear interpretation for the mother
+   - Reassurance or action items
+
+Keep the tone supportive and informative. Use emojis sparingly for visual appeal.`;
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{ role: 'user', content: prompt }],
+      context: { week: currentWeek },
+      onDelta: (text) => setAiPatternAnalysis((prev) => prev + text),
+      onDone: () => {},
+    });
+  };
+
+  // AI Health Insight
+  const getHealthInsight = async () => {
+    setAiActiveTab('health');
+    setAiHealthInsight('');
+
+    const avgKicks = getAverageKicks();
+    const movementScore = getMovementScore();
+
+    const prompt = `As a prenatal health specialist, provide health-focused insights based on fetal movement data:
+
+**Pregnancy Week:** ${currentWeek}
+**Movement Score:** ${movementScore}/100
+**Average Kicks Per Session:** ${avgKicks}
+**Total Sessions Logged:** ${history.length}
+
+Provide personalized health guidance:
+
+1. **💓 Fetal Well-being Indicators**
+   - What the movement patterns suggest about baby's health
+   - How to interpret quieter vs more active periods
+
+2. **⚠️ Warning Signs to Watch**
+   - Specific changes that require attention
+   - When to do a kick count vs when to call the doctor
+   - Red flags that need immediate attention
+
+3. **🏥 When to Contact Your Provider**
+   - Specific criteria for calling your doctor
+   - What information to have ready when you call
+
+4. **💪 Optimizing Baby's Activity**
+   - Best times to do kick counts
+   - Foods and activities that may stimulate movement
+   - How to wake a sleepy baby (safely)
+
+5. **📅 Week ${currentWeek} Expectations**
+   - Normal movement patterns for this stage
+   - How patterns will change as pregnancy progresses
+
+Be clear, supportive, and actionable. Prioritize safety information.`;
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{ role: 'user', content: prompt }],
+      context: { week: currentWeek },
+      onDelta: (text) => setAiHealthInsight((prev) => prev + text),
+      onDone: () => {},
+    });
+  };
+
+  // AI Tips
+  const getAITips = async () => {
+    setAiActiveTab('tips');
+    setAiTips('');
+
+    const prompt = `As a pregnancy wellness coach, provide practical kick counting tips for week ${currentWeek}:
+
+**Current Stats:**
+- Sessions logged: ${history.length}
+- Average kicks: ${getAverageKicks()} per session
+- Movement score: ${getMovementScore()}/100
+
+Provide a helpful guide:
+
+1. **🕐 Best Times to Count**
+   - Optimal times of day for kick counting
+   - How baby's sleep cycles affect movement
+   - Creating a consistent routine
+
+2. **🛋️ Positions for Counting**
+   - Best positions to feel movements
+   - Left side lying vs other positions
+   - Tips for anterior placenta
+
+3. **🍎 Movement Stimulation**
+   - Safe foods that may increase activity
+   - Cold drinks and baby response
+   - Music and talking to baby
+
+4. **📝 Recording Tips**
+   - What to note besides kick counts
+   - Tracking patterns over time
+   - Using notes effectively
+
+5. **🧘 Relaxation Techniques**
+   - How stress affects perception of movement
+   - Mindful counting methods
+   - Bonding during kick counting
+
+Keep it practical and easy to follow. Include specific actionable tips.`;
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{ role: 'user', content: prompt }],
+      context: { week: currentWeek },
+      onDelta: (text) => setAiTips((prev) => prev + text),
+      onDone: () => {},
+    });
+  };
+
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-pink-500 mx-auto mb-4" />
-          <p className="text-gray-600">Loading...</p>
+          <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
+          <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
     );
   }
 
+  const movementScore = getMovementScore();
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 md:p-8">
-      <div className="max-w-2xl mx-auto space-y-6">
-        
-        {/* Header */}
-        <Card className="bg-gradient-to-r from-pink-500 to-purple-500 text-white border-0 shadow-xl">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-2xl">
-              <Baby className="w-8 h-8" />
-              👶 Baby Kick Counter
-            </CardTitle>
-            <p className="text-pink-100">
-              Week {currentWeek} - Track your baby's movements
-            </p>
-          </CardHeader>
-        </Card>
+    <ToolFrame
+      title="Smart Kick Counter"
+      subtitle={`Week ${currentWeek} - AI-Powered Movement Analysis`}
+      customIcon="baby-growth"
+      mood="nurturing"
+      toolId="smart-kick-counter"
+    >
+      <div className="space-y-6">
+        {/* Movement Score Card */}
+        {history.length > 0 && (
+          <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+            <CardContent className="py-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-muted-foreground">Movement Score</p>
+                  <div className={`text-4xl font-bold ${getScoreColor(movementScore)}`}>
+                    {movementScore}
+                    <span className="text-lg text-muted-foreground">/100</span>
+                  </div>
+                </div>
+                <div className="relative w-20 h-20">
+                  <svg className="w-full h-full transform -rotate-90">
+                    <circle
+                      cx="40"
+                      cy="40"
+                      r="35"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      className="text-muted/20"
+                    />
+                    <circle
+                      cx="40"
+                      cy="40"
+                      r="35"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      strokeDasharray={`${(movementScore / 100) * 220} 220`}
+                      strokeLinecap="round"
+                      className={getScoreColor(movementScore)}
+                    />
+                  </svg>
+                  <Activity className={`absolute inset-0 m-auto w-8 h-8 ${getScoreColor(movementScore)}`} />
+                </div>
+              </div>
+              <Progress value={movementScore} className="mt-3 h-2" />
+              <p className="text-xs text-muted-foreground mt-2">
+                Based on {history.length} sessions • Updated after each session
+              </p>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Main Counter */}
         <Card className="shadow-xl">
-          <CardContent className="p-8">
+          <CardContent className="p-6">
             {/* Timer Display */}
             <div className="text-center mb-6">
-              <div className="text-5xl font-bold text-gray-800 mb-2">
+              <div className="text-5xl font-bold text-foreground mb-2">
                 {formatTime(elapsedTime)}
               </div>
-              <p className="text-gray-500">Elapsed Time</p>
+              <p className="text-muted-foreground">Elapsed Time</p>
             </div>
 
             {/* Kick Count Display */}
-            <div 
-              className={`relative w-48 h-48 mx-auto rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 ${
+            <motion.div 
+              className={`relative w-44 h-44 mx-auto rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 ${
                 isActive 
-                  ? 'bg-gradient-to-br from-pink-400 to-purple-500 hover:scale-105 active:scale-95 shadow-2xl' 
-                  : 'bg-gray-200'
+                  ? 'bg-gradient-to-br from-primary to-primary/80 hover:scale-105 active:scale-95 shadow-2xl' 
+                  : 'bg-muted'
               }`}
               onClick={isActive ? recordKick : undefined}
+              whileTap={isActive ? { scale: 0.95 } : {}}
             >
-              <div className="text-center text-white">
-                <div className="text-6xl font-bold">{kicks.length}</div>
-                <div className="text-lg">kicks</div>
+              <div className="text-center text-primary-foreground">
+                <motion.div 
+                  key={kicks.length}
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
+                  className="text-6xl font-bold"
+                >
+                  {kicks.length}
+                </motion.div>
+                <div className="text-lg opacity-90">kicks</div>
               </div>
               
               {isActive && (
-                <div className="absolute inset-0 rounded-full border-4 border-white/30 animate-ping" />
+                <motion.div 
+                  className="absolute inset-0 rounded-full border-4 border-primary-foreground/30"
+                  animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
               )}
-            </div>
+            </motion.div>
 
             {isActive && (
-              <p className="text-center text-gray-500 mt-4 animate-pulse">
+              <p className="text-center text-muted-foreground mt-4 animate-pulse">
                 👆 Tap the circle for each movement
               </p>
             )}
 
             {/* Control Buttons */}
-            <div className="flex justify-center gap-4 mt-8">
+            <div className="flex justify-center gap-4 mt-6">
               {!isActive ? (
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-8"
+                  className="px-8"
                   onClick={startSession}
                 >
                   <Play className="w-5 h-5 mr-2" />
                   Start New Session
                 </Button>
               ) : (
-                <>
-                  <Button
-                    size="lg"
-                    variant="destructive"
-                    onClick={endSession}
-                    disabled={isSaving}
-                  >
-                    {isSaving ? (
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    ) : (
-                      <Save className="w-5 h-5 mr-2" />
-                    )}
-                    End & Save
-                  </Button>
-                </>
+                <Button
+                  size="lg"
+                  variant="destructive"
+                  onClick={endSession}
+                  disabled={isSaving}
+                >
+                  {isSaving ? (
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  ) : (
+                    <Save className="w-5 h-5 mr-2" />
+                  )}
+                  End & Save
+                </Button>
               )}
             </div>
 
             {/* Notes */}
             {isActive && (
-              <div className="mt-6">
+              <div className="mt-4">
                 <Textarea
-                  placeholder="Notes (optional)..."
+                  placeholder="Notes (baby's position, time of day, after eating, etc.)..."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   className="resize-none"
@@ -271,40 +492,137 @@ const SmartKickCounter: React.FC = () => {
         </Card>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card className="shadow-lg">
-            <CardContent className="p-4 text-center">
-              <TrendingUp className="w-8 h-8 text-purple-500 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-800">{getAverageKicks()}</div>
-              <p className="text-sm text-gray-500">Avg Movements</p>
+        <div className="grid grid-cols-3 gap-3">
+          <Card>
+            <CardContent className="p-3 text-center">
+              <TrendingUp className="w-6 h-6 text-primary mx-auto mb-1" />
+              <div className="text-xl font-bold">{getAverageKicks()}</div>
+              <p className="text-xs text-muted-foreground">Avg Kicks</p>
             </CardContent>
           </Card>
           
-          <Card className="shadow-lg">
-            <CardContent className="p-4 text-center">
-              <Clock className="w-8 h-8 text-pink-500 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-800">{history.length}</div>
-              <p className="text-sm text-gray-500">Sessions Logged</p>
+          <Card>
+            <CardContent className="p-3 text-center">
+              <Clock className="w-6 h-6 text-primary mx-auto mb-1" />
+              <div className="text-xl font-bold">{history.length}</div>
+              <p className="text-xs text-muted-foreground">Sessions</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-3 text-center">
+              <Zap className="w-6 h-6 text-primary mx-auto mb-1" />
+              <div className="text-xl font-bold">
+                {history.length > 0 
+                  ? Math.round(history.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / history.length)
+                  : 0}
+              </div>
+              <p className="text-xs text-muted-foreground">Avg Min</p>
             </CardContent>
           </Card>
         </div>
 
-        {/* AI Analysis */}
-        {(aiAnalysis || isAnalyzing) && (
-          <Card className="bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-lg">
-                🤖 AI Analysis
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {isAnalyzing ? (
-                <div className="flex items-center gap-2 text-gray-500">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Analyzing...
-                </div>
-              ) : (
-                <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">{aiAnalysis}</p>
+        {/* AI Analysis Section */}
+        {history.length >= 2 && (
+          <Card className="bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30 border-violet-200/50">
+            <CardContent className="py-4">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-semibold flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-violet-500" />
+                  AI Movement Analysis
+                </h3>
+                {(aiPatternAnalysis || aiHealthInsight || aiTips) && !aiLoading && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      if (aiActiveTab === 'pattern') analyzePatterns(history);
+                      else if (aiActiveTab === 'health') getHealthInsight();
+                      else getAITips();
+                    }}
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                  </Button>
+                )}
+              </div>
+
+              {/* AI Tab Buttons */}
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                <Button
+                  variant={aiActiveTab === 'pattern' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => analyzePatterns(history)}
+                  disabled={aiLoading}
+                  className="gap-1"
+                >
+                  {aiLoading && aiActiveTab === 'pattern' ? (
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                  ) : (
+                    <BarChart3 className="w-3 h-3" />
+                  )}
+                  <span className="text-xs">Patterns</span>
+                </Button>
+                <Button
+                  variant={aiActiveTab === 'health' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={getHealthInsight}
+                  disabled={aiLoading}
+                  className="gap-1"
+                >
+                  {aiLoading && aiActiveTab === 'health' ? (
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                  ) : (
+                    <Activity className="w-3 h-3" />
+                  )}
+                  <span className="text-xs">Health</span>
+                </Button>
+                <Button
+                  variant={aiActiveTab === 'tips' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={getAITips}
+                  disabled={aiLoading}
+                  className="gap-1"
+                >
+                  {aiLoading && aiActiveTab === 'tips' ? (
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                  ) : (
+                    <Brain className="w-3 h-3" />
+                  )}
+                  <span className="text-xs">Tips</span>
+                </Button>
+              </div>
+
+              {/* AI Content */}
+              <AnimatePresence mode="wait">
+                {(aiPatternAnalysis || aiHealthInsight || aiTips || aiLoading) && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[400px] overflow-y-auto"
+                  >
+                    {aiLoading && !aiPatternAnalysis && !aiHealthInsight && !aiTips ? (
+                      <div className="flex items-center justify-center py-8 text-muted-foreground">
+                        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                        Analyzing your baby's movement patterns...
+                      </div>
+                    ) : (
+                      <MarkdownRenderer 
+                        content={
+                          aiActiveTab === 'pattern' ? aiPatternAnalysis :
+                          aiActiveTab === 'health' ? aiHealthInsight :
+                          aiTips
+                        } 
+                      />
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {!aiPatternAnalysis && !aiHealthInsight && !aiTips && !aiLoading && (
+                <p className="text-sm text-muted-foreground text-center py-4">
+                  Tap a button above to get AI-powered insights about your baby's movements
+                </p>
               )}
             </CardContent>
           </Card>
@@ -312,53 +630,74 @@ const SmartKickCounter: React.FC = () => {
 
         {/* History */}
         {history.length > 0 && (
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Clock className="w-5 h-5 text-purple-500" />
-                Previous Sessions
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Clock className="w-5 h-5 text-primary" />
+                Recent Sessions
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3 max-h-64 overflow-y-auto">
+              <div className="space-y-2 max-h-64 overflow-y-auto">
                 {history.map((session, index) => (
-                  <div key={session.id || index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div>
-                      <div className="font-medium">
-                        {session.total_kicks} movements
+                  <motion.div 
+                    key={session.id || index} 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-full bg-primary/10">
+                        <Baby className="w-4 h-4 text-primary" />
                       </div>
-                      <div className="text-sm text-gray-500">
-                        {session.duration_minutes} min • Week {session.week}
+                      <div>
+                        <div className="font-medium">
+                          {session.total_kicks} movements
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {session.duration_minutes} min • Week {session.week}
+                        </div>
                       </div>
                     </div>
-                    <div className="text-sm text-gray-400">
+                    <div className="text-sm text-muted-foreground">
                       {new Date(session.started_at).toLocaleDateString('en-US', {
-                        weekday: 'short',
                         month: 'short',
                         day: 'numeric'
                       })}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </CardContent>
           </Card>
         )}
 
-        {/* Info Card */}
-        <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
+        {/* Warning Card */}
+        <Card className="border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30">
           <CardContent className="p-4">
-            <h3 className="font-bold text-blue-800 mb-2">ℹ️ When to Worry?</h3>
-            <ul className="text-blue-700 text-sm space-y-1">
-              <li>• If you notice a significant decrease in baby's movement</li>
-              <li>• If you don't feel 10 movements within 2 hours</li>
-              <li>• Consult your doctor immediately in these cases</li>
-            </ul>
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-semibold text-amber-800 dark:text-amber-300 mb-1">When to Call Your Doctor</h3>
+                <ul className="text-sm text-amber-700 dark:text-amber-400 space-y-1">
+                  <li>• Fewer than 10 movements in 2 hours</li>
+                  <li>• Significant decrease in baby's usual activity</li>
+                  <li>• No movements felt for several hours</li>
+                </ul>
+              </div>
+            </div>
           </CardContent>
         </Card>
 
+        {/* Educational Note */}
+        <div className="bg-muted/30 rounded-xl p-4 text-center">
+          <p className="text-xs text-muted-foreground">
+            💡 Babies are most active between 9 PM and 1 AM. Count kicks at the same time daily for consistent tracking.
+          </p>
+        </div>
       </div>
-    </div>
+    </ToolFrame>
   );
 };
 
