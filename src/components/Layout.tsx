@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { SearchDialog } from "./SearchDialog";
 import { NotificationCenter } from "./NotificationCenter";
+import { BottomNavigation } from "./BottomNavigation";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -123,6 +124,9 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
           </div>
         )}
         {children}
+
+        {/* Bottom Navigation for Mobile */}
+        <BottomNavigation />
       </main>
 
       {/* Footer */}

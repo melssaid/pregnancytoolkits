@@ -14,6 +14,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { Link } from "react-router-dom";
+import { ProgressRing } from "@/components/dashboard/ProgressRing";
+import { QuickStats } from "@/components/dashboard/QuickStats";
 
 type TabType = "home" | "chat" | "health" | "nutrition" | "exercise" | "videos";
 
@@ -181,106 +183,65 @@ const SmartDashboard = () => {
           This app is for educational purposes only and does not replace medical advice
         </div>
 
-        {/* Home Tab */}
+        {/* Home Tab - Enhanced with Progress Ring */}
         {activeTab === "home" && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-4"
+            className="space-y-6"
           >
-            {/* Creative Hero Icon */}
-            <div className="flex flex-col items-center py-6">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                className="relative"
-              >
-                {/* Outer glow ring */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-xl scale-150" />
-                
-                {/* Animated rings */}
-                <motion.div
-                  className="absolute inset-0 rounded-full border-2 border-primary/30"
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ originX: 0.5, originY: 0.5 }}
+            {/* Progress Ring Section */}
+            <Card className="overflow-hidden bg-gradient-to-br from-card to-muted/20">
+              <CardContent className="p-6 flex flex-col items-center">
+                <ProgressRing 
+                  currentWeek={healthData.weekOfPregnancy} 
+                  totalWeeks={40}
                 />
-                <motion.div
-                  className="absolute inset-0 rounded-full border-2 border-accent/30"
-                  animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  style={{ originX: 0.5, originY: 0.5 }}
-                />
-                
-                {/* Main icon container */}
-                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center shadow-2xl shadow-primary/30">
-                  <div className="absolute inset-1 rounded-full bg-background/10 backdrop-blur-sm" />
-                  <motion.div
-                    animate={{ rotate: [0, 5, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <Baby className="w-12 h-12 text-primary-foreground relative z-10" />
-                  </motion.div>
-                </div>
+              </CardContent>
+            </Card>
 
-                {/* Floating decorative elements */}
-                <motion.div
-                  className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center shadow-lg"
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Heart className="w-3 h-3 text-white" />
-                </motion.div>
-                <motion.div
-                  className="absolute -bottom-1 -left-2 w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-lg"
-                  animate={{ y: [0, 4, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                >
-                  <Sparkles className="w-2.5 h-2.5 text-white" />
-                </motion.div>
-              </motion.div>
+            {/* Quick Stats */}
+            <QuickStats 
+              weight={parseFloat(healthData.weight) || 0}
+              kicks={0}
+              mood={healthData.mood}
+              waterGlasses={0}
+              nextAppointment="Check appointments"
+            />
 
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mt-5 text-center"
-              >
-                <h1 className="text-xl font-bold text-foreground">Smart Pregnancy Dashboard</h1>
-                <p className="text-sm text-muted-foreground mt-1">AI-Powered Companion</p>
-              </motion.div>
-            </div>
-
+            {/* Quick Actions */}
             <Card className="overflow-hidden">
-              <CardContent className="p-5">
-                <div className="grid grid-cols-2 gap-3">
+              <CardContent className="p-4">
+                <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  Quick Actions
+                </h3>
+                <div className="grid grid-cols-2 gap-2">
                   {[
-                    { icon: Bot, title: "AI Assistant", desc: "Ask any pregnancy question", tab: "chat" as TabType },
-                    { icon: Activity, title: "Health Analysis", desc: "Track your health data", tab: "health" as TabType },
-                    { icon: Utensils, title: "Meal Plans", desc: "Customized nutrition", tab: "nutrition" as TabType },
-                    { icon: Dumbbell, title: "Safe Exercises", desc: "Pregnancy-safe workouts", tab: "exercise" as TabType },
+                    { icon: Bot, title: "AI Chat", tab: "chat" as TabType },
+                    { icon: Activity, title: "Health", tab: "health" as TabType },
+                    { icon: Utensils, title: "Nutrition", tab: "nutrition" as TabType },
+                    { icon: Dumbbell, title: "Exercise", tab: "exercise" as TabType },
                   ].map((feature, i) => (
                     <motion.button
                       key={i}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.1 * i }}
                       onClick={() => setActiveTab(feature.tab)}
-                      className="bg-primary/5 hover:bg-primary/10 p-4 rounded-xl text-center transition-all group"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 hover:bg-primary/10 transition-all group"
                     >
-                      <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <feature.icon className="w-5 h-5 text-primary" />
+                      <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                        <feature.icon className="w-4 h-4 text-primary" />
                       </div>
-                      <h3 className="text-sm font-semibold text-foreground">{feature.title}</h3>
-                      <p className="text-[10px] text-muted-foreground mt-1">{feature.desc}</p>
+                      <span className="text-sm font-medium text-foreground">{feature.title}</span>
                     </motion.button>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Quick Links */}
+            {/* AI Tools Links */}
             <Card>
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
@@ -291,7 +252,6 @@ const SmartDashboard = () => {
                   {[
                     { title: "AI Assistant", href: "/tools/pregnancy-assistant" },
                     { title: "Symptom Analyzer", href: "/tools/symptom-analyzer" },
-                    { title: "Meal Suggestions", href: "/tools/ai-meal-suggestion" },
                     { title: "Weekly Summary", href: "/tools/weekly-summary" },
                   ].map((link, i) => (
                     <Link
