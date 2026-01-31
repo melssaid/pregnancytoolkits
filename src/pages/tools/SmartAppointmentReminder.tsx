@@ -46,7 +46,7 @@ export default function SmartAppointmentReminder() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [showArchive, setShowArchive] = useState(false);
-  const [currentWeek, setCurrentWeek] = useState(20);
+  const [currentWeek, setCurrentWeek] = useState(12);
   const [showAIPrep, setShowAIPrep] = useState(false);
   const [aiResponse, setAiResponse] = useState('');
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);

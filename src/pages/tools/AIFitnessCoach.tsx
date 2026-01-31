@@ -33,7 +33,7 @@ const exerciseDatabase: Exercise[] = [
 const AIFitnessCoach: React.FC = () => {
   const navigate = useNavigate();
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
-  const [currentWeek, setCurrentWeek] = useState(20);
+  const [currentWeek, setCurrentWeek] = useState(12);
   const [fitnessLevel, setFitnessLevel] = useState<'beginner' | 'intermediate'>('beginner');
   const [generatedWorkout, setGeneratedWorkout] = useState<Exercise[]>([]);
   const [activeExerciseIndex, setActiveExerciseIndex] = useState<number | null>(null);
