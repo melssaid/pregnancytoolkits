@@ -220,7 +220,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            روتين العناية بالبشرة الآمن أثناء الحمل - بتوصية طبيب جلدية
+            Safe skincare routine during pregnancy - Dermatologist recommended
           </p>
         </Card>
 
@@ -242,7 +242,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ محتوى تعليمي فقط - استشيري طبيبتك للحصول على نصائح مخصصة
+            ⚠️ Educational content only - Consult your doctor for personalized advice
           </p>
         </Card>
       </div>

@@ -85,8 +85,8 @@ export default function VideoLibraryPage() {
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-lg font-bold">فيديوهات تعليمية</h1>
-              <p className="text-xs text-primary-foreground/80">محتوى متخصص للحوامل</p>
+              <h1 className="text-lg font-bold">Educational Videos</h1>
+              <p className="text-xs text-primary-foreground/80">Specialized content for expecting mothers</p>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function VideoLibraryPage() {
           <div className="flex items-center gap-3 p-4 pl-5">
             <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0" />
             <p className="text-sm font-medium text-muted-foreground">
-              ⚠️ محتوى تعليمي فقط - استشيري طبيبك دائماً قبل اتباع أي نصائح
+              ⚠️ Educational content only - Always consult your doctor before following any advice
             </p>
           </div>
         </div>
@@ -178,7 +178,7 @@ export default function VideoLibraryPage() {
             <div className="mb-3 p-3 bg-destructive/10 border border-destructive/20 rounded-lg flex items-start gap-2">
               <span className="text-destructive text-lg">⚠️</span>
               <p className="text-xs text-destructive">
-                هذه الفيديوهات تعليمية فقط ولا تغني عن استشارة طبيبك المختص.
+                These videos are for educational purposes only and do not replace professional medical advice.
               </p>
             </div>
             
