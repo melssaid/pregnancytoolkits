@@ -206,7 +206,7 @@ Include safety considerations and when to change positions.`;
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            وضعيات تفتح الحوض وتقلل الألم أثناء الولادة
+            Positions that open the pelvis and reduce pain during labor
           </p>
         </Card>
 

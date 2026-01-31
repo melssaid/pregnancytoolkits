@@ -212,7 +212,7 @@ Be warm, practical, and specific. Include real examples.`;
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            كيف تدعم شريكتك أثناء الدفع في الولادة
+            How to support your partner during labor pushing
           </p>
         </Card>
       </div>

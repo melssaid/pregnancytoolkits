@@ -30,7 +30,7 @@ const symptomDatabase = [
 const AISymptomAnalyzer: React.FC = () => {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedSymptoms, setSelectedSymptoms] = useState<Symptom[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(20);
+  const [currentWeek, setCurrentWeek] = useState(12);
   const [analyzed, setAnalyzed] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<Record<string, string>>({});

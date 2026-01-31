@@ -61,7 +61,7 @@ export default function AIBumpPhotos() {
 
   // Local storage for guests
   const [localPhotos, setLocalPhotos] = useState<LocalPhotoEntry[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(20);
+  const [currentWeek, setCurrentWeek] = useState(12);
   const [caption, setCaption] = useState('');
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [previewFile, setPreviewFile] = useState<File | null>(null);

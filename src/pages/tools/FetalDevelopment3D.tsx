@@ -38,7 +38,7 @@ const organIcons: Record<string, React.ReactNode> = {
 };
 
 const FetalDevelopment3D: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(8); // Start at week 20
+  const [currentIndex, setCurrentIndex] = useState(4); // Start at week 12
   const [userWeek, setUserWeek] = useState<number | null>(null);
 
   useEffect(() => {

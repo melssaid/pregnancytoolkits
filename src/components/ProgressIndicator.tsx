@@ -8,11 +8,11 @@ interface ProgressIndicatorProps {
 }
 
 const milestones = [
-  { week: 4, label: "بداية النبض", icon: Heart },
-  { week: 12, label: "نهاية الثلث الأول", icon: Star },
-  { week: 20, label: "منتصف الرحلة", icon: Sparkles },
-  { week: 28, label: "الثلث الأخير", icon: Baby },
-  { week: 40, label: "موعد الولادة", icon: Baby },
+  { week: 4, label: "Heartbeat Begins", icon: Heart },
+  { week: 12, label: "End of 1st Trimester", icon: Star },
+  { week: 20, label: "Halfway There", icon: Sparkles },
+  { week: 28, label: "3rd Trimester", icon: Baby },
+  { week: 40, label: "Due Date", icon: Baby },
 ];
 
 export function ProgressIndicator({ 
@@ -28,8 +28,8 @@ export function ProgressIndicator({
       {/* Main Progress Bar */}
       <div className="relative">
         <div className="flex justify-between text-sm text-muted-foreground mb-2">
-          <span>الأسبوع {currentWeek}</span>
-          <span>{Math.round(progress)}% من الرحلة</span>
+          <span>Week {currentWeek}</span>
+          <span>{Math.round(progress)}% of journey</span>
         </div>
         
         <div className="h-4 bg-secondary/50 rounded-full overflow-hidden relative">
@@ -61,8 +61,8 @@ export function ProgressIndicator({
         </div>
 
         <div className="flex justify-between text-xs text-muted-foreground mt-1">
-          <span>بداية الحمل</span>
-          <span>الولادة</span>
+          <span>Start</span>
+          <span>Birth</span>
         </div>
       </div>
 
@@ -73,13 +73,13 @@ export function ProgressIndicator({
         className="text-center py-3 px-4 bg-gradient-to-r from-primary/5 to-pink-50 rounded-xl"
       >
         <p className="text-2xl font-bold text-primary">{daysRemaining}</p>
-        <p className="text-sm text-muted-foreground">يوم متبقي للقاء طفلك 💕</p>
+        <p className="text-sm text-muted-foreground">days until you meet your baby 💕</p>
       </motion.div>
 
       {/* Milestones */}
       {showMilestones && (
         <div className="space-y-2">
-          <p className="text-sm font-medium text-muted-foreground">المراحل المهمة:</p>
+          <p className="text-sm font-medium text-muted-foreground">Key Milestones:</p>
           <div className="grid grid-cols-5 gap-1">
             {milestones.map((milestone, index) => {
               const isPassed = currentWeek >= milestone.week;
