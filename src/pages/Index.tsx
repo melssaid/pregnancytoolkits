@@ -56,8 +56,28 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Categories - No duplicate hero */}
+      {/* Smart Dashboard Card */}
+      <section className="py-4">
+        <div className="container">
+          <a 
+            href="/dashboard" 
+            className="block rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5 p-4 hover:from-primary/10 hover:to-accent/10 transition-all duration-300 group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center">
+                <Brain className="w-6 h-6 text-primary" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-sm font-semibold text-foreground">Smart Dashboard</h2>
+                <p className="text-xs text-muted-foreground">AI Assistant, Health Tracking, Nutrition & Exercise</p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+            </div>
+          </a>
+        </div>
+      </section>
 
+      {/* Categories */}
       <section className="py-4">
         <div className="container space-y-5">
           {categoryConfig.map((cat) => {
