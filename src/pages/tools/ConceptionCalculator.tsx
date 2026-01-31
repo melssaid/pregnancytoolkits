@@ -6,20 +6,64 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Baby, ArrowRight } from "lucide-react";
+import { Calendar, Baby, ArrowRight, Sparkles, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { format, addDays, subDays, addWeeks, differenceInDays } from "date-fns";
+import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 const ConceptionCalculator = () => {
   const { t } = useTranslation();
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [dueDate, setDueDate] = useState("");
   const [lmpDate, setLmpDate] = useState("");
   const [cycleLength, setCycleLength] = useState("28");
+  const [aiAdvice, setAiAdvice] = useState('');
+  const [showAiAdvice, setShowAiAdvice] = useState(false);
   const [result, setResult] = useState<{
     conceptionDate: Date;
     fertileWindowStart: Date;
     fertileWindowEnd: Date;
   } | null>(null);
+
+  const getAIConceptionAdvice = async () => {
+    if (!result) return;
+    setAiAdvice('');
+    setShowAiAdvice(true);
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{
+        role: 'user',
+        content: `I'm trying to conceive. Based on my data:
+- Estimated conception window: ${format(result.fertileWindowStart, "MMMM d")} to ${format(result.fertileWindowEnd, "MMMM d")}
+- Peak fertility (ovulation): ${format(result.conceptionDate, "MMMM d")}
+- My cycle length: ${cycleLength} days
+
+Please provide:
+
+## 🌸 Your Fertile Window
+Explanation of my fertile window and best timing
+
+## 💕 Conception Tips
+5-6 evidence-based tips for maximizing conception chances
+
+## 🍎 Nutrition for Conception
+Key nutrients and foods to focus on
+
+## 🧘 Lifestyle Recommendations
+Lifestyle factors that support fertility
+
+## 📅 Tracking Suggestions
+How to better track ovulation and fertility signs
+
+## 💪 Staying Positive
+Encouragement and realistic expectations`
+      }],
+      onDelta: (text) => setAiAdvice(prev => prev + text),
+      onDone: () => {},
+    });
+  };
 
   const calculateFromDueDate = () => {
     if (!dueDate) return;
@@ -166,6 +210,46 @@ const ConceptionCalculator = () => {
                   <p className="text-sm text-muted-foreground">
                     {t('conceptionPage.info')}
                   </p>
+
+                  {/* AI Advice Button */}
+                  {!showAiAdvice ? (
+                    <Button
+                      onClick={getAIConceptionAdvice}
+                      disabled={aiLoading}
+                      className="w-full mt-4 gap-2 bg-gradient-to-r from-violet-500 to-purple-500"
+                    >
+                      {aiLoading ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Sparkles className="h-4 w-4" />
+                      )}
+                      Get AI Conception Advice
+                    </Button>
+                  ) : (
+                    <Card className="mt-4 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+                      <CardContent className="pt-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <Sparkles className="h-5 w-5 text-violet-500" />
+                            <h3 className="font-semibold">AI Conception Guide</h3>
+                          </div>
+                          <button 
+                            onClick={() => setShowAiAdvice(false)}
+                            className="text-muted-foreground hover:text-foreground"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                        {aiLoading && !aiAdvice && (
+                          <div className="flex items-center gap-2 text-violet-600">
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                            <span className="text-sm">Getting personalized advice...</span>
+                          </div>
+                        )}
+                        {aiAdvice && <MarkdownRenderer content={aiAdvice} />}
+                      </CardContent>
+                    </Card>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>

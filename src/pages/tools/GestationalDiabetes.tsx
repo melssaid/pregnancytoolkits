@@ -5,6 +5,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
 const riskFactors = [
   { id: "age", label: "Age 35 or older", points: 1 },
@@ -143,6 +144,39 @@ export default function GestationalDiabetes() {
             </CardContent>
           </Card>
         </motion.div>
+
+        {/* AI Personalized Advice */}
+        {selectedFactors.length > 0 && (
+          <AIInsightCard
+            title="AI Diabetes Prevention Coach"
+            prompt={`I'm assessing my gestational diabetes risk. My risk level is ${risk.level} (${risk.title}).
+
+My risk factors:
+${riskFactors.filter(f => selectedFactors.includes(f.id)).map(f => `- ${f.label}`).join('\n')}
+
+Please provide personalized advice:
+
+## 🎯 Your Risk Profile
+Brief analysis of my specific risk factors
+
+## 🥗 Meal Plan Suggestions
+5-6 specific meal ideas that help manage blood sugar during pregnancy
+
+## 🏃‍♀️ Exercise Recommendations
+Safe exercises for my situation
+
+## 📋 Daily Monitoring Tips
+How to track and manage my blood sugar if needed
+
+## 🩺 Questions for My Doctor
+3-4 questions I should ask at my next appointment
+
+## 💪 Motivation
+Encouraging message about managing this condition`}
+            variant="default"
+            buttonText="Get Personalized Prevention Plan"
+          />
+        )}
 
         {/* Prevention Tips */}
         <Card>

@@ -3,9 +3,11 @@ import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Droplet, Circle, Trash2, TrendingUp } from "lucide-react";
+import { Droplet, Circle, Trash2, TrendingUp, Sparkles, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { format } from "date-fns";
+import { format, differenceInHours } from "date-fns";
+import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 type DiaperType = "wet" | "dirty" | "both";
 
@@ -18,7 +20,10 @@ interface DiaperEntry {
 
 const DiaperTracker = () => {
   const { t } = useTranslation();
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [entries, setEntries] = useState<DiaperEntry[]>([]);
+  const [aiInsight, setAiInsight] = useState('');
+  const [showAiInsight, setShowAiInsight] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("diaperEntries");
@@ -56,6 +61,62 @@ const DiaperTracker = () => {
   };
 
   const stats = getTodayStats();
+
+  // Calculate frequency for AI
+  const getFrequencyData = () => {
+    const last24h = entries.filter(e => {
+      const hours = differenceInHours(new Date(), new Date(e.time));
+      return hours <= 24;
+    });
+    return {
+      wet24h: last24h.filter(e => e.type === 'wet' || e.type === 'both').length,
+      dirty24h: last24h.filter(e => e.type === 'dirty' || e.type === 'both').length,
+      total24h: last24h.length,
+    };
+  };
+
+  const analyzeWithAI = async () => {
+    const freq = getFrequencyData();
+    setAiInsight('');
+    setShowAiInsight(true);
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{
+        role: 'user',
+        content: `Analyze my baby's diaper patterns:
+        
+Today's stats:
+- Wet diapers: ${stats.wet}
+- Dirty diapers: ${stats.dirty}
+- Total changes: ${stats.total}
+
+Last 24 hours:
+- Wet: ${freq.wet24h}
+- Dirty: ${freq.dirty24h}
+- Total: ${freq.total24h}
+
+Please provide:
+
+## 💧 Hydration Assessment
+Is the wet diaper count normal? What does it indicate?
+
+## 🩺 Health Indicators
+What the diaper patterns might tell us about baby's health
+
+## ✅ Normal Ranges
+Remind me of typical diaper counts for different ages
+
+## ⚠️ When to Be Concerned
+Signs that would warrant calling the pediatrician
+
+## 💡 Tips
+Helpful tips for diaper changes and tracking`
+      }],
+      onDelta: (text) => setAiInsight(prev => prev + text),
+      onDone: () => {},
+    });
+  };
 
   const getTypeIcon = (type: DiaperType) => {
     switch (type) {
@@ -152,6 +213,51 @@ const DiaperTracker = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* AI Analysis Button */}
+          {entries.length >= 3 && (
+            <Card className="mb-6 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+              <CardContent className="pt-4">
+                {!showAiInsight ? (
+                  <Button
+                    onClick={analyzeWithAI}
+                    disabled={aiLoading}
+                    className="w-full gap-2 bg-gradient-to-r from-violet-500 to-purple-500"
+                  >
+                    {aiLoading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Sparkles className="h-4 w-4" />
+                    )}
+                    Analyze Diaper Patterns with AI
+                  </Button>
+                ) : (
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="h-5 w-5 text-violet-500" />
+                        <h3 className="font-semibold">AI Pattern Analysis</h3>
+                      </div>
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={() => setShowAiInsight(false)}
+                      >
+                        ✕
+                      </Button>
+                    </div>
+                    {aiLoading && !aiInsight && (
+                      <div className="flex items-center gap-2 text-violet-600">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <span className="text-sm">Analyzing patterns...</span>
+                      </div>
+                    )}
+                    {aiInsight && <MarkdownRenderer content={aiInsight} />}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
 
           {/* Info */}
           <Card className="mb-6 bg-muted/50">

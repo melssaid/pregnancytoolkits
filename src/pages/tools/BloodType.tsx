@@ -5,6 +5,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
 type BloodType = "A" | "B" | "AB" | "O";
 type RhFactor = "+" | "-";
@@ -193,6 +194,35 @@ export default function BloodTypeCalculator() {
             </CardContent>
           </Card>
         </motion.div>
+
+        {/* AI Blood Type Insights */}
+        <AIInsightCard
+          title="AI Blood Type Guide"
+          prompt={`Mother's blood type: ${parent1.type}${parent1.rh}
+Father's blood type: ${parent2.type}${parent2.rh}
+Possible baby blood types: ${possibleTypes.map(t => `${t}+ or ${t}-`).join(', ')}
+Rh+ chance: ${rhProbs.positive}%, Rh- chance: ${rhProbs.negative}%
+${needsRhWarning ? 'Note: There is potential Rh incompatibility (mother Rh-, father Rh+)' : ''}
+
+Please provide:
+
+## 🧬 Genetics Explained
+Simple explanation of how blood type inheritance works for our combination
+
+## 👶 Baby's Likely Blood Types
+Analysis of the most likely outcomes
+
+${needsRhWarning ? `## ⚠️ Rh Incompatibility Guide
+Detailed information about Rh incompatibility, RhoGAM shots, and what to expect
+
+` : ''}## 🩸 Blood Type Facts
+Interesting facts about our blood type combination
+
+## 🩺 Medical Considerations
+What to discuss with the doctor regarding blood types during pregnancy`}
+          variant="compact"
+          buttonText="Learn About Blood Types"
+        />
 
         {/* Rh Warning */}
         {needsRhWarning && (
