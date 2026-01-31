@@ -283,5 +283,96 @@
     "tip2": "اشربي 8-10 أكواب ماء يومياً",
     "tip3": "تجنبي الأطعمة النيئة والأجبان غير المبسترة",
     "tip4": "ركزي على البروتين والحديد والكالسيوم"
+  },
+  "conceptionPage": {
+    "fromDueDate": "من موعد الولادة",
+    "fromLMP": "من آخر دورة",
+    "knowDueDate": "أعرف موعد ولادتي",
+    "planningPregnancy": "أخطط أو أتتبع",
+    "dueDate": "موعد ولادتك",
+    "lmpDate": "أول يوم من آخر دورة",
+    "cycleLength": "طول الدورة (أيام)",
+    "estimatedConception": "تاريخ الحمل المقدر",
+    "fertileWindow": "فترة خصوبتك",
+    "info": "يحدث الحمل عادة حول التبويض، 14 يوماً قبل موعد دورتك التالية."
+  },
+  "weightGainPage": {
+    "title": "حاسبة زيادة الوزن",
+    "prePregnancyWeight": "الوزن قبل الحمل (كغ)",
+    "currentWeight": "الوزن الحالي (كغ)",
+    "height": "الطول (سم)",
+    "currentWeek": "الأسبوع الحالي",
+    "bmiCategory": "فئة مؤشر كتلة الجسم",
+    "recommendedGain": "الزيادة الموصى بها",
+    "currentGain": "زيادتك الحالية",
+    "onTrack": "أنتِ على المسار الصحيح!",
+    "underGain": "فكري بزيادة قليلة",
+    "overGain": "زيادة الوزن مرتفعة قليلاً"
+  },
+  "pregnancyDiaryPage": {
+    "title": "مذكرات الحمل",
+    "newEntry": "إدخال جديد",
+    "week": "أسبوع الحمل",
+    "mood": "كيف تشعرين؟",
+    "symptoms": "الأعراض",
+    "symptomsPlaceholder": "مثل: غثيان، تعب، آلام ظهر",
+    "note": "أفكارك",
+    "notePlaceholder": "اكتبي عن يومك، مشاعرك، أو ذكرياتك...",
+    "save": "حفظ الإدخال",
+    "myEntries": "إدخالاتي"
+  },
+  "forbiddenFoodsPage": {
+    "title": "الأطعمة الممنوعة",
+    "searchPlaceholder": "ابحثي عن طعام...",
+    "forbidden": "تجنبي",
+    "caution": "احذري",
+    "safe": "آمن",
+    "forbiddenTitle": "أطعمة يجب تجنبها",
+    "cautionTitle": "استخدمي بحذر",
+    "safeTitle": "بدائل آمنة",
+    "disclaimer": "هذا دليل عام. استشيري طبيبتك دائماً."
+  },
+  "babySleepPage": {
+    "title": "متتبع نوم الطفل",
+    "logSleep": "تسجيل نوم",
+    "startTime": "وقت البدء",
+    "endTime": "وقت الانتهاء",
+    "duration": "المدة",
+    "totalToday": "إجمالي النوم اليوم",
+    "sleepLog": "سجل النوم"
+  },
+  "diaperPage": {
+    "title": "متتبع الحفاضات",
+    "logChange": "تسجيل تغيير",
+    "wet": "مبلل",
+    "dirty": "متسخ",
+    "both": "كلاهما",
+    "todayCount": "تغييرات اليوم",
+    "recentChanges": "آخر التغييرات"
+  },
+  "babyGrowthPage": {
+    "title": "نمو الطفل",
+    "age": "عمر الطفل",
+    "weight": "الوزن (كغ)",
+    "height": "الطول (سم)",
+    "headCircumference": "محيط الرأس (سم)",
+    "percentile": "النسبة المئوية",
+    "trackGrowth": "تتبع النمو"
+  },
+  "yogaPage": {
+    "title": "يوغا الحمل",
+    "selectTrimester": "اختاري الثلث",
+    "firstTrimester": "الثلث الأول",
+    "secondTrimester": "الثلث الثاني",
+    "thirdTrimester": "الثلث الثالث",
+    "duration": "المدة",
+    "difficulty": "الصعوبة"
+  },
+  "affirmationsPage": {
+    "title": "تأكيدات يومية",
+    "todaysAffirmation": "تأكيد اليوم",
+    "newAffirmation": "تأكيد جديد",
+    "favorites": "المفضلة",
+    "categories": "الفئات"
   }
 }
