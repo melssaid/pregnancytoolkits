@@ -81,7 +81,18 @@ const GestationalDiabetes = lazy(() => import("@/pages/tools/GestationalDiabetes
 const BabySleepTracker = lazy(() => import("@/pages/tools/BabySleepTracker"));
 const BabyGrowth = lazy(() => import("@/pages/tools/BabyGrowth"));
 const DoctorQuestions = lazy(() => import("@/pages/tools/DoctorQuestions"));
+const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
+const BabyGearRecommender = lazy(() => import("@/pages/tools/BabyGearRecommender"));
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
+
+// ADDITIONAL AI WELLNESS
+const AIStressReliefCoach = lazy(() => import("@/pages/tools/AIStressReliefCoach"));
+const AICravingAlternatives = lazy(() => import("@/pages/tools/AICravingAlternatives"));
+const PregnancyMassageGuide = lazy(() => import("@/pages/tools/PregnancyMassageGuide"));
+
+// ADDITIONAL HEALTH MONITORING
+const PreeclampsiaRisk = lazy(() => import("@/pages/tools/PreeclampsiaRisk"));
+const ForbiddenFoods = lazy(() => import("@/pages/tools/ForbiddenFoods"));
 
 export function AnimatedRoutes() {
   const location = useLocation();
@@ -174,6 +185,18 @@ export function AnimatedRoutes() {
           <Route path="/tools/baby-sleep-tracker" element={<PageTransition><BabySleepTracker /></PageTransition>} />
           <Route path="/tools/baby-growth" element={<PageTransition><BabyGrowth /></PageTransition>} />
           <Route path="/tools/doctor-questions" element={<PageTransition><DoctorQuestions /></PageTransition>} />
+          <Route path="/tools/diaper-tracker" element={<PageTransition><DiaperTracker /></PageTransition>} />
+          <Route path="/tools/baby-gear-recommender" element={<PageTransition><BabyGearRecommender /></PageTransition>} />
+
+          {/* ADDITIONAL AI WELLNESS */}
+          <Route path="/tools/ai-fitness-coach" element={<PageTransition><AIFitnessCoach /></PageTransition>} />
+          <Route path="/tools/ai-stress-relief" element={<PageTransition><AIStressReliefCoach /></PageTransition>} />
+          <Route path="/tools/ai-craving-alternatives" element={<PageTransition><AICravingAlternatives /></PageTransition>} />
+          <Route path="/tools/pregnancy-massage" element={<PageTransition><PregnancyMassageGuide /></PageTransition>} />
+
+          {/* ADDITIONAL HEALTH MONITORING */}
+          <Route path="/tools/preeclampsia-risk" element={<PageTransition><PreeclampsiaRisk /></PageTransition>} />
+          <Route path="/tools/forbidden-foods" element={<PageTransition><ForbiddenFoods /></PageTransition>} />
 
           {/* VIDEO LIBRARY */}
           <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />

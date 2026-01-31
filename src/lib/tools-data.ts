@@ -135,11 +135,27 @@ export const toolsData: Tool[] = [
   { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.riskAssessment", href: "/tools/gestational-diabetes", priority: 36 },
 
   // ═══════════════════════════════════════════════════════════════
-  // 👶 POSTPARTUM & BABY (Priority 37-39)
+  // 👶 POSTPARTUM & BABY (Priority 37-42)
   // ═══════════════════════════════════════════════════════════════
   { id: "baby-sleep-tracker", titleKey: "tools.babySleepTracker.title", descriptionKey: "tools.babySleepTracker.description", icon: Moon, categoryKey: "categories.postpartum", href: "/tools/baby-sleep-tracker", priority: 37, hasAI: true },
   { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 38 },
   { id: "doctor-questions", titleKey: "tools.doctorQuestions.title", descriptionKey: "tools.doctorQuestions.description", icon: MessageCircle, categoryKey: "categories.postpartum", href: "/tools/doctor-questions", priority: 39, hasAI: true },
+  { id: "diaper-tracker", titleKey: "tools.diaperTracker.title", descriptionKey: "tools.diaperTracker.description", icon: Baby, categoryKey: "categories.postpartum", href: "/tools/diaper-tracker", priority: 40 },
+  { id: "baby-gear-recommender", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/baby-gear-recommender", priority: 41, hasAI: true },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 💪 ADDITIONAL AI WELLNESS TOOLS (Priority 42-46)
+  // ═══════════════════════════════════════════════════════════════
+  { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 42, hasAI: true },
+  { id: "ai-stress-relief", titleKey: "tools.aiStressReliefCoach.title", descriptionKey: "tools.aiStressReliefCoach.description", icon: Wind, categoryKey: "categories.mentalHealth", href: "/tools/ai-stress-relief", priority: 43, hasAI: true },
+  { id: "ai-craving-alternatives", titleKey: "tools.aiCravingAlternatives.title", descriptionKey: "tools.aiCravingAlternatives.description", icon: Utensils, categoryKey: "categories.wellness", href: "/tools/ai-craving-alternatives", priority: 44, hasAI: true },
+  { id: "pregnancy-massage", titleKey: "tools.pregnancyMassageGuide.title", descriptionKey: "tools.pregnancyMassageGuide.description", icon: Heart, categoryKey: "categories.wellness", href: "/tools/pregnancy-massage", priority: 45, hasAI: true },
+  
+  // ═══════════════════════════════════════════════════════════════
+  // ⚠️ ADDITIONAL HEALTH MONITORING (Priority 46-47)
+  // ═══════════════════════════════════════════════════════════════
+  { id: "preeclampsia-risk", titleKey: "tools.preeclampsiaRisk.title", descriptionKey: "tools.preeclampsiaRisk.description", icon: AlertTriangle, categoryKey: "categories.riskAssessment", href: "/tools/preeclampsia-risk", priority: 46 },
+  { id: "forbidden-foods", titleKey: "tools.forbiddenFoods.title", descriptionKey: "tools.forbiddenFoods.description", icon: Utensils, categoryKey: "categories.wellness", href: "/tools/forbidden-foods", priority: 47, hasAI: true },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
