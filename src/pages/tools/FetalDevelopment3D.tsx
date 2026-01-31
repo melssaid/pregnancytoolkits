@@ -3,8 +3,10 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Baby, ChevronLeft, ChevronRight, Info, Heart, Brain, Ear, Eye, Hand, Footprints, Scale, Ruler, Sparkles, Calendar } from 'lucide-react';
+import { Baby, ChevronLeft, ChevronRight, Heart, Brain, Ear, Eye, Hand, Footprints, Scale, Ruler, Sparkles, Calendar, Loader2, Stethoscope, Apple, Dumbbell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 const weeklyData = [
   { week: 4, size: 'Poppy seed', emoji: '🌱', length: '0.1 cm', weight: '<1 g', development: 'Cells are dividing rapidly. The neural tube is forming.', organs: ['brain', 'heart'], tip: 'Start taking prenatal vitamins!' },
@@ -40,6 +42,10 @@ const organIcons: Record<string, React.ReactNode> = {
 const FetalDevelopment3D: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(4); // Start at week 12
   const [userWeek, setUserWeek] = useState<number | null>(null);
+  const [aiInsight, setAiInsight] = useState('');
+  const [activeAITab, setActiveAITab] = useState<'development' | 'nutrition' | 'exercise' | null>(null);
+  
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
 
   useEffect(() => {
     const saved = localStorage.getItem('pregnancy-current-week');
@@ -75,6 +81,67 @@ const FetalDevelopment3D: React.FC = () => {
   const saveCurrentWeek = () => {
     localStorage.setItem('pregnancy-current-week', currentData.week.toString());
     setUserWeek(currentData.week);
+  };
+
+  const getAIInsight = async (type: 'development' | 'nutrition' | 'exercise') => {
+    if (aiLoading) return;
+    setActiveAITab(type);
+    setAiInsight('');
+
+    const prompts = {
+      development: `As a prenatal development specialist, provide detailed insights for pregnancy week ${currentData.week}:
+
+**Baby's Current Size:** ${currentData.size} (${currentData.length}, ${currentData.weight})
+**Key Development:** ${currentData.development}
+**Developing Organs:** ${currentData.organs.join(', ')}
+
+Provide:
+1. **What's Happening This Week** - Detailed breakdown of baby's development milestones
+2. **Sensory Development** - What can baby see, hear, feel at this stage
+3. **Brain Development** - Neural connections and cognitive growth
+4. **What Baby Can Do** - Reflexes, movements, responses
+5. **Connection Tips** - How to bond with your baby this week (talking, music, touch)
+
+Make it personal and exciting! Use emojis and keep the tone warm and encouraging.`,
+      
+      nutrition: `As a prenatal nutritionist, provide week ${currentData.week} nutrition guidance:
+
+**Baby's Size:** ${currentData.size} (${currentData.weight})
+**Key Development Focus:** ${currentData.organs.join(', ')}
+
+Provide:
+1. **Critical Nutrients This Week** - Top 5 nutrients for current development stage
+2. **Best Foods to Eat** - Specific foods that support baby's growth
+3. **Foods to Avoid** - What to limit or eliminate
+4. **Meal Ideas** - 3 simple meal suggestions
+5. **Hydration Tips** - Water and healthy drinks recommendations
+6. **Supplement Check** - Reminder about prenatal vitamins
+
+Include practical, easy-to-follow advice with specific portion sizes.`,
+      
+      exercise: `As a prenatal fitness specialist, provide safe exercise guidance for week ${currentData.week}:
+
+**Trimester:** ${trimester.name}
+**Baby's Development:** ${currentData.development}
+
+Provide:
+1. **Safe Exercises This Week** - 5 recommended exercises with modifications
+2. **Exercises to Avoid** - What movements to skip at this stage
+3. **Energy Levels** - What to expect and how to manage
+4. **Pelvic Floor Exercises** - Kegel routine for this week
+5. **Stretches for Comfort** - Target areas for pregnancy week ${currentData.week}
+6. **Activity Duration** - Recommended daily movement goals
+
+Focus on safety first, with modifications for common pregnancy discomforts.`
+    };
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{ role: 'user', content: prompts[type] }],
+      context: { week: currentData.week },
+      onDelta: (text) => setAiInsight((prev) => prev + text),
+      onDone: () => {},
+    });
   };
 
   return (
@@ -225,6 +292,82 @@ const FetalDevelopment3D: React.FC = () => {
                 </p>
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        {/* AI Insights Section */}
+        <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+          <CardContent className="py-4">
+            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-violet-500" />
+              AI Weekly Insights
+            </h3>
+            
+            {/* AI Tab Buttons */}
+            <div className="grid grid-cols-3 gap-2 mb-4">
+              <Button
+                variant={activeAITab === 'development' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => getAIInsight('development')}
+                disabled={aiLoading}
+                className="gap-1"
+              >
+                {aiLoading && activeAITab === 'development' ? (
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                ) : (
+                  <Stethoscope className="w-3 h-3" />
+                )}
+                <span className="text-xs">Development</span>
+              </Button>
+              <Button
+                variant={activeAITab === 'nutrition' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => getAIInsight('nutrition')}
+                disabled={aiLoading}
+                className="gap-1"
+              >
+                {aiLoading && activeAITab === 'nutrition' ? (
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                ) : (
+                  <Apple className="w-3 h-3" />
+                )}
+                <span className="text-xs">Nutrition</span>
+              </Button>
+              <Button
+                variant={activeAITab === 'exercise' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => getAIInsight('exercise')}
+                disabled={aiLoading}
+                className="gap-1"
+              >
+                {aiLoading && activeAITab === 'exercise' ? (
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                ) : (
+                  <Dumbbell className="w-3 h-3" />
+                )}
+                <span className="text-xs">Exercise</span>
+              </Button>
+            </div>
+
+            {/* AI Response */}
+            <AnimatePresence>
+              {aiInsight && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[400px] overflow-y-auto"
+                >
+                  <MarkdownRenderer content={aiInsight} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {!aiInsight && !aiLoading && (
+              <p className="text-sm text-muted-foreground text-center py-2">
+                Tap a button above to get personalized AI insights for week {currentData.week}
+              </p>
+            )}
           </CardContent>
         </Card>
 
@@ -379,7 +522,7 @@ const FetalDevelopment3D: React.FC = () => {
         <Card className="bg-muted/30">
           <CardContent className="py-3">
             <div className="flex items-start gap-2">
-              <Info className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <Baby className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
               <p className="text-xs text-muted-foreground">
                 Sizes and weights are approximate averages. Every baby develops at their own pace. Consult your healthcare provider for personalized information.
               </p>

@@ -3,9 +3,10 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, AlertTriangle, Phone, CheckCircle, HelpCircle, Brain, MessageCircle, Sun } from 'lucide-react';
+import { Heart, AlertTriangle, Phone, CheckCircle, HelpCircle, Brain, MessageCircle, Sun, Loader2, Sparkles } from 'lucide-react';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
-
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 const mentalHealthVideos: Video[] = [
   { id: "1", title: "Understanding Postpartum Depression", description: "Signs, symptoms, and when to seek help", youtubeId: "8GqVkn1v1ac", duration: "14:30", category: "Education" },
   { id: "2", title: "Self-Care for New Moms", description: "Practical tips for mental wellness", youtubeId: "B0NOxSdCrVg", duration: "12:15", category: "Self-Care" },
@@ -88,6 +89,10 @@ export default function PostpartumMentalHealthCoach() {
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResults, setShowResults] = useState(false);
   const [showEmergency, setShowEmergency] = useState(false);
+  const [aiCopingPlan, setAiCopingPlan] = useState('');
+  const [showAICoping, setShowAICoping] = useState(false);
+  
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
 
   const handleAnswer = (questionId: string, value: number) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
@@ -145,6 +150,61 @@ export default function PostpartumMentalHealthCoach() {
     setAnswers({});
     setShowResults(false);
     setShowEmergency(false);
+    setAiCopingPlan('');
+    setShowAICoping(false);
+  };
+
+  const getAICopingPlan = async () => {
+    const score = getScore();
+    const interpretation = getScoreInterpretation();
+    
+    setShowAICoping(true);
+    setAiCopingPlan('');
+
+    const prompt = `As a compassionate postpartum mental health specialist, create a personalized coping plan:
+
+**EPDS Screening Score:** ${score}/15
+**Risk Level:** ${interpretation.level}
+**Responses Pattern:** ${Object.entries(answers).map(([q, a]) => `Q${q}: ${a}/3`).join(', ')}
+
+Based on this assessment, provide:
+
+1. **Understanding Your Feelings** 🌸
+   - Validate their experience
+   - Explain what the score means in compassionate terms
+   - Normalize postpartum challenges
+
+2. **Your Daily Self-Care Routine** ☀️
+   - Morning ritual (5 mins)
+   - Afternoon check-in (5 mins)
+   - Evening wind-down (10 mins)
+
+3. **Connection & Support Plan** 💜
+   - Who to reach out to
+   - How to communicate your needs
+   - Building your support circle
+
+4. **Quick Relief Techniques** 🌿
+   - 3 grounding exercises for anxiety moments
+   - Breathing technique for overwhelm
+   - Self-compassion phrases to repeat
+
+5. **Weekly Goals** 📝
+   - 3 achievable, gentle goals for this week
+   - How to track progress without pressure
+
+6. **When to Seek Help** ⚕️
+   - Clear indicators that professional support is needed
+   - How to take the first step
+
+Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind them they're doing better than they think.`;
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{ role: 'user', content: prompt }],
+      onDelta: (text) => setAiCopingPlan((prev) => prev + text),
+      onDone: () => {},
+    });
   };
 
   if (showDisclaimer) {
@@ -262,6 +322,44 @@ export default function PostpartumMentalHealthCoach() {
                       </p>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+
+              {/* AI Personalized Coping Plan */}
+              <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-violet-500" />
+                      AI Personalized Coping Plan
+                    </h3>
+                  </div>
+                  
+                  {!showAICoping ? (
+                    <Button
+                      onClick={getAICopingPlan}
+                      disabled={aiLoading}
+                      className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+                    >
+                      {aiLoading ? (
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      ) : (
+                        <Brain className="w-4 h-4 mr-2" />
+                      )}
+                      Generate My Personalized Plan
+                    </Button>
+                  ) : (
+                    <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[500px] overflow-y-auto">
+                      {aiCopingPlan ? (
+                        <MarkdownRenderer content={aiCopingPlan} />
+                      ) : (
+                        <div className="flex items-center justify-center py-8 text-muted-foreground">
+                          <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                          Creating your personalized plan...
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
 

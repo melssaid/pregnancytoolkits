@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Moon, Sparkles, Clock, ThermometerSun, Volume2 } from "lucide-react";
+import { Moon, Sparkles, Clock, ThermometerSun, Volume2, Brain, Loader2, Bed, Wind } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
@@ -33,6 +34,9 @@ const AISleepOptimizer = () => {
   const [bedtime, setBedtime] = useState("22:00");
   const [selectedIssues, setSelectedIssues] = useState<string[]>([]);
   const [response, setResponse] = useState("");
+  const [activeTab, setActiveTab] = useState<'analysis' | 'meditation' | 'routine'>('analysis');
+  const [meditationScript, setMeditationScript] = useState("");
+  const [routinePlan, setRoutinePlan] = useState("");
 
   const toggleIssue = (issueId: string) => {
     setSelectedIssues(prev =>
@@ -70,6 +74,77 @@ Include specific product recommendations (pillows, white noise) and YouTube link
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 20 },
       onDelta: (text) => setResponse((prev) => prev + text),
+      onDone: () => {},
+    });
+  };
+
+  const generateMeditation = async () => {
+    const prompt = `As a sleep meditation specialist for pregnant women, create a calming bedtime meditation script:
+
+**Pregnancy Week:** ${settings.pregnancyWeek || 20}
+**Current Sleep Issues:** ${selectedIssues.map(id => sleepIssues.find(i => i.id === id)?.label).filter(Boolean).join(", ") || "General sleep difficulty"}
+
+Create a 10-minute guided meditation script that includes:
+
+1. **Opening** (1 min) - Settling into bed, getting comfortable with pregnancy pillow
+2. **Body Scan** (3 mins) - Progressive relaxation from head to toes, acknowledging the growing belly
+3. **Breathing Exercise** (2 mins) - 4-7-8 breathing adapted for pregnancy
+4. **Visualization** (3 mins) - Peaceful scene connecting with baby
+5. **Closing** (1 min) - Gentle transition to sleep
+
+Write it as a script that can be read aloud or followed along. Use calm, soothing language. Include pauses indicated by [...]. Make it pregnancy-specific and nurturing.`;
+
+    setMeditationScript("");
+    setActiveTab('meditation');
+    
+    await streamChat({
+      type: "pregnancy-assistant",
+      messages: [{ role: "user", content: prompt }],
+      context: { week: Number(settings.pregnancyWeek) || 20 },
+      onDelta: (text) => setMeditationScript((prev) => prev + text),
+      onDone: () => {},
+    });
+  };
+
+  const generateRoutine = async () => {
+    const issueLabels = selectedIssues.map(id => 
+      sleepIssues.find(i => i.id === id)?.label
+    ).filter(Boolean);
+
+    const prompt = `As a pregnancy sleep specialist, create a complete evening routine:
+
+**Pregnancy Week:** ${settings.pregnancyWeek || 20}
+**Current Bedtime:** ${bedtime}
+**Sleep Issues:** ${issueLabels.join(", ") || "General improvement"}
+**Current Sleep Duration:** ${sleepHours[0]} hours
+
+Design a detailed 2-hour wind-down routine:
+
+**Hour 1: Active Wind-Down (2 hours before bed)**
+- Light activities to do
+- Last food/drink recommendations
+- Screen time cutoff
+
+**Hour 2: Passive Wind-Down (1 hour before bed)**
+- Bathroom routine
+- Bedroom preparation
+- Relaxation activities
+
+**Final 30 Minutes**
+- Pillow positioning guide
+- Breathing exercises
+- Mental preparation
+
+Include specific times based on their ${bedtime} bedtime. Add product recommendations (pregnancy pillows, white noise, essential oils that are safe).`;
+
+    setRoutinePlan("");
+    setActiveTab('routine');
+    
+    await streamChat({
+      type: "pregnancy-assistant",
+      messages: [{ role: "user", content: prompt }],
+      context: { week: Number(settings.pregnancyWeek) || 20 },
+      onDelta: (text) => setRoutinePlan((prev) => prev + text),
       onDone: () => {},
     });
   };
@@ -149,25 +224,80 @@ Include specific product recommendations (pillows, white noise) and YouTube link
           </div>
         </div>
 
-        {/* Analyze Button */}
-        <Button
-          onClick={analyzeSleep}
-          disabled={isLoading}
-          className="w-full"
-          size="lg"
-        >
-          <Sparkles className="w-4 h-4 mr-2" />
-          {isLoading ? "Analyzing..." : "Get AI Sleep Plan"}
-        </Button>
+        {/* AI Action Buttons */}
+        <div className="grid grid-cols-3 gap-2">
+          <Button
+            onClick={analyzeSleep}
+            disabled={isLoading}
+            variant={activeTab === 'analysis' ? 'default' : 'outline'}
+            className="flex-col h-auto py-3 gap-1"
+          >
+            {isLoading && activeTab === 'analysis' ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <Brain className="w-5 h-5" />
+            )}
+            <span className="text-xs">Sleep Plan</span>
+          </Button>
+          <Button
+            onClick={generateMeditation}
+            disabled={isLoading}
+            variant={activeTab === 'meditation' ? 'default' : 'outline'}
+            className="flex-col h-auto py-3 gap-1"
+          >
+            {isLoading && activeTab === 'meditation' ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <Wind className="w-5 h-5" />
+            )}
+            <span className="text-xs">Meditation</span>
+          </Button>
+          <Button
+            onClick={generateRoutine}
+            disabled={isLoading}
+            variant={activeTab === 'routine' ? 'default' : 'outline'}
+            className="flex-col h-auto py-3 gap-1"
+          >
+            {isLoading && activeTab === 'routine' ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <Bed className="w-5 h-5" />
+            )}
+            <span className="text-xs">Routine</span>
+          </Button>
+        </div>
 
-        {/* AI Response */}
-        {response && (
-          <Card className="p-4 bg-muted/50">
-            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-primary" />
-              Your Personalized Sleep Plan
-            </h3>
-            <MarkdownRenderer content={response} isLoading={isLoading} />
+        {/* AI Response - Tabbed Content */}
+        {(response || meditationScript || routinePlan) && (
+          <Card className="p-4 bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30">
+            <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
+              <TabsList className="w-full mb-4">
+                <TabsTrigger value="analysis" className="flex-1" disabled={!response}>
+                  <Brain className="w-4 h-4 mr-1" />
+                  Sleep Plan
+                </TabsTrigger>
+                <TabsTrigger value="meditation" className="flex-1" disabled={!meditationScript}>
+                  <Wind className="w-4 h-4 mr-1" />
+                  Meditation
+                </TabsTrigger>
+                <TabsTrigger value="routine" className="flex-1" disabled={!routinePlan}>
+                  <Bed className="w-4 h-4 mr-1" />
+                  Routine
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="analysis" className="max-h-[400px] overflow-y-auto">
+                {response && <MarkdownRenderer content={response} isLoading={isLoading && activeTab === 'analysis'} />}
+              </TabsContent>
+              
+              <TabsContent value="meditation" className="max-h-[400px] overflow-y-auto">
+                {meditationScript && <MarkdownRenderer content={meditationScript} isLoading={isLoading && activeTab === 'meditation'} />}
+              </TabsContent>
+              
+              <TabsContent value="routine" className="max-h-[400px] overflow-y-auto">
+                {routinePlan && <MarkdownRenderer content={routinePlan} isLoading={isLoading && activeTab === 'routine'} />}
+              </TabsContent>
+            </Tabs>
           </Card>
         )}
 
