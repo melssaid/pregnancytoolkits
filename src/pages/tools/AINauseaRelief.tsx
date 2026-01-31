@@ -239,7 +239,7 @@ Be compassionate - morning sickness is exhausting!`;
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            3 نقاط ضغط فعالة للتخفيف من غثيان الحمل
+            3 effective pressure points for pregnancy nausea relief
           </p>
         </Card>
 
@@ -261,7 +261,7 @@ Be compassionate - morning sickness is exhausting!`;
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            دليل BabyCenter للعلاج بالضغط
+            ⚠️ Educational content only - BabyCenter acupressure guide
           </p>
         </Card>
       </div>
