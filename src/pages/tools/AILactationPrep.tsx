@@ -256,7 +256,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            نصائح شاملة للأمهات الجدد: الرضاعة، الوضعيات، والشفط
+            Comprehensive tips for new moms: latching, positions, and pumping
           </p>
         </Card>
 

@@ -18,47 +18,34 @@ interface VideoItem {
 }
 
 const videos: VideoItem[] = [
-  // Nutrition Videos
-  { id: "1", youtubeId: "3fYsj_Bk6mk", title: "Nutrition During Pregnancy", description: "Essential nutrients for a healthy pregnancy", category: "Nutrition", duration: "8:42" },
-  { id: "2", youtubeId: "0DUzm3Fhzz4", title: "First Trimester Foods", description: "Best foods for early pregnancy", category: "Nutrition", duration: "10:15" },
-  { id: "3", youtubeId: "Ry7xDEv2Uxc", title: "Essential Vitamins", description: "Important vitamins and minerals for pregnant women", category: "Nutrition", duration: "7:30" },
-  { id: "4", youtubeId: "sB7M_ofGC2k", title: "Foods to Avoid", description: "Foods to avoid during pregnancy", category: "Nutrition", duration: "9:15" },
-  { id: "5", youtubeId: "1_9pJe5VZXE", title: "Quick Healthy Meals", description: "Easy and nutritious recipes for pregnant women", category: "Nutrition", duration: "12:00" },
+  // Nutrition Videos - Educational and professional
+  { id: "1", youtubeId: "IWBF60kQcuk", title: "Pregnancy Nutrition Tips", description: "Essential nutrition advice from a registered dietitian", category: "Nutrition", duration: "5:30" },
+  { id: "2", youtubeId: "0BrxCY89_uQ", title: "Nutrition During Pregnancy", description: "Healthy eating habits for your baby's development", category: "Nutrition", duration: "4:15" },
+  { id: "3", youtubeId: "C_HuuCN9FMU", title: "Healthy Eating in Pregnancy", description: "Foundation of maternal health nutrition", category: "Nutrition", duration: "6:00" },
+  { id: "4", youtubeId: "pozcaggYIWk", title: "Pregnancy Diet Guide", description: "What to eat and what to avoid while pregnant", category: "Nutrition", duration: "8:42" },
   
-  // Exercise Videos  
-  { id: "6", youtubeId: "FaGK52oo36I", title: "Safe Pregnancy Exercises", description: "Full body workout for pregnant women", category: "Exercise", duration: "25:00" },
-  { id: "7", youtubeId: "B0NOxSdCrVg", title: "Stretching Exercises", description: "Gentle exercises for each trimester", category: "Exercise", duration: "15:30" },
-  { id: "8", youtubeId: "4xyOBe7PLWU", title: "Prenatal Yoga", description: "Safe and relaxing yoga exercises", category: "Exercise", duration: "20:00" },
-  { id: "9", youtubeId: "jO8vyXj_wLY", title: "Back Exercises", description: "Relieve back pain during pregnancy", category: "Exercise", duration: "18:00" },
-  { id: "10", youtubeId: "hMc-8mpvL2U", title: "Breathing Exercises", description: "Breathing techniques for labor", category: "Exercise", duration: "14:00" },
-  { id: "11", youtubeId: "fLsGp1mCvAc", title: "Pelvic Exercises", description: "Strengthen pelvic floor muscles", category: "Exercise", duration: "10:30" },
+  // Fetal Development - 3D Animation (modest, educational)
+  { id: "5", youtubeId: "3HPhF_IPJ1E", title: "Baby Development Week by Week", description: "3D animation of fetal development journey", category: "Development", duration: "15:00" },
+  { id: "6", youtubeId: "xNfagna9Fxw", title: "Full Pregnancy Journey", description: "Week by week 3D animated guide", category: "Development", duration: "21:00" },
+  { id: "7", youtubeId: "8BH7WFmRs-E", title: "Month-by-Month Guide", description: "Realistic 3D baby development animation", category: "Development", duration: "12:00" },
+  { id: "8", youtubeId: "E0i7NQsJdWY", title: "First Trimester Guide", description: "3D animated first trimester overview", category: "Development", duration: "8:30" },
   
-  // Preparation Videos
-  { id: "12", youtubeId: "VKmxG3nZP2E", title: "Hospital Bag", description: "Essentials you shouldn't forget", category: "Preparation", duration: "12:30" },
-  { id: "13", youtubeId: "j1p5O7cozdo", title: "Labor Preparation", description: "Tips for hospital readiness", category: "Preparation", duration: "18:20" },
-  { id: "14", youtubeId: "eLqJYpMJWyQ", title: "Nursery Setup", description: "Preparing baby's room", category: "Preparation", duration: "15:00" },
-  { id: "15", youtubeId: "c2NvYvjKXxU", title: "Baby Essentials", description: "Newborn essentials checklist", category: "Preparation", duration: "11:45" },
-  { id: "16", youtubeId: "WdRpX4X-p8k", title: "Signs of Labor", description: "How to know labor is near", category: "Preparation", duration: "13:20" },
-  { id: "17", youtubeId: "f7H7nL_V2sQ", title: "Birth Plan", description: "How to write your birth plan", category: "Preparation", duration: "16:00" },
+  // Meditation & Relaxation (audio-focused, modest)
+  { id: "9", youtubeId: "pCSjhbVOdYQ", title: "Pregnancy Meditation", description: "1 hour relaxation and sleep meditation", category: "Mental Health", duration: "60:00" },
+  { id: "10", youtubeId: "vEcZD8Js2Ws", title: "Prenatal Yoga Nidra", description: "Deep relaxation meditation for pregnancy", category: "Mental Health", duration: "25:00" },
   
-  // Mental Health
-  { id: "18", youtubeId: "8GqVkn1v1ac", title: "Postpartum Mental Health", description: "Understanding postpartum depression", category: "Mental Health", duration: "14:30" },
-  { id: "19", youtubeId: "aV1yGDUDNNk", title: "Relaxation Exercises", description: "Breathing and meditation techniques", category: "Mental Health", duration: "18:00" },
-  { id: "20", youtubeId: "inpok4MKVLM", title: "Prenatal Meditation", description: "Calming meditation session", category: "Mental Health", duration: "20:00" },
-  { id: "21", youtubeId: "O-6f5wQXSu8", title: "Managing Anxiety", description: "Tips to reduce pregnancy anxiety", category: "Mental Health", duration: "12:00" },
-  { id: "22", youtubeId: "4pLUleLdwY4", title: "Healthy Sleep", description: "Improving sleep quality during pregnancy", category: "Mental Health", duration: "10:30" },
-  { id: "23", youtubeId: "1ZYbU82GVz4", title: "Bonding with Baby", description: "Techniques to connect with your baby", category: "Mental Health", duration: "8:45" },
+  // Hospital Preparation (informative, no exposure)
+  { id: "11", youtubeId: "NTulfAOzbp8", title: "Hospital Bag Checklist", description: "Midwife advice on what to pack", category: "Preparation", duration: "8:00" },
+  { id: "12", youtubeId: "oUxVPhwFuMM", title: "Essential Hospital Bag Items", description: "Must-have items for labor and delivery", category: "Preparation", duration: "12:30" },
+  { id: "13", youtubeId: "6YdwII4BO0g", title: "Hospital Bag Tips", description: "Nurse-approved essentials you'll actually use", category: "Preparation", duration: "10:00" },
   
-  // Newborn Care
-  { id: "24", youtubeId: "jmVAkH_s3Vw", title: "Breastfeeding", description: "Proper breastfeeding basics", category: "Newborn Care", duration: "15:00" },
-  { id: "25", youtubeId: "zWjQGhVq0Rc", title: "Diaper Changing", description: "The right way to change diapers", category: "Newborn Care", duration: "8:30" },
-  { id: "26", youtubeId: "mCJxPfTS1nQ", title: "Baby Bathing", description: "Safe steps for bathing your baby", category: "Newborn Care", duration: "10:00" },
-  { id: "27", youtubeId: "G2cZpAGQy08", title: "Newborn Sleep", description: "Safe sleep habits for babies", category: "Newborn Care", duration: "12:30" },
-  { id: "28", youtubeId: "Q2M0N4_ZNLY", title: "Baby Crying", description: "Understanding and soothing crying", category: "Newborn Care", duration: "9:45" },
-  { id: "29", youtubeId: "Rz0go1pTda8", title: "Umbilical Care", description: "How to care for baby's umbilical cord", category: "Newborn Care", duration: "7:00" },
+  // Newborn Care (educational, professional)
+  { id: "14", youtubeId: "hpgjwK_oQe0", title: "Newborn Care Week 1", description: "Pediatrician guide to first week", category: "Newborn Care", duration: "18:00" },
+  { id: "15", youtubeId: "-CWJYxIvoFQ", title: "Caring For Your Newborn", description: "Comprehensive newborn care guide", category: "Newborn Care", duration: "15:00" },
+  { id: "16", youtubeId: "CXWzqbe1i9c", title: "Newborn Baby Care Guide", description: "Handling, feeding, and sleeping basics", category: "Newborn Care", duration: "6:00" },
 ];
 
-const categories = ["All", "Nutrition", "Exercise", "Preparation", "Mental Health", "Newborn Care"];
+const categories = ["All", "Nutrition", "Development", "Preparation", "Mental Health", "Newborn Care"];
 
 export default function VideoLibraryPage() {
   const navigate = useNavigate();
