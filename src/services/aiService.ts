@@ -10,68 +10,68 @@ interface AIResponse {
 }
 
 const systemPrompts: Record<string, string> = {
-  'pregnancy-assistant': `أنتِ مساعدة حمل ذكية ومتعاطفة. تقدمين نصائح طبية عامة للحوامل باللغة العربية.
-- كوني داعمة ومشجعة
-- قدمي معلومات دقيقة ومفيدة
-- ذكّري دائماً باستشارة الطبيب للحالات الطارئة
-- استخدمي إيموجي مناسبة لجعل الردود ودية`,
+  'pregnancy-assistant': `You are a smart and empathetic pregnancy assistant. You provide general medical advice for pregnant women.
+- Be supportive and encouraging
+- Provide accurate and useful information
+- Always remind to consult a doctor for emergencies
+- Use appropriate emojis to make responses friendly`,
   
-  'nutrition-advisor': `أنتِ خبيرة تغذية متخصصة في تغذية الحوامل.
-- حللي الوجبات من حيث القيمة الغذائية
-- اقترحي بدائل صحية
-- راعي احتياجات كل أسبوع من الحمل
-- حذري من الأطعمة الممنوعة للحوامل`,
+  'nutrition-advisor': `You are a nutrition expert specialized in pregnancy nutrition.
+- Analyze meals for nutritional value
+- Suggest healthy alternatives
+- Consider the needs of each pregnancy week
+- Warn about foods to avoid during pregnancy`,
   
-  'kick-analyzer': `أنتِ متخصصة في تحليل حركات الجنين.
-- حللي أنماط الحركة
-- طمئني الأم مع تقديم معلومات مفيدة
-- نبهي للحالات التي تستدعي استشارة الطبيب`,
+  'kick-analyzer': `You are a specialist in fetal movement analysis.
+- Analyze movement patterns
+- Reassure the mother while providing useful information
+- Alert about cases that require doctor consultation`,
   
-  'bump-progress': `أنتِ متخصصة في متابعة تطور الحمل.
-- صفي التطورات الطبيعية لكل أسبوع
-- قدمي نصائح للعناية بالجسم
-- اقترحي تمارين مناسبة`
+  'bump-progress': `You are a specialist in pregnancy progress tracking.
+- Describe normal developments for each week
+- Provide body care tips
+- Suggest appropriate exercises`
 };
 
 // Fallback responses when API is not available
 const fallbackResponses: Record<string, string> = {
-  'nutrition': `🥗 **نصائح تغذية عامة للحامل:**
+  'nutrition': `🥗 **General Nutrition Tips for Pregnancy:**
 
-✅ تناولي وجبات متوازنة تحتوي على بروتين وخضروات
-✅ اشربي 8-10 أكواب ماء يومياً
-✅ تناولي فيتامينات الحمل يومياً
-✅ تجنبي الأطعمة النيئة وغير المبسترة
+✅ Eat balanced meals with protein and vegetables
+✅ Drink 8-10 glasses of water daily
+✅ Take prenatal vitamins daily
+✅ Avoid raw and unpasteurized foods
 
-⚠️ استشيري طبيبك للحصول على نصائح مخصصة.`,
+⚠️ Consult your doctor for personalized advice.`,
   
-  'kicks': `👶 **معلومات عن حركة الجنين:**
+  'kicks': `👶 **Fetal Movement Information:**
 
-✅ الطبيعي: 10 حركات في ساعتين
-✅ الجنين ينشط بعد الأكل وفي المساء
-✅ كل جنين له نمطه الخاص
+✅ Normal: 10 movements in 2 hours
+✅ Baby is active after eating and in the evening
+✅ Each baby has their own pattern
 
-⚠️ راجعي الطبيب إذا لاحظتِ انخفاضاً ملحوظاً في الحركة.`,
+⚠️ See your doctor if you notice a significant decrease in movement.`,
   
-  'bump': `🤰 **معلومات عن تطور الحمل:**
+  'bump': `🤰 **Pregnancy Development Information:**
 
-✅ البطن ينمو تدريجياً كل أسبوع
-✅ استخدمي مرطبات لتجنب التشققات
-✅ مارسي تمارين خفيفة بانتظام
+✅ The belly grows gradually each week
+✅ Use moisturizers to prevent stretch marks
+✅ Practice light exercises regularly
 
-⚠️ تابعي مع طبيبك بانتظام.`,
+⚠️ Follow up with your doctor regularly.`,
   
-  'default': `💜 **نصيحة عامة:**
+  'default': `💜 **General Tip:**
 
-استمتعي برحلة حملك وتذكري أن كل حمل فريد. استشيري طبيبك للأسئلة المحددة.`
+Enjoy your pregnancy journey and remember that every pregnancy is unique. Consult your doctor for specific questions.`
 };
 
 export const AIService = {
   async ask(prompt: string, context: string = 'pregnancy-assistant'): Promise<AIResponse> {
     // If no API key, return helpful fallback
     if (!OPENROUTER_API_KEY) {
-      const fallbackKey = prompt.toLowerCase().includes('تغذية') || prompt.toLowerCase().includes('أكل') ? 'nutrition' :
-                         prompt.toLowerCase().includes('حرك') || prompt.toLowerCase().includes('ركل') ? 'kicks' :
-                         prompt.toLowerCase().includes('بطن') || prompt.toLowerCase().includes('صور') ? 'bump' : 'default';
+      const fallbackKey = prompt.toLowerCase().includes('nutrition') || prompt.toLowerCase().includes('food') || prompt.toLowerCase().includes('eat') ? 'nutrition' :
+                         prompt.toLowerCase().includes('kick') || prompt.toLowerCase().includes('movement') ? 'kicks' :
+                         prompt.toLowerCase().includes('bump') || prompt.toLowerCase().includes('photo') ? 'bump' : 'default';
       return {
         content: fallbackResponses[fallbackKey],
         model: 'fallback'
@@ -117,33 +117,33 @@ export const AIService = {
   },
 
   async analyzeNutrition(foods: string[], week: number): Promise<AIResponse> {
-    const prompt = `أنا في الأسبوع ${week} من الحمل وتناولت اليوم: ${foods.join('، ')}.
+    const prompt = `I am in week ${week} of pregnancy and today I ate: ${foods.join(', ')}.
 
-حللي تغذيتي وأجيبي باختصار:
-1. هل هذه الوجبات مناسبة؟
-2. ما الذي ينقصني؟
-3. اقتراح واحد للتحسين`;
+Analyze my nutrition briefly:
+1. Are these meals appropriate?
+2. What am I missing?
+3. One suggestion for improvement`;
 
     return this.ask(prompt, 'nutrition-advisor');
   },
 
   async analyzeKickPatterns(sessions: any[], week: number): Promise<AIResponse> {
     const summary = sessions.slice(0, 5).map(s => 
-      `${s.total_kicks} حركة في ${s.duration_minutes} دقيقة`
-    ).join('، ');
+      `${s.total_kicks} movements in ${s.duration_minutes} minutes`
+    ).join(', ');
 
-    const prompt = `أنا في الأسبوع ${week} من الحمل.
-آخر جلسات تتبع حركة الجنين: ${summary}
+    const prompt = `I am in week ${week} of pregnancy.
+Recent kick tracking sessions: ${summary}
 
-حللي باختصار: هل هذا طبيعي؟ وما نصيحتك؟`;
+Analyze briefly: Is this normal? What's your advice?`;
 
     return this.ask(prompt, 'kick-analyzer');
   },
 
   async analyzeBumpProgress(currentWeek: number, previousWeek?: number): Promise<AIResponse> {
     const prompt = previousWeek 
-      ? `أنا في الأسبوع ${currentWeek} من الحمل (آخر صورة كانت بالأسبوع ${previousWeek}). أخبريني باختصار عن التغيرات المتوقعة ونصائح العناية.`
-      : `أنا في الأسبوع ${currentWeek} من الحمل. أخبريني باختصار عن حجم الجنين ونصائح العناية.`;
+      ? `I am in week ${currentWeek} of pregnancy (last photo was at week ${previousWeek}). Tell me briefly about expected changes and care tips.`
+      : `I am in week ${currentWeek} of pregnancy. Tell me briefly about baby size and care tips.`;
 
     return this.ask(prompt, 'bump-progress');
   }

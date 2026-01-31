@@ -326,7 +326,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
             />
           </div>
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            نصائح معتمدة من الأطباء للنوم بشكل أفضل أثناء الحمل
+            Doctor-approved tips for better sleep during pregnancy
           </p>
         </Card>
 

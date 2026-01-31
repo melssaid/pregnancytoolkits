@@ -48,8 +48,8 @@ export const usePregnancyCalculations = () => {
 export default usePregnancyCalculations;
 
 /*
-⚠️ Disclaimer: هذه الحسابات تعليمية فقط.
-   - مصادر: ACOG, WHO guidelines.
-   - دقة: تقريبية، استشر طبيبك.
-   متوافق Google Play: local computation, no diagnosis.
+⚠️ Disclaimer: These calculations are for educational purposes only.
+   - Sources: ACOG, WHO guidelines.
+   - Accuracy: Approximate, consult your doctor.
+   Google Play compliant: local computation, no diagnosis.
 */

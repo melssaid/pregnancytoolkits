@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { NutritionService, UserProfileService } from '@/services/supabaseServices';
 import { AIService } from '@/services/aiService';
+import { useTranslation } from 'react-i18next';
 
 interface MealLog {
   id: string;
@@ -16,14 +17,17 @@ interface MealLog {
   created_at: string;
 }
 
-const MEAL_TYPES = [
-  { id: 'breakfast', name: 'الفطور', icon: Coffee, color: 'from-yellow-400 to-orange-400' },
-  { id: 'lunch', name: 'الغداء', icon: Sun, color: 'from-green-400 to-teal-400' },
-  { id: 'dinner', name: 'العشاء', icon: Moon, color: 'from-purple-400 to-indigo-400' },
-  { id: 'snack', name: 'وجبة خفيفة', icon: Cookie, color: 'from-pink-400 to-rose-400' },
-];
-
 const AISmartNutritionTracker: React.FC = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
+  
+  const MEAL_TYPES = [
+    { id: 'breakfast', name: t('nutrition.breakfast', 'Breakfast'), icon: Coffee, color: 'from-yellow-400 to-orange-400' },
+    { id: 'lunch', name: t('nutrition.lunch', 'Lunch'), icon: Sun, color: 'from-green-400 to-teal-400' },
+    { id: 'dinner', name: t('nutrition.dinner', 'Dinner'), icon: Moon, color: 'from-purple-400 to-indigo-400' },
+    { id: 'snack', name: t('nutrition.snack', 'Snack'), icon: Cookie, color: 'from-pink-400 to-rose-400' },
+  ];
+
   const [todayMeals, setTodayMeals] = useState<MealLog[]>([]);
   const [currentWeek, setCurrentWeek] = useState(20);
   const [isLoading, setIsLoading] = useState(true);
@@ -73,8 +77,8 @@ const AISmartNutritionTracker: React.FC = () => {
   const saveMeal = async () => {
     if (foods.length === 0) {
       toast({
-        title: 'خطأ',
-        description: 'أضيفي طعام واحد على الأقل',
+        title: t('common.error', 'Error'),
+        description: t('nutrition.addFoodFirst', 'Add at least one food item'),
         variant: 'destructive'
       });
       return;
@@ -95,8 +99,8 @@ const AISmartNutritionTracker: React.FC = () => {
       setCalories('');
       
       toast({
-        title: 'تم الحفظ! ✅',
-        description: `تم تسجيل ${MEAL_TYPES.find(m => m.id === selectedMealType)?.name}`
+        title: t('common.success', 'Saved!') + ' ✅',
+        description: t('nutrition.mealLogged', 'Meal logged: {{meal}}', { meal: MEAL_TYPES.find(m => m.id === selectedMealType)?.name })
       });
 
       // Auto analyze
@@ -104,7 +108,7 @@ const AISmartNutritionTracker: React.FC = () => {
       
     } catch (error: any) {
       toast({
-        title: 'خطأ',
+        title: t('common.error', 'Error'),
         description: error.message,
         variant: 'destructive'
       });
@@ -115,7 +119,7 @@ const AISmartNutritionTracker: React.FC = () => {
 
   const analyzeMeal = async (meal: MealLog) => {
     try {
-      const foodNames = meal.foods.map((f: any) => f.name || f).join('، ');
+      const foodNames = meal.foods.map((f: any) => f.name || f).join(', ');
       const response = await AIService.analyzeNutrition([foodNames], currentWeek);
       
       await NutritionService.updateAiSuggestions(meal.id, response.content);
@@ -131,8 +135,8 @@ const AISmartNutritionTracker: React.FC = () => {
   const analyzeDay = async () => {
     if (todayMeals.length === 0) {
       toast({
-        title: 'لا توجد وجبات',
-        description: 'سجلي وجبة واحدة على الأقل أولاً'
+        title: t('nutrition.noMeals', 'No meals'),
+        description: t('nutrition.logMealFirst', 'Log at least one meal first')
       });
       return;
     }
@@ -149,7 +153,7 @@ const AISmartNutritionTracker: React.FC = () => {
       
     } catch (error: any) {
       toast({
-        title: 'خطأ',
+        title: t('common.error', 'Error'),
         description: error.message,
         variant: 'destructive'
       });
@@ -162,10 +166,10 @@ const AISmartNutritionTracker: React.FC = () => {
     try {
       await NutritionService.delete(id);
       setTodayMeals(prev => prev.filter(m => m.id !== id));
-      toast({ title: 'تم الحذف' });
+      toast({ title: t('common.deleted', 'Deleted') });
     } catch (error: any) {
       toast({
-        title: 'خطأ',
+        title: t('common.error', 'Error'),
         description: error.message,
         variant: 'destructive'
       });
@@ -186,14 +190,14 @@ const AISmartNutritionTracker: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-teal-50 to-blue-50">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-green-500 mx-auto mb-4" />
-          <p className="text-gray-600">جاري تحميل بياناتك...</p>
+          <p className="text-gray-600">{t('common.loading', 'Loading your data...')}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-teal-50 to-blue-50 p-4 md:p-8" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-teal-50 to-blue-50 p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         
         {/* Header */}
@@ -201,10 +205,10 @@ const AISmartNutritionTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-2xl">
               <Utensils className="w-8 h-8" />
-              🥗 متتبع التغذية الذكي
+              🥗 {t('tools.aiNutritionTracker.title', 'Smart Nutrition Tracker')}
             </CardTitle>
             <p className="text-green-100">
-              الأسبوع {currentWeek} - سجلي وجباتك واحصلي على نصائح AI
+              {t('nutrition.weekInfo', 'Week {{week}} - Log your meals and get AI tips', { week: currentWeek })}
             </p>
           </CardHeader>
         </Card>
@@ -219,7 +223,9 @@ const AISmartNutritionTracker: React.FC = () => {
                   <meal.icon className="w-8 h-8 mx-auto mb-2" />
                   <p className="font-bold">{meal.name}</p>
                   <p className="text-sm opacity-90">
-                    {mealLogs.length > 0 ? `${mealLogs.length} وجبة` : 'لم تسجل'}
+                    {mealLogs.length > 0 
+                      ? t('nutrition.mealsCount', '{{count}} meal(s)', { count: mealLogs.length })
+                      : t('nutrition.notLogged', 'Not logged')}
                   </p>
                 </CardContent>
               </Card>
@@ -234,10 +240,10 @@ const AISmartNutritionTracker: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-green-500" />
-                  <span className="font-medium">إجمالي السعرات اليوم</span>
+                  <span className="font-medium">{t('nutrition.totalCalories', 'Total Calories Today')}</span>
                 </div>
                 <span className="text-2xl font-bold text-green-600">
-                  {getTotalCalories()} سعرة
+                  {getTotalCalories()} {t('nutrition.cal', 'cal')}
                 </span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
@@ -246,7 +252,7 @@ const AISmartNutritionTracker: React.FC = () => {
                   style={{ width: `${Math.min((getTotalCalories() / 2200) * 100, 100)}%` }}
                 />
               </div>
-              <p className="text-xs text-gray-500 mt-1 text-center">الهدف: ~2200 سعرة للحامل</p>
+              <p className="text-xs text-gray-500 mt-1 text-center">{t('nutrition.goalCalories', 'Goal: ~2200 cal for pregnancy')}</p>
             </CardContent>
           </Card>
         )}
@@ -256,7 +262,7 @@ const AISmartNutritionTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Plus className="w-5 h-5" />
-              تسجيل وجبة جديدة
+              {t('nutrition.logNewMeal', 'Log New Meal')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -270,7 +276,7 @@ const AISmartNutritionTracker: React.FC = () => {
                   onClick={() => setSelectedMealType(meal.id)}
                   className={selectedMealType === meal.id ? `bg-gradient-to-r ${meal.color} border-0` : ''}
                 >
-                  <meal.icon className="w-4 h-4 ml-1" />
+                  <meal.icon className={`w-4 h-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                   {meal.name}
                 </Button>
               ))}
@@ -279,7 +285,7 @@ const AISmartNutritionTracker: React.FC = () => {
             {/* Food Input */}
             <div className="flex gap-2">
               <Input
-                placeholder="أدخلي اسم الطعام..."
+                placeholder={t('nutrition.enterFood', 'Enter food name...')}
                 value={foodInput}
                 onChange={(e) => setFoodInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && addFood()}
@@ -312,10 +318,10 @@ const AISmartNutritionTracker: React.FC = () => {
 
             {/* Calories */}
             <div>
-              <label className="text-sm text-gray-600">السعرات (اختياري)</label>
+              <label className="text-sm text-gray-600">{t('nutrition.caloriesOptional', 'Calories (optional)')}</label>
               <Input
                 type="number"
-                placeholder="عدد السعرات"
+                placeholder={t('nutrition.caloriesPlaceholder', 'Number of calories')}
                 value={calories}
                 onChange={(e) => setCalories(e.target.value)}
                 className="w-40"
@@ -328,8 +334,8 @@ const AISmartNutritionTracker: React.FC = () => {
               onClick={saveMeal}
               disabled={isSaving || foods.length === 0}
             >
-              {isSaving ? <Loader2 className="w-4 h-4 animate-spin ml-2" /> : null}
-              حفظ الوجبة
+              {isSaving ? <Loader2 className={`w-4 h-4 animate-spin ${isRTL ? 'ml-2' : 'mr-2'}`} /> : null}
+              {t('nutrition.saveMeal', 'Save Meal')}
             </Button>
           </CardContent>
         </Card>
@@ -338,18 +344,18 @@ const AISmartNutritionTracker: React.FC = () => {
         {todayMeals.length > 0 && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-gray-800">وجبات اليوم</h2>
+              <h2 className="text-xl font-bold text-gray-800">{t('nutrition.todaysMeals', "Today's Meals")}</h2>
               <Button
                 variant="outline"
                 onClick={analyzeDay}
                 disabled={isAnalyzing}
               >
                 {isAnalyzing ? (
-                  <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                  <Loader2 className={`w-4 h-4 animate-spin ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 ) : (
-                  <Sparkles className="w-4 h-4 ml-2" />
+                  <Sparkles className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 )}
-                تحليل اليوم
+                {t('nutrition.analyzeDay', 'Analyze Day')}
               </Button>
             </div>
 
@@ -366,10 +372,10 @@ const AISmartNutritionTracker: React.FC = () => {
                           {MEAL_TYPES.find(m => m.id === meal.meal_type)?.name}
                         </h3>
                         <p className="text-sm text-gray-600">
-                          {meal.foods.map((f: any) => f.name || f).join('، ')}
+                          {meal.foods.map((f: any) => f.name || f).join(', ')}
                         </p>
                         {meal.calories && (
-                          <p className="text-xs text-gray-500">{meal.calories} سعرة</p>
+                          <p className="text-xs text-gray-500">{meal.calories} {t('nutrition.cal', 'cal')}</p>
                         )}
                       </div>
                     </div>
@@ -385,7 +391,7 @@ const AISmartNutritionTracker: React.FC = () => {
 
                   {meal.ai_suggestions && (
                     <div className="mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
-                      <p className="text-xs font-medium text-green-600 mb-1">💡 نصيحة AI:</p>
+                      <p className="text-xs font-medium text-green-600 mb-1">💡 {t('nutrition.aiTip', 'AI Tip')}:</p>
                       <p className="text-sm text-green-700">{meal.ai_suggestions.slice(0, 200)}...</p>
                     </div>
                   )}
@@ -401,7 +407,7 @@ const AISmartNutritionTracker: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-green-500" />
-                تحليل تغذيتك اليوم
+                {t('nutrition.dailyAnalysis', 'Your Daily Nutrition Analysis')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -417,12 +423,12 @@ const AISmartNutritionTracker: React.FC = () => {
         {/* Tips */}
         <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
           <CardContent className="p-4">
-            <h3 className="font-bold text-amber-800 mb-2">💡 نصائح التغذية للحامل</h3>
+            <h3 className="font-bold text-amber-800 mb-2">💡 {t('nutrition.tipsTitle', 'Pregnancy Nutrition Tips')}</h3>
             <ul className="text-amber-700 text-sm space-y-1">
-              <li>• تناولي 5-6 وجبات صغيرة بدلاً من 3 وجبات كبيرة</li>
-              <li>• اشربي 8-10 أكواب ماء يومياً</li>
-              <li>• تجنبي الأطعمة النيئة والأجبان غير المبسترة</li>
-              <li>• ركزي على البروتين والحديد والكالسيوم</li>
+              <li>• {t('nutrition.tip1', 'Eat 5-6 small meals instead of 3 large ones')}</li>
+              <li>• {t('nutrition.tip2', 'Drink 8-10 glasses of water daily')}</li>
+              <li>• {t('nutrition.tip3', 'Avoid raw foods and unpasteurized cheeses')}</li>
+              <li>• {t('nutrition.tip4', 'Focus on protein, iron, and calcium')}</li>
             </ul>
           </CardContent>
         </Card>

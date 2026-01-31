@@ -205,14 +205,14 @@ export const AIService = {
   async analyzeBumpProgress(week: number, previousWeek?: number) {
     // Return a helpful message since we don't have real AI
     const content = previousWeek
-      ? `في الأسبوع ${week}، يستمر نمو طفلك! منذ الأسبوع ${previousWeek}، ازداد حجم البطن بشكل طبيعي. تذكري الحفاظ على ترطيب البشرة واستشيري طبيبك للمتابعة. 💕`
-      : `أنتِ في الأسبوع ${week} من الحمل! في هذه المرحلة، يكون حجم البطن متناسباً مع نمو الجنين. استمري في المتابعة مع طبيبك. 💕`;
+      ? `In week ${week}, your baby continues to grow! Since week ${previousWeek}, your bump has grown normally. Remember to keep your skin moisturized and follow up with your doctor. 💕`
+      : `You are in week ${week} of pregnancy! At this stage, your bump size is proportional to fetal growth. Continue following up with your doctor. 💕`;
     return { content, sources: [], cached: false };
   },
 
   async analyzeKickPatterns(sessions: any[], week: number) {
     const avgKicks = sessions.reduce((sum: number, s: any) => sum + (s.total_kicks || 0), 0) / sessions.length;
-    const content = `في الأسبوع ${week}، سجلتِ متوسط ${avgKicks.toFixed(1)} حركة لكل جلسة. هذا نمط جيد! 10 حركات خلال ساعتين يُعتبر طبيعياً. استشيري طبيبك إذا لاحظتِ أي تغير ملحوظ. 👶`;
+    const content = `In week ${week}, you recorded an average of ${avgKicks.toFixed(1)} movements per session. This is a good pattern! 10 movements within 2 hours is considered normal. Consult your doctor if you notice any significant changes. 👶`;
     return { content, sources: [], cached: false };
   }
 };

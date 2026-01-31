@@ -60,7 +60,7 @@ const SmartAppointmentReminder: React.FC = () => {
     } catch (error: any) {
       console.error('Error loading appointments:', error);
       toast({
-        title: 'خطأ في التحميل',
+        title: 'Loading Error',
         description: error.message,
         variant: 'destructive'
       });
@@ -74,8 +74,8 @@ const SmartAppointmentReminder: React.FC = () => {
     
     if (!formData.title || !formData.appointment_date) {
       toast({
-        title: 'خطأ',
-        description: 'يرجى ملء الحقول المطلوبة',
+        title: 'Error',
+        description: 'Please fill in the required fields',
         variant: 'destructive'
       });
       return;
@@ -102,18 +102,18 @@ const SmartAppointmentReminder: React.FC = () => {
         setAppointments(prev => prev.map(a => 
           a.id === editingId ? { ...a, ...appointmentData } : a
         ));
-        toast({ title: 'تم التحديث! ✅' });
+        toast({ title: 'Updated! ✅' });
       } else {
         const newAppointment = await AppointmentService.add(appointmentData);
         setAppointments(prev => [...prev, newAppointment]);
-        toast({ title: 'تمت الإضافة! ✅' });
+        toast({ title: 'Added! ✅' });
       }
 
       resetForm();
       
     } catch (error: any) {
       toast({
-        title: 'خطأ',
+        title: 'Error',
         description: error.message,
         variant: 'destructive'
       });
@@ -123,15 +123,15 @@ const SmartAppointmentReminder: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('هل أنتِ متأكدة من حذف هذا الموعد؟')) return;
+    if (!confirm('Are you sure you want to delete this appointment?')) return;
 
     try {
       await AppointmentService.delete(id);
       setAppointments(prev => prev.filter(a => a.id !== id));
-      toast({ title: 'تم الحذف' });
+      toast({ title: 'Deleted' });
     } catch (error: any) {
       toast({
-        title: 'خطأ',
+        title: 'Error',
         description: error.message,
         variant: 'destructive'
       });
@@ -173,8 +173,8 @@ const SmartAppointmentReminder: React.FC = () => {
       setIsGeneratingQuestions(true);
       
       const response = await AIService.ask(
-        `أنا في الأسبوع ${currentWeek} من الحمل وعندي موعد مع الطبيب بعنوان: ${formData.title}. 
-        اقترحي لي 5 أسئلة مهمة يجب أن أسألها للطبيب. اكتبي كل سؤال في سطر منفصل.`,
+        `I am in week ${currentWeek} of pregnancy and I have a doctor's appointment titled: ${formData.title}. 
+        Suggest 5 important questions I should ask my doctor. Write each question on a separate line.`,
         'pregnancy-assistant'
       );
       
@@ -224,7 +224,7 @@ const SmartAppointmentReminder: React.FC = () => {
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('ar-SA', {
+    return date.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
@@ -238,10 +238,10 @@ const SmartAppointmentReminder: React.FC = () => {
     const now = new Date();
     const date = new Date(dateStr);
     const diff = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    if (diff === 0) return 'اليوم';
-    if (diff === 1) return 'غداً';
-    if (diff < 0) return 'انتهى';
-    return `بعد ${diff} أيام`;
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Tomorrow';
+    if (diff < 0) return 'Passed';
+    return `In ${diff} days`;
   };
 
   if (isLoading) {
@@ -249,7 +249,7 @@ const SmartAppointmentReminder: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-blue-500 mx-auto mb-4" />
-          <p className="text-gray-600">جاري تحميل مواعيدك...</p>
+          <p className="text-gray-600">Loading your appointments...</p>
         </div>
       </div>
     );
@@ -259,7 +259,7 @@ const SmartAppointmentReminder: React.FC = () => {
   const past = getPastAppointments();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 md:p-8" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         
         {/* Header */}
@@ -267,10 +267,10 @@ const SmartAppointmentReminder: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-2xl">
               <Calendar className="w-8 h-8" />
-              📅 مواعيدي الطبية
+              📅 My Medical Appointments
             </CardTitle>
             <p className="text-blue-100">
-              الأسبوع {currentWeek} - نظمي مواعيدك مع أسئلة مقترحة من AI
+              Week {currentWeek} - Organize your appointments with AI-suggested questions
             </p>
           </CardHeader>
         </Card>
@@ -281,8 +281,8 @@ const SmartAppointmentReminder: React.FC = () => {
             className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-6 text-lg"
             onClick={() => setShowForm(true)}
           >
-            <Plus className="w-6 h-6 ml-2" />
-            إضافة موعد جديد
+            <Plus className="w-6 h-6 mr-2" />
+            Add New Appointment
           </Button>
         )}
 
@@ -290,14 +290,14 @@ const SmartAppointmentReminder: React.FC = () => {
         {showForm && (
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle>{editingId ? 'تعديل الموعد' : 'موعد جديد'}</CardTitle>
+              <CardTitle>{editingId ? 'Edit Appointment' : 'New Appointment'}</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1">نوع الموعد *</label>
+                  <label className="block text-sm font-medium mb-1">Appointment Type *</label>
                   <Input
-                    placeholder="مثال: فحص دوري، سونار..."
+                    placeholder="e.g., Regular checkup, Ultrasound..."
                     value={formData.title}
                     onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
                     required
@@ -306,7 +306,7 @@ const SmartAppointmentReminder: React.FC = () => {
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">التاريخ *</label>
+                    <label className="block text-sm font-medium mb-1">Date *</label>
                     <Input
                       type="date"
                       value={formData.appointment_date}
@@ -315,7 +315,7 @@ const SmartAppointmentReminder: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">الوقت</label>
+                    <label className="block text-sm font-medium mb-1">Time</label>
                     <Input
                       type="time"
                       value={formData.appointment_time}
@@ -325,27 +325,27 @@ const SmartAppointmentReminder: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">اسم الطبيب</label>
+                  <label className="block text-sm font-medium mb-1">Doctor's Name</label>
                   <Input
-                    placeholder="د. ..."
+                    placeholder="Dr. ..."
                     value={formData.doctor_name}
                     onChange={(e) => setFormData(prev => ({ ...prev, doctor_name: e.target.value }))}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">المكان</label>
+                  <label className="block text-sm font-medium mb-1">Location</label>
                   <Input
-                    placeholder="اسم المستشفى أو العيادة"
+                    placeholder="Hospital or clinic name"
                     value={formData.location}
                     onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">ملاحظات</label>
+                  <label className="block text-sm font-medium mb-1">Notes</label>
                   <Textarea
-                    placeholder="أي ملاحظات إضافية..."
+                    placeholder="Any additional notes..."
                     value={formData.notes}
                     onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
                     rows={2}
@@ -357,7 +357,7 @@ const SmartAppointmentReminder: React.FC = () => {
                   <div className="flex items-center justify-between mb-3">
                     <label className="font-medium flex items-center gap-2">
                       <MessageSquare className="w-4 h-4" />
-                      أسئلة للطبيب
+                      Questions for Doctor
                     </label>
                     <Button
                       type="button"
@@ -367,11 +367,11 @@ const SmartAppointmentReminder: React.FC = () => {
                       disabled={isGeneratingQuestions || !formData.title}
                     >
                       {isGeneratingQuestions ? (
-                        <Loader2 className="w-4 h-4 animate-spin ml-1" />
+                        <Loader2 className="w-4 h-4 animate-spin mr-1" />
                       ) : (
                         '✨'
                       )}
-                      اقتراحات AI
+                      AI Suggestions
                     </Button>
                   </div>
 
@@ -399,7 +399,7 @@ const SmartAppointmentReminder: React.FC = () => {
                   {/* Suggested Questions */}
                   {suggestedQuestions.length > 0 && (
                     <div className="space-y-2 bg-purple-50 p-3 rounded-lg">
-                      <p className="text-sm text-purple-600 font-medium">🤖 اقتراحات:</p>
+                      <p className="text-sm text-purple-600 font-medium">🤖 Suggestions:</p>
                       {suggestedQuestions.map((q, i) => (
                         <div
                           key={i}
@@ -416,11 +416,11 @@ const SmartAppointmentReminder: React.FC = () => {
 
                 <div className="flex gap-3 pt-4">
                   <Button type="submit" className="flex-1" disabled={isSaving}>
-                    {isSaving ? <Loader2 className="w-4 h-4 animate-spin ml-2" /> : null}
-                    {editingId ? 'حفظ التعديلات' : 'إضافة الموعد'}
+                    {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                    {editingId ? 'Save Changes' : 'Add Appointment'}
                   </Button>
                   <Button type="button" variant="outline" onClick={resetForm}>
-                    إلغاء
+                    Cancel
                   </Button>
                 </div>
               </form>
@@ -433,7 +433,7 @@ const SmartAppointmentReminder: React.FC = () => {
           <div className="space-y-4">
             <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
               <Bell className="w-5 h-5 text-blue-500" />
-              المواعيد القادمة ({upcoming.length})
+              Upcoming Appointments ({upcoming.length})
             </h2>
             {upcoming.map(appointment => (
               <Card key={appointment.id} className="shadow-lg hover:shadow-xl transition-shadow">
@@ -468,13 +468,13 @@ const SmartAppointmentReminder: React.FC = () => {
 
                       {appointment.questions && appointment.questions.length > 0 && (
                         <div className="mt-3 bg-gray-50 p-2 rounded-lg">
-                          <p className="text-xs font-medium text-gray-500 mb-1">أسئلتك:</p>
+                          <p className="text-xs font-medium text-gray-500 mb-1">Your Questions:</p>
                           <ul className="text-sm space-y-1">
                             {appointment.questions.slice(0, 3).map((q: string, i: number) => (
                               <li key={i} className="text-gray-700">• {q}</li>
                             ))}
                             {appointment.questions.length > 3 && (
-                              <li className="text-gray-400">+{appointment.questions.length - 3} أسئلة أخرى</li>
+                              <li className="text-gray-400">+{appointment.questions.length - 3} more questions</li>
                             )}
                           </ul>
                         </div>
@@ -510,7 +510,7 @@ const SmartAppointmentReminder: React.FC = () => {
           <div className="space-y-4">
             <h2 className="text-xl font-bold text-gray-500 flex items-center gap-2">
               <Clock className="w-5 h-5" />
-              المواعيد السابقة ({past.length})
+              Past Appointments ({past.length})
             </h2>
             {past.slice(0, 3).map(appointment => (
               <Card key={appointment.id} className="shadow opacity-70">
@@ -541,8 +541,8 @@ const SmartAppointmentReminder: React.FC = () => {
         {appointments.length === 0 && !showForm && (
           <div className="text-center py-12 text-gray-500">
             <Calendar className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-            <p>لا توجد مواعيد مسجلة</p>
-            <p className="text-sm">أضيفي موعدك القادم الآن!</p>
+            <p>No appointments scheduled</p>
+            <p className="text-sm">Add your next appointment now!</p>
           </div>
         )}
       </div>

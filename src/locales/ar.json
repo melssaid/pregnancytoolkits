@@ -254,10 +254,34 @@
     "notGreat": "ليس جيداً",
     "struggling": "صعب"
   },
-  "yogaPage": {
-    "title": "يوغا الحمل",
-    "firstTrimester": "الثلث الأول",
-    "secondTrimester": "الثلث الثاني",
-    "thirdTrimester": "الثلث الثالث"
+  "nutrition": {
+    "breakfast": "الفطور",
+    "lunch": "الغداء",
+    "dinner": "العشاء",
+    "snack": "وجبة خفيفة",
+    "addFoodFirst": "أضيفي طعام واحد على الأقل",
+    "mealLogged": "تم تسجيل: {{meal}}",
+    "noMeals": "لا توجد وجبات",
+    "logMealFirst": "سجلي وجبة واحدة على الأقل أولاً",
+    "weekInfo": "الأسبوع {{week}} - سجلي وجباتك واحصلي على نصائح AI",
+    "mealsCount": "{{count}} وجبة",
+    "notLogged": "لم تسجل",
+    "totalCalories": "إجمالي السعرات اليوم",
+    "cal": "سعرة",
+    "goalCalories": "الهدف: ~2200 سعرة للحامل",
+    "logNewMeal": "تسجيل وجبة جديدة",
+    "enterFood": "أدخلي اسم الطعام...",
+    "caloriesOptional": "السعرات (اختياري)",
+    "caloriesPlaceholder": "عدد السعرات",
+    "saveMeal": "حفظ الوجبة",
+    "todaysMeals": "وجبات اليوم",
+    "analyzeDay": "تحليل اليوم",
+    "aiTip": "نصيحة AI",
+    "dailyAnalysis": "تحليل تغذيتك اليوم",
+    "tipsTitle": "نصائح التغذية للحامل",
+    "tip1": "تناولي 5-6 وجبات صغيرة بدلاً من 3 وجبات كبيرة",
+    "tip2": "اشربي 8-10 أكواب ماء يومياً",
+    "tip3": "تجنبي الأطعمة النيئة والأجبان غير المبسترة",
+    "tip4": "ركزي على البروتين والحديد والكالسيوم"
   }
 }
