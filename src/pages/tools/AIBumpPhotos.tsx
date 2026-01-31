@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { BumpPhotoService, UserProfileService } from '@/services/supabaseServices';
-import { AIService } from '@/services/aiService';
+import { BumpPhotoService, UserProfileService, AIService } from '@/services/localStorageServices';
 
 const AIBumpPhotos: React.FC = () => {
   const [photos, setPhotos] = useState<any[]>([]);
@@ -38,7 +37,7 @@ const AIBumpPhotos: React.FC = () => {
     } catch (error: any) {
       console.error('Error loading data:', error);
       toast({
-        title: 'خطأ في التحميل',
+        title: 'Loading Error',
         description: error.message,
         variant: 'destructive'
       });
@@ -53,8 +52,8 @@ const AIBumpPhotos: React.FC = () => {
 
     if (!file.type.startsWith('image/')) {
       toast({
-        title: 'خطأ',
-        description: 'يرجى اختيار ملف صورة',
+        title: 'Error',
+        description: 'Please select an image file',
         variant: 'destructive'
       });
       return;
@@ -62,8 +61,8 @@ const AIBumpPhotos: React.FC = () => {
 
     if (file.size > 5 * 1024 * 1024) {
       toast({
-        title: 'خطأ',
-        description: 'حجم الصورة كبير جداً. الحد الأقصى 5 ميجابايت',
+        title: 'Error',
+        description: 'Image too large. Maximum size is 5MB',
         variant: 'destructive'
       });
       return;
@@ -78,8 +77,8 @@ const AIBumpPhotos: React.FC = () => {
       setCaption('');
       
       toast({
-        title: 'تم الرفع بنجاح! ✨',
-        description: `تمت إضافة صورة الأسبوع ${currentWeek}`
+        title: 'Upload Successful! ✨',
+        description: `Week ${currentWeek} photo added`
       });
 
       // Auto analyze
@@ -88,7 +87,7 @@ const AIBumpPhotos: React.FC = () => {
     } catch (error: any) {
       console.error('Upload error:', error);
       toast({
-        title: 'فشل الرفع',
+        title: 'Upload Failed',
         description: error.message,
         variant: 'destructive'
       });
@@ -123,7 +122,7 @@ const AIBumpPhotos: React.FC = () => {
     } catch (error: any) {
       console.error('Analysis error:', error);
       toast({
-        title: 'فشل التحليل',
+        title: 'Analysis Failed',
         description: error.message,
         variant: 'destructive'
       });
@@ -133,7 +132,7 @@ const AIBumpPhotos: React.FC = () => {
   };
 
   const handleDelete = async (photo: any) => {
-    if (!confirm('هل أنتِ متأكدة من حذف هذه الصورة؟')) return;
+    if (!confirm('Are you sure you want to delete this photo?')) return;
 
     try {
       await BumpPhotoService.delete(photo.id, photo.storage_path);
@@ -145,12 +144,12 @@ const AIBumpPhotos: React.FC = () => {
       }
       
       toast({
-        title: 'تم الحذف',
-        description: 'تم حذف الصورة بنجاح'
+        title: 'Deleted',
+        description: 'Photo deleted successfully'
       });
     } catch (error: any) {
       toast({
-        title: 'فشل الحذف',
+        title: 'Delete Failed',
         description: error.message,
         variant: 'destructive'
       });
@@ -169,14 +168,14 @@ const AIBumpPhotos: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-pink-500 mx-auto mb-4" />
-          <p className="text-gray-600">جاري تحميل صورك...</p>
+          <p className="text-gray-600">Loading your photos...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 md:p-8" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 md:p-8">
       <div className="max-w-6xl mx-auto space-y-6">
         
         {/* Header */}
@@ -184,10 +183,10 @@ const AIBumpPhotos: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-2xl">
               <Camera className="w-8 h-8" />
-              📸 ألبوم صور البطن
+              📸 Bump Photo Album
             </CardTitle>
             <p className="text-pink-100">
-              وثّقي رحلة حملك أسبوعاً بأسبوع مع تحليل AI ذكي
+              Document your pregnancy journey week by week with AI insights
             </p>
           </CardHeader>
         </Card>
@@ -195,7 +194,7 @@ const AIBumpPhotos: React.FC = () => {
         {/* Privacy Notice */}
         <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-4 text-center">
           <p className="text-amber-800 font-medium">
-            ⚠️ صورك محفوظة بأمان في السحابة. لا نشارك بياناتك مع أي طرف ثالث.
+            ⚠️ Your photos are stored securely on your device. We don't share your data with any third party.
           </p>
         </div>
 
@@ -205,7 +204,7 @@ const AIBumpPhotos: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <label className="block text-sm font-medium text-gray-700">
-                  📅 الأسبوع الحالي
+                  📅 Current Week
                 </label>
                 <div className="flex items-center gap-4">
                   <Button
@@ -213,7 +212,7 @@ const AIBumpPhotos: React.FC = () => {
                     size="icon"
                     onClick={() => setCurrentWeek(w => Math.max(1, w - 1))}
                   >
-                    <ChevronRight className="w-4 h-4" />
+                    <ChevronLeft className="w-4 h-4" />
                   </Button>
                   <span className="text-3xl font-bold text-purple-600 min-w-[60px] text-center">
                     {currentWeek}
@@ -223,12 +222,12 @@ const AIBumpPhotos: React.FC = () => {
                     size="icon"
                     onClick={() => setCurrentWeek(w => Math.min(42, w + 1))}
                   >
-                    <ChevronLeft className="w-4 h-4" />
+                    <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
                 
                 <Textarea
-                  placeholder="أضيفي تعليقاً على الصورة (اختياري)..."
+                  placeholder="Add a caption (optional)..."
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
                   className="resize-none"
@@ -251,10 +250,10 @@ const AIBumpPhotos: React.FC = () => {
                   <Upload className="w-12 h-12 text-pink-500" />
                 )}
                 <span className="text-pink-600 font-medium mt-3">
-                  {isUploading ? 'جاري الرفع...' : 'اضغطي لرفع صورة'}
+                  {isUploading ? 'Uploading...' : 'Click to upload photo'}
                 </span>
                 <span className="text-xs text-gray-500 mt-1">
-                  الحد الأقصى: 5 ميجابايت
+                  Maximum: 5MB
                 </span>
               </div>
             </div>
@@ -283,7 +282,7 @@ const AIBumpPhotos: React.FC = () => {
                     loading="lazy"
                   />
                   <div className="absolute top-2 right-2 bg-purple-600 text-white px-2 py-1 rounded-full text-xs font-bold">
-                    أسبوع {photo.week}
+                    Week {photo.week}
                   </div>
                   {photo.ai_analysis && (
                     <div className="absolute top-2 left-2 bg-green-500 text-white p-1 rounded-full">
@@ -293,7 +292,7 @@ const AIBumpPhotos: React.FC = () => {
                 </div>
                 <div className="p-2 flex justify-between items-center">
                   <span className="text-xs text-gray-500">
-                    {new Date(photo.created_at).toLocaleDateString('ar-SA')}
+                    {new Date(photo.created_at).toLocaleDateString('en-US')}
                   </span>
                   <div className="flex gap-1">
                     <Button
@@ -326,8 +325,8 @@ const AIBumpPhotos: React.FC = () => {
         ) : (
           <div className="text-center py-12 text-gray-500">
             <Image className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-            <p>لم تضيفي أي صور بعد</p>
-            <p className="text-sm">ابدئي بتوثيق رحلة حملك الآن!</p>
+            <p>No photos added yet</p>
+            <p className="text-sm">Start documenting your pregnancy journey!</p>
           </div>
         )}
 
@@ -338,7 +337,7 @@ const AIBumpPhotos: React.FC = () => {
               <CardTitle className="flex items-center justify-between">
                 <span className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-purple-500" />
-                  تحليل AI - الأسبوع {selectedPhoto.week}
+                  AI Analysis - Week {selectedPhoto.week}
                 </span>
                 <Button
                   variant="outline"
@@ -347,11 +346,11 @@ const AIBumpPhotos: React.FC = () => {
                   disabled={isAnalyzing}
                 >
                   {isAnalyzing ? (
-                    <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
                   ) : (
-                    <Sparkles className="w-4 h-4 ml-2" />
+                    <Sparkles className="w-4 h-4 mr-2" />
                   )}
-                  {isAnalyzing ? 'جاري التحليل...' : 'تحليل جديد'}
+                  {isAnalyzing ? 'Analyzing...' : 'New Analysis'}
                 </Button>
               </CardTitle>
             </CardHeader>
@@ -371,7 +370,7 @@ const AIBumpPhotos: React.FC = () => {
               ) : (
                 <div className="text-center py-6 text-gray-500">
                   <Sparkles className="w-8 h-8 mx-auto mb-2 text-gray-300" />
-                  <p>اضغطي "تحليل جديد" للحصول على نصائح مخصصة</p>
+                  <p>Click "New Analysis" for personalized tips</p>
                 </div>
               )}
             </CardContent>
@@ -382,7 +381,7 @@ const AIBumpPhotos: React.FC = () => {
         {photos.length > 1 && (
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle>📊 تطور رحلتك</CardTitle>
+              <CardTitle>📊 Your Journey Progress</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex overflow-x-auto gap-4 pb-2">
@@ -400,7 +399,7 @@ const AIBumpPhotos: React.FC = () => {
                       alt={`Week ${photo.week}`}
                       className="w-16 h-16 rounded-full object-cover border-2 border-purple-300"
                     />
-                    <p className="text-xs mt-1 font-medium">أسبوع {photo.week}</p>
+                    <p className="text-xs mt-1 font-medium">Week {photo.week}</p>
                   </div>
                 ))}
               </div>
