@@ -23,6 +23,7 @@ const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const Contact = lazy(() => import("@/pages/Contact"));
 
 // AI-POWERED CORE TOOLS
+const SmartPregnancyPlan = lazy(() => import("@/pages/tools/SmartPregnancyPlan"));
 const PregnancyAssistant = lazy(() => import("@/pages/tools/PregnancyAssistant"));
 const AISymptomAnalyzer = lazy(() => import("@/pages/tools/AISymptomAnalyzer"));
 const AIMealSuggestion = lazy(() => import("@/pages/tools/AIMealSuggestion"));
@@ -109,6 +110,7 @@ export function AnimatedRoutes() {
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
           
           {/* AI-POWERED CORE TOOLS */}
+          <Route path="/tools/smart-plan" element={<PageTransition><SmartPregnancyPlan /></PageTransition>} />
           <Route path="/tools/pregnancy-assistant" element={<PageTransition><PregnancyAssistant /></PageTransition>} />
           <Route path="/tools/symptom-analyzer" element={<PageTransition><AISymptomAnalyzer /></PageTransition>} />
           <Route path="/tools/ai-meal-suggestion" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
@@ -202,7 +204,7 @@ export function AnimatedRoutes() {
           <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />
 
           {/* 404 */}
-          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+          <Route path=\"*\" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </Suspense>
     </AnimatePresence>
