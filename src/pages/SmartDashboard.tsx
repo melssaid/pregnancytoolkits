@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Send, Bot, User, Home, MessageCircle, Heart, Utensils, Dumbbell, 
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
-  Baby, Coffee, Stethoscope, Apple, ChevronRight
+  Baby, Pill, Stethoscope, Salad, ChevronRight, Waves
 } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Layout } from "@/components/Layout";
@@ -31,45 +31,45 @@ interface HealthData {
 }
 
 const quickQuestions = [
-  { icon: Baby, text: "أعراض الشهر الأول؟", color: "from-primary to-pink-500" },
-  { icon: Coffee, text: "هل القهوة آمنة؟", color: "from-amber-500 to-orange-500" },
-  { icon: Stethoscope, text: "التحضير للولادة؟", color: "from-blue-500 to-indigo-500" },
-  { icon: Apple, text: "الفيتامينات المهمة؟", color: "from-emerald-500 to-green-500" },
+  { icon: Baby, text: "First trimester symptoms?", color: "from-primary to-pink-500" },
+  { icon: Pill, text: "Is coffee safe?", color: "from-amber-500 to-orange-500" },
+  { icon: Stethoscope, text: "Labor preparation?", color: "from-blue-500 to-indigo-500" },
+  { icon: Salad, text: "Important vitamins?", color: "from-emerald-500 to-green-500" },
 ];
 
 const nutritionPlan = [
-  { meal: "الفطور", suggestion: "بيض مسلوق + خبز أسمر + عصير برتقال طازج", calories: 350, icon: "🍳" },
-  { meal: "الغداء", suggestion: "دجاج مشوي + أرز + سلطة خضراء", calories: 550, icon: "🍗" },
-  { meal: "العشاء", suggestion: "سمك مشوي + خضار سوتيه + زبادي", calories: 400, icon: "🐟" },
-  { meal: "وجبات خفيفة", suggestion: "فواكه + مكسرات + حليب", calories: 200, icon: "🥜" },
+  { meal: "Breakfast", suggestion: "Boiled eggs + whole wheat bread + fresh orange juice", calories: 350 },
+  { meal: "Lunch", suggestion: "Grilled chicken + rice + green salad", calories: 550 },
+  { meal: "Dinner", suggestion: "Grilled fish + sautéed vegetables + yogurt", calories: 400 },
+  { meal: "Snacks", suggestion: "Fruits + nuts + milk", calories: 200 },
 ];
 
 const exercises = [
-  { name: "المشي", duration: "30 دقيقة", icon: "🚶‍♀️", benefit: "يحسن الدورة الدموية", href: "/tools/smart-walking-coach" },
-  { name: "السباحة", duration: "20 دقيقة", icon: "🏊‍♀️", benefit: "يخفف آلام الظهر", href: "/tools/exercise-guide" },
-  { name: "يوغا الحمل", duration: "25 دقيقة", icon: "🧘‍♀️", benefit: "يقلل التوتر", href: "/tools/smart-stretch-reminder" },
-  { name: "تمارين كيجل", duration: "10 دقائق", icon: "💪", benefit: "يقوي عضلات الحوض", href: "/tools/exercise-guide" },
+  { name: "Walking", duration: "30 min", benefit: "Improves circulation", href: "/tools/smart-walking-coach" },
+  { name: "Swimming", duration: "20 min", benefit: "Relieves back pain", href: "/tools/exercise-guide" },
+  { name: "Prenatal Yoga", duration: "25 min", benefit: "Reduces stress", href: "/tools/smart-stretch-reminder" },
+  { name: "Kegel Exercises", duration: "10 min", benefit: "Strengthens pelvic floor", href: "/tools/exercise-guide" },
 ];
 
 const videos = [
-  { id: 1, youtubeId: "j5qY8c7BKmg", title: "تمارين يوغا للحامل" },
-  { id: 2, youtubeId: "ixPsILYT0Yc", title: "وصفات صحية للحمل" },
-  { id: 3, youtubeId: "UCDkZ_NUEBI", title: "نصائح الحمل الصحي" },
+  { id: 1, youtubeId: "j5qY8c7BKmg", title: "Prenatal Yoga Exercises" },
+  { id: 2, youtubeId: "ixPsILYT0Yc", title: "Healthy Pregnancy Recipes" },
+  { id: 3, youtubeId: "UCDkZ_NUEBI", title: "Pregnancy Health Tips" },
 ];
 
-const symptoms = ["غثيان", "صداع", "تعب", "ألم ظهر", "تورم", "حرقة معدة", "أرق"];
+const symptoms = ["Nausea", "Headache", "Fatigue", "Back pain", "Swelling", "Heartburn", "Insomnia"];
 
 const SmartDashboard = () => {
   const { streamChat, isLoading, error } = usePregnancyAI();
   const [activeTab, setActiveTab] = useState<TabType>("home");
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "مرحباً! أنا مساعدتك الذكية للحمل. كيف يمكنني مساعدتك اليوم؟ 🤰" }
+    { role: "assistant", content: "Hello! I'm your smart pregnancy assistant. How can I help you today?" }
   ]);
   const [userInput, setUserInput] = useState("");
   const [healthData, setHealthData] = useState<HealthData>({
     weight: "",
     bloodPressure: "",
-    mood: "جيد",
+    mood: "Good",
     symptoms: [],
     weekOfPregnancy: 20
   });
@@ -116,38 +116,38 @@ const SmartDashboard = () => {
     
     if (weight && parseFloat(weight) > 0) {
       const expectedGain = weekOfPregnancy < 13 ? 2 : weekOfPregnancy < 27 ? 6 : 12;
-      analysis.push(`📊 الوزن المتوقع زيادته حتى الآن: ~${expectedGain} كجم`);
+      analysis.push(`Expected weight gain so far: ~${expectedGain} kg`);
     }
     
     if (bloodPressure) {
       const [systolic] = bloodPressure.split("/").map(Number);
       if (systolic > 140) {
-        analysis.push("⚠️ ضغط الدم مرتفع - يُنصح بمراجعة الطبيب");
+        analysis.push("Blood pressure is high - consult your doctor");
       } else if (systolic < 90) {
-        analysis.push("💡 ضغط الدم منخفض - أكثري من السوائل والراحة");
+        analysis.push("Blood pressure is low - increase fluids and rest");
       } else if (!isNaN(systolic)) {
-        analysis.push("✅ ضغط الدم طبيعي");
+        analysis.push("Blood pressure is normal");
       }
     }
 
-    if (mood === "سيء" || mood === "قلقة") {
-      analysis.push("💜 الدعم النفسي مهم - تحدثي مع شخص تثقين به أو متخصص");
+    if (mood === "Bad" || mood === "Anxious") {
+      analysis.push("Mental support is important - talk to someone you trust");
     }
 
     if (healthData.symptoms.length > 0) {
-      analysis.push(`🩺 الأعراض المسجلة: ${healthData.symptoms.join("، ")}`);
+      analysis.push(`Recorded symptoms: ${healthData.symptoms.join(", ")}`);
     }
 
-    return analysis.length > 0 ? analysis : ["أدخلي بياناتك للحصول على تحليل ذكي"];
+    return analysis.length > 0 ? analysis : ["Enter your data for smart analysis"];
   };
 
   const tabs = [
-    { id: "home" as TabType, icon: Home, label: "الرئيسية" },
-    { id: "chat" as TabType, icon: MessageCircle, label: "المساعد الذكي" },
-    { id: "health" as TabType, icon: Heart, label: "تتبع الصحة" },
-    { id: "nutrition" as TabType, icon: Utensils, label: "التغذية" },
-    { id: "exercise" as TabType, icon: Dumbbell, label: "التمارين" },
-    { id: "videos" as TabType, icon: Play, label: "الفيديوهات" },
+    { id: "home" as TabType, icon: Home, label: "Home" },
+    { id: "chat" as TabType, icon: MessageCircle, label: "AI Chat" },
+    { id: "health" as TabType, icon: Heart, label: "Health" },
+    { id: "nutrition" as TabType, icon: Utensils, label: "Nutrition" },
+    { id: "exercise" as TabType, icon: Dumbbell, label: "Exercise" },
+    { id: "videos" as TabType, icon: Play, label: "Videos" },
   ];
 
   return (
@@ -178,7 +178,7 @@ const SmartDashboard = () => {
         {/* Disclaimer */}
         <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200 p-3 rounded-xl text-center text-xs font-medium flex items-center justify-center gap-2">
           <AlertTriangle className="w-4 h-4" />
-          هذا التطبيق تعليمي فقط ولا يُغني عن استشارة الطبيب المختص
+          This app is for educational purposes only and does not replace medical advice
         </div>
 
         {/* Home Tab */}
@@ -188,27 +188,84 @@ const SmartDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            <Card className="overflow-hidden">
-              <CardContent className="p-5">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h2 className="text-lg font-bold text-foreground">مرحباً بكِ في تطبيق الحمل الذكي</h2>
-                    <p className="text-xs text-muted-foreground">مدعوم بالذكاء الاصطناعي</p>
-                  </div>
+            {/* Creative Hero Icon */}
+            <div className="flex flex-col items-center py-6">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                className="relative"
+              >
+                {/* Outer glow ring */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-xl scale-150" />
+                
+                {/* Animated rings */}
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-primary/30"
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ originX: 0.5, originY: 0.5 }}
+                />
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-accent/30"
+                  animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  style={{ originX: 0.5, originY: 0.5 }}
+                />
+                
+                {/* Main icon container */}
+                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center shadow-2xl shadow-primary/30">
+                  <div className="absolute inset-1 rounded-full bg-background/10 backdrop-blur-sm" />
+                  <motion.div
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <Baby className="w-12 h-12 text-primary-foreground relative z-10" />
+                  </motion.div>
                 </div>
 
+                {/* Floating decorative elements */}
+                <motion.div
+                  className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center shadow-lg"
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Heart className="w-3 h-3 text-white" />
+                </motion.div>
+                <motion.div
+                  className="absolute -bottom-1 -left-2 w-5 h-5 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center shadow-lg"
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                >
+                  <Sparkles className="w-2.5 h-2.5 text-white" />
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="mt-5 text-center"
+              >
+                <h1 className="text-xl font-bold text-foreground">Smart Pregnancy Dashboard</h1>
+                <p className="text-sm text-muted-foreground mt-1">AI-Powered Companion</p>
+              </motion.div>
+            </div>
+
+            <Card className="overflow-hidden">
+              <CardContent className="p-5">
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { icon: Bot, title: "مساعد ذكي", desc: "اسألي أي سؤال عن الحمل", tab: "chat" as TabType },
-                    { icon: Activity, title: "تحليل صحي", desc: "تتبع وتحليل بياناتك", tab: "health" as TabType },
-                    { icon: Utensils, title: "خطة تغذية", desc: "وجبات مخصصة لكل مرحلة", tab: "nutrition" as TabType },
-                    { icon: Dumbbell, title: "تمارين آمنة", desc: "رياضة مناسبة للحمل", tab: "exercise" as TabType },
+                    { icon: Bot, title: "AI Assistant", desc: "Ask any pregnancy question", tab: "chat" as TabType },
+                    { icon: Activity, title: "Health Analysis", desc: "Track your health data", tab: "health" as TabType },
+                    { icon: Utensils, title: "Meal Plans", desc: "Customized nutrition", tab: "nutrition" as TabType },
+                    { icon: Dumbbell, title: "Safe Exercises", desc: "Pregnancy-safe workouts", tab: "exercise" as TabType },
                   ].map((feature, i) => (
-                    <button
+                    <motion.button
                       key={i}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 * i }}
                       onClick={() => setActiveTab(feature.tab)}
                       className="bg-primary/5 hover:bg-primary/10 p-4 rounded-xl text-center transition-all group"
                     >
@@ -217,7 +274,7 @@ const SmartDashboard = () => {
                       </div>
                       <h3 className="text-sm font-semibold text-foreground">{feature.title}</h3>
                       <p className="text-[10px] text-muted-foreground mt-1">{feature.desc}</p>
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </CardContent>
@@ -228,14 +285,14 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                   <Brain className="w-4 h-4 text-primary" />
-                  أدوات الذكاء الاصطناعي
+                  AI-Powered Tools
                 </h3>
                 <div className="space-y-2">
                   {[
-                    { title: "المساعد الذكي", href: "/tools/pregnancy-assistant" },
-                    { title: "تحليل الأعراض", href: "/tools/symptom-analyzer" },
-                    { title: "اقتراح الوجبات", href: "/tools/ai-meal-suggestion" },
-                    { title: "الملخص الأسبوعي", href: "/tools/weekly-summary" },
+                    { title: "AI Assistant", href: "/tools/pregnancy-assistant" },
+                    { title: "Symptom Analyzer", href: "/tools/symptom-analyzer" },
+                    { title: "Meal Suggestions", href: "/tools/ai-meal-suggestion" },
+                    { title: "Weekly Summary", href: "/tools/weekly-summary" },
                   ].map((link, i) => (
                     <Link
                       key={i}
@@ -263,7 +320,7 @@ const SmartDashboard = () => {
                 <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-4 border-b border-border">
                   <h2 className="text-base font-bold flex items-center gap-2">
                     <Bot className="w-5 h-5 text-primary" />
-                    المساعد الذكي للحمل
+                    AI Pregnancy Assistant
                   </h2>
                 </div>
 
@@ -275,10 +332,10 @@ const SmartDashboard = () => {
                           <button
                             key={i}
                             onClick={() => sendMessage(q.text)}
-                            className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/50 hover:bg-muted transition-colors text-right"
+                            className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/50 hover:bg-muted transition-colors text-left"
                           >
                             <div className={`p-1.5 rounded-md bg-gradient-to-br ${q.color}`}>
-                              <q.icon className="w-3 h-3 text-white" />
+                              <q.icon className="w-3 h-3 text-primary-foreground" />
                             </div>
                             <span className="text-xs font-medium">{q.text}</span>
                           </button>
@@ -355,7 +412,7 @@ const SmartDashboard = () => {
                     <Input
                       value={userInput}
                       onChange={(e) => setUserInput(e.target.value)}
-                      placeholder="اكتبي سؤالك هنا..."
+                      placeholder="Type your question..."
                       className="text-sm"
                       onKeyDown={(e) => {
                         if (e.key === "Enter" && !e.shiftKey) {
@@ -389,13 +446,13 @@ const SmartDashboard = () => {
             <Card>
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-destructive" />
-                  تتبع الصحة بالذكاء الاصطناعي
+                  <Heart className="w-5 h-5 text-primary" />
+                  AI Health Tracking
                 </h2>
 
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">📅 أسبوع الحمل</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Week of Pregnancy</label>
                     <Input
                       type="number"
                       min="1"
@@ -406,7 +463,7 @@ const SmartDashboard = () => {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">⚖️ الوزن (كجم)</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Weight (kg)</label>
                     <Input
                       type="number"
                       placeholder="65"
@@ -416,7 +473,7 @@ const SmartDashboard = () => {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">💓 ضغط الدم</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Blood Pressure</label>
                     <Input
                       placeholder="120/80"
                       value={healthData.bloodPressure}
@@ -425,23 +482,23 @@ const SmartDashboard = () => {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">😊 المزاج</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Mood</label>
                     <select
                       value={healthData.mood}
                       onChange={(e) => setHealthData({ ...healthData, mood: e.target.value })}
                       className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
                     >
-                      <option>ممتاز</option>
-                      <option>جيد</option>
-                      <option>عادي</option>
-                      <option>قلقة</option>
-                      <option>سيء</option>
+                      <option>Excellent</option>
+                      <option>Good</option>
+                      <option>Normal</option>
+                      <option>Anxious</option>
+                      <option>Bad</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="mb-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">🩺 الأعراض اليوم</label>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Today's Symptoms</label>
                   <div className="flex flex-wrap gap-2">
                     {symptoms.map(symptom => (
                       <button
@@ -467,7 +524,7 @@ const SmartDashboard = () => {
 
                 <Button className="w-full" onClick={() => {}}>
                   <Scale className="w-4 h-4 mr-2" />
-                  حفظ وتحليل
+                  Save & Analyze
                 </Button>
               </CardContent>
             </Card>
@@ -477,7 +534,7 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
                   <Brain className="w-4 h-4 text-primary" />
-                  التحليل الذكي
+                  Smart Analysis
                 </h3>
                 <div className="space-y-2">
                   {getHealthAnalysis().map((item, i) => (
@@ -500,38 +557,40 @@ const SmartDashboard = () => {
             <Card>
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-1 flex items-center gap-2">
-                  <Utensils className="w-5 h-5 text-green-500" />
-                  خطة التغذية الذكية
+                  <Utensils className="w-5 h-5 text-primary" />
+                  Smart Nutrition Plan
                 </h2>
                 <p className="text-xs text-muted-foreground mb-4">
-                  خطة مخصصة للأسبوع {healthData.weekOfPregnancy} من الحمل
+                  Customized plan for week {healthData.weekOfPregnancy} of pregnancy
                 </p>
 
                 <div className="space-y-3">
                   {nutritionPlan.map((meal, i) => (
-                    <div key={i} className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-xl">
-                      <div className="text-3xl">{meal.icon}</div>
+                    <div key={i} className="flex items-center gap-3 p-3 bg-primary/5 rounded-xl">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Salad className="w-5 h-5 text-primary" />
+                      </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-sm font-semibold text-green-700 dark:text-green-400">{meal.meal}</h3>
+                        <h3 className="text-sm font-semibold text-foreground">{meal.meal}</h3>
                         <p className="text-xs text-muted-foreground truncate">{meal.suggestion}</p>
                       </div>
-                      <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold shrink-0">
-                        {meal.calories}
+                      <div className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-bold shrink-0">
+                        {meal.calories} cal
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-4 p-3 bg-green-100 dark:bg-green-900/30 rounded-xl text-center">
-                  <p className="text-sm font-semibold text-green-700 dark:text-green-400">
-                    📊 إجمالي السعرات: {nutritionPlan.reduce((a, b) => a + b.calories, 0)} سعرة
+                <div className="mt-4 p-3 bg-primary/10 rounded-xl text-center">
+                  <p className="text-sm font-semibold text-foreground">
+                    Total Daily Calories: {nutritionPlan.reduce((a, b) => a + b.calories, 0)} cal
                   </p>
                 </div>
 
                 <Link to="/tools/ai-meal-suggestion">
                   <Button className="w-full mt-4" variant="outline">
-                    اقتراحات أكثر بالذكاء الاصطناعي
-                    <ChevronRight className="w-4 h-4 mr-2" />
+                    More AI Suggestions
+                    <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
               </CardContent>
@@ -548,18 +607,20 @@ const SmartDashboard = () => {
             <Card>
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
-                  <Dumbbell className="w-5 h-5 text-amber-500" />
-                  تمارين آمنة للحمل
+                  <Dumbbell className="w-5 h-5 text-primary" />
+                  Safe Pregnancy Exercises
                 </h2>
 
                 <div className="grid grid-cols-2 gap-3">
                   {exercises.map((ex, i) => (
                     <Link key={i} to={ex.href}>
-                      <div className="bg-amber-50 dark:bg-amber-950/20 p-4 rounded-xl text-center hover:shadow-md transition-shadow">
-                        <div className="text-4xl mb-2">{ex.icon}</div>
-                        <h3 className="text-sm font-semibold text-amber-700 dark:text-amber-400">{ex.name}</h3>
-                        <p className="text-xs text-muted-foreground mt-1">⏱️ {ex.duration}</p>
-                        <p className="text-[10px] text-amber-600 dark:text-amber-500 mt-1">✨ {ex.benefit}</p>
+                      <div className="bg-primary/5 hover:bg-primary/10 p-4 rounded-xl text-center transition-all">
+                        <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center">
+                          <Activity className="w-5 h-5 text-primary" />
+                        </div>
+                        <h3 className="text-sm font-semibold text-foreground">{ex.name}</h3>
+                        <p className="text-xs text-muted-foreground mt-1">{ex.duration}</p>
+                        <p className="text-[10px] text-primary mt-1">{ex.benefit}</p>
                       </div>
                     </Link>
                   ))}
@@ -567,8 +628,8 @@ const SmartDashboard = () => {
 
                 <Link to="/tools/exercise-guide">
                   <Button className="w-full mt-4" variant="outline">
-                    المزيد من التمارين
-                    <ChevronRight className="w-4 h-4 mr-2" />
+                    More Exercises
+                    <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
               </CardContent>
@@ -586,7 +647,7 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
                   <Play className="w-5 h-5 text-primary" />
-                  فيديوهات تعليمية
+                  Educational Videos
                 </h2>
 
                 <div className="space-y-4">
@@ -619,7 +680,7 @@ const SmartDashboard = () => {
                               </div>
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent rounded-b-xl">
-                              <p className="text-primary-foreground text-sm font-medium text-right">{video.title}</p>
+                              <p className="text-primary-foreground text-sm font-medium">{video.title}</p>
                             </div>
                           </AspectRatio>
                         </button>
@@ -630,8 +691,8 @@ const SmartDashboard = () => {
 
                 <Link to="/videos">
                   <Button className="w-full mt-4" variant="outline">
-                    المكتبة الكاملة
-                    <ChevronRight className="w-4 h-4 mr-2" />
+                    Full Library
+                    <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
               </CardContent>
