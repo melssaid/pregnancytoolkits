@@ -11,6 +11,7 @@ import MotivationalQuote from "@/components/MotivationalQuote";
 import useAnalytics from "@/hooks/useAnalytics";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
+import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
 interface OvulationResult {
   id: string;
@@ -273,6 +274,28 @@ export default function OvulationCalculator() {
                 6 days of peak fertility 💕
               </p>
             </motion.div>
+
+            {/* AI Insights */}
+            <AIInsightCard
+              title="AI Fertility Insights"
+              prompt={`I'm tracking my fertility. My cycle length is ${cycleLength} days. My last period started on ${lastPeriod}. My ovulation is predicted for ${format(result.ovulationDate, "MMMM d, yyyy")} and my fertile window is ${format(result.fertileStart, "MMM d")} to ${format(result.fertileEnd, "MMM d")}.
+
+Please provide personalized advice in this format:
+## 🌸 Your Fertile Window Analysis
+Brief analysis of my cycle pattern
+
+## 💕 Conception Tips
+3-4 specific tips for maximizing chances during my fertile window
+
+## 🍃 Lifestyle Recommendations
+Diet, exercise, and lifestyle tips for this phase
+
+## ⚠️ Important Notes
+Any important reminders about fertility tracking`}
+              context={{ week: parseInt(cycleLength) }}
+              buttonText="Get Personalized Fertility Advice"
+              variant="default"
+            />
 
             <motion.div
               initial={{ opacity: 0 }}

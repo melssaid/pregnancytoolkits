@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { format, addDays, differenceInDays } from "date-fns";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
+import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
 interface CycleEntry {
   id: string;
@@ -209,7 +210,40 @@ Tracked ${cycles.length} cycles
                       <p className="text-xs text-muted-foreground">Next Period</p>
                     </CardContent>
                   </Card>
-                </div>
+              </div>
+                
+                {/* AI Analysis for Cycle Patterns */}
+                <AIInsightCard
+                  title="AI Cycle Analysis"
+                  prompt={`Analyze my menstrual cycle patterns:
+- Average cycle length: ${stats.avgCycleLength} days
+- Average period length: ${stats.avgPeriodLength || 'Not tracked'} days
+- Next predicted period: ${format(stats.nextPeriod, "MMMM d, yyyy")}
+- Total cycles tracked: ${cycles.length}
+
+Recent cycle data:
+${cycles.slice(0, 5).map((c, i) => {
+  const length = i < cycles.length - 1 
+    ? differenceInDays(new Date(c.startDate), new Date(cycles[i + 1].startDate))
+    : null;
+  return `- ${format(new Date(c.startDate), "MMM d")}: ${c.flowIntensity} flow${c.symptoms?.length ? `, symptoms: ${c.symptoms.join(', ')}` : ''}${length ? `, ${length} day cycle` : ''}`;
+}).join('\n')}
+
+Please provide:
+## 📊 Pattern Analysis
+Analyze my cycle regularity and patterns
+
+## 🎯 Predictions
+Insights about my upcoming cycles
+
+## 💡 Health Tips
+Personalized tips based on my cycle patterns and symptoms
+
+## ⚠️ Things to Watch
+Any patterns that might be worth discussing with a doctor`}
+                  variant="compact"
+                  buttonText="Analyze My Patterns"
+                />
               </div>
             )}
 

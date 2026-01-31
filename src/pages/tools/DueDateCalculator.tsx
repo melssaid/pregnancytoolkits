@@ -11,6 +11,7 @@ import { addDays, addWeeks, differenceInDays, format } from "date-fns";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useNotifications } from "@/hooks/useNotifications";
+import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
 interface SavedDueDate {
   id: string;
@@ -275,6 +276,35 @@ export default function DueDateCalculator() {
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* AI Weekly Insights */}
+                <AIInsightCard
+                  title="AI Pregnancy Guide"
+                  prompt={`I am currently ${result.currentWeeks} weeks and ${result.currentDays} days pregnant (Trimester ${result.trimester}). My due date is ${format(result.dueDate, "MMMM d, yyyy")}.
+
+Please provide a comprehensive weekly guide:
+
+## 👶 Week ${result.currentWeeks} Development
+What's happening with my baby this week (size comparison, key developments)
+
+## 🤰 Your Body This Week
+Physical changes and symptoms I might experience
+
+## ✅ This Week's Checklist
+5-6 specific tasks or appointments for week ${result.currentWeeks}
+
+## 🍎 Nutrition Focus
+Key nutrients and foods to focus on this week
+
+## 💪 Exercise Tips
+Safe exercises for trimester ${result.trimester}
+
+## 💕 Self-Care Reminder
+A supportive message for this stage of pregnancy`}
+                  context={{ week: result.currentWeeks, trimester: result.trimester }}
+                  variant="banner"
+                  buttonText="Get Weekly Guide"
+                />
               </motion.div>
             )}
 

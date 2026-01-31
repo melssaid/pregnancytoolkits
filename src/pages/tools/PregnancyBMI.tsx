@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
 interface Result {
   bmi: number;
@@ -168,6 +169,36 @@ export default function PregnancyBMI() {
                     First trimester: 1-4 pounds total
                   </p>
                 </div>
+
+                {/* AI Weight Management Coach */}
+                <AIInsightCard
+                  title="AI Weight Management Guide"
+                  prompt={`My pre-pregnancy BMI is ${result.bmi} (${result.category}).
+Recommended total weight gain: ${result.recommendedGain.min}-${result.recommendedGain.max} pounds
+Weekly gain target (2nd/3rd trimester): ${result.weeklyGain.min}-${result.weeklyGain.max} lbs/week
+
+Please provide personalized guidance:
+
+## 📊 Your BMI Analysis
+What my BMI category means for pregnancy
+
+## 🍽️ Nutrition Plan
+Specific daily calorie and macro recommendations for healthy weight gain
+
+## 🥗 Sample Meal Ideas
+3-4 balanced meal ideas appropriate for my category
+
+## 🏃‍♀️ Exercise Recommendations
+Safe exercises to help maintain healthy weight gain
+
+## 📈 Weight Tracking Tips
+How to monitor weight gain healthily without stress
+
+## ⚠️ Warning Signs
+When weight changes might indicate a concern`}
+                  variant="compact"
+                  buttonText="Get Personalized Plan"
+                />
               </CardContent>
             </Card>
           </motion.div>

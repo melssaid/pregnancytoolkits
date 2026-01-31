@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info } from 'lucide-react';
+import { ArrowLeft, Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info, Sparkles, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface FoodItem {
   id: string;
@@ -26,9 +30,39 @@ const foodDatabase: FoodItem[] = [
 
 const ForbiddenFoods: React.FC = () => {
   const navigate = useNavigate();
+  const { streamChat, isLoading } = usePregnancyAI();
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState<'all' | 'safe' | 'avoid' | 'limit'>('all');
+  const [aiResponse, setAiResponse] = useState('');
+  const [showAiResponse, setShowAiResponse] = useState(false);
+
+  const askAIAboutFood = async (food: string) => {
+    setAiResponse('');
+    setShowAiResponse(true);
+    
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{
+        role: 'user',
+        content: `Is "${food}" safe to eat during pregnancy? Please provide:
+
+## Safety Status
+Is it safe, should be avoided, or limited?
+
+## Why?
+Brief explanation of why
+
+## Alternatives
+If not safe, suggest safe alternatives
+
+## Preparation Tips
+If it can be made safe, explain how`
+      }],
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {},
+    });
+  };
 
   const filteredFoods = foodDatabase.filter(food => {
     const matchesSearch = food.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -133,13 +167,50 @@ const ForbiddenFoods: React.FC = () => {
             <div className="text-center py-10">
               <p className="text-muted-foreground">No foods found matching "{searchTerm}"</p>
               {searchTerm && (
-                <button className="mt-4 text-primary font-medium text-sm">
+                <Button 
+                  onClick={() => askAIAboutFood(searchTerm)}
+                  disabled={isLoading}
+                  className="mt-4 gap-2"
+                  variant="outline"
+                >
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Sparkles className="h-4 w-4 text-violet-500" />
+                  )}
                   Ask AI about "{searchTerm}"
-                </button>
+                </Button>
               )}
             </div>
           )}
         </div>
+
+        {/* AI Response */}
+        {showAiResponse && (
+          <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+            <CardContent className="pt-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-violet-500" />
+                  <h3 className="font-semibold">AI Food Safety Analysis</h3>
+                </div>
+                <button 
+                  onClick={() => setShowAiResponse(false)}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  ✕
+                </button>
+              </div>
+              {isLoading && !aiResponse && (
+                <div className="flex items-center gap-2 text-violet-600">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span className="text-sm">Analyzing food safety...</span>
+                </div>
+              )}
+              {aiResponse && <MarkdownRenderer content={aiResponse} />}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Legend/Info */}
         <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">

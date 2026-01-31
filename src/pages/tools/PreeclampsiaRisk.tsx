@@ -5,6 +5,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
 const riskFactors = [
   { id: "first-pregnancy", label: "First pregnancy", points: 1, category: "Pregnancy" },
@@ -173,6 +174,39 @@ export default function PreeclampsiaRisk() {
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* AI Prevention Coach */}
+                {selectedFactors.length > 0 && (
+                  <AIInsightCard
+                    title="AI Preeclampsia Prevention Coach"
+                    prompt={`I'm assessing my preeclampsia risk. My risk level is: ${result.title}
+
+My risk factors:
+${riskFactors.filter(f => selectedFactors.includes(f.id)).map(f => `- ${f.label} (${f.category})`).join('\n')}
+
+Please provide personalized guidance:
+
+## 🎯 Your Risk Analysis
+Detailed analysis of my specific combination of risk factors
+
+## 🥗 Dietary Recommendations
+Foods and nutrients that may help reduce preeclampsia risk
+
+## 🏃‍♀️ Safe Exercise Plan
+Exercises that support healthy blood pressure during pregnancy
+
+## 📊 Monitoring Schedule
+What vital signs to track and how often
+
+## 🩺 Medical Discussion Points
+Specific questions to ask my doctor about my risk profile
+
+## 🌟 Positive Steps
+Encouraging message about proactive health management`}
+                    variant="default"
+                    buttonText="Get Prevention Plan"
+                  />
+                )}
 
                 <Card className="mt-4">
                   <CardHeader>
