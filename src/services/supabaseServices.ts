@@ -29,6 +29,17 @@ const generateId = (): string => {
   return 'id_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
 };
 
+// Check if Supabase is properly configured
+const isSupabaseConfigured = (): boolean => {
+  try {
+    const url = import.meta.env.VITE_SUPABASE_URL;
+    const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    return !!(url && key && url.includes('supabase'));
+  } catch {
+    return false;
+  }
+};
+
 // =====================================================
 // USER PROFILE SERVICE (localStorage)
 // =====================================================
@@ -185,76 +196,145 @@ export const KickService = {
 };
 
 // =====================================================
-// BUMP PHOTO SERVICE (Supabase - table exists!)
+// BUMP PHOTO SERVICE (Supabase with localStorage fallback)
 // =====================================================
 export const BumpPhotoService = {
   async upload(file: File, week: number, caption?: string) {
     const userId = getUserId();
-    const fileName = `${userId}/${week}_${Date.now()}.${file.name.split('.').pop()}`;
     
-    // Upload to storage
-    const { error: uploadError } = await supabase.storage
-      .from('bump-photos')
-      .upload(fileName, file);
+    // Try Supabase first
+    if (isSupabaseConfigured()) {
+      try {
+        const fileName = `${userId}/${week}_${Date.now()}.${file.name.split('.').pop()}`;
+        
+        // Upload to storage
+        const { error: uploadError } = await supabase.storage
+          .from('bump-photos')
+          .upload(fileName, file);
+        
+        if (uploadError) throw uploadError;
+        
+        // Get public URL
+        const { data: urlData } = supabase.storage
+          .from('bump-photos')
+          .getPublicUrl(fileName);
+        
+        // Save to database
+        const { data, error } = await supabase
+          .from('bump_photos')
+          .insert({
+            user_id: userId,
+            week: week,
+            storage_path: fileName,
+            public_url: urlData.publicUrl,
+            caption: caption || null
+          })
+          .select()
+          .single();
+        
+        if (error) throw error;
+        return data;
+      } catch (e) {
+        console.warn('Supabase upload failed, using localStorage:', e);
+      }
+    }
     
-    if (uploadError) throw uploadError;
-    
-    // Get public URL
-    const { data: urlData } = supabase.storage
-      .from('bump-photos')
-      .getPublicUrl(fileName);
-    
-    // Save to database (bump_photos table exists!)
-    const { data, error } = await supabase
-      .from('bump_photos')
-      .insert({
-        user_id: userId,
-        week: week,
-        storage_path: fileName,
-        public_url: urlData.publicUrl,
-        caption: caption || null
-      })
-      .select()
-      .single();
-    
-    if (error) throw error;
-    return data;
+    // Fallback to localStorage with base64
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const photos = getLocalData<any>('bump_photos');
+        const newPhoto = {
+          id: generateId(),
+          user_id: userId,
+          week: week,
+          public_url: reader.result as string,
+          storage_path: `local_${Date.now()}`,
+          caption: caption || null,
+          ai_analysis: null,
+          created_at: new Date().toISOString()
+        };
+        photos.push(newPhoto);
+        setLocalData('bump_photos', photos);
+        resolve(newPhoto);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   },
 
   async getAll() {
     const userId = getUserId();
-    const { data, error } = await supabase
-      .from('bump_photos')
-      .select('*')
-      .eq('user_id', userId)
-      .order('week', { ascending: true });
     
-    if (error) throw error;
-    return data || [];
+    // Try Supabase first
+    if (isSupabaseConfigured()) {
+      try {
+        const { data, error } = await supabase
+          .from('bump_photos')
+          .select('*')
+          .eq('user_id', userId)
+          .order('week', { ascending: true });
+        
+        if (!error && data) return data;
+      } catch (e) {
+        console.warn('Supabase fetch failed, using localStorage:', e);
+      }
+    }
+    
+    // Fallback to localStorage
+    const photos = getLocalData<any>('bump_photos');
+    return photos
+      .filter(p => p.user_id === userId)
+      .sort((a, b) => a.week - b.week);
   },
 
   async updateAnalysis(photoId: string, analysis: string) {
-    const { error } = await supabase
-      .from('bump_photos')
-      .update({ ai_analysis: analysis })
-      .eq('id', photoId);
+    // Try Supabase first
+    if (isSupabaseConfigured()) {
+      try {
+        const { error } = await supabase
+          .from('bump_photos')
+          .update({ ai_analysis: analysis })
+          .eq('id', photoId);
+        
+        if (!error) return;
+      } catch (e) {
+        console.warn('Supabase update failed, using localStorage:', e);
+      }
+    }
     
-    if (error) throw error;
+    // Fallback to localStorage
+    const photos = getLocalData<any>('bump_photos');
+    const index = photos.findIndex(p => p.id === photoId);
+    if (index >= 0) {
+      photos[index].ai_analysis = analysis;
+      setLocalData('bump_photos', photos);
+    }
   },
 
   async delete(photoId: string, storagePath: string) {
-    // Delete from storage
-    await supabase.storage
-      .from('bump-photos')
-      .remove([storagePath]);
+    // Try Supabase first
+    if (isSupabaseConfigured() && !storagePath.startsWith('local_')) {
+      try {
+        await supabase.storage
+          .from('bump-photos')
+          .remove([storagePath]);
+        
+        const { error } = await supabase
+          .from('bump_photos')
+          .delete()
+          .eq('id', photoId);
+        
+        if (!error) return;
+      } catch (e) {
+        console.warn('Supabase delete failed, using localStorage:', e);
+      }
+    }
     
-    // Delete from database
-    const { error } = await supabase
-      .from('bump_photos')
-      .delete()
-      .eq('id', photoId);
-    
-    if (error) throw error;
+    // Fallback to localStorage
+    let photos = getLocalData<any>('bump_photos');
+    photos = photos.filter(p => p.id !== photoId);
+    setLocalData('bump_photos', photos);
   }
 };
 
