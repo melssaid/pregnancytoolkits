@@ -51,7 +51,7 @@ export function WeightChart({
       <Card>
         <CardContent className="py-8 text-center">
           <p className="text-muted-foreground">
-            أضيفي قياسين على الأقل لعرض الرسم البياني
+            Add at least two measurements to display the chart
           </p>
         </CardContent>
       </Card>
@@ -62,12 +62,12 @@ export function WeightChart({
     if (active && payload && payload.length) {
       return (
         <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
-          <p className="font-semibold text-foreground">الأسبوع {label}</p>
+          <p className="font-semibold text-foreground">Week {label}</p>
           <p className="text-primary">
-            الوزن: {payload[0]?.value?.toFixed(1)} كجم
+            Weight: {payload[0]?.value?.toFixed(1)} kg
           </p>
           <p className="text-muted-foreground text-sm">
-            الزيادة: +{(payload[0]?.value - prePregnancyWeight).toFixed(1)} كجم
+            Gain: +{(payload[0]?.value - prePregnancyWeight).toFixed(1)} kg
           </p>
         </div>
       );
@@ -80,7 +80,7 @@ export function WeightChart({
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <TrendingUp className="h-5 w-5 text-primary" />
-          تتبع الوزن عبر الأسابيع
+          Weight Tracking Over Weeks
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -106,7 +106,7 @@ export function WeightChart({
                 tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
                 tickLine={{ stroke: "hsl(var(--border))" }}
                 axisLine={{ stroke: "hsl(var(--border))" }}
-                label={{ value: "الأسبوع", position: "bottom", fill: "hsl(var(--muted-foreground))" }}
+                label={{ value: "Week", position: "bottom", fill: "hsl(var(--muted-foreground))" }}
               />
               <YAxis
                 tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
@@ -141,7 +141,7 @@ export function WeightChart({
                 stroke="hsl(var(--muted-foreground))"
                 strokeDasharray="5 5"
                 label={{
-                  value: "وزن ما قبل الحمل",
+                  value: "Pre-pregnancy weight",
                   fill: "hsl(var(--muted-foreground))",
                   fontSize: 10,
                 }}
@@ -154,11 +154,11 @@ export function WeightChart({
         <div className="flex items-center justify-center gap-6 mt-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-primary" />
-            <span className="text-muted-foreground">وزنك الفعلي</span>
+            <span className="text-muted-foreground">Your actual weight</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-success/30" />
-            <span className="text-muted-foreground">النطاق الموصى به</span>
+            <span className="text-muted-foreground">Recommended range</span>
           </div>
         </div>
       </CardContent>
