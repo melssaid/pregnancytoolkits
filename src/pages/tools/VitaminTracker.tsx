@@ -3,7 +3,7 @@ import { Pill, Check, Clock, Calendar, TrendingUp, Loader2, Trash2 } from 'lucid
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { VitaminService, UserProfileService } from '@/services/supabaseServices';
+import { VitaminService, UserProfileService } from '@/services/localStorageServices';
 
 interface Vitamin {
   id: string;
@@ -15,12 +15,12 @@ interface Vitamin {
 }
 
 const VITAMINS: Vitamin[] = [
-  { id: 'folic-acid', name: 'حمض الفوليك', dosage: '400-800 ميكروغرام', icon: '🧬', color: 'bg-green-100 border-green-400', importance: 'أساسي لنمو الجهاز العصبي' },
-  { id: 'iron', name: 'الحديد', dosage: '27 ملغ', icon: '💪', color: 'bg-red-100 border-red-400', importance: 'يمنع فقر الدم' },
-  { id: 'calcium', name: 'الكالسيوم', dosage: '1000 ملغ', icon: '🦴', color: 'bg-blue-100 border-blue-400', importance: 'لصحة العظام' },
-  { id: 'vitamin-d', name: 'فيتامين د', dosage: '600 وحدة', icon: '☀️', color: 'bg-yellow-100 border-yellow-400', importance: 'امتصاص الكالسيوم' },
-  { id: 'omega-3', name: 'أوميغا 3', dosage: '200-300 ملغ DHA', icon: '🐟', color: 'bg-cyan-100 border-cyan-400', importance: 'تطور دماغ الجنين' },
-  { id: 'prenatal', name: 'فيتامينات الحمل', dosage: 'حسب المنتج', icon: '💊', color: 'bg-purple-100 border-purple-400', importance: 'شاملة ومتوازنة' },
+  { id: 'folic-acid', name: 'Folic Acid', dosage: '400-800 mcg', icon: '🧬', color: 'bg-green-100 border-green-400', importance: 'Essential for neural development' },
+  { id: 'iron', name: 'Iron', dosage: '27 mg', icon: '💪', color: 'bg-red-100 border-red-400', importance: 'Prevents anemia' },
+  { id: 'calcium', name: 'Calcium', dosage: '1000 mg', icon: '🦴', color: 'bg-blue-100 border-blue-400', importance: 'For bone health' },
+  { id: 'vitamin-d', name: 'Vitamin D', dosage: '600 IU', icon: '☀️', color: 'bg-yellow-100 border-yellow-400', importance: 'Calcium absorption' },
+  { id: 'omega-3', name: 'Omega 3', dosage: '200-300 mg DHA', icon: '🐟', color: 'bg-cyan-100 border-cyan-400', importance: 'Baby brain development' },
+  { id: 'prenatal', name: 'Prenatal Vitamins', dosage: 'As directed', icon: '💊', color: 'bg-purple-100 border-purple-400', importance: 'Complete & balanced' },
 ];
 
 const VitaminTracker: React.FC = () => {
@@ -55,7 +55,7 @@ const VitaminTracker: React.FC = () => {
     } catch (error: any) {
       console.error('Error loading vitamins:', error);
       toast({
-        title: 'خطأ في التحميل',
+        title: 'Loading Error',
         description: error.message,
         variant: 'destructive'
       });
@@ -68,8 +68,8 @@ const VitaminTracker: React.FC = () => {
     const alreadyTaken = todayLogs.some(log => log.vitamin_name === vitamin.name);
     if (alreadyTaken) {
       toast({
-        title: 'تم تناولها مسبقاً',
-        description: `لقد سجلتِ ${vitamin.name} اليوم`,
+        title: 'Already Taken',
+        description: `You already logged ${vitamin.name} today`,
       });
       return;
     }
@@ -83,13 +83,13 @@ const VitaminTracker: React.FC = () => {
       setWeekHistory(prev => [newLog, ...prev]);
       
       toast({
-        title: 'تم التسجيل! ✅',
-        description: `سجلتِ ${vitamin.name} بنجاح`
+        title: 'Logged! ✅',
+        description: `${vitamin.name} recorded successfully`
       });
       
     } catch (error: any) {
       toast({
-        title: 'فشل التسجيل',
+        title: 'Failed to Log',
         description: error.message,
         variant: 'destructive'
       });
@@ -120,7 +120,7 @@ const VitaminTracker: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-purple-500 mx-auto mb-4" />
-          <p className="text-gray-600">جاري تحميل بياناتك...</p>
+          <p className="text-gray-600">Loading your data...</p>
         </div>
       </div>
     );
@@ -130,7 +130,7 @@ const VitaminTracker: React.FC = () => {
   const todayProgress = getTodayProgress();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-4 md:p-8" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         
         {/* Header */}
@@ -138,10 +138,10 @@ const VitaminTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-2xl">
               <Pill className="w-8 h-8" />
-              💊 متتبع الفيتامينات
+              💊 Vitamin Tracker
             </CardTitle>
             <p className="text-purple-100">
-              الأسبوع {currentWeek} - تذكري تناول فيتاميناتك يومياً!
+              Week {currentWeek} - Remember to take your vitamins daily!
             </p>
           </CardHeader>
         </Card>
@@ -152,7 +152,7 @@ const VitaminTracker: React.FC = () => {
             <CardTitle className="flex items-center justify-between">
               <span className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-purple-500" />
-                تقدم اليوم
+                Today's Progress
               </span>
               <span className="text-2xl font-bold text-purple-600">{todayProgress}%</span>
             </CardTitle>
@@ -165,7 +165,7 @@ const VitaminTracker: React.FC = () => {
               />
             </div>
             <p className="text-sm text-gray-600 text-center">
-              {todayLogs.length} من {VITAMINS.length} فيتامينات تم تناولها اليوم
+              {todayLogs.length} of {VITAMINS.length} vitamins taken today
             </p>
           </CardContent>
         </Card>
@@ -208,13 +208,13 @@ const VitaminTracker: React.FC = () => {
                         {isSaving ? (
                           <Loader2 className="w-4 h-4 animate-spin" />
                         ) : taken ? (
-                          <><Check className="w-4 h-4 ml-1" /> تم</>
+                          <><Check className="w-4 h-4 mr-1" /> Done</>
                         ) : (
-                          'تناولت'
+                          'Take'
                         )}
                       </Button>
                       <span className="text-xs text-gray-500">
-                        {weekCount}/7 هذا الأسبوع
+                        {weekCount}/7 this week
                       </span>
                     </div>
                   </div>
@@ -229,7 +229,7 @@ const VitaminTracker: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-purple-500" />
-              إحصائيات الأسبوع
+              Weekly Statistics
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -248,7 +248,7 @@ const VitaminTracker: React.FC = () => {
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">{count}/7 أيام</p>
+                    <p className="text-xs text-gray-500 mt-1">{count}/7 days</p>
                   </div>
                 );
               })}
@@ -262,7 +262,7 @@ const VitaminTracker: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-purple-500" />
-                السجل الأخير
+                Recent History
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -274,7 +274,7 @@ const VitaminTracker: React.FC = () => {
                       <span className="font-medium">{log.vitamin_name}</span>
                     </div>
                     <span className="text-sm text-gray-500">
-                      {new Date(log.taken_at).toLocaleDateString('ar-SA', {
+                      {new Date(log.taken_at).toLocaleDateString('en-US', {
                         weekday: 'short',
                         hour: '2-digit',
                         minute: '2-digit'
@@ -290,9 +290,9 @@ const VitaminTracker: React.FC = () => {
         {/* Tips */}
         <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
           <CardContent className="p-4">
-            <h3 className="font-bold text-amber-800 mb-2">💡 نصيحة اليوم</h3>
+            <h3 className="font-bold text-amber-800 mb-2">💡 Tip of the Day</h3>
             <p className="text-amber-700 text-sm">
-              تناولي الحديد مع فيتامين C (عصير برتقال) لتحسين الامتصاص، وتجنبي تناوله مع الكالسيوم أو الشاي.
+              Take iron with vitamin C (orange juice) for better absorption, and avoid taking it with calcium or tea.
             </p>
           </CardContent>
         </Card>

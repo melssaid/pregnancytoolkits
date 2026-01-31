@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { KickService, UserProfileService } from '@/services/supabaseServices';
-import { AIService } from '@/services/aiService';
+import { KickService, UserProfileService, AIService } from '@/services/localStorageServices';
 
 const SmartKickCounter: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
@@ -76,12 +75,12 @@ const SmartKickCounter: React.FC = () => {
       setNotes('');
       
       toast({
-        title: 'بدأت الجلسة! 👶',
-        description: 'اضغطي على الشاشة عند كل حركة للجنين'
+        title: 'Session Started! 👶',
+        description: 'Tap the screen each time you feel your baby move'
       });
     } catch (error: any) {
       toast({
-        title: 'خطأ',
+        title: 'Error',
         description: error.message,
         variant: 'destructive'
       });
@@ -114,8 +113,8 @@ const SmartKickCounter: React.FC = () => {
       setSessionId(null);
       
       toast({
-        title: 'تم حفظ الجلسة! ✅',
-        description: `سجلتِ ${kicks.length} حركة في ${durationMinutes} دقيقة`
+        title: 'Session Saved! ✅',
+        description: `You recorded ${kicks.length} movements in ${durationMinutes} minutes`
       });
       
       // Reload history
@@ -129,7 +128,7 @@ const SmartKickCounter: React.FC = () => {
       
     } catch (error: any) {
       toast({
-        title: 'خطأ في الحفظ',
+        title: 'Save Error',
         description: error.message,
         variant: 'destructive'
       });
@@ -167,14 +166,14 @@ const SmartKickCounter: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-pink-500 mx-auto mb-4" />
-          <p className="text-gray-600">جاري التحميل...</p>
+          <p className="text-gray-600">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 md:p-8" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 md:p-8">
       <div className="max-w-2xl mx-auto space-y-6">
         
         {/* Header */}
@@ -182,10 +181,10 @@ const SmartKickCounter: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-2xl">
               <Baby className="w-8 h-8" />
-              👶 عداد حركات الجنين
+              👶 Baby Kick Counter
             </CardTitle>
             <p className="text-pink-100">
-              الأسبوع {currentWeek} - تتبعي حركات طفلك
+              Week {currentWeek} - Track your baby's movements
             </p>
           </CardHeader>
         </Card>
@@ -198,7 +197,7 @@ const SmartKickCounter: React.FC = () => {
               <div className="text-5xl font-bold text-gray-800 mb-2">
                 {formatTime(elapsedTime)}
               </div>
-              <p className="text-gray-500">الوقت المنقضي</p>
+              <p className="text-gray-500">Elapsed Time</p>
             </div>
 
             {/* Kick Count Display */}
@@ -212,7 +211,7 @@ const SmartKickCounter: React.FC = () => {
             >
               <div className="text-center text-white">
                 <div className="text-6xl font-bold">{kicks.length}</div>
-                <div className="text-lg">حركة</div>
+                <div className="text-lg">kicks</div>
               </div>
               
               {isActive && (
@@ -222,7 +221,7 @@ const SmartKickCounter: React.FC = () => {
 
             {isActive && (
               <p className="text-center text-gray-500 mt-4 animate-pulse">
-                👆 اضغطي على الدائرة عند كل حركة
+                👆 Tap the circle for each movement
               </p>
             )}
 
@@ -234,8 +233,8 @@ const SmartKickCounter: React.FC = () => {
                   className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-8"
                   onClick={startSession}
                 >
-                  <Play className="w-5 h-5 ml-2" />
-                  ابدئي جلسة جديدة
+                  <Play className="w-5 h-5 mr-2" />
+                  Start New Session
                 </Button>
               ) : (
                 <>
@@ -246,11 +245,11 @@ const SmartKickCounter: React.FC = () => {
                     disabled={isSaving}
                   >
                     {isSaving ? (
-                      <Loader2 className="w-5 h-5 ml-2 animate-spin" />
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                     ) : (
-                      <Save className="w-5 h-5 ml-2" />
+                      <Save className="w-5 h-5 mr-2" />
                     )}
-                    إنهاء وحفظ
+                    End & Save
                   </Button>
                 </>
               )}
@@ -260,7 +259,7 @@ const SmartKickCounter: React.FC = () => {
             {isActive && (
               <div className="mt-6">
                 <Textarea
-                  placeholder="ملاحظات (اختياري)..."
+                  placeholder="Notes (optional)..."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   className="resize-none"
@@ -277,7 +276,7 @@ const SmartKickCounter: React.FC = () => {
             <CardContent className="p-4 text-center">
               <TrendingUp className="w-8 h-8 text-purple-500 mx-auto mb-2" />
               <div className="text-2xl font-bold text-gray-800">{getAverageKicks()}</div>
-              <p className="text-sm text-gray-500">متوسط الحركات</p>
+              <p className="text-sm text-gray-500">Avg Movements</p>
             </CardContent>
           </Card>
           
@@ -285,7 +284,7 @@ const SmartKickCounter: React.FC = () => {
             <CardContent className="p-4 text-center">
               <Clock className="w-8 h-8 text-pink-500 mx-auto mb-2" />
               <div className="text-2xl font-bold text-gray-800">{history.length}</div>
-              <p className="text-sm text-gray-500">جلسات مسجلة</p>
+              <p className="text-sm text-gray-500">Sessions Logged</p>
             </CardContent>
           </Card>
         </div>
@@ -295,14 +294,14 @@ const SmartKickCounter: React.FC = () => {
           <Card className="bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                🤖 تحليل AI
+                🤖 AI Analysis
               </CardTitle>
             </CardHeader>
             <CardContent>
               {isAnalyzing ? (
                 <div className="flex items-center gap-2 text-gray-500">
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  جاري التحليل...
+                  Analyzing...
                 </div>
               ) : (
                 <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">{aiAnalysis}</p>
@@ -317,7 +316,7 @@ const SmartKickCounter: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-purple-500" />
-                السجل السابق
+                Previous Sessions
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -326,14 +325,14 @@ const SmartKickCounter: React.FC = () => {
                   <div key={session.id || index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div>
                       <div className="font-medium">
-                        {session.total_kicks} حركة
+                        {session.total_kicks} movements
                       </div>
                       <div className="text-sm text-gray-500">
-                        {session.duration_minutes} دقيقة • الأسبوع {session.week}
+                        {session.duration_minutes} min • Week {session.week}
                       </div>
                     </div>
                     <div className="text-sm text-gray-400">
-                      {new Date(session.started_at).toLocaleDateString('ar-SA', {
+                      {new Date(session.started_at).toLocaleDateString('en-US', {
                         weekday: 'short',
                         month: 'short',
                         day: 'numeric'
@@ -349,11 +348,11 @@ const SmartKickCounter: React.FC = () => {
         {/* Info Card */}
         <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
           <CardContent className="p-4">
-            <h3 className="font-bold text-blue-800 mb-2">ℹ️ متى تقلقين؟</h3>
+            <h3 className="font-bold text-blue-800 mb-2">ℹ️ When to Worry?</h3>
             <ul className="text-blue-700 text-sm space-y-1">
-              <li>• إذا لاحظتِ انخفاضاً ملحوظاً في حركة الجنين</li>
-              <li>• إذا لم تشعري بـ 10 حركات خلال ساعتين</li>
-              <li>• استشيري طبيبك فوراً في هذه الحالات</li>
+              <li>• If you notice a significant decrease in baby's movement</li>
+              <li>• If you don't feel 10 movements within 2 hours</li>
+              <li>• Consult your doctor immediately in these cases</li>
             </ul>
           </CardContent>
         </Card>
