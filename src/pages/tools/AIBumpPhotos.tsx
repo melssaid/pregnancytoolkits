@@ -1,36 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Camera, Upload, Trash2, Download, Sparkles, ChevronLeft, ChevronRight, Loader2, Image, Calendar, ArrowLeft } from 'lucide-react';
+import { Camera, Upload, Trash2, Download, Sparkles, ChevronLeft, ChevronRight, Loader2, Image } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { useNavigate } from 'react-router-dom';
-import { BumpPhotoService, UserProfileService, AIService } from '@/services/localStorageServices';
-
-interface BumpPhoto {
-  id: string;
-  user_id: string;
-  week: number;
-  public_url: string;
-  storage_path: string;
-  caption: string | null;
-  ai_analysis: string | null;
-  created_at: string;
-  updated_at: string;
-}
+import { BumpPhotoService, UserProfileService } from '@/services/supabaseServices';
+import { AIService } from '@/services/aiService';
 
 const AIBumpPhotos: React.FC = () => {
-  const [photos, setPhotos] = useState<BumpPhoto[]>([]);
+  const [photos, setPhotos] = useState<any[]>([]);
   const [currentWeek, setCurrentWeek] = useState(20);
   const [isUploading, setIsUploading] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState<BumpPhoto | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<any | null>(null);
   const [caption, setCaption] = useState('');
   const [aiAnalysis, setAiAnalysis] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
-  const navigate = useNavigate();
 
   useEffect(() => {
     loadData();
@@ -95,6 +82,7 @@ const AIBumpPhotos: React.FC = () => {
         description: `تمت إضافة صورة الأسبوع ${currentWeek}`
       });
 
+      // Auto analyze
       analyzePhoto(newPhoto);
       
     } catch (error: any) {
@@ -112,7 +100,7 @@ const AIBumpPhotos: React.FC = () => {
     }
   };
 
-  const analyzePhoto = async (photo: BumpPhoto) => {
+  const analyzePhoto = async (photo: any) => {
     try {
       setIsAnalyzing(true);
       setSelectedPhoto(photo);
@@ -144,7 +132,7 @@ const AIBumpPhotos: React.FC = () => {
     }
   };
 
-  const handleDelete = async (photo: BumpPhoto) => {
+  const handleDelete = async (photo: any) => {
     if (!confirm('هل أنتِ متأكدة من حذف هذه الصورة؟')) return;
 
     try {
@@ -169,7 +157,7 @@ const AIBumpPhotos: React.FC = () => {
     }
   };
 
-  const handleDownload = (photo: BumpPhoto) => {
+  const handleDownload = (photo: any) => {
     const link = document.createElement('a');
     link.href = photo.public_url;
     link.download = `bump-week-${photo.week}.jpg`;
@@ -181,28 +169,18 @@ const AIBumpPhotos: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-pink-500 mx-auto mb-4" />
-          <p className="text-gray-600">جاري تحميل الصور...</p>
+          <p className="text-gray-600">جاري تحميل صورك...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 md:p-8" dir="rtl">
       <div className="max-w-6xl mx-auto space-y-6">
         
-        {/* Back Button */}
-        <Button
-          variant="ghost"
-          onClick={() => navigate(-1)}
-          className="mb-4"
-        >
-          <ArrowLeft className="w-4 h-4 ml-2" />
-          رجوع
-        </Button>
-
         {/* Header */}
-        <Card className="bg-gradient-to-r from-pink-500 to-purple-600 text-white border-0">
+        <Card className="bg-gradient-to-r from-pink-500 to-purple-600 text-white border-0 shadow-xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-2xl">
               <Camera className="w-8 h-8" />
@@ -214,7 +192,7 @@ const AIBumpPhotos: React.FC = () => {
           </CardHeader>
         </Card>
 
-        {/* Disclaimer */}
+        {/* Privacy Notice */}
         <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-4 text-center">
           <p className="text-amber-800 font-medium">
             ⚠️ صورك محفوظة بأمان في السحابة. لا نشارك بياناتك مع أي طرف ثالث.
@@ -222,7 +200,7 @@ const AIBumpPhotos: React.FC = () => {
         </div>
 
         {/* Upload Section */}
-        <Card>
+        <Card className="shadow-lg">
           <CardContent className="p-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
@@ -289,7 +267,7 @@ const AIBumpPhotos: React.FC = () => {
             {photos.map((photo) => (
               <Card
                 key={photo.id}
-                className={`overflow-hidden cursor-pointer transition-all hover:scale-105 ${
+                className={`overflow-hidden cursor-pointer transition-all hover:scale-105 hover:shadow-xl ${
                   selectedPhoto?.id === photo.id ? 'ring-4 ring-purple-500' : ''
                 }`}
                 onClick={() => {
@@ -348,14 +326,14 @@ const AIBumpPhotos: React.FC = () => {
         ) : (
           <div className="text-center py-12 text-gray-500">
             <Image className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-            <p className="text-lg font-medium">لم تضيفي أي صور بعد</p>
+            <p>لم تضيفي أي صور بعد</p>
             <p className="text-sm">ابدئي بتوثيق رحلة حملك الآن!</p>
           </div>
         )}
 
         {/* AI Analysis Panel */}
         {selectedPhoto && (
-          <Card className="bg-gradient-to-br from-purple-50 to-pink-50">
+          <Card className="bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span className="flex items-center gap-2">
@@ -386,7 +364,7 @@ const AIBumpPhotos: React.FC = () => {
               
               {aiAnalysis ? (
                 <div className="prose prose-pink max-w-none">
-                  <div className="whitespace-pre-wrap text-gray-700 leading-relaxed bg-white p-4 rounded-lg">
+                  <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
                     {aiAnalysis}
                   </div>
                 </div>
@@ -402,19 +380,16 @@ const AIBumpPhotos: React.FC = () => {
 
         {/* Progress Timeline */}
         {photos.length > 1 && (
-          <Card>
+          <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-purple-500" />
-                📊 تطور رحلتك
-              </CardTitle>
+              <CardTitle>📊 تطور رحلتك</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex overflow-x-auto gap-4 pb-2">
                 {photos.map((photo) => (
                   <div
                     key={photo.id}
-                    className="flex-shrink-0 text-center cursor-pointer"
+                    className="flex-shrink-0 text-center cursor-pointer hover:scale-110 transition-transform"
                     onClick={() => {
                       setSelectedPhoto(photo);
                       setAiAnalysis(photo.ai_analysis || '');
@@ -423,9 +398,7 @@ const AIBumpPhotos: React.FC = () => {
                     <img
                       src={photo.public_url}
                       alt={`Week ${photo.week}`}
-                      className={`w-16 h-16 rounded-full object-cover border-2 transition-all ${
-                        selectedPhoto?.id === photo.id ? 'border-purple-500 scale-110' : 'border-purple-300'
-                      }`}
+                      className="w-16 h-16 rounded-full object-cover border-2 border-purple-300"
                     />
                     <p className="text-xs mt-1 font-medium">أسبوع {photo.week}</p>
                   </div>

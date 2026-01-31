@@ -1,518 +1,435 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { Camera, Mic, Plus, TrendingUp, AlertCircle, Check, X, Trash2, Apple, Coffee, Sun, Moon, Loader2 } from 'lucide-react';
-import { ToolFrame } from '@/components/ToolFrame';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useState, useEffect } from 'react';
+import { Utensils, Plus, Trash2, Sparkles, TrendingUp, Loader2, Coffee, Sun, Moon, Cookie } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Progress } from '@/components/ui/progress';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { toast } from 'sonner';
+import { useToast } from '@/hooks/use-toast';
+import { NutritionService, UserProfileService } from '@/services/supabaseServices';
+import { AIService } from '@/services/aiService';
 
-interface FoodItem {
+interface MealLog {
   id: string;
-  name: string;
-  calories: number;
-  protein: number;
-  carbs: number;
-  fats: number;
-  vitamins: string[];
-  isSafe: boolean;
-  safetyNote?: string;
-  timestamp: Date;
-  mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack';
+  meal_type: string;
+  foods: any[];
+  calories: number | null;
+  ai_suggestions: string | null;
+  created_at: string;
 }
 
-interface NutritionalGoals {
-  calories: number;
-  protein: number;
-  iron: number;
-  calcium: number;
-  folicAcid: number;
-}
-
-const UNSAFE_FOODS = [
-  'sushi', 'raw fish', 'raw meat', 'unpasteurized', 'soft cheese', 'brie', 
-  'camembert', 'blue cheese', 'raw eggs', 'alcohol', 'wine', 'beer',
-  'high mercury fish', 'shark', 'swordfish', 'king mackerel', 'tilefish',
-  'deli meat', 'hot dogs', 'pate', 'raw sprouts'
+const MEAL_TYPES = [
+  { id: 'breakfast', name: 'الفطور', icon: Coffee, color: 'from-yellow-400 to-orange-400' },
+  { id: 'lunch', name: 'الغداء', icon: Sun, color: 'from-green-400 to-teal-400' },
+  { id: 'dinner', name: 'العشاء', icon: Moon, color: 'from-purple-400 to-indigo-400' },
+  { id: 'snack', name: 'وجبة خفيفة', icon: Cookie, color: 'from-pink-400 to-rose-400' },
 ];
 
-const MEAL_ICONS = {
-  breakfast: Sun,
-  lunch: Coffee,
-  dinner: Moon,
-  snack: Apple,
-};
-
-export default function AISmartNutritionTracker() {
-  const [currentTrimester, setCurrentTrimester] = useState<1 | 2 | 3>(2);
-  const [todaysFoods, setTodaysFoods] = useState<FoodItem[]>([]);
-  const [isScanning, setIsScanning] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [manualInput, setManualInput] = useState('');
-  const [selectedMealType, setSelectedMealType] = useState<'breakfast' | 'lunch' | 'dinner' | 'snack'>('lunch');
+const AISmartNutritionTracker: React.FC = () => {
+  const [todayMeals, setTodayMeals] = useState<MealLog[]>([]);
+  const [currentWeek, setCurrentWeek] = useState(20);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const { generateContent, isLoading } = usePregnancyAI();
+  const [selectedMealType, setSelectedMealType] = useState('breakfast');
+  const [foodInput, setFoodInput] = useState('');
+  const [foods, setFoods] = useState<string[]>([]);
+  const [calories, setCalories] = useState('');
+  const [dailyAnalysis, setDailyAnalysis] = useState('');
+  const { toast } = useToast();
 
-  const getNutritionalGoals = (): NutritionalGoals => {
-    const goals = {
-      1: { calories: 1800, protein: 71, iron: 27, calcium: 1000, folicAcid: 600 },
-      2: { calories: 2200, protein: 75, iron: 27, calcium: 1000, folicAcid: 600 },
-      3: { calories: 2400, protein: 80, iron: 27, calcium: 1000, folicAcid: 600 },
-    };
-    return goals[currentTrimester];
-  };
+  useEffect(() => {
+    loadData();
+  }, []);
 
-  const getTodaysTotals = () => {
-    return todaysFoods.reduce(
-      (acc, food) => ({
-        calories: acc.calories + food.calories,
-        protein: acc.protein + food.protein,
-        carbs: acc.carbs + food.carbs,
-        fats: acc.fats + food.fats,
-      }),
-      { calories: 0, protein: 0, carbs: 0, fats: 0 }
-    );
-  };
-
-  const checkFoodSafety = (foodName: string): { isSafe: boolean; note?: string } => {
-    const lowerName = foodName.toLowerCase();
-    for (const unsafeFood of UNSAFE_FOODS) {
-      if (lowerName.includes(unsafeFood)) {
-        return { 
-          isSafe: false, 
-          note: `⚠️ ${unsafeFood} may not be safe during pregnancy. Consult your doctor.` 
-        };
-      }
-    }
-    return { isSafe: true };
-  };
-
-  const analyzeFoodWithAI = async (foodDescription: string): Promise<FoodItem | null> => {
-    setIsAnalyzing(true);
+  const loadData = async () => {
     try {
-      const prompt = `Analyze this food for a pregnant woman and provide nutritional info in JSON format only:
-Food: "${foodDescription}"
+      setIsLoading(true);
+      
+      const profile = await UserProfileService.get();
+      if (profile?.pregnancy_week) {
+        setCurrentWeek(profile.pregnancy_week);
+      }
+      
+      const meals = await NutritionService.getTodayMeals();
+      setTodayMeals(meals);
+      
+    } catch (error: any) {
+      console.error('Error loading nutrition:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-Return ONLY valid JSON (no markdown, no explanation):
-{
-  "name": "food name",
-  "calories": number,
-  "protein": number (grams),
-  "carbs": number (grams),
-  "fats": number (grams),
-  "vitamins": ["vitamin names"],
-  "pregnancySafe": true/false,
-  "safetyNote": "note if unsafe"
-}`;
+  const addFood = () => {
+    if (foodInput.trim()) {
+      setFoods(prev => [...prev, foodInput.trim()]);
+      setFoodInput('');
+    }
+  };
 
-      const result = await generateContent(prompt);
-      if (!result) throw new Error('No response');
+  const removeFood = (index: number) => {
+    setFoods(prev => prev.filter((_, i) => i !== index));
+  };
 
-      // Extract JSON from response
-      const jsonMatch = result.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) throw new Error('Invalid response format');
+  const saveMeal = async () => {
+    if (foods.length === 0) {
+      toast({
+        title: 'خطأ',
+        description: 'أضيفي طعام واحد على الأقل',
+        variant: 'destructive'
+      });
+      return;
+    }
 
-      const parsed = JSON.parse(jsonMatch[0]);
-      const safetyCheck = checkFoodSafety(foodDescription);
+    try {
+      setIsSaving(true);
+      
+      const newMeal = await NutritionService.logMeal(
+        selectedMealType,
+        foods.map(f => ({ name: f })),
+        calories ? parseInt(calories) : undefined,
+        currentWeek
+      );
+      
+      setTodayMeals(prev => [...prev, newMeal]);
+      setFoods([]);
+      setCalories('');
+      
+      toast({
+        title: 'تم الحفظ! ✅',
+        description: `تم تسجيل ${MEAL_TYPES.find(m => m.id === selectedMealType)?.name}`
+      });
 
-      return {
-        id: Date.now().toString(),
-        name: parsed.name || foodDescription,
-        calories: parsed.calories || 0,
-        protein: parsed.protein || 0,
-        carbs: parsed.carbs || 0,
-        fats: parsed.fats || 0,
-        vitamins: parsed.vitamins || [],
-        isSafe: safetyCheck.isSafe && parsed.pregnancySafe !== false,
-        safetyNote: safetyCheck.note || parsed.safetyNote,
-        timestamp: new Date(),
-        mealType: selectedMealType,
-      };
+      // Auto analyze
+      analyzeMeal(newMeal);
+      
+    } catch (error: any) {
+      toast({
+        title: 'خطأ',
+        description: error.message,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const analyzeMeal = async (meal: MealLog) => {
+    try {
+      const foodNames = meal.foods.map((f: any) => f.name || f).join('، ');
+      const response = await AIService.analyzeNutrition([foodNames], currentWeek);
+      
+      await NutritionService.updateAiSuggestions(meal.id, response.content);
+      
+      setTodayMeals(prev => prev.map(m => 
+        m.id === meal.id ? { ...m, ai_suggestions: response.content } : m
+      ));
     } catch (error) {
-      console.error('AI analysis failed:', error);
-      // Fallback to basic estimation
-      return {
-        id: Date.now().toString(),
-        name: foodDescription,
-        calories: 150,
-        protein: 5,
-        carbs: 20,
-        fats: 5,
-        vitamins: [],
-        isSafe: checkFoodSafety(foodDescription).isSafe,
-        safetyNote: checkFoodSafety(foodDescription).note,
-        timestamp: new Date(),
-        mealType: selectedMealType,
-      };
+      console.error('Analysis error:', error);
+    }
+  };
+
+  const analyzeDay = async () => {
+    if (todayMeals.length === 0) {
+      toast({
+        title: 'لا توجد وجبات',
+        description: 'سجلي وجبة واحدة على الأقل أولاً'
+      });
+      return;
+    }
+
+    try {
+      setIsAnalyzing(true);
+      
+      const allFoods = todayMeals.flatMap(m => 
+        m.foods.map((f: any) => f.name || f)
+      );
+      
+      const response = await AIService.analyzeNutrition(allFoods, currentWeek);
+      setDailyAnalysis(response.content);
+      
+    } catch (error: any) {
+      toast({
+        title: 'خطأ',
+        description: error.message,
+        variant: 'destructive'
+      });
     } finally {
       setIsAnalyzing(false);
     }
   };
 
-  const handleImageCapture = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    setIsScanning(true);
-    toast.info('Analyzing image...');
-
-    // Simulate image analysis (in production, send to AI vision API)
-    setTimeout(async () => {
-      const mockFoodName = 'Mixed salad with grilled chicken';
-      const analyzed = await analyzeFoodWithAI(mockFoodName);
-      if (analyzed) {
-        setTodaysFoods(prev => [...prev, analyzed]);
-        toast.success(`Added: ${analyzed.name}`);
-      }
-      setIsScanning(false);
-    }, 2000);
-  };
-
-  const handleVoiceInput = () => {
-    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      toast.error('Browser does not support speech recognition');
-      return;
-    }
-
-    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.continuous = false;
-
-    setIsListening(true);
-
-    recognition.onresult = async (event: any) => {
-      const transcript = event.results[0][0].transcript;
-      setManualInput(transcript);
-      setIsListening(false);
-      
-      const analyzed = await analyzeFoodWithAI(transcript);
-      if (analyzed) {
-        setTodaysFoods(prev => [...prev, analyzed]);
-        toast.success(`Added: ${analyzed.name}`);
-        setManualInput('');
-      }
-    };
-
-    recognition.onerror = () => {
-      setIsListening(false);
-      toast.error('Speech recognition failed');
-    };
-
-    recognition.onend = () => setIsListening(false);
-    recognition.start();
-  };
-
-  const handleManualAdd = async () => {
-    if (!manualInput.trim()) return;
-    
-    const analyzed = await analyzeFoodWithAI(manualInput);
-    if (analyzed) {
-      setTodaysFoods(prev => [...prev, analyzed]);
-      toast.success(`Added: ${analyzed.name}`);
-      setManualInput('');
+  const deleteMeal = async (id: string) => {
+    try {
+      await NutritionService.delete(id);
+      setTodayMeals(prev => prev.filter(m => m.id !== id));
+      toast({ title: 'تم الحذف' });
+    } catch (error: any) {
+      toast({
+        title: 'خطأ',
+        description: error.message,
+        variant: 'destructive'
+      });
     }
   };
 
-  const removeFood = (id: string) => {
-    setTodaysFoods(prev => prev.filter(f => f.id !== id));
-    toast.info('Item removed');
+  const getTotalCalories = () => {
+    return todayMeals.reduce((sum, m) => sum + (m.calories || 0), 0);
   };
 
-  const goals = getNutritionalGoals();
-  const totals = getTodaysTotals();
-  const calorieProgress = Math.min((totals.calories / goals.calories) * 100, 100);
-  const proteinProgress = Math.min((totals.protein / goals.protein) * 100, 100);
+  const getMealIcon = (mealType: string) => {
+    const meal = MEAL_TYPES.find(m => m.id === mealType);
+    return meal ? <meal.icon className="w-5 h-5" /> : <Utensils className="w-5 h-5" />;
+  };
 
-  const getMealFoods = (mealType: string) => 
-    todaysFoods.filter(f => f.mealType === mealType);
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-teal-50 to-blue-50">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-green-500 mx-auto mb-4" />
+          <p className="text-gray-600">جاري تحميل بياناتك...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <ToolFrame
-      title="Smart Nutrition Tracker"
-      subtitle="AI-powered food analysis with pregnancy nutrition tracking"
-      toolId="ai-nutrition-tracker"
-    >
-      <div className="space-y-6">
-        {/* Trimester Selector */}
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Current Trimester:</span>
-              <Select
-                value={currentTrimester.toString()}
-                onValueChange={(v) => setCurrentTrimester(parseInt(v) as 1 | 2 | 3)}
-              >
-                <SelectTrigger className="w-44">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">First (Weeks 1-12)</SelectItem>
-                  <SelectItem value="2">Second (Weeks 13-26)</SelectItem>
-                  <SelectItem value="3">Third (Weeks 27-40)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </CardContent>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-teal-50 to-blue-50 p-4 md:p-8" dir="rtl">
+      <div className="max-w-4xl mx-auto space-y-6">
+        
+        {/* Header */}
+        <Card className="bg-gradient-to-r from-green-500 to-teal-500 text-white border-0 shadow-xl">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-2xl">
+              <Utensils className="w-8 h-8" />
+              🥗 متتبع التغذية الذكي
+            </CardTitle>
+            <p className="text-green-100">
+              الأسبوع {currentWeek} - سجلي وجباتك واحصلي على نصائح AI
+            </p>
+          </CardHeader>
         </Card>
 
-        {/* Progress Overview */}
-        <Card>
+        {/* Daily Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {MEAL_TYPES.map(meal => {
+            const mealLogs = todayMeals.filter(m => m.meal_type === meal.id);
+            return (
+              <Card key={meal.id} className={`bg-gradient-to-br ${meal.color} text-white shadow-lg`}>
+                <CardContent className="p-4 text-center">
+                  <meal.icon className="w-8 h-8 mx-auto mb-2" />
+                  <p className="font-bold">{meal.name}</p>
+                  <p className="text-sm opacity-90">
+                    {mealLogs.length > 0 ? `${mealLogs.length} وجبة` : 'لم تسجل'}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* Calories Summary */}
+        {getTotalCalories() > 0 && (
+          <Card className="shadow-lg">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-green-500" />
+                  <span className="font-medium">إجمالي السعرات اليوم</span>
+                </div>
+                <span className="text-2xl font-bold text-green-600">
+                  {getTotalCalories()} سعرة
+                </span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
+                <div
+                  className="bg-gradient-to-r from-green-400 to-teal-400 h-2 rounded-full transition-all"
+                  style={{ width: `${Math.min((getTotalCalories() / 2200) * 100, 100)}%` }}
+                />
+              </div>
+              <p className="text-xs text-gray-500 mt-1 text-center">الهدف: ~2200 سعرة للحامل</p>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Add Meal Form */}
+        <Card className="shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-primary" />
-              Today's Progress
+              <Plus className="w-5 h-5" />
+              تسجيل وجبة جديدة
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span>Calories</span>
-                <span>{totals.calories} / {goals.calories} cal</span>
-              </div>
-              <Progress value={calorieProgress} className="h-3" />
-            </div>
-            <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span>Protein</span>
-                <span>{totals.protein.toFixed(1)} / {goals.protein}g</span>
-              </div>
-              <Progress value={proteinProgress} className="h-3" />
-            </div>
-            <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="text-center p-3 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-primary">{totals.carbs.toFixed(0)}g</p>
-                <p className="text-xs text-muted-foreground">Carbs</p>
-              </div>
-              <div className="text-center p-3 bg-muted rounded-lg">
-                <p className="text-2xl font-bold text-primary">{totals.fats.toFixed(0)}g</p>
-                <p className="text-xs text-muted-foreground">Fats</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Food Input Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Add Food</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {/* Meal Type Selector */}
-            <div className="flex gap-2 flex-wrap">
-              {(['breakfast', 'lunch', 'dinner', 'snack'] as const).map((meal) => {
-                const Icon = MEAL_ICONS[meal];
-                const labels = {
-                  breakfast: 'Breakfast',
-                  lunch: 'Lunch',
-                  dinner: 'Dinner',
-                  snack: 'Snack',
-                };
-                return (
-                  <Button
-                    key={meal}
-                    variant={selectedMealType === meal ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedMealType(meal)}
-                    className="flex-1 min-w-[70px]"
-                  >
-                    <Icon className="w-4 h-4 mr-1" />
-                    {labels[meal]}
-                  </Button>
-                );
-              })}
+            {/* Meal Type Selection */}
+            <div className="flex flex-wrap gap-2">
+              {MEAL_TYPES.map(meal => (
+                <Button
+                  key={meal.id}
+                  variant={selectedMealType === meal.id ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedMealType(meal.id)}
+                  className={selectedMealType === meal.id ? `bg-gradient-to-r ${meal.color} border-0` : ''}
+                >
+                  <meal.icon className="w-4 h-4 ml-1" />
+                  {meal.name}
+                </Button>
+              ))}
             </div>
 
-            {/* Input Methods */}
+            {/* Food Input */}
             <div className="flex gap-2">
               <Input
-                placeholder="Enter food name..."
-                value={manualInput}
-                onChange={(e) => setManualInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleManualAdd()}
-                disabled={isAnalyzing}
+                placeholder="أدخلي اسم الطعام..."
+                value={foodInput}
+                onChange={(e) => setFoodInput(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && addFood()}
+                className="flex-1"
               />
-              <Button 
-                onClick={handleManualAdd} 
-                disabled={!manualInput.trim() || isAnalyzing}
-              >
-                {isAnalyzing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+              <Button onClick={addFood} variant="outline">
+                <Plus className="w-4 h-4" />
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => fileInputRef.current?.click()}
-                disabled={isScanning}
-              >
-                {isScanning ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  <Camera className="w-4 h-4 mr-2" />
-                )}
-                <span className="truncate">{isScanning ? 'Scanning...' : 'Camera Scan'}</span>
-              </Button>
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={handleVoiceInput}
-                disabled={isListening}
-              >
-                {isListening ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  <Mic className="w-4 h-4 mr-2" />
-                )}
-                <span className="truncate">{isListening ? 'Listening...' : 'Voice Input'}</span>
-              </Button>
+            {/* Foods List */}
+            {foods.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {foods.map((food, index) => (
+                  <span
+                    key={index}
+                    className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm flex items-center gap-1"
+                  >
+                    {food}
+                    <button
+                      onClick={() => removeFood(index)}
+                      className="hover:text-red-500 transition-colors"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Calories */}
+            <div>
+              <label className="text-sm text-gray-600">السعرات (اختياري)</label>
+              <Input
+                type="number"
+                placeholder="عدد السعرات"
+                value={calories}
+                onChange={(e) => setCalories(e.target.value)}
+                className="w-40"
+              />
             </div>
 
-            <input
-              type="file"
-              ref={fileInputRef}
-              accept="image/*"
-              capture="environment"
-              onChange={handleImageCapture}
-              className="hidden"
-            />
+            {/* Save Button */}
+            <Button
+              className="w-full bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600"
+              onClick={saveMeal}
+              disabled={isSaving || foods.length === 0}
+            >
+              {isSaving ? <Loader2 className="w-4 h-4 animate-spin ml-2" /> : null}
+              حفظ الوجبة
+            </Button>
           </CardContent>
         </Card>
 
-        {/* Today's Foods by Meal */}
-        <Tabs defaultValue="all" className="w-full">
-          <TabsList className="grid grid-cols-5 w-full">
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="breakfast">Breakfast</TabsTrigger>
-            <TabsTrigger value="lunch">Lunch</TabsTrigger>
-            <TabsTrigger value="dinner">Dinner</TabsTrigger>
-            <TabsTrigger value="snack">Snack</TabsTrigger>
-          </TabsList>
+        {/* Today's Meals */}
+        {todayMeals.length > 0 && (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-gray-800">وجبات اليوم</h2>
+              <Button
+                variant="outline"
+                onClick={analyzeDay}
+                disabled={isAnalyzing}
+              >
+                {isAnalyzing ? (
+                  <Loader2 className="w-4 h-4 animate-spin ml-2" />
+                ) : (
+                  <Sparkles className="w-4 h-4 ml-2" />
+                )}
+                تحليل اليوم
+              </Button>
+            </div>
 
-          {['all', 'breakfast', 'lunch', 'dinner', 'snack'].map((tab) => (
-            <TabsContent key={tab} value={tab} className="space-y-3 mt-4">
-              {(tab === 'all' ? todaysFoods : getMealFoods(tab)).length === 0 ? (
-                <Card className="border-dashed border-2 border-muted-foreground/20">
-                  <CardContent className="flex flex-col items-center justify-center py-12">
-                    <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
-                      <Apple className="w-8 h-8 text-muted-foreground/50" />
-                    </div>
-                    <p className="text-muted-foreground font-medium mb-1">No food added yet</p>
-                    <p className="text-xs text-muted-foreground/70">Use the input above to add your daily meals</p>
-                  </CardContent>
-                </Card>
-              ) : (
-                (tab === 'all' ? todaysFoods : getMealFoods(tab)).map((food) => (
-                  <Card key={food.id} className={!food.isSafe ? 'border-destructive/50 bg-destructive/5' : ''}>
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <h4 className="font-medium">{food.name}</h4>
-                            {food.isSafe ? (
-                              <Badge variant="outline" className="text-primary border-primary">
-                                <Check className="w-3 h-3 mr-1" />
-                                Safe
-                              </Badge>
-                            ) : (
-                              <Badge variant="destructive">
-                                <AlertCircle className="w-3 h-3 mr-1" />
-                                Warning
-                              </Badge>
-                            )}
-                          </div>
-                          {food.safetyNote && (
-                            <p className="text-xs text-destructive mt-1">{food.safetyNote}</p>
-                          )}
-                          <div className="flex gap-3 mt-2 text-xs text-muted-foreground">
-                            <span>{food.calories} cal</span>
-                            <span>•</span>
-                            <span>{food.protein}g protein</span>
-                            <span>•</span>
-                            <span>{food.carbs}g carbs</span>
-                          </div>
-                          {food.vitamins.length > 0 && (
-                            <div className="flex gap-1 mt-2 flex-wrap">
-                              {food.vitamins.slice(0, 4).map((v, i) => (
-                                <Badge key={i} variant="secondary" className="text-xs">
-                                  {v}
-                                </Badge>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => removeFood(food.id)}
-                          className="text-muted-foreground hover:text-destructive"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
+            {todayMeals.map(meal => (
+              <Card key={meal.id} className="shadow-lg">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-full bg-gradient-to-br ${MEAL_TYPES.find(m => m.id === meal.meal_type)?.color || 'from-gray-400 to-gray-500'} text-white`}>
+                        {getMealIcon(meal.meal_type)}
                       </div>
-                    </CardContent>
-                  </Card>
-                ))
-              )}
-            </TabsContent>
-          ))}
-        </Tabs>
+                      <div>
+                        <h3 className="font-bold">
+                          {MEAL_TYPES.find(m => m.id === meal.meal_type)?.name}
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          {meal.foods.map((f: any) => f.name || f).join('، ')}
+                        </p>
+                        {meal.calories && (
+                          <p className="text-xs text-gray-500">{meal.calories} سعرة</p>
+                        )}
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-red-500"
+                      onClick={() => deleteMeal(meal.id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
 
-        {/* Safety Warning */}
-        {todaysFoods.some(f => !f.isSafe) && (
-          <Card className="border-destructive bg-destructive/5">
-            <CardContent className="pt-6">
-              <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-medium text-destructive">Safety Alert</h4>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Some foods you've added may not be safe during pregnancy. Please consult your doctor.
-                  </p>
-                </div>
+                  {meal.ai_suggestions && (
+                    <div className="mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                      <p className="text-xs font-medium text-green-600 mb-1">💡 نصيحة AI:</p>
+                      <p className="text-sm text-green-700">{meal.ai_suggestions.slice(0, 200)}...</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+
+        {/* Daily Analysis */}
+        {dailyAnalysis && (
+          <Card className="bg-gradient-to-br from-green-50 to-teal-50 shadow-lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-green-500" />
+                تحليل تغذيتك اليوم
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="prose prose-green max-w-none">
+                <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+                  {dailyAnalysis}
+                </p>
               </div>
             </CardContent>
           </Card>
         )}
 
-        {/* Daily Tips */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Nutrition Tips for {currentTrimester === 1 ? 'First' : currentTrimester === 2 ? 'Second' : 'Third'} Trimester</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="text-sm space-y-2 text-muted-foreground">
-              {currentTrimester === 1 && (
-                <>
-                  <li>• Focus on folic acid (600 mcg daily)</li>
-                  <li>• Eat small, frequent meals to combat nausea</li>
-                  <li>• Try ginger or peppermint tea for morning sickness</li>
-                </>
-              )}
-              {currentTrimester === 2 && (
-                <>
-                  <li>• Increase calories by 340 extra per day</li>
-                  <li>• Focus on iron and calcium for bone development</li>
-                  <li>• Include omega-3 for baby's brain development</li>
-                </>
-              )}
-              {currentTrimester === 3 && (
-                <>
-                  <li>• Increase calories by 450 extra per day</li>
-                  <li>• Focus on protein for rapid fetal growth</li>
-                  <li>• Eat smaller meals to avoid heartburn</li>
-                </>
-              )}
+        {/* Tips */}
+        <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
+          <CardContent className="p-4">
+            <h3 className="font-bold text-amber-800 mb-2">💡 نصائح التغذية للحامل</h3>
+            <ul className="text-amber-700 text-sm space-y-1">
+              <li>• تناولي 5-6 وجبات صغيرة بدلاً من 3 وجبات كبيرة</li>
+              <li>• اشربي 8-10 أكواب ماء يومياً</li>
+              <li>• تجنبي الأطعمة النيئة والأجبان غير المبسترة</li>
+              <li>• ركزي على البروتين والحديد والكالسيوم</li>
             </ul>
           </CardContent>
         </Card>
+
       </div>
-    </ToolFrame>
+    </div>
   );
-}
+};
+
+export default AISmartNutritionTracker;

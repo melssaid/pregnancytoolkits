@@ -1,504 +1,553 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { ToolFrame } from '@/components/ToolFrame';
-import { MedicalInfoBar } from '@/components/compliance';
-import { Card, CardContent } from '@/components/ui/card';
+import React, { useState, useEffect } from 'react';
+import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { TimePicker } from '@/components/ui/time-picker';
-import { Calendar, Bell, Plus, Trash2, CheckCircle, AlertCircle, Brain, Loader2, Archive, ChevronDown, ChevronUp } from 'lucide-react';
-import { format, isBefore, isToday, addDays } from 'date-fns';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
-import { useNotifications } from '@/hooks/useNotifications';
-import { toast } from 'sonner';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+import { AppointmentService, UserProfileService } from '@/services/supabaseServices';
+import { AIService } from '@/services/aiService';
 
 interface Appointment {
   id: string;
   title: string;
-  date: string;
-  time: string;
-  type: string;
-  notes: string;
-  questions: string[];
-  completed: boolean;
+  doctor_name: string | null;
+  location: string | null;
+  appointment_date: string;
+  notes: string | null;
+  questions: any[];
+  reminder_sent: boolean;
 }
 
-const appointmentTypes = [
-  { id: 'prenatal', label: 'Prenatal Checkup', icon: '🏥' },
-  { id: 'ultrasound', label: 'Ultrasound', icon: '📸' },
-  { id: 'glucose', label: 'Glucose Test', icon: '🩸' },
-  { id: 'specialist', label: 'Specialist Visit', icon: '👨‍⚕️' },
-  { id: 'lab', label: 'Lab Work', icon: '🧪' },
-  { id: 'other', label: 'Other', icon: '📋' },
-];
-
-const suggestedQuestions = [
-  'What symptoms should I watch for?',
-  'Are my weight and blood pressure normal?',
-  'How is the baby developing?',
-  'Should I adjust my diet or exercise?',
-  'When should I schedule my next appointment?',
-  'Are there any warning signs I should know about?',
-];
-
-export default function SmartAppointmentReminder() {
+const SmartAppointmentReminder: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const [showArchive, setShowArchive] = useState(false);
-  const [currentWeek, setCurrentWeek] = useState(12);
-  const [showAIPrep, setShowAIPrep] = useState(false);
-  const [aiResponse, setAiResponse] = useState('');
-  const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
-  const [newAppointment, setNewAppointment] = useState({
-    title: '',
-    date: '',
-    time: '',
-    type: 'prenatal',
-    notes: '',
-    questions: [] as string[],
-  });
-
-  const { streamChat, isLoading, error } = usePregnancyAI();
-  const { addNotification, settings } = useNotifications();
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [currentWeek, setCurrentWeek] = useState(20);
+  const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
+  const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
   
-  // Track if initial load is complete
-  const isInitialized = useRef(false);
+  const [formData, setFormData] = useState({
+    title: '',
+    doctor_name: '',
+    location: '',
+    appointment_date: '',
+    appointment_time: '',
+    notes: '',
+    questions: [] as string[]
+  });
+  
+  const { toast } = useToast();
 
-  // Load appointments from localStorage with safe parsing
   useEffect(() => {
-    const saved = safeParseLocalStorage<Appointment[]>('pregnancyAppointments', [], (data): data is Appointment[] => {
-      return Array.isArray(data) && data.every(item => 
-        typeof item === 'object' && 
-        item !== null && 
-        'id' in item && 
-        'title' in item &&
-        'date' in item
-      );
-    });
-    setAppointments(saved);
-    // Mark as initialized after loading
-    isInitialized.current = true;
+    loadData();
   }, []);
 
-  // Save appointments to localStorage with validation
-  const saveAppointments = useCallback((newAppointments: Appointment[]) => {
-    const success = safeSaveToLocalStorage('pregnancyAppointments', newAppointments);
-    if (!success) {
-      toast.error('Failed to save appointments. Storage may be full.');
-    }
-    return success;
-  }, []);
-
-  // Save whenever appointments change (only after initial load)
-  useEffect(() => {
-    if (isInitialized.current) {
-      saveAppointments(appointments);
-    }
-  }, [appointments, saveAppointments]);
-
-  // Schedule notifications for upcoming appointments
-  useEffect(() => {
-    if (!settings.appointmentReminders) return;
-
-    const now = new Date();
-    const upcoming = appointments.filter(apt => {
-      if (apt.completed) return false;
-      const aptDate = new Date(apt.date);
-      const timeDiff = aptDate.getTime() - now.getTime();
-      const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
-      return daysDiff <= 1 && daysDiff > 0;
-    });
-
-    upcoming.forEach(apt => {
-      const aptType = appointmentTypes.find(t => t.id === apt.type);
-      addNotification({
-        type: 'appointment',
-        title: `📅 Appointment Tomorrow`,
-        message: `${aptType?.icon || '🏥'} ${apt.title} at ${apt.time || 'scheduled time'}`,
-        actionUrl: '/tools/smart-appointment-reminder',
+  const loadData = async () => {
+    try {
+      setIsLoading(true);
+      
+      const profile = await UserProfileService.get();
+      if (profile?.pregnancy_week) {
+        setCurrentWeek(profile.pregnancy_week);
+      }
+      
+      const data = await AppointmentService.getAll();
+      setAppointments(data);
+      
+    } catch (error: any) {
+      console.error('Error loading appointments:', error);
+      toast({
+        title: 'خطأ في التحميل',
+        description: error.message,
+        variant: 'destructive'
       });
-    });
-  }, [appointments, settings.appointmentReminders, addNotification]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  const addAppointment = useCallback(() => {
-    if (!newAppointment.title || !newAppointment.date) {
-      toast.error('Please enter appointment title and date');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.title || !formData.appointment_date) {
+      toast({
+        title: 'خطأ',
+        description: 'يرجى ملء الحقول المطلوبة',
+        variant: 'destructive'
+      });
       return;
     }
-    
-    const appointment: Appointment = {
-      id: `apt-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      ...newAppointment,
-      completed: false,
-    };
-    
-    const updatedAppointments = [...appointments, appointment].sort((a, b) => 
-      new Date(a.date).getTime() - new Date(b.date).getTime()
-    );
-    
-    setAppointments(updatedAppointments);
-    setNewAppointment({ title: '', date: '', time: '', type: 'prenatal', notes: '', questions: [] });
-    setShowForm(false);
-    
-    // Show success message with appointment details
-    const aptType = appointmentTypes.find(t => t.id === newAppointment.type);
-    const formattedDate = format(new Date(newAppointment.date), 'EEE, MMM d, yyyy');
-    const timeStr = newAppointment.time ? ` at ${newAppointment.time}` : '';
-    
-    toast.success(
-      `✅ Appointment Added Successfully!`,
-      {
-        description: `${aptType?.icon || '📅'} ${newAppointment.title} on ${formattedDate}${timeStr}`,
-        duration: 5000,
-      }
-    );
-    
-    // Add notification for the new appointment
-    addNotification({
-      type: 'appointment',
-      title: `📅 New Appointment Added`,
-      message: `${aptType?.icon || '🏥'} ${newAppointment.title} on ${formattedDate}`,
-      actionUrl: '/tools/smart-appointment-reminder',
-    });
-  }, [newAppointment, appointments, addNotification]);
 
-  const toggleQuestion = (question: string) => {
-    setNewAppointment(prev => ({
+    try {
+      setIsSaving(true);
+      
+      const dateTime = formData.appointment_time 
+        ? `${formData.appointment_date}T${formData.appointment_time}:00`
+        : `${formData.appointment_date}T09:00:00`;
+      
+      const appointmentData = {
+        title: formData.title,
+        doctor_name: formData.doctor_name || null,
+        location: formData.location || null,
+        appointment_date: dateTime,
+        notes: formData.notes || null,
+        questions: formData.questions
+      };
+
+      if (editingId) {
+        await AppointmentService.update(editingId, appointmentData);
+        setAppointments(prev => prev.map(a => 
+          a.id === editingId ? { ...a, ...appointmentData } : a
+        ));
+        toast({ title: 'تم التحديث! ✅' });
+      } else {
+        const newAppointment = await AppointmentService.add(appointmentData);
+        setAppointments(prev => [...prev, newAppointment]);
+        toast({ title: 'تمت الإضافة! ✅' });
+      }
+
+      resetForm();
+      
+    } catch (error: any) {
+      toast({
+        title: 'خطأ',
+        description: error.message,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('هل أنتِ متأكدة من حذف هذا الموعد؟')) return;
+
+    try {
+      await AppointmentService.delete(id);
+      setAppointments(prev => prev.filter(a => a.id !== id));
+      toast({ title: 'تم الحذف' });
+    } catch (error: any) {
+      toast({
+        title: 'خطأ',
+        description: error.message,
+        variant: 'destructive'
+      });
+    }
+  };
+
+  const handleEdit = (appointment: Appointment) => {
+    const date = new Date(appointment.appointment_date);
+    setFormData({
+      title: appointment.title,
+      doctor_name: appointment.doctor_name || '',
+      location: appointment.location || '',
+      appointment_date: date.toISOString().split('T')[0],
+      appointment_time: date.toTimeString().slice(0, 5),
+      notes: appointment.notes || '',
+      questions: appointment.questions || []
+    });
+    setEditingId(appointment.id);
+    setShowForm(true);
+  };
+
+  const resetForm = () => {
+    setFormData({
+      title: '',
+      doctor_name: '',
+      location: '',
+      appointment_date: '',
+      appointment_time: '',
+      notes: '',
+      questions: []
+    });
+    setEditingId(null);
+    setShowForm(false);
+    setSuggestedQuestions([]);
+  };
+
+  const generateQuestions = async () => {
+    try {
+      setIsGeneratingQuestions(true);
+      
+      const response = await AIService.ask(
+        `أنا في الأسبوع ${currentWeek} من الحمل وعندي موعد مع الطبيب بعنوان: ${formData.title}. 
+        اقترحي لي 5 أسئلة مهمة يجب أن أسألها للطبيب. اكتبي كل سؤال في سطر منفصل.`,
+        'pregnancy-assistant'
+      );
+      
+      const questions = response.content
+        .split('\n')
+        .filter(q => q.trim().length > 5)
+        .slice(0, 5);
+      
+      setSuggestedQuestions(questions);
+      
+    } catch (error) {
+      console.error('Error generating questions:', error);
+    } finally {
+      setIsGeneratingQuestions(false);
+    }
+  };
+
+  const addQuestion = (question: string) => {
+    if (!formData.questions.includes(question)) {
+      setFormData(prev => ({
+        ...prev,
+        questions: [...prev.questions, question]
+      }));
+    }
+  };
+
+  const removeQuestion = (index: number) => {
+    setFormData(prev => ({
       ...prev,
-      questions: prev.questions.includes(question)
-        ? prev.questions.filter(q => q !== question)
-        : [...prev.questions, question],
+      questions: prev.questions.filter((_, i) => i !== index)
     }));
   };
 
-  const markComplete = useCallback((id: string) => {
-    setAppointments(prev => prev.map(a => 
-      a.id === id ? { ...a, completed: true } : a
-    ));
-    toast.success('Appointment marked as complete!');
-  }, []);
+  const getUpcomingAppointments = () => {
+    const now = new Date();
+    return appointments
+      .filter(a => new Date(a.appointment_date) >= now)
+      .sort((a, b) => new Date(a.appointment_date).getTime() - new Date(b.appointment_date).getTime());
+  };
 
-  const deleteAppointment = useCallback((id: string) => {
-    setAppointments(prev => prev.filter(a => a.id !== id));
-    toast.success('Appointment deleted');
-  }, []);
+  const getPastAppointments = () => {
+    const now = new Date();
+    return appointments
+      .filter(a => new Date(a.appointment_date) < now)
+      .sort((a, b) => new Date(b.appointment_date).getTime() - new Date(a.appointment_date).getTime());
+  };
 
-  const getAIAppointmentPrep = async (apt: Appointment) => {
-    setSelectedAppointment(apt);
-    setShowAIPrep(true);
-    setAiResponse('');
-
-    const aptType = appointmentTypes.find(t => t.id === apt.type);
-
-    await streamChat({
-      type: 'appointment-prep' as any,
-      messages: [
-        {
-          role: 'user',
-          content: `I have a ${aptType?.label || apt.type} appointment coming up on ${apt.date}. I'm currently at week ${currentWeek} of my pregnancy. The appointment is titled "${apt.title}". My prepared questions are: ${apt.questions.join(', ') || 'none yet'}. Please help me prepare for this appointment with personalized questions and tips.`
-        }
-      ],
-      context: { week: currentWeek },
-      onDelta: (text) => setAiResponse(prev => prev + text),
-      onDone: () => {}
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ar-SA', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
     });
   };
 
-  const upcomingAppointments = appointments.filter(a => !a.completed && !isBefore(new Date(a.date), new Date()));
-  const pastAppointments = appointments.filter(a => a.completed || isBefore(new Date(a.date), new Date()));
+  const getDaysUntil = (dateStr: string) => {
+    const now = new Date();
+    const date = new Date(dateStr);
+    const diff = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    if (diff === 0) return 'اليوم';
+    if (diff === 1) return 'غداً';
+    if (diff < 0) return 'انتهى';
+    return `بعد ${diff} أيام`;
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-blue-500 mx-auto mb-4" />
+          <p className="text-gray-600">جاري تحميل مواعيدك...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const upcoming = getUpcomingAppointments();
+  const past = getPastAppointments();
 
   return (
-    <ToolFrame
-      title="Smart Appointment Reminder"
-      subtitle="Never miss a prenatal appointment with AI-powered preparation"
-      customIcon="calendar"
-      mood="calm"
-      toolId="smart-appointment-reminder"
-    >
-      <div className="space-y-6">
-        {/* Medical Info Bar */}
-        <MedicalInfoBar compact />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 md:p-8" dir="rtl">
+      <div className="max-w-4xl mx-auto space-y-6">
         
-        {/* Week Selector */}
-        <Card>
-          <CardContent className="p-4">
-            <label className="block text-sm font-medium mb-2">Current Pregnancy Week</label>
-            <Input
-              type="number"
-              min={1}
-              max={42}
-              value={currentWeek}
-              onChange={(e) => setCurrentWeek(Number(e.target.value))}
-              className="w-full"
-            />
-          </CardContent>
+        {/* Header */}
+        <Card className="bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 shadow-xl">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-2xl">
+              <Calendar className="w-8 h-8" />
+              📅 مواعيدي الطبية
+            </CardTitle>
+            <p className="text-blue-100">
+              الأسبوع {currentWeek} - نظمي مواعيدك مع أسئلة مقترحة من AI
+            </p>
+          </CardHeader>
         </Card>
 
         {/* Add Button */}
         {!showForm && (
-          <Button onClick={() => setShowForm(true)} className="w-full gap-2">
-            <Plus className="w-4 h-4" />
-            Add Appointment
+          <Button
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-6 text-lg"
+            onClick={() => setShowForm(true)}
+          >
+            <Plus className="w-6 h-6 ml-2" />
+            إضافة موعد جديد
           </Button>
         )}
 
-        {/* New Appointment Form */}
+        {/* Form */}
         {showForm && (
-          <Card>
-            <CardContent className="p-4 space-y-4">
-              <h3 className="text-lg font-semibold">New Appointment</h3>
-              
-              <div className="grid grid-cols-2 gap-2">
-                {appointmentTypes.map((type) => (
-                  <button
-                    key={type.id}
-                    onClick={() => setNewAppointment(prev => ({ ...prev, type: type.id }))}
-                    className={`p-2 rounded-lg text-left transition-all text-sm ${
-                      newAppointment.type === type.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted hover:bg-muted/80'
-                    }`}
-                  >
-                    <span>{type.icon}</span>
-                    <span className="ml-1">{type.label}</span>
-                  </button>
-                ))}
-              </div>
-
-              <Input
-                placeholder="Appointment Title"
-                value={newAppointment.title}
-                onChange={(e) => setNewAppointment(prev => ({ ...prev, title: e.target.value }))}
-              />
-
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle>{editingId ? 'تعديل الموعد' : 'موعد جديد'}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">نوع الموعد *</label>
                   <Input
-                    type="date"
-                    value={newAppointment.date}
-                    onChange={(e) => setNewAppointment(prev => ({ ...prev, date: e.target.value }))}
-                    className="flex-1"
+                    placeholder="مثال: فحص دوري، سونار..."
+                    value={formData.title}
+                    onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                    required
                   />
                 </div>
-                <TimePicker
-                  value={newAppointment.time}
-                  onChange={(time) => setNewAppointment(prev => ({ ...prev, time }))}
-                  placeholder="Select time"
-                />
-              </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">التاريخ *</label>
+                    <Input
+                      type="date"
+                      value={formData.appointment_date}
+                      onChange={(e) => setFormData(prev => ({ ...prev, appointment_date: e.target.value }))}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">الوقت</label>
+                    <Input
+                      type="time"
+                      value={formData.appointment_time}
+                      onChange={(e) => setFormData(prev => ({ ...prev, appointment_time: e.target.value }))}
+                    />
+                  </div>
+                </div>
 
-              <div>
-                <label className="block text-sm font-medium mb-2">Questions to Ask</label>
-                <div className="space-y-2">
-                  {suggestedQuestions.map((q) => (
-                    <button
-                      key={q}
-                      onClick={() => toggleQuestion(q)}
-                      className={`w-full text-left p-2 rounded-lg text-sm transition-all ${
-                        newAppointment.questions.includes(q)
-                          ? 'bg-primary/10 text-primary border border-primary/20'
-                          : 'bg-muted/50 hover:bg-muted'
-                      }`}
+                <div>
+                  <label className="block text-sm font-medium mb-1">اسم الطبيب</label>
+                  <Input
+                    placeholder="د. ..."
+                    value={formData.doctor_name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, doctor_name: e.target.value }))}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-1">المكان</label>
+                  <Input
+                    placeholder="اسم المستشفى أو العيادة"
+                    value={formData.location}
+                    onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-1">ملاحظات</label>
+                  <Textarea
+                    placeholder="أي ملاحظات إضافية..."
+                    value={formData.notes}
+                    onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                    rows={2}
+                  />
+                </div>
+
+                {/* AI Questions */}
+                <div className="border-t pt-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <label className="font-medium flex items-center gap-2">
+                      <MessageSquare className="w-4 h-4" />
+                      أسئلة للطبيب
+                    </label>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={generateQuestions}
+                      disabled={isGeneratingQuestions || !formData.title}
                     >
-                      {newAppointment.questions.includes(q) ? '✓ ' : '+ '}{q}
-                    </button>
-                  ))}
+                      {isGeneratingQuestions ? (
+                        <Loader2 className="w-4 h-4 animate-spin ml-1" />
+                      ) : (
+                        '✨'
+                      )}
+                      اقتراحات AI
+                    </Button>
+                  </div>
+
+                  {/* Selected Questions */}
+                  {formData.questions.length > 0 && (
+                    <div className="space-y-2 mb-3">
+                      {formData.questions.map((q, i) => (
+                        <div key={i} className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg">
+                          <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
+                          <span className="text-sm flex-1">{q}</span>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            className="h-6 w-6"
+                            onClick={() => removeQuestion(i)}
+                          >
+                            <Trash2 className="w-3 h-3 text-red-500" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Suggested Questions */}
+                  {suggestedQuestions.length > 0 && (
+                    <div className="space-y-2 bg-purple-50 p-3 rounded-lg">
+                      <p className="text-sm text-purple-600 font-medium">🤖 اقتراحات:</p>
+                      {suggestedQuestions.map((q, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-2 text-sm cursor-pointer hover:bg-purple-100 p-2 rounded transition-colors"
+                          onClick={() => addQuestion(q)}
+                        >
+                          <Plus className="w-4 h-4 text-purple-500" />
+                          <span>{q}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </div>
 
-              <div className="flex gap-3">
-                <Button variant="outline" onClick={() => setShowForm(false)} className="flex-1">
-                  Cancel
-                </Button>
-                <Button onClick={addAppointment} className="flex-1">
-                  Save
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* AI Preparation */}
-        {showAIPrep && aiResponse && (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">AI Appointment Prep</h3>
+                <div className="flex gap-3 pt-4">
+                  <Button type="submit" className="flex-1" disabled={isSaving}>
+                    {isSaving ? <Loader2 className="w-4 h-4 animate-spin ml-2" /> : null}
+                    {editingId ? 'حفظ التعديلات' : 'إضافة الموعد'}
+                  </Button>
+                  <Button type="button" variant="outline" onClick={resetForm}>
+                    إلغاء
+                  </Button>
                 </div>
-                <Button variant="ghost" size="sm" onClick={() => setShowAIPrep(false)}>
-                  Close
-                </Button>
-              </div>
-              <MarkdownRenderer content={aiResponse} />
-            </CardContent>
-          </Card>
-        )}
-
-        {error && (
-          <Card className="border-destructive/30 bg-destructive/5">
-            <CardContent className="p-4 text-destructive text-sm">
-              {error}
+              </form>
             </CardContent>
           </Card>
         )}
 
         {/* Upcoming Appointments */}
-        {upcomingAppointments.length > 0 && (
-          <Card>
-            <CardContent className="p-4">
-              <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
-                <Bell className="w-5 h-5 text-primary" />
-                Upcoming Appointments
-              </h3>
-              <div className="space-y-3">
-                {upcomingAppointments.map((apt) => {
-                  const aptType = appointmentTypes.find(t => t.id === apt.type);
-                  const isUpcoming = isToday(new Date(apt.date)) || isBefore(new Date(apt.date), addDays(new Date(), 3));
-                  
-                  return (
-                    <div
-                      key={apt.id}
-                      className={`p-4 rounded-lg ${
-                        isUpcoming ? 'bg-primary/10 border border-primary/20' : 'bg-muted/50'
-                      }`}
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{aptType?.icon}</span>
-                          <div>
-                            <p className="font-medium">{apt.title}</p>
-                            <p className="text-sm text-muted-foreground">
-                              {format(new Date(apt.date), 'EEE, MMM d')} {apt.time && `at ${apt.time}`}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex gap-1">
-                          <button
-                            onClick={() => getAIAppointmentPrep(apt)}
-                            disabled={isLoading}
-                            className="p-1.5 rounded-lg hover:bg-primary/10 transition-colors"
-                          >
-                            {isLoading && selectedAppointment?.id === apt.id ? (
-                              <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                            ) : (
-                              <Brain className="w-4 h-4 text-primary" />
-                            )}
-                          </button>
-                          <button
-                            onClick={() => markComplete(apt.id)}
-                            className="p-1.5 rounded-lg hover:bg-background transition-colors"
-                          >
-                            <CheckCircle className="w-4 h-4 text-emerald-600" />
-                          </button>
-                          <button
-                            onClick={() => deleteAppointment(apt.id)}
-                            className="p-1.5 rounded-lg hover:bg-destructive/10 transition-colors"
-                          >
-                            <Trash2 className="w-4 h-4 text-destructive" />
-                          </button>
-                        </div>
+        {upcoming.length > 0 && (
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+              <Bell className="w-5 h-5 text-blue-500" />
+              المواعيد القادمة ({upcoming.length})
+            </h2>
+            {upcoming.map(appointment => (
+              <Card key={appointment.id} className="shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-4">
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="font-bold text-lg">{appointment.title}</h3>
+                        <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                          {getDaysUntil(appointment.appointment_date)}
+                        </span>
                       </div>
                       
-                      {apt.questions.length > 0 && (
-                        <div className="mt-3 pt-3 border-t border-border">
-                          <p className="text-xs font-medium text-muted-foreground mb-2">Questions to Ask:</p>
+                      <div className="space-y-1 text-sm text-gray-600">
+                        <p className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          {formatDate(appointment.appointment_date)}
+                        </p>
+                        {appointment.doctor_name && (
+                          <p className="flex items-center gap-2">
+                            <User className="w-4 h-4" />
+                            {appointment.doctor_name}
+                          </p>
+                        )}
+                        {appointment.location && (
+                          <p className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4" />
+                            {appointment.location}
+                          </p>
+                        )}
+                      </div>
+
+                      {appointment.questions && appointment.questions.length > 0 && (
+                        <div className="mt-3 bg-gray-50 p-2 rounded-lg">
+                          <p className="text-xs font-medium text-gray-500 mb-1">أسئلتك:</p>
                           <ul className="text-sm space-y-1">
-                            {apt.questions.map((q, i) => (
-                              <li key={i} className="flex items-start gap-2">
-                                <span className="text-primary">•</span>
-                                {q}
-                              </li>
+                            {appointment.questions.slice(0, 3).map((q: string, i: number) => (
+                              <li key={i} className="text-gray-700">• {q}</li>
                             ))}
+                            {appointment.questions.length > 3 && (
+                              <li className="text-gray-400">+{appointment.questions.length - 3} أسئلة أخرى</li>
+                            )}
                           </ul>
                         </div>
                       )}
                     </div>
-                  );
-                })}
-              </div>
-            </CardContent>
-          </Card>
+                    
+                    <div className="flex gap-2">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleEdit(appointment)}
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="text-red-500"
+                        onClick={() => handleDelete(appointment.id)}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         )}
 
-        {/* Archive Section - Past/Completed Appointments */}
-        {pastAppointments.length > 0 && (
-          <Card>
-            <CardContent className="p-4">
-              <button
-                onClick={() => setShowArchive(!showArchive)}
-                className="w-full flex items-center justify-between"
-              >
-                <h3 className="text-lg font-semibold flex items-center gap-2">
-                  <Archive className="w-5 h-5 text-muted-foreground" />
-                  Archive ({pastAppointments.length})
-                </h3>
-                {showArchive ? (
-                  <ChevronUp className="w-5 h-5 text-muted-foreground" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                )}
-              </button>
-              
-              {showArchive && (
-                <div className="mt-4 space-y-3">
-                  {pastAppointments.map((apt) => {
-                    const aptType = appointmentTypes.find(t => t.id === apt.type);
-                    
-                    return (
-                      <div
-                        key={apt.id}
-                        className="p-3 rounded-lg bg-muted/30 opacity-75"
-                      >
-                        <div className="flex items-start justify-between">
-                          <div className="flex items-center gap-3">
-                            <span className="text-xl">{aptType?.icon}</span>
-                            <div>
-                              <p className="font-medium text-sm line-through">{apt.title}</p>
-                              <p className="text-xs text-muted-foreground">
-                                {format(new Date(apt.date), 'EEE, MMM d')} {apt.time && `at ${apt.time}`}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            {apt.completed && (
-                              <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full dark:bg-emerald-900/30 dark:text-emerald-400">
-                                ✓ Done
-                              </span>
-                            )}
-                            <button
-                              onClick={() => deleteAppointment(apt.id)}
-                              className="p-1 rounded-lg hover:bg-destructive/10 transition-colors"
-                            >
-                              <Trash2 className="w-4 h-4 text-muted-foreground" />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </CardContent>
-          </Card>
+        {/* Past Appointments */}
+        {past.length > 0 && (
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold text-gray-500 flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              المواعيد السابقة ({past.length})
+            </h2>
+            {past.slice(0, 3).map(appointment => (
+              <Card key={appointment.id} className="shadow opacity-70">
+                <CardContent className="p-4">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h3 className="font-medium">{appointment.title}</h3>
+                      <p className="text-sm text-gray-500">
+                        {formatDate(appointment.appointment_date)}
+                      </p>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-red-500"
+                      onClick={() => handleDelete(appointment.id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         )}
 
         {/* Empty State */}
         {appointments.length === 0 && !showForm && (
-          <Card>
-            <CardContent className="p-8 text-center">
-              <Calendar className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-              <h3 className="font-semibold mb-2">No Appointments Yet</h3>
-              <p className="text-sm text-muted-foreground">
-                Add your prenatal appointments to stay organized and prepared.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="text-center py-12 text-gray-500">
+            <Calendar className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+            <p>لا توجد مواعيد مسجلة</p>
+            <p className="text-sm">أضيفي موعدك القادم الآن!</p>
+          </div>
         )}
       </div>
-    </ToolFrame>
+    </div>
   );
-}
+};
+
+export default SmartAppointmentReminder;
