@@ -11,6 +11,7 @@ import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
+import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const skinConcerns = [
   { id: "acne", label: "Pregnancy Acne", icon: "🔴" },
@@ -30,6 +31,57 @@ const unsafeIngredients = [
   { name: "Formaldehyde", risk: "high", icon: "🚫" },
   { name: "Chemical Sunscreens", risk: "medium", icon: "⚠️" },
   { name: "Essential Oils (some)", risk: "medium", icon: "⚠️" },
+];
+
+const skincareVideos: Video[] = [
+  {
+    id: "1",
+    title: "Dermatologist Safe Skincare During Pregnancy",
+    description: "Complete guide to pregnancy-safe skincare routine",
+    youtubeId: "SZINbsQ_gNo",
+    duration: "14:30",
+    category: "Skincare Routine"
+  },
+  {
+    id: "2",
+    title: "Pregnancy Skincare Guide - Dr. Nina",
+    description: "Dermatologist's guide to safe products during pregnancy",
+    youtubeId: "9NvKchuLIUw",
+    duration: "12:45",
+    category: "Skincare Routine"
+  },
+  {
+    id: "3",
+    title: "Stretch Marks Prevention & Treatment",
+    description: "Best practices for preventing and treating stretch marks",
+    youtubeId: "vJvVJHsLQ4g",
+    duration: "10:20",
+    category: "Skin Concerns"
+  },
+  {
+    id: "4",
+    title: "Pregnancy Acne Solutions",
+    description: "Safe treatments for hormonal pregnancy acne",
+    youtubeId: "HFBp8cHfKAE",
+    duration: "9:15",
+    category: "Skin Concerns"
+  },
+  {
+    id: "5",
+    title: "Melasma During Pregnancy",
+    description: "Understanding and treating pregnancy mask",
+    youtubeId: "9TqVxWLGv4k",
+    duration: "8:50",
+    category: "Skin Concerns"
+  },
+  {
+    id: "6",
+    title: "Natural DIY Pregnancy Skincare",
+    description: "Homemade safe skincare recipes for pregnancy",
+    youtubeId: "wI8TRj0UKBY",
+    duration: "11:30",
+    category: "DIY Recipes"
+  },
 ];
 
 const AIPregnancySkincare = () => {
@@ -202,49 +254,13 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
           </Card>
         </div>
 
-        {/* Educational Video - At the end as supplementary content */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Sparkles className="w-4 h-4" />
-            Dermatologist Guide: Pregnancy-Safe Skincare
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/SZINbsQ_gNo"
-              title="Dermatologist Approved Safe Skincare During Pregnancy"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            Safe skincare routine during pregnancy - Dermatologist recommended
-          </p>
-        </Card>
-
-        {/* Second Educational Video */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Sparkles className="w-4 h-4" />
-            Dr. Nina's Pregnancy Skincare Guide
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/9NvKchuLIUw"
-              title="Dermatologist's Guide to Pregnancy-Safe Skincare"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - Consult your doctor for personalized advice
-          </p>
-        </Card>
+        {/* Educational Videos with Thumbnails */}
+        <VideoLibrary
+          videos={skincareVideos}
+          title="Pregnancy Skincare Videos"
+          subtitle="Dermatologist-approved skincare guidance"
+          accentColor="violet"
+        />
       </div>
     </ToolFrame>
   );
