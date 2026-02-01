@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Sparkles, Heart, Clock, Utensils, Wind, AlertCircle } from "lucide-react";
+import { Sparkles, Heart, Utensils, Wind, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,7 @@ import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
+import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const nauseaTriggers = [
   { id: "morning", label: "Worst in morning", icon: "🌅" },
@@ -30,6 +31,49 @@ const quickRemedies = [
   { icon: "🍪", name: "Dry crackers", tip: "Keep by bedside" },
   { icon: "🌿", name: "Peppermint", tip: "Inhale or tea" },
   { icon: "🍌", name: "Banana", tip: "Easy on stomach" },
+];
+
+const nauseaVideos: Video[] = [
+  {
+    id: "1",
+    title: "P6 Acupressure for Morning Sickness",
+    description: "3 effective pressure points for pregnancy nausea relief",
+    youtubeId: "dHDFqaov73c",
+    duration: "6:30",
+    category: "Acupressure"
+  },
+  {
+    id: "2",
+    title: "BabyCenter Acupressure Guide",
+    description: "Step-by-step acupressure techniques for nausea",
+    youtubeId: "eByC7Hf9nOs",
+    duration: "5:45",
+    category: "Acupressure"
+  },
+  {
+    id: "3",
+    title: "Foods That Help Morning Sickness",
+    description: "Best foods to eat when you're feeling nauseous",
+    youtubeId: "RfGKwT97Xjc",
+    duration: "8:20",
+    category: "Diet Tips"
+  },
+  {
+    id: "4",
+    title: "Morning Sickness Survival Guide",
+    description: "Doctor's tips for managing severe nausea",
+    youtubeId: "YhwC6sAFLpQ",
+    duration: "10:15",
+    category: "Medical Advice"
+  },
+  {
+    id: "5",
+    title: "Natural Remedies for Nausea",
+    description: "Ginger, B6, and other natural solutions",
+    youtubeId: "0xv_UmQ-vgU",
+    duration: "7:40",
+    category: "Natural Remedies"
+  },
 ];
 
 const AINauseaRelief = () => {
@@ -221,49 +265,13 @@ Be compassionate - morning sickness is exhausting!`;
           </p>
         </Card>
 
-        {/* Educational Video - At the end */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Clock className="w-4 h-4" />
-            Learn More: P6 Acupressure for Nausea
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/dHDFqaov73c"
-              title="3 Pressure Points for Morning Sickness Relief"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            3 effective pressure points for pregnancy nausea relief
-          </p>
-        </Card>
-
-        {/* Second Educational Video */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Heart className="w-4 h-4" />
-            BabyCenter: Acupressure Guide
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/eByC7Hf9nOs"
-              title="Acupressure for Morning Sickness - BabyCenter"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - BabyCenter acupressure guide
-          </p>
-        </Card>
+        {/* Educational Videos with Thumbnails */}
+        <VideoLibrary
+          videos={nauseaVideos}
+          title="Nausea Relief Videos"
+          subtitle="Techniques and tips to ease morning sickness"
+          accentColor="emerald"
+        />
       </div>
     </ToolFrame>
   );

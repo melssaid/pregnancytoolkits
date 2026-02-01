@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Baby, Sparkles, Activity, Clock } from "lucide-react";
+import { Baby, Sparkles, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,7 @@ import { MedicalInfoBar } from "@/components/compliance";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
+import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const birthPreferences = [
   { id: "natural", label: "Natural/Unmedicated", icon: "🌿" },
@@ -33,6 +34,49 @@ const positions = [
   { id: "hands-knees", name: "Hands & Knees", description: "Relieves back labor", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=300&fit=crop" },
   { id: "side-lying", name: "Side Lying", description: "Rest between contractions", image: "https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=400&h=300&fit=crop" },
   { id: "standing", name: "Standing/Walking", description: "Uses gravity", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" },
+];
+
+const birthPositionVideos: Video[] = [
+  {
+    id: "1",
+    title: "7 Labor Positions for Easier Birth",
+    description: "Positions that open the pelvis and reduce pain during labor",
+    youtubeId: "FdaWVReVm6k",
+    duration: "14:20",
+    category: "Labor Positions"
+  },
+  {
+    id: "2",
+    title: "How to Open Your Pelvis for Birth",
+    description: "MamasteFit guide to pelvis opening techniques",
+    youtubeId: "UKkjGZEEnow",
+    duration: "11:45",
+    category: "Labor Positions"
+  },
+  {
+    id: "3",
+    title: "Pushing Positions for Labor",
+    description: "Best positions for the pushing stage of labor",
+    youtubeId: "LL-FkZJce2k",
+    duration: "10:30",
+    category: "Pushing"
+  },
+  {
+    id: "4",
+    title: "Birth Ball Exercises for Labor",
+    description: "Using a birth ball to ease labor and encourage positioning",
+    youtubeId: "H7jQ0gMmJUA",
+    duration: "12:15",
+    category: "Equipment"
+  },
+  {
+    id: "5",
+    title: "Partner Support Positions",
+    description: "How partners can help with positioning during labor",
+    youtubeId: "tKFP8aOvzlE",
+    duration: "8:45",
+    category: "Partner Support"
+  },
 ];
 
 const AIBirthPosition = () => {
@@ -188,49 +232,13 @@ Include safety considerations and when to change positions.`;
           </Card>
         )}
 
-        {/* Educational Video - At the end */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Activity className="w-4 h-4" />
-            7 Labor Positions for Easier Birth
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/FdaWVReVm6k"
-              title="7 Labor Positions for Easier Birth - Open Pelvis & Reduce Pain"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            Positions that open the pelvis and reduce pain during labor
-          </p>
-        </Card>
-
-        {/* Second Educational Video */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Activity className="w-4 h-4" />
-            How to Open Your Pelvis for Birth
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/UKkjGZEEnow"
-              title="How to Open Your Pelvis for Birth - MamasteFit"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - Discuss positions with your doctor
-          </p>
-        </Card>
+        {/* Educational Videos with Thumbnails */}
+        <VideoLibrary
+          videos={birthPositionVideos}
+          title="Birth Position Videos"
+          subtitle="Visual guides for labor positions"
+          accentColor="rose"
+        />
       </div>
     </ToolFrame>
   );
