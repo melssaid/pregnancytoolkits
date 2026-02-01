@@ -204,7 +204,7 @@ export function AnimatedRoutes() {
           <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />
 
           {/* 404 */}
-          <Route path=\"*\" element={<PageTransition><NotFound /></PageTransition>} />
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </Suspense>
     </AnimatePresence>
