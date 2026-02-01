@@ -30,7 +30,7 @@ const sleepVideos: Video[] = [
     id: "1",
     title: "Pregnancy Insomnia? Proven Sleep Tips",
     description: "Doctor-approved tips for better sleep during pregnancy",
-    youtubeId: "s8lz6f01OIU",
+    youtubeId: "IUOMYs5nEAk",
     duration: "12:30",
     category: "Sleep Tips"
   },
@@ -38,7 +38,7 @@ const sleepVideos: Video[] = [
     id: "2",
     title: "Best Sleep Positions - Third Trimester",
     description: "How to sleep when pregnant - Tommy's Guide",
-    youtubeId: "IZbVmEh5H6A",
+    youtubeId: "Zp5gDDhxUoY",
     duration: "8:45",
     category: "Sleep Positions"
   },
@@ -46,7 +46,7 @@ const sleepVideos: Video[] = [
     id: "3",
     title: "Pregnancy Pillow Guide",
     description: "How to use pregnancy pillows for better sleep",
-    youtubeId: "MFa6HcvXhXY",
+    youtubeId: "YHb-jJQPqhM",
     duration: "10:15",
     category: "Sleep Tips"
   },
@@ -54,7 +54,7 @@ const sleepVideos: Video[] = [
     id: "4",
     title: "Bedtime Yoga for Pregnancy",
     description: "Gentle stretches to help you relax before bed",
-    youtubeId: "B2T5q3F8qJg",
+    youtubeId: "4fL_JZJqFnw",
     duration: "15:20",
     category: "Relaxation"
   },
@@ -62,7 +62,7 @@ const sleepVideos: Video[] = [
     id: "5",
     title: "Pregnancy Sleep Meditation",
     description: "Guided meditation for restful pregnancy sleep",
-    youtubeId: "1vx8iUvfyCY",
+    youtubeId: "aEqlQvczMJQ",
     duration: "20:00",
     category: "Relaxation"
   },

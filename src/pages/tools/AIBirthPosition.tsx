@@ -41,7 +41,7 @@ const birthPositionVideos: Video[] = [
     id: "1",
     title: "7 Labor Positions for Easier Birth",
     description: "Positions that open the pelvis and reduce pain during labor",
-    youtubeId: "FdaWVReVm6k",
+    youtubeId: "j6852-KxBkU",
     duration: "14:20",
     category: "Labor Positions"
   },
@@ -49,7 +49,7 @@ const birthPositionVideos: Video[] = [
     id: "2",
     title: "How to Open Your Pelvis for Birth",
     description: "MamasteFit guide to pelvis opening techniques",
-    youtubeId: "UKkjGZEEnow",
+    youtubeId: "1zB_kKaHpas",
     duration: "11:45",
     category: "Labor Positions"
   },
@@ -57,7 +57,7 @@ const birthPositionVideos: Video[] = [
     id: "3",
     title: "Pushing Positions for Labor",
     description: "Best positions for the pushing stage of labor",
-    youtubeId: "LL-FkZJce2k",
+    youtubeId: "HkblBLT0hHM",
     duration: "10:30",
     category: "Pushing"
   },
@@ -65,7 +65,7 @@ const birthPositionVideos: Video[] = [
     id: "4",
     title: "Birth Ball Exercises for Labor",
     description: "Using a birth ball to ease labor and encourage positioning",
-    youtubeId: "H7jQ0gMmJUA",
+    youtubeId: "idczDoC0iP8",
     duration: "12:15",
     category: "Equipment"
   },
@@ -73,7 +73,7 @@ const birthPositionVideos: Video[] = [
     id: "5",
     title: "Partner Support Positions",
     description: "How partners can help with positioning during labor",
-    youtubeId: "tKFP8aOvzlE",
+    youtubeId: "QVrDcZa8jeU",
     duration: "8:45",
     category: "Partner Support"
   },

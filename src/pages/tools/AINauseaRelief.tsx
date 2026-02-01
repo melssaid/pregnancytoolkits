@@ -38,7 +38,7 @@ const nauseaVideos: Video[] = [
     id: "1",
     title: "P6 Acupressure for Morning Sickness",
     description: "3 effective pressure points for pregnancy nausea relief",
-    youtubeId: "dHDFqaov73c",
+    youtubeId: "ZoKJ7RLjjfY",
     duration: "6:30",
     category: "Acupressure"
   },
@@ -46,7 +46,7 @@ const nauseaVideos: Video[] = [
     id: "2",
     title: "BabyCenter Acupressure Guide",
     description: "Step-by-step acupressure techniques for nausea",
-    youtubeId: "eByC7Hf9nOs",
+    youtubeId: "BdJ9K-I5xKI",
     duration: "5:45",
     category: "Acupressure"
   },
@@ -54,7 +54,7 @@ const nauseaVideos: Video[] = [
     id: "3",
     title: "Foods That Help Morning Sickness",
     description: "Best foods to eat when you're feeling nauseous",
-    youtubeId: "RfGKwT97Xjc",
+    youtubeId: "8rl07QGHXr0",
     duration: "8:20",
     category: "Diet Tips"
   },
@@ -62,7 +62,7 @@ const nauseaVideos: Video[] = [
     id: "4",
     title: "Morning Sickness Survival Guide",
     description: "Doctor's tips for managing severe nausea",
-    youtubeId: "YhwC6sAFLpQ",
+    youtubeId: "yPc8uCYPonk",
     duration: "10:15",
     category: "Medical Advice"
   },
@@ -70,7 +70,7 @@ const nauseaVideos: Video[] = [
     id: "5",
     title: "Natural Remedies for Nausea",
     description: "Ginger, B6, and other natural solutions",
-    youtubeId: "0xv_UmQ-vgU",
+    youtubeId: "h3sxduUt5rc",
     duration: "7:40",
     category: "Natural Remedies"
   },
