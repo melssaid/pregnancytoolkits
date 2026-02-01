@@ -1,4 +1,4 @@
-import { Home, LayoutDashboard, Search, Sparkles } from "lucide-react";
+import { Home, LayoutDashboard, Search, Settings } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -8,6 +8,7 @@ const navItems = [
   { id: "home", icon: Home, label: "Home", href: "/" },
   { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { id: "search", icon: Search, label: "Search", href: null }, // Opens dialog
+  { id: "settings", icon: Settings, label: "Settings", href: "/settings" },
 ];
 
 export function BottomNavigation() {
