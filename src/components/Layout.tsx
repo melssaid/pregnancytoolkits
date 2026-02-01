@@ -8,6 +8,7 @@ import { BackButton } from "./BackButton";
 import { SearchDialog } from "./SearchDialog";
 import { NotificationCenter } from "./NotificationCenter";
 import { BottomNavigation } from "./BottomNavigation";
+import { EncryptionIndicator } from "./EncryptionIndicator";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -85,6 +86,11 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
 
             {/* Notification Center */}
             <NotificationCenter />
+
+            {/* Encryption Status Indicator */}
+            <div className="hidden md:flex">
+              <EncryptionIndicator />
+            </div>
 
             {/* Settings Link - Hidden on mobile (available in bottom nav) */}
             <Link 
