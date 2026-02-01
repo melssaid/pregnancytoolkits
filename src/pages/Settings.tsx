@@ -1,7 +1,8 @@
 import React from 'react';
-import { Settings as SettingsIcon, Database, Shield, Info, Heart } from 'lucide-react';
+import { Settings as SettingsIcon, Database, Shield, Info, Heart, Trash2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
+import { DataClearManager } from '@/components/settings/DataClearManager';
 import BackButton from '@/components/BackButton';
 
 const Settings: React.FC = () => {
@@ -26,7 +27,10 @@ const Settings: React.FC = () => {
             <Database className="w-5 h-5 text-primary" />
             <h2 className="font-semibold text-lg">إدارة البيانات</h2>
           </div>
-          <DataBackupManager />
+          <div className="space-y-4">
+            <DataBackupManager />
+            <DataClearManager />
+          </div>
         </section>
 
         {/* Privacy Info */}
