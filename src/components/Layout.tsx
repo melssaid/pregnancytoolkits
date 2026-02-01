@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Home, Shield, Award, Search, Heart } from "lucide-react";
+import { Home, Shield, Award, Search, Heart, Settings } from "lucide-react";
 import logoImage from "@/assets/logo.png";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
@@ -85,6 +85,15 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
 
             {/* Notification Center */}
             <NotificationCenter />
+
+            {/* Settings Link - Hidden on mobile (available in bottom nav) */}
+            <Link 
+              to="/settings"
+              className="hidden md:flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+              title="Settings"
+            >
+              <Settings className="h-5 w-5" />
+            </Link>
 
             {!isHome && (
               <Link 
