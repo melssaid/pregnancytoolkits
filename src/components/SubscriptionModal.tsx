@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Crown, Sparkles, Check, Zap, Brain, Shield, Clock } from 'lucide-react';
+import { X, Crown, Sparkles, Zap, Brain, Shield, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { toast } from 'sonner';
@@ -10,7 +10,8 @@ interface SubscriptionModalProps {
   onClose: () => void;
 }
 
-export function SubscriptionModal({ isOpen, onClose }: SubscriptionModalProps) {
+export const SubscriptionModal = forwardRef<HTMLDivElement, SubscriptionModalProps>(
+  function SubscriptionModal({ isOpen, onClose }, ref) {
   const [selectedPlan, setSelectedPlan] = useState<'monthly' | 'yearly'>('yearly');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -180,6 +181,8 @@ export function SubscriptionModal({ isOpen, onClose }: SubscriptionModalProps) {
       )}
     </AnimatePresence>
   );
-}
+});
+
+SubscriptionModal.displayName = "SubscriptionModal";
 
 export default SubscriptionModal;
