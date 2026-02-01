@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Heart, Sparkles, MessageCircle, HandHeart } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -10,6 +10,7 @@ import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
+import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const supportTopics = [
   { id: "emotional", label: "Emotional Support", icon: "💝", description: "How to be emotionally present" },
@@ -20,6 +21,57 @@ const supportTopics = [
   { id: "labor", label: "Labor Preparation", icon: "⏰", description: "Being ready for D-day" },
   { id: "postpartum", label: "Postpartum Planning", icon: "🏠", description: "After baby arrives" },
   { id: "intimacy", label: "Intimacy & Connection", icon: "❤️", description: "Maintaining closeness" },
+];
+
+const partnerVideos: Video[] = [
+  {
+    id: "1",
+    title: "5 Tips to Be the Best Labor Partner",
+    description: "Essential tips for supporting your partner during labor",
+    youtubeId: "tKFP8aOvzlE",
+    duration: "8:45",
+    category: "Labor Support"
+  },
+  {
+    id: "2",
+    title: "How to Push During Labor - Best Positions",
+    description: "Learn the best positions to help your partner during pushing",
+    youtubeId: "LL-FkZJce2k",
+    duration: "10:20",
+    category: "Labor Support"
+  },
+  {
+    id: "3",
+    title: "Supporting Your Pregnant Partner",
+    description: "Complete guide for partners during pregnancy",
+    youtubeId: "9o3FUY8kfNQ",
+    duration: "12:15",
+    category: "Emotional Support"
+  },
+  {
+    id: "4",
+    title: "Pregnancy Massage for Partners",
+    description: "Safe massage techniques to ease pregnancy discomfort",
+    youtubeId: "ZxGC3Y0lRJA",
+    duration: "15:30",
+    category: "Physical Support"
+  },
+  {
+    id: "5",
+    title: "Dad's Guide to Pregnancy",
+    description: "What every expecting father needs to know",
+    youtubeId: "0EJxNBp4q_s",
+    duration: "11:45",
+    category: "Education"
+  },
+  {
+    id: "6",
+    title: "Bonding with Baby Before Birth",
+    description: "Ways for partners to connect with the baby",
+    youtubeId: "Gf9MLflHNgQ",
+    duration: "7:20",
+    category: "Bonding"
+  },
 ];
 
 const AIPartnerGuide = () => {
@@ -173,48 +225,13 @@ Be warm, practical, and specific. Include real examples.`;
           </ul>
         </Card>
 
-        {/* Educational Videos - At the end */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <MessageCircle className="w-4 h-4" />
-            5 Tips to Be the Best Labor Partner
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/tKFP8aOvzlE"
-              title="Make Dad The Best Labor Partner With These 5 Tips"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - Built To Birth
-          </p>
-        </Card>
-
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Heart className="w-4 h-4" />
-            How to Push During Labor - Best Positions
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/LL-FkZJce2k"
-              title="How to Push in Labor - Best Positions for Easier Birth"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            How to support your partner during labor pushing
-          </p>
-        </Card>
+        {/* Educational Videos with Thumbnails */}
+        <VideoLibrary
+          videos={partnerVideos}
+          title="Partner Support Videos"
+          subtitle="Learn how to be the best support partner"
+          accentColor="rose"
+        />
       </div>
     </ToolFrame>
   );
