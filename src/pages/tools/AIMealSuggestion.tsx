@@ -25,133 +25,133 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const nutritionVideos: Video[] = [
-  // Nutrition Basics - Professional Medical Sources
+  // Nutrition Basics - Professional Sources
   { 
     id: "1", 
-    title: "Pregnancy Nutrition 101", 
-    description: "Complete guide to eating well during pregnancy - Dr. Sarah", 
-    youtubeId: "uyEdhOFrXsA", 
-    duration: "15:23", 
+    title: "Healthy Pregnancy Meal Plan", 
+    description: "Step-by-step guide to healthy eating during pregnancy", 
+    youtubeId: "vNZ2GsJOsZc", 
+    duration: "18:42", 
     category: "Nutrition" 
   },
   { 
     id: "2", 
-    title: "Best Foods for Pregnancy", 
-    description: "Top 10 superfoods every pregnant woman should eat", 
-    youtubeId: "sBf4bYSlyls", 
-    duration: "12:45", 
+    title: "What A Nutritionist Eats Pregnant", 
+    description: "Daily meals and tips from a certified nutritionist", 
+    youtubeId: "xZs3gCHcjhY", 
+    duration: "14:23", 
     category: "Nutrition" 
   },
   { 
     id: "3", 
-    title: "Prenatal Vitamins Explained", 
-    description: "Which supplements you actually need during pregnancy", 
-    youtubeId: "1Z7FYJh7VXY", 
-    duration: "8:30", 
+    title: "Top 10 Foods For Pregnancy", 
+    description: "Best foods to eat during pregnancy with free meal plan", 
+    youtubeId: "3GTK6MLPJ9g", 
+    duration: "12:15", 
     category: "Nutrition" 
   },
   { 
     id: "4", 
-    title: "Iron & Folic Acid in Pregnancy", 
-    description: "Preventing anemia and neural tube defects", 
-    youtubeId: "8KZ9NLQE6qY", 
-    duration: "10:15", 
+    title: "10 Foods I Eat Every Day Pregnant", 
+    description: "Daily pregnancy superfoods for you and baby", 
+    youtubeId: "2kNGY3gyrEc", 
+    duration: "11:30", 
     category: "Nutrition" 
   },
   
   // Trimester-Specific Nutrition
   { 
     id: "5", 
-    title: "First Trimester Eating Guide", 
-    description: "Managing nausea while getting essential nutrients", 
-    youtubeId: "YhwC6sAFLpQ", 
-    duration: "11:20", 
+    title: "Diet by Trimester - Dietitian Guide", 
+    description: "What to eat in each trimester - expert advice", 
+    youtubeId: "dq7ovxsAfX8", 
+    duration: "15:45", 
     category: "Trimester Guide" 
   },
   { 
     id: "6", 
-    title: "Second Trimester Diet Plan", 
-    description: "Eating for baby's growth and your energy", 
-    youtubeId: "2_O3_1xOIK4", 
-    duration: "13:45", 
+    title: "First & Second Trimester Diet", 
+    description: "Pregnancy diet chart for healthy baby development", 
+    youtubeId: "Y0FdMnvyTC4", 
+    duration: "13:20", 
     category: "Trimester Guide" 
   },
   { 
     id: "7", 
-    title: "Third Trimester Nutrition", 
-    description: "Preparing your body for labor and breastfeeding", 
-    youtubeId: "rkKWDnprLlY", 
-    duration: "12:30", 
+    title: "5 Weeks Pregnant - Diet Tips", 
+    description: "Early pregnancy dietary and lifestyle changes", 
+    youtubeId: "cq4LJM5Vh2o", 
+    duration: "10:15", 
     category: "Trimester Guide" 
   },
   
   // Healthy Pregnancy Recipes
   { 
     id: "8", 
-    title: "Healthy Pregnancy Breakfast Ideas", 
-    description: "Quick, nutritious morning meals for busy moms", 
-    youtubeId: "jjhZ2xtxSZo", 
-    duration: "9:15", 
+    title: "Simple Pregnancy Meals", 
+    description: "5 quick and nutritious meal ideas for busy moms", 
+    youtubeId: "0QZWIuJGVZY", 
+    duration: "12:30", 
     category: "Recipes" 
   },
   { 
     id: "9", 
-    title: "Easy Pregnancy Meal Prep", 
-    description: "Batch cooking healthy meals for the week", 
-    youtubeId: "P5mEjQ1f7-4", 
-    duration: "18:40", 
+    title: "What I Eat 8 Months Pregnant", 
+    description: "Real meals in third trimester - honest and practical", 
+    youtubeId: "tAaoN09CHGM", 
+    duration: "16:45", 
     category: "Recipes" 
   },
   { 
     id: "10", 
-    title: "Pregnancy Smoothie Recipes", 
-    description: "5 delicious smoothies packed with nutrients", 
-    youtubeId: "0EZxnRqbw1c", 
-    duration: "7:25", 
+    title: "15 Foods For Healthy Pregnancy", 
+    description: "Weekly foods for optimal pregnancy nutrition", 
+    youtubeId: "FprOVxmwzR8", 
+    duration: "14:20", 
     category: "Recipes" 
   },
   
   // Food Safety
   { 
     id: "11", 
-    title: "Foods to Avoid in Pregnancy", 
-    description: "Complete list of unsafe foods and why", 
-    youtubeId: "GiB7xbW4P8c", 
-    duration: "14:20", 
-    category: "Safety" 
-  },
-  { 
-    id: "12", 
-    title: "Safe Seafood During Pregnancy", 
-    description: "Which fish are safe and which to avoid", 
-    youtubeId: "mjOq-F3Ktik", 
-    duration: "8:55", 
+    title: "Foods to Avoid While Pregnant", 
+    description: "UC Davis dietitian explains pregnancy food safety", 
+    youtubeId: "pozcaggYIWk", 
+    duration: "11:55", 
     category: "Safety" 
   },
   
   // Special Diets & Conditions
   { 
-    id: "13", 
+    id: "12", 
     title: "Gestational Diabetes Diet", 
-    description: "Managing blood sugar through nutrition", 
-    youtubeId: "eS-dc8jpxAQ", 
-    duration: "16:30", 
+    description: "Healthy eating with gestational diabetes - nutrition tips", 
+    youtubeId: "68NMhivpmWQ", 
+    duration: "9:30", 
+    category: "Special Diets" 
+  },
+  { 
+    id: "13", 
+    title: "Gestational Diabetes Meal Plan", 
+    description: "What to eat with gestational diabetes - EatingWell", 
+    youtubeId: "DevakSgDEpU", 
+    duration: "8:45", 
     category: "Special Diets" 
   },
   { 
     id: "14", 
-    title: "Vegetarian Pregnancy Nutrition", 
-    description: "Getting enough protein and B12 without meat", 
-    youtubeId: "6qGiXY1SB68", 
-    duration: "11:45", 
+    title: "Gestational Diabetes Story", 
+    description: "Real experience and tips from Diabetes UK", 
+    youtubeId: "8xz4VCgx-uE", 
+    duration: "6:20", 
     category: "Special Diets" 
   },
   { 
     id: "15", 
-    title: "Managing Morning Sickness", 
-    description: "Foods that help with nausea and vomiting", 
-    youtubeId: "RfGKwT97Xjc", 
-    duration: "9:10", 
+    title: "Morning Sickness Smoothie", 
+    description: "Nausea-fighting smoothie with ginger and pineapple", 
+    youtubeId: "nAQUFef_0nU", 
+    duration: "3:45", 
     category: "Special Diets" 
   },
 ];
