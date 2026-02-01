@@ -56,13 +56,16 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
                   decoding="async"
                   className="h-11 w-11 rounded-full shadow-lg object-cover"
                 />
-                <div className="flex flex-col">
-                  <span className="text-sm sm:text-base font-bold text-foreground leading-tight">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-sm sm:text-base font-bold text-foreground tracking-tight">
                     Pregnancy Toolkits
                   </span>
-                  <span className="text-[10px] sm:text-xs text-muted-foreground leading-tight">
-                    Your complete pregnancy companion
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <div className="h-px w-4 bg-gradient-to-r from-primary/60 to-transparent" />
+                    <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">
+                      Your complete pregnancy companion
+                    </span>
+                  </div>
                 </div>
               </Link>
             )}
