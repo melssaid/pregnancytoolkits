@@ -33,6 +33,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
 }) => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [browseOpen, setBrowseOpen] = useState(false);
 
   const categories = ['all', ...new Set(videos.map(v => v.category))];
   
@@ -169,12 +170,92 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
           </div>
 
           {filteredVideos.length > 4 && (
-            <p className="text-xs text-center text-muted-foreground mt-3">
-              +{filteredVideos.length - 4} more videos available
-            </p>
+            <div className="mt-3 flex flex-col items-center gap-2">
+              <p className="text-xs text-center text-muted-foreground">
+                +{filteredVideos.length - 4} more videos available
+              </p>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setBrowseOpen(true)}
+                className="text-xs"
+              >
+                View all ({filteredVideos.length})
+              </Button>
+            </div>
           )}
         </CardContent>
       </Card>
+
+      {/* Browse All Videos Dialog */}
+      <Dialog open={browseOpen} onOpenChange={setBrowseOpen}>
+        <DialogContent className="max-w-2xl p-0 overflow-hidden">
+          <DialogHeader className="p-4 pb-2">
+            <DialogTitle className="text-base pr-6">
+              {title} {activeCategory !== 'all' ? `• ${activeCategory}` : ''}
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="px-4 pb-4">
+            {/* Medical Disclaimer Alert */}
+            <div className="mb-3 p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg flex items-start gap-2">
+              <span className="text-amber-600 text-lg">⚠️</span>
+              <p className="text-xs text-amber-800 dark:text-amber-200">
+                These videos are for educational purposes only and do not replace professional medical advice.
+              </p>
+            </div>
+
+            <ScrollArea className="h-[60vh]">
+              <div className="grid gap-3 pr-3">
+                {filteredVideos.map((video) => (
+                  <button
+                    key={`browse-${video.id}`}
+                    onClick={() => {
+                      setBrowseOpen(false);
+                      setSelectedVideo(video);
+                    }}
+                    className="w-full text-left group"
+                  >
+                    <div className="flex gap-3 p-2 rounded-xl bg-white/60 dark:bg-gray-800/40 hover:bg-white dark:hover:bg-gray-800/60 transition-all border border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-md">
+                      {/* Thumbnail */}
+                      <div className="relative w-24 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
+                        <img
+                          src={video.thumbnail || getYoutubeThumbnail(video.youtubeId)}
+                          alt={video.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className={`p-1.5 rounded-full bg-gradient-to-r ${colors.gradient}`}>
+                            <Play className="w-3 h-3 text-white" fill="white" />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-1 right-1 bg-black/70 text-white text-[10px] px-1 rounded">
+                          {video.duration}
+                        </div>
+                      </div>
+
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-sm text-foreground line-clamp-1 group-hover:text-primary transition-colors">
+                          {video.title}
+                        </h4>
+                        <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
+                          {video.description}
+                        </p>
+                        <Badge variant="secondary" className={`mt-1 text-[10px] ${colors.badge}`}>
+                          {video.category}
+                        </Badge>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </ScrollArea>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Video Player Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
