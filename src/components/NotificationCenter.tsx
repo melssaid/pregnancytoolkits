@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bell, X, Check, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, Sparkles, ChevronRight } from 'lucide-react';
+import { Bell, X, Check, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, Sparkles, ChevronRight, HardDrive } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
@@ -14,6 +14,7 @@ const typeIcons: Record<string, any> = {
   exercise: Dumbbell,
   water: Droplet,
   stretch: Sparkles,
+  backup: HardDrive,
   general: Bell,
 };
 
@@ -23,6 +24,7 @@ const typeColors: Record<string, string> = {
   exercise: 'bg-emerald-500',
   water: 'bg-sky-500',
   stretch: 'bg-violet-500',
+  backup: 'bg-rose-500',
   general: 'bg-primary',
 };
 
@@ -202,6 +204,17 @@ export function NotificationCenter() {
                       <Switch 
                         checked={settings.stretchReminders}
                         onCheckedChange={(v) => updateSettings({ stretchReminders: v })}
+                      />
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <HardDrive className="w-4 h-4 text-rose-500" />
+                        <span className="text-sm">Backup (weekly)</span>
+                      </div>
+                      <Switch 
+                        checked={settings.backupReminders ?? true}
+                        onCheckedChange={(v) => updateSettings({ backupReminders: v })}
                       />
                     </div>
                   </CardContent>
