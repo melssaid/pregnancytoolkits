@@ -4,7 +4,7 @@ import { playNotificationSound } from '@/lib/notificationSound';
 
 export interface Notification {
   id: string;
-  type: 'appointment' | 'vitamin' | 'exercise' | 'water' | 'stretch' | 'general';
+  type: 'appointment' | 'vitamin' | 'exercise' | 'water' | 'stretch' | 'backup' | 'general';
   title: string;
   message: string;
   time: string; // Store as ISO string for safer serialization
@@ -18,6 +18,7 @@ interface NotificationSettings {
   exerciseReminders: boolean;
   waterReminders: boolean;
   stretchReminders: boolean;
+  backupReminders: boolean;
 }
 
 const DEFAULT_SETTINGS: NotificationSettings = {
@@ -26,7 +27,11 @@ const DEFAULT_SETTINGS: NotificationSettings = {
   exerciseReminders: true,
   waterReminders: true,
   stretchReminders: true,
+  backupReminders: true,
 };
+
+// Backup reminder interval in days
+const BACKUP_REMINDER_DAYS = 7;
 
 // Validators for type-safe parsing
 const isNotification = (data: unknown): data is Notification => {
@@ -55,6 +60,7 @@ const isSettings = (data: unknown): data is NotificationSettings => {
     typeof s.exerciseReminders === 'boolean' &&
     typeof s.waterReminders === 'boolean' &&
     typeof s.stretchReminders === 'boolean'
+    // backupReminders is optional for backward compatibility
   );
 };
 
@@ -179,6 +185,37 @@ export function useNotifications() {
             read: false,
             actionUrl: '/tools/smart-walking-coach',
           });
+        }
+      }
+
+      // Backup reminder (check once daily at 9 AM if backup is older than BACKUP_REMINDER_DAYS)
+      if (settings.backupReminders && hour === 9) {
+        const lastBackupDate = localStorage.getItem('last_backup_date');
+        const daysSinceBackup = lastBackupDate 
+          ? Math.floor((now.getTime() - new Date(lastBackupDate).getTime()) / (1000 * 60 * 60 * 24))
+          : 999; // No backup ever = always remind
+        
+        // Only remind if no backup in the last BACKUP_REMINDER_DAYS days
+        if (daysSinceBackup >= BACKUP_REMINDER_DAYS) {
+          const lastBackupReminder = notifications.find(
+            n => n.type === 'backup' && 
+            new Date(n.time).toDateString() === now.toDateString()
+          );
+          if (!lastBackupReminder) {
+            const daysText = lastBackupDate 
+              ? `It's been ${daysSinceBackup} days since your last backup.`
+              : "You haven't backed up your data yet.";
+            
+            newNotifications.push({
+              id: `backup-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              type: 'backup',
+              title: '💾 Backup Reminder',
+              message: `${daysText} Protect your pregnancy journey!`,
+              time: nowISO,
+              read: false,
+              actionUrl: '/settings',
+            });
+          }
         }
       }
 
