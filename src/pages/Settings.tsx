@@ -1,8 +1,9 @@
 import React from 'react';
-import { Settings as SettingsIcon, Database, Shield, Info, Heart, Trash2 } from 'lucide-react';
+import { Settings as SettingsIcon, Database, Shield, Info, Heart, Lock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { DataClearManager } from '@/components/settings/DataClearManager';
+import { EncryptionManager } from '@/components/settings/EncryptionManager';
 import BackButton from '@/components/BackButton';
 
 const Settings: React.FC = () => {
@@ -21,6 +22,15 @@ const Settings: React.FC = () => {
 
       <div className="max-w-2xl mx-auto p-4 space-y-6">
         
+        {/* Security Section */}
+        <section>
+          <div className="flex items-center gap-2 mb-3">
+            <Lock className="w-5 h-5 text-primary" />
+            <h2 className="font-semibold text-lg">الأمان والخصوصية</h2>
+          </div>
+          <EncryptionManager />
+        </section>
+
         {/* Data Backup Section */}
         <section>
           <div className="flex items-center gap-2 mb-3">
