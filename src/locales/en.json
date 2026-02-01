@@ -5,7 +5,7 @@
     "title": "Your Complete",
     "titleHighlight": "Pregnancy",
     "titleEnd": "Companion",
-    "description": "45 essential tools for your pregnancy journey — from fertility to postpartum care.",
+    "description": "34 professional tools for your pregnancy journey — from fertility to postpartum care.",
     "searchPlaceholder": "Search tools...",
     "allTools": "All Tools",
     "toolsAvailable": "{{count}} tools available",
@@ -25,11 +25,7 @@
     "riskAssessment": "Risk Assessment",
     "mentalHealth": "Mental Health",
     "wellness": "Wellness",
-    "reference": "Reference",
-    "preparation": "Preparation",
-    "genetics": "Genetics",
-    "menstrualHealth": "Cycle Health",
-    "support": "Support"
+    "preparation": "Preparation"
   },
   "tools": {
     "pregnancyAssistant": {
@@ -52,13 +48,77 @@
       "title": "AI Birth Plan Generator",
       "description": "Create your personalized birth plan with AI guidance."
     },
+    "smartAppointmentReminder": {
+      "title": "Smart Appointment Reminder",
+      "description": "Never miss a prenatal appointment."
+    },
+    "aiBabyNameFinder": {
+      "title": "AI Baby Name Finder",
+      "description": "Discover the perfect name with AI suggestions."
+    },
+    "smartGroceryList": {
+      "title": "Smart Grocery List",
+      "description": "AI-powered shopping list for pregnancy nutrition."
+    },
+    "aiSleepOptimizer": {
+      "title": "AI Sleep Optimizer",
+      "description": "Personalized sleep guidance for pregnancy."
+    },
+    "aiHospitalBag": {
+      "title": "AI Hospital Bag",
+      "description": "Smart packing list for delivery day."
+    },
+    "aiPartnerGuide": {
+      "title": "AI Partner Guide",
+      "description": "Support tips for partners and spouses."
+    },
+    "aiBirthPosition": {
+      "title": "AI Birth Positions",
+      "description": "Optimal positions for your labor."
+    },
+    "aiSkincare": {
+      "title": "AI Skincare",
+      "description": "Pregnancy-safe skincare routine."
+    },
+    "aiNauseaRelief": {
+      "title": "AI Nausea Relief",
+      "description": "Morning sickness remedies and tips."
+    },
+    "aiBudgetPlanner": {
+      "title": "AI Budget Planner",
+      "description": "Plan baby expenses smartly."
+    },
+    "aiBumpPhotos": {
+      "title": "Weekly Snapshots",
+      "description": "Smart pregnancy photo timeline with AI insights."
+    },
+    "aiFitnessCoach": {
+      "title": "AI Fitness Coach",
+      "description": "Safe exercises customized for your pregnancy stage."
+    },
+    "aiBackPainRelief": {
+      "title": "AI Back Pain Relief",
+      "description": "Personalized exercises for pregnancy back pain."
+    },
+    "vitaminTracker": {
+      "title": "Vitamin Tracker",
+      "description": "Never miss your prenatal vitamins."
+    },
+    "forbiddenFoods": {
+      "title": "Foods to Avoid",
+      "description": "Know what's safe to eat."
+    },
+    "aiLaborProgress": {
+      "title": "AI Labor Progress Tracker",
+      "description": "Track contractions and monitor labor progress."
+    },
+    "cycleTracker": {
+      "title": "Cycle & Ovulation Tracker",
+      "description": "Track your cycle and find your fertile days."
+    },
     "dueDateCalculator": {
       "title": "Due Date Calculator",
       "description": "Find out when your little one will arrive."
-    },
-    "pregnancyBmi": {
-      "title": "Pregnancy BMI",
-      "description": "Track your healthy weight gain journey."
     },
     "fetalGrowth": {
       "title": "Fetal Growth Tracker",
@@ -68,6 +128,14 @@
       "title": "Kick Counter",
       "description": "Track your baby's precious movements."
     },
+    "weightGain": {
+      "title": "Weight Gain Analyzer",
+      "description": "Monitor healthy pregnancy weight."
+    },
+    "postpartumMentalHealth": {
+      "title": "Mental Health Coach",
+      "description": "EPDS screening and mental health support."
+    },
     "gestationalDiabetes": {
       "title": "GDM Risk Assessment",
       "description": "Know your gestational diabetes risk factors."
@@ -76,308 +144,25 @@
       "title": "Preeclampsia Risk",
       "description": "Check your preeclampsia risk factors."
     },
-    "safeMedications": {
-      "title": "Safe Medications",
-      "description": "Quick guide for safe medications."
+    "babyGearRecommender": {
+      "title": "Baby Gear Recommender",
+      "description": "Essential items checklist for your new arrival."
     },
-    "exerciseGuide": {
-      "title": "Exercise Guide",
-      "description": "Safe workouts for each trimester."
-    },
-    "waterIntake": {
-      "title": "Water Intake",
-      "description": "Stay hydrated for you and baby!"
-    },
-    "vaccinationSchedule": {
-      "title": "Vaccination Schedule",
-      "description": "Important vaccines timeline."
-    },
-    "hospitalBag": {
-      "title": "Hospital Bag",
-      "description": "Never forget anything important!"
-    },
-    "contractionTimer": {
-      "title": "Contraction Timer",
-      "description": "Know when it's time to go!"
-    },
-    "ppdScreener": {
-      "title": "PPD Screener",
-      "description": "Check your emotional wellbeing."
-    },
-    "breastfeedingTracker": {
-      "title": "Breastfeeding Tracker",
-      "description": "Log and track feeding sessions."
-    },
-    "ovulationCalculator": {
-      "title": "Ovulation Calculator",
-      "description": "Find your most fertile days."
-    },
-    "cycleTracker": {
-      "title": "Cycle Tracker",
-      "description": "Track your monthly cycle easily."
-    },
-    "bloodType": {
-      "title": "Blood Type Calculator",
-      "description": "Predict baby's blood type."
-    },
-    "weightGain": {
-      "title": "Weight Gain Tracker",
-      "description": "Monitor healthy pregnancy weight."
-    },
-    "pregnancyDiary": {
-      "title": "Pregnancy Diary",
-      "description": "Document your beautiful journey."
-    },
-    "nutritionGuide": {
-      "title": "Nutrition Guide",
-      "description": "Eat right for you and baby."
-    },
-    "forbiddenFoods": {
-      "title": "Foods to Avoid",
-      "description": "Know what's safe to eat."
+    "aiLactationPrep": {
+      "title": "AI Lactation Prep",
+      "description": "Breastfeeding preparation guide."
     },
     "babySleepTracker": {
       "title": "Baby Sleep Tracker",
       "description": "Track your baby's sleep patterns."
     },
-    "diaperTracker": {
-      "title": "Diaper Tracker",
-      "description": "Log changes, monitor health."
-    },
     "babyGrowth": {
       "title": "Baby Growth",
       "description": "Track growth with WHO charts."
     },
-    "vaccinationGuide": {
-      "title": "Baby Vaccines",
-      "description": "Complete vaccination schedule."
-    },
-    "genderPredictor": {
-      "title": "Gender Predictor",
-      "description": "Fun prediction for baby's gender!"
-    },
-    "conceptionCalculator": {
-      "title": "Conception Calculator",
-      "description": "Estimate your conception date."
-    },
-    "breathingExercises": {
-      "title": "Breathing Exercises",
-      "description": "Relax and prepare for labor."
-    },
-    "moodDiary": {
-      "title": "Mood Diary",
-      "description": "Track your emotional wellness."
-    },
-    "yogaGuide": {
-      "title": "Prenatal Yoga",
-      "description": "Safe poses for every trimester."
-    },
-    "affirmations": {
-      "title": "Daily Affirmations",
-      "description": "Positive vibes for your journey."
-    },
-    "babyNames": {
-      "title": "Baby Names",
-      "description": "Find the perfect name for your baby."
-    },
-    "bumpPhotos": {
-      "title": "Bump Photos",
-      "description": "Document your growing belly."
-    },
-    "pregnancyMilestones": {
-      "title": "Pregnancy Milestones",
-      "description": "Track important moments."
-    },
-    "bloodPressure": {
-      "title": "Blood Pressure Log",
-      "description": "Monitor your blood pressure."
-    },
-    "symptomChecker": {
-      "title": "Symptom Checker",
-      "description": "Check if symptoms need attention."
-    },
-    "mealPlanner": {
-      "title": "Meal Planner",
-      "description": "Plan healthy pregnancy meals."
-    },
-    "vitaminTracker": {
-      "title": "Vitamin Tracker",
-      "description": "Never miss your prenatal vitamins."
-    },
-    "kegelExercises": {
-      "title": "Kegel Exercises",
-      "description": "Strengthen your pelvic floor."
-    },
-    "sleepTracker": {
-      "title": "Sleep Tracker",
-      "description": "Track your sleep quality."
-    },
-    "relaxationSounds": {
-      "title": "Relaxation Sounds",
-      "description": "Calming sounds for rest."
-    },
-    "gratitudeJournal": {
-      "title": "Gratitude Journal",
-      "description": "Focus on the positive moments."
-    },
-    "birthPlan": {
-      "title": "Birth Plan",
-      "description": "Plan your ideal birth experience."
-    },
-    "nurseryChecklist": {
-      "title": "Nursery Checklist",
-      "description": "Prepare baby's room perfectly."
-    },
-    "babyBudget": {
-      "title": "Baby Budget",
-      "description": "Plan expenses for your baby."
-    },
-    "babyMilestones": {
-      "title": "Baby Milestones",
-      "description": "Track development achievements."
-    },
-    "tummyTime": {
-      "title": "Tummy Time",
-      "description": "Track tummy time sessions."
-    },
-    "emergencyGuide": {
-      "title": "Emergency Guide",
-      "description": "Know when to seek help."
-    },
-    "fertilityDiet": {
-      "title": "Fertility Diet",
-      "description": "Foods that boost fertility."
-    },
-    "eyeColorPredictor": {
-      "title": "Eye Color Predictor",
-      "description": "Predict baby's eye color."
-    },
-    "partnerTips": {
-      "title": "Partner Tips",
-      "description": "How partners can help."
-    },
-    "doctorQuestions": {
-      "title": "Doctor Questions",
-      "description": "Questions to ask your doctor."
-    },
-    "moodTracker": {
-      "title": "Advanced Mood Tracker",
-      "description": "Track your mental wellbeing with AI insights."
-    },
-    "laborBreathing": {
-      "title": "Labor Breathing Coach",
-      "description": "Guided breathing for every labor stage."
-    },
-    "birthPrep": {
-      "title": "Birth Preparation Guide",
-      "description": "Complete checklist for labor and delivery."
-    },
-    "meditationYoga": {
-      "title": "Meditation & Yoga",
-      "description": "Guided relaxation for each trimester."
-    },
-    "aiSleepOptimizer": { "title": "AI Sleep Optimizer", "description": "Personalized sleep guidance for pregnancy." },
-    "aiHospitalBag": { "title": "AI Hospital Bag", "description": "Smart packing list for delivery day." },
-    "aiPartnerGuide": { "title": "AI Partner Guide", "description": "Support tips for partners and spouses." },
-    "aiBirthPosition": { "title": "AI Birth Positions", "description": "Optimal positions for your labor." },
-    "aiSkincare": { "title": "AI Skincare", "description": "Pregnancy-safe skincare routine." },
-    "aiPelvicFloor": { "title": "AI Pelvic Floor", "description": "Kegel exercises with AI coaching." },
-    "aiNauseaRelief": { "title": "AI Nausea Relief", "description": "Morning sickness remedies and tips." },
-    "aiBudgetPlanner": { "title": "AI Budget Planner", "description": "Plan baby expenses smartly." },
-    "aiBabyRoom": { "title": "AI Baby Room", "description": "Design your perfect nursery." },
-    "aiLactationPrep": { "title": "AI Lactation Prep", "description": "Breastfeeding preparation guide." },
-    "aiNutritionTracker": { "title": "AI Nutrition Tracker", "description": "Smart food analysis with pregnancy-safe tracking." },
-    "aiPregnancyJournal": {
-      "title": "AI Pregnancy Journal",
-      "description": "Smart journaling with AI insights and mood tracking."
-    },
-    "smartAppointmentReminder": {
-      "title": "Smart Appointment Reminder",
-      "description": "Never miss a prenatal appointment."
-    },
-    "aiBirthStory": {
-      "title": "AI Birth Story Generator",
-      "description": "Create a beautiful keepsake of your birth experience."
-    },
-    "pregnancyPhotoTimeline": {
-      "title": "Pregnancy Photo Timeline",
-      "description": "Document your bump journey week by week."
-    },
-    "aiBabyNameFinder": {
-      "title": "AI Baby Name Finder",
-      "description": "Discover the perfect name with AI suggestions."
-    },
-    "aiPostureCoach": {
-      "title": "AI Posture Coach",
-      "description": "Improve your posture and reduce back strain."
-    },
-    "smartStretchReminder": {
-      "title": "Smart Stretch Reminder",
-      "description": "Timely reminders for pregnancy-safe stretches."
-    },
-    "aiBackPainRelief": {
-      "title": "AI Back Pain Relief",
-      "description": "Personalized exercises for pregnancy back pain."
-    },
-    "pregnancyMassageGuide": {
-      "title": "Pregnancy Massage Guide",
-      "description": "Safe massage techniques for comfort and relaxation."
-    },
-    "aiLegCrampPreventer": {
-      "title": "AI Mobility Coach",
-      "description": "Walking tips & leg cramp prevention."
-    },
-    "smartWalkingCoach": {
-      "title": "AI Mobility Coach",
-      "description": "Walking tips & leg cramp prevention."
-    },
-    "aiMobilityCoach": {
-      "title": "AI Mobility Coach",
-      "description": "Walking tips & leg cramp prevention for pregnancy."
-    },
-    "aiCravingAlternatives": {
-      "title": "AI Craving Alternatives",
-      "description": "Healthy swaps for your pregnancy cravings."
-    },
-    "aiLaborProgress": {
-      "title": "AI Labor Progress Tracker",
-      "description": "Track contractions and monitor labor progress."
-    },
-    "postpartumMentalHealth": {
-      "title": "Postpartum Mental Health Coach",
-      "description": "EPDS screening and mental health support."
-    },
-    "babyGearRecommender": {
-      "title": "Baby Gear Recommender",
-      "description": "Essential items checklist for your new arrival."
-    },
-    "workoutPlanner": {
-      "title": "Personalized Workout Planner",
-      "description": "Safe pregnancy exercises for each trimester."
-    },
-    "aiPregnancyTips": {
-      "title": "AI Daily Pregnancy Tips",
-      "description": "Personalized daily tips based on your trimester."
-    },
-    "smartGroceryList": {
-      "title": "Smart Grocery List",
-      "description": "AI-powered shopping list for pregnancy nutrition."
-    },
-    "pregnancySmoothieAI": {
-      "title": "Pregnancy Smoothie AI",
-      "description": "Healthy smoothie recipes for every trimester."
-    },
-    "aiBumpPhotos": {
-      "title": "Weekly Snapshots",
-      "description": "Smart pregnancy photo timeline with AI insights and growth analysis."
-    },
-    "aiFitnessCoach": {
-      "title": "AI Fitness Coach",
-      "description": "Safe exercises customized for your pregnancy stage."
-    },
-    "aiStressReliefCoach": {
-      "title": "AI Stress Relief Coach",
-      "description": "Personalized relaxation techniques for pregnancy."
+    "diaperTracker": {
+      "title": "Diaper Tracker",
+      "description": "Log changes, monitor health."
     }
   },
   "common": {
@@ -408,12 +193,15 @@
     "hours": "hours",
     "premium": "Premium",
     "subscribe": "Subscribe",
-    "unlock": "Unlock All Tools"
+    "unlock": "Unlock All Tools",
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "edit": "Edit"
   },
   "subscription": {
     "subscribeNow": "Get Premium - $0.79/mo",
     "premiumFeature": "Premium Feature",
-    "unlockAccess": "Unlock all 52 tools",
+    "unlockAccess": "Unlock all 34 tools",
     "subscribeToAccess": "Subscribe to unlock"
   },
   "dueDatePage": {
@@ -461,218 +249,6 @@
     "rule511": "5-1-1 Rule",
     "rule511Desc": "Call your provider when contractions are 5 minutes apart, lasting 1 minute each, for at least 1 hour."
   },
-  "waterPage": {
-    "title": "Water Intake Tracker",
-    "subtitle": "Stay hydrated during pregnancy — aim for 10+ glasses daily",
-    "dailyGoalReached": "Daily goal reached!",
-    "eachTapAdds": "Each tap adds 8 oz (1 glass)",
-    "thisWeek": "This Week",
-    "glasses": "glasses"
-  },
-  "hospitalBagPage": {
-    "title": "Hospital Bag Checklist",
-    "packingProgress": "Packing Progress",
-    "itemsPacked": "Items packed",
-    "allPacked": "You're all packed and ready!",
-    "momEssentials": "Mom's Essentials",
-    "babyItems": "Baby Items",
-    "partnerItems": "Partner/Support Person",
-    "info": "Pack your bag around 36 weeks. Keep it somewhere easy to grab, and make sure your partner knows where it is!"
-  },
-  "conceptionPage": {
-    "fromDueDate": "From Due Date",
-    "fromLMP": "From Last Period",
-    "knowDueDate": "I know my due date",
-    "planningPregnancy": "Planning or tracking",
-    "dueDate": "Your Due Date",
-    "lmpDate": "First Day of Last Period",
-    "cycleLength": "Cycle Length (days)",
-    "estimatedConception": "Estimated Conception Date",
-    "fertileWindow": "Your Fertile Window",
-    "info": "Conception typically occurs around ovulation, 14 days before your next expected period. The fertile window spans 5 days before and 1 day after ovulation."
-  },
-  "weightGainPage": {
-    "title": "Weight Gain Calculator",
-    "prePregnancyWeight": "Pre-Pregnancy Weight (kg)",
-    "currentWeight": "Current Weight (kg)",
-    "height": "Height (cm)",
-    "currentWeek": "Current Week",
-    "bmiCategory": "Your BMI Category",
-    "recommendedGain": "Recommended Total Gain",
-    "currentGain": "Your Current Gain",
-    "onTrack": "You're on track!",
-    "underGain": "Consider gaining a bit more",
-    "overGain": "Weight gain is slightly high"
-  },
-  "pregnancyDiaryPage": {
-    "title": "Pregnancy Diary",
-    "newEntry": "New Entry",
-    "week": "Pregnancy Week",
-    "mood": "How are you feeling?",
-    "symptoms": "Symptoms",
-    "symptomsPlaceholder": "e.g., nausea, fatigue, back pain",
-    "note": "Your Thoughts",
-    "notePlaceholder": "Write about your day, feelings, or memories...",
-    "save": "Save Entry",
-    "myEntries": "My Diary Entries"
-  },
-  "nutritionPage": {
-    "title": "Nutrition Guide",
-    "dailyNeeds": "Daily Nutritional Needs",
-    "keyNutrients": "Key Nutrients",
-    "folicAcid": "Folic Acid",
-    "iron": "Iron",
-    "calcium": "Calcium",
-    "protein": "Protein",
-    "omega3": "Omega-3"
-  },
-  "forbiddenFoodsPage": {
-    "title": "Foods to Avoid",
-    "searchPlaceholder": "Search foods...",
-    "forbidden": "Avoid",
-    "caution": "Caution",
-    "safe": "Safe",
-    "forbiddenTitle": "Foods to Avoid",
-    "cautionTitle": "Use With Caution",
-    "safeTitle": "Safe Alternatives",
-    "disclaimer": "This is a general guide. Always consult your healthcare provider about dietary restrictions specific to your pregnancy.",
-    "foods": {
-      "rawFish": "Raw Fish & Sushi",
-      "rawMeat": "Raw or Undercooked Meat",
-      "rawEggs": "Raw Eggs",
-      "unpasteurizedMilk": "Unpasteurized Milk",
-      "softCheese": "Soft Cheese (Brie, Feta)",
-      "deli": "Deli Meats & Hot Dogs",
-      "alcohol": "Alcohol",
-      "highMercuryFish": "High Mercury Fish (Shark, Swordfish)",
-      "rawSprouts": "Raw Sprouts",
-      "caffeine": "Caffeine (limit 200mg/day)",
-      "herbalTea": "Herbal Teas",
-      "liver": "Liver & Liver Products",
-      "tuna": "Canned Tuna (limit portions)",
-      "artificialSweeteners": "Artificial Sweeteners",
-      "cookedFish": "Cooked Low-Mercury Fish",
-      "pasteurizedDairy": "Pasteurized Dairy",
-      "wellCookedMeat": "Well-Cooked Meat",
-      "hardCheese": "Hard Cheese (Cheddar, Swiss)"
-    },
-    "reasons": {
-      "rawFishReason": "May contain parasites and bacteria harmful to baby",
-      "rawMeatReason": "Risk of toxoplasmosis and E. coli infection",
-      "rawEggsReason": "Risk of salmonella infection",
-      "unpasteurizedReason": "May contain listeria bacteria",
-      "softCheeseReason": "Higher risk of listeria contamination",
-      "deliReason": "Risk of listeria unless heated until steaming",
-      "alcoholReason": "No safe amount during pregnancy",
-      "mercuryReason": "High mercury levels can harm baby's development",
-      "sproutsReason": "Bacteria can grow in sprout seeds",
-      "caffeineReason": "Limit to 200mg daily (about 1 cup coffee)",
-      "herbalTeaReason": "Some herbs may be unsafe - check with doctor",
-      "liverReason": "Very high in Vitamin A which can harm baby",
-      "tunaReason": "Contains moderate mercury - limit to 2-3 portions weekly",
-      "sweetenersReason": "Some may cross placenta - use in moderation",
-      "cookedFishReason": "Great source of omega-3 for baby's brain",
-      "pasteurizedReason": "Safe and good source of calcium",
-      "cookedMeatReason": "Safe source of protein and iron",
-      "hardCheeseReason": "Made with pasteurized milk, safe to eat"
-    }
-  },
-  "babySleepPage": {
-    "title": "Baby Sleep Tracker",
-    "logSleep": "Log Sleep",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "duration": "Duration",
-    "totalToday": "Total Sleep Today",
-    "sleepLog": "Sleep Log"
-  },
-  "diaperPage": {
-    "title": "Diaper Tracker",
-    "logChange": "Log Change",
-    "wet": "Wet",
-    "dirty": "Dirty",
-    "both": "Both",
-    "todayCount": "Today's Changes",
-    "recentChanges": "Recent Changes"
-  },
-  "babyGrowthPage": {
-    "title": "Baby Growth",
-    "age": "Baby's Age",
-    "weight": "Weight (kg)",
-    "height": "Length (cm)",
-    "headCircumference": "Head Circumference (cm)",
-    "percentile": "Percentile",
-    "trackGrowth": "Track Growth"
-  },
-  "genderPredictorPage": {
-    "title": "Gender Predictor",
-    "disclaimer": "This is for entertainment purposes only. The only accurate way to determine baby's gender is through medical testing like ultrasound or genetic screening.",
-    "funNote": "This is just for fun! Based on the ancient Chinese Gender Prediction Chart - not scientifically proven but entertaining to try!",
-    "motherAge": "Mother's Age at Conception",
-    "conceptionMonth": "Conception Month",
-    "predict": "Predict Gender",
-    "result": {
-      "boy": "It's a Boy!",
-      "girl": "It's a Girl!"
-    },
-    "resultNote": "Remember, this is just for fun! Only medical tests can confirm your baby's gender.",
-    "selectAge": "Select age",
-    "selectMonth": "Select month",
-    "years": "years",
-    "chineseMethod": "Chinese Gender Predictor",
-    "months": {
-      "1": "January",
-      "2": "February",
-      "3": "March",
-      "4": "April",
-      "5": "May",
-      "6": "June",
-      "7": "July",
-      "8": "August",
-      "9": "September",
-      "10": "October",
-      "11": "November",
-      "12": "December"
-    }
-  },
-  "breathingPage": {
-    "title": "Breathing Exercises",
-    "selectExercise": "Select Exercise",
-    "relaxation": "Relaxation Breathing",
-    "labor": "Labor Breathing",
-    "stress": "Stress Relief",
-    "inhale": "Inhale",
-    "hold": "Hold",
-    "exhale": "Exhale",
-    "cycles": "Cycles"
-  },
-  "moodPage": {
-    "title": "Mood Diary",
-    "howAreYou": "How are you feeling today?",
-    "great": "Great",
-    "good": "Good",
-    "okay": "Okay",
-    "notGreat": "Not Great",
-    "struggling": "Struggling",
-    "notes": "Add notes (optional)",
-    "history": "Mood History"
-  },
-  "yogaPage": {
-    "title": "Prenatal Yoga",
-    "selectTrimester": "Select Trimester",
-    "firstTrimester": "First Trimester",
-    "secondTrimester": "Second Trimester",
-    "thirdTrimester": "Third Trimester",
-    "duration": "Duration",
-    "difficulty": "Difficulty"
-  },
-  "affirmationsPage": {
-    "title": "Daily Affirmations",
-    "todaysAffirmation": "Today's Affirmation",
-    "newAffirmation": "New Affirmation",
-    "favorites": "Favorites",
-    "categories": "Categories"
-  },
   "preeclampsiaPage": {
     "title": "Preeclampsia Risk Assessment",
     "subtitle": "Check your preeclampsia risk factors",
@@ -706,43 +282,43 @@
     "avoidExercises": "Exercises to Avoid",
     "disclaimer": "Consult your healthcare provider before starting any exercise program."
   },
-  "stressReliefPage": {
-    "title": "Stress Relief Coach",
-    "howAreYou": "How are you feeling?",
-    "stressed": "Stressed",
-    "anxious": "Anxious",
-    "overwhelmed": "Overwhelmed",
-    "calm": "Calm",
-    "getTips": "Get Tips",
-    "breathingExercise": "Breathing Exercise",
-    "meditation": "Meditation",
-    "journaling": "Journaling",
-    "movement": "Gentle Movement"
+  "forbiddenFoodsPage": {
+    "title": "Foods to Avoid",
+    "searchPlaceholder": "Search foods...",
+    "forbidden": "Avoid",
+    "caution": "Caution",
+    "safe": "Safe",
+    "forbiddenTitle": "Foods to Avoid",
+    "cautionTitle": "Use With Caution",
+    "safeTitle": "Safe Alternatives",
+    "disclaimer": "This is a general guide. Always consult your healthcare provider about dietary restrictions specific to your pregnancy."
   },
-  "massagePage": {
-    "title": "Pregnancy Massage Guide",
-    "selectArea": "Select Body Area",
-    "back": "Back",
-    "legs": "Legs",
-    "feet": "Feet",
-    "shoulders": "Shoulders",
-    "hands": "Hands",
-    "safetyTips": "Safety Tips",
-    "techniques": "Techniques",
-    "duration": "Suggested Duration"
+  "babySleepPage": {
+    "title": "Baby Sleep Tracker",
+    "logSleep": "Log Sleep",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "duration": "Duration",
+    "totalToday": "Total Sleep Today",
+    "sleepLog": "Sleep Log"
   },
-  "cravingsPage": {
-    "title": "Healthy Craving Alternatives",
-    "whatCraving": "What are you craving?",
-    "sweet": "Sweet",
-    "salty": "Salty",
-    "spicy": "Spicy",
-    "sour": "Sour",
-    "creamy": "Creamy",
-    "crunchy": "Crunchy",
-    "getAlternatives": "Get Healthy Alternatives",
-    "whyCraving": "Why you might be craving this",
-    "healthySwaps": "Healthy Swaps"
+  "diaperPage": {
+    "title": "Diaper Tracker",
+    "logChange": "Log Change",
+    "wet": "Wet",
+    "dirty": "Dirty",
+    "both": "Both",
+    "todayCount": "Today's Changes",
+    "recentChanges": "Recent Changes"
+  },
+  "babyGrowthPage": {
+    "title": "Baby Growth",
+    "age": "Baby's Age",
+    "weight": "Weight (kg)",
+    "height": "Length (cm)",
+    "headCircumference": "Head Circumference (cm)",
+    "percentile": "Percentile",
+    "trackGrowth": "Track Growth"
   },
   "babyGearPage": {
     "title": "Essential Baby Gear",
@@ -757,17 +333,6 @@
     "niceToHave": "Nice to Have",
     "canWait": "Can Wait",
     "estimatedCost": "Estimated Cost"
-  },
-  "common": {
-    "error": "Error",
-    "success": "Success",
-    "loading": "Loading...",
-    "deleted": "Deleted",
-    "save": "Save",
-    "cancel": "Cancel",
-    "add": "Add",
-    "edit": "Edit",
-    "delete": "Delete"
   },
   "nutrition": {
     "breakfast": "Breakfast",
