@@ -370,6 +370,14 @@
     "aiBumpPhotos": {
       "title": "Weekly Snapshots",
       "description": "Smart pregnancy photo timeline with AI insights and growth analysis."
+    },
+    "aiFitnessCoach": {
+      "title": "AI Fitness Coach",
+      "description": "Safe exercises customized for your pregnancy stage."
+    },
+    "aiStressReliefCoach": {
+      "title": "AI Stress Relief Coach",
+      "description": "Personalized relaxation techniques for pregnancy."
     }
   },
   "common": {
