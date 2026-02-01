@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Heart, Sparkles, Baby, Clock, ShoppingBag, AlertCircle } from "lucide-react";
+import { Sparkles, Clock, ShoppingBag, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,7 @@ import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
+import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const feedingGoals = [
   { id: "exclusive", label: "Exclusive breastfeeding", icon: "🤱" },
@@ -39,6 +40,57 @@ const essentialSupplies = [
   { name: "Nursing pillow", essential: false },
   { name: "Nursing cover", essential: false },
   { name: "Haakaa/manual pump", essential: false },
+];
+
+const lactationVideos: Video[] = [
+  {
+    id: "1",
+    title: "Breastfeeding Tips 101",
+    description: "Complete guide: latch, positions, and pumping for new moms",
+    youtubeId: "-Ds3QW3CWJ0",
+    duration: "18:30",
+    category: "Getting Started"
+  },
+  {
+    id: "2",
+    title: "Common Breastfeeding Positions",
+    description: "Learn the best positions for comfortable nursing",
+    youtubeId: "or4OnMxihUg",
+    duration: "12:45",
+    category: "Positions"
+  },
+  {
+    id: "3",
+    title: "How to Get a Good Latch",
+    description: "Step-by-step guide to proper latching technique",
+    youtubeId: "56YzjsZr4hQ",
+    duration: "10:20",
+    category: "Getting Started"
+  },
+  {
+    id: "4",
+    title: "Increasing Milk Supply",
+    description: "Tips and techniques to boost your milk production",
+    youtubeId: "7aJzEtuzSZg",
+    duration: "14:15",
+    category: "Milk Supply"
+  },
+  {
+    id: "5",
+    title: "Pumping and Storing Breast Milk",
+    description: "Complete guide to expressing and storing milk safely",
+    youtubeId: "gBEhtaYqGTg",
+    duration: "16:40",
+    category: "Pumping"
+  },
+  {
+    id: "6",
+    title: "Returning to Work While Breastfeeding",
+    description: "How to maintain breastfeeding when going back to work",
+    youtubeId: "qQl_bS1MxqE",
+    duration: "11:30",
+    category: "Work"
+  },
 ];
 
 const AILactationPrep = () => {
@@ -238,49 +290,13 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
           </div>
         </Card>
 
-        {/* Educational Video - At the end */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Baby className="w-4 h-4" />
-            Breastfeeding Tips 101: Latch, Positions & More
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/-Ds3QW3CWJ0"
-              title="Breastfeeding Tips 101 for New Moms: Latch, Positions, Pumping"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            Comprehensive tips for new moms: latching, positions, and pumping
-          </p>
-        </Card>
-
-        {/* Second Educational Video */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Baby className="w-4 h-4" />
-            Common Breastfeeding Positions
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/or4OnMxihUg"
-              title="Breastfeeding Tips: Common Breastfeeding Positions"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - Consult a lactation specialist for personalized support
-          </p>
-        </Card>
+        {/* Educational Videos with Thumbnails */}
+        <VideoLibrary
+          videos={lactationVideos}
+          title="Breastfeeding Videos"
+          subtitle="Expert guidance for nursing success"
+          accentColor="rose"
+        />
       </div>
     </ToolFrame>
   );

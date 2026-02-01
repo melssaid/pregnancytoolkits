@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Moon, Sparkles, Clock, ThermometerSun, Volume2, Brain, Loader2, Bed, Wind } from "lucide-react";
+import { Moon, Clock, ThermometerSun, Brain, Loader2, Bed, Wind } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
@@ -12,6 +12,7 @@ import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
+import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const sleepIssues = [
   { id: "back-pain", label: "Back pain", icon: "🔙" },
@@ -22,6 +23,49 @@ const sleepIssues = [
   { id: "baby-movements", label: "Baby movements", icon: "👶" },
   { id: "hot-flashes", label: "Hot flashes", icon: "🌡️" },
   { id: "snoring", label: "Snoring/breathing issues", icon: "😮‍💨" },
+];
+
+const sleepVideos: Video[] = [
+  {
+    id: "1",
+    title: "Pregnancy Insomnia? Proven Sleep Tips",
+    description: "Doctor-approved tips for better sleep during pregnancy",
+    youtubeId: "s8lz6f01OIU",
+    duration: "12:30",
+    category: "Sleep Tips"
+  },
+  {
+    id: "2",
+    title: "Best Sleep Positions - Third Trimester",
+    description: "How to sleep when pregnant - Tommy's Guide",
+    youtubeId: "IZbVmEh5H6A",
+    duration: "8:45",
+    category: "Sleep Positions"
+  },
+  {
+    id: "3",
+    title: "Pregnancy Pillow Guide",
+    description: "How to use pregnancy pillows for better sleep",
+    youtubeId: "MFa6HcvXhXY",
+    duration: "10:15",
+    category: "Sleep Tips"
+  },
+  {
+    id: "4",
+    title: "Bedtime Yoga for Pregnancy",
+    description: "Gentle stretches to help you relax before bed",
+    youtubeId: "B2T5q3F8qJg",
+    duration: "15:20",
+    category: "Relaxation"
+  },
+  {
+    id: "5",
+    title: "Pregnancy Sleep Meditation",
+    description: "Guided meditation for restful pregnancy sleep",
+    youtubeId: "1vx8iUvfyCY",
+    duration: "20:00",
+    category: "Relaxation"
+  },
 ];
 
 const AISleepOptimizer = () => {
@@ -308,49 +352,13 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
           </p>
         </Card>
 
-        {/* Educational Video - At the end */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Volume2 className="w-4 h-4" />
-            Doctor-Approved Sleep Tips for Pregnancy
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/s8lz6f01OIU"
-              title="Pregnancy Insomnia? Sleep Like a Baby with These Proven Tips"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            Doctor-approved tips for better sleep during pregnancy
-          </p>
-        </Card>
-
-        {/* Second Educational Video */}
-        <Card className="p-4 border-dashed">
-          <h3 className="font-medium mb-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Volume2 className="w-4 h-4" />
-            Best Sleep Positions - Tommy's Guide
-          </h3>
-          <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/IZbVmEh5H6A"
-              title="How to Sleep When Pregnant - Best Position for Third Trimester"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2 text-center">
-            ⚠️ Educational content only - Consult your doctor for sleep issues
-          </p>
-        </Card>
+        {/* Educational Videos with Thumbnails */}
+        <VideoLibrary
+          videos={sleepVideos}
+          title="Pregnancy Sleep Videos"
+          subtitle="Expert tips for better sleep during pregnancy"
+          accentColor="violet"
+        />
       </div>
     </ToolFrame>
   );
