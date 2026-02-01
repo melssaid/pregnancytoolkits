@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { AppointmentService, UserProfileService } from '@/services/supabaseServices';
 import { AIService } from '@/services/aiService';
+import { TimePicker } from '@/components/ui/time-picker';
 
 interface Appointment {
   id: string;
@@ -304,7 +305,7 @@ const SmartAppointmentReminder: React.FC = () => {
                   />
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-1">Date *</label>
                     <Input
@@ -316,10 +317,10 @@ const SmartAppointmentReminder: React.FC = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1">Time</label>
-                    <Input
-                      type="time"
+                    <TimePicker
                       value={formData.appointment_time}
-                      onChange={(e) => setFormData(prev => ({ ...prev, appointment_time: e.target.value }))}
+                      onChange={(value) => setFormData(prev => ({ ...prev, appointment_time: value }))}
+                      placeholder="Select time"
                     />
                   </div>
                 </div>
