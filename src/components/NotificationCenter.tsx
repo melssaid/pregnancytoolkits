@@ -93,6 +93,7 @@ export function NotificationCenter() {
     notifications, 
     unreadCount, 
     settings, 
+    addNotification,
     markAsRead, 
     markAllAsRead, 
     clearNotification, 
@@ -214,7 +215,19 @@ export function NotificationCenter() {
                       </div>
                       <Switch 
                         checked={settings.backupReminders ?? true}
-                        onCheckedChange={(v) => updateSettings({ backupReminders: v })}
+                        onCheckedChange={(v) => {
+                          updateSettings({ backupReminders: v });
+                          // Show immediate notification when backup reminder is enabled for the first time
+                          if (v && !localStorage.getItem('backup_reminder_first_enabled')) {
+                            localStorage.setItem('backup_reminder_first_enabled', 'true');
+                            addNotification({
+                              type: 'backup',
+                              title: '💾 Backup Reminders Enabled',
+                              message: 'You will be reminded weekly to backup your pregnancy data. Go to Settings to create your first backup!',
+                              actionUrl: '/settings',
+                            });
+                          }
+                        }}
                       />
                     </div>
                   </CardContent>
