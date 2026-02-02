@@ -166,14 +166,9 @@ serve(async (req) => {
       );
     }
 
-    // Base compliance disclaimer (Arabic + English) for all responses
-    const complianceDisclaimer = `
-
----
-⚕️ **إخلاء مسؤولية طبي / Medical Disclaimer**: 
-هذه المعلومات للأغراض التثقيفية فقط ولا تغني عن زيارة الطبيب. يرجى مراجعة طبيبك المختص فوراً.
-This information is for educational purposes only and does not replace professional medical advice, diagnosis, or treatment. Always consult your healthcare provider.
----`;
+    // Base compliance disclaimer (English only) for all responses
+    // Arabic disclaimer removed - UI component handles localized disclaimers
+    const complianceDisclaimer = ``;
 
     // Persona identifier for Lavy Pool
     const personaPrefix = `You are "Lavy Pool" - a highly intelligent, supportive medical assistant for pregnant women. You are an AI assistant, NOT a doctor.
