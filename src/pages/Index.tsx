@@ -139,20 +139,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-4 border-t border-border bg-muted/30">
-        <div className="container text-center">
-          <p className="text-[10px] text-muted-foreground mb-2">
-            For informational purposes only. Consult your doctor.
-          </p>
-          <div className="flex justify-center gap-4 text-[10px] font-medium text-muted-foreground">
-            <a href="/privacy" className="hover:text-primary transition-colors">Privacy</a>
-            <a href="/terms" className="hover:text-primary transition-colors">Terms</a>
-            <span>© 2026</span>
-          </div>
-        </div>
-      </footer>
-
       <SubscriptionModal 
         isOpen={showSubscriptionModal} 
         onClose={closeModal} 
