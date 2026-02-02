@@ -28,51 +28,35 @@ const sleepIssues = [
 const sleepVideos: Video[] = [
   {
     id: "1",
-    title: "Best Pregnancy Sleeping Positions By Trimester",
-    description: "Learn the best positions for each trimester and what to avoid",
-    youtubeId: "llK1G5lHlWM",
-    duration: "8:30",
-    category: "Sleep Positions"
-  },
-  {
-    id: "2",
-    title: "How to Sleep During Third Trimester",
-    description: "Safe and comfortable sleep tips for late pregnancy",
-    youtubeId: "xdKDw8E6LSs",
-    duration: "6:45",
-    category: "Sleep Tips"
-  },
-  {
-    id: "3",
-    title: "Pregnancy Meditation for Relaxation & Sleep",
-    description: "1 hour guided meditation for peaceful sleep",
+    title: "Pregnancy Relaxation Meditation",
+    description: "Calming meditation for better sleep during pregnancy",
     youtubeId: "pCSjhbVOdYQ",
     duration: "60:00",
     category: "Meditation"
   },
   {
-    id: "4",
-    title: "Guided Meditation for Pregnancy Insomnia",
-    description: "10-minute meditation to help with sleep difficulties",
-    youtubeId: "SXsB3zx4Rxc",
-    duration: "10:15",
-    category: "Meditation"
-  },
-  {
-    id: "5",
-    title: "Pillow Supported Positioning for Pregnancy",
-    description: "How to use pillows for better rest and less pain",
-    youtubeId: "iIluTuRUjOI",
-    duration: "7:20",
+    id: "2",
+    title: "Prenatal Stretching for Better Sleep",
+    description: "Gentle stretches to ease tension before bed",
+    youtubeId: "vEcZD8Js2Ws",
+    duration: "25:00",
     category: "Sleep Tips"
   },
   {
-    id: "6",
-    title: "Pregnancy Sleep Affirmations",
-    description: "Relaxing affirmations to help you drift off to sleep",
-    youtubeId: "Ygkgf9RnJ94",
-    duration: "30:00",
-    category: "Relaxation"
+    id: "3",
+    title: "Pregnancy Yoga for Relaxation",
+    description: "Relaxing yoga flow to prepare for restful sleep",
+    youtubeId: "3HPhF_IPJ1E",
+    duration: "15:00",
+    category: "Sleep Positions"
+  },
+  {
+    id: "4",
+    title: "Newborn Sleep Preparation",
+    description: "Prepare for baby's sleep schedule",
+    youtubeId: "hpgjwK_oQe0",
+    duration: "18:00",
+    category: "Preparation"
   },
 ];
 
