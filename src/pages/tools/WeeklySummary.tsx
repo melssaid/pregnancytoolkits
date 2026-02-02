@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { 
   Baby, 
   Sparkles, 
   Loader2, 
-  Calendar,
   TrendingUp,
   Heart,
   CheckCircle,
@@ -13,13 +12,13 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { ToolFrame } from "@/components/ToolFrame";
 import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
+import { WeekSlider } from "@/components/WeekSlider";
 
 const STORAGE_KEY = "weekly-summary-data";
 
@@ -33,7 +32,7 @@ export default function WeeklySummary() {
   const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
-  const [week, setWeek] = useState<string>("20");
+  const [week, setWeek] = useState<number>(20);
   const [summary, setSummary] = useState<string>("");
   const [savedSummaries, setSavedSummaries] = useState<WeeklySummaryData[]>([]);
 
@@ -46,6 +45,10 @@ export default function WeeklySummary() {
     setSavedSummaries(saved);
   }, []);
 
+  const handleWeekChange = useCallback((newWeek: number) => {
+    setWeek(newWeek);
+  }, []);
+
   const getSummary = async () => {
     setSummary("");
 
@@ -54,16 +57,16 @@ export default function WeeklySummary() {
     await streamChat({
       type: "weekly-summary",
       messages: [{ role: "user", content: prompt }],
-      context: { week: parseInt(week) },
+      context: { week },
       onDelta: (chunk) => setSummary((prev) => prev + chunk),
       onDone: () => {
         // Save to history
         const newSummary: WeeklySummaryData = {
-          week: parseInt(week),
+          week,
           content: summary,
           generatedAt: new Date().toISOString(),
         };
-        const updated = [newSummary, ...savedSummaries.filter(s => s.week !== parseInt(week))].slice(0, 10);
+        const updated = [newSummary, ...savedSummaries.filter(s => s.week !== week)].slice(0, 10);
         setSavedSummaries(updated);
         safeSaveToLocalStorage(STORAGE_KEY, updated);
       },
@@ -71,14 +74,14 @@ export default function WeeklySummary() {
   };
 
   const getTrimester = (w: number) => {
-    if (w <= 12) return { label: "First Trimester", color: "bg-pink-500" };
-    if (w <= 27) return { label: "Second Trimester", color: "bg-purple-500" };
-    return { label: "Third Trimester", color: "bg-blue-500" };
+    if (w <= 12) return { label: "First Trimester", color: "bg-emerald-500" };
+    if (w <= 27) return { label: "Second Trimester", color: "bg-blue-500" };
+    return { label: "Third Trimester", color: "bg-purple-500" };
   };
 
-  const trimesterInfo = getTrimester(parseInt(week));
-  const progress = (parseInt(week) / 40) * 100;
-  const daysRemaining = (40 - parseInt(week)) * 7;
+  const trimesterInfo = getTrimester(week);
+  const progress = (week / 40) * 100;
+  const daysRemaining = (40 - week) * 7;
 
   if (showDisclaimer) {
     return (
@@ -104,39 +107,32 @@ export default function WeeklySummary() {
           <span className="text-xs text-muted-foreground">{daysRemaining} days to go</span>
         </div>
 
-        {/* Week Selector */}
+        {/* Week Selector - Using WeekSlider */}
+        <WeekSlider
+          week={week}
+          onChange={handleWeekChange}
+          showTrimester={false}
+          label="Pregnancy Week"
+        />
+
+        {/* Progress Card */}
         <Card>
-          <CardContent className="p-4 space-y-4">
+          <CardContent className="p-4 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Baby className="w-6 h-6 text-primary" />
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Baby className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Pregnancy Week</p>
-                  <Select value={week} onValueChange={setWeek}>
-                    <SelectTrigger className="w-32 h-8 text-lg font-bold border-0 p-0 shadow-none">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Array.from({ length: 40 }, (_, i) => (
-                        <SelectItem key={i + 1} value={String(i + 1)}>
-                          Week {i + 1}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <p className="text-lg font-bold text-foreground">Week {week}</p>
+                  <p className="text-xs text-muted-foreground">{trimesterInfo.label}</p>
                 </div>
               </div>
-              <Badge variant="secondary">{trimesterInfo.label}</Badge>
+              <span className="text-2xl font-bold text-primary">{Math.round(progress)}%</span>
             </div>
 
             {/* Progress */}
             <div className="space-y-2">
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>Progress</span>
-                <span>{Math.round(progress)}%</span>
-              </div>
               <Progress value={progress} className="h-2" />
               <p className="text-xs text-center text-muted-foreground">
                 Approximately {daysRemaining} days remaining 💫
