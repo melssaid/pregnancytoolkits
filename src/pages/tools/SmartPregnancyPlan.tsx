@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,9 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
-import { Calendar, Download, Activity, Utensils, FileText, Printer } from "lucide-react";
+import { Activity, Utensils, FileText, Printer } from "lucide-react";
 import { toast } from "sonner";
 import html2canvas from "html2canvas";
+import { WeekSlider } from "@/components/WeekSlider";
 
 const SmartPregnancyPlan = () => {
   const { t } = useTranslation();
@@ -59,14 +60,13 @@ const SmartPregnancyPlan = () => {
             <CardTitle>{t("smartPlan.yourData")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label>{t("smartPlan.currentWeek")}: {week}</Label>
-              <Slider 
-                value={[week]} 
-                onValueChange={(v) => setWeek(v[0])} 
-                max={40} step={1} 
-              />
-            </div>
+            <WeekSlider
+              week={week}
+              onChange={setWeek}
+              showCard={false}
+              showTrimester
+              label={t("smartPlan.currentWeek")}
+            />
             <div className="space-y-2">
               <Label>{t("smartPlan.weight")} (kg)</Label>
               <Input 

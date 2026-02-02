@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Pill, Check, Clock, Calendar, TrendingUp, Loader2, Trash2, Sparkles, Brain, RefreshCw } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Pill, Check, Clock, Calendar, TrendingUp, Loader2, Sparkles, Brain, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
@@ -7,6 +7,7 @@ import { VitaminService, UserProfileService } from '@/services/localStorageServi
 import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { WeekSlider } from '@/components/WeekSlider';
 
 interface Vitamin {
   id: string;
@@ -198,11 +199,18 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
   return (
     <ToolFrame
       title="Vitamin Tracker"
-      subtitle={`Week ${currentWeek} - Track your daily prenatal vitamins`}
+      subtitle="Track your daily prenatal vitamins"
       mood="joyful"
       toolId="vitamin-tracker"
     >
       <div className="space-y-6">
+        {/* Week Selector */}
+        <WeekSlider
+          week={currentWeek}
+          onChange={setCurrentWeek}
+          showTrimester
+          label="Pregnancy Week"
+        />
         {/* Today's Progress */}
         <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
           <CardHeader className="pb-2">
