@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Play, BookOpen, Clock, Video as VideoIcon } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { AlertTriangle, Clock, ExternalLink, Play, Video as VideoIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -28,8 +28,7 @@ interface VideoLibraryProps {
 // Fallback thumbnail component when YouTube thumbnail fails to load
 const VideoThumbnail: React.FC<{
   video: Video;
-  colors: { gradient: string };
-}> = ({ video, colors }) => {
+}> = ({ video }) => {
   const [hasError, setHasError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
   
@@ -53,8 +52,8 @@ const VideoThumbnail: React.FC<{
   
   if (hasError) {
     return (
-      <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${colors.gradient}`}>
-        <VideoIcon className="w-6 h-6 text-white/80" />
+      <div className="w-full h-full flex items-center justify-center bg-muted">
+        <VideoIcon className="w-6 h-6 text-muted-foreground" />
       </div>
     );
   }
@@ -62,8 +61,8 @@ const VideoThumbnail: React.FC<{
   return (
     <>
       {!imgLoaded && (
-        <div className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${colors.gradient}`}>
-          <VideoIcon className="w-6 h-6 text-white/50 animate-pulse" />
+        <div className="absolute inset-0 flex items-center justify-center bg-muted">
+          <VideoIcon className="w-6 h-6 text-muted-foreground/60 animate-pulse" />
         </div>
       )}
       <img
@@ -88,54 +87,30 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [browseOpen, setBrowseOpen] = useState(false);
 
-  const categories = ['all', ...new Set(videos.map(v => v.category))];
+  const categories = useMemo(() => ['all', ...new Set(videos.map(v => v.category))], [videos]);
   
   const filteredVideos = activeCategory === 'all' 
     ? videos 
     : videos.filter(v => v.category === activeCategory);
 
-  const colorClasses = {
-    blue: {
-      gradient: 'from-blue-500 to-cyan-500',
-      bg: 'bg-blue-50 dark:bg-blue-950/30',
-      border: 'border-blue-200/50',
-      text: 'text-blue-600',
-      badge: 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300'
-    },
-    violet: {
-      gradient: 'from-violet-500 to-purple-500',
-      bg: 'bg-violet-50 dark:bg-violet-950/30',
-      border: 'border-violet-200/50',
-      text: 'text-violet-600',
-      badge: 'bg-violet-100 text-violet-700 dark:bg-violet-900/50 dark:text-violet-300'
-    },
-    rose: {
-      gradient: 'from-rose-500 to-pink-500',
-      bg: 'bg-rose-50 dark:bg-rose-950/30',
-      border: 'border-rose-200/50',
-      text: 'text-rose-600',
-      badge: 'bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300'
-    },
-    emerald: {
-      gradient: 'from-emerald-500 to-teal-500',
-      bg: 'bg-emerald-50 dark:bg-emerald-950/30',
-      border: 'border-emerald-200/50',
-      text: 'text-emerald-600',
-      badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300'
-    }
+  // Keep API stable while using semantic tokens (no hardcoded palette)
+  const colors = {
+    panel: 'bg-muted/30 border-border/60',
+    badge: 'bg-muted text-foreground',
+    chipActive: 'bg-primary text-primary-foreground border-0',
+    chipInactive: '',
+    playBadge: 'bg-primary',
   };
-
-  const colors = colorClasses[accentColor as keyof typeof colorClasses] || colorClasses.blue;
 
   if (videos.length === 0) return null;
 
   return (
     <>
-      <Card className={`${colors.bg} ${colors.border} border`}>
+      <Card className={`${colors.panel} border`}>
         <CardContent className="pt-4">
           <div className="flex items-center gap-2 mb-3">
-            <div className={`p-2 rounded-lg bg-gradient-to-r ${colors.gradient}`}>
-              <BookOpen className="w-4 h-4 text-white" />
+            <div className="p-2 rounded-lg bg-primary text-primary-foreground">
+              <VideoIcon className="w-4 h-4" />
             </div>
             <div>
               <h3 className="font-semibold text-foreground">{title}</h3>
@@ -155,7 +130,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                     onClick={() => setActiveCategory(cat)}
                     className={`text-xs whitespace-nowrap ${
                       activeCategory === cat 
-                        ? `bg-gradient-to-r ${colors.gradient} text-white border-0` 
+                        ? colors.chipActive
                         : ''
                     }`}
                   >
@@ -181,16 +156,16 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                     onClick={() => setSelectedVideo(video)}
                     className="w-full text-left group"
                   >
-                    <div className="flex gap-3 p-2 rounded-xl bg-white/60 dark:bg-gray-800/40 hover:bg-white dark:hover:bg-gray-800/60 transition-all border border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-md">
+                    <div className="flex gap-3 p-2 rounded-xl bg-background/70 hover:bg-background transition-all border border-border/40 hover:border-border hover:shadow-md">
                       {/* Thumbnail */}
-                      <div className="relative w-24 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                        <VideoThumbnail video={video} colors={colors} />
-                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <div className={`p-1.5 rounded-full bg-gradient-to-r ${colors.gradient}`}>
-                            <Play className="w-3 h-3 text-white" fill="white" />
+                      <div className="relative w-24 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
+                        <VideoThumbnail video={video} />
+                        <div className="absolute inset-0 bg-foreground/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className={`p-1.5 rounded-full ${colors.playBadge}`}>
+                            <Play className="w-3 h-3 text-primary-foreground" fill="currentColor" />
                           </div>
                         </div>
-                        <div className="absolute bottom-1 right-1 bg-black/70 text-white text-[10px] px-1 rounded">
+                        <div className="absolute bottom-1 right-1 bg-foreground/70 text-background text-[10px] px-1 rounded">
                           {video.duration}
                         </div>
                       </div>
@@ -244,9 +219,9 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
 
           <div className="px-4 pb-4">
             {/* Medical Disclaimer Alert */}
-            <div className="mb-3 p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg flex items-start gap-2">
-              <span className="text-amber-600 text-lg">⚠️</span>
-              <p className="text-xs text-amber-800 dark:text-amber-200">
+            <div className="mb-3 p-3 bg-muted/50 border border-border rounded-lg flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5" />
+              <p className="text-xs text-muted-foreground">
                 These videos are for educational purposes only and do not replace professional medical advice.
               </p>
             </div>
@@ -262,16 +237,16 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                     }}
                     className="w-full text-left group"
                   >
-                    <div className="flex gap-3 p-2 rounded-xl bg-white/60 dark:bg-gray-800/40 hover:bg-white dark:hover:bg-gray-800/60 transition-all border border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-md">
+                    <div className="flex gap-3 p-2 rounded-xl bg-background/70 hover:bg-background transition-all border border-border/40 hover:border-border hover:shadow-md">
                       {/* Thumbnail */}
-                      <div className="relative w-24 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                        <VideoThumbnail video={video} colors={colors} />
-                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <div className={`p-1.5 rounded-full bg-gradient-to-r ${colors.gradient}`}>
-                            <Play className="w-3 h-3 text-white" fill="white" />
+                      <div className="relative w-24 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
+                        <VideoThumbnail video={video} />
+                        <div className="absolute inset-0 bg-foreground/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className={`p-1.5 rounded-full ${colors.playBadge}`}>
+                            <Play className="w-3 h-3 text-primary-foreground" fill="currentColor" />
                           </div>
                         </div>
-                        <div className="absolute bottom-1 right-1 bg-black/70 text-white text-[10px] px-1 rounded">
+                        <div className="absolute bottom-1 right-1 bg-foreground/70 text-background text-[10px] px-1 rounded">
                           {video.duration}
                         </div>
                       </div>
@@ -305,9 +280,9 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
           </DialogHeader>
           <div className="px-4 pb-4">
             {/* Medical Disclaimer Alert */}
-            <div className="mb-3 p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg flex items-start gap-2">
-              <span className="text-amber-600 text-lg">⚠️</span>
-              <p className="text-xs text-amber-800 dark:text-amber-200">
+            <div className="mb-3 p-3 bg-muted/50 border border-border rounded-lg flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5" />
+              <p className="text-xs text-muted-foreground">
                 These videos are for educational purposes only and do not replace professional medical advice.
               </p>
             </div>
@@ -315,7 +290,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
             <AspectRatio ratio={16 / 9}>
               {selectedVideo && (
                 <iframe
-                  src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0`}
+                  src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
                   title={selectedVideo.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -323,6 +298,20 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                 />
               )}
             </AspectRatio>
+
+            {selectedVideo && (
+              <div className="mt-3">
+                <a
+                  href={`https://www.youtube.com/watch?v=${selectedVideo.youtubeId}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  Open on YouTube
+                </a>
+              </div>
+            )}
             <p className="text-sm text-muted-foreground mt-3">
               {selectedVideo?.description}
             </p>
