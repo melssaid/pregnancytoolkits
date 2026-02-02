@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, memo } from "react";
 import { Home, LayoutDashboard, Search, Settings } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -7,11 +7,11 @@ import { SearchDialog } from "./SearchDialog";
 const navItems = [
   { id: "home", icon: Home, label: "Home", href: "/" },
   { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
-  { id: "search", icon: Search, label: "Search", href: null }, // Opens dialog
+  { id: "search", icon: Search, label: "Search", href: null },
   { id: "settings", icon: Settings, label: "Settings", href: "/settings" },
 ];
 
-export const BottomNavigation = forwardRef<HTMLDivElement, Record<string, never>>(
+export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, never>>(
   function BottomNavigation(_, ref) {
     const location = useLocation();
     const [searchOpen, setSearchOpen] = useState(false);
@@ -25,14 +25,14 @@ export const BottomNavigation = forwardRef<HTMLDivElement, Record<string, never>
     return (
       <>
         {/* Spacer to prevent content from being hidden behind nav */}
-        <div className="h-16 md:h-0" />
+        <div className="h-14 md:h-0" />
         
         {/* Bottom Navigation - Mobile only */}
         <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
           {/* Glass effect background */}
-          <div className="absolute inset-0 bg-background/80 backdrop-blur-xl border-t border-border/50" />
+          <div className="absolute inset-0 bg-card/95 backdrop-blur-lg border-t border-border/40 shadow-lg" />
           
-          <div className="relative flex items-center justify-around px-4 py-2 safe-area-bottom">
+          <div className="relative flex items-center justify-around px-2 py-1.5 safe-area-bottom">
             {navItems.map((item) => {
               const active = isActive(item.href);
               const Icon = item.icon;
@@ -42,16 +42,16 @@ export const BottomNavigation = forwardRef<HTMLDivElement, Record<string, never>
                   <button
                     key={item.id}
                     onClick={() => setSearchOpen(true)}
-                    className="flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl transition-all duration-200"
+                    className="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-colors"
                   >
-                    <div className={`p-2 rounded-xl transition-all duration-200 ${
+                    <div className={`p-1.5 rounded-lg transition-all ${
                       searchOpen 
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" 
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        ? "bg-primary text-primary-foreground" 
+                        : "text-muted-foreground"
                     }`}>
-                      <Icon className="w-5 h-5" />
+                      <Icon className="w-4 h-4" />
                     </div>
-                    <span className={`text-[10px] font-medium ${
+                    <span className={`text-[9px] font-medium ${
                       searchOpen ? "text-primary" : "text-muted-foreground"
                     }`}>
                       {item.label}
@@ -64,26 +64,19 @@ export const BottomNavigation = forwardRef<HTMLDivElement, Record<string, never>
                 <Link
                   key={item.id}
                   to={item.href!}
-                  className="flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl transition-all duration-200"
+                  className="flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-colors"
                 >
                   <motion.div 
-                    className={`p-2 rounded-xl transition-all duration-200 ${
+                    className={`p-1.5 rounded-lg transition-all ${
                       active 
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" 
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        ? "bg-primary text-primary-foreground" 
+                        : "text-muted-foreground"
                     }`}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.9 }}
                   >
-                    <Icon className="w-5 h-5" />
-                    {active && (
-                      <motion.div
-                        layoutId="nav-indicator"
-                        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
-                    )}
+                    <Icon className="w-4 h-4" />
                   </motion.div>
-                  <span className={`text-[10px] font-medium ${
+                  <span className={`text-[9px] font-medium ${
                     active ? "text-primary" : "text-muted-foreground"
                   }`}>
                     {item.label}
@@ -99,6 +92,6 @@ export const BottomNavigation = forwardRef<HTMLDivElement, Record<string, never>
       </>
     );
   }
-);
+));
 
 BottomNavigation.displayName = "BottomNavigation";

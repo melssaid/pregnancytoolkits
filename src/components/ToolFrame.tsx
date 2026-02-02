@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
+import { BottomNavigation } from "./BottomNavigation";
 
 interface ToolFrameProps {
   children: React.ReactNode;
@@ -162,6 +163,9 @@ export function ToolFrame({
             </div>
           </div>
         </motion.footer>
+
+        {/* Bottom Navigation for Mobile */}
+        <BottomNavigation />
       </div>
     </div>
   );
