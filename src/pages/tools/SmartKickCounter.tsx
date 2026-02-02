@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Baby, Play, TrendingUp, Clock, Loader2, Save, Sparkles, AlertTriangle, Activity, BarChart3, Brain, RefreshCw, Zap } from 'lucide-react';
+import { Baby, Play, TrendingUp, Clock, Loader2, Save, Sparkles, AlertTriangle, Activity, BarChart3, Brain, RefreshCw, Zap, ChevronDown, ChevronUp, Target, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -29,6 +29,7 @@ const SmartKickCounter: React.FC = () => {
   const [aiHealthInsight, setAiHealthInsight] = useState('');
   const [aiActiveTab, setAiActiveTab] = useState<'pattern' | 'health' | 'tips'>('pattern');
   const [aiTips, setAiTips] = useState('');
+  const [showAIDetails, setShowAIDetails] = useState(false);
   
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const { toast } = useToast();
@@ -522,107 +523,160 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
           </Card>
         </div>
 
-        {/* AI Analysis Section */}
+        {/* Enhanced AI Analysis Section */}
         {history.length >= 2 && (
-          <Card className="bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30 border-violet-200/50">
+          <Card className="bg-gradient-to-br from-primary/5 to-secondary/10 border-primary/20">
             <CardContent className="py-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-violet-500" />
-                  AI Movement Analysis
+                  <Sparkles className="w-5 h-5 text-primary" />
+                  AI Data Analysis
                 </h3>
-                {(aiPatternAnalysis || aiHealthInsight || aiTips) && !aiLoading && (
+                <div className="flex items-center gap-2">
+                  {(aiPatternAnalysis || aiHealthInsight || aiTips) && !aiLoading && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        if (aiActiveTab === 'pattern') analyzePatterns(history);
+                        else if (aiActiveTab === 'health') getHealthInsight();
+                        else getAITips();
+                      }}
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                    </Button>
+                  )}
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => {
-                      if (aiActiveTab === 'pattern') analyzePatterns(history);
-                      else if (aiActiveTab === 'health') getHealthInsight();
-                      else getAITips();
-                    }}
+                    onClick={() => setShowAIDetails(!showAIDetails)}
                   >
-                    <RefreshCw className="w-4 h-4" />
+                    {showAIDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </Button>
-                )}
+                </div>
               </div>
 
-              {/* AI Tab Buttons */}
+              {/* Quick AI Summary Stats */}
               <div className="grid grid-cols-3 gap-2 mb-4">
-                <Button
-                  variant={aiActiveTab === 'pattern' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => analyzePatterns(history)}
-                  disabled={aiLoading}
-                  className="gap-1"
-                >
-                  {aiLoading && aiActiveTab === 'pattern' ? (
-                    <Loader2 className="w-3 h-3 animate-spin" />
-                  ) : (
-                    <BarChart3 className="w-3 h-3" />
-                  )}
-                  <span className="text-xs">Patterns</span>
-                </Button>
-                <Button
-                  variant={aiActiveTab === 'health' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={getHealthInsight}
-                  disabled={aiLoading}
-                  className="gap-1"
-                >
-                  {aiLoading && aiActiveTab === 'health' ? (
-                    <Loader2 className="w-3 h-3 animate-spin" />
-                  ) : (
-                    <Activity className="w-3 h-3" />
-                  )}
-                  <span className="text-xs">Health</span>
-                </Button>
-                <Button
-                  variant={aiActiveTab === 'tips' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={getAITips}
-                  disabled={aiLoading}
-                  className="gap-1"
-                >
-                  {aiLoading && aiActiveTab === 'tips' ? (
-                    <Loader2 className="w-3 h-3 animate-spin" />
-                  ) : (
-                    <Brain className="w-3 h-3" />
-                  )}
-                  <span className="text-xs">Tips</span>
-                </Button>
+                <div className="bg-background/60 rounded-lg p-3 text-center">
+                  <Target className="w-5 h-5 mx-auto mb-1 text-primary" />
+                  <div className="text-lg font-bold">{getAverageKicks()}</div>
+                  <p className="text-[10px] text-muted-foreground">Avg/Session</p>
+                </div>
+                <div className="bg-background/60 rounded-lg p-3 text-center">
+                  <Activity className="w-5 h-5 mx-auto mb-1 text-primary" />
+                  <div className={`text-lg font-bold ${getScoreColor(movementScore)}`}>
+                    {movementScore}%
+                  </div>
+                  <p className="text-[10px] text-muted-foreground">Health Score</p>
+                </div>
+                <div className="bg-background/60 rounded-lg p-3 text-center">
+                  <Shield className="w-5 h-5 mx-auto mb-1 text-primary" />
+                  <div className="text-lg font-bold text-emerald-500">
+                    {movementScore >= 70 ? '✓' : movementScore >= 40 ? '!' : '⚠'}
+                  </div>
+                  <p className="text-[10px] text-muted-foreground">Status</p>
+                </div>
               </div>
 
-              {/* AI Content */}
-              <AnimatePresence mode="wait">
-                {(aiPatternAnalysis || aiHealthInsight || aiTips || aiLoading) && (
+              <AnimatePresence>
+                {showAIDetails && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[400px] overflow-y-auto"
                   >
-                    {aiLoading && !aiPatternAnalysis && !aiHealthInsight && !aiTips ? (
-                      <div className="flex items-center justify-center py-8 text-muted-foreground">
-                        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                        Analyzing your baby's movement patterns...
+                    {/* AI Tab Buttons */}
+                    <div className="grid grid-cols-3 gap-2 mb-4">
+                      <Button
+                        variant={aiActiveTab === 'pattern' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => analyzePatterns(history)}
+                        disabled={aiLoading}
+                        className="gap-1"
+                      >
+                        {aiLoading && aiActiveTab === 'pattern' ? (
+                          <Loader2 className="w-3 h-3 animate-spin" />
+                        ) : (
+                          <BarChart3 className="w-3 h-3" />
+                        )}
+                        <span className="text-xs">Patterns</span>
+                      </Button>
+                      <Button
+                        variant={aiActiveTab === 'health' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={getHealthInsight}
+                        disabled={aiLoading}
+                        className="gap-1"
+                      >
+                        {aiLoading && aiActiveTab === 'health' ? (
+                          <Loader2 className="w-3 h-3 animate-spin" />
+                        ) : (
+                          <Activity className="w-3 h-3" />
+                        )}
+                        <span className="text-xs">Health</span>
+                      </Button>
+                      <Button
+                        variant={aiActiveTab === 'tips' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={getAITips}
+                        disabled={aiLoading}
+                        className="gap-1"
+                      >
+                        {aiLoading && aiActiveTab === 'tips' ? (
+                          <Loader2 className="w-3 h-3 animate-spin" />
+                        ) : (
+                          <Brain className="w-3 h-3" />
+                        )}
+                        <span className="text-xs">Tips</span>
+                      </Button>
+                    </div>
+
+                    {/* AI Content */}
+                    {(aiPatternAnalysis || aiHealthInsight || aiTips || aiLoading) && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="bg-background/50 rounded-xl p-4 max-h-[400px] overflow-y-auto"
+                      >
+                        {aiLoading && !aiPatternAnalysis && !aiHealthInsight && !aiTips ? (
+                          <div className="flex items-center justify-center py-8 text-muted-foreground">
+                            <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                            Analyzing your baby's movement patterns...
+                          </div>
+                        ) : (
+                          <MarkdownRenderer 
+                            content={
+                              aiActiveTab === 'pattern' ? aiPatternAnalysis :
+                              aiActiveTab === 'health' ? aiHealthInsight :
+                              aiTips
+                            } 
+                          />
+                        )}
+                      </motion.div>
+                    )}
+
+                    {!aiPatternAnalysis && !aiHealthInsight && !aiTips && !aiLoading && (
+                      <div className="text-center py-6">
+                        <Brain className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
+                        <p className="text-sm text-muted-foreground">
+                          Tap a button above to get AI-powered insights about your baby's movements
+                        </p>
                       </div>
-                    ) : (
-                      <MarkdownRenderer 
-                        content={
-                          aiActiveTab === 'pattern' ? aiPatternAnalysis :
-                          aiActiveTab === 'health' ? aiHealthInsight :
-                          aiTips
-                        } 
-                      />
                     )}
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {!aiPatternAnalysis && !aiHealthInsight && !aiTips && !aiLoading && (
-                <p className="text-sm text-muted-foreground text-center py-4">
-                  Tap a button above to get AI-powered insights about your baby's movements
-                </p>
+              {!showAIDetails && (
+                <Button 
+                  variant="outline" 
+                  className="w-full mt-2"
+                  onClick={() => setShowAIDetails(true)}
+                >
+                  <Brain className="w-4 h-4 mr-2" />
+                  View Detailed AI Analysis
+                </Button>
               )}
             </CardContent>
           </Card>
