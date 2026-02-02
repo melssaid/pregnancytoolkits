@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Pill, Check, Clock, Calendar, TrendingUp, Loader2, Trash2 } from 'lucide-react';
+import { Pill, Check, Clock, Calendar, TrendingUp, Loader2, Trash2, Sparkles, Brain, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { VitaminService, UserProfileService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface Vitamin {
   id: string;
@@ -30,7 +32,10 @@ const VitaminTracker: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState(20);
   const [isLoading, setIsLoading] = useState(true);
   const [savingId, setSavingId] = useState<string | null>(null);
+  const [aiAnalysis, setAiAnalysis] = useState('');
+  const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { toast } = useToast();
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
 
   useEffect(() => {
     loadData();
@@ -116,6 +121,63 @@ const VitaminTracker: React.FC = () => {
     return Math.round((taken / VITAMINS.length) * 100);
   };
 
+  const getAIAnalysis = async () => {
+    setShowAiAnalysis(true);
+    setAiAnalysis('');
+
+    const takenVitamins = VITAMINS.filter(v => isVitaminTakenToday(v.name)).map(v => v.name);
+    const missedVitamins = VITAMINS.filter(v => !isVitaminTakenToday(v.name)).map(v => v.name);
+    const weeklyData = Object.entries(weeklyStats).map(([name, count]) => `${name}: ${count}/7 days`).join(', ');
+
+    const prompt = `As a prenatal nutrition specialist, analyze this vitamin intake data for a woman in week ${currentWeek} of pregnancy:
+
+**Today's Intake:**
+- Taken: ${takenVitamins.length > 0 ? takenVitamins.join(', ') : 'None yet'}
+- Missed: ${missedVitamins.length > 0 ? missedVitamins.join(', ') : 'All taken!'}
+- Progress: ${getTodayProgress()}%
+
+**Weekly Consistency:**
+${weeklyData}
+
+Please provide a comprehensive analysis:
+
+## 📊 Intake Assessment
+- Overall score and rating
+- Strengths in current routine
+- Areas needing improvement
+
+## 💊 Personalized Recommendations
+- Priority vitamins for week ${currentWeek}
+- Optimal timing for each supplement
+- Best food sources to complement supplements
+
+## ⚠️ Interaction Warnings
+- Which vitamins should NOT be taken together
+- Time gaps needed between certain supplements
+- Foods/drinks to avoid with specific vitamins
+
+## 🍽️ Absorption Tips
+- How to maximize nutrient absorption
+- Pairing suggestions (e.g., Iron + Vitamin C)
+- When to take with vs without food
+
+## 📅 Weekly Goals
+- 3 actionable goals for this week
+- Reminder strategy suggestions
+
+Keep advice practical and specific to pregnancy week ${currentWeek}.`;
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{ role: 'user', content: prompt }],
+      context: { week: currentWeek },
+      onDelta: (text) => setAiAnalysis(prev => prev + text),
+      onDone: () => {},
+    });
+  };
+
+  const weeklyStats = getWeeklyStats();
+
   if (isLoading) {
     return (
       <ToolFrame
@@ -131,7 +193,6 @@ const VitaminTracker: React.FC = () => {
     );
   }
 
-  const weeklyStats = getWeeklyStats();
   const todayProgress = getTodayProgress();
 
   return (
@@ -163,6 +224,55 @@ const VitaminTracker: React.FC = () => {
             <p className="text-sm text-muted-foreground text-center">
               {todayLogs.length} of {VITAMINS.length} vitamins taken today
             </p>
+          </CardContent>
+        </Card>
+
+        {/* AI Analysis Card */}
+        <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center justify-between text-base">
+              <span className="flex items-center gap-2">
+                <Brain className="w-5 h-5 text-violet-500" />
+                AI Supplement Analysis
+              </span>
+              {showAiAnalysis && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={getAIAnalysis}
+                  disabled={aiLoading}
+                >
+                  <RefreshCw className={`w-4 h-4 ${aiLoading ? 'animate-spin' : ''}`} />
+                </Button>
+              )}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {!showAiAnalysis ? (
+              <Button
+                onClick={getAIAnalysis}
+                disabled={aiLoading}
+                className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+              >
+                {aiLoading ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <Sparkles className="w-4 h-4 mr-2" />
+                )}
+                Analyze My Vitamin Routine
+              </Button>
+            ) : (
+              <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[400px] overflow-y-auto">
+                {aiAnalysis ? (
+                  <MarkdownRenderer content={aiAnalysis} isLoading={aiLoading} />
+                ) : (
+                  <div className="flex items-center justify-center py-8 text-muted-foreground">
+                    <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                    Analyzing your vitamin intake...
+                  </div>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
 
