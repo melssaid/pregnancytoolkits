@@ -49,13 +49,13 @@ export interface Tool {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PROFESSIONAL PREGNANCY TOOLS - 35 CURATED AI-POWERED TOOLS (Consolidated)
+// PROFESSIONAL PREGNANCY TOOLS - 33 CURATED AI-POWERED TOOLS (Consolidated)
 // Merged duplicates for streamlined experience
 // ═══════════════════════════════════════════════════════════════════════════
 
 export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
-  // 🤖 AI-POWERED CORE TOOLS (Priority 1-8)
+  // 🤖 AI-POWERED CORE TOOLS (Priority 1-7)
   // ═══════════════════════════════════════════════════════════════
   { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, categoryKey: "categories.ai", href: "/tools/pregnancy-assistant", priority: 1, hasAI: true },
   { id: "symptom-analyzer", titleKey: "tools.symptomAnalyzer.title", descriptionKey: "tools.symptomAnalyzer.description", icon: Stethoscope, categoryKey: "categories.ai", href: "/tools/symptom-analyzer", priority: 2, hasAI: true },
@@ -63,20 +63,19 @@ export const toolsData: Tool[] = [
   { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, categoryKey: "categories.ai", href: "/tools/weekly-summary", priority: 4, hasAI: true },
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.ai", href: "/tools/ai-birth-plan", priority: 5, hasAI: true },
   { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, categoryKey: "categories.ai", href: "/tools/smart-appointment-reminder", priority: 6, hasAI: true },
-  { id: "ai-baby-name-finder", titleKey: "tools.aiBabyNameFinder.title", descriptionKey: "tools.aiBabyNameFinder.description", icon: Sparkles, categoryKey: "categories.ai", href: "/tools/ai-baby-name-finder", priority: 7, hasAI: true },
-  { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: ShoppingCart, categoryKey: "categories.ai", href: "/tools/smart-grocery-list", priority: 8, hasAI: true },
+  { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: ShoppingCart, categoryKey: "categories.ai", href: "/tools/smart-grocery-list", priority: 7, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // 🆕 AI TOOLS 2026 (Priority 9-16)
+  // 🆕 AI TOOLS 2026 (Priority 8-15)
   // ═══════════════════════════════════════════════════════════════
-  { id: "ai-sleep-optimizer", titleKey: "tools.aiSleepOptimizer.title", descriptionKey: "tools.aiSleepOptimizer.description", icon: Bed, categoryKey: "categories.ai", href: "/tools/ai-sleep-optimizer", priority: 9, hasAI: true },
-  { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, categoryKey: "categories.ai", href: "/tools/ai-hospital-bag", priority: 10, hasAI: true },
-  { id: "ai-partner-guide", titleKey: "tools.aiPartnerGuide.title", descriptionKey: "tools.aiPartnerGuide.description", icon: HeartHandshake, categoryKey: "categories.ai", href: "/tools/ai-partner-guide", priority: 11, hasAI: true },
-  { id: "ai-birth-position", titleKey: "tools.aiBirthPosition.title", descriptionKey: "tools.aiBirthPosition.description", icon: PersonStanding, categoryKey: "categories.ai", href: "/tools/ai-birth-position", priority: 12, hasAI: true },
-  { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.ai", href: "/tools/ai-skincare", priority: 13, hasAI: true },
-  { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.ai", href: "/tools/ai-nausea-relief", priority: 14, hasAI: true },
-  { id: "ai-budget-planner", titleKey: "tools.aiBudgetPlanner.title", descriptionKey: "tools.aiBudgetPlanner.description", icon: Wallet, categoryKey: "categories.ai", href: "/tools/ai-budget-planner", priority: 15, hasAI: true },
-  { id: "ai-bump-photos", titleKey: "tools.aiBumpPhotos.title", descriptionKey: "tools.aiBumpPhotos.description", icon: Camera, categoryKey: "categories.ai", href: "/tools/ai-bump-photos", priority: 16, hasAI: true },
+  { id: "ai-sleep-optimizer", titleKey: "tools.aiSleepOptimizer.title", descriptionKey: "tools.aiSleepOptimizer.description", icon: Bed, categoryKey: "categories.ai", href: "/tools/ai-sleep-optimizer", priority: 8, hasAI: true },
+  { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, categoryKey: "categories.ai", href: "/tools/ai-hospital-bag", priority: 9, hasAI: true },
+  { id: "ai-partner-guide", titleKey: "tools.aiPartnerGuide.title", descriptionKey: "tools.aiPartnerGuide.description", icon: HeartHandshake, categoryKey: "categories.ai", href: "/tools/ai-partner-guide", priority: 10, hasAI: true },
+  { id: "ai-birth-position", titleKey: "tools.aiBirthPosition.title", descriptionKey: "tools.aiBirthPosition.description", icon: PersonStanding, categoryKey: "categories.ai", href: "/tools/ai-birth-position", priority: 11, hasAI: true },
+  { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.ai", href: "/tools/ai-skincare", priority: 12, hasAI: true },
+  { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.ai", href: "/tools/ai-nausea-relief", priority: 13, hasAI: true },
+  { id: "ai-budget-planner", titleKey: "tools.aiBudgetPlanner.title", descriptionKey: "tools.aiBudgetPlanner.description", icon: Wallet, categoryKey: "categories.ai", href: "/tools/ai-budget-planner", priority: 14, hasAI: true },
+  { id: "ai-bump-photos", titleKey: "tools.aiBumpPhotos.title", descriptionKey: "tools.aiBumpPhotos.description", icon: Camera, categoryKey: "categories.ai", href: "/tools/ai-bump-photos", priority: 15, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // 💪 AI WELLNESS & FITNESS (Priority 17-19) - CONSOLIDATED
