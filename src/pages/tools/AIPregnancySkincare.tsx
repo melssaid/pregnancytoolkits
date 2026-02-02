@@ -36,51 +36,43 @@ const unsafeIngredients = [
 const skincareVideos: Video[] = [
   {
     id: "1",
-    title: "Dermatologist Safe Skincare During Pregnancy",
-    description: "Complete guide to pregnancy-safe skincare routine",
-    youtubeId: "SZINbsQ_gNo",
-    duration: "14:30",
+    title: "Pregnancy Safe Skincare Routine",
+    description: "Complete guide to pregnancy-safe skincare products",
+    youtubeId: "GV3HUDMQ-F8",
+    duration: "11:30",
     category: "Skincare Routine"
   },
   {
     id: "2",
-    title: "Pregnancy Skincare Guide - Dr. Nina",
-    description: "Dermatologist's guide to safe products during pregnancy",
-    youtubeId: "9NvKchuLIUw",
-    duration: "12:45",
-    category: "Skincare Routine"
+    title: "Ingredients to Avoid During Pregnancy",
+    description: "Dermatologist explains what to avoid",
+    youtubeId: "1mMx4tWT6uI",
+    duration: "8:45",
+    category: "Safety"
   },
   {
     id: "3",
-    title: "Stretch Marks Prevention & Treatment",
-    description: "Best practices for preventing and treating stretch marks",
-    youtubeId: "vJvVJHsLQ4g",
-    duration: "10:20",
+    title: "Preventing Stretch Marks Naturally",
+    description: "Natural ways to prevent and minimize stretch marks",
+    youtubeId: "LjHFxCVmpes",
+    duration: "9:20",
     category: "Skin Concerns"
   },
   {
     id: "4",
-    title: "Pregnancy Acne Solutions",
-    description: "Safe treatments for hormonal pregnancy acne",
-    youtubeId: "HFBp8cHfKAE",
-    duration: "9:15",
-    category: "Skin Concerns"
+    title: "Pregnancy Glow Skincare Tips",
+    description: "How to achieve that pregnancy glow safely",
+    youtubeId: "gRYqIicyQcc",
+    duration: "7:15",
+    category: "Tips"
   },
   {
     id: "5",
-    title: "Melasma During Pregnancy",
-    description: "Understanding and treating pregnancy mask",
-    youtubeId: "9TqVxWLGv4k",
-    duration: "8:50",
-    category: "Skin Concerns"
-  },
-  {
-    id: "6",
-    title: "Natural DIY Pregnancy Skincare",
-    description: "Homemade safe skincare recipes for pregnancy",
-    youtubeId: "wI8TRj0UKBY",
-    duration: "11:30",
-    category: "DIY Recipes"
+    title: "Body Care During Pregnancy",
+    description: "Safe body lotions and belly care routine",
+    youtubeId: "3-LmWfbckTY",
+    duration: "10:30",
+    category: "Body Care"
   },
 ];
 
