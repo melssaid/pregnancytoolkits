@@ -15,7 +15,7 @@ import partnerGuide from '@/assets/icons/partner-guide.png';
 import birthPosition from '@/assets/icons/birth-position.png';
 import skincare from '@/assets/icons/skincare.png';
 import nauseaRelief from '@/assets/icons/nausea-relief.png';
-import budgetPlanner from '@/assets/icons/budget-planner.png';
+
 import lactation from '@/assets/icons/lactation.png';
 import postureCoach from '@/assets/icons/posture-coach.png';
 import stretchReminder from '@/assets/icons/stretch-reminder.png';
@@ -73,7 +73,7 @@ export const toolIconMap: Record<string, string> = {
   'ai-birth-position': birthPosition,
   'ai-pregnancy-skincare': skincare,
   'ai-nausea-relief': nauseaRelief,
-  'ai-budget-planner': budgetPlanner,
+  
   'ai-lactation-prep': lactation,
   'ai-craving-alternatives': cravingAlternatives,
   'ai-recipe-modifier': mealSuggestion,
