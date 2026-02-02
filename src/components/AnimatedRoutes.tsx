@@ -31,7 +31,7 @@ const AIPartnerGuide = lazy(() => import("@/pages/tools/AIPartnerGuide"));
 const AIBirthPosition = lazy(() => import("@/pages/tools/AIBirthPosition"));
 const AIPregnancySkincare = lazy(() => import("@/pages/tools/AIPregnancySkincare"));
 const AINauseaRelief = lazy(() => import("@/pages/tools/AINauseaRelief"));
-const AIBudgetPlanner = lazy(() => import("@/pages/tools/AIBudgetPlanner"));
+
 const AIBumpPhotos = lazy(() => import("@/pages/tools/AIBumpPhotos"));
 
 // AI WELLNESS (4 tools)
@@ -103,7 +103,7 @@ export function AnimatedRoutes() {
           <Route path="/tools/ai-birth-position" element={<PageTransition><AIBirthPosition /></PageTransition>} />
           <Route path="/tools/ai-skincare" element={<PageTransition><AIPregnancySkincare /></PageTransition>} />
           <Route path="/tools/ai-nausea-relief" element={<PageTransition><AINauseaRelief /></PageTransition>} />
-          <Route path="/tools/ai-budget-planner" element={<PageTransition><AIBudgetPlanner /></PageTransition>} />
+          
           <Route path="/tools/ai-bump-photos" element={<PageTransition><AIBumpPhotos /></PageTransition>} />
 
           {/* AI WELLNESS */}
