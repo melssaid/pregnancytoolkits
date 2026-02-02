@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Utensils, Plus, Trash2, Sparkles, TrendingUp, Loader2, Coffee, Sun, Moon, Cookie } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { NutritionService, UserProfileService } from '@/services/supabaseServices';
-import { AIService } from '@/services/aiService';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { useTranslation } from 'react-i18next';
 
 interface MealLog {
@@ -20,6 +22,8 @@ interface MealLog {
 const AISmartNutritionTracker: React.FC = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
+  const { streamChat } = usePregnancyAI();
+  const abortRef = useRef(false);
   
   const MEAL_TYPES = [
     { id: 'breakfast', name: t('nutrition.breakfast', 'Breakfast'), icon: Coffee, color: 'from-yellow-400 to-orange-400' },
@@ -120,13 +124,33 @@ const AISmartNutritionTracker: React.FC = () => {
   const analyzeMeal = async (meal: MealLog) => {
     try {
       const foodNames = meal.foods.map((f: any) => f.name || f).join(', ');
-      const response = await AIService.analyzeNutrition([foodNames], currentWeek);
+      abortRef.current = false;
+      let fullResponse = '';
       
-      await NutritionService.updateAiSuggestions(meal.id, response.content);
-      
-      setTodayMeals(prev => prev.map(m => 
-        m.id === meal.id ? { ...m, ai_suggestions: response.content } : m
-      ));
+      const prompt = `I'm in week ${currentWeek} of pregnancy and just had ${MEAL_TYPES.find(m => m.id === meal.meal_type)?.name || 'a meal'}: ${foodNames}
+
+Please provide a brief nutritional assessment:
+- Is this meal appropriate for my pregnancy stage?
+- Key nutrients provided
+- One quick improvement tip`;
+
+      await streamChat({
+        type: 'meal-suggestion',
+        messages: [{ role: 'user', content: prompt }],
+        context: { week: currentWeek },
+        onDelta: (text) => {
+          if (abortRef.current) return;
+          fullResponse += text;
+        },
+        onDone: async () => {
+          if (fullResponse) {
+            await NutritionService.updateAiSuggestions(meal.id, fullResponse);
+            setTodayMeals(prev => prev.map(m => 
+              m.id === meal.id ? { ...m, ai_suggestions: fullResponse } : m
+            ));
+          }
+        }
+      });
     } catch (error) {
       console.error('Analysis error:', error);
     }
@@ -143,13 +167,46 @@ const AISmartNutritionTracker: React.FC = () => {
 
     try {
       setIsAnalyzing(true);
+      setDailyAnalysis('');
+      abortRef.current = false;
       
       const allFoods = todayMeals.flatMap(m => 
         m.foods.map((f: any) => f.name || f)
       );
       
-      const response = await AIService.analyzeNutrition(allFoods, currentWeek);
-      setDailyAnalysis(response.content);
+      const prompt = `I'm in week ${currentWeek} of pregnancy. Today I ate: ${allFoods.join(', ')}
+
+Please provide a comprehensive daily nutrition analysis:
+
+## 📊 Daily Nutrition Summary
+- Overall assessment of today's eating
+- Estimated nutrient balance
+
+## ✅ What You Did Well
+- Positive aspects of your food choices
+
+## ⚠️ What's Missing
+- Key pregnancy nutrients you might be lacking
+- Foods to add tomorrow
+
+## 💡 Tomorrow's Tip
+- One actionable suggestion for better nutrition`;
+
+      let fullResponse = '';
+      
+      await streamChat({
+        type: 'meal-suggestion',
+        messages: [{ role: 'user', content: prompt }],
+        context: { week: currentWeek },
+        onDelta: (text) => {
+          if (abortRef.current) return;
+          fullResponse += text;
+          setDailyAnalysis(fullResponse);
+        },
+        onDone: () => {
+          setIsAnalyzing(false);
+        }
+      });
       
     } catch (error: any) {
       toast({
@@ -157,7 +214,6 @@ const AISmartNutritionTracker: React.FC = () => {
         description: error.message,
         variant: 'destructive'
       });
-    } finally {
       setIsAnalyzing(false);
     }
   };
