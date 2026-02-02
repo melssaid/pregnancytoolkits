@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, BookOpen, Clock, ExternalLink } from 'lucide-react';
+import { Play, BookOpen, Clock, Video as VideoIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -25,6 +25,35 @@ interface VideoLibraryProps {
   accentColor?: string;
 }
 
+// Fallback thumbnail component when YouTube thumbnail fails to load
+const VideoThumbnail: React.FC<{
+  video: Video;
+  colors: { gradient: string };
+}> = ({ video, colors }) => {
+  const [hasError, setHasError] = useState(false);
+  
+  const getYoutubeThumbnail = (youtubeId: string) => 
+    `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
+  
+  if (hasError) {
+    return (
+      <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${colors.gradient}`}>
+        <VideoIcon className="w-6 h-6 text-white/80" />
+      </div>
+    );
+  }
+  
+  return (
+    <img
+      src={video.thumbnail || getYoutubeThumbnail(video.youtubeId)}
+      alt={video.title}
+      className="w-full h-full object-cover"
+      loading="lazy"
+      onError={() => setHasError(true)}
+    />
+  );
+};
+
 export const VideoLibrary: React.FC<VideoLibraryProps> = ({
   videos,
   title = "Educational Videos",
@@ -40,9 +69,6 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
   const filteredVideos = activeCategory === 'all' 
     ? videos 
     : videos.filter(v => v.category === activeCategory);
-
-  const getYoutubeThumbnail = (youtubeId: string) => 
-    `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
 
   const colorClasses = {
     blue: {
@@ -134,12 +160,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                     <div className="flex gap-3 p-2 rounded-xl bg-white/60 dark:bg-gray-800/40 hover:bg-white dark:hover:bg-gray-800/60 transition-all border border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-md">
                       {/* Thumbnail */}
                       <div className="relative w-24 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                        <img
-                          src={video.thumbnail || getYoutubeThumbnail(video.youtubeId)}
-                          alt={video.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
+                        <VideoThumbnail video={video} colors={colors} />
                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                           <div className={`p-1.5 rounded-full bg-gradient-to-r ${colors.gradient}`}>
                             <Play className="w-3 h-3 text-white" fill="white" />
@@ -220,12 +241,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                     <div className="flex gap-3 p-2 rounded-xl bg-white/60 dark:bg-gray-800/40 hover:bg-white dark:hover:bg-gray-800/60 transition-all border border-transparent hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-md">
                       {/* Thumbnail */}
                       <div className="relative w-24 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                        <img
-                          src={video.thumbnail || getYoutubeThumbnail(video.youtubeId)}
-                          alt={video.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
+                        <VideoThumbnail video={video} colors={colors} />
                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                           <div className={`p-1.5 rounded-full bg-gradient-to-r ${colors.gradient}`}>
                             <Play className="w-3 h-3 text-white" fill="white" />
