@@ -26,51 +26,43 @@ const supportTopics = [
 const partnerVideos: Video[] = [
   {
     id: "1",
-    title: "5 Tips to Be the Best Labor Partner",
-    description: "Essential tips for supporting your partner during labor",
-    youtubeId: "tKFP8aOvzlE",
-    duration: "8:45",
-    category: "Labor Support"
+    title: "How to Support Your Partner During Pregnancy",
+    description: "Essential tips for supporting your partner throughout pregnancy",
+    youtubeId: "wMV3s5V2EJM",
+    duration: "9:15",
+    category: "Emotional Support"
   },
   {
     id: "2",
-    title: "How to Push During Labor - Best Positions",
-    description: "Learn the best positions to help your partner during pushing",
-    youtubeId: "LL-FkZJce2k",
-    duration: "10:20",
+    title: "Labor Support Techniques for Partners",
+    description: "Learn effective ways to help during labor and delivery",
+    youtubeId: "j7YucfJuziU",
+    duration: "12:30",
     category: "Labor Support"
   },
   {
     id: "3",
-    title: "Supporting Your Pregnant Partner",
-    description: "Complete guide for partners during pregnancy",
-    youtubeId: "9o3FUY8kfNQ",
-    duration: "12:15",
-    category: "Emotional Support"
-  },
-  {
-    id: "4",
-    title: "Pregnancy Massage for Partners",
-    description: "Safe massage techniques to ease pregnancy discomfort",
-    youtubeId: "ZxGC3Y0lRJA",
-    duration: "15:30",
-    category: "Physical Support"
-  },
-  {
-    id: "5",
-    title: "Dad's Guide to Pregnancy",
+    title: "Pregnancy: A Guide for Dads",
     description: "What every expecting father needs to know",
-    youtubeId: "0EJxNBp4q_s",
-    duration: "11:45",
+    youtubeId: "4ck6HHYEH3c",
+    duration: "10:45",
     category: "Education"
   },
   {
-    id: "6",
-    title: "Bonding with Baby Before Birth",
-    description: "Ways for partners to connect with the baby",
-    youtubeId: "Gf9MLflHNgQ",
-    duration: "7:20",
+    id: "4",
+    title: "Bonding with Your Baby Before Birth",
+    description: "Ways for partners to connect with the baby during pregnancy",
+    youtubeId: "RKmxHLf-E-I",
+    duration: "8:20",
     category: "Bonding"
+  },
+  {
+    id: "5",
+    title: "Preparing for Fatherhood",
+    description: "Mental and practical preparation for becoming a dad",
+    youtubeId: "6n3pFFPSlW4",
+    duration: "14:10",
+    category: "Preparation"
   },
 ];
 
