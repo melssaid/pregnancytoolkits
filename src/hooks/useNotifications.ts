@@ -33,6 +33,16 @@ const DEFAULT_SETTINGS: NotificationSettings = {
 // Backup reminder interval in days
 const BACKUP_REMINDER_DAYS = 7;
 
+// Helper to get appointments from localStorage
+const getAppointmentsFromStorage = (): any[] => {
+  try {
+    const data = localStorage.getItem('appointments');
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+};
+
 // Validators for type-safe parsing
 const isNotification = (data: unknown): data is Notification => {
   if (typeof data !== 'object' || data === null) return false;
@@ -219,8 +229,97 @@ export function useNotifications() {
         }
       }
 
+      // Appointment reminders (check for appointments tomorrow - runs at 8 AM and 8 PM)
+      if (settings.appointmentReminders && (hour === 8 || hour === 20)) {
+        const appointments = getAppointmentsFromStorage();
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
+        
+        const dayAfterTomorrow = new Date(tomorrow);
+        dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
+        
+        // Find appointments scheduled for tomorrow
+        const tomorrowAppointments = appointments.filter((apt: any) => {
+          const aptDate = new Date(apt.appointment_date);
+          return aptDate >= tomorrow && aptDate < dayAfterTomorrow;
+        });
+        
+        for (const apt of tomorrowAppointments) {
+          // Check if we already sent a reminder for this appointment today
+          const existingReminder = notifications.find(
+            n => n.type === 'appointment' && 
+            n.id.includes(apt.id) &&
+            new Date(n.time).toDateString() === now.toDateString()
+          );
+          
+          if (!existingReminder) {
+            const aptDate = new Date(apt.appointment_date);
+            const timeStr = aptDate.toLocaleTimeString('en-US', { 
+              hour: 'numeric', 
+              minute: '2-digit',
+              hour12: true 
+            });
+            
+            newNotifications.push({
+              id: `appointment-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              type: 'appointment',
+              title: '📅 Appointment Tomorrow',
+              message: `${apt.title}${apt.doctor_name ? ` with ${apt.doctor_name}` : ''} at ${timeStr}${apt.location ? ` - ${apt.location}` : ''}`,
+              time: nowISO,
+              read: false,
+              actionUrl: '/tools/smart-appointment-reminder',
+            });
+          }
+        }
+        
+        // Also check for today's appointments (same day reminder at 8 AM only)
+        if (hour === 8) {
+          const todayStart = new Date(now);
+          todayStart.setHours(0, 0, 0, 0);
+          
+          const todayAppointments = appointments.filter((apt: any) => {
+            const aptDate = new Date(apt.appointment_date);
+            return aptDate >= todayStart && aptDate < tomorrow;
+          });
+          
+          for (const apt of todayAppointments) {
+            const existingReminder = notifications.find(
+              n => n.type === 'appointment' && 
+              n.id.includes(`today-${apt.id}`) &&
+              new Date(n.time).toDateString() === now.toDateString()
+            );
+            
+            if (!existingReminder) {
+              const aptDate = new Date(apt.appointment_date);
+              const timeStr = aptDate.toLocaleTimeString('en-US', { 
+                hour: 'numeric', 
+                minute: '2-digit',
+                hour12: true 
+              });
+              
+              newNotifications.push({
+                id: `appointment-today-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                type: 'appointment',
+                title: '🔔 Appointment Today!',
+                message: `${apt.title}${apt.doctor_name ? ` with ${apt.doctor_name}` : ''} at ${timeStr}${apt.location ? ` - ${apt.location}` : ''}`,
+                time: nowISO,
+                read: false,
+                actionUrl: '/tools/smart-appointment-reminder',
+              });
+            }
+          }
+        }
+      }
+
       if (newNotifications.length > 0) {
         setNotifications(prev => [...newNotifications, ...prev].slice(0, 50));
+        
+        // Play sound for appointment reminders
+        const hasAppointmentReminder = newNotifications.some(n => n.type === 'appointment');
+        if (hasAppointmentReminder) {
+          playNotificationSound('reminder');
+        }
       }
     };
 
