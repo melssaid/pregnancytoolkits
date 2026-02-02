@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,9 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { AppointmentService, UserProfileService } from '@/services/supabaseServices';
-import { AIService } from '@/services/aiService';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { TimePicker } from '@/components/ui/time-picker';
-
+import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 interface Appointment {
   id: string;
   title: string;
@@ -29,6 +29,8 @@ const SmartAppointmentReminder: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState(20);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
   const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
+  const { streamChat, error: aiError } = usePregnancyAI();
+  const abortRef = useRef(false);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -172,22 +174,53 @@ const SmartAppointmentReminder: React.FC = () => {
   const generateQuestions = async () => {
     try {
       setIsGeneratingQuestions(true);
+      setSuggestedQuestions([]);
+      abortRef.current = false;
       
-      const response = await AIService.ask(
-        `I am in week ${currentWeek} of pregnancy and I have a doctor's appointment titled: ${formData.title}. 
-        Suggest 5 important questions I should ask my doctor. Write each question on a separate line.`,
-        'pregnancy-assistant'
-      );
+      let fullResponse = '';
       
-      const questions = response.content
-        .split('\n')
-        .filter(q => q.trim().length > 5)
-        .slice(0, 5);
-      
-      setSuggestedQuestions(questions);
+      const prompt = `I am in week ${currentWeek} of pregnancy and I have a doctor's appointment titled: "${formData.title}".
+
+Please suggest 5 important and specific questions I should ask my doctor during this appointment. 
+
+Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on its own line. Keep each question concise but meaningful.`;
+
+      await streamChat({
+        type: 'pregnancy-assistant',
+        messages: [{ role: 'user', content: prompt }],
+        context: { week: currentWeek },
+        onDelta: (text) => {
+          if (abortRef.current) return;
+          fullResponse += text;
+        },
+        onDone: () => {
+          if (abortRef.current) return;
+          
+          // Parse the numbered questions from the response
+          const lines = fullResponse.split('\n');
+          const questions: string[] = [];
+          
+          for (const line of lines) {
+            const trimmed = line.trim();
+            // Match numbered questions (1. 2. etc) or bullet points
+            const match = trimmed.match(/^(?:\d+[.)\-]|\*|\-)\s*(.+)/);
+            if (match && match[1] && match[1].length > 10) {
+              questions.push(match[1].trim());
+            }
+          }
+          
+          // Take up to 5 questions
+          setSuggestedQuestions(questions.slice(0, 5));
+        }
+      });
       
     } catch (error) {
       console.error('Error generating questions:', error);
+      toast({
+        title: 'AI Error',
+        description: 'Could not generate questions. Please try again.',
+        variant: 'destructive'
+      });
     } finally {
       setIsGeneratingQuestions(false);
     }
@@ -400,7 +433,7 @@ const SmartAppointmentReminder: React.FC = () => {
                   {/* Suggested Questions */}
                   {suggestedQuestions.length > 0 && (
                     <div className="space-y-2 bg-purple-50 p-3 rounded-lg">
-                      <p className="text-sm text-purple-600 font-medium">🤖 Suggestions:</p>
+                      <p className="text-sm text-purple-600 font-medium">🤖 AI Suggestions:</p>
                       {suggestedQuestions.map((q, i) => (
                         <div
                           key={i}
@@ -411,6 +444,14 @@ const SmartAppointmentReminder: React.FC = () => {
                           <span>{q}</span>
                         </div>
                       ))}
+                      <AIResultDisclaimer />
+                    </div>
+                  )}
+                  
+                  {/* AI Error Display */}
+                  {aiError && (
+                    <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
+                      ⚠️ {aiError}
                     </div>
                   )}
                 </div>
