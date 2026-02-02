@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { LucideIcon, ChevronRight } from "lucide-react";
+import { LucideIcon, ChevronRight, Crown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface ToolCardProps {
@@ -11,9 +11,10 @@ interface ToolCardProps {
   categoryKey: string;
   index: number;
   hasAI?: boolean;
+  isPremium?: boolean;
 }
 
-export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index }: ToolCardProps) {
+export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, isPremium }: ToolCardProps) {
   const { t } = useTranslation();
   
   return (
@@ -23,10 +24,18 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index }: 
       transition={{ duration: 0.15, delay: Math.min(index * 0.015, 0.08) }}
     >
       <Link to={href} className="block">
-        <div className="group flex items-center gap-3 p-3 rounded-xl bg-card border border-border/50 hover:border-slate-300 hover:shadow-sm transition-all duration-200">
+        <div className="group relative flex items-center gap-3 p-3 rounded-xl bg-card border border-border/50 hover:border-slate-300 hover:shadow-sm transition-all duration-200">
+          {/* Premium Badge */}
+          {isPremium && (
+            <div className="absolute -top-1.5 -right-1.5 flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-gradient-to-r from-primary to-accent text-white text-[8px] font-bold uppercase tracking-wide shadow-sm">
+              <Crown className="w-2.5 h-2.5" />
+              <span className="hidden sm:inline">PRO</span>
+            </div>
+          )}
+          
           {/* Minimal Icon */}
-          <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-slate-50 flex items-center justify-center">
-            <Icon className="w-5 h-5 text-slate-500" strokeWidth={1.75} />
+          <div className={`flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center ${isPremium ? 'bg-primary/10' : 'bg-slate-50'}`}>
+            <Icon className={`w-5 h-5 ${isPremium ? 'text-primary' : 'text-slate-500'}`} strokeWidth={1.75} />
           </div>
           
           {/* Content */}
