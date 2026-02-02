@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Brain, AlertTriangle, CheckCircle, Info, Loader2 } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-
+import { WeekSlider } from '@/components/WeekSlider';
 interface Symptom {
   id: string;
   name: string;
@@ -121,27 +120,15 @@ const AISymptomAnalyzer: React.FC = () => {
         </Card>
 
         {/* Week Selector */}
-        <Card>
-          <CardContent className="p-4">
-            <label className="block text-sm font-medium mb-2">Current Pregnancy Week</label>
-            <div className="space-y-2">
-              <input
-                type="range"
-                min="1"
-                max="42"
-                value={currentWeek}
-                onChange={(e) => {
-                  setCurrentWeek(Number(e.target.value));
-                  setAnalyzed(false);
-                }}
-                className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
-              />
-              <div className="text-center">
-                <span className="text-2xl font-bold text-primary">Week {currentWeek}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <WeekSlider
+          week={currentWeek}
+          onChange={(week) => {
+            setCurrentWeek(week);
+            setAnalyzed(false);
+          }}
+          label="Current Pregnancy Week"
+          showTrimester
+        />
 
         {/* Symptom Selection */}
         <Card>
