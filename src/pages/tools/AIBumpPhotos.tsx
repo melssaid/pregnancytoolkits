@@ -4,7 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { BumpPhotoService, UserProfileService, AIService } from '@/services/localStorageServices';
+import { BumpPhotoService, UserProfileService } from '@/services/localStorageServices';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 
 const AIBumpPhotos: React.FC = () => {
   const [photos, setPhotos] = useState<any[]>([]);
@@ -16,7 +19,9 @@ const AIBumpPhotos: React.FC = () => {
   const [aiAnalysis, setAiAnalysis] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const abortRef = useRef(false);
   const { toast } = useToast();
+  const { streamChat } = usePregnancyAI();
 
   useEffect(() => {
     loadData();
@@ -103,21 +108,74 @@ const AIBumpPhotos: React.FC = () => {
     try {
       setIsAnalyzing(true);
       setSelectedPhoto(photo);
+      setAiAnalysis('');
+      abortRef.current = false;
       
       const previousPhoto = photos.find(p => p.week < photo.week);
       
-      const response = await AIService.analyzeBumpProgress(
-        photo.week,
-        previousPhoto?.week
-      );
+      const prompt = previousPhoto 
+        ? `I am in week ${photo.week} of pregnancy (last photo was at week ${previousPhoto.week}).
+
+Please provide a comprehensive pregnancy progress update:
+
+## 📊 Week ${photo.week} Development
+- What's happening with baby this week
+- Expected size and weight comparisons
+
+## 🤰 Body Changes
+- Normal changes to expect
+- Belly growth patterns
+
+## 💆 Self-Care Tips
+- Skin care recommendations
+- Comfort tips for this stage
+
+## 📸 Photo Tips
+- Best poses for documenting this stage
+- Lighting and angle suggestions
+
+Keep the tone supportive and celebratory of the pregnancy journey.`
+        : `I am in week ${photo.week} of pregnancy.
+
+Please provide a comprehensive pregnancy update:
+
+## 📊 Week ${photo.week} Development
+- Baby's current size (fruit/vegetable comparison)
+- Key developments this week
+
+## 🤰 Your Body
+- Expected changes and symptoms
+- Belly growth information
+
+## 💆 Weekly Self-Care
+- Skin care for stretch mark prevention
+- Comfort recommendations
+
+## 📸 Photo Documentation Tips
+- How to capture this special moment
+- Pose and styling suggestions`;
+
+      let fullResponse = '';
       
-      setAiAnalysis(response.content);
-      
-      await BumpPhotoService.updateAnalysis(photo.id, response.content);
-      
-      setPhotos(prev => prev.map(p => 
-        p.id === photo.id ? { ...p, ai_analysis: response.content } : p
-      ));
+      await streamChat({
+        type: 'bump-photos',
+        messages: [{ role: 'user', content: prompt }],
+        context: { week: photo.week },
+        onDelta: (text) => {
+          if (abortRef.current) return;
+          fullResponse += text;
+          setAiAnalysis(fullResponse);
+        },
+        onDone: async () => {
+          if (!abortRef.current && fullResponse) {
+            await BumpPhotoService.updateAnalysis(photo.id, fullResponse);
+            setPhotos(prev => prev.map(p => 
+              p.id === photo.id ? { ...p, ai_analysis: fullResponse } : p
+            ));
+          }
+          setIsAnalyzing(false);
+        }
+      });
       
     } catch (error: any) {
       console.error('Analysis error:', error);
@@ -126,7 +184,6 @@ const AIBumpPhotos: React.FC = () => {
         description: error.message,
         variant: 'destructive'
       });
-    } finally {
       setIsAnalyzing(false);
     }
   };

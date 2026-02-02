@@ -1,235 +1,290 @@
-import React, { useState, useEffect } from 'react';
-import { ToolFrame } from '@/components/ToolFrame';
-import { Card, CardContent } from '@/components/ui/card';
+import React, { useState, useRef } from 'react';
+import { Cookie, Sparkles, Loader2, Heart, AlertTriangle, Salad, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { UtensilsCrossed, Shuffle, Heart, AlertCircle, Sparkles } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
+import { RelatedTools } from '@/components/RelatedTools';
+import { Badge } from '@/components/ui/badge';
 
-interface CravingAlternative {
-  craving: string;
-  icon: string;
-  healthyAlternatives: {
-    name: string;
-    benefit: string;
-    icon: string;
-  }[];
-}
-
-const cravingAlternatives: CravingAlternative[] = [
-  {
-    craving: 'Ice Cream',
-    icon: '🍦',
-    healthyAlternatives: [
-      { name: 'Greek Yogurt with Berries', benefit: 'Protein + Probiotics', icon: '🫐' },
-      { name: 'Frozen Banana "Nice Cream"', benefit: 'Natural sweetness + Potassium', icon: '🍌' },
-      { name: 'Coconut Milk Frozen Treat', benefit: 'Healthy fats + Lower sugar', icon: '🥥' },
-    ]
-  },
-  {
-    craving: 'Chocolate',
-    icon: '🍫',
-    healthyAlternatives: [
-      { name: 'Dark Chocolate (70%+)', benefit: 'Antioxidants + Lower sugar', icon: '🍫' },
-      { name: 'Chocolate Hummus with Fruit', benefit: 'Fiber + Protein', icon: '🍓' },
-      { name: 'Cacao Smoothie', benefit: 'Iron + Magnesium', icon: '🥤' },
-    ]
-  },
-  {
-    craving: 'Chips/Salty Snacks',
-    icon: '🥔',
-    healthyAlternatives: [
-      { name: 'Baked Veggie Chips', benefit: 'Vitamins + Lower fat', icon: '🥕' },
-      { name: 'Popcorn (air-popped)', benefit: 'Fiber + Whole grain', icon: '🍿' },
-      { name: 'Salted Nuts', benefit: 'Protein + Healthy fats', icon: '🥜' },
-    ]
-  },
-  {
-    craving: 'Soda/Sweet Drinks',
-    icon: '🥤',
-    healthyAlternatives: [
-      { name: 'Sparkling Water with Fruit', benefit: 'Hydration + No sugar', icon: '💧' },
-      { name: 'Coconut Water', benefit: 'Electrolytes + Potassium', icon: '🥥' },
-      { name: 'Fruit-Infused Water', benefit: 'Vitamins + Natural flavor', icon: '🍋' },
-    ]
-  },
-  {
-    craving: 'French Fries',
-    icon: '🍟',
-    healthyAlternatives: [
-      { name: 'Baked Sweet Potato Fries', benefit: 'Vitamin A + Fiber', icon: '🍠' },
-      { name: 'Roasted Chickpeas', benefit: 'Protein + Fiber', icon: '🫘' },
-      { name: 'Zucchini Fries (baked)', benefit: 'Low calorie + Vitamins', icon: '🥒' },
-    ]
-  },
-  {
-    craving: 'Candy',
-    icon: '🍬',
-    healthyAlternatives: [
-      { name: 'Dried Fruit (no added sugar)', benefit: 'Natural sweetness + Fiber', icon: '🍇' },
-      { name: 'Fresh Fruit', benefit: 'Vitamins + Hydration', icon: '🍎' },
-      { name: 'Frozen Grapes', benefit: 'Sweet treat + Antioxidants', icon: '🍇' },
-    ]
-  },
-  {
-    craving: 'Pizza',
-    icon: '🍕',
-    healthyAlternatives: [
-      { name: 'Whole Wheat Pita Pizza', benefit: 'Fiber + Lower carbs', icon: '🫓' },
-      { name: 'Cauliflower Crust Pizza', benefit: 'Vegetables + Lower carbs', icon: '🥦' },
-      { name: 'Portobello Mushroom Pizza', benefit: 'Low calorie + Vitamins', icon: '🍄' },
-    ]
-  },
-  {
-    craving: 'Cookies',
-    icon: '🍪',
-    healthyAlternatives: [
-      { name: 'Oatmeal Energy Balls', benefit: 'Fiber + Energy', icon: '🥣' },
-      { name: 'Banana Oat Cookies', benefit: 'Natural sweetness + Potassium', icon: '🍌' },
-      { name: 'Almond Flour Cookies', benefit: 'Protein + Lower carbs', icon: '🥜' },
-    ]
-  },
+// Common pregnancy cravings for quick selection
+const COMMON_CRAVINGS = [
+  { emoji: '🍕', name: 'Pizza', category: 'salty' },
+  { emoji: '🍫', name: 'Chocolate', category: 'sweet' },
+  { emoji: '🍦', name: 'Ice Cream', category: 'sweet' },
+  { emoji: '🍟', name: 'French Fries', category: 'salty' },
+  { emoji: '🥤', name: 'Soda', category: 'sweet' },
+  { emoji: '🍪', name: 'Cookies', category: 'sweet' },
+  { emoji: '🧀', name: 'Cheese', category: 'salty' },
+  { emoji: '🍿', name: 'Popcorn', category: 'salty' },
+  { emoji: '🍩', name: 'Donuts', category: 'sweet' },
+  { emoji: '🌮', name: 'Tacos', category: 'salty' },
+  { emoji: '🥓', name: 'Bacon', category: 'salty' },
+  { emoji: '🍔', name: 'Burger', category: 'salty' },
 ];
 
-export default function AICravingAlternatives() {
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [selectedCraving, setSelectedCraving] = useState<CravingAlternative | null>(null);
+const AICravingAlternatives: React.FC = () => {
+  const [craving, setCraving] = useState('');
+  const [week, setWeek] = useState(20);
+  const [result, setResult] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { streamChat, error } = usePregnancyAI();
+  const abortRef = useRef(false);
+  const resultRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const saved = localStorage.getItem('cravingFavorites');
-    if (saved) setFavorites(JSON.parse(saved));
-  }, []);
+  const handleCravingSelect = (cravingName: string) => {
+    setCraving(cravingName);
+  };
 
-  useEffect(() => {
-    localStorage.setItem('cravingFavorites', JSON.stringify(favorites));
-  }, [favorites]);
+  const analyzeAndSuggest = async () => {
+    if (!craving.trim()) return;
+    
+    setIsLoading(true);
+    setResult('');
+    abortRef.current = false;
 
-  const toggleFavorite = (name: string) => {
-    if (favorites.includes(name)) {
-      setFavorites(favorites.filter(f => f !== name));
-    } else {
-      setFavorites([...favorites, name]);
+    const prompt = `I'm in week ${week} of pregnancy and I'm craving: "${craving}"
+
+Please provide:
+
+## Understanding Your Craving
+- What nutrient deficiency might this craving indicate?
+- Why pregnant women often crave this
+
+## Healthy Alternatives (Top 5)
+For each alternative, include:
+- Name and emoji
+- Why it satisfies the craving
+- Nutritional benefits for pregnancy
+- Quick preparation tip
+
+## Safety Notes
+- Is the original craving safe during pregnancy?
+- Any modifications needed to make it safer?
+- Portion recommendations
+
+## Smart Swaps
+A quick comparison table of the craving vs. healthiest alternative showing calories, sugar, protein, and pregnancy benefits.
+
+Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying the craving while maximizing nutrition for mom and baby.`;
+
+    try {
+      await streamChat({
+        type: 'meal-suggestion',
+        messages: [{ role: 'user', content: prompt }],
+        context: { week },
+        onDelta: (text) => {
+          if (abortRef.current) return;
+          setResult(prev => prev + text);
+        },
+        onDone: () => {
+          setIsLoading(false);
+          // Scroll to results
+          setTimeout(() => {
+            resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      });
+    } catch (err) {
+      console.error('AI error:', err);
+      setIsLoading(false);
     }
   };
 
-  const getRandomCraving = () => {
-    const random = cravingAlternatives[Math.floor(Math.random() * cravingAlternatives.length)];
-    setSelectedCraving(random);
+  const handleReset = () => {
+    setCraving('');
+    setResult('');
+    abortRef.current = true;
   };
 
   return (
-    <ToolFrame
-      title="AI Craving Alternatives"
-      subtitle="Healthy swaps for your pregnancy cravings"
-      icon={UtensilsCrossed}
-      mood="joyful"
-      toolId="ai-craving-alternatives"
-    >
-      <div className="space-y-6">
-        {/* Random Craving Button */}
-        <Button onClick={getRandomCraving} className="w-full gap-2" variant="outline">
-          <Shuffle className="w-4 h-4" />
-          Random Craving Swap
-        </Button>
-
-        {/* Selected Craving Detail */}
-        {selectedCraving && (
-          <Card className="border-2 border-primary">
-            <CardContent className="p-6">
-              <div className="text-center mb-4">
-                <span className="text-5xl">{selectedCraving.icon}</span>
-                <h3 className="text-xl font-bold mt-2">Craving {selectedCraving.craving}?</h3>
-                <p className="text-sm text-muted-foreground">Try these healthy alternatives:</p>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-purple-50 p-4 md:p-8">
+      <div className="max-w-4xl mx-auto space-y-6">
+        
+        {/* Header */}
+        <Card className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white border-0 shadow-xl overflow-hidden">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOGM5Ljk0MSAwIDE4LTguMDU5IDE4LTE4cy04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNHMxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L2c+PC9zdmc+')] opacity-30" />
+          <CardHeader className="relative">
+            <CardTitle className="flex items-center gap-3 text-2xl md:text-3xl">
+              <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                <Cookie className="w-8 h-8" />
               </div>
-              <div className="space-y-3">
-                {selectedCraving.healthyAlternatives.map((alt, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{alt.icon}</span>
-                      <div>
-                        <p className="font-medium">{alt.name}</p>
-                        <p className="text-xs text-muted-foreground">{alt.benefit}</p>
-                      </div>
-                    </div>
-                    <button onClick={() => toggleFavorite(alt.name)}>
-                      <Heart 
-                        className={`w-5 h-5 ${
-                          favorites.includes(alt.name) 
-                            ? 'text-primary fill-primary' 
-                            : 'text-muted-foreground'
-                        }`}
-                      />
-                    </button>
-                  </div>
-                ))}
+              <div>
+                <span className="block">AI Craving Alternatives</span>
+                <span className="text-sm font-normal text-white/80">Satisfy cravings with healthy swaps</span>
               </div>
-            </CardContent>
-          </Card>
-        )}
+            </CardTitle>
+          </CardHeader>
+        </Card>
 
-        {/* All Cravings Grid */}
-        <Card>
-          <CardContent className="p-4">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" />
-              Common Pregnancy Cravings
-            </h3>
-            <div className="grid grid-cols-4 gap-3">
-              {cravingAlternatives.map((craving) => (
-                <button
-                  key={craving.craving}
-                  onClick={() => setSelectedCraving(craving)}
-                  className={`p-4 rounded-lg text-center transition-all ${
-                    selectedCraving?.craving === craving.craving
-                      ? 'bg-primary/10 border-2 border-primary'
-                      : 'bg-muted/50 hover:bg-muted'
-                  }`}
-                >
-                  <span className="text-3xl block mb-1">{craving.icon}</span>
-                  <span className="text-xs">{craving.craving}</span>
-                </button>
-              ))}
+        {/* Week Selector */}
+        <Card className="shadow-lg border-0">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-4">
+              <label className="font-medium text-gray-700 whitespace-nowrap">
+                Pregnancy Week:
+              </label>
+              <Input
+                type="number"
+                min={1}
+                max={42}
+                value={week}
+                onChange={(e) => setWeek(parseInt(e.target.value) || 20)}
+                className="w-24 text-center font-bold text-lg"
+              />
+              <Badge variant="secondary" className="ml-auto">
+                {week <= 13 ? '1st Trimester' : week <= 26 ? '2nd Trimester' : '3rd Trimester'}
+              </Badge>
             </div>
           </CardContent>
         </Card>
 
-        {/* Favorites */}
-        {favorites.length > 0 && (
-          <Card>
-            <CardContent className="p-4">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <Heart className="w-5 h-5 text-primary fill-primary" />
-                Your Favorite Swaps
-              </h3>
+        {/* Craving Input */}
+        <Card className="shadow-lg border-0">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Heart className="w-5 h-5 text-pink-500" />
+              What are you craving?
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Input
+              placeholder="Type your craving... (e.g., chocolate, pizza, ice cream)"
+              value={craving}
+              onChange={(e) => setCraving(e.target.value)}
+              className="text-lg py-6"
+            />
+            
+            {/* Quick Select */}
+            <div>
+              <p className="text-sm text-muted-foreground mb-3">Or quick select:</p>
               <div className="flex flex-wrap gap-2">
-                {favorites.map((fav) => (
-                  <span
-                    key={fav}
-                    className="px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm"
+                {COMMON_CRAVINGS.map((c) => (
+                  <Button
+                    key={c.name}
+                    variant={craving === c.name ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => handleCravingSelect(c.name)}
+                    className="transition-all hover:scale-105"
                   >
-                    {fav}
-                  </span>
+                    <span className="mr-1">{c.emoji}</span>
+                    {c.name}
+                  </Button>
                 ))}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 pt-4">
+              <Button
+                onClick={analyzeAndSuggest}
+                disabled={!craving.trim() || isLoading}
+                className="flex-1 bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white py-6 text-lg"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                    Finding alternatives...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-5 h-5 mr-2" />
+                    Find Healthy Alternatives
+                  </>
+                )}
+              </Button>
+              {(craving || result) && (
+                <Button
+                  variant="outline"
+                  onClick={handleReset}
+                  className="py-6"
+                >
+                  <RefreshCw className="w-5 h-5" />
+                </Button>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Error Display */}
+        {error && (
+          <Card className="border-red-200 bg-red-50">
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-2 text-red-600">
+                <AlertTriangle className="w-5 h-5" />
+                <span>{error}</span>
               </div>
             </CardContent>
           </Card>
         )}
 
-        {/* Info */}
-        <Card className="bg-muted/30">
-          <CardContent className="p-4">
-            <div className="flex gap-3">
-              <AlertCircle className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-              <p className="text-sm text-muted-foreground">
-                These are general healthy alternatives. If you have specific dietary restrictions 
-                or conditions like gestational diabetes, consult your healthcare provider for 
-                personalized advice.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Results */}
+        {(result || isLoading) && (
+          <Card ref={resultRef} className="shadow-xl border-0 overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b">
+              <CardTitle className="flex items-center gap-2 text-green-700">
+                <Salad className="w-6 h-6" />
+                Healthy Alternatives for "{craving}"
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              {isLoading && !result && (
+                <div className="flex items-center justify-center py-12">
+                  <div className="text-center">
+                    <Loader2 className="w-12 h-12 animate-spin text-pink-500 mx-auto mb-4" />
+                    <p className="text-muted-foreground">Analyzing your craving...</p>
+                  </div>
+                </div>
+              )}
+              
+              {result && (
+                <div className="prose prose-pink max-w-none">
+                  <MarkdownRenderer content={result} />
+                </div>
+              )}
+              
+              {result && !isLoading && <AIResultDisclaimer />}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Tips Card */}
+        {!result && !isLoading && (
+          <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold text-amber-800 mb-3 flex items-center gap-2">
+                <Sparkles className="w-5 h-5" />
+                Why Cravings Happen During Pregnancy
+              </h3>
+              <ul className="space-y-2 text-amber-700 text-sm">
+                <li className="flex items-start gap-2">
+                  <span className="text-amber-500">•</span>
+                  <span><strong>Hormonal changes</strong> affect your taste buds and smell sensitivity</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-amber-500">•</span>
+                  <span><strong>Nutrient needs</strong> - your body may signal what it lacks</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-amber-500">•</span>
+                  <span><strong>Emotional comfort</strong> - certain foods provide psychological relief</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-amber-500">•</span>
+                  <span><strong>Blood sugar fluctuations</strong> can trigger sweet cravings</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Related Tools */}
+        <RelatedTools currentToolId="ai-craving-alternatives" />
       </div>
-    </ToolFrame>
+    </div>
   );
-}
+};
+
+export default AICravingAlternatives;
