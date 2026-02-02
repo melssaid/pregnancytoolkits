@@ -45,35 +45,35 @@ const essentialSupplies = [
 const lactationVideos: Video[] = [
   {
     id: "1",
-    title: "Breastfeeding Basics for New Moms",
-    description: "Complete guide: latch, positions, and tips for success",
-    youtubeId: "GHbPCYSCqDo",
-    duration: "15:30",
+    title: "Newborn Care Basics",
+    description: "Complete guide for new parents including feeding",
+    youtubeId: "hpgjwK_oQe0",
+    duration: "18:00",
     category: "Getting Started"
   },
   {
     id: "2",
-    title: "Best Breastfeeding Positions",
-    description: "Learn comfortable positions for nursing your baby",
-    youtubeId: "RqHKkqGkHlA",
-    duration: "12:45",
-    category: "Positions"
+    title: "Caring For Your Newborn",
+    description: "Comprehensive guide including feeding schedules",
+    youtubeId: "-CWJYxIvoFQ",
+    duration: "15:00",
+    category: "Newborn Care"
   },
   {
     id: "3",
-    title: "How to Get a Good Latch",
-    description: "Step-by-step guide to proper latching technique",
-    youtubeId: "56YzjsZr4hQ",
-    duration: "10:20",
+    title: "Newborn Baby Care Guide",
+    description: "Handling, feeding, and sleeping basics",
+    youtubeId: "CXWzqbe1i9c",
+    duration: "6:00",
     category: "Getting Started"
   },
   {
     id: "4",
-    title: "Pumping and Storing Breast Milk",
-    description: "Everything you need to know about pumping",
-    youtubeId: "vS3-9cNqKHU",
-    duration: "14:15",
-    category: "Pumping"
+    title: "Pregnancy Relaxation Meditation",
+    description: "Calm meditation for new mothers",
+    youtubeId: "pCSjhbVOdYQ",
+    duration: "60:00",
+    category: "Relaxation"
   },
 ];
 

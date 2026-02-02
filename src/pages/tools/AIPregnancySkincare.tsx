@@ -36,43 +36,35 @@ const unsafeIngredients = [
 const skincareVideos: Video[] = [
   {
     id: "1",
-    title: "Dermatologist's Pregnancy Skincare Routine",
-    description: "Board-certified dermatologist Dr. Joyce Park explains morning and evening routine",
-    youtubeId: "CK9K2TmLG3c",
-    duration: "15:30",
-    category: "Skincare Routine"
+    title: "Pregnancy Nutrition Tips",
+    description: "Essential nutrition for healthy skin during pregnancy",
+    youtubeId: "IWBF60kQcuk",
+    duration: "5:30",
+    category: "Nutrition"
   },
   {
     id: "2",
-    title: "Pregnancy-Safe Skincare: What to Use & Avoid",
-    description: "Dr. Mamina Oregano on safe ingredients and alternatives",
-    youtubeId: "YvCjub2dTVo",
-    duration: "12:45",
-    category: "Safety"
+    title: "Healthy Eating in Pregnancy",
+    description: "Foods that promote healthy pregnancy and skin",
+    youtubeId: "C_HuuCN9FMU",
+    duration: "6:00",
+    category: "Diet"
   },
   {
     id: "3",
-    title: "Pregnancy Skincare 101: Complete Guide",
-    description: "Science-backed guide to pregnancy-safe skincare by dermatologist",
-    youtubeId: "KaEDTt_f-Vg",
-    duration: "18:20",
-    category: "Complete Guide"
+    title: "Pregnancy Wellness Guide",
+    description: "Complete wellness tips including skincare",
+    youtubeId: "0BrxCY89_uQ",
+    duration: "4:15",
+    category: "Wellness"
   },
   {
     id: "4",
-    title: "Pregnancy Skincare Tips - Dr. Heather Rogers",
-    description: "Essential tips from dermatologist Dr. Heather Rogers",
-    youtubeId: "m7LgyUFDGN4",
-    duration: "10:15",
-    category: "Tips"
-  },
-  {
-    id: "5",
-    title: "Best Pregnancy-Safe Skincare Products 2024",
-    description: "Products used during pregnancy and after - full review",
-    youtubeId: "UqqIoePycWI",
-    duration: "14:30",
-    category: "Product Reviews"
+    title: "Self-Care During Pregnancy",
+    description: "Taking care of yourself during pregnancy",
+    youtubeId: "pozcaggYIWk",
+    duration: "8:42",
+    category: "Self-Care"
   },
 ];
 

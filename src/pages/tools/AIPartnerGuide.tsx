@@ -26,42 +26,34 @@ const supportTopics = [
 const partnerVideos: Video[] = [
   {
     id: "1",
-    title: "How to Support Your Partner During Pregnancy",
-    description: "Essential tips for supporting your partner throughout pregnancy",
-    youtubeId: "wMV3s5V2EJM",
-    duration: "9:15",
-    category: "Emotional Support"
+    title: "Newborn Care Week 1",
+    description: "Pediatrician guide to first week with baby",
+    youtubeId: "hpgjwK_oQe0",
+    duration: "18:00",
+    category: "Newborn Care"
   },
   {
     id: "2",
-    title: "Labor Support Techniques for Partners",
-    description: "Learn effective ways to help during labor and delivery",
-    youtubeId: "j7YucfJuziU",
-    duration: "12:30",
-    category: "Labor Support"
+    title: "Caring For Your Newborn",
+    description: "Comprehensive newborn care guide for new parents",
+    youtubeId: "-CWJYxIvoFQ",
+    duration: "15:00",
+    category: "Newborn Care"
   },
   {
     id: "3",
-    title: "Pregnancy: A Guide for Dads",
-    description: "What every expecting father needs to know",
-    youtubeId: "4ck6HHYEH3c",
-    duration: "10:45",
+    title: "Pregnancy Journey Week by Week",
+    description: "Understanding pregnancy development together",
+    youtubeId: "3HPhF_IPJ1E",
+    duration: "15:00",
     category: "Education"
   },
   {
     id: "4",
-    title: "Bonding with Your Baby Before Birth",
-    description: "Ways for partners to connect with the baby during pregnancy",
-    youtubeId: "RKmxHLf-E-I",
-    duration: "8:20",
-    category: "Bonding"
-  },
-  {
-    id: "5",
-    title: "Preparing for Fatherhood",
-    description: "Mental and practical preparation for becoming a dad",
-    youtubeId: "6n3pFFPSlW4",
-    duration: "14:10",
+    title: "Hospital Bag Preparation",
+    description: "What to pack for labor and delivery",
+    youtubeId: "NTulfAOzbp8",
+    duration: "8:00",
     category: "Preparation"
   },
 ];
