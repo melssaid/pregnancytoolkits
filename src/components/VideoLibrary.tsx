@@ -31,9 +31,25 @@ const VideoThumbnail: React.FC<{
   colors: { gradient: string };
 }> = ({ video, colors }) => {
   const [hasError, setHasError] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
   
-  const getYoutubeThumbnail = (youtubeId: string) => 
-    `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
+  // Try maxresdefault first, fallback to hqdefault, then mqdefault
+  const getThumbnailUrls = (youtubeId: string) => [
+    `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`,
+    `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`,
+    `https://img.youtube.com/vi/${youtubeId}/default.jpg`,
+  ];
+  
+  const [currentUrlIndex, setCurrentUrlIndex] = useState(0);
+  const thumbnailUrls = getThumbnailUrls(video.youtubeId);
+  
+  const handleError = () => {
+    if (currentUrlIndex < thumbnailUrls.length - 1) {
+      setCurrentUrlIndex(prev => prev + 1);
+    } else {
+      setHasError(true);
+    }
+  };
   
   if (hasError) {
     return (
@@ -44,13 +60,21 @@ const VideoThumbnail: React.FC<{
   }
   
   return (
-    <img
-      src={video.thumbnail || getYoutubeThumbnail(video.youtubeId)}
-      alt={video.title}
-      className="w-full h-full object-cover"
-      loading="lazy"
-      onError={() => setHasError(true)}
-    />
+    <>
+      {!imgLoaded && (
+        <div className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${colors.gradient}`}>
+          <VideoIcon className="w-6 h-6 text-white/50 animate-pulse" />
+        </div>
+      )}
+      <img
+        src={video.thumbnail || thumbnailUrls[currentUrlIndex]}
+        alt={video.title}
+        className={`w-full h-full object-cover transition-opacity ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+        loading="lazy"
+        onLoad={() => setImgLoaded(true)}
+        onError={handleError}
+      />
+    </>
   );
 };
 
