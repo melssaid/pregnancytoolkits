@@ -14,10 +14,10 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const hospitalBagVideos: Video[] = [
-  { id: "1", title: "Hospital Bag Essentials", description: "Everything you need to pack for delivery", youtubeId: "5S3fKxKL5OU", duration: "12:30", category: "Essentials" },
-  { id: "2", title: "What I Actually Used at Hospital", description: "Real mom's hospital bag review", youtubeId: "P8HZDLzxjzA", duration: "15:45", category: "Reviews" },
-  { id: "3", title: "Labor and Delivery Preparation", description: "Getting ready for your hospital stay", youtubeId: "CcN_mSl6dT4", duration: "14:20", category: "Preparation" },
-  { id: "4", title: "Newborn Hospital Bag Checklist", description: "What to pack for your baby", youtubeId: "y_E-mZ5lhpM", duration: "10:15", category: "Baby" },
+  { id: "1", title: "Hospital Bag Checklist", description: "Midwife advice on what to pack", youtubeId: "NTulfAOzbp8", duration: "8:00", category: "Essentials" },
+  { id: "2", title: "Essential Hospital Bag Items", description: "Must-have items for labor and delivery", youtubeId: "oUxVPhwFuMM", duration: "12:30", category: "Essentials" },
+  { id: "3", title: "Hospital Bag Tips", description: "Nurse-approved essentials you'll actually use", youtubeId: "6YdwII4BO0g", duration: "10:00", category: "Tips" },
+  { id: "4", title: "What to Pack for Baby", description: "Newborn essentials for hospital stay", youtubeId: "hpgjwK_oQe0", duration: "18:00", category: "Baby" },
 ];
 
 interface BagItem {
