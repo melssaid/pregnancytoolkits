@@ -1,30 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "./PageTransition";
-import { Suspense, lazy, forwardRef } from "react";
-import { Loader2 } from "lucide-react";
-
-// Loading Component with forwardRef for AnimatePresence compatibility
-// Uses transparent overlay with smooth animation to prevent white flash
-const PageLoader = forwardRef<HTMLDivElement>((_, ref) => (
-  <motion.div 
-    ref={ref} 
-    className="fixed inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-50"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.15 }}
-  >
-    <motion.div
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.2 }}
-    >
-      <Loader2 className="w-8 h-8 animate-spin text-primary" />
-    </motion.div>
-  </motion.div>
-));
-PageLoader.displayName = "PageLoader";
+import { Suspense, lazy } from "react";
+import { PageSkeleton, IndexSkeleton } from "./PageSkeleton";
 
 // ═══════════════════════════════════════════════════════════════
 // LAZY LOADED PAGES - 34 Curated Professional Tools
@@ -99,7 +77,7 @@ export function AnimatedRoutes() {
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={<PageSkeleton />}>
         <Routes location={location} key={location.pathname}>
           {/* Main Pages */}
           <Route path="/" element={<PageTransition><Index /></PageTransition>} />
