@@ -15,6 +15,9 @@
     "back": "Back",
     "allToolsBtn": "All Tools"
   },
+  "ai": {
+    "resultDisclaimer": "AI-generated • Consult your healthcare provider"
+  },
   "categories": {
     "all": "All",
     "ai": "Smart Tools ✨",
