@@ -8,21 +8,18 @@ interface PageTransitionProps {
 const pageVariants = {
   initial: {
     opacity: 0,
-    y: 8,
   },
   enter: {
     opacity: 1,
-    y: 0,
     transition: {
-      duration: 0.25,
+      duration: 0.2,
       ease: "easeOut" as const,
     },
   },
   exit: {
     opacity: 0,
-    y: -8,
     transition: {
-      duration: 0.15,
+      duration: 0.1,
       ease: "easeIn" as const,
     },
   },
@@ -37,7 +34,7 @@ export const PageTransition = forwardRef<HTMLDivElement, PageTransitionProps>(
         animate="enter"
         exit="exit"
         variants={pageVariants}
-        className="w-full"
+        className="w-full min-h-screen"
       >
         {children}
       </motion.div>
