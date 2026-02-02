@@ -100,30 +100,30 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-purple-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/10 to-accent/5 p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         
         {/* Header */}
-        <Card className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white border-0 shadow-xl overflow-hidden">
+        <Card className="bg-primary text-primary-foreground border-0 shadow-xl overflow-hidden relative">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOGM5Ljk0MSAwIDE4LTguMDU5IDE4LTE4cy04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNHMxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L2c+PC9zdmc+')] opacity-30" />
           <CardHeader className="relative">
             <CardTitle className="flex items-center gap-3 text-2xl md:text-3xl">
-              <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+              <div className="p-3 bg-background/20 rounded-2xl backdrop-blur-sm">
                 <Cookie className="w-8 h-8" />
               </div>
               <div>
                 <span className="block">AI Craving Alternatives</span>
-                <span className="text-sm font-normal text-white/80">Satisfy cravings with healthy swaps</span>
+                <span className="text-sm font-normal opacity-90">Satisfy cravings with healthy swaps</span>
               </div>
             </CardTitle>
           </CardHeader>
         </Card>
 
         {/* Week Selector */}
-        <Card className="shadow-lg border-0">
+        <Card className="shadow-lg border-border bg-card">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <label className="font-medium text-gray-700 whitespace-nowrap">
+              <label className="font-medium text-foreground whitespace-nowrap">
                 Pregnancy Week:
               </label>
               <Input
@@ -142,10 +142,10 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
         </Card>
 
         {/* Craving Input */}
-        <Card className="shadow-lg border-0">
+        <Card className="shadow-lg border-border bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
-              <Heart className="w-5 h-5 text-pink-500" />
+              <Heart className="w-5 h-5 text-primary" />
               What are you craving?
             </CardTitle>
           </CardHeader>
@@ -167,7 +167,11 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                     variant={craving === c.name ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => handleCravingSelect(c.name)}
-                    className="transition-all hover:scale-105"
+                    className={`transition-all hover:scale-105 ${
+                      craving === c.name 
+                        ? 'bg-primary text-primary-foreground' 
+                        : 'bg-card hover:bg-accent'
+                    }`}
                   >
                     <span className="mr-1">{c.emoji}</span>
                     {c.name}
@@ -181,7 +185,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
               <Button
                 onClick={analyzeAndSuggest}
                 disabled={!craving.trim() || isLoading}
-                className="flex-1 bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white py-6 text-lg"
+                className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground py-6 text-lg"
               >
                 {isLoading ? (
                   <>
@@ -210,9 +214,9 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
 
         {/* Error Display */}
         {error && (
-          <Card className="border-red-200 bg-red-50">
+          <Card className="border-destructive/50 bg-destructive/10">
             <CardContent className="pt-6">
-              <div className="flex items-center gap-2 text-red-600">
+              <div className="flex items-center gap-2 text-destructive">
                 <AlertTriangle className="w-5 h-5" />
                 <span>{error}</span>
               </div>
@@ -222,9 +226,9 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
 
         {/* Results */}
         {(result || isLoading) && (
-          <Card ref={resultRef} className="shadow-xl border-0 overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b">
-              <CardTitle className="flex items-center gap-2 text-green-700">
+          <Card ref={resultRef} className="shadow-xl border-border bg-card overflow-hidden">
+            <CardHeader className="bg-primary/5 border-b border-border">
+              <CardTitle className="flex items-center gap-2 text-primary">
                 <Salad className="w-6 h-6" />
                 Healthy Alternatives for "{craving}"
               </CardTitle>
@@ -233,7 +237,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
               {isLoading && !result && (
                 <div className="flex items-center justify-center py-12">
                   <div className="text-center">
-                    <Loader2 className="w-12 h-12 animate-spin text-pink-500 mx-auto mb-4" />
+                    <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
                     <p className="text-muted-foreground">Analyzing your craving...</p>
                   </div>
                 </div>
@@ -252,28 +256,28 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
 
         {/* Tips Card */}
         {!result && !isLoading && (
-          <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
+          <Card className="bg-accent/50 border-accent">
             <CardContent className="pt-6">
-              <h3 className="font-semibold text-amber-800 mb-3 flex items-center gap-2">
-                <Sparkles className="w-5 h-5" />
+              <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary" />
                 Why Cravings Happen During Pregnancy
               </h3>
-              <ul className="space-y-2 text-amber-700 text-sm">
+              <ul className="space-y-2 text-muted-foreground text-sm">
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500">•</span>
-                  <span><strong>Hormonal changes</strong> affect your taste buds and smell sensitivity</span>
+                  <span className="text-primary">•</span>
+                  <span><strong className="text-foreground">Hormonal changes</strong> affect your taste buds and smell sensitivity</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500">•</span>
-                  <span><strong>Nutrient needs</strong> - your body may signal what it lacks</span>
+                  <span className="text-primary">•</span>
+                  <span><strong className="text-foreground">Nutrient needs</strong> - your body may signal what it lacks</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500">•</span>
-                  <span><strong>Emotional comfort</strong> - certain foods provide psychological relief</span>
+                  <span className="text-primary">•</span>
+                  <span><strong className="text-foreground">Emotional comfort</strong> - certain foods provide psychological relief</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500">•</span>
-                  <span><strong>Blood sugar fluctuations</strong> can trigger sweet cravings</span>
+                  <span className="text-primary">•</span>
+                  <span><strong className="text-foreground">Blood sugar fluctuations</strong> can trigger sweet cravings</span>
                 </li>
               </ul>
             </CardContent>
