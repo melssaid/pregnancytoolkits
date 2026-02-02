@@ -60,10 +60,14 @@ const Index = () => {
       {/* Categories */}
       <section className="py-4">
         <div className="container space-y-5">
-          {categoryConfig.map((cat) => {
+          {categoryConfig.map((cat, categoryIndex) => {
             const allTools = getToolsByCategory(cat.key);
+            const isFirstCategory = categoryIndex === 0;
             const isExpanded = expandedCategories.has(cat.key);
-            const displayTools = isExpanded ? allTools : allTools.slice(0, 3);
+            // Only first category has collapse/expand, others show all tools
+            const displayTools = isFirstCategory 
+              ? (isExpanded ? allTools : allTools.slice(0, 3))
+              : allTools;
             const remainingCount = allTools.length - 3;
             const Icon = cat.icon;
             
@@ -110,8 +114,8 @@ const Index = () => {
                     </AnimatePresence>
                   </div>
                   
-                  {/* Expand Button */}
-                  {allTools.length > 3 && (
+                  {/* Expand Button - Only for first category */}
+                  {isFirstCategory && allTools.length > 3 && (
                     <motion.button
                       onClick={() => toggleCategory(cat.key)}
                       className="w-full py-2.5 bg-muted/20 hover:bg-muted/40 border-t border-border/30 flex items-center justify-center gap-1.5 transition-all duration-200 group"
