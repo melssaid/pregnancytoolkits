@@ -2,8 +2,8 @@ import { useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import type { Json } from '@/integrations/supabase/types';
 
-const SESSION_KEY = 'wellmama_session_id';
-const SESSION_EXPIRY_KEY = 'wellmama_session_expiry';
+const SESSION_KEY = 'pregnancy_toolkits_session_id';
+const SESSION_EXPIRY_KEY = 'pregnancy_toolkits_session_expiry';
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 /**

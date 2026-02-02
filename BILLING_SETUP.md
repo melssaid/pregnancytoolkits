@@ -14,7 +14,7 @@
 1. في Lovable، اضغط على زر **GitHub** في الأعلى
 2. اضغط **Connect to GitHub** وسجّل الدخول
 3. اضغط **Create Repository** لإنشاء مستودع جديد
-4. انسخ رابط المستودع (مثال: `https://github.com/username/wellmama`)
+4. انسخ رابط المستودع (مثال: `https://github.com/username/pregnancy-toolkits`)
 
 ---
 
@@ -324,7 +324,7 @@ export default useSubscription;
 1. افتح [Google Play Console](https://play.google.com/console)
 2. اضغط **Create app**
 3. املأ البيانات:
-   - **App name**: WellMama
+   - **App name**: Pregnancy Toolkits
    - **Default language**: العربية
    - **App or game**: App
    - **Free or paid**: Free
