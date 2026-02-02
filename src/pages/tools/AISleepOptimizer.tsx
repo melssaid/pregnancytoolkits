@@ -28,34 +28,50 @@ const sleepIssues = [
 const sleepVideos: Video[] = [
   {
     id: "1",
-    title: "Sleep Tips During Pregnancy",
-    description: "Doctor-approved tips for better sleep while pregnant",
-    youtubeId: "zBdSpSq0Kl8",
-    duration: "10:30",
-    category: "Sleep Tips"
-  },
-  {
-    id: "2",
-    title: "Best Sleeping Positions When Pregnant",
-    description: "Safe and comfortable positions for pregnancy sleep",
-    youtubeId: "XBH6h_-3hFg",
-    duration: "8:45",
+    title: "Best Pregnancy Sleeping Positions By Trimester",
+    description: "Learn the best positions for each trimester and what to avoid",
+    youtubeId: "llK1G5lHlWM",
+    duration: "8:30",
     category: "Sleep Positions"
   },
   {
-    id: "3",
-    title: "Pregnancy Pillow Guide",
-    description: "How to use pregnancy pillows for better rest",
-    youtubeId: "CGkpuHLBKe8",
-    duration: "9:15",
+    id: "2",
+    title: "How to Sleep During Third Trimester",
+    description: "Safe and comfortable sleep tips for late pregnancy",
+    youtubeId: "xdKDw8E6LSs",
+    duration: "6:45",
     category: "Sleep Tips"
   },
   {
+    id: "3",
+    title: "Pregnancy Meditation for Relaxation & Sleep",
+    description: "1 hour guided meditation for peaceful sleep",
+    youtubeId: "pCSjhbVOdYQ",
+    duration: "60:00",
+    category: "Meditation"
+  },
+  {
     id: "4",
-    title: "Bedtime Relaxation for Pregnancy",
-    description: "Gentle stretches and breathing for better sleep",
-    youtubeId: "j7YucfJuziU",
-    duration: "15:20",
+    title: "Guided Meditation for Pregnancy Insomnia",
+    description: "10-minute meditation to help with sleep difficulties",
+    youtubeId: "SXsB3zx4Rxc",
+    duration: "10:15",
+    category: "Meditation"
+  },
+  {
+    id: "5",
+    title: "Pillow Supported Positioning for Pregnancy",
+    description: "How to use pillows for better rest and less pain",
+    youtubeId: "iIluTuRUjOI",
+    duration: "7:20",
+    category: "Sleep Tips"
+  },
+  {
+    id: "6",
+    title: "Pregnancy Sleep Affirmations",
+    description: "Relaxing affirmations to help you drift off to sleep",
+    youtubeId: "Ygkgf9RnJ94",
+    duration: "30:00",
     category: "Relaxation"
   },
 ];
