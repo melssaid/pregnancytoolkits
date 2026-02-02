@@ -5,11 +5,10 @@ import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
 
 const fitnessVideos: Video[] = [
-  { id: "1", title: "Safe Prenatal Exercises", description: "Full body workout for pregnant women", youtubeId: "FaGK52oo36I", duration: "25:00", category: "Full Workout" },
-  { id: "2", title: "Pregnancy Stretches", description: "Gentle stretching for each trimester", youtubeId: "B0NOxSdCrVg", duration: "15:30", category: "Stretching" },
-  { id: "3", title: "Pelvic Floor Exercises", description: "Strengthen your pelvic floor safely", youtubeId: "aV1yGDUDNNk", duration: "12:45", category: "Pelvic Floor" },
-  { id: "4", title: "Prenatal Yoga Flow", description: "Relaxing yoga for pregnancy", youtubeId: "0DUzm3Fhzz4", duration: "20:00", category: "Yoga" },
-  { id: "5", title: "Third Trimester Workout", description: "Low-impact exercises for late pregnancy", youtubeId: "1x45FbcE2n0", duration: "18:20", category: "Trimester Guide" },
+  { id: "1", title: "Safe Prenatal Full Body Workout", description: "Complete workout safe for all trimesters", youtubeId: "NgjH2xPaxco", duration: "25:00", category: "Full Workout" },
+  { id: "2", title: "Pregnancy Stretching Routine", description: "Gentle stretches for pregnancy comfort", youtubeId: "FbxkNLvUx1c", duration: "15:30", category: "Stretching" },
+  { id: "3", title: "Prenatal Yoga for Beginners", description: "Relaxing yoga flow for pregnant women", youtubeId: "B87FpWtkIKA", duration: "20:00", category: "Yoga" },
+  { id: "4", title: "Low Impact Prenatal Cardio", description: "Safe cardio workout during pregnancy", youtubeId: "BxXL1CXEfbA", duration: "18:20", category: "Cardio" },
 ];
 
 interface Exercise {

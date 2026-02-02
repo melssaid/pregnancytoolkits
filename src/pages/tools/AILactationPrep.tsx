@@ -45,17 +45,17 @@ const essentialSupplies = [
 const lactationVideos: Video[] = [
   {
     id: "1",
-    title: "Breastfeeding Tips 101",
-    description: "Complete guide: latch, positions, and pumping for new moms",
-    youtubeId: "wXvDbLVqVGI",
-    duration: "18:30",
+    title: "Breastfeeding Basics for New Moms",
+    description: "Complete guide: latch, positions, and tips for success",
+    youtubeId: "GHbPCYSCqDo",
+    duration: "15:30",
     category: "Getting Started"
   },
   {
     id: "2",
-    title: "Common Breastfeeding Positions",
-    description: "Learn the best positions for comfortable nursing",
-    youtubeId: "TYUf7bCH3sA",
+    title: "Best Breastfeeding Positions",
+    description: "Learn comfortable positions for nursing your baby",
+    youtubeId: "RqHKkqGkHlA",
     duration: "12:45",
     category: "Positions"
   },
@@ -63,33 +63,17 @@ const lactationVideos: Video[] = [
     id: "3",
     title: "How to Get a Good Latch",
     description: "Step-by-step guide to proper latching technique",
-    youtubeId: "7aFePDLPKWM",
+    youtubeId: "56YzjsZr4hQ",
     duration: "10:20",
     category: "Getting Started"
   },
   {
     id: "4",
-    title: "Increasing Milk Supply",
-    description: "Tips and techniques to boost your milk production",
-    youtubeId: "MCvz1vmj-p4",
-    duration: "14:15",
-    category: "Milk Supply"
-  },
-  {
-    id: "5",
     title: "Pumping and Storing Breast Milk",
-    description: "Complete guide to expressing and storing milk safely",
-    youtubeId: "RxnuWrMxyxI",
-    duration: "16:40",
+    description: "Everything you need to know about pumping",
+    youtubeId: "vS3-9cNqKHU",
+    duration: "14:15",
     category: "Pumping"
-  },
-  {
-    id: "6",
-    title: "Returning to Work While Breastfeeding",
-    description: "How to maintain breastfeeding when going back to work",
-    youtubeId: "syW8mVn4FMs",
-    duration: "11:30",
-    category: "Work"
   },
 ];
 

@@ -28,42 +28,34 @@ const sleepIssues = [
 const sleepVideos: Video[] = [
   {
     id: "1",
-    title: "Pregnancy Insomnia? Proven Sleep Tips",
-    description: "Doctor-approved tips for better sleep during pregnancy",
-    youtubeId: "IUOMYs5nEAk",
-    duration: "12:30",
+    title: "Sleep Tips During Pregnancy",
+    description: "Doctor-approved tips for better sleep while pregnant",
+    youtubeId: "zBdSpSq0Kl8",
+    duration: "10:30",
     category: "Sleep Tips"
   },
   {
     id: "2",
-    title: "Best Sleep Positions - Third Trimester",
-    description: "How to sleep when pregnant - Tommy's Guide",
-    youtubeId: "Zp5gDDhxUoY",
+    title: "Best Sleeping Positions When Pregnant",
+    description: "Safe and comfortable positions for pregnancy sleep",
+    youtubeId: "XBH6h_-3hFg",
     duration: "8:45",
     category: "Sleep Positions"
   },
   {
     id: "3",
     title: "Pregnancy Pillow Guide",
-    description: "How to use pregnancy pillows for better sleep",
-    youtubeId: "YHb-jJQPqhM",
-    duration: "10:15",
+    description: "How to use pregnancy pillows for better rest",
+    youtubeId: "CGkpuHLBKe8",
+    duration: "9:15",
     category: "Sleep Tips"
   },
   {
     id: "4",
-    title: "Bedtime Yoga for Pregnancy",
-    description: "Gentle stretches to help you relax before bed",
-    youtubeId: "4fL_JZJqFnw",
+    title: "Bedtime Relaxation for Pregnancy",
+    description: "Gentle stretches and breathing for better sleep",
+    youtubeId: "j7YucfJuziU",
     duration: "15:20",
-    category: "Relaxation"
-  },
-  {
-    id: "5",
-    title: "Pregnancy Sleep Meditation",
-    description: "Guided meditation for restful pregnancy sleep",
-    youtubeId: "aEqlQvczMJQ",
-    duration: "20:00",
     category: "Relaxation"
   },
 ];

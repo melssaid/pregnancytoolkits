@@ -36,42 +36,34 @@ const quickRemedies = [
 const nauseaVideos: Video[] = [
   {
     id: "1",
-    title: "P6 Acupressure for Morning Sickness",
-    description: "3 effective pressure points for pregnancy nausea relief",
-    youtubeId: "ZoKJ7RLjjfY",
-    duration: "6:30",
-    category: "Acupressure"
+    title: "Morning Sickness Relief Tips",
+    description: "Doctor-approved remedies for pregnancy nausea",
+    youtubeId: "P-2N3CjVTtE",
+    duration: "8:30",
+    category: "Relief Tips"
   },
   {
     id: "2",
-    title: "BabyCenter Acupressure Guide",
-    description: "Step-by-step acupressure techniques for nausea",
-    youtubeId: "BdJ9K-I5xKI",
+    title: "Acupressure for Nausea",
+    description: "Pressure point techniques to reduce morning sickness",
+    youtubeId: "M6ASgdxyTxs",
     duration: "5:45",
     category: "Acupressure"
   },
   {
     id: "3",
     title: "Foods That Help Morning Sickness",
-    description: "Best foods to eat when you're feeling nauseous",
-    youtubeId: "8rl07QGHXr0",
-    duration: "8:20",
+    description: "Best foods to eat when feeling nauseous",
+    youtubeId: "R4TorHxCqpA",
+    duration: "7:20",
     category: "Diet Tips"
   },
   {
     id: "4",
-    title: "Morning Sickness Survival Guide",
-    description: "Doctor's tips for managing severe nausea",
-    youtubeId: "yPc8uCYPonk",
-    duration: "10:15",
-    category: "Medical Advice"
-  },
-  {
-    id: "5",
-    title: "Natural Remedies for Nausea",
-    description: "Ginger, B6, and other natural solutions",
-    youtubeId: "h3sxduUt5rc",
-    duration: "7:40",
+    title: "Natural Remedies for Pregnancy Nausea",
+    description: "Ginger, lemon, and other natural solutions",
+    youtubeId: "cAEVirtc1HM",
+    duration: "6:40",
     category: "Natural Remedies"
   },
 ];
