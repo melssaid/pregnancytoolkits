@@ -14,10 +14,10 @@ import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const birthPreferences = [
-  { id: "natural", label: "Natural/Unmedicated", icon: "🌿" },
-  { id: "epidural", label: "With Epidural", icon: "💉" },
-  { id: "water", label: "Water Birth", icon: "💧" },
-  { id: "csection", label: "Planned C-Section", icon: "🏥" },
+  { id: "natural", label: "Natural/Unmedicated" },
+  { id: "epidural", label: "With Epidural" },
+  { id: "water", label: "Water Birth" },
+  { id: "csection", label: "Planned C-Section" },
 ];
 
 const physicalConditions = [
@@ -30,10 +30,10 @@ const physicalConditions = [
 ];
 
 const positions = [
-  { id: "squatting", name: "Squatting", description: "Opens pelvis 30%", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=300&fit=crop" },
-  { id: "hands-knees", name: "Hands & Knees", description: "Relieves back labor", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=300&fit=crop" },
-  { id: "side-lying", name: "Side Lying", description: "Rest between contractions", image: "https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=400&h=300&fit=crop" },
-  { id: "standing", name: "Standing/Walking", description: "Uses gravity", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" },
+  { id: "squatting", name: "Squatting", description: "Opens pelvis 30%" },
+  { id: "hands-knees", name: "Hands & Knees", description: "Relieves back labor" },
+  { id: "side-lying", name: "Side Lying", description: "Rest between contractions" },
+  { id: "standing", name: "Standing/Walking", description: "Uses gravity" },
 ];
 
 const birthPositionVideos: Video[] = [
@@ -41,32 +41,32 @@ const birthPositionVideos: Video[] = [
     id: "1",
     title: "Labor Positions for Easier Birth",
     description: "Positions to ease pain and speed up labor",
-    youtubeId: "j7YucfJuziU",
-    duration: "12:20",
+    youtubeId: "3HPhF_IPJ1E",
+    duration: "15:00",
     category: "Labor Positions"
   },
   {
     id: "2",
     title: "Using a Birth Ball During Labor",
     description: "How to use an exercise ball for labor comfort",
-    youtubeId: "OCqmLEXMo0I",
-    duration: "10:45",
+    youtubeId: "xNfagna9Fxw",
+    duration: "21:00",
     category: "Equipment"
   },
   {
     id: "3",
     title: "Pushing Positions Explained",
     description: "Best positions for the pushing stage",
-    youtubeId: "CExlNUVBWbU",
-    duration: "9:30",
+    youtubeId: "8BH7WFmRs-E",
+    duration: "12:00",
     category: "Pushing"
   },
   {
     id: "4",
     title: "Partner Support During Labor",
     description: "How partners can help with comfort measures",
-    youtubeId: "gRYqIicyQcc",
-    duration: "11:15",
+    youtubeId: "E0i7NQsJdWY",
+    duration: "8:30",
     category: "Partner Support"
   },
 ];
@@ -130,33 +130,34 @@ Include safety considerations and when to change positions.`;
         {/* Non-intrusive Medical Reminder */}
         <MedicalInfoBar compact />
         
-        {/* Position Gallery */}
-        <div className="grid grid-cols-2 gap-3">
-          {positions.map((pos) => (
-            <Card key={pos.id} className="overflow-hidden">
-              <img
-                src={pos.image}
-                alt={pos.name}
-                className="w-full h-24 object-cover"
-              />
-              <div className="p-2">
+        {/* Position Cards - Professional List */}
+        <div className="space-y-2">
+          <Label className="text-sm font-medium">Common Birth Positions</Label>
+          <div className="grid grid-cols-2 gap-2">
+            {positions.map((pos) => (
+              <Card key={pos.id} className="p-3">
                 <h4 className="font-medium text-sm">{pos.name}</h4>
                 <p className="text-xs text-muted-foreground">{pos.description}</p>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
 
         {/* Birth Preference */}
         <div className="space-y-3">
           <Label>Birth Preference</Label>
-          <RadioGroup value={birthPlan} onValueChange={setBirthPlan} className="grid grid-cols-2 gap-2">
+          <RadioGroup value={birthPlan} onValueChange={setBirthPlan} className="space-y-2">
             {birthPreferences.map((pref) => (
-              <div key={pref.id} className="flex items-center space-x-2">
+              <div 
+                key={pref.id} 
+                className={`flex items-center space-x-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                  birthPlan === pref.id ? "bg-primary/10 border-primary" : "bg-card hover:bg-muted"
+                }`}
+                onClick={() => setBirthPlan(pref.id)}
+              >
                 <RadioGroupItem value={pref.id} id={pref.id} />
-                <Label htmlFor={pref.id} className="flex items-center gap-1 cursor-pointer">
-                  <span>{pref.icon}</span>
-                  <span className="text-sm">{pref.label}</span>
+                <Label htmlFor={pref.id} className="cursor-pointer text-sm flex-1">
+                  {pref.label}
                 </Label>
               </div>
             ))}
