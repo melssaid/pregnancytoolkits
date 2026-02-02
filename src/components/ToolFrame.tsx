@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { Shield } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
@@ -61,7 +59,6 @@ export function ToolFrame({
   toolId,
   showRelated = true 
 }: ToolFrameProps) {
-  const { t } = useTranslation();
   const styles = moodStyles[mood];
   
   // Check if we have a custom icon for this tool
@@ -146,22 +143,8 @@ export function ToolFrame({
           )}
         </section>
 
-        {/* Premium Footer Disclaimer - Compact on Mobile */}
-        <motion.footer
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="px-4 pb-8"
-        >
-          <div className="flex justify-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-md">
-              <Shield className="h-3.5 w-3.5 text-primary shrink-0" />
-              <span className="text-[11px] sm:text-xs text-muted-foreground font-medium leading-tight">
-                {t('app.medicalDisclaimer')}
-              </span>
-            </div>
-          </div>
-        </motion.footer>
+        {/* Spacer for bottom padding */}
+        <div className="h-6" />
       </div>
     </div>
   );
