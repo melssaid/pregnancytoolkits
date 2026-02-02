@@ -3,14 +3,15 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalInfoBar } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { FileText, Download, Sparkles, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2 } from 'lucide-react';
+import { FileText, Download, Sparkles, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, FileDown, AlertCircle } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
+import { exportBirthPlanToPDF, MAX_SAVED_PLANS } from '@/lib/pdfExport';
+import { Progress } from '@/components/ui/progress';
 
 interface BirthPlanPreference {
   id: string;
@@ -163,6 +164,11 @@ Make it comprehensive and ready to share with healthcare providers.`
       return;
     }
 
+    if (savedPlans.length >= MAX_SAVED_PLANS) {
+      toast.error(`Maximum ${MAX_SAVED_PLANS} plans allowed. Please delete an old plan first.`);
+      return;
+    }
+
     const newPlan: SavedPlan = {
       id: `plan-${Date.now()}`,
       date: new Date().toISOString(),
@@ -173,24 +179,29 @@ Make it comprehensive and ready to share with healthcare providers.`
 
     setSavedPlans(prev => [newPlan, ...prev]);
     toast.success('Birth plan saved to archive!');
-  }, [generatedPlan, preferences, additionalNotes]);
+  }, [generatedPlan, preferences, additionalNotes, savedPlans.length]);
 
   const deletePlan = useCallback((id: string) => {
     setSavedPlans(prev => prev.filter(p => p.id !== id));
     toast.success('Plan deleted');
   }, []);
 
-  const exportPlan = useCallback(() => {
+  const exportPlanAsPDF = useCallback(() => {
     if (!generatedPlan) return;
     
-    const blob = new Blob([generatedPlan], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `birth-plan-${format(new Date(), 'yyyy-MM-dd')}.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
-  }, [generatedPlan]);
+    try {
+      exportBirthPlanToPDF({
+        title: 'Birth Plan',
+        content: generatedPlan,
+        date: format(new Date(), 'MMMM d, yyyy'),
+        preferences
+      });
+      toast.success('PDF downloaded successfully!');
+    } catch (error) {
+      console.error('PDF export error:', error);
+      toast.error('Failed to export PDF');
+    }
+  }, [generatedPlan, preferences]);
 
   const loadPlan = useCallback((plan: SavedPlan) => {
     setPreferences(plan.preferences);
@@ -305,11 +316,22 @@ Make it comprehensive and ready to share with healthcare providers.`
                   Your Birth Plan
                 </h3>
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline" onClick={savePlan}>
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    onClick={savePlan}
+                    disabled={savedPlans.length >= MAX_SAVED_PLANS}
+                  >
                     Save
                   </Button>
-                  <Button size="sm" variant="outline" onClick={exportPlan}>
-                    <Download className="w-4 h-4" />
+                  <Button 
+                    size="sm" 
+                    variant="default" 
+                    onClick={exportPlanAsPDF}
+                    className="gap-1"
+                  >
+                    <FileDown className="w-4 h-4" />
+                    PDF
                   </Button>
                 </div>
               </div>
@@ -319,27 +341,47 @@ Make it comprehensive and ready to share with healthcare providers.`
         )}
 
         {/* Archive Section */}
-        {savedPlans.length > 0 && (
-          <Card>
-            <CardContent className="p-4">
-              <button
-                onClick={() => setShowArchive(!showArchive)}
-                className="w-full flex items-center justify-between"
-              >
-                <h3 className="font-semibold flex items-center gap-2">
-                  <Archive className="w-4 h-4 text-muted-foreground" />
-                  Saved Plans ({savedPlans.length})
+        <Card>
+          <CardContent className="p-4">
+            <button
+              onClick={() => setShowArchive(!showArchive)}
+              className="w-full flex items-center justify-between"
+            >
+              <div className="flex items-center gap-2">
+                <Archive className="w-4 h-4 text-muted-foreground" />
+                <h3 className="font-semibold">
+                  Saved Plans ({savedPlans.length}/{MAX_SAVED_PLANS})
                 </h3>
-                {showArchive ? (
-                  <ChevronUp className="w-4 h-4 text-muted-foreground" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
-                )}
-              </button>
+              </div>
+              {showArchive ? (
+                <ChevronUp className="w-4 h-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-muted-foreground" />
+              )}
+            </button>
 
-              {showArchive && (
-                <div className="mt-4 space-y-2">
-                  {savedPlans.map((plan) => (
+            {/* Storage usage indicator */}
+            <div className="mt-3">
+              <Progress 
+                value={(savedPlans.length / MAX_SAVED_PLANS) * 100} 
+                className="h-2"
+              />
+              {savedPlans.length >= MAX_SAVED_PLANS && (
+                <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />
+                  Storage full - delete a plan to save new ones
+                </p>
+              )}
+            </div>
+
+            {showArchive && (
+              <div className="mt-4 space-y-2">
+                {savedPlans.length === 0 ? (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    No saved plans yet. Generate and save your first birth plan!
+                  </p>
+                ) : (
+                  savedPlans.map((plan) => (
                     <div
                       key={plan.id}
                       className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
@@ -359,17 +401,31 @@ Make it comprehensive and ready to share with healthcare providers.`
                         <Button size="sm" variant="ghost" onClick={() => loadPlan(plan)}>
                           Load
                         </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          onClick={() => {
+                            exportBirthPlanToPDF({
+                              title: 'Birth Plan',
+                              content: plan.generatedPlan,
+                              date: format(new Date(plan.date), 'MMMM d, yyyy'),
+                              preferences: plan.preferences
+                            });
+                          }}
+                        >
+                          <FileDown className="w-4 h-4" />
+                        </Button>
                         <Button size="sm" variant="ghost" onClick={() => deletePlan(plan.id)}>
                           <Trash2 className="w-4 h-4 text-destructive" />
                         </Button>
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        )}
+                  ))
+                )}
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </ToolFrame>
   );
