@@ -1,14 +1,12 @@
 import { useState, useMemo, memo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, Crown } from "lucide-react";
+import { Sparkles, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, Search } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
-import { getSortedTools, getToolsByCategory, getFreeToolsCount, getPremiumToolsCount } from "@/lib/tools-data";
+import { getSortedTools, getToolsByCategory } from "@/lib/tools-data";
 import { Button } from "@/components/ui/button";
 import { SubscriptionModal } from "@/components/SubscriptionModal";
-import { TrialBadge } from "@/components/PaywallGate";
-import { useSubscription } from "@/hooks/useSubscription";
 
 interface CategoryConfig {
   key: string;
@@ -37,11 +35,9 @@ const Index = () => {
   const { t } = useTranslation();
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
-  const { isTrialActive, trialDaysLeft, isSubscribed } = useSubscription();
   
   const sortedTools = useMemo(() => getSortedTools(), []);
-  const freeCount = getFreeToolsCount();
-  const premiumCount = getPremiumToolsCount();
+  const totalTools = sortedTools.length;
 
   const toggleCategory = useCallback((categoryKey: string) => {
     setExpandedCategories(prev => {
@@ -60,38 +56,6 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Trial/Subscription Banner */}
-      {!isSubscribed && (
-        <div className="container pt-3">
-          <button 
-            onClick={openModal}
-            className="w-full flex items-center justify-between gap-3 p-3 rounded-xl bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border border-primary/20 hover:border-primary/40 transition-all"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                <Crown className="w-5 h-5 text-primary" />
-              </div>
-              <div className="text-left">
-                {isTrialActive ? (
-                  <>
-                    <p className="text-sm font-semibold text-foreground">الفترة التجريبية نشطة</p>
-                    <p className="text-xs text-muted-foreground">{trialDaysLeft} أيام متبقية • وصول كامل</p>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-sm font-semibold text-foreground">افتح {premiumCount}+ أداة AI مميزة</p>
-                    <p className="text-xs text-muted-foreground">ابدأ تجربة مجانية 3 أيام</p>
-                  </>
-                )}
-              </div>
-            </div>
-            <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold">
-              <Sparkles className="w-3 h-3" />
-              <span>{isTrialActive ? 'الترقية' : 'ابدأ مجاناً'}</span>
-            </div>
-          </button>
-        </div>
-      )}
 
       {/* Categories */}
       <section className="py-4">
@@ -110,7 +74,7 @@ const Index = () => {
                 {/* Section Header - Tech-forward connected design */}
                 <div className="flex items-center gap-2 mb-2 px-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-1 h-4 rounded-full bg-primary" />
+                    <div className="w-1 h-4 rounded-full bg-rose-700" />
                     <Icon className="w-4 h-4 text-foreground/50" />
                     <h2 className="text-xs font-semibold text-foreground/70 tracking-widest uppercase">
                       {t(cat.key)}
@@ -139,8 +103,7 @@ const Index = () => {
                             href={tool.href}
                             categoryKey={tool.categoryKey}
                             index={index}
-                            hasAI={tool.hasAI}
-                            isPremium={tool.isPremium}
+                            hasAI={false}
                           />
                         </motion.div>
                       ))}
