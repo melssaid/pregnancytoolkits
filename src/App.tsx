@@ -29,8 +29,8 @@ const App = () => {
         event.preventDefault();
         
         // Show user-friendly message and reload
-        toast.error("تم تحديث التطبيق، جاري إعادة التحميل...", {
-          description: "App updated, reloading...",
+        toast.error("App updated, reloading...", {
+          description: "Please wait...",
           duration: 2000,
         });
         
