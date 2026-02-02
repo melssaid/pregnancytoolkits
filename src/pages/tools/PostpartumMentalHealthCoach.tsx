@@ -8,9 +8,9 @@ import { VideoLibrary, Video } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 const mentalHealthVideos: Video[] = [
-  { id: "1", title: "Understanding Postpartum Depression", description: "Signs, symptoms, and when to seek help", youtubeId: "4BbZ5clYJfc", duration: "12:30", category: "Education" },
-  { id: "2", title: "Self-Care Tips for New Moms", description: "Practical mental wellness strategies", youtubeId: "gRYqIicyQcc", duration: "10:15", category: "Self-Care" },
-  { id: "3", title: "Postpartum Anxiety Explained", description: "Coping with anxiety after birth", youtubeId: "j7YucfJuziU", duration: "11:45", category: "Education" },
+  { id: "1", title: "Understanding Postpartum Depression", description: "Signs, symptoms, and when to seek help", youtubeId: "qbMQwVJY_Jc", duration: "12:30", category: "Education" },
+  { id: "2", title: "Self-Care Tips for New Moms", description: "Practical mental wellness strategies", youtubeId: "BHY0FxzoKZE", duration: "10:15", category: "Self-Care" },
+  { id: "3", title: "Postpartum Anxiety Explained", description: "Coping with anxiety after birth", youtubeId: "7V8CRLYh0Vo", duration: "11:45", category: "Education" },
   { id: "4", title: "Mindfulness for New Parents", description: "Relaxation and breathing exercises", youtubeId: "inpok4MKVLM", duration: "15:00", category: "Relaxation" },
 ];
 
