@@ -5,8 +5,11 @@ import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { DataClearManager } from '@/components/settings/DataClearManager';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
 import BackButton from '@/components/BackButton';
+import { useTranslation } from 'react-i18next';
 
 const Settings: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-900 pb-24">
       {/* Header */}
@@ -15,7 +18,7 @@ const Settings: React.FC = () => {
           <BackButton />
           <div className="flex items-center gap-2">
             <SettingsIcon className="w-6 h-6 text-primary" />
-            <h1 className="text-xl font-bold">الإعدادات</h1>
+            <h1 className="text-xl font-bold">{t('settings.title')}</h1>
           </div>
         </div>
       </div>
@@ -26,7 +29,7 @@ const Settings: React.FC = () => {
         <section>
           <div className="flex items-center gap-2 mb-3">
             <Lock className="w-5 h-5 text-primary" />
-            <h2 className="font-semibold text-lg">الأمان والخصوصية</h2>
+            <h2 className="font-semibold text-lg">{t('settings.securityPrivacy')}</h2>
           </div>
           <EncryptionManager />
         </section>
@@ -35,7 +38,7 @@ const Settings: React.FC = () => {
         <section>
           <div className="flex items-center gap-2 mb-3">
             <Database className="w-5 h-5 text-primary" />
-            <h2 className="font-semibold text-lg">إدارة البيانات</h2>
+            <h2 className="font-semibold text-lg">{t('settings.dataManagement')}</h2>
           </div>
           <div className="space-y-4">
             <DataBackupManager />
@@ -48,19 +51,13 @@ const Settings: React.FC = () => {
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2 text-base">
               <Shield className="w-5 h-5 text-blue-600" />
-              خصوصية البيانات
+              {t('settings.dataPrivacy')}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground space-y-2">
-            <p>
-              ✅ جميع بياناتك الصحية تُخزن محلياً على جهازك فقط
-            </p>
-            <p>
-              ✅ لا نجمع أو نشارك معلوماتك الشخصية
-            </p>
-            <p>
-              ✅ يمكنك تصدير بياناتك في أي وقت
-            </p>
+            <p>✅ {t('settings.privacyPoint1')}</p>
+            <p>✅ {t('settings.privacyPoint2')}</p>
+            <p>✅ {t('settings.privacyPoint3')}</p>
           </CardContent>
         </Card>
 
@@ -69,17 +66,17 @@ const Settings: React.FC = () => {
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2 text-base">
               <Info className="w-5 h-5 text-muted-foreground" />
-              عن التطبيق
+              {t('settings.aboutApp')}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground space-y-2">
             <p className="flex items-center gap-2">
               <Heart className="w-4 h-4 text-pink-500" />
-              <span>Pregnancy Tools - رفيقك في رحلة الحمل</span>
+              <span>{t('settings.appTagline')}</span>
             </p>
-            <p>الإصدار: 1.0.0</p>
+            <p>{t('settings.version')}: 1.0.0</p>
             <p className="text-xs mt-2 pt-2 border-t">
-              ⚕️ هذا التطبيق للأغراض التثقيفية فقط ولا يغني عن استشارة الطبيب
+              ⚕️ {t('settings.medicalNote')}
             </p>
           </CardContent>
         </Card>
