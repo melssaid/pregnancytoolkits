@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info, Sparkles, Loader2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info, Sparkles, Loader2 } from 'lucide-react';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { ToolFrame } from '@/components/ToolFrame';
 
 interface FoodItem {
   id: string;
@@ -29,7 +29,6 @@ const foodDatabase: FoodItem[] = [
 ];
 
 const ForbiddenFoods: React.FC = () => {
-  const navigate = useNavigate();
   const { streamChat, isLoading } = usePregnancyAI();
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -93,25 +92,13 @@ If it can be made safe, explain how`
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="bg-card shadow-sm sticky top-0 z-40">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
-          <button onClick={() => navigate('/')} className="p-2 hover:bg-muted rounded-full">
-            <ArrowLeft className="w-6 h-6 text-muted-foreground" />
-          </button>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-destructive/10 rounded-xl flex items-center justify-center">
-              <Ban className="w-5 h-5 text-destructive" />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-foreground">Food Safety Guide</h1>
-              <p className="text-xs text-muted-foreground">What to eat & avoid</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
+    <ToolFrame
+      title="Food Safety Guide"
+      subtitle="What to eat & avoid during pregnancy"
+      mood="empowering"
+      toolId="forbidden-foods"
+    >
+      <div className="space-y-6">
         {/* Search & Filter */}
         <div className="bg-card rounded-2xl p-4 shadow-sm space-y-4">
           <div className="relative">
@@ -224,7 +211,7 @@ If it can be made safe, explain how`
           </ul>
         </div>
       </div>
-    </div>
+    </ToolFrame>
   );
 };
 

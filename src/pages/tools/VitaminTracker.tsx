@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { VitaminService, UserProfileService } from '@/services/localStorageServices';
+import { ToolFrame } from '@/components/ToolFrame';
 
 interface Vitamin {
   id: string;
@@ -117,12 +118,16 @@ const VitaminTracker: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-purple-500 mx-auto mb-4" />
-          <p className="text-gray-600">Loading your data...</p>
+      <ToolFrame
+        title="Vitamin Tracker"
+        subtitle="Track your daily prenatal vitamins"
+        mood="joyful"
+        toolId="vitamin-tracker"
+      >
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
-      </div>
+      </ToolFrame>
     );
   }
 
@@ -130,41 +135,32 @@ const VitaminTracker: React.FC = () => {
   const todayProgress = getTodayProgress();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-4 md:p-8">
-      <div className="max-w-4xl mx-auto space-y-6">
-        
-        {/* Header */}
-        <Card className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-xl">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-2xl">
-              <Pill className="w-8 h-8" />
-              💊 Vitamin Tracker
-            </CardTitle>
-            <p className="text-purple-100">
-              Week {currentWeek} - Remember to take your vitamins daily!
-            </p>
-          </CardHeader>
-        </Card>
-
+    <ToolFrame
+      title="Vitamin Tracker"
+      subtitle={`Week ${currentWeek} - Track your daily prenatal vitamins`}
+      mood="joyful"
+      toolId="vitamin-tracker"
+    >
+      <div className="space-y-6">
         {/* Today's Progress */}
-        <Card className="shadow-lg">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
+        <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center justify-between text-base">
               <span className="flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-purple-500" />
+                <Calendar className="w-5 h-5 text-primary" />
                 Today's Progress
               </span>
-              <span className="text-2xl font-bold text-purple-600">{todayProgress}%</span>
+              <span className="text-2xl font-bold text-primary">{todayProgress}%</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="w-full bg-gray-200 rounded-full h-4 mb-4 overflow-hidden">
+            <div className="w-full bg-muted rounded-full h-3 mb-2 overflow-hidden">
               <div
-                className="bg-gradient-to-r from-purple-500 to-pink-500 h-4 rounded-full transition-all duration-700 ease-out"
+                className="bg-gradient-to-r from-primary to-pink-500 h-3 rounded-full transition-all duration-700 ease-out"
                 style={{ width: `${todayProgress}%` }}
               />
             </div>
-            <p className="text-sm text-gray-600 text-center">
+            <p className="text-sm text-muted-foreground text-center">
               {todayLogs.length} of {VITAMINS.length} vitamins taken today
             </p>
           </CardContent>
@@ -296,9 +292,8 @@ const VitaminTracker: React.FC = () => {
             </p>
           </CardContent>
         </Card>
-
       </div>
-    </div>
+    </ToolFrame>
   );
 };
 

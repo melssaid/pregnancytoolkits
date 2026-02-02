@@ -173,12 +173,90 @@ export const getToolById = (id: string) => toolsData.find((t) => t.id === id);
 
 export const getTotalToolsCount = () => toolsData.length;
 
-// Get related tools based on category (excluding current tool)
+// Logical tool relationships for smart recommendations
+const toolRelationships: Record<string, string[]> = {
+  // AI Core Tools
+  "pregnancy-assistant": ["symptom-analyzer", "weekly-summary", "ai-meal-suggestion"],
+  "symptom-analyzer": ["pregnancy-assistant", "ai-sleep-optimizer", "ai-back-pain-relief"],
+  "ai-meal-suggestion": ["ai-craving-alternatives", "smart-grocery-list", "forbidden-foods"],
+  "weekly-summary": ["pregnancy-assistant", "fetal-growth", "weight-gain"],
+  "ai-birth-plan": ["ai-hospital-bag", "ai-birth-position", "ai-partner-guide"],
+  "smart-appointment-reminder": ["pregnancy-assistant", "symptom-analyzer", "weekly-summary"],
+  "ai-craving-alternatives": ["ai-meal-suggestion", "smart-grocery-list", "forbidden-foods"],
+  "smart-grocery-list": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
+  
+  // AI Tools 2026
+  "ai-sleep-optimizer": ["ai-stress-relief", "ai-back-pain-relief", "postpartum-mental-health"],
+  "ai-hospital-bag": ["ai-birth-plan", "ai-partner-guide", "baby-gear-recommender"],
+  "ai-partner-guide": ["ai-birth-plan", "ai-hospital-bag", "ai-labor-progress"],
+  "ai-birth-position": ["ai-labor-progress", "ai-birth-plan", "ai-back-pain-relief"],
+  "ai-pregnancy-skincare": ["ai-meal-suggestion", "vitamin-tracker", "weekly-summary"],
+  "ai-nausea-relief": ["ai-meal-suggestion", "symptom-analyzer", "ai-craving-alternatives"],
+  "ai-bump-photos": ["weekly-summary", "fetal-growth", "baby-growth"],
+  
+  // Wellness
+  "ai-fitness-coach": ["ai-back-pain-relief", "vitamin-tracker", "weight-gain"],
+  "ai-back-pain-relief": ["ai-fitness-coach", "ai-sleep-optimizer", "symptom-analyzer"],
+  "vitamin-tracker": ["ai-meal-suggestion", "smart-grocery-list", "forbidden-foods"],
+  "forbidden-foods": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
+  
+  // Labor
+  "ai-labor-progress": ["ai-birth-plan", "ai-birth-position", "ai-hospital-bag"],
+  
+  // Fertility
+  "cycle-tracker": ["due-date-calculator", "pregnancy-assistant", "weekly-summary"],
+  "due-date-calculator": ["cycle-tracker", "weekly-summary", "fetal-growth"],
+  
+  // Pregnancy Tracking
+  "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
+  "kick-counter": ["fetal-growth", "symptom-analyzer", "ai-labor-progress"],
+  "weight-gain": ["ai-meal-suggestion", "ai-fitness-coach", "weekly-summary"],
+  
+  // Mental Health
+  "postpartum-mental-health": ["ai-sleep-optimizer", "pregnancy-assistant", "ai-stress-relief"],
+  
+  // Risk Assessment
+  "gestational-diabetes": ["ai-meal-suggestion", "ai-fitness-coach", "symptom-analyzer"],
+  "preeclampsia-risk": ["symptom-analyzer", "pregnancy-assistant", "gestational-diabetes"],
+  
+  // Preparation
+  "baby-gear-recommender": ["ai-hospital-bag", "ai-lactation-prep", "baby-growth"],
+  
+  // Postpartum
+  "ai-lactation-prep": ["baby-sleep-tracker", "baby-growth", "postpartum-mental-health"],
+  "baby-sleep-tracker": ["baby-growth", "ai-lactation-prep", "diaper-tracker"],
+  "baby-growth": ["baby-sleep-tracker", "diaper-tracker", "ai-lactation-prep"],
+  "diaper-tracker": ["baby-sleep-tracker", "baby-growth", "ai-lactation-prep"],
+};
+
+// Get related tools based on logical relationships
 export const getRelatedTools = (currentToolId: string, maxItems: number = 3) => {
   const currentTool = getToolById(currentToolId);
   if (!currentTool) return [];
   
-  // Get tools from same category first
+  // Check for predefined relationships first
+  const relatedIds = toolRelationships[currentToolId];
+  if (relatedIds && relatedIds.length > 0) {
+    const relatedTools = relatedIds
+      .map(id => getToolById(id))
+      .filter((t): t is Tool => t !== undefined)
+      .slice(0, maxItems);
+    
+    if (relatedTools.length >= maxItems) {
+      return relatedTools;
+    }
+    
+    // Fill remaining spots with same category tools
+    const sameCategoryTools = toolsData.filter(
+      t => t.categoryKey === currentTool.categoryKey && 
+           t.id !== currentToolId && 
+           !relatedIds.includes(t.id)
+    );
+    
+    return [...relatedTools, ...sameCategoryTools].slice(0, maxItems);
+  }
+  
+  // Fallback: Get tools from same category
   const sameCategoryTools = toolsData.filter(
     t => t.categoryKey === currentTool.categoryKey && t.id !== currentToolId
   );
