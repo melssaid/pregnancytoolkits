@@ -37,7 +37,7 @@
     "weeklySummary": {"title": "ملخص الأسبوع", "description": "تحديثات ذكية أسبوعية عن نمو طفلك"},
     "aiBirthPlan": {"title": "مُنشئ خطة الولادة", "description": "أنشئي خطة ولادتك المخصصة بمساعدة AI"},
     "smartAppointmentReminder": {"title": "مذكر المواعيد الذكي", "description": "لا تفوتي أي موعد متابعة"},
-    "aiBabyNameFinder": {"title": "باحث الأسماء الذكي", "description": "اكتشفي الاسم المثالي باقتراحات AI"},
+    "aiCravingAlternatives": {"title": "بدائل الرغبات الصحية", "description": "بدائل صحية لرغباتك الغذائية أثناء الحمل"},
     "smartGroceryList": {"title": "قائمة التسوق الذكية", "description": "قائمة تسوق AI لتغذية الحمل"},
     "aiSleepOptimizer": {"title": "محسّن النوم الذكي", "description": "إرشادات نوم مخصصة للحمل"},
     "aiHospitalBag": {"title": "حقيبة المستشفى الذكية", "description": "قائمة تعبئة ذكية ليوم الولادة"},

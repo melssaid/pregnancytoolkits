@@ -49,7 +49,7 @@ export interface Tool {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PROFESSIONAL PREGNANCY TOOLS - 33 CURATED AI-POWERED TOOLS (Consolidated)
+// PROFESSIONAL PREGNANCY TOOLS - 34 CURATED AI-POWERED TOOLS (Consolidated)
 // Merged duplicates for streamlined experience
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -63,7 +63,8 @@ export const toolsData: Tool[] = [
   { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, categoryKey: "categories.ai", href: "/tools/weekly-summary", priority: 4, hasAI: true },
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.ai", href: "/tools/ai-birth-plan", priority: 5, hasAI: true },
   { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, categoryKey: "categories.ai", href: "/tools/smart-appointment-reminder", priority: 6, hasAI: true },
-  { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: ShoppingCart, categoryKey: "categories.ai", href: "/tools/smart-grocery-list", priority: 7, hasAI: true },
+  { id: "ai-craving-alternatives", titleKey: "tools.aiCravingAlternatives.title", descriptionKey: "tools.aiCravingAlternatives.description", icon: Utensils, categoryKey: "categories.ai", href: "/tools/ai-craving-alternatives", priority: 7, hasAI: true },
+  { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: ShoppingCart, categoryKey: "categories.ai", href: "/tools/smart-grocery-list", priority: 8, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // 🆕 AI TOOLS 2026 (Priority 8-15)
