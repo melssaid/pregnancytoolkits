@@ -38,7 +38,7 @@ const nauseaVideos: Video[] = [
     id: "1",
     title: "Morning Sickness Relief Tips",
     description: "Doctor-approved remedies for pregnancy nausea",
-    youtubeId: "P-2N3CjVTtE",
+    youtubeId: "QxW29Kcsxos",
     duration: "8:30",
     category: "Relief Tips"
   },
@@ -46,7 +46,7 @@ const nauseaVideos: Video[] = [
     id: "2",
     title: "Acupressure for Nausea",
     description: "Pressure point techniques to reduce morning sickness",
-    youtubeId: "M6ASgdxyTxs",
+    youtubeId: "2GsHqeelMo0",
     duration: "5:45",
     category: "Acupressure"
   },
@@ -54,7 +54,7 @@ const nauseaVideos: Video[] = [
     id: "3",
     title: "Foods That Help Morning Sickness",
     description: "Best foods to eat when feeling nauseous",
-    youtubeId: "R4TorHxCqpA",
+    youtubeId: "Xp-srFGBs6o",
     duration: "7:20",
     category: "Diet Tips"
   },
@@ -62,7 +62,7 @@ const nauseaVideos: Video[] = [
     id: "4",
     title: "Natural Remedies for Pregnancy Nausea",
     description: "Ginger, lemon, and other natural solutions",
-    youtubeId: "cAEVirtc1HM",
+    youtubeId: "d5YzFhS1jqE",
     duration: "6:40",
     category: "Natural Remedies"
   },
