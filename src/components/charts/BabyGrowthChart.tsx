@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Baby, TrendingUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface GrowthEntry {
   id: string;
@@ -59,6 +60,7 @@ const WHO_WEIGHT_GIRLS = [
 ];
 
 export function BabyGrowthChart({ entries, gender }: BabyGrowthChartProps) {
+  const { t } = useTranslation();
   const chartData = useMemo(() => {
     const standards = gender === "boy" ? WHO_WEIGHT_BOYS : WHO_WEIGHT_GIRLS;
     
@@ -109,7 +111,7 @@ export function BabyGrowthChart({ entries, gender }: BabyGrowthChartProps) {
       <Card>
         <CardContent className="py-8 text-center">
           <p className="text-muted-foreground">
-            أضيفي قياساً واحداً على الأقل لعرض الرسم البياني
+            {t('charts.babyGrowth.noData')}
           </p>
         </CardContent>
       </Card>
@@ -122,17 +124,17 @@ export function BabyGrowthChart({ entries, gender }: BabyGrowthChartProps) {
       return (
         <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
           <p className="font-semibold text-foreground">
-            الشهر {label}
+            {t('charts.babyGrowth.month')} {label}
           </p>
           {data.actual && (
             <p className="text-primary font-medium">
-              الوزن الفعلي: {data.actual.toFixed(1)} كجم
+              {t('charts.babyGrowth.actualWeight')}: {data.actual.toFixed(1)} {t('charts.babyGrowth.kg')}
             </p>
           )}
           <div className="text-sm text-muted-foreground mt-1">
-            <p>الحد الأدنى (3%): {data.p3.toFixed(1)} كجم</p>
-            <p>المتوسط (50%): {data.p50.toFixed(1)} كجم</p>
-            <p>الحد الأعلى (97%): {data.p97.toFixed(1)} كجم</p>
+            <p>{t('charts.babyGrowth.minPercentile')}: {data.p3.toFixed(1)} {t('charts.babyGrowth.kg')}</p>
+            <p>{t('charts.babyGrowth.medianPercentile')}: {data.p50.toFixed(1)} {t('charts.babyGrowth.kg')}</p>
+            <p>{t('charts.babyGrowth.maxPercentile')}: {data.p97.toFixed(1)} {t('charts.babyGrowth.kg')}</p>
           </div>
         </div>
       );
@@ -145,7 +147,7 @@ export function BabyGrowthChart({ entries, gender }: BabyGrowthChartProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <TrendingUp className="h-5 w-5 text-primary" />
-          منحنى نمو الوزن - معايير منظمة الصحة العالمية
+          {t('charts.babyGrowth.title')}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -168,7 +170,7 @@ export function BabyGrowthChart({ entries, gender }: BabyGrowthChartProps) {
                 tickLine={{ stroke: "hsl(var(--border))" }}
                 axisLine={{ stroke: "hsl(var(--border))" }}
                 label={{
-                  value: "العمر (شهور)",
+                  value: t('charts.babyGrowth.ageMonths'),
                   position: "bottom",
                   fill: "hsl(var(--muted-foreground))",
                   fontSize: 11,
@@ -179,7 +181,7 @@ export function BabyGrowthChart({ entries, gender }: BabyGrowthChartProps) {
                 tickLine={{ stroke: "hsl(var(--border))" }}
                 axisLine={{ stroke: "hsl(var(--border))" }}
                 label={{
-                  value: "الوزن (كجم)",
+                  value: t('charts.babyGrowth.weightKg'),
                   angle: -90,
                   position: "insideLeft",
                   fill: "hsl(var(--muted-foreground))",
@@ -233,7 +235,7 @@ export function BabyGrowthChart({ entries, gender }: BabyGrowthChartProps) {
                 dot={{ fill: "hsl(var(--primary))", strokeWidth: 2, r: 6 }}
                 activeDot={{ r: 8, fill: "hsl(var(--primary))" }}
                 connectNulls
-                name="طفلك"
+                name={t('charts.babyGrowth.yourBaby')}
               />
             </ComposedChart>
           </ResponsiveContainer>
@@ -244,16 +246,16 @@ export function BabyGrowthChart({ entries, gender }: BabyGrowthChartProps) {
           <div className="flex items-center gap-2">
             <div className="w-4 h-1 rounded bg-primary" />
             <span className="text-muted-foreground">
-              وزن {gender === "boy" ? "طفلك" : "طفلتك"}
+              {gender === "boy" ? t('charts.babyGrowth.yourBabyBoy') : t('charts.babyGrowth.yourBabyGirl')}
             </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-1 rounded bg-success" />
-            <span className="text-muted-foreground">المتوسط (50%)</span>
+            <span className="text-muted-foreground">{t('charts.babyGrowth.median')}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-success/20" />
-            <span className="text-muted-foreground">النطاق الطبيعي</span>
+            <span className="text-muted-foreground">{t('charts.babyGrowth.normalRange')}</span>
           </div>
         </div>
       </CardContent>

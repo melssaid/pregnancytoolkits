@@ -469,5 +469,28 @@
       "tip": "Tip:",
       "tipText": "Export a backup before deleting to save your data"
     }
+  },
+  "charts": {
+    "babyGrowth": {
+      "noData": "Add at least one measurement to view the chart",
+      "month": "Month",
+      "actualWeight": "Actual Weight",
+      "minPercentile": "Minimum (3%)",
+      "medianPercentile": "Median (50%)",
+      "maxPercentile": "Maximum (97%)",
+      "kg": "kg",
+      "title": "Weight Growth Curve - WHO Standards",
+      "ageMonths": "Age (months)",
+      "weightKg": "Weight (kg)",
+      "yourBaby": "Your Baby",
+      "yourBabyBoy": "Your baby's weight",
+      "yourBabyGirl": "Your baby's weight",
+      "median": "Median (50%)",
+      "normalRange": "Normal Range"
+    }
+  },
+  "appUpdated": {
+    "title": "App updated, reloading...",
+    "description": "App updated, reloading..."
   }
 }
