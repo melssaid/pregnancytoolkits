@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Scale, TrendingUp, AlertCircle, CheckCircle, Target } from 'lucide-react';
+import { WeekSlider } from '@/components/WeekSlider';
 import {
   LineChart,
   Line,
@@ -231,20 +232,16 @@ export default function SmartWeightGainAnalyzer() {
           <CardContent className="p-6 space-y-4">
             <h3 className="text-lg font-semibold">Add Weight Entry</h3>
             
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="week">Pregnancy Week</Label>
-                <Input
-                  id="week"
-                  type="number"
-                  min="1"
-                  max="42"
-                  placeholder="12"
-                  value={currentWeek}
-                  onChange={(e) => setCurrentWeek(e.target.value)}
-                  className="mt-1"
-                />
-              </div>
+            <div className="space-y-4">
+              <WeekSlider
+                week={parseInt(currentWeek) || 20}
+                onChange={(week) => setCurrentWeek(week.toString())}
+                showCard={false}
+                showTrimester={false}
+                label="Pregnancy Week"
+              />
+            </div>
+            <div className="grid grid-cols-1 gap-4 mt-4">
               <div>
                 <Label htmlFor="weight">Current Weight (kg)</Label>
                 <Input
