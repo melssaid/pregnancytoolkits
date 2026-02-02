@@ -36,43 +36,43 @@ const unsafeIngredients = [
 const skincareVideos: Video[] = [
   {
     id: "1",
-    title: "Pregnancy Safe Skincare Routine",
-    description: "Complete guide to pregnancy-safe skincare products",
-    youtubeId: "GV3HUDMQ-F8",
-    duration: "11:30",
+    title: "Dermatologist's Pregnancy Skincare Routine",
+    description: "Board-certified dermatologist Dr. Joyce Park explains morning and evening routine",
+    youtubeId: "CK9K2TmLG3c",
+    duration: "15:30",
     category: "Skincare Routine"
   },
   {
     id: "2",
-    title: "Ingredients to Avoid During Pregnancy",
-    description: "Dermatologist explains what to avoid",
-    youtubeId: "1mMx4tWT6uI",
-    duration: "8:45",
+    title: "Pregnancy-Safe Skincare: What to Use & Avoid",
+    description: "Dr. Mamina Oregano on safe ingredients and alternatives",
+    youtubeId: "YvCjub2dTVo",
+    duration: "12:45",
     category: "Safety"
   },
   {
     id: "3",
-    title: "Preventing Stretch Marks Naturally",
-    description: "Natural ways to prevent and minimize stretch marks",
-    youtubeId: "LjHFxCVmpes",
-    duration: "9:20",
-    category: "Skin Concerns"
+    title: "Pregnancy Skincare 101: Complete Guide",
+    description: "Science-backed guide to pregnancy-safe skincare by dermatologist",
+    youtubeId: "KaEDTt_f-Vg",
+    duration: "18:20",
+    category: "Complete Guide"
   },
   {
     id: "4",
-    title: "Pregnancy Glow Skincare Tips",
-    description: "How to achieve that pregnancy glow safely",
-    youtubeId: "gRYqIicyQcc",
-    duration: "7:15",
+    title: "Pregnancy Skincare Tips - Dr. Heather Rogers",
+    description: "Essential tips from dermatologist Dr. Heather Rogers",
+    youtubeId: "m7LgyUFDGN4",
+    duration: "10:15",
     category: "Tips"
   },
   {
     id: "5",
-    title: "Body Care During Pregnancy",
-    description: "Safe body lotions and belly care routine",
-    youtubeId: "3-LmWfbckTY",
-    duration: "10:30",
-    category: "Body Care"
+    title: "Best Pregnancy-Safe Skincare Products 2024",
+    description: "Products used during pregnancy and after - full review",
+    youtubeId: "UqqIoePycWI",
+    duration: "14:30",
+    category: "Product Reviews"
   },
 ];
 
