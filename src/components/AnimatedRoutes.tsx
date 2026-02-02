@@ -23,13 +23,12 @@ const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const Contact = lazy(() => import("@/pages/Contact"));
 
-// AI-POWERED CORE TOOLS (8 tools)
+// AI-POWERED CORE TOOLS (7 tools)
 const PregnancyAssistant = lazy(() => import("@/pages/tools/PregnancyAssistant"));
 const AISymptomAnalyzer = lazy(() => import("@/pages/tools/AISymptomAnalyzer"));
 const AIMealSuggestion = lazy(() => import("@/pages/tools/AIMealSuggestion"));
 const WeeklySummary = lazy(() => import("@/pages/tools/WeeklySummary"));
 const SmartAppointmentReminder = lazy(() => import("@/pages/tools/SmartAppointmentReminder"));
-const AIBabyNameFinder = lazy(() => import("@/pages/tools/AIBabyNameFinder"));
 const SmartGroceryList = lazy(() => import("@/pages/tools/SmartGroceryList"));
 
 // AI 2026 TOOLS (8 tools)
@@ -101,7 +100,6 @@ export function AnimatedRoutes() {
           <Route path="/tools/ai-meal-suggestion" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
           <Route path="/tools/weekly-summary" element={<PageTransition><WeeklySummary /></PageTransition>} />
           <Route path="/tools/smart-appointment-reminder" element={<PageTransition><SmartAppointmentReminder /></PageTransition>} />
-          <Route path="/tools/ai-baby-name-finder" element={<PageTransition><AIBabyNameFinder /></PageTransition>} />
           <Route path="/tools/smart-grocery-list" element={<PageTransition><SmartGroceryList /></PageTransition>} />
 
           {/* AI 2026 TOOLS */}
