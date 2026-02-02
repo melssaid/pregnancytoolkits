@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from 'react-i18next';
 import {
   Dialog,
   DialogContent,
@@ -87,6 +88,7 @@ export const DataBackupManager: React.FC = () => {
   const [lastBackupDate, setLastBackupDate] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+  const { t, i18n } = useTranslation();
 
   React.useEffect(() => {
     const lastBackup = localStorage.getItem('last_backup_date');
@@ -148,8 +150,8 @@ export const DataBackupManager: React.FC = () => {
       
       if (dataCount === 0) {
         toast({
-          title: 'لا توجد بيانات',
-          description: 'لم يتم العثور على بيانات للتصدير',
+          title: t('settings.backup.noData'),
+          description: t('settings.backup.noDataDesc'),
           variant: 'destructive'
         });
         return;
@@ -182,15 +184,15 @@ export const DataBackupManager: React.FC = () => {
       setLastBackupDate(now);
 
       toast({
-        title: 'تم التصدير بنجاح ✅',
-        description: `تم حفظ ${dataCount} عنصر في الملف`,
+        title: t('settings.backup.exportSuccess'),
+        description: t('settings.backup.exportSuccessDesc', { count: dataCount }),
       });
 
     } catch (error) {
       console.error('Export error:', error);
       toast({
-        title: 'خطأ في التصدير',
-        description: 'حدث خطأ أثناء تصدير البيانات',
+        title: t('settings.backup.exportError'),
+        description: t('settings.backup.exportErrorDesc'),
         variant: 'destructive'
       });
     } finally {
@@ -210,7 +212,7 @@ export const DataBackupManager: React.FC = () => {
 
       // Validate backup structure
       if (!backup.version || !backup.data) {
-        throw new Error('ملف النسخة الاحتياطية غير صالح');
+        throw new Error(t('settings.backup.invalidFile'));
       }
 
       const dataCount = Object.keys(backup.data).length;
@@ -225,8 +227,8 @@ export const DataBackupManager: React.FC = () => {
       });
 
       toast({
-        title: 'تم الاستيراد بنجاح ✅',
-        description: `تم استعادة ${dataCount} عنصر من النسخة الاحتياطية`,
+        title: t('settings.backup.importSuccess'),
+        description: t('settings.backup.importSuccessDesc', { count: dataCount }),
       });
 
       setImportDialogOpen(false);
@@ -239,8 +241,8 @@ export const DataBackupManager: React.FC = () => {
     } catch (error) {
       console.error('Import error:', error);
       toast({
-        title: 'خطأ في الاستيراد',
-        description: error instanceof Error ? error.message : 'حدث خطأ أثناء استيراد البيانات',
+        title: t('settings.backup.importError'),
+        description: error instanceof Error ? error.message : t('settings.backup.exportErrorDesc'),
         variant: 'destructive'
       });
     } finally {
@@ -252,7 +254,8 @@ export const DataBackupManager: React.FC = () => {
   };
 
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('ar-SA', {
+    const locale = i18n.language === 'ar' ? 'ar-SA' : 'en-US';
+    return new Date(dateStr).toLocaleDateString(locale, {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -266,10 +269,10 @@ export const DataBackupManager: React.FC = () => {
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-lg">
           <Shield className="w-5 h-5 text-primary" />
-          النسخ الاحتياطي للبيانات
+          {t('settings.backup.title')}
         </CardTitle>
         <CardDescription>
-          احفظ بياناتك كملف JSON لاستعادتها لاحقاً
+          {t('settings.backup.description')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -278,14 +281,14 @@ export const DataBackupManager: React.FC = () => {
         {lastBackupDate && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 p-2 rounded-lg">
             <Calendar className="w-4 h-4" />
-            <span>آخر نسخة احتياطية: {formatDate(lastBackupDate)}</span>
+            <span>{t('settings.backup.lastBackup')} {formatDate(lastBackupDate)}</span>
           </div>
         )}
 
         <Alert className="bg-amber-50 border-amber-200">
           <AlertTriangle className="h-4 w-4 text-amber-600" />
           <AlertDescription className="text-amber-800 text-sm">
-            <strong>مهم:</strong> احفظ ملف النسخة الاحتياطية في مكان آمن مثل Google Drive أو iCloud أو أرسله لبريدك الإلكتروني.
+            <strong>{t('settings.backup.important')}</strong> {t('settings.backup.importantText')}
           </AlertDescription>
         </Alert>
 
@@ -301,7 +304,7 @@ export const DataBackupManager: React.FC = () => {
             ) : (
               <Download className="w-4 h-4" />
             )}
-            تصدير البيانات
+            {t('settings.backup.exportData')}
           </Button>
 
           {/* Import Button */}
@@ -309,24 +312,24 @@ export const DataBackupManager: React.FC = () => {
             <DialogTrigger asChild>
               <Button variant="outline" className="w-full gap-2">
                 <Upload className="w-4 h-4" />
-                استيراد البيانات
+                {t('settings.backup.importData')}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
                   <FileJson className="w-5 h-5 text-primary" />
-                  استيراد النسخة الاحتياطية
+                  {t('settings.backup.importTitle')}
                 </DialogTitle>
                 <DialogDescription>
-                  اختر ملف النسخة الاحتياطية (.json) لاستعادة بياناتك
+                  {t('settings.backup.importDescription')}
                 </DialogDescription>
               </DialogHeader>
 
               <Alert variant="destructive" className="mt-2">
                 <AlertTriangle className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>تحذير:</strong> سيتم استبدال البيانات الحالية بالبيانات المستوردة
+                  <strong>{t('settings.backup.importWarning')}</strong> {t('settings.backup.importWarningText')}
                 </AlertDescription>
               </Alert>
 
@@ -344,13 +347,13 @@ export const DataBackupManager: React.FC = () => {
               {isImporting && (
                 <div className="flex items-center justify-center gap-2 py-4">
                   <Loader2 className="w-5 h-5 animate-spin text-primary" />
-                  <span>جاري استيراد البيانات...</span>
+                  <span>{t('settings.backup.importing')}</span>
                 </div>
               )}
 
               <DialogFooter>
                 <Button variant="outline" onClick={() => setImportDialogOpen(false)}>
-                  إلغاء
+                  {t('settings.backup.cancel')}
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -361,19 +364,19 @@ export const DataBackupManager: React.FC = () => {
         <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
           <div className="flex items-center gap-1">
             <Check className="w-3 h-3 text-green-500" />
-            <span>جميع بيانات الحمل</span>
+            <span>{t('settings.backup.features.pregnancyData')}</span>
           </div>
           <div className="flex items-center gap-1">
             <Check className="w-3 h-3 text-green-500" />
-            <span>المواعيد والتذكيرات</span>
+            <span>{t('settings.backup.features.appointments')}</span>
           </div>
           <div className="flex items-center gap-1">
             <Check className="w-3 h-3 text-green-500" />
-            <span>سجلات الصحة</span>
+            <span>{t('settings.backup.features.healthRecords')}</span>
           </div>
           <div className="flex items-center gap-1">
             <Check className="w-3 h-3 text-green-500" />
-            <span>خطط الولادة</span>
+            <span>{t('settings.backup.features.birthPlans')}</span>
           </div>
         </div>
 

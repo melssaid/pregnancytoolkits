@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from 'react-i18next';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,8 +30,10 @@ export const DataClearManager: React.FC = () => {
   const [confirmText, setConfirmText] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
   const { toast } = useToast();
+  const { t, i18n } = useTranslation();
 
-  const CONFIRM_WORD = 'حذف';
+  // Get confirm word based on language
+  const CONFIRM_WORD = t('settings.clearData.confirmWord');
 
   const countStoredItems = (): number => {
     let count = 0;
@@ -46,8 +49,8 @@ export const DataClearManager: React.FC = () => {
   const handleClearAllData = async () => {
     if (confirmText !== CONFIRM_WORD) {
       toast({
-        title: 'خطأ في التأكيد',
-        description: `يرجى كتابة "${CONFIRM_WORD}" للتأكيد`,
+        title: t('settings.clearData.confirmError'),
+        description: t('settings.clearData.confirmErrorDesc', { word: CONFIRM_WORD }),
         variant: 'destructive'
       });
       return;
@@ -71,8 +74,8 @@ export const DataClearManager: React.FC = () => {
       });
 
       toast({
-        title: 'تم الحذف بنجاح ✅',
-        description: `تم حذف ${keysToDelete.length} عنصر من البيانات المحلية`,
+        title: t('settings.clearData.deleteSuccess'),
+        description: t('settings.clearData.deleteSuccessDesc', { count: keysToDelete.length }),
       });
 
       setDialogOpen(false);
@@ -86,8 +89,8 @@ export const DataClearManager: React.FC = () => {
     } catch (error) {
       console.error('Clear data error:', error);
       toast({
-        title: 'خطأ في الحذف',
-        description: 'حدث خطأ أثناء حذف البيانات',
+        title: t('settings.clearData.deleteError'),
+        description: t('settings.clearData.deleteErrorDesc'),
         variant: 'destructive'
       });
     } finally {
@@ -102,55 +105,55 @@ export const DataClearManager: React.FC = () => {
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-lg text-destructive">
           <Trash2 className="w-5 h-5" />
-          حذف جميع البيانات
+          {t('settings.clearData.title')}
         </CardTitle>
         <CardDescription>
-          إزالة جميع البيانات المحفوظة على هذا الجهاز
+          {t('settings.clearData.description')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         
         {/* Current data count */}
         <div className="flex items-center justify-between bg-muted/50 p-3 rounded-lg">
-          <span className="text-sm text-muted-foreground">البيانات المحفوظة حالياً:</span>
-          <span className="font-semibold text-lg">{itemCount} عنصر</span>
+          <span className="text-sm text-muted-foreground">{t('settings.clearData.currentData')}</span>
+          <span className="font-semibold text-lg">{itemCount} {t('settings.clearData.items')}</span>
         </div>
 
         {/* Warning */}
         <Alert variant="destructive">
           <AlertTriangle className="h-4 w-4" />
           <AlertDescription className="text-sm">
-            <strong>تحذير:</strong> هذا الإجراء لا يمكن التراجع عنه! سيتم حذف جميع سجلات الحمل، المواعيد، الصور، والإعدادات.
+            <strong>{t('settings.clearData.warning')}</strong> {t('settings.clearData.warningText')}
           </AlertDescription>
         </Alert>
 
         {/* What will be deleted */}
         <div className="text-sm space-y-1">
-          <p className="font-medium mb-2">سيتم حذف:</p>
+          <p className="font-medium mb-2">{t('settings.clearData.willBeDeleted')}</p>
           <div className="grid grid-cols-2 gap-1 text-muted-foreground">
             <div className="flex items-center gap-1">
               <XCircle className="w-3 h-3 text-destructive" />
-              <span>بيانات الحمل</span>
+              <span>{t('settings.clearData.pregnancyData')}</span>
             </div>
             <div className="flex items-center gap-1">
               <XCircle className="w-3 h-3 text-destructive" />
-              <span>المواعيد والتذكيرات</span>
+              <span>{t('settings.clearData.appointments')}</span>
             </div>
             <div className="flex items-center gap-1">
               <XCircle className="w-3 h-3 text-destructive" />
-              <span>سجلات الصحة</span>
+              <span>{t('settings.clearData.healthRecords')}</span>
             </div>
             <div className="flex items-center gap-1">
               <XCircle className="w-3 h-3 text-destructive" />
-              <span>صور الحمل</span>
+              <span>{t('settings.clearData.pregnancyPhotos')}</span>
             </div>
             <div className="flex items-center gap-1">
               <XCircle className="w-3 h-3 text-destructive" />
-              <span>خطط الولادة</span>
+              <span>{t('settings.clearData.birthPlans')}</span>
             </div>
             <div className="flex items-center gap-1">
               <XCircle className="w-3 h-3 text-destructive" />
-              <span>جميع الإعدادات</span>
+              <span>{t('settings.clearData.allSettings')}</span>
             </div>
           </div>
         </div>
@@ -164,39 +167,39 @@ export const DataClearManager: React.FC = () => {
               disabled={itemCount === 0}
             >
               <Trash2 className="w-4 h-4" />
-              {itemCount === 0 ? 'لا توجد بيانات للحذف' : 'حذف جميع البيانات'}
+              {itemCount === 0 ? t('settings.clearData.noDataToDelete') : t('settings.clearData.deleteAllData')}
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent className="max-w-md">
             <AlertDialogHeader>
               <AlertDialogTitle className="flex items-center gap-2 text-destructive">
                 <AlertTriangle className="w-5 h-5" />
-                تأكيد حذف البيانات
+                {t('settings.clearData.confirmTitle')}
               </AlertDialogTitle>
               <AlertDialogDescription className="space-y-3">
                 <p>
-                  أنت على وشك حذف <strong>{itemCount} عنصر</strong> من البيانات المحلية.
+                  {t('settings.clearData.confirmDesc')} <strong>{itemCount}</strong> {t('settings.clearData.confirmDescItems')}
                 </p>
                 <p className="text-destructive font-medium">
-                  ⚠️ هذا الإجراء نهائي ولا يمكن التراجع عنه!
+                  ⚠️ {t('settings.clearData.confirmWarning')}
                 </p>
                 <div className="pt-2">
                   <p className="text-sm mb-2">
-                    اكتب "<strong>{CONFIRM_WORD}</strong>" للتأكيد:
+                    {t('settings.clearData.typeToConfirm')} "<strong>{CONFIRM_WORD}</strong>" {t('settings.clearData.toConfirm')}
                   </p>
                   <Input
                     value={confirmText}
                     onChange={(e) => setConfirmText(e.target.value)}
-                    placeholder={`اكتب "${CONFIRM_WORD}" هنا`}
+                    placeholder={t('settings.clearData.typePlaceholder')}
                     className="text-center"
-                    dir="rtl"
+                    dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
                   />
                 </div>
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter className="flex-row-reverse gap-2">
               <AlertDialogCancel onClick={() => setConfirmText('')}>
-                إلغاء
+                {t('settings.clearData.cancel')}
               </AlertDialogCancel>
               <Button
                 variant="destructive"
@@ -207,12 +210,12 @@ export const DataClearManager: React.FC = () => {
                 {isDeleting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    جاري الحذف...
+                    {t('settings.clearData.deleting')}
                   </>
                 ) : (
                   <>
                     <Trash2 className="w-4 h-4" />
-                    تأكيد الحذف
+                    {t('settings.clearData.confirmDelete')}
                   </>
                 )}
               </Button>
@@ -224,7 +227,7 @@ export const DataClearManager: React.FC = () => {
         <div className="flex items-start gap-2 text-xs text-muted-foreground bg-amber-50 dark:bg-amber-950/30 p-2 rounded-lg">
           <CheckCircle className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
           <span>
-            <strong>نصيحة:</strong> قم بتصدير نسخة احتياطية قبل الحذف لحفظ بياناتك
+            <strong>{t('settings.clearData.tip')}</strong> {t('settings.clearData.tipText')}
           </span>
         </div>
 
