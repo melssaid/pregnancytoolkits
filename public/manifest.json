@@ -1,7 +1,7 @@
 {
-  "name": "WellMama - Women's Health Tools",
-  "short_name": "WellMama",
-  "description": "Professional women's health calculators and trackers for pregnancy, fertility, and postpartum care.",
+  "name": "Pregnancy Toolkits - Your Complete Pregnancy Companion",
+  "short_name": "Pregnancy Toolkits",
+  "description": "Professional pregnancy calculators and trackers for fertility, pregnancy, and postpartum care.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8fafc",

@@ -6,7 +6,7 @@ interface Settings {
   [key: string]: unknown;
 }
 
-const SETTINGS_STORAGE_KEY = "wellmama_settings";
+const SETTINGS_STORAGE_KEY = "pregnancy_toolkits_settings";
 
 /**
  * Settings hook that uses localStorage only.
