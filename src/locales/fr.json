@@ -1,0 +1,535 @@
+{
+  "app": {
+    "name": "Outils de Grossesse",
+    "tagline": "Votre compagnon complet de grossesse",
+    "title": "Votre compagnon",
+    "titleHighlight": "complet",
+    "titleEnd": "de grossesse",
+    "description": "34 outils professionnels pour votre grossesse — de la fertilité aux soins post-partum.",
+    "searchPlaceholder": "Rechercher un outil...",
+    "allTools": "Tous les outils",
+    "toolsAvailable": "{{count}} outils disponibles",
+    "noToolsFound": "Aucun outil correspondant trouvé.",
+    "medicalDisclaimer": "Ces outils sont à titre informatif uniquement. Consultez toujours votre médecin.",
+    "footer": "À titre informatif uniquement. Consultez toujours votre médecin.",
+    "back": "Retour",
+    "allToolsBtn": "Tous les outils"
+  },
+  "ai": {
+    "resultDisclaimer": "Généré par IA • Consultez votre médecin"
+  },
+  "categories": {
+    "all": "Tout",
+    "ai": "Outils IA ✨",
+    "fertility": "Fertilité",
+    "pregnancy": "Grossesse",
+    "labor": "Accouchement",
+    "postpartum": "Soins bébé",
+    "riskAssessment": "Évaluation des risques",
+    "mentalHealth": "Santé mentale",
+    "wellness": "Bien-être",
+    "preparation": "Préparation"
+  },
+  "tools": {
+    "pregnancyAssistant": {
+      "title": "Guide de grossesse IA",
+      "description": "Posez n'importe quelle question sur la grossesse et obtenez des réponses instantanées."
+    },
+    "symptomAnalyzer": {
+      "title": "Analyse des symptômes IA",
+      "description": "Analysez vos symptômes avec des informations intelligentes."
+    },
+    "aiMealSuggestion": {
+      "title": "Planificateur de repas IA",
+      "description": "Suggestions de repas personnalisées pour votre trimestre."
+    },
+    "weeklySummary": {
+      "title": "Aperçus hebdomadaires",
+      "description": "Mises à jour intelligentes sur la croissance de votre bébé."
+    },
+    "aiBirthPlan": {
+      "title": "Générateur de plan de naissance IA",
+      "description": "Créez votre plan de naissance personnalisé avec l'aide de l'IA."
+    },
+    "smartAppointmentReminder": {
+      "title": "Rappel de rendez-vous intelligent",
+      "description": "Ne manquez jamais un rendez-vous prénatal."
+    },
+    "aiCravingAlternatives": {
+      "title": "Alternatives aux envies IA",
+      "description": "Alternatives saines pour vos envies de grossesse."
+    },
+    "smartGroceryList": {
+      "title": "Liste de courses intelligente",
+      "description": "Liste de courses IA pour la nutrition de grossesse."
+    },
+    "aiSleepOptimizer": {
+      "title": "Optimiseur de sommeil IA",
+      "description": "Conseils de sommeil personnalisés pour la grossesse."
+    },
+    "aiHospitalBag": {
+      "title": "Sac d'hôpital IA",
+      "description": "Liste de préparation intelligente pour le jour J."
+    },
+    "aiPartnerGuide": {
+      "title": "Guide du partenaire IA",
+      "description": "Conseils de soutien pour les partenaires et conjoints."
+    },
+    "aiBirthPosition": {
+      "title": "Positions d'accouchement IA",
+      "description": "Positions optimales pour votre travail."
+    },
+    "aiSkincare": {
+      "title": "Soins de la peau IA",
+      "description": "Routine de soins sûre pour la grossesse."
+    },
+    "aiNauseaRelief": {
+      "title": "Soulagement des nausées IA",
+      "description": "Remèdes et conseils contre les nausées matinales."
+    },
+    "aiBudgetPlanner": {
+      "title": "Planificateur de budget IA",
+      "description": "Planifiez les dépenses bébé intelligemment."
+    },
+    "aiBumpPhotos": {
+      "title": "Photos hebdomadaires",
+      "description": "Chronologie photo de grossesse avec analyses IA."
+    },
+    "aiFitnessCoach": {
+      "title": "Coach fitness IA",
+      "description": "Exercices sûrs personnalisés pour votre stade de grossesse."
+    },
+    "aiBackPainRelief": {
+      "title": "Soulagement du mal de dos IA",
+      "description": "Exercices personnalisés pour les douleurs de grossesse."
+    },
+    "vitaminTracker": {
+      "title": "Suivi des vitamines",
+      "description": "N'oubliez jamais vos vitamines prénatales."
+    },
+    "forbiddenFoods": {
+      "title": "Aliments à éviter",
+      "description": "Sachez ce qui est sûr à manger."
+    },
+    "aiLaborProgress": {
+      "title": "Suivi du travail IA",
+      "description": "Suivez les contractions et surveillez la progression."
+    },
+    "cycleTracker": {
+      "title": "Suivi du cycle et ovulation",
+      "description": "Suivez votre cycle et trouvez vos jours fertiles."
+    },
+    "dueDateCalculator": {
+      "title": "Calculateur de date d'accouchement",
+      "description": "Découvrez quand votre bébé arrivera."
+    },
+    "fetalGrowth": {
+      "title": "Suivi de croissance fœtale",
+      "description": "Voyez la taille de votre bébé cette semaine !"
+    },
+    "kickCounter": {
+      "title": "Compteur de coups",
+      "description": "Suivez les précieux mouvements de votre bébé."
+    },
+    "weightGain": {
+      "title": "Analyseur de prise de poids",
+      "description": "Surveillez une prise de poids saine."
+    },
+    "postpartumMentalHealth": {
+      "title": "Coach santé mentale",
+      "description": "Dépistage EPDS et soutien santé mentale."
+    },
+    "gestationalDiabetes": {
+      "title": "Risque de diabète gestationnel",
+      "description": "Connaissez vos facteurs de risque."
+    },
+    "preeclampsiaRisk": {
+      "title": "Risque de prééclampsie",
+      "description": "Vérifiez vos facteurs de risque de prééclampsie."
+    },
+    "babyGearRecommender": {
+      "title": "Recommandations équipement bébé",
+      "description": "Liste des essentiels pour votre nouveau-né."
+    },
+    "aiLactationPrep": {
+      "title": "Préparation allaitement IA",
+      "description": "Guide de préparation à l'allaitement."
+    },
+    "babySleepTracker": {
+      "title": "Suivi du sommeil bébé",
+      "description": "Suivez les habitudes de sommeil de votre bébé."
+    },
+    "babyGrowth": {
+      "title": "Croissance bébé",
+      "description": "Suivez la croissance avec les courbes OMS."
+    },
+    "diaperTracker": {
+      "title": "Suivi des couches",
+      "description": "Enregistrez les changements, surveillez la santé."
+    }
+  },
+  "common": {
+    "calculate": "Calculer",
+    "results": "Vos résultats",
+    "info": "Information",
+    "warning": "Important",
+    "success": "Succès",
+    "error": "Erreur",
+    "save": "Enregistrer",
+    "reset": "Réinitialiser",
+    "start": "Démarrer",
+    "stop": "Arrêter",
+    "clear": "Effacer",
+    "delete": "Supprimer",
+    "add": "Ajouter",
+    "remove": "Retirer",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "week": "Semaine",
+    "weeks": "Semaines",
+    "day": "Jour",
+    "days": "Jours",
+    "month": "Mois",
+    "months": "Mois",
+    "minutes": "minutes",
+    "seconds": "secondes",
+    "hours": "heures",
+    "premium": "Premium",
+    "subscribe": "S'abonner",
+    "unlock": "Débloquer tous les outils",
+    "loading": "Chargement...",
+    "cancel": "Annuler",
+    "edit": "Modifier"
+  },
+  "subscription": {
+    "subscribeNow": "Premium - 0,79€/mois",
+    "premiumFeature": "Fonctionnalité Premium",
+    "unlockAccess": "Débloquez les 34 outils",
+    "subscribeToAccess": "Abonnez-vous pour débloquer"
+  },
+  "dueDatePage": {
+    "title": "Calculateur de date d'accouchement",
+    "subtitle": "Estimez quand votre bébé arrivera",
+    "lmpTab": "Dernières règles",
+    "conceptionTab": "Date de conception",
+    "lmpLabel": "Premier jour des dernières règles",
+    "conceptionLabel": "Date de conception",
+    "calculateBtn": "Calculer la date",
+    "timeline": "Votre chronologie de grossesse",
+    "estimatedDueDate": "Date d'accouchement estimée",
+    "currentlyAt": "Vous êtes actuellement à",
+    "weeksAndDays": "{{weeks}} semaines, {{days}} jours",
+    "trimester": "{{number}}ème trimestre",
+    "conception": "Conception",
+    "secondTrimester": "2ème trimestre",
+    "thirdTrimester": "3ème trimestre",
+    "info": "Seulement environ 5% des bébés naissent à la date prévue. La plupart naissent dans les 2 semaines avant ou après. Votre médecin peut ajuster la date selon l'échographie."
+  },
+  "kickCounterPage": {
+    "title": "Compteur de coups",
+    "subtitle": "Comptez 10 coups pour surveiller l'activité fœtale",
+    "timeElapsed": "Temps écoulé",
+    "startCounting": "Commencer à compter",
+    "kicks": "coups",
+    "endSession": "Terminer la session",
+    "goal": "Objectif : 10 coups en 2 heures ou moins",
+    "moreToGo": "Encore {{count}} coups",
+    "recentSessions": "Sessions récentes",
+    "info": "À partir de 28 semaines, comptez les mouvements quotidiennement. Contactez votre médecin si vous remarquez une diminution ou n'atteignez pas 10 coups en 2 heures."
+  },
+  "contractionPage": {
+    "title": "Minuteur de contractions",
+    "subtitle": "Suivez la durée et la fréquence des contractions",
+    "contractionStarted": "Contraction commencée",
+    "contractionEnded": "Contraction terminée",
+    "avgDuration": "Durée moyenne",
+    "avgInterval": "Intervalle moyen",
+    "contractionLog": "Journal des contractions",
+    "sinceLastContraction": "{{minutes}} min depuis la dernière",
+    "duration": "durée",
+    "callProvider": "Temps d'appeler votre médecin",
+    "callProviderDesc": "Les contractions sont espacées de 5 minutes et durent 45+ secondes. Pensez à aller à l'hôpital.",
+    "rule511": "Règle 5-1-1",
+    "rule511Desc": "Appelez votre médecin quand les contractions sont espacées de 5 minutes, durent 1 minute chacune, depuis au moins 1 heure."
+  },
+  "preeclampsiaPage": {
+    "title": "Évaluation du risque de prééclampsie",
+    "subtitle": "Vérifiez vos facteurs de risque",
+    "highRisk": "Facteurs de risque élevé",
+    "moderateRisk": "Facteurs de risque modéré",
+    "firstPregnancy": "Première grossesse",
+    "previousPreeclampsia": "Prééclampsie antérieure",
+    "chronicHypertension": "Hypertension chronique",
+    "diabetes": "Diabète",
+    "kidneyDisease": "Maladie rénale",
+    "obesity": "Obésité (IMC > 30)",
+    "age35Plus": "Âge 35+",
+    "multiplePregnancy": "Grossesse multiple",
+    "familyHistory": "Antécédents familiaux",
+    "calculate": "Calculer le risque",
+    "lowRiskResult": "Risque faible",
+    "moderateRiskResult": "Risque modéré",
+    "highRiskResult": "Risque élevé",
+    "disclaimer": "Ceci n'est qu'une évaluation préliminaire. Consultez toujours votre médecin."
+  },
+  "fitnessPage": {
+    "title": "Coach fitness IA",
+    "currentWeek": "Semaine actuelle",
+    "selectTrimester": "Sélectionner le trimestre",
+    "exerciseLevel": "Niveau d'activité",
+    "beginner": "Débutant",
+    "intermediate": "Intermédiaire",
+    "advanced": "Avancé",
+    "generatePlan": "Générer le programme",
+    "safeExercises": "Exercices sûrs",
+    "avoidExercises": "Exercices à éviter",
+    "disclaimer": "Consultez votre médecin avant de commencer tout programme d'exercices."
+  },
+  "forbiddenFoodsPage": {
+    "title": "Aliments à éviter",
+    "searchPlaceholder": "Rechercher des aliments...",
+    "forbidden": "Éviter",
+    "caution": "Prudence",
+    "safe": "Sûr",
+    "forbiddenTitle": "Aliments à éviter",
+    "cautionTitle": "À consommer avec prudence",
+    "safeTitle": "Alternatives sûres",
+    "disclaimer": "Ceci est un guide général. Consultez toujours votre médecin pour les restrictions alimentaires spécifiques à votre grossesse."
+  },
+  "babySleepPage": {
+    "title": "Suivi du sommeil bébé",
+    "logSleep": "Enregistrer le sommeil",
+    "startTime": "Heure de début",
+    "endTime": "Heure de fin",
+    "duration": "Durée",
+    "totalToday": "Total de sommeil aujourd'hui",
+    "sleepLog": "Journal du sommeil"
+  },
+  "diaperPage": {
+    "title": "Suivi des couches",
+    "logChange": "Enregistrer le changement",
+    "wet": "Mouillée",
+    "dirty": "Sale",
+    "both": "Les deux",
+    "todayCount": "Changements aujourd'hui",
+    "recentChanges": "Changements récents"
+  },
+  "babyGrowthPage": {
+    "title": "Croissance bébé",
+    "age": "Âge du bébé",
+    "weight": "Poids (kg)",
+    "height": "Taille (cm)",
+    "headCircumference": "Périmètre crânien (cm)",
+    "percentile": "Percentile",
+    "trackGrowth": "Suivre la croissance"
+  },
+  "babyGearPage": {
+    "title": "Équipement bébé essentiel",
+    "categories": "Catégories",
+    "sleeping": "Sommeil",
+    "feeding": "Alimentation",
+    "bathing": "Bain",
+    "clothing": "Vêtements",
+    "travel": "Voyage",
+    "health": "Santé",
+    "mustHave": "Indispensable",
+    "niceToHave": "Pratique",
+    "canWait": "Peut attendre",
+    "estimatedCost": "Coût estimé"
+  },
+  "nutrition": {
+    "breakfast": "Petit-déjeuner",
+    "lunch": "Déjeuner",
+    "dinner": "Dîner",
+    "snack": "Collation",
+    "addFoodFirst": "Ajoutez au moins un aliment",
+    "mealLogged": "Repas enregistré : {{meal}}",
+    "noMeals": "Aucun repas",
+    "logMealFirst": "Enregistrez d'abord au moins un repas",
+    "weekInfo": "Semaine {{week}} - Enregistrez vos repas et obtenez des conseils IA",
+    "mealsCount": "{{count}} repas",
+    "notLogged": "Non enregistré",
+    "totalCalories": "Calories totales aujourd'hui",
+    "cal": "kcal",
+    "goalCalories": "Objectif : ~2200 kcal pour la grossesse",
+    "logNewMeal": "Enregistrer un nouveau repas",
+    "enterFood": "Entrez le nom de l'aliment...",
+    "caloriesOptional": "Calories (optionnel)",
+    "caloriesPlaceholder": "Nombre de calories",
+    "saveMeal": "Enregistrer le repas",
+    "todaysMeals": "Repas d'aujourd'hui",
+    "analyzeDay": "Analyser la journée",
+    "aiTip": "Conseil IA",
+    "dailyAnalysis": "Votre analyse nutritionnelle quotidienne",
+    "tipsTitle": "Conseils nutrition grossesse",
+    "tip1": "Mangez 5-6 petits repas au lieu de 3 gros",
+    "tip2": "Buvez 8-10 verres d'eau par jour",
+    "tip3": "Évitez les aliments crus et les fromages non pasteurisés",
+    "tip4": "Concentrez-vous sur les protéines, le fer et le calcium"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "securityPrivacy": "Sécurité et confidentialité",
+    "dataManagement": "Gestion des données",
+    "dataPrivacy": "Confidentialité des données",
+    "privacyPoint1": "Toutes vos données de santé sont stockées localement sur votre appareil uniquement",
+    "privacyPoint2": "Nous ne collectons ni ne partageons vos informations personnelles",
+    "privacyPoint3": "Vous pouvez exporter vos données à tout moment",
+    "aboutApp": "À propos de l'application",
+    "appTagline": "Outils de Grossesse - Votre compagnon de parcours",
+    "version": "Version",
+    "medicalNote": "Cette application est à titre éducatif uniquement et ne remplace pas un avis médical",
+    "encryption": {
+      "title": "Chiffrement des données",
+      "description": "Protégez vos données de santé avec le chiffrement AES-256",
+      "enabled": "Chiffrement activé",
+      "disabled": "Chiffrement désactivé",
+      "enabledAlert": "Vos données de santé sont protégées par le chiffrement AES-256-GCM. La clé de chiffrement est stockée uniquement sur votre appareil.",
+      "disabledAlert": "Le chiffrement est désactivé. Vos données sont stockées en format lisible sur l'appareil.",
+      "encryptedData": "Données chiffrées :",
+      "personalPregnancyData": "Données personnelles de grossesse",
+      "healthWeightRecords": "Dossiers de santé et de poids",
+      "medicalAppointments": "Rendez-vous médicaux",
+      "birthPlans": "Plans de naissance",
+      "journalNotes": "Journal et notes",
+      "cycleData": "Données du cycle menstruel",
+      "securityNote": "Note de sécurité :",
+      "securityNoteText": "La clé de chiffrement est stockée uniquement sur votre appareil. Si vous effacez les données de l'application, vous perdrez l'accès aux données chiffrées. Faites des sauvegardes régulières.",
+      "processing": "Traitement...",
+      "enabledToast": "Chiffrement activé ✅",
+      "enabledToastDesc": "{{count}} éléments de données sensibles chiffrés",
+      "enabledToastDescNew": "Les nouvelles données seront chiffrées automatiquement",
+      "disabledToast": "Chiffrement désactivé",
+      "disabledToastDesc": "{{count}} éléments déchiffrés",
+      "disabledToastDescNone": "Aucune donnée chiffrée trouvée",
+      "errorToast": "Erreur survenue",
+      "errorToastDesc": "Échec du changement de statut de chiffrement"
+    },
+    "backup": {
+      "title": "Sauvegarde des données",
+      "description": "Enregistrez vos données en fichier JSON pour les restaurer plus tard",
+      "lastBackup": "Dernière sauvegarde :",
+      "important": "Important :",
+      "importantText": "Enregistrez le fichier de sauvegarde dans un endroit sûr comme Google Drive, iCloud, ou envoyez-le par email.",
+      "exportData": "Exporter les données",
+      "importData": "Importer les données",
+      "importTitle": "Importer la sauvegarde",
+      "importDescription": "Choisissez un fichier de sauvegarde (.json) pour restaurer vos données",
+      "importWarning": "Attention :",
+      "importWarningText": "Les données actuelles seront remplacées par les données importées",
+      "cancel": "Annuler",
+      "noData": "Aucune donnée",
+      "noDataDesc": "Aucune donnée à exporter",
+      "exportSuccess": "Export réussi ✅",
+      "exportSuccessDesc": "{{count}} éléments enregistrés dans le fichier",
+      "exportError": "Erreur d'export",
+      "exportErrorDesc": "Une erreur s'est produite lors de l'export",
+      "importSuccess": "Import réussi ✅",
+      "importSuccessDesc": "{{count}} éléments restaurés depuis la sauvegarde",
+      "importError": "Erreur d'import",
+      "invalidFile": "Fichier de sauvegarde invalide",
+      "importing": "Import des données en cours...",
+      "features": {
+        "pregnancyData": "Toutes les données de grossesse",
+        "appointments": "Rendez-vous et rappels",
+        "healthRecords": "Dossiers de santé",
+        "birthPlans": "Plans de naissance"
+      }
+    },
+    "clearData": {
+      "title": "Supprimer toutes les données",
+      "description": "Supprimer toutes les données enregistrées sur cet appareil",
+      "currentData": "Données actuellement enregistrées :",
+      "items": "éléments",
+      "warning": "Attention :",
+      "warningText": "Cette action est irréversible ! Tous les dossiers de grossesse, rendez-vous, photos et paramètres seront supprimés.",
+      "willBeDeleted": "Sera supprimé :",
+      "pregnancyData": "Données de grossesse",
+      "appointments": "Rendez-vous et rappels",
+      "healthRecords": "Dossiers de santé",
+      "pregnancyPhotos": "Photos de grossesse",
+      "birthPlans": "Plans de naissance",
+      "allSettings": "Tous les paramètres",
+      "noDataToDelete": "Aucune donnée à supprimer",
+      "deleteAllData": "Supprimer toutes les données",
+      "confirmTitle": "Confirmer la suppression",
+      "confirmDesc": "Vous êtes sur le point de supprimer",
+      "confirmDescItems": "éléments de données locales.",
+      "confirmWarning": "Cette action est définitive et irréversible !",
+      "typeToConfirm": "Tapez",
+      "toConfirm": "pour confirmer :",
+      "confirmWord": "SUPPRIMER",
+      "typePlaceholder": "Tapez \"SUPPRIMER\" ici",
+      "cancel": "Annuler",
+      "confirmDelete": "Confirmer la suppression",
+      "deleting": "Suppression...",
+      "deleteSuccess": "Supprimé avec succès ✅",
+      "deleteSuccessDesc": "{{count}} éléments supprimés des données locales",
+      "deleteError": "Erreur de suppression",
+      "deleteErrorDesc": "Une erreur s'est produite lors de la suppression",
+      "confirmError": "Erreur de confirmation",
+      "confirmErrorDesc": "Veuillez taper \"{{word}}\" pour confirmer",
+      "tip": "Conseil :",
+      "tipText": "Exportez une sauvegarde avant de supprimer pour conserver vos données"
+    }
+  },
+  "charts": {
+    "babyGrowth": {
+      "noData": "Ajoutez au moins une mesure pour afficher le graphique",
+      "month": "Mois",
+      "actualWeight": "Poids réel",
+      "minPercentile": "Minimum (3%)",
+      "medianPercentile": "Médiane (50%)",
+      "maxPercentile": "Maximum (97%)",
+      "kg": "kg",
+      "title": "Courbe de croissance - Normes OMS",
+      "ageMonths": "Âge (mois)",
+      "weightKg": "Poids (kg)",
+      "yourBaby": "Votre bébé",
+      "yourBabyBoy": "Poids de votre bébé",
+      "yourBabyGirl": "Poids de votre bébé",
+      "median": "Médiane (50%)",
+      "normalRange": "Plage normale"
+    }
+  },
+  "smartPlan": {
+    "title": "Mon plan intelligent",
+    "subtitle": "Plans quotidiens personnalisés basés sur vos données",
+    "yourData": "Vos données",
+    "currentWeek": "Semaine actuelle",
+    "weight": "Poids",
+    "backPainLevel": "Niveau de douleur dorsale",
+    "exercises": "Exercices",
+    "meals": "Repas",
+    "report": "Rapport",
+    "dailyRoutine": "Votre routine quotidienne",
+    "exerciseDesc": "Ces exercices ont été sélectionnés pour la semaine {{week}} et votre état de santé.",
+    "ex1": { "name": "Étirement chat-vache" },
+    "ex2": { "name": "Renforcement du plancher pelvien" },
+    "ex3": { "name": "Rotation des épaules" },
+    "exGeneral": { "name": "Marche légère" },
+    "nutritionPlan": "Plan nutritionnel",
+    "caloriesTarget": "Objectif calorique quotidien",
+    "breakfast": "Petit-déjeuner",
+    "breakfastDesc": "Flocons d'avoine avec fruits et noix (350 kcal)",
+    "lunch": "Déjeuner",
+    "lunchDesc": "Salade de poulet grillé avec quinoa (500 kcal)",
+    "dinner": "Dîner",
+    "dinnerDesc": "Poisson grillé avec légumes sautés (400 kcal)",
+    "weeklyReport": "Rapport médical hebdomadaire",
+    "reportDesc": "Rapport prêt à imprimer avec résumé de votre état",
+    "readyToPrint": "Prêt à imprimer",
+    "printNote": "Cliquez sur le bouton pour imprimer le rapport ou l'enregistrer en PDF",
+    "printBtn": "Imprimer le rapport / Enregistrer en PDF",
+    "printSuccess": "Préparation de l'impression...",
+    "vitals": "Signes vitaux",
+    "pain": "Niveau de douleur",
+    "summary": "Résumé de l'état",
+    "summaryText": "La patiente a des contrôles réguliers. Niveau d'activité bon. Nutrition équilibrée.",
+    "doctorNotes": "Notes du médecin"
+  },
+  "appUpdated": {
+    "title": "Application mise à jour, rechargement...",
+    "description": "Application mise à jour, rechargement..."
+  }
+}
