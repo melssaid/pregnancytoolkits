@@ -16,7 +16,7 @@ const languages = [
   { code: 'tr', flag: '🇹🇷', short: 'TR' },
   { code: 'fr', flag: '🇫🇷', short: 'FR' },
   { code: 'es', flag: '🇪🇸', short: 'ES' },
-  { code: 'pt', flag: '🇧🇷', short: 'PT' },
+  { code: 'pt', flag: '🇵🇹', short: 'PT' },
 ];
 
 interface LanguageDropdownProps {
