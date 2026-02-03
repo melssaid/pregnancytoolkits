@@ -6,6 +6,7 @@ import { BackButton } from "./BackButton";
 import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
+import { LanguageDropdown } from "./LanguageDropdown";
 import logoImage from "@/assets/logo.png";
 
 interface ToolFrameProps {
@@ -80,26 +81,32 @@ export function ToolFrame({
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Minimal Header */}
+        {/* Minimal Header with Language & App Name */}
         <motion.header 
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border/40 shadow-sm"
         >
-          <div className="px-4 py-2.5 flex items-center justify-between">
-            <BackButton />
-            <Link to="/" className="flex items-center">
-              <img 
-                src={logoImage} 
-                alt="Pregnancy Toolkits" 
-                width={36}
-                height={36}
-                loading="eager"
-                decoding="async"
-                className="h-9 w-9 rounded-full shadow-md object-cover"
-              />
-            </Link>
+          <div className="px-3 py-2 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <BackButton />
+              <Link to="/" className="flex items-center gap-2 min-w-0">
+                <img 
+                  src={logoImage} 
+                  alt="Pregnancy Toolkits" 
+                  width={32}
+                  height={32}
+                  loading="eager"
+                  decoding="async"
+                  className="h-8 w-8 rounded-full shadow-md object-cover flex-shrink-0"
+                />
+                <span className="text-sm font-bold text-foreground truncate hidden sm:block">
+                  {t('app.name')}
+                </span>
+              </Link>
+            </div>
+            <LanguageDropdown />
           </div>
         </motion.header>
 
