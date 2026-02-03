@@ -67,7 +67,10 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
           <div className="absolute inset-0 bg-card/95 backdrop-blur-lg border-t border-border/40 shadow-lg" />
           
           <div className="relative flex items-center justify-around px-1 py-1.5 safe-area-bottom">
-            {navItems.map((item) => {
+            {navItems
+              // Hide Home button on Settings page
+              .filter((item) => !(item.id === "home" && location.pathname === "/settings"))
+              .map((item) => {
               const active = isActive(item.href);
               const Icon = item.icon;
 
