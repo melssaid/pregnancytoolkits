@@ -9,7 +9,7 @@ interface AIRequest {
   type: "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | 
         "posture-coach" | "walking-coach" | "stretch-reminder" | "back-pain-relief" | 
         "leg-cramp-preventer" | "smoothie-generator" | "daily-tips" | "labor-tracker" |
-        "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice";
+        "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice" | "bump-photos";
   messages?: { role: string; content: string }[];
   context?: {
     week?: number;
@@ -27,7 +27,7 @@ const VALID_TYPES = [
   "symptom-analysis", "meal-suggestion", "pregnancy-assistant", "weekly-summary",
   "posture-coach", "walking-coach", "stretch-reminder", "back-pain-relief",
   "leg-cramp-preventer", "smoothie-generator", "daily-tips", "labor-tracker",
-  "appointment-prep", "kick-analysis", "sleep-analysis", "vitamin-advice"
+  "appointment-prep", "kick-analysis", "sleep-analysis", "vitamin-advice", "bump-photos"
 ];
 const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
@@ -775,6 +775,59 @@ Important safety considerations - always consult your healthcare provider before
 ` + complianceDisclaimer + `
 
 Be specific and practical about supplement timing and interactions.`;
+        break;
+
+      case "bump-photos":
+        const bumpWeek = context?.week || 20;
+        systemPrompt = personaPrefix + `You are specialized in pregnancy progression and fetal development for week ${bumpWeek}.
+
+Structure your response:
+
+## 🗓️ Week ${bumpWeek} Development
+
+### 👶 Baby's Current Size
+Your baby is now about the size of a **[fruit/vegetable comparison]** - approximately [X inches/cm] long and weighing around [X oz/g].
+
+### 🌟 Key Developments This Week
+- **Development 1**: Detailed description of what's happening
+- **Development 2**: Another milestone or change
+- **Development 3**: Sensory or physical development
+- **Development 4**: Brain or organ development
+
+## 🤰 Your Body This Week
+
+### Physical Changes
+- What you might notice in your belly
+- How your body is adapting
+- Common experiences at this stage
+
+### Expected Symptoms
+- Normal symptoms for week ${bumpWeek}
+- Tips for managing discomfort
+
+## 📸 Photo Documentation Tips
+
+### Capturing This Moment
+- Best poses for bump photos at week ${bumpWeek}
+- Lighting and angle suggestions
+- Outfit ideas that show your progress
+
+### Weekly Tracking Ideas
+- Comparison tips for weekly photos
+- Creative documentation ideas
+- Memory-making suggestions
+
+## 💕 Self-Care Reminders
+- Skin care for stretch mark prevention
+- Comfort recommendations for this stage
+- Relaxation and wellness tips
+
+## ✨ Words of Encouragement
+A warm, supportive message celebrating this stage of your pregnancy journey.
+
+` + complianceDisclaimer + `
+
+Be warm, encouraging, and focus on celebrating this beautiful journey.`;
         break;
     }
 
