@@ -88,8 +88,8 @@ export function ToolFrame({
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border/40 shadow-sm"
         >
-          <div className="px-3 py-2 flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2 min-w-0">
+          <div className="px-3 py-2 flex items-center justify-between">
+            <div className="flex items-center gap-2 min-w-0 flex-1">
               <BackButton />
               <Link to="/" className="flex items-center gap-2 min-w-0">
                 <img 
@@ -106,7 +106,9 @@ export function ToolFrame({
                 </span>
               </Link>
             </div>
-            <LanguageDropdown />
+            <div className="flex-shrink-0 ms-3">
+              <LanguageDropdown />
+            </div>
           </div>
         </motion.header>
 
