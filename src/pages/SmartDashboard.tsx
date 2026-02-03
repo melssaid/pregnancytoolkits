@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Send, Bot, User, Home, MessageCircle, Heart, Utensils, Dumbbell, 
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
-  Baby, Pill, Stethoscope, Salad, ChevronRight, Waves, CalendarCheck
+  Baby, Pill, Stethoscope, Salad, ChevronRight, CalendarCheck,
+  Hand, TrendingUp, Camera, Bell, Moon, Ruler, FileText,
+  Database, Clock, Calendar, Briefcase, ShoppingCart
 } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Layout } from "@/components/Layout";
@@ -31,6 +33,50 @@ interface HealthData {
   symptoms: string[];
   weekOfPregnancy: number;
 }
+
+// أدوات التتبع والتخزين - مرتبة منطقياً
+const trackingTools = [
+  // قسم التتبع اليومي
+  { 
+    category: "Daily Tracking",
+    icon: Clock,
+    tools: [
+      { id: "kick-counter", title: "Kick Counter", icon: Hand, href: "/tools/kick-counter", description: "Track baby movements" },
+      { id: "weight-gain", title: "Weight Tracker", icon: Scale, href: "/tools/weight-gain", description: "Monitor weight gain" },
+      { id: "vitamin-tracker", title: "Vitamin Tracker", icon: Pill, href: "/tools/vitamin-tracker", description: "Daily supplements" },
+    ]
+  },
+  // قسم التخطيط
+  { 
+    category: "Planning",
+    icon: Calendar,
+    tools: [
+      { id: "smart-appointment", title: "Appointments", icon: Bell, href: "/tools/smart-appointment-reminder", description: "Medical visits" },
+      { id: "birth-plan", title: "Birth Plan", icon: FileText, href: "/tools/ai-birth-plan", description: "Delivery preferences" },
+      { id: "hospital-bag", title: "Hospital Bag", icon: Briefcase, href: "/tools/ai-hospital-bag", description: "Packing checklist" },
+    ]
+  },
+  // قسم التطور
+  { 
+    category: "Growth",
+    icon: TrendingUp,
+    tools: [
+      { id: "fetal-growth", title: "Fetal Growth", icon: TrendingUp, href: "/tools/fetal-growth", description: "Baby development" },
+      { id: "baby-growth", title: "Baby Growth", icon: Ruler, href: "/tools/baby-growth", description: "Postnatal tracking" },
+      { id: "bump-photos", title: "Bump Photos", icon: Camera, href: "/tools/ai-bump-photos", description: "Weekly snapshots" },
+    ]
+  },
+  // قسم ما بعد الولادة
+  { 
+    category: "Postpartum",
+    icon: Baby,
+    tools: [
+      { id: "baby-sleep", title: "Baby Sleep", icon: Moon, href: "/tools/baby-sleep-tracker", description: "Sleep patterns" },
+      { id: "diaper-tracker", title: "Diaper Tracker", icon: Baby, href: "/tools/diaper-tracker", description: "Daily changes" },
+      { id: "grocery-list", title: "Grocery List", icon: ShoppingCart, href: "/tools/smart-grocery-list", description: "Shopping planner" },
+    ]
+  },
+];
 
 const quickQuestions = [
   { icon: Baby, text: "First trimester symptoms?", color: "from-primary to-pink-500" },
@@ -257,6 +303,62 @@ const SmartDashboard = () => {
               </CardContent>
             </Card>
 
+            {/* Data Tracking Tools - Advanced Section */}
+            <Card className="overflow-hidden">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-semibold flex items-center gap-2">
+                    <Database className="w-4 h-4 text-primary" />
+                    My Tracking Data
+                  </h3>
+                  <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                    {trackingTools.reduce((acc, cat) => acc + cat.tools.length, 0)} tools
+                  </span>
+                </div>
+                
+                <div className="space-y-4">
+                  {trackingTools.map((category, catIndex) => (
+                    <motion.div
+                      key={category.category}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: catIndex * 0.05 }}
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        <category.icon className="w-3 h-3 text-muted-foreground" />
+                        <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+                          {category.category}
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-3 gap-1.5">
+                        {category.tools.map((tool, toolIndex) => (
+                          <Link
+                            key={tool.id}
+                            to={tool.href}
+                            className="group"
+                          >
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: (catIndex * 3 + toolIndex) * 0.02 }}
+                              className="flex flex-col items-center p-2 rounded-lg bg-muted/30 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20"
+                            >
+                              <div className="w-7 h-7 rounded-lg bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-1 transition-colors">
+                                <tool.icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.75} />
+                              </div>
+                              <span className="text-[10px] font-medium text-foreground text-center leading-tight">
+                                {tool.title}
+                              </span>
+                            </motion.div>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
             {/* AI Tools Links */}
             <Card>
               <CardContent className="p-4">
@@ -264,20 +366,22 @@ const SmartDashboard = () => {
                   <Brain className="w-4 h-4 text-primary" />
                   AI-Powered Tools
                 </h3>
-                <div className="space-y-2">
+                <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { title: "Smart Pregnancy Plan", href: "/tools/smart-plan" },
-                    { title: "AI Assistant", href: "/tools/pregnancy-assistant" },
-                    { title: "Symptom Analyzer", href: "/tools/symptom-analyzer" },
-                    { title: "Weekly Summary", href: "/tools/weekly-summary" },
+                    { title: "Smart Plan", icon: CalendarCheck, href: "/tools/smart-plan" },
+                    { title: "AI Assistant", icon: Bot, href: "/tools/pregnancy-assistant" },
+                    { title: "Symptoms", icon: Stethoscope, href: "/tools/symptom-analyzer" },
+                    { title: "Weekly", icon: Sparkles, href: "/tools/weekly-summary" },
                   ].map((link, i) => (
                     <Link
                       key={i}
                       to={link.href}
-                      className="flex items-center justify-between p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+                      className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/30 hover:bg-primary/10 transition-colors group"
                     >
-                      <span className="text-sm font-medium">{link.title}</span>
-                      <ChevronRight className="w-4 h-4 text-muted-foreground" />
+                      <div className="w-6 h-6 rounded-md bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                        <link.icon className="w-3 h-3 text-primary" strokeWidth={1.75} />
+                      </div>
+                      <span className="text-xs font-medium">{link.title}</span>
                     </Link>
                   ))}
                 </div>
