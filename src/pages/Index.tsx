@@ -120,18 +120,42 @@ const Index = () => {
                   {isFirstCategory && allTools.length > 3 && (
                     <motion.button
                       onClick={() => toggleCategory(cat.key)}
-                      className="w-full py-2.5 bg-muted/20 hover:bg-muted/40 border-t border-border/30 flex items-center justify-center gap-1.5 transition-all duration-200 group"
-                      whileTap={{ scale: 0.99 }}
+                      className="w-full py-3 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 hover:from-primary/20 hover:via-primary/10 hover:to-primary/20 border-t border-primary/20 flex items-center justify-center gap-2 transition-all duration-300 group relative overflow-hidden"
+                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: 1.01 }}
                     >
-                      <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground tracking-wide">
+                      {/* Shimmer effect */}
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full"
+                        animate={{ translateX: ['100%', '-100%'] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                      />
+                      
+                      {/* Decorative dots */}
+                      <div className="absolute left-4 flex gap-1">
+                        <span className="w-1 h-1 rounded-full bg-primary/40" />
+                        <span className="w-1 h-1 rounded-full bg-primary/30" />
+                        <span className="w-1 h-1 rounded-full bg-primary/20" />
+                      </div>
+                      
+                      <span className="text-xs font-semibold text-primary group-hover:text-primary/80 tracking-wide relative z-10">
                         {isExpanded ? t('common.showLess', 'Show Less') : t('common.moreItems', '+{{count}} More', { count: remainingCount })}
                       </span>
+                      
                       <motion.div
-                        animate={{ rotate: isExpanded ? 90 : 0 }}
-                        transition={{ duration: 0.15 }}
+                        animate={{ rotate: isExpanded ? -90 : 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="relative z-10"
                       >
-                        <ChevronRight className="w-3 h-3 text-muted-foreground group-hover:text-foreground" />
+                        <ChevronRight className="w-4 h-4 text-primary group-hover:text-primary/80" />
                       </motion.div>
+                      
+                      {/* Decorative dots */}
+                      <div className="absolute right-4 flex gap-1">
+                        <span className="w-1 h-1 rounded-full bg-primary/20" />
+                        <span className="w-1 h-1 rounded-full bg-primary/30" />
+                        <span className="w-1 h-1 rounded-full bg-primary/40" />
+                      </div>
                     </motion.button>
                   )}
                 </div>
