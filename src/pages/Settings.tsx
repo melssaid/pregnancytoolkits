@@ -1,9 +1,10 @@
 import React from 'react';
-import { Database, Shield, Info, Heart, Lock } from 'lucide-react';
+import { Database, Shield, Info, Heart, Lock, Globe } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { DataClearManager } from '@/components/settings/DataClearManager';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
+import { LanguageSelector } from '@/components/settings/LanguageSelector';
 import { Layout } from '@/components/Layout';
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +14,15 @@ const Settings: React.FC = () => {
   return (
     <Layout showBack>
       <div className="container py-6 space-y-6 pb-24">
+
+        {/* Language Section */}
+        <section>
+          <div className="flex items-center gap-2 mb-3">
+            <Globe className="w-5 h-5 text-primary" />
+            <h2 className="font-semibold text-lg">{t('settings.language.sectionTitle', 'Language')}</h2>
+          </div>
+          <LanguageSelector />
+        </section>
         
         {/* Security Section */}
         <section>
