@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
+import logoImage from "@/assets/logo.png";
 
 interface ToolFrameProps {
   children: React.ReactNode;
@@ -85,8 +87,19 @@ export function ToolFrame({
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border/40 shadow-sm"
         >
-          <div className="px-4 py-2.5">
+          <div className="px-4 py-2.5 flex items-center justify-between">
             <BackButton />
+            <Link to="/" className="flex items-center">
+              <img 
+                src={logoImage} 
+                alt="Pregnancy Toolkits" 
+                width={36}
+                height={36}
+                loading="eager"
+                decoding="async"
+                className="h-9 w-9 rounded-full shadow-md object-cover"
+              />
+            </Link>
           </div>
         </motion.header>
 
