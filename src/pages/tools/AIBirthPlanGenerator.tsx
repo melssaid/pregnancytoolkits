@@ -188,11 +188,11 @@ Make it comprehensive and ready to share with healthcare providers.`
     toast.success('Plan deleted');
   }, []);
 
-  const exportPlanAsPDF = useCallback(() => {
+  const exportPlanAsPDF = useCallback(async () => {
     if (!generatedPlan) return;
     
     try {
-      exportBirthPlanToPDF({
+      await exportBirthPlanToPDF({
         title: 'Birth Plan',
         content: generatedPlan,
         date: format(new Date(), 'MMMM d, yyyy'),
@@ -406,8 +406,8 @@ Make it comprehensive and ready to share with healthcare providers.`
                         <Button 
                           size="sm" 
                           variant="outline" 
-                          onClick={() => {
-                            exportBirthPlanToPDF({
+                          onClick={async () => {
+                            await exportBirthPlanToPDF({
                               title: 'Birth Plan',
                               content: plan.generatedPlan,
                               date: format(new Date(plan.date), 'MMMM d, yyyy'),
