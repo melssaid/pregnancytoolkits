@@ -13,26 +13,6 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
-const skinConcerns = [
-  { id: "acne", label: "Pregnancy Acne", icon: "🔴" },
-  { id: "melasma", label: "Melasma/Dark Spots", icon: "🟤" },
-  { id: "stretch-marks", label: "Stretch Marks", icon: "〰️" },
-  { id: "dryness", label: "Dry Skin", icon: "🏜️" },
-  { id: "oiliness", label: "Oily/Shiny Skin", icon: "✨" },
-  { id: "sensitivity", label: "Sensitivity", icon: "❗" },
-  { id: "itching", label: "Itching (PUPPP)", icon: "🤚" },
-  { id: "glow", label: "Want that pregnancy glow!", icon: "💫" },
-];
-
-const unsafeIngredients = [
-  { name: "Retinol/Retinoids", risk: "high", icon: "🚫" },
-  { name: "Salicylic Acid (high %)", risk: "medium", icon: "⚠️" },
-  { name: "Hydroquinone", risk: "high", icon: "🚫" },
-  { name: "Formaldehyde", risk: "high", icon: "🚫" },
-  { name: "Chemical Sunscreens", risk: "medium", icon: "⚠️" },
-  { name: "Essential Oils (some)", risk: "medium", icon: "⚠️" },
-];
-
 const skincareVideos: Video[] = [
   {
     id: "1",
@@ -68,8 +48,28 @@ const skincareVideos: Video[] = [
   },
 ];
 
+const CONCERN_KEYS = [
+  "acne",
+  "melasma",
+  "stretchMarks",
+  "dryness",
+  "oiliness",
+  "sensitivity",
+  "itching",
+  "glow",
+] as const;
+
+const UNSAFE_INGREDIENT_KEYS = [
+  "retinol",
+  "salicylic",
+  "hydroquinone",
+  "formaldehyde",
+  "chemicalSunscreens",
+  "essentialOils",
+] as const;
+
 const AIPregnancySkincare = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { settings } = useSettings();
   const { streamChat, isLoading } = usePregnancyAI();
   
@@ -79,6 +79,8 @@ const AIPregnancySkincare = () => {
   const [budget, setBudget] = useState("medium");
   const [response, setResponse] = useState("");
 
+  const currentLang = i18n.language;
+
   const toggleConcern = (id: string) => {
     setConcerns(prev =>
       prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
@@ -87,15 +89,24 @@ const AIPregnancySkincare = () => {
 
   const getSkincareRoutine = async () => {
     const concernLabels = concerns.map(id => 
-      skinConcerns.find(c => c.id === id)?.label
+      t(`toolsInternal.skincare.concerns.${id}.label`)
     ).filter(Boolean);
 
-    const prompt = `As a pregnancy-safe skincare specialist, create a personalized routine:
+    const skinTypeLabel = t(`toolsInternal.skincare.${skinType}`);
+    const budgetLabel = budget === "low" ? t('toolsInternal.skincare.budgetLow') : budget === "medium" ? t('toolsInternal.skincare.budgetMedium') : t('toolsInternal.skincare.budgetHigh');
+
+    const langInstruction = currentLang !== 'en' 
+      ? `IMPORTANT: Respond ENTIRELY in ${currentLang === 'ar' ? 'Arabic' : currentLang === 'de' ? 'German' : currentLang === 'tr' ? 'Turkish' : currentLang === 'fr' ? 'French' : currentLang === 'es' ? 'Spanish' : currentLang === 'pt' ? 'Portuguese' : 'English'}. All text must be in this language.`
+      : '';
+
+    const prompt = `${langInstruction}
+
+As a pregnancy-safe skincare specialist, create a personalized routine:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || 20}
-**Skin Type:** ${skinType}
+**Skin Type:** ${skinTypeLabel}
 **Concerns:** ${concernLabels.join(", ") || "General pregnancy skincare"}
-**Budget:** ${budget === "low" ? "Drugstore products" : budget === "medium" ? "Mid-range" : "Premium/luxury"}
+**Budget:** ${budgetLabel}
 
 Provide a complete pregnancy-safe skincare routine:
 1. **Morning Routine** - Step-by-step with specific product recommendations
@@ -122,7 +133,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
     return (
       <MedicalDisclaimer
         onAccept={() => setDisclaimerAccepted(true)}
-        toolName="AI Pregnancy Skincare"
+        toolName={t('toolsInternal.skincare.title')}
       />
     );
   }
@@ -138,15 +149,15 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
       <div className="space-y-4">
         {/* Unsafe Ingredients Warning */}
         <Card className="p-3 bg-destructive/5 border-destructive/20">
-          <h3 className="font-semibold flex items-center gap-2 text-destructive mb-2 text-sm">
-            <AlertTriangle className="w-4 h-4 shrink-0" />
-            <span className="truncate">Ingredients to Avoid During Pregnancy</span>
+          <h3 className="font-semibold flex items-center gap-2 text-destructive mb-2 text-xs">
+            <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">{t('toolsInternal.skincare.ingredientsToAvoid')}</span>
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-            {unsafeIngredients.map((ing) => (
-              <div key={ing.name} className="flex items-center gap-2 text-xs sm:text-sm min-w-0">
-                <span className="shrink-0">{ing.icon}</span>
-                <span className="truncate">{ing.name}</span>
+            {UNSAFE_INGREDIENT_KEYS.map((key) => (
+              <div key={key} className="flex items-center gap-2 text-[10px] sm:text-xs min-w-0">
+                <span className="shrink-0">{t(`toolsInternal.skincare.unsafeIngredients.${key}.icon`)}</span>
+                <span className="truncate">{t(`toolsInternal.skincare.unsafeIngredients.${key}.name`)}</span>
               </div>
             ))}
           </div>
@@ -154,54 +165,54 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
 
         {/* Skin Type */}
         <div className="space-y-1.5">
-          <Label className="text-sm">Your Skin Type</Label>
+          <Label className="text-xs">{t('toolsInternal.skincare.skinType')}</Label>
           <Select value={skinType} onValueChange={setSkinType}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full text-xs">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-popover z-50">
-              <SelectItem value="dry">Dry</SelectItem>
-              <SelectItem value="oily">Oily</SelectItem>
-              <SelectItem value="combination">Combination</SelectItem>
-              <SelectItem value="sensitive">Sensitive</SelectItem>
-              <SelectItem value="normal">Normal</SelectItem>
+              <SelectItem value="dry">{t('toolsInternal.skincare.dry')}</SelectItem>
+              <SelectItem value="oily">{t('toolsInternal.skincare.oily')}</SelectItem>
+              <SelectItem value="combination">{t('toolsInternal.skincare.combination')}</SelectItem>
+              <SelectItem value="sensitive">{t('toolsInternal.skincare.sensitive')}</SelectItem>
+              <SelectItem value="normal">{t('toolsInternal.skincare.normal')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         {/* Budget */}
         <div className="space-y-1.5">
-          <Label className="text-sm">Budget Preference</Label>
+          <Label className="text-xs">{t('toolsInternal.skincare.budgetPreference')}</Label>
           <Select value={budget} onValueChange={setBudget}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full text-xs">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-popover z-50">
-              <SelectItem value="low">💵 Budget-friendly</SelectItem>
-              <SelectItem value="medium">💰 Mid-range</SelectItem>
-              <SelectItem value="high">💎 Premium</SelectItem>
+              <SelectItem value="low">{t('toolsInternal.skincare.budgetLow')}</SelectItem>
+              <SelectItem value="medium">{t('toolsInternal.skincare.budgetMedium')}</SelectItem>
+              <SelectItem value="high">{t('toolsInternal.skincare.budgetHigh')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         {/* Skin Concerns */}
         <div className="space-y-2">
-          <Label className="text-sm">Your Skin Concerns</Label>
+          <Label className="text-xs">{t('toolsInternal.skincare.skinConcerns')}</Label>
           <div className="grid grid-cols-1 gap-1.5">
-            {skinConcerns.map((concern) => (
+            {CONCERN_KEYS.map((concernKey) => (
               <div
-                key={concern.id}
-                onClick={() => toggleConcern(concern.id)}
+                key={concernKey}
+                onClick={() => toggleConcern(concernKey)}
                 className={`p-2.5 rounded-lg border cursor-pointer transition-all ${
-                  concerns.includes(concern.id)
+                  concerns.includes(concernKey)
                     ? "bg-primary/10 border-primary"
                     : "bg-card hover:bg-muted"
                 }`}
               >
                 <div className="flex items-center gap-2 min-w-0">
-                  <Checkbox checked={concerns.includes(concern.id)} className="shrink-0" />
-                  <span className="text-base shrink-0">{concern.icon}</span>
-                  <span className="text-xs sm:text-sm truncate">{concern.label}</span>
+                  <Checkbox checked={concerns.includes(concernKey)} className="shrink-0" />
+                  <span className="text-sm shrink-0">{t(`toolsInternal.skincare.concerns.${concernKey}.icon`)}</span>
+                  <span className="text-xs truncate">{t(`toolsInternal.skincare.concerns.${concernKey}.label`)}</span>
                 </div>
               </div>
             ))}
@@ -215,7 +226,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
           className="w-full text-xs h-9"
         >
           <Sparkles className="w-3.5 h-3.5 me-1.5 shrink-0" />
-          <span className="truncate">{isLoading ? "Creating Routine..." : "Get AI Skincare Routine"}</span>
+          <span className="truncate">{isLoading ? t('toolsInternal.skincare.creatingRoutine') : t('toolsInternal.skincare.getRoutine')}</span>
         </Button>
 
         {/* AI Response */}
@@ -229,21 +240,21 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         <div className="grid grid-cols-2 gap-1.5">
           <Card className="p-2.5 text-center bg-muted/30">
             <Sun className="w-5 h-5 text-primary mx-auto mb-1 shrink-0" />
-            <h4 className="font-medium text-xs">Morning</h4>
-            <p className="text-[10px] text-muted-foreground leading-tight">Cleanse → Hydrate → SPF</p>
+            <h4 className="font-medium text-xs">{t('toolsInternal.skincare.morning')}</h4>
+            <p className="text-[10px] text-muted-foreground leading-tight">{t('toolsInternal.skincare.morningSteps')}</p>
           </Card>
           <Card className="p-2.5 text-center bg-muted/30">
             <MoonIcon className="w-5 h-5 text-primary mx-auto mb-1 shrink-0" />
-            <h4 className="font-medium text-xs">Evening</h4>
-            <p className="text-[10px] text-muted-foreground leading-tight">Cleanse → Treat → Nourish</p>
+            <h4 className="font-medium text-xs">{t('toolsInternal.skincare.evening')}</h4>
+            <p className="text-[10px] text-muted-foreground leading-tight">{t('toolsInternal.skincare.eveningSteps')}</p>
           </Card>
         </div>
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
           videos={skincareVideos}
-          title="Pregnancy Skincare Videos"
-          subtitle="Dermatologist-approved skincare guidance"
+          title={t('toolsInternal.skincare.skincareVideos')}
+          subtitle={t('toolsInternal.skincare.skincareVideosSubtitle')}
           accentColor="violet"
         />
       </div>
