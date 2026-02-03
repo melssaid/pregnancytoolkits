@@ -56,9 +56,11 @@ const Index = () => {
 
   return (
     <Layout>
+      {/* Aesthetic gradient overlay from bottom to top */}
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[35vh] bg-gradient-to-t from-muted/40 via-muted/15 to-transparent z-0" />
 
       {/* Categories */}
-      <section className="py-4">
+      <section className="py-4 relative z-10">
         <div className="container space-y-5">
           {categoryConfig.map((cat, categoryIndex) => {
             const allTools = getToolsByCategory(cat.key);
