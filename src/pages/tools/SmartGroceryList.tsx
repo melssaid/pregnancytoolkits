@@ -253,26 +253,30 @@ export default function SmartGroceryList() {
         </Card>
 
         {/* AI Suggestions */}
-        <Card>
-          <CardContent className="p-4">
-            <h3 className="font-semibold mb-3 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-primary" />
-              Pregnancy Superfoods
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {suggestedItems.filter(s => !items.find(i => i.name === s.name)).slice(0, 6).map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => addSuggested(item)}
-                  className="inline-flex items-center rounded-full border border-input bg-background px-2.5 py-1 text-xs font-semibold transition-colors hover:bg-primary/10 hover:border-primary cursor-pointer"
-                >
-                  <Plus className="w-3 h-3 mr-1" />
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        {suggestedItems.filter(s => !items.find(i => i.name === s.name)).length > 0 && (
+          <Card>
+            <CardContent className="p-4">
+              <h3 className="font-semibold mb-3 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-primary" />
+                Pregnancy Superfoods
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {suggestedItems.filter(s => !items.find(i => i.name === s.name)).slice(0, 6).map(item => (
+                  <Button
+                    key={item.id}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => addSuggested(item)}
+                    className="gap-1"
+                  >
+                    <Plus className="w-3 h-3" />
+                    {item.name}
+                  </Button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </ToolFrame>
   );
