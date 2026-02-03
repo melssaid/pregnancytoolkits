@@ -48,20 +48,26 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               <img 
                 src={logoImage} 
                 alt="Pregnancy Toolkits" 
-                width={44}
-                height={44}
+                width={showBack ? 36 : 44}
+                height={showBack ? 36 : 44}
                 loading="eager"
                 decoding="async"
-                className="h-11 w-11 rounded-full shadow-lg object-cover"
+                className={`rounded-full shadow-lg object-cover ${showBack ? 'h-9 w-9' : 'h-11 w-11'}`}
               />
-              <div className="flex flex-col">
-                <span className="text-sm sm:text-base font-bold text-foreground tracking-tight">
+              {showBack ? (
+                <span className="text-sm font-bold text-foreground tracking-tight">
                   Pregnancy Toolkits
                 </span>
-                <span className="text-[10px] sm:text-xs text-muted-foreground font-medium mt-0.5">
-                  Your complete pregnancy companion
-                </span>
-              </div>
+              ) : (
+                <div className="flex flex-col">
+                  <span className="text-sm sm:text-base font-bold text-foreground tracking-tight">
+                    Pregnancy Toolkits
+                  </span>
+                  <span className="text-[10px] sm:text-xs text-muted-foreground font-medium mt-0.5">
+                    Your complete pregnancy companion
+                  </span>
+                </div>
+              )}
             </Link>
           </div>
 
