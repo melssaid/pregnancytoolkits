@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -211,6 +212,7 @@ const workoutPlans: WorkoutPlan[] = [
 ];
 
 export default function PersonalizedWorkoutPlanner() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedTrimester, setSelectedTrimester] = useState(2);
   const [activeWorkout, setActiveWorkout] = useState<WorkoutPlan | null>(null);
@@ -241,7 +243,7 @@ export default function PersonalizedWorkoutPlanner() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Personalized Workout Planner"
+        toolName={t('toolsInternal.workoutPlanner.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -249,52 +251,49 @@ export default function PersonalizedWorkoutPlanner() {
 
   return (
     <ToolFrame
-      title="Personalized Workout Planner"
-      subtitle="Safe pregnancy exercises for each trimester"
+      title={t('toolsInternal.workoutPlanner.title')}
+      subtitle={t('toolsInternal.workoutPlanner.subtitle')}
       mood="empowering"
       toolId="workout-planner"
       icon={Dumbbell}
     >
       {!activeWorkout && (
         <div className="space-y-6">
-          {/* Trimester Selection */}
           <Card>
             <CardContent className="p-6">
-              <h3 className="font-semibold mb-4">Select Your Trimester</h3>
+              <h3 className="font-semibold mb-4">{t('toolsInternal.workoutPlanner.selectTrimester')}</h3>
               <div className="grid grid-cols-3 gap-3">
-                {[1, 2, 3].map(t => (
+                {[1, 2, 3].map(tri => (
                   <Button
-                    key={t}
-                    variant={selectedTrimester === t ? 'default' : 'outline'}
-                    onClick={() => setSelectedTrimester(t)}
+                    key={tri}
+                    variant={selectedTrimester === tri ? 'default' : 'outline'}
+                    onClick={() => setSelectedTrimester(tri)}
                     className="h-16 flex-col"
                   >
-                    <span className="text-lg font-bold">{t}</span>
-                    <span className="text-xs">Trimester</span>
+                    <span className="text-lg font-bold">{tri}</span>
+                    <span className="text-xs">{t('toolsInternal.workoutPlanner.trimester')}</span>
                   </Button>
                 ))}
               </div>
             </CardContent>
           </Card>
 
-          {/* Safety Notice */}
           <Card className="border-amber-200 bg-amber-50/50">
             <CardContent className="p-4">
               <div className="flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
                 <div className="text-sm">
-                  <p className="font-medium text-amber-800 mb-1">Before You Start</p>
+                  <p className="font-medium text-amber-800 mb-1">{t('toolsInternal.workoutPlanner.beforeYouStart')}</p>
                   <p className="text-amber-700">
-                    Always get clearance from your healthcare provider before starting any exercise program during pregnancy.
+                    {t('toolsInternal.workoutPlanner.safetyNotice')}
                   </p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Workout Plans */}
           <div className="space-y-4">
-            <h3 className="font-semibold">Available Workouts</h3>
+            <h3 className="font-semibold">{t('toolsInternal.workoutPlanner.availableWorkouts')}</h3>
             {filteredWorkouts.map(workout => (
               <Card key={workout.id}>
                 <CardContent className="p-6">
@@ -312,7 +311,7 @@ export default function PersonalizedWorkoutPlanner() {
                             : 'bg-amber-100 text-amber-700'
                           }
                         >
-                          {workout.intensity} intensity
+                          {t(`toolsInternal.workoutPlanner.intensity.${workout.intensity}`)}
                         </Badge>
                       </div>
                     </div>
@@ -320,12 +319,12 @@ export default function PersonalizedWorkoutPlanner() {
                   </div>
 
                   <p className="text-sm text-muted-foreground mb-4">
-                    {workout.exercises.length} exercises designed for trimester {workout.trimester.join(', ')}
+                    {workout.exercises.length} {t('toolsInternal.workoutPlanner.exercise')}s
                   </p>
 
                   <Button onClick={() => startWorkout(workout)} className="w-full">
                     <Play className="w-4 h-4 mr-2" />
-                    Start Workout
+                    {t('toolsInternal.workoutPlanner.startWorkout')}
                   </Button>
                 </CardContent>
               </Card>
@@ -336,22 +335,20 @@ export default function PersonalizedWorkoutPlanner() {
 
       {activeWorkout && (
         <div className="space-y-6">
-          {/* Workout Header */}
           <Card className="bg-primary text-primary-foreground">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-bold text-lg">{activeWorkout.name}</h3>
                   <p className="opacity-80 text-sm">
-                    Exercise {currentExercise + 1} of {activeWorkout.exercises.length}
+                    {t('toolsInternal.workoutPlanner.exercise')} {currentExercise + 1} {t('toolsInternal.workoutPlanner.of')} {activeWorkout.exercises.length}
                   </p>
                 </div>
                 <Button variant="secondary" size="sm" onClick={endWorkout}>
-                  End
+                  {t('toolsInternal.workoutPlanner.endWorkout')}
                 </Button>
               </div>
               
-              {/* Progress */}
               <div className="mt-4 flex gap-1">
                 {activeWorkout.exercises.map((_, i) => (
                   <div 
@@ -369,7 +366,6 @@ export default function PersonalizedWorkoutPlanner() {
             </CardContent>
           </Card>
 
-          {/* Current Exercise */}
           {activeWorkout.exercises[currentExercise] && (
             <Card>
               <CardContent className="p-6">
@@ -396,7 +392,7 @@ export default function PersonalizedWorkoutPlanner() {
                 </p>
 
                 <div className="bg-muted/50 rounded-xl p-4 mb-6">
-                  <h5 className="font-medium text-sm mb-2">Modification:</h5>
+                  <h5 className="font-medium text-sm mb-2">{t('toolsInternal.workoutPlanner.modification')}:</h5>
                   <p className="text-sm text-muted-foreground">
                     {activeWorkout.exercises[currentExercise].modifications}
                   </p>
@@ -418,29 +414,28 @@ export default function PersonalizedWorkoutPlanner() {
                   {completedExercises.includes(activeWorkout.exercises[currentExercise].id) ? (
                     <>
                       <CheckCircle className="w-5 h-5 mr-2" />
-                      Completed
+                      {t('toolsInternal.workoutPlanner.completed')}
                     </>
                   ) : (
-                    'Complete Exercise'
+                    t('toolsInternal.workoutPlanner.completeExercise')
                   )}
                 </Button>
               </CardContent>
             </Card>
           )}
 
-          {/* Workout Complete */}
           {completedExercises.length === activeWorkout.exercises.length && (
             <Card className="bg-emerald-50 border-emerald-200">
               <CardContent className="p-6 text-center">
                 <CheckCircle className="w-16 h-16 text-emerald-600 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-emerald-800 mb-2">
-                  Workout Complete! 🎉
+                  {t('toolsInternal.workoutPlanner.workoutComplete')}
                 </h3>
                 <p className="text-emerald-700 mb-4">
-                  Great job taking care of yourself and your baby!
+                  {t('toolsInternal.workoutPlanner.greatJob')}
                 </p>
                 <Button onClick={endWorkout}>
-                  Back to Workouts
+                  {t('toolsInternal.workoutPlanner.backToWorkouts')}
                 </Button>
               </CardContent>
             </Card>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Salad, Apple, Info, Check, AlertCircle, ShoppingBasket } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,6 +22,7 @@ interface MealPlan {
 }
 
 export default function SmartNutritionOptimizer() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentWeek, setCurrentWeek] = useState(12);
   const [dietaryPref, setDietaryPref] = useState('standard');
@@ -86,7 +88,7 @@ export default function SmartNutritionOptimizer() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Smart Nutrition Optimizer"
+        toolName={t('toolsInternal.nutritionOptimizer.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -96,19 +98,18 @@ export default function SmartNutritionOptimizer() {
 
   return (
     <ToolFrame
-      title="Smart Nutrition Optimizer"
-      subtitle="Personalized meal planning for your pregnancy week"
+      title={t('toolsInternal.nutritionOptimizer.title')}
+      subtitle={t('toolsInternal.nutritionOptimizer.subtitle')}
       icon={Salad}
       mood="joyful"
       toolId="smart-nutrition"
     >
       <div className="space-y-6">
-        {/* Week Selector */}
         <Card>
           <CardContent className="p-4 space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2">
-                Pregnancy Week: <span className="text-primary font-bold">{currentWeek}</span>
+                {t('toolsInternal.nutritionOptimizer.pregnancyWeek')}: <span className="text-primary font-bold">{currentWeek}</span>
               </label>
               <input
                 type="range"
@@ -119,14 +120,14 @@ export default function SmartNutritionOptimizer() {
                 className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
               />
               <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                <span>Week 4</span>
-                <span className="font-medium text-primary">Trimester {trimester}</span>
-                <span>Week 42</span>
+                <span>{t('common.week')} 4</span>
+                <span className="font-medium text-primary">{t('toolsInternal.nutritionOptimizer.trimester')} {trimester}</span>
+                <span>{t('common.week')} 42</span>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Dietary Preference</label>
+              <label className="block text-sm font-medium mb-2">{t('toolsInternal.nutritionOptimizer.dietaryPreference')}</label>
               <div className="flex flex-wrap gap-2">
                 {['standard', 'vegetarian', 'vegan'].map((type) => (
                   <button
@@ -138,7 +139,7 @@ export default function SmartNutritionOptimizer() {
                         : 'bg-muted hover:bg-muted/80 border-transparent'
                     }`}
                   >
-                    {type}
+                    {t(`toolsInternal.nutritionOptimizer.${type}`)}
                   </button>
                 ))}
               </div>
@@ -146,13 +147,12 @@ export default function SmartNutritionOptimizer() {
           </CardContent>
         </Card>
 
-        {/* Key Nutrients */}
         {nutrients.length > 0 && (
           <Card>
             <CardContent className="p-4 space-y-4">
               <h3 className="font-semibold flex items-center gap-2">
                 <Apple className="w-5 h-5 text-primary" />
-                Key Nutrients for Week {currentWeek}
+                {t('toolsInternal.nutritionOptimizer.keyNutrients', { week: currentWeek })}
               </h3>
               <div className="space-y-3">
                 {nutrients.map((nutrient, idx) => (
@@ -176,19 +176,18 @@ export default function SmartNutritionOptimizer() {
           </Card>
         )}
 
-        {/* Meal Plan */}
         {plan && (
           <Card>
             <CardContent className="p-4 space-y-4">
               <h3 className="font-semibold flex items-center gap-2">
                 <ShoppingBasket className="w-5 h-5 text-primary" />
-                Sample Meal Plan
+                {t('toolsInternal.nutritionOptimizer.sampleMealPlan')}
               </h3>
               
               {(['breakfast', 'lunch', 'snack', 'dinner'] as const).map((meal) => (
                 <div key={meal} className="bg-muted/50 rounded-xl p-4">
                   <h4 className="font-medium capitalize mb-2">
-                    {meal}
+                    {t(`toolsInternal.nutritionOptimizer.${meal}`)}
                   </h4>
                   <ul className="space-y-1">
                     {plan[meal].map((item, i) => (
@@ -204,14 +203,12 @@ export default function SmartNutritionOptimizer() {
           </Card>
         )}
 
-        {/* Tips */}
         <Card className="bg-muted/30">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
               <Info className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
               <p className="text-sm text-muted-foreground">
-                These are general recommendations. Always consult with your healthcare provider 
-                for personalized nutrition advice during pregnancy.
+                {t('toolsInternal.nutritionOptimizer.infoNote')}
               </p>
             </div>
           </CardContent>

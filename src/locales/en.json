@@ -1249,6 +1249,206 @@
       "aboveTarget": "Above Target",
       "weeklyGain": "Weekly Gain",
       "aiAnalysis": "AI Weight Analysis"
+    },
+    "bmi": {
+      "title": "Pregnancy BMI Calculator",
+      "subtitle": "Calculate your pre-pregnancy BMI and weight gain recommendations",
+      "unitSystem": "Unit System",
+      "imperial": "Imperial (lbs, inches)",
+      "metric": "Metric (kg, cm)",
+      "prePregnancyWeight": "Pre-Pregnancy Weight",
+      "height": "Height",
+      "calculateBtn": "Calculate BMI",
+      "prePregnancyBMI": "Pre-Pregnancy BMI",
+      "recommendedGain": "Recommended Total Gain",
+      "pounds": "pounds",
+      "weeklyGainTitle": "Weekly Weight Gain (2nd & 3rd Trimester)",
+      "lbsPerWeek": "lbs/week",
+      "firstTrimesterNote": "First trimester: 1-4 pounds total",
+      "aiGuideTitle": "AI Weight Management Guide",
+      "getPersonalizedPlan": "Get Personalized Plan",
+      "disclaimer": "These recommendations are based on Institute of Medicine guidelines. Your healthcare provider may give personalized advice based on your specific health situation and pregnancy.",
+      "categories": {
+        "underweight": "Underweight",
+        "normalweight": "Normal weight",
+        "overweight": "Overweight",
+        "obese": "Obese"
+      }
+    },
+    "gdm": {
+      "title": "Gestational Diabetes Risk",
+      "subtitle": "Assess your risk factors for gestational diabetes",
+      "disclaimer": "This is an educational screening tool only. It does not diagnose gestational diabetes. Always consult your healthcare provider for proper testing and diagnosis.",
+      "checkRiskFactors": "Check Your Risk Factors",
+      "riskFactorsSelected": "Risk Factors Selected",
+      "aiCoachTitle": "AI Diabetes Prevention Coach",
+      "getPreventionPlan": "Get Personalized Prevention Plan",
+      "preventionTipsTitle": "Prevention Tips",
+      "infoNote": "Gestational diabetes screening typically occurs between weeks 24-28. If you have multiple risk factors, your doctor may recommend earlier screening. This tool is for educational purposes only and does not replace medical advice.",
+      "riskLevels": {
+        "high": {
+          "title": "Higher Risk",
+          "description": "Your risk factors suggest elevated likelihood. Early screening may be recommended."
+        },
+        "moderate": {
+          "title": "Moderate Risk",
+          "description": "You have some risk factors. Standard screening at 24-28 weeks is recommended."
+        },
+        "low": {
+          "title": "Lower Risk",
+          "description": "You have few risk factors, but routine screening at 24-28 weeks is still recommended."
+        }
+      },
+      "preventionTips": {
+        "tip1": "Maintain a healthy weight before and during pregnancy",
+        "tip2": "Eat a balanced diet rich in fiber and whole grains",
+        "tip3": "Stay physically active with doctor-approved exercises",
+        "tip4": "Attend all prenatal appointments for regular monitoring",
+        "tip5": "Limit sugary foods and refined carbohydrates"
+      }
+    },
+    "healthMonitor": {
+      "title": "Health Monitoring System",
+      "subtitle": "Comprehensive dashboard with predictive analytics",
+      "weight": "Weight",
+      "bloodPressure": "Blood Pressure",
+      "risks": "Risks",
+      "normal": "Normal",
+      "normalForWeek": "Normal for week {{week}}",
+      "pretermBirth": "Preterm birth",
+      "preeclampsia": "Preeclampsia",
+      "low": "Low",
+      "medium": "Medium"
+    },
+    "walkingCoach": {
+      "title": "Smart Walking Coach",
+      "subtitle": "Personalized walking program for a healthy pregnancy",
+      "yourTrimester": "Your Trimester",
+      "trimester": "Trimester",
+      "readyToWalk": "Ready to Walk?",
+      "goal": "Goal (minutes)",
+      "startWalking": "Start Walking",
+      "endWalk": "End Walk",
+      "keepUp": "Keep up the great work! 🚶‍♀️",
+      "minutesToday": "Minutes Today",
+      "minutesThisWeek": "Minutes This Week",
+      "recentWalks": "Recent Walks",
+      "goalMet": "Goal Met!",
+      "getAIAdvice": "Get AI Walking Coach Advice",
+      "aiCoachTitle": "AI Walking Coach",
+      "walkingTipsTitle": "Walking Tips",
+      "walkingTips": {
+        "tip1": "Walk on flat, even surfaces",
+        "tip2": "Wear supportive shoes",
+        "tip3": "Stay hydrated",
+        "tip4": "Walk during cooler parts of the day",
+        "tip5": "Take breaks when needed"
+      },
+      "warningMessage": "Stop walking if you experience dizziness, shortness of breath, chest pain, contractions, or any unusual symptoms. Always consult your healthcare provider.",
+      "trimesterNotes": {
+        "1": "Start slowly, listen to your body",
+        "2": "Best time for active walking",
+        "3": "Shorter walks, more frequent breaks"
+      }
+    },
+    "nutritionOptimizer": {
+      "title": "Smart Nutrition Optimizer",
+      "subtitle": "Personalized meal planning for your pregnancy week",
+      "pregnancyWeek": "Pregnancy Week",
+      "trimester": "Trimester",
+      "dietaryPreference": "Dietary Preference",
+      "standard": "Standard",
+      "vegetarian": "Vegetarian",
+      "vegan": "Vegan",
+      "keyNutrients": "Key Nutrients for Week {{week}}",
+      "sampleMealPlan": "Sample Meal Plan",
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "snack": "Snack",
+      "dinner": "Dinner",
+      "infoNote": "These are general recommendations. Always consult with your healthcare provider for personalized nutrition advice during pregnancy."
+    },
+    "snackPlanner": {
+      "title": "Smart Snack Planner",
+      "subtitle": "Healthy pregnancy snack ideas",
+      "feelingHungry": "Feeling Hungry?",
+      "letAIPick": "Let AI pick a perfect snack for you",
+      "surpriseMe": "Surprise Me!",
+      "calories": "calories",
+      "prepTime": "prep time",
+      "ingredients": "Ingredients",
+      "howToMake": "How to make",
+      "snackingTipsTitle": "Snacking Tips",
+      "snackingTips": {
+        "tip1": "Eat every 2-3 hours to maintain energy",
+        "tip2": "Keep snacks by your bedside for morning sickness",
+        "tip3": "Stay hydrated between snacks",
+        "tip4": "Listen to your cravings but balance with nutrition"
+      },
+      "categories": {
+        "all": "All",
+        "quick": "Quick",
+        "energy": "Energy",
+        "protein": "Protein",
+        "comfort": "Comfort"
+      }
+    },
+    "workoutPlanner": {
+      "title": "Personalized Workout Planner",
+      "subtitle": "Safe pregnancy exercises for each trimester",
+      "selectTrimester": "Select Your Trimester",
+      "trimester": "Trimester",
+      "beforeYouStart": "Before You Start",
+      "safetyNotice": "Always get clearance from your healthcare provider before starting any exercise program during pregnancy.",
+      "availableWorkouts": "Available Workouts",
+      "startWorkout": "Start Workout",
+      "endWorkout": "End",
+      "exercise": "Exercise",
+      "of": "of",
+      "modification": "Modification",
+      "completeExercise": "Complete Exercise",
+      "completed": "Completed",
+      "workoutComplete": "Workout Complete! 🎉",
+      "greatJob": "Great job taking care of yourself and your baby!",
+      "backToWorkouts": "Back to Workouts",
+      "intensity": {
+        "low": "low intensity",
+        "moderate": "moderate intensity"
+      }
+    },
+    "mentalHealthCoach": {
+      "title": "Postpartum Mental Health Coach",
+      "subtitle": "Edinburgh Postnatal Depression Scale screening",
+      "youreNotAlone": "You're Not Alone",
+      "emergencyMessage": "Based on your responses, it's important to talk to someone who can help. Postpartum depression is common and treatable.",
+      "postpartumSupport": "Postpartum Support Intl.",
+      "crisisHotline": "Call 988 Hotline",
+      "question": "Question",
+      "of": "of",
+      "score": "Score",
+      "takeScreeningAgain": "Take Screening Again",
+      "aiPersonalizedPlan": "AI Personalized Coping Plan",
+      "generateMyPlan": "Generate My Personalized Plan",
+      "creatingPlan": "Creating your personalized plan...",
+      "dailyCopingStrategies": "Daily Coping Strategies",
+      "supportResources": "Support Resources",
+      "screeningDisclaimer": "⚠️ This is a screening tool based on the Edinburgh Postnatal Depression Scale (EPDS). It does not provide a diagnosis. Always consult with a healthcare professional for proper evaluation.",
+      "mentalWellnessVideos": "Mental Wellness Videos",
+      "videosSubtitle": "Support and self-care resources",
+      "riskLevels": {
+        "low": {
+          "title": "Low Risk",
+          "message": "Your responses suggest you're coping well. Continue practicing self-care."
+        },
+        "moderate": {
+          "title": "Moderate",
+          "message": "Consider speaking with your healthcare provider about how you're feeling."
+        },
+        "high": {
+          "title": "Seek Support",
+          "message": "Please reach out to your healthcare provider or a mental health professional."
+        }
+      }
     }
   }
 }

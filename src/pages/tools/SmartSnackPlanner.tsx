@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -119,6 +120,7 @@ const categoryIcons: Record<string, React.ElementType> = {
 };
 
 export default function SmartSnackPlanner() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'energy' | 'protein' | 'comfort' | 'quick'>('all');
   const [randomSnack, setRandomSnack] = useState<Snack | null>(null);
@@ -135,7 +137,7 @@ export default function SmartSnackPlanner() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Smart Snack Planner"
+        toolName={t('toolsInternal.snackPlanner.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -143,24 +145,23 @@ export default function SmartSnackPlanner() {
 
   return (
     <ToolFrame
-      title="Smart Snack Planner"
-      subtitle="Healthy pregnancy snack ideas"
+      title={t('toolsInternal.snackPlanner.title')}
+      subtitle={t('toolsInternal.snackPlanner.subtitle')}
       mood="joyful"
       toolId="snack-planner"
       icon={Cookie}
     >
       <div className="space-y-6">
-          {/* Random Generator */}
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
             <CardContent className="p-6 text-center">
               <Apple className="w-10 h-10 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold mb-2">Feeling Hungry?</h3>
+              <h3 className="font-semibold mb-2">{t('toolsInternal.snackPlanner.feelingHungry')}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Let AI pick a perfect snack for you
+                {t('toolsInternal.snackPlanner.letAIPick')}
               </p>
               <Button onClick={getRandomSnack} className="rounded-full">
                 <RefreshCw className="w-4 h-4 mr-2" />
-                Surprise Me!
+                {t('toolsInternal.snackPlanner.surpriseMe')}
               </Button>
             </CardContent>
           </Card>
@@ -180,16 +181,16 @@ export default function SmartSnackPlanner() {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div className="bg-background rounded-lg p-3 text-center">
                     <span className="text-lg font-bold text-primary">{randomSnack.calories}</span>
-                    <span className="text-xs text-muted-foreground block">calories</span>
+                    <span className="text-xs text-muted-foreground block">{t('toolsInternal.snackPlanner.calories')}</span>
                   </div>
                   <div className="bg-background rounded-lg p-3 text-center">
                     <span className="text-lg font-bold text-primary">{randomSnack.prepTime}</span>
-                    <span className="text-xs text-muted-foreground block">prep time</span>
+                    <span className="text-xs text-muted-foreground block">{t('toolsInternal.snackPlanner.prepTime')}</span>
                   </div>
                 </div>
 
                 <div className="mb-3">
-                  <h4 className="text-sm font-medium mb-2">Ingredients:</h4>
+                  <h4 className="text-sm font-medium mb-2">{t('toolsInternal.snackPlanner.ingredients')}:</h4>
                   <ul className="text-sm text-muted-foreground space-y-1">
                     {randomSnack.ingredients.map((ing, i) => (
                       <li key={i}>• {ing}</li>
@@ -199,7 +200,7 @@ export default function SmartSnackPlanner() {
 
                 {randomSnack.recipe && (
                   <div className="bg-muted/50 rounded-lg p-3">
-                    <h4 className="text-sm font-medium mb-1">How to make:</h4>
+                    <h4 className="text-sm font-medium mb-1">{t('toolsInternal.snackPlanner.howToMake')}:</h4>
                     <p className="text-sm text-muted-foreground">{randomSnack.recipe}</p>
                   </div>
                 )}
@@ -207,7 +208,6 @@ export default function SmartSnackPlanner() {
             </Card>
           )}
 
-          {/* Category Filter */}
           <div className="flex gap-2 overflow-x-auto pb-1">
             {(['all', 'quick', 'energy', 'protein', 'comfort'] as const).map(cat => {
               const Icon = cat !== 'all' ? categoryIcons[cat] : Brain;
@@ -220,7 +220,7 @@ export default function SmartSnackPlanner() {
                   className="capitalize whitespace-nowrap"
                 >
                   <Icon className="w-3 h-3 mr-1" />
-                  {cat}
+                  {t(`toolsInternal.snackPlanner.categories.${cat}`)}
                 </Button>
               );
             })}
@@ -258,15 +258,14 @@ export default function SmartSnackPlanner() {
             })}
           </div>
 
-        {/* Tips */}
         <Card>
           <CardContent className="p-4">
-            <h4 className="font-medium mb-2">💡 Snacking Tips</h4>
+            <h4 className="font-medium mb-2">💡 {t('toolsInternal.snackPlanner.snackingTipsTitle')}</h4>
             <ul className="text-sm text-muted-foreground space-y-1">
-              <li>• Eat every 2-3 hours to maintain energy</li>
-              <li>• Keep snacks by your bedside for morning sickness</li>
-              <li>• Stay hydrated between snacks</li>
-              <li>• Listen to your cravings but balance with nutrition</li>
+              <li>• {t('toolsInternal.snackPlanner.snackingTips.tip1')}</li>
+              <li>• {t('toolsInternal.snackPlanner.snackingTips.tip2')}</li>
+              <li>• {t('toolsInternal.snackPlanner.snackingTips.tip3')}</li>
+              <li>• {t('toolsInternal.snackPlanner.snackingTips.tip4')}</li>
             </ul>
           </CardContent>
         </Card>
