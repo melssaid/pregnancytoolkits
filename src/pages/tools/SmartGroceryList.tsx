@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -91,6 +92,7 @@ const isGroceryItemArray = (data: unknown): data is GroceryItem[] => {
 };
 
 export default function SmartGroceryList() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [items, setItems] = useState<GroceryItem[]>([]);
   const [newItem, setNewItem] = useState('');
@@ -220,8 +222,8 @@ export default function SmartGroceryList() {
 
   return (
     <ToolFrame
-      title="Smart Grocery List"
-      subtitle="AI-powered pregnancy nutrition planner"
+      title={t('toolsInternal.groceryList.title')}
+      subtitle={t('toolsInternal.groceryList.subtitle')}
       mood="joyful"
       toolId="grocery-list"
     >

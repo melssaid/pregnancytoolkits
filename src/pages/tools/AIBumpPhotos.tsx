@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { 
   Camera, Upload, Trash2, Download, Sparkles, ChevronLeft, ChevronRight, 
   Loader2, Image as ImageIcon, HardDrive, AlertTriangle, Shield, 
@@ -29,6 +30,7 @@ interface BumpPhoto {
 }
 
 const AIBumpPhotos: React.FC = () => {
+  const { t } = useTranslation();
   const [photos, setPhotos] = useState<BumpPhoto[]>([]);
   const [currentWeek, setCurrentWeek] = useState(12);
   const [isUploading, setIsUploading] = useState(false);
@@ -335,8 +337,8 @@ Please provide a comprehensive pregnancy update:
   if (isLoading) {
     return (
       <ToolFrame
-        title="Bump Photo Album"
-        subtitle="Document your pregnancy journey"
+        title={t('toolsInternal.bumpPhotos.title')}
+        subtitle={t('toolsInternal.bumpPhotos.subtitle')}
         mood="nurturing"
         toolId="ai-bump-photos"
       >
@@ -349,8 +351,8 @@ Please provide a comprehensive pregnancy update:
 
   return (
     <ToolFrame
-      title="Bump Photo Album"
-      subtitle={`Week ${currentWeek} - Document your pregnancy journey`}
+      title={t('toolsInternal.bumpPhotos.title')}
+      subtitle={`${t('toolsInternal.common.week')} ${currentWeek} - ${t('toolsInternal.bumpPhotos.subtitle')}`}
       mood="nurturing"
       toolId="ai-bump-photos"
     >

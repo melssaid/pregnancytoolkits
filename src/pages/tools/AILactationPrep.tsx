@@ -146,9 +146,11 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
   return (
     <ToolFrame
-      title="Lactation Prep"
+      title={t('toolsInternal.lactationPrep.title')}
+      subtitle={t('toolsInternal.lactationPrep.subtitle')}
       customIcon="breastfeeding"
       mood="nurturing"
+      toolId="ai-lactation-prep"
     >
       <div className="space-y-6">
         {/* Feeding Goal */}

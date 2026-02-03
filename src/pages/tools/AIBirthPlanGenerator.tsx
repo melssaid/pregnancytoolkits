@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalInfoBar } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -70,6 +71,7 @@ const birthPlanCategories: { title: string; preferences: BirthPlanPreference[] }
 ];
 
 export default function AIBirthPlanGenerator() {
+  const { t } = useTranslation();
   const [preferences, setPreferences] = useState<Record<string, string>>({});
   const [additionalNotes, setAdditionalNotes] = useState('');
   const [generatedPlan, setGeneratedPlan] = useState('');
@@ -213,8 +215,8 @@ Make it comprehensive and ready to share with healthcare providers.`
 
   return (
     <ToolFrame
-      title="AI Birth Plan Generator"
-      subtitle="Create your personalized birth plan with AI guidance"
+      title={t('toolsInternal.birthPlan.title')}
+      subtitle={t('toolsInternal.birthPlan.subtitle')}
       icon={FileText}
       mood="nurturing"
       toolId="ai-birth-plan"

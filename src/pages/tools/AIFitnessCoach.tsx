@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Dumbbell, Play, Pause, RotateCcw, CheckCircle, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
@@ -30,6 +31,7 @@ const exerciseDatabase: Exercise[] = [
 ];
 
 const AIFitnessCoach: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [currentWeek, setCurrentWeek] = useState(12);
@@ -101,8 +103,8 @@ const AIFitnessCoach: React.FC = () => {
               <Dumbbell className="w-5 h-5 text-purple-600" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900">Fitness Coach</h1>
-              <p className="text-xs text-gray-500">Safe workouts for Week {currentWeek}</p>
+              <h1 className="text-lg font-bold text-gray-900">{t('toolsInternal.fitnessCoach.title')}</h1>
+              <p className="text-xs text-gray-500">{t('toolsInternal.common.week')} {currentWeek}</p>
             </div>
           </div>
         </div>
@@ -112,7 +114,7 @@ const AIFitnessCoach: React.FC = () => {
         {/* Controls */}
         <div className="bg-white rounded-2xl p-5 shadow-sm space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Pregnancy Week: {currentWeek}</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">{t('toolsInternal.fitnessCoach.currentWeek')}: {currentWeek}</label>
             <input
               type="range"
               min="4"
@@ -123,7 +125,7 @@ const AIFitnessCoach: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Fitness Level</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">{t('toolsInternal.fitnessCoach.activityLevel')}</label>
             <div className="flex gap-2">
               {(['beginner', 'intermediate'] as const).map(level => (
                 <button
@@ -135,7 +137,7 @@ const AIFitnessCoach: React.FC = () => {
                       : 'bg-gray-100 text-gray-600'
                   }`}
                 >
-                  {level}
+                  {t(`toolsInternal.fitnessCoach.${level}`)}
                 </button>
               ))}
             </div>
@@ -209,7 +211,7 @@ const AIFitnessCoach: React.FC = () => {
           onClick={generateWorkout}
           className="w-full py-3 bg-white border border-gray-200 text-gray-600 rounded-xl font-medium hover:bg-gray-50 flex items-center justify-center gap-2"
         >
-          <RotateCcw className="w-4 h-4" /> Generate New Workout
+          <RotateCcw className="w-4 h-4" /> {t('toolsInternal.fitnessCoach.generatePlan')}
         </button>
 
         {/* Educational Videos */}

@@ -140,8 +140,8 @@ Include seasonal considerations and hospital-specific recommendations.`;
 
   return (
     <ToolFrame
-      title="AI Hospital Bag"
-      subtitle="Smart packing checklist for your delivery"
+      title={t('toolsInternal.hospitalBag.title')}
+      subtitle={t('toolsInternal.hospitalBag.subtitle')}
       customIcon="checklist"
       mood="empowering"
       toolId="ai-hospital-bag"
@@ -150,7 +150,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
         {/* Progress Card */}
         <Card className="p-4 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border-teal-200">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-medium">Packing Progress</span>
+            <span className="font-medium">{t('toolsInternal.hospitalBag.progress')}</span>
             <span className="text-2xl font-bold text-primary">{progress}%</span>
           </div>
           <div className="w-full bg-muted rounded-full h-3">
@@ -160,7 +160,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             />
           </div>
           <p className="text-sm text-muted-foreground mt-2">
-            {packedCount} of {items.length} items packed
+            {t('toolsInternal.hospitalBag.itemsPacked', { packed: packedCount, total: items.length })}
           </p>
         </Card>
 

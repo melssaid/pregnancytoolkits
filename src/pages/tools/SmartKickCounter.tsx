@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Baby, Play, TrendingUp, Clock, Loader2, Save, Sparkles, AlertTriangle, Activity, BarChart3, Brain, RefreshCw, Zap, ChevronDown, ChevronUp, Target, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,6 +14,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const SmartKickCounter: React.FC = () => {
+  const { t } = useTranslation();
   const [isActive, setIsActive] = useState(false);
   const [kicks, setKicks] = useState<{ time: string }[]>([]);
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -87,12 +89,12 @@ const SmartKickCounter: React.FC = () => {
       setNotes('');
       
       toast({
-        title: 'Session Started! 👶',
-        description: 'Tap the screen each time you feel your baby move'
+        title: t('toolsInternal.kickCounter.sessionStarted'),
+        description: t('toolsInternal.kickCounter.sessionStartedDesc')
       });
     } catch (error: any) {
       toast({
-        title: 'Error',
+        title: t('toolsInternal.kickCounter.error'),
         description: error.message,
         variant: 'destructive'
       });
@@ -124,8 +126,8 @@ const SmartKickCounter: React.FC = () => {
       setSessionId(null);
       
       toast({
-        title: 'Session Saved! ✅',
-        description: `You recorded ${kicks.length} movements in ${durationMinutes} minutes`
+        title: t('toolsInternal.kickCounter.sessionSaved'),
+        description: t('toolsInternal.kickCounter.sessionSavedDesc', { kicks: kicks.length, minutes: durationMinutes })
       });
       
       const sessionHistory = await KickService.getHistory(10);
@@ -138,7 +140,7 @@ const SmartKickCounter: React.FC = () => {
       
     } catch (error: any) {
       toast({
-        title: 'Save Error',
+        title: t('toolsInternal.kickCounter.saveError'),
         description: error.message,
         variant: 'destructive'
       });
@@ -338,7 +340,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading...</p>
+          <p className="text-muted-foreground">{t('toolsInternal.kickCounter.loading')}</p>
         </div>
       </div>
     );
@@ -348,8 +350,8 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
 
   return (
     <ToolFrame
-      title="Smart Kick Counter"
-      subtitle={`Week ${currentWeek} - AI-Powered Movement Analysis`}
+      title={t('toolsInternal.kickCounter.title')}
+      subtitle={t('toolsInternal.kickCounter.subtitle', { week: currentWeek })}
       customIcon="baby-growth"
       mood="nurturing"
       toolId="smart-kick-counter"
@@ -361,7 +363,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
             <CardContent className="py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Movement Score</p>
+                  <p className="text-sm text-muted-foreground">{t('toolsInternal.kickCounter.movementScore')}</p>
                   <div className={`text-4xl font-bold ${getScoreColor(movementScore)}`}>
                     {movementScore}
                     <span className="text-lg text-muted-foreground">/100</span>
@@ -395,7 +397,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
               </div>
               <Progress value={movementScore} className="mt-3 h-2" />
               <p className="text-xs text-muted-foreground mt-2">
-                Based on {history.length} sessions • Updated after each session
+                {t('toolsInternal.kickCounter.basedOnSessions', { count: history.length })}
               </p>
             </CardContent>
           </Card>
@@ -409,7 +411,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
               <div className="text-5xl font-bold text-foreground mb-2">
                 {formatTime(elapsedTime)}
               </div>
-              <p className="text-muted-foreground">Elapsed Time</p>
+              <p className="text-muted-foreground">{t('toolsInternal.kickCounter.elapsedTime')}</p>
             </div>
 
             {/* Kick Count Display */}
@@ -431,7 +433,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                 >
                   {kicks.length}
                 </motion.div>
-                <div className="text-lg opacity-90">kicks</div>
+                <div className="text-lg opacity-90">{t('toolsInternal.kickCounter.kicks')}</div>
               </div>
               
               {isActive && (
@@ -445,7 +447,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
 
             {isActive && (
               <p className="text-center text-muted-foreground mt-4 animate-pulse">
-                👆 Tap the circle for each movement
+                👆 {t('toolsInternal.kickCounter.tapCircle')}
               </p>
             )}
 
@@ -458,7 +460,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                   onClick={startSession}
                 >
                   <Play className="w-5 h-5 mr-2" />
-                  Start New Session
+                  {t('toolsInternal.kickCounter.startNewSession')}
                 </Button>
               ) : (
                 <Button
@@ -472,7 +474,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                   ) : (
                     <Save className="w-5 h-5 mr-2" />
                   )}
-                  End & Save
+                  {t('toolsInternal.kickCounter.endAndSave')}
                 </Button>
               )}
             </div>
@@ -481,7 +483,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
             {isActive && (
               <div className="mt-4">
                 <Textarea
-                  placeholder="Notes (baby's position, time of day, after eating, etc.)..."
+                  placeholder={t('toolsInternal.kickCounter.notesPlaceholder')}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   className="resize-none"
@@ -498,7 +500,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
             <CardContent className="p-3 text-center">
               <TrendingUp className="w-6 h-6 text-primary mx-auto mb-1" />
               <div className="text-xl font-bold">{getAverageKicks()}</div>
-              <p className="text-xs text-muted-foreground">Avg Kicks</p>
+              <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.avgKicks')}</p>
             </CardContent>
           </Card>
           
@@ -506,7 +508,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
             <CardContent className="p-3 text-center">
               <Clock className="w-6 h-6 text-primary mx-auto mb-1" />
               <div className="text-xl font-bold">{history.length}</div>
-              <p className="text-xs text-muted-foreground">Sessions</p>
+              <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.sessions')}</p>
             </CardContent>
           </Card>
 

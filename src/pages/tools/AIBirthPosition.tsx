@@ -122,9 +122,11 @@ Include safety considerations and when to change positions.`;
 
   return (
     <ToolFrame
-      title="Birth Positions"
+      title={t('toolsInternal.birthPosition.title')}
+      subtitle={t('toolsInternal.birthPosition.subtitle')}
       icon={Baby}
       mood="empowering"
+      toolId="ai-birth-position"
     >
       <div className="space-y-6">
         {/* Non-intrusive Medical Reminder */}

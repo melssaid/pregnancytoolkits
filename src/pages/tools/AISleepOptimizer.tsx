@@ -196,8 +196,8 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
 
   return (
     <ToolFrame
-      title="AI Sleep Optimizer"
-      subtitle="Personalized sleep advice for pregnancy"
+      title={t('toolsInternal.sleepOptimizer.title')}
+      subtitle={t('toolsInternal.sleepOptimizer.subtitle')}
       customIcon="pregnant-woman"
       mood="calm"
       toolId="ai-sleep-optimizer"
