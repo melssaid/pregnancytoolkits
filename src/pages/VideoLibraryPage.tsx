@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, BookOpen, ShieldCheck } from 'lucide-react';
+import { BookOpen, ShieldCheck } from 'lucide-react';
 import { VideoLibrary, type Video } from '@/components/VideoLibrary';
+import { Layout } from '@/components/Layout';
 
 const videos: Video[] = [
   // Nutrition Videos - Educational and professional
@@ -44,32 +44,20 @@ const videos: Video[] = [
 ];
 
 export default function VideoLibraryPage() {
-  const navigate = useNavigate();
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-muted/50 to-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center gap-4">
-          <button 
-            onClick={() => navigate('/')} 
-            className="p-2 hover:bg-primary-foreground/10 rounded-full transition-colors"
-          >
-            <ArrowLeft className="w-6 h-6" />
-          </button>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary-foreground/20 rounded-xl flex items-center justify-center">
-              <BookOpen className="w-5 h-5" />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold">Educational Videos</h1>
-              <p className="text-xs text-primary-foreground/80">Specialized content for expecting mothers</p>
-            </div>
+    <Layout title="Educational Videos" showBack>
+      <div className="container py-6 space-y-6">
+        {/* Hero Section */}
+        <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">
+          <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+            <BookOpen className="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h2 className="font-semibold text-foreground">Video Library</h2>
+            <p className="text-sm text-muted-foreground">Specialized content for expecting mothers</p>
           </div>
         </div>
-      </header>
 
-      <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         {/* Medical Disclaimer Banner */}
         <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-r from-muted to-muted/80 shadow-sm">
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-primary/70" />
@@ -88,6 +76,6 @@ export default function VideoLibraryPage() {
           accentColor="blue"
         />
       </div>
-    </div>
+    </Layout>
   );
 }

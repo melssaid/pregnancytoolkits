@@ -1,29 +1,18 @@
 import React from 'react';
-import { Settings as SettingsIcon, Database, Shield, Info, Heart, Lock } from 'lucide-react';
+import { Database, Shield, Info, Heart, Lock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { DataClearManager } from '@/components/settings/DataClearManager';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
-import BackButton from '@/components/BackButton';
+import { Layout } from '@/components/Layout';
 import { useTranslation } from 'react-i18next';
 
 const Settings: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-900 pb-24">
-      {/* Header */}
-      <div className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b">
-        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
-          <BackButton />
-          <div className="flex items-center gap-2">
-            <SettingsIcon className="w-6 h-6 text-primary" />
-            <h1 className="text-xl font-bold">{t('settings.title')}</h1>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-2xl mx-auto p-4 space-y-6">
+    <Layout title={t('settings.title')} showBack>
+      <div className="container py-6 space-y-6 pb-24">
         
         {/* Security Section */}
         <section>
@@ -47,10 +36,10 @@ const Settings: React.FC = () => {
         </section>
 
         {/* Privacy Info */}
-        <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30">
+        <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2 text-base">
-              <Shield className="w-5 h-5 text-blue-600" />
+              <Shield className="w-5 h-5 text-primary" />
               {t('settings.dataPrivacy')}
             </CardTitle>
           </CardHeader>
@@ -71,7 +60,7 @@ const Settings: React.FC = () => {
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground space-y-2">
             <p className="flex items-center gap-2">
-              <Heart className="w-4 h-4 text-pink-500" />
+              <Heart className="w-4 h-4 text-primary" />
               <span>{t('settings.appTagline')}</span>
             </p>
             <p>{t('settings.version')}: 1.0.0</p>
@@ -82,7 +71,7 @@ const Settings: React.FC = () => {
         </Card>
 
       </div>
-    </div>
+    </Layout>
   );
 };
 
