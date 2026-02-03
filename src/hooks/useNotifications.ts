@@ -87,26 +87,7 @@ export function useNotifications() {
       [],
       isNotificationArray
     );
-    
-    // Check if this is a new user (no welcome notification shown before)
-    const hasSeenWelcome = localStorage.getItem('hasSeenWelcomeNotification');
-    
-    if (!hasSeenWelcome) {
-      // Add welcome notification for new users
-      const welcomeNotification: Notification = {
-        id: `welcome-${Date.now()}`,
-        type: 'general',
-        title: '👋 مرحباً بك في أدوات الحمل!',
-        message: 'اكتشفي أكثر من 40 أداة ذكية لمساعدتك في رحلة الحمل. نتمنى لك تجربة ممتعة! 💕',
-        time: new Date().toISOString(),
-        read: false,
-        actionUrl: '/',
-      };
-      setNotifications([welcomeNotification, ...savedNotifications]);
-      localStorage.setItem('hasSeenWelcomeNotification', 'true');
-    } else {
-      setNotifications(savedNotifications);
-    }
+    setNotifications(savedNotifications);
 
     const savedSettings = safeParseLocalStorage<NotificationSettings>(
       'notificationSettings',
