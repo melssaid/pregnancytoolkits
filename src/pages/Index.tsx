@@ -57,7 +57,7 @@ const Index = () => {
   return (
     <Layout>
       {/* Aesthetic gradient overlay from bottom to top */}
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[45vh] bg-gradient-to-t from-muted/80 via-muted/40 to-transparent z-0" />
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[50vh] bg-gradient-to-t from-primary/20 via-primary/10 to-transparent z-30" />
 
       {/* Categories */}
       <section className="py-4 relative z-10">
