@@ -130,19 +130,23 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
               <img src={logoImage} alt="Logo" width={24} height={24} loading="lazy" decoding="async" className="h-6 w-6 rounded-full object-cover" />
               <span className="text-sm font-bold text-foreground">{t('app.name')}</span>
             </div>
-            <div className="flex items-center gap-4 text-sm">
-              <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
-                Privacy Policy
+            
+            {/* Styled Links Container */}
+            <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 border border-border/60 shadow-sm">
+              <Link to="/privacy" className="text-[10px] text-muted-foreground hover:text-primary transition-colors px-2 py-0.5 rounded-full hover:bg-primary/10">
+                Privacy
               </Link>
-              <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">
-                Terms of Service
+              <span className="text-muted-foreground/40">•</span>
+              <Link to="/terms" className="text-[10px] text-muted-foreground hover:text-primary transition-colors px-2 py-0.5 rounded-full hover:bg-primary/10">
+                Terms
               </Link>
-              <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+              <span className="text-muted-foreground/40">•</span>
+              <Link to="/contact" className="text-[10px] text-muted-foreground hover:text-primary transition-colors px-2 py-0.5 rounded-full hover:bg-primary/10">
                 Contact
               </Link>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground text-center mt-4">
+          <p className="text-xs text-muted-foreground text-center mt-4">
             {t('app.footer')}
           </p>
           
