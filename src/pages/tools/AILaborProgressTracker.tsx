@@ -7,6 +7,7 @@ import { Activity, Clock, AlertTriangle, Phone, TrendingUp, Timer, Baby, Brain, 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { useTranslation } from 'react-i18next';
 
 interface Contraction {
   id: string;
@@ -17,6 +18,7 @@ interface Contraction {
 }
 
 export default function AILaborProgressTracker() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [contractions, setContractions] = useState<Contraction[]>([]);
   const [isTracking, setIsTracking] = useState(false);
@@ -127,9 +129,9 @@ export default function AILaborProgressTracker() {
 
   const getLaborPhase = () => {
     const avgInterval = getAverageInterval();
-    if (avgInterval > 10) return { phase: 'Early Labor', color: 'text-emerald-600', desc: 'Stay home, rest, and hydrate' };
-    if (avgInterval > 5) return { phase: 'Active Labor', color: 'text-amber-600', desc: 'Consider heading to the hospital' };
-    return { phase: 'Transition', color: 'text-destructive', desc: 'Go to the hospital now' };
+    if (avgInterval > 10) return { phase: t('toolsInternal.laborTracker.earlyLabor', 'Early Labor'), color: 'text-emerald-600', desc: t('toolsInternal.laborTracker.earlyLaborDesc', 'Stay home, rest, and hydrate') };
+    if (avgInterval > 5) return { phase: t('toolsInternal.laborTracker.activeLabor', 'Active Labor'), color: 'text-amber-600', desc: t('toolsInternal.laborTracker.activeLaborDesc', 'Consider heading to the hospital') };
+    return { phase: t('toolsInternal.laborTracker.transition', 'Transition'), color: 'text-destructive', desc: t('toolsInternal.laborTracker.transitionDesc', 'Go to the hospital now') };
   };
 
   const formatTimer = (seconds: number) => {
@@ -172,7 +174,7 @@ export default function AILaborProgressTracker() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="AI Labor Progress Tracker"
+        toolName={t('toolsInternal.laborTracker.title', 'AI Labor Progress Tracker')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -180,8 +182,8 @@ export default function AILaborProgressTracker() {
 
   return (
     <ToolFrame
-      title="AI Labor Progress Tracker"
-      subtitle="Track contractions and monitor labor progress"
+      title={t('toolsInternal.laborTracker.title', 'AI Labor Progress Tracker')}
+      subtitle={t('toolsInternal.laborTracker.subtitle', 'Track contractions and monitor labor progress')}
       mood="empowering"
       toolId="labor-progress"
       icon={Activity}
@@ -193,13 +195,12 @@ export default function AILaborProgressTracker() {
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
                   <AlertTriangle className="w-8 h-8 text-destructive flex-shrink-0" />
-                  <div className="flex-1">
+                <div className="flex-1">
                     <h3 className="font-bold text-destructive text-lg mb-2">
-                      🏥 Time to Go to the Hospital!
+                      🏥 {t('toolsInternal.laborTracker.hospitalAlert', 'Time to Go to the Hospital!')}
                     </h3>
                     <p className="text-sm text-foreground mb-4">
-                      Based on the 5-1-1 rule, your contractions are now 5 minutes apart 
-                      and lasting 1 minute or more. This indicates active labor.
+                      {t('toolsInternal.laborTracker.hospitalAlertDesc', 'Based on the 5-1-1 rule, your contractions are now 5 minutes apart and lasting 1 minute or more. This indicates active labor.')}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Button 
@@ -207,13 +208,13 @@ export default function AILaborProgressTracker() {
                         onClick={() => window.open('tel:911', '_self')}
                       >
                         <Phone className="w-4 h-4 mr-2" />
-                        Call Emergency
+                        {t('toolsInternal.laborTracker.callEmergency', 'Call Emergency')}
                       </Button>
                       <Button 
                         variant="outline"
                         onClick={() => setShowHospitalAlert(false)}
                       >
-                        I Understand
+                        {t('toolsInternal.laborTracker.understand', 'I Understand')}
                       </Button>
                     </div>
                   </div>
@@ -230,7 +231,7 @@ export default function AILaborProgressTracker() {
                   {formatTimer(timer)}
                 </div>
                 <p className="text-muted-foreground mt-2">
-                  {isTracking ? 'Contraction in progress...' : 'Ready to track'}
+                  {isTracking ? t('toolsInternal.laborTracker.inProgress', 'Contraction in progress...') : t('toolsInternal.laborTracker.ready', 'Ready to track')}
                 </p>
               </div>
 
@@ -244,7 +245,7 @@ export default function AILaborProgressTracker() {
                 }`}
               >
                 <Timer className="w-6 h-6 mr-2" />
-                {isTracking ? 'End Contraction' : 'Start Contraction'}
+                {isTracking ? t('toolsInternal.laborTracker.endContraction', 'End Contraction') : t('toolsInternal.laborTracker.startContraction', 'Start Contraction')}
               </Button>
             </CardContent>
           </Card>
@@ -262,7 +263,7 @@ export default function AILaborProgressTracker() {
               ) : (
                 <Brain className="w-4 h-4" />
               )}
-              Get AI Labor Analysis
+              {t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Labor Analysis')}
             </Button>
           )}
 
@@ -272,7 +273,7 @@ export default function AILaborProgressTracker() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">AI Labor Analysis</h3>
+                  <h3 className="font-semibold">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Labor Analysis')}</h3>
                 </div>
                 <MarkdownRenderer content={aiResponse} />
               </CardContent>
@@ -293,19 +294,19 @@ export default function AILaborProgressTracker() {
               <Card>
                 <CardContent className="p-4 text-center">
                   <div className="text-2xl font-bold text-primary">{contractions.length}</div>
-                  <div className="text-xs text-muted-foreground">Contractions</div>
+                  <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.contractions', 'Contractions')}</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-primary">{getAverageInterval()} min</div>
-                  <div className="text-xs text-muted-foreground">Avg Interval</div>
+                  <div className="text-2xl font-bold text-primary">{getAverageInterval()} {t('common.min', 'min')}</div>
+                  <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.avgInterval', 'Avg Interval')}</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-primary">{getAverageDuration()} sec</div>
-                  <div className="text-xs text-muted-foreground">Avg Duration</div>
+                  <div className="text-2xl font-bold text-primary">{getAverageDuration()} {t('common.sec', 'sec')}</div>
+                  <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.avgDuration', 'Avg Duration')}</div>
                 </CardContent>
               </Card>
             </div>
@@ -334,7 +335,7 @@ export default function AILaborProgressTracker() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-primary" />
-                  Contraction Pattern
+                  {t('toolsInternal.laborTracker.contractionPattern', 'Contraction Pattern')}
                 </h3>
                 <div className="h-48">
                   <ResponsiveContainer width="100%" height="100%">
@@ -354,7 +355,7 @@ export default function AILaborProgressTracker() {
                         dataKey="duration" 
                         stroke="hsl(var(--primary))" 
                         strokeWidth={2}
-                        name="Duration (sec)"
+                        name={t('toolsInternal.laborTracker.durationSec', 'Duration (sec)')}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -369,7 +370,7 @@ export default function AILaborProgressTracker() {
               <CardContent className="p-4">
                 <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                   <Clock className="w-5 h-5 text-primary" />
-                  Recent Contractions
+                  {t('toolsInternal.laborTracker.recentContractions', 'Recent Contractions')}
                 </h3>
                 <div className="space-y-2">
                   {contractions.slice(0, 5).map((c) => (
@@ -381,13 +382,13 @@ export default function AILaborProgressTracker() {
                         <span className="font-medium">
                           {new Date(c.startTime).toLocaleTimeString()}
                         </span>
-                        <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
+                        <span className={`ms-2 text-xs px-2 py-0.5 rounded-full ${
                           c.intensity === 'very-strong' ? 'bg-destructive/10 text-destructive' :
                           c.intensity === 'strong' ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300' :
                           c.intensity === 'moderate' ? 'bg-primary/10 text-primary' :
                           'bg-muted text-muted-foreground'
                         }`}>
-                          {c.intensity}
+                          {t(`toolsInternal.laborTracker.intensity.${c.intensity}`, c.intensity)}
                         </span>
                       </div>
                       <span className="text-muted-foreground">{c.duration}s</span>
@@ -401,10 +402,9 @@ export default function AILaborProgressTracker() {
           {/* 5-1-1 Rule Info */}
           <Card>
             <CardContent className="p-4">
-              <h4 className="font-semibold mb-2">📋 The 5-1-1 Rule</h4>
+              <h4 className="font-semibold mb-2">📋 {t('toolsInternal.laborTracker.rule511', 'The 5-1-1 Rule')}</h4>
               <p className="text-sm text-muted-foreground">
-                Go to the hospital when contractions are <strong>5 minutes</strong> apart, 
-                last <strong>1 minute</strong> each, and continue for <strong>1 hour</strong>.
+                {t('toolsInternal.laborTracker.rule511Desc', 'Go to the hospital when contractions are 5 minutes apart, last 1 minute each, and continue for 1 hour.')}
               </p>
             </CardContent>
           </Card>
@@ -412,8 +412,7 @@ export default function AILaborProgressTracker() {
           {/* Disclaimer */}
           <div className="bg-muted/30 rounded-xl p-4 text-center">
             <p className="text-xs text-muted-foreground">
-              ⚠️ This tool is for informational purposes only. Always follow your healthcare 
-              provider's guidance about when to go to the hospital.
+              ⚠️ {t('toolsInternal.laborTracker.disclaimer', "This tool is for informational purposes only. Always follow your healthcare provider's guidance about when to go to the hospital.")}
             </p>
           </div>
       </div>

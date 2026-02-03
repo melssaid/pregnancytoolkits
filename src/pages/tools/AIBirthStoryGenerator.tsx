@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { FileText, Sparkles, Download, Heart, Baby, Share2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
+import { useTranslation } from 'react-i18next';
 
 interface BirthStoryData {
   babyName: string;
@@ -41,6 +42,7 @@ const isValidData = (data: unknown): data is BirthStoryData => {
 };
 
 export default function AIBirthStoryGenerator() {
+  const { t } = useTranslation();
   const [storyData, setStoryData] = useState<BirthStoryData>(DEFAULT_DATA);
   const [generatedStory, setGeneratedStory] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -118,7 +120,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
       setGeneratedStory(story);
       localStorage.setItem('generatedBirthStory', story);
       setIsGenerating(false);
-      toast({ title: 'Story generated!', description: 'Your beautiful birth story is ready.' });
+      toast({ title: t('toolsInternal.birthStory.storyGenerated', 'Story generated!'), description: t('toolsInternal.birthStory.storyReady', 'Your beautiful birth story is ready.') });
     }, 1500);
   };
 
@@ -131,7 +133,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
     a.download = `${storyData.babyName || 'birth'}-story.txt`;
     a.click();
     URL.revokeObjectURL(url);
-    toast({ title: 'Downloaded!', description: 'Your birth story has been saved.' });
+    toast({ title: t('toolsInternal.birthStory.downloaded', 'Downloaded!'), description: t('toolsInternal.birthStory.storySaved', 'Your birth story has been saved.') });
   };
 
   const shareStory = async () => {
@@ -146,21 +148,21 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
       }
     } else {
       await navigator.clipboard.writeText(generatedStory);
-      toast({ title: 'Copied!', description: 'Story copied to clipboard.' });
+      toast({ title: t('toolsInternal.birthStory.copied', 'Copied!'), description: t('toolsInternal.birthStory.copiedToClipboard', 'Story copied to clipboard.') });
     }
   };
 
   const deliveryTypes = [
-    { id: 'natural', label: 'Natural Birth', icon: '🌸' },
-    { id: 'csection', label: 'C-Section', icon: '💜' },
-    { id: 'water', label: 'Water Birth', icon: '💧' },
-    { id: 'home', label: 'Home Birth', icon: '🏠' },
+    { id: 'natural', label: t('toolsInternal.birthStory.naturalBirth', 'Natural Birth'), icon: '🌸' },
+    { id: 'csection', label: t('toolsInternal.birthStory.csection', 'C-Section'), icon: '💜' },
+    { id: 'water', label: t('toolsInternal.birthStory.waterBirth', 'Water Birth'), icon: '💧' },
+    { id: 'home', label: t('toolsInternal.birthStory.homeBirth', 'Home Birth'), icon: '🏠' },
   ];
 
   return (
     <ToolFrame
-      title="AI Birth Story Generator"
-      subtitle="Create a beautiful keepsake story of your baby's arrival"
+      title={t('toolsInternal.birthStory.title', 'AI Birth Story Generator')}
+      subtitle={t('toolsInternal.birthStory.subtitle', "Create a beautiful keepsake story of your baby's arrival")}
       icon={FileText}
       mood="joyful"
       toolId="ai-birth-story"
@@ -171,18 +173,18 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
           <CardContent className="p-4 space-y-4">
             <h3 className="text-lg font-semibold flex items-center gap-2">
               <Baby className="w-5 h-5 text-primary" />
-              Baby's Details
+              {t('toolsInternal.birthStory.babyDetails', "Baby's Details")}
             </h3>
             
             <Input
-              placeholder="Baby's Name"
+              placeholder={t('toolsInternal.birthStory.babyName', "Baby's Name")}
               value={storyData.babyName}
               onChange={(e) => setStoryData(prev => ({ ...prev, babyName: e.target.value }))}
             />
             
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs text-muted-foreground mb-1">Birth Date</label>
+                <label className="block text-xs text-muted-foreground mb-1">{t('toolsInternal.birthStory.birthDate', 'Birth Date')}</label>
                 <Input
                   type="date"
                   value={storyData.birthDate}
@@ -190,7 +192,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
                 />
               </div>
               <div>
-                <label className="block text-xs text-muted-foreground mb-1">Birth Time</label>
+                <label className="block text-xs text-muted-foreground mb-1">{t('toolsInternal.birthStory.birthTime', 'Birth Time')}</label>
                 <Input
                   type="time"
                   value={storyData.birthTime}
@@ -202,19 +204,19 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
             
             <div className="grid grid-cols-2 gap-3">
               <Input
-                placeholder="Weight (e.g., 7 lbs 4 oz)"
+                placeholder={t('toolsInternal.birthStory.weight', 'Weight (e.g., 7 lbs 4 oz)')}
                 value={storyData.weight}
                 onChange={(e) => setStoryData(prev => ({ ...prev, weight: e.target.value }))}
               />
               <Input
-                placeholder="Length (e.g., 20 inches)"
+                placeholder={t('toolsInternal.birthStory.length', 'Length (e.g., 20 inches)')}
                 value={storyData.length}
                 onChange={(e) => setStoryData(prev => ({ ...prev, length: e.target.value }))}
               />
             </div>
             
             <Input
-              placeholder="Birth Location (Hospital, Birth Center, etc.)"
+              placeholder={t('toolsInternal.birthStory.location', 'Birth Location (Hospital, Birth Center, etc.)')}
               value={storyData.location}
               onChange={(e) => setStoryData(prev => ({ ...prev, location: e.target.value }))}
             />
@@ -224,7 +226,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
         {/* Delivery Type */}
         <Card>
           <CardContent className="p-4 space-y-4">
-            <h3 className="text-lg font-semibold">Delivery Type</h3>
+            <h3 className="text-lg font-semibold">{t('toolsInternal.birthStory.deliveryType', 'Delivery Type')}</h3>
             <div className="grid grid-cols-2 gap-3">
               {deliveryTypes.map((type) => (
                 <button
@@ -249,13 +251,13 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
           <CardContent className="p-4 space-y-4">
             <h3 className="text-lg font-semibold flex items-center gap-2">
               <Heart className="w-5 h-5 text-primary" />
-              Personal Touch
+              {t('toolsInternal.birthStory.personalTouch', 'Personal Touch')}
             </h3>
             
             <div>
-              <label className="block text-sm font-medium mb-2">First feeling when you saw your baby</label>
+              <label className="block text-sm font-medium mb-2">{t('toolsInternal.birthStory.firstFeeling', 'First feeling when you saw your baby')}</label>
               <Textarea
-                placeholder="Describe that magical first moment..."
+                placeholder={t('toolsInternal.birthStory.firstFeelingPlaceholder', 'Describe that magical first moment...')}
                 value={storyData.firstFeeling}
                 onChange={(e) => setStoryData(prev => ({ ...prev, firstFeeling: e.target.value }))}
                 className="min-h-[80px]"
@@ -263,9 +265,9 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Special moments to remember</label>
+              <label className="block text-sm font-medium mb-2">{t('toolsInternal.birthStory.specialMoments', 'Special moments to remember')}</label>
               <Textarea
-                placeholder="Any special details, who was there, funny moments, etc..."
+                placeholder={t('toolsInternal.birthStory.specialMomentsPlaceholder', 'Any special details, who was there, funny moments, etc...')}
                 value={storyData.specialMoments}
                 onChange={(e) => setStoryData(prev => ({ ...prev, specialMoments: e.target.value }))}
                 className="min-h-[80px]"
@@ -273,7 +275,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
             </div>
             
             <Input
-              placeholder="Dedicated to... (optional)"
+              placeholder={t('toolsInternal.birthStory.dedicatedTo', 'Dedicated to... (optional)')}
               value={storyData.dedicatedTo}
               onChange={(e) => setStoryData(prev => ({ ...prev, dedicatedTo: e.target.value }))}
             />
@@ -287,7 +289,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
           disabled={isGenerating}
         >
           <Sparkles className="w-4 h-4" />
-          {isGenerating ? 'Creating Your Story...' : 'Generate Birth Story'}
+          {isGenerating ? t('toolsInternal.birthStory.creating', 'Creating Your Story...') : t('toolsInternal.birthStory.generate', 'Generate Birth Story')}
         </Button>
 
         {/* Generated Story */}
@@ -295,15 +297,15 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Your Birth Story</h3>
+                <h3 className="text-lg font-semibold">{t('toolsInternal.birthStory.yourStory', 'Your Birth Story')}</h3>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" onClick={shareStory} className="gap-2">
                     <Share2 className="w-4 h-4" />
-                    Share
+                    {t('common.share', 'Share')}
                   </Button>
                   <Button variant="outline" size="sm" onClick={downloadStory} className="gap-2">
                     <Download className="w-4 h-4" />
-                    Download
+                    {t('common.download', 'Download')}
                   </Button>
                 </div>
               </div>
@@ -320,7 +322,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
         <Card className="bg-muted/30">
           <CardContent className="p-4">
             <p className="text-sm text-muted-foreground">
-              💝 <strong>Create a keepsake:</strong> This story can be saved, printed, and included in a baby book or shared with family and friends.
+              💝 <strong>{t('toolsInternal.birthStory.keepsakeTitle', 'Create a keepsake')}:</strong> {t('toolsInternal.birthStory.keepsakeDesc', 'This story can be saved, printed, and included in a baby book or shared with family and friends.')}
             </p>
           </CardContent>
         </Card>
