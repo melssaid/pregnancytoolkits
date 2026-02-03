@@ -1,0 +1,535 @@
+{
+  "app": {
+    "name": "Hamilelik Araçları",
+    "tagline": "Tam Hamilelik Rehberiniz",
+    "title": "Tam Hamilelik",
+    "titleHighlight": "Rehberiniz",
+    "titleEnd": "",
+    "description": "Hamilelik yolculuğunuz için 34 profesyonel araç — doğurganlıktan doğum sonrası bakıma.",
+    "searchPlaceholder": "Araç ara...",
+    "allTools": "Tüm Araçlar",
+    "toolsAvailable": "{{count}} araç mevcut",
+    "noToolsFound": "Aramanıza uygun araç bulunamadı.",
+    "medicalDisclaimer": "Bu araçlar yalnızca bilgi amaçlıdır. Her zaman sağlık uzmanınıza danışın.",
+    "footer": "Yalnızca bilgi amaçlıdır. Her zaman sağlık uzmanınıza danışın.",
+    "back": "Geri",
+    "allToolsBtn": "Tüm Araçlar"
+  },
+  "ai": {
+    "resultDisclaimer": "Yapay zeka tarafından oluşturuldu • Sağlık uzmanınıza danışın"
+  },
+  "categories": {
+    "all": "Tümü",
+    "ai": "Akıllı Araçlar ✨",
+    "fertility": "Doğurganlık",
+    "pregnancy": "Hamilelik",
+    "labor": "Doğum",
+    "postpartum": "Bebek Bakımı",
+    "riskAssessment": "Risk Değerlendirmesi",
+    "mentalHealth": "Ruh Sağlığı",
+    "wellness": "Sağlık",
+    "preparation": "Hazırlık"
+  },
+  "tools": {
+    "pregnancyAssistant": {
+      "title": "Akıllı Hamilelik Rehberi",
+      "description": "Hamilelik hakkında herhangi bir soru sorun ve anında cevap alın."
+    },
+    "symptomAnalyzer": {
+      "title": "Akıllı Semptom Analizi",
+      "description": "Semptomlarınızı akıllı içgörülerle analiz edin."
+    },
+    "aiMealSuggestion": {
+      "title": "Akıllı Öğün Planlayıcı",
+      "description": "Trimesterinize göre kişiselleştirilmiş öğün önerileri alın."
+    },
+    "weeklySummary": {
+      "title": "Haftalık İçgörüler",
+      "description": "Bebeğinizin büyümesi hakkında akıllı haftalık güncellemeler."
+    },
+    "aiBirthPlan": {
+      "title": "AI Doğum Planı Oluşturucu",
+      "description": "AI rehberliğiyle kişiselleştirilmiş doğum planınızı oluşturun."
+    },
+    "smartAppointmentReminder": {
+      "title": "Akıllı Randevu Hatırlatıcı",
+      "description": "Asla bir doğum öncesi randevuyu kaçırmayın."
+    },
+    "aiCravingAlternatives": {
+      "title": "AI İstek Alternatifleri",
+      "description": "Hamilelik istekleri için sağlıklı alternatifler."
+    },
+    "smartGroceryList": {
+      "title": "Akıllı Alışveriş Listesi",
+      "description": "Hamilelik beslenmesi için AI destekli alışveriş listesi."
+    },
+    "aiSleepOptimizer": {
+      "title": "AI Uyku Optimizatörü",
+      "description": "Hamilelik için kişiselleştirilmiş uyku rehberliği."
+    },
+    "aiHospitalBag": {
+      "title": "AI Hastane Çantası",
+      "description": "Doğum günü için akıllı paketleme listesi."
+    },
+    "aiPartnerGuide": {
+      "title": "AI Partner Rehberi",
+      "description": "Partnerler ve eşler için destek ipuçları."
+    },
+    "aiBirthPosition": {
+      "title": "AI Doğum Pozisyonları",
+      "description": "Doğumunuz için optimal pozisyonlar."
+    },
+    "aiSkincare": {
+      "title": "AI Cilt Bakımı",
+      "description": "Hamilelikte güvenli cilt bakım rutini."
+    },
+    "aiNauseaRelief": {
+      "title": "AI Mide Bulantısı Rahatlatma",
+      "description": "Sabah bulantısı için çözümler ve ipuçları."
+    },
+    "aiBudgetPlanner": {
+      "title": "AI Bütçe Planlayıcı",
+      "description": "Bebek masraflarını akıllıca planlayın."
+    },
+    "aiBumpPhotos": {
+      "title": "Haftalık Fotoğraflar",
+      "description": "AI içgörüleriyle akıllı hamilelik fotoğraf zaman çizelgesi."
+    },
+    "aiFitnessCoach": {
+      "title": "AI Fitness Koçu",
+      "description": "Hamilelik aşamanıza göre güvenli egzersizler."
+    },
+    "aiBackPainRelief": {
+      "title": "AI Sırt Ağrısı Rahatlatma",
+      "description": "Hamilelik sırt ağrısı için kişiselleştirilmiş egzersizler."
+    },
+    "vitaminTracker": {
+      "title": "Vitamin Takibi",
+      "description": "Doğum öncesi vitaminlerinizi asla kaçırmayın."
+    },
+    "forbiddenFoods": {
+      "title": "Yasak Yiyecekler",
+      "description": "Neyin yenmesinin güvenli olduğunu bilin."
+    },
+    "aiLaborProgress": {
+      "title": "AI Doğum İlerleme Takibi",
+      "description": "Kasılmaları takip edin ve doğum ilerlemesini izleyin."
+    },
+    "cycleTracker": {
+      "title": "Döngü ve Yumurtlama Takibi",
+      "description": "Döngünüzü takip edin ve verimli günlerinizi bulun."
+    },
+    "dueDateCalculator": {
+      "title": "Tahmini Doğum Tarihi Hesaplayıcı",
+      "description": "Küçüğünüzün ne zaman geleceğini öğrenin."
+    },
+    "fetalGrowth": {
+      "title": "Fetal Büyüme Takibi",
+      "description": "Bu hafta bebeğinizin ne kadar büyük olduğunu görün!"
+    },
+    "kickCounter": {
+      "title": "Tekme Sayacı",
+      "description": "Bebeğinizin değerli hareketlerini takip edin."
+    },
+    "weightGain": {
+      "title": "Kilo Alımı Analizörü",
+      "description": "Sağlıklı hamilelik kilosunu izleyin."
+    },
+    "postpartumMentalHealth": {
+      "title": "Ruh Sağlığı Koçu",
+      "description": "EPDS taraması ve ruh sağlığı desteği."
+    },
+    "gestationalDiabetes": {
+      "title": "Gestasyonel Diyabet Riski",
+      "description": "Gestasyonel diyabet risk faktörlerinizi bilin."
+    },
+    "preeclampsiaRisk": {
+      "title": "Preeklampsi Riski",
+      "description": "Preeklampsi risk faktörlerinizi kontrol edin."
+    },
+    "babyGearRecommender": {
+      "title": "Bebek Ekipman Önerici",
+      "description": "Yeni gelen bebeğiniz için gerekli eşyalar listesi."
+    },
+    "aiLactationPrep": {
+      "title": "AI Emzirme Hazırlığı",
+      "description": "Emzirme hazırlık rehberi."
+    },
+    "babySleepTracker": {
+      "title": "Bebek Uyku Takibi",
+      "description": "Bebeğinizin uyku düzenini takip edin."
+    },
+    "babyGrowth": {
+      "title": "Bebek Büyümesi",
+      "description": "WHO grafikleriyle büyümeyi takip edin."
+    },
+    "diaperTracker": {
+      "title": "Bez Takibi",
+      "description": "Değişiklikleri kaydedin, sağlığı izleyin."
+    }
+  },
+  "common": {
+    "calculate": "Hesapla",
+    "results": "Sonuçlarınız",
+    "info": "Bilgi",
+    "warning": "Önemli",
+    "success": "Başarılı",
+    "error": "Hata",
+    "save": "Kaydet",
+    "reset": "Sıfırla",
+    "start": "Başlat",
+    "stop": "Durdur",
+    "clear": "Temizle",
+    "delete": "Sil",
+    "add": "Ekle",
+    "remove": "Kaldır",
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "week": "Hafta",
+    "weeks": "Hafta",
+    "day": "Gün",
+    "days": "Gün",
+    "month": "Ay",
+    "months": "Ay",
+    "minutes": "dakika",
+    "seconds": "saniye",
+    "hours": "saat",
+    "premium": "Premium",
+    "subscribe": "Abone Ol",
+    "unlock": "Tüm Araçları Aç",
+    "loading": "Yükleniyor...",
+    "cancel": "İptal",
+    "edit": "Düzenle"
+  },
+  "subscription": {
+    "subscribeNow": "Premium Al - ₺24.99/ay",
+    "premiumFeature": "Premium Özellik",
+    "unlockAccess": "Tüm 34 aracı açın",
+    "subscribeToAccess": "Açmak için abone olun"
+  },
+  "dueDatePage": {
+    "title": "Tahmini Doğum Tarihi Hesaplayıcı",
+    "subtitle": "Bebeğinizin ne zaman geleceğini tahmin edin",
+    "lmpTab": "Son Adet",
+    "conceptionTab": "Gebe Kalma Tarihi",
+    "lmpLabel": "Son Adetin İlk Günü",
+    "conceptionLabel": "Gebe Kalma Tarihi",
+    "calculateBtn": "Doğum Tarihini Hesapla",
+    "timeline": "Hamilelik Zaman Çizelgeniz",
+    "estimatedDueDate": "Tahmini Doğum Tarihi",
+    "currentlyAt": "Şu anda",
+    "weeksAndDays": "{{weeks}} hafta, {{days}} gün",
+    "trimester": "{{number}}. Trimester",
+    "conception": "Gebe Kalma",
+    "secondTrimester": "2. Trimester",
+    "thirdTrimester": "3. Trimester",
+    "info": "Bebeklerin sadece yaklaşık %5'i tam doğum tarihinde doğar. Çoğu 2 hafta önce veya sonra doğar. Sağlık uzmanınız ultrason ölçümlerine göre tarihi ayarlayabilir."
+  },
+  "kickCounterPage": {
+    "title": "Tekme Sayacı",
+    "subtitle": "Fetal aktiviteyi izlemek için 10 tekme sayın",
+    "timeElapsed": "Geçen Süre",
+    "startCounting": "Saymaya Başla",
+    "kicks": "tekme",
+    "endSession": "Oturumu Bitir",
+    "goal": "Hedef: 2 saat veya daha kısa sürede 10 tekme",
+    "moreToGo": "Hedefe {{count}} tekme daha",
+    "recentSessions": "Son Oturumlar",
+    "info": "28. haftadan itibaren günlük fetal hareketleri sayın. Azalan hareket fark ederseniz veya 2 saatte 10 tekmeye ulaşamazsanız sağlık uzmanınıza başvurun."
+  },
+  "contractionPage": {
+    "title": "Kasılma Zamanlayıcı",
+    "subtitle": "Kasılmaların süresini ve sıklığını takip edin",
+    "contractionStarted": "Kasılma Başladı",
+    "contractionEnded": "Kasılma Bitti",
+    "avgDuration": "Ort. Süre",
+    "avgInterval": "Ort. Aralık",
+    "contractionLog": "Kasılma Günlüğü",
+    "sinceLastContraction": "Son kasılmadan {{minutes}} dk",
+    "duration": "süre",
+    "callProvider": "Doktorunuzu Aramanın Zamanı",
+    "callProviderDesc": "Kasılmalar 5 dakikada bir ve 45+ saniye sürüyor. Hastaneye gitmeyi düşünün.",
+    "rule511": "5-1-1 Kuralı",
+    "rule511Desc": "Kasılmalar 5 dakikada bir, 1 dakika süreyle ve en az 1 saat boyunca devam ederse doktorunuzu arayın."
+  },
+  "preeclampsiaPage": {
+    "title": "Preeklampsi Risk Değerlendirmesi",
+    "subtitle": "Preeklampsi risk faktörlerinizi kontrol edin",
+    "highRisk": "Yüksek Risk Faktörleri",
+    "moderateRisk": "Orta Risk Faktörleri",
+    "firstPregnancy": "İlk hamilelik",
+    "previousPreeclampsia": "Önceki preeklampsi",
+    "chronicHypertension": "Kronik hipertansiyon",
+    "diabetes": "Diyabet",
+    "kidneyDisease": "Böbrek hastalığı",
+    "obesity": "Obezite (VKİ > 30)",
+    "age35Plus": "35 yaş üstü",
+    "multiplePregnancy": "Çoğul gebelik",
+    "familyHistory": "Aile öyküsü",
+    "calculate": "Riski Hesapla",
+    "lowRiskResult": "Düşük Risk",
+    "moderateRiskResult": "Orta Risk",
+    "highRiskResult": "Yüksek Risk",
+    "disclaimer": "Bu yalnızca ön bir değerlendirmedir. Her zaman sağlık uzmanınıza danışın."
+  },
+  "fitnessPage": {
+    "title": "AI Fitness Koçu",
+    "currentWeek": "Mevcut Hafta",
+    "selectTrimester": "Trimester Seçin",
+    "exerciseLevel": "Aktivite Seviyesi",
+    "beginner": "Başlangıç",
+    "intermediate": "Orta",
+    "advanced": "İleri",
+    "generatePlan": "Antrenman Planı Oluştur",
+    "safeExercises": "Güvenli Egzersizler",
+    "avoidExercises": "Kaçınılacak Egzersizler",
+    "disclaimer": "Herhangi bir egzersiz programına başlamadan önce sağlık uzmanınıza danışın."
+  },
+  "forbiddenFoodsPage": {
+    "title": "Yasak Yiyecekler",
+    "searchPlaceholder": "Yiyecek ara...",
+    "forbidden": "Kaçının",
+    "caution": "Dikkat",
+    "safe": "Güvenli",
+    "forbiddenTitle": "Kaçınılacak Yiyecekler",
+    "cautionTitle": "Dikkatle Kullanın",
+    "safeTitle": "Güvenli Alternatifler",
+    "disclaimer": "Bu genel bir rehberdir. Hamileliğinize özel diyet kısıtlamaları için her zaman sağlık uzmanınıza danışın."
+  },
+  "babySleepPage": {
+    "title": "Bebek Uyku Takibi",
+    "logSleep": "Uyku Kaydet",
+    "startTime": "Başlangıç Zamanı",
+    "endTime": "Bitiş Zamanı",
+    "duration": "Süre",
+    "totalToday": "Bugün Toplam Uyku",
+    "sleepLog": "Uyku Günlüğü"
+  },
+  "diaperPage": {
+    "title": "Bez Takibi",
+    "logChange": "Değişiklik Kaydet",
+    "wet": "Islak",
+    "dirty": "Kirli",
+    "both": "İkisi de",
+    "todayCount": "Bugünkü Değişiklikler",
+    "recentChanges": "Son Değişiklikler"
+  },
+  "babyGrowthPage": {
+    "title": "Bebek Büyümesi",
+    "age": "Bebek Yaşı",
+    "weight": "Ağırlık (kg)",
+    "height": "Boy (cm)",
+    "headCircumference": "Baş Çevresi (cm)",
+    "percentile": "Yüzdelik",
+    "trackGrowth": "Büyümeyi Takip Et"
+  },
+  "babyGearPage": {
+    "title": "Temel Bebek Ekipmanları",
+    "categories": "Kategoriler",
+    "sleeping": "Uyku",
+    "feeding": "Besleme",
+    "bathing": "Banyo",
+    "clothing": "Giyim",
+    "travel": "Seyahat",
+    "health": "Sağlık",
+    "mustHave": "Olmazsa Olmaz",
+    "niceToHave": "İyi Olur",
+    "canWait": "Bekleyebilir",
+    "estimatedCost": "Tahmini Maliyet"
+  },
+  "nutrition": {
+    "breakfast": "Kahvaltı",
+    "lunch": "Öğle Yemeği",
+    "dinner": "Akşam Yemeği",
+    "snack": "Atıştırmalık",
+    "addFoodFirst": "En az bir yiyecek ekleyin",
+    "mealLogged": "Öğün kaydedildi: {{meal}}",
+    "noMeals": "Öğün yok",
+    "logMealFirst": "Önce en az bir öğün kaydedin",
+    "weekInfo": "Hafta {{week}} - Öğünlerinizi kaydedin ve AI ipuçları alın",
+    "mealsCount": "{{count}} öğün",
+    "notLogged": "Kaydedilmedi",
+    "totalCalories": "Bugün Toplam Kalori",
+    "cal": "kal",
+    "goalCalories": "Hedef: Hamilelik için ~2200 kal",
+    "logNewMeal": "Yeni Öğün Kaydet",
+    "enterFood": "Yiyecek adı girin...",
+    "caloriesOptional": "Kalori (opsiyonel)",
+    "caloriesPlaceholder": "Kalori sayısı",
+    "saveMeal": "Öğünü Kaydet",
+    "todaysMeals": "Bugünkü Öğünler",
+    "analyzeDay": "Günü Analiz Et",
+    "aiTip": "AI İpucu",
+    "dailyAnalysis": "Günlük Beslenme Analiziniz",
+    "tipsTitle": "Hamilelik Beslenme İpuçları",
+    "tip1": "3 büyük yerine 5-6 küçük öğün yiyin",
+    "tip2": "Günde 8-10 bardak su için",
+    "tip3": "Çiğ yiyeceklerden ve pastörize edilmemiş peynirlerden kaçının",
+    "tip4": "Protein, demir ve kalsiyuma odaklanın"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "securityPrivacy": "Güvenlik ve Gizlilik",
+    "dataManagement": "Veri Yönetimi",
+    "dataPrivacy": "Veri Gizliliği",
+    "privacyPoint1": "Tüm sağlık verileriniz yalnızca cihazınızda yerel olarak saklanır",
+    "privacyPoint2": "Kişisel bilgilerinizi toplamıyor veya paylaşmıyoruz",
+    "privacyPoint3": "Verilerinizi istediğiniz zaman dışa aktarabilirsiniz",
+    "aboutApp": "Uygulama Hakkında",
+    "appTagline": "Hamilelik Araçları - Yolculuk arkadaşınız",
+    "version": "Sürüm",
+    "medicalNote": "Bu uygulama yalnızca eğitim amaçlıdır ve tıbbi tavsiyenin yerini almaz",
+    "encryption": {
+      "title": "Veri Şifreleme",
+      "description": "Sağlık verilerinizi AES-256 şifreleme ile koruyun",
+      "enabled": "Şifreleme Etkin",
+      "disabled": "Şifreleme Devre Dışı",
+      "enabledAlert": "Sağlık verileriniz AES-256-GCM şifreleme ile korunmaktadır. Şifreleme anahtarı yalnızca cihazınızda saklanır.",
+      "disabledAlert": "Şifreleme devre dışı. Verileriniz cihazda okunabilir formatta saklanır.",
+      "encryptedData": "Şifrelenmiş Veriler:",
+      "personalPregnancyData": "Kişisel hamilelik verileri",
+      "healthWeightRecords": "Sağlık ve kilo kayıtları",
+      "medicalAppointments": "Tıbbi randevular",
+      "birthPlans": "Doğum planları",
+      "journalNotes": "Günlük ve notlar",
+      "cycleData": "Adet döngüsü verileri",
+      "securityNote": "Güvenlik notu:",
+      "securityNoteText": "Şifreleme anahtarı yalnızca cihazınızda saklanır. Uygulama verilerini silerseniz, şifrelenmiş verilere erişimi kaybedersiniz. Düzenli yedekleme yapın.",
+      "processing": "İşleniyor...",
+      "enabledToast": "Şifreleme Etkinleştirildi ✅",
+      "enabledToastDesc": "{{count}} hassas veri öğesi şifrelendi",
+      "enabledToastDescNew": "Yeni veriler otomatik olarak şifrelenecek",
+      "disabledToast": "Şifreleme Devre Dışı",
+      "disabledToastDesc": "{{count}} öğe şifre çözüldü",
+      "disabledToastDescNone": "Şifrelenmiş veri bulunamadı",
+      "errorToast": "Hata oluştu",
+      "errorToastDesc": "Şifreleme durumu değiştirilemedi"
+    },
+    "backup": {
+      "title": "Veri Yedekleme",
+      "description": "Verilerinizi daha sonra geri yüklemek için JSON dosyası olarak kaydedin",
+      "lastBackup": "Son yedekleme:",
+      "important": "Önemli:",
+      "importantText": "Yedekleme dosyasını Google Drive, iCloud gibi güvenli bir yere kaydedin veya kendinize e-posta ile gönderin.",
+      "exportData": "Verileri Dışa Aktar",
+      "importData": "Verileri İçe Aktar",
+      "importTitle": "Yedeği İçe Aktar",
+      "importDescription": "Verilerinizi geri yüklemek için bir yedekleme dosyası (.json) seçin",
+      "importWarning": "Uyarı:",
+      "importWarningText": "Mevcut veriler içe aktarılan verilerle değiştirilecek",
+      "cancel": "İptal",
+      "noData": "Veri yok",
+      "noDataDesc": "Dışa aktarılacak veri bulunamadı",
+      "exportSuccess": "Dışa Aktarma Başarılı ✅",
+      "exportSuccessDesc": "{{count}} öğe dosyaya kaydedildi",
+      "exportError": "Dışa Aktarma Hatası",
+      "exportErrorDesc": "Verileri dışa aktarırken bir hata oluştu",
+      "importSuccess": "İçe Aktarma Başarılı ✅",
+      "importSuccessDesc": "{{count}} öğe yedekten geri yüklendi",
+      "importError": "İçe Aktarma Hatası",
+      "invalidFile": "Geçersiz yedekleme dosyası",
+      "importing": "Veriler içe aktarılıyor...",
+      "features": {
+        "pregnancyData": "Tüm hamilelik verileri",
+        "appointments": "Randevular ve hatırlatıcılar",
+        "healthRecords": "Sağlık kayıtları",
+        "birthPlans": "Doğum planları"
+      }
+    },
+    "clearData": {
+      "title": "Tüm Verileri Sil",
+      "description": "Bu cihazda kayıtlı tüm verileri kaldırın",
+      "currentData": "Şu anda kayıtlı veriler:",
+      "items": "öğe",
+      "warning": "Uyarı:",
+      "warningText": "Bu işlem geri alınamaz! Tüm hamilelik kayıtları, randevular, fotoğraflar ve ayarlar silinecektir.",
+      "willBeDeleted": "Silinecekler:",
+      "pregnancyData": "Hamilelik verileri",
+      "appointments": "Randevular ve hatırlatıcılar",
+      "healthRecords": "Sağlık kayıtları",
+      "pregnancyPhotos": "Hamilelik fotoğrafları",
+      "birthPlans": "Doğum planları",
+      "allSettings": "Tüm ayarlar",
+      "noDataToDelete": "Silinecek veri yok",
+      "deleteAllData": "Tüm Verileri Sil",
+      "confirmTitle": "Veri Silmeyi Onayla",
+      "confirmDesc": "Silmek üzeresiniz",
+      "confirmDescItems": "öğe yerel veri.",
+      "confirmWarning": "Bu işlem kesindir ve geri alınamaz!",
+      "typeToConfirm": "Onaylamak için yazın",
+      "toConfirm": ":",
+      "confirmWord": "SİL",
+      "typePlaceholder": "Buraya \"SİL\" yazın",
+      "cancel": "İptal",
+      "confirmDelete": "Silmeyi Onayla",
+      "deleting": "Siliniyor...",
+      "deleteSuccess": "Başarıyla Silindi ✅",
+      "deleteSuccessDesc": "{{count}} öğe yerel verilerden silindi",
+      "deleteError": "Silme Hatası",
+      "deleteErrorDesc": "Verileri silerken bir hata oluştu",
+      "confirmError": "Onay Hatası",
+      "confirmErrorDesc": "Onaylamak için lütfen \"{{word}}\" yazın",
+      "tip": "İpucu:",
+      "tipText": "Verilerinizi kaydetmek için silmeden önce bir yedek dışa aktarın"
+    }
+  },
+  "charts": {
+    "babyGrowth": {
+      "noData": "Grafiği görüntülemek için en az bir ölçüm ekleyin",
+      "month": "Ay",
+      "actualWeight": "Gerçek Ağırlık",
+      "minPercentile": "Minimum (%3)",
+      "medianPercentile": "Medyan (%50)",
+      "maxPercentile": "Maksimum (%97)",
+      "kg": "kg",
+      "title": "Ağırlık Büyüme Eğrisi - WHO Standartları",
+      "ageMonths": "Yaş (ay)",
+      "weightKg": "Ağırlık (kg)",
+      "yourBaby": "Bebeğiniz",
+      "yourBabyBoy": "Bebeğinizin ağırlığı",
+      "yourBabyGirl": "Bebeğinizin ağırlığı",
+      "median": "Medyan (%50)",
+      "normalRange": "Normal Aralık"
+    }
+  },
+  "smartPlan": {
+    "title": "Akıllı Planım",
+    "subtitle": "Verilerinize dayalı kişiselleştirilmiş günlük planlar",
+    "yourData": "Verileriniz",
+    "currentWeek": "Mevcut Hafta",
+    "weight": "Ağırlık",
+    "backPainLevel": "Sırt Ağrısı Seviyesi",
+    "exercises": "Egzersizler",
+    "meals": "Öğünler",
+    "report": "Rapor",
+    "dailyRoutine": "Günlük Rutininiz",
+    "exerciseDesc": "Bu egzersizler {{week}}. hafta ve sağlık durumunuz için seçildi.",
+    "ex1": { "name": "Kedi-İnek Germe" },
+    "ex2": { "name": "Pelvik Taban Güçlendirme" },
+    "ex3": { "name": "Omuz Rotasyonu" },
+    "exGeneral": { "name": "Hafif Yürüyüş" },
+    "nutritionPlan": "Beslenme Planı",
+    "caloriesTarget": "Günlük Kalori Hedefi",
+    "breakfast": "Kahvaltı",
+    "breakfastDesc": "Meyve ve kuruyemişli yulaf (350 kal)",
+    "lunch": "Öğle Yemeği",
+    "lunchDesc": "Kinoa ile ızgara tavuk salatası (500 kal)",
+    "dinner": "Akşam Yemeği",
+    "dinnerDesc": "Soteli sebzelerle ızgara balık (400 kal)",
+    "weeklyReport": "Haftalık Doktor Raporu",
+    "reportDesc": "Durum özetinizi içeren yazdırmaya hazır rapor",
+    "readyToPrint": "Yazdırmaya Hazır",
+    "printNote": "Raporu yazdırmak veya PDF olarak kaydetmek için düğmeye tıklayın",
+    "printBtn": "Raporu Yazdır / PDF Kaydet",
+    "printSuccess": "Yazdırma hazırlanıyor...",
+    "vitals": "Hayati Değerler",
+    "pain": "Ağrı Seviyesi",
+    "summary": "Durum Özeti",
+    "summaryText": "Hasta düzenli kontrollere geliyor. Aktivite seviyesi iyi. Beslenme dengeli.",
+    "doctorNotes": "Doktor Notları"
+  },
+  "appUpdated": {
+    "title": "Uygulama güncellendi, yeniden yükleniyor...",
+    "description": "Uygulama güncellendi, yeniden yükleniyor..."
+  }
+}
