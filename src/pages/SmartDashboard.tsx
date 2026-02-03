@@ -204,21 +204,21 @@ const SmartDashboard = () => {
 
   return (
     <Layout>
-      {/* Navigation Tabs */}
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-        <div className="container">
-          <div className="flex gap-1 py-2 overflow-x-auto scrollbar-hide">
+      {/* Navigation Tabs - Adjusted positioning */}
+      <nav className="bg-background border-b border-border/50">
+        <div className="container px-3">
+          <div className="flex gap-1 py-2 overflow-x-auto scrollbar-hide -mx-1 px-1">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
                   activeTab === tab.id
-                    ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-md"
-                    : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                    ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-sm"
+                    : "bg-muted/40 text-muted-foreground hover:bg-muted"
                 }`}
               >
-                <tab.icon className="w-3.5 h-3.5" />
+                <tab.icon className="w-3 h-3" />
                 {tab.label}
               </button>
             ))}
