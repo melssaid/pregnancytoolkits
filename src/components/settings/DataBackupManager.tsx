@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { Download, Upload, AlertTriangle, Loader2, FileJson, Calendar } from 'lucide-react';
+import { Download, Upload, AlertTriangle, Loader2, FileJson, Calendar, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
+import { exportDataBackupPDF } from '@/lib/pdfExport';
 import {
   Dialog,
   DialogContent,
@@ -13,6 +14,12 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 // Keys to backup from localStorage
 const BACKUP_KEYS = [
@@ -75,17 +82,51 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
     return data;
   };
 
-  const handleExport = async () => {
+  // Export as PDF (primary method)
+  const handleExportPDF = async () => {
     setIsExporting(true);
     try {
       const data = collectAllData();
       const dataCount = Object.keys(data).length;
       if (dataCount === 0) {
         toast({ title: t('settings.backup.noData'), description: t('settings.backup.noDataDesc'), variant: 'destructive' });
+        setIsExporting(false);
         return;
       }
 
-      const backup: BackupData = { version: '1.0', createdAt: new Date().toISOString(), deviceInfo: navigator.userAgent, data };
+      const lang = i18n.language === 'ar' ? 'ar' : 'en';
+      exportDataBackupPDF({
+        title: lang === 'ar' ? 'نسخة احتياطية للبيانات' : 'Data Backup Report',
+        subtitle: lang === 'ar' ? `${dataCount} عنصر محفوظ` : `${dataCount} items saved`,
+        data,
+        language: lang
+      });
+
+      const now = new Date().toISOString();
+      localStorage.setItem('last_backup_date', now);
+      setLastBackupDate(now);
+      toast({ title: t('settings.backup.exportSuccess'), description: t('settings.backup.exportSuccessDesc', { count: dataCount }) });
+    } catch (error) {
+      console.error('Export error:', error);
+      toast({ title: t('settings.backup.exportError'), description: t('settings.backup.exportErrorDesc'), variant: 'destructive' });
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  // Export as JSON (for restore)
+  const handleExportJSON = async () => {
+    setIsExporting(true);
+    try {
+      const data = collectAllData();
+      const dataCount = Object.keys(data).length;
+      if (dataCount === 0) {
+        toast({ title: t('settings.backup.noData'), description: t('settings.backup.noDataDesc'), variant: 'destructive' });
+        setIsExporting(false);
+        return;
+      }
+
+      const backup = { version: '1.0', createdAt: new Date().toISOString(), deviceInfo: navigator.userAgent, data };
       const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const date = new Date().toISOString().split('T')[0];
@@ -153,11 +194,25 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         )}
 
         <div className="grid grid-cols-2 gap-2">
-          {/* Export */}
-          <Button onClick={handleExport} disabled={isExporting} size="sm" className="gap-1.5 h-9 text-xs bg-green-600 hover:bg-green-700">
-            {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
-            {t('settings.backup.exportData')}
-          </Button>
+          {/* Export as PDF (Primary) */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button disabled={isExporting} size="sm" className="gap-1.5 h-9 text-xs bg-green-600 hover:bg-green-700">
+                {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
+                {t('settings.backup.exportData')}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem onClick={handleExportPDF} className="gap-2">
+                <FileText className="w-4 h-4 text-red-500" />
+                <span>PDF ({i18n.language === 'ar' ? 'للطباعة' : 'for print'})</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleExportJSON} className="gap-2">
+                <FileJson className="w-4 h-4 text-blue-500" />
+                <span>JSON ({i18n.language === 'ar' ? 'للاستعادة' : 'for restore'})</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           {/* Import */}
           <Dialog open={importDialogOpen} onOpenChange={setImportDialogOpen}>
@@ -229,10 +284,25 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       </div>
 
       <div className="grid grid-cols-2 gap-2">
-        <Button onClick={handleExport} disabled={isExporting} className="gap-2 bg-green-600 hover:bg-green-700">
-          {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-          {t('settings.backup.exportData')}
-        </Button>
+        {/* Export dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button disabled={isExporting} className="gap-2 bg-green-600 hover:bg-green-700">
+              {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+              {t('settings.backup.exportData')}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem onClick={handleExportPDF} className="gap-2">
+              <FileText className="w-4 h-4 text-red-500" />
+              <span>PDF ({i18n.language === 'ar' ? 'للطباعة' : 'for print'})</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleExportJSON} className="gap-2">
+              <FileJson className="w-4 h-4 text-blue-500" />
+              <span>JSON ({i18n.language === 'ar' ? 'للاستعادة' : 'for restore'})</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
 
         <Dialog open={importDialogOpen} onOpenChange={setImportDialogOpen}>
           <DialogTrigger asChild>
