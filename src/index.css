@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -118,11 +119,28 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* RTL Support */
+  html[dir="rtl"] {
+    font-family: 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
   body {
     @apply text-foreground antialiased;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     background: linear-gradient(
       90deg,
+      hsl(330 8% 85%) 0%,
+      hsl(330 10% 88%) 10%,
+      hsl(330 12% 92%) 25%,
+      hsl(var(--background)) 55%,
+      hsl(var(--background)) 100%
+    );
+  }
+
+  html[dir="rtl"] body {
+    font-family: 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(
+      -90deg,
       hsl(330 8% 85%) 0%,
       hsl(330 10% 88%) 10%,
       hsl(330 12% 92%) 25%,
@@ -142,12 +160,24 @@
     );
   }
 
-  /* iOS Safe Areas */
+  .dark html[dir="rtl"] body,
+  html[dir="rtl"] .dark body {
+    background: linear-gradient(
+      -90deg,
+      hsl(330 12% 4%) 0%,
+      hsl(330 12% 5%) 10%,
+      hsl(330 12% 6%) 25%,
+      hsl(var(--background)) 55%,
+      hsl(var(--background)) 100%
+    );
+  }
+
+  /* iOS Safe Areas - Using logical properties */
   body {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
+    padding-inline-start: env(safe-area-inset-left);
+    padding-inline-end: env(safe-area-inset-right);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -217,5 +247,59 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* RTL Utilities */
+  .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+
+  /* RTL Flip for Icons */
+  html[dir="rtl"] .rtl-flip {
+    transform: scaleX(-1);
+  }
+
+  /* RTL Gap Adjustments */
+  html[dir="rtl"] .gap-2,
+  html[dir="rtl"] .gap-3 {
+    direction: rtl;
+  }
+
+  /* RTL Text Alignment */
+  html[dir="rtl"] .text-left {
+    text-align: right;
+  }
+
+  html[dir="rtl"] .text-right {
+    text-align: left;
+  }
+
+  /* RTL Logical Margins and Paddings */
+  html[dir="rtl"] .ml-auto {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  html[dir="rtl"] .mr-auto {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  /* RTL Border Radius */
+  html[dir="rtl"] .rounded-l-xl {
+    border-radius: 0 0.75rem 0.75rem 0;
+  }
+
+  html[dir="rtl"] .rounded-r-xl {
+    border-radius: 0.75rem 0 0 0.75rem;
+  }
+
+  /* RTL Gradient Direction */
+  html[dir="rtl"] .bg-gradient-to-r {
+    background: linear-gradient(to left, var(--tw-gradient-stops));
+  }
+
+  html[dir="rtl"] .bg-gradient-to-l {
+    background: linear-gradient(to right, var(--tw-gradient-stops));
   }
 }

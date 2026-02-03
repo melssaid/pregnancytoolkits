@@ -168,6 +168,20 @@
       "description": "Registra cambios, monitorea la salud."
     }
   },
+  "layout": {
+    "trustBar": {
+      "scienceBacked": "Base Científica",
+      "aiTools": "42+ Herramientas IA",
+      "premium": "Experiencia Premium"
+    },
+    "footer": {
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "contact": "Contacto",
+      "disclaimerTitle": "Aviso Médico",
+      "disclaimerText": "Esta aplicación es solo para fines educativos e informativos y no proporciona consejo médico, diagnóstico o tratamiento. Siempre consulte a un proveedor de atención médica calificado para cualquier preocupación de salud."
+    }
+  },
   "common": {
     "calculate": "Calcular",
     "results": "Tus resultados",
@@ -199,7 +213,9 @@
     "unlock": "Desbloquear todas las herramientas",
     "loading": "Cargando...",
     "cancel": "Cancelar",
-    "edit": "Editar"
+    "edit": "Editar",
+    "showLess": "Mostrar Menos",
+    "moreItems": "+{{count}} Más"
   },
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mes",

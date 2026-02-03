@@ -168,6 +168,20 @@
       "description": "Log changes, monitor health."
     }
   },
+  "layout": {
+    "trustBar": {
+      "scienceBacked": "Science-Backed",
+      "aiTools": "42+ AI Tools",
+      "premium": "Premium Experience"
+    },
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "contact": "Contact",
+      "disclaimerTitle": "Medical Disclaimer",
+      "disclaimerText": "This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns."
+    }
+  },
   "common": {
     "calculate": "Calculate",
     "results": "Your Results",
@@ -198,6 +212,8 @@
     "subscribe": "Subscribe",
     "unlock": "Unlock All Tools",
     "loading": "Loading...",
+    "showLess": "Show Less",
+    "moreItems": "+{{count}} More",
     "cancel": "Cancel",
     "edit": "Edit"
   },

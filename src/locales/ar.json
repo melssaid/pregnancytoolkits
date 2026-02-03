@@ -66,6 +66,20 @@
     "babyGrowth": {"title": "نمو الطفل", "description": "تتبعي النمو بمخططات WHO"},
     "diaperTracker": {"title": "متتبع الحفاضات", "description": "سجلي التغييرات وراقبي الصحة"}
   },
+  "layout": {
+    "trustBar": {
+      "scienceBacked": "مبني علمياً",
+      "aiTools": "+42 أداة ذكية",
+      "premium": "تجربة متميزة"
+    },
+    "footer": {
+      "privacy": "الخصوصية",
+      "terms": "الشروط",
+      "contact": "اتصل بنا",
+      "disclaimerTitle": "إخلاء مسؤولية طبية",
+      "disclaimerText": "هذا التطبيق للأغراض التعليمية والمعلوماتية فقط ولا يقدم نصيحة طبية أو تشخيصاً أو علاجاً. استشيري دائماً مقدم رعاية صحية مؤهل لأي مخاوف صحية."
+    }
+  },
   "common": {
     "calculate": "احسب",
     "results": "النتائج",
@@ -86,7 +100,9 @@
     "week": "أسبوع",
     "weeks": "أسابيع",
     "day": "يوم",
-    "minutes": "دقائق"
+    "minutes": "دقائق",
+    "showLess": "عرض أقل",
+    "moreItems": "+{{count}} المزيد"
   },
   "smartPlan": {
     "title": "خطتي الذكية",

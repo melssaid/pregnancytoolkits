@@ -25,15 +25,15 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         <div className="container flex items-center justify-center gap-3 sm:gap-5 text-[10px] font-medium tracking-wide">
           <div className="flex items-center gap-1">
             <Shield className="h-3 w-3" />
-            <span>Science-Backed</span>
+            <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
           </div>
           <div className="hidden sm:flex items-center gap-1">
             <Heart className="h-3 w-3" />
-            <span>42+ AI Tools</span>
+            <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
           </div>
           <div className="flex items-center gap-1">
             <Award className="h-3 w-3" />
-            <span>Premium Experience</span>
+            <span>{t('layout.trustBar.premium', 'Premium Experience')}</span>
           </div>
         </div>
       </div>
@@ -56,15 +56,15 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               />
               {showBack ? (
                 <span className="text-sm font-bold text-foreground tracking-tight">
-                  Pregnancy Toolkits
+                  {t('app.name')}
                 </span>
               ) : (
                 <div className="flex flex-col">
                   <span className="text-sm sm:text-base font-bold text-foreground tracking-tight">
-                    Pregnancy Toolkits
+                    {t('app.name')}
                   </span>
                   <span className="text-[10px] sm:text-xs text-muted-foreground font-medium mt-0.5">
-                    Your complete pregnancy companion
+                    {t('app.tagline')}
                   </span>
                 </div>
               )}
@@ -128,7 +128,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               whileTap={{ scale: 0.98 }}
             >
               <Link to="/privacy" className="group relative text-[10px] text-muted-foreground hover:text-primary transition-all duration-300 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                <span className="relative z-10">Privacy</span>
+                <span className="relative z-10">{t('layout.footer.privacy', 'Privacy')}</span>
                 <motion.span 
                   className="absolute inset-0 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                   layoutId="footer-hover"
@@ -136,7 +136,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               </Link>
               <span className="text-muted-foreground/40">•</span>
               <Link to="/terms" className="group relative text-[10px] text-muted-foreground hover:text-primary transition-all duration-300 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                <span className="relative z-10">Terms</span>
+                <span className="relative z-10">{t('layout.footer.terms', 'Terms')}</span>
                 <motion.span 
                   className="absolute inset-0 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                   layoutId="footer-hover"
@@ -144,7 +144,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               </Link>
               <span className="text-muted-foreground/40">•</span>
               <Link to="/contact" className="group relative text-[10px] text-muted-foreground hover:text-primary transition-all duration-300 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                <span className="relative z-10">Contact</span>
+                <span className="relative z-10">{t('layout.footer.contact', 'Contact')}</span>
                 <motion.span 
                   className="absolute inset-0 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                   layoutId="footer-hover"
@@ -159,7 +159,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           {/* Medical Disclaimer */}
           <div className="mt-6 pt-4 border-t border-border/50">
             <p className="text-[10px] text-muted-foreground/70 text-center leading-relaxed max-w-3xl mx-auto">
-              <span className="font-medium">Medical Disclaimer:</span> This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns.
+              <span className="font-medium">{t('layout.footer.disclaimerTitle', 'Medical Disclaimer')}:</span> {t('layout.footer.disclaimerText', 'This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns.')}
             </p>
           </div>
         </div>

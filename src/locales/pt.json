@@ -168,6 +168,20 @@
       "description": "Registre trocas, monitore a saúde."
     }
   },
+  "layout": {
+    "trustBar": {
+      "scienceBacked": "Base Científica",
+      "aiTools": "42+ Ferramentas IA",
+      "premium": "Experiência Premium"
+    },
+    "footer": {
+      "privacy": "Privacidade",
+      "terms": "Termos",
+      "contact": "Contato",
+      "disclaimerTitle": "Aviso Médico",
+      "disclaimerText": "Este aplicativo é apenas para fins educacionais e informativos e não fornece aconselhamento médico, diagnóstico ou tratamento. Sempre consulte um profissional de saúde qualificado para qualquer preocupação de saúde."
+    }
+  },
   "common": {
     "calculate": "Calcular",
     "results": "Seus resultados",
@@ -199,7 +213,9 @@
     "unlock": "Desbloquear todas as ferramentas",
     "loading": "Carregando...",
     "cancel": "Cancelar",
-    "edit": "Editar"
+    "edit": "Editar",
+    "showLess": "Mostrar Menos",
+    "moreItems": "+{{count}} Mais"
   },
   "subscription": {
     "subscribeNow": "Premium - R$4,99/mês",
