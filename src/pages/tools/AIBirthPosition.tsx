@@ -128,37 +128,37 @@ Include safety considerations and when to change positions.`;
       mood="empowering"
       toolId="ai-birth-position"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Non-intrusive Medical Reminder */}
         <MedicalInfoBar compact />
         
         {/* Position Cards - Professional List */}
-        <div className="space-y-2">
-          <Label className="text-sm font-medium">Common Birth Positions</Label>
-          <div className="grid grid-cols-2 gap-2">
+        <div className="space-y-1.5">
+          <Label className="text-xs font-medium">Common Birth Positions</Label>
+          <div className="grid grid-cols-2 gap-1.5">
             {positions.map((pos) => (
-              <Card key={pos.id} className="p-3">
-                <h4 className="font-medium text-sm">{pos.name}</h4>
-                <p className="text-xs text-muted-foreground">{pos.description}</p>
+              <Card key={pos.id} className="p-2.5">
+                <h4 className="font-medium text-xs">{pos.name}</h4>
+                <p className="text-[10px] text-muted-foreground leading-tight">{pos.description}</p>
               </Card>
             ))}
           </div>
         </div>
 
         {/* Birth Preference */}
-        <div className="space-y-3">
-          <Label>Birth Preference</Label>
-          <RadioGroup value={birthPlan} onValueChange={setBirthPlan} className="space-y-2">
+        <div className="space-y-1.5">
+          <Label className="text-xs">Birth Preference</Label>
+          <RadioGroup value={birthPlan} onValueChange={setBirthPlan} className="space-y-1">
             {birthPreferences.map((pref) => (
               <div 
                 key={pref.id} 
-                className={`flex items-center space-x-3 p-3 rounded-lg border transition-all cursor-pointer ${
+                className={`flex items-center gap-2 p-2 rounded-lg border transition-all cursor-pointer ${
                   birthPlan === pref.id ? "bg-primary/10 border-primary" : "bg-card hover:bg-muted"
                 }`}
                 onClick={() => setBirthPlan(pref.id)}
               >
                 <RadioGroupItem value={pref.id} id={pref.id} />
-                <Label htmlFor={pref.id} className="cursor-pointer text-sm flex-1">
+                <Label htmlFor={pref.id} className="cursor-pointer text-xs flex-1">
                   {pref.label}
                 </Label>
               </div>
@@ -167,31 +167,31 @@ Include safety considerations and when to change positions.`;
         </div>
 
         {/* Labor Stage */}
-        <div className="space-y-3">
-          <Label className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-primary" />
+        <div className="space-y-1.5">
+          <Label className="flex items-center gap-1.5 text-xs">
+            <Clock className="w-3 h-3 text-primary" />
             Labor Stage
           </Label>
-          <RadioGroup value={laborStage} onValueChange={setLaborStage} className="flex gap-2">
-            <div className="flex items-center space-x-2">
+          <RadioGroup value={laborStage} onValueChange={setLaborStage} className="flex gap-3">
+            <div className="flex items-center gap-1.5">
               <RadioGroupItem value="early" id="early" />
-              <Label htmlFor="early">Early</Label>
+              <Label htmlFor="early" className="text-xs">Early</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center gap-1.5">
               <RadioGroupItem value="active" id="active" />
-              <Label htmlFor="active">Active</Label>
+              <Label htmlFor="active" className="text-xs">Active</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center gap-1.5">
               <RadioGroupItem value="pushing" id="pushing" />
-              <Label htmlFor="pushing">Pushing</Label>
+              <Label htmlFor="pushing" className="text-xs">Pushing</Label>
             </div>
           </RadioGroup>
         </div>
 
         {/* Physical Conditions */}
-        <div className="space-y-3">
-          <Label>Physical Conditions</Label>
-          <div className="grid grid-cols-2 gap-2">
+        <div className="space-y-1.5">
+          <Label className="text-xs">Physical Conditions</Label>
+          <div className="grid grid-cols-1 gap-1">
             {physicalConditions.map((condition) => (
               <div
                 key={condition.id}
@@ -202,8 +202,8 @@ Include safety considerations and when to change positions.`;
                     : "bg-card hover:bg-muted"
                 }`}
               >
-                <Checkbox checked={conditions.includes(condition.id)} />
-                <span className="text-sm">{condition.label}</span>
+                <Checkbox checked={conditions.includes(condition.id)} className="h-3.5 w-3.5" />
+                <span className="text-xs">{condition.label}</span>
               </div>
             ))}
           </div>
@@ -213,16 +213,15 @@ Include safety considerations and when to change positions.`;
         <Button
           onClick={getRecommendations}
           disabled={isLoading}
-          className="w-full"
-          size="lg"
+          className="w-full text-xs h-9"
         >
-          <Sparkles className="w-4 h-4 mr-2" />
+          <Sparkles className="w-3.5 h-3.5 me-1.5" />
           {isLoading ? "Analyzing..." : "Get AI Position Recommendations"}
         </Button>
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-muted/50">
+          <Card className="p-3 bg-muted/50">
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}

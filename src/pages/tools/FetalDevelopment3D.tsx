@@ -297,55 +297,55 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
 
         {/* AI Insights Section */}
         <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
-          <CardContent className="py-4">
-            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-violet-500" />
+          <CardContent className="py-3">
+            <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2 text-sm">
+              <Sparkles className="w-4 h-4 text-violet-500" />
               AI Weekly Insights
             </h3>
             
             {/* AI Tab Buttons */}
-            <div className="grid grid-cols-3 gap-2 mb-4">
+            <div className="grid grid-cols-3 gap-1.5 mb-3">
               <Button
                 variant={activeAITab === 'development' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => getAIInsight('development')}
                 disabled={aiLoading}
-                className="gap-1"
+                className="gap-0.5 h-8 px-2"
               >
                 {aiLoading && activeAITab === 'development' ? (
                   <Loader2 className="w-3 h-3 animate-spin" />
                 ) : (
                   <Stethoscope className="w-3 h-3" />
                 )}
-                <span className="text-xs">Development</span>
+                <span className="text-[10px]">Development</span>
               </Button>
               <Button
                 variant={activeAITab === 'nutrition' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => getAIInsight('nutrition')}
                 disabled={aiLoading}
-                className="gap-1"
+                className="gap-0.5 h-8 px-2"
               >
                 {aiLoading && activeAITab === 'nutrition' ? (
                   <Loader2 className="w-3 h-3 animate-spin" />
                 ) : (
                   <Apple className="w-3 h-3" />
                 )}
-                <span className="text-xs">Nutrition</span>
+                <span className="text-[10px]">Nutrition</span>
               </Button>
               <Button
                 variant={activeAITab === 'exercise' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => getAIInsight('exercise')}
                 disabled={aiLoading}
-                className="gap-1"
+                className="gap-0.5 h-8 px-2"
               >
                 {aiLoading && activeAITab === 'exercise' ? (
                   <Loader2 className="w-3 h-3 animate-spin" />
                 ) : (
                   <Dumbbell className="w-3 h-3" />
                 )}
-                <span className="text-xs">Exercise</span>
+                <span className="text-[10px]">Exercise</span>
               </Button>
             </div>
 
@@ -356,7 +356,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[400px] overflow-y-auto"
+                  className="bg-white/50 dark:bg-black/20 rounded-lg p-3 max-h-[400px] overflow-y-auto"
                 >
                   <MarkdownRenderer content={aiInsight} />
                 </motion.div>

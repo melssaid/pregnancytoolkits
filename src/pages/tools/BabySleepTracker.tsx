@@ -322,12 +322,12 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
         <Button
           onClick={getAIAdvice}
           disabled={aiLoading}
-          className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+          className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-xs h-9"
         >
           {aiLoading ? (
-            <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+            <Loader2 className="h-4 w-4 me-1.5 animate-spin" />
           ) : (
-            <Sparkles className="h-5 w-5 mr-2" />
+            <Sparkles className="h-4 w-4 me-1.5" />
           )}
           Get AI Sleep Advice
         </Button>
@@ -341,14 +341,14 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
               exit={{ opacity: 0, height: 0 }}
             >
               <Card className="border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <Sparkles className="h-5 w-5 text-violet-500" />
+                <CardHeader className="pb-1.5 pt-3">
+                  <CardTitle className="text-sm flex items-center gap-1.5">
+                    <Sparkles className="h-4 w-4 text-violet-500" />
                     AI Sleep Advisor
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="text-sm whitespace-pre-wrap">{aiAdvice}</div>
+                <CardContent className="pb-3">
+                  <div className="text-xs whitespace-pre-wrap leading-relaxed">{aiAdvice}</div>
                 </CardContent>
               </Card>
             </motion.div>

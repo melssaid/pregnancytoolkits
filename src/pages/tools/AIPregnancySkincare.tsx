@@ -212,10 +212,9 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         <Button
           onClick={getSkincareRoutine}
           disabled={isLoading}
-          className="w-full text-sm"
-          size="lg"
+          className="w-full text-xs h-9"
         >
-          <Sparkles className="w-4 h-4 mr-2 shrink-0" />
+          <Sparkles className="w-3.5 h-3.5 me-1.5 shrink-0" />
           <span className="truncate">{isLoading ? "Creating Routine..." : "Get AI Skincare Routine"}</span>
         </Button>
 
@@ -227,16 +226,16 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         )}
 
         {/* Daily/Nightly Quick Reference */}
-        <div className="grid grid-cols-2 gap-2">
-          <Card className="p-3 text-center bg-muted/30">
-            <Sun className="w-6 h-6 text-primary mx-auto mb-1 shrink-0" />
-            <h4 className="font-medium text-sm">Morning</h4>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">Cleanse → Hydrate → SPF</p>
+        <div className="grid grid-cols-2 gap-1.5">
+          <Card className="p-2.5 text-center bg-muted/30">
+            <Sun className="w-5 h-5 text-primary mx-auto mb-1 shrink-0" />
+            <h4 className="font-medium text-xs">Morning</h4>
+            <p className="text-[10px] text-muted-foreground leading-tight">Cleanse → Hydrate → SPF</p>
           </Card>
-          <Card className="p-3 text-center bg-muted/30">
-            <MoonIcon className="w-6 h-6 text-primary mx-auto mb-1 shrink-0" />
-            <h4 className="font-medium text-sm">Evening</h4>
-            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">Cleanse → Treat → Nourish</p>
+          <Card className="p-2.5 text-center bg-muted/30">
+            <MoonIcon className="w-5 h-5 text-primary mx-auto mb-1 shrink-0" />
+            <h4 className="font-medium text-xs">Evening</h4>
+            <p className="text-[10px] text-muted-foreground leading-tight">Cleanse → Treat → Nourish</p>
           </Card>
         </div>
 

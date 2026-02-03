@@ -234,23 +234,22 @@ Be compassionate - morning sickness is exhausting!`;
         <Button
           onClick={getReliefPlan}
           disabled={isLoading}
-          className="w-full"
-          size="lg"
+          className="w-full text-xs h-9"
         >
-          <Sparkles className="w-4 h-4 mr-2" />
+          <Sparkles className="w-3.5 h-3.5 me-1.5" />
           {isLoading ? "Creating Plan..." : "Get AI Relief Plan"}
         </Button>
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-muted/50">
+          <Card className="p-3 bg-muted/50">
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
         {/* Encouraging Note */}
-        <Card className="p-4 bg-muted/30 text-center">
-          <p className="text-sm text-muted-foreground">
+        <Card className="p-3 bg-muted/30 text-center">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             Remember: Morning sickness usually peaks around weeks 8-10 and 
             improves significantly by week 12-14. You've got this!
           </p>
