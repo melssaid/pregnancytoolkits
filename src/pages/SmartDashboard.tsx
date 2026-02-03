@@ -226,12 +226,6 @@ const SmartDashboard = () => {
       </nav>
 
       <main className="container py-4 space-y-4">
-        {/* Disclaimer */}
-        <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200 p-3 rounded-xl text-center text-xs font-medium flex items-center justify-center gap-2">
-          <AlertTriangle className="w-4 h-4" />
-          This app is for educational purposes only and does not replace medical advice
-        </div>
-
         {/* Home Tab - Enhanced with Progress Ring */}
         {activeTab === "home" && (
           <motion.div
