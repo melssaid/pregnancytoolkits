@@ -146,69 +146,70 @@ Helpful tips for diaper changes and tracking`
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="space-y-6"
+          className="space-y-4"
         >
           {/* Quick Add */}
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="text-center">{t('diaperPage.quickAdd')}</CardTitle>
+          <Card className="overflow-hidden">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-center text-base">{t('diaperPage.quickAdd')}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-3 gap-3">
+            <CardContent className="pb-4">
+              <div className="grid grid-cols-3 gap-2">
                 <Button
                   onClick={() => addEntry("wet")}
                   variant="outline"
-                  className="h-20 flex-col gap-2"
+                  className="h-16 sm:h-20 flex-col gap-1.5 text-xs sm:text-sm overflow-hidden"
                 >
-                  <Droplet className="h-8 w-8 text-blue-500" />
-                  {t('diaperPage.wet')}
+                  <Droplet className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500 shrink-0" />
+                  <span className="truncate w-full text-center">{t('diaperPage.wet')}</span>
                 </Button>
                 <Button
                   onClick={() => addEntry("dirty")}
                   variant="outline"
-                  className="h-20 flex-col gap-2"
+                  className="h-16 sm:h-20 flex-col gap-1.5 text-xs sm:text-sm overflow-hidden"
                 >
-                  <Circle className="h-8 w-8 text-amber-600 fill-amber-600" />
-                  {t('diaperPage.dirty')}
+                  <Circle className="h-6 w-6 sm:h-8 sm:w-8 text-amber-600 fill-amber-600 shrink-0" />
+                  <span className="truncate w-full text-center">{t('diaperPage.dirty')}</span>
                 </Button>
                 <Button
                   onClick={() => addEntry("both")}
                   variant="outline"
-                  className="h-20 flex-col gap-2"
+                  className="h-16 sm:h-20 flex-col gap-1.5 text-xs sm:text-sm overflow-hidden"
                 >
-                  <div className="flex gap-1">
-                    <Droplet className="h-6 w-6 text-blue-500" />
-                    <Circle className="h-6 w-6 text-amber-600 fill-amber-600" />
+                  <div className="flex gap-0.5 shrink-0">
+                    <Droplet className="h-5 w-5 sm:h-6 sm:w-6 text-blue-500" />
+                    <Circle className="h-5 w-5 sm:h-6 sm:w-6 text-amber-600 fill-amber-600" />
                   </div>
-                  {t('diaperPage.both')}
+                  <span className="truncate w-full text-center">{t('diaperPage.both')}</span>
                 </Button>
               </div>
             </CardContent>
           </Card>
 
           {/* Today's Stats */}
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <TrendingUp className="h-5 w-5 text-primary" />
-                {t('diaperPage.todayStats')}
+          <Card className="overflow-hidden">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <TrendingUp className="h-4 w-4 text-primary shrink-0" />
+                <span className="truncate">{t('diaperPage.todayStats')}</span>
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="rounded-lg bg-blue-50 dark:bg-blue-950 p-4">
-                  <Droplet className="h-6 w-6 text-blue-500 mx-auto mb-1" />
-                  <p className="text-2xl font-bold text-blue-600">{stats.wet}</p>
-                  <p className="text-sm text-muted-foreground">{t('diaperPage.wet')}</p>
+            <CardContent className="pb-4">
+              <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="rounded-lg bg-blue-50 dark:bg-blue-950 p-2 sm:p-3 overflow-hidden">
+                  <Droplet className="h-5 w-5 text-blue-500 mx-auto mb-0.5 shrink-0" />
+                  <p className="text-xl sm:text-2xl font-bold text-blue-600">{stats.wet}</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('diaperPage.wet')}</p>
                 </div>
-                <div className="rounded-lg bg-amber-50 dark:bg-amber-950 p-4">
-                  <Circle className="h-6 w-6 text-amber-600 fill-amber-600 mx-auto mb-1" />
-                  <p className="text-2xl font-bold text-amber-600">{stats.dirty}</p>
-                  <p className="text-sm text-muted-foreground">{t('diaperPage.dirty')}</p>
+                <div className="rounded-lg bg-amber-50 dark:bg-amber-950 p-2 sm:p-3 overflow-hidden">
+                  <Circle className="h-5 w-5 text-amber-600 fill-amber-600 mx-auto mb-0.5 shrink-0" />
+                  <p className="text-xl sm:text-2xl font-bold text-amber-600">{stats.dirty}</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('diaperPage.dirty')}</p>
                 </div>
-                <div className="rounded-lg bg-secondary p-4">
-                  <p className="text-2xl font-bold text-primary">{stats.total}</p>
-                  <p className="text-sm text-muted-foreground">{t('diaperPage.total')}</p>
+                <div className="rounded-lg bg-secondary p-2 sm:p-3 overflow-hidden">
+                  <div className="h-5 w-5 mx-auto mb-0.5" />
+                  <p className="text-xl sm:text-2xl font-bold text-primary">{stats.total}</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('diaperPage.total')}</p>
                 </div>
               </div>
             </CardContent>
@@ -216,31 +217,32 @@ Helpful tips for diaper changes and tracking`
 
           {/* AI Analysis Button */}
           {entries.length >= 3 && (
-            <Card className="mb-6 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
-              <CardContent className="pt-4">
+            <Card className="overflow-hidden bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+              <CardContent className="py-3">
                 {!showAiInsight ? (
                   <Button
                     onClick={analyzeWithAI}
                     disabled={aiLoading}
-                    className="w-full gap-2 bg-gradient-to-r from-violet-500 to-purple-500"
+                    className="w-full gap-2 bg-gradient-to-r from-violet-500 to-purple-500 text-xs sm:text-sm"
                   >
                     {aiLoading ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <Loader2 className="h-4 w-4 animate-spin shrink-0" />
                     ) : (
-                      <Sparkles className="h-4 w-4" />
+                      <Sparkles className="h-4 w-4 shrink-0" />
                     )}
-                    Analyze Diaper Patterns with AI
+                    <span className="truncate">Analyze Diaper Patterns with AI</span>
                   </Button>
                 ) : (
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-violet-500" />
-                        <h3 className="font-semibold">AI Pattern Analysis</h3>
+                  <div className="overflow-hidden">
+                    <div className="flex items-center justify-between mb-2 gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <Sparkles className="h-4 w-4 text-violet-500 shrink-0" />
+                        <h3 className="font-semibold text-sm truncate">AI Pattern Analysis</h3>
                       </div>
                       <Button 
                         variant="ghost" 
                         size="sm"
+                        className="shrink-0 h-7 w-7 p-0"
                         onClick={() => setShowAiInsight(false)}
                       >
                         ✕
@@ -248,11 +250,15 @@ Helpful tips for diaper changes and tracking`
                     </div>
                     {aiLoading && !aiInsight && (
                       <div className="flex items-center gap-2 text-violet-600">
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        <span className="text-sm">Analyzing patterns...</span>
+                        <Loader2 className="h-4 w-4 animate-spin shrink-0" />
+                        <span className="text-xs sm:text-sm">Analyzing patterns...</span>
                       </div>
                     )}
-                    {aiInsight && <MarkdownRenderer content={aiInsight} />}
+                    {aiInsight && (
+                      <div className="overflow-x-auto">
+                        <MarkdownRenderer content={aiInsight} />
+                      </div>
+                    )}
                   </div>
                 )}
               </CardContent>
@@ -260,9 +266,9 @@ Helpful tips for diaper changes and tracking`
           )}
 
           {/* Info */}
-          <Card className="mb-6 bg-muted/50">
-            <CardContent className="pt-4">
-              <p className="text-sm text-muted-foreground">
+          <Card className="overflow-hidden bg-muted/50">
+            <CardContent className="py-3">
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                 {t('diaperPage.info')}
               </p>
             </CardContent>
@@ -270,20 +276,22 @@ Helpful tips for diaper changes and tracking`
 
           {/* Recent Entries */}
           {entries.length > 0 && (
-            <div>
-              <h2 className="text-lg font-semibold mb-3">{t('diaperPage.recentChanges')}</h2>
-              <div className="space-y-2">
+            <div className="overflow-hidden">
+              <h2 className="text-sm sm:text-base font-semibold mb-2">{t('diaperPage.recentChanges')}</h2>
+              <div className="space-y-1.5">
                 {entries.slice(0, 15).map((entry) => (
-                  <Card key={entry.id}>
-                    <CardContent className="py-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          {getTypeIcon(entry.type)}
-                          <div>
-                            <p className="font-medium">
+                  <Card key={entry.id} className="overflow-hidden">
+                    <CardContent className="py-2 px-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          <div className="shrink-0">
+                            {getTypeIcon(entry.type)}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-medium text-sm truncate">
                               {t(`diaperPage.${entry.type}`)}
                             </p>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-xs text-muted-foreground">
                               {format(new Date(entry.time), "MMM d, HH:mm")}
                             </p>
                           </div>
@@ -291,6 +299,7 @@ Helpful tips for diaper changes and tracking`
                         <Button
                           variant="ghost"
                           size="icon"
+                          className="h-8 w-8 shrink-0"
                           onClick={() => deleteEntry(entry.id)}
                         >
                           <Trash2 className="h-4 w-4 text-destructive" />
