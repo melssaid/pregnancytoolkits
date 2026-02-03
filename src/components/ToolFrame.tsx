@@ -78,17 +78,15 @@ export function ToolFrame({
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Premium Header - Mobile Optimized */}
+        {/* Minimal Header */}
         <motion.header 
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="sticky top-0 z-50 bg-white/80 backdrop-blur-2xl border-b border-white/60 shadow-lg shadow-black/[0.03]"
+          className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border/40 shadow-sm"
         >
-          <div className="px-4 py-3">
-            <div className="flex items-center justify-between">
-              <BackButton />
-            </div>
+          <div className="px-4 py-2.5">
+            <BackButton />
           </div>
         </motion.header>
 
