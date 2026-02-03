@@ -338,13 +338,13 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     other: []
   };
   
-  const categoryMeta: Record<string, { label: { en: string; ar: string }; icon: string; color: typeof COLORS.primary }> = {
-    profile: { label: { en: 'Profile & Settings', ar: 'الملف الشخصي' }, icon: '👤', color: COLORS.info },
-    health: { label: { en: 'Health Tracking', ar: 'تتبع الصحة' }, icon: '❤️', color: COLORS.primary },
-    appointments: { label: { en: 'Appointments', ar: 'المواعيد' }, icon: '📅', color: COLORS.secondary },
-    nutrition: { label: { en: 'Nutrition', ar: 'التغذية' }, icon: '🍎', color: COLORS.success },
-    planning: { label: { en: 'Birth Planning', ar: 'تخطيط الولادة' }, icon: '📝', color: COLORS.accent },
-    other: { label: { en: 'Other Data', ar: 'بيانات أخرى' }, icon: '📦', color: COLORS.muted }
+  const categoryMeta: Record<string, { label: { en: string; ar: string }; color: typeof COLORS.primary }> = {
+    profile: { label: { en: 'Profile & Settings', ar: 'الملف الشخصي' }, color: COLORS.info },
+    health: { label: { en: 'Health Tracking', ar: 'تتبع الصحة' }, color: COLORS.primary },
+    appointments: { label: { en: 'Appointments', ar: 'المواعيد' }, color: COLORS.secondary },
+    nutrition: { label: { en: 'Nutrition', ar: 'التغذية' }, color: COLORS.success },
+    planning: { label: { en: 'Birth Planning', ar: 'تخطيط الولادة' }, color: COLORS.accent },
+    other: { label: { en: 'Other Data', ar: 'بيانات أخرى' }, color: COLORS.muted }
   };
   
   // Categorize all data
@@ -415,11 +415,14 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
       doc.addPage();
       yPos = margin;
       
-      // Mini header on new page
-      doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+      // Mini header on new page (light style)
+      doc.setFillColor(252, 252, 253);
       doc.rect(0, 0, pageWidth, 12, 'F');
+      doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+      doc.setLineWidth(0.5);
+      doc.line(0, 12, pageWidth, 12);
       doc.setFontSize(9);
-      doc.setTextColor(255, 255, 255);
+      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
       doc.text(`${title} (${language === 'ar' ? 'تابع' : 'continued'})`, pageWidth / 2, 8, { align: 'center' });
       yPos = 20;
     }
@@ -435,7 +438,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(11);
     doc.setTextColor(meta.color.r, meta.color.g, meta.color.b);
-    doc.text(`${meta.icon} ${meta.label[language]}`, margin + 6, yPos + 4);
+    doc.text(meta.label[language], margin + 6, yPos + 4);
     
     // Item count badge
     doc.setFillColor(meta.color.r, meta.color.g, meta.color.b);

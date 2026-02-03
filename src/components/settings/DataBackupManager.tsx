@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Download, Upload, AlertTriangle, Loader2, FileJson, Calendar, FileText } from 'lucide-react';
+import { Download, Upload, AlertTriangle, Loader2, FileJson, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
-import { cn } from '@/lib/utils';
 import { exportDataBackupPDF } from '@/lib/pdfExport';
 import {
   Dialog,
@@ -14,12 +13,6 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 // Keys to backup from localStorage
 const BACKUP_KEYS = [
@@ -194,25 +187,16 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         )}
 
         <div className="grid grid-cols-2 gap-2">
-          {/* Export as PDF (Primary) */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button disabled={isExporting} size="sm" className="gap-1.5 h-9 text-xs bg-green-600 hover:bg-green-700">
-                {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
-                {t('settings.backup.exportData')}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem onClick={handleExportPDF} className="gap-2">
-                <FileText className="w-4 h-4 text-red-500" />
-                <span>PDF ({i18n.language === 'ar' ? 'للطباعة' : 'for print'})</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleExportJSON} className="gap-2">
-                <FileJson className="w-4 h-4 text-blue-500" />
-                <span>JSON ({i18n.language === 'ar' ? 'للاستعادة' : 'for restore'})</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Export as PDF */}
+          <Button 
+            disabled={isExporting} 
+            size="sm" 
+            className="gap-1.5 h-9 text-xs bg-green-600 hover:bg-green-700"
+            onClick={handleExportPDF}
+          >
+            {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
+            {t('settings.backup.exportData')}
+          </Button>
 
           {/* Import */}
           <Dialog open={importDialogOpen} onOpenChange={setImportDialogOpen}>
@@ -284,25 +268,15 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       </div>
 
       <div className="grid grid-cols-2 gap-2">
-        {/* Export dropdown */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button disabled={isExporting} className="gap-2 bg-green-600 hover:bg-green-700">
-              {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-              {t('settings.backup.exportData')}
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
-            <DropdownMenuItem onClick={handleExportPDF} className="gap-2">
-              <FileText className="w-4 h-4 text-red-500" />
-              <span>PDF ({i18n.language === 'ar' ? 'للطباعة' : 'for print'})</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={handleExportJSON} className="gap-2">
-              <FileJson className="w-4 h-4 text-blue-500" />
-              <span>JSON ({i18n.language === 'ar' ? 'للاستعادة' : 'for restore'})</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {/* Export as PDF */}
+        <Button 
+          disabled={isExporting} 
+          className="gap-2 bg-green-600 hover:bg-green-700"
+          onClick={handleExportPDF}
+        >
+          {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+          {t('settings.backup.exportData')}
+        </Button>
 
         <Dialog open={importDialogOpen} onOpenChange={setImportDialogOpen}>
           <DialogTrigger asChild>
