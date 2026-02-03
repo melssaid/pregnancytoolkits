@@ -659,7 +659,8 @@
       "minutes": "minutes",
       "hours": "hours",
       "days": "days",
-      "weeks": "weeks"
+      "weeks": "weeks",
+      "remember": "Remember"
     },
     "weekSlider": {
       "currentWeek": "Current Pregnancy Week",

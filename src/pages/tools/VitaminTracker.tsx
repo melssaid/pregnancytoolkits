@@ -8,6 +8,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { WeekSlider } from '@/components/WeekSlider';
+import { useTranslation } from 'react-i18next';
 
 interface Vitamin {
   id: string;
@@ -28,6 +29,7 @@ const VITAMINS: Vitamin[] = [
 ];
 
 const VitaminTracker: React.FC = () => {
+  const { t } = useTranslation();
   const [todayLogs, setTodayLogs] = useState<any[]>([]);
   const [weekHistory, setWeekHistory] = useState<any[]>([]);
   const [currentWeek, setCurrentWeek] = useState(20);
@@ -75,8 +77,8 @@ const VitaminTracker: React.FC = () => {
     const alreadyTaken = todayLogs.some(log => log.vitamin_name === vitamin.name);
     if (alreadyTaken) {
       toast({
-        title: 'Already Taken',
-        description: `You already logged ${vitamin.name} today`,
+        title: t('toolsInternal.vitaminTracker.alreadyTaken'),
+        description: t('toolsInternal.vitaminTracker.alreadyTakenDesc', { name: vitamin.name }),
       });
       return;
     }
@@ -90,13 +92,13 @@ const VitaminTracker: React.FC = () => {
       setWeekHistory(prev => [newLog, ...prev]);
       
       toast({
-        title: 'Logged! ✅',
-        description: `${vitamin.name} recorded successfully`
+        title: t('toolsInternal.vitaminTracker.logged'),
+        description: t('toolsInternal.vitaminTracker.loggedDesc', { name: vitamin.name })
       });
       
     } catch (error: any) {
       toast({
-        title: 'Failed to Log',
+        title: t('toolsInternal.vitaminTracker.failedToLog'),
         description: error.message,
         variant: 'destructive'
       });
@@ -182,8 +184,8 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
   if (isLoading) {
     return (
       <ToolFrame
-        title="Vitamin Tracker"
-        subtitle="Track your daily prenatal vitamins"
+        title={t('tools.vitaminTracker.title')}
+        subtitle={t('toolsInternal.vitaminTracker.subtitle')}
         mood="joyful"
         toolId="vitamin-tracker"
       >
@@ -198,8 +200,8 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
 
   return (
     <ToolFrame
-      title="Vitamin Tracker"
-      subtitle="Track your daily prenatal vitamins"
+      title={t('tools.vitaminTracker.title')}
+      subtitle={t('toolsInternal.vitaminTracker.subtitle')}
       mood="joyful"
       toolId="vitamin-tracker"
     >
@@ -209,7 +211,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
           week={currentWeek}
           onChange={setCurrentWeek}
           showTrimester
-          label="Pregnancy Week"
+          label={t('toolsInternal.vitaminTracker.pregnancyWeek')}
         />
         {/* Today's Progress */}
         <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
@@ -217,7 +219,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
             <CardTitle className="flex items-center justify-between text-base">
               <span className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-primary" />
-                Today's Progress
+                {t('toolsInternal.vitaminTracker.todaysProgress')}
               </span>
               <span className="text-2xl font-bold text-primary">{todayProgress}%</span>
             </CardTitle>
@@ -230,7 +232,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
               />
             </div>
             <p className="text-sm text-muted-foreground text-center">
-              {todayLogs.length} of {VITAMINS.length} vitamins taken today
+              {t('toolsInternal.vitaminTracker.vitaminsCount', { taken: todayLogs.length, total: VITAMINS.length })}
             </p>
           </CardContent>
         </Card>
@@ -241,7 +243,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
             <CardTitle className="flex items-center justify-between text-base">
               <span className="flex items-center gap-2">
                 <Brain className="w-5 h-5 text-violet-500" />
-                AI Supplement Analysis
+                {t('toolsInternal.vitaminTracker.aiAnalysisTitle')}
               </span>
               {showAiAnalysis && (
                 <Button
@@ -267,7 +269,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                 ) : (
                   <Sparkles className="w-4 h-4 mr-2" />
                 )}
-                Analyze My Vitamin Routine
+                {t('toolsInternal.vitaminTracker.analyzeRoutine')}
               </Button>
             ) : (
               <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[400px] overflow-y-auto">
@@ -276,7 +278,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                 ) : (
                   <div className="flex items-center justify-center py-8 text-muted-foreground">
                     <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                    Analyzing your vitamin intake...
+                    {t('toolsInternal.vitaminTracker.analyzingIntake')}
                   </div>
                 )}
               </div>
@@ -312,23 +314,23 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                     </div>
                     
                     <div className="flex flex-col items-center gap-2">
-                      <Button
-                        variant={taken ? 'default' : 'outline'}
-                        size="sm"
-                        className={taken ? 'bg-green-500 hover:bg-green-600' : 'hover:bg-purple-100'}
-                        onClick={() => handleTakeVitamin(vitamin)}
-                        disabled={taken || isSaving}
-                      >
-                        {isSaving ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : taken ? (
-                          <><Check className="w-4 h-4 mr-1" /> Done</>
-                        ) : (
-                          'Take'
-                        )}
+                        <Button
+                          variant={taken ? 'default' : 'outline'}
+                          size="sm"
+                          className={taken ? 'bg-green-500 hover:bg-green-600' : 'hover:bg-purple-100'}
+                          onClick={() => handleTakeVitamin(vitamin)}
+                          disabled={taken || isSaving}
+                        >
+                          {isSaving ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : taken ? (
+                            <><Check className="w-4 h-4 mr-1" /> {t('toolsInternal.vitaminTracker.done')}</>
+                          ) : (
+                            t('toolsInternal.vitaminTracker.take')
+                          )}
                       </Button>
                       <span className="text-xs text-gray-500">
-                        {weekCount}/7 this week
+                        {weekCount}/7 {t('toolsInternal.vitaminTracker.thisWeek')}
                       </span>
                     </div>
                   </div>
@@ -343,7 +345,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-purple-500" />
-              Weekly Statistics
+              {t('toolsInternal.vitaminTracker.weeklyStats')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -362,7 +364,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">{count}/7 days</p>
+                    <p className="text-xs text-gray-500 mt-1">{count}/7 {t('toolsInternal.vitaminTracker.days')}</p>
                   </div>
                 );
               })}
@@ -376,7 +378,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-purple-500" />
-                Recent History
+                {t('toolsInternal.vitaminTracker.recentHistory')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -404,9 +406,9 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
         {/* Tips */}
         <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
           <CardContent className="p-4">
-            <h3 className="font-bold text-amber-800 mb-2">💡 Tip of the Day</h3>
+            <h3 className="font-bold text-amber-800 mb-2">💡 {t('toolsInternal.vitaminTracker.tipTitle')}</h3>
             <p className="text-amber-700 text-sm">
-              Take iron with vitamin C (orange juice) for better absorption, and avoid taking it with calcium or tea.
+              {t('toolsInternal.vitaminTracker.tipContent')}
             </p>
           </CardContent>
         </Card>

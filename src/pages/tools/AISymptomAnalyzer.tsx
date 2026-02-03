@@ -6,6 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { WeekSlider } from '@/components/WeekSlider';
+import { useTranslation } from 'react-i18next';
+
 interface Symptom {
   id: string;
   name: string;
@@ -27,6 +29,7 @@ const symptomDatabase = [
 ];
 
 const AISymptomAnalyzer: React.FC = () => {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedSymptoms, setSelectedSymptoms] = useState<Symptom[]>([]);
   const [currentWeek, setCurrentWeek] = useState(12);
@@ -102,8 +105,8 @@ const AISymptomAnalyzer: React.FC = () => {
 
   return (
     <ToolFrame
-      title="AI Symptom Analyzer"
-      subtitle="Educational insights for pregnancy symptoms"
+      title={t('tools.symptomAnalyzer.title')}
+      subtitle={t('toolsInternal.symptomAnalyzer.subtitle')}
       customIcon="heartbeat"
       mood="calm"
       toolId="ai-symptom-analyzer"
@@ -114,7 +117,7 @@ const AISymptomAnalyzer: React.FC = () => {
           <CardContent className="p-4 flex gap-3">
             <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-amber-800">
-              This tool provides <strong>educational information only</strong>. Always consult your healthcare provider for medical advice.
+              {t('toolsInternal.symptomAnalyzer.disclaimer')}
             </p>
           </CardContent>
         </Card>
@@ -126,14 +129,14 @@ const AISymptomAnalyzer: React.FC = () => {
             setCurrentWeek(week);
             setAnalyzed(false);
           }}
-          label="Current Pregnancy Week"
+          label={t('toolsInternal.weekSlider.currentWeek')}
           showTrimester
         />
 
         {/* Symptom Selection */}
         <Card>
           <CardContent className="p-4">
-            <h2 className="text-lg font-semibold mb-4">Select Your Symptoms</h2>
+            <h2 className="text-lg font-semibold mb-4">{t('toolsInternal.symptomAnalyzer.selectSymptoms')}</h2>
             <div className="grid grid-cols-2 gap-2">
               {symptomDatabase.map((symptom) => {
                 const isSelected = selectedSymptoms.some(s => s.id === symptom.id);
@@ -147,7 +150,7 @@ const AISymptomAnalyzer: React.FC = () => {
                         : 'bg-muted hover:bg-muted/80'
                     }`}
                   >
-                    <span className="font-medium">{symptom.name}</span>
+                    <span className="font-medium">{t(`toolsInternal.symptomAnalyzer.symptoms.${symptom.id}`)}</span>
                   </button>
                 );
               })}
@@ -166,10 +169,12 @@ const AISymptomAnalyzer: React.FC = () => {
             {isAnalyzing ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Analyzing...
+                {t('toolsInternal.symptomAnalyzer.analyzing')}
               </>
             ) : (
-              `Analyze ${selectedSymptoms.length} Symptom${selectedSymptoms.length > 1 ? 's' : ''}`
+              selectedSymptoms.length > 1 
+                ? t('toolsInternal.symptomAnalyzer.analyzeCountPlural', { count: selectedSymptoms.length })
+                : t('toolsInternal.symptomAnalyzer.analyzeCount', { count: selectedSymptoms.length })
             )}
           </Button>
         )}
@@ -180,13 +185,13 @@ const AISymptomAnalyzer: React.FC = () => {
             <CardContent className="p-4 space-y-4">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <h2 className="text-lg font-semibold">Analysis Results (Week {currentWeek})</h2>
+                <h2 className="text-lg font-semibold">{t('toolsInternal.symptomAnalyzer.results')} ({t('toolsInternal.symptomAnalyzer.week', { week: currentWeek })})</h2>
               </div>
               
               {selectedSymptoms.map((symptom) => (
                 <div key={symptom.id} className="bg-white rounded-xl p-4 border border-border">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-medium">{symptom.name}</h3>
+                    <h3 className="font-medium">{t(`toolsInternal.symptomAnalyzer.symptoms.${symptom.id}`)}</h3>
                     <Badge variant="secondary" className="text-xs uppercase">
                       {symptomDatabase.find(d => d.id === symptom.id)?.category || 'general'}
                     </Badge>
@@ -196,7 +201,7 @@ const AISymptomAnalyzer: React.FC = () => {
                   </p>
                   <div className="mt-3 flex items-center gap-2 text-xs text-primary bg-primary/10 p-2 rounded-lg">
                     <Info className="w-4 h-4 flex-shrink-0" />
-                    <span>Discuss with your healthcare provider for personalized advice</span>
+                    <span>{t('toolsInternal.symptomAnalyzer.discussWithProvider')}</span>
                   </div>
                 </div>
               ))}
@@ -204,7 +209,7 @@ const AISymptomAnalyzer: React.FC = () => {
               <Card className="border-primary/20 bg-primary/5">
                 <CardContent className="p-4">
                   <p className="text-sm text-muted-foreground">
-                    <strong>Remember:</strong> Every pregnancy is unique. These insights are for educational purposes only and should not replace professional medical advice.
+                    <strong>{t('toolsInternal.common.remember')}:</strong> {t('toolsInternal.symptomAnalyzer.remember')}
                   </p>
                 </CardContent>
               </Card>
