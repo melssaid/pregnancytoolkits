@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { SmartScrollRestoration } from "@/components/SmartScrollRestoration";
 import { AnimatedRoutes } from "@/components/AnimatedRoutes";
-import { WelcomeModal } from "@/components/WelcomeModal";
 import { useEffect } from "react";
 import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
@@ -57,7 +56,6 @@ const App = () => {
         <BrowserRouter>
           <SmartScrollRestoration />
           <AnimatedRoutes />
-          <WelcomeModal />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
