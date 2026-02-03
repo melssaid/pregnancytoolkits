@@ -36,19 +36,19 @@ const sleepVideos: Video[] = [
   },
   {
     id: "2",
-    title: "Prenatal Stretching for Better Sleep",
-    description: "Gentle stretches to ease tension before bed",
-    youtubeId: "vEcZD8Js2Ws",
+    title: "Prenatal Sleep Meditation",
+    description: "Cozy sleep meditation for expecting mothers",
+    youtubeId: "FdeqyQTavzI",
     duration: "25:00",
-    category: "Sleep Tips"
+    category: "Meditation"
   },
   {
     id: "3",
-    title: "Pregnancy Yoga for Relaxation",
-    description: "Relaxing yoga flow to prepare for restful sleep",
-    youtubeId: "3HPhF_IPJ1E",
-    duration: "15:00",
-    category: "Sleep Positions"
+    title: "Prenatal Yoga for Relaxation",
+    description: "Deep relaxation yoga nidra for pregnancy",
+    youtubeId: "vEcZD8Js2Ws",
+    duration: "25:00",
+    category: "Sleep Tips"
   },
   {
     id: "4",

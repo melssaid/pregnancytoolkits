@@ -5,10 +5,10 @@ import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
 
 const fitnessVideos: Video[] = [
-  { id: "1", title: "Safe Prenatal Full Body Workout", description: "Complete workout safe for all trimesters", youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: "Full Workout" },
-  { id: "2", title: "Pregnancy Stretching Routine", description: "Gentle stretches for pregnancy comfort", youtubeId: "vEcZD8Js2Ws", duration: "25:00", category: "Stretching" },
-  { id: "3", title: "Prenatal Yoga for Beginners", description: "Relaxing yoga flow for pregnant women", youtubeId: "3HPhF_IPJ1E", duration: "15:00", category: "Yoga" },
-  { id: "4", title: "Low Impact Prenatal Cardio", description: "Safe cardio workout during pregnancy", youtubeId: "xNfagna9Fxw", duration: "21:00", category: "Cardio" },
+  { id: "1", title: "Safe Prenatal Core Workout", description: "10-minute safe abs workout for first trimester", youtubeId: "f7KnXTEpf5M", duration: "10:00", category: "Core" },
+  { id: "2", title: "Pregnancy Safe HIIT Cardio", description: "20 minute no repeat low impact workout", youtubeId: "DeaayKWssak", duration: "20:00", category: "Cardio" },
+  { id: "3", title: "Prenatal Yoga for Relaxation", description: "Deep relaxation yoga for pregnancy", youtubeId: "vEcZD8Js2Ws", duration: "25:00", category: "Yoga" },
+  { id: "4", title: "Pregnancy Relaxation Meditation", description: "Calming meditation for expecting mothers", youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: "Relaxation" },
 ];
 
 interface Exercise {

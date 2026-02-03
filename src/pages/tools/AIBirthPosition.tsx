@@ -39,35 +39,35 @@ const positions = [
 const birthPositionVideos: Video[] = [
   {
     id: "1",
-    title: "Labor Positions for Easier Birth",
-    description: "Positions to ease pain and speed up labor",
-    youtubeId: "3HPhF_IPJ1E",
+    title: "Top 5 Pushing Positions for Childbirth",
+    description: "Best positions for effective pushing during labor",
+    youtubeId: "npGb1aHQteo",
+    duration: "10:00",
+    category: "Pushing"
+  },
+  {
+    id: "2",
+    title: "Birth Faster With Less Pain",
+    description: "Childbirth positions for easier labor",
+    youtubeId: "nc8IbAAotHo",
     duration: "15:00",
     category: "Labor Positions"
   },
   {
-    id: "2",
-    title: "Using a Birth Ball During Labor",
-    description: "How to use an exercise ball for labor comfort",
-    youtubeId: "xNfagna9Fxw",
-    duration: "21:00",
-    category: "Equipment"
-  },
-  {
     id: "3",
-    title: "Pushing Positions Explained",
-    description: "Best positions for the pushing stage",
-    youtubeId: "8BH7WFmRs-E",
+    title: "Different Pushing Positions in Labour",
+    description: "Various positions explained for delivery",
+    youtubeId: "i7vcGKtyqCY",
     duration: "12:00",
     category: "Pushing"
   },
   {
     id: "4",
-    title: "Partner Support During Labor",
-    description: "How partners can help with comfort measures",
-    youtubeId: "E0i7NQsJdWY",
-    duration: "8:30",
-    category: "Partner Support"
+    title: "The Best Positions for Birth",
+    description: "Expert guide to optimal birthing positions",
+    youtubeId: "CENq9lrciN0",
+    duration: "14:00",
+    category: "Labor Positions"
   },
 ];
 

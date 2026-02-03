@@ -45,14 +45,22 @@ const essentialSupplies = [
 const lactationVideos: Video[] = [
   {
     id: "1",
-    title: "Newborn Care Basics",
-    description: "Complete guide for new parents including feeding",
-    youtubeId: "hpgjwK_oQe0",
-    duration: "18:00",
+    title: "Breastfeeding a Newborn",
+    description: "What's normal, common challenges, and tips from pediatrician IBCLC",
+    youtubeId: "rNjJyTga__w",
+    duration: "20:00",
     category: "Getting Started"
   },
   {
     id: "2",
+    title: "Newborn Care Week 1",
+    description: "Pediatrician guide including feeding basics",
+    youtubeId: "hpgjwK_oQe0",
+    duration: "18:00",
+    category: "Newborn Care"
+  },
+  {
+    id: "3",
     title: "Caring For Your Newborn",
     description: "Comprehensive guide including feeding schedules",
     youtubeId: "-CWJYxIvoFQ",
@@ -60,20 +68,12 @@ const lactationVideos: Video[] = [
     category: "Newborn Care"
   },
   {
-    id: "3",
+    id: "4",
     title: "Newborn Baby Care Guide",
     description: "Handling, feeding, and sleeping basics",
     youtubeId: "CXWzqbe1i9c",
     duration: "6:00",
     category: "Getting Started"
-  },
-  {
-    id: "4",
-    title: "Pregnancy Relaxation Meditation",
-    description: "Calm meditation for new mothers",
-    youtubeId: "pCSjhbVOdYQ",
-    duration: "60:00",
-    category: "Relaxation"
   },
 ];
 
