@@ -7,6 +7,7 @@ import { BackButton } from "./BackButton";
 import { NotificationCenter } from "./NotificationCenter";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
+import { LanguageDropdown } from "./LanguageDropdown";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -72,6 +73,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </div>
 
           <div className="flex items-center gap-1">
+            <LanguageDropdown variant="compact" />
+            
             <NotificationCenter />
 
             <div className="hidden md:flex">
