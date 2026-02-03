@@ -72,7 +72,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </div>
 
           <div className="flex items-center gap-1">
-            <LanguageDropdown variant="compact" />
+            <LanguageDropdown />
 
             <div className="hidden md:flex">
               <EncryptionIndicator />
