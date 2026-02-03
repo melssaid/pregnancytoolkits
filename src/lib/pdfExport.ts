@@ -25,6 +25,47 @@ interface GenericPDFOptions {
   accentColor?: { r: number; g: number; b: number };
 }
 
+// Cache for logo image data
+let logoImageCache: string | null = null;
+
+// Load logo image as base64
+async function loadLogoImage(): Promise<string | null> {
+  if (logoImageCache) return logoImageCache;
+  
+  try {
+    const response = await fetch('/logo.png');
+    const blob = await response.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        logoImageCache = reader.result as string;
+        resolve(logoImageCache);
+      };
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return null;
+  }
+}
+
+// Add logo to PDF header
+function addLogoToHeader(
+  doc: jsPDF, 
+  logoData: string | null, 
+  x: number, 
+  y: number, 
+  size: number = 12
+): void {
+  if (logoData) {
+    try {
+      doc.addImage(logoData, 'PNG', x, y, size, size);
+    } catch (e) {
+      console.warn('Failed to add logo to PDF:', e);
+    }
+  }
+}
+
 // Premium color palette
 const COLORS = {
   primary: { r: 236, g: 72, b: 153 }, // Pink
@@ -244,8 +285,11 @@ function drawDecorations(doc: jsPDF, pageWidth: number, pageHeight: number, colo
 }
 
 // Data backup PDF export with charts
-export function exportDataBackupPDF(options: DataBackupPDFOptions): void {
+export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promise<void> {
   const { title, subtitle, data, language = 'en' } = options;
+  
+  // Load logo
+  const logoData = await loadLogoImage();
   
   const doc = new jsPDF({
     orientation: 'portrait',
@@ -259,24 +303,27 @@ export function exportDataBackupPDF(options: DataBackupPDFOptions): void {
   const contentWidth = pageWidth - (margin * 2);
   
   // Draw gradient header
-  drawGradientHeader(doc, pageWidth, 45, COLORS.primary, COLORS.secondary);
+  drawGradientHeader(doc, pageWidth, 50, COLORS.primary, COLORS.secondary);
   
-  // Title
+  // Add logo to header
+  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 4, 16);
+  
+  // Title (moved down to accommodate logo)
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(22);
+  doc.setFontSize(20);
   doc.setTextColor(255, 255, 255);
-  doc.text(title, pageWidth / 2, 20, { align: 'center' });
+  doc.text(title, pageWidth / 2, 26, { align: 'center' });
   
   // Subtitle
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  doc.text(subtitle || formatDateForPDF(new Date(), language), pageWidth / 2, 30, { align: 'center' });
+  doc.text(subtitle || formatDateForPDF(new Date(), language), pageWidth / 2, 35, { align: 'center' });
   
   // App branding
   doc.setFontSize(8);
-  doc.text('Pregnancy Tools', pageWidth / 2, 38, { align: 'center' });
+  doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
   
-  let yPos = 55;
+  let yPos = 58;
   
   // Categorize data
   const categories: Record<string, { label: string; value: string; rawValue: any }[]> = {
@@ -458,8 +505,11 @@ export function exportDataBackupPDF(options: DataBackupPDFOptions): void {
 }
 
 // Generic PDF export function
-export function exportGenericPDF(options: GenericPDFOptions): void {
+export async function exportGenericPDF(options: GenericPDFOptions): Promise<void> {
   const { title, subtitle, sections, language = 'en', accentColor = COLORS.primary } = options;
+  
+  // Load logo
+  const logoData = await loadLogoImage();
   
   const doc = new jsPDF({
     orientation: 'portrait',
@@ -473,26 +523,29 @@ export function exportGenericPDF(options: GenericPDFOptions): void {
   const contentWidth = pageWidth - (margin * 2);
   
   // Draw gradient header
-  drawGradientHeader(doc, pageWidth, 40, accentColor, COLORS.secondary);
+  drawGradientHeader(doc, pageWidth, 50, accentColor, COLORS.secondary);
+  
+  // Add logo to header
+  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 4, 16);
   
   // Title
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(20);
+  doc.setFontSize(18);
   doc.setTextColor(255, 255, 255);
-  doc.text(title, pageWidth / 2, 18, { align: 'center' });
+  doc.text(title, pageWidth / 2, 26, { align: 'center' });
   
   // Subtitle
   if (subtitle) {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(subtitle, pageWidth / 2, 28, { align: 'center' });
+    doc.text(subtitle, pageWidth / 2, 35, { align: 'center' });
   }
   
   // App branding
   doc.setFontSize(8);
-  doc.text('Pregnancy Tools', pageWidth / 2, 35, { align: 'center' });
+  doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
   
-  let yPos = 48;
+  let yPos = 58;
   
   // Decorative line
   doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
@@ -604,8 +657,11 @@ export function exportGenericPDF(options: GenericPDFOptions): void {
 }
 
 // Birth plan PDF export
-export function exportBirthPlanToPDF(options: PDFExportOptions): void {
+export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
   const { title, content, date, preferences } = options;
+  
+  // Load logo
+  const logoData = await loadLogoImage();
   
   const doc = new jsPDF({
     orientation: 'portrait',
@@ -619,24 +675,27 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
   const contentWidth = pageWidth - (margin * 2);
   
   // Draw gradient header
-  drawGradientHeader(doc, pageWidth, 40, COLORS.primary, COLORS.accent);
+  drawGradientHeader(doc, pageWidth, 50, COLORS.primary, COLORS.accent);
+  
+  // Add logo to header
+  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 4, 16);
   
   // Title
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(24);
+  doc.setFontSize(22);
   doc.setTextColor(255, 255, 255);
-  doc.text('Birth Plan', pageWidth / 2, 18, { align: 'center' });
+  doc.text('Birth Plan', pageWidth / 2, 26, { align: 'center' });
   
   // Date
-  doc.setFontSize(11);
+  doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  doc.text(date, pageWidth / 2, 28, { align: 'center' });
+  doc.text(date, pageWidth / 2, 35, { align: 'center' });
   
   // Branding
   doc.setFontSize(8);
-  doc.text('Pregnancy Tools', pageWidth / 2, 36, { align: 'center' });
+  doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
   
-  let yPos = 50;
+  let yPos = 58;
   
   // Decorative line
   doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);

@@ -95,7 +95,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       }
 
       const lang = i18n.language === 'ar' ? 'ar' : 'en';
-      exportDataBackupPDF({
+      await exportDataBackupPDF({
         title: lang === 'ar' ? 'نسخة احتياطية للبيانات' : 'Data Backup Report',
         subtitle: lang === 'ar' ? `${dataCount} عنصر محفوظ` : `${dataCount} items saved`,
         data,
