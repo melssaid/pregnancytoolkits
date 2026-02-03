@@ -12,6 +12,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useNotifications } from "@/hooks/useNotifications";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
+import { useTranslation } from "react-i18next";
 
 interface SavedDueDate {
   id: string;
