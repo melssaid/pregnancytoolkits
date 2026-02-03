@@ -11,7 +11,7 @@ const Settings: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Layout title={t('settings.title')} showBack>
+    <Layout showBack>
       <div className="container py-6 space-y-6 pb-24">
         
         {/* Security Section */}

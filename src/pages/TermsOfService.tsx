@@ -147,7 +147,7 @@ const sections = [
 
 export default function TermsOfService() {
   return (
-    <Layout title="Terms of Service" showBack>
+    <Layout showBack>
       <div className="container py-6 pb-24">
         <div className="mx-auto max-w-3xl space-y-6">
           {/* Header */}

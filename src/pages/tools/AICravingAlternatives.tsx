@@ -104,7 +104,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
   }, []);
 
   return (
-    <Layout title="AI Craving Alternatives" showBack>
+    <Layout showBack>
       <div className="container py-6">
         <div className="max-w-4xl mx-auto space-y-6">
           

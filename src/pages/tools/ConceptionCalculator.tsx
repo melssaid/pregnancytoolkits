@@ -100,8 +100,8 @@ Encouragement and realistic expectations`
   };
 
   return (
-    <Layout title={t('tools.conceptionCalculator.title')} showBack>
-      <div className="container max-w-2xl py-8">
+    <Layout showBack>
+      <div className="container max-w-2xl py-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

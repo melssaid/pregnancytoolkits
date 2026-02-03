@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 export default function Contact() {
   return (
-    <Layout title="Contact Us" showBack>
-      <div className="container py-12 max-w-2xl">
+    <Layout showBack>
+      <div className="container py-8 max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
