@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   Camera, Upload, Trash2, Download, Sparkles, ChevronLeft, ChevronRight, 
   Loader2, Image as ImageIcon, HardDrive, AlertTriangle, Shield, 
-  Calendar, ZoomIn, X, Share2, RefreshCw, Info, Columns, Clock, Edit3, Check
+  Calendar, X, Share2, RefreshCw, Info, Columns, Clock, Edit3, Check
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -620,18 +620,6 @@ Please provide a comprehensive pregnancy update:
                     
                     {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                      <Button
-                        variant="secondary"
-                        size="icon"
-                        className="h-8 w-8"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedPhoto(photo);
-                          setShowFullscreen(true);
-                        }}
-                      >
-                        <ZoomIn className="w-4 h-4" />
-                      </Button>
                       <Button
                         variant="secondary"
                         size="icon"
