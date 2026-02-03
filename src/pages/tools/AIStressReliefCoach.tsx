@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, Play, Pause, Volume2, Flower2, Wind, Sun, Moon, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface RelaxationExercise {
   id: string;
@@ -86,6 +87,7 @@ const affirmations = [
 ];
 
 export default function AIStressReliefCoach() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedExercise, setSelectedExercise] = useState<RelaxationExercise | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -149,7 +151,7 @@ export default function AIStressReliefCoach() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="AI Stress Relief Coach"
+        toolName={t('toolsInternal.stressRelief.title', 'AI Stress Relief Coach')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -157,8 +159,8 @@ export default function AIStressReliefCoach() {
 
   return (
     <ToolFrame
-      title="AI Stress Relief Coach"
-      subtitle="Guided relaxation techniques for pregnancy"
+      title={t('toolsInternal.stressRelief.title', 'AI Stress Relief Coach')}
+      subtitle={t('toolsInternal.stressRelief.subtitle', 'Guided relaxation techniques for pregnancy')}
       mood="calm"
       toolId="stress-relief"
       icon={Heart}
@@ -169,7 +171,7 @@ export default function AIStressReliefCoach() {
             <CardContent className="p-6">
               <div className="flex items-center gap-2 mb-3">
                 <Sun className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium text-primary">Today's Affirmation</span>
+                <span className="text-sm font-medium text-primary">{t('toolsInternal.stressRelief.todaysAffirmation', "Today's Affirmation")}</span>
               </div>
               <motion.p 
                 key={currentAffirmation}
@@ -218,8 +220,8 @@ export default function AIStressReliefCoach() {
                     variant="outline"
                     onClick={() => setIsPlaying(false)}
                   >
-                    <Pause className="w-4 h-4 mr-2" />
-                    Pause
+                    <Pause className="w-4 h-4 me-2" />
+                    {t('common.pause', 'Pause')}
                   </Button>
                 </div>
               </CardContent>
@@ -229,7 +231,7 @@ export default function AIStressReliefCoach() {
           {/* Exercise List */}
           {(!selectedExercise || !isPlaying) && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Relaxation Exercises</h3>
+              <h3 className="text-lg font-semibold">{t('toolsInternal.stressRelief.relaxationExercises', 'Relaxation Exercises')}</h3>
               {exercises.map(exercise => {
                 const TypeIcon = getTypeIcon(exercise.type);
                 return (
@@ -242,14 +244,14 @@ export default function AIStressReliefCoach() {
                         <div className="flex-1">
                           <h4 className="font-semibold">{exercise.name}</h4>
                           <p className="text-sm text-muted-foreground mb-2">
-                            {exercise.description}
-                          </p>
-                          <div className="flex items-center gap-4">
-                            <span className="text-xs text-muted-foreground">
-                              {Math.floor(exercise.duration / 60)} min
-                            </span>
-                            <span className="text-xs px-2 py-0.5 rounded-full bg-muted capitalize">
-                              {exercise.type}
+                          {exercise.description}
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <span className="text-xs text-muted-foreground">
+                            {Math.floor(exercise.duration / 60)} {t('common.min', 'min')}
+                          </span>
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-muted capitalize">
+                            {t(`toolsInternal.stressRelief.types.${exercise.type}`, exercise.type)}
                             </span>
                           </div>
                         </div>
@@ -272,14 +274,14 @@ export default function AIStressReliefCoach() {
             <CardContent className="p-4">
               <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <Moon className="w-4 h-4 text-primary" />
-                Quick Stress Relief Tips
+                {t('toolsInternal.stressRelief.quickTips', 'Quick Stress Relief Tips')}
               </h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Take 3 deep breaths right now</li>
-                <li>• Step outside for fresh air if possible</li>
-                <li>• Drink a glass of water slowly</li>
-                <li>• Call someone who makes you smile</li>
-                <li>• Put your hand on your belly and connect with baby</li>
+                <li>• {t('toolsInternal.stressRelief.tip1', 'Take 3 deep breaths right now')}</li>
+                <li>• {t('toolsInternal.stressRelief.tip2', 'Step outside for fresh air if possible')}</li>
+                <li>• {t('toolsInternal.stressRelief.tip3', 'Drink a glass of water slowly')}</li>
+                <li>• {t('toolsInternal.stressRelief.tip4', 'Call someone who makes you smile')}</li>
+                <li>• {t('toolsInternal.stressRelief.tip5', 'Put your hand on your belly and connect with baby')}</li>
               </ul>
             </CardContent>
           </Card>
@@ -287,10 +289,9 @@ export default function AIStressReliefCoach() {
           {/* Disclaimer */}
           <div className="bg-muted/30 rounded-xl p-4 text-center">
             <p className="text-xs text-muted-foreground">
-              ⚠️ These exercises are for general relaxation. If you experience severe anxiety or depression, 
-            please consult your healthcare provider.
-          </p>
-        </div>
+              ⚠️ {t('toolsInternal.stressRelief.disclaimer', 'These exercises are for general relaxation. If you experience severe anxiety or depression, please consult your healthcare provider.')}
+            </p>
+          </div>
       </div>
     </ToolFrame>
   );

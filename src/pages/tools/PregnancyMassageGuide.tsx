@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, AlertTriangle, Clock, Play, CheckCircle } from 'lucide-react';
 import { ExerciseIcon } from '@/components/ExerciseIcon';
+import { useTranslation } from 'react-i18next';
 
 interface MassageTechnique {
   id: string;
@@ -125,6 +126,7 @@ const massageTechniques: MassageTechnique[] = [
 ];
 
 export default function PregnancyMassageGuide() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedTechnique, setSelectedTechnique] = useState<MassageTechnique | null>(null);
   const [currentTrimester, setCurrentTrimester] = useState(2);
@@ -156,7 +158,7 @@ export default function PregnancyMassageGuide() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Pregnancy Massage Guide"
+        toolName={t('toolsInternal.massageGuide.title', 'Pregnancy Massage Guide')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -164,8 +166,8 @@ export default function PregnancyMassageGuide() {
 
   return (
     <ToolFrame
-      title="Pregnancy Massage Guide"
-      subtitle="Safe massage techniques for pregnancy comfort"
+      title={t('toolsInternal.massageGuide.title', 'Pregnancy Massage Guide')}
+      subtitle={t('toolsInternal.massageGuide.subtitle', 'Safe massage techniques for pregnancy comfort')}
       icon={Heart}
       mood="calm"
       toolId="pregnancy-massage-guide"
@@ -174,19 +176,19 @@ export default function PregnancyMassageGuide() {
         {/* Trimester Selector */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-sm font-medium text-muted-foreground mb-3">Your Trimester</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">{t('toolsInternal.massageGuide.yourTrimester', 'Your Trimester')}</h3>
             <div className="grid grid-cols-3 gap-2">
-              {[1, 2, 3].map((t) => (
+              {[1, 2, 3].map((tm) => (
                 <button
-                  key={t}
-                  onClick={() => setCurrentTrimester(t)}
+                  key={tm}
+                  onClick={() => setCurrentTrimester(tm)}
                   className={`py-3 rounded-lg font-semibold transition-all ${
-                    currentTrimester === t
+                    currentTrimester === tm
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted hover:bg-muted/80'
                   }`}
                 >
-                  Trimester {t}
+                  {t('common.trimester', 'Trimester')} {tm}
                 </button>
               ))}
             </div>
@@ -199,12 +201,12 @@ export default function PregnancyMassageGuide() {
             <div className="flex gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
               <div>
-                <h4 className="font-semibold text-amber-800 dark:text-amber-200">General Safety</h4>
+                <h4 className="font-semibold text-amber-800 dark:text-amber-200">{t('toolsInternal.massageGuide.generalSafety', 'General Safety')}</h4>
                 <ul className="text-sm text-amber-700 dark:text-amber-300 mt-1 space-y-1">
-                  <li>• Avoid massaging the abdomen directly</li>
-                  <li>• Use gentle pressure only</li>
-                  <li>• Stop if you feel any discomfort</li>
-                  <li>• Consult your doctor before starting</li>
+                  <li>• {t('toolsInternal.massageGuide.safety1', 'Avoid massaging the abdomen directly')}</li>
+                  <li>• {t('toolsInternal.massageGuide.safety2', 'Use gentle pressure only')}</li>
+                  <li>• {t('toolsInternal.massageGuide.safety3', 'Stop if you feel any discomfort')}</li>
+                  <li>• {t('toolsInternal.massageGuide.safety4', 'Consult your doctor before starting')}</li>
                 </ul>
               </div>
             </div>
@@ -230,7 +232,7 @@ export default function PregnancyMassageGuide() {
               
               <div className="space-y-4">
                 <div className="bg-muted/50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2">How to do it:</h4>
+                  <h4 className="font-semibold mb-2">{t('toolsInternal.massageGuide.howToDoIt', 'How to do it')}:</h4>
                   {selectedTechnique.steps.map((step, i) => (
                     <p key={i} className="text-sm text-muted-foreground mb-1">
                       {i + 1}. {step}
@@ -239,7 +241,7 @@ export default function PregnancyMassageGuide() {
                 </div>
                 
                 <div className="bg-destructive/5 p-4 rounded-lg border border-destructive/10">
-                  <h4 className="font-semibold text-destructive mb-2">Safety Notes:</h4>
+                  <h4 className="font-semibold text-destructive mb-2">{t('toolsInternal.massageGuide.safetyNotes', 'Safety Notes')}:</h4>
                   {selectedTechnique.safetyNotes.map((note, i) => (
                     <p key={i} className="text-sm text-muted-foreground">• {note}</p>
                   ))}
@@ -252,8 +254,8 @@ export default function PregnancyMassageGuide() {
                   }}
                   className="w-full"
                 >
-                  <CheckCircle className="w-4 h-4 mr-2" />
-                  Mark as Complete
+                  <CheckCircle className="w-4 h-4 me-2" />
+                  {t('toolsInternal.massageGuide.markComplete', 'Mark as Complete')}
                 </Button>
               </div>
             </CardContent>
@@ -263,7 +265,7 @@ export default function PregnancyMassageGuide() {
         {/* Techniques List */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-lg font-semibold mb-4">Massage Techniques</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('toolsInternal.massageGuide.massageTechniques', 'Massage Techniques')}</h3>
             <div className="space-y-3">
               {filteredTechniques.map((technique) => {
                 const isCompleted = completedTechniques.includes(technique.id);

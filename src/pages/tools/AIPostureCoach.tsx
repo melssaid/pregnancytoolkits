@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { User, CheckCircle, AlertTriangle, Clock, Play, RefreshCw, Brain, Loader2 } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { useTranslation } from 'react-i18next';
 
 interface PostureExercise {
   id: string;
@@ -96,6 +97,7 @@ const postureExercises: PostureExercise[] = [
 ];
 
 export default function AIPostureCoach() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentTrimester, setCurrentTrimester] = useState(2);
   const [activeExercise, setActiveExercise] = useState<PostureExercise | null>(null);
@@ -170,7 +172,7 @@ export default function AIPostureCoach() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="AI Posture Coach"
+        toolName={t('toolsInternal.postureCoach.title', 'AI Posture Coach')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -178,8 +180,8 @@ export default function AIPostureCoach() {
 
   return (
     <ToolFrame
-      title="AI Posture Coach"
-      subtitle="Improve pregnancy posture to reduce back pain and discomfort"
+      title={t('toolsInternal.postureCoach.title', 'AI Posture Coach')}
+      subtitle={t('toolsInternal.postureCoach.subtitle', 'Improve pregnancy posture to reduce back pain and discomfort')}
       icon={User}
       mood="empowering"
       toolId="ai-posture-coach"
@@ -188,19 +190,19 @@ export default function AIPostureCoach() {
         {/* Trimester Selector */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-sm font-medium text-muted-foreground mb-3">Your Trimester</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">{t('toolsInternal.postureCoach.yourTrimester', 'Your Trimester')}</h3>
             <div className="grid grid-cols-3 gap-2">
-              {[1, 2, 3].map((t) => (
+              {[1, 2, 3].map((tm) => (
                 <button
-                  key={t}
-                  onClick={() => setCurrentTrimester(t)}
+                  key={tm}
+                  onClick={() => setCurrentTrimester(tm)}
                   className={`py-3 rounded-lg font-semibold transition-all ${
-                    currentTrimester === t
+                    currentTrimester === tm
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted hover:bg-muted/80'
                   }`}
                 >
-                  Trimester {t}
+                  {t('common.trimester', 'Trimester')} {tm}
                 </button>
               ))}
             </div>
@@ -211,7 +213,7 @@ export default function AIPostureCoach() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold">Today's Progress</h3>
+              <h3 className="font-semibold">{t('toolsInternal.postureCoach.todaysProgress', "Today's Progress")}</h3>
               <span className="text-primary font-bold">
                 {completedToday.length}/{filteredExercises.length}
               </span>
@@ -233,7 +235,7 @@ export default function AIPostureCoach() {
               ) : (
                 <Brain className="w-4 h-4" />
               )}
-              Get AI Posture Advice
+              {t('toolsInternal.postureCoach.getAIAdvice', 'Get AI Posture Advice')}
             </Button>
           </CardContent>
         </Card>
@@ -244,7 +246,7 @@ export default function AIPostureCoach() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Brain className="w-5 h-5 text-primary" />
-                <h3 className="font-semibold">AI Posture Coach</h3>
+                <h3 className="font-semibold">{t('toolsInternal.postureCoach.aiPostureCoach', 'AI Posture Coach')}</h3>
               </div>
               <MarkdownRenderer content={aiResponse} />
             </CardContent>
@@ -280,7 +282,7 @@ export default function AIPostureCoach() {
                 onClick={() => setIsActive(false)}
                 className="mt-4"
               >
-                Stop
+                {t('common.stop', 'Stop')}
               </Button>
             </CardContent>
           </Card>
@@ -289,7 +291,7 @@ export default function AIPostureCoach() {
         {/* Exercise List */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-lg font-semibold mb-4">Posture Exercises</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('toolsInternal.postureCoach.postureExercises', 'Posture Exercises')}</h3>
             <div className="space-y-3">
               {filteredExercises.map((exercise) => {
                 const isCompleted = completedToday.includes(exercise.id);
@@ -349,8 +351,7 @@ export default function AIPostureCoach() {
             <div className="flex gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
               <p className="text-sm text-amber-800 dark:text-amber-200">
-                Stop any exercise if you feel pain, dizziness, or discomfort. 
-                Consult your healthcare provider before starting any exercise routine.
+                {t('toolsInternal.postureCoach.warning', 'Stop any exercise if you feel pain, dizziness, or discomfort. Consult your healthcare provider before starting any exercise routine.')}
               </p>
             </div>
           </CardContent>

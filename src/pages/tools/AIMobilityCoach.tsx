@@ -8,6 +8,7 @@ import { Footprints, Play, Pause, CheckCircle, Timer, Flame, Sparkles, Save, Tra
 import { useToast } from '@/components/ui/use-toast';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import MedicalDisclaimer from '@/components/compliance/MedicalDisclaimer';
+import { useTranslation } from 'react-i18next';
 
 interface WalkSession {
   id: string;
@@ -41,6 +42,7 @@ const legExercises = [
 ];
 
 export default function AIMobilityCoach() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [data, setData] = useState<MobilityData>(DEFAULT_DATA);
   const [isWalking, setIsWalking] = useState(false);
@@ -101,7 +103,7 @@ export default function AIMobilityCoach() {
         ...prev,
         sessions: [newSession, ...prev.sessions].slice(0, 30),
       }));
-      toast({ title: 'Walk Saved!', description: `${Math.floor(walkTime / 60)} minutes recorded.` });
+      toast({ title: t('toolsInternal.mobilityCoach.walkSaved', 'Walk Saved!'), description: t('toolsInternal.mobilityCoach.minutesRecorded', '{{minutes}} minutes recorded.', { minutes: Math.floor(walkTime / 60) }) });
     }
     setCompletedExercises([]);
   };
@@ -136,13 +138,13 @@ export default function AIMobilityCoach() {
   const weeklyProgress = Math.min((getWeeklyMinutes() / data.weeklyGoal) * 100, 100);
 
   if (showDisclaimer) {
-    return <MedicalDisclaimer toolName="AI Mobility Coach" onAccept={handleAcceptDisclaimer} />;
+    return <MedicalDisclaimer toolName={t('toolsInternal.mobilityCoach.title', 'AI Mobility Coach')} onAccept={handleAcceptDisclaimer} />;
   }
 
   return (
     <ToolFrame
-      title="AI Mobility Coach"
-      subtitle="Walking tips & leg cramp prevention for pregnancy"
+      title={t('toolsInternal.mobilityCoach.title', 'AI Mobility Coach')}
+      subtitle={t('toolsInternal.mobilityCoach.subtitle', 'Walking tips & leg cramp prevention for pregnancy')}
       icon={Footprints}
       mood="empowering"
       toolId="ai-mobility-coach"
@@ -154,15 +156,15 @@ export default function AIMobilityCoach() {
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold flex items-center gap-2">
                 <Flame className="w-5 h-5 text-primary" />
-                Weekly Walking Goal
+                {t('toolsInternal.mobilityCoach.weeklyGoal', 'Weekly Walking Goal')}
               </h3>
               <span className="text-lg font-bold text-primary">
-                {getWeeklyMinutes()} / {data.weeklyGoal} min
+                {getWeeklyMinutes()} / {data.weeklyGoal} {t('common.min', 'min')}
               </span>
             </div>
             <Progress value={weeklyProgress} className="h-3 mb-3" />
             <div className="space-y-2">
-              <label className="text-sm text-muted-foreground">Adjust Goal (minutes/week)</label>
+              <label className="text-sm text-muted-foreground">{t('toolsInternal.mobilityCoach.adjustGoal', 'Adjust Goal (minutes/week)')}</label>
               <Slider
                 value={[data.weeklyGoal]}
                 onValueChange={(v) => setData(prev => ({ ...prev, weeklyGoal: v[0] }))}
@@ -181,7 +183,7 @@ export default function AIMobilityCoach() {
               {formatTime(walkTime)}
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              {isWalking ? 'Walking in progress...' : 'Start a gentle walk for better circulation'}
+              {isWalking ? t('toolsInternal.mobilityCoach.walkingInProgress', 'Walking in progress...') : t('toolsInternal.mobilityCoach.startWalkDesc', 'Start a gentle walk for better circulation')}
             </p>
             <Button
               size="lg"
@@ -191,12 +193,12 @@ export default function AIMobilityCoach() {
               {isWalking ? (
                 <>
                   <Pause className="w-5 h-5" />
-                  Stop & Save
+                  {t('toolsInternal.mobilityCoach.stopAndSave', 'Stop & Save')}
                 </>
               ) : (
                 <>
                   <Play className="w-5 h-5" />
-                  Start Walk
+                  {t('toolsInternal.mobilityCoach.startWalk', 'Start Walk')}
                 </>
               )}
             </Button>
@@ -208,14 +210,14 @@ export default function AIMobilityCoach() {
           <CardContent className="p-5">
             <h3 className="font-semibold flex items-center gap-2 mb-4">
               <Sparkles className="w-5 h-5 text-primary" />
-              Leg Cramp Prevention Exercises
+              {t('toolsInternal.mobilityCoach.legCrampExercises', 'Leg Cramp Prevention Exercises')}
             </h3>
             <div className="space-y-3">
               {legExercises.map((exercise) => (
                 <button
                   key={exercise.id}
                   onClick={() => toggleExercise(exercise.id)}
-                  className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
+                  className={`w-full text-start p-4 rounded-xl border-2 transition-all ${
                     completedExercises.includes(exercise.id)
                       ? 'bg-accent/20 border-primary/40'
                       : 'bg-muted/50 border-transparent hover:border-primary/20'
@@ -237,7 +239,7 @@ export default function AIMobilityCoach() {
               ))}
             </div>
             <p className="text-xs text-muted-foreground mt-3 text-center">
-              Completed: {completedExercises.length}/{legExercises.length} exercises
+              {t('toolsInternal.mobilityCoach.completed', 'Completed')}: {completedExercises.length}/{legExercises.length} {t('toolsInternal.mobilityCoach.exercises', 'exercises')}
             </p>
           </CardContent>
         </Card>
@@ -246,7 +248,7 @@ export default function AIMobilityCoach() {
         {data.sessions.length > 0 && (
           <Card>
             <CardContent className="p-5">
-              <h3 className="font-semibold mb-4">Recent Sessions</h3>
+              <h3 className="font-semibold mb-4">{t('toolsInternal.mobilityCoach.recentSessions', 'Recent Sessions')}</h3>
               <div className="space-y-3">
                 {data.sessions.slice(0, 5).map((session) => (
                   <div
@@ -255,11 +257,11 @@ export default function AIMobilityCoach() {
                   >
                     <div>
                       <p className="font-medium">
-                        {Math.floor(session.duration / 60)} min walk
+                        {Math.floor(session.duration / 60)} {t('common.min', 'min')} {t('toolsInternal.mobilityCoach.walk', 'walk')}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {new Date(session.date).toLocaleDateString()} • ~{session.steps} steps
-                        {session.legExercises > 0 && ` • ${session.legExercises} exercises`}
+                        {new Date(session.date).toLocaleDateString()} • ~{session.steps} {t('toolsInternal.mobilityCoach.steps', 'steps')}
+                        {session.legExercises > 0 && ` • ${session.legExercises} ${t('toolsInternal.mobilityCoach.exercises', 'exercises')}`}
                       </p>
                     </div>
                     <button
@@ -278,13 +280,13 @@ export default function AIMobilityCoach() {
         {/* Tips */}
         <Card className="bg-muted/30">
           <CardContent className="p-5">
-            <h4 className="font-semibold mb-3">Walking Tips for Pregnancy</h4>
+            <h4 className="font-semibold mb-3">{t('toolsInternal.mobilityCoach.walkingTips', 'Walking Tips for Pregnancy')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Walk for 20-30 minutes daily at a comfortable pace</li>
-              <li>• Stay hydrated before, during, and after walks</li>
-              <li>• Wear supportive, comfortable shoes</li>
-              <li>• Do calf stretches before bed to prevent night cramps</li>
-              <li>• Keep magnesium-rich foods in your diet</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip1', 'Walk for 20-30 minutes daily at a comfortable pace')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip2', 'Stay hydrated before, during, and after walks')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip3', 'Wear supportive, comfortable shoes')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip4', 'Do calf stretches before bed to prevent night cramps')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip5', 'Keep magnesium-rich foods in your diet')}</li>
             </ul>
           </CardContent>
         </Card>
