@@ -134,14 +134,14 @@ function SettingsItem({
   onChange: (v: boolean) => void;
 }) {
   return (
-    <div className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-muted/30 transition-colors">
-      <div className="flex items-center gap-2.5">
-        <div className={`w-7 h-7 rounded-lg ${color} flex items-center justify-center`}>
-          <Icon className="w-3.5 h-3.5 text-white" />
+    <div className="flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/30 transition-colors">
+      <div className="flex items-center gap-1.5">
+        <div className={`w-5 h-5 rounded ${color} flex items-center justify-center`}>
+          <Icon className="w-2.5 h-2.5 text-white" />
         </div>
-        <span className="text-sm font-medium">{label}</span>
+        <span className="text-[11px] font-medium">{label}</span>
       </div>
-      <Switch checked={checked} onCheckedChange={onChange} />
+      <Switch checked={checked} onCheckedChange={onChange} className="scale-75" />
     </div>
   );
 }
@@ -166,57 +166,57 @@ export function NotificationsPanel() {
 
   return (
     <Card className="overflow-hidden border-border/50 bg-gradient-to-br from-card via-card to-muted/20">
-      {/* Header */}
-      <div className="p-4 border-b border-border/50">
+      {/* Compact Header */}
+      <div className="px-3 py-2.5 border-b border-border/50">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <div className="relative">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
-                <BellRing className="w-5 h-5 text-primary-foreground" />
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow">
+                <BellRing className="w-4 h-4 text-primary-foreground" />
               </div>
               {unreadCount > 0 && (
                 <motion.span 
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-destructive text-destructive-foreground text-[10px] font-bold rounded-full flex items-center justify-center shadow-lg"
+                  className="absolute -top-1 -right-1 w-4 h-4 bg-destructive text-destructive-foreground text-[9px] font-bold rounded-full flex items-center justify-center"
                 >
                   {unreadCount > 9 ? '9+' : unreadCount}
                 </motion.span>
               )}
             </div>
             <div>
-              <h3 className="text-sm font-bold">Notifications</h3>
-              <p className="text-[10px] text-muted-foreground">
+              <h3 className="text-xs font-bold">Notifications</h3>
+              <p className="text-[9px] text-muted-foreground">
                 {unreadCount > 0 ? `${unreadCount} unread` : 'All caught up!'}
               </p>
             </div>
           </div>
           
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-0.5">
             {unreadCount > 0 && (
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-8 w-8"
+                className="h-7 w-7"
                 onClick={markAllAsRead}
                 title="Mark all as read"
               >
-                <CheckCheck className="w-4 h-4" />
+                <CheckCheck className="w-3.5 h-3.5" />
               </Button>
             )}
             <Button 
               variant={showSettings ? "secondary" : "ghost"}
               size="icon" 
-              className="h-8 w-8"
+              className="h-7 w-7"
               onClick={() => setShowSettings(!showSettings)}
             >
-              <Settings className={`w-4 h-4 transition-transform ${showSettings ? 'rotate-90' : ''}`} />
+              <Settings className={`w-3.5 h-3.5 transition-transform ${showSettings ? 'rotate-90' : ''}`} />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Settings Panel */}
+      {/* Settings Panel - More Compact */}
       <AnimatePresence>
         {showSettings && (
           <motion.div
@@ -225,13 +225,13 @@ export function NotificationsPanel() {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden border-b border-border/50"
           >
-            <div className="p-4 bg-muted/20">
-              <div className="flex items-center gap-2 mb-3">
-                <Shield className="w-4 h-4 text-primary" />
-                <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Reminder Settings</span>
+            <div className="p-3 bg-muted/20">
+              <div className="flex items-center gap-1.5 mb-2">
+                <Shield className="w-3 h-3 text-primary" />
+                <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">Reminders</span>
               </div>
               
-              <div className="space-y-1">
+              <div className="grid grid-cols-2 gap-1">
                 <SettingsItem 
                   icon={Calendar} 
                   label="Appointments" 
@@ -269,7 +269,7 @@ export function NotificationsPanel() {
                 />
                 <SettingsItem 
                   icon={HardDrive} 
-                  label="Weekly Backup" 
+                  label="Backup" 
                   color="bg-rose-500"
                   checked={settings.backupReminders ?? true}
                   onChange={(v) => {

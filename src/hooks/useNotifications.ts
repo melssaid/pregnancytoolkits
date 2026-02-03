@@ -87,7 +87,31 @@ export function useNotifications() {
       [],
       isNotificationArray
     );
-    setNotifications(savedNotifications);
+    
+    // Check if this is a new user (no welcome notification shown before)
+    const hasSeenWelcome = localStorage.getItem('hasSeenWelcomeNotification');
+    
+    if (!hasSeenWelcome) {
+      // Get user's language for localized welcome message
+      const lang = localStorage.getItem('user_selected_language') || navigator.language?.split('-')[0] || 'en';
+      const isArabic = lang === 'ar';
+      
+      const welcomeNotification: Notification = {
+        id: `welcome-${Date.now()}`,
+        type: 'general',
+        title: isArabic ? 'مرحباً بك!' : 'Welcome!',
+        message: isArabic 
+          ? 'هذا التطبيق للمعلومات فقط ولا يُغني عن استشارة الطبيب. استمتعي بأكثر من 40 أداة ذكية!'
+          : 'This app is for info only, not medical advice. Enjoy 40+ smart tools!',
+        time: new Date().toISOString(),
+        read: false,
+        actionUrl: '/',
+      };
+      setNotifications([welcomeNotification, ...savedNotifications]);
+      localStorage.setItem('hasSeenWelcomeNotification', 'true');
+    } else {
+      setNotifications(savedNotifications);
+    }
 
     const savedSettings = safeParseLocalStorage<NotificationSettings>(
       'notificationSettings',
