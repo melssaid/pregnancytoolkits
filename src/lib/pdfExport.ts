@@ -7,22 +7,35 @@ interface PDFExportOptions {
   preferences?: Record<string, string>;
 }
 
+interface DataBackupPDFOptions {
+  title: string;
+  subtitle?: string;
+  data: Record<string, any>;
+  language?: 'en' | 'ar';
+}
+
+interface GenericPDFOptions {
+  title: string;
+  subtitle?: string;
+  sections: {
+    title: string;
+    items: string[] | { label: string; value: string }[];
+  }[];
+  language?: 'en' | 'ar';
+  accentColor?: { r: number; g: number; b: number };
+}
+
 // Convert markdown to clean text for PDF
 function markdownToText(markdown: string): string {
   return markdown
-    // Remove headers and keep text
     .replace(/^### (.*$)/gm, '$1')
     .replace(/^## (.*$)/gm, '$1')
     .replace(/^# (.*$)/gm, '$1')
-    // Remove bold/italic
     .replace(/\*\*\*(.*?)\*\*\*/g, '$1')
     .replace(/\*\*(.*?)\*\*/g, '$1')
     .replace(/\*(.*?)\*/g, '$1')
-    // Remove bullet points but keep text
     .replace(/^[-*+] /gm, '• ')
-    // Remove numbered list formatting
     .replace(/^\d+\. /gm, '• ')
-    // Clean up extra whitespace
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
@@ -37,7 +50,6 @@ function splitTextToLines(doc: jsPDF, text: string, maxWidth: number): string[] 
       lines.push('');
       return;
     }
-    
     const splitLines = doc.splitTextToSize(para, maxWidth);
     lines.push(...splitLines);
   });
@@ -45,10 +57,243 @@ function splitTextToLines(doc: jsPDF, text: string, maxWidth: number): string[] 
   return lines;
 }
 
+// Format date for display
+function formatDateForPDF(date: Date, language: string): string {
+  const locale = language === 'ar' ? 'ar-SA' : 'en-US';
+  return date.toLocaleDateString(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
+// Generic PDF export function
+export function exportGenericPDF(options: GenericPDFOptions): void {
+  const { title, subtitle, sections, language = 'en', accentColor = { r: 244, g: 114, b: 182 } } = options;
+  
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4'
+  });
+  
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 15;
+  const contentWidth = pageWidth - (margin * 2);
+  
+  let yPos = margin;
+  
+  // Header background
+  doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
+  doc.rect(0, 0, pageWidth, 30, 'F');
+  
+  // Darker top strip
+  doc.setFillColor(Math.max(0, accentColor.r - 30), Math.max(0, accentColor.g - 30), Math.max(0, accentColor.b - 30));
+  doc.rect(0, 0, pageWidth, 4, 'F');
+  
+  // Title
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(20);
+  doc.setTextColor(255, 255, 255);
+  doc.text(title, pageWidth / 2, 16, { align: 'center' });
+  
+  // Subtitle
+  if (subtitle) {
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text(subtitle, pageWidth / 2, 24, { align: 'center' });
+  }
+  
+  yPos = 38;
+  
+  // Decorative line
+  doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+  doc.setLineWidth(0.5);
+  doc.line(margin, yPos, pageWidth - margin, yPos);
+  yPos += 8;
+  
+  const lineHeight = 5;
+  
+  sections.forEach((section, sectionIndex) => {
+    // Check for new page
+    if (yPos > pageHeight - 40) {
+      doc.addPage();
+      yPos = margin;
+      
+      // Mini header on new page
+      doc.setFillColor(accentColor.r, accentColor.g, accentColor.b, 0.2);
+      doc.rect(0, 0, pageWidth, 12, 'F');
+      doc.setFontSize(9);
+      doc.setTextColor(accentColor.r, accentColor.g, accentColor.b);
+      doc.text(`${title} (${language === 'ar' ? 'تابع' : 'continued'})`, pageWidth / 2, 8, { align: 'center' });
+      yPos = 18;
+    }
+    
+    // Section header
+    doc.setFillColor(accentColor.r, accentColor.g, accentColor.b, 0.15);
+    doc.roundedRect(margin, yPos - 3, contentWidth, 8, 2, 2, 'F');
+    
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(Math.max(0, accentColor.r - 60), Math.max(0, accentColor.g - 60), Math.max(0, accentColor.b - 60));
+    doc.text(section.title, margin + 3, yPos + 2);
+    
+    yPos += 12;
+    
+    // Section items
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(60, 60, 60);
+    
+    section.items.forEach((item) => {
+      if (yPos > pageHeight - 25) {
+        doc.addPage();
+        yPos = margin;
+      }
+      
+      if (typeof item === 'string') {
+        // Simple string item
+        const lines = splitTextToLines(doc, `• ${item}`, contentWidth - 5);
+        lines.forEach((line, i) => {
+          if (i === 0) {
+            doc.setTextColor(accentColor.r, accentColor.g, accentColor.b);
+            doc.text('•', margin + 2, yPos);
+            doc.setTextColor(60, 60, 60);
+            doc.text(line.substring(2), margin + 6, yPos);
+          } else {
+            doc.text(line, margin + 6, yPos);
+          }
+          yPos += lineHeight;
+        });
+      } else {
+        // Label-value item
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(80, 80, 80);
+        doc.text(`${item.label}:`, margin + 3, yPos);
+        
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(60, 60, 60);
+        const labelWidth = doc.getTextWidth(`${item.label}: `);
+        const valueLines = splitTextToLines(doc, item.value, contentWidth - labelWidth - 8);
+        valueLines.forEach((line, i) => {
+          if (i === 0) {
+            doc.text(line, margin + 3 + labelWidth, yPos);
+          } else {
+            yPos += lineHeight;
+            doc.text(line, margin + 3 + labelWidth, yPos);
+          }
+        });
+        yPos += lineHeight;
+      }
+    });
+    
+    yPos += 5; // Space between sections
+  });
+  
+  // Footer
+  const footerY = pageHeight - 10;
+  doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+  doc.setLineWidth(0.3);
+  doc.line(margin, footerY - 3, pageWidth - margin, footerY - 3);
+  
+  doc.setFontSize(7);
+  doc.setTextColor(150, 150, 150);
+  const footerText = language === 'ar' 
+    ? `تم التصدير بتاريخ ${formatDateForPDF(new Date(), language)} • Pregnancy Tools`
+    : `Exported on ${formatDateForPDF(new Date(), language)} • Pregnancy Tools`;
+  doc.text(footerText, pageWidth / 2, footerY, { align: 'center' });
+  
+  // Decorative corners
+  doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+  doc.setLineWidth(0.8);
+  doc.line(5, 35, 5, 45);
+  doc.line(5, 35, 15, 35);
+  doc.line(pageWidth - 5, 35, pageWidth - 5, 45);
+  doc.line(pageWidth - 5, 35, pageWidth - 15, 35);
+  doc.line(5, pageHeight - 15, 5, pageHeight - 25);
+  doc.line(5, pageHeight - 15, 15, pageHeight - 15);
+  doc.line(pageWidth - 5, pageHeight - 15, pageWidth - 5, pageHeight - 25);
+  doc.line(pageWidth - 5, pageHeight - 15, pageWidth - 15, pageHeight - 15);
+  
+  // Save
+  const fileName = `${title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
+  doc.save(fileName);
+}
+
+// Data backup PDF export
+export function exportDataBackupPDF(options: DataBackupPDFOptions): void {
+  const { title, subtitle, data, language = 'en' } = options;
+  
+  const sections: GenericPDFOptions['sections'] = [];
+  
+  // Group data by category
+  const categories: Record<string, { label: string; value: string }[]> = {
+    profile: [],
+    health: [],
+    appointments: [],
+    nutrition: [],
+    planning: [],
+    other: []
+  };
+  
+  const categoryLabels: Record<string, { en: string; ar: string }> = {
+    profile: { en: '👤 Profile & Settings', ar: '👤 الملف الشخصي والإعدادات' },
+    health: { en: '❤️ Health Tracking', ar: '❤️ تتبع الصحة' },
+    appointments: { en: '📅 Appointments & Reminders', ar: '📅 المواعيد والتذكيرات' },
+    nutrition: { en: '🍎 Nutrition & Meals', ar: '🍎 التغذية والوجبات' },
+    planning: { en: '📝 Birth Planning', ar: '📝 تخطيط الولادة' },
+    other: { en: '📦 Other Data', ar: '📦 بيانات أخرى' }
+  };
+  
+  // Categorize data
+  Object.entries(data).forEach(([key, value]) => {
+    const displayValue = typeof value === 'object' 
+      ? (Array.isArray(value) ? `${value.length} ${language === 'ar' ? 'عنصر' : 'items'}` : JSON.stringify(value).substring(0, 100) + '...')
+      : String(value);
+    
+    const item = { label: key.replace(/_/g, ' '), value: displayValue };
+    
+    if (key.includes('profile') || key.includes('settings') || key.includes('week') || key.includes('date')) {
+      categories.profile.push(item);
+    } else if (key.includes('kick') || key.includes('weight') || key.includes('vitamin') || key.includes('sleep') || key.includes('contraction') || key.includes('water')) {
+      categories.health.push(item);
+    } else if (key.includes('appointment') || key.includes('reminder')) {
+      categories.appointments.push(item);
+    } else if (key.includes('meal') || key.includes('food') || key.includes('nutrition') || key.includes('grocery')) {
+      categories.nutrition.push(item);
+    } else if (key.includes('birth') || key.includes('hospital') || key.includes('baby_name')) {
+      categories.planning.push(item);
+    } else {
+      categories.other.push(item);
+    }
+  });
+  
+  // Build sections
+  Object.entries(categories).forEach(([cat, items]) => {
+    if (items.length > 0) {
+      sections.push({
+        title: categoryLabels[cat][language],
+        items
+      });
+    }
+  });
+  
+  exportGenericPDF({
+    title,
+    subtitle: subtitle || (language === 'ar' ? `تصدير البيانات - ${formatDateForPDF(new Date(), language)}` : `Data Export - ${formatDateForPDF(new Date(), language)}`),
+    sections,
+    language,
+    accentColor: { r: 59, g: 130, b: 246 } // Blue for data backup
+  });
+}
+
+// Birth plan PDF export (original function)
 export function exportBirthPlanToPDF(options: PDFExportOptions): void {
   const { title, content, date, preferences } = options;
   
-  // Create PDF with RTL support
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
@@ -63,10 +308,9 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
   let yPos = margin;
   
   // Add decorative header
-  doc.setFillColor(249, 168, 212); // Pink color
+  doc.setFillColor(249, 168, 212);
   doc.rect(0, 0, pageWidth, 35, 'F');
   
-  // Add gradient overlay effect
   doc.setFillColor(244, 114, 182);
   doc.rect(0, 0, pageWidth, 5, 'F');
   
@@ -76,22 +320,19 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
   doc.setTextColor(255, 255, 255);
   doc.text('Birth Plan', pageWidth / 2, 20, { align: 'center' });
   
-  // Subtitle with date
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
   doc.text(date, pageWidth / 2, 28, { align: 'center' });
   
   yPos = 45;
   
-  // Decorative line
   doc.setDrawColor(244, 114, 182);
   doc.setLineWidth(0.5);
   doc.line(margin, yPos, pageWidth - margin, yPos);
   yPos += 10;
   
-  // Summary section with preferences
   if (preferences && Object.keys(preferences).length > 0) {
-    doc.setFillColor(253, 242, 248); // Light pink background
+    doc.setFillColor(253, 242, 248);
     doc.roundedRect(margin, yPos, contentWidth, 25, 3, 3, 'F');
     
     doc.setFontSize(11);
@@ -108,7 +349,6 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
     yPos += 35;
   }
   
-  // Main content
   doc.setFontSize(11);
   doc.setTextColor(60, 60, 60);
   doc.setFont('helvetica', 'normal');
@@ -120,12 +360,10 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
   let currentSection = '';
   
   lines.forEach((line) => {
-    // Check if we need a new page
     if (yPos > pageHeight - margin - 20) {
       doc.addPage();
       yPos = margin;
       
-      // Add header to new page
       doc.setFillColor(253, 242, 248);
       doc.rect(0, 0, pageWidth, 15, 'F');
       doc.setFontSize(10);
@@ -137,14 +375,11 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
       doc.setTextColor(60, 60, 60);
     }
     
-    // Detect section headers (lines that don't start with bullet)
     if (line && !line.startsWith('•') && !line.startsWith(' ') && line.length < 50) {
-      // Check if it's a new section
       if (line !== currentSection) {
         currentSection = line;
-        yPos += 3; // Extra spacing before section
+        yPos += 3;
         
-        // Section header styling
         doc.setFillColor(249, 168, 212, 0.3);
         doc.roundedRect(margin, yPos - 4, contentWidth, 8, 2, 2, 'F');
         
@@ -159,15 +394,12 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
       }
     }
     
-    // Regular content or bullet points
     if (line.startsWith('•')) {
-      // Bullet point with pink bullet
       doc.setTextColor(244, 114, 182);
       doc.text('•', margin + 2, yPos);
       doc.setTextColor(60, 60, 60);
       doc.text(line.substring(2), margin + 7, yPos);
     } else if (line.trim() === '') {
-      // Empty line - smaller gap
       yPos += 2;
       return;
     } else {
@@ -177,7 +409,6 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
     yPos += lineHeight;
   });
   
-  // Footer on last page
   const footerY = pageHeight - 15;
   doc.setDrawColor(244, 114, 182);
   doc.setLineWidth(0.3);
@@ -187,23 +418,17 @@ export function exportBirthPlanToPDF(options: PDFExportOptions): void {
   doc.setTextColor(150, 150, 150);
   doc.text('This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', pageWidth / 2, footerY, { align: 'center' });
   
-  // Add decorative corners
   doc.setDrawColor(244, 114, 182);
   doc.setLineWidth(1);
-  // Top left corner
   doc.line(5, 40, 5, 50);
   doc.line(5, 40, 15, 40);
-  // Top right corner
   doc.line(pageWidth - 5, 40, pageWidth - 5, 50);
   doc.line(pageWidth - 5, 40, pageWidth - 15, 40);
-  // Bottom left corner
   doc.line(5, pageHeight - 20, 5, pageHeight - 30);
   doc.line(5, pageHeight - 20, 15, pageHeight - 20);
-  // Bottom right corner
   doc.line(pageWidth - 5, pageHeight - 20, pageWidth - 5, pageHeight - 30);
   doc.line(pageWidth - 5, pageHeight - 20, pageWidth - 15, pageHeight - 20);
   
-  // Save the PDF
   const fileName = `birth-plan-${date.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`;
   doc.save(fileName);
 }
