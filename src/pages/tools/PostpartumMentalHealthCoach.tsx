@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -83,6 +84,7 @@ const copingStrategies = [
 ];
 
 export default function PostpartumMentalHealthCoach() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -209,7 +211,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Postpartum Mental Health Coach"
+        toolName={t('toolsInternal.mentalHealthCoach.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -217,14 +219,13 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
 
   return (
     <ToolFrame
-      title="Postpartum Mental Health Coach"
-      subtitle="Edinburgh Postnatal Depression Scale screening"
+      title={t('toolsInternal.mentalHealthCoach.title')}
+      subtitle={t('toolsInternal.mentalHealthCoach.subtitle')}
       customIcon="health-shield"
       mood="nurturing"
       toolId="mental-health-coach"
     >
       <div className="space-y-6">
-          {/* Emergency Alert */}
           {showEmergency && (
             <Card className="border-destructive bg-destructive/5">
               <CardContent className="p-6">
@@ -232,11 +233,10 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                   <AlertTriangle className="w-8 h-8 text-destructive flex-shrink-0" />
                   <div className="flex-1">
                     <h3 className="font-bold text-destructive text-lg mb-2">
-                      💙 You're Not Alone
+                      💙 {t('toolsInternal.mentalHealthCoach.youreNotAlone')}
                     </h3>
                     <p className="text-sm text-foreground mb-4">
-                      Based on your responses, it's important to talk to someone who can help. 
-                      Postpartum depression is common and treatable.
+                      {t('toolsInternal.mentalHealthCoach.emergencyMessage')}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Button 
@@ -244,13 +244,13 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                         onClick={() => window.open('tel:1-800-944-4773', '_self')}
                       >
                         <Phone className="w-4 h-4 mr-2" />
-                        Postpartum Support Intl.
+                        {t('toolsInternal.mentalHealthCoach.postpartumSupport')}
                       </Button>
                       <Button 
                         variant="outline"
                         onClick={() => window.open('tel:988', '_self')}
                       >
-                        Call 988 Hotline
+                        {t('toolsInternal.mentalHealthCoach.crisisHotline')}
                       </Button>
                     </div>
                   </div>
@@ -259,14 +259,13 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
             </Card>
           )}
 
-          {/* Screening Questions */}
           {!showResults ? (
             <Card>
               <CardContent className="p-6">
                 <div className="mb-6">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-sm text-muted-foreground">
-                      Question {currentQuestion + 1} of {epdsQuestions.length}
+                      {t('toolsInternal.mentalHealthCoach.question')} {currentQuestion + 1} {t('toolsInternal.mentalHealthCoach.of')} {epdsQuestions.length}
                     </span>
                     <div className="flex gap-1">
                       {epdsQuestions.map((_, i) => (
@@ -302,7 +301,6 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
             </Card>
           ) : (
             <>
-              {/* Results */}
               <Card className={getScoreInterpretation().bg}>
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
@@ -311,26 +309,25 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                     })}
                     <div className="flex-1">
                       <h3 className={`text-xl font-bold ${getScoreInterpretation().color} mb-2`}>
-                        {getScoreInterpretation().level}
+                        {t(`toolsInternal.mentalHealthCoach.riskLevels.${getScoreInterpretation().level === 'Low Risk' ? 'low' : getScoreInterpretation().level === 'Moderate' ? 'moderate' : 'high'}.title`)}
                       </h3>
                       <p className="text-sm text-foreground mb-4">
-                        Score: {getScore()} / {epdsQuestions.length * 3}
+                        {t('toolsInternal.mentalHealthCoach.score')}: {getScore()} / {epdsQuestions.length * 3}
                       </p>
                       <p className="text-foreground">
-                        {getScoreInterpretation().message}
+                        {t(`toolsInternal.mentalHealthCoach.riskLevels.${getScoreInterpretation().level === 'Low Risk' ? 'low' : getScoreInterpretation().level === 'Moderate' ? 'moderate' : 'high'}.message`)}
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* AI Personalized Coping Plan */}
               <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-semibold flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-violet-500" />
-                      AI Personalized Coping Plan
+                      {t('toolsInternal.mentalHealthCoach.aiPersonalizedPlan')}
                     </h3>
                   </div>
                   
@@ -345,7 +342,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                       ) : (
                         <Brain className="w-4 h-4 mr-2" />
                       )}
-                      Generate My Personalized Plan
+                      {t('toolsInternal.mentalHealthCoach.generateMyPlan')}
                     </Button>
                   ) : (
                     <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[500px] overflow-y-auto">
@@ -354,7 +351,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                       ) : (
                         <div className="flex items-center justify-center py-8 text-muted-foreground">
                           <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                          Creating your personalized plan...
+                          {t('toolsInternal.mentalHealthCoach.creatingPlan')}
                         </div>
                       )}
                     </div>
@@ -362,12 +359,11 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                 </CardContent>
               </Card>
 
-              {/* Coping Strategies */}
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                     <Sun className="w-5 h-5 text-primary" />
-                    Daily Coping Strategies
+                    {t('toolsInternal.mentalHealthCoach.dailyCopingStrategies')}
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
                     {copingStrategies.map((strategy, index) => (
@@ -381,12 +377,11 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                 </CardContent>
               </Card>
 
-              {/* Resources */}
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                     <MessageCircle className="w-5 h-5 text-primary" />
-                    Support Resources
+                    {t('toolsInternal.mentalHealthCoach.supportResources')}
                   </h3>
                   <div className="space-y-3">
                     <a 
@@ -414,24 +409,21 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
               </Card>
 
               <Button onClick={resetScreening} variant="outline" className="w-full">
-                Take Screening Again
+                {t('toolsInternal.mentalHealthCoach.takeScreeningAgain')}
               </Button>
             </>
           )}
 
-          {/* Important Note */}
           <div className="bg-muted/30 rounded-xl p-4 text-center">
             <p className="text-xs text-muted-foreground">
-            ⚠️ This is a screening tool based on the Edinburgh Postnatal Depression Scale (EPDS). 
-            It does not provide a diagnosis. Always consult with a healthcare professional for proper evaluation.
+              {t('toolsInternal.mentalHealthCoach.screeningDisclaimer')}
             </p>
           </div>
 
-          {/* Educational Videos */}
           <VideoLibrary
             videos={mentalHealthVideos}
-            title="Mental Wellness Videos"
-            subtitle="Support and self-care resources"
+            title={t('toolsInternal.mentalHealthCoach.mentalWellnessVideos')}
+            subtitle={t('toolsInternal.mentalHealthCoach.videosSubtitle')}
             accentColor="rose"
           />
       </div>

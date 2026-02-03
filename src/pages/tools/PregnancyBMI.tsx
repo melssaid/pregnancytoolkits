@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Calculator, Info } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
@@ -17,9 +18,10 @@ interface Result {
 }
 
 export default function PregnancyBMI() {
+  const { t } = useTranslation();
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
-  const [unit, setUnit] = useState<"imperial" | "metric">("imperial");
+  const [unit, setUnit] = useState<"imperial" | "metric">("metric");
   const [result, setResult] = useState<Result | null>(null);
 
   const calculate = () => {
@@ -75,8 +77,8 @@ export default function PregnancyBMI() {
 
   return (
     <ToolFrame
-      title="Pregnancy BMI Calculator"
-      subtitle="Calculate your pre-pregnancy BMI and weight gain recommendations"
+      title={t('toolsInternal.bmi.title')}
+      subtitle={t('toolsInternal.bmi.subtitle')}
       customIcon="weight-scale"
       mood="calm"
       toolId="pregnancy-bmi"
@@ -86,14 +88,14 @@ export default function PregnancyBMI() {
         <Card>
           <CardContent className="pt-6 space-y-4">
             <div className="space-y-2">
-              <Label>Unit System</Label>
+              <Label>{t('toolsInternal.bmi.unitSystem')}</Label>
               <Select value={unit} onValueChange={(v) => setUnit(v as "imperial" | "metric")}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="imperial">Imperial (lbs, inches)</SelectItem>
-                  <SelectItem value="metric">Metric (kg, cm)</SelectItem>
+                  <SelectItem value="imperial">{t('toolsInternal.bmi.imperial')}</SelectItem>
+                  <SelectItem value="metric">{t('toolsInternal.bmi.metric')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -101,7 +103,7 @@ export default function PregnancyBMI() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="weight">
-                  Pre-Pregnancy Weight ({unit === "imperial" ? "lbs" : "kg"})
+                  {t('toolsInternal.bmi.prePregnancyWeight')} ({unit === "imperial" ? "lbs" : "kg"})
                 </Label>
                 <Input
                   id="weight"
@@ -114,7 +116,7 @@ export default function PregnancyBMI() {
 
               <div className="space-y-2">
                 <Label htmlFor="height">
-                  Height ({unit === "imperial" ? "inches" : "cm"})
+                  {t('toolsInternal.bmi.height')} ({unit === "imperial" ? "inches" : "cm"})
                 </Label>
                 <Input
                   id="height"
@@ -127,7 +129,7 @@ export default function PregnancyBMI() {
             </div>
 
             <Button onClick={calculate} className="w-full">
-              Calculate BMI
+              {t('toolsInternal.bmi.calculateBtn')}
             </Button>
           </CardContent>
         </Card>
@@ -142,37 +144,36 @@ export default function PregnancyBMI() {
               <CardContent className="pt-6 space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="rounded-xl bg-card p-4 shadow-sm text-center">
-                    <p className="text-sm text-muted-foreground">Pre-Pregnancy BMI</p>
+                    <p className="text-sm text-muted-foreground">{t('toolsInternal.bmi.prePregnancyBMI')}</p>
                     <p className="text-3xl font-bold text-primary">{result.bmi}</p>
                     <p className={`text-sm font-medium ${getCategoryColor(result.category)}`}>
-                      {result.category}
+                      {t(`toolsInternal.bmi.categories.${result.category.toLowerCase().replace(' ', '')}`)}
                     </p>
                   </div>
                   
                   <div className="rounded-xl bg-card p-4 shadow-sm text-center">
-                    <p className="text-sm text-muted-foreground">Recommended Total Gain</p>
+                    <p className="text-sm text-muted-foreground">{t('toolsInternal.bmi.recommendedGain')}</p>
                     <p className="text-3xl font-bold text-foreground">
                       {result.recommendedGain.min}-{result.recommendedGain.max}
                     </p>
-                    <p className="text-sm text-muted-foreground">pounds</p>
+                    <p className="text-sm text-muted-foreground">{t('toolsInternal.bmi.pounds')}</p>
                   </div>
                 </div>
 
                 <div className="rounded-xl bg-card p-4 shadow-sm">
                   <p className="font-medium text-foreground mb-2">
-                    Weekly Weight Gain (2nd & 3rd Trimester)
+                    {t('toolsInternal.bmi.weeklyGainTitle')}
                   </p>
                   <p className="text-2xl font-bold text-primary">
-                    {result.weeklyGain.min} - {result.weeklyGain.max} lbs/week
+                    {result.weeklyGain.min} - {result.weeklyGain.max} {t('toolsInternal.bmi.lbsPerWeek')}
                   </p>
                   <p className="text-sm text-muted-foreground mt-2">
-                    First trimester: 1-4 pounds total
+                    {t('toolsInternal.bmi.firstTrimesterNote')}
                   </p>
                 </div>
 
-                {/* AI Weight Management Coach */}
                 <AIInsightCard
-                  title="AI Weight Management Guide"
+                  title={t('toolsInternal.bmi.aiGuideTitle')}
                   prompt={`My pre-pregnancy BMI is ${result.bmi} (${result.category}).
 Recommended total weight gain: ${result.recommendedGain.min}-${result.recommendedGain.max} pounds
 Weekly gain target (2nd/3rd trimester): ${result.weeklyGain.min}-${result.weeklyGain.max} lbs/week
@@ -197,22 +198,19 @@ How to monitor weight gain healthily without stress
 ## ⚠️ Warning Signs
 When weight changes might indicate a concern`}
                   variant="compact"
-                  buttonText="Get Personalized Plan"
+                  buttonText={t('toolsInternal.bmi.getPersonalizedPlan')}
                 />
               </CardContent>
             </Card>
           </motion.div>
         )}
 
-        {/* Info Note */}
         <Card className="bg-muted/30">
           <CardContent className="pt-4">
             <div className="flex gap-3">
               <Info className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted-foreground">
-                These recommendations are based on Institute of Medicine guidelines. 
-                Your healthcare provider may give personalized advice based on your 
-                specific health situation and pregnancy.
+                {t('toolsInternal.bmi.disclaimer')}
               </p>
             </div>
           </CardContent>

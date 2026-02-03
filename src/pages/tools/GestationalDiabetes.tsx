@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { AlertTriangle, CheckCircle, Info, Shield } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
@@ -21,6 +22,7 @@ const riskFactors = [
 ];
 
 export default function GestationalDiabetes() {
+  const { t } = useTranslation();
   const [selectedFactors, setSelectedFactors] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
 
@@ -72,8 +74,8 @@ export default function GestationalDiabetes() {
 
   return (
     <ToolFrame
-      title="Gestational Diabetes Risk"
-      subtitle="Assess your risk factors for gestational diabetes"
+      title={t('toolsInternal.gdm.title')}
+      subtitle={t('toolsInternal.gdm.subtitle')}
       customIcon="medical-report"
       mood="calm"
       toolId="gestational-diabetes"
@@ -85,8 +87,7 @@ export default function GestationalDiabetes() {
             <div className="flex gap-3">
               <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <p className="text-xs text-amber-800 dark:text-amber-200">
-                This is an educational screening tool only. It does not diagnose gestational diabetes. 
-                Always consult your healthcare provider for proper testing and diagnosis.
+                {t('toolsInternal.gdm.disclaimer')}
               </p>
             </div>
           </CardContent>
@@ -95,7 +96,7 @@ export default function GestationalDiabetes() {
         {/* Risk Factors Checklist */}
         <Card>
           <CardContent className="pt-6">
-            <h3 className="font-semibold mb-4">Check Your Risk Factors</h3>
+            <h3 className="font-semibold mb-4">{t('toolsInternal.gdm.checkRiskFactors')}</h3>
             <div className="space-y-3">
               {riskFactors.map((factor) => (
                 <button
@@ -133,10 +134,14 @@ export default function GestationalDiabetes() {
                   <risk.icon className={`h-6 w-6 ${risk.color}`} />
                 </div>
                 <div className="flex-1">
-                  <h3 className={`font-bold text-lg ${risk.color}`}>{risk.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{risk.description}</p>
+                  <h3 className={`font-bold text-lg ${risk.color}`}>
+                    {t(`toolsInternal.gdm.riskLevels.${risk.level}.title`)}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {t(`toolsInternal.gdm.riskLevels.${risk.level}.description`)}
+                  </p>
                   <div className="mt-4 flex items-center gap-2">
-                    <span className="text-sm text-muted-foreground">Risk Factors Selected:</span>
+                    <span className="text-sm text-muted-foreground">{t('toolsInternal.gdm.riskFactorsSelected')}:</span>
                     <span className="font-bold text-foreground">{selectedFactors.length}</span>
                   </div>
                 </div>
@@ -145,10 +150,9 @@ export default function GestationalDiabetes() {
           </Card>
         </motion.div>
 
-        {/* AI Personalized Advice */}
         {selectedFactors.length > 0 && (
           <AIInsightCard
-            title="AI Diabetes Prevention Coach"
+            title={t('toolsInternal.gdm.aiCoachTitle')}
             prompt={`I'm assessing my gestational diabetes risk. My risk level is ${risk.level} (${risk.title}).
 
 My risk factors:
@@ -174,51 +178,47 @@ How to track and manage my blood sugar if needed
 ## 💪 Motivation
 Encouraging message about managing this condition`}
             variant="default"
-            buttonText="Get Personalized Prevention Plan"
+            buttonText={t('toolsInternal.gdm.getPreventionPlan')}
           />
         )}
 
-        {/* Prevention Tips */}
         <Card>
           <CardContent className="pt-6">
             <h3 className="font-semibold mb-4 flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-emerald-600" />
-              Prevention Tips
+              {t('toolsInternal.gdm.preventionTipsTitle')}
             </h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600">•</span>
-                Maintain a healthy weight before and during pregnancy
+                {t('toolsInternal.gdm.preventionTips.tip1')}
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600">•</span>
-                Eat a balanced diet rich in fiber and whole grains
+                {t('toolsInternal.gdm.preventionTips.tip2')}
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600">•</span>
-                Stay physically active with doctor-approved exercises
+                {t('toolsInternal.gdm.preventionTips.tip3')}
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600">•</span>
-                Attend all prenatal appointments for regular monitoring
+                {t('toolsInternal.gdm.preventionTips.tip4')}
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600">•</span>
-                Limit sugary foods and refined carbohydrates
+                {t('toolsInternal.gdm.preventionTips.tip5')}
               </li>
             </ul>
           </CardContent>
         </Card>
 
-        {/* Info Note */}
         <Card className="bg-muted/30">
           <CardContent className="pt-4">
             <div className="flex gap-3">
               <Info className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted-foreground">
-                Gestational diabetes screening typically occurs between weeks 24-28. If you have 
-                multiple risk factors, your doctor may recommend earlier screening. This tool is 
-                for educational purposes only and does not replace medical advice.
+                {t('toolsInternal.gdm.infoNote')}
               </p>
             </div>
           </CardContent>
