@@ -7,6 +7,7 @@ import { Activity, Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Loader2 
 import { motion } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { ExerciseIcon } from '@/components/ExerciseIcon';
 
 interface Exercise {
   id: string;
@@ -34,7 +35,7 @@ const backPainExercises: Exercise[] = [
       'Move slowly between positions',
       'Repeat 10-15 times'
     ],
-    icon: '🐱'
+    icon: 'spine'
   },
   {
     id: 'pelvic-tilt',
@@ -50,7 +51,7 @@ const backPainExercises: Exercise[] = [
       'Hold for 5 seconds',
       'Repeat 10-15 times'
     ],
-    icon: '🏋️'
+    icon: 'core'
   },
   {
     id: 'child-pose',
@@ -66,7 +67,7 @@ const backPainExercises: Exercise[] = [
       'Stretch arms forward on floor',
       'Rest and breathe deeply'
     ],
-    icon: '🧘'
+    icon: 'yoga'
   },
   {
     id: 'piriformis',
@@ -82,7 +83,7 @@ const backPainExercises: Exercise[] = [
       'Hold for 30 seconds',
       'Switch sides'
     ],
-    icon: '🦵'
+    icon: 'hips'
   },
   {
     id: 'wall-push',
@@ -98,7 +99,7 @@ const backPainExercises: Exercise[] = [
       'Push back to starting position',
       'Repeat 10-15 times'
     ],
-    icon: '💪'
+    icon: 'strength'
   },
   {
     id: 'side-stretch',
@@ -114,7 +115,7 @@ const backPainExercises: Exercise[] = [
       'Hold for 15-20 seconds',
       'Switch sides'
     ],
-    icon: '🌈'
+    icon: 'stretch'
   }
 ];
 
@@ -290,7 +291,9 @@ export default function AIBackPainRelief() {
           >
             <Card className="border-2 border-primary">
               <CardContent className="p-6 text-center">
-                <span className="text-6xl block mb-4">{selectedExercise.icon}</span>
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                  <ExerciseIcon type={selectedExercise.icon} className="w-8 h-8 text-primary" />
+                </div>
                 <h3 className="text-xl font-bold mb-2">{selectedExercise.name}</h3>
                 
                 <div className="text-5xl font-bold text-primary my-6">
@@ -327,16 +330,18 @@ export default function AIBackPainRelief() {
                     key={exercise.id}
                     className={`p-4 rounded-lg transition-all ${
                       isCompleted 
-                        ? 'bg-green-500/10 border border-green-500/20' 
+                        ? 'bg-primary/10 border border-primary/20' 
                         : 'bg-muted/50'
                     }`}
                   >
                     <div className="flex items-start gap-4">
-                      <span className="text-3xl">{exercise.icon}</span>
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <ExerciseIcon type={exercise.icon} className="w-6 h-6 text-primary" />
+                      </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
                           <span className="font-semibold">{exercise.name}</span>
-                          {isCompleted && <CheckCircle className="w-4 h-4 text-green-600" />}
+                          {isCompleted && <CheckCircle className="w-4 h-4 text-primary" />}
                         </div>
                         <p className="text-sm text-muted-foreground">{exercise.description}</p>
                         <div className="flex gap-2 mt-2">

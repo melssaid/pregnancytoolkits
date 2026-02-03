@@ -3,9 +3,10 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Clock, Play, CheckCircle, RotateCcw, Bell, AlertCircle, Brain, Loader2 } from 'lucide-react';
+import { Sparkles, Clock, Play, CheckCircle, RotateCcw, Bell, AlertCircle, Brain, Loader2, RotateCw, Hand, ArrowUp, Zap, Activity, Circle, Footprints, Wind } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { ExerciseIcon } from '@/components/ExerciseIcon';
 
 interface Stretch {
   id: string;
@@ -17,14 +18,14 @@ interface Stretch {
 }
 
 const stretches: Stretch[] = [
-  { id: '1', name: 'Neck Rolls', duration: 30, description: 'Gently roll your head in circles', icon: '🔄', bodyPart: 'Neck' },
-  { id: '2', name: 'Shoulder Shrugs', duration: 20, description: 'Raise shoulders to ears, then release', icon: '💪', bodyPart: 'Shoulders' },
-  { id: '3', name: 'Wrist Circles', duration: 20, description: 'Rotate wrists in both directions', icon: '🖐️', bodyPart: 'Wrists' },
-  { id: '4', name: 'Side Stretch', duration: 30, description: 'Reach arm overhead and lean to side', icon: '🌈', bodyPart: 'Back' },
-  { id: '5', name: 'Cat-Cow', duration: 45, description: 'Alternate arching and rounding back', icon: '🐱', bodyPart: 'Spine' },
-  { id: '6', name: 'Hip Circles', duration: 30, description: 'Stand and rotate hips in circles', icon: '⭕', bodyPart: 'Hips' },
-  { id: '7', name: 'Calf Raises', duration: 30, description: 'Rise up on toes, then lower', icon: '🦵', bodyPart: 'Legs' },
-  { id: '8', name: 'Deep Breathing', duration: 60, description: 'Slow, deep breaths with hands on belly', icon: '🌬️', bodyPart: 'Relaxation' },
+  { id: '1', name: 'Neck Rolls', duration: 30, description: 'Gently roll your head in circles', icon: 'neck', bodyPart: 'Neck' },
+  { id: '2', name: 'Shoulder Shrugs', duration: 20, description: 'Raise shoulders to ears, then release', icon: 'shoulders', bodyPart: 'Shoulders' },
+  { id: '3', name: 'Wrist Circles', duration: 20, description: 'Rotate wrists in both directions', icon: 'wrists', bodyPart: 'Wrists' },
+  { id: '4', name: 'Side Stretch', duration: 30, description: 'Reach arm overhead and lean to side', icon: 'back', bodyPart: 'Back' },
+  { id: '5', name: 'Cat-Cow', duration: 45, description: 'Alternate arching and rounding back', icon: 'spine', bodyPart: 'Spine' },
+  { id: '6', name: 'Hip Circles', duration: 30, description: 'Stand and rotate hips in circles', icon: 'hips', bodyPart: 'Hips' },
+  { id: '7', name: 'Calf Raises', duration: 30, description: 'Rise up on toes, then lower', icon: 'legs', bodyPart: 'Legs' },
+  { id: '8', name: 'Deep Breathing', duration: 60, description: 'Slow, deep breaths with hands on belly', icon: 'breathing', bodyPart: 'Relaxation' },
 ];
 
 export default function SmartStretchReminder() {
@@ -238,7 +239,9 @@ export default function SmartStretchReminder() {
         {activeStretch && isActive && (
           <Card className="border-2 border-primary">
             <CardContent className="p-6 text-center">
-              <span className="text-6xl block mb-4">{activeStretch.icon}</span>
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                <ExerciseIcon type={activeStretch.icon} className="w-8 h-8 text-primary" />
+              </div>
               <h3 className="text-xl font-bold mb-2">{activeStretch.name}</h3>
               <p className="text-muted-foreground mb-4">{activeStretch.description}</p>
               <div className="text-5xl font-bold text-primary mb-4">
@@ -266,17 +269,19 @@ export default function SmartStretchReminder() {
                     disabled={isActive}
                     className={`w-full p-3 rounded-lg flex items-center gap-3 transition-all ${
                       isCompleted 
-                        ? 'bg-green-500/10 border border-green-500/20' 
+                        ? 'bg-primary/10 border border-primary/20' 
                         : 'bg-muted/50 hover:bg-muted'
                     }`}
                   >
-                    <span className="text-2xl">{stretch.icon}</span>
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <ExerciseIcon type={stretch.icon} className="w-5 h-5 text-primary" />
+                    </div>
                     <div className="flex-1 text-left">
                       <p className="font-medium text-sm">{stretch.name}</p>
                       <p className="text-xs text-muted-foreground">{stretch.duration}s • {stretch.bodyPart}</p>
                     </div>
                     {isCompleted ? (
-                      <CheckCircle className="w-5 h-5 text-green-600" />
+                      <CheckCircle className="w-5 h-5 text-primary" />
                     ) : (
                       <Play className="w-4 h-4 text-muted-foreground" />
                     )}

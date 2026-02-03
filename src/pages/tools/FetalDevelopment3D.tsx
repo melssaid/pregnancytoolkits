@@ -9,25 +9,25 @@ import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 const weeklyData = [
-  { week: 4, size: 'Poppy seed', emoji: '🌱', length: '0.1 cm', weight: '<1 g', development: 'Cells are dividing rapidly. The neural tube is forming.', organs: ['brain', 'heart'], tip: 'Start taking prenatal vitamins!' },
-  { week: 6, size: 'Sweet pea', emoji: '🫛', length: '0.6 cm', weight: '<1 g', development: 'Heart begins to beat. Brain and spinal cord are developing.', organs: ['heart', 'brain'], tip: 'Stay hydrated and rest well.' },
-  { week: 8, size: 'Raspberry', emoji: '🫐', length: '1.6 cm', weight: '1 g', development: 'Tiny fingers and toes are forming. Heart is beating steadily.', organs: ['heart', 'hands'], tip: 'First prenatal visit recommended.' },
-  { week: 10, size: 'Prune', emoji: '🍇', length: '3.1 cm', weight: '4 g', development: 'All vital organs have formed. Baby starts to move.', organs: ['brain', 'heart'], tip: 'Morning sickness may peak now.' },
-  { week: 12, size: 'Lime', emoji: '🍋', length: '5.4 cm', weight: '14 g', development: 'Reflexes are developing. Fingernails are forming.', organs: ['hands', 'brain'], tip: 'End of first trimester!' },
-  { week: 14, size: 'Lemon', emoji: '🍋', length: '8.7 cm', weight: '43 g', development: 'Can make facial expressions. Gender may be visible.', organs: ['brain', 'eyes'], tip: 'Energy levels may improve.' },
-  { week: 16, size: 'Avocado', emoji: '🥑', length: '11.6 cm', weight: '100 g', development: 'Can make sucking motions. Bones are hardening.', organs: ['heart', 'ears'], tip: 'You might feel flutters!' },
-  { week: 18, size: 'Bell pepper', emoji: '🫑', length: '14.2 cm', weight: '190 g', development: 'You may feel first kicks! Ears are in final position.', organs: ['ears', 'feet'], tip: 'Anatomy scan time!' },
-  { week: 20, size: 'Banana', emoji: '🍌', length: '16.4 cm', weight: '300 g', development: 'Can hear sounds. Regular sleep cycles begin.', organs: ['ears', 'brain'], tip: 'Halfway there! 🎉' },
-  { week: 22, size: 'Papaya', emoji: '🥭', length: '27.8 cm', weight: '430 g', development: 'Eyebrows and eyelids are fully formed.', organs: ['eyes', 'brain'], tip: 'Baby can taste what you eat.' },
-  { week: 24, size: 'Corn', emoji: '🌽', length: '30 cm', weight: '600 g', development: 'Lungs are developing. Responds to sounds and light.', organs: ['ears', 'eyes'], tip: 'Viability milestone reached!' },
-  { week: 26, size: 'Lettuce', emoji: '🥬', length: '35.6 cm', weight: '760 g', development: 'Eyes begin to open. Brain is developing rapidly.', organs: ['eyes', 'brain'], tip: 'Glucose test may be scheduled.' },
-  { week: 28, size: 'Eggplant', emoji: '🍆', length: '37.6 cm', weight: '1 kg', development: 'Eyes can open and close. Baby can dream!', organs: ['eyes', 'brain'], tip: 'Third trimester begins!' },
-  { week: 30, size: 'Cabbage', emoji: '🥬', length: '39.9 cm', weight: '1.3 kg', development: 'Brain continues rapid growth. Can regulate body temperature.', organs: ['brain', 'heart'], tip: 'Pack your hospital bag.' },
-  { week: 32, size: 'Squash', emoji: '🎃', length: '42.4 cm', weight: '1.7 kg', development: 'Practicing breathing. Bones are fully formed but soft.', organs: ['heart', 'feet'], tip: 'Baby is gaining weight fast!' },
-  { week: 34, size: 'Cantaloupe', emoji: '🍈', length: '45 cm', weight: '2.1 kg', development: 'Fingernails reach fingertips. Fat layers developing.', organs: ['hands', 'brain'], tip: 'Prenatal visits every 2 weeks.' },
-  { week: 36, size: 'Honeydew', emoji: '🍈', length: '47.4 cm', weight: '2.6 kg', development: 'Lungs are nearly mature. Head may engage in pelvis.', organs: ['brain', 'heart'], tip: 'Baby may drop lower.' },
-  { week: 38, size: 'Pumpkin', emoji: '🎃', length: '49.8 cm', weight: '3 kg', development: 'Fully developed and gaining weight. Ready soon!', organs: ['heart', 'brain'], tip: 'Could arrive any day!' },
-  { week: 40, size: 'Watermelon', emoji: '🍉', length: '51.2 cm', weight: '3.4 kg', development: 'Fully developed and ready for birth! Welcome to the world!', organs: ['heart', 'brain', 'eyes', 'ears', 'hands', 'feet'], tip: 'Due date! 🎊' },
+  { week: 4, size: 'Poppy seed', length: '0.1 cm', weight: '<1 g', development: 'Cells are dividing rapidly. The neural tube is forming.', organs: ['brain', 'heart'], tip: 'Start taking prenatal vitamins!' },
+  { week: 6, size: 'Sweet pea', length: '0.6 cm', weight: '<1 g', development: 'Heart begins to beat. Brain and spinal cord are developing.', organs: ['heart', 'brain'], tip: 'Stay hydrated and rest well.' },
+  { week: 8, size: 'Raspberry', length: '1.6 cm', weight: '1 g', development: 'Tiny fingers and toes are forming. Heart is beating steadily.', organs: ['heart', 'hands'], tip: 'First prenatal visit recommended.' },
+  { week: 10, size: 'Prune', length: '3.1 cm', weight: '4 g', development: 'All vital organs have formed. Baby starts to move.', organs: ['brain', 'heart'], tip: 'Morning sickness may peak now.' },
+  { week: 12, size: 'Lime', length: '5.4 cm', weight: '14 g', development: 'Reflexes are developing. Fingernails are forming.', organs: ['hands', 'brain'], tip: 'End of first trimester!' },
+  { week: 14, size: 'Lemon', length: '8.7 cm', weight: '43 g', development: 'Can make facial expressions. Gender may be visible.', organs: ['brain', 'eyes'], tip: 'Energy levels may improve.' },
+  { week: 16, size: 'Avocado', length: '11.6 cm', weight: '100 g', development: 'Can make sucking motions. Bones are hardening.', organs: ['heart', 'ears'], tip: 'You might feel flutters!' },
+  { week: 18, size: 'Bell pepper', length: '14.2 cm', weight: '190 g', development: 'You may feel first kicks! Ears are in final position.', organs: ['ears', 'feet'], tip: 'Anatomy scan time!' },
+  { week: 20, size: 'Banana', length: '16.4 cm', weight: '300 g', development: 'Can hear sounds. Regular sleep cycles begin.', organs: ['ears', 'brain'], tip: 'Halfway there!' },
+  { week: 22, size: 'Papaya', length: '27.8 cm', weight: '430 g', development: 'Eyebrows and eyelids are fully formed.', organs: ['eyes', 'brain'], tip: 'Baby can taste what you eat.' },
+  { week: 24, size: 'Corn', length: '30 cm', weight: '600 g', development: 'Lungs are developing. Responds to sounds and light.', organs: ['ears', 'eyes'], tip: 'Viability milestone reached!' },
+  { week: 26, size: 'Lettuce', length: '35.6 cm', weight: '760 g', development: 'Eyes begin to open. Brain is developing rapidly.', organs: ['eyes', 'brain'], tip: 'Glucose test may be scheduled.' },
+  { week: 28, size: 'Eggplant', length: '37.6 cm', weight: '1 kg', development: 'Eyes can open and close. Baby can dream!', organs: ['eyes', 'brain'], tip: 'Third trimester begins!' },
+  { week: 30, size: 'Cabbage', length: '39.9 cm', weight: '1.3 kg', development: 'Brain continues rapid growth. Can regulate body temperature.', organs: ['brain', 'heart'], tip: 'Pack your hospital bag.' },
+  { week: 32, size: 'Squash', length: '42.4 cm', weight: '1.7 kg', development: 'Practicing breathing. Bones are fully formed but soft.', organs: ['heart', 'feet'], tip: 'Baby is gaining weight fast!' },
+  { week: 34, size: 'Cantaloupe', length: '45 cm', weight: '2.1 kg', development: 'Fingernails reach fingertips. Fat layers developing.', organs: ['hands', 'brain'], tip: 'Prenatal visits every 2 weeks.' },
+  { week: 36, size: 'Honeydew', length: '47.4 cm', weight: '2.6 kg', development: 'Lungs are nearly mature. Head may engage in pelvis.', organs: ['brain', 'heart'], tip: 'Baby may drop lower.' },
+  { week: 38, size: 'Pumpkin', length: '49.8 cm', weight: '3 kg', development: 'Fully developed and gaining weight. Ready soon!', organs: ['heart', 'brain'], tip: 'Could arrive any day!' },
+  { week: 40, size: 'Watermelon', length: '51.2 cm', weight: '3.4 kg', development: 'Fully developed and ready for birth! Welcome to the world!', organs: ['heart', 'brain', 'eyes', 'ears', 'hands', 'feet'], tip: 'Due date!' },
 ];
 
 const organIcons: Record<string, React.ReactNode> = {
@@ -227,11 +227,11 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 
                 <div className="text-center">
                   <motion.div 
-                    className="text-[100px] mb-3 leading-none"
+                    className="w-24 h-24 mx-auto mb-3 rounded-full bg-primary/20 flex items-center justify-center"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    {currentData.emoji}
+                    <Baby className="w-12 h-12 text-primary" />
                   </motion.div>
                   <p className="text-xl font-bold text-foreground">
                     Size of a {currentData.size}
@@ -468,9 +468,9 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                               initial={{ opacity: 0, y: -5 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -5 }}
-                              className="absolute -top-8 text-2xl"
+                              className="absolute -top-8"
                             >
-                              {data.emoji}
+                              <Baby className="w-6 h-6 text-primary" />
                             </motion.div>
                           )}
                         </AnimatePresence>

@@ -98,19 +98,19 @@ Last 24 hours:
 
 Please provide:
 
-## 💧 Hydration Assessment
+## Hydration Assessment
 Is the wet diaper count normal? What does it indicate?
 
-## 🩺 Health Indicators
+## Health Indicators
 What the diaper patterns might tell us about baby's health
 
-## ✅ Normal Ranges
+## Normal Ranges
 Remind me of typical diaper counts for different ages
 
-## ⚠️ When to Be Concerned
+## When to Be Concerned
 Signs that would warrant calling the pediatrician
 
-## 💡 Tips
+## Tips
 Helpful tips for diaper changes and tracking`
       }],
       onDelta: (text) => setAiInsight(prev => prev + text),

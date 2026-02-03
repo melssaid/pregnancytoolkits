@@ -4,6 +4,7 @@ import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, AlertTriangle, Clock, Play, CheckCircle } from 'lucide-react';
+import { ExerciseIcon } from '@/components/ExerciseIcon';
 
 interface MassageTechnique {
   id: string;
@@ -36,7 +37,7 @@ const massageTechniques: MassageTechnique[] = [
       'Stop if feeling dizzy or uncomfortable'
     ],
     trimester: [1, 2, 3],
-    icon: '💆'
+    icon: 'shoulders'
   },
   {
     id: 'lower-back',
@@ -57,7 +58,7 @@ const massageTechniques: MassageTechnique[] = [
       'Avoid if experiencing any contractions'
     ],
     trimester: [1, 2, 3],
-    icon: '🙌'
+    icon: 'back'
   },
   {
     id: 'foot-massage',
@@ -78,7 +79,7 @@ const massageTechniques: MassageTechnique[] = [
       'Skip if feet are very swollen - consult doctor'
     ],
     trimester: [1, 2, 3],
-    icon: '🦶'
+    icon: 'feet'
   },
   {
     id: 'hand-massage',
@@ -98,7 +99,7 @@ const massageTechniques: MassageTechnique[] = [
       'Stop if numbness increases'
     ],
     trimester: [1, 2, 3],
-    icon: '🤲'
+    icon: 'hands'
   },
   {
     id: 'leg-massage',
@@ -119,7 +120,7 @@ const massageTechniques: MassageTechnique[] = [
       'Never massage varicose veins directly'
     ],
     trimester: [1, 2, 3],
-    icon: '🦵'
+    icon: 'legs'
   }
 ];
 
@@ -216,7 +217,9 @@ export default function PregnancyMassageGuide() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-4xl">{selectedTechnique.icon}</span>
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <ExerciseIcon type={selectedTechnique.icon} className="w-6 h-6 text-primary" />
+                  </div>
                   <div>
                     <h3 className="text-lg font-bold">{selectedTechnique.name}</h3>
                     <p className="text-sm text-muted-foreground">{selectedTechnique.area} • {selectedTechnique.duration}</p>
@@ -270,15 +273,17 @@ export default function PregnancyMassageGuide() {
                     onClick={() => setSelectedTechnique(technique)}
                     className={`w-full p-4 rounded-lg text-left transition-all flex items-center gap-4 ${
                       isCompleted 
-                        ? 'bg-green-500/10 border border-green-500/20' 
+                        ? 'bg-primary/10 border border-primary/20' 
                         : 'bg-muted/50 hover:bg-muted'
                     }`}
                   >
-                    <span className="text-3xl">{technique.icon}</span>
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <ExerciseIcon type={technique.icon} className="w-6 h-6 text-primary" />
+                    </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span className="font-semibold">{technique.name}</span>
-                        {isCompleted && <CheckCircle className="w-4 h-4 text-green-600" />}
+                        {isCompleted && <CheckCircle className="w-4 h-4 text-primary" />}
                       </div>
                       <p className="text-sm text-muted-foreground">{technique.description}</p>
                       <div className="flex gap-2 mt-1">

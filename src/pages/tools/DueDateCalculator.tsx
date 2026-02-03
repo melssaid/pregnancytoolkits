@@ -113,7 +113,7 @@ export default function DueDateCalculator() {
     
     addNotification({
       type: 'appointment',
-      title: '📅 Due Date Reminder',
+      title: 'Due Date Reminder',
       message: `Your baby's due date is ${formattedDate}. Get ready!`,
       actionUrl: '/tools/birth-prep',
     });
@@ -135,7 +135,7 @@ export default function DueDateCalculator() {
 
   const shareResult = async () => {
     if (!result) return;
-    const text = `🤰 My Baby's Due Date: ${format(result.dueDate, "MMMM d, yyyy")}\n📅 Currently: ${result.currentWeeks} weeks, ${result.currentDays} days\n💕 Trimester ${result.trimester}`;
+    const text = `My Baby's Due Date: ${format(result.dueDate, "MMMM d, yyyy")}\nCurrently: ${result.currentWeeks} weeks, ${result.currentDays} days\nTrimester ${result.trimester}`;
     
     if (navigator.share) {
       try {
@@ -284,22 +284,22 @@ export default function DueDateCalculator() {
 
 Please provide a comprehensive weekly guide:
 
-## 👶 Week ${result.currentWeeks} Development
+## Week ${result.currentWeeks} Development
 What's happening with my baby this week (size comparison, key developments)
 
-## 🤰 Your Body This Week
+## Your Body This Week
 Physical changes and symptoms I might experience
 
-## ✅ This Week's Checklist
+## This Week's Checklist
 5-6 specific tasks or appointments for week ${result.currentWeeks}
 
-## 🍎 Nutrition Focus
+## Nutrition Focus
 Key nutrients and foods to focus on this week
 
-## 💪 Exercise Tips
+## Exercise Tips
 Safe exercises for trimester ${result.trimester}
 
-## 💕 Self-Care Reminder
+## Self-Care Reminder
 A supportive message for this stage of pregnancy`}
                   context={{ week: result.currentWeeks, trimester: result.trimester }}
                   variant="banner"
