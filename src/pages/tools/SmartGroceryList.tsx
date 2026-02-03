@@ -225,7 +225,9 @@ export default function SmartGroceryList() {
       mood="joyful"
       toolId="grocery-list"
     >
-      <div className="space-y-6">
+      <div className="space-y-6 relative">
+        {/* Aesthetic gradient overlay from bottom to top */}
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[40vh] bg-gradient-to-t from-muted/50 via-muted/20 to-transparent z-0" />
         {/* Welcome Section */}
         {/* Welcome Section - Compact */}
         <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/8 via-primary/4 to-transparent border border-primary/15 p-3">
