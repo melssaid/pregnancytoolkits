@@ -5,8 +5,9 @@ import {
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
   Baby, Pill, Stethoscope, Salad, ChevronRight, CalendarCheck,
   Hand, TrendingUp, Camera, Bell, Moon, Ruler, FileText,
-  Database, Clock, Calendar, Briefcase, ShoppingCart
+  Database, Clock, Calendar, Briefcase, ShoppingCart, CheckCircle2
 } from "lucide-react";
+import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -109,6 +110,7 @@ const symptoms = ["Nausea", "Headache", "Fatigue", "Back pain", "Swelling", "Hea
 
 const SmartDashboard = () => {
   const { streamChat, isLoading, error } = usePregnancyAI();
+  const { stats, loading: statsLoading } = useTrackingStats();
   const [activeTab, setActiveTab] = useState<TabType>("home");
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: "Hello! I'm your smart pregnancy assistant. How can I help you today?" }
@@ -317,18 +319,65 @@ const SmartDashboard = () => {
                 </div>
                 
                 <div className="space-y-4">
-                  {trackingTools.map((category, catIndex) => (
+                  {trackingTools.map((category, catIndex) => {
+                    // Get category summary based on category name
+                    const getCategorySummary = () => {
+                      switch (category.category) {
+                        case "Daily Tracking":
+                          const dailyItems = [];
+                          if (stats.dailyTracking.todayKicks > 0) dailyItems.push(`${stats.dailyTracking.todayKicks} kicks`);
+                          if (stats.dailyTracking.vitaminsTaken > 0) dailyItems.push(`${stats.dailyTracking.vitaminsTaken} vitamins`);
+                          if (stats.dailyTracking.lastWeight) dailyItems.push(stats.dailyTracking.lastWeight);
+                          return dailyItems.length > 0 ? dailyItems.join(" • ") : "No data today";
+                        case "Planning":
+                          const planItems = [];
+                          if (stats.planning.upcomingAppointments > 0) planItems.push(`${stats.planning.upcomingAppointments} appointments`);
+                          if (stats.planning.bagItemsChecked > 0) planItems.push(`${stats.planning.bagItemsChecked} items packed`);
+                          if (stats.planning.birthPlanProgress > 0) planItems.push(`${stats.planning.birthPlanProgress}% plan`);
+                          return planItems.length > 0 ? planItems.join(" • ") : "Start planning";
+                        case "Growth":
+                          const growthItems = [];
+                          if (stats.growth.photosCount > 0) growthItems.push(`${stats.growth.photosCount} photos`);
+                          if (stats.growth.lastMeasurement) growthItems.push(stats.growth.lastMeasurement);
+                          return growthItems.length > 0 ? growthItems.join(" • ") : "Track growth";
+                        case "Postpartum":
+                          const postItems = [];
+                          if (stats.postpartum.sleepHoursToday > 0) postItems.push(`${stats.postpartum.sleepHoursToday}h sleep`);
+                          if (stats.postpartum.diapersToday > 0) postItems.push(`${stats.postpartum.diapersToday} diapers`);
+                          if (stats.postpartum.groceryItems > 0) postItems.push(`${stats.postpartum.groceryItems} items`);
+                          return postItems.length > 0 ? postItems.join(" • ") : "Ready for baby";
+                        default:
+                          return "";
+                      }
+                    };
+
+                    const summary = getCategorySummary();
+                    const hasData = !summary.includes("No data") && !summary.includes("Start") && !summary.includes("Track") && !summary.includes("Ready");
+
+                    return (
                     <motion.div
                       key={category.category}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: catIndex * 0.05 }}
                     >
-                      <div className="flex items-center gap-2 mb-2">
-                        <category.icon className="w-3 h-3 text-muted-foreground" />
-                        <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
-                          {category.category}
-                        </span>
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <category.icon className="w-3 h-3 text-muted-foreground" />
+                          <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+                            {category.category}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          {hasData && <CheckCircle2 className="w-2.5 h-2.5 text-green-500" />}
+                          <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${
+                            hasData 
+                              ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                              : 'bg-muted text-muted-foreground'
+                          }`}>
+                            {summary}
+                          </span>
+                        </div>
                       </div>
                       <div className="grid grid-cols-3 gap-1.5">
                         {category.tools.map((tool, toolIndex) => (
@@ -354,7 +403,8 @@ const SmartDashboard = () => {
                         ))}
                       </div>
                     </motion.div>
-                  ))}
+                  );
+                  })}
                 </div>
               </CardContent>
             </Card>
