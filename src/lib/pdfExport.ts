@@ -122,19 +122,20 @@ function formatDateForPDF(date: Date, language: string): string {
   });
 }
 
-// Draw gradient header
-function drawGradientHeader(doc: jsPDF, pageWidth: number, height: number, color1: typeof COLORS.primary, color2: typeof COLORS.secondary) {
-  const steps = 20;
-  const stepHeight = height / steps;
+// Draw clean header with subtle accent line (no dark backgrounds)
+function drawCleanHeader(doc: jsPDF, pageWidth: number, height: number, accentColor: typeof COLORS.primary) {
+  // Light background
+  doc.setFillColor(252, 252, 253);
+  doc.rect(0, 0, pageWidth, height, 'F');
   
-  for (let i = 0; i < steps; i++) {
-    const ratio = i / steps;
-    const r = Math.round(color1.r + (color2.r - color1.r) * ratio);
-    const g = Math.round(color1.g + (color2.g - color1.g) * ratio);
-    const b = Math.round(color1.b + (color2.b - color1.b) * ratio);
-    doc.setFillColor(r, g, b);
-    doc.rect(0, i * stepHeight, pageWidth, stepHeight + 0.5, 'F');
-  }
+  // Bottom accent line
+  doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+  doc.setLineWidth(1.5);
+  doc.line(0, height - 1, pageWidth, height - 1);
+  
+  // Subtle top accent
+  doc.setFillColor(accentColor.r, accentColor.g, accentColor.b, 0.1);
+  doc.rect(0, 0, pageWidth, 3, 'F');
 }
 
 // Draw a simple bar chart
@@ -302,25 +303,27 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   const margin = 15;
   const contentWidth = pageWidth - (margin * 2);
   
-  // Draw gradient header
-  drawGradientHeader(doc, pageWidth, 50, COLORS.primary, COLORS.secondary);
+  // Draw clean header
+  drawCleanHeader(doc, pageWidth, 50, COLORS.primary);
   
   // Add logo to header
-  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 4, 16);
+  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 6, 16);
   
-  // Title (moved down to accommodate logo)
+  // Title (dark text on light background)
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(20);
-  doc.setTextColor(255, 255, 255);
-  doc.text(title, pageWidth / 2, 26, { align: 'center' });
+  doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+  doc.text(title, pageWidth / 2, 28, { align: 'center' });
   
   // Subtitle
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  doc.text(subtitle || formatDateForPDF(new Date(), language), pageWidth / 2, 35, { align: 'center' });
+  doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+  doc.text(subtitle || formatDateForPDF(new Date(), language), pageWidth / 2, 36, { align: 'center' });
   
   // App branding
   doc.setFontSize(8);
+  doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
   doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
   
   let yPos = 58;
@@ -522,27 +525,29 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
   const margin = 15;
   const contentWidth = pageWidth - (margin * 2);
   
-  // Draw gradient header
-  drawGradientHeader(doc, pageWidth, 50, accentColor, COLORS.secondary);
+  // Draw clean header
+  drawCleanHeader(doc, pageWidth, 50, accentColor);
   
   // Add logo to header
-  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 4, 16);
+  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 6, 16);
   
-  // Title
+  // Title (dark text on light background)
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(18);
-  doc.setTextColor(255, 255, 255);
-  doc.text(title, pageWidth / 2, 26, { align: 'center' });
+  doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+  doc.text(title, pageWidth / 2, 28, { align: 'center' });
   
   // Subtitle
   if (subtitle) {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text(subtitle, pageWidth / 2, 35, { align: 'center' });
+    doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+    doc.text(subtitle, pageWidth / 2, 36, { align: 'center' });
   }
   
   // App branding
   doc.setFontSize(8);
+  doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
   doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
   
   let yPos = 58;
@@ -561,11 +566,14 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
       doc.addPage();
       yPos = margin;
       
-      // Mini header on new page
-      doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
+      // Mini header on new page (light style)
+      doc.setFillColor(252, 252, 253);
       doc.rect(0, 0, pageWidth, 12, 'F');
+      doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+      doc.setLineWidth(0.5);
+      doc.line(0, 12, pageWidth, 12);
       doc.setFontSize(9);
-      doc.setTextColor(255, 255, 255);
+      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
       doc.text(`${title} (${language === 'ar' ? 'تابع' : 'continued'})`, pageWidth / 2, 8, { align: 'center' });
       yPos = 18;
     }
@@ -674,25 +682,27 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   const margin = 20;
   const contentWidth = pageWidth - (margin * 2);
   
-  // Draw gradient header
-  drawGradientHeader(doc, pageWidth, 50, COLORS.primary, COLORS.accent);
+  // Draw clean header
+  drawCleanHeader(doc, pageWidth, 50, COLORS.primary);
   
   // Add logo to header
-  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 4, 16);
+  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 6, 16);
   
-  // Title
+  // Title (dark text on light background)
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(22);
-  doc.setTextColor(255, 255, 255);
-  doc.text('Birth Plan', pageWidth / 2, 26, { align: 'center' });
+  doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+  doc.text('Birth Plan', pageWidth / 2, 28, { align: 'center' });
   
   // Date
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  doc.text(date, pageWidth / 2, 35, { align: 'center' });
+  doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+  doc.text(date, pageWidth / 2, 36, { align: 'center' });
   
   // Branding
   doc.setFontSize(8);
+  doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
   doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
   
   let yPos = 58;
@@ -750,10 +760,14 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       doc.addPage();
       yPos = margin;
       
-      doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+      // Mini header on new page (light style)
+      doc.setFillColor(252, 252, 253);
       doc.rect(0, 0, pageWidth, 12, 'F');
+      doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+      doc.setLineWidth(0.5);
+      doc.line(0, 12, pageWidth, 12);
       doc.setFontSize(9);
-      doc.setTextColor(255, 255, 255);
+      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
       doc.text('Birth Plan (continued)', pageWidth / 2, 8, { align: 'center' });
       yPos = 20;
       
