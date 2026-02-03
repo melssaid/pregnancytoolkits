@@ -187,11 +187,7 @@ export default function SmartNutritionOptimizer() {
               
               {(['breakfast', 'lunch', 'snack', 'dinner'] as const).map((meal) => (
                 <div key={meal} className="bg-muted/50 rounded-xl p-4">
-                  <h4 className="font-medium capitalize mb-2 flex items-center gap-2">
-                    {meal === 'breakfast' && '🌅'}
-                    {meal === 'lunch' && '☀️'}
-                    {meal === 'snack' && '🍎'}
-                    {meal === 'dinner' && '🌙'}
+                  <h4 className="font-medium capitalize mb-2">
                     {meal}
                   </h4>
                   <ul className="space-y-1">

@@ -135,7 +135,7 @@ export default function WeeklySummary() {
             <div className="space-y-2">
               <Progress value={progress} className="h-2" />
               <p className="text-xs text-center text-muted-foreground">
-                Approximately {daysRemaining} days remaining 💫
+                Approximately {daysRemaining} days remaining
               </p>
             </div>
           </CardContent>
@@ -228,7 +228,7 @@ export default function WeeklySummary() {
         <Card>
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground text-center">
-              💡 Track your week to get personalized information about your baby's growth and your body changes
+              Track your week to get personalized information about your baby's growth and your body changes
             </p>
           </CardContent>
         </Card>

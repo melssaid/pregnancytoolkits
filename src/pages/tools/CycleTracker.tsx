@@ -141,10 +141,10 @@ export default function CycleTracker() {
   const shareStats = async () => {
     if (!stats) return;
     
-    const text = `📊 My Cycle Stats
+    const text = `My Cycle Stats
 
-🔄 Average Cycle: ${stats.avgCycleLength} days
-${stats.avgPeriodLength ? `🩸 Average Period: ${stats.avgPeriodLength} days\n` : ''}📅 Next Period: ${format(stats.nextPeriod, "MMMM d, yyyy")}
+Average Cycle: ${stats.avgCycleLength} days
+${stats.avgPeriodLength ? `Average Period: ${stats.avgPeriodLength} days\n` : ''}Next Period: ${format(stats.nextPeriod, "MMMM d, yyyy")}
 
 Tracked ${cycles.length} cycles
 — via Pregnancy Toolkits`;
@@ -230,16 +230,16 @@ ${cycles.slice(0, 5).map((c, i) => {
 }).join('\n')}
 
 Please provide:
-## 📊 Pattern Analysis
+## Pattern Analysis
 Analyze my cycle regularity and patterns
 
-## 🎯 Predictions
+## Predictions
 Insights about my upcoming cycles
 
-## 💡 Health Tips
+## Health Tips
 Personalized tips based on my cycle patterns and symptoms
 
-## ⚠️ Things to Watch
+## Things to Watch
 Any patterns that might be worth discussing with a doctor`}
                   variant="compact"
                   buttonText="Analyze My Patterns"

@@ -142,7 +142,7 @@ const AIBumpPhotos: React.FC = () => {
       setCaption('');
       
       toast({
-        title: 'Photo Saved! 📸',
+        title: 'Photo Saved!',
         description: `Week ${currentWeek} photo stored locally on your device`
       });
 
@@ -178,19 +178,19 @@ const AIBumpPhotos: React.FC = () => {
 
 Please provide a comprehensive pregnancy progress update:
 
-## 📊 Week ${photo.week} Development
+## Week ${photo.week} Development
 - What's happening with baby this week
 - Expected size and weight comparisons
 
-## 🤰 Body Changes
+## Body Changes
 - Normal changes to expect from week ${previousPhoto.week} to week ${photo.week}
 - Belly growth patterns
 
-## 💆 Self-Care Tips
+## Self-Care Tips
 - Skin care recommendations for stretch mark prevention
 - Comfort tips for this stage
 
-## 📸 Photo Tips
+## Photo Tips
 - Best poses for documenting this stage
 - Lighting and angle suggestions
 
@@ -199,19 +199,19 @@ Keep the tone supportive and celebratory of the pregnancy journey.`
 
 Please provide a comprehensive pregnancy update:
 
-## 📊 Week ${photo.week} Development
+## Week ${photo.week} Development
 - Baby's current size (fruit/vegetable comparison)
 - Key developments this week
 
-## 🤰 Your Body
+## Your Body
 - Expected changes and symptoms
 - Belly growth information
 
-## 💆 Weekly Self-Care
+## Weekly Self-Care
 - Skin care for stretch mark prevention
 - Comfort recommendations
 
-## 📸 Photo Documentation Tips
+## Photo Documentation Tips
 - How to capture this special moment
 - Pose and styling suggestions`;
 

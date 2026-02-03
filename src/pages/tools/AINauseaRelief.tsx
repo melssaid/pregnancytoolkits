@@ -14,23 +14,23 @@ import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const nauseaTriggers = [
-  { id: "morning", label: "Worst in morning", icon: "🌅" },
-  { id: "evening", label: "Worst in evening", icon: "🌆" },
-  { id: "all-day", label: "All day", icon: "☀️" },
-  { id: "smells", label: "Strong smells", icon: "👃" },
-  { id: "empty-stomach", label: "Empty stomach", icon: "🥣" },
-  { id: "after-eating", label: "After eating", icon: "🍽️" },
-  { id: "motion", label: "Motion/car rides", icon: "🚗" },
-  { id: "cooking", label: "Cooking smells", icon: "🍳" },
+  { id: "morning", label: "Worst in morning" },
+  { id: "evening", label: "Worst in evening" },
+  { id: "all-day", label: "All day" },
+  { id: "smells", label: "Strong smells" },
+  { id: "empty-stomach", label: "Empty stomach" },
+  { id: "after-eating", label: "After eating" },
+  { id: "motion", label: "Motion/car rides" },
+  { id: "cooking", label: "Cooking smells" },
 ];
 
 const quickRemedies = [
-  { icon: "🍋", name: "Lemon water", tip: "Sip slowly on waking" },
-  { icon: "🫚", name: "Ginger", tip: "Tea, candies, or fresh" },
-  { icon: "🧊", name: "Ice chips", tip: "Suck on ice when queasy" },
-  { icon: "🍪", name: "Dry crackers", tip: "Keep by bedside" },
-  { icon: "🌿", name: "Peppermint", tip: "Inhale or tea" },
-  { icon: "🍌", name: "Banana", tip: "Easy on stomach" },
+  { name: "Lemon water", tip: "Sip slowly on waking" },
+  { name: "Ginger", tip: "Tea, candies, or fresh" },
+  { name: "Ice chips", tip: "Suck on ice when queasy" },
+  { name: "Dry crackers", tip: "Keep by bedside" },
+  { name: "Peppermint", tip: "Inhale or tea" },
+  { name: "Banana", tip: "Easy on stomach" },
 ];
 
 const nauseaVideos: Video[] = [
@@ -145,7 +145,6 @@ Be compassionate - morning sickness is exhausting!`;
           <div className="grid grid-cols-3 gap-2">
             {quickRemedies.map((remedy) => (
               <div key={remedy.name} className="text-center p-2 bg-background/50 rounded-lg">
-                <div className="text-2xl mb-1">{remedy.icon}</div>
                 <div className="text-xs font-medium">{remedy.name}</div>
                 <div className="text-[10px] text-muted-foreground">{remedy.tip}</div>
               </div>
@@ -201,15 +200,14 @@ Be compassionate - morning sickness is exhausting!`;
               <div
                 key={trigger.id}
                 onClick={() => toggleTrigger(trigger.id)}
-                className={`p-2 rounded-lg border cursor-pointer transition-all flex items-center gap-2 ${
+                className={`p-2 rounded-lg border cursor-pointer transition-all flex items-center gap-2 text-sm ${
                   triggers.includes(trigger.id)
                     ? "bg-primary/10 border-primary"
                     : "bg-card hover:bg-muted"
                 }`}
               >
                 <Checkbox checked={triggers.includes(trigger.id)} />
-                <span>{trigger.icon}</span>
-                <span className="text-sm">{trigger.label}</span>
+                <span>{trigger.label}</span>
               </div>
             ))}
           </div>
@@ -252,7 +250,7 @@ Be compassionate - morning sickness is exhausting!`;
         {/* Encouraging Note */}
         <Card className="p-4 bg-muted/30 text-center">
           <p className="text-sm text-muted-foreground">
-            💚 Remember: Morning sickness usually peaks around weeks 8-10 and 
+            Remember: Morning sickness usually peaks around weeks 8-10 and 
             improves significantly by week 12-14. You've got this!
           </p>
         </Card>

@@ -157,10 +157,10 @@ const nutritionVideos: Video[] = [
 ];
 
 const mealTypes = [
-  { id: "breakfast", label: "Breakfast", icon: "🌅" },
-  { id: "lunch", label: "Lunch", icon: "☀️" },
-  { id: "dinner", label: "Dinner", icon: "🌙" },
-  { id: "snack", label: "Snack", icon: "🍎" },
+  { id: "breakfast", label: "Breakfast" },
+  { id: "lunch", label: "Lunch" },
+  { id: "dinner", label: "Dinner" },
+  { id: "snack", label: "Snack" },
 ];
 
 const dietaryPreferences = [
@@ -173,11 +173,11 @@ const dietaryPreferences = [
 ];
 
 const cravings = [
-  { id: "sweet", label: "Sweet", icon: "🍫" },
-  { id: "salty", label: "Salty", icon: "🥨" },
-  { id: "sour", label: "Sour", icon: "🍋" },
-  { id: "spicy", label: "Spicy", icon: "🌶️" },
-  { id: "creamy", label: "Creamy", icon: "🍦" },
+  { id: "sweet", label: "Sweet" },
+  { id: "salty", label: "Salty" },
+  { id: "sour", label: "Sour" },
+  { id: "spicy", label: "Spicy" },
+  { id: "creamy", label: "Creamy" },
 ];
 
 export default function AIMealSuggestion() {
@@ -274,7 +274,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                     <SelectContent>
                       {mealTypes.map((m) => (
                         <SelectItem key={m.id} value={m.id}>
-                          {m.icon} {m.label}
+                          {m.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -286,7 +286,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             {/* Cravings */}
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-base">What are you craving? 😋</CardTitle>
+                <CardTitle className="text-base">What are you craving?</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -296,11 +296,10 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                       variant={selectedCraving === c.id ? "default" : "outline"}
                       size="sm"
                       onClick={() =>
-                        setSelectedCraving(selectedCraving === c.id ? "" : c.id)
+                      setSelectedCraving(selectedCraving === c.id ? "" : c.id)
                       }
-                      className="gap-1"
                     >
-                      {c.icon} {c.label}
+                      {c.label}
                     </Button>
                   ))}
                 </div>
@@ -360,7 +359,6 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                   </CardTitle>
                   <div className="flex gap-1">
                     <Badge variant="secondary" className="text-xs">
-                      {mealTypes.find((m) => m.id === mealType)?.icon}{" "}
                       {mealTypes.find((m) => m.id === mealType)?.label}
                     </Badge>
                   </div>
