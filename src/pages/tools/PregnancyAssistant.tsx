@@ -114,7 +114,7 @@ export default function PregnancyAssistant() {
                     </div>
 
                     {/* Quick Questions - 2x2 Grid */}
-                    <div className="grid grid-cols-2 gap-2 w-full max-w-xs">
+                    <div className="grid grid-cols-2 gap-1.5 w-full max-w-xs">
                       {quickQuestions.map((q, i) => (
                         <motion.button
                           key={i}
@@ -122,12 +122,12 @@ export default function PregnancyAssistant() {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.2 + i * 0.05 }}
                           onClick={() => sendMessage(q.text)}
-                          className="group flex items-center gap-2 p-2 rounded-lg bg-muted/50 border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-left"
+                          className="group flex items-center gap-1.5 p-2 rounded-lg bg-muted/50 border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-left overflow-hidden min-w-0"
                         >
-                          <div className={`p-1.5 rounded-md bg-gradient-to-br ${q.color} shadow-sm`}>
+                          <div className={`p-1.5 rounded-md bg-gradient-to-br ${q.color} shadow-sm shrink-0`}>
                             <q.icon className="w-3 h-3 text-white" />
                           </div>
-                          <span className="text-[10px] font-medium text-foreground/80 leading-tight line-clamp-2">
+                          <span className="text-[10px] font-medium text-foreground/80 leading-tight line-clamp-2 break-words">
                             {q.text}
                           </span>
                         </motion.button>

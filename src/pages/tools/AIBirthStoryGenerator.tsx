@@ -182,9 +182,9 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
               onChange={(e) => setStoryData(prev => ({ ...prev, babyName: e.target.value }))}
             />
             
-            <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
               <div>
-                <label className="block text-xs text-muted-foreground mb-1">{t('toolsInternal.birthStory.birthDate', 'Birth Date')}</label>
+                <label className="block text-[10px] sm:text-xs text-muted-foreground mb-1">{t('toolsInternal.birthStory.birthDate', 'Birth Date')}</label>
                 <Input
                   type="date"
                   value={storyData.birthDate}
@@ -192,17 +192,16 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
                 />
               </div>
               <div>
-                <label className="block text-xs text-muted-foreground mb-1">{t('toolsInternal.birthStory.birthTime', 'Birth Time')}</label>
+                <label className="block text-[10px] sm:text-xs text-muted-foreground mb-1">{t('toolsInternal.birthStory.birthTime', 'Birth Time')}</label>
                 <Input
                   type="time"
                   value={storyData.birthTime}
                   onChange={(e) => setStoryData(prev => ({ ...prev, birthTime: e.target.value }))}
-                  className="min-w-[120px]"
                 />
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
               <Input
                 placeholder={t('toolsInternal.birthStory.weight', 'Weight (e.g., 7 lbs 4 oz)')}
                 value={storyData.weight}
@@ -225,21 +224,21 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
 
         {/* Delivery Type */}
         <Card>
-          <CardContent className="p-4 space-y-4">
-            <h3 className="text-lg font-semibold">{t('toolsInternal.birthStory.deliveryType', 'Delivery Type')}</h3>
-            <div className="grid grid-cols-2 gap-3">
+          <CardContent className="p-4 space-y-3">
+            <h3 className="text-base font-semibold">{t('toolsInternal.birthStory.deliveryType', 'Delivery Type')}</h3>
+            <div className="grid grid-cols-2 gap-2">
               {deliveryTypes.map((type) => (
                 <button
                   key={type.id}
                   onClick={() => setStoryData(prev => ({ ...prev, deliveryType: type.id }))}
-                  className={`p-3 rounded-xl text-center transition-all border-2 ${
+                  className={`p-2.5 rounded-lg text-center transition-all border-2 overflow-hidden ${
                     storyData.deliveryType === type.id
                       ? 'bg-primary text-primary-foreground border-primary'
                       : 'bg-muted hover:bg-muted/80 border-transparent'
                   }`}
                 >
-                  <span className="text-xl">{type.icon}</span>
-                  <p className="text-sm mt-1">{type.label}</p>
+                  <span className="text-lg">{type.icon}</span>
+                  <p className="text-xs mt-0.5 truncate">{type.label}</p>
                 </button>
               ))}
             </div>

@@ -360,17 +360,17 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
               </Card>
 
               <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                    <Sun className="w-5 h-5 text-primary" />
-                    {t('toolsInternal.mentalHealthCoach.dailyCopingStrategies')}
+                <CardContent className="p-4">
+                  <h3 className="text-base font-semibold mb-3 flex items-center gap-2">
+                    <Sun className="w-4 h-4 text-primary shrink-0" />
+                    <span className="truncate">{t('toolsInternal.mentalHealthCoach.dailyCopingStrategies')}</span>
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {copingStrategies.map((strategy, index) => (
-                      <div key={index} className="p-4 bg-muted/50 rounded-xl">
-                        <div className="text-2xl mb-2">{strategy.icon}</div>
-                        <h4 className="font-medium text-sm mb-1">{strategy.title}</h4>
-                        <p className="text-xs text-muted-foreground">{strategy.desc}</p>
+                      <div key={index} className="p-3 bg-muted/50 rounded-xl overflow-hidden">
+                        <div className="text-xl mb-1">{strategy.icon}</div>
+                        <h4 className="font-medium text-xs sm:text-sm mb-0.5 truncate">{strategy.title}</h4>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2">{strategy.desc}</p>
                       </div>
                     ))}
                   </div>

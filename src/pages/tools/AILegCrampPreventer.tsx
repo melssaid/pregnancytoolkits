@@ -206,17 +206,18 @@ export default function AILegCrampPreventer() {
                 </li>
               </ol>
               
-              <div className="mt-4 pt-4 border-t border-border">
-                <h4 className="font-semibold mb-2">Log this cramp:</h4>
-                <div className="grid grid-cols-2 gap-2">
+              <div className="mt-3 pt-3 border-t border-border">
+                <h4 className="font-semibold mb-2 text-sm">Log this cramp:</h4>
+                <div className="grid grid-cols-2 gap-1.5">
                   {['Left Calf', 'Right Calf', 'Left Thigh', 'Right Thigh'].map((loc) => (
                     <Button 
                       key={loc}
                       variant="outline" 
                       size="sm"
+                      className="text-xs overflow-hidden"
                       onClick={() => logCramp(loc, 5)}
                     >
-                      {loc}
+                      <span className="truncate">{loc}</span>
                     </Button>
                   ))}
                 </div>
