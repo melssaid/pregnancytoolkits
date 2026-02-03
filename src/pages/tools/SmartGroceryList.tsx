@@ -227,247 +227,189 @@ export default function SmartGroceryList() {
     >
       <div className="space-y-6">
         {/* Welcome Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 p-4">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-          <div className="relative">
-            <div className="flex items-start gap-3">
-              <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
-                <ShoppingCart className="w-6 h-6 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h2 className="font-bold text-foreground text-sm sm:text-base">Your Smart Pregnancy Nutrition Hub</h2>
-                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                  Plan your meals, track nutrients, and discover pregnancy superfoods. Our AI analyzes your choices to ensure optimal nutrition for you and your baby.
-                </p>
-              </div>
+        {/* Welcome Section - Compact */}
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/8 via-primary/4 to-transparent border border-primary/15 p-3">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
+              <ShoppingCart className="w-4 h-4 text-primary" />
             </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <Badge variant="outline" className="bg-background/80 text-[10px] gap-1">
-                <Sparkles className="w-3 h-3 text-amber-500" />
-                AI-Powered
-              </Badge>
-              <Badge variant="outline" className="bg-background/80 text-[10px] gap-1">
-                <Target className="w-3 h-3 text-green-500" />
-                Nutrition Tracking
-              </Badge>
-              <Badge variant="outline" className="bg-background/80 text-[10px] gap-1">
-                <Calendar className="w-3 h-3 text-blue-500" />
-                Weekly Planning
-              </Badge>
+            <div className="flex-1 min-w-0">
+              <h2 className="font-semibold text-foreground text-sm">Smart Pregnancy Nutrition</h2>
+              <p className="text-[11px] text-muted-foreground leading-snug">
+                Plan meals, track nutrients, and discover superfoods for you and your baby.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Quick Stats Dashboard */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 hover:shadow-md transition-shadow">
-            <CardContent className="p-3 text-center">
-              <ShoppingCart className="w-5 h-5 mx-auto mb-1 text-primary" />
-              <p className="text-2xl font-bold text-primary">{items.length}</p>
-              <p className="text-[10px] text-muted-foreground">Total Items</p>
+        {/* Quick Stats Dashboard - Compact */}
+        <div className="grid grid-cols-4 gap-2">
+          <Card className="bg-gradient-to-br from-primary/8 to-primary/3 border-primary/15">
+            <CardContent className="p-2.5 text-center">
+              <ShoppingCart className="w-3.5 h-3.5 mx-auto mb-0.5 text-primary" />
+              <p className="text-lg font-bold text-primary">{items.length}</p>
+              <p className="text-[9px] text-muted-foreground">Items</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-green-500/10 to-green-500/5 border-green-500/20 hover:shadow-md transition-shadow">
-            <CardContent className="p-3 text-center">
-              <CheckCircle2 className="w-5 h-5 mx-auto mb-1 text-green-500" />
-              <p className="text-2xl font-bold text-green-600">{checkedCount}</p>
-              <p className="text-[10px] text-muted-foreground">Completed</p>
+          <Card className="bg-gradient-to-br from-green-500/8 to-green-500/3 border-green-500/15">
+            <CardContent className="p-2.5 text-center">
+              <CheckCircle2 className="w-3.5 h-3.5 mx-auto mb-0.5 text-green-500" />
+              <p className="text-lg font-bold text-green-600">{checkedCount}</p>
+              <p className="text-[9px] text-muted-foreground">Done</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-amber-500/10 to-amber-500/5 border-amber-500/20 hover:shadow-md transition-shadow">
-            <CardContent className="p-3 text-center">
-              <Target className="w-5 h-5 mx-auto mb-1 text-amber-500" />
-              <p className="text-2xl font-bold text-amber-600">{Math.round((nutrition.folate + nutrition.iron + nutrition.calcium) / 3)}%</p>
-              <p className="text-[10px] text-muted-foreground">Nutrition Score</p>
+          <Card className="bg-gradient-to-br from-amber-500/8 to-amber-500/3 border-amber-500/15">
+            <CardContent className="p-2.5 text-center">
+              <Target className="w-3.5 h-3.5 mx-auto mb-0.5 text-amber-500" />
+              <p className="text-lg font-bold text-amber-600">{Math.round((nutrition.folate + nutrition.iron + nutrition.calcium) / 3)}%</p>
+              <p className="text-[9px] text-muted-foreground">Score</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-violet-500/10 to-violet-500/5 border-violet-500/20 hover:shadow-md transition-shadow">
-            <CardContent className="p-3 text-center">
-              <Sparkles className="w-5 h-5 mx-auto mb-1 text-violet-500" />
-              <p className="text-2xl font-bold text-violet-600">{items.filter(i => i.pregnancyBenefit).length}</p>
-              <p className="text-[10px] text-muted-foreground">Superfoods</p>
+          <Card className="bg-gradient-to-br from-violet-500/8 to-violet-500/3 border-violet-500/15">
+            <CardContent className="p-2.5 text-center">
+              <Leaf className="w-3.5 h-3.5 mx-auto mb-0.5 text-violet-500" />
+              <p className="text-lg font-bold text-violet-600">{items.filter(i => i.pregnancyBenefit).length}</p>
+              <p className="text-[9px] text-muted-foreground">Super</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Tabs Navigation */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 h-auto p-1">
-            <TabsTrigger value="list" className="gap-1.5 text-xs py-2.5 data-[state=active]:shadow-sm">
-              <ShoppingCart className="w-4 h-4" />
-              <span className="hidden sm:inline">Shopping</span> List
+          <TabsList className="grid w-full grid-cols-3 h-9 p-0.5">
+            <TabsTrigger value="list" className="gap-1 text-[11px] py-2 data-[state=active]:shadow-sm">
+              <ShoppingCart className="w-3 h-3" />
+              List
             </TabsTrigger>
-            <TabsTrigger value="nutrition" className="gap-1.5 text-xs py-2.5 data-[state=active]:shadow-sm">
-              <BarChart3 className="w-4 h-4" />
-              <span className="hidden sm:inline">Nutrition</span> Analysis
+            <TabsTrigger value="nutrition" className="gap-1 text-[11px] py-2 data-[state=active]:shadow-sm">
+              <BarChart3 className="w-3 h-3" />
+              Analysis
             </TabsTrigger>
-            <TabsTrigger value="planner" className="gap-1.5 text-xs py-2.5 data-[state=active]:shadow-sm">
-              <Calendar className="w-4 h-4" />
-              <span className="hidden sm:inline">Weekly</span> Planner
+            <TabsTrigger value="planner" className="gap-1 text-[11px] py-2 data-[state=active]:shadow-sm">
+              <Calendar className="w-3 h-3" />
+              Planner
             </TabsTrigger>
           </TabsList>
 
           {/* Shopping List Tab */}
-          <TabsContent value="list" className="space-y-4 mt-4">
-            {/* Tab Description */}
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-muted/50 border border-border/50">
-              <AlertCircle className="w-4 h-4 text-primary shrink-0" />
-              <p className="text-xs text-muted-foreground">
-                Add items to your list or choose from our pregnancy superfoods. Check off items as you shop!
-              </p>
+          <TabsContent value="list" className="space-y-3 mt-3">
+            {/* Add Item - Inline */}
+            <div className="flex gap-2">
+              <Input
+                placeholder="Add item..."
+                value={newItem}
+                onChange={(e) => setNewItem(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && addItem()}
+                className="flex-1 h-9 text-sm"
+              />
+              <Button onClick={addItem} size="sm" className="shrink-0 h-9 px-3">
+                <Plus className="w-3.5 h-3.5" />
+              </Button>
             </div>
 
-            {/* Add Item */}
-            <Card className="shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Plus className="w-4 h-4 text-primary" />
-                  Add New Item
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <div className="flex gap-2">
-                  <Input
-                    placeholder="Type an item name..."
-                    value={newItem}
-                    onChange={(e) => setNewItem(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && addItem()}
-                    className="flex-1"
-                  />
-                  <Button onClick={addItem} size="icon" className="shrink-0">
-                    <Plus className="w-4 h-4" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Progress Bar */}
-            <Card className="shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-primary" />
-                  Shopping Progress
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">
-                      {items.length > 0 ? Math.round((checkedCount / items.length) * 100) : 0}% Complete
-                    </span>
-                    <span className="font-medium text-primary">
-                      {checkedCount} / {items.length} items
-                    </span>
-                  </div>
-                  <Progress 
-                    value={items.length > 0 ? (checkedCount / items.length) * 100 : 0} 
-                    className="h-2.5"
-                  />
-                  {checkedCount > 0 && (
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      onClick={clearChecked}
-                      className="mt-1 text-xs text-muted-foreground hover:text-destructive w-full justify-start"
-                    >
-                      <Trash2 className="w-3.5 h-3.5 mr-1.5" />
-                      Clear {checkedCount} completed items
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Category Filter */}
-            <div className="space-y-2">
-              <p className="text-xs font-medium text-muted-foreground px-1">Filter by Category</p>
-              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-                {(['all', 'produce', 'dairy', 'protein', 'grains', 'other'] as const).map(cat => {
-                  const Icon = cat === 'all' ? ShoppingCart : categoryIcons[cat];
-                  const count = cat === 'all' ? items.length : items.filter(i => i.category === cat).length;
-                  return (
-                    <Button
-                      key={cat}
-                      variant={selectedCategory === cat ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setSelectedCategory(cat)}
-                      className="capitalize whitespace-nowrap gap-1.5"
-                    >
-                      <Icon className="w-3.5 h-3.5" />
-                      {cat}
-                      <Badge variant="secondary" className="ml-1 h-5 px-1.5 text-[10px]">
-                        {count}
-                      </Badge>
-                    </Button>
-                  );
-                })}
+            {/* Progress Bar - Compact */}
+            <div className="flex items-center gap-3 p-2.5 rounded-lg bg-muted/40 border border-border/40">
+              <div className="flex-1">
+                <Progress 
+                  value={items.length > 0 ? (checkedCount / items.length) * 100 : 0} 
+                  className="h-1.5"
+                />
               </div>
+              <span className="text-[10px] font-medium text-muted-foreground whitespace-nowrap">
+                {checkedCount}/{items.length}
+              </span>
+              {checkedCount > 0 && (
+                <button 
+                  onClick={clearChecked}
+                  className="text-[10px] text-muted-foreground hover:text-destructive transition-colors"
+                >
+                  Clear
+                </button>
+              )}
             </div>
 
-            {/* Shopping List */}
+            {/* Category Filter - Compact */}
+            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
+              {(['all', 'produce', 'dairy', 'protein', 'grains', 'other'] as const).map(cat => {
+                const Icon = cat === 'all' ? ShoppingCart : categoryIcons[cat];
+                const count = cat === 'all' ? items.length : items.filter(i => i.category === cat).length;
+                return (
+                  <Button
+                    key={cat}
+                    variant={selectedCategory === cat ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedCategory(cat)}
+                    className="capitalize whitespace-nowrap gap-1 h-7 px-2 text-[10px]"
+                  >
+                    <Icon className="w-3 h-3" />
+                    {cat}
+                    <span className="text-[9px] opacity-70">({count})</span>
+                  </Button>
+                );
+              })}
+            </div>
+
+            {/* Shopping List - Compact */}
             <Card className="shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <ShoppingCart className="w-4 h-4 text-primary" />
-                    Your Shopping List
+              <CardHeader className="py-2 px-3">
+                <CardTitle className="text-xs flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <ShoppingCart className="w-3.5 h-3.5 text-primary" />
+                    Your List
                   </div>
-                  <Badge variant="outline" className="text-[10px]">
+                  <span className="text-[10px] text-muted-foreground font-normal">
                     {filteredItems.length} items
-                  </Badge>
+                  </span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-4 pt-0">
+              <CardContent className="p-3 pt-0">
                 {filteredItems.length === 0 ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-muted/50 flex items-center justify-center">
-                      <ShoppingCart className="w-8 h-8 text-muted-foreground/30" />
-                    </div>
-                    <p className="text-sm font-medium text-muted-foreground">No items yet</p>
-                    <p className="text-xs text-muted-foreground/70 mt-1">Add items above or select from superfoods below</p>
+                  <div className="text-center py-6">
+                    <ShoppingCart className="w-6 h-6 mx-auto mb-2 text-muted-foreground/30" />
+                    <p className="text-xs text-muted-foreground">No items yet</p>
                   </div>
                 ) : (
-                  <div className="space-y-2 max-h-[400px] overflow-y-auto pr-1">
+                  <div className="space-y-1.5 max-h-[320px] overflow-y-auto">
                     {filteredItems.map(item => {
                       const Icon = categoryIcons[item.category];
                       return (
                         <div 
                           key={item.id}
-                          className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${
+                          className={`flex items-center gap-2 p-2 rounded-lg border transition-all ${
                             item.isChecked 
-                              ? 'bg-muted/50 border-primary/20' 
-                              : 'border-border hover:border-primary/30 hover:bg-muted/30'
+                              ? 'bg-muted/40 border-primary/15' 
+                              : 'border-border/60 hover:border-primary/20'
                           }`}
                         >
                           <button
                             onClick={() => toggleItem(item.id)}
-                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all shrink-0 ${
+                            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all shrink-0 ${
                               item.isChecked 
                                 ? 'bg-primary border-primary text-primary-foreground' 
-                                : 'border-muted-foreground hover:border-primary'
+                                : 'border-muted-foreground/50 hover:border-primary'
                             }`}
                           >
-                            {item.isChecked && <Check className="w-4 h-4" />}
+                            {item.isChecked && <Check className="w-3 h-3" />}
                           </button>
                           <div 
-                            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                            style={{ backgroundColor: `${categoryColors[item.category]}15` }}
+                            className="w-6 h-6 rounded-md flex items-center justify-center shrink-0"
+                            style={{ backgroundColor: `${categoryColors[item.category]}12` }}
                           >
-                            <Icon className="w-4 h-4" style={{ color: categoryColors[item.category] }} />
+                            <Icon className="w-3 h-3" style={{ color: categoryColors[item.category] }} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <span className={`block font-medium text-sm ${item.isChecked ? 'line-through text-muted-foreground' : ''}`}>
+                            <span className={`block text-xs font-medium ${item.isChecked ? 'line-through text-muted-foreground' : ''}`}>
                               {item.name}
                             </span>
                             {item.pregnancyBenefit && (
-                              <p className="text-[11px] text-primary/80 truncate">{item.pregnancyBenefit}</p>
+                              <p className="text-[10px] text-muted-foreground truncate">{item.pregnancyBenefit}</p>
                             )}
                           </div>
                           <button
                             onClick={() => removeItem(item.id)}
-                            className="text-muted-foreground hover:text-destructive transition-colors shrink-0 p-1"
+                            className="text-muted-foreground/50 hover:text-destructive transition-colors shrink-0"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       );
@@ -477,86 +419,64 @@ export default function SmartGroceryList() {
               </CardContent>
             </Card>
 
-            {/* AI Suggestions */}
+            {/* Superfoods - Compact */}
             {suggestedItems.filter(s => !items.find(i => i.name === s.name)).length > 0 && (
-              <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent shadow-sm">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-primary" />
-                    Recommended Pregnancy Superfoods
-                  </CardTitle>
-                  <p className="text-[11px] text-muted-foreground mt-1">
-                    These nutrient-rich foods are especially beneficial during pregnancy
-                  </p>
-                </CardHeader>
-                <CardContent className="p-4 pt-0">
-                  <div className="flex flex-wrap gap-2">
-                    {suggestedItems.filter(s => !items.find(i => i.name === s.name)).slice(0, 6).map(item => (
-                      <Button
-                        key={item.id}
-                        variant="outline"
-                        size="sm"
-                        onClick={() => addSuggested(item)}
-                        className="gap-1.5 bg-background hover:bg-primary/10 hover:border-primary text-xs"
-                      >
-                        <Plus className="w-3 h-3" />
-                        {item.name}
-                      </Button>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="space-y-2">
+                <p className="text-[11px] font-medium text-muted-foreground flex items-center gap-1">
+                  <Leaf className="w-3 h-3 text-primary" />
+                  Recommended Superfoods
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {suggestedItems.filter(s => !items.find(i => i.name === s.name)).slice(0, 6).map(item => (
+                    <Button
+                      key={item.id}
+                      variant="outline"
+                      size="sm"
+                      onClick={() => addSuggested(item)}
+                      className="gap-1 h-7 px-2 text-[10px] bg-background hover:bg-primary/5"
+                    >
+                      <Plus className="w-2.5 h-2.5" />
+                      {item.name}
+                    </Button>
+                  ))}
+                </div>
+              </div>
             )}
           </TabsContent>
 
           {/* Nutrition Analysis Tab */}
-          <TabsContent value="nutrition" className="space-y-4 mt-4">
-            {/* Tab Description */}
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-muted/50 border border-border/50">
-              <BarChart3 className="w-4 h-4 text-primary shrink-0" />
-              <p className="text-xs text-muted-foreground">
-                Track your daily nutrient intake and see how your grocery choices support your pregnancy health.
-              </p>
-            </div>
-
-            {/* Nutrition Goals */}
+          <TabsContent value="nutrition" className="space-y-3 mt-3">
+            {/* Nutrition Goals - Compact */}
             <Card className="shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Target className="w-4 h-4 text-primary" />
+              <CardHeader className="py-2 px-3">
+                <CardTitle className="text-xs flex items-center gap-1.5">
+                  <Target className="w-3.5 h-3.5 text-primary" />
                   Daily Nutrition Goals
                 </CardTitle>
-                <p className="text-[11px] text-muted-foreground mt-1">
-                  Your progress towards meeting recommended daily pregnancy nutrition
-                </p>
               </CardHeader>
-              <CardContent className="p-4 pt-0 space-y-4">
+              <CardContent className="p-3 pt-0 space-y-2.5">
                 {nutritionGoals.map((goal) => {
                   const Icon = goal.icon;
                   const percentage = Math.min((goal.current / goal.target) * 100, 100);
-                  const status = percentage >= 80 ? 'Excellent' : percentage >= 50 ? 'Good' : 'Needs attention';
                   return (
-                    <div key={goal.name} className="space-y-1.5">
+                    <div key={goal.name} className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
                           <div 
-                            className="w-8 h-8 rounded-lg flex items-center justify-center"
-                            style={{ backgroundColor: `${goal.color}15` }}
+                            className="w-6 h-6 rounded-md flex items-center justify-center"
+                            style={{ backgroundColor: `${goal.color}12` }}
                           >
-                            <Icon className="w-4 h-4" style={{ color: goal.color }} />
+                            <Icon className="w-3 h-3" style={{ color: goal.color }} />
                           </div>
-                          <div>
-                            <span className="text-sm font-medium">{goal.name}</span>
-                            <p className="text-[10px] text-muted-foreground">{status}</p>
-                          </div>
+                          <span className="text-xs font-medium">{goal.name}</span>
                         </div>
-                        <span className="text-sm font-bold" style={{ color: goal.color }}>
+                        <span className="text-xs font-bold" style={{ color: goal.color }}>
                           {goal.current}%
                         </span>
                       </div>
                       <Progress 
                         value={percentage} 
-                        className="h-2"
+                        className="h-1.5"
                         style={{ '--progress-color': goal.color } as React.CSSProperties}
                       />
                     </div>
@@ -565,31 +485,28 @@ export default function SmartGroceryList() {
               </CardContent>
             </Card>
 
-            {/* Charts Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Charts Grid - Compact */}
+            <div className="grid grid-cols-2 gap-2">
               {/* Category Distribution */}
               <Card className="shadow-sm">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
-                    Category Distribution
+                <CardHeader className="py-2 px-3">
+                  <CardTitle className="text-xs flex items-center gap-1.5">
+                    <BarChart3 className="w-3 h-3 text-primary" />
+                    Categories
                   </CardTitle>
-                  <p className="text-[10px] text-muted-foreground">
-                    Balance of food groups in your list
-                  </p>
                 </CardHeader>
-                <CardContent className="p-4 pt-0">
+                <CardContent className="p-2 pt-0">
                   {categoryData.length > 0 ? (
-                    <div className="h-48">
+                    <div className="h-32">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                           <Pie
                             data={categoryData}
                             cx="50%"
                             cy="50%"
-                            innerRadius={40}
-                            outerRadius={70}
-                            paddingAngle={3}
+                            innerRadius={25}
+                            outerRadius={45}
+                            paddingAngle={2}
                             dataKey="value"
                           >
                             {categoryData.map((entry, index) => (
@@ -598,67 +515,55 @@ export default function SmartGroceryList() {
                           </Pie>
                           <Tooltip 
                             contentStyle={{ 
-                              borderRadius: '8px', 
+                              borderRadius: '6px', 
                               border: 'none', 
-                              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                              fontSize: '12px'
+                              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                              fontSize: '10px',
+                              padding: '4px 8px'
                             }} 
                           />
                         </PieChart>
                       </ResponsiveContainer>
                     </div>
                   ) : (
-                    <div className="h-48 flex flex-col items-center justify-center text-muted-foreground">
-                      <BarChart3 className="w-10 h-10 text-muted-foreground/20 mb-2" />
-                      <p className="text-sm">No data yet</p>
-                      <p className="text-[10px]">Add items to see distribution</p>
+                    <div className="h-32 flex items-center justify-center">
+                      <BarChart3 className="w-6 h-6 text-muted-foreground/20" />
                     </div>
                   )}
-                  <div className="flex flex-wrap justify-center gap-2 mt-2">
-                    {categoryData.map((cat) => (
-                      <div key={cat.name} className="flex items-center gap-1.5 text-xs">
-                        <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: cat.color }} />
-                        <span>{cat.name} ({cat.value})</span>
-                      </div>
-                    ))}
-                  </div>
                 </CardContent>
               </Card>
 
               {/* Nutrition Bar Chart */}
               <Card className="shadow-sm">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-primary" />
-                    Nutrient Coverage
+                <CardHeader className="py-2 px-3">
+                  <CardTitle className="text-xs flex items-center gap-1.5">
+                    <Zap className="w-3 h-3 text-primary" />
+                    Nutrients
                   </CardTitle>
-                  <p className="text-[10px] text-muted-foreground">
-                    Percentage of daily recommended intake
-                  </p>
                 </CardHeader>
-                <CardContent className="p-4 pt-0">
-                  <div className="h-48">
+                <CardContent className="p-2 pt-0">
+                  <div className="h-32">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={nutritionChartData} layout="vertical">
                         <XAxis type="number" domain={[0, 100]} hide />
                         <YAxis 
                           type="category" 
                           dataKey="name" 
-                          width={60}
-                          tick={{ fontSize: 11 }}
+                          width={45}
+                          tick={{ fontSize: 9 }}
                         />
                         <Tooltip 
                           formatter={(value: number) => `${value}%`}
                           contentStyle={{ 
-                            borderRadius: '8px', 
+                            borderRadius: '6px', 
                             border: 'none', 
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                            fontSize: '12px'
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                            fontSize: '10px'
                           }}
                         />
                         <Bar 
                           dataKey="current" 
-                          radius={[0, 4, 4, 0]}
+                          radius={[0, 3, 3, 0]}
                           fill="#ec4899"
                         />
                       </BarChart>
@@ -668,21 +573,10 @@ export default function SmartGroceryList() {
               </Card>
             </div>
 
-            {/* AI Nutrition Insights */}
-            <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Brain className="w-4 h-4 text-primary" />
-                  AI Nutrition Assistant
-                </CardTitle>
-                <p className="text-[11px] text-muted-foreground mt-1">
-                  Get personalized nutrition advice based on your current grocery list and pregnancy week
-                </p>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <AIInsightCard
-                  title=""
-                  prompt={`Analyze this pregnancy grocery list for week ${currentWeek} and provide personalized nutrition advice:
+            {/* AI Nutrition Insights - Compact */}
+            <AIInsightCard
+              title="AI Nutrition Analysis"
+              prompt={`Analyze this pregnancy grocery list for week ${currentWeek} and provide personalized nutrition advice:
 
 Items: ${items.map(i => i.name).join(', ')}
 
@@ -698,113 +592,72 @@ Provide:
 2. Missing nutrients and recommended foods to add
 3. Week ${currentWeek} specific recommendations
 4. Meal combination suggestions using these ingredients`}
-                  buttonText="Get AI Nutrition Analysis"
-                  context={{
-                    week: currentWeek,
-                    trimester: currentWeek <= 12 ? 1 : currentWeek <= 27 ? 2 : 3
-                  }}
-                />
-              </CardContent>
-            </Card>
+              buttonText="Analyze"
+              context={{
+                week: currentWeek,
+                trimester: currentWeek <= 12 ? 1 : currentWeek <= 27 ? 2 : 3
+              }}
+            />
           </TabsContent>
 
           {/* Weekly Planner Tab */}
-          <TabsContent value="planner" className="space-y-4 mt-4">
-            {/* Tab Description */}
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-muted/50 border border-border/50">
-              <Calendar className="w-4 h-4 text-primary shrink-0" />
-              <p className="text-xs text-muted-foreground">
-                Plan your weekly meals based on your pregnancy stage. Get trimester-specific recommendations and AI-generated meal plans.
-              </p>
+          <TabsContent value="planner" className="space-y-3 mt-3">
+            {/* Week Selector - Compact */}
+            <div className="p-2.5 rounded-lg bg-muted/40 border border-border/40">
+              <WeekSlider
+                week={currentWeek}
+                onChange={setCurrentWeek}
+                label=""
+                showTrimester
+              />
             </div>
 
-            {/* Week Selector */}
-            <Card className="shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
-                  Select Your Pregnancy Week
-                </CardTitle>
-                <p className="text-[11px] text-muted-foreground mt-1">
-                  Adjust to get personalized recommendations for your current stage
-                </p>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <WeekSlider
-                  week={currentWeek}
-                  onChange={setCurrentWeek}
-                  label=""
-                  showTrimester
-                />
-              </CardContent>
-            </Card>
+            {/* Week Focus - Compact */}
+            <div className="space-y-2">
+              <p className="text-[11px] font-medium text-muted-foreground flex items-center gap-1">
+                <Target className="w-3 h-3 text-primary" />
+                Week {currentWeek} Focus
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {(weeklyRecommendations[String(currentWeek % 3 + 1)] || weeklyRecommendations['1']).map((rec, idx) => (
+                  <Badge key={idx} variant="outline" className="text-[10px] py-1 px-2 bg-background">
+                    <CheckCircle2 className="w-2.5 h-2.5 mr-1 text-primary" />
+                    {rec}
+                  </Badge>
+                ))}
+              </div>
+            </div>
 
-            {/* Week-Specific Recommendations */}
-            <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Brain className="w-4 h-4 text-primary" />
-                  Week {currentWeek} Nutrition Focus
-                </CardTitle>
-                <p className="text-[11px] text-muted-foreground mt-1">
-                  Key nutritional priorities for this stage of your pregnancy
-                </p>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {(weeklyRecommendations[String(currentWeek % 3 + 1)] || weeklyRecommendations['1']).map((rec, idx) => (
-                    <div 
-                      key={idx}
-                      className="flex items-center gap-2 p-3 rounded-xl bg-background border border-border hover:border-primary/30 transition-colors"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="w-4 h-4 text-primary" />
-                      </div>
-                      <span className="text-sm font-medium">{rec}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Meal Planning Suggestions */}
+            {/* Meal Ideas - Compact */}
             <Card className="shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <ChefHat className="w-4 h-4 text-primary" />
+              <CardHeader className="py-2 px-3">
+                <CardTitle className="text-xs flex items-center gap-1.5">
+                  <ChefHat className="w-3.5 h-3.5 text-primary" />
                   Daily Meal Ideas
                 </CardTitle>
-                <p className="text-[11px] text-muted-foreground mt-1">
-                  Quick and nutritious meal suggestions using pregnancy superfoods
-                </p>
               </CardHeader>
-              <CardContent className="p-4 pt-0 space-y-3">
+              <CardContent className="p-3 pt-0 space-y-2">
                 {[
-                  { meal: 'Breakfast', icon: Clock, suggestion: 'Greek yogurt parfait with berries and almonds', benefit: 'Protein + Calcium', color: '#f59e0b' },
-                  { meal: 'Lunch', icon: Flame, suggestion: 'Salmon salad with spinach and avocado', benefit: 'Omega-3 + Folate', color: '#22c55e' },
-                  { meal: 'Dinner', icon: Heart, suggestion: 'Lentil soup with whole grain bread', benefit: 'Iron + Fiber', color: '#ec4899' },
-                  { meal: 'Snacks', icon: Zap, suggestion: 'Orange slices with almond butter', benefit: 'Vitamin C + Healthy Fats', color: '#8b5cf6' },
+                  { meal: 'Breakfast', icon: Clock, suggestion: 'Yogurt with berries', color: '#f59e0b' },
+                  { meal: 'Lunch', icon: Flame, suggestion: 'Salmon spinach salad', color: '#22c55e' },
+                  { meal: 'Dinner', icon: Heart, suggestion: 'Lentil soup', color: '#ec4899' },
+                  { meal: 'Snacks', icon: Zap, suggestion: 'Orange + almonds', color: '#8b5cf6' },
                 ].map((item) => {
                   const Icon = item.icon;
                   return (
                     <div 
                       key={item.meal}
-                      className="flex items-start gap-3 p-3 rounded-xl bg-muted/30 border border-border/50 hover:border-primary/30 transition-colors"
+                      className="flex items-center gap-2 p-2 rounded-lg bg-muted/30 border border-border/40"
                     >
                       <div 
-                        className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                        style={{ backgroundColor: `${item.color}15` }}
+                        className="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${item.color}12` }}
                       >
-                        <Icon className="w-5 h-5" style={{ color: item.color }} />
+                        <Icon className="w-3.5 h-3.5" style={{ color: item.color }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <p className="font-medium text-sm">{item.meal}</p>
-                          <Badge variant="outline" className="text-[9px] h-4 px-1.5">
-                            {item.benefit}
-                          </Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-0.5">{item.suggestion}</p>
+                        <p className="text-xs font-medium">{item.meal}</p>
+                        <p className="text-[10px] text-muted-foreground truncate">{item.suggestion}</p>
                       </div>
                     </div>
                   );
@@ -813,20 +666,9 @@ Provide:
             </Card>
 
             {/* AI Weekly Plan */}
-            <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-primary" />
-                  AI Weekly Meal Planner
-                </CardTitle>
-                <p className="text-[11px] text-muted-foreground mt-1">
-                  Generate a complete 7-day meal plan customized to your grocery list and pregnancy week
-                </p>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <AIInsightCard
-                  title=""
-                  prompt={`Create a personalized weekly meal plan for pregnancy week ${currentWeek} using these available groceries:
+            <AIInsightCard
+              title="AI Weekly Meal Plan"
+              prompt={`Create a personalized weekly meal plan for pregnancy week ${currentWeek} using these available groceries:
 
 Items: ${items.map(i => i.name).join(', ')}
 
@@ -837,52 +679,40 @@ Consider:
 4. Balanced nutrition throughout the day
 
 Provide a structured 7-day meal plan with breakfast, lunch, dinner, and snacks using the available ingredients.`}
-                  buttonText="Generate AI Weekly Plan"
-                  context={{
-                    week: currentWeek,
-                    trimester: currentWeek <= 12 ? 1 : currentWeek <= 27 ? 2 : 3
-                  }}
-                />
-              </CardContent>
-            </Card>
+              buttonText="Generate Plan"
+              context={{
+                week: currentWeek,
+                trimester: currentWeek <= 12 ? 1 : currentWeek <= 27 ? 2 : 3
+              }}
+            />
 
-            {/* Quick Actions */}
-            <Card className="shadow-sm">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-primary" />
-                  Quick Actions
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <div className="flex flex-wrap gap-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => {
-                      suggestedItems.forEach(item => {
-                        if (!items.find(i => i.name === item.name)) {
-                          addSuggested(item);
-                        }
-                      });
-                    }}
-                    className="gap-1.5"
-                  >
-                    <Plus className="w-3.5 h-3.5" />
-                    Add All Superfoods
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => setItems(suggestedItems.map(i => ({ ...i, id: Date.now().toString() + i.id, isChecked: false })))}
-                    className="gap-1.5"
-                  >
-                    <RefreshCw className="w-3.5 h-3.5" />
-                    Reset to Defaults
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Quick Actions - Compact */}
+            <div className="flex flex-wrap gap-1.5">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => {
+                  suggestedItems.forEach(item => {
+                    if (!items.find(i => i.name === item.name)) {
+                      addSuggested(item);
+                    }
+                  });
+                }}
+                className="gap-1 h-7 px-2 text-[10px]"
+              >
+                <Plus className="w-2.5 h-2.5" />
+                Add All Superfoods
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setItems(suggestedItems.map(i => ({ ...i, id: Date.now().toString() + i.id, isChecked: false })))}
+                className="gap-1 h-7 px-2 text-[10px]"
+              >
+                <RefreshCw className="w-2.5 h-2.5" />
+                Reset
+              </Button>
+            </div>
           </TabsContent>
         </Tabs>
       </div>
