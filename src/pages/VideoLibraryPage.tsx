@@ -45,7 +45,7 @@ const videos: Video[] = [
 
 export default function VideoLibraryPage() {
   return (
-    <Layout title="Educational Videos" showBack>
+    <Layout showBack>
       <div className="container py-6 space-y-6">
         {/* Hero Section */}
         <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">

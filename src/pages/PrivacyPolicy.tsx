@@ -2,8 +2,8 @@ import { Layout } from "@/components/Layout";
 
 export default function PrivacyPolicy() {
   return (
-    <Layout title="Privacy Policy" showBack>
-      <div className="container py-8">
+    <Layout showBack>
+      <div className="container py-6 pb-24">
         <div className="mx-auto max-w-3xl prose prose-slate dark:prose-invert">
           <h1>PRIVACY POLICY</h1>
           <p className="text-muted-foreground text-sm">Last updated January 26, 2026</p>

@@ -10,11 +10,10 @@ import { EncryptionIndicator } from "./EncryptionIndicator";
 
 interface LayoutProps {
   children: React.ReactNode;
-  title?: string;
   showBack?: boolean;
 }
 
-export function Layout({ children, title, showBack = false }: LayoutProps) {
+export function Layout({ children, showBack = false }: LayoutProps) {
   const { t } = useTranslation();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -101,21 +100,6 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
 
       {/* Main Content */}
       <main className="flex-1">
-        {title && (
-          <div className="bg-gradient-to-b from-card to-background border-b border-border/50">
-            <div className="container py-6">
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-4"
-              >
-                <h1 className="text-2xl font-bold text-foreground tracking-tight">
-                  {title}
-                </h1>
-              </motion.div>
-            </div>
-          </div>
-        )}
         {children}
 
         {/* Bottom Navigation for Mobile */}
