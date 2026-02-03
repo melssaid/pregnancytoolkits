@@ -1,10 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { Download, Upload, Shield, AlertTriangle, Check, Loader2, FileJson, Calendar } from 'lucide-react';
+import { Download, Upload, AlertTriangle, Loader2, FileJson, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
+import { cn } from '@/lib/utils';
 import {
   Dialog,
   DialogContent,
@@ -17,61 +16,14 @@ import {
 
 // Keys to backup from localStorage
 const BACKUP_KEYS = [
-  // User profile and settings
-  'pregnancy_profile',
-  'user_settings',
-  'pregnancy_week',
-  'due_date',
-  'last_period_date',
-  
-  // Health tracking
-  'kick_sessions',
-  'kick_history',
-  'water_intake',
-  'water_history',
-  'weight_records',
-  'vitamin_tracker',
-  'vitamin_records',
-  'sleep_records',
-  'contraction_records',
-  
-  // Appointments and reminders
-  'appointments',
-  'reminders',
-  'stretch_reminders',
-  
-  // Nutrition and meals
-  'meal_history',
-  'grocery_lists',
-  'food_diary',
-  'nutrition_log',
-  
-  // Birth planning
-  'birth_plans',
-  'hospital_bag',
-  'baby_names',
-  
-  // Photos and memories
-  'bump_photos_local',
-  'milestones',
-  
-  // Cycle tracking
-  'cycle_data',
-  'ovulation_data',
-  'period_history',
-  
-  // Journal and notes
-  'journal_entries',
-  'pregnancy_notes',
-  'doctor_questions',
-  
-  // AI generated content
-  'weekly_summaries',
-  'ai_insights',
-  
-  // Misc
-  'disclaimer_accepted',
-  'onboarding_completed',
+  'pregnancy_profile', 'user_settings', 'pregnancy_week', 'due_date', 'last_period_date',
+  'kick_sessions', 'kick_history', 'water_intake', 'water_history', 'weight_records',
+  'vitamin_tracker', 'vitamin_records', 'sleep_records', 'contraction_records',
+  'appointments', 'reminders', 'stretch_reminders', 'meal_history', 'grocery_lists',
+  'food_diary', 'nutrition_log', 'birth_plans', 'hospital_bag', 'baby_names',
+  'bump_photos_local', 'milestones', 'cycle_data', 'ovulation_data', 'period_history',
+  'journal_entries', 'pregnancy_notes', 'doctor_questions', 'weekly_summaries', 'ai_insights',
+  'disclaimer_accepted', 'onboarding_completed',
 ];
 
 interface BackupData {
@@ -81,7 +33,11 @@ interface BackupData {
   data: Record<string, any>;
 }
 
-export const DataBackupManager: React.FC = () => {
+interface DataBackupManagerProps {
+  compact?: boolean;
+}
+
+export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = false }) => {
   const [isExporting, setIsExporting] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
   const [importDialogOpen, setImportDialogOpen] = useState(false);
@@ -97,104 +53,57 @@ export const DataBackupManager: React.FC = () => {
 
   const collectAllData = (): Record<string, any> => {
     const data: Record<string, any> = {};
-    
-    // Collect known keys
     BACKUP_KEYS.forEach(key => {
       const value = localStorage.getItem(key);
       if (value) {
-        try {
-          data[key] = JSON.parse(value);
-        } catch {
-          data[key] = value;
-        }
+        try { data[key] = JSON.parse(value); } catch { data[key] = value; }
       }
     });
-
-    // Also collect any keys that match common patterns
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key && !data[key]) {
-        // Include keys that look like app data
-        if (
-          key.includes('pregnancy') ||
-          key.includes('baby') ||
-          key.includes('health') ||
-          key.includes('tracker') ||
-          key.includes('records') ||
-          key.includes('history') ||
-          key.includes('_data') ||
-          key.includes('_list') ||
-          key.includes('_entries')
-        ) {
+        if (key.includes('pregnancy') || key.includes('baby') || key.includes('health') ||
+            key.includes('tracker') || key.includes('records') || key.includes('history') ||
+            key.includes('_data') || key.includes('_list') || key.includes('_entries')) {
           const value = localStorage.getItem(key);
           if (value) {
-            try {
-              data[key] = JSON.parse(value);
-            } catch {
-              data[key] = value;
-            }
+            try { data[key] = JSON.parse(value); } catch { data[key] = value; }
           }
         }
       }
     }
-
     return data;
   };
 
   const handleExport = async () => {
     setIsExporting(true);
-    
     try {
       const data = collectAllData();
       const dataCount = Object.keys(data).length;
-      
       if (dataCount === 0) {
-        toast({
-          title: t('settings.backup.noData'),
-          description: t('settings.backup.noDataDesc'),
-          variant: 'destructive'
-        });
+        toast({ title: t('settings.backup.noData'), description: t('settings.backup.noDataDesc'), variant: 'destructive' });
         return;
       }
 
-      const backup: BackupData = {
-        version: '1.0',
-        createdAt: new Date().toISOString(),
-        deviceInfo: navigator.userAgent,
-        data
-      };
-
+      const backup: BackupData = { version: '1.0', createdAt: new Date().toISOString(), deviceInfo: navigator.userAgent, data };
       const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
-      
       const date = new Date().toISOString().split('T')[0];
-      const filename = `pregnancy-tools-backup-${date}.json`;
-      
       const a = document.createElement('a');
       a.href = url;
-      a.download = filename;
+      a.download = `pregnancy-tools-backup-${date}.json`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      // Save last backup date
       const now = new Date().toISOString();
       localStorage.setItem('last_backup_date', now);
       setLastBackupDate(now);
-
-      toast({
-        title: t('settings.backup.exportSuccess'),
-        description: t('settings.backup.exportSuccessDesc', { count: dataCount }),
-      });
-
+      toast({ title: t('settings.backup.exportSuccess'), description: t('settings.backup.exportSuccessDesc', { count: dataCount }) });
     } catch (error) {
       console.error('Export error:', error);
-      toast({
-        title: t('settings.backup.exportError'),
-        description: t('settings.backup.exportErrorDesc'),
-        variant: 'destructive'
-      });
+      toast({ title: t('settings.backup.exportError'), description: t('settings.backup.exportErrorDesc'), variant: 'destructive' });
     } finally {
       setIsExporting(false);
     }
@@ -205,183 +114,170 @@ export const DataBackupManager: React.FC = () => {
     if (!file) return;
 
     setIsImporting(true);
-
     try {
       const text = await file.text();
       const backup: BackupData = JSON.parse(text);
-
-      // Validate backup structure
-      if (!backup.version || !backup.data) {
-        throw new Error(t('settings.backup.invalidFile'));
-      }
+      if (!backup.version || !backup.data) throw new Error(t('settings.backup.invalidFile'));
 
       const dataCount = Object.keys(backup.data).length;
-      
-      // Restore all data
       Object.entries(backup.data).forEach(([key, value]) => {
-        try {
-          localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
-        } catch (e) {
-          console.error(`Failed to restore key ${key}:`, e);
-        }
+        try { localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); } catch (e) { console.error(`Failed to restore key ${key}:`, e); }
       });
 
-      toast({
-        title: t('settings.backup.importSuccess'),
-        description: t('settings.backup.importSuccessDesc', { count: dataCount }),
-      });
-
+      toast({ title: t('settings.backup.importSuccess'), description: t('settings.backup.importSuccessDesc', { count: dataCount }) });
       setImportDialogOpen(false);
-
-      // Reload to apply restored data
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
-
+      setTimeout(() => window.location.reload(), 1500);
     } catch (error) {
       console.error('Import error:', error);
-      toast({
-        title: t('settings.backup.importError'),
-        description: error instanceof Error ? error.message : t('settings.backup.exportErrorDesc'),
-        variant: 'destructive'
-      });
+      toast({ title: t('settings.backup.importError'), description: error instanceof Error ? error.message : t('settings.backup.exportErrorDesc'), variant: 'destructive' });
     } finally {
       setIsImporting(false);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
+      if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
   const formatDate = (dateStr: string) => {
     const locale = i18n.language === 'ar' ? 'ar-SA' : 'en-US';
-    return new Date(dateStr).toLocaleDateString(locale, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+    return new Date(dateStr).toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' });
   };
 
-  return (
-    <Card className="border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-secondary/5">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <Shield className="w-5 h-5 text-primary" />
-          {t('settings.backup.title')}
-        </CardTitle>
-        <CardDescription>
-          {t('settings.backup.description')}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        
-        {/* Last backup info */}
+  if (compact) {
+    return (
+      <div className="space-y-2">
+        {/* Last backup */}
         {lastBackupDate && (
-          <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/50 p-2 rounded-lg">
-            <Calendar className="w-4 h-4" />
+          <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground bg-muted/50 px-2 py-1 rounded">
+            <Calendar className="w-3 h-3" />
             <span>{t('settings.backup.lastBackup')} {formatDate(lastBackupDate)}</span>
           </div>
         )}
 
-        <Alert className="bg-amber-50 border-amber-200">
-          <AlertTriangle className="h-4 w-4 text-amber-600" />
-          <AlertDescription className="text-amber-800 text-sm">
-            <strong>{t('settings.backup.important')}</strong> {t('settings.backup.importantText')}
-          </AlertDescription>
-        </Alert>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {/* Export Button */}
-          <Button
-            onClick={handleExport}
-            disabled={isExporting}
-            className="w-full gap-2 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
-          >
-            {isExporting ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <Download className="w-4 h-4" />
-            )}
+        <div className="grid grid-cols-2 gap-2">
+          {/* Export */}
+          <Button onClick={handleExport} disabled={isExporting} size="sm" className="gap-1.5 h-9 text-xs bg-green-600 hover:bg-green-700">
+            {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
             {t('settings.backup.exportData')}
           </Button>
 
-          {/* Import Button */}
+          {/* Import */}
           <Dialog open={importDialogOpen} onOpenChange={setImportDialogOpen}>
             <DialogTrigger asChild>
-              <Button variant="outline" className="w-full gap-2">
-                <Upload className="w-4 h-4" />
+              <Button variant="outline" size="sm" className="gap-1.5 h-9 text-xs">
+                <Upload className="w-3 h-3" />
                 {t('settings.backup.importData')}
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="max-w-sm">
               <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                  <FileJson className="w-5 h-5 text-primary" />
+                <DialogTitle className="flex items-center gap-2 text-base">
+                  <FileJson className="w-4 h-4 text-primary" />
                   {t('settings.backup.importTitle')}
                 </DialogTitle>
-                <DialogDescription>
-                  {t('settings.backup.importDescription')}
-                </DialogDescription>
+                <DialogDescription className="text-sm">{t('settings.backup.importDescription')}</DialogDescription>
               </DialogHeader>
 
-              <Alert variant="destructive" className="mt-2">
-                <AlertTriangle className="h-4 w-4" />
-                <AlertDescription>
-                  <strong>{t('settings.backup.importWarning')}</strong> {t('settings.backup.importWarningText')}
-                </AlertDescription>
-              </Alert>
-
-              <div className="mt-4">
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".json"
-                  onChange={handleImport}
-                  disabled={isImporting}
-                  className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 file:cursor-pointer"
-                />
+              <div className="flex items-start gap-2 p-2 rounded-lg bg-destructive/10 text-xs text-destructive">
+                <AlertTriangle className="w-3 h-3 mt-0.5 shrink-0" />
+                <span><strong>{t('settings.backup.importWarning')}</strong> {t('settings.backup.importWarningText')}</span>
               </div>
 
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".json"
+                onChange={handleImport}
+                disabled={isImporting}
+                className="w-full text-xs file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 file:cursor-pointer file:text-xs"
+              />
+
               {isImporting && (
-                <div className="flex items-center justify-center gap-2 py-4">
-                  <Loader2 className="w-5 h-5 animate-spin text-primary" />
-                  <span>{t('settings.backup.importing')}</span>
+                <div className="flex items-center justify-center gap-2 py-2">
+                  <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                  <span className="text-sm">{t('settings.backup.importing')}</span>
                 </div>
               )}
 
               <DialogFooter>
-                <Button variant="outline" onClick={() => setImportDialogOpen(false)}>
-                  {t('settings.backup.cancel')}
-                </Button>
+                <Button variant="outline" size="sm" onClick={() => setImportDialogOpen(false)}>{t('settings.backup.cancel')}</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
         </div>
+      </div>
+    );
+  }
 
-        {/* Features */}
-        <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
-          <div className="flex items-center gap-1">
-            <Check className="w-3 h-3 text-green-500" />
-            <span>{t('settings.backup.features.pregnancyData')}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Check className="w-3 h-3 text-green-500" />
-            <span>{t('settings.backup.features.appointments')}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Check className="w-3 h-3 text-green-500" />
-            <span>{t('settings.backup.features.healthRecords')}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Check className="w-3 h-3 text-green-500" />
-            <span>{t('settings.backup.features.birthPlans')}</span>
-          </div>
+  // Full version
+  return (
+    <div className="border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-4">
+      <div className="flex items-center gap-2 mb-3">
+        <Download className="w-5 h-5 text-primary" />
+        <span className="font-medium">{t('settings.backup.title')}</span>
+      </div>
+      <p className="text-sm text-muted-foreground mb-3">{t('settings.backup.description')}</p>
+
+      {lastBackupDate && (
+        <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/50 p-2 rounded-lg mb-3">
+          <Calendar className="w-4 h-4" />
+          <span>{t('settings.backup.lastBackup')} {formatDate(lastBackupDate)}</span>
         </div>
+      )}
 
-      </CardContent>
-    </Card>
+      <div className="flex items-start gap-2 p-2 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-xs text-amber-700 dark:text-amber-300 mb-3">
+        <AlertTriangle className="w-3 h-3 mt-0.5 shrink-0" />
+        <span><strong>{t('settings.backup.important')}</strong> {t('settings.backup.importantText')}</span>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        <Button onClick={handleExport} disabled={isExporting} className="gap-2 bg-green-600 hover:bg-green-700">
+          {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+          {t('settings.backup.exportData')}
+        </Button>
+
+        <Dialog open={importDialogOpen} onOpenChange={setImportDialogOpen}>
+          <DialogTrigger asChild>
+            <Button variant="outline" className="gap-2">
+              <Upload className="w-4 h-4" />
+              {t('settings.backup.importData')}
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <FileJson className="w-5 h-5 text-primary" />
+                {t('settings.backup.importTitle')}
+              </DialogTitle>
+              <DialogDescription>{t('settings.backup.importDescription')}</DialogDescription>
+            </DialogHeader>
+
+            <div className="flex items-start gap-2 p-2 rounded-lg bg-destructive/10 text-sm text-destructive">
+              <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
+              <span><strong>{t('settings.backup.importWarning')}</strong> {t('settings.backup.importWarningText')}</span>
+            </div>
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json"
+              onChange={handleImport}
+              disabled={isImporting}
+              className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 file:cursor-pointer"
+            />
+
+            {isImporting && (
+              <div className="flex items-center justify-center gap-2 py-4">
+                <Loader2 className="w-5 h-5 animate-spin text-primary" />
+                <span>{t('settings.backup.importing')}</span>
+              </div>
+            )}
+
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setImportDialogOpen(false)}>{t('settings.backup.cancel')}</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+    </div>
   );
 };
 
