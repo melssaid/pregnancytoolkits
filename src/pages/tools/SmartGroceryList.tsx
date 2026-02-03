@@ -692,11 +692,15 @@ Provide a structured 7-day meal plan with breakfast, lunch, dinner, and snacks u
                 variant="outline" 
                 size="sm"
                 onClick={() => {
-                  suggestedItems.forEach(item => {
-                    if (!items.find(i => i.name === item.name)) {
-                      addSuggested(item);
-                    }
-                  });
+                  const newItems = suggestedItems.filter(
+                    item => !items.find(i => i.name === item.name)
+                  ).map(item => ({ ...item, id: Date.now().toString() + item.id }));
+                  if (newItems.length > 0) {
+                    setItems(prev => [...prev, ...newItems]);
+                    toast.success(`${newItems.length} superfoods added to your list`);
+                  } else {
+                    toast.info('All superfoods are already in your list');
+                  }
                 }}
                 className="gap-1 h-7 px-2 text-[10px]"
               >
