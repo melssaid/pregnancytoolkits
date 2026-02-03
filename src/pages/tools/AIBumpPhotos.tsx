@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   Camera, Upload, Trash2, Download, Sparkles, ChevronLeft, ChevronRight, 
   Loader2, Image as ImageIcon, HardDrive, AlertTriangle, Shield, 
-  Calendar, ZoomIn, X, Share2, RefreshCw, Info, Columns, Clock
+  Calendar, ZoomIn, X, Share2, RefreshCw, Info, Columns, Clock, Edit3, Check
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -41,6 +41,8 @@ const AIBumpPhotos: React.FC = () => {
   const [showFullscreen, setShowFullscreen] = useState(false);
   const [showCompare, setShowCompare] = useState(false);
   const [storageUsed, setStorageUsed] = useState(0);
+  const [editingPhotoId, setEditingPhotoId] = useState<string | null>(null);
+  const [editCaption, setEditCaption] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef(false);
   const { toast } = useToast();
@@ -123,7 +125,7 @@ const AIBumpPhotos: React.FC = () => {
       // Compress image for local storage
       const compressedDataUrl = await compressImage(dataUrl, 800, 1000, 0.7);
       
-      // Create photo object
+      // Create photo object with compressed image directly
       const photo: BumpPhoto = {
         id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         week: currentWeek,
@@ -135,10 +137,12 @@ const AIBumpPhotos: React.FC = () => {
         updated_at: new Date().toISOString()
       };
 
-      // Save to local storage via service
-      const newPhoto = await BumpPhotoService.upload(file, currentWeek, caption);
+      // Save to local storage directly (avoid double processing)
+      const existingPhotos = await BumpPhotoService.getAll();
+      const updatedPhotos = [...existingPhotos, photo].sort((a, b) => a.week - b.week);
+      localStorage.setItem(`bump_photos_${localStorage.getItem('pregnancy_user_id')}`, JSON.stringify(updatedPhotos));
       
-      setPhotos(prev => [...prev, newPhoto].sort((a, b) => a.week - b.week));
+      setPhotos(updatedPhotos);
       setCaption('');
       
       toast({
@@ -147,7 +151,7 @@ const AIBumpPhotos: React.FC = () => {
       });
 
       // Auto analyze
-      analyzePhoto(newPhoto);
+      analyzePhoto(photo);
       
     } catch (error: any) {
       console.error('Upload error:', error);
@@ -161,6 +165,30 @@ const AIBumpPhotos: React.FC = () => {
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
+    }
+  };
+
+  const handleEditCaption = async (photoId: string) => {
+    try {
+      await BumpPhotoService.updateCaption(photoId, editCaption);
+      setPhotos(prev => prev.map(p => 
+        p.id === photoId ? { ...p, caption: editCaption } : p
+      ));
+      if (selectedPhoto?.id === photoId) {
+        setSelectedPhoto({ ...selectedPhoto, caption: editCaption });
+      }
+      setEditingPhotoId(null);
+      setEditCaption('');
+      toast({
+        title: 'Caption Updated',
+        description: 'Your photo caption has been saved'
+      });
+    } catch (error: any) {
+      toast({
+        title: 'Update Failed',
+        description: error.message,
+        variant: 'destructive'
+      });
     }
   };
 
@@ -650,10 +678,58 @@ Please provide a comprehensive pregnancy update:
                         Local
                       </Badge>
                     </div>
-                    {photo.caption && (
-                      <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
-                        {photo.caption}
-                      </p>
+                    
+                    {/* Editable Caption */}
+                    {editingPhotoId === photo.id ? (
+                      <div className="mt-2 flex gap-1" onClick={(e) => e.stopPropagation()}>
+                        <input
+                          type="text"
+                          value={editCaption}
+                          onChange={(e) => setEditCaption(e.target.value)}
+                          placeholder="Add caption..."
+                          className="flex-1 text-xs p-1.5 border border-border rounded bg-background"
+                          autoFocus
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              handleEditCaption(photo.id);
+                            } else if (e.key === 'Escape') {
+                              setEditingPhotoId(null);
+                              setEditCaption('');
+                            }
+                          }}
+                        />
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          className="h-7 w-7"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleEditCaption(photo.id);
+                          }}
+                        >
+                          <Check className="w-3 h-3 text-primary" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <div 
+                        className="mt-1 flex items-start gap-1 group cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setEditingPhotoId(photo.id);
+                          setEditCaption(photo.caption || '');
+                        }}
+                      >
+                        {photo.caption ? (
+                          <p className="text-xs text-muted-foreground line-clamp-2 flex-1">
+                            {photo.caption}
+                          </p>
+                        ) : (
+                          <p className="text-xs text-muted-foreground/50 italic flex-1">
+                            Add caption...
+                          </p>
+                        )}
+                        <Edit3 className="w-3 h-3 text-muted-foreground/50 group-hover:text-primary flex-shrink-0 mt-0.5" />
+                      </div>
                     )}
                   </div>
                 </Card>
