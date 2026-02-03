@@ -131,9 +131,10 @@ Be compassionate - morning sickness is exhausting!`;
 
   return (
     <ToolFrame
-      title="Nausea Relief"
+      title={t('toolsInternal.nauseaRelief.title')}
       icon={Heart}
       mood="calm"
+      toolId="ai-nausea-relief"
     >
       <div className="space-y-6">
         {/* Quick Relief Card */}

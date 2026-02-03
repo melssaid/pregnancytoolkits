@@ -110,9 +110,11 @@ Be warm, practical, and specific. Include real examples.`;
 
   return (
     <ToolFrame
-      title="AI Partner Guide"
+      title={t('toolsInternal.partnerGuide.title')}
+      subtitle={t('toolsInternal.partnerGuide.subtitle')}
       customIcon="partner-guide"
       mood="nurturing"
+      toolId="ai-partner-guide"
     >
       <div className="space-y-6">
         {/* Settings */}

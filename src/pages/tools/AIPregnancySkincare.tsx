@@ -129,9 +129,11 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
 
   return (
     <ToolFrame
-      title="AI Skincare Routine"
+      title={t('toolsInternal.skincare.title')}
+      subtitle={t('toolsInternal.skincare.subtitle')}
       icon={Droplet}
       mood="nurturing"
+      toolId="ai-pregnancy-skincare"
     >
       <div className="space-y-6">
         {/* Unsafe Ingredients Warning */}

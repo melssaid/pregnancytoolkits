@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Cookie, Sparkles, Loader2, Heart, AlertTriangle, Salad, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -27,6 +28,7 @@ const COMMON_CRAVINGS = [
 ] as const;
 
 const AICravingAlternatives: React.FC = () => {
+  const { t } = useTranslation();
   const [craving, setCraving] = useState('');
   const [week, setWeek] = useState(20);
   const [result, setResult] = useState('');
@@ -117,8 +119,8 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                   <Cookie className="w-8 h-8" />
                 </div>
                 <div>
-                  <span className="block">AI Craving Alternatives</span>
-                  <span className="text-sm font-normal opacity-90">Satisfy cravings with healthy swaps</span>
+                  <span className="block">{t('toolsInternal.cravingAlternatives.title')}</span>
+                  <span className="text-sm font-normal opacity-90">{t('toolsInternal.cravingAlternatives.subtitle')}</span>
                 </div>
               </CardTitle>
             </CardHeader>
@@ -137,7 +139,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Heart className="w-5 h-5 text-primary" />
-                What are you craving?
+                {t('toolsInternal.cravingAlternatives.whatCraving')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -177,12 +179,12 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                   {isLoading ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                      Finding alternatives...
+                      {t('toolsInternal.common.analyzing')}...
                     </>
                   ) : (
                     <>
                       <Sparkles className="w-5 h-5 mr-2" />
-                      Find Healthy Alternatives
+                      {t('toolsInternal.cravingAlternatives.findAlternatives')}
                     </>
                   )}
                 </Button>

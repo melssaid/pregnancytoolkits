@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -120,6 +121,7 @@ const backPainExercises: Exercise[] = [
 ];
 
 export default function AIBackPainRelief() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
   const [isActive, setIsActive] = useState(false);
@@ -203,8 +205,8 @@ export default function AIBackPainRelief() {
 
   return (
     <ToolFrame
-      title="AI Back Pain Relief"
-      subtitle="Safe exercises to relieve pregnancy-related back pain"
+      title={t('toolsInternal.backPainRelief.title')}
+      subtitle={t('toolsInternal.backPainRelief.subtitle')}
       customIcon="pregnant-woman"
       mood="calm"
       toolId="ai-back-pain-relief"
