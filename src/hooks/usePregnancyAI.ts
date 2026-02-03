@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | "bump-photos";
 
@@ -15,11 +16,19 @@ interface AIContext {
   walkMinutes?: number;
   contractionData?: any;
   sleepData?: any;
+  language?: string;
 }
 
 export function usePregnancyAI() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { i18n } = useTranslation();
+
+  // Get current language code
+  const getCurrentLanguage = useCallback(() => {
+    const lang = i18n.language?.split('-')[0] || 'en';
+    return lang;
+  }, [i18n.language]);
 
   const streamChat = useCallback(
     async ({
@@ -38,6 +47,12 @@ export function usePregnancyAI() {
       setIsLoading(true);
       setError(null);
 
+      // Add language to context
+      const contextWithLanguage = {
+        ...context,
+        language: context?.language || getCurrentLanguage(),
+      };
+
       try {
         const response = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
@@ -47,7 +62,7 @@ export function usePregnancyAI() {
               "Content-Type": "application/json",
               Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
             },
-            body: JSON.stringify({ type, messages, context }),
+            body: JSON.stringify({ type, messages, context: contextWithLanguage }),
           }
         );
 
