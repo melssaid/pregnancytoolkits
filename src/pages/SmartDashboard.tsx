@@ -19,6 +19,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { Link, useNavigate } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
+import { NotificationsPanel } from "@/components/dashboard/NotificationsPanel";
 
 type TabType = "home" | "chat" | "health" | "nutrition" | "exercise" | "videos";
 
@@ -431,6 +432,9 @@ const SmartDashboard = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Notifications Panel */}
+            <NotificationsPanel />
           </motion.div>
         )}
 

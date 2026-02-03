@@ -4,7 +4,6 @@ import { Home, Shield, Award, Heart, Settings } from "lucide-react";
 import logoImage from "@/assets/logo.png";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
-import { NotificationCenter } from "./NotificationCenter";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
@@ -74,8 +73,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
           <div className="flex items-center gap-1">
             <LanguageDropdown variant="compact" />
-            
-            <NotificationCenter />
 
             <div className="hidden md:flex">
               <EncryptionIndicator />
