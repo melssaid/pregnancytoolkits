@@ -259,30 +259,48 @@ function drawStatCard(
   doc.text(label, x + width / 2, y + height / 2 + 6, { align: 'center' });
 }
 
-// Draw decorative elements
-function drawDecorations(doc: jsPDF, pageWidth: number, pageHeight: number, color: typeof COLORS.primary) {
+// Draw content frame border
+function drawContentFrame(doc: jsPDF, pageWidth: number, pageHeight: number, headerHeight: number, color: typeof COLORS.primary) {
+  const margin = 10;
+  const frameTop = headerHeight + 5;
+  const frameBottom = pageHeight - 18;
+  const frameWidth = pageWidth - (margin * 2);
+  const frameHeight = frameBottom - frameTop;
+  
+  // Outer subtle border
+  doc.setDrawColor(230, 230, 235);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(margin, frameTop, frameWidth, frameHeight, 4, 4, 'S');
+  
+  // Inner accent line at top
   doc.setDrawColor(color.r, color.g, color.b);
   doc.setLineWidth(0.8);
+  doc.line(margin + 4, frameTop, margin + 30, frameTop);
   
-  // Corner decorations
-  const cornerSize = 12;
-  const offset = 5;
+  // Corner accents
+  const cornerSize = 8;
+  doc.setLineWidth(0.6);
   
-  // Top left
-  doc.line(offset, 40, offset, 40 + cornerSize);
-  doc.line(offset, 40, offset + cornerSize, 40);
+  // Top left corner
+  doc.line(margin, frameTop + 4, margin, frameTop + cornerSize + 4);
+  doc.line(margin, frameTop + 4, margin + cornerSize, frameTop + 4);
   
-  // Top right
-  doc.line(pageWidth - offset, 40, pageWidth - offset, 40 + cornerSize);
-  doc.line(pageWidth - offset, 40, pageWidth - offset - cornerSize, 40);
+  // Top right corner
+  doc.line(pageWidth - margin, frameTop + 4, pageWidth - margin, frameTop + cornerSize + 4);
+  doc.line(pageWidth - margin, frameTop + 4, pageWidth - margin - cornerSize, frameTop + 4);
   
-  // Bottom left
-  doc.line(offset, pageHeight - 20, offset, pageHeight - 20 - cornerSize);
-  doc.line(offset, pageHeight - 20, offset + cornerSize, pageHeight - 20);
+  // Bottom left corner
+  doc.line(margin, frameBottom - 4, margin, frameBottom - cornerSize - 4);
+  doc.line(margin, frameBottom - 4, margin + cornerSize, frameBottom - 4);
   
-  // Bottom right
-  doc.line(pageWidth - offset, pageHeight - 20, pageWidth - offset, pageHeight - 20 - cornerSize);
-  doc.line(pageWidth - offset, pageHeight - 20, pageWidth - offset - cornerSize, pageHeight - 20);
+  // Bottom right corner
+  doc.line(pageWidth - margin, frameBottom - 4, pageWidth - margin, frameBottom - cornerSize - 4);
+  doc.line(pageWidth - margin, frameBottom - 4, pageWidth - margin - cornerSize, frameBottom - 4);
+}
+
+// Draw decorative elements (legacy - kept for compatibility)
+function drawDecorations(doc: jsPDF, pageWidth: number, pageHeight: number, color: typeof COLORS.primary) {
+  drawContentFrame(doc, pageWidth, pageHeight, 50, color);
 }
 
 // Data backup PDF export with charts
