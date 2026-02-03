@@ -271,26 +271,26 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                     Start Sleep Tracking
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 gap-4">
+                <CardContent className="pb-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
                         onClick={() => startSleep("nap")}
                         variant="outline"
-                        className="h-28 w-full flex-col gap-3 border-2 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20"
+                        className="h-20 sm:h-24 w-full flex-col gap-2 border-2 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20 overflow-hidden"
                       >
-                        <Sun className="h-10 w-10 text-amber-500" />
-                        <span className="font-semibold">Start Nap</span>
+                        <Sun className="h-7 w-7 sm:h-8 sm:w-8 text-amber-500 shrink-0" />
+                        <span className="font-semibold text-xs sm:text-sm truncate">Start Nap</span>
                       </Button>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
                         onClick={() => startSleep("night")}
                         variant="outline"
-                        className="h-28 w-full flex-col gap-3 border-2 hover:border-primary hover:bg-primary/10"
+                        className="h-20 sm:h-24 w-full flex-col gap-2 border-2 hover:border-primary hover:bg-primary/10 overflow-hidden"
                       >
-                        <Moon className="h-10 w-10 text-primary" />
-                        <span className="font-semibold">Start Night Sleep</span>
+                        <Moon className="h-7 w-7 sm:h-8 sm:w-8 text-primary shrink-0" />
+                        <span className="font-semibold text-xs sm:text-sm truncate">Night Sleep</span>
                       </Button>
                     </motion.div>
                   </div>
@@ -301,19 +301,19 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
         </AnimatePresence>
 
         {/* Today's Stats */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           <Card>
-            <CardContent className="pt-4 text-center">
-              <TrendingUp className="h-6 w-6 mx-auto text-primary mb-2" />
-              <p className="text-2xl font-bold text-primary">{formatDuration(stats.totalMinutes)}</p>
-              <p className="text-xs text-muted-foreground">Today's Total</p>
+            <CardContent className="py-3 text-center">
+              <TrendingUp className="h-5 w-5 mx-auto text-primary mb-1 shrink-0" />
+              <p className="text-lg sm:text-xl font-bold text-primary truncate">{formatDuration(stats.totalMinutes)}</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">Today's Total</p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="pt-4 text-center">
-              <BarChart3 className="h-6 w-6 mx-auto text-muted-foreground mb-2" />
-              <p className="text-2xl font-bold">{formatDuration(weeklyAvg)}</p>
-              <p className="text-xs text-muted-foreground">7-Day Avg/Day</p>
+            <CardContent className="py-3 text-center">
+              <BarChart3 className="h-5 w-5 mx-auto text-muted-foreground mb-1 shrink-0" />
+              <p className="text-lg sm:text-xl font-bold truncate">{formatDuration(weeklyAvg)}</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">7-Day Avg</p>
             </CardContent>
           </Card>
         </div>

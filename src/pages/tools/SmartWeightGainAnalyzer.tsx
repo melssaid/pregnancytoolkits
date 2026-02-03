@@ -182,17 +182,17 @@ export default function SmartWeightGainAnalyzer() {
       mood="calm"
       toolId="weight-gain"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         <Card>
-          <CardContent className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Target className="w-5 h-5 text-purple-600" />
-              Your Profile
+          <CardContent className="p-4 space-y-3">
+            <h3 className="text-base font-semibold flex items-center gap-2">
+              <Target className="w-4 h-4 text-purple-600 shrink-0" />
+              <span className="truncate">Your Profile</span>
             </h3>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-3">
               <div>
-                <Label htmlFor="height">Height (cm)</Label>
+                <Label htmlFor="height" className="text-xs">Height (cm)</Label>
                 <Input
                   id="height"
                   type="number"
@@ -203,7 +203,7 @@ export default function SmartWeightGainAnalyzer() {
                 />
               </div>
               <div>
-                <Label htmlFor="preWeight">Pre-Pregnancy Weight (kg)</Label>
+                <Label htmlFor="preWeight" className="text-xs">Pre-Pregnancy Weight (kg)</Label>
                 <Input
                   id="preWeight"
                   type="number"

@@ -135,22 +135,22 @@ const AISymptomAnalyzer: React.FC = () => {
 
         {/* Symptom Selection */}
         <Card>
-          <CardContent className="p-4">
-            <h2 className="text-lg font-semibold mb-4">{t('toolsInternal.symptomAnalyzer.selectSymptoms')}</h2>
-            <div className="grid grid-cols-2 gap-2">
+          <CardContent className="p-3">
+            <h2 className="text-base font-semibold mb-3">{t('toolsInternal.symptomAnalyzer.selectSymptoms')}</h2>
+            <div className="grid grid-cols-1 gap-1.5">
               {symptomDatabase.map((symptom) => {
                 const isSelected = selectedSymptoms.some(s => s.id === symptom.id);
                 return (
                   <button
                     key={symptom.id}
                     onClick={() => toggleSymptom(symptom.id, symptom.name)}
-                    className={`p-3 rounded-xl text-left transition-all text-sm ${
+                    className={`p-2.5 rounded-lg text-start transition-all text-xs sm:text-sm overflow-hidden ${
                       isSelected
-                        ? 'bg-primary text-primary-foreground shadow-lg'
+                        ? 'bg-primary text-primary-foreground shadow-md'
                         : 'bg-muted hover:bg-muted/80'
                     }`}
                   >
-                    <span className="font-medium">{t(`toolsInternal.symptomAnalyzer.symptoms.${symptom.id}`)}</span>
+                    <span className="font-medium truncate block">{t(`toolsInternal.symptomAnalyzer.symptoms.${symptom.id}`)}</span>
                   </button>
                 );
               })}

@@ -261,19 +261,19 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
         </AnimatePresence>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border-blue-200/50">
-            <CardContent className="py-4 text-center">
-              <Ruler className="w-5 h-5 mx-auto mb-1 text-blue-600 dark:text-blue-400" />
-              <p className="text-xs text-muted-foreground">Length</p>
-              <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">{currentData.length}</p>
+            <CardContent className="py-3 text-center">
+              <Ruler className="w-4 h-4 mx-auto mb-1 text-blue-600 dark:text-blue-400 shrink-0" />
+              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">Length</p>
+              <p className="text-lg sm:text-xl font-bold text-blue-700 dark:text-blue-300 truncate">{currentData.length}</p>
             </CardContent>
           </Card>
           <Card className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/30 dark:to-pink-950/30 border-purple-200/50">
-            <CardContent className="py-4 text-center">
-              <Scale className="w-5 h-5 mx-auto mb-1 text-purple-600 dark:text-purple-400" />
-              <p className="text-xs text-muted-foreground">Weight</p>
-              <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">{currentData.weight}</p>
+            <CardContent className="py-3 text-center">
+              <Scale className="w-4 h-4 mx-auto mb-1 text-purple-600 dark:text-purple-400 shrink-0" />
+              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">Weight</p>
+              <p className="text-lg sm:text-xl font-bold text-purple-700 dark:text-purple-300 truncate">{currentData.weight}</p>
             </CardContent>
           </Card>
         </div>

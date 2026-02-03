@@ -135,31 +135,31 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
       mood="nurturing"
       toolId="ai-pregnancy-skincare"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Unsafe Ingredients Warning */}
-        <Card className="p-4 bg-destructive/5 border-destructive/20">
-          <h3 className="font-semibold flex items-center gap-2 text-destructive mb-3">
-            <AlertTriangle className="w-4 h-4" />
-            Ingredients to Avoid During Pregnancy
+        <Card className="p-3 bg-destructive/5 border-destructive/20">
+          <h3 className="font-semibold flex items-center gap-2 text-destructive mb-2 text-sm">
+            <AlertTriangle className="w-4 h-4 shrink-0" />
+            <span className="truncate">Ingredients to Avoid During Pregnancy</span>
           </h3>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
             {unsafeIngredients.map((ing) => (
-              <div key={ing.name} className="flex items-center gap-2 text-sm">
-                <span>{ing.icon}</span>
-                <span>{ing.name}</span>
+              <div key={ing.name} className="flex items-center gap-2 text-xs sm:text-sm min-w-0">
+                <span className="shrink-0">{ing.icon}</span>
+                <span className="truncate">{ing.name}</span>
               </div>
             ))}
           </div>
         </Card>
 
         {/* Skin Type */}
-        <div className="space-y-2">
-          <Label>Your Skin Type</Label>
+        <div className="space-y-1.5">
+          <Label className="text-sm">Your Skin Type</Label>
           <Select value={skinType} onValueChange={setSkinType}>
-            <SelectTrigger>
+            <SelectTrigger className="w-full">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-popover z-50">
               <SelectItem value="dry">Dry</SelectItem>
               <SelectItem value="oily">Oily</SelectItem>
               <SelectItem value="combination">Combination</SelectItem>
@@ -170,38 +170,38 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         </div>
 
         {/* Budget */}
-        <div className="space-y-2">
-          <Label>Budget Preference</Label>
+        <div className="space-y-1.5">
+          <Label className="text-sm">Budget Preference</Label>
           <Select value={budget} onValueChange={setBudget}>
-            <SelectTrigger>
+            <SelectTrigger className="w-full">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="low">💵 Budget-friendly (Drugstore)</SelectItem>
+            <SelectContent className="bg-popover z-50">
+              <SelectItem value="low">💵 Budget-friendly</SelectItem>
               <SelectItem value="medium">💰 Mid-range</SelectItem>
-              <SelectItem value="high">💎 Premium/Luxury</SelectItem>
+              <SelectItem value="high">💎 Premium</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         {/* Skin Concerns */}
-        <div className="space-y-3">
-          <Label>Your Skin Concerns</Label>
-          <div className="grid grid-cols-2 gap-2">
+        <div className="space-y-2">
+          <Label className="text-sm">Your Skin Concerns</Label>
+          <div className="grid grid-cols-1 gap-1.5">
             {skinConcerns.map((concern) => (
               <div
                 key={concern.id}
                 onClick={() => toggleConcern(concern.id)}
-                className={`p-3 rounded-lg border cursor-pointer transition-all ${
+                className={`p-2.5 rounded-lg border cursor-pointer transition-all ${
                   concerns.includes(concern.id)
                     ? "bg-primary/10 border-primary"
                     : "bg-card hover:bg-muted"
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <Checkbox checked={concerns.includes(concern.id)} />
-                  <span className="text-lg">{concern.icon}</span>
-                  <span className="text-sm">{concern.label}</span>
+                <div className="flex items-center gap-2 min-w-0">
+                  <Checkbox checked={concerns.includes(concern.id)} className="shrink-0" />
+                  <span className="text-base shrink-0">{concern.icon}</span>
+                  <span className="text-xs sm:text-sm truncate">{concern.label}</span>
                 </div>
               </div>
             ))}
@@ -212,31 +212,31 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         <Button
           onClick={getSkincareRoutine}
           disabled={isLoading}
-          className="w-full"
+          className="w-full text-sm"
           size="lg"
         >
-          <Sparkles className="w-4 h-4 mr-2" />
-          {isLoading ? "Creating Routine..." : "Get AI Skincare Routine"}
+          <Sparkles className="w-4 h-4 mr-2 shrink-0" />
+          <span className="truncate">{isLoading ? "Creating Routine..." : "Get AI Skincare Routine"}</span>
         </Button>
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-muted/50">
+          <Card className="p-3 bg-muted/50">
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
         {/* Daily/Nightly Quick Reference */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card className="p-4 text-center bg-muted/30">
-            <Sun className="w-8 h-8 text-primary mx-auto mb-2" />
-            <h4 className="font-medium">Morning</h4>
-            <p className="text-xs text-muted-foreground">Cleanse → Hydrate → SPF</p>
+        <div className="grid grid-cols-2 gap-2">
+          <Card className="p-3 text-center bg-muted/30">
+            <Sun className="w-6 h-6 text-primary mx-auto mb-1 shrink-0" />
+            <h4 className="font-medium text-sm">Morning</h4>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">Cleanse → Hydrate → SPF</p>
           </Card>
-          <Card className="p-4 text-center bg-muted/30">
-            <MoonIcon className="w-8 h-8 text-primary mx-auto mb-2" />
-            <h4 className="font-medium">Evening</h4>
-            <p className="text-xs text-muted-foreground">Cleanse → Treat → Nourish</p>
+          <Card className="p-3 text-center bg-muted/30">
+            <MoonIcon className="w-6 h-6 text-primary mx-auto mb-1 shrink-0" />
+            <h4 className="font-medium text-sm">Evening</h4>
+            <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">Cleanse → Treat → Nourish</p>
           </Card>
         </div>
 

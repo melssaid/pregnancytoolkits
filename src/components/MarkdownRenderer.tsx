@@ -209,11 +209,11 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
   }, [content]);
 
   return (
-    <div className="prose prose-sm max-w-none dark:prose-invert">
-      <div className="space-y-1">
+    <div className="prose prose-sm max-w-none dark:prose-invert overflow-hidden">
+      <div className="space-y-1 break-words overflow-wrap-anywhere">
         {formattedContent}
         {isLoading && (
-          <span className={`inline-block w-2 h-4 bg-${accentColor}/50 animate-pulse ml-1 rounded`} />
+          <span className="inline-block w-2 h-4 bg-primary/50 animate-pulse ml-1 rounded" />
         )}
       </div>
     </div>

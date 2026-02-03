@@ -178,14 +178,14 @@ export default function SmartSnackPlanner() {
                 </div>
                 <p className="text-sm text-muted-foreground mb-4">{randomSnack.benefit}</p>
                 
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  <div className="bg-background rounded-lg p-3 text-center">
-                    <span className="text-lg font-bold text-primary">{randomSnack.calories}</span>
-                    <span className="text-xs text-muted-foreground block">{t('toolsInternal.snackPlanner.calories')}</span>
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  <div className="bg-background rounded-lg p-2.5 text-center overflow-hidden">
+                    <span className="text-base sm:text-lg font-bold text-primary block truncate">{randomSnack.calories}</span>
+                    <span className="text-[10px] sm:text-xs text-muted-foreground block truncate">{t('toolsInternal.snackPlanner.calories')}</span>
                   </div>
-                  <div className="bg-background rounded-lg p-3 text-center">
-                    <span className="text-lg font-bold text-primary">{randomSnack.prepTime}</span>
-                    <span className="text-xs text-muted-foreground block">{t('toolsInternal.snackPlanner.prepTime')}</span>
+                  <div className="bg-background rounded-lg p-2.5 text-center overflow-hidden">
+                    <span className="text-base sm:text-lg font-bold text-primary block truncate">{randomSnack.prepTime}</span>
+                    <span className="text-[10px] sm:text-xs text-muted-foreground block truncate">{t('toolsInternal.snackPlanner.prepTime')}</span>
                   </div>
                 </div>
 

@@ -191,24 +191,24 @@ Be compassionate - morning sickness is exhausting!`;
         </div>
 
         {/* Triggers */}
-        <div className="space-y-3">
-          <Label className="flex items-center gap-2">
-            <Utensils className="w-4 h-4 text-primary" />
-            What triggers your nausea?
+        <div className="space-y-2">
+          <Label className="flex items-center gap-2 text-sm">
+            <Utensils className="w-4 h-4 text-primary shrink-0" />
+            <span className="truncate">What triggers your nausea?</span>
           </Label>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 gap-1.5">
             {nauseaTriggers.map((trigger) => (
               <div
                 key={trigger.id}
                 onClick={() => toggleTrigger(trigger.id)}
-                className={`p-2 rounded-lg border cursor-pointer transition-all flex items-center gap-2 text-sm ${
+                className={`p-2.5 rounded-lg border cursor-pointer transition-all flex items-center gap-2 text-xs sm:text-sm min-w-0 ${
                   triggers.includes(trigger.id)
                     ? "bg-primary/10 border-primary"
                     : "bg-card hover:bg-muted"
                 }`}
               >
-                <Checkbox checked={triggers.includes(trigger.id)} />
-                <span>{trigger.label}</span>
+                <Checkbox checked={triggers.includes(trigger.id)} className="shrink-0" />
+                <span className="truncate">{trigger.label}</span>
               </div>
             ))}
           </div>

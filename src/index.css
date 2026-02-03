@@ -112,6 +112,7 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
   html {
@@ -247,6 +248,27 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Global text overflow prevention */
+  .overflow-wrap-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Safe text in cards - prevents text from escaping containers */
+  .safe-text {
+    @apply overflow-hidden break-words;
+    overflow-wrap: anywhere;
+  }
+
+  /* Mobile-first grid items with proper text handling */
+  .grid-item-safe {
+    @apply overflow-hidden min-w-0;
+  }
+
+  .grid-item-safe > * {
+    @apply truncate;
   }
 
   /* RTL Utilities */

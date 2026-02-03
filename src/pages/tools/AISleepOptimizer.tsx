@@ -234,26 +234,26 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         </div>
 
         {/* Sleep Issues */}
-        <div className="space-y-3">
-          <Label className="flex items-center gap-2">
-            <ThermometerSun className="w-4 h-4 text-primary" />
-            Sleep Challenges
+        <div className="space-y-2">
+          <Label className="flex items-center gap-2 text-sm">
+            <ThermometerSun className="w-4 h-4 text-primary shrink-0" />
+            <span className="truncate">Sleep Challenges</span>
           </Label>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 gap-1.5">
             {sleepIssues.map((issue) => (
               <div
                 key={issue.id}
                 onClick={() => toggleIssue(issue.id)}
-                className={`p-3 rounded-lg border cursor-pointer transition-all ${
+                className={`p-2.5 rounded-lg border cursor-pointer transition-all overflow-hidden ${
                   selectedIssues.includes(issue.id)
                     ? "bg-primary/10 border-primary"
                     : "bg-card hover:bg-muted"
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <Checkbox checked={selectedIssues.includes(issue.id)} />
-                  <span className="text-lg">{issue.icon}</span>
-                  <span className="text-sm">{issue.label}</span>
+                <div className="flex items-center gap-2 min-w-0">
+                  <Checkbox checked={selectedIssues.includes(issue.id)} className="shrink-0" />
+                  <span className="text-base shrink-0">{issue.icon}</span>
+                  <span className="text-xs sm:text-sm truncate">{issue.label}</span>
                 </div>
               </div>
             ))}
