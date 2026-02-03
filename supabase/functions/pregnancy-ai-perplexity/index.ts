@@ -20,6 +20,7 @@ interface AIRequest {
     walkMinutes?: number;
     sleepData?: any;
     contractionData?: any;
+    language?: string;
   };
 }
 
@@ -170,8 +171,25 @@ serve(async (req) => {
     // Arabic disclaimer removed - UI component handles localized disclaimers
     const complianceDisclaimer = ``;
 
+    // Get requested language from context, default to English
+    const requestedLanguage = context?.language || 'en';
+    
+    // Language instruction based on user's preference
+    const languageNames: Record<string, string> = {
+      'en': 'English',
+      'ar': 'Arabic (العربية)',
+      'de': 'German (Deutsch)',
+      'tr': 'Turkish (Türkçe)',
+      'fr': 'French (Français)',
+      'es': 'Spanish (Español)',
+      'pt': 'Portuguese (Português)'
+    };
+    
+    const languageName = languageNames[requestedLanguage] || 'English';
+    const languageInstruction = `CRITICAL LANGUAGE REQUIREMENT: You MUST respond ENTIRELY in ${languageName}. All text, headings, bullet points, and content must be in ${languageName}. Do not mix languages.\n\n`;
+
     // Persona identifier for Lavy Pool
-    const personaPrefix = `You are "Lavy Pool" - a highly intelligent, supportive medical assistant for pregnant women. You are an AI assistant, NOT a doctor.
+    const personaPrefix = languageInstruction + `You are "Lavy Pool" - a highly intelligent, supportive medical assistant for pregnant women. You are an AI assistant, NOT a doctor.
 
 COMPLIANCE RULES (MUST FOLLOW):
 1. NEVER provide a definitive medical diagnosis
