@@ -1450,5 +1450,15 @@
         }
       }
     }
+  },
+  "welcome": {
+    "title": "Welcome to Pregnancy Toolkits",
+    "subtitle": "Your complete pregnancy companion",
+    "feature1": "40+ AI-powered pregnancy tools",
+    "feature2": "Personalized health tracking",
+    "disclaimerTitle": "Medical Disclaimer",
+    "disclaimerText": "This app provides general information only and is not a substitute for professional medical advice. Always consult your healthcare provider for any health concerns.",
+    "getStarted": "Get Started",
+    "agreement": "By continuing, you agree to our Terms of Service"
   }
 }
