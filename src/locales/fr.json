@@ -168,6 +168,20 @@
       "description": "Enregistrez les changements, surveillez la santé."
     }
   },
+  "layout": {
+    "trustBar": {
+      "scienceBacked": "Scientifique",
+      "aiTools": "42+ Outils IA",
+      "premium": "Expérience Premium"
+    },
+    "footer": {
+      "privacy": "Confidentialité",
+      "terms": "Conditions",
+      "contact": "Contact",
+      "disclaimerTitle": "Avis Médical",
+      "disclaimerText": "Cette application est uniquement à des fins éducatives et informatives et ne fournit pas de conseils médicaux, de diagnostic ou de traitement. Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé."
+    }
+  },
   "common": {
     "calculate": "Calculer",
     "results": "Vos résultats",
@@ -199,7 +213,9 @@
     "unlock": "Débloquer tous les outils",
     "loading": "Chargement...",
     "cancel": "Annuler",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "showLess": "Afficher Moins",
+    "moreItems": "+{{count}} Plus"
   },
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mois",

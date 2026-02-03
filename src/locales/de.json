@@ -168,6 +168,20 @@
       "description": "Protokollieren Sie Wechsel, überwachen Sie die Gesundheit."
     }
   },
+  "layout": {
+    "trustBar": {
+      "scienceBacked": "Wissenschaftlich",
+      "aiTools": "42+ KI-Tools",
+      "premium": "Premium-Erlebnis"
+    },
+    "footer": {
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "contact": "Kontakt",
+      "disclaimerTitle": "Medizinischer Haftungsausschluss",
+      "disclaimerText": "Diese App dient nur zu Bildungs- und Informationszwecken und bietet keine medizinische Beratung, Diagnose oder Behandlung. Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Gesundheitsdienstleister."
+    }
+  },
   "common": {
     "calculate": "Berechnen",
     "results": "Ihre Ergebnisse",
@@ -199,7 +213,9 @@
     "unlock": "Alle Tools freischalten",
     "loading": "Laden...",
     "cancel": "Abbrechen",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "showLess": "Weniger Anzeigen",
+    "moreItems": "+{{count}} Mehr"
   },
   "subscription": {
     "subscribeNow": "Premium holen - 0,79€/Monat",

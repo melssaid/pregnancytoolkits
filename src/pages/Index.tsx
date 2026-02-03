@@ -124,7 +124,7 @@ const Index = () => {
                       whileTap={{ scale: 0.99 }}
                     >
                       <span className="text-[11px] font-medium text-muted-foreground group-hover:text-foreground tracking-wide">
-                        {isExpanded ? 'Show Less' : `+${remainingCount} More`}
+                        {isExpanded ? t('common.showLess', 'Show Less') : t('common.moreItems', '+{{count}} More', { count: remainingCount })}
                       </span>
                       <motion.div
                         animate={{ rotate: isExpanded ? 90 : 0 }}

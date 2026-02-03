@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { LucideIcon, ChevronRight } from "lucide-react";
+import { LucideIcon, ChevronRight, ChevronLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface ToolCardProps {
@@ -14,7 +14,9 @@ interface ToolCardProps {
 }
 
 export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index }: ToolCardProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
+  const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
   
   return (
     <motion.div
@@ -39,8 +41,8 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index }: 
             </p>
           </div>
           
-          {/* Chevron */}
-          <ChevronRight className="flex-shrink-0 w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
+          {/* Chevron - direction aware */}
+          <ChevronIcon className="flex-shrink-0 w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
         </div>
       </Link>
     </motion.div>

@@ -168,6 +168,20 @@
       "description": "Değişiklikleri kaydedin, sağlığı izleyin."
     }
   },
+  "layout": {
+    "trustBar": {
+      "scienceBacked": "Bilimsel Temelli",
+      "aiTools": "42+ AI Araç",
+      "premium": "Premium Deneyim"
+    },
+    "footer": {
+      "privacy": "Gizlilik",
+      "terms": "Şartlar",
+      "contact": "İletişim",
+      "disclaimerTitle": "Tıbbi Sorumluluk Reddi",
+      "disclaimerText": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve tıbbi tavsiye, teşhis veya tedavi sağlamaz. Herhangi bir sağlık endişesi için her zaman nitelikli bir sağlık hizmeti sağlayıcısına danışın."
+    }
+  },
   "common": {
     "calculate": "Hesapla",
     "results": "Sonuçlarınız",
@@ -199,7 +213,9 @@
     "unlock": "Tüm Araçları Aç",
     "loading": "Yükleniyor...",
     "cancel": "İptal",
-    "edit": "Düzenle"
+    "edit": "Düzenle",
+    "showLess": "Daha Az Göster",
+    "moreItems": "+{{count}} Daha Fazla"
   },
   "subscription": {
     "subscribeNow": "Premium Al - ₺24.99/ay",
