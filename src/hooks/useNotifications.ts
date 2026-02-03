@@ -4,12 +4,13 @@ import { playNotificationSound } from '@/lib/notificationSound';
 
 export interface Notification {
   id: string;
-  type: 'appointment' | 'vitamin' | 'exercise' | 'water' | 'stretch' | 'backup' | 'general';
+  type: 'appointment' | 'vitamin' | 'exercise' | 'water' | 'stretch' | 'backup' | 'general' | 'welcome' | 'disclaimer';
   title: string;
   message: string;
   time: string; // Store as ISO string for safer serialization
   read: boolean;
   actionUrl?: string;
+  isPinned?: boolean; // Pinned notifications cannot be cleared
 }
 
 interface NotificationSettings {
@@ -87,31 +88,6 @@ export function useNotifications() {
       [],
       isNotificationArray
     );
-    
-    // Check if this is a new user (no welcome notification shown before)
-    const hasSeenWelcome = localStorage.getItem('hasSeenWelcomeNotification');
-    
-    if (!hasSeenWelcome) {
-      // Get user's language for localized welcome message
-      const lang = localStorage.getItem('user_selected_language') || navigator.language?.split('-')[0] || 'en';
-      const isArabic = lang === 'ar';
-      
-      const welcomeNotification: Notification = {
-        id: `welcome-${Date.now()}`,
-        type: 'general',
-        title: isArabic ? 'مرحباً بك!' : 'Welcome!',
-        message: isArabic 
-          ? 'هذا التطبيق للمعلومات فقط ولا يُغني عن استشارة الطبيب. استمتعي بأكثر من 40 أداة ذكية!'
-          : 'This app is for info only, not medical advice. Enjoy 40+ smart tools!',
-        time: new Date().toISOString(),
-        read: false,
-        actionUrl: '/',
-      };
-      setNotifications([welcomeNotification, ...savedNotifications]);
-      localStorage.setItem('hasSeenWelcomeNotification', 'true');
-    } else {
-      setNotifications(savedNotifications);
-    }
 
     const savedSettings = safeParseLocalStorage<NotificationSettings>(
       'notificationSettings',
@@ -119,6 +95,7 @@ export function useNotifications() {
       isSettings
     );
     setSettings(savedSettings);
+    setNotifications(savedNotifications);
     
     isInitialized.current = true;
   }, []);
@@ -378,11 +355,13 @@ export function useNotifications() {
   }, []);
 
   const clearNotification = useCallback((id: string) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
+    // Don't allow clearing pinned notifications
+    setNotifications(prev => prev.filter(n => n.id === id ? !n.isPinned : true));
   }, []);
 
   const clearAll = useCallback(() => {
-    setNotifications([]);
+    // Keep pinned notifications
+    setNotifications(prev => prev.filter(n => n.isPinned));
   }, []);
 
   const updateSettings = useCallback((newSettings: Partial<NotificationSettings>) => {

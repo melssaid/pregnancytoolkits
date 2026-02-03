@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Bell, X, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, 
   Sparkles, ChevronRight, HardDrive, BellRing, Volume2, VolumeX,
-  Clock, Zap, Shield
+  Clock, Zap, Shield, Pin
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,6 +11,7 @@ import { Switch } from '@/components/ui/switch';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
+import { useTranslation } from 'react-i18next';
 
 const typeIcons: Record<string, any> = {
   appointment: Calendar,
@@ -20,6 +21,8 @@ const typeIcons: Record<string, any> = {
   stretch: Sparkles,
   backup: HardDrive,
   general: Bell,
+  welcome: Zap,
+  disclaimer: Shield,
 };
 
 const typeColors: Record<string, string> = {
@@ -30,6 +33,8 @@ const typeColors: Record<string, string> = {
   stretch: 'from-violet-500 to-purple-500',
   backup: 'from-rose-500 to-pink-500',
   general: 'from-primary to-accent',
+  welcome: 'from-pink-500 to-rose-400',
+  disclaimer: 'from-amber-500 to-yellow-400',
 };
 
 const typeBgColors: Record<string, string> = {
@@ -40,6 +45,8 @@ const typeBgColors: Record<string, string> = {
   stretch: 'bg-violet-500/10 border-violet-500/20',
   backup: 'bg-rose-500/10 border-rose-500/20',
   general: 'bg-primary/10 border-primary/20',
+  welcome: 'bg-pink-500/10 border-pink-500/20',
+  disclaimer: 'bg-amber-500/10 border-amber-500/20',
 };
 
 function NotificationItem({ notification, onRead, onClear, index }: { 
@@ -51,8 +58,10 @@ function NotificationItem({ notification, onRead, onClear, index }: {
   const Icon = typeIcons[notification.type] || Bell;
   const gradientClass = typeColors[notification.type] || 'from-primary to-accent';
   const bgClass = typeBgColors[notification.type] || 'bg-primary/10 border-primary/20';
+  const isPinned = notification.isPinned;
   
   const timeAgo = () => {
+    if (isPinned) return '';
     const diff = Date.now() - new Date(notification.time).getTime();
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(minutes / 60);
@@ -70,13 +79,22 @@ function NotificationItem({ notification, onRead, onClear, index }: {
       exit={{ opacity: 0, scale: 0.9, x: -20 }}
       transition={{ delay: index * 0.05, duration: 0.2 }}
       className={`group relative p-3 rounded-xl border backdrop-blur-sm transition-all duration-300 ${
-        notification.read 
-          ? 'bg-muted/20 border-border/30' 
-          : `${bgClass} shadow-sm hover:shadow-md`
+        isPinned 
+          ? `${bgClass} ring-1 ring-inset ring-primary/10` 
+          : notification.read 
+            ? 'bg-muted/20 border-border/30' 
+            : `${bgClass} shadow-sm hover:shadow-md`
       }`}
     >
+      {/* Pinned indicator */}
+      {isPinned && (
+        <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center">
+          <Pin className="w-2 h-2 text-primary" />
+        </div>
+      )}
+      
       {/* Unread indicator */}
-      {!notification.read && (
+      {!notification.read && !isPinned && (
         <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary animate-pulse" />
       )}
       
@@ -87,19 +105,23 @@ function NotificationItem({ notification, onRead, onClear, index }: {
         
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <h4 className={`text-sm font-semibold line-clamp-1 ${notification.read ? 'text-muted-foreground' : 'text-foreground'}`}>
+            <h4 className={`text-sm font-semibold line-clamp-1 ${notification.read && !isPinned ? 'text-muted-foreground' : 'text-foreground'}`}>
               {notification.title}
             </h4>
             <div className="flex items-center gap-1 flex-shrink-0">
-              <span className="text-[10px] text-muted-foreground bg-muted/50 px-1.5 py-0.5 rounded-full">
-                {timeAgo()}
-              </span>
-              <button 
-                onClick={onClear} 
-                className="opacity-0 group-hover:opacity-100 p-1 rounded-full hover:bg-muted/50 transition-all"
-              >
-                <X className="w-3 h-3 text-muted-foreground" />
-              </button>
+              {!isPinned && (
+                <>
+                  <span className="text-[10px] text-muted-foreground bg-muted/50 px-1.5 py-0.5 rounded-full">
+                    {timeAgo()}
+                  </span>
+                  <button 
+                    onClick={onClear} 
+                    className="opacity-0 group-hover:opacity-100 p-1 rounded-full hover:bg-muted/50 transition-all"
+                  >
+                    <X className="w-3 h-3 text-muted-foreground" />
+                  </button>
+                </>
+              )}
             </div>
           </div>
           
@@ -147,6 +169,9 @@ function SettingsItem({
 }
 
 export function NotificationsPanel() {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
+  
   const { 
     notifications, 
     unreadCount, 
@@ -162,7 +187,41 @@ export function NotificationsPanel() {
   const [showSettings, setShowSettings] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
 
-  const recentNotifications = notifications.slice(0, 5);
+  // Pinned default notifications (always shown)
+  const pinnedNotifications: Notification[] = useMemo(() => [
+    {
+      id: 'pinned-welcome',
+      type: 'welcome',
+      title: isArabic ? '👋 مرحباً بك!' : '👋 Welcome!',
+      message: isArabic 
+        ? 'استمتعي بأكثر من 40 أداة ذكية لمتابعة حملك بطريقة سهلة وآمنة.'
+        : 'Enjoy 40+ smart tools to track your pregnancy easily and safely.',
+      time: new Date().toISOString(),
+      read: true,
+      isPinned: true,
+      actionUrl: '/',
+    },
+    {
+      id: 'pinned-disclaimer',
+      type: 'disclaimer',
+      title: isArabic ? '⚕️ إخلاء مسؤولية طبية' : '⚕️ Medical Disclaimer',
+      message: isArabic 
+        ? 'هذا التطبيق للمعلومات فقط ولا يُغني عن استشارة الطبيب المختص.'
+        : 'This app is for informational purposes only and does not replace professional medical advice.',
+      time: new Date().toISOString(),
+      read: true,
+      isPinned: true,
+      actionUrl: '/privacy-policy',
+    },
+  ], [isArabic]);
+
+  // Combine pinned + regular notifications
+  const allNotifications = useMemo(() => {
+    const regularNotifications = notifications.filter(n => !n.isPinned);
+    return [...pinnedNotifications, ...regularNotifications];
+  }, [notifications, pinnedNotifications]);
+
+  const recentNotifications = allNotifications.slice(0, 7);
 
   return (
     <Card className="overflow-hidden border-border/50 bg-gradient-to-br from-card via-card to-muted/20">
@@ -293,7 +352,7 @@ export function NotificationsPanel() {
 
       {/* Notifications List */}
       <CardContent className="p-3">
-        {notifications.length === 0 ? (
+        {allNotifications.length === 0 ? (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -302,9 +361,13 @@ export function NotificationsPanel() {
             <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center mb-3">
               <Bell className="w-8 h-8 text-muted-foreground/50" />
             </div>
-            <h3 className="font-semibold text-foreground">All Caught Up!</h3>
+            <h3 className="font-semibold text-foreground">
+              {isArabic ? 'لا توجد إشعارات!' : 'All Caught Up!'}
+            </h3>
             <p className="text-xs text-muted-foreground mt-1 max-w-[200px] mx-auto">
-              We'll remind you about vitamins, exercises & appointments
+              {isArabic 
+                ? 'سنذكرك بالفيتامينات والتمارين والمواعيد'
+                : "We'll remind you about vitamins, exercises & appointments"}
             </p>
           </motion.div>
         ) : (
@@ -321,15 +384,15 @@ export function NotificationsPanel() {
               ))}
             </AnimatePresence>
             
-            {notifications.length > 5 && (
+            {allNotifications.length > 7 && (
               <div className="text-center pt-2">
                 <span className="text-xs text-muted-foreground">
-                  +{notifications.length - 5} more notifications
+                  +{allNotifications.length - 7} {isArabic ? 'إشعارات أخرى' : 'more notifications'}
                 </span>
               </div>
             )}
             
-            {notifications.length > 0 && (
+            {notifications.filter(n => !n.isPinned).length > 0 && (
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -337,7 +400,7 @@ export function NotificationsPanel() {
                 className="w-full text-xs text-muted-foreground hover:text-destructive mt-2"
               >
                 <X className="w-3 h-3 mr-1" />
-                Clear All
+                {isArabic ? 'مسح الكل' : 'Clear All'}
               </Button>
             )}
           </div>
