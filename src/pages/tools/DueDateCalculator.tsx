@@ -30,6 +30,7 @@ const isValidSaved = (data: unknown): data is SavedDueDate[] => {
 };
 
 export default function DueDateCalculator() {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const { addNotification } = useNotifications();
   const [lmpDate, setLmpDate] = useState("");
@@ -105,7 +106,7 @@ export default function DueDateCalculator() {
     };
 
     setSavedDates(prev => [newSaved, ...prev].slice(0, 5));
-    toast({ title: 'Saved!', description: 'Your due date has been saved.' });
+    toast({ title: t('toolsInternal.dueDate.saved'), description: t('toolsInternal.dueDate.savedDesc') });
   };
 
   const setReminder = (saved: SavedDueDate) => {
@@ -124,14 +125,14 @@ export default function DueDateCalculator() {
     ));
 
     toast({ 
-      title: 'Reminder Set!', 
-      description: `We'll remind you about your due date: ${formattedDate}` 
+      title: t('toolsInternal.dueDate.reminderSetTitle'), 
+      description: t('toolsInternal.dueDate.reminderSetDesc', { date: formattedDate })
     });
   };
 
   const deleteResult = (id: string) => {
     setSavedDates(prev => prev.filter(s => s.id !== id));
-    toast({ title: 'Deleted', description: 'Due date removed from history.' });
+    toast({ title: t('toolsInternal.dueDate.deleted'), description: t('toolsInternal.dueDate.deletedDesc') });
   };
 
   const shareResult = async () => {
@@ -144,14 +145,14 @@ export default function DueDateCalculator() {
       } catch (err) {}
     } else {
       await navigator.clipboard.writeText(text);
-      toast({ title: 'Copied!', description: 'Due date info copied to clipboard.' });
+      toast({ title: t('toolsInternal.dueDate.copied'), description: t('toolsInternal.dueDate.copiedDesc') });
     }
   };
 
   return (
     <ToolFrame 
-      title="Due Date Calculator" 
-      subtitle="Estimate your baby's arrival date"
+      title={t('tools.dueDateCalculator.title')} 
+      subtitle={t('tools.dueDateCalculator.description')}
       customIcon="calendar"
       mood="nurturing"
       toolId="due-date-calculator"
@@ -166,22 +167,22 @@ export default function DueDateCalculator() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Baby className="h-5 w-5 text-primary" />
-                  Calculate Your Due Date
+                  {t('toolsInternal.dueDate.calculateTitle')}
                 </CardTitle>
                 <CardDescription>
-                  Estimate when your baby will arrive
+                  {t('toolsInternal.dueDate.calculateDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Tabs defaultValue="lmp">
                   <TabsList className="grid w-full grid-cols-2 mb-4">
-                    <TabsTrigger value="lmp">Last Period</TabsTrigger>
-                    <TabsTrigger value="conception">Conception Date</TabsTrigger>
+                    <TabsTrigger value="lmp">{t('toolsInternal.dueDate.lastPeriod')}</TabsTrigger>
+                    <TabsTrigger value="conception">{t('toolsInternal.dueDate.conceptionDate')}</TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="lmp" className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="lmp">First Day of Last Menstrual Period</Label>
+                      <Label htmlFor="lmp">{t('toolsInternal.dueDate.lmpLabel')}</Label>
                       <Input
                         id="lmp"
                         type="date"
@@ -190,13 +191,13 @@ export default function DueDateCalculator() {
                       />
                     </div>
                     <Button onClick={calculateFromLMP} className="w-full">
-                      Calculate Due Date
+                      {t('toolsInternal.dueDate.calculateBtn')}
                     </Button>
                   </TabsContent>
 
                   <TabsContent value="conception" className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="conception">Conception Date</Label>
+                      <Label htmlFor="conception">{t('toolsInternal.dueDate.conceptionLabel')}</Label>
                       <Input
                         id="conception"
                         type="date"
@@ -205,7 +206,7 @@ export default function DueDateCalculator() {
                       />
                     </div>
                     <Button onClick={calculateFromConception} className="w-full">
-                      Calculate Due Date
+                      {t('toolsInternal.dueDate.calculateBtn')}
                     </Button>
                   </TabsContent>
                 </Tabs>
@@ -221,12 +222,12 @@ export default function DueDateCalculator() {
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
                       <Calendar className="h-5 w-5 text-primary" />
-                      Your Pregnancy Timeline
+                      {t('toolsInternal.dueDate.timeline')}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="rounded-lg bg-primary p-6 text-center">
-                      <p className="text-sm text-primary-foreground/80 mb-1">Estimated Due Date</p>
+                      <p className="text-sm text-primary-foreground/80 mb-1">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
                       <p className="text-3xl font-bold text-primary-foreground">
                         {format(result.dueDate, "MMMM d, yyyy")}
                       </p>
@@ -234,31 +235,31 @@ export default function DueDateCalculator() {
 
                     {result.currentWeeks >= 0 && (
                       <div className="rounded-lg bg-card p-4 shadow-card text-center">
-                        <p className="text-sm text-muted-foreground mb-1">You are currently</p>
+                        <p className="text-sm text-muted-foreground mb-1">{t('toolsInternal.dueDate.currentlyAt')}</p>
                         <p className="text-2xl font-semibold text-foreground">
-                          {result.currentWeeks} weeks, {result.currentDays} days
+                          {t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}
                         </p>
                         <p className="text-sm text-primary mt-1">
-                          Trimester {result.trimester}
+                          {t('toolsInternal.dueDate.trimester', { number: result.trimester })}
                         </p>
                       </div>
                     )}
 
                     <div className="grid gap-3 sm:grid-cols-3">
                       <div className="rounded-lg bg-card p-3 shadow-card">
-                        <p className="text-xs text-muted-foreground">Conception</p>
+                        <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.conception')}</p>
                         <p className="font-medium text-foreground">
                           {format(result.conception, "MMM d")}
                         </p>
                       </div>
                       <div className="rounded-lg bg-card p-3 shadow-card">
-                        <p className="text-xs text-muted-foreground">2nd Trimester</p>
+                        <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.secondTrimester')}</p>
                         <p className="font-medium text-foreground">
                           {format(result.firstTrimesterEnd, "MMM d")}
                         </p>
                       </div>
                       <div className="rounded-lg bg-card p-3 shadow-card">
-                        <p className="text-xs text-muted-foreground">3rd Trimester</p>
+                        <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.thirdTrimester')}</p>
                         <p className="font-medium text-foreground">
                           {format(result.secondTrimesterEnd, "MMM d")}
                         </p>
@@ -268,11 +269,11 @@ export default function DueDateCalculator() {
                     <div className="flex gap-2">
                       <Button onClick={saveResult} variant="outline" className="flex-1 gap-2">
                         <Save className="h-4 w-4" />
-                        Save
+                        {t('toolsInternal.dueDate.save')}
                       </Button>
                       <Button onClick={shareResult} variant="outline" className="flex-1 gap-2">
                         <Share2 className="h-4 w-4" />
-                        Share
+                        {t('toolsInternal.dueDate.share')}
                       </Button>
                     </div>
                   </CardContent>
@@ -280,7 +281,7 @@ export default function DueDateCalculator() {
 
                 {/* AI Weekly Insights */}
                 <AIInsightCard
-                  title="AI Pregnancy Guide"
+                  title={t('toolsInternal.dueDate.aiGuideTitle')}
                   prompt={`I am currently ${result.currentWeeks} weeks and ${result.currentDays} days pregnant (Trimester ${result.trimester}). My due date is ${format(result.dueDate, "MMMM d, yyyy")}.
 
 Please provide a comprehensive weekly guide:
@@ -304,7 +305,7 @@ Safe exercises for trimester ${result.trimester}
 A supportive message for this stage of pregnancy`}
                   context={{ week: result.currentWeeks, trimester: result.trimester }}
                   variant="banner"
-                  buttonText="Get Weekly Guide"
+                  buttonText={t('toolsInternal.dueDate.getWeeklyGuide')}
                 />
               </motion.div>
             )}
@@ -312,7 +313,7 @@ A supportive message for this stage of pregnancy`}
             {savedDates.length > 0 && (
               <Card className="mb-6">
                 <CardHeader>
-                  <CardTitle className="text-lg">Saved Due Dates</CardTitle>
+                  <CardTitle className="text-lg">{t('toolsInternal.dueDate.savedDueDates')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -323,10 +324,10 @@ A supportive message for this stage of pregnancy`}
                       >
                         <div>
                           <p className="font-medium text-foreground">
-                            Due: {format(new Date(saved.dueDate), "MMMM d, yyyy")}
+                            {t('toolsInternal.dueDate.due')}: {format(new Date(saved.dueDate), "MMMM d, yyyy")}
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            Calculated: {format(new Date(saved.calculatedAt), "MMM d, yyyy")}
+                            {t('toolsInternal.dueDate.calculated')}: {format(new Date(saved.calculatedAt), "MMM d, yyyy")}
                           </p>
                         </div>
                         <div className="flex gap-2">
@@ -338,12 +339,12 @@ A supportive message for this stage of pregnancy`}
                               className="gap-1"
                             >
                               <Bell className="h-4 w-4" />
-                              Remind
+                              {t('toolsInternal.dueDate.remind')}
                             </Button>
                           )}
                           {saved.reminderSet && (
                             <span className="text-xs text-primary px-2 py-1 bg-primary/10 rounded-full">
-                              ✓ Reminder Set
+                              ✓ {t('toolsInternal.dueDate.reminderSet')}
                             </span>
                           )}
                           <button
@@ -363,9 +364,7 @@ A supportive message for this stage of pregnancy`}
             <div className="flex items-start gap-3 rounded-lg bg-muted p-4">
               <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
               <p className="text-sm text-muted-foreground">
-                Only about 5% of babies are born on their exact due date. Most are born 
-                within 2 weeks before or after. Your healthcare provider may adjust your 
-                due date based on ultrasound measurements.
+                {t('toolsInternal.dueDate.info')}
               </p>
             </div>
         </motion.div>
