@@ -5,7 +5,7 @@ import {
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
   Baby, Pill, Stethoscope, Salad, ChevronRight, CalendarCheck,
   Hand, TrendingUp, Camera, Bell, Moon, Ruler, FileText,
-  Database, Clock, Calendar, Briefcase, ShoppingCart, CheckCircle2
+  Database, Clock, Calendar, Briefcase, ShoppingCart, CheckCircle2, BellRing
 } from "lucide-react";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -20,6 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 import { NotificationsPanel } from "@/components/dashboard/NotificationsPanel";
+import { useNotifications } from "@/hooks/useNotifications";
 
 type TabType = "home" | "chat" | "health" | "nutrition" | "exercise" | "videos";
 
@@ -112,7 +113,9 @@ const symptoms = ["Nausea", "Headache", "Fatigue", "Back pain", "Swelling", "Hea
 const SmartDashboard = () => {
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, loading: statsLoading } = useTrackingStats();
+  const { unreadCount } = useNotifications();
   const [activeTab, setActiveTab] = useState<TabType>("home");
+  const [showNotifications, setShowNotifications] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: "Hello! I'm your smart pregnancy assistant. How can I help you today?" }
   ]);
@@ -204,27 +207,58 @@ const SmartDashboard = () => {
 
   return (
     <Layout>
-      {/* Navigation Tabs - Adjusted positioning */}
+      {/* Navigation Tabs with Notification Button */}
       <nav className="bg-background border-b border-border/50">
         <div className="container px-3">
-          <div className="flex gap-1 py-2 overflow-x-auto scrollbar-hide -mx-1 px-1">
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-                  activeTab === tab.id
-                    ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-sm"
-                    : "bg-muted/40 text-muted-foreground hover:bg-muted"
-                }`}
-              >
-                <tab.icon className="w-3 h-3" />
-                {tab.label}
-              </button>
-            ))}
+          <div className="flex items-center justify-between py-2">
+            <div className="flex gap-1 overflow-x-auto scrollbar-hide flex-1 -mx-1 px-1">
+              {tabs.map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                    activeTab === tab.id
+                      ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-sm"
+                      : "bg-muted/40 text-muted-foreground hover:bg-muted"
+                  }`}
+                >
+                  <tab.icon className="w-3 h-3" />
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            
+            {/* Notification Button */}
+            <button
+              onClick={() => setShowNotifications(!showNotifications)}
+              className="relative ms-2 p-2 rounded-full bg-muted/50 hover:bg-muted transition-colors flex-shrink-0"
+            >
+              <BellRing className={`w-4 h-4 ${showNotifications ? 'text-primary' : 'text-muted-foreground'}`} />
+              {unreadCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-destructive text-destructive-foreground text-[9px] font-bold rounded-full flex items-center justify-center">
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              )}
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Notifications Panel - Collapsible */}
+      <AnimatePresence>
+        {showNotifications && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden border-b border-border/30"
+          >
+            <div className="container px-3 py-3">
+              <NotificationsPanel />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <main className="container py-4 space-y-4">
         {/* Home Tab - Enhanced with Progress Ring */}
@@ -432,9 +466,6 @@ const SmartDashboard = () => {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Notifications Panel */}
-            <NotificationsPanel />
           </motion.div>
         )}
 
