@@ -15,12 +15,12 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en', // Force English as default
     fallbackLng: 'en',
     supportedLngs: ['en', 'ar'],
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      order: ['navigator', 'localStorage', 'htmlTag'],
       caches: ['localStorage'],
+      lookupLocalStorage: 'i18nextLng',
     },
     interpolation: {
       escapeValue: false,
