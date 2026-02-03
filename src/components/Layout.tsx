@@ -41,20 +41,28 @@ export function Layout({ children, title, showBack = false }: LayoutProps) {
 
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-md shadow-sm">
-        <div className="container flex h-14 items-center justify-between">
+        <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
             {showBack && <BackButton />}
             
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center gap-2.5">
               <img 
                 src={logoImage} 
                 alt="Pregnancy Toolkits" 
-                width={40}
-                height={40}
+                width={44}
+                height={44}
                 loading="eager"
                 decoding="async"
-                className="h-10 w-10 rounded-full shadow-md object-cover"
+                className="h-11 w-11 rounded-full shadow-lg object-cover"
               />
+              <div className="flex flex-col">
+                <span className="text-sm sm:text-base font-bold text-foreground tracking-tight">
+                  Pregnancy Toolkits
+                </span>
+                <span className="text-[10px] sm:text-xs text-muted-foreground font-medium mt-0.5">
+                  Your complete pregnancy companion
+                </span>
+              </div>
             </Link>
           </div>
 
