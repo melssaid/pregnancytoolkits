@@ -12,17 +12,6 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
-const supportTopics = [
-  { id: "emotional", label: "Emotional Support", icon: "💝", description: "How to be emotionally present" },
-  { id: "physical", label: "Physical Comfort", icon: "🤲", description: "Massage, help with tasks" },
-  { id: "appointments", label: "Medical Appointments", icon: "🏥", description: "Being involved in prenatal care" },
-  { id: "communication", label: "Communication", icon: "💬", description: "Understanding mood changes" },
-  { id: "bonding", label: "Bonding with Baby", icon: "👶", description: "Connecting before birth" },
-  { id: "labor", label: "Labor Preparation", icon: "⏰", description: "Being ready for D-day" },
-  { id: "postpartum", label: "Postpartum Planning", icon: "🏠", description: "After baby arrives" },
-  { id: "intimacy", label: "Intimacy & Connection", icon: "❤️", description: "Maintaining closeness" },
-];
-
 const partnerVideos: Video[] = [
   {
     id: "1",
@@ -58,8 +47,19 @@ const partnerVideos: Video[] = [
   },
 ];
 
+const TOPIC_KEYS = [
+  "emotional",
+  "physical",
+  "appointments",
+  "communication",
+  "bonding",
+  "labor",
+  "postpartum",
+  "intimacy",
+] as const;
+
 const AIPartnerGuide = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { settings } = useSettings();
   const { streamChat, isLoading } = usePregnancyAI();
   
@@ -69,14 +69,24 @@ const AIPartnerGuide = () => {
   const [partnerType, setPartnerType] = useState<string>("husband");
   const [response, setResponse] = useState("");
 
+  const currentLang = i18n.language;
+
   const getAdvice = async () => {
-    const topic = supportTopics.find(t => t.id === selectedTopic);
+    const topicLabel = t(`toolsInternal.partnerGuide.topics.${selectedTopic}.label`);
+    const topicDesc = t(`toolsInternal.partnerGuide.topics.${selectedTopic}.desc`);
+    const partnerLabel = t(`toolsInternal.partnerGuide.${partnerType}`);
     
-    const prompt = `As a pregnancy relationship counselor, provide guidance for a ${partnerType} supporting their pregnant partner:
+    const langInstruction = currentLang !== 'en' 
+      ? `IMPORTANT: Respond ENTIRELY in ${currentLang === 'ar' ? 'Arabic' : currentLang === 'de' ? 'German' : currentLang === 'tr' ? 'Turkish' : currentLang === 'fr' ? 'French' : currentLang === 'es' ? 'Spanish' : currentLang === 'pt' ? 'Portuguese' : 'English'}. All text must be in this language.`
+      : '';
+
+    const prompt = `${langInstruction}
+
+As a pregnancy relationship counselor, provide guidance for a ${partnerLabel} supporting their pregnant partner:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || 20}
 **Trimester:** ${trimester}
-**Topic:** ${topic?.label} - ${topic?.description}
+**Topic:** ${topicLabel} - ${topicDesc}
 
 Provide compassionate, practical advice including:
 1. **Understanding Her Experience** - What she's going through physically and emotionally
@@ -103,7 +113,7 @@ Be warm, practical, and specific. Include real examples.`;
     return (
       <MedicalDisclaimer
         onAccept={() => setDisclaimerAccepted(true)}
-        toolName="AI Partner Support Guide"
+        toolName={t('toolsInternal.partnerGuide.title')}
       />
     );
   }
@@ -120,29 +130,29 @@ Be warm, practical, and specific. Include real examples.`;
         {/* Settings */}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label>I am her...</Label>
+            <Label className="text-xs">{t('toolsInternal.partnerGuide.iAmHer')}</Label>
             <Select value={partnerType} onValueChange={setPartnerType}>
-              <SelectTrigger>
+              <SelectTrigger className="text-xs">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="husband">Husband</SelectItem>
-                <SelectItem value="partner">Partner</SelectItem>
-                <SelectItem value="boyfriend">Boyfriend</SelectItem>
-                <SelectItem value="wife">Wife</SelectItem>
+                <SelectItem value="husband">{t('toolsInternal.partnerGuide.husband')}</SelectItem>
+                <SelectItem value="partner">{t('toolsInternal.partnerGuide.partner')}</SelectItem>
+                <SelectItem value="boyfriend">{t('toolsInternal.partnerGuide.boyfriend')}</SelectItem>
+                <SelectItem value="wife">{t('toolsInternal.partnerGuide.wife')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="space-y-2">
-            <Label>Trimester</Label>
+            <Label className="text-xs">{t('toolsInternal.partnerGuide.trimester')}</Label>
             <Select value={trimester} onValueChange={setTrimester}>
-              <SelectTrigger>
+              <SelectTrigger className="text-xs">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="first">First (1-12 weeks)</SelectItem>
-                <SelectItem value="second">Second (13-26 weeks)</SelectItem>
-                <SelectItem value="third">Third (27-40 weeks)</SelectItem>
+                <SelectItem value="first">{t('toolsInternal.partnerGuide.trimester1')}</SelectItem>
+                <SelectItem value="second">{t('toolsInternal.partnerGuide.trimester2')}</SelectItem>
+                <SelectItem value="third">{t('toolsInternal.partnerGuide.trimester3')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -150,21 +160,21 @@ Be warm, practical, and specific. Include real examples.`;
 
         {/* Topics */}
         <div className="space-y-3">
-          <Label>What do you need help with?</Label>
+          <Label className="text-xs">{t('toolsInternal.partnerGuide.whatHelpWith')}</Label>
           <div className="grid grid-cols-2 gap-2">
-            {supportTopics.map((topic) => (
+            {TOPIC_KEYS.map((topicKey) => (
               <div
-                key={topic.id}
-                onClick={() => setSelectedTopic(topic.id)}
-                className={`p-3 rounded-lg border cursor-pointer transition-all ${
-                  selectedTopic === topic.id
+                key={topicKey}
+                onClick={() => setSelectedTopic(topicKey)}
+                className={`p-2.5 rounded-lg border cursor-pointer transition-all ${
+                  selectedTopic === topicKey
                     ? "bg-primary/10 border-primary"
                     : "bg-card hover:bg-muted"
                 }`}
               >
-                <div className="text-2xl mb-1">{topic.icon}</div>
-                <div className="font-medium text-sm">{topic.label}</div>
-                <div className="text-xs text-muted-foreground">{topic.description}</div>
+                <div className="text-xl mb-1">{t(`toolsInternal.partnerGuide.topics.${topicKey}.icon`)}</div>
+                <div className="font-medium text-xs truncate">{t(`toolsInternal.partnerGuide.topics.${topicKey}.label`)}</div>
+                <div className="text-[10px] text-muted-foreground truncate">{t(`toolsInternal.partnerGuide.topics.${topicKey}.desc`)}</div>
               </div>
             ))}
           </div>
@@ -174,39 +184,38 @@ Be warm, practical, and specific. Include real examples.`;
         <Button
           onClick={getAdvice}
           disabled={isLoading || !selectedTopic}
-          className="w-full"
-          size="lg"
+          className="w-full text-xs h-9"
         >
-          <Sparkles className="w-4 h-4 mr-2" />
-          {isLoading ? "Getting Advice..." : "Get AI Partner Advice"}
+          <Sparkles className="w-3.5 h-3.5 me-1.5 shrink-0" />
+          <span className="truncate">{isLoading ? t('toolsInternal.partnerGuide.gettingAdvice') : t('toolsInternal.partnerGuide.getAdvice')}</span>
         </Button>
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-muted/50">
+          <Card className="p-3 bg-muted/50">
             <MarkdownRenderer content={response} isLoading={isLoading} />
           </Card>
         )}
 
         {/* Quick Tips */}
-        <Card className="p-4 bg-muted/30">
-          <h4 className="font-medium mb-3">💡 Quick Daily Actions</h4>
-          <ul className="space-y-2 text-sm">
+        <Card className="p-3 bg-muted/30">
+          <h4 className="font-medium mb-2 text-xs">💡 {t('toolsInternal.partnerGuide.quickDailyActions')}</h4>
+          <ul className="space-y-1.5 text-[10px]">
             <li className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">1</span>
-              Ask "How are you feeling today?" and truly listen
+              <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[9px] shrink-0">1</span>
+              <span className="truncate">{t('toolsInternal.partnerGuide.action1')}</span>
             </li>
             <li className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">2</span>
-              Offer a foot or back massage
+              <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[9px] shrink-0">2</span>
+              <span className="truncate">{t('toolsInternal.partnerGuide.action2')}</span>
             </li>
             <li className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">3</span>
-              Take over a household task without being asked
+              <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[9px] shrink-0">3</span>
+              <span className="truncate">{t('toolsInternal.partnerGuide.action3')}</span>
             </li>
             <li className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">4</span>
-              Read to the baby bump together
+              <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[9px] shrink-0">4</span>
+              <span className="truncate">{t('toolsInternal.partnerGuide.action4')}</span>
             </li>
           </ul>
         </Card>
@@ -214,8 +223,8 @@ Be warm, practical, and specific. Include real examples.`;
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
           videos={partnerVideos}
-          title="Partner Support Videos"
-          subtitle="Learn how to be the best support partner"
+          title={t('toolsInternal.partnerGuide.partnerVideos')}
+          subtitle={t('toolsInternal.partnerGuide.partnerVideosSubtitle')}
           accentColor="rose"
         />
       </div>
