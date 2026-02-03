@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Check, ChevronDown } from 'lucide-react';
+import { Globe, Check } from 'lucide-react';
 import { setManualLanguage } from '@/i18n';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Popover,
   PopoverContent,
@@ -10,17 +11,16 @@ import {
 } from '@/components/ui/popover';
 
 const languages = [
-  { code: 'en', flag: '🇺🇸', short: 'EN' },
-  { code: 'ar', flag: '🇸🇦', short: 'ع' },
-  { code: 'de', flag: '🇩🇪', short: 'DE' },
-  { code: 'tr', flag: '🇹🇷', short: 'TR' },
-  { code: 'fr', flag: '🇫🇷', short: 'FR' },
-  { code: 'es', flag: '🇪🇸', short: 'ES' },
-  { code: 'pt', flag: '🇵🇹', short: 'PT' },
+  { code: 'en', flag: '🇺🇸', short: 'EN', name: 'English' },
+  { code: 'ar', flag: '🇸🇦', short: 'ع', name: 'العربية' },
+  { code: 'de', flag: '🇩🇪', short: 'DE', name: 'Deutsch' },
+  { code: 'tr', flag: '🇹🇷', short: 'TR', name: 'Türkçe' },
+  { code: 'fr', flag: '🇫🇷', short: 'FR', name: 'Français' },
+  { code: 'es', flag: '🇪🇸', short: 'ES', name: 'Español' },
+  { code: 'pt', flag: '🇵🇹', short: 'PT', name: 'Português' },
 ];
 
 interface LanguageDropdownProps {
-  variant?: 'default' | 'compact';
   className?: string;
 }
 
@@ -40,46 +40,67 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <button
+        <motion.button
+          whileTap={{ scale: 0.92 }}
           className={cn(
-            "inline-flex items-center gap-1 h-8 px-2 rounded-md",
-            "text-xs font-medium text-foreground",
-            "bg-muted/50 hover:bg-muted border border-border/50",
-            "transition-all duration-200 active:scale-95",
+            "relative flex items-center justify-center",
+            "w-8 h-8 rounded-full",
+            "bg-gradient-to-br from-primary/10 to-primary/5",
+            "border border-primary/20 hover:border-primary/40",
+            "text-primary hover:text-primary/80",
+            "transition-all duration-200",
+            "shadow-sm hover:shadow-md hover:shadow-primary/10",
             className
           )}
         >
-          <span className="text-sm leading-none">{currentLang.flag}</span>
-          <span className="text-[10px] font-semibold">{currentLang.short}</span>
-          <ChevronDown className="h-3 w-3 opacity-60" />
-        </button>
+          <Globe className="w-4 h-4" strokeWidth={2} />
+          
+          {/* Active language indicator */}
+          <span className="absolute -bottom-0.5 -end-0.5 flex items-center justify-center w-4 h-4 rounded-full bg-card border border-border text-[8px] font-bold text-foreground shadow-sm">
+            {currentLang.short.charAt(0)}
+          </span>
+        </motion.button>
       </PopoverTrigger>
+      
       <PopoverContent 
         align="end" 
         sideOffset={8}
-        className="w-auto min-w-[140px] p-1.5 bg-popover border border-border shadow-xl z-[100]"
+        className="w-[180px] p-2 bg-card border border-border/60 shadow-xl rounded-xl z-[100]"
       >
-        <div className="grid grid-cols-2 gap-1">
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              onClick={() => handleLanguageChange(lang.code)}
-              className={cn(
-                "flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-md",
-                "text-xs font-medium transition-all duration-150",
-                "hover:bg-accent active:scale-95",
-                currentLanguage === lang.code 
-                  ? "bg-primary/10 text-primary ring-1 ring-primary/30" 
-                  : "text-foreground"
-              )}
-            >
-              <span className="text-base leading-none">{lang.flag}</span>
-              <span className="text-[10px] font-semibold">{lang.short}</span>
-              {currentLanguage === lang.code && (
-                <Check className="h-3 w-3 text-primary" />
-              )}
-            </button>
-          ))}
+        <div className="space-y-1">
+          <AnimatePresence>
+            {languages.map((lang, index) => (
+              <motion.button
+                key={lang.code}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.03 }}
+                onClick={() => handleLanguageChange(lang.code)}
+                className={cn(
+                  "w-full flex items-center gap-2.5 px-3 py-2 rounded-lg",
+                  "text-sm font-medium transition-all duration-150",
+                  "hover:bg-accent/50 active:scale-[0.98]",
+                  currentLanguage === lang.code 
+                    ? "bg-primary/10 text-primary" 
+                    : "text-foreground"
+                )}
+              >
+                <span className="text-lg leading-none">{lang.flag}</span>
+                <span className="flex-1 text-start text-xs font-medium truncate">
+                  {lang.name}
+                </span>
+                {currentLanguage === lang.code && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center"
+                  >
+                    <Check className="w-2.5 h-2.5 text-primary" strokeWidth={3} />
+                  </motion.div>
+                )}
+              </motion.button>
+            ))}
+          </AnimatePresence>
         </div>
       </PopoverContent>
     </Popover>
