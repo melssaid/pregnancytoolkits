@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 
 import en from './locales/en.json';
 import ar from './locales/ar.json';
@@ -20,18 +19,36 @@ const resources = {
   pt: { translation: pt },
 };
 
+const SUPPORTED_LANGUAGES = ['en', 'ar', 'de', 'tr', 'fr', 'es', 'pt'];
+const MANUAL_LANGUAGE_KEY = 'user_selected_language';
+
+// Get the best matching language from browser
+const getBrowserLanguage = (): string => {
+  const browserLang = navigator.language?.split('-')[0] || 'en';
+  return SUPPORTED_LANGUAGES.includes(browserLang) ? browserLang : 'en';
+};
+
+// Check if user manually selected a language
+const getManualLanguage = (): string | null => {
+  return localStorage.getItem(MANUAL_LANGUAGE_KEY);
+};
+
+// Determine initial language: manual selection > browser language
+const getInitialLanguage = (): string => {
+  const manualLang = getManualLanguage();
+  if (manualLang && SUPPORTED_LANGUAGES.includes(manualLang)) {
+    return manualLang;
+  }
+  return getBrowserLanguage();
+};
+
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
+    lng: getInitialLanguage(),
     fallbackLng: 'en',
-    supportedLngs: ['en', 'ar', 'de', 'tr', 'fr', 'es', 'pt'],
-    detection: {
-      order: ['navigator', 'localStorage', 'htmlTag'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'i18nextLng',
-    },
+    supportedLngs: SUPPORTED_LANGUAGES,
     interpolation: {
       escapeValue: false,
     },
@@ -42,6 +59,21 @@ export const updateDocumentDirection = (language: string) => {
   const dir = language === 'ar' ? 'rtl' : 'ltr';
   document.documentElement.setAttribute('dir', dir);
   document.documentElement.setAttribute('lang', language);
+};
+
+// Function to manually set language (saves to localStorage)
+export const setManualLanguage = (language: string) => {
+  if (SUPPORTED_LANGUAGES.includes(language)) {
+    localStorage.setItem(MANUAL_LANGUAGE_KEY, language);
+    i18n.changeLanguage(language);
+  }
+};
+
+// Function to reset to browser language
+export const resetToBrowserLanguage = () => {
+  localStorage.removeItem(MANUAL_LANGUAGE_KEY);
+  const browserLang = getBrowserLanguage();
+  i18n.changeLanguage(browserLang);
 };
 
 // Set initial direction

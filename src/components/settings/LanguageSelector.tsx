@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, Check } from 'lucide-react';
+import { Globe, Check, RotateCcw } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { setManualLanguage, resetToBrowserLanguage } from '@/i18n';
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
@@ -17,10 +18,14 @@ const languages = [
 export const LanguageSelector: React.FC = () => {
   const { i18n, t } = useTranslation();
   const currentLanguage = i18n.language?.split('-')[0] || 'en';
+  const hasManualSelection = localStorage.getItem('user_selected_language') !== null;
 
   const handleLanguageChange = (langCode: string) => {
-    i18n.changeLanguage(langCode);
-    localStorage.setItem('i18nextLng', langCode);
+    setManualLanguage(langCode);
+  };
+
+  const handleResetToAuto = () => {
+    resetToBrowserLanguage();
   };
 
   return (
@@ -44,15 +49,30 @@ export const LanguageSelector: React.FC = () => {
               onClick={() => handleLanguageChange(lang.code)}
             >
               <span className="text-lg">{lang.flag}</span>
-              <span className="flex-1 text-left">{lang.name}</span>
+              <span className="flex-1 text-start">{lang.name}</span>
               {currentLanguage === lang.code && (
                 <Check className="w-4 h-4" />
               )}
             </Button>
           ))}
         </div>
+        
+        {hasManualSelection && (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full mt-3 text-muted-foreground"
+            onClick={handleResetToAuto}
+          >
+            <RotateCcw className="w-4 h-4 me-2" />
+            {t('settings.language.resetToAuto', 'Use browser language')}
+          </Button>
+        )}
+        
         <p className="text-xs text-muted-foreground mt-3">
-          {t('settings.language.autoDetectNote', 'The app automatically detects your browser language on first visit.')}
+          {hasManualSelection 
+            ? t('settings.language.manualNote', 'You have manually selected a language.')
+            : t('settings.language.autoDetectNote', 'Using your browser language automatically.')}
         </p>
       </CardContent>
     </Card>
