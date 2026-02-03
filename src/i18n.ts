@@ -6,12 +6,18 @@ import en from './locales/en.json';
 import ar from './locales/ar.json';
 import de from './locales/de.json';
 import tr from './locales/tr.json';
+import fr from './locales/fr.json';
+import es from './locales/es.json';
+import pt from './locales/pt.json';
 
 const resources = {
   en: { translation: en },
   ar: { translation: ar },
   de: { translation: de },
   tr: { translation: tr },
+  fr: { translation: fr },
+  es: { translation: es },
+  pt: { translation: pt },
 };
 
 i18n
@@ -20,7 +26,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    supportedLngs: ['en', 'ar', 'de', 'tr'],
+    supportedLngs: ['en', 'ar', 'de', 'tr', 'fr', 'es', 'pt'],
     detection: {
       order: ['navigator', 'localStorage', 'htmlTag'],
       caches: ['localStorage'],
