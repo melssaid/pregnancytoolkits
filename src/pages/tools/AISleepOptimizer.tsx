@@ -261,53 +261,53 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         </div>
 
         {/* AI Action Buttons */}
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-1.5">
           <Button
             onClick={analyzeSleep}
             disabled={isLoading}
             variant={activeTab === 'analysis' ? 'default' : 'outline'}
-            className="flex-col h-auto py-3 gap-1"
+            className="flex-col h-auto py-2 gap-0.5"
           >
             {isLoading && activeTab === 'analysis' ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
-              <Brain className="w-5 h-5" />
+              <Brain className="w-4 h-4" />
             )}
-            <span className="text-xs">Sleep Plan</span>
+            <span className="text-[10px]">Sleep Plan</span>
           </Button>
           <Button
             onClick={generateMeditation}
             disabled={isLoading}
             variant={activeTab === 'meditation' ? 'default' : 'outline'}
-            className="flex-col h-auto py-3 gap-1"
+            className="flex-col h-auto py-2 gap-0.5"
           >
             {isLoading && activeTab === 'meditation' ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
-              <Wind className="w-5 h-5" />
+              <Wind className="w-4 h-4" />
             )}
-            <span className="text-xs">Meditation</span>
+            <span className="text-[10px]">Meditation</span>
           </Button>
           <Button
             onClick={generateRoutine}
             disabled={isLoading}
             variant={activeTab === 'routine' ? 'default' : 'outline'}
-            className="flex-col h-auto py-3 gap-1"
+            className="flex-col h-auto py-2 gap-0.5"
           >
             {isLoading && activeTab === 'routine' ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
-              <Bed className="w-5 h-5" />
+              <Bed className="w-4 h-4" />
             )}
-            <span className="text-xs">Routine</span>
+            <span className="text-[10px]">Routine</span>
           </Button>
         </div>
 
         {/* AI Response - Tabbed Content */}
         {(response || meditationScript || routinePlan) && (
-          <Card className="p-4 bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30">
+          <Card className="p-3 bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30">
             <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
-              <TabsList className="w-full mb-4">
+              <TabsList className="w-full mb-3">
                 <TabsTrigger value="analysis" className="flex-1" disabled={!response}>
                   <Brain className="w-4 h-4 mr-1" />
                   Sleep Plan

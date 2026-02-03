@@ -163,12 +163,11 @@ const AISymptomAnalyzer: React.FC = () => {
           <Button
             onClick={analyzeSymptoms}
             disabled={isAnalyzing}
-            className="w-full gap-2"
-            size="lg"
+            className="w-full gap-1.5 text-xs h-9"
           >
             {isAnalyzing ? (
               <>
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" />
                 {t('toolsInternal.symptomAnalyzer.analyzing')}
               </>
             ) : (
@@ -182,21 +181,21 @@ const AISymptomAnalyzer: React.FC = () => {
         {/* Analysis Results */}
         {analyzed && (
           <Card className="border-green-200 bg-green-50/50">
-            <CardContent className="p-4 space-y-4">
+            <CardContent className="p-3 space-y-3">
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <h2 className="text-lg font-semibold">{t('toolsInternal.symptomAnalyzer.results')} ({t('toolsInternal.symptomAnalyzer.week', { week: currentWeek })})</h2>
+                <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                <h2 className="text-sm font-semibold">{t('toolsInternal.symptomAnalyzer.results')} ({t('toolsInternal.symptomAnalyzer.week', { week: currentWeek })})</h2>
               </div>
               
               {selectedSymptoms.map((symptom) => (
-                <div key={symptom.id} className="bg-white rounded-xl p-4 border border-border">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-medium">{t(`toolsInternal.symptomAnalyzer.symptoms.${symptom.id}`)}</h3>
-                    <Badge variant="secondary" className="text-xs uppercase">
+                <div key={symptom.id} className="bg-white rounded-lg p-3 border border-border">
+                  <div className="flex items-center justify-between mb-1.5 gap-2">
+                    <h3 className="font-medium text-xs truncate">{t(`toolsInternal.symptomAnalyzer.symptoms.${symptom.id}`)}</h3>
+                    <Badge variant="secondary" className="text-[10px] uppercase shrink-0">
                       {symptomDatabase.find(d => d.id === symptom.id)?.category || 'general'}
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     {analysisResult[symptom.id] || "Symptom noted. Discuss persistence with your doctor."}
                   </p>
                   <div className="mt-3 flex items-center gap-2 text-xs text-primary bg-primary/10 p-2 rounded-lg">

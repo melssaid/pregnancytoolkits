@@ -284,26 +284,26 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
         {/* Generate Button */}
         <Button 
           onClick={generateStory} 
-          className="w-full gap-2"
+          className="w-full gap-1.5 text-xs h-9"
           disabled={isGenerating}
         >
-          <Sparkles className="w-4 h-4" />
+          <Sparkles className="w-3.5 h-3.5" />
           {isGenerating ? t('toolsInternal.birthStory.creating', 'Creating Your Story...') : t('toolsInternal.birthStory.generate', 'Generate Birth Story')}
         </Button>
 
         {/* Generated Story */}
         {generatedStory && (
           <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">{t('toolsInternal.birthStory.yourStory', 'Your Birth Story')}</h3>
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={shareStory} className="gap-2">
-                    <Share2 className="w-4 h-4" />
+            <CardContent className="p-3">
+              <div className="flex items-center justify-between mb-3 gap-2">
+                <h3 className="text-sm font-semibold truncate">{t('toolsInternal.birthStory.yourStory', 'Your Birth Story')}</h3>
+                <div className="flex gap-1.5 shrink-0">
+                  <Button variant="outline" size="sm" onClick={shareStory} className="gap-1 h-7 px-2 text-[10px]">
+                    <Share2 className="w-3 h-3" />
                     {t('common.share', 'Share')}
                   </Button>
-                  <Button variant="outline" size="sm" onClick={downloadStory} className="gap-2">
-                    <Download className="w-4 h-4" />
+                  <Button variant="outline" size="sm" onClick={downloadStory} className="gap-1 h-7 px-2 text-[10px]">
+                    <Download className="w-3 h-3" />
                     {t('common.download', 'Download')}
                   </Button>
                 </div>
