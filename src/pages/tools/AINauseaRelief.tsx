@@ -36,35 +36,35 @@ const quickRemedies = [
 const nauseaVideos: Video[] = [
   {
     id: "1",
-    title: "Morning Sickness Relief Tips",
-    description: "Doctor-approved remedies for pregnancy nausea",
-    youtubeId: "IWBF60kQcuk",
-    duration: "5:30",
+    title: "Top Tips for Nausea in Pregnancy",
+    description: "Expert advice from Dr. Lora Shahine on morning sickness",
+    youtubeId: "qTEDyHPUeYQ",
+    duration: "8:30",
     category: "Relief Tips"
   },
   {
     id: "2",
-    title: "Foods That Help Morning Sickness",
-    description: "Best foods to eat when feeling nauseous",
-    youtubeId: "0BrxCY89_uQ",
-    duration: "4:15",
-    category: "Diet Tips"
+    title: "4 Tips to Cope with Morning Sickness",
+    description: "Practical strategies to manage pregnancy nausea",
+    youtubeId: "C5TTWuV2Ztw",
+    duration: "5:15",
+    category: "Relief Tips"
   },
   {
     id: "3",
-    title: "Natural Remedies for Pregnancy Nausea",
-    description: "Ginger, lemon, and other natural solutions",
-    youtubeId: "C_HuuCN9FMU",
-    duration: "6:00",
-    category: "Natural Remedies"
+    title: "Managing Nausea During Pregnancy",
+    description: "Dr. Chloe Rozon discusses effective strategies",
+    youtubeId: "Y3-oVdPmh7U",
+    duration: "10:00",
+    category: "Medical Advice"
   },
   {
     id: "4",
-    title: "Pregnancy Diet Guide",
-    description: "What to eat and what to avoid while pregnant",
-    youtubeId: "pozcaggYIWk",
-    duration: "8:42",
-    category: "Diet Tips"
+    title: "First Trimester Survival Tips",
+    description: "OB/GYN tips for early pregnancy symptoms",
+    youtubeId: "KPA3DRZeH4A",
+    duration: "12:00",
+    category: "First Trimester"
   },
 ];
 

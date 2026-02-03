@@ -8,10 +8,10 @@ import { VideoLibrary, Video } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 const mentalHealthVideos: Video[] = [
-  { id: "1", title: "Understanding Postpartum Depression", description: "Signs, symptoms, and when to seek help", youtubeId: "qbMQwVJY_Jc", duration: "12:30", category: "Education" },
-  { id: "2", title: "Self-Care Tips for New Moms", description: "Practical mental wellness strategies", youtubeId: "BHY0FxzoKZE", duration: "10:15", category: "Self-Care" },
-  { id: "3", title: "Postpartum Anxiety Explained", description: "Coping with anxiety after birth", youtubeId: "7V8CRLYh0Vo", duration: "11:45", category: "Education" },
-  { id: "4", title: "Mindfulness for New Parents", description: "Relaxation and breathing exercises", youtubeId: "inpok4MKVLM", duration: "15:00", category: "Relaxation" },
+  { id: "1", title: "What is Postpartum Depression?", description: "Signs, symptoms, and when to seek help from mental health professionals", youtubeId: "6kV2_L3uSS0", duration: "8:30", category: "Education" },
+  { id: "2", title: "Postpartum Depression Explained", description: "Symptoms, risk factors, and treatment options", youtubeId: "Aj1Vk3q-4tg", duration: "10:15", category: "Education" },
+  { id: "3", title: "Pregnancy Relaxation Meditation", description: "Calming meditation for better mental health", youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: "Relaxation" },
+  { id: "4", title: "Newborn Care Week 1", description: "Pediatrician guide to first week with baby", youtubeId: "hpgjwK_oQe0", duration: "18:00", category: "Self-Care" },
 ];
 
 interface ScreeningQuestion {

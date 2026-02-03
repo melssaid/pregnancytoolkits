@@ -42,11 +42,11 @@ const partnerVideos: Video[] = [
   },
   {
     id: "3",
-    title: "Pregnancy Journey Week by Week",
-    description: "Understanding pregnancy development together",
-    youtubeId: "3HPhF_IPJ1E",
+    title: "Labor & Birth Positions",
+    description: "How partners can help with comfort during labor",
+    youtubeId: "nc8IbAAotHo",
     duration: "15:00",
-    category: "Education"
+    category: "Labor Support"
   },
   {
     id: "4",

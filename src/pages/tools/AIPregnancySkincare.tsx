@@ -36,35 +36,35 @@ const unsafeIngredients = [
 const skincareVideos: Video[] = [
   {
     id: "1",
-    title: "Pregnancy Nutrition Tips",
-    description: "Essential nutrition for healthy skin during pregnancy",
-    youtubeId: "IWBF60kQcuk",
-    duration: "5:30",
-    category: "Nutrition"
+    title: "Pregnancy Safe Skincare Routine",
+    description: "Board-certified dermatologist Dr. Joyce Park explains safe products",
+    youtubeId: "CK9K2TmLG3c",
+    duration: "15:30",
+    category: "Skincare Routine"
   },
   {
     id: "2",
-    title: "Healthy Eating in Pregnancy",
-    description: "Foods that promote healthy pregnancy and skin",
-    youtubeId: "C_HuuCN9FMU",
-    duration: "6:00",
-    category: "Diet"
+    title: "Safe Skincare During Pregnancy",
+    description: "Dr. Sheila Farhang on what products to use and avoid",
+    youtubeId: "OeEQy4PO8Jg",
+    duration: "12:00",
+    category: "Product Safety"
   },
   {
     id: "3",
-    title: "Pregnancy Wellness Guide",
-    description: "Complete wellness tips including skincare",
-    youtubeId: "0BrxCY89_uQ",
-    duration: "4:15",
-    category: "Wellness"
+    title: "Pregnancy Nutrition for Skin",
+    description: "Foods that promote healthy pregnancy and glowing skin",
+    youtubeId: "2kNGY3gyrEc",
+    duration: "11:30",
+    category: "Nutrition"
   },
   {
     id: "4",
-    title: "Self-Care During Pregnancy",
-    description: "Taking care of yourself during pregnancy",
+    title: "Pregnancy Diet Guide",
+    description: "What to eat for healthy skin during pregnancy",
     youtubeId: "pozcaggYIWk",
     duration: "8:42",
-    category: "Self-Care"
+    category: "Diet"
   },
 ];
 
