@@ -1,13 +1,11 @@
 import { useState, useMemo, memo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, Search } from "lucide-react";
+import { Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
 import { getSortedTools, getToolsByCategory } from "@/lib/tools-data";
-import { Button } from "@/components/ui/button";
 import { SubscriptionModal } from "@/components/SubscriptionModal";
-import { SEOContent } from "@/components/SEOContent";
 
 interface CategoryConfig {
   key: string;
@@ -165,9 +163,6 @@ const Index = () => {
           })}
         </div>
       </section>
-
-      {/* SEO Content Section */}
-      <SEOContent />
 
       <SubscriptionModal 
         isOpen={showSubscriptionModal} 
