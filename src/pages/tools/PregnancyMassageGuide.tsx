@@ -195,23 +195,6 @@ export default function PregnancyMassageGuide() {
           </CardContent>
         </Card>
 
-        {/* Safety Notice */}
-        <Card className="bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
-          <CardContent className="p-4">
-            <div className="flex gap-3">
-              <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold text-amber-800 dark:text-amber-200">{t('toolsInternal.massageGuide.generalSafety', 'General Safety')}</h4>
-                <ul className="text-sm text-amber-700 dark:text-amber-300 mt-1 space-y-1">
-                  <li>• {t('toolsInternal.massageGuide.safety1', 'Avoid massaging the abdomen directly')}</li>
-                  <li>• {t('toolsInternal.massageGuide.safety2', 'Use gentle pressure only')}</li>
-                  <li>• {t('toolsInternal.massageGuide.safety3', 'Stop if you feel any discomfort')}</li>
-                  <li>• {t('toolsInternal.massageGuide.safety4', 'Consult your doctor before starting')}</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Selected Technique Detail */}
         {selectedTechnique && (

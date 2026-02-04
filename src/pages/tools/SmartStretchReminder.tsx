@@ -308,17 +308,6 @@ export default function SmartStretchReminder() {
           </CardContent>
         </Card>
 
-        {/* Disclaimer */}
-        <Card className="bg-amber-50 dark:bg-amber-900/10 border-amber-200 dark:border-amber-800">
-          <CardContent className="p-4">
-            <div className="flex gap-3">
-              <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
-              <p className="text-xs text-amber-800 dark:text-amber-200">
-                Stop if you feel pain. These stretches are for general wellness and not a substitute for medical advice.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </ToolFrame>
   );

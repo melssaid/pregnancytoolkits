@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
-import { MedicalInfoBar } from "@/components/compliance";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
@@ -148,8 +147,6 @@ Include safety considerations and when to change positions.`;
       toolId="ai-birth-position"
     >
       <div className="space-y-4">
-        {/* Non-intrusive Medical Reminder */}
-        <MedicalInfoBar compact />
         
         {/* Position Cards - Professional List */}
         <div className="space-y-1.5">

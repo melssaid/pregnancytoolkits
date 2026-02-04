@@ -282,18 +282,6 @@ export default function AILegCrampPreventer() {
           </Card>
         )}
 
-        {/* Warning */}
-        <Card className="bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
-          <CardContent className="p-4">
-            <div className="flex gap-3">
-              <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
-              <p className="text-sm text-amber-800 dark:text-amber-200">
-                Frequent or severe leg cramps, especially with swelling, redness, or warmth, 
-                should be reported to your healthcare provider immediately.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </ToolFrame>
   );

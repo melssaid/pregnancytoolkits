@@ -112,15 +112,6 @@ const AISymptomAnalyzer: React.FC = () => {
       toolId="ai-symptom-analyzer"
     >
       <div className="space-y-6">
-        {/* Disclaimer Banner */}
-        <Card className="border-amber-200 bg-amber-50">
-          <CardContent className="p-4 flex gap-3">
-            <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-amber-800">
-              {t('toolsInternal.symptomAnalyzer.disclaimer')}
-            </p>
-          </CardContent>
-        </Card>
 
         {/* Week Selector */}
         <WeekSlider
