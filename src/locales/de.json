@@ -1005,5 +1005,87 @@
         "flexibility": "Flexibilität"
       }
     }
+  },
+  "preeclampsiaRisk": {
+    "title": "Präeklampsie-Risikokalkulator",
+    "subtitle": "Bewerten Sie Ihre Risikofaktoren für Präeklampsie",
+    "riskFactorsTitle": "Risikofaktoren für Präeklampsie",
+    "riskFactorsDesc": "Markieren Sie alle zutreffenden Faktoren, um Ihr Risikoniveau zu bewerten",
+    "calculateRisk": "Risiko berechnen",
+    "yourRiskFactors": "Ihre Risikofaktoren:",
+    "warningSignsTitle": "Warnzeichen, auf die Sie achten sollten",
+    "warningNote": "Wenn Sie eines dieser Symptome bemerken, kontaktieren Sie sofort Ihren Arzt.",
+    "disclaimer": "Dieses Tool identifiziert Risikofaktoren, kann aber Präeklampsie nicht vorhersagen oder diagnostizieren.",
+    "aiCoachTitle": "KI-Präeklampsie-Präventionscoach",
+    "getPreventionPlan": "Präventionsplan erhalten",
+    "riskLevels": {
+      "high": { "title": "Höheres Risiko", "description": "Sie haben einen oder mehrere bedeutende Risikofaktoren." },
+      "moderate": { "title": "Mäßiges Risiko", "description": "Sie haben einige Risikofaktoren." },
+      "low": { "title": "Niedriges Risiko", "description": "Sie haben wenige identifizierte Risikofaktoren." }
+    }
+  },
+  "dailyTips": {
+    "title": "Tägliche Schwangerschaftstipps",
+    "subtitle": "KI-kuratierte Tipps für jedes Trimester",
+    "trimester": "Trimester",
+    "randomTip": "Zufälliger Tipp",
+    "aiTip": "KI-Tipp",
+    "tipOfTheDay": "Tipp des Tages",
+    "yourFavorites": "Ihre Favoriten",
+    "moreTips": "Mehr Tipps für Trimester"
+  },
+  "nauseaRelief": {
+    "title": "KI-Übelkeitslinderungs-Coach",
+    "subtitle": "Personalisierte Strategien gegen Morgenübelkeit",
+    "quickRemedies": "Schnelle Heilmittel",
+    "nauseaSeverity": "Übelkeitsschwere",
+    "triggersTitle": "Was löst Ihre Übelkeit aus?",
+    "getReliefPlan": "Linderungsplan erhalten"
+  },
+  "legCrampPreventer": {
+    "title": "KI-Beinkrampf-Verhinderer",
+    "subtitle": "Verhindern und bewältigen Sie Beinkrämpfe in der Schwangerschaft",
+    "progressTitle": "Präventionsfortschritt",
+    "getAdvice": "KI-Ratschläge erhalten",
+    "checklistTitle": "Tägliche Präventions-Checkliste"
+  },
+  "weeklySummary": {
+    "title": "Wöchentliche Einblicke",
+    "subtitle": "Intelligente wöchentliche Verfolgung Ihrer Schwangerschaft",
+    "daysToGo": "Tage noch",
+    "pregnancyWeek": "Schwangerschaftswoche",
+    "showSummary": "Zusammenfassung Woche {{week}} anzeigen",
+    "trimesters": {
+      "first": "Erstes Trimester",
+      "second": "Zweites Trimester",
+      "third": "Drittes Trimester"
+    }
+  },
+  "pregnancyAssistant": {
+    "title": "Intelligenter Schwangerschaftsführer",
+    "subtitle": "Ihr 24/7-Schwangerschaftsbegleiter",
+    "hello": "Hallo! Ich bin hier, um zu helfen 👋",
+    "askAnything": "Fragen Sie alles über Schwangerschaft, Ernährung oder Babypflege",
+    "placeholder": "Geben Sie Ihre Frage ein..."
+  },
+  "lactationPrep": {
+    "title": "KI-Stillvorbereitung",
+    "subtitle": "Ihr Stillvorbereitungs-Guide",
+    "feedingGoal": "Ihr Ernährungsziel",
+    "getLactationGuide": "KI-Stillführer erhalten"
+  },
+  "backPainRelief": {
+    "title": "KI-Rückenschmerzlinderung",
+    "subtitle": "Schwangerschaftssichere Übungen zur Schmerzlinderung",
+    "whereHurts": "Wo tut es weh?",
+    "getAdvice": "KI-Schmerzlinderungs-Ratschläge erhalten",
+    "exercisesTitle": "Rückenschmerz-Übungen"
+  },
+  "sleepOptimizer": {
+    "title": "KI-Schlafoptimierer",
+    "subtitle": "Personalisierte Schlafanleitung für die Schwangerschaft",
+    "currentSleep": "Aktueller Schlaf: {{hours}} Stunden/Nacht",
+    "usualBedtime": "Übliche Schlafenszeit",
+    "sleepChallenges": "Schlafprobleme"
   }
 }

@@ -1005,5 +1005,87 @@
         "flexibility": "Flexibilité"
       }
     }
+  },
+  "preeclampsiaRisk": {
+    "title": "Calculateur de risque de prééclampsie",
+    "subtitle": "Évaluez vos facteurs de risque de prééclampsie",
+    "riskFactorsTitle": "Facteurs de risque de prééclampsie",
+    "riskFactorsDesc": "Cochez tous les facteurs qui s'appliquent pour évaluer votre niveau de risque",
+    "calculateRisk": "Calculer le risque",
+    "yourRiskFactors": "Vos facteurs de risque:",
+    "warningSignsTitle": "Signes d'alerte à surveiller",
+    "warningNote": "Si vous ressentez l'un de ces symptômes, contactez immédiatement votre médecin.",
+    "disclaimer": "Cet outil identifie les facteurs de risque mais ne peut pas prédire ou diagnostiquer la prééclampsie.",
+    "aiCoachTitle": "Coach IA de prévention de la prééclampsie",
+    "getPreventionPlan": "Obtenir un plan de prévention",
+    "riskLevels": {
+      "high": { "title": "Risque élevé", "description": "Vous avez un ou plusieurs facteurs de risque significatifs." },
+      "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque." },
+      "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque identifiés." }
+    }
+  },
+  "dailyTips": {
+    "title": "Conseils quotidiens de grossesse",
+    "subtitle": "Conseils IA pour chaque trimestre",
+    "trimester": "Trimestre",
+    "randomTip": "Conseil aléatoire",
+    "aiTip": "Conseil IA",
+    "tipOfTheDay": "Conseil du jour",
+    "yourFavorites": "Vos favoris",
+    "moreTips": "Plus de conseils pour le trimestre"
+  },
+  "nauseaRelief": {
+    "title": "Coach IA anti-nausées",
+    "subtitle": "Stratégies personnalisées contre les nausées matinales",
+    "quickRemedies": "Remèdes rapides",
+    "nauseaSeverity": "Intensité des nausées",
+    "triggersTitle": "Qu'est-ce qui déclenche vos nausées?",
+    "getReliefPlan": "Obtenir un plan de soulagement"
+  },
+  "legCrampPreventer": {
+    "title": "Prévention IA des crampes aux jambes",
+    "subtitle": "Prévenir et gérer les crampes aux jambes pendant la grossesse",
+    "progressTitle": "Progrès de prévention",
+    "getAdvice": "Obtenir des conseils IA",
+    "checklistTitle": "Liste de prévention quotidienne"
+  },
+  "weeklySummary": {
+    "title": "Aperçus hebdomadaires",
+    "subtitle": "Suivi hebdomadaire intelligent de votre grossesse",
+    "daysToGo": "jours restants",
+    "pregnancyWeek": "Semaine de grossesse",
+    "showSummary": "Afficher le résumé de la semaine {{week}}",
+    "trimesters": {
+      "first": "Premier trimestre",
+      "second": "Deuxième trimestre",
+      "third": "Troisième trimestre"
+    }
+  },
+  "pregnancyAssistant": {
+    "title": "Guide de grossesse intelligent",
+    "subtitle": "Votre compagnon de grossesse 24/7",
+    "hello": "Bonjour! Je suis là pour vous aider 👋",
+    "askAnything": "Posez des questions sur la grossesse, la nutrition ou les soins du bébé",
+    "placeholder": "Tapez votre question..."
+  },
+  "lactationPrep": {
+    "title": "Préparation IA à l'allaitement",
+    "subtitle": "Votre guide de préparation à l'allaitement",
+    "feedingGoal": "Votre objectif d'alimentation",
+    "getLactationGuide": "Obtenir le guide IA d'allaitement"
+  },
+  "backPainRelief": {
+    "title": "Soulagement IA des douleurs dorsales",
+    "subtitle": "Exercices sûrs pour la grossesse contre les douleurs dorsales",
+    "whereHurts": "Où avez-vous mal?",
+    "getAdvice": "Obtenir des conseils IA",
+    "exercisesTitle": "Exercices contre les douleurs dorsales"
+  },
+  "sleepOptimizer": {
+    "title": "Optimiseur IA de sommeil",
+    "subtitle": "Conseils de sommeil personnalisés pour la grossesse",
+    "currentSleep": "Sommeil actuel: {{hours}} heures/nuit",
+    "usualBedtime": "Heure de coucher habituelle",
+    "sleepChallenges": "Défis de sommeil"
   }
 }

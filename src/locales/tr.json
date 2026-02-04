@@ -1310,5 +1310,87 @@
       "safetyReminder": "Güvenlik Hatırlatması",
       "safetyText": "Baş dönmesi, ağrı veya rahatsızlık hissederseniz durun"
     }
+  },
+  "preeclampsiaRisk": {
+    "title": "Preeklampsi Risk Hesaplayıcı",
+    "subtitle": "Preeklampsi risk faktörlerinizi değerlendirin",
+    "riskFactorsTitle": "Preeklampsi Risk Faktörleri",
+    "riskFactorsDesc": "Risk seviyenizi değerlendirmek için geçerli olan tüm faktörleri işaretleyin",
+    "calculateRisk": "Riski Hesapla",
+    "yourRiskFactors": "Risk Faktörleriniz:",
+    "warningSignsTitle": "Dikkat Edilmesi Gereken Uyarı İşaretleri",
+    "warningNote": "Bu belirtilerden herhangi birini yaşarsanız, hemen doktorunuzla iletişime geçin.",
+    "disclaimer": "Bu araç risk faktörlerini tanımlar ancak preeklampsiyı tahmin edemez veya teşhis edemez.",
+    "aiCoachTitle": "Yapay Zeka Preeklampsi Önleme Koçu",
+    "getPreventionPlan": "Önleme Planı Al",
+    "riskLevels": {
+      "high": { "title": "Yüksek Risk", "description": "Bir veya daha fazla önemli risk faktörünüz var." },
+      "moderate": { "title": "Orta Risk", "description": "Bazı risk faktörleriniz var." },
+      "low": { "title": "Düşük Risk", "description": "Çok az tanımlanmış risk faktörünüz var." }
+    }
+  },
+  "dailyTips": {
+    "title": "Günlük Hamilelik İpuçları",
+    "subtitle": "Her trimester için yapay zeka ipuçları",
+    "trimester": "Trimester",
+    "randomTip": "Rastgele İpucu",
+    "aiTip": "Yapay Zeka İpucu",
+    "tipOfTheDay": "Günün İpucu",
+    "yourFavorites": "Favorileriniz",
+    "moreTips": "Trimester için daha fazla ipucu"
+  },
+  "nauseaRelief": {
+    "title": "Yapay Zeka Bulantı Rahatlama Koçu",
+    "subtitle": "Sabah bulantısı için kişiselleştirilmiş stratejiler",
+    "quickRemedies": "Hızlı Çözümler",
+    "nauseaSeverity": "Bulantı Şiddeti",
+    "triggersTitle": "Bulantınızı ne tetikliyor?",
+    "getReliefPlan": "Rahatlama Planı Al"
+  },
+  "legCrampPreventer": {
+    "title": "Yapay Zeka Bacak Krampı Önleyici",
+    "subtitle": "Hamilelikte bacak kramplarını önleyin ve yönetin",
+    "progressTitle": "Önleme İlerlemesi",
+    "getAdvice": "Yapay Zeka Tavsiyesi Al",
+    "checklistTitle": "Günlük Önleme Listesi"
+  },
+  "weeklySummary": {
+    "title": "Haftalık İçgörüler",
+    "subtitle": "Hamileliğinizi akıllı haftalık takip",
+    "daysToGo": "gün kaldı",
+    "pregnancyWeek": "Hamilelik Haftası",
+    "showSummary": "Hafta {{week}} özetini göster",
+    "trimesters": {
+      "first": "Birinci Trimester",
+      "second": "İkinci Trimester",
+      "third": "Üçüncü Trimester"
+    }
+  },
+  "pregnancyAssistant": {
+    "title": "Akıllı Hamilelik Rehberi",
+    "subtitle": "7/24 hamilelik arkadaşınız",
+    "hello": "Merhaba! Yardım etmek için buradayım 👋",
+    "askAnything": "Hamilelik, beslenme veya bebek bakımı hakkında her şeyi sorun",
+    "placeholder": "Sorunuzu yazın..."
+  },
+  "lactationPrep": {
+    "title": "Yapay Zeka Emzirme Hazırlığı",
+    "subtitle": "Emzirme hazırlık rehberiniz",
+    "feedingGoal": "Besleme Hedefiniz",
+    "getLactationGuide": "Yapay Zeka Emzirme Rehberi Al"
+  },
+  "backPainRelief": {
+    "title": "Yapay Zeka Sırt Ağrısı Rahatlatma",
+    "subtitle": "Hamilelik için güvenli egzersizler",
+    "whereHurts": "Nerede ağrıyor?",
+    "getAdvice": "Yapay Zeka Tavsiyesi Al",
+    "exercisesTitle": "Sırt Ağrısı Egzersizleri"
+  },
+  "sleepOptimizer": {
+    "title": "Yapay Zeka Uyku Optimize Edici",
+    "subtitle": "Hamilelik için kişiselleştirilmiş uyku rehberliği",
+    "currentSleep": "Mevcut Uyku: {{hours}} saat/gece",
+    "usualBedtime": "Normal Yatma Saati",
+    "sleepChallenges": "Uyku Zorlukları"
   }
 }

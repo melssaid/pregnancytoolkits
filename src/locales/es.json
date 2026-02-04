@@ -1310,5 +1310,87 @@
       "safetyReminder": "Recordatorio de seguridad",
       "safetyText": "Para si sientes mareos, dolor o incomodidad"
     }
+  },
+  "preeclampsiaRisk": {
+    "title": "Calculadora de riesgo de preeclampsia",
+    "subtitle": "Evalúa tus factores de riesgo de preeclampsia",
+    "riskFactorsTitle": "Factores de riesgo de preeclampsia",
+    "riskFactorsDesc": "Marca todos los factores que apliquen para evaluar tu nivel de riesgo",
+    "calculateRisk": "Calcular riesgo",
+    "yourRiskFactors": "Tus factores de riesgo:",
+    "warningSignsTitle": "Señales de advertencia a vigilar",
+    "warningNote": "Si experimentas cualquiera de estos síntomas, contacta inmediatamente a tu médico.",
+    "disclaimer": "Esta herramienta identifica factores de riesgo pero no puede predecir o diagnosticar preeclampsia.",
+    "aiCoachTitle": "Coach IA de prevención de preeclampsia",
+    "getPreventionPlan": "Obtener plan de prevención",
+    "riskLevels": {
+      "high": { "title": "Riesgo alto", "description": "Tienes uno o más factores de riesgo significativos." },
+      "moderate": { "title": "Riesgo moderado", "description": "Tienes algunos factores de riesgo." },
+      "low": { "title": "Riesgo bajo", "description": "Tienes pocos factores de riesgo identificados." }
+    }
+  },
+  "dailyTips": {
+    "title": "Consejos diarios de embarazo",
+    "subtitle": "Consejos IA para cada trimestre",
+    "trimester": "Trimestre",
+    "randomTip": "Consejo aleatorio",
+    "aiTip": "Consejo IA",
+    "tipOfTheDay": "Consejo del día",
+    "yourFavorites": "Tus favoritos",
+    "moreTips": "Más consejos para el trimestre"
+  },
+  "nauseaRelief": {
+    "title": "Coach IA para náuseas",
+    "subtitle": "Estrategias personalizadas contra las náuseas matutinas",
+    "quickRemedies": "Remedios rápidos",
+    "nauseaSeverity": "Severidad de las náuseas",
+    "triggersTitle": "¿Qué desencadena tus náuseas?",
+    "getReliefPlan": "Obtener plan de alivio"
+  },
+  "legCrampPreventer": {
+    "title": "Prevención IA de calambres",
+    "subtitle": "Prevenir y manejar calambres en las piernas durante el embarazo",
+    "progressTitle": "Progreso de prevención",
+    "getAdvice": "Obtener consejos IA",
+    "checklistTitle": "Lista de prevención diaria"
+  },
+  "weeklySummary": {
+    "title": "Resumen semanal",
+    "subtitle": "Seguimiento semanal inteligente de tu embarazo",
+    "daysToGo": "días restantes",
+    "pregnancyWeek": "Semana de embarazo",
+    "showSummary": "Mostrar resumen de la semana {{week}}",
+    "trimesters": {
+      "first": "Primer trimestre",
+      "second": "Segundo trimestre",
+      "third": "Tercer trimestre"
+    }
+  },
+  "pregnancyAssistant": {
+    "title": "Guía inteligente de embarazo",
+    "subtitle": "Tu compañero de embarazo 24/7",
+    "hello": "¡Hola! Estoy aquí para ayudarte 👋",
+    "askAnything": "Pregunta sobre embarazo, nutrición o cuidado del bebé",
+    "placeholder": "Escribe tu pregunta..."
+  },
+  "lactationPrep": {
+    "title": "Preparación IA para lactancia",
+    "subtitle": "Tu guía de preparación para la lactancia",
+    "feedingGoal": "Tu objetivo de alimentación",
+    "getLactationGuide": "Obtener guía IA de lactancia"
+  },
+  "backPainRelief": {
+    "title": "Alivio IA del dolor de espalda",
+    "subtitle": "Ejercicios seguros para el embarazo",
+    "whereHurts": "¿Dónde te duele?",
+    "getAdvice": "Obtener consejos IA",
+    "exercisesTitle": "Ejercicios para dolor de espalda"
+  },
+  "sleepOptimizer": {
+    "title": "Optimizador IA de sueño",
+    "subtitle": "Guía personalizada de sueño para el embarazo",
+    "currentSleep": "Sueño actual: {{hours}} horas/noche",
+    "usualBedtime": "Hora habitual de dormir",
+    "sleepChallenges": "Desafíos del sueño"
   }
 }
