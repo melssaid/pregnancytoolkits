@@ -697,6 +697,42 @@
       "yourBabyGirl": "Your baby's weight",
       "median": "Median (50%)",
       "normalRange": "Normal Range"
+    },
+    "mood": {
+      "noData": "Record your mood at least 3 times to view the chart",
+      "title": "Mood Tracking - Last 2 Weeks",
+      "average": "Average",
+      "improving": "Improving",
+      "declining": "Declining",
+      "stable": "Stable",
+      "moods": {
+        "veryBad": "Very Bad",
+        "bad": "Bad",
+        "okay": "Okay",
+        "good": "Good",
+        "great": "Great"
+      }
+    },
+    "kick": {
+      "noData": "Record at least 2 sessions to view the chart",
+      "title": "Fetal Activity - Last 7 Sessions",
+      "kicks": "kicks",
+      "duration": "Duration",
+      "min": "min",
+      "excellentActivity": "Excellent activity",
+      "avgKicks": "Avg Kicks",
+      "excellentSessions": "Excellent Sessions",
+      "goal": "Goal: 10 kicks"
+    },
+    "weight": {
+      "noData": "Add at least two measurements to display the chart",
+      "title": "Weight Tracking Over Weeks",
+      "week": "Week",
+      "weight": "Weight",
+      "gain": "Gain",
+      "prePregnancyWeight": "Pre-pregnancy weight",
+      "yourActualWeight": "Your actual weight",
+      "recommendedRange": "Recommended range"
     }
   },
   "appUpdated": {

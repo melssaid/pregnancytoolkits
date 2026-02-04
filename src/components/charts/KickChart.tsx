@@ -13,6 +13,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Activity } from "lucide-react";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 interface KickSession {
   id: string;
@@ -27,6 +28,8 @@ interface KickChartProps {
 }
 
 export function KickChart({ sessions }: KickChartProps) {
+  const { t } = useTranslation();
+  
   const chartData = useMemo(() => {
     // Get last 7 sessions
     const recentSessions = sessions.slice(0, 7).reverse();
@@ -50,7 +53,7 @@ export function KickChart({ sessions }: KickChartProps) {
       <Card>
         <CardContent className="py-8 text-center">
           <p className="text-muted-foreground">
-            Record at least 2 sessions to view the chart
+            {t('charts.kick.noData')}
           </p>
         </CardContent>
       </Card>
@@ -64,13 +67,13 @@ export function KickChart({ sessions }: KickChartProps) {
         <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
           <p className="font-semibold text-foreground">{data.fullDate}</p>
           <p className="text-primary">
-            {data.kicks} kicks
+            {data.kicks} {t('charts.kick.kicks')}
           </p>
           <p className="text-muted-foreground text-sm">
-            Duration: {data.duration} min
+            {t('charts.kick.duration')}: {data.duration} {t('charts.kick.min')}
           </p>
           {data.isGood && (
-            <p className="text-success text-sm mt-1">✓ Excellent activity</p>
+            <p className="text-success text-sm mt-1">✓ {t('charts.kick.excellentActivity')}</p>
           )}
         </div>
       );
@@ -83,7 +86,7 @@ export function KickChart({ sessions }: KickChartProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <Activity className="h-5 w-5 text-primary" />
-          Fetal Activity - Last 7 Sessions
+          {t('charts.kick.title')}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -124,7 +127,7 @@ export function KickChart({ sessions }: KickChartProps) {
                 stroke="hsl(var(--success))"
                 strokeDasharray="5 5"
                 label={{
-                  value: "Goal: 10 kicks",
+                  value: t('charts.kick.goal'),
                   fill: "hsl(var(--success))",
                   fontSize: 10,
                   position: "right",
@@ -151,13 +154,13 @@ export function KickChart({ sessions }: KickChartProps) {
         <div className="grid grid-cols-2 gap-4 mt-4">
           <div className="bg-secondary rounded-lg p-3 text-center">
             <p className="text-2xl font-bold text-primary">{averageKicks.toFixed(0)}</p>
-            <p className="text-xs text-muted-foreground">Avg Kicks</p>
+            <p className="text-xs text-muted-foreground">{t('charts.kick.avgKicks')}</p>
           </div>
           <div className="bg-secondary rounded-lg p-3 text-center">
             <p className="text-2xl font-bold text-success">
               {chartData.filter(d => d.isGood).length}
             </p>
-            <p className="text-xs text-muted-foreground">Excellent Sessions</p>
+            <p className="text-xs text-muted-foreground">{t('charts.kick.excellentSessions')}</p>
           </div>
         </div>
       </CardContent>

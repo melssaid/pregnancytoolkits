@@ -690,6 +690,42 @@
       "yourBabyGirl": "Bebeğinizin ağırlığı",
       "median": "Medyan (%50)",
       "normalRange": "Normal Aralık"
+    },
+    "mood": {
+      "noData": "Grafiği görüntülemek için ruh halinizi en az 3 kez kaydedin",
+      "title": "Ruh Hali Takibi - Son 2 Hafta",
+      "average": "Ortalama",
+      "improving": "İyileşiyor",
+      "declining": "Düşüyor",
+      "stable": "Stabil",
+      "moods": {
+        "veryBad": "Çok Kötü",
+        "bad": "Kötü",
+        "okay": "Fena Değil",
+        "good": "İyi",
+        "great": "Harika"
+      }
+    },
+    "kick": {
+      "noData": "Grafiği görüntülemek için en az 2 seans kaydedin",
+      "title": "Fetüs Aktivitesi - Son 7 Seans",
+      "kicks": "tekme",
+      "duration": "Süre",
+      "min": "dk",
+      "excellentActivity": "Mükemmel aktivite",
+      "avgKicks": "Ort. Tekmeler",
+      "excellentSessions": "Mükemmel Seanslar",
+      "goal": "Hedef: 10 tekme"
+    },
+    "weight": {
+      "noData": "Grafiği görüntülemek için en az iki ölçüm ekleyin",
+      "title": "Haftalık Kilo Takibi",
+      "week": "Hafta",
+      "weight": "Ağırlık",
+      "gain": "Artış",
+      "prePregnancyWeight": "Hamilelik öncesi ağırlık",
+      "yourActualWeight": "Gerçek ağırlığınız",
+      "recommendedRange": "Önerilen aralık"
     }
   },
   "smartPlan": {
