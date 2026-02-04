@@ -74,9 +74,9 @@ export default function WeeklySummary() {
   };
 
   const getTrimester = (w: number) => {
-    if (w <= 12) return { label: "First Trimester", color: "bg-emerald-500" };
-    if (w <= 27) return { label: "Second Trimester", color: "bg-blue-500" };
-    return { label: "Third Trimester", color: "bg-purple-500" };
+    if (w <= 12) return { label: t("toolsInternal.weeklySummary.trimester.first"), color: "bg-emerald-500" };
+    if (w <= 27) return { label: t("toolsInternal.weeklySummary.trimester.second"), color: "bg-blue-500" };
+    return { label: t("toolsInternal.weeklySummary.trimester.third"), color: "bg-purple-500" };
   };
 
   const trimesterInfo = getTrimester(week);
@@ -95,7 +95,7 @@ export default function WeeklySummary() {
   return (
     <ToolFrame
       title={t("tools.weeklySummary.title")}
-      subtitle="Smart weekly tracking for your pregnancy"
+      subtitle={t("toolsInternal.weeklySummary.subtitle")}
       customIcon="calendar"
       mood="nurturing"
       toolId="weekly-summary"
@@ -104,7 +104,7 @@ export default function WeeklySummary() {
         {/* Progress Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10">
           <Badge className={`${trimesterInfo.color} text-white text-xs`}>{trimesterInfo.label}</Badge>
-          <span className="text-xs text-muted-foreground">{daysRemaining} days to go</span>
+          <span className="text-xs text-muted-foreground">{t("toolsInternal.weeklySummary.daysToGo", { days: daysRemaining })}</span>
         </div>
 
         {/* Week Selector - Using WeekSlider */}
@@ -112,7 +112,7 @@ export default function WeeklySummary() {
           week={week}
           onChange={handleWeekChange}
           showTrimester={false}
-          label="Pregnancy Week"
+          label={t("toolsInternal.weeklySummary.pregnancyWeek")}
         />
 
         {/* Progress Card */}
@@ -124,7 +124,7 @@ export default function WeeklySummary() {
                   <Baby className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold text-foreground">Week {week}</p>
+                  <p className="text-lg font-bold text-foreground">{t("toolsInternal.weeklySummary.week", { week })}</p>
                   <p className="text-xs text-muted-foreground">{trimesterInfo.label}</p>
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function WeeklySummary() {
             <div className="space-y-2">
               <Progress value={progress} className="h-2" />
               <p className="text-xs text-center text-muted-foreground">
-                Approximately {daysRemaining} days remaining
+                {t("toolsInternal.weeklySummary.approximatelyRemaining", { days: daysRemaining })}
               </p>
             </div>
           </CardContent>
@@ -155,7 +155,7 @@ export default function WeeklySummary() {
               ) : (
                 <Sparkles className="w-4 h-4" />
               )}
-              Show Week {week} Summary
+              {t("toolsInternal.weeklySummary.showSummary", { week })}
             </Button>
 
             {/* Quick Stats */}
@@ -163,22 +163,22 @@ export default function WeeklySummary() {
               <Card>
                 <CardContent className="p-3 text-center">
                   <TrendingUp className="w-5 h-5 mx-auto text-green-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">Baby Growth</p>
-                  <p className="text-sm font-medium">Normal</p>
+                  <p className="text-xs text-muted-foreground">{t("toolsInternal.weeklySummary.babyGrowth")}</p>
+                  <p className="text-sm font-medium">{t("toolsInternal.weeklySummary.normal")}</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-3 text-center">
                   <Heart className="w-5 h-5 mx-auto text-red-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">Mom's Health</p>
-                  <p className="text-sm font-medium">Good</p>
+                  <p className="text-xs text-muted-foreground">{t("toolsInternal.weeklySummary.momsHealth")}</p>
+                  <p className="text-sm font-medium">{t("toolsInternal.weeklySummary.good")}</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-3 text-center">
                   <CheckCircle className="w-5 h-5 mx-auto text-blue-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">Checkups</p>
-                  <p className="text-sm font-medium">Complete</p>
+                  <p className="text-xs text-muted-foreground">{t("toolsInternal.weeklySummary.checkups")}</p>
+                  <p className="text-sm font-medium">{t("toolsInternal.weeklySummary.complete")}</p>
                 </CardContent>
               </Card>
             </div>
@@ -190,7 +190,7 @@ export default function WeeklySummary() {
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Baby className="w-5 h-5 text-purple-600" />
-                  Week {week} Summary
+                  {t("toolsInternal.weeklySummary.weekSummary", { week })}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -205,11 +205,11 @@ export default function WeeklySummary() {
             {/* Actions */}
             <div className="flex gap-2">
               <Button onClick={() => setSummary("")} variant="outline" className="flex-1">
-                Different Week
+                {t("toolsInternal.weeklySummary.differentWeek")}
               </Button>
               <Button onClick={getSummary} disabled={isLoading} className="flex-1 gap-2">
                 <RefreshCw className="w-4 h-4" />
-                Refresh
+                {t("toolsInternal.weeklySummary.refresh")}
               </Button>
             </div>
           </>
@@ -228,7 +228,7 @@ export default function WeeklySummary() {
         <Card>
           <CardContent className="p-4">
             <p className="text-xs text-muted-foreground text-center">
-              Track your week to get personalized information about your baby's growth and your body changes
+              {t("toolsInternal.weeklySummary.trackTip")}
             </p>
           </CardContent>
         </Card>
