@@ -21,9 +21,11 @@ import { AIInsightCard } from '@/components/ai/AIInsightCard';
 
 interface GroceryItem {
   id: string;
-  name: string;
+  nameKey?: string;
+  name?: string;
   category: 'produce' | 'dairy' | 'protein' | 'grains' | 'other';
   isChecked: boolean;
+  pregnancyBenefitKey?: string;
   pregnancyBenefit?: string;
   nutrients?: {
     protein?: number;
@@ -44,18 +46,18 @@ interface NutritionGoal {
 }
 
 const suggestedItems: GroceryItem[] = [
-  { id: '1', name: 'Spinach', category: 'produce', isChecked: false, pregnancyBenefit: 'Rich in folate and iron', nutrients: { iron: 15, folate: 25, calcium: 5 } },
-  { id: '2', name: 'Avocados', category: 'produce', isChecked: false, pregnancyBenefit: 'Healthy fats for baby brain', nutrients: { omega3: 10, folate: 15 } },
-  { id: '3', name: 'Greek Yogurt', category: 'dairy', isChecked: false, pregnancyBenefit: 'Calcium and probiotics', nutrients: { protein: 12, calcium: 20 } },
-  { id: '4', name: 'Eggs', category: 'protein', isChecked: false, pregnancyBenefit: 'Choline for brain development', nutrients: { protein: 15, iron: 8 } },
-  { id: '5', name: 'Salmon', category: 'protein', isChecked: false, pregnancyBenefit: 'Omega-3 for baby brain', nutrients: { protein: 20, omega3: 40 } },
-  { id: '6', name: 'Lentils', category: 'protein', isChecked: false, pregnancyBenefit: 'Iron and protein', nutrients: { protein: 18, iron: 20, folate: 30 } },
-  { id: '7', name: 'Sweet Potatoes', category: 'produce', isChecked: false, pregnancyBenefit: 'Vitamin A and fiber', nutrients: { folate: 8, iron: 5 } },
-  { id: '8', name: 'Berries', category: 'produce', isChecked: false, pregnancyBenefit: 'Antioxidants and vitamin C', nutrients: { folate: 5 } },
-  { id: '9', name: 'Whole Grain Bread', category: 'grains', isChecked: false, pregnancyBenefit: 'Fiber and B vitamins', nutrients: { iron: 10, folate: 12 } },
-  { id: '10', name: 'Oranges', category: 'produce', isChecked: false, pregnancyBenefit: 'Vitamin C for immunity', nutrients: { folate: 10 } },
-  { id: '11', name: 'Almonds', category: 'other', isChecked: false, pregnancyBenefit: 'Healthy fats and calcium', nutrients: { protein: 8, calcium: 10, omega3: 5 } },
-  { id: '12', name: 'Chicken Breast', category: 'protein', isChecked: false, pregnancyBenefit: 'Lean protein', nutrients: { protein: 25, iron: 6 } },
+  { id: '1', nameKey: 'groceryList.items.spinach.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.spinach.benefit', nutrients: { iron: 15, folate: 25, calcium: 5 } },
+  { id: '2', nameKey: 'groceryList.items.avocados.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.avocados.benefit', nutrients: { omega3: 10, folate: 15 } },
+  { id: '3', nameKey: 'groceryList.items.greekYogurt.name', category: 'dairy', isChecked: false, pregnancyBenefitKey: 'groceryList.items.greekYogurt.benefit', nutrients: { protein: 12, calcium: 20 } },
+  { id: '4', nameKey: 'groceryList.items.eggs.name', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.items.eggs.benefit', nutrients: { protein: 15, iron: 8 } },
+  { id: '5', nameKey: 'groceryList.items.salmon.name', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.items.salmon.benefit', nutrients: { protein: 20, omega3: 40 } },
+  { id: '6', nameKey: 'groceryList.items.lentils.name', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.items.lentils.benefit', nutrients: { protein: 18, iron: 20, folate: 30 } },
+  { id: '7', nameKey: 'groceryList.items.sweetPotatoes.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.sweetPotatoes.benefit', nutrients: { folate: 8, iron: 5 } },
+  { id: '8', nameKey: 'groceryList.items.berries.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.berries.benefit', nutrients: { folate: 5 } },
+  { id: '9', nameKey: 'groceryList.items.wholeGrainBread.name', category: 'grains', isChecked: false, pregnancyBenefitKey: 'groceryList.items.wholeGrainBread.benefit', nutrients: { iron: 10, folate: 12 } },
+  { id: '10', nameKey: 'groceryList.items.oranges.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.oranges.benefit', nutrients: { folate: 10 } },
+  { id: '11', nameKey: 'groceryList.items.almonds.name', category: 'other', isChecked: false, pregnancyBenefitKey: 'groceryList.items.almonds.benefit', nutrients: { protein: 8, calcium: 10, omega3: 5 } },
+  { id: '12', nameKey: 'groceryList.items.chickenBreast.name', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.items.chickenBreast.benefit', nutrients: { protein: 25, iron: 6 } },
 ];
 
 const weeklyRecommendations: Record<string, string[]> = {
@@ -85,7 +87,7 @@ const isGroceryItemArray = (data: unknown): data is GroceryItem[] => {
     typeof item === 'object' &&
     item !== null &&
     'id' in item &&
-    'name' in item &&
+    ('name' in item || 'nameKey' in item) &&
     'category' in item &&
     typeof (item as GroceryItem).isChecked === 'boolean'
   );
@@ -151,9 +153,10 @@ export default function SmartGroceryList() {
   };
 
   const addSuggested = (suggested: GroceryItem) => {
-    if (!items.find(i => i.name === suggested.name)) {
+    const itemName = suggested.nameKey ? t(suggested.nameKey) : suggested.name;
+    if (!items.find(i => (i.nameKey ? t(i.nameKey) : i.name) === itemName)) {
       setItems([...items, { ...suggested, id: Date.now().toString() }]);
-      toast.success(`${suggested.name} added to your list`);
+      toast.success(`${itemName} ${t('groceryList.addedToList')}`);
     }
   };
 
@@ -403,10 +406,10 @@ export default function SmartGroceryList() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <span className={`block text-xs font-medium ${item.isChecked ? 'line-through text-muted-foreground' : ''}`}>
-                              {item.name}
+                              {item.nameKey ? t(item.nameKey) : item.name}
                             </span>
-                            {item.pregnancyBenefit && (
-                              <p className="text-[10px] text-muted-foreground truncate">{item.pregnancyBenefit}</p>
+                            {(item.pregnancyBenefitKey || item.pregnancyBenefit) && (
+                              <p className="text-[10px] text-muted-foreground truncate">{item.pregnancyBenefitKey ? t(item.pregnancyBenefitKey) : item.pregnancyBenefit}</p>
                             )}
                           </div>
                           <button

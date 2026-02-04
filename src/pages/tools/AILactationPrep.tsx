@@ -14,32 +14,32 @@ import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const feedingGoals = [
-  { id: "exclusive", label: "Exclusive breastfeeding", icon: "🤱" },
-  { id: "combo", label: "Combination (breast + formula)", icon: "🍼" },
-  { id: "pumping", label: "Exclusive pumping", icon: "⚙️" },
-  { id: "unsure", label: "Still deciding", icon: "🤔" },
+  { id: "exclusive", labelKey: "toolsInternal.lactationPrep.feedingGoals.exclusive", icon: "🤱" },
+  { id: "combo", labelKey: "toolsInternal.lactationPrep.feedingGoals.combo", icon: "🍼" },
+  { id: "pumping", labelKey: "toolsInternal.lactationPrep.feedingGoals.pumping", icon: "⚙️" },
+  { id: "unsure", labelKey: "toolsInternal.lactationPrep.feedingGoals.unsure", icon: "🤔" },
 ];
 
 const concerns = [
-  { id: "latch", label: "Latch difficulties" },
-  { id: "supply", label: "Milk supply worries" },
-  { id: "pain", label: "Pain concerns" },
-  { id: "returning-work", label: "Returning to work" },
-  { id: "partner-feeding", label: "Partner involvement" },
-  { id: "public", label: "Feeding in public" },
-  { id: "medical", label: "Previous breast surgery" },
-  { id: "multiples", label: "Having twins/multiples" },
+  { id: "latch", labelKey: "toolsInternal.lactationPrep.concerns.latch" },
+  { id: "supply", labelKey: "toolsInternal.lactationPrep.concerns.supply" },
+  { id: "pain", labelKey: "toolsInternal.lactationPrep.concerns.pain" },
+  { id: "returning-work", labelKey: "toolsInternal.lactationPrep.concerns.returningWork" },
+  { id: "partner-feeding", labelKey: "toolsInternal.lactationPrep.concerns.partnerFeeding" },
+  { id: "public", labelKey: "toolsInternal.lactationPrep.concerns.public" },
+  { id: "medical", labelKey: "toolsInternal.lactationPrep.concerns.medical" },
+  { id: "multiples", labelKey: "toolsInternal.lactationPrep.concerns.multiples" },
 ];
 
 const essentialSupplies = [
-  { name: "Nursing bras (3-4)", essential: true },
-  { name: "Nursing pads", essential: true },
-  { name: "Nipple cream (lanolin)", essential: true },
-  { name: "Breast pump", essential: false },
-  { name: "Storage bags", essential: false },
-  { name: "Nursing pillow", essential: false },
-  { name: "Nursing cover", essential: false },
-  { name: "Haakaa/manual pump", essential: false },
+  { nameKey: "toolsInternal.lactationPrep.supplies.nursingBras", essential: true },
+  { nameKey: "toolsInternal.lactationPrep.supplies.nursingPads", essential: true },
+  { nameKey: "toolsInternal.lactationPrep.supplies.nippleCream", essential: true },
+  { nameKey: "toolsInternal.lactationPrep.supplies.breastPump", essential: false },
+  { nameKey: "toolsInternal.lactationPrep.supplies.storageBags", essential: false },
+  { nameKey: "toolsInternal.lactationPrep.supplies.nursingPillow", essential: false },
+  { nameKey: "toolsInternal.lactationPrep.supplies.nursingCover", essential: false },
+  { nameKey: "toolsInternal.lactationPrep.supplies.haakaa", essential: false },
 ];
 
 const lactationVideos: Video[] = [
@@ -96,18 +96,19 @@ const AILactationPrep = () => {
   };
 
   const getLactationPlan = async () => {
-    const concernLabels = selectedConcerns.map(id => 
-      concerns.find(c => c.id === id)?.label
-    ).filter(Boolean);
+    const concernLabels = selectedConcerns.map(id => {
+      const concern = concerns.find(c => c.id === id);
+      return concern ? t(concern.labelKey) : null;
+    }).filter(Boolean);
     const goal = feedingGoals.find(g => g.id === feedingGoal);
 
+    const goalLabel = goal ? t(goal.labelKey) : t('toolsInternal.lactationPrep.notSpecified');
+    
     const prompt = `As a certified lactation consultant (IBCLC), create a breastfeeding preparation guide:
-
-**Pregnancy Week:** ${settings.pregnancyWeek || 32}
-**Feeding Goal:** ${goal?.label || "Not specified"}
-**First-Time Mom:** ${firstTimeMom ? "Yes" : "No"}
-**Concerns:** ${concernLabels.join(", ") || "None specified"}
-**Returning to Work:** ${returningToWork || "Not specified"}
+**Feeding Goal:** ${goalLabel}
+**First-Time Mom:** ${firstTimeMom ? t('common.yes') : t('common.no')}
+**Concerns:** ${concernLabels.join(", ") || t('toolsInternal.lactationPrep.noneSpecified')}
+**Returning to Work:** ${returningToWork || t('toolsInternal.lactationPrep.notSpecified')}
 
 Provide comprehensive breastfeeding preparation:
 1. **Before Birth Preparation** - Nipple care, what to learn now
@@ -155,7 +156,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
       <div className="space-y-6">
         {/* Feeding Goal */}
         <div className="space-y-3">
-          <Label>Your Feeding Goal</Label>
+          <Label>{t('toolsInternal.lactationPrep.yourFeedingGoal')}</Label>
           <div className="grid grid-cols-2 gap-2">
             {feedingGoals.map((goal) => (
               <div
@@ -168,7 +169,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
                 }`}
               >
                 <div className="text-2xl mb-1">{goal.icon}</div>
-                <div className="text-sm">{goal.label}</div>
+                <div className="text-sm">{t(goal.labelKey)}</div>
               </div>
             ))}
           </div>
@@ -182,7 +183,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
             onCheckedChange={(checked) => setFirstTimeMom(checked as boolean)} 
           />
           <Label htmlFor="first-time" className="cursor-pointer">
-            This is my first time breastfeeding
+            {t('toolsInternal.lactationPrep.firstTimeBreastfeeding')}
           </Label>
         </div>
 
@@ -190,24 +191,24 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         <div className="space-y-2">
           <Label className="flex items-center gap-2">
             <Clock className="w-4 h-4 text-primary" />
-            Returning to Work
+            {t('toolsInternal.lactationPrep.returningToWork')}
           </Label>
           <Select value={returningToWork} onValueChange={setReturningToWork}>
             <SelectTrigger>
-              <SelectValue placeholder="Select..." />
+              <SelectValue placeholder={t('toolsInternal.lactationPrep.select')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="no">Not returning / Stay-at-home</SelectItem>
-              <SelectItem value="12weeks">Within 12 weeks</SelectItem>
-              <SelectItem value="6months">After 6 months</SelectItem>
-              <SelectItem value="year">After 1 year</SelectItem>
+              <SelectItem value="no">{t('toolsInternal.lactationPrep.workOptions.no')}</SelectItem>
+              <SelectItem value="12weeks">{t('toolsInternal.lactationPrep.workOptions.12weeks')}</SelectItem>
+              <SelectItem value="6months">{t('toolsInternal.lactationPrep.workOptions.6months')}</SelectItem>
+              <SelectItem value="year">{t('toolsInternal.lactationPrep.workOptions.year')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         {/* Concerns */}
         <div className="space-y-3">
-          <Label>Any Concerns?</Label>
+          <Label>{t('toolsInternal.lactationPrep.anyConcerns')}</Label>
           <div className="grid grid-cols-2 gap-2">
             {concerns.map((concern) => (
               <div
@@ -220,7 +221,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
                 }`}
               >
                 <Checkbox checked={selectedConcerns.includes(concern.id)} />
-                <span className="text-sm">{concern.label}</span>
+                <span className="text-sm">{t(concern.labelKey)}</span>
               </div>
             ))}
           </div>
@@ -230,7 +231,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         <Card className="p-4 bg-muted/30">
           <h4 className="font-medium mb-3 flex items-center gap-2">
             <ShoppingBag className="w-4 h-4 text-primary" />
-            Breastfeeding Supplies Checklist
+            {t('toolsInternal.lactationPrep.suppliesChecklist')}
           </h4>
           <div className="grid grid-cols-2 gap-2">
             {essentialSupplies.map((item, i) => (
@@ -238,7 +239,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
                 <span className={item.essential ? "text-primary" : "text-muted-foreground"}>
                   {item.essential ? "★" : "○"}
                 </span>
-                {item.name}
+                {t(item.nameKey)}
               </div>
             ))}
           </div>
@@ -252,7 +253,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
           size="lg"
         >
           <Sparkles className="w-4 h-4 mr-2" />
-          {isLoading ? "Creating Guide..." : "Get AI Lactation Guide"}
+          {isLoading ? t('toolsInternal.lactationPrep.creatingGuide') : t('toolsInternal.lactationPrep.getAIGuide')}
         </Button>
 
         {/* AI Response */}
@@ -267,10 +268,9 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-primary flex-shrink-0" />
             <div>
-              <h4 className="font-medium">Need Support?</h4>
+              <h4 className="font-medium">{t('toolsInternal.lactationPrep.needSupport')}</h4>
               <p className="text-sm text-muted-foreground mt-1">
-                If you're struggling with breastfeeding, reach out to a lactation consultant (IBCLC). 
-                Many hospitals offer free support. Fed is best - whatever works for you and baby!
+                {t('toolsInternal.lactationPrep.supportNote')}
               </p>
             </div>
           </div>
@@ -279,8 +279,8 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
           videos={lactationVideos}
-          title="Breastfeeding Videos"
-          subtitle="Expert guidance for nursing success"
+          title={t('toolsInternal.lactationPrep.videosTitle')}
+          subtitle={t('toolsInternal.lactationPrep.videosSubtitle')}
           accentColor="rose"
         />
       </div>

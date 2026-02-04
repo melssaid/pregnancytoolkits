@@ -15,8 +15,8 @@ import { Progress } from '@/components/ui/progress';
 
 interface BirthPlanPreference {
   id: string;
-  label: string;
-  options: string[];
+  labelKey: string;
+  optionKeys: string[];
 }
 
 interface SavedPlan {
@@ -27,44 +27,44 @@ interface SavedPlan {
   generatedPlan: string;
 }
 
-const birthPlanCategories: { title: string; preferences: BirthPlanPreference[] }[] = [
+const birthPlanCategories: { titleKey: string; preferences: BirthPlanPreference[] }[] = [
   {
-    title: "Labor Environment",
+    titleKey: "toolsInternal.birthPlan.categories.laborEnvironment",
     preferences: [
-      { id: "lighting", label: "Room Lighting", options: ["Dim/Low", "Natural", "Bright", "No preference"] },
-      { id: "music", label: "Music/Sounds", options: ["Relaxing music", "Nature sounds", "Silence", "My own playlist"] },
-      { id: "movement", label: "Movement During Labor", options: ["Freedom to walk", "Birth ball", "Shower/tub access", "Bed rest only"] },
+      { id: "lighting", labelKey: "toolsInternal.birthPlan.prefs.lighting.label", optionKeys: ["toolsInternal.birthPlan.prefs.lighting.dim", "toolsInternal.birthPlan.prefs.lighting.natural", "toolsInternal.birthPlan.prefs.lighting.bright", "toolsInternal.birthPlan.prefs.lighting.noPreference"] },
+      { id: "music", labelKey: "toolsInternal.birthPlan.prefs.music.label", optionKeys: ["toolsInternal.birthPlan.prefs.music.relaxing", "toolsInternal.birthPlan.prefs.music.nature", "toolsInternal.birthPlan.prefs.music.silence", "toolsInternal.birthPlan.prefs.music.ownPlaylist"] },
+      { id: "movement", labelKey: "toolsInternal.birthPlan.prefs.movement.label", optionKeys: ["toolsInternal.birthPlan.prefs.movement.walk", "toolsInternal.birthPlan.prefs.movement.ball", "toolsInternal.birthPlan.prefs.movement.shower", "toolsInternal.birthPlan.prefs.movement.bedRest"] },
     ]
   },
   {
-    title: "Pain Management",
+    titleKey: "toolsInternal.birthPlan.categories.painManagement",
     preferences: [
-      { id: "painRelief", label: "Pain Relief Preference", options: ["Natural/no medication", "Epidural when needed", "IV pain medication", "Open to all options"] },
-      { id: "laborSupport", label: "Labor Support", options: ["Partner only", "Doula", "Family members", "Medical staff only"] },
-      { id: "relaxation", label: "Relaxation Techniques", options: ["Breathing exercises", "Massage", "Aromatherapy", "Hypnobirthing"] },
+      { id: "painRelief", labelKey: "toolsInternal.birthPlan.prefs.painRelief.label", optionKeys: ["toolsInternal.birthPlan.prefs.painRelief.natural", "toolsInternal.birthPlan.prefs.painRelief.epidural", "toolsInternal.birthPlan.prefs.painRelief.iv", "toolsInternal.birthPlan.prefs.painRelief.openToAll"] },
+      { id: "laborSupport", labelKey: "toolsInternal.birthPlan.prefs.laborSupport.label", optionKeys: ["toolsInternal.birthPlan.prefs.laborSupport.partner", "toolsInternal.birthPlan.prefs.laborSupport.doula", "toolsInternal.birthPlan.prefs.laborSupport.family", "toolsInternal.birthPlan.prefs.laborSupport.medical"] },
+      { id: "relaxation", labelKey: "toolsInternal.birthPlan.prefs.relaxation.label", optionKeys: ["toolsInternal.birthPlan.prefs.relaxation.breathing", "toolsInternal.birthPlan.prefs.relaxation.massage", "toolsInternal.birthPlan.prefs.relaxation.aromatherapy", "toolsInternal.birthPlan.prefs.relaxation.hypnobirthing"] },
     ]
   },
   {
-    title: "Delivery Preferences",
+    titleKey: "toolsInternal.birthPlan.categories.deliveryPreferences",
     preferences: [
-      { id: "birthPosition", label: "Birth Position", options: ["Whatever feels natural", "Squatting", "Side-lying", "Standard/supine"] },
-      { id: "pushing", label: "Pushing Style", options: ["Coached pushing", "Spontaneous/instinctive", "No preference"] },
-      { id: "episiotomy", label: "Episiotomy", options: ["Avoid if possible", "Only if necessary", "No preference"] },
+      { id: "birthPosition", labelKey: "toolsInternal.birthPlan.prefs.birthPosition.label", optionKeys: ["toolsInternal.birthPlan.prefs.birthPosition.natural", "toolsInternal.birthPlan.prefs.birthPosition.squatting", "toolsInternal.birthPlan.prefs.birthPosition.sideLying", "toolsInternal.birthPlan.prefs.birthPosition.supine"] },
+      { id: "pushing", labelKey: "toolsInternal.birthPlan.prefs.pushing.label", optionKeys: ["toolsInternal.birthPlan.prefs.pushing.coached", "toolsInternal.birthPlan.prefs.pushing.spontaneous", "toolsInternal.birthPlan.prefs.pushing.noPreference"] },
+      { id: "episiotomy", labelKey: "toolsInternal.birthPlan.prefs.episiotomy.label", optionKeys: ["toolsInternal.birthPlan.prefs.episiotomy.avoid", "toolsInternal.birthPlan.prefs.episiotomy.ifNecessary", "toolsInternal.birthPlan.prefs.episiotomy.noPreference"] },
     ]
   },
   {
-    title: "After Birth",
+    titleKey: "toolsInternal.birthPlan.categories.afterBirth",
     preferences: [
-      { id: "skinToSkin", label: "Immediate Skin-to-Skin", options: ["Yes, immediately", "After initial checks", "Partner first if needed"] },
-      { id: "cordClamping", label: "Cord Clamping", options: ["Delayed clamping", "Immediate", "Partner to cut cord", "No preference"] },
-      { id: "feeding", label: "Feeding Plan", options: ["Breastfeeding", "Formula feeding", "Combination", "Undecided"] },
+      { id: "skinToSkin", labelKey: "toolsInternal.birthPlan.prefs.skinToSkin.label", optionKeys: ["toolsInternal.birthPlan.prefs.skinToSkin.immediately", "toolsInternal.birthPlan.prefs.skinToSkin.afterChecks", "toolsInternal.birthPlan.prefs.skinToSkin.partnerFirst"] },
+      { id: "cordClamping", labelKey: "toolsInternal.birthPlan.prefs.cordClamping.label", optionKeys: ["toolsInternal.birthPlan.prefs.cordClamping.delayed", "toolsInternal.birthPlan.prefs.cordClamping.immediate", "toolsInternal.birthPlan.prefs.cordClamping.partnerCut", "toolsInternal.birthPlan.prefs.cordClamping.noPreference"] },
+      { id: "feeding", labelKey: "toolsInternal.birthPlan.prefs.feeding.label", optionKeys: ["toolsInternal.birthPlan.prefs.feeding.breastfeeding", "toolsInternal.birthPlan.prefs.feeding.formula", "toolsInternal.birthPlan.prefs.feeding.combination", "toolsInternal.birthPlan.prefs.feeding.undecided"] },
     ]
   },
   {
-    title: "Special Circumstances",
+    titleKey: "toolsInternal.birthPlan.categories.specialCircumstances",
     preferences: [
-      { id: "cesarean", label: "If C-Section Needed", options: ["Partner present", "Clear drape to see baby", "Skin-to-skin in OR if possible"] },
-      { id: "photography", label: "Photography/Video", options: ["Yes, throughout", "Photos only", "After birth only", "No photography"] },
+      { id: "cesarean", labelKey: "toolsInternal.birthPlan.prefs.cesarean.label", optionKeys: ["toolsInternal.birthPlan.prefs.cesarean.partnerPresent", "toolsInternal.birthPlan.prefs.cesarean.clearDrape", "toolsInternal.birthPlan.prefs.cesarean.skinToSkin"] },
+      { id: "photography", labelKey: "toolsInternal.birthPlan.prefs.photography.label", optionKeys: ["toolsInternal.birthPlan.prefs.photography.throughout", "toolsInternal.birthPlan.prefs.photography.photosOnly", "toolsInternal.birthPlan.prefs.photography.afterBirth", "toolsInternal.birthPlan.prefs.photography.none"] },
     ]
   }
 ];
@@ -76,7 +76,7 @@ export default function AIBirthPlanGenerator() {
   const [generatedPlan, setGeneratedPlan] = useState('');
   const [savedPlans, setSavedPlans] = useState<SavedPlan[]>([]);
   const [showArchive, setShowArchive] = useState(false);
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['Labor Environment']));
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['toolsInternal.birthPlan.categories.laborEnvironment']));
   
   const { streamChat, isLoading, error } = usePregnancyAI();
   const isInitialized = useRef(false);
@@ -119,7 +119,7 @@ export default function AIBirthPlanGenerator() {
       .map(([key, value]) => {
         const allPrefs = birthPlanCategories.flatMap(c => c.preferences);
         const pref = allPrefs.find(p => p.id === key);
-        return `${pref?.label || key}: ${value}`;
+        return `${pref ? t(pref.labelKey) : key}: ${value}`;
       })
       .join('\n');
 
@@ -224,41 +224,44 @@ Make it comprehensive and ready to share with healthcare providers.`
 
         {/* Preference Sections */}
         {birthPlanCategories.map((category) => (
-          <Card key={category.title}>
+          <Card key={category.titleKey}>
             <CardContent className="p-0">
               <button
-                onClick={() => toggleSection(category.title)}
+                onClick={() => toggleSection(category.titleKey)}
                 className="w-full p-4 flex items-center justify-between text-left"
               >
-                <h3 className="font-semibold text-sm">{category.title}</h3>
-                {expandedSections.has(category.title) ? (
+                <h3 className="font-semibold text-sm">{t(category.titleKey)}</h3>
+                {expandedSections.has(category.titleKey) ? (
                   <ChevronUp className="w-4 h-4 text-muted-foreground" />
                 ) : (
                   <ChevronDown className="w-4 h-4 text-muted-foreground" />
                 )}
               </button>
               
-              {expandedSections.has(category.title) && (
+              {expandedSections.has(category.titleKey) && (
                 <div className="px-4 pb-4 space-y-4">
                   {category.preferences.map((pref) => (
                     <div key={pref.id}>
                       <label className="text-xs font-medium text-muted-foreground mb-2 block">
-                        {pref.label}
+                        {t(pref.labelKey)}
                       </label>
                       <div className="flex flex-wrap gap-2">
-                        {pref.options.map((option) => (
-                          <button
-                            key={option}
-                            onClick={() => handlePreferenceChange(pref.id, option)}
-                            className={`px-3 py-1.5 text-xs rounded-full transition-all ${
-                              preferences[pref.id] === option
-                                ? 'bg-primary text-primary-foreground'
-                                : 'bg-muted hover:bg-muted/80 text-muted-foreground'
-                            }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
+                        {pref.optionKeys.map((optionKey) => {
+                          const optionValue = t(optionKey);
+                          return (
+                            <button
+                              key={optionKey}
+                              onClick={() => handlePreferenceChange(pref.id, optionValue)}
+                              className={`px-3 py-1.5 text-xs rounded-full transition-all ${
+                                preferences[pref.id] === optionValue
+                                  ? 'bg-primary text-primary-foreground'
+                                  : 'bg-muted hover:bg-muted/80 text-muted-foreground'
+                              }`}
+                            >
+                              {optionValue}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   ))}
@@ -271,9 +274,9 @@ Make it comprehensive and ready to share with healthcare providers.`
         {/* Additional Notes */}
         <Card>
           <CardContent className="p-4">
-            <label className="text-sm font-medium mb-2 block">Additional Notes or Requests</label>
+            <label className="text-sm font-medium mb-2 block">{t('toolsInternal.birthPlan.additionalNotes')}</label>
             <Textarea
-              placeholder="Any specific concerns, cultural considerations, or special requests..."
+              placeholder={t('toolsInternal.birthPlan.notesPlaceholder')}
               value={additionalNotes}
               onChange={(e) => setAdditionalNotes(e.target.value)}
               rows={3}
@@ -290,12 +293,12 @@ Make it comprehensive and ready to share with healthcare providers.`
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              Generating...
+              {t('toolsInternal.birthPlan.generating')}
             </>
           ) : (
             <>
               <Sparkles className="w-4 h-4" />
-              Generate My Birth Plan
+              {t('toolsInternal.birthPlan.generateButton')}
             </>
           )}
         </Button>
@@ -313,7 +316,7 @@ Make it comprehensive and ready to share with healthcare providers.`
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold flex items-center gap-2">
                   <FileText className="w-4 h-4 text-primary" />
-                  Your Birth Plan
+                  {t('toolsInternal.birthPlan.yourBirthPlan')}
                 </h3>
                 <div className="flex gap-2">
                   <Button 
@@ -322,7 +325,7 @@ Make it comprehensive and ready to share with healthcare providers.`
                     onClick={savePlan}
                     disabled={savedPlans.length >= MAX_SAVED_PLANS}
                   >
-                    Save
+                    {t('common.save')}
                   </Button>
                   <Button 
                     size="sm" 
@@ -350,7 +353,7 @@ Make it comprehensive and ready to share with healthcare providers.`
               <div className="flex items-center gap-2">
                 <Archive className="w-4 h-4 text-muted-foreground" />
                 <h3 className="font-semibold">
-                  Saved Plans ({savedPlans.length}/{MAX_SAVED_PLANS})
+                  {t('toolsInternal.birthPlan.savedPlans', { count: savedPlans.length, max: MAX_SAVED_PLANS })}
                 </h3>
               </div>
               {showArchive ? (
@@ -369,7 +372,7 @@ Make it comprehensive and ready to share with healthcare providers.`
               {savedPlans.length >= MAX_SAVED_PLANS && (
                 <p className="text-xs text-destructive mt-1 flex items-center gap-1">
                   <AlertCircle className="w-3 h-3" />
-                  Storage full - delete a plan to save new ones
+                  {t('toolsInternal.birthPlan.storageFull')}
                 </p>
               )}
             </div>
@@ -378,7 +381,7 @@ Make it comprehensive and ready to share with healthcare providers.`
               <div className="mt-4 space-y-2">
                 {savedPlans.length === 0 ? (
                   <p className="text-sm text-muted-foreground text-center py-4">
-                    No saved plans yet. Generate and save your first birth plan!
+                    {t('toolsInternal.birthPlan.noSavedPlans')}
                   </p>
                 ) : (
                   savedPlans.map((plan) => (
@@ -390,16 +393,16 @@ Make it comprehensive and ready to share with healthcare providers.`
                         <Clock className="w-4 h-4 text-muted-foreground" />
                         <div>
                           <p className="text-sm font-medium">
-                            Birth Plan - {format(new Date(plan.date), 'MMM d, yyyy')}
+                            {t('toolsInternal.birthPlan.planTitle')} - {format(new Date(plan.date), 'MMM d, yyyy')}
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            {Object.keys(plan.preferences).length} preferences set
+                            {t('toolsInternal.birthPlan.preferencesSet', { count: Object.keys(plan.preferences).length })}
                           </p>
                         </div>
                       </div>
                       <div className="flex gap-1">
                         <Button size="sm" variant="ghost" onClick={() => loadPlan(plan)}>
-                          Load
+                          {t('toolsInternal.birthPlan.load')}
                         </Button>
                         <Button 
                           size="sm" 
