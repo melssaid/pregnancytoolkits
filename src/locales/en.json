@@ -168,6 +168,165 @@
       "description": "Log changes, monitor health."
     }
   },
+  "dashboard": {
+    "tabs": {
+      "home": "Home",
+      "chat": "AI Chat",
+      "health": "Health",
+      "nutrition": "Nutrition",
+      "exercise": "Exercise",
+      "videos": "Videos"
+    },
+    "quickActions": "Quick Actions",
+    "smartPlan": "Smart Plan",
+    "smartPlanDesc": "My Daily Plan & PDF Report",
+    "myTrackingData": "My Tracking Data",
+    "tools": "tools",
+    "categories": {
+      "dailyTracking": "Daily Tracking",
+      "planning": "Planning",
+      "growth": "Growth",
+      "postpartum": "Postpartum"
+    },
+    "trackingTools": {
+      "kickCounter": "Kick Counter",
+      "kickCounterDesc": "Track baby movements",
+      "weightTracker": "Weight Tracker",
+      "weightTrackerDesc": "Monitor weight gain",
+      "vitaminTracker": "Vitamin Tracker",
+      "vitaminTrackerDesc": "Daily supplements",
+      "appointments": "Appointments",
+      "appointmentsDesc": "Medical visits",
+      "birthPlan": "Birth Plan",
+      "birthPlanDesc": "Delivery preferences",
+      "hospitalBag": "Hospital Bag",
+      "hospitalBagDesc": "Packing checklist",
+      "fetalGrowth": "Fetal Growth",
+      "fetalGrowthDesc": "Baby development",
+      "babyGrowth": "Baby Growth",
+      "babyGrowthDesc": "Postnatal tracking",
+      "bumpPhotos": "Bump Photos",
+      "bumpPhotosDesc": "Weekly snapshots",
+      "babySleep": "Baby Sleep",
+      "babySleepDesc": "Sleep patterns",
+      "diaperTracker": "Diaper Tracker",
+      "diaperTrackerDesc": "Daily changes",
+      "groceryList": "Grocery List",
+      "groceryListDesc": "Shopping planner"
+    },
+    "summary": {
+      "noDataToday": "No data today",
+      "startPlanning": "Start planning",
+      "trackGrowth": "Track growth",
+      "readyForBaby": "Ready for baby",
+      "kicks": "kicks",
+      "vitamins": "vitamins",
+      "appointments": "appointments",
+      "itemsPacked": "items packed",
+      "plan": "plan",
+      "photos": "photos",
+      "sleep": "sleep",
+      "diapers": "diapers",
+      "items": "items"
+    },
+    "aiTools": "AI-Powered Tools",
+    "aiToolsList": {
+      "smartPlan": "Smart Plan",
+      "aiAssistant": "AI Assistant",
+      "symptoms": "Symptoms",
+      "weekly": "Weekly"
+    },
+    "chat": {
+      "title": "AI Pregnancy Assistant",
+      "placeholder": "Type your question...",
+      "welcomeMessage": "Hello! I'm your smart pregnancy assistant. How can I help you today?",
+      "quickQuestions": {
+        "firstTrimester": "First trimester symptoms?",
+        "coffee": "Is coffee safe?",
+        "labor": "Labor preparation?",
+        "vitamins": "Important vitamins?"
+      }
+    },
+    "health": {
+      "title": "AI Health Tracking",
+      "weekOfPregnancy": "Week of Pregnancy",
+      "weightKg": "Weight (kg)",
+      "bloodPressure": "Blood Pressure",
+      "mood": "Mood",
+      "moods": {
+        "excellent": "Excellent",
+        "good": "Good",
+        "normal": "Normal",
+        "anxious": "Anxious",
+        "bad": "Bad"
+      },
+      "todaysSymptoms": "Today's Symptoms",
+      "symptoms": {
+        "nausea": "Nausea",
+        "headache": "Headache",
+        "fatigue": "Fatigue",
+        "backPain": "Back pain",
+        "swelling": "Swelling",
+        "heartburn": "Heartburn",
+        "insomnia": "Insomnia"
+      },
+      "saveAnalyze": "Save & Analyze",
+      "smartAnalysis": "Smart Analysis",
+      "analysis": {
+        "expectedGain": "Expected weight gain so far: ~{{kg}} kg",
+        "bpHigh": "Blood pressure is high - consult your doctor",
+        "bpLow": "Blood pressure is low - increase fluids and rest",
+        "bpNormal": "Blood pressure is normal",
+        "mentalSupport": "Mental support is important - talk to someone you trust",
+        "recordedSymptoms": "Recorded symptoms: {{symptoms}}",
+        "enterData": "Enter your data for smart analysis"
+      }
+    },
+    "nutrition": {
+      "title": "Smart Nutrition Plan",
+      "planForWeek": "Customized plan for week {{week}} of pregnancy",
+      "meals": {
+        "breakfast": "Breakfast",
+        "breakfastSuggestion": "Boiled eggs + whole wheat bread + fresh orange juice",
+        "lunch": "Lunch",
+        "lunchSuggestion": "Grilled chicken + rice + green salad",
+        "dinner": "Dinner",
+        "dinnerSuggestion": "Grilled fish + sautéed vegetables + yogurt",
+        "snacks": "Snacks",
+        "snacksSuggestion": "Fruits + nuts + milk"
+      },
+      "totalCalories": "Total Daily Calories: {{calories}} cal",
+      "moreAiSuggestions": "More AI Suggestions"
+    },
+    "exercise": {
+      "title": "Safe Pregnancy Exercises",
+      "exercises": {
+        "walking": "Walking",
+        "walkingDuration": "30 min",
+        "walkingBenefit": "Improves circulation",
+        "swimming": "Swimming",
+        "swimmingDuration": "20 min",
+        "swimmingBenefit": "Relieves back pain",
+        "yoga": "Prenatal Yoga",
+        "yogaDuration": "25 min",
+        "yogaBenefit": "Reduces stress",
+        "kegel": "Kegel Exercises",
+        "kegelDuration": "10 min",
+        "kegelBenefit": "Strengthens pelvic floor"
+      },
+      "moreExercises": "More Exercises"
+    },
+    "videos": {
+      "title": "Educational Videos",
+      "fullLibrary": "Full Library",
+      "videoTitles": {
+        "yoga": "Prenatal Yoga Exercises",
+        "recipes": "Healthy Pregnancy Recipes",
+        "tips": "Pregnancy Health Tips"
+      }
+    },
+    "checkAppointments": "Check appointments"
+  },
   "layout": {
     "trustBar": {
       "scienceBacked": "Science-Backed",
