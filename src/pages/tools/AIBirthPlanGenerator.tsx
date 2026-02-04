@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
-import { MedicalInfoBar } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -222,7 +221,6 @@ Make it comprehensive and ready to share with healthcare providers.`
       toolId="ai-birth-plan"
     >
       <div className="space-y-6">
-        <MedicalInfoBar compact />
 
         {/* Preference Sections */}
         {birthPlanCategories.map((category) => (

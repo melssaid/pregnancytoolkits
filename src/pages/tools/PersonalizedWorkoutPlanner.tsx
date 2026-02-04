@@ -278,19 +278,6 @@ export default function PersonalizedWorkoutPlanner() {
             </CardContent>
           </Card>
 
-          <Card className="border-amber-200 bg-amber-50/50">
-            <CardContent className="p-4">
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
-                <div className="text-sm">
-                  <p className="font-medium text-amber-800 mb-1">{t('toolsInternal.workoutPlanner.beforeYouStart')}</p>
-                  <p className="text-amber-700">
-                    {t('toolsInternal.workoutPlanner.safetyNotice')}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
 
           <div className="space-y-4">
             <h3 className="font-semibold">{t('toolsInternal.workoutPlanner.availableWorkouts')}</h3>

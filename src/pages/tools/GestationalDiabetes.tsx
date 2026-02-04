@@ -81,17 +81,6 @@ export default function GestationalDiabetes() {
       toolId="gestational-diabetes"
     >
       <div className="space-y-6">
-        {/* Disclaimer */}
-        <Card className="bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
-          <CardContent className="pt-4">
-            <div className="flex gap-3">
-              <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-amber-800 dark:text-amber-200">
-                {t('toolsInternal.gdm.disclaimer')}
-              </p>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Risk Factors Checklist */}
         <Card>
