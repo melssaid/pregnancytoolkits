@@ -14,15 +14,15 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
-const sleepIssues = [
-  { id: "back-pain", label: "Back pain", icon: "🔙" },
-  { id: "frequent-urination", label: "Frequent urination", icon: "🚽" },
-  { id: "leg-cramps", label: "Leg cramps", icon: "🦵" },
-  { id: "heartburn", label: "Heartburn", icon: "🔥" },
-  { id: "anxiety", label: "Anxiety/racing thoughts", icon: "💭" },
-  { id: "baby-movements", label: "Baby movements", icon: "👶" },
-  { id: "hot-flashes", label: "Hot flashes", icon: "🌡️" },
-  { id: "snoring", label: "Snoring/breathing issues", icon: "😮‍💨" },
+const sleepIssueKeys = [
+  { id: "back-pain", key: "backPain", icon: "🔙" },
+  { id: "frequent-urination", key: "frequentUrination", icon: "🚽" },
+  { id: "leg-cramps", key: "legCramps", icon: "🦵" },
+  { id: "heartburn", key: "heartburn", icon: "🔥" },
+  { id: "anxiety", key: "anxiety", icon: "💭" },
+  { id: "baby-movements", key: "babyMovements", icon: "👶" },
+  { id: "hot-flashes", key: "hotFlashes", icon: "🌡️" },
+  { id: "snoring", key: "snoring", icon: "😮‍💨" },
 ];
 
 const sleepVideos: Video[] = [
@@ -83,9 +83,10 @@ const AISleepOptimizer = () => {
   };
 
   const analyzeSleep = async () => {
-    const issueLabels = selectedIssues.map(id => 
-      sleepIssues.find(i => i.id === id)?.label
-    ).filter(Boolean);
+    const issueLabels = selectedIssues.map(id => {
+      const issue = sleepIssueKeys.find(i => i.id === id);
+      return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
+    }).filter(Boolean);
 
     const prompt = `As a pregnancy sleep specialist, analyze this sleep profile and provide personalized recommendations:
 
@@ -115,10 +116,15 @@ Include specific product recommendations (pillows, white noise) and YouTube link
   };
 
   const generateMeditation = async () => {
+    const issueLabels = selectedIssues.map(id => {
+      const issue = sleepIssueKeys.find(i => i.id === id);
+      return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
+    }).filter(Boolean);
+
     const prompt = `As a sleep meditation specialist for pregnant women, create a calming bedtime meditation script:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || 20}
-**Current Sleep Issues:** ${selectedIssues.map(id => sleepIssues.find(i => i.id === id)?.label).filter(Boolean).join(", ") || "General sleep difficulty"}
+**Current Sleep Issues:** ${issueLabels.join(", ") || "General sleep difficulty"}
 
 Create a 10-minute guided meditation script that includes:
 
@@ -143,9 +149,10 @@ Write it as a script that can be read aloud or followed along. Use calm, soothin
   };
 
   const generateRoutine = async () => {
-    const issueLabels = selectedIssues.map(id => 
-      sleepIssues.find(i => i.id === id)?.label
-    ).filter(Boolean);
+    const issueLabels = selectedIssues.map(id => {
+      const issue = sleepIssueKeys.find(i => i.id === id);
+      return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
+    }).filter(Boolean);
 
     const prompt = `As a pregnancy sleep specialist, create a complete evening routine:
 
@@ -189,7 +196,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
     return (
       <MedicalDisclaimer
         onAccept={() => setDisclaimerAccepted(true)}
-        toolName="AI Sleep Quality Optimizer"
+        toolName={t('toolsInternal.sleepOptimizer.title')}
       />
     );
   }
@@ -207,7 +214,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         <div className="space-y-3">
           <Label className="flex items-center gap-2">
             <Clock className="w-4 h-4 text-primary" />
-            Current Sleep: {sleepHours[0]} hours/night
+            {t('toolsInternal.sleepOptimizer.currentSleep', { hours: sleepHours[0] })}
           </Label>
           <Slider
             value={sleepHours}
@@ -223,7 +230,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         <div className="space-y-2">
           <Label className="flex items-center gap-2">
             <Moon className="w-4 h-4 text-primary" />
-            Usual Bedtime
+            {t('toolsInternal.sleepOptimizer.usualBedtime')}
           </Label>
           <input
             type="time"
@@ -237,10 +244,10 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         <div className="space-y-2">
           <Label className="flex items-center gap-2 text-sm">
             <ThermometerSun className="w-4 h-4 text-primary shrink-0" />
-            <span className="truncate">Sleep Challenges</span>
+            <span className="truncate">{t('toolsInternal.sleepOptimizer.sleepChallenges')}</span>
           </Label>
           <div className="grid grid-cols-1 gap-1.5">
-            {sleepIssues.map((issue) => (
+            {sleepIssueKeys.map((issue) => (
               <div
                 key={issue.id}
                 onClick={() => toggleIssue(issue.id)}
@@ -253,7 +260,9 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
                 <div className="flex items-center gap-2 min-w-0">
                   <Checkbox checked={selectedIssues.includes(issue.id)} className="shrink-0" />
                   <span className="text-base shrink-0">{issue.icon}</span>
-                  <span className="text-xs sm:text-sm truncate">{issue.label}</span>
+                  <span className="text-xs sm:text-sm truncate">
+                    {t(`toolsInternal.sleepOptimizer.issues.${issue.key}`)}
+                  </span>
                 </div>
               </div>
             ))}
@@ -273,7 +282,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
             ) : (
               <Brain className="w-4 h-4" />
             )}
-            <span className="text-[10px]">Sleep Plan</span>
+            <span className="text-[10px]">{t('toolsInternal.sleepOptimizer.sleepPlan')}</span>
           </Button>
           <Button
             onClick={generateMeditation}
@@ -286,7 +295,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
             ) : (
               <Wind className="w-4 h-4" />
             )}
-            <span className="text-[10px]">Meditation</span>
+            <span className="text-[10px]">{t('toolsInternal.sleepOptimizer.meditation')}</span>
           </Button>
           <Button
             onClick={generateRoutine}
@@ -299,7 +308,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
             ) : (
               <Bed className="w-4 h-4" />
             )}
-            <span className="text-[10px]">Routine</span>
+            <span className="text-[10px]">{t('toolsInternal.sleepOptimizer.routine')}</span>
           </Button>
         </div>
 
@@ -309,16 +318,16 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
             <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
               <TabsList className="w-full mb-3">
                 <TabsTrigger value="analysis" className="flex-1" disabled={!response}>
-                  <Brain className="w-4 h-4 mr-1" />
-                  Sleep Plan
+                  <Brain className="w-4 h-4 me-1" />
+                  {t('toolsInternal.sleepOptimizer.sleepPlan')}
                 </TabsTrigger>
                 <TabsTrigger value="meditation" className="flex-1" disabled={!meditationScript}>
-                  <Wind className="w-4 h-4 mr-1" />
-                  Meditation
+                  <Wind className="w-4 h-4 me-1" />
+                  {t('toolsInternal.sleepOptimizer.meditation')}
                 </TabsTrigger>
                 <TabsTrigger value="routine" className="flex-1" disabled={!routinePlan}>
-                  <Bed className="w-4 h-4 mr-1" />
-                  Routine
+                  <Bed className="w-4 h-4 me-1" />
+                  {t('toolsInternal.sleepOptimizer.routine')}
                 </TabsTrigger>
               </TabsList>
               
@@ -340,15 +349,15 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         {/* Sleep Tips */}
         <Card className="p-4 bg-muted/30">
           <p className="text-sm text-muted-foreground text-center">
-            💡 Left-side sleeping is recommended after week 20 for optimal blood flow
+            {t('toolsInternal.sleepOptimizer.leftSideTip')}
           </p>
         </Card>
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
           videos={sleepVideos}
-          title="Pregnancy Sleep Videos"
-          subtitle="Expert tips for better sleep during pregnancy"
+          title={t('toolsInternal.sleepOptimizer.sleepVideos')}
+          subtitle={t('toolsInternal.sleepOptimizer.sleepVideosSubtitle')}
           accentColor="violet"
         />
       </div>

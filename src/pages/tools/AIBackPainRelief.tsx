@@ -4,7 +4,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Activity, Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Loader2 } from 'lucide-react';
+import { Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -12,110 +12,67 @@ import { ExerciseIcon } from '@/components/ExerciseIcon';
 
 interface Exercise {
   id: string;
-  name: string;
-  description: string;
+  nameKey: string;
+  descriptionKey: string;
   duration: number;
-  targetArea: string;
-  difficulty: string;
-  steps: string[];
+  targetAreaKey: string;
+  stepsKey: string;
   icon: string;
 }
 
 const backPainExercises: Exercise[] = [
   {
     id: 'cat-cow',
-    name: 'Cat-Cow Stretch',
-    description: 'Alternating spinal flexion and extension',
+    nameKey: 'exercises.catCow.name',
+    descriptionKey: 'exercises.catCow.description',
     duration: 60,
-    targetArea: 'Lower & Upper Back',
-    difficulty: 'Easy',
-    steps: [
-      'Start on hands and knees',
-      'Inhale: Drop belly, lift head (Cow)',
-      'Exhale: Round spine, tuck chin (Cat)',
-      'Move slowly between positions',
-      'Repeat 10-15 times'
-    ],
+    targetAreaKey: 'targetAreas.lowerUpperBack',
+    stepsKey: 'exercises.catCow.steps',
     icon: 'spine'
   },
   {
     id: 'pelvic-tilt',
-    name: 'Pelvic Tilts',
-    description: 'Strengthen core and relieve lower back pressure',
+    nameKey: 'exercises.pelvicTilt.name',
+    descriptionKey: 'exercises.pelvicTilt.description',
     duration: 45,
-    targetArea: 'Lower Back & Core',
-    difficulty: 'Easy',
-    steps: [
-      'Lie on your back with knees bent',
-      'Flatten your lower back against the floor',
-      'Tilt your pelvis upward slightly',
-      'Hold for 5 seconds',
-      'Repeat 10-15 times'
-    ],
+    targetAreaKey: 'targetAreas.lowerBackCore',
+    stepsKey: 'exercises.pelvicTilt.steps',
     icon: 'core'
   },
   {
     id: 'child-pose',
-    name: "Child's Pose",
-    description: 'Gentle stretch for the entire back',
+    nameKey: 'exercises.childPose.name',
+    descriptionKey: 'exercises.childPose.description',
     duration: 60,
-    targetArea: 'Full Back',
-    difficulty: 'Easy',
-    steps: [
-      'Kneel on the floor',
-      'Spread knees wide to accommodate belly',
-      'Sit back on heels',
-      'Stretch arms forward on floor',
-      'Rest and breathe deeply'
-    ],
+    targetAreaKey: 'targetAreas.fullBack',
+    stepsKey: 'exercises.childPose.steps',
     icon: 'yoga'
   },
   {
     id: 'piriformis',
-    name: 'Piriformis Stretch',
-    description: 'Relieve sciatic pain and hip tension',
+    nameKey: 'exercises.piriformis.name',
+    descriptionKey: 'exercises.piriformis.description',
     duration: 60,
-    targetArea: 'Hips & Lower Back',
-    difficulty: 'Moderate',
-    steps: [
-      'Sit in a chair',
-      'Cross one ankle over opposite knee',
-      'Gently lean forward',
-      'Hold for 30 seconds',
-      'Switch sides'
-    ],
+    targetAreaKey: 'targetAreas.hipsLowerBack',
+    stepsKey: 'exercises.piriformis.steps',
     icon: 'hips'
   },
   {
     id: 'wall-push',
-    name: 'Wall Push-Up',
-    description: 'Strengthen upper back and shoulders',
+    nameKey: 'exercises.wallPush.name',
+    descriptionKey: 'exercises.wallPush.description',
     duration: 45,
-    targetArea: 'Upper Back & Arms',
-    difficulty: 'Easy',
-    steps: [
-      'Stand arm-length from wall',
-      'Place palms on wall at shoulder height',
-      'Slowly bend elbows toward wall',
-      'Push back to starting position',
-      'Repeat 10-15 times'
-    ],
+    targetAreaKey: 'targetAreas.upperBackArms',
+    stepsKey: 'exercises.wallPush.steps',
     icon: 'strength'
   },
   {
     id: 'side-stretch',
-    name: 'Side Body Stretch',
-    description: 'Stretch the sides of your torso',
+    nameKey: 'exercises.sideStretch.name',
+    descriptionKey: 'exercises.sideStretch.description',
     duration: 45,
-    targetArea: 'Side Body',
-    difficulty: 'Easy',
-    steps: [
-      'Stand with feet hip-width apart',
-      'Raise one arm overhead',
-      'Lean gently to the opposite side',
-      'Hold for 15-20 seconds',
-      'Switch sides'
-    ],
+    targetAreaKey: 'targetAreas.sideBody',
+    stepsKey: 'exercises.sideStretch.steps',
     icon: 'stretch'
   }
 ];
@@ -132,6 +89,13 @@ export default function AIBackPainRelief() {
   const [painLocation, setPainLocation] = useState<string>('lower back');
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  const painLocations = [
+    { key: 'lower back', label: t('toolsInternal.backPainRelief.lowerBack') },
+    { key: 'upper back', label: t('toolsInternal.backPainRelief.upperBack') },
+    { key: 'full back', label: t('toolsInternal.backPainRelief.fullBack') },
+    { key: 'hips & sciatic', label: t('toolsInternal.backPainRelief.hipsSciatica') }
+  ];
 
   useEffect(() => {
     const saved = localStorage.getItem('backPainCompletedToday');
@@ -177,9 +141,10 @@ export default function AIBackPainRelief() {
     setShowAIAdvice(true);
     setAiResponse('');
     
-    const completedNames = completedExercises.map(id => 
-      backPainExercises.find(e => e.id === id)?.name
-    ).filter(Boolean);
+    const completedNames = completedExercises.map(id => {
+      const ex = backPainExercises.find(e => e.id === id);
+      return ex ? t(`toolsInternal.backPainRelief.${ex.nameKey}`) : null;
+    }).filter(Boolean);
 
     await streamChat({
       type: 'back-pain-relief' as any,
@@ -197,7 +162,7 @@ export default function AIBackPainRelief() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="AI Back Pain Relief"
+        toolName={t('toolsInternal.backPainRelief.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -215,19 +180,21 @@ export default function AIBackPainRelief() {
         {/* Pain Location Selector */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-sm font-medium text-muted-foreground mb-3">Where does it hurt?</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">
+              {t('toolsInternal.backPainRelief.whereHurts')}
+            </h3>
             <div className="grid grid-cols-2 gap-2">
-              {['Lower Back', 'Upper Back', 'Full Back', 'Hips & Sciatic'].map((loc) => (
+              {painLocations.map((loc) => (
                 <button
-                  key={loc}
-                  onClick={() => setPainLocation(loc.toLowerCase())}
+                  key={loc.key}
+                  onClick={() => setPainLocation(loc.key)}
                   className={`py-2 px-3 rounded-lg text-sm font-medium transition-all ${
-                    painLocation === loc.toLowerCase()
+                    painLocation === loc.key
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted hover:bg-muted/80'
                   }`}
                 >
-                  {loc}
+                  {loc.label}
                 </button>
               ))}
             </div>
@@ -239,9 +206,12 @@ export default function AIBackPainRelief() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-3">
               <div>
-                <h3 className="font-semibold">Today's Relief Routine</h3>
+                <h3 className="font-semibold">{t('toolsInternal.backPainRelief.todaysRoutine')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  {completedExercises.length}/{backPainExercises.length} exercises completed
+                  {t('toolsInternal.backPainRelief.exercisesCompleted', {
+                    completed: completedExercises.length,
+                    total: backPainExercises.length
+                  })}
                 </p>
               </div>
               <div className="text-3xl font-bold text-primary">
@@ -259,7 +229,7 @@ export default function AIBackPainRelief() {
               ) : (
                 <Brain className="w-4 h-4" />
               )}
-              Get AI Pain Relief Advice
+              {t('toolsInternal.backPainRelief.getAIAdvice')}
             </Button>
           </CardContent>
         </Card>
@@ -270,7 +240,7 @@ export default function AIBackPainRelief() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Brain className="w-5 h-5 text-primary" />
-                <h3 className="font-semibold">AI Pain Relief Coach</h3>
+                <h3 className="font-semibold">{t('toolsInternal.backPainRelief.aiCoach')}</h3>
               </div>
               <MarkdownRenderer content={aiResponse} />
             </CardContent>
@@ -296,15 +266,17 @@ export default function AIBackPainRelief() {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                   <ExerciseIcon type={selectedExercise.icon} className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{selectedExercise.name}</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {t(`toolsInternal.backPainRelief.${selectedExercise.nameKey}`)}
+                </h3>
                 
                 <div className="text-5xl font-bold text-primary my-6">
                   {timeRemaining}s
                 </div>
 
-                <div className="bg-muted/50 p-4 rounded-lg text-left mb-4">
-                  <h4 className="font-semibold mb-2">Steps:</h4>
-                  {selectedExercise.steps.map((step, i) => (
+                <div className="bg-muted/50 p-4 rounded-lg text-start mb-4">
+                  <h4 className="font-semibold mb-2">{t('toolsInternal.backPainRelief.steps')}:</h4>
+                  {(t(`toolsInternal.backPainRelief.${selectedExercise.stepsKey}`, { returnObjects: true }) as string[]).map((step, i) => (
                     <p key={i} className="text-sm text-muted-foreground">
                       {i + 1}. {step}
                     </p>
@@ -312,8 +284,8 @@ export default function AIBackPainRelief() {
                 </div>
 
                 <Button variant="outline" onClick={() => setIsActive(false)}>
-                  <Pause className="w-4 h-4 mr-2" />
-                  Stop
+                  <Pause className="w-4 h-4 me-2" />
+                  {t('toolsInternal.backPainRelief.stop')}
                 </Button>
               </CardContent>
             </Card>
@@ -323,7 +295,7 @@ export default function AIBackPainRelief() {
         {/* Exercise List */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-lg font-semibold mb-4">Back Pain Exercises</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('toolsInternal.backPainRelief.exerciseList')}</h3>
             <div className="space-y-3">
               {backPainExercises.map((exercise) => {
                 const isCompleted = completedExercises.includes(exercise.id);
@@ -342,13 +314,17 @@ export default function AIBackPainRelief() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold">{exercise.name}</span>
+                          <span className="font-semibold">
+                            {t(`toolsInternal.backPainRelief.${exercise.nameKey}`)}
+                          </span>
                           {isCompleted && <CheckCircle className="w-4 h-4 text-primary" />}
                         </div>
-                        <p className="text-sm text-muted-foreground">{exercise.description}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {t(`toolsInternal.backPainRelief.${exercise.descriptionKey}`)}
+                        </p>
                         <div className="flex gap-2 mt-2">
                           <span className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full">
-                            {exercise.targetArea}
+                            {t(`toolsInternal.backPainRelief.${exercise.targetAreaKey}`)}
                           </span>
                           <span className="text-xs px-2 py-0.5 bg-muted rounded-full flex items-center gap-1">
                             <Clock className="w-3 h-3" /> {exercise.duration}s
@@ -377,10 +353,11 @@ export default function AIBackPainRelief() {
             <div className="flex gap-3">
               <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0" />
               <div>
-                <h4 className="font-semibold text-destructive">Important Safety Notice</h4>
+                <h4 className="font-semibold text-destructive">
+                  {t('toolsInternal.backPainRelief.safetyNotice')}
+                </h4>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Stop immediately if you experience sharp pain, dizziness, or contractions. 
-                  Always consult your healthcare provider before starting any exercise program during pregnancy.
+                  {t('toolsInternal.backPainRelief.safetyText')}
                 </p>
               </div>
             </div>

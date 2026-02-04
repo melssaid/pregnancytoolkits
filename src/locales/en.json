@@ -1025,18 +1025,25 @@
     "sleepOptimizer": {
       "title": "AI Sleep Optimizer",
       "subtitle": "Personalized sleep guidance for pregnancy",
-      "currentWeek": "Current Week",
-      "sleepIssues": "Sleep Issues",
-      "backPain": "Back Pain",
-      "frequentUrination": "Frequent Urination",
-      "heartburn": "Heartburn",
-      "restlessLegs": "Restless Legs",
-      "anxiety": "Anxiety",
-      "babyMovement": "Baby Movement",
-      "generateTips": "Get Sleep Tips",
-      "sleepPositions": "Recommended Sleep Positions",
-      "bedtimeRoutine": "Bedtime Routine",
-      "environmentTips": "Sleep Environment Tips"
+      "currentSleep": "Current Sleep: {{hours}} hours/night",
+      "usualBedtime": "Usual Bedtime",
+      "sleepChallenges": "Sleep Challenges",
+      "sleepPlan": "Sleep Plan",
+      "meditation": "Meditation",
+      "routine": "Routine",
+      "leftSideTip": "💡 Left-side sleeping is recommended after week 20 for optimal blood flow",
+      "sleepVideos": "Pregnancy Sleep Videos",
+      "sleepVideosSubtitle": "Expert tips for better sleep during pregnancy",
+      "issues": {
+        "backPain": "Back pain",
+        "frequentUrination": "Frequent urination",
+        "legCramps": "Leg cramps",
+        "heartburn": "Heartburn",
+        "anxiety": "Anxiety/racing thoughts",
+        "babyMovements": "Baby movements",
+        "hotFlashes": "Hot flashes",
+        "snoring": "Snoring/breathing issues"
+      }
     },
     "nauseaRelief": {
       "title": "AI Nausea Relief",
@@ -1138,21 +1145,60 @@
     "backPainRelief": {
       "title": "AI Back Pain Relief",
       "subtitle": "Personalized exercises for pregnancy back pain",
-      "currentWeek": "Current Week",
-      "painLocation": "Pain Location",
+      "whereHurts": "Where does it hurt?",
       "lowerBack": "Lower Back",
       "upperBack": "Upper Back",
-      "hips": "Hips",
-      "sciatica": "Sciatica",
-      "painIntensity": "Pain Intensity",
-      "mild": "Mild",
-      "moderate": "Moderate",
-      "severe": "Severe",
-      "getExercises": "Get Relief Exercises",
-      "stretchingRoutine": "Stretching Routine",
-      "strengthExercises": "Strength Exercises",
-      "postureCorrection": "Posture Correction",
-      "whenToSeekHelp": "When to Seek Help"
+      "fullBack": "Full Back",
+      "hipsSciatica": "Hips & Sciatic",
+      "todaysRoutine": "Today's Relief Routine",
+      "exercisesCompleted": "{{completed}}/{{total}} exercises completed",
+      "getAIAdvice": "Get AI Pain Relief Advice",
+      "aiCoach": "AI Pain Relief Coach",
+      "safetyNotice": "Important Safety Notice",
+      "safetyText": "Stop immediately if you experience sharp pain, dizziness, or contractions. Always consult your healthcare provider before starting any exercise program during pregnancy.",
+      "exerciseList": "Back Pain Exercises",
+      "steps": "Steps",
+      "stop": "Stop",
+      "exercises": {
+        "catCow": {
+          "name": "Cat-Cow Stretch",
+          "description": "Alternating spinal flexion and extension",
+          "steps": ["Start on hands and knees", "Inhale: Drop belly, lift head (Cow)", "Exhale: Round spine, tuck chin (Cat)", "Move slowly between positions", "Repeat 10-15 times"]
+        },
+        "pelvicTilt": {
+          "name": "Pelvic Tilts",
+          "description": "Strengthen core and relieve lower back pressure",
+          "steps": ["Lie on your back with knees bent", "Flatten your lower back against the floor", "Tilt your pelvis upward slightly", "Hold for 5 seconds", "Repeat 10-15 times"]
+        },
+        "childPose": {
+          "name": "Child's Pose",
+          "description": "Gentle stretch for the entire back",
+          "steps": ["Kneel on the floor", "Spread knees wide to accommodate belly", "Sit back on heels", "Stretch arms forward on floor", "Rest and breathe deeply"]
+        },
+        "piriformis": {
+          "name": "Piriformis Stretch",
+          "description": "Relieve sciatic pain and hip tension",
+          "steps": ["Sit in a chair", "Cross one ankle over opposite knee", "Gently lean forward", "Hold for 30 seconds", "Switch sides"]
+        },
+        "wallPush": {
+          "name": "Wall Push-Up",
+          "description": "Strengthen upper back and shoulders",
+          "steps": ["Stand arm-length from wall", "Place palms on wall at shoulder height", "Slowly bend elbows toward wall", "Push back to starting position", "Repeat 10-15 times"]
+        },
+        "sideStretch": {
+          "name": "Side Body Stretch",
+          "description": "Stretch the sides of your torso",
+          "steps": ["Stand with feet hip-width apart", "Raise one arm overhead", "Lean gently to the opposite side", "Hold for 15-20 seconds", "Switch sides"]
+        }
+      },
+      "targetAreas": {
+        "lowerUpperBack": "Lower & Upper Back",
+        "lowerBackCore": "Lower Back & Core",
+        "fullBack": "Full Back",
+        "hipsLowerBack": "Hips & Lower Back",
+        "upperBackArms": "Upper Back & Arms",
+        "sideBody": "Side Body"
+      }
     },
     "skincare": {
       "title": "AI Skincare",
@@ -1646,6 +1692,90 @@
         "normalweight": "Normal weight",
         "overweight": "Overweight",
         "obese": "Obese"
+      }
+    },
+    "fetalDevelopment": {
+      "title": "Baby Development Timeline",
+      "subtitle": "Week by week journey of your baby's growth",
+      "pregnancyProgress": "Pregnancy Progress",
+      "setAsMyWeek": "Set as my week",
+      "yourCurrentWeek": "Your current week",
+      "sizeOf": "Size of a {{size}}",
+      "developing": "Developing:",
+      "length": "Length",
+      "weight": "Weight",
+      "thisWeeksDevelopment": "This Week's Development",
+      "aiWeeklyInsights": "AI Weekly Insights",
+      "development": "Development",
+      "nutrition": "Nutrition",
+      "exercise": "Exercise",
+      "trimesters": {
+        "first": "First Trimester",
+        "second": "Second Trimester",
+        "third": "Third Trimester"
+      },
+      "sizes": {
+        "poppySeed": "Poppy seed",
+        "sweetPea": "Sweet pea",
+        "raspberry": "Raspberry",
+        "prune": "Prune",
+        "lime": "Lime",
+        "lemon": "Lemon",
+        "avocado": "Avocado",
+        "bellPepper": "Bell pepper",
+        "banana": "Banana",
+        "papaya": "Papaya",
+        "corn": "Corn",
+        "lettuce": "Lettuce",
+        "eggplant": "Eggplant",
+        "cabbage": "Cabbage",
+        "squash": "Squash",
+        "cantaloupe": "Cantaloupe",
+        "honeydew": "Honeydew",
+        "pumpkin": "Pumpkin",
+        "watermelon": "Watermelon"
+      },
+      "developments": {
+        "week4": "Cells are dividing rapidly. The neural tube is forming.",
+        "week6": "Heart begins to beat. Brain and spinal cord are developing.",
+        "week8": "Tiny fingers and toes are forming. Heart is beating steadily.",
+        "week10": "All vital organs have formed. Baby starts to move.",
+        "week12": "Reflexes are developing. Fingernails are forming.",
+        "week14": "Can make facial expressions. Gender may be visible.",
+        "week16": "Can make sucking motions. Bones are hardening.",
+        "week18": "You may feel first kicks! Ears are in final position.",
+        "week20": "Can hear sounds. Regular sleep cycles begin.",
+        "week22": "Eyebrows and eyelids are fully formed.",
+        "week24": "Lungs are developing. Responds to sounds and light.",
+        "week26": "Eyes begin to open. Brain is developing rapidly.",
+        "week28": "Eyes can open and close. Baby can dream!",
+        "week30": "Brain continues rapid growth. Can regulate body temperature.",
+        "week32": "Practicing breathing. Bones are fully formed but soft.",
+        "week34": "Fingernails reach fingertips. Fat layers developing.",
+        "week36": "Lungs are nearly mature. Head may engage in pelvis.",
+        "week38": "Fully developed and gaining weight. Ready soon!",
+        "week40": "Fully developed and ready for birth! Welcome to the world!"
+      },
+      "tips": {
+        "week4": "Start taking prenatal vitamins!",
+        "week6": "Stay hydrated and rest well.",
+        "week8": "First prenatal visit recommended.",
+        "week10": "Morning sickness may peak now.",
+        "week12": "End of first trimester!",
+        "week14": "Energy levels may improve.",
+        "week16": "You might feel flutters!",
+        "week18": "Anatomy scan time!",
+        "week20": "Halfway there!",
+        "week22": "Baby can taste what you eat.",
+        "week24": "Viability milestone reached!",
+        "week26": "Glucose test may be scheduled.",
+        "week28": "Third trimester begins!",
+        "week30": "Pack your hospital bag.",
+        "week32": "Baby is gaining weight fast!",
+        "week34": "Prenatal visits every 2 weeks.",
+        "week36": "Baby may drop lower.",
+        "week38": "Could arrive any day!",
+        "week40": "Due date!"
       }
     },
     "gdm": {
