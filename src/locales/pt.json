@@ -358,6 +358,12 @@
       "contact": "Contato",
       "disclaimerTitle": "Aviso Médico",
       "disclaimerText": "Este aplicativo é apenas para fins educacionais e informativos e não fornece aconselhamento médico, diagnóstico ou tratamento. Sempre consulte um profissional de saúde qualificado para qualquer preocupação de saúde."
+    },
+    "contactPage": {
+      "title": "Fale Conosco",
+      "subtitle": "Tem perguntas ou comentários? Adoraríamos ouvir você.",
+      "email": "E-mail",
+      "phone": "Telefone"
     }
   },
   "common": {

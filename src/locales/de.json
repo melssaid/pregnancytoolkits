@@ -358,6 +358,12 @@
       "contact": "Kontakt",
       "disclaimerTitle": "Medizinischer Haftungsausschluss",
       "disclaimerText": "Diese App dient nur zu Bildungs- und Informationszwecken und bietet keine medizinische Beratung, Diagnose oder Behandlung. Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Gesundheitsdienstleister."
+    },
+    "contactPage": {
+      "title": "Kontakt",
+      "subtitle": "Haben Sie Fragen oder Feedback? Wir freuen uns von Ihnen zu hören.",
+      "email": "E-Mail",
+      "phone": "Telefon"
     }
   },
   "common": {
