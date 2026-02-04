@@ -563,9 +563,15 @@
   },
   "settings": {
     "title": "Ayarlar",
+    "subtitle": "Tercihlerinizi yönetin",
     "securityPrivacy": "Güvenlik ve Gizlilik",
     "dataManagement": "Veri Yönetimi",
-    "dataPrivacy": "Veri Gizliliği",
+    "language": {
+      "sectionTitle": "Dil",
+      "resetToAuto": "Tarayıcı dilini kullan",
+      "manualNote": "Manuel olarak bir dil seçtiniz.",
+      "autoDetectNote": "Tarayıcı diliniz otomatik olarak kullanılıyor."
+    },
     "privacyPoint1": "Tüm sağlık verileriniz yalnızca cihazınızda yerel olarak saklanır",
     "privacyPoint2": "Kişisel bilgilerinizi toplamıyor veya paylaşmıyoruz",
     "privacyPoint3": "Verilerinizi istediğiniz zaman dışa aktarabilirsiniz",
