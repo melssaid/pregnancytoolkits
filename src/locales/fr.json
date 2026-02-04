@@ -1635,7 +1635,7 @@
     "feelingHungry": "Vous avez faim?",
     "letAIPick": "Laissez-nous choisir une collation saine pour vous!",
     "surpriseMe": "Surprenez-moi!",
-    "calories": "calories",
+    "calories": "cal",
     "prepTime": "temps de préparation",
     "ingredients": "Ingrédients",
     "howToMake": "Comment préparer",
@@ -1652,6 +1652,57 @@
       "tip2": "Gardez des collations portables dans votre sac pour la faim inattendue",
       "tip3": "Mangez toutes les 2-3 heures pour maintenir une glycémie stable",
       "tip4": "Restez hydratée - parfois la soif ressemble à la faim"
+    },
+    "snacks": {
+      "1": "Pomme avec beurre d'amande",
+      "2": "Parfait au yaourt grec",
+      "3": "Bouchées énergétiques aux noix",
+      "4": "Toast à l'avocat",
+      "5": "Houmous & bâtonnets de légumes",
+      "6": "Fromage & crackers",
+      "7": "Bouchées énergétiques à la banane",
+      "8": "Bol de fromage cottage"
+    },
+    "benefits": {
+      "1": "Énergie durable grâce aux fibres et aux graisses saines",
+      "2": "Protéines et probiotiques pour la santé intestinale",
+      "3": "Boost d'énergie rapide à tout moment",
+      "4": "Graisses saines pour le développement cérébral du bébé",
+      "5": "Fibres et protéines végétales",
+      "6": "Combinaison calcium et protéines",
+      "7": "Énergie naturelle du potassium",
+      "8": "Haute teneur en protéines pour la croissance musculaire et du bébé"
+    },
+    "ingredientItems": {
+      "1": { "0": "1 pomme moyenne", "1": "2 c.à.s. beurre d'amande" },
+      "2": { "0": "1 tasse yaourt grec", "1": "1/4 tasse granola", "2": "1/2 tasse baies", "3": "Filet de miel" },
+      "3": { "0": "Noix mélangées", "1": "Pépites de chocolat noir", "2": "Canneberges séchées" },
+      "4": { "0": "1 tranche pain complet", "1": "1/2 avocat", "2": "Sel", "3": "Assaisonnement" },
+      "5": { "0": "1/4 tasse houmous", "1": "Bâtonnets de carotte", "2": "Tranches de concombre", "3": "Lanières de poivron" },
+      "6": { "0": "4 crackers complets", "1": "60g fromage cheddar" },
+      "7": { "0": "1 banane", "1": "1 tasse flocons d'avoine", "2": "2 c.à.s. beurre de cacahuète", "3": "1 c.à.s. miel" },
+      "8": { "0": "1 tasse fromage cottage", "1": "Morceaux d'ananas", "2": "Noix" }
+    },
+    "recipes": {
+      "2": "Disposer le yaourt, le granola et les baies en couches. Arroser de miel.",
+      "4": "Toaster le pain, écraser l'avocat dessus, assaisonner au goût.",
+      "7": "Écraser la banane, mélanger tous les ingrédients, former des boules, réfrigérer."
+    },
+    "nutrients": {
+      "fiber": "Fibres",
+      "healthyfats": "Graisses saines",
+      "vitamine": "Vitamine E",
+      "protein": "Protéines",
+      "calcium": "Calcium",
+      "probiotics": "Probiotiques",
+      "iron": "Fer",
+      "omega3": "Oméga-3",
+      "antioxidants": "Antioxydants",
+      "folate": "Folate",
+      "vitamina": "Vitamine A",
+      "vitamind": "Vitamine D",
+      "potassium": "Potassium",
+      "bvitamins": "Vitamines B"
     }
   },
   "vitaminTracker": {

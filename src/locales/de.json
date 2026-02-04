@@ -1635,7 +1635,7 @@
     "feelingHungry": "Hungrig?",
     "letAIPick": "Wir wählen einen gesunden Snack für Sie!",
     "surpriseMe": "Überraschen Sie mich!",
-    "calories": "Kalorien",
+    "calories": "kcal",
     "prepTime": "Zubereitungszeit",
     "ingredients": "Zutaten",
     "howToMake": "Zubereitung",
@@ -1652,6 +1652,57 @@
       "tip2": "Halten Sie tragbare Snacks in Ihrer Tasche für unerwarteten Hunger",
       "tip3": "Essen Sie alle 2-3 Stunden für stabilen Blutzucker",
       "tip4": "Bleiben Sie hydratisiert - manchmal fühlt sich Durst wie Hunger an"
+    },
+    "snacks": {
+      "1": "Apfel mit Mandelbutter",
+      "2": "Griechischer Joghurt Parfait",
+      "3": "Trail Mix Power Bites",
+      "4": "Avocado Toast",
+      "5": "Hummus & Gemüsesticks",
+      "6": "Käse & Cracker",
+      "7": "Bananen-Energie-Bällchen",
+      "8": "Hüttenkäse-Schale"
+    },
+    "benefits": {
+      "1": "Anhaltende Energie aus Ballaststoffen und gesunden Fetten",
+      "2": "Protein und Probiotika für Darmgesundheit",
+      "3": "Schneller Energieschub jederzeit",
+      "4": "Gesunde Fette für Babygehirnentwicklung",
+      "5": "Ballaststoffe und pflanzliches Protein",
+      "6": "Kalzium- und Protein-Kombination",
+      "7": "Natürliche Energie aus Kalium",
+      "8": "Hoher Proteingehalt für Muskel- und Babywachstum"
+    },
+    "ingredientItems": {
+      "1": { "0": "1 mittelgroßer Apfel", "1": "2 EL Mandelbutter" },
+      "2": { "0": "1 Tasse Griechischer Joghurt", "1": "1/4 Tasse Müsli", "2": "1/2 Tasse Beeren", "3": "Honig" },
+      "3": { "0": "Gemischte Nüsse", "1": "Dunkle Schokoladenstückchen", "2": "Getrocknete Cranberries" },
+      "4": { "0": "1 Scheibe Vollkornbrot", "1": "1/2 Avocado", "2": "Salz", "3": "Gewürze" },
+      "5": { "0": "1/4 Tasse Hummus", "1": "Karottensticks", "2": "Gurkenscheiben", "3": "Paprikastreifen" },
+      "6": { "0": "4 Vollkorncracker", "1": "60g Cheddar-Käse" },
+      "7": { "0": "1 Banane", "1": "1 Tasse Haferflocken", "2": "2 EL Erdnussbutter", "3": "1 EL Honig" },
+      "8": { "0": "1 Tasse Hüttenkäse", "1": "Ananasstücke", "2": "Walnüsse" }
+    },
+    "recipes": {
+      "2": "Joghurt, Müsli und Beeren schichten. Mit Honig beträufeln.",
+      "4": "Brot toasten, Avocado darauf zerdrücken, nach Geschmack würzen.",
+      "7": "Banane zerdrücken, alle Zutaten mischen, zu Kugeln formen, kühlen."
+    },
+    "nutrients": {
+      "fiber": "Ballaststoffe",
+      "healthyfats": "Gesunde Fette",
+      "vitamine": "Vitamin E",
+      "protein": "Protein",
+      "calcium": "Kalzium",
+      "probiotics": "Probiotika",
+      "iron": "Eisen",
+      "omega3": "Omega-3",
+      "antioxidants": "Antioxidantien",
+      "folate": "Folsäure",
+      "vitamina": "Vitamin A",
+      "vitamind": "Vitamin D",
+      "potassium": "Kalium",
+      "bvitamins": "B-Vitamine"
     }
   },
   "vitaminTracker": {
