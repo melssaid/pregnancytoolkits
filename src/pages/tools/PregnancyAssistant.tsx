@@ -15,11 +15,11 @@ interface Message {
   content: string;
 }
 
-const quickQuestions = [
-  { icon: Baby, text: "First month symptoms?", color: "from-pink-500 to-rose-500" },
-  { icon: Coffee, text: "Is coffee safe?", color: "from-amber-500 to-orange-500" },
-  { icon: Stethoscope, text: "Prepare for labor?", color: "from-blue-500 to-indigo-500" },
-  { icon: Apple, text: "Important vitamins?", color: "from-green-500 to-emerald-500" },
+const getQuickQuestions = (t: (key: string) => string) => [
+  { icon: Baby, textKey: "pregnancyAssistant.quickQuestions.symptoms", color: "from-pink-500 to-rose-500" },
+  { icon: Coffee, textKey: "pregnancyAssistant.quickQuestions.coffee", color: "from-amber-500 to-orange-500" },
+  { icon: Stethoscope, textKey: "pregnancyAssistant.quickQuestions.labor", color: "from-blue-500 to-indigo-500" },
+  { icon: Apple, textKey: "pregnancyAssistant.quickQuestions.vitamins", color: "from-green-500 to-emerald-500" },
 ];
 
 export default function PregnancyAssistant() {
@@ -63,10 +63,12 @@ export default function PregnancyAssistant() {
     });
   };
 
+  const quickQuestions = getQuickQuestions(t);
+
   return (
     <ToolFrame 
       title={t("tools.pregnancyAssistant.title")} 
-      subtitle="Your 24/7 pregnancy companion"
+      subtitle={t("pregnancyAssistant.subtitle")}
       customIcon="chat-assistant"
       mood="nurturing"
       toolId="pregnancy-assistant"
@@ -106,10 +108,10 @@ export default function PregnancyAssistant() {
                     {/* Welcome Text - Compact */}
                     <div className="space-y-1 max-w-xs">
                       <h3 className="text-base font-bold text-foreground">
-                        Hello! I'm Here to Help 👋
+                        {t("pregnancyAssistant.hello")}
                       </h3>
                       <p className="text-muted-foreground text-xs leading-relaxed">
-                        Ask anything about pregnancy, nutrition, or baby care
+                        {t("pregnancyAssistant.askAnything")}
                       </p>
                     </div>
 
@@ -121,14 +123,14 @@ export default function PregnancyAssistant() {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.2 + i * 0.05 }}
-                          onClick={() => sendMessage(q.text)}
+                          onClick={() => sendMessage(t(q.textKey))}
                           className="group flex items-center gap-1.5 p-2 rounded-lg bg-muted/50 border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200 text-left overflow-hidden min-w-0"
                         >
                           <div className={`p-1.5 rounded-md bg-gradient-to-br ${q.color} shadow-sm shrink-0`}>
                             <q.icon className="w-3 h-3 text-white" />
                           </div>
                           <span className="text-[10px] font-medium text-foreground/80 leading-tight line-clamp-2 break-words">
-                            {q.text}
+                            {t(q.textKey)}
                           </span>
                         </motion.button>
                       ))}
@@ -227,7 +229,7 @@ export default function PregnancyAssistant() {
                 <Textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type your question..."
+                  placeholder={t("pregnancyAssistant.placeholder")}
                   className="min-h-[44px] max-h-[100px] resize-none rounded-xl border border-primary/10 focus:border-primary/30 bg-white shadow-inner text-sm flex-1"
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
@@ -257,15 +259,15 @@ export default function PregnancyAssistant() {
         <div className="flex flex-wrap justify-center gap-3 text-[10px] sm:text-xs text-muted-foreground">
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-            <span>24/7 Available</span>
+            <span>{t("pregnancyAssistant.trustIndicators.available")}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-            <span>Medical Knowledge</span>
+            <span>{t("pregnancyAssistant.trustIndicators.medical")}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-            <span>Private & Secure</span>
+            <span>{t("pregnancyAssistant.trustIndicators.secure")}</span>
           </div>
         </div>
       </div>

@@ -1611,7 +1611,18 @@
     "subtitle": "Seu companheiro de gravidez 24/7",
     "hello": "Olá! Estou aqui para ajudar 👋",
     "askAnything": "Pergunte sobre gravidez, nutrição ou cuidados com o bebê",
-    "placeholder": "Digite sua pergunta..."
+    "placeholder": "Digite sua pergunta...",
+    "trustIndicators": {
+      "available": "Disponível 24/7",
+      "medical": "Conhecimento médico",
+      "secure": "Privado e seguro"
+    },
+    "quickQuestions": {
+      "symptoms": "Sintomas do primeiro mês?",
+      "coffee": "Café é seguro?",
+      "labor": "Preparação para o parto?",
+      "vitamins": "Vitaminas importantes?"
+    }
   },
   "lactationPrep": {
     "title": "Preparação IA para Amamentação",

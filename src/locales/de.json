@@ -1306,7 +1306,18 @@
     "subtitle": "Ihr 24/7-Schwangerschaftsbegleiter",
     "hello": "Hallo! Ich bin hier, um zu helfen 👋",
     "askAnything": "Fragen Sie alles über Schwangerschaft, Ernährung oder Babypflege",
-    "placeholder": "Geben Sie Ihre Frage ein..."
+    "placeholder": "Geben Sie Ihre Frage ein...",
+    "trustIndicators": {
+      "available": "24/7 verfügbar",
+      "medical": "Medizinisches Wissen",
+      "secure": "Privat & Sicher"
+    },
+    "quickQuestions": {
+      "symptoms": "Symptome im ersten Monat?",
+      "coffee": "Ist Kaffee sicher?",
+      "labor": "Geburtsvorbereitung?",
+      "vitamins": "Wichtige Vitamine?"
+    }
   },
   "lactationPrep": {
     "title": "KI-Stillvorbereitung",

@@ -1306,7 +1306,18 @@
     "subtitle": "Votre compagnon de grossesse 24/7",
     "hello": "Bonjour! Je suis là pour vous aider 👋",
     "askAnything": "Posez des questions sur la grossesse, la nutrition ou les soins du bébé",
-    "placeholder": "Tapez votre question..."
+    "placeholder": "Tapez votre question...",
+    "trustIndicators": {
+      "available": "Disponible 24/7",
+      "medical": "Connaissances médicales",
+      "secure": "Privé et sécurisé"
+    },
+    "quickQuestions": {
+      "symptoms": "Symptômes du premier mois?",
+      "coffee": "Le café est-il sûr?",
+      "labor": "Préparation à l'accouchement?",
+      "vitamins": "Vitamines importantes?"
+    }
   },
   "lactationPrep": {
     "title": "Préparation IA à l'allaitement",
