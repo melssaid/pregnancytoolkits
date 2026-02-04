@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Droplet, Info, AlertTriangle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
@@ -50,6 +51,7 @@ export default function BloodTypeCalculator() {
     return rhOutcomes[key] || rhOutcomes[`${parent2.rh}-${parent1.rh}`] || { positive: 50, negative: 50 };
   };
 
+  const { t } = useTranslation();
   const possibleTypes = getPossibleTypes();
   const rhProbs = getRhProbabilities();
   const needsRhWarning = parent1.rh === "-" && parent2.rh === "+";
@@ -197,7 +199,7 @@ export default function BloodTypeCalculator() {
 
         {/* AI Blood Type Insights */}
         <AIInsightCard
-          title="AI Blood Type Guide"
+          title={t('toolsInternal.aiInsights.bloodTypeGuide')}
           prompt={`Mother's blood type: ${parent1.type}${parent1.rh}
 Father's blood type: ${parent2.type}${parent2.rh}
 Possible baby blood types: ${possibleTypes.map(t => `${t}+ or ${t}-`).join(', ')}

@@ -926,7 +926,13 @@
       "analyzing": "Analyzing...",
       "generatingInsights": "Generating personalized insights...",
       "clickToExpand": "Click to expand",
-      "clickToCollapse": "Click to collapse"
+      "clickToCollapse": "Click to collapse",
+      "bloodTypeGuide": "AI Blood Type Guide",
+      "cycleAnalysis": "AI Cycle Analysis",
+      "preeclampsiaCoach": "AI Preeclampsia Prevention Coach",
+      "nutritionAnalysis": "AI Nutrition Analysis",
+      "weeklyMealPlan": "AI Weekly Meal Plan",
+      "groceryOptimizer": "AI Grocery Optimizer"
     },
     "fitnessCoach": {
       "title": "AI Fitness Coach",

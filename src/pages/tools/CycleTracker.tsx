@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Activity, Plus, Calendar, TrendingUp, Info, Share2, Trash2 } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
@@ -42,6 +43,7 @@ const isValidCycles = (data: unknown): data is CycleEntry[] => {
 };
 
 export default function CycleTracker() {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [cycles, setCycles] = useState<CycleEntry[]>([]);
   const [startDate, setStartDate] = useState("");
@@ -214,7 +216,7 @@ Tracked ${cycles.length} cycles
                 
                 {/* AI Analysis for Cycle Patterns */}
                 <AIInsightCard
-                  title="AI Cycle Analysis"
+                  title={t('toolsInternal.aiInsights.cycleAnalysis')}
                   prompt={`Analyze my menstrual cycle patterns:
 - Average cycle length: ${stats.avgCycleLength} days
 - Average period length: ${stats.avgPeriodLength || 'Not tracked'} days
