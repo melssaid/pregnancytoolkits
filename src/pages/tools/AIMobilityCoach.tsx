@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Progress } from '@/components/ui/progress';
-import { Footprints, Play, Pause, CheckCircle, Timer, Flame, Sparkles, Save, Trash2 } from 'lucide-react';
+import { Footprints, Play, Pause, CheckCircle, Flame, Sparkles, Trash2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import MedicalDisclaimer from '@/components/compliance/MedicalDisclaimer';
@@ -34,12 +34,7 @@ const isValidData = (data: unknown): data is MobilityData => {
   return typeof d.weeklyGoal === 'number' && Array.isArray(d.sessions);
 };
 
-const legExercises = [
-  { id: 'calf-raises', name: 'Calf Raises', duration: 30, description: 'Stand and raise heels off ground, lower slowly' },
-  { id: 'ankle-circles', name: 'Ankle Circles', duration: 20, description: 'Rotate each ankle in circles, both directions' },
-  { id: 'toe-points', name: 'Toe Points', duration: 20, description: 'Point and flex toes to improve circulation' },
-  { id: 'leg-stretches', name: 'Gentle Leg Stretches', duration: 45, description: 'Stretch calves and hamstrings gently' },
-];
+const legExerciseKeys = ['calfRaises', 'ankleCircles', 'toePoints', 'legStretches'] as const;
 
 export default function AIMobilityCoach() {
   const { t } = useTranslation();
@@ -103,7 +98,7 @@ export default function AIMobilityCoach() {
         ...prev,
         sessions: [newSession, ...prev.sessions].slice(0, 30),
       }));
-      toast({ title: t('toolsInternal.mobilityCoach.walkSaved', 'Walk Saved!'), description: t('toolsInternal.mobilityCoach.minutesRecorded', '{{minutes}} minutes recorded.', { minutes: Math.floor(walkTime / 60) }) });
+      toast({ title: t('toolsInternal.mobilityCoach.walkSaved'), description: t('toolsInternal.mobilityCoach.minutesRecorded', { minutes: Math.floor(walkTime / 60) }) });
     }
     setCompletedExercises([]);
   };
@@ -138,13 +133,13 @@ export default function AIMobilityCoach() {
   const weeklyProgress = Math.min((getWeeklyMinutes() / data.weeklyGoal) * 100, 100);
 
   if (showDisclaimer) {
-    return <MedicalDisclaimer toolName={t('toolsInternal.mobilityCoach.title', 'AI Mobility Coach')} onAccept={handleAcceptDisclaimer} />;
+    return <MedicalDisclaimer toolName={t('toolsInternal.mobilityCoach.title')} onAccept={handleAcceptDisclaimer} />;
   }
 
   return (
     <ToolFrame
-      title={t('toolsInternal.mobilityCoach.title', 'AI Mobility Coach')}
-      subtitle={t('toolsInternal.mobilityCoach.subtitle', 'Walking tips & leg cramp prevention for pregnancy')}
+      title={t('toolsInternal.mobilityCoach.title')}
+      subtitle={t('toolsInternal.mobilityCoach.subtitle')}
       icon={Footprints}
       mood="empowering"
       toolId="ai-mobility-coach"
@@ -156,15 +151,15 @@ export default function AIMobilityCoach() {
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold flex items-center gap-2">
                 <Flame className="w-5 h-5 text-primary" />
-                {t('toolsInternal.mobilityCoach.weeklyGoal', 'Weekly Walking Goal')}
+                {t('toolsInternal.mobilityCoach.weeklyGoal')}
               </h3>
               <span className="text-lg font-bold text-primary">
-                {getWeeklyMinutes()} / {data.weeklyGoal} {t('common.min', 'min')}
+                {getWeeklyMinutes()} / {data.weeklyGoal} {t('common.min')}
               </span>
             </div>
             <Progress value={weeklyProgress} className="h-3 mb-3" />
             <div className="space-y-2">
-              <label className="text-sm text-muted-foreground">{t('toolsInternal.mobilityCoach.adjustGoal', 'Adjust Goal (minutes/week)')}</label>
+              <label className="text-sm text-muted-foreground">{t('toolsInternal.mobilityCoach.adjustGoal')}</label>
               <Slider
                 value={[data.weeklyGoal]}
                 onValueChange={(v) => setData(prev => ({ ...prev, weeklyGoal: v[0] }))}
@@ -183,24 +178,14 @@ export default function AIMobilityCoach() {
               {formatTime(walkTime)}
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              {isWalking ? t('toolsInternal.mobilityCoach.walkingInProgress', 'Walking in progress...') : t('toolsInternal.mobilityCoach.startWalkDesc', 'Start a gentle walk for better circulation')}
+              {isWalking ? t('toolsInternal.mobilityCoach.walkingInProgress') : t('toolsInternal.mobilityCoach.startWalkDesc')}
             </p>
             <Button
               size="lg"
               className="gap-2 rounded-full px-8"
               onClick={isWalking ? stopWalk : startWalk}
             >
-              {isWalking ? (
-                <>
-                  <Pause className="w-5 h-5" />
-                  {t('toolsInternal.mobilityCoach.stopAndSave', 'Stop & Save')}
-                </>
-              ) : (
-                <>
-                  <Play className="w-5 h-5" />
-                  {t('toolsInternal.mobilityCoach.startWalk', 'Start Walk')}
-                </>
-              )}
+              {isWalking ? <><Pause className="w-5 h-5" />{t('toolsInternal.mobilityCoach.stopAndSave')}</> : <><Play className="w-5 h-5" />{t('toolsInternal.mobilityCoach.startWalk')}</>}
             </Button>
           </CardContent>
         </Card>
@@ -210,36 +195,33 @@ export default function AIMobilityCoach() {
           <CardContent className="p-5">
             <h3 className="font-semibold flex items-center gap-2 mb-4">
               <Sparkles className="w-5 h-5 text-primary" />
-              {t('toolsInternal.mobilityCoach.legCrampExercises', 'Leg Cramp Prevention Exercises')}
+              {t('toolsInternal.mobilityCoach.legCrampExercises')}
             </h3>
             <div className="space-y-3">
-              {legExercises.map((exercise) => (
+              {legExerciseKeys.map((key) => (
                 <button
-                  key={exercise.id}
-                  onClick={() => toggleExercise(exercise.id)}
+                  key={key}
+                  onClick={() => toggleExercise(key)}
                   className={`w-full text-start p-4 rounded-xl border-2 transition-all ${
-                    completedExercises.includes(exercise.id)
+                    completedExercises.includes(key)
                       ? 'bg-accent/20 border-primary/40'
                       : 'bg-muted/50 border-transparent hover:border-primary/20'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{exercise.name}</p>
-                      <p className="text-sm text-muted-foreground">{exercise.description}</p>
+                      <p className="font-medium">{t(`toolsInternal.mobilityCoach.legExercises.${key}.name`)}</p>
+                      <p className="text-sm text-muted-foreground">{t(`toolsInternal.mobilityCoach.legExercises.${key}.desc`)}</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs text-primary">{exercise.duration}s</span>
-                      {completedExercises.includes(exercise.id) && (
-                        <CheckCircle className="w-5 h-5 text-primary" />
-                      )}
-                    </div>
+                    {completedExercises.includes(key) && (
+                      <CheckCircle className="w-5 h-5 text-primary shrink-0" />
+                    )}
                   </div>
                 </button>
               ))}
             </div>
             <p className="text-xs text-muted-foreground mt-3 text-center">
-              {t('toolsInternal.mobilityCoach.completed', 'Completed')}: {completedExercises.length}/{legExercises.length} {t('toolsInternal.mobilityCoach.exercises', 'exercises')}
+              {t('toolsInternal.mobilityCoach.completed')}: {completedExercises.length}/{legExerciseKeys.length} {t('toolsInternal.mobilityCoach.exercises')}
             </p>
           </CardContent>
         </Card>
@@ -248,26 +230,18 @@ export default function AIMobilityCoach() {
         {data.sessions.length > 0 && (
           <Card>
             <CardContent className="p-5">
-              <h3 className="font-semibold mb-4">{t('toolsInternal.mobilityCoach.recentSessions', 'Recent Sessions')}</h3>
+              <h3 className="font-semibold mb-4">{t('toolsInternal.mobilityCoach.recentSessions')}</h3>
               <div className="space-y-3">
                 {data.sessions.slice(0, 5).map((session) => (
-                  <div
-                    key={session.id}
-                    className="flex items-center justify-between p-3 bg-muted rounded-lg"
-                  >
+                  <div key={session.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                     <div>
-                      <p className="font-medium">
-                        {Math.floor(session.duration / 60)} {t('common.min', 'min')} {t('toolsInternal.mobilityCoach.walk', 'walk')}
-                      </p>
+                      <p className="font-medium">{Math.floor(session.duration / 60)} {t('common.min')} {t('toolsInternal.mobilityCoach.walk')}</p>
                       <p className="text-xs text-muted-foreground">
-                        {new Date(session.date).toLocaleDateString()} • ~{session.steps} {t('toolsInternal.mobilityCoach.steps', 'steps')}
-                        {session.legExercises > 0 && ` • ${session.legExercises} ${t('toolsInternal.mobilityCoach.exercises', 'exercises')}`}
+                        {new Date(session.date).toLocaleDateString()} • ~{session.steps} {t('toolsInternal.mobilityCoach.steps')}
+                        {session.legExercises > 0 && ` • ${session.legExercises} ${t('toolsInternal.mobilityCoach.exercises')}`}
                       </p>
                     </div>
-                    <button
-                      onClick={() => deleteSession(session.id)}
-                      className="text-muted-foreground hover:text-destructive p-2"
-                    >
+                    <button onClick={() => deleteSession(session.id)} className="text-muted-foreground hover:text-destructive p-2">
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
@@ -280,13 +254,13 @@ export default function AIMobilityCoach() {
         {/* Tips */}
         <Card className="bg-muted/30">
           <CardContent className="p-5">
-            <h4 className="font-semibold mb-3">{t('toolsInternal.mobilityCoach.walkingTips', 'Walking Tips for Pregnancy')}</h4>
+            <h4 className="font-semibold mb-3">{t('toolsInternal.mobilityCoach.walkingTips')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• {t('toolsInternal.mobilityCoach.tip1', 'Walk for 20-30 minutes daily at a comfortable pace')}</li>
-              <li>• {t('toolsInternal.mobilityCoach.tip2', 'Stay hydrated before, during, and after walks')}</li>
-              <li>• {t('toolsInternal.mobilityCoach.tip3', 'Wear supportive, comfortable shoes')}</li>
-              <li>• {t('toolsInternal.mobilityCoach.tip4', 'Do calf stretches before bed to prevent night cramps')}</li>
-              <li>• {t('toolsInternal.mobilityCoach.tip5', 'Keep magnesium-rich foods in your diet')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip1')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip2')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip3')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip4')}</li>
+              <li>• {t('toolsInternal.mobilityCoach.tip5')}</li>
             </ul>
           </CardContent>
         </Card>

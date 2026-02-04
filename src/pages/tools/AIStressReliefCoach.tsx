@@ -3,87 +3,52 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, Play, Pause, Volume2, Flower2, Wind, Sun, Moon, Sparkles } from 'lucide-react';
+import { Heart, Play, Pause, Flower2, Wind, Sun, Moon, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 interface RelaxationExercise {
   id: string;
-  name: string;
+  nameKey: string;
+  descKey: string;
   duration: number;
-  description: string;
   type: 'breathing' | 'visualization' | 'grounding';
-  steps: string[];
+  stepsKey: string;
 }
 
 const exercises: RelaxationExercise[] = [
   {
     id: 'box-breathing',
-    name: 'Box Breathing',
+    nameKey: 'toolsInternal.stressRelief.exercises.boxBreathing.name',
+    descKey: 'toolsInternal.stressRelief.exercises.boxBreathing.desc',
     duration: 240,
-    description: 'A calming technique used by Navy SEALs',
     type: 'breathing',
-    steps: [
-      'Breathe in slowly for 4 seconds',
-      'Hold your breath for 4 seconds',
-      'Exhale slowly for 4 seconds',
-      'Hold for 4 seconds',
-      'Repeat the cycle'
-    ]
+    stepsKey: 'toolsInternal.stressRelief.exercises.boxBreathing.steps'
   },
   {
     id: 'safe-place',
-    name: 'Safe Place Visualization',
+    nameKey: 'toolsInternal.stressRelief.exercises.safePlace.name',
+    descKey: 'toolsInternal.stressRelief.exercises.safePlace.desc',
     duration: 300,
-    description: 'Imagine your perfect peaceful sanctuary',
     type: 'visualization',
-    steps: [
-      'Close your eyes and take deep breaths',
-      'Imagine a place where you feel completely safe',
-      'Notice the colors, sounds, and smells',
-      'Feel the peace and comfort surrounding you',
-      'Stay here as long as you need'
-    ]
+    stepsKey: 'toolsInternal.stressRelief.exercises.safePlace.steps'
   },
   {
     id: '5-4-3-2-1',
-    name: '5-4-3-2-1 Grounding',
+    nameKey: 'toolsInternal.stressRelief.exercises.grounding54321.name',
+    descKey: 'toolsInternal.stressRelief.exercises.grounding54321.desc',
     duration: 180,
-    description: 'A sensory technique to reduce anxiety',
     type: 'grounding',
-    steps: [
-      'Notice 5 things you can SEE',
-      'Notice 4 things you can TOUCH',
-      'Notice 3 things you can HEAR',
-      'Notice 2 things you can SMELL',
-      'Notice 1 thing you can TASTE'
-    ]
+    stepsKey: 'toolsInternal.stressRelief.exercises.grounding54321.steps'
   },
   {
     id: 'progressive-relaxation',
-    name: 'Progressive Muscle Relaxation',
+    nameKey: 'toolsInternal.stressRelief.exercises.progressiveRelaxation.name',
+    descKey: 'toolsInternal.stressRelief.exercises.progressiveRelaxation.desc',
     duration: 420,
-    description: 'Release tension from head to toe',
     type: 'breathing',
-    steps: [
-      'Start with your feet - tense for 5 seconds, release',
-      'Move to your calves - tense and release',
-      'Continue to thighs, abdomen, hands, arms',
-      'Tense and release shoulders, neck, face',
-      'Feel the wave of relaxation through your body'
-    ]
+    stepsKey: 'toolsInternal.stressRelief.exercises.progressiveRelaxation.steps'
   }
-];
-
-const affirmations = [
-  "I am capable of handling whatever comes my way",
-  "My body knows how to grow this baby perfectly",
-  "I trust my body and my instincts",
-  "I am surrounded by love and support",
-  "Each breath brings calm and peace",
-  "I am strong, I am brave, I am enough",
-  "My baby feels my love and calm energy",
-  "I release worry and embrace peace"
 ];
 
 export default function AIStressReliefCoach() {
@@ -93,11 +58,14 @@ export default function AIStressReliefCoach() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [timer, setTimer] = useState(0);
-  const [currentAffirmation, setCurrentAffirmation] = useState(affirmations[0]);
+  const [currentAffirmationIndex, setCurrentAffirmationIndex] = useState(1);
+
+  const affirmationKeys = [1, 2, 3, 4, 5, 6, 7, 8];
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isPlaying && selectedExercise) {
+      const steps = t(selectedExercise.stepsKey, { returnObjects: true }) as string[];
       interval = setInterval(() => {
         setTimer(prev => {
           if (prev >= selectedExercise.duration) {
@@ -106,9 +74,9 @@ export default function AIStressReliefCoach() {
           }
           
           // Change step periodically
-          const stepDuration = selectedExercise.duration / selectedExercise.steps.length;
+          const stepDuration = selectedExercise.duration / steps.length;
           const newStep = Math.floor(prev / stepDuration);
-          if (newStep !== currentStep && newStep < selectedExercise.steps.length) {
+          if (newStep !== currentStep && newStep < steps.length) {
             setCurrentStep(newStep);
           }
           
@@ -117,11 +85,11 @@ export default function AIStressReliefCoach() {
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [isPlaying, selectedExercise, currentStep]);
+  }, [isPlaying, selectedExercise, currentStep, t]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentAffirmation(affirmations[Math.floor(Math.random() * affirmations.length)]);
+      setCurrentAffirmationIndex(affirmationKeys[Math.floor(Math.random() * affirmationKeys.length)]);
     }, 10000);
     return () => clearInterval(interval);
   }, []);
@@ -151,147 +119,156 @@ export default function AIStressReliefCoach() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName={t('toolsInternal.stressRelief.title', 'AI Stress Relief Coach')}
+        toolName={t('toolsInternal.stressRelief.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
   }
 
+  const currentAffirmation = t(`toolsInternal.stressRelief.affirmations.${currentAffirmationIndex}`);
+
   return (
     <ToolFrame
-      title={t('toolsInternal.stressRelief.title', 'AI Stress Relief Coach')}
-      subtitle={t('toolsInternal.stressRelief.subtitle', 'Guided relaxation techniques for pregnancy')}
+      title={t('toolsInternal.stressRelief.title')}
+      subtitle={t('toolsInternal.stressRelief.subtitle')}
       mood="calm"
       toolId="stress-relief"
       icon={Heart}
     >
       <div className="space-y-6">
-          {/* Daily Affirmation */}
-          <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
+        {/* Daily Affirmation */}
+        <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-2 mb-3">
+              <Sun className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium text-primary">{t('toolsInternal.stressRelief.todaysAffirmation')}</span>
+            </div>
+            <motion.p 
+              key={currentAffirmationIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-lg font-medium text-foreground italic"
+            >
+              "{currentAffirmation}"
+            </motion.p>
+          </CardContent>
+        </Card>
+
+        {/* Active Exercise */}
+        {selectedExercise && isPlaying && (
+          <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <Sun className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium text-primary">{t('toolsInternal.stressRelief.todaysAffirmation', "Today's Affirmation")}</span>
+              <div className="text-center">
+                <h3 className="text-xl font-bold mb-2">{t(selectedExercise.nameKey)}</h3>
+                <div className="text-4xl font-bold text-primary mb-4">
+                  {formatTime(timer)}
+                </div>
+                
+                {(() => {
+                  const steps = t(selectedExercise.stepsKey, { returnObjects: true }) as string[];
+                  return (
+                    <>
+                      <motion.div
+                        key={currentStep}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="bg-background rounded-xl p-6 mb-4"
+                      >
+                        <p className="text-lg font-medium">
+                          {steps[currentStep]}
+                        </p>
+                      </motion.div>
+
+                      <div className="flex justify-center gap-2 mb-4">
+                        {steps.map((_, i) => (
+                          <div 
+                            key={i}
+                            className={`w-2 h-2 rounded-full ${
+                              i === currentStep ? 'bg-primary' : 'bg-muted'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  );
+                })()}
+
+                <Button
+                  variant="outline"
+                  onClick={() => setIsPlaying(false)}
+                >
+                  <Pause className="w-4 h-4 me-2" />
+                  {t('common.pause')}
+                </Button>
               </div>
-              <motion.p 
-                key={currentAffirmation}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-lg font-medium text-foreground italic"
-              >
-                "{currentAffirmation}"
-              </motion.p>
             </CardContent>
           </Card>
+        )}
 
-          {/* Active Exercise */}
-          {selectedExercise && isPlaying && (
-            <Card className="border-primary/30 bg-primary/5">
-              <CardContent className="p-6">
-                <div className="text-center">
-                  <h3 className="text-xl font-bold mb-2">{selectedExercise.name}</h3>
-                  <div className="text-4xl font-bold text-primary mb-4">
-                    {formatTime(timer)}
-                  </div>
-                  
-                  <motion.div
-                    key={currentStep}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="bg-background rounded-xl p-6 mb-4"
-                  >
-                    <p className="text-lg font-medium">
-                      {selectedExercise.steps[currentStep]}
-                    </p>
-                  </motion.div>
-
-                  <div className="flex justify-center gap-2 mb-4">
-                    {selectedExercise.steps.map((_, i) => (
-                      <div 
-                        key={i}
-                        className={`w-2 h-2 rounded-full ${
-                          i === currentStep ? 'bg-primary' : 'bg-muted'
-                        }`}
-                      />
-                    ))}
-                  </div>
-
-                  <Button
-                    variant="outline"
-                    onClick={() => setIsPlaying(false)}
-                  >
-                    <Pause className="w-4 h-4 me-2" />
-                    {t('common.pause', 'Pause')}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Exercise List */}
-          {(!selectedExercise || !isPlaying) && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">{t('toolsInternal.stressRelief.relaxationExercises', 'Relaxation Exercises')}</h3>
-              {exercises.map(exercise => {
-                const TypeIcon = getTypeIcon(exercise.type);
-                return (
-                  <Card key={exercise.id}>
-                    <CardContent className="p-4">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-xl bg-primary/10">
-                          <TypeIcon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold">{exercise.name}</h4>
-                          <p className="text-sm text-muted-foreground mb-2">
-                          {exercise.description}
+        {/* Exercise List */}
+        {(!selectedExercise || !isPlaying) && (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">{t('toolsInternal.stressRelief.relaxationExercises')}</h3>
+            {exercises.map(exercise => {
+              const TypeIcon = getTypeIcon(exercise.type);
+              return (
+                <Card key={exercise.id}>
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-xl bg-primary/10">
+                        <TypeIcon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold">{t(exercise.nameKey)}</h4>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          {t(exercise.descKey)}
                         </p>
                         <div className="flex items-center gap-4">
                           <span className="text-xs text-muted-foreground">
-                            {Math.floor(exercise.duration / 60)} {t('common.min', 'min')}
+                            {Math.floor(exercise.duration / 60)} {t('common.min')}
                           </span>
                           <span className="text-xs px-2 py-0.5 rounded-full bg-muted capitalize">
-                            {t(`toolsInternal.stressRelief.types.${exercise.type}`, exercise.type)}
-                            </span>
-                          </div>
+                            {t(`toolsInternal.stressRelief.types.${exercise.type}`)}
+                          </span>
                         </div>
-                        <Button
-                          size="sm"
-                          onClick={() => startExercise(exercise)}
-                        >
-                          <Play className="w-4 h-4" />
-                        </Button>
                       </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Quick Tips */}
-          <Card>
-            <CardContent className="p-4">
-              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <Moon className="w-4 h-4 text-primary" />
-                {t('toolsInternal.stressRelief.quickTips', 'Quick Stress Relief Tips')}
-              </h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• {t('toolsInternal.stressRelief.tip1', 'Take 3 deep breaths right now')}</li>
-                <li>• {t('toolsInternal.stressRelief.tip2', 'Step outside for fresh air if possible')}</li>
-                <li>• {t('toolsInternal.stressRelief.tip3', 'Drink a glass of water slowly')}</li>
-                <li>• {t('toolsInternal.stressRelief.tip4', 'Call someone who makes you smile')}</li>
-                <li>• {t('toolsInternal.stressRelief.tip5', 'Put your hand on your belly and connect with baby')}</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          {/* Disclaimer */}
-          <div className="bg-muted/30 rounded-xl p-4 text-center">
-            <p className="text-xs text-muted-foreground">
-              ⚠️ {t('toolsInternal.stressRelief.disclaimer', 'These exercises are for general relaxation. If you experience severe anxiety or depression, please consult your healthcare provider.')}
-            </p>
+                      <Button
+                        size="sm"
+                        onClick={() => startExercise(exercise)}
+                      >
+                        <Play className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
+        )}
+
+        {/* Quick Tips */}
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="font-semibold mb-3 flex items-center gap-2">
+              <Moon className="w-4 h-4 text-primary" />
+              {t('toolsInternal.stressRelief.quickTips')}
+            </h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>• {t('toolsInternal.stressRelief.tip1')}</li>
+              <li>• {t('toolsInternal.stressRelief.tip2')}</li>
+              <li>• {t('toolsInternal.stressRelief.tip3')}</li>
+              <li>• {t('toolsInternal.stressRelief.tip4')}</li>
+              <li>• {t('toolsInternal.stressRelief.tip5')}</li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        {/* Disclaimer */}
+        <div className="bg-muted/30 rounded-xl p-4 text-center">
+          <p className="text-xs text-muted-foreground">
+            ⚠️ {t('toolsInternal.stressRelief.disclaimer')}
+          </p>
+        </div>
       </div>
     </ToolFrame>
   );
