@@ -212,33 +212,65 @@ export function NotificationsPanel() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [showDisclaimerDialog, setShowDisclaimerDialog] = useState(false);
 
-  // Pinned default notifications (always shown)
-  const pinnedNotifications: Notification[] = useMemo(() => [
-    {
-      id: 'pinned-welcome',
-      type: 'welcome',
-      title: isArabic ? '👋 مرحباً بك!' : '👋 Welcome!',
-      message: isArabic 
-        ? 'استمتعي بأكثر من 40 أداة ذكية لمتابعة حملك بطريقة سهلة وآمنة.'
-        : 'Enjoy 40+ smart tools to track your pregnancy easily and safely.',
-      time: new Date().toISOString(),
-      read: true,
-      isPinned: true,
-      actionUrl: '/',
-    },
-    {
-      id: 'pinned-disclaimer',
-      type: 'disclaimer',
-      title: isArabic ? '⚕️ إخلاء مسؤولية طبية' : '⚕️ Medical Disclaimer',
-      message: isArabic 
-        ? 'هذا التطبيق للمعلومات فقط ولا يُغني عن استشارة الطبيب المختص.'
-        : 'This app is for informational purposes only and does not replace professional medical advice.',
-      time: new Date().toISOString(),
-      read: true,
-      isPinned: true,
-      actionUrl: '/privacy-policy',
-    },
-  ], [isArabic]);
+  // Check if pinned notifications should be hidden (after 3 hours from first visit)
+  const shouldShowPinnedNotifications = useMemo(() => {
+    const HIDE_AFTER_HOURS = 3;
+    const FIRST_VISIT_KEY = 'app_first_visit_time';
+    const PINNED_HIDDEN_KEY = 'pinned_notifications_hidden';
+    
+    // Check if already marked as hidden permanently
+    if (localStorage.getItem(PINNED_HIDDEN_KEY) === 'true') {
+      return false;
+    }
+    
+    // Get or set first visit time
+    let firstVisitTime = localStorage.getItem(FIRST_VISIT_KEY);
+    if (!firstVisitTime) {
+      firstVisitTime = new Date().toISOString();
+      localStorage.setItem(FIRST_VISIT_KEY, firstVisitTime);
+    }
+    
+    // Check if 3 hours have passed
+    const hoursSinceFirstVisit = (Date.now() - new Date(firstVisitTime).getTime()) / (1000 * 60 * 60);
+    if (hoursSinceFirstVisit >= HIDE_AFTER_HOURS) {
+      localStorage.setItem(PINNED_HIDDEN_KEY, 'true');
+      return false;
+    }
+    
+    return true;
+  }, []);
+
+  // Pinned default notifications (shown only for first 3 hours)
+  const pinnedNotifications: Notification[] = useMemo(() => {
+    if (!shouldShowPinnedNotifications) return [];
+    
+    return [
+      {
+        id: 'pinned-welcome',
+        type: 'welcome',
+        title: isArabic ? '👋 مرحباً بك!' : '👋 Welcome!',
+        message: isArabic 
+          ? 'استمتعي بأكثر من 40 أداة ذكية لمتابعة حملك بطريقة سهلة وآمنة.'
+          : 'Enjoy 40+ smart tools to track your pregnancy easily and safely.',
+        time: new Date().toISOString(),
+        read: true,
+        isPinned: true,
+        actionUrl: '/',
+      },
+      {
+        id: 'pinned-disclaimer',
+        type: 'disclaimer',
+        title: isArabic ? '⚕️ إخلاء مسؤولية طبية' : '⚕️ Medical Disclaimer',
+        message: isArabic 
+          ? 'هذا التطبيق للمعلومات فقط ولا يُغني عن استشارة الطبيب المختص.'
+          : 'This app is for informational purposes only and does not replace professional medical advice.',
+        time: new Date().toISOString(),
+        read: true,
+        isPinned: true,
+        actionUrl: '/privacy-policy',
+      },
+    ];
+  }, [isArabic, shouldShowPinnedNotifications]);
 
   // Combine pinned + regular notifications
   const allNotifications = useMemo(() => {
