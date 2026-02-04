@@ -5,7 +5,7 @@ export function SEOContent() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
 
-  const seoKeywords = {
+  const seoKeywords: Record<string, string[]> = {
     ar: [
       "حاسبة الحمل", "حاسبة موعد الولادة", "عداد حركة الجنين", "متابعة الحمل",
       "نمو الجنين", "أعراض الحمل", "تغذية الحامل", "تمارين الحامل",
@@ -21,10 +21,50 @@ export function SEOContent() {
       "labor signs", "contractions", "breastfeeding", "postpartum care",
       "ovulation", "fertility", "ovulation calculator", "menstrual cycle",
       "maternal health", "prenatal tests", "gestational diabetes", "preeclampsia"
+    ],
+    de: [
+      "Schwangerschaftsrechner", "Geburtsterminrechner", "Kindsbewegungen zählen", "Schwangerschafts-Tracker",
+      "Babywachstum", "Schwangerschaftssymptome", "Ernährung in der Schwangerschaft", "Schwangerschaftsübungen",
+      "Schwangerschaftstipps", "Schwangerschaftsphasen", "Schwangerschaft Woche für Woche", "Kliniktasche",
+      "Wehenzeichen", "Wehen", "Stillen", "Wochenbett",
+      "Eisprung", "Fruchtbarkeit", "Eisprungrechner", "Menstruationszyklus",
+      "Muttergesundheit", "Vorsorgeuntersuchungen", "Schwangerschaftsdiabetes", "Präeklampsie"
+    ],
+    fr: [
+      "calculatrice de grossesse", "calculateur de date d'accouchement", "compteur de coups de pied", "suivi de grossesse",
+      "croissance du bébé", "symptômes de grossesse", "nutrition prénatale", "exercices de grossesse",
+      "conseils de grossesse", "étapes de la grossesse", "grossesse semaine par semaine", "valise de maternité",
+      "signes du travail", "contractions", "allaitement", "soins post-partum",
+      "ovulation", "fertilité", "calculateur d'ovulation", "cycle menstruel",
+      "santé maternelle", "examens prénataux", "diabète gestationnel", "prééclampsie"
+    ],
+    es: [
+      "calculadora de embarazo", "calculadora de fecha de parto", "contador de patadas", "seguimiento de embarazo",
+      "crecimiento del bebé", "síntomas de embarazo", "nutrición prenatal", "ejercicios de embarazo",
+      "consejos de embarazo", "etapas del embarazo", "embarazo semana a semana", "bolsa de hospital",
+      "señales de parto", "contracciones", "lactancia materna", "cuidado posparto",
+      "ovulación", "fertilidad", "calculadora de ovulación", "ciclo menstrual",
+      "salud materna", "pruebas prenatales", "diabetes gestacional", "preeclampsia"
+    ],
+    tr: [
+      "gebelik hesaplayıcı", "doğum tarihi hesaplayıcı", "bebek tekme sayacı", "hamilelik takibi",
+      "bebek büyümesi", "hamilelik belirtileri", "doğum öncesi beslenme", "hamilelik egzersizleri",
+      "hamilelik ipuçları", "hamilelik aşamaları", "hafta hafta hamilelik", "hastane çantası",
+      "doğum belirtileri", "kasılmalar", "emzirme", "doğum sonrası bakım",
+      "yumurtlama", "doğurganlık", "yumurtlama hesaplayıcı", "adet döngüsü",
+      "anne sağlığı", "doğum öncesi testler", "gebelik şekeri", "preeklampsi"
+    ],
+    pt: [
+      "calculadora de gravidez", "calculadora de data de parto", "contador de chutes", "acompanhamento de gravidez",
+      "crescimento do bebê", "sintomas de gravidez", "nutrição pré-natal", "exercícios na gravidez",
+      "dicas de gravidez", "fases da gravidez", "gravidez semana a semana", "mala de maternidade",
+      "sinais de trabalho de parto", "contrações", "amamentação", "cuidados pós-parto",
+      "ovulação", "fertilidade", "calculadora de ovulação", "ciclo menstrual",
+      "saúde materna", "exames pré-natais", "diabetes gestacional", "pré-eclâmpsia"
     ]
   };
 
-  const currentKeywords = isRTL ? seoKeywords.ar : seoKeywords.en;
+  const currentKeywords = seoKeywords[i18n.language] || seoKeywords.en;
 
   const features = [
     {
