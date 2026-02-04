@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
 import { Briefcase, Sparkles, Baby, User, Heart, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -29,9 +30,10 @@ interface BagItem {
 }
 
 const defaultItems: BagItem[] = [
-  // Mom essentials
+  // Documents
   { id: "1", name: "Hospital ID & Insurance cards", category: "documents", packed: false, priority: "essential" },
   { id: "2", name: "Birth plan copies", category: "documents", packed: false, priority: "essential" },
+  // Mom essentials
   { id: "3", name: "Comfortable nightgown/robe", category: "mom", packed: false, priority: "essential" },
   { id: "4", name: "Comfortable supportive bras (2-3)", category: "mom", packed: false, priority: "essential" },
   { id: "5", name: "Toiletries bag", category: "mom", packed: false, priority: "essential" },
@@ -89,7 +91,19 @@ const AIHospitalBag = () => {
   };
 
   const getPersonalizedList = async () => {
-    const prompt = `As a hospital bag expert for expectant mothers, create a personalized packing list:
+    const currentLang = i18n.language;
+    const langNames: Record<string, string> = {
+      en: 'English', ar: 'Arabic', de: 'German', tr: 'Turkish',
+      fr: 'French', es: 'Spanish', pt: 'Portuguese'
+    };
+    const currentLangName = langNames[currentLang] || 'English';
+    const langInstruction = currentLang !== 'en' 
+      ? `IMPORTANT: Respond ENTIRELY in ${currentLangName}. All text, headers, and recommendations must be in ${currentLangName}.`
+      : '';
+
+    const prompt = `${langInstruction}
+
+As a hospital bag expert for expectant mothers, create a personalized packing list:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || 36}
 **Due Date:** ${settings.dueDate || "Not set"}
@@ -129,11 +143,19 @@ Include seasonal considerations and hospital-specific recommendations.`;
     documents: <Briefcase className="w-4 h-4" />,
   };
 
+  const categoryLabels: Record<string, string> = {
+    all: t('toolsInternal.hospitalBag.all'),
+    mom: t('toolsInternal.hospitalBag.mom'),
+    baby: t('toolsInternal.hospitalBag.baby'),
+    partner: t('toolsInternal.hospitalBag.partner'),
+    documents: t('toolsInternal.hospitalBag.documents'),
+  };
+
   if (!disclaimerAccepted) {
     return (
       <MedicalDisclaimer
         onAccept={() => setDisclaimerAccepted(true)}
-        toolName="AI Hospital Bag Packer"
+        toolName={t('toolsInternal.hospitalBag.title')}
       />
     );
   }
@@ -173,16 +195,16 @@ Include seasonal considerations and hospital-specific recommendations.`;
 
         {/* Category Tabs */}
         <div className="flex gap-2 overflow-x-auto pb-2">
-          {["all", "mom", "baby", "partner", "documents"].map((cat) => (
+          {(["all", "mom", "baby", "partner", "documents"] as const).map((cat) => (
             <Button
               key={cat}
               variant={selectedCategory === cat ? "default" : "outline"}
               size="sm"
-              onClick={() => setSelectedCategory(cat as any)}
+              onClick={() => setSelectedCategory(cat)}
               className="whitespace-nowrap"
             >
-              {cat === "all" ? "All" : categoryIcons[cat as keyof typeof categoryIcons]}
-              <span className="ml-1 capitalize">{cat}</span>
+              {cat !== "all" && categoryIcons[cat]}
+              <span className="ms-1">{categoryLabels[cat]}</span>
             </Button>
           ))}
         </div>
@@ -204,8 +226,8 @@ Include seasonal considerations and hospital-specific recommendations.`;
                 {item.name}
               </span>
               {item.priority === "essential" && (
-                <span className="ml-auto text-xs bg-destructive/10 text-destructive px-2 py-0.5 rounded">
-                  Essential
+                <span className="ms-auto text-xs bg-destructive/10 text-destructive px-2 py-0.5 rounded shrink-0">
+                  {t('toolsInternal.hospitalBag.essential')}
                 </span>
               )}
             </div>
@@ -217,7 +239,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
           <Input
             value={newItem}
             onChange={(e) => setNewItem(e.target.value)}
-            placeholder="Add custom item..."
+            placeholder={t('toolsInternal.hospitalBag.addCustomItem')}
             onKeyPress={(e) => e.key === "Enter" && addItem()}
           />
           <Button onClick={addItem} size="icon">
@@ -232,8 +254,8 @@ Include seasonal considerations and hospital-specific recommendations.`;
           className="w-full bg-gradient-to-r from-teal-500 to-cyan-600"
           size="lg"
         >
-          <Sparkles className="w-4 h-4 mr-2" />
-          {isLoading ? "Generating..." : "Get AI Personalized List"}
+          <Sparkles className="w-4 h-4 me-2" />
+          {isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}
         </Button>
 
         {response && (
@@ -245,8 +267,8 @@ Include seasonal considerations and hospital-specific recommendations.`;
         {/* Educational Videos */}
         <VideoLibrary
           videos={hospitalBagVideos}
-          title="Hospital Bag Prep Videos"
-          subtitle="Tips from experienced moms"
+          title={t('toolsInternal.hospitalBag.hospitalBagVideos')}
+          subtitle={t('toolsInternal.hospitalBag.hospitalBagVideosSubtitle')}
           accentColor="blue"
         />
       </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
 import { Baby, Sparkles, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -12,29 +13,6 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
-
-const birthPreferences = [
-  { id: "natural", label: "Natural/Unmedicated" },
-  { id: "epidural", label: "With Epidural" },
-  { id: "water", label: "Water Birth" },
-  { id: "csection", label: "Planned C-Section" },
-];
-
-const physicalConditions = [
-  { id: "back-pain", label: "Back pain" },
-  { id: "hip-pain", label: "Hip pain" },
-  { id: "sciatica", label: "Sciatica" },
-  { id: "spd", label: "SPD/Pelvic pain" },
-  { id: "high-bp", label: "High blood pressure" },
-  { id: "none", label: "No specific conditions" },
-];
-
-const positions = [
-  { id: "squatting", name: "Squatting", description: "Opens pelvis 30%" },
-  { id: "hands-knees", name: "Hands & Knees", description: "Relieves back labor" },
-  { id: "side-lying", name: "Side Lying", description: "Rest between contractions" },
-  { id: "standing", name: "Standing/Walking", description: "Uses gravity" },
-];
 
 const birthPositionVideos: Video[] = [
   {
@@ -81,6 +59,29 @@ const AIBirthPosition = () => {
   const [laborStage, setLaborStage] = useState("early");
   const [response, setResponse] = useState("");
 
+  const birthPreferences = [
+    { id: "natural", labelKey: "toolsInternal.birthPosition.natural" },
+    { id: "epidural", labelKey: "toolsInternal.birthPosition.epidural" },
+    { id: "water", labelKey: "toolsInternal.birthPosition.waterBirth" },
+    { id: "csection", labelKey: "toolsInternal.birthPosition.csection" },
+  ];
+
+  const physicalConditions = [
+    { id: "back-pain", labelKey: "toolsInternal.birthPosition.backPain" },
+    { id: "hip-pain", labelKey: "toolsInternal.birthPosition.hipPain" },
+    { id: "sciatica", labelKey: "toolsInternal.birthPosition.sciatica" },
+    { id: "spd", labelKey: "toolsInternal.birthPosition.spd" },
+    { id: "high-bp", labelKey: "toolsInternal.birthPosition.highBP" },
+    { id: "none", labelKey: "toolsInternal.birthPosition.noConditions" },
+  ];
+
+  const positions = [
+    { id: "squatting", nameKey: "toolsInternal.birthPosition.positions.squatting.name", descKey: "toolsInternal.birthPosition.positions.squatting.desc" },
+    { id: "hands-knees", nameKey: "toolsInternal.birthPosition.positions.handsKnees.name", descKey: "toolsInternal.birthPosition.positions.handsKnees.desc" },
+    { id: "side-lying", nameKey: "toolsInternal.birthPosition.positions.sideLying.name", descKey: "toolsInternal.birthPosition.positions.sideLying.desc" },
+    { id: "standing", nameKey: "toolsInternal.birthPosition.positions.standing.name", descKey: "toolsInternal.birthPosition.positions.standing.desc" },
+  ];
+
   const toggleCondition = (id: string) => {
     setConditions(prev =>
       prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
@@ -89,15 +90,33 @@ const AIBirthPosition = () => {
 
   const getRecommendations = async () => {
     const conditionLabels = conditions.map(id => 
-      physicalConditions.find(c => c.id === id)?.label
+      t(physicalConditions.find(c => c.id === id)?.labelKey || '')
     ).filter(Boolean);
 
-    const prompt = `As a certified doula and birth position specialist, recommend optimal birthing positions:
+    const currentLang = i18n.language;
+    const langNames: Record<string, string> = {
+      en: 'English', ar: 'Arabic', de: 'German', tr: 'Turkish',
+      fr: 'French', es: 'Spanish', pt: 'Portuguese'
+    };
+    const currentLangName = langNames[currentLang] || 'English';
+    const langInstruction = currentLang !== 'en' 
+      ? `IMPORTANT: Respond ENTIRELY in ${currentLangName}. All text, headers, and recommendations must be in ${currentLangName}.`
+      : '';
+
+    const laborStageLabels: Record<string, string> = {
+      early: t('toolsInternal.birthPosition.earlyLabor'),
+      active: t('toolsInternal.birthPosition.activeLabor'),
+      pushing: t('toolsInternal.birthPosition.pushing')
+    };
+
+    const prompt = `${langInstruction}
+
+As a certified doula and birth position specialist, recommend optimal birthing positions:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || 38}
-**Birth Preference:** ${birthPreferences.find(b => b.id === birthPlan)?.label}
+**Birth Preference:** ${t(birthPreferences.find(b => b.id === birthPlan)?.labelKey || '')}
 **Physical Conditions:** ${conditionLabels.join(", ") || "None"}
-**Labor Stage:** ${laborStage === "early" ? "Early labor" : laborStage === "active" ? "Active labor" : "Pushing stage"}
+**Labor Stage:** ${laborStageLabels[laborStage]}
 
 Provide detailed guidance on:
 1. **Best Positions for Your Profile** - Top 3-4 positions with benefits
@@ -134,12 +153,12 @@ Include safety considerations and when to change positions.`;
         
         {/* Position Cards - Professional List */}
         <div className="space-y-1.5">
-          <Label className="text-xs font-medium">Common Birth Positions</Label>
+          <Label className="text-xs font-medium">{t('toolsInternal.birthPosition.commonPositions')}</Label>
           <div className="grid grid-cols-2 gap-1.5">
             {positions.map((pos) => (
               <Card key={pos.id} className="p-2.5">
-                <h4 className="font-medium text-xs">{pos.name}</h4>
-                <p className="text-[10px] text-muted-foreground leading-tight">{pos.description}</p>
+                <h4 className="font-medium text-xs">{t(pos.nameKey)}</h4>
+                <p className="text-[10px] text-muted-foreground leading-tight">{t(pos.descKey)}</p>
               </Card>
             ))}
           </div>
@@ -147,7 +166,7 @@ Include safety considerations and when to change positions.`;
 
         {/* Birth Preference */}
         <div className="space-y-1.5">
-          <Label className="text-xs">Birth Preference</Label>
+          <Label className="text-xs">{t('toolsInternal.birthPosition.birthPreference')}</Label>
           <RadioGroup value={birthPlan} onValueChange={setBirthPlan} className="space-y-1">
             {birthPreferences.map((pref) => (
               <div 
@@ -159,7 +178,7 @@ Include safety considerations and when to change positions.`;
               >
                 <RadioGroupItem value={pref.id} id={pref.id} />
                 <Label htmlFor={pref.id} className="cursor-pointer text-xs flex-1">
-                  {pref.label}
+                  {t(pref.labelKey)}
                 </Label>
               </div>
             ))}
@@ -170,27 +189,27 @@ Include safety considerations and when to change positions.`;
         <div className="space-y-1.5">
           <Label className="flex items-center gap-1.5 text-xs">
             <Clock className="w-3 h-3 text-primary" />
-            Labor Stage
+            {t('toolsInternal.birthPosition.laborStage')}
           </Label>
           <RadioGroup value={laborStage} onValueChange={setLaborStage} className="flex gap-3">
             <div className="flex items-center gap-1.5">
               <RadioGroupItem value="early" id="early" />
-              <Label htmlFor="early" className="text-xs">Early</Label>
+              <Label htmlFor="early" className="text-xs">{t('toolsInternal.birthPosition.earlyLabor')}</Label>
             </div>
             <div className="flex items-center gap-1.5">
               <RadioGroupItem value="active" id="active" />
-              <Label htmlFor="active" className="text-xs">Active</Label>
+              <Label htmlFor="active" className="text-xs">{t('toolsInternal.birthPosition.activeLabor')}</Label>
             </div>
             <div className="flex items-center gap-1.5">
               <RadioGroupItem value="pushing" id="pushing" />
-              <Label htmlFor="pushing" className="text-xs">Pushing</Label>
+              <Label htmlFor="pushing" className="text-xs">{t('toolsInternal.birthPosition.pushing')}</Label>
             </div>
           </RadioGroup>
         </div>
 
         {/* Physical Conditions */}
         <div className="space-y-1.5">
-          <Label className="text-xs">Physical Conditions</Label>
+          <Label className="text-xs">{t('toolsInternal.birthPosition.physicalConditions')}</Label>
           <div className="grid grid-cols-1 gap-1">
             {physicalConditions.map((condition) => (
               <div
@@ -203,7 +222,7 @@ Include safety considerations and when to change positions.`;
                 }`}
               >
                 <Checkbox checked={conditions.includes(condition.id)} className="h-3.5 w-3.5" />
-                <span className="text-xs">{condition.label}</span>
+                <span className="text-xs">{t(condition.labelKey)}</span>
               </div>
             ))}
           </div>
@@ -216,7 +235,7 @@ Include safety considerations and when to change positions.`;
           className="w-full text-xs h-9"
         >
           <Sparkles className="w-3.5 h-3.5 me-1.5" />
-          {isLoading ? "Analyzing..." : "Get AI Position Recommendations"}
+          {isLoading ? t('toolsInternal.birthPosition.analyzing') : t('toolsInternal.birthPosition.getPositions')}
         </Button>
 
         {/* AI Response */}
@@ -229,8 +248,8 @@ Include safety considerations and when to change positions.`;
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
           videos={birthPositionVideos}
-          title="Birth Position Videos"
-          subtitle="Visual guides for labor positions"
+          title={t('toolsInternal.birthPosition.birthPositionVideos')}
+          subtitle={t('toolsInternal.birthPosition.birthPositionVideosSubtitle')}
           accentColor="rose"
         />
       </div>

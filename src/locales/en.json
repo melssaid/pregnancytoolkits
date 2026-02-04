@@ -709,11 +709,31 @@
       "beginner": "Beginner",
       "intermediate": "Intermediate",
       "advanced": "Advanced",
-      "generatePlan": "Generate Workout Plan",
+      "generatePlan": "Generate New Workout",
       "generating": "Generating workout plan...",
       "safeExercises": "Safe Exercises",
       "avoidExercises": "Exercises to Avoid",
-      "disclaimer": "Consult your healthcare provider before starting any exercise program."
+      "disclaimer": "Consult your healthcare provider before starting any exercise program.",
+      "start": "Start",
+      "resume": "Resume",
+      "pause": "Pause",
+      "fitnessVideos": "Prenatal Fitness Videos",
+      "fitnessVideosSubtitle": "Safe workout guides for every trimester",
+      "safetyFirst": "Safety First",
+      "safetyMessage": "Stop immediately if you feel dizziness, pain, or shortness of breath. Keep water nearby.",
+      "exercises": {
+        "squat": {"name": "Prenatal Squats", "desc": "Stand with feet shoulder-width apart. Lower gently as if sitting in a chair."},
+        "birdDog": {"name": "Bird Dog", "desc": "On hands and knees, extend opposite arm and leg. Hold for balance."},
+        "pelvicTilt": {"name": "Pelvic Tilts", "desc": "Gently rock your pelvis forward and back to relieve lower back pressure."},
+        "wallPushup": {"name": "Wall Pushups", "desc": "Stand arm-length from wall. Lean in and push back out."},
+        "butterfly": {"name": "Butterfly Stretch", "desc": "Sit with feet together, knees out. Gently lean forward."},
+        "marching": {"name": "Seated Marching", "desc": "Sit on a stable chair or ball. Lift knees alternately."}
+      },
+      "categories": {
+        "strength": "Strength",
+        "cardio": "Cardio",
+        "flexibility": "Flexibility"
+      }
     },
     "birthPlan": {
       "title": "AI Birth Plan Generator",
@@ -746,16 +766,26 @@
       "forBaby": "For Baby",
       "forPartner": "For Partner",
       "documents": "Documents",
-      "essentials": "Essentials",
+      "all": "All",
+      "mom": "Mom",
+      "baby": "Baby",
+      "partner": "Partner",
+      "essential": "Essential",
+      "recommended": "Recommended",
       "optional": "Optional",
       "generateList": "Generate Packing List",
+      "getAIList": "Get AI Personalized List",
+      "generating": "Generating...",
       "customizeList": "Customize List",
       "packed": "Packed",
       "notPacked": "Not Packed",
       "markAllPacked": "Mark All Packed",
       "resetList": "Reset List",
       "progress": "Packing Progress",
-      "itemsPacked": "{{packed}} of {{total}} items packed"
+      "itemsPacked": "{{packed}} of {{total}} items packed",
+      "addCustomItem": "Add custom item...",
+      "hospitalBagVideos": "Hospital Bag Prep Videos",
+      "hospitalBagVideosSubtitle": "Tips from experienced moms"
     },
     "sleepOptimizer": {
       "title": "AI Sleep Optimizer",
@@ -950,18 +980,38 @@
     "birthPosition": {
       "title": "AI Birth Positions",
       "subtitle": "Optimal positions for your labor",
+      "commonPositions": "Common Birth Positions",
       "laborStage": "Labor Stage",
       "earlyLabor": "Early Labor",
       "activeLabor": "Active Labor",
       "pushing": "Pushing",
+      "birthPreference": "Birth Preference",
       "birthPreferences": "Birth Preferences",
-      "natural": "Natural Birth",
+      "natural": "Natural/Unmedicated",
       "epidural": "With Epidural",
-      "getPositions": "Get Position Recommendations",
+      "waterBirth": "Water Birth",
+      "csection": "Planned C-Section",
+      "physicalConditions": "Physical Conditions",
+      "backPain": "Back pain",
+      "hipPain": "Hip pain",
+      "sciatica": "Sciatica",
+      "spd": "SPD/Pelvic pain",
+      "highBP": "High blood pressure",
+      "noConditions": "No specific conditions",
+      "getPositions": "Get AI Position Recommendations",
+      "analyzing": "Analyzing...",
       "recommendedPositions": "Recommended Positions",
       "benefits": "Benefits",
       "howTo": "How To",
-      "whenToUse": "When to Use"
+      "whenToUse": "When to Use",
+      "birthPositionVideos": "Birth Position Videos",
+      "birthPositionVideosSubtitle": "Visual guides for labor positions",
+      "positions": {
+        "squatting": {"name": "Squatting", "desc": "Opens pelvis 30%"},
+        "handsKnees": {"name": "Hands & Knees", "desc": "Relieves back labor"},
+        "sideLying": {"name": "Side Lying", "desc": "Rest between contractions"},
+        "standing": {"name": "Standing/Walking", "desc": "Uses gravity"}
+      }
     },
     "lactationPrep": {
       "title": "AI Lactation Prep",
@@ -1066,7 +1116,23 @@
         "visualization": "Visualization",
         "grounding": "Grounding"
       },
-      "disclaimer": "These exercises are for general relaxation. If you experience severe anxiety or depression, please consult your healthcare provider."
+      "disclaimer": "These exercises are for general relaxation. If you experience severe anxiety or depression, please consult your healthcare provider.",
+      "affirmations": {
+        "1": "I am capable of handling whatever comes my way",
+        "2": "My body knows how to grow this baby perfectly",
+        "3": "I trust my body and my instincts",
+        "4": "I am surrounded by love and support",
+        "5": "Each breath brings calm and peace",
+        "6": "I am strong, I am brave, I am enough",
+        "7": "My baby feels my love and calm energy",
+        "8": "I release worry and embrace peace"
+      },
+      "exercises": {
+        "boxBreathing": {"name": "Box Breathing", "desc": "A calming technique used by Navy SEALs", "steps": ["Breathe in slowly for 4 seconds", "Hold your breath for 4 seconds", "Exhale slowly for 4 seconds", "Hold for 4 seconds", "Repeat the cycle"]},
+        "safePlace": {"name": "Safe Place Visualization", "desc": "Imagine your perfect peaceful sanctuary", "steps": ["Close your eyes and take deep breaths", "Imagine a place where you feel completely safe", "Notice the colors, sounds, and smells", "Feel the peace and comfort surrounding you", "Stay here as long as you need"]},
+        "grounding54321": {"name": "5-4-3-2-1 Grounding", "desc": "A sensory technique to reduce anxiety", "steps": ["Notice 5 things you can SEE", "Notice 4 things you can TOUCH", "Notice 3 things you can HEAR", "Notice 2 things you can SMELL", "Notice 1 thing you can TASTE"]},
+        "progressiveRelaxation": {"name": "Progressive Muscle Relaxation", "desc": "Release tension from head to toe", "steps": ["Start with your feet - tense for 5 seconds, release", "Move to your calves - tense and release", "Continue to thighs, abdomen, hands, arms", "Tense and release shoulders, neck, face", "Feel the wave of relaxation through your body"]}
+      }
     },
     "mobilityCoach": {
       "title": "AI Mobility Coach",
@@ -1090,7 +1156,13 @@
       "tip2": "Stay hydrated before, during, and after walks",
       "tip3": "Wear supportive, comfortable shoes",
       "tip4": "Do calf stretches before bed to prevent night cramps",
-      "tip5": "Keep magnesium-rich foods in your diet"
+      "tip5": "Keep magnesium-rich foods in your diet",
+      "legExercises": {
+        "calfRaises": {"name": "Calf Raises", "desc": "Stand and raise heels off ground, lower slowly"},
+        "ankleCircles": {"name": "Ankle Circles", "desc": "Rotate each ankle in circles, both directions"},
+        "toePoints": {"name": "Toe Points", "desc": "Point and flex toes to improve circulation"},
+        "legStretches": {"name": "Gentle Leg Stretches", "desc": "Stretch calves and hamstrings gently"}
+      }
     },
     "postureCoach": {
       "title": "AI Posture Coach",
