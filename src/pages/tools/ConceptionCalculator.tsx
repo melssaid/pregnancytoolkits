@@ -223,7 +223,7 @@ Encouragement and realistic expectations`
                       ) : (
                         <Sparkles className="h-4 w-4" />
                       )}
-                      Get AI Conception Advice
+                      {t('conceptionPage.getAIAdvice')}
                     </Button>
                   ) : (
                     <Card className="mt-4 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
@@ -231,7 +231,7 @@ Encouragement and realistic expectations`
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2">
                             <Sparkles className="h-5 w-5 text-violet-500" />
-                            <h3 className="font-semibold">AI Conception Guide</h3>
+                            <h3 className="font-semibold">{t('conceptionPage.aiConceptionGuide')}</h3>
                           </div>
                           <button 
                             onClick={() => setShowAiAdvice(false)}
@@ -243,7 +243,7 @@ Encouragement and realistic expectations`
                         {aiLoading && !aiAdvice && (
                           <div className="flex items-center gap-2 text-violet-600">
                             <Loader2 className="h-4 w-4 animate-spin" />
-                            <span className="text-sm">Getting personalized advice...</span>
+                            <span className="text-sm">{t('conceptionPage.gettingAdvice')}</span>
                           </div>
                         )}
                         {aiAdvice && <MarkdownRenderer content={aiAdvice} />}

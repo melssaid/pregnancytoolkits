@@ -1590,5 +1590,131 @@
     "generatingInsights": "جاري إنشاء رؤى مخصصة...",
     "clickToExpand": "اضغطي للتوسيع",
     "clickToCollapse": "اضغطي للطي"
+  },
+  "toolsInternal": {
+    "mealSuggestion": {
+      "subtitle": "اقتراحات وجبات ذكية لحملك",
+      "pregnancyStage": "مرحلة الحمل",
+      "mealType": "نوع الوجبة",
+      "whatCraving": "ماذا تشتهين؟",
+      "dietaryPreferences": "التفضيلات الغذائية",
+      "suggestMeal": "اقتراح وجبة صحية",
+      "mealSuggestion": "اقتراح الوجبة",
+      "differentSuggestion": "اقتراح مختلف",
+      "refresh": "تحديث",
+      "quickTips": "نصائح سريعة",
+      "nutritionVideos": "فيديوهات تغذية الحمل",
+      "nutritionVideosSubtitle": "إرشادات خبراء حول الأكل الصحي",
+      "trimesters": {
+        "first": "الثلث الأول",
+        "second": "الثلث الثاني",
+        "third": "الثلث الثالث"
+      },
+      "mealTypes": {
+        "breakfast": "فطور",
+        "lunch": "غداء",
+        "dinner": "عشاء",
+        "snack": "وجبة خفيفة"
+      },
+      "cravings": {
+        "sweet": "حلو",
+        "salty": "مالح",
+        "sour": "حامض",
+        "spicy": "حار",
+        "creamy": "كريمي"
+      },
+      "preferences": {
+        "vegetarian": "نباتي",
+        "low-sugar": "قليل السكر",
+        "high-protein": "غني بالبروتين",
+        "low-sodium": "قليل الملح",
+        "iron-rich": "غني بالحديد",
+        "calcium-rich": "غني بالكالسيوم"
+      },
+      "tips": {
+        "smallMeals": "تناولي ٥-٦ وجبات صغيرة يومياً",
+        "drinkWater": "اشربي ٨-١٠ أكواب ماء",
+        "avoidRaw": "تجنبي الأطعمة النيئة"
+      }
+    },
+    "ovulation": {
+      "subtitle": "اكتشفي أيام الخصوبة العالية",
+      "calculateTitle": "حساب نافذة الخصوبة",
+      "calculateDesc": "أدخلي تفاصيل دورتك لاكتشاف أفضل أيامك ✨",
+      "firstDayLastPeriod": "أول يوم من آخر دورة",
+      "avgCycleLength": "متوسط طول الدورة (بالأيام)",
+      "cycleRange": "معظم الدورات تتراوح بين ٢١-٣٥ يوماً",
+      "calculateBtn": "حساب الإباضة",
+      "saveCalculation": "حفظ هذا الحساب",
+      "daysUntilOvulation": "أيام حتى الإباضة",
+      "getReady": "استعدي لنافذة الخصوبة!",
+      "ovulationDay": "يوم الإباضة",
+      "peakFertility": "يوم ذروة الخصوبة",
+      "nextPeriod": "الدورة القادمة",
+      "expectedStart": "البدء المتوقع",
+      "fertileWindow": "نافذة الخصوبة",
+      "bestDays": "أفضل أيامك للحمل",
+      "start": "البداية",
+      "end": "النهاية",
+      "sixDays": "٦ أيام من ذروة الخصوبة",
+      "aiFertilityInsights": "رؤى الخصوبة الذكية",
+      "getPersonalizedAdvice": "احصلي على نصائح خصوبة مخصصة",
+      "tip": "نصيحة",
+      "tipText": "لأفضل الفرص، حاولي الجماع خلال نافذة الخصوبة، خاصة قبل ١-٢ يوم من الإباضة.",
+      "savedCalculations": "الحسابات المحفوظة",
+      "ovulation": "الإباضة",
+      "cycle": "الدورة",
+      "days": "يوم",
+      "fertile": "الخصوبة",
+      "saved": "تم الحفظ!",
+      "savedDesc": "تم حفظ حساب الإباضة.",
+      "deleted": "تم الحذف",
+      "deletedDesc": "تمت إزالة النتيجة من السجل.",
+      "disclaimer": "تقدم هذه الحاسبة تقديرات بناءً على أنماط الدورة المتوسطة. قد تختلف الدورات الفردية. فكري في استخدام شرائط اختبار الإباضة لدقة أكبر."
+    },
+    "forbiddenFoods": {
+      "title": "دليل سلامة الأغذية",
+      "subtitle": "ماذا تأكلين وتتجنبين أثناء الحمل",
+      "searchPlaceholder": "ابحثي عن الأطعمة (مثل السوشي، الجبن)...",
+      "noResults": "لم يتم العثور على أطعمة مطابقة لـ \"{{term}}\"",
+      "askAI": "اسألي AI عن \"{{term}}\"",
+      "aiAnalysis": "تحليل سلامة الغذاء بالذكاء الاصطناعي",
+      "analyzing": "جاري تحليل سلامة الغذاء...",
+      "quickRules": "قواعد سريعة",
+      "filters": {
+        "all": "الكل",
+        "safe": "آمن",
+        "limit": "قللي",
+        "avoid": "تجنبي"
+      },
+      "rules": {
+        "avoid": "تجنبي",
+        "avoidDesc": "اللحوم/الأسماك النيئة، منتجات الألبان غير المبسترة، اللحوم المصنعة (الباردة).",
+        "cook": "اطهي",
+        "cookDesc": "اللحوم حتى ٧٥ درجة مئوية.",
+        "wash": "اغسلي",
+        "washDesc": "جميع الفواكه والخضروات جيداً."
+      }
+    }
+  },
+  "conceptionPage": {
+    "fromDueDate": "من موعد الولادة",
+    "fromLMP": "من آخر دورة",
+    "knowDueDate": "تعرفين موعد ولادتك؟",
+    "dueDate": "موعد الولادة",
+    "planningPregnancy": "تخططين للحمل؟",
+    "lmpDate": "أول يوم من آخر دورة",
+    "cycleLength": "متوسط طول الدورة (بالأيام)",
+    "estimatedConception": "تاريخ الحمل المقدر",
+    "fertileWindow": "نافذة الخصوبة",
+    "info": "يحدث الحمل عادةً بعد حوالي أسبوعين من أول يوم في آخر دورة، أثناء الإباضة.",
+    "getAIAdvice": "احصلي على نصائح AI للحمل",
+    "aiConceptionGuide": "دليل الحمل الذكي",
+    "gettingAdvice": "جاري الحصول على نصائح مخصصة..."
+  },
+  "common": {
+    "calculate": "احسبي",
+    "results": "النتائج",
+    "start": "ابدأي"
   }
 }

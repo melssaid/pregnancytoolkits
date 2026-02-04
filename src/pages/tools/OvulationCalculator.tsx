@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Calendar, Heart, Sparkles, Baby, Flower2, Save, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,6 @@ import useAnalytics from "@/hooks/useAnalytics";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
-
 interface OvulationResult {
   id: string;
   lastPeriod: string;
@@ -32,6 +32,7 @@ const isValidResults = (data: unknown): data is OvulationResult[] => {
 };
 
 export default function OvulationCalculator() {
+  const { t } = useTranslation();
   const { trackAction } = useAnalytics("ovulation-calculator");
   const { toast } = useToast();
   const [lastPeriod, setLastPeriod] = useState("");
@@ -95,18 +96,18 @@ export default function OvulationCalculator() {
     };
 
     setSavedResults(prev => [newResult, ...prev].slice(0, 10));
-    toast({ title: 'Saved!', description: 'Your ovulation calculation has been saved.' });
+    toast({ title: t('toolsInternal.ovulation.saved'), description: t('toolsInternal.ovulation.savedDesc') });
   };
 
   const deleteResult = (id: string) => {
     setSavedResults(prev => prev.filter(r => r.id !== id));
-    toast({ title: 'Deleted', description: 'Result removed from history.' });
+    toast({ title: t('toolsInternal.ovulation.deleted'), description: t('toolsInternal.ovulation.deletedDesc') });
   };
 
   return (
     <ToolFrame
-      title="Ovulation Calculator"
-      subtitle="Find your most fertile days"
+      title={t("tools.ovulationCalculator.title")}
+      subtitle={t("toolsInternal.ovulation.subtitle")}
       customIcon="calendar"
       mood="nurturing"
       toolId="ovulation-calculator"
@@ -120,16 +121,16 @@ export default function OvulationCalculator() {
               <div className="p-2 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5">
                 <Flower2 className="h-5 w-5 text-primary" />
               </div>
-              Calculate Your Fertile Window
+              {t("toolsInternal.ovulation.calculateTitle")}
             </CardTitle>
             <CardDescription className="text-base">
-              Enter your cycle details to discover your best days ✨
+              {t("toolsInternal.ovulation.calculateDesc")}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="lastPeriod" className="text-sm font-medium">
-                First Day of Last Period
+                {t("toolsInternal.ovulation.firstDayLastPeriod")}
               </Label>
               <Input
                 id="lastPeriod"
@@ -142,7 +143,7 @@ export default function OvulationCalculator() {
 
             <div className="space-y-2">
               <Label htmlFor="cycleLength" className="text-sm font-medium">
-                Average Cycle Length (days)
+                {t("toolsInternal.ovulation.avgCycleLength")}
               </Label>
               <Input
                 id="cycleLength"
@@ -154,7 +155,7 @@ export default function OvulationCalculator() {
                 className="h-12 text-base border-2 border-primary/20 focus:border-primary/50 rounded-xl"
               />
               <p className="text-xs text-muted-foreground">
-                Most cycles range from 21-35 days
+                {t("toolsInternal.ovulation.cycleRange")}
               </p>
             </div>
 
@@ -163,7 +164,7 @@ export default function OvulationCalculator() {
               className="w-full h-14 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <Heart className="h-5 w-5 mr-2" />
-              Calculate Ovulation
+              {t("toolsInternal.ovulation.calculateBtn")}
             </Button>
           </CardContent>
         </Card>
@@ -176,7 +177,7 @@ export default function OvulationCalculator() {
           >
             <Button onClick={saveResult} variant="outline" className="w-full gap-2">
               <Save className="h-4 w-4" />
-              Save This Calculation
+              {t("toolsInternal.ovulation.saveCalculation")}
             </Button>
 
             {result.daysUntilOvulation > 0 && (
@@ -193,9 +194,9 @@ export default function OvulationCalculator() {
                   <Sparkles className="h-40 w-40" />
                 </motion.div>
                 <div className="relative z-10 text-center">
-                  <p className="text-primary-foreground/80 text-sm font-medium mb-1">Days Until Ovulation</p>
+                  <p className="text-primary-foreground/80 text-sm font-medium mb-1">{t("toolsInternal.ovulation.daysUntilOvulation")}</p>
                   <p className="text-5xl font-bold mb-2">{result.daysUntilOvulation}</p>
-                  <p className="text-primary-foreground/90">Get ready for your fertile window! 🌸</p>
+                  <p className="text-primary-foreground/90">{t("toolsInternal.ovulation.getReady")} 🌸</p>
                 </div>
               </motion.div>
             )}
@@ -209,13 +210,13 @@ export default function OvulationCalculator() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <Heart className="h-5 w-5 text-primary" />
-                  <p className="text-sm font-medium text-muted-foreground">Ovulation Day</p>
+                  <p className="text-sm font-medium text-muted-foreground">{t("toolsInternal.ovulation.ovulationDay")}</p>
                 </div>
                 <p className="text-2xl font-bold text-primary">
                   {format(result.ovulationDate, "MMM d")}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Peak fertility day
+                  {t("toolsInternal.ovulation.peakFertility")}
                 </p>
               </motion.div>
               
@@ -227,13 +228,13 @@ export default function OvulationCalculator() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-5 w-5 text-primary" />
-                  <p className="text-sm font-medium text-muted-foreground">Next Period</p>
+                  <p className="text-sm font-medium text-muted-foreground">{t("toolsInternal.ovulation.nextPeriod")}</p>
                 </div>
                 <p className="text-2xl font-bold text-foreground">
                   {format(result.nextPeriod, "MMM d")}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Expected start
+                  {t("toolsInternal.ovulation.expectedStart")}
                 </p>
               </motion.div>
             </div>
@@ -249,14 +250,14 @@ export default function OvulationCalculator() {
                   <Baby className="h-6 w-6 text-accent-foreground" />
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-lg">Fertile Window</p>
-                  <p className="text-sm text-muted-foreground">Your best days for conception</p>
+                  <p className="font-bold text-foreground text-lg">{t("toolsInternal.ovulation.fertileWindow")}</p>
+                  <p className="text-sm text-muted-foreground">{t("toolsInternal.ovulation.bestDays")}</p>
                 </div>
               </div>
               
               <div className="flex items-center justify-center gap-4 py-4">
                 <div className="text-center">
-                  <p className="text-sm text-muted-foreground">Start</p>
+                  <p className="text-sm text-muted-foreground">{t("toolsInternal.ovulation.start")}</p>
                   <p className="text-xl font-bold text-foreground">{format(result.fertileStart, "MMM d")}</p>
                 </div>
                 <div className="flex items-center gap-1 text-primary/60">
@@ -265,19 +266,19 @@ export default function OvulationCalculator() {
                   <span>→</span>
                 </div>
                 <div className="text-center">
-                  <p className="text-sm text-muted-foreground">End</p>
+                  <p className="text-sm text-muted-foreground">{t("toolsInternal.ovulation.end")}</p>
                   <p className="text-xl font-bold text-foreground">{format(result.fertileEnd, "MMM d")}</p>
                 </div>
               </div>
               
               <p className="text-sm text-center text-muted-foreground mt-2">
-                6 days of peak fertility 💕
+                {t("toolsInternal.ovulation.sixDays")} 💕
               </p>
             </motion.div>
 
             {/* AI Insights */}
             <AIInsightCard
-              title="AI Fertility Insights"
+              title={t("toolsInternal.ovulation.aiFertilityInsights")}
               prompt={`I'm tracking my fertility. My cycle length is ${cycleLength} days. My last period started on ${lastPeriod}. My ovulation is predicted for ${format(result.ovulationDate, "MMMM d, yyyy")} and my fertile window is ${format(result.fertileStart, "MMM d")} to ${format(result.fertileEnd, "MMM d")}.
 
 Please provide personalized advice in this format:
@@ -293,7 +294,7 @@ Diet, exercise, and lifestyle tips for this phase
 ## ⚠️ Important Notes
 Any important reminders about fertility tracking`}
               context={{ week: parseInt(cycleLength) }}
-              buttonText="Get Personalized Fertility Advice"
+              buttonText={t("toolsInternal.ovulation.getPersonalizedAdvice")}
               variant="default"
             />
 
@@ -304,8 +305,7 @@ Any important reminders about fertility tracking`}
               className="rounded-xl bg-muted border border-border p-4"
             >
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <span className="font-semibold">💡 Tip:</span> For the best chances, 
-                try to be intimate during your fertile window, especially 1-2 days before ovulation.
+                <span className="font-semibold">💡 {t("toolsInternal.ovulation.tip")}:</span> {t("toolsInternal.ovulation.tipText")}
               </p>
             </motion.div>
           </motion.div>
@@ -314,7 +314,7 @@ Any important reminders about fertility tracking`}
         {savedResults.length > 0 && (
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Saved Calculations</CardTitle>
+              <CardTitle className="text-lg">{t("toolsInternal.ovulation.savedCalculations")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -325,13 +325,13 @@ Any important reminders about fertility tracking`}
                   >
                     <div>
                       <p className="font-medium text-foreground">
-                        Ovulation: {format(new Date(saved.ovulationDate), "MMM d, yyyy")}
+                        {t("toolsInternal.ovulation.ovulation")}: {format(new Date(saved.ovulationDate), "MMM d, yyyy")}
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        Cycle: {saved.cycleLength} days • LMP: {format(new Date(saved.lastPeriod), "MMM d")}
+                        {t("toolsInternal.ovulation.cycle")}: {saved.cycleLength} {t("toolsInternal.ovulation.days")} • LMP: {format(new Date(saved.lastPeriod), "MMM d")}
                       </p>
                       <p className="text-xs text-primary mt-1">
-                        Fertile: {format(new Date(saved.fertileStart), "MMM d")} - {format(new Date(saved.fertileEnd), "MMM d")}
+                        {t("toolsInternal.ovulation.fertile")}: {format(new Date(saved.fertileStart), "MMM d")} - {format(new Date(saved.fertileEnd), "MMM d")}
                       </p>
                     </div>
                     <button
@@ -350,9 +350,7 @@ Any important reminders about fertility tracking`}
         <div className="flex items-start gap-3 rounded-xl bg-muted/50 p-4 text-sm text-muted-foreground">
           <Sparkles className="h-5 w-5 mt-0.5 flex-shrink-0 text-primary/50" />
           <p>
-            This calculator provides estimates based on average cycle patterns. 
-            Individual cycles may vary. Consider using ovulation predictor kits 
-            for more accuracy.
+            {t("toolsInternal.ovulation.disclaimer")}
           </p>
         </div>
       </div>
