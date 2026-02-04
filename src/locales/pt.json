@@ -775,6 +775,51 @@
     "description": "Aplicativo atualizado, recarregando..."
   },
   "toolsInternal": {
+    "mealSuggestion": {
+      "subtitle": "Sugestões inteligentes de refeições para sua gravidez",
+      "pregnancyStage": "Estágio da Gravidez",
+      "mealType": "Tipo de Refeição",
+      "whatCraving": "O que você está desejando?",
+      "dietaryPreferences": "Preferências Alimentares",
+      "suggestMeal": "Sugerir Refeição Saudável",
+      "mealSuggestion": "Sugestão de Refeição",
+      "differentSuggestion": "Outra Sugestão",
+      "refresh": "Atualizar",
+      "quickTips": "Dicas Rápidas",
+      "nutritionVideos": "Vídeos de Nutrição na Gravidez",
+      "nutritionVideosSubtitle": "Orientação especializada sobre alimentação saudável",
+      "trimesters": {
+        "first": "Primeiro Trimestre",
+        "second": "Segundo Trimestre",
+        "third": "Terceiro Trimestre"
+      },
+      "mealTypes": {
+        "breakfast": "Café da manhã",
+        "lunch": "Almoço",
+        "dinner": "Jantar",
+        "snack": "Lanche"
+      },
+      "cravings": {
+        "sweet": "Doce",
+        "salty": "Salgado",
+        "sour": "Azedo",
+        "spicy": "Picante",
+        "creamy": "Cremoso"
+      },
+      "preferences": {
+        "vegetarian": "Vegetariano",
+        "low-sugar": "Baixo Açúcar",
+        "high-protein": "Alto Proteína",
+        "low-sodium": "Baixo Sódio",
+        "iron-rich": "Rico em Ferro",
+        "calcium-rich": "Rico em Cálcio"
+      },
+      "tips": {
+        "smallMeals": "Coma 5-6 pequenas refeições por dia",
+        "drinkWater": "Beba 8-10 copos de água",
+        "avoidRaw": "Evite alimentos crus"
+      }
+    },
     "dueDate": {
       "calculateTitle": "Calcule sua Data Prevista",
       "calculateDesc": "Estime quando seu bebê chegará",
@@ -1691,51 +1736,6 @@
     "currentSleep": "Sono Atual: {{hours}} horas/noite",
     "usualBedtime": "Hora Habitual de Dormir",
     "sleepChallenges": "Desafios do Sono"
-  },
-  "mealSuggestion": {
-    "subtitle": "Sugestões inteligentes de refeições para sua gravidez",
-    "pregnancyStage": "Estágio da Gravidez",
-    "mealType": "Tipo de Refeição",
-    "whatCraving": "O que você está desejando?",
-    "dietaryPreferences": "Preferências Alimentares",
-    "suggestMeal": "Sugerir Refeição Saudável",
-    "mealSuggestion": "Sugestão de Refeição",
-    "differentSuggestion": "Outra Sugestão",
-    "refresh": "Atualizar",
-    "quickTips": "Dicas Rápidas",
-    "nutritionVideos": "Vídeos de Nutrição na Gravidez",
-    "nutritionVideosSubtitle": "Orientação especializada sobre alimentação saudável",
-    "trimesters": {
-      "first": "Primeiro Trimestre",
-      "second": "Segundo Trimestre",
-      "third": "Terceiro Trimestre"
-    },
-    "mealTypes": {
-      "breakfast": "Café da manhã",
-      "lunch": "Almoço",
-      "dinner": "Jantar",
-      "snack": "Lanche"
-    },
-    "cravings": {
-      "sweet": "Doce",
-      "salty": "Salgado",
-      "sour": "Azedo",
-      "spicy": "Picante",
-      "creamy": "Cremoso"
-    },
-    "preferences": {
-      "vegetarian": "Vegetariano",
-      "low-sugar": "Baixo Açúcar",
-      "high-protein": "Alto Proteína",
-      "low-sodium": "Baixo Sódio",
-      "iron-rich": "Rico em Ferro",
-      "calcium-rich": "Rico em Cálcio"
-    },
-    "tips": {
-      "smallMeals": "Coma 5-6 pequenas refeições por dia",
-      "drinkWater": "Beba 8-10 copos de água",
-      "avoidRaw": "Evite alimentos crus"
-    }
   },
   "ovulation": {
     "subtitle": "Encontre seus dias mais férteis",

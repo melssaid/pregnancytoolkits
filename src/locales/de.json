@@ -775,6 +775,51 @@
     "description": "App aktualisiert, wird neu geladen..."
   },
   "toolsInternal": {
+    "mealSuggestion": {
+      "subtitle": "Intelligente Mahlzeitenvorschläge für Ihre Schwangerschaft",
+      "pregnancyStage": "Schwangerschaftsphase",
+      "mealType": "Mahlzeitentyp",
+      "whatCraving": "Worauf haben Sie Appetit?",
+      "dietaryPreferences": "Ernährungspräferenzen",
+      "suggestMeal": "Gesunde Mahlzeit vorschlagen",
+      "mealSuggestion": "Mahlzeitenvorschlag",
+      "differentSuggestion": "Anderer Vorschlag",
+      "refresh": "Aktualisieren",
+      "quickTips": "Schnelle Tipps",
+      "nutritionVideos": "Schwangerschafts-Ernährungsvideos",
+      "nutritionVideosSubtitle": "Expertenratschläge für gesunde Ernährung",
+      "trimesters": {
+        "first": "Erstes Trimester",
+        "second": "Zweites Trimester",
+        "third": "Drittes Trimester"
+      },
+      "mealTypes": {
+        "breakfast": "Frühstück",
+        "lunch": "Mittagessen",
+        "dinner": "Abendessen",
+        "snack": "Snack"
+      },
+      "cravings": {
+        "sweet": "Süß",
+        "salty": "Salzig",
+        "sour": "Sauer",
+        "spicy": "Scharf",
+        "creamy": "Cremig"
+      },
+      "preferences": {
+        "vegetarian": "Vegetarisch",
+        "low-sugar": "Zuckerarm",
+        "high-protein": "Proteinreich",
+        "low-sodium": "Natriumarm",
+        "iron-rich": "Eisenreich",
+        "calcium-rich": "Kalziumreich"
+      },
+      "tips": {
+        "smallMeals": "Essen Sie 5-6 kleine Mahlzeiten täglich",
+        "drinkWater": "Trinken Sie 8-10 Gläser Wasser",
+        "avoidRaw": "Vermeiden Sie rohe Lebensmittel"
+      }
+    },
     "dueDate": {
       "calculateTitle": "Berechnen Sie Ihren Geburtstermin",
       "calculateDesc": "Schätzen Sie, wann Ihr Baby ankommt",
@@ -1386,51 +1431,6 @@
     "currentSleep": "Aktueller Schlaf: {{hours}} Stunden/Nacht",
     "usualBedtime": "Übliche Schlafenszeit",
     "sleepChallenges": "Schlafprobleme"
-  },
-  "mealSuggestion": {
-    "subtitle": "Intelligente Mahlzeitenvorschläge für Ihre Schwangerschaft",
-    "pregnancyStage": "Schwangerschaftsphase",
-    "mealType": "Mahlzeitentyp",
-    "whatCraving": "Worauf haben Sie Appetit?",
-    "dietaryPreferences": "Ernährungspräferenzen",
-    "suggestMeal": "Gesunde Mahlzeit vorschlagen",
-    "mealSuggestion": "Mahlzeitenvorschlag",
-    "differentSuggestion": "Anderer Vorschlag",
-    "refresh": "Aktualisieren",
-    "quickTips": "Schnelle Tipps",
-    "nutritionVideos": "Schwangerschafts-Ernährungsvideos",
-    "nutritionVideosSubtitle": "Expertenratschläge für gesunde Ernährung",
-    "trimesters": {
-      "first": "Erstes Trimester",
-      "second": "Zweites Trimester",
-      "third": "Drittes Trimester"
-    },
-    "mealTypes": {
-      "breakfast": "Frühstück",
-      "lunch": "Mittagessen",
-      "dinner": "Abendessen",
-      "snack": "Snack"
-    },
-    "cravings": {
-      "sweet": "Süß",
-      "salty": "Salzig",
-      "sour": "Sauer",
-      "spicy": "Scharf",
-      "creamy": "Cremig"
-    },
-    "preferences": {
-      "vegetarian": "Vegetarisch",
-      "low-sugar": "Zuckerarm",
-      "high-protein": "Proteinreich",
-      "low-sodium": "Natriumarm",
-      "iron-rich": "Eisenreich",
-      "calcium-rich": "Kalziumreich"
-    },
-    "tips": {
-      "smallMeals": "Essen Sie 5-6 kleine Mahlzeiten täglich",
-      "drinkWater": "Trinken Sie 8-10 Gläser Wasser",
-      "avoidRaw": "Vermeiden Sie rohe Lebensmittel"
-    }
   },
   "ovulation": {
     "subtitle": "Finden Sie Ihre fruchtbarsten Tage",
