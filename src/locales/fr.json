@@ -775,6 +775,51 @@
     "description": "Application mise à jour, rechargement..."
   },
   "toolsInternal": {
+    "mealSuggestion": {
+      "subtitle": "Suggestions de repas intelligentes pour votre grossesse",
+      "pregnancyStage": "Stade de grossesse",
+      "mealType": "Type de repas",
+      "whatCraving": "Qu'est-ce qui vous fait envie?",
+      "dietaryPreferences": "Préférences alimentaires",
+      "suggestMeal": "Suggérer un repas sain",
+      "mealSuggestion": "Suggestion de repas",
+      "differentSuggestion": "Autre suggestion",
+      "refresh": "Actualiser",
+      "quickTips": "Conseils rapides",
+      "nutritionVideos": "Vidéos nutrition grossesse",
+      "nutritionVideosSubtitle": "Conseils d'experts sur l'alimentation saine",
+      "trimesters": {
+        "first": "Premier trimestre",
+        "second": "Deuxième trimestre",
+        "third": "Troisième trimestre"
+      },
+      "mealTypes": {
+        "breakfast": "Petit-déjeuner",
+        "lunch": "Déjeuner",
+        "dinner": "Dîner",
+        "snack": "Collation"
+      },
+      "cravings": {
+        "sweet": "Sucré",
+        "salty": "Salé",
+        "sour": "Acide",
+        "spicy": "Épicé",
+        "creamy": "Crémeux"
+      },
+      "preferences": {
+        "vegetarian": "Végétarien",
+        "low-sugar": "Faible en sucre",
+        "high-protein": "Riche en protéines",
+        "low-sodium": "Faible en sodium",
+        "iron-rich": "Riche en fer",
+        "calcium-rich": "Riche en calcium"
+      },
+      "tips": {
+        "smallMeals": "Mangez 5-6 petits repas par jour",
+        "drinkWater": "Buvez 8-10 verres d'eau",
+        "avoidRaw": "Évitez les aliments crus"
+      }
+    },
     "dueDate": {
       "calculateTitle": "Calculez votre date d'accouchement",
       "calculateDesc": "Estimez quand votre bébé arrivera",
@@ -1386,51 +1431,6 @@
     "currentSleep": "Sommeil actuel: {{hours}} heures/nuit",
     "usualBedtime": "Heure de coucher habituelle",
     "sleepChallenges": "Défis de sommeil"
-  },
-  "mealSuggestion": {
-    "subtitle": "Suggestions de repas intelligentes pour votre grossesse",
-    "pregnancyStage": "Stade de grossesse",
-    "mealType": "Type de repas",
-    "whatCraving": "Qu'est-ce qui vous fait envie?",
-    "dietaryPreferences": "Préférences alimentaires",
-    "suggestMeal": "Suggérer un repas sain",
-    "mealSuggestion": "Suggestion de repas",
-    "differentSuggestion": "Autre suggestion",
-    "refresh": "Actualiser",
-    "quickTips": "Conseils rapides",
-    "nutritionVideos": "Vidéos nutrition grossesse",
-    "nutritionVideosSubtitle": "Conseils d'experts sur l'alimentation saine",
-    "trimesters": {
-      "first": "Premier trimestre",
-      "second": "Deuxième trimestre",
-      "third": "Troisième trimestre"
-    },
-    "mealTypes": {
-      "breakfast": "Petit-déjeuner",
-      "lunch": "Déjeuner",
-      "dinner": "Dîner",
-      "snack": "Collation"
-    },
-    "cravings": {
-      "sweet": "Sucré",
-      "salty": "Salé",
-      "sour": "Acide",
-      "spicy": "Épicé",
-      "creamy": "Crémeux"
-    },
-    "preferences": {
-      "vegetarian": "Végétarien",
-      "low-sugar": "Faible en sucre",
-      "high-protein": "Riche en protéines",
-      "low-sodium": "Faible en sodium",
-      "iron-rich": "Riche en fer",
-      "calcium-rich": "Riche en calcium"
-    },
-    "tips": {
-      "smallMeals": "Mangez 5-6 petits repas par jour",
-      "drinkWater": "Buvez 8-10 verres d'eau",
-      "avoidRaw": "Évitez les aliments crus"
-    }
   },
   "ovulation": {
     "subtitle": "Trouvez vos jours les plus fertiles",

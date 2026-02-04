@@ -775,6 +775,51 @@
     "description": "Uygulama güncellendi, yeniden yükleniyor..."
   },
   "toolsInternal": {
+    "mealSuggestion": {
+      "subtitle": "Hamileliğiniz için akıllı yemek önerileri",
+      "pregnancyStage": "Hamilelik Aşaması",
+      "mealType": "Öğün Türü",
+      "whatCraving": "Neye canınız çekiyor?",
+      "dietaryPreferences": "Beslenme Tercihleri",
+      "suggestMeal": "Sağlıklı Öğün Öner",
+      "mealSuggestion": "Öğün Önerisi",
+      "differentSuggestion": "Farklı Öneri",
+      "refresh": "Yenile",
+      "quickTips": "Hızlı İpuçları",
+      "nutritionVideos": "Hamilelik Beslenme Videoları",
+      "nutritionVideosSubtitle": "Sağlıklı beslenme uzman rehberliği",
+      "trimesters": {
+        "first": "Birinci Trimester",
+        "second": "İkinci Trimester",
+        "third": "Üçüncü Trimester"
+      },
+      "mealTypes": {
+        "breakfast": "Kahvaltı",
+        "lunch": "Öğle Yemeği",
+        "dinner": "Akşam Yemeği",
+        "snack": "Atıştırmalık"
+      },
+      "cravings": {
+        "sweet": "Tatlı",
+        "salty": "Tuzlu",
+        "sour": "Ekşi",
+        "spicy": "Baharatlı",
+        "creamy": "Kremalı"
+      },
+      "preferences": {
+        "vegetarian": "Vejetaryen",
+        "low-sugar": "Düşük Şeker",
+        "high-protein": "Yüksek Protein",
+        "low-sodium": "Düşük Sodyum",
+        "iron-rich": "Demir Zengini",
+        "calcium-rich": "Kalsiyum Zengini"
+      },
+      "tips": {
+        "smallMeals": "Günde 5-6 küçük öğün yiyin",
+        "drinkWater": "8-10 bardak su için",
+        "avoidRaw": "Çiğ yiyeceklerden kaçının"
+      }
+    },
     "dueDate": {
       "calculateTitle": "Doğum Tarihinizi Hesaplayın",
       "calculateDesc": "Bebeğinizin ne zaman geleceğini tahmin edin",
@@ -1691,51 +1736,6 @@
     "currentSleep": "Mevcut Uyku: {{hours}} saat/gece",
     "usualBedtime": "Normal Yatma Saati",
     "sleepChallenges": "Uyku Zorlukları"
-  },
-  "mealSuggestion": {
-    "subtitle": "Hamileliğiniz için akıllı yemek önerileri",
-    "pregnancyStage": "Hamilelik Aşaması",
-    "mealType": "Öğün Türü",
-    "whatCraving": "Neye canınız çekiyor?",
-    "dietaryPreferences": "Beslenme Tercihleri",
-    "suggestMeal": "Sağlıklı Öğün Öner",
-    "mealSuggestion": "Öğün Önerisi",
-    "differentSuggestion": "Farklı Öneri",
-    "refresh": "Yenile",
-    "quickTips": "Hızlı İpuçları",
-    "nutritionVideos": "Hamilelik Beslenme Videoları",
-    "nutritionVideosSubtitle": "Sağlıklı beslenme uzman rehberliği",
-    "trimesters": {
-      "first": "Birinci Trimester",
-      "second": "İkinci Trimester",
-      "third": "Üçüncü Trimester"
-    },
-    "mealTypes": {
-      "breakfast": "Kahvaltı",
-      "lunch": "Öğle Yemeği",
-      "dinner": "Akşam Yemeği",
-      "snack": "Atıştırmalık"
-    },
-    "cravings": {
-      "sweet": "Tatlı",
-      "salty": "Tuzlu",
-      "sour": "Ekşi",
-      "spicy": "Baharatlı",
-      "creamy": "Kremalı"
-    },
-    "preferences": {
-      "vegetarian": "Vejetaryen",
-      "low-sugar": "Düşük Şeker",
-      "high-protein": "Yüksek Protein",
-      "low-sodium": "Düşük Sodyum",
-      "iron-rich": "Demir Zengini",
-      "calcium-rich": "Kalsiyum Zengini"
-    },
-    "tips": {
-      "smallMeals": "Günde 5-6 küçük öğün yiyin",
-      "drinkWater": "8-10 bardak su için",
-      "avoidRaw": "Çiğ yiyeceklerden kaçının"
-    }
   },
   "ovulation": {
     "subtitle": "En verimli günlerinizi bulun",
