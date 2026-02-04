@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { 
   Send, Bot, User, Home, MessageCircle, Heart, Utensils, Dumbbell, 
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
@@ -108,16 +109,17 @@ const videos = [
   { id: 3, youtubeId: "UCDkZ_NUEBI", title: "Pregnancy Health Tips" },
 ];
 
-const symptoms = ["Nausea", "Headache", "Fatigue", "Back pain", "Swelling", "Heartburn", "Insomnia"];
+const symptomKeys = ["nausea", "headache", "fatigue", "backPain", "swelling", "heartburn", "insomnia"] as const;
 
 const SmartDashboard = () => {
+  const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, loading: statsLoading } = useTrackingStats();
   const { unreadCount } = useNotifications();
   const [activeTab, setActiveTab] = useState<TabType>("home");
   const [showNotifications, setShowNotifications] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Hello! I'm your smart pregnancy assistant. How can I help you today?" }
+    { role: "assistant", content: t('dashboard.chat.welcomeMessage') }
   ]);
   const [userInput, setUserInput] = useState("");
   const [healthData, setHealthData] = useState<HealthData>({
@@ -171,38 +173,39 @@ const SmartDashboard = () => {
     
     if (weight && parseFloat(weight) > 0) {
       const expectedGain = weekOfPregnancy < 13 ? 2 : weekOfPregnancy < 27 ? 6 : 12;
-      analysis.push(`Expected weight gain so far: ~${expectedGain} kg`);
+      analysis.push(t('dashboard.health.analysis.expectedGain', { kg: expectedGain }));
     }
     
     if (bloodPressure) {
       const [systolic] = bloodPressure.split("/").map(Number);
       if (systolic > 140) {
-        analysis.push("Blood pressure is high - consult your doctor");
+        analysis.push(t('dashboard.health.analysis.bpHigh'));
       } else if (systolic < 90) {
-        analysis.push("Blood pressure is low - increase fluids and rest");
+        analysis.push(t('dashboard.health.analysis.bpLow'));
       } else if (!isNaN(systolic)) {
-        analysis.push("Blood pressure is normal");
+        analysis.push(t('dashboard.health.analysis.bpNormal'));
       }
     }
 
     if (mood === "Bad" || mood === "Anxious") {
-      analysis.push("Mental support is important - talk to someone you trust");
+      analysis.push(t('dashboard.health.analysis.mentalSupport'));
     }
 
     if (healthData.symptoms.length > 0) {
-      analysis.push(`Recorded symptoms: ${healthData.symptoms.join(", ")}`);
+      const translatedSymptoms = healthData.symptoms.map(s => t(`dashboard.health.symptoms.${s}`)).join(", ");
+      analysis.push(t('dashboard.health.analysis.recordedSymptoms', { symptoms: translatedSymptoms }));
     }
 
-    return analysis.length > 0 ? analysis : ["Enter your data for smart analysis"];
+    return analysis.length > 0 ? analysis : [t('dashboard.health.analysis.enterData')];
   };
 
   const tabs = [
-    { id: "home" as TabType, icon: Home, label: "Home" },
-    { id: "chat" as TabType, icon: MessageCircle, label: "AI Chat" },
-    { id: "health" as TabType, icon: Heart, label: "Health" },
-    { id: "nutrition" as TabType, icon: Utensils, label: "Nutrition" },
-    { id: "exercise" as TabType, icon: Dumbbell, label: "Exercise" },
-    { id: "videos" as TabType, icon: Play, label: "Videos" },
+    { id: "home" as TabType, icon: Home, label: t('dashboard.tabs.home') },
+    { id: "chat" as TabType, icon: MessageCircle, label: t('dashboard.tabs.chat') },
+    { id: "health" as TabType, icon: Heart, label: t('dashboard.tabs.health') },
+    { id: "nutrition" as TabType, icon: Utensils, label: t('dashboard.tabs.nutrition') },
+    { id: "exercise" as TabType, icon: Dumbbell, label: t('dashboard.tabs.exercise') },
+    { id: "videos" as TabType, icon: Play, label: t('dashboard.tabs.videos') },
   ];
 
   return (
@@ -284,7 +287,7 @@ const SmartDashboard = () => {
               kicks={0}
               mood={healthData.mood}
               waterGlasses={0}
-              nextAppointment="Check appointments"
+              nextAppointment={t('dashboard.checkAppointments')}
             />
 
             {/* Quick Actions */}
@@ -292,7 +295,7 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-primary" />
-                  Quick Actions
+                  {t('dashboard.quickActions')}
                 </h3>
                 <div className="grid grid-cols-2 gap-2">
                   <motion.button
@@ -304,17 +307,17 @@ const SmartDashboard = () => {
                     <div className="p-2 rounded-lg bg-primary/20 group-hover:bg-primary/30 transition-colors">
                       <CalendarCheck className="w-5 h-5 text-primary" />
                     </div>
-                    <div className="text-left">
-                      <span className="text-sm font-bold text-foreground block">Smart Plan</span>
-                      <span className="text-xs text-muted-foreground">My Daily Plan & PDF Report</span>
+                    <div className="text-start">
+                      <span className="text-sm font-bold text-foreground block">{t('dashboard.smartPlan')}</span>
+                      <span className="text-xs text-muted-foreground">{t('dashboard.smartPlanDesc')}</span>
                     </div>
                   </motion.button>
 
                   {[
-                    { icon: Bot, title: "AI Chat", tab: "chat" as TabType },
-                    { icon: Activity, title: "Health", tab: "health" as TabType },
-                    { icon: Utensils, title: "Nutrition", tab: "nutrition" as TabType },
-                    { icon: Dumbbell, title: "Exercise", tab: "exercise" as TabType },
+                    { icon: Bot, title: t('dashboard.tabs.chat'), tab: "chat" as TabType },
+                    { icon: Activity, title: t('dashboard.tabs.health'), tab: "health" as TabType },
+                    { icon: Utensils, title: t('dashboard.tabs.nutrition'), tab: "nutrition" as TabType },
+                    { icon: Dumbbell, title: t('dashboard.tabs.exercise'), tab: "exercise" as TabType },
                   ].map((feature, i) => (
                     <motion.button
                       key={i}
@@ -340,10 +343,10 @@ const SmartDashboard = () => {
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-semibold flex items-center gap-2">
                     <Database className="w-4 h-4 text-primary" />
-                    My Tracking Data
+                    {t('dashboard.myTrackingData')}
                   </h3>
                   <span className="text-[10px] text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                    {trackingTools.reduce((acc, cat) => acc + cat.tools.length, 0)} tools
+                    {trackingTools.reduce((acc, cat) => acc + cat.tools.length, 0)} {t('dashboard.tools')}
                   </span>
                 </div>
                 
@@ -443,14 +446,14 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                   <Brain className="w-4 h-4 text-primary" />
-                  AI-Powered Tools
+                  {t('dashboard.aiTools')}
                 </h3>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { title: "Smart Plan", icon: CalendarCheck, href: "/tools/smart-plan" },
-                    { title: "AI Assistant", icon: Bot, href: "/tools/pregnancy-assistant" },
-                    { title: "Symptoms", icon: Stethoscope, href: "/tools/symptom-analyzer" },
-                    { title: "Weekly", icon: Sparkles, href: "/tools/weekly-summary" },
+                    { title: t('dashboard.aiToolsList.smartPlan'), icon: CalendarCheck, href: "/tools/smart-plan" },
+                    { title: t('dashboard.aiToolsList.aiAssistant'), icon: Bot, href: "/tools/pregnancy-assistant" },
+                    { title: t('dashboard.aiToolsList.symptoms'), icon: Stethoscope, href: "/tools/symptom-analyzer" },
+                    { title: t('dashboard.aiToolsList.weekly'), icon: Sparkles, href: "/tools/weekly-summary" },
                   ].map((link, i) => (
                     <Link
                       key={i}
@@ -480,7 +483,7 @@ const SmartDashboard = () => {
                 <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-4 border-b border-border">
                   <h2 className="text-base font-bold flex items-center gap-2">
                     <Bot className="w-5 h-5 text-primary" />
-                    AI Pregnancy Assistant
+                    {t('dashboard.chat.title')}
                   </h2>
                 </div>
 
@@ -572,7 +575,7 @@ const SmartDashboard = () => {
                     <Input
                       value={userInput}
                       onChange={(e) => setUserInput(e.target.value)}
-                      placeholder="Type your question..."
+                      placeholder={t('dashboard.chat.placeholder')}
                       className="text-sm"
                       onKeyDown={(e) => {
                         if (e.key === "Enter" && !e.shiftKey) {
@@ -607,12 +610,12 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
                   <Heart className="w-5 h-5 text-primary" />
-                  AI Health Tracking
+                  {t('dashboard.health.title')}
                 </h2>
 
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Week of Pregnancy</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.weekOfPregnancy')}</label>
                     <Input
                       type="number"
                       min="1"
@@ -623,7 +626,7 @@ const SmartDashboard = () => {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Weight (kg)</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.weightKg')}</label>
                     <Input
                       type="number"
                       placeholder="65"
@@ -633,7 +636,7 @@ const SmartDashboard = () => {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Blood Pressure</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.bloodPressure')}</label>
                     <Input
                       placeholder="120/80"
                       value={healthData.bloodPressure}
@@ -642,49 +645,49 @@ const SmartDashboard = () => {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Mood</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.mood')}</label>
                     <select
                       value={healthData.mood}
                       onChange={(e) => setHealthData({ ...healthData, mood: e.target.value })}
                       className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
                     >
-                      <option>Excellent</option>
-                      <option>Good</option>
-                      <option>Normal</option>
-                      <option>Anxious</option>
-                      <option>Bad</option>
+                      <option value="Excellent">{t('dashboard.health.moods.excellent')}</option>
+                      <option value="Good">{t('dashboard.health.moods.good')}</option>
+                      <option value="Normal">{t('dashboard.health.moods.normal')}</option>
+                      <option value="Anxious">{t('dashboard.health.moods.anxious')}</option>
+                      <option value="Bad">{t('dashboard.health.moods.bad')}</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="mb-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Today's Symptoms</label>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">{t('dashboard.health.todaysSymptoms')}</label>
                   <div className="flex flex-wrap gap-2">
-                    {symptoms.map(symptom => (
+                    {symptomKeys.map(symptomKey => (
                       <button
-                        key={symptom}
+                        key={symptomKey}
                         onClick={() => {
-                          if (healthData.symptoms.includes(symptom)) {
-                            setHealthData({ ...healthData, symptoms: healthData.symptoms.filter(s => s !== symptom) });
+                          if (healthData.symptoms.includes(symptomKey)) {
+                            setHealthData({ ...healthData, symptoms: healthData.symptoms.filter(s => s !== symptomKey) });
                           } else {
-                            setHealthData({ ...healthData, symptoms: [...healthData.symptoms, symptom] });
+                            setHealthData({ ...healthData, symptoms: [...healthData.symptoms, symptomKey] });
                           }
                         }}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                          healthData.symptoms.includes(symptom)
+                          healthData.symptoms.includes(symptomKey)
                             ? "bg-primary text-primary-foreground"
                             : "bg-muted text-muted-foreground hover:bg-muted/80"
                         }`}
                       >
-                        {symptom}
+                        {t(`dashboard.health.symptoms.${symptomKey}`)}
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <Button className="w-full" onClick={() => {}}>
-                  <Scale className="w-4 h-4 mr-2" />
-                  Save & Analyze
+                  <Scale className="w-4 h-4 me-2" />
+                  {t('dashboard.health.saveAnalyze')}
                 </Button>
               </CardContent>
             </Card>
@@ -694,7 +697,7 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
                   <Brain className="w-4 h-4 text-primary" />
-                  Smart Analysis
+                  {t('dashboard.health.smartAnalysis')}
                 </h3>
                 <div className="space-y-2">
                   {getHealthAnalysis().map((item, i) => (
@@ -718,10 +721,10 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-1 flex items-center gap-2">
                   <Utensils className="w-5 h-5 text-primary" />
-                  Smart Nutrition Plan
+                  {t('dashboard.nutrition.title')}
                 </h2>
                 <p className="text-xs text-muted-foreground mb-4">
-                  Customized plan for week {healthData.weekOfPregnancy} of pregnancy
+                  {t('dashboard.nutrition.planForWeek', { week: healthData.weekOfPregnancy })}
                 </p>
 
                 <div className="space-y-3">
@@ -743,14 +746,14 @@ const SmartDashboard = () => {
 
                 <div className="mt-4 p-3 bg-primary/10 rounded-xl text-center">
                   <p className="text-sm font-semibold text-foreground">
-                    Total Daily Calories: {nutritionPlan.reduce((a, b) => a + b.calories, 0)} cal
+                    {t('dashboard.nutrition.totalCalories', { calories: nutritionPlan.reduce((a, b) => a + b.calories, 0) })}
                   </p>
                 </div>
 
                 <Link to="/tools/ai-meal-suggestion">
                   <Button className="w-full mt-4" variant="outline">
-                    More AI Suggestions
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    {t('dashboard.nutrition.moreAiSuggestions')}
+                    <ChevronRight className="w-4 h-4 ms-2" />
                   </Button>
                 </Link>
               </CardContent>
@@ -768,7 +771,7 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
                   <Dumbbell className="w-5 h-5 text-primary" />
-                  Safe Pregnancy Exercises
+                  {t('dashboard.exercise.title')}
                 </h2>
 
                 <div className="grid grid-cols-2 gap-3">
@@ -788,8 +791,8 @@ const SmartDashboard = () => {
 
                 <Link to="/tools/exercise-guide">
                   <Button className="w-full mt-4" variant="outline">
-                    More Exercises
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    {t('dashboard.exercise.moreExercises')}
+                    <ChevronRight className="w-4 h-4 ms-2" />
                   </Button>
                 </Link>
               </CardContent>
@@ -807,7 +810,7 @@ const SmartDashboard = () => {
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
                   <Play className="w-5 h-5 text-primary" />
-                  Educational Videos
+                  {t('dashboard.videos.title')}
                 </h2>
 
                 <div className="space-y-4">
@@ -851,8 +854,8 @@ const SmartDashboard = () => {
 
                 <Link to="/videos">
                   <Button className="w-full mt-4" variant="outline">
-                    Full Library
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    {t('dashboard.videos.fullLibrary')}
+                    <ChevronRight className="w-4 h-4 ms-2" />
                   </Button>
                 </Link>
               </CardContent>

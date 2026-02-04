@@ -66,6 +66,165 @@
     "babyGrowth": {"title": "نمو الطفل", "description": "تتبعي النمو بمخططات WHO"},
     "diaperTracker": {"title": "متتبع الحفاضات", "description": "سجلي التغييرات وراقبي الصحة"}
   },
+  "dashboard": {
+    "tabs": {
+      "home": "الرئيسية",
+      "chat": "الدردشة الذكية",
+      "health": "الصحة",
+      "nutrition": "التغذية",
+      "exercise": "التمارين",
+      "videos": "الفيديو"
+    },
+    "quickActions": "إجراءات سريعة",
+    "smartPlan": "الخطة الذكية",
+    "smartPlanDesc": "خطتي اليومية وتقرير PDF",
+    "myTrackingData": "بياناتي المتتبعة",
+    "tools": "أداة",
+    "categories": {
+      "dailyTracking": "التتبع اليومي",
+      "planning": "التخطيط",
+      "growth": "النمو",
+      "postpartum": "ما بعد الولادة"
+    },
+    "trackingTools": {
+      "kickCounter": "عداد الركلات",
+      "kickCounterDesc": "تتبعي حركات الجنين",
+      "weightTracker": "متتبع الوزن",
+      "weightTrackerDesc": "راقبي زيادة الوزن",
+      "vitaminTracker": "متتبع الفيتامينات",
+      "vitaminTrackerDesc": "المكملات اليومية",
+      "appointments": "المواعيد",
+      "appointmentsDesc": "الزيارات الطبية",
+      "birthPlan": "خطة الولادة",
+      "birthPlanDesc": "تفضيلات الولادة",
+      "hospitalBag": "حقيبة المستشفى",
+      "hospitalBagDesc": "قائمة التعبئة",
+      "fetalGrowth": "نمو الجنين",
+      "fetalGrowthDesc": "تطور الطفل",
+      "babyGrowth": "نمو الطفل",
+      "babyGrowthDesc": "تتبع ما بعد الولادة",
+      "bumpPhotos": "صور البطن",
+      "bumpPhotosDesc": "لقطات أسبوعية",
+      "babySleep": "نوم الطفل",
+      "babySleepDesc": "أنماط النوم",
+      "diaperTracker": "متتبع الحفاضات",
+      "diaperTrackerDesc": "التغييرات اليومية",
+      "groceryList": "قائمة التسوق",
+      "groceryListDesc": "مخطط التسوق"
+    },
+    "summary": {
+      "noDataToday": "لا بيانات اليوم",
+      "startPlanning": "ابدئي التخطيط",
+      "trackGrowth": "تتبعي النمو",
+      "readyForBaby": "جاهزة للطفل",
+      "kicks": "ركلات",
+      "vitamins": "فيتامينات",
+      "appointments": "مواعيد",
+      "itemsPacked": "عناصر معبأة",
+      "plan": "خطة",
+      "photos": "صور",
+      "sleep": "نوم",
+      "diapers": "حفاضات",
+      "items": "عناصر"
+    },
+    "aiTools": "أدوات الذكاء الاصطناعي",
+    "aiToolsList": {
+      "smartPlan": "الخطة الذكية",
+      "aiAssistant": "المساعد الذكي",
+      "symptoms": "الأعراض",
+      "weekly": "الأسبوعي"
+    },
+    "chat": {
+      "title": "مساعد الحمل الذكي",
+      "placeholder": "اكتبي سؤالك...",
+      "welcomeMessage": "مرحباً! أنا مساعدك الذكي للحمل. كيف يمكنني مساعدتك اليوم؟",
+      "quickQuestions": {
+        "firstTrimester": "أعراض الثلث الأول؟",
+        "coffee": "هل القهوة آمنة؟",
+        "labor": "التحضير للولادة؟",
+        "vitamins": "الفيتامينات المهمة؟"
+      }
+    },
+    "health": {
+      "title": "تتبع الصحة الذكي",
+      "weekOfPregnancy": "أسبوع الحمل",
+      "weightKg": "الوزن (كغ)",
+      "bloodPressure": "ضغط الدم",
+      "mood": "المزاج",
+      "moods": {
+        "excellent": "ممتاز",
+        "good": "جيد",
+        "normal": "عادي",
+        "anxious": "قلق",
+        "bad": "سيء"
+      },
+      "todaysSymptoms": "أعراض اليوم",
+      "symptoms": {
+        "nausea": "غثيان",
+        "headache": "صداع",
+        "fatigue": "إرهاق",
+        "backPain": "ألم الظهر",
+        "swelling": "تورم",
+        "heartburn": "حرقة المعدة",
+        "insomnia": "أرق"
+      },
+      "saveAnalyze": "حفظ وتحليل",
+      "smartAnalysis": "التحليل الذكي",
+      "analysis": {
+        "expectedGain": "الزيادة المتوقعة حتى الآن: ~{{kg}} كغ",
+        "bpHigh": "ضغط الدم مرتفع - استشيري طبيبتك",
+        "bpLow": "ضغط الدم منخفض - زيدي السوائل والراحة",
+        "bpNormal": "ضغط الدم طبيعي",
+        "mentalSupport": "الدعم النفسي مهم - تحدثي مع شخص تثقين به",
+        "recordedSymptoms": "الأعراض المسجلة: {{symptoms}}",
+        "enterData": "أدخلي بياناتك للتحليل الذكي"
+      }
+    },
+    "nutrition": {
+      "title": "خطة التغذية الذكية",
+      "planForWeek": "خطة مخصصة للأسبوع {{week}} من الحمل",
+      "meals": {
+        "breakfast": "الإفطار",
+        "breakfastSuggestion": "بيض مسلوق + خبز قمح كامل + عصير برتقال طازج",
+        "lunch": "الغداء",
+        "lunchSuggestion": "دجاج مشوي + أرز + سلطة خضراء",
+        "dinner": "العشاء",
+        "dinnerSuggestion": "سمك مشوي + خضار سوتيه + زبادي",
+        "snacks": "الوجبات الخفيفة",
+        "snacksSuggestion": "فواكه + مكسرات + حليب"
+      },
+      "totalCalories": "إجمالي السعرات اليومية: {{calories}} سعرة",
+      "moreAiSuggestions": "المزيد من اقتراحات AI"
+    },
+    "exercise": {
+      "title": "تمارين آمنة للحمل",
+      "exercises": {
+        "walking": "المشي",
+        "walkingDuration": "30 دقيقة",
+        "walkingBenefit": "يحسن الدورة الدموية",
+        "swimming": "السباحة",
+        "swimmingDuration": "20 دقيقة",
+        "swimmingBenefit": "يخفف آلام الظهر",
+        "yoga": "يوغا الحمل",
+        "yogaDuration": "25 دقيقة",
+        "yogaBenefit": "يقلل التوتر",
+        "kegel": "تمارين كيجل",
+        "kegelDuration": "10 دقائق",
+        "kegelBenefit": "يقوي عضلات الحوض"
+      },
+      "moreExercises": "المزيد من التمارين"
+    },
+    "videos": {
+      "title": "فيديوهات تعليمية",
+      "fullLibrary": "المكتبة الكاملة",
+      "videoTitles": {
+        "yoga": "تمارين يوغا للحامل",
+        "recipes": "وصفات صحية للحمل",
+        "tips": "نصائح صحة الحمل"
+      }
+    },
+    "checkAppointments": "تحقق من المواعيد"
+  },
   "layout": {
     "trustBar": {
       "scienceBacked": "مبني علمياً",

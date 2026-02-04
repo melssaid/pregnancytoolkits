@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
 import { setManualLanguage } from '@/i18n';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+
+// Create a forwardRef motion button to work with Radix's asChild
+const MotionButton = forwardRef<HTMLButtonElement, HTMLMotionProps<"button"> & { className?: string }>(
+  ({ children, ...props }, ref) => (
+    <motion.button ref={ref} {...props}>
+      {children}
+    </motion.button>
+  )
+);
 
 const languages = [
   { code: 'en', flag: '🇺🇸', short: 'EN' },
@@ -41,7 +50,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <motion.button
+        <MotionButton
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className={cn(
@@ -77,7 +86,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
             whileHover={{ width: '60%' }}
             transition={{ duration: 0.2 }}
           />
-        </motion.button>
+        </MotionButton>
       </PopoverTrigger>
       
       <PopoverContent 
