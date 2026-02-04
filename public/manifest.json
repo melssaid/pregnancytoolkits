@@ -1,16 +1,16 @@
 {
-  "name": "Pregnancy Toolkits - Your Complete Pregnancy Companion",
+  "name": "Pregnancy Toolkits - حاسبة الحمل ومتابعة الجنين | Complete Pregnancy Companion",
   "short_name": "Pregnancy Toolkits",
-  "description": "Professional pregnancy calculators and trackers for fertility, pregnancy, and postpartum care.",
+  "description": "أفضل تطبيق حمل مجاني مع 42+ أداة ذكية: حاسبة موعد الولادة، عداد حركة الجنين، متابعة نمو الطفل، نصائح الحمل اليومية، تمارين الحامل، تغذية الحامل، أعراض الحمل، مراحل الحمل أسبوع بأسبوع، حقيبة الولادة، علامات الولادة، الطلق، الرضاعة، ما بعد الولادة. Free pregnancy app with AI-powered tools for expecting mothers.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8fafc",
-  "theme_color": "#0891B2",
+  "theme_color": "#E91E8C",
   "orientation": "portrait-primary",
   "scope": "/",
-  "lang": "en",
+  "lang": "ar",
   "dir": "auto",
-  "categories": ["health", "medical", "lifestyle"],
+  "categories": ["health", "medical", "lifestyle", "pregnancy", "fertility", "baby", "motherhood"],
   "icons": [
     {
       "src": "/icons/icon-72x72.png",
@@ -67,29 +67,36 @@
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Home screen with all health tools"
+      "label": "الصفحة الرئيسية - 42+ أداة للحمل | Home - All Pregnancy Tools"
     }
   ],
   "shortcuts": [
     {
-      "name": "Due Date Calculator",
-      "short_name": "Due Date",
-      "description": "Calculate your pregnancy due date",
+      "name": "حاسبة موعد الولادة | Due Date Calculator",
+      "short_name": "موعد الولادة",
+      "description": "احسبي موعد ولادتك المتوقع | Calculate your pregnancy due date",
       "url": "/tools/due-date-calculator",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
-      "name": "Kick Counter",
-      "short_name": "Kicks",
-      "description": "Track baby movements",
+      "name": "عداد حركة الجنين | Kick Counter",
+      "short_name": "حركة الجنين",
+      "description": "تتبعي حركات طفلك | Track baby movements",
       "url": "/tools/kick-counter",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
-      "name": "Contraction Timer",
-      "short_name": "Contractions",
-      "description": "Time your contractions",
+      "name": "مؤقت الطلق | Contraction Timer",
+      "short_name": "الطلق",
+      "description": "قياس وقت الانقباضات | Time your contractions",
       "url": "/tools/contraction-timer",
+      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "نمو الجنين | Baby Growth",
+      "short_name": "نمو الطفل",
+      "description": "تتبعي نمو طفلك أسبوعياً | Track weekly baby development",
+      "url": "/tools/baby-growth",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ],
