@@ -1,4 +1,14 @@
+# Pregnancy Toolkits - SEO Optimized Robots.txt
+# أفضل تطبيق حمل مجاني - Best Free Pregnancy App
+
 User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
 Allow: /
 
 User-agent: Bingbot
@@ -10,5 +20,26 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterest
+Allow: /
+
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://pregnancytools.lovable.app/sitemap.xml
+
+# High-Priority Pages for Pregnancy Keywords
+# حاسبة الحمل - Pregnancy Calculator
+# حاسبة موعد الولادة - Due Date Calculator  
+# عداد حركة الجنين - Kick Counter
+# متابعة نمو الجنين - Baby Growth Tracker
+# أعراض الحمل - Pregnancy Symptoms
+# تغذية الحامل - Pregnancy Nutrition
+# تمارين الحامل - Pregnancy Exercises
+# نصائح الحمل - Pregnancy Tips
+# حقيبة الولادة - Hospital Bag
+# علامات الولادة - Labor Signs

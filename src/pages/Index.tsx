@@ -7,6 +7,7 @@ import { ToolCard } from "@/components/ToolCard";
 import { getSortedTools, getToolsByCategory } from "@/lib/tools-data";
 import { Button } from "@/components/ui/button";
 import { SubscriptionModal } from "@/components/SubscriptionModal";
+import { SEOContent } from "@/components/SEOContent";
 
 interface CategoryConfig {
   key: string;
@@ -164,6 +165,9 @@ const Index = () => {
           })}
         </div>
       </section>
+
+      {/* SEO Content Section */}
+      <SEOContent />
 
       <SubscriptionModal 
         isOpen={showSubscriptionModal} 
