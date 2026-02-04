@@ -168,6 +168,165 @@
       "description": "Protokollieren Sie Wechsel, überwachen Sie die Gesundheit."
     }
   },
+  "dashboard": {
+    "tabs": {
+      "home": "Start",
+      "chat": "KI-Chat",
+      "health": "Gesundheit",
+      "nutrition": "Ernährung",
+      "exercise": "Bewegung",
+      "videos": "Videos"
+    },
+    "quickActions": "Schnellaktionen",
+    "smartPlan": "Smart-Plan",
+    "smartPlanDesc": "Mein Tagesplan & PDF-Bericht",
+    "myTrackingData": "Meine Tracking-Daten",
+    "tools": "Tools",
+    "categories": {
+      "dailyTracking": "Tägliches Tracking",
+      "planning": "Planung",
+      "growth": "Wachstum",
+      "postpartum": "Nachgeburt"
+    },
+    "trackingTools": {
+      "kickCounter": "Trittzähler",
+      "kickCounterDesc": "Babybewegungen verfolgen",
+      "weightTracker": "Gewichtstracker",
+      "weightTrackerDesc": "Gewichtszunahme überwachen",
+      "vitaminTracker": "Vitamin-Tracker",
+      "vitaminTrackerDesc": "Tägliche Nahrungsergänzung",
+      "appointments": "Termine",
+      "appointmentsDesc": "Arztbesuche",
+      "birthPlan": "Geburtsplan",
+      "birthPlanDesc": "Entbindungspräferenzen",
+      "hospitalBag": "Krankenhaustasche",
+      "hospitalBagDesc": "Packliste",
+      "fetalGrowth": "Fetales Wachstum",
+      "fetalGrowthDesc": "Babyentwicklung",
+      "babyGrowth": "Babywachstum",
+      "babyGrowthDesc": "Postnatales Tracking",
+      "bumpPhotos": "Babybauch-Fotos",
+      "bumpPhotosDesc": "Wöchentliche Schnappschüsse",
+      "babySleep": "Babyschlaf",
+      "babySleepDesc": "Schlafmuster",
+      "diaperTracker": "Windel-Tracker",
+      "diaperTrackerDesc": "Tägliche Wechsel",
+      "groceryList": "Einkaufsliste",
+      "groceryListDesc": "Einkaufsplaner"
+    },
+    "summary": {
+      "noDataToday": "Keine Daten heute",
+      "startPlanning": "Planung starten",
+      "trackGrowth": "Wachstum verfolgen",
+      "readyForBaby": "Bereit fürs Baby",
+      "kicks": "Tritte",
+      "vitamins": "Vitamine",
+      "appointments": "Termine",
+      "itemsPacked": "Artikel gepackt",
+      "plan": "Plan",
+      "photos": "Fotos",
+      "sleep": "Schlaf",
+      "diapers": "Windeln",
+      "items": "Artikel"
+    },
+    "aiTools": "KI-gestützte Tools",
+    "aiToolsList": {
+      "smartPlan": "Smart-Plan",
+      "aiAssistant": "KI-Assistent",
+      "symptoms": "Symptome",
+      "weekly": "Wöchentlich"
+    },
+    "chat": {
+      "title": "KI-Schwangerschaftsassistent",
+      "placeholder": "Geben Sie Ihre Frage ein...",
+      "welcomeMessage": "Hallo! Ich bin Ihr intelligenter Schwangerschaftsassistent. Wie kann ich Ihnen heute helfen?",
+      "quickQuestions": {
+        "firstTrimester": "Symptome im ersten Trimester?",
+        "coffee": "Ist Kaffee sicher?",
+        "labor": "Geburtsvorbereitung?",
+        "vitamins": "Wichtige Vitamine?"
+      }
+    },
+    "health": {
+      "title": "KI-Gesundheitstracking",
+      "weekOfPregnancy": "Schwangerschaftswoche",
+      "weightKg": "Gewicht (kg)",
+      "bloodPressure": "Blutdruck",
+      "mood": "Stimmung",
+      "moods": {
+        "excellent": "Ausgezeichnet",
+        "good": "Gut",
+        "normal": "Normal",
+        "anxious": "Ängstlich",
+        "bad": "Schlecht"
+      },
+      "todaysSymptoms": "Heutige Symptome",
+      "symptoms": {
+        "nausea": "Übelkeit",
+        "headache": "Kopfschmerzen",
+        "fatigue": "Müdigkeit",
+        "backPain": "Rückenschmerzen",
+        "swelling": "Schwellungen",
+        "heartburn": "Sodbrennen",
+        "insomnia": "Schlaflosigkeit"
+      },
+      "saveAnalyze": "Speichern & Analysieren",
+      "smartAnalysis": "Smart-Analyse",
+      "analysis": {
+        "expectedGain": "Erwartete Gewichtszunahme bisher: ~{{kg}} kg",
+        "bpHigh": "Blutdruck ist hoch - konsultieren Sie Ihren Arzt",
+        "bpLow": "Blutdruck ist niedrig - mehr Flüssigkeit und Ruhe",
+        "bpNormal": "Blutdruck ist normal",
+        "mentalSupport": "Mentale Unterstützung ist wichtig - sprechen Sie mit jemandem, dem Sie vertrauen",
+        "recordedSymptoms": "Erfasste Symptome: {{symptoms}}",
+        "enterData": "Geben Sie Ihre Daten für eine smarte Analyse ein"
+      }
+    },
+    "nutrition": {
+      "title": "Smart-Ernährungsplan",
+      "planForWeek": "Angepasster Plan für Schwangerschaftswoche {{week}}",
+      "meals": {
+        "breakfast": "Frühstück",
+        "breakfastSuggestion": "Gekochte Eier + Vollkornbrot + frischer Orangensaft",
+        "lunch": "Mittagessen",
+        "lunchSuggestion": "Gegrilltes Hähnchen + Reis + grüner Salat",
+        "dinner": "Abendessen",
+        "dinnerSuggestion": "Gegrillter Fisch + gebratenes Gemüse + Joghurt",
+        "snacks": "Snacks",
+        "snacksSuggestion": "Obst + Nüsse + Milch"
+      },
+      "totalCalories": "Gesamtkalorien pro Tag: {{calories}} kcal",
+      "moreAiSuggestions": "Mehr KI-Vorschläge"
+    },
+    "exercise": {
+      "title": "Sichere Schwangerschaftsübungen",
+      "exercises": {
+        "walking": "Spazierengehen",
+        "walkingDuration": "30 Min",
+        "walkingBenefit": "Verbessert die Durchblutung",
+        "swimming": "Schwimmen",
+        "swimmingDuration": "20 Min",
+        "swimmingBenefit": "Lindert Rückenschmerzen",
+        "yoga": "Schwangerschaftsyoga",
+        "yogaDuration": "25 Min",
+        "yogaBenefit": "Reduziert Stress",
+        "kegel": "Kegel-Übungen",
+        "kegelDuration": "10 Min",
+        "kegelBenefit": "Stärkt den Beckenboden"
+      },
+      "moreExercises": "Mehr Übungen"
+    },
+    "videos": {
+      "title": "Lehrvideos",
+      "fullLibrary": "Vollständige Bibliothek",
+      "videoTitles": {
+        "yoga": "Schwangerschaftsyoga-Übungen",
+        "recipes": "Gesunde Schwangerschaftsrezepte",
+        "tips": "Gesundheitstipps für die Schwangerschaft"
+      }
+    },
+    "checkAppointments": "Termine überprüfen"
+  },
   "layout": {
     "trustBar": {
       "scienceBacked": "Wissenschaftlich",

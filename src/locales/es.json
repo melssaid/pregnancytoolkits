@@ -168,6 +168,165 @@
       "description": "Registra cambios, monitorea la salud."
     }
   },
+  "dashboard": {
+    "tabs": {
+      "home": "Inicio",
+      "chat": "Chat IA",
+      "health": "Salud",
+      "nutrition": "Nutrición",
+      "exercise": "Ejercicio",
+      "videos": "Videos"
+    },
+    "quickActions": "Acciones rápidas",
+    "smartPlan": "Plan inteligente",
+    "smartPlanDesc": "Mi plan diario e informe PDF",
+    "myTrackingData": "Mis datos de seguimiento",
+    "tools": "herramientas",
+    "categories": {
+      "dailyTracking": "Seguimiento diario",
+      "planning": "Planificación",
+      "growth": "Crecimiento",
+      "postpartum": "Posparto"
+    },
+    "trackingTools": {
+      "kickCounter": "Contador de patadas",
+      "kickCounterDesc": "Rastrea movimientos del bebé",
+      "weightTracker": "Seguimiento de peso",
+      "weightTrackerDesc": "Monitorea aumento de peso",
+      "vitaminTracker": "Seguimiento de vitaminas",
+      "vitaminTrackerDesc": "Suplementos diarios",
+      "appointments": "Citas",
+      "appointmentsDesc": "Visitas médicas",
+      "birthPlan": "Plan de parto",
+      "birthPlanDesc": "Preferencias de parto",
+      "hospitalBag": "Bolsa de hospital",
+      "hospitalBagDesc": "Lista de empaque",
+      "fetalGrowth": "Crecimiento fetal",
+      "fetalGrowthDesc": "Desarrollo del bebé",
+      "babyGrowth": "Crecimiento del bebé",
+      "babyGrowthDesc": "Seguimiento posnatal",
+      "bumpPhotos": "Fotos de la pancita",
+      "bumpPhotosDesc": "Fotos semanales",
+      "babySleep": "Sueño del bebé",
+      "babySleepDesc": "Patrones de sueño",
+      "diaperTracker": "Seguimiento de pañales",
+      "diaperTrackerDesc": "Cambios diarios",
+      "groceryList": "Lista de compras",
+      "groceryListDesc": "Planificador de compras"
+    },
+    "summary": {
+      "noDataToday": "Sin datos hoy",
+      "startPlanning": "Comenzar a planificar",
+      "trackGrowth": "Seguir crecimiento",
+      "readyForBaby": "Listo para el bebé",
+      "kicks": "patadas",
+      "vitamins": "vitaminas",
+      "appointments": "citas",
+      "itemsPacked": "artículos empacados",
+      "plan": "plan",
+      "photos": "fotos",
+      "sleep": "sueño",
+      "diapers": "pañales",
+      "items": "artículos"
+    },
+    "aiTools": "Herramientas con IA",
+    "aiToolsList": {
+      "smartPlan": "Plan inteligente",
+      "aiAssistant": "Asistente IA",
+      "symptoms": "Síntomas",
+      "weekly": "Semanal"
+    },
+    "chat": {
+      "title": "Asistente de embarazo IA",
+      "placeholder": "Escribe tu pregunta...",
+      "welcomeMessage": "¡Hola! Soy tu asistente inteligente de embarazo. ¿Cómo puedo ayudarte hoy?",
+      "quickQuestions": {
+        "firstTrimester": "¿Síntomas del primer trimestre?",
+        "coffee": "¿Es seguro el café?",
+        "labor": "¿Preparación para el parto?",
+        "vitamins": "¿Vitaminas importantes?"
+      }
+    },
+    "health": {
+      "title": "Seguimiento de salud IA",
+      "weekOfPregnancy": "Semana de embarazo",
+      "weightKg": "Peso (kg)",
+      "bloodPressure": "Presión arterial",
+      "mood": "Estado de ánimo",
+      "moods": {
+        "excellent": "Excelente",
+        "good": "Bueno",
+        "normal": "Normal",
+        "anxious": "Ansiosa",
+        "bad": "Malo"
+      },
+      "todaysSymptoms": "Síntomas de hoy",
+      "symptoms": {
+        "nausea": "Náuseas",
+        "headache": "Dolor de cabeza",
+        "fatigue": "Fatiga",
+        "backPain": "Dolor de espalda",
+        "swelling": "Hinchazón",
+        "heartburn": "Acidez",
+        "insomnia": "Insomnio"
+      },
+      "saveAnalyze": "Guardar y analizar",
+      "smartAnalysis": "Análisis inteligente",
+      "analysis": {
+        "expectedGain": "Aumento de peso esperado hasta ahora: ~{{kg}} kg",
+        "bpHigh": "Presión arterial alta - consulta a tu médico",
+        "bpLow": "Presión arterial baja - aumenta líquidos y descansa",
+        "bpNormal": "Presión arterial normal",
+        "mentalSupport": "El apoyo mental es importante - habla con alguien de confianza",
+        "recordedSymptoms": "Síntomas registrados: {{symptoms}}",
+        "enterData": "Ingresa tus datos para un análisis inteligente"
+      }
+    },
+    "nutrition": {
+      "title": "Plan de nutrición inteligente",
+      "planForWeek": "Plan personalizado para la semana {{week}} de embarazo",
+      "meals": {
+        "breakfast": "Desayuno",
+        "breakfastSuggestion": "Huevos cocidos + pan integral + jugo de naranja fresco",
+        "lunch": "Almuerzo",
+        "lunchSuggestion": "Pollo a la plancha + arroz + ensalada verde",
+        "dinner": "Cena",
+        "dinnerSuggestion": "Pescado a la plancha + verduras salteadas + yogur",
+        "snacks": "Snacks",
+        "snacksSuggestion": "Frutas + nueces + leche"
+      },
+      "totalCalories": "Calorías diarias totales: {{calories}} kcal",
+      "moreAiSuggestions": "Más sugerencias IA"
+    },
+    "exercise": {
+      "title": "Ejercicios seguros para el embarazo",
+      "exercises": {
+        "walking": "Caminar",
+        "walkingDuration": "30 min",
+        "walkingBenefit": "Mejora la circulación",
+        "swimming": "Natación",
+        "swimmingDuration": "20 min",
+        "swimmingBenefit": "Alivia el dolor de espalda",
+        "yoga": "Yoga prenatal",
+        "yogaDuration": "25 min",
+        "yogaBenefit": "Reduce el estrés",
+        "kegel": "Ejercicios de Kegel",
+        "kegelDuration": "10 min",
+        "kegelBenefit": "Fortalece el suelo pélvico"
+      },
+      "moreExercises": "Más ejercicios"
+    },
+    "videos": {
+      "title": "Videos educativos",
+      "fullLibrary": "Biblioteca completa",
+      "videoTitles": {
+        "yoga": "Ejercicios de yoga prenatal",
+        "recipes": "Recetas saludables para el embarazo",
+        "tips": "Consejos de salud para el embarazo"
+      }
+    },
+    "checkAppointments": "Revisar citas"
+  },
   "layout": {
     "trustBar": {
       "scienceBacked": "Base Científica",
