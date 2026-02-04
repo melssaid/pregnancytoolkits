@@ -1940,7 +1940,7 @@
     "feelingHungry": "¿Tienes hambre?",
     "letAIPick": "¡Te elegimos un snack saludable!",
     "surpriseMe": "¡Sorpréndeme!",
-    "calories": "calorías",
+    "calories": "cal",
     "prepTime": "tiempo de preparación",
     "ingredients": "Ingredientes",
     "howToMake": "Cómo preparar",
@@ -1957,6 +1957,57 @@
       "tip2": "Lleva snacks portátiles en tu bolsa para hambre inesperada",
       "tip3": "Come cada 2-3 horas para mantener el azúcar estable",
       "tip4": "Mantente hidratada - a veces la sed se siente como hambre"
+    },
+    "snacks": {
+      "1": "Manzana con mantequilla de almendra",
+      "2": "Parfait de yogur griego",
+      "3": "Bolas de energía con frutos secos",
+      "4": "Tostada de aguacate",
+      "5": "Hummus y palitos de verduras",
+      "6": "Queso y crackers",
+      "7": "Bolas de energía de plátano",
+      "8": "Bowl de requesón"
+    },
+    "benefits": {
+      "1": "Energía sostenida de fibra y grasas saludables",
+      "2": "Proteína y probióticos para salud intestinal",
+      "3": "Impulso de energía rápido en cualquier momento",
+      "4": "Grasas saludables para desarrollo cerebral del bebé",
+      "5": "Fibra y proteína vegetal",
+      "6": "Combinación de calcio y proteína",
+      "7": "Energía natural del potasio",
+      "8": "Alta proteína para crecimiento muscular y del bebé"
+    },
+    "ingredientItems": {
+      "1": { "0": "1 manzana mediana", "1": "2 cdas mantequilla de almendra" },
+      "2": { "0": "1 taza yogur griego", "1": "1/4 taza granola", "2": "1/2 taza bayas", "3": "Miel" },
+      "3": { "0": "Frutos secos mixtos", "1": "Chips de chocolate negro", "2": "Arándanos secos" },
+      "4": { "0": "1 rebanada pan integral", "1": "1/2 aguacate", "2": "Sal", "3": "Condimentos" },
+      "5": { "0": "1/4 taza hummus", "1": "Palitos de zanahoria", "2": "Rodajas de pepino", "3": "Tiras de pimiento" },
+      "6": { "0": "4 crackers integrales", "1": "60g queso cheddar" },
+      "7": { "0": "1 plátano", "1": "1 taza avena", "2": "2 cdas mantequilla de maní", "3": "1 cda miel" },
+      "8": { "0": "1 taza requesón", "1": "Trozos de piña", "2": "Nueces" }
+    },
+    "recipes": {
+      "2": "Coloca en capas yogur, granola y bayas. Rocía con miel.",
+      "4": "Tuesta el pan, aplasta el aguacate encima, sazona al gusto.",
+      "7": "Aplasta el plátano, mezcla todos los ingredientes, forma bolas, refrigera."
+    },
+    "nutrients": {
+      "fiber": "Fibra",
+      "healthyfats": "Grasas Saludables",
+      "vitamine": "Vitamina E",
+      "protein": "Proteína",
+      "calcium": "Calcio",
+      "probiotics": "Probióticos",
+      "iron": "Hierro",
+      "omega3": "Omega-3",
+      "antioxidants": "Antioxidantes",
+      "folate": "Folato",
+      "vitamina": "Vitamina A",
+      "vitamind": "Vitamina D",
+      "potassium": "Potasio",
+      "bvitamins": "Vitaminas B"
     }
   },
   "vitaminTracker": {

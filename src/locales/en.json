@@ -1883,7 +1883,7 @@
       "feelingHungry": "Feeling Hungry?",
       "letAIPick": "Let AI pick a perfect snack for you",
       "surpriseMe": "Surprise Me!",
-      "calories": "calories",
+      "calories": "cal",
       "prepTime": "prep time",
       "ingredients": "Ingredients",
       "howToMake": "How to make",
@@ -1900,6 +1900,57 @@
         "energy": "Energy",
         "protein": "Protein",
         "comfort": "Comfort"
+      },
+      "snacks": {
+        "1": "Apple with Almond Butter",
+        "2": "Greek Yogurt Parfait",
+        "3": "Trail Mix Power Bites",
+        "4": "Avocado Toast",
+        "5": "Hummus & Veggie Sticks",
+        "6": "Cheese & Crackers",
+        "7": "Banana Energy Bites",
+        "8": "Cottage Cheese Bowl"
+      },
+      "benefits": {
+        "1": "Sustained energy from fiber and healthy fats",
+        "2": "Protein and probiotics for gut health",
+        "3": "Quick energy boost anytime",
+        "4": "Healthy fats for baby brain development",
+        "5": "Fiber and plant protein",
+        "6": "Calcium and protein combo",
+        "7": "Natural energy from potassium",
+        "8": "High protein for muscle and baby growth"
+      },
+      "ingredientItems": {
+        "1": { "0": "1 medium apple", "1": "2 tbsp almond butter" },
+        "2": { "0": "1 cup Greek yogurt", "1": "1/4 cup granola", "2": "1/2 cup berries", "3": "Honey drizzle" },
+        "3": { "0": "Mixed nuts", "1": "Dark chocolate chips", "2": "Dried cranberries" },
+        "4": { "0": "1 slice whole grain bread", "1": "1/2 avocado", "2": "Salt", "3": "Everything bagel seasoning" },
+        "5": { "0": "1/4 cup hummus", "1": "Carrot sticks", "2": "Cucumber slices", "3": "Bell pepper strips" },
+        "6": { "0": "4 whole grain crackers", "1": "2 oz cheddar cheese" },
+        "7": { "0": "1 banana", "1": "1 cup oats", "2": "2 tbsp peanut butter", "3": "1 tbsp honey" },
+        "8": { "0": "1 cup cottage cheese", "1": "Pineapple chunks", "2": "Walnuts" }
+      },
+      "recipes": {
+        "2": "Layer yogurt, granola, and berries. Drizzle with honey.",
+        "4": "Toast bread, mash avocado on top, season to taste.",
+        "7": "Mash banana, mix all ingredients, roll into balls, refrigerate."
+      },
+      "nutrients": {
+        "fiber": "Fiber",
+        "healthyfats": "Healthy Fats",
+        "vitamine": "Vitamin E",
+        "protein": "Protein",
+        "calcium": "Calcium",
+        "probiotics": "Probiotics",
+        "iron": "Iron",
+        "omega3": "Omega-3",
+        "antioxidants": "Antioxidants",
+        "folate": "Folate",
+        "vitamina": "Vitamin A",
+        "vitamind": "Vitamin D",
+        "potassium": "Potassium",
+        "bvitamins": "B Vitamins"
       }
     },
     "workoutPlanner": {
@@ -2530,6 +2581,48 @@
       "calmsNausea": "Helps calm morning sickness",
       "brainDev": "Supports baby brain development with Omega-3s",
       "strengthensBones": "Strengthens bones for you and baby"
+    },
+    "ingredients": {
+      "1banana": "1 banana",
+      "1cupSpinach": "1 cup spinach",
+      "halfCupGreekYogurt": "1/2 cup Greek yogurt",
+      "1tbspAlmondButter": "1 tbsp almond butter",
+      "1cupAlmondMilk": "1 cup almond milk",
+      "1tbspHoney": "1 tbsp honey",
+      "1cupStrawberries": "1 cup strawberries",
+      "halfCupBeets": "1/2 cup beets",
+      "1orange": "1 orange",
+      "halfCupPomegranate": "1/2 cup pomegranate",
+      "1tbspChiaSeeds": "1 tbsp chia seeds",
+      "1cupCherries": "1 cup cherries",
+      "halfCupMilk": "1/2 cup milk",
+      "quarterTspCinnamon": "1/4 tsp cinnamon",
+      "1tbspOats": "1 tbsp oats",
+      "halfCucumber": "1/2 cucumber",
+      "1greenApple": "1 green apple",
+      "1inchGinger": "1 inch ginger",
+      "halfLemon": "1/2 lemon",
+      "1cupCoconutWater": "1 cup coconut water",
+      "freshMint": "Fresh mint",
+      "1cupBlueberries": "1 cup blueberries",
+      "quarterAvocado": "1/4 avocado",
+      "1tbspFlaxseed": "1 tbsp flaxseed",
+      "1tbspWalnuts": "1 tbsp walnuts",
+      "1cupMilk": "1 cup milk",
+      "1tbspMapleSyrup": "1 tbsp maple syrup",
+      "1cupGreekYogurt": "1 cup Greek yogurt",
+      "2tbspAlmondButter": "2 tbsp almond butter",
+      "1cupFortifiedAlmondMilk": "1 cup fortified almond milk",
+      "1tbspSesameSeeds": "1 tbsp sesame seeds",
+      "honeyToTaste": "Honey to taste"
+    },
+    "instructionsText": {
+      "morningEnergyInstructions": "Blend all ingredients until smooth. Serve immediately for best texture.",
+      "ironPowerInstructions": "Blend fruits and beets first, then add chia seeds. Drink immediately for maximum iron absorption.",
+      "sleepBetterInstructions": "Blend until creamy. Drink 1 hour before bed for best results.",
+      "nauseaReliefInstructions": "Blend gently to keep it refreshing. Drink cold on an empty stomach.",
+      "brainBuilderInstructions": "Blend until smooth. Consume in the morning to boost brain function.",
+      "calciumCrushInstructions": "Blend yogurt and banana first, then add remaining ingredients. Great as a snack."
     }
   },
   "groceryList": {

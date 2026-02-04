@@ -273,7 +273,7 @@ export default function PregnancySmoothieAI() {
                       {currentSmoothie.ingredientKeys.map((ing, i) => (
                         <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          {ing}
+                          {t(`smoothieAI.ingredients.${ing}`)}
                         </li>
                       ))}
                     </ul>
@@ -281,7 +281,7 @@ export default function PregnancySmoothieAI() {
 
                   <div>
                     <h4 className="font-medium mb-2">{t('smoothieAI.instructions')}:</h4>
-                    <p className="text-sm text-muted-foreground">{currentSmoothie.instructionsKey}</p>
+                    <p className="text-sm text-muted-foreground">{t(`smoothieAI.instructionsText.${currentSmoothie.instructionsKey}`)}</p>
                   </div>
 
                   <div>

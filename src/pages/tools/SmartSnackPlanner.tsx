@@ -171,12 +171,12 @@ export default function SmartSnackPlanner() {
             <Card className="border-primary/30 bg-primary/5">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-lg">{randomSnack.name}</h3>
+                  <h3 className="font-bold text-lg">{t(`toolsInternal.snackPlanner.snacks.${randomSnack.id}`)}</h3>
                   <Badge className={categoryColors[randomSnack.category]}>
-                    {randomSnack.category}
+                    {t(`toolsInternal.snackPlanner.categories.${randomSnack.category}`)}
                   </Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">{randomSnack.benefit}</p>
+                <p className="text-sm text-muted-foreground mb-4">{t(`toolsInternal.snackPlanner.benefits.${randomSnack.id}`)}</p>
                 
                 <div className="grid grid-cols-2 gap-2 mb-3">
                   <div className="bg-background rounded-lg p-2.5 text-center overflow-hidden">
@@ -193,7 +193,7 @@ export default function SmartSnackPlanner() {
                   <h4 className="text-sm font-medium mb-2">{t('toolsInternal.snackPlanner.ingredients')}:</h4>
                   <ul className="text-sm text-muted-foreground space-y-1">
                     {randomSnack.ingredients.map((ing, i) => (
-                      <li key={i}>• {ing}</li>
+                      <li key={i}>• {t(`toolsInternal.snackPlanner.ingredientItems.${randomSnack.id}.${i}`)}</li>
                     ))}
                   </ul>
                 </div>
@@ -201,7 +201,7 @@ export default function SmartSnackPlanner() {
                 {randomSnack.recipe && (
                   <div className="bg-muted/50 rounded-lg p-3">
                     <h4 className="text-sm font-medium mb-1">{t('toolsInternal.snackPlanner.howToMake')}:</h4>
-                    <p className="text-sm text-muted-foreground">{randomSnack.recipe}</p>
+                    <p className="text-sm text-muted-foreground">{t(`toolsInternal.snackPlanner.recipes.${randomSnack.id}`)}</p>
                   </div>
                 )}
               </CardContent>
@@ -239,14 +239,14 @@ export default function SmartSnackPlanner() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-1">
-                          <h4 className="font-medium">{snack.name}</h4>
-                          <span className="text-xs text-muted-foreground">{snack.calories} cal</span>
+                          <h4 className="font-medium">{t(`toolsInternal.snackPlanner.snacks.${snack.id}`)}</h4>
+                          <span className="text-xs text-muted-foreground">{snack.calories} {t('toolsInternal.snackPlanner.calories')}</span>
                         </div>
-                        <p className="text-xs text-muted-foreground mb-2">{snack.benefit}</p>
+                        <p className="text-xs text-muted-foreground mb-2">{t(`toolsInternal.snackPlanner.benefits.${snack.id}`)}</p>
                         <div className="flex flex-wrap gap-1">
                           {snack.nutrients.map((n, i) => (
                             <Badge key={i} variant="outline" className="text-xs py-0">
-                              {n}
+                              {t(`toolsInternal.snackPlanner.nutrients.${n.toLowerCase().replace(/[- ]/g, '')}`)}
                             </Badge>
                           ))}
                         </div>

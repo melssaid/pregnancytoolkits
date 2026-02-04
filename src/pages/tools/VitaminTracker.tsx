@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Pill, Check, Clock, Calendar, TrendingUp, Loader2, Sparkles, Brain, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,13 +19,13 @@ interface Vitamin {
   importance: string;
 }
 
-const VITAMINS: Vitamin[] = [
-  { id: 'folic-acid', name: 'Folic Acid', dosage: '400-800 mcg', icon: '🧬', color: 'bg-green-100 border-green-400', importance: 'Essential for neural development' },
-  { id: 'iron', name: 'Iron', dosage: '27 mg', icon: '💪', color: 'bg-red-100 border-red-400', importance: 'Prevents anemia' },
-  { id: 'calcium', name: 'Calcium', dosage: '1000 mg', icon: '🦴', color: 'bg-blue-100 border-blue-400', importance: 'For bone health' },
-  { id: 'vitamin-d', name: 'Vitamin D', dosage: '600 IU', icon: '☀️', color: 'bg-yellow-100 border-yellow-400', importance: 'Calcium absorption' },
-  { id: 'omega-3', name: 'Omega 3', dosage: '200-300 mg DHA', icon: '🐟', color: 'bg-cyan-100 border-cyan-400', importance: 'Baby brain development' },
-  { id: 'prenatal', name: 'Prenatal Vitamins', dosage: 'As directed', icon: '💊', color: 'bg-purple-100 border-purple-400', importance: 'Complete & balanced' },
+const VITAMIN_IDS = [
+  { id: 'folic-acid', nameKey: 'folicAcid', icon: '🧬', color: 'bg-green-100 border-green-400' },
+  { id: 'iron', nameKey: 'iron', icon: '💪', color: 'bg-red-100 border-red-400' },
+  { id: 'calcium', nameKey: 'calcium', icon: '🦴', color: 'bg-blue-100 border-blue-400' },
+  { id: 'vitamin-d', nameKey: 'vitaminD', icon: '☀️', color: 'bg-yellow-100 border-yellow-400' },
+  { id: 'omega-3', nameKey: 'omega3', icon: '🐟', color: 'bg-cyan-100 border-cyan-400' },
+  { id: 'prenatal', nameKey: 'prenatal', icon: '💊', color: 'bg-purple-100 border-purple-400' },
 ];
 
 const VitaminTracker: React.FC = () => {
@@ -39,6 +39,15 @@ const VitaminTracker: React.FC = () => {
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { toast } = useToast();
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+
+  const VITAMINS: Vitamin[] = useMemo(() => VITAMIN_IDS.map(v => ({
+    id: v.id,
+    name: t(`toolsInternal.vitaminTracker.vitamins.${v.nameKey}`),
+    dosage: t(`toolsInternal.vitaminTracker.dosages.${v.nameKey}`),
+    icon: v.icon,
+    color: v.color,
+    importance: t(`toolsInternal.vitaminTracker.importance.${v.nameKey}`)
+  })), [t]);
 
   useEffect(() => {
     loadData();

@@ -1940,7 +1940,7 @@
     "feelingHungry": "Está com fome?",
     "letAIPick": "Escolhemos um lanche saudável para você!",
     "surpriseMe": "Surpreenda-me!",
-    "calories": "calorias",
+    "calories": "cal",
     "prepTime": "tempo de preparo",
     "ingredients": "Ingredientes",
     "howToMake": "Como preparar",
@@ -1957,6 +1957,57 @@
       "tip2": "Mantenha lanches portáteis na bolsa para fome inesperada",
       "tip3": "Coma a cada 2-3 horas para manter o açúcar no sangue estável",
       "tip4": "Mantenha-se hidratada - às vezes a sede parece fome"
+    },
+    "snacks": {
+      "1": "Maçã com manteiga de amêndoa",
+      "2": "Parfait de iogurte grego",
+      "3": "Bolinhas de energia com nuts",
+      "4": "Torrada de abacate",
+      "5": "Homus e palitos de legumes",
+      "6": "Queijo e crackers",
+      "7": "Bolinhas de energia de banana",
+      "8": "Tigela de queijo cottage"
+    },
+    "benefits": {
+      "1": "Energia sustentada de fibras e gorduras saudáveis",
+      "2": "Proteína e probióticos para saúde intestinal",
+      "3": "Impulso rápido de energia a qualquer hora",
+      "4": "Gorduras saudáveis para desenvolvimento cerebral do bebê",
+      "5": "Fibras e proteína vegetal",
+      "6": "Combinação de cálcio e proteína",
+      "7": "Energia natural do potássio",
+      "8": "Alta proteína para crescimento muscular e do bebê"
+    },
+    "ingredientItems": {
+      "1": { "0": "1 maçã média", "1": "2 colheres de sopa manteiga de amêndoa" },
+      "2": { "0": "1 xícara iogurte grego", "1": "1/4 xícara granola", "2": "1/2 xícara frutas vermelhas", "3": "Mel" },
+      "3": { "0": "Nuts mistos", "1": "Gotas de chocolate amargo", "2": "Cranberries secas" },
+      "4": { "0": "1 fatia pão integral", "1": "1/2 abacate", "2": "Sal", "3": "Temperos" },
+      "5": { "0": "1/4 xícara homus", "1": "Palitos de cenoura", "2": "Fatias de pepino", "3": "Tiras de pimentão" },
+      "6": { "0": "4 crackers integrais", "1": "60g queijo cheddar" },
+      "7": { "0": "1 banana", "1": "1 xícara aveia", "2": "2 colheres pasta de amendoim", "3": "1 colher mel" },
+      "8": { "0": "1 xícara queijo cottage", "1": "Pedaços de abacaxi", "2": "Nozes" }
+    },
+    "recipes": {
+      "2": "Coloque em camadas iogurte, granola e frutas. Regue com mel.",
+      "4": "Torre o pão, amasse o abacate em cima, tempere a gosto.",
+      "7": "Amasse a banana, misture todos os ingredientes, forme bolinhas, refrigere."
+    },
+    "nutrients": {
+      "fiber": "Fibras",
+      "healthyfats": "Gorduras Saudáveis",
+      "vitamine": "Vitamina E",
+      "protein": "Proteína",
+      "calcium": "Cálcio",
+      "probiotics": "Probióticos",
+      "iron": "Ferro",
+      "omega3": "Ômega-3",
+      "antioxidants": "Antioxidantes",
+      "folate": "Folato",
+      "vitamina": "Vitamina A",
+      "vitamind": "Vitamina D",
+      "potassium": "Potássio",
+      "bvitamins": "Vitaminas B"
     }
   },
   "vitaminTracker": {

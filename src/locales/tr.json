@@ -1940,7 +1940,7 @@
     "feelingHungry": "Acıktınız mı?",
     "letAIPick": "Size sağlıklı bir atıştırmalık seçelim!",
     "surpriseMe": "Beni şaşırt!",
-    "calories": "kalori",
+    "calories": "kal",
     "prepTime": "hazırlık süresi",
     "ingredients": "Malzemeler",
     "howToMake": "Nasıl yapılır",
@@ -1957,6 +1957,57 @@
       "tip2": "Beklenmedik açlık için taşınabilir atıştırmalıklar bulundurun",
       "tip3": "Kan şekerini stabil tutmak için her 2-3 saatte yiyin",
       "tip4": "Susuz kalmayın - bazen susuzluk açlık gibi hissedilebilir"
+    },
+    "snacks": {
+      "1": "Badem ezmeli elma",
+      "2": "Yunan yoğurdu parfesi",
+      "3": "Enerji topları",
+      "4": "Avokadolu tost",
+      "5": "Humus & sebze çubukları",
+      "6": "Peynir & kraker",
+      "7": "Muzlu enerji topları",
+      "8": "Süzme peynir kasesi"
+    },
+    "benefits": {
+      "1": "Lif ve sağlıklı yağlardan sürdürülebilir enerji",
+      "2": "Bağırsak sağlığı için protein ve probiyotikler",
+      "3": "İstediğiniz zaman hızlı enerji patlaması",
+      "4": "Bebek beyin gelişimi için sağlıklı yağlar",
+      "5": "Lif ve bitkisel protein",
+      "6": "Kalsiyum ve protein kombinasyonu",
+      "7": "Potasyumdan doğal enerji",
+      "8": "Kas ve bebek büyümesi için yüksek protein"
+    },
+    "ingredientItems": {
+      "1": { "0": "1 orta elma", "1": "2 yemek kaşığı badem ezmesi" },
+      "2": { "0": "1 bardak Yunan yoğurdu", "1": "1/4 bardak granola", "2": "1/2 bardak meyve", "3": "Bal" },
+      "3": { "0": "Karışık kuruyemişler", "1": "Bitter çikolata parçaları", "2": "Kuru yaban mersini" },
+      "4": { "0": "1 dilim tam buğday ekmeği", "1": "1/2 avokado", "2": "Tuz", "3": "Baharat" },
+      "5": { "0": "1/4 bardak humus", "1": "Havuç çubukları", "2": "Salatalık dilimleri", "3": "Biber şeritleri" },
+      "6": { "0": "4 tam buğday kraker", "1": "60g cheddar peyniri" },
+      "7": { "0": "1 muz", "1": "1 bardak yulaf", "2": "2 yemek kaşığı fıstık ezmesi", "3": "1 yemek kaşığı bal" },
+      "8": { "0": "1 bardak süzme peynir", "1": "Ananas parçaları", "2": "Ceviz" }
+    },
+    "recipes": {
+      "2": "Yoğurt, granola ve meyveleri katman katman koyun. Bal gezdirin.",
+      "4": "Ekmeği kızartın, avokadoyu üzerine ezin, tadına göre baharatlayın.",
+      "7": "Muzu ezin, tüm malzemeleri karıştırın, toplar haline getirin, buzdolabına koyun."
+    },
+    "nutrients": {
+      "fiber": "Lif",
+      "healthyfats": "Sağlıklı Yağlar",
+      "vitamine": "E Vitamini",
+      "protein": "Protein",
+      "calcium": "Kalsiyum",
+      "probiotics": "Probiyotikler",
+      "iron": "Demir",
+      "omega3": "Omega-3",
+      "antioxidants": "Antioksidanlar",
+      "folate": "Folat",
+      "vitamina": "A Vitamini",
+      "vitamind": "D Vitamini",
+      "potassium": "Potasyum",
+      "bvitamins": "B Vitaminleri"
     }
   },
   "vitaminTracker": {
