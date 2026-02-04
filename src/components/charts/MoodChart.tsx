@@ -12,6 +12,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { format, subDays, eachDayOfInterval } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 interface MoodEntry {
   id: string;
@@ -24,15 +25,18 @@ interface MoodChartProps {
   entries: MoodEntry[];
 }
 
-const MOODS = [
-  { value: 1, emoji: "😢", label: "Very Bad", color: "hsl(var(--destructive))" },
-  { value: 2, emoji: "😔", label: "Bad", color: "hsl(var(--warning))" },
-  { value: 3, emoji: "😐", label: "Okay", color: "hsl(var(--muted-foreground))" },
-  { value: 4, emoji: "🙂", label: "Good", color: "hsl(var(--primary))" },
-  { value: 5, emoji: "😊", label: "Great", color: "hsl(var(--success))" },
+const getMoods = (t: (key: string) => string) => [
+  { value: 1, emoji: "😢", label: t('charts.mood.moods.veryBad'), color: "hsl(var(--destructive))" },
+  { value: 2, emoji: "😔", label: t('charts.mood.moods.bad'), color: "hsl(var(--warning))" },
+  { value: 3, emoji: "😐", label: t('charts.mood.moods.okay'), color: "hsl(var(--muted-foreground))" },
+  { value: 4, emoji: "🙂", label: t('charts.mood.moods.good'), color: "hsl(var(--primary))" },
+  { value: 5, emoji: "😊", label: t('charts.mood.moods.great'), color: "hsl(var(--success))" },
 ];
 
 export function MoodChart({ entries }: MoodChartProps) {
+  const { t } = useTranslation();
+  const MOODS = getMoods(t);
+  
   const chartData = useMemo(() => {
     // Get last 14 days
     const days = eachDayOfInterval({
@@ -80,7 +84,7 @@ export function MoodChart({ entries }: MoodChartProps) {
       <Card>
         <CardContent className="py-8 text-center">
           <p className="text-muted-foreground">
-            Record your mood at least 3 times to view the chart
+            {t('charts.mood.noData')}
           </p>
         </CardContent>
       </Card>
@@ -136,7 +140,7 @@ export function MoodChart({ entries }: MoodChartProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <Heart className="h-5 w-5 text-primary" />
-          Mood Tracking - Last 2 Weeks
+          {t('charts.mood.title')}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -199,7 +203,7 @@ export function MoodChart({ entries }: MoodChartProps) {
               <p className="font-semibold text-foreground">
                 {stats.avg.toFixed(1)}/5
               </p>
-              <p className="text-xs text-muted-foreground">Average</p>
+              <p className="text-xs text-muted-foreground">{t('charts.mood.average')}</p>
             </div>
           </div>
           
@@ -209,19 +213,19 @@ export function MoodChart({ entries }: MoodChartProps) {
             {stats.trend === "up" && (
               <>
                 <TrendingUp className="h-5 w-5 text-success" />
-                <span className="text-success text-sm">Improving</span>
+                <span className="text-success text-sm">{t('charts.mood.improving')}</span>
               </>
             )}
             {stats.trend === "down" && (
               <>
                 <TrendingDown className="h-5 w-5 text-warning" />
-                <span className="text-warning text-sm">Declining</span>
+                <span className="text-warning text-sm">{t('charts.mood.declining')}</span>
               </>
             )}
             {stats.trend === "neutral" && (
               <>
                 <Minus className="h-5 w-5 text-muted-foreground" />
-                <span className="text-muted-foreground text-sm">Stable</span>
+                <span className="text-muted-foreground text-sm">{t('charts.mood.stable')}</span>
               </>
             )}
           </div>

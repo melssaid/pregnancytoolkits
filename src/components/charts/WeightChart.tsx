@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface WeightEntry {
   id: string;
@@ -33,6 +34,8 @@ export function WeightChart({
   recommendedMax,
   prePregnancyWeight,
 }: WeightChartProps) {
+  const { t } = useTranslation();
+  
   const chartData = useMemo(() => {
     // Sort by week
     const sorted = [...entries].sort((a, b) => a.week - b.week);
@@ -51,7 +54,7 @@ export function WeightChart({
       <Card>
         <CardContent className="py-8 text-center">
           <p className="text-muted-foreground">
-            Add at least two measurements to display the chart
+            {t('charts.weight.noData')}
           </p>
         </CardContent>
       </Card>
@@ -62,12 +65,12 @@ export function WeightChart({
     if (active && payload && payload.length) {
       return (
         <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
-          <p className="font-semibold text-foreground">Week {label}</p>
+          <p className="font-semibold text-foreground">{t('charts.weight.week')} {label}</p>
           <p className="text-primary">
-            Weight: {payload[0]?.value?.toFixed(1)} kg
+            {t('charts.weight.weight')}: {payload[0]?.value?.toFixed(1)} kg
           </p>
           <p className="text-muted-foreground text-sm">
-            Gain: +{(payload[0]?.value - prePregnancyWeight).toFixed(1)} kg
+            {t('charts.weight.gain')}: +{(payload[0]?.value - prePregnancyWeight).toFixed(1)} kg
           </p>
         </div>
       );
@@ -80,7 +83,7 @@ export function WeightChart({
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <TrendingUp className="h-5 w-5 text-primary" />
-          Weight Tracking Over Weeks
+          {t('charts.weight.title')}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -141,7 +144,7 @@ export function WeightChart({
                 stroke="hsl(var(--muted-foreground))"
                 strokeDasharray="5 5"
                 label={{
-                  value: "Pre-pregnancy weight",
+                  value: t('charts.weight.prePregnancyWeight'),
                   fill: "hsl(var(--muted-foreground))",
                   fontSize: 10,
                 }}
@@ -154,11 +157,11 @@ export function WeightChart({
         <div className="flex items-center justify-center gap-6 mt-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-primary" />
-            <span className="text-muted-foreground">Your actual weight</span>
+            <span className="text-muted-foreground">{t('charts.weight.yourActualWeight')}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-success/30" />
-            <span className="text-muted-foreground">Recommended range</span>
+            <span className="text-muted-foreground">{t('charts.weight.recommendedRange')}</span>
           </div>
         </div>
       </CardContent>

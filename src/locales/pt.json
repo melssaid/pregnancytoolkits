@@ -690,6 +690,42 @@
       "yourBabyGirl": "Peso do seu bebê",
       "median": "Mediana (50%)",
       "normalRange": "Faixa normal"
+    },
+    "mood": {
+      "noData": "Registre seu humor pelo menos 3 vezes para ver o gráfico",
+      "title": "Acompanhamento de Humor - Últimas 2 Semanas",
+      "average": "Média",
+      "improving": "Melhorando",
+      "declining": "Piorando",
+      "stable": "Estável",
+      "moods": {
+        "veryBad": "Muito mal",
+        "bad": "Mal",
+        "okay": "Regular",
+        "good": "Bem",
+        "great": "Ótimo"
+      }
+    },
+    "kick": {
+      "noData": "Registre pelo menos 2 sessões para ver o gráfico",
+      "title": "Atividade Fetal - Últimas 7 Sessões",
+      "kicks": "chutes",
+      "duration": "Duração",
+      "min": "min",
+      "excellentActivity": "Atividade excelente",
+      "avgKicks": "Média de chutes",
+      "excellentSessions": "Sessões excelentes",
+      "goal": "Meta: 10 chutes"
+    },
+    "weight": {
+      "noData": "Adicione pelo menos duas medições para exibir o gráfico",
+      "title": "Acompanhamento de Peso por Semanas",
+      "week": "Semana",
+      "weight": "Peso",
+      "gain": "Ganho",
+      "prePregnancyWeight": "Peso pré-gravidez",
+      "yourActualWeight": "Seu peso real",
+      "recommendedRange": "Faixa recomendada"
     }
   },
   "smartPlan": {

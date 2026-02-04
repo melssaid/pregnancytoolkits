@@ -448,6 +448,42 @@
       "yourBabyGirl": "وزن طفلتك",
       "median": "المتوسط (50%)",
       "normalRange": "النطاق الطبيعي"
+    },
+    "mood": {
+      "noData": "سجلي مزاجك 3 مرات على الأقل لعرض الرسم البياني",
+      "title": "تتبع المزاج - آخر أسبوعين",
+      "average": "المتوسط",
+      "improving": "تحسن",
+      "declining": "تراجع",
+      "stable": "مستقر",
+      "moods": {
+        "veryBad": "سيء جداً",
+        "bad": "سيء",
+        "okay": "عادي",
+        "good": "جيد",
+        "great": "ممتاز"
+      }
+    },
+    "kick": {
+      "noData": "سجلي جلستين على الأقل لعرض الرسم البياني",
+      "title": "نشاط الجنين - آخر 7 جلسات",
+      "kicks": "ركلات",
+      "duration": "المدة",
+      "min": "دقيقة",
+      "excellentActivity": "نشاط ممتاز",
+      "avgKicks": "متوسط الركلات",
+      "excellentSessions": "جلسات ممتازة",
+      "goal": "الهدف: 10 ركلات"
+    },
+    "weight": {
+      "noData": "أضيفي قياسين على الأقل لعرض الرسم البياني",
+      "title": "تتبع الوزن عبر الأسابيع",
+      "week": "الأسبوع",
+      "weight": "الوزن",
+      "gain": "الزيادة",
+      "prePregnancyWeight": "وزن ما قبل الحمل",
+      "yourActualWeight": "وزنك الفعلي",
+      "recommendedRange": "النطاق الموصى به"
     }
   },
   "appUpdated": {

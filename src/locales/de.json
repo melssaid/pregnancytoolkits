@@ -690,6 +690,42 @@
       "yourBabyGirl": "Gewicht Ihres Babys",
       "median": "Median (50%)",
       "normalRange": "Normalbereich"
+    },
+    "mood": {
+      "noData": "Zeichnen Sie Ihre Stimmung mindestens 3 Mal auf, um das Diagramm anzuzeigen",
+      "title": "Stimmungsverfolgung - Letzte 2 Wochen",
+      "average": "Durchschnitt",
+      "improving": "Verbessernd",
+      "declining": "Abnehmend",
+      "stable": "Stabil",
+      "moods": {
+        "veryBad": "Sehr schlecht",
+        "bad": "Schlecht",
+        "okay": "Okay",
+        "good": "Gut",
+        "great": "Großartig"
+      }
+    },
+    "kick": {
+      "noData": "Zeichnen Sie mindestens 2 Sitzungen auf, um das Diagramm anzuzeigen",
+      "title": "Fetale Aktivität - Letzte 7 Sitzungen",
+      "kicks": "Tritte",
+      "duration": "Dauer",
+      "min": "Min",
+      "excellentActivity": "Ausgezeichnete Aktivität",
+      "avgKicks": "Durchschn. Tritte",
+      "excellentSessions": "Ausgezeichnete Sitzungen",
+      "goal": "Ziel: 10 Tritte"
+    },
+    "weight": {
+      "noData": "Fügen Sie mindestens zwei Messungen hinzu, um das Diagramm anzuzeigen",
+      "title": "Gewichtsverfolgung über Wochen",
+      "week": "Woche",
+      "weight": "Gewicht",
+      "gain": "Zunahme",
+      "prePregnancyWeight": "Gewicht vor der Schwangerschaft",
+      "yourActualWeight": "Ihr tatsächliches Gewicht",
+      "recommendedRange": "Empfohlener Bereich"
     }
   },
   "smartPlan": {
