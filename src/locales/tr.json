@@ -168,6 +168,165 @@
       "description": "Değişiklikleri kaydedin, sağlığı izleyin."
     }
   },
+  "dashboard": {
+    "tabs": {
+      "home": "Ana Sayfa",
+      "chat": "AI Sohbet",
+      "health": "Sağlık",
+      "nutrition": "Beslenme",
+      "exercise": "Egzersiz",
+      "videos": "Videolar"
+    },
+    "quickActions": "Hızlı Eylemler",
+    "smartPlan": "Akıllı Plan",
+    "smartPlanDesc": "Günlük Planım ve PDF Raporu",
+    "myTrackingData": "Takip Verilerim",
+    "tools": "araç",
+    "categories": {
+      "dailyTracking": "Günlük Takip",
+      "planning": "Planlama",
+      "growth": "Büyüme",
+      "postpartum": "Doğum Sonrası"
+    },
+    "trackingTools": {
+      "kickCounter": "Tekme Sayacı",
+      "kickCounterDesc": "Bebek hareketlerini takip et",
+      "weightTracker": "Kilo Takibi",
+      "weightTrackerDesc": "Kilo alımını izle",
+      "vitaminTracker": "Vitamin Takibi",
+      "vitaminTrackerDesc": "Günlük takviyeler",
+      "appointments": "Randevular",
+      "appointmentsDesc": "Tıbbi ziyaretler",
+      "birthPlan": "Doğum Planı",
+      "birthPlanDesc": "Doğum tercihleri",
+      "hospitalBag": "Hastane Çantası",
+      "hospitalBagDesc": "Paketleme listesi",
+      "fetalGrowth": "Fetal Büyüme",
+      "fetalGrowthDesc": "Bebek gelişimi",
+      "babyGrowth": "Bebek Büyümesi",
+      "babyGrowthDesc": "Doğum sonrası takip",
+      "bumpPhotos": "Hamilelik Fotoğrafları",
+      "bumpPhotosDesc": "Haftalık fotoğraflar",
+      "babySleep": "Bebek Uykusu",
+      "babySleepDesc": "Uyku düzeni",
+      "diaperTracker": "Bez Takibi",
+      "diaperTrackerDesc": "Günlük değişimler",
+      "groceryList": "Alışveriş Listesi",
+      "groceryListDesc": "Alışveriş planlayıcı"
+    },
+    "summary": {
+      "noDataToday": "Bugün veri yok",
+      "startPlanning": "Planlamaya başla",
+      "trackGrowth": "Büyümeyi takip et",
+      "readyForBaby": "Bebek için hazır",
+      "kicks": "tekme",
+      "vitamins": "vitamin",
+      "appointments": "randevu",
+      "itemsPacked": "paketlenmiş eşya",
+      "plan": "plan",
+      "photos": "fotoğraf",
+      "sleep": "uyku",
+      "diapers": "bez",
+      "items": "eşya"
+    },
+    "aiTools": "AI Destekli Araçlar",
+    "aiToolsList": {
+      "smartPlan": "Akıllı Plan",
+      "aiAssistant": "AI Asistan",
+      "symptoms": "Semptomlar",
+      "weekly": "Haftalık"
+    },
+    "chat": {
+      "title": "AI Hamilelik Asistanı",
+      "placeholder": "Sorunuzu yazın...",
+      "welcomeMessage": "Merhaba! Ben akıllı hamilelik asistanınızım. Bugün size nasıl yardımcı olabilirim?",
+      "quickQuestions": {
+        "firstTrimester": "İlk trimester semptomları?",
+        "coffee": "Kahve güvenli mi?",
+        "labor": "Doğum hazırlığı?",
+        "vitamins": "Önemli vitaminler?"
+      }
+    },
+    "health": {
+      "title": "AI Sağlık Takibi",
+      "weekOfPregnancy": "Hamilelik Haftası",
+      "weightKg": "Kilo (kg)",
+      "bloodPressure": "Tansiyon",
+      "mood": "Ruh Hali",
+      "moods": {
+        "excellent": "Mükemmel",
+        "good": "İyi",
+        "normal": "Normal",
+        "anxious": "Endişeli",
+        "bad": "Kötü"
+      },
+      "todaysSymptoms": "Bugünkü Semptomlar",
+      "symptoms": {
+        "nausea": "Mide bulantısı",
+        "headache": "Baş ağrısı",
+        "fatigue": "Yorgunluk",
+        "backPain": "Sırt ağrısı",
+        "swelling": "Şişlik",
+        "heartburn": "Mide yanması",
+        "insomnia": "Uykusuzluk"
+      },
+      "saveAnalyze": "Kaydet ve Analiz Et",
+      "smartAnalysis": "Akıllı Analiz",
+      "analysis": {
+        "expectedGain": "Şu ana kadar beklenen kilo alımı: ~{{kg}} kg",
+        "bpHigh": "Tansiyon yüksek - doktorunuza danışın",
+        "bpLow": "Tansiyon düşük - sıvı alımını artırın ve dinlenin",
+        "bpNormal": "Tansiyon normal",
+        "mentalSupport": "Mental destek önemli - güvendiğiniz biriyle konuşun",
+        "recordedSymptoms": "Kaydedilen semptomlar: {{symptoms}}",
+        "enterData": "Akıllı analiz için verilerinizi girin"
+      }
+    },
+    "nutrition": {
+      "title": "Akıllı Beslenme Planı",
+      "planForWeek": "Hamileliğin {{week}}. haftası için özelleştirilmiş plan",
+      "meals": {
+        "breakfast": "Kahvaltı",
+        "breakfastSuggestion": "Haşlanmış yumurta + tam buğday ekmeği + taze portakal suyu",
+        "lunch": "Öğle Yemeği",
+        "lunchSuggestion": "Izgara tavuk + pilav + yeşil salata",
+        "dinner": "Akşam Yemeği",
+        "dinnerSuggestion": "Izgara balık + sote sebze + yoğurt",
+        "snacks": "Atıştırmalıklar",
+        "snacksSuggestion": "Meyveler + kuruyemiş + süt"
+      },
+      "totalCalories": "Günlük Toplam Kalori: {{calories}} kal",
+      "moreAiSuggestions": "Daha Fazla AI Öneri"
+    },
+    "exercise": {
+      "title": "Güvenli Hamilelik Egzersizleri",
+      "exercises": {
+        "walking": "Yürüyüş",
+        "walkingDuration": "30 dk",
+        "walkingBenefit": "Kan dolaşımını iyileştirir",
+        "swimming": "Yüzme",
+        "swimmingDuration": "20 dk",
+        "swimmingBenefit": "Sırt ağrısını hafifletir",
+        "yoga": "Hamilelik Yogası",
+        "yogaDuration": "25 dk",
+        "yogaBenefit": "Stresi azaltır",
+        "kegel": "Kegel Egzersizleri",
+        "kegelDuration": "10 dk",
+        "kegelBenefit": "Pelvik tabanı güçlendirir"
+      },
+      "moreExercises": "Daha Fazla Egzersiz"
+    },
+    "videos": {
+      "title": "Eğitici Videolar",
+      "fullLibrary": "Tam Kütüphane",
+      "videoTitles": {
+        "yoga": "Hamilelik Yoga Egzersizleri",
+        "recipes": "Sağlıklı Hamilelik Tarifleri",
+        "tips": "Hamilelik Sağlık İpuçları"
+      }
+    },
+    "checkAppointments": "Randevuları kontrol et"
+  },
   "layout": {
     "trustBar": {
       "scienceBacked": "Bilimsel Temelli",

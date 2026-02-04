@@ -168,6 +168,165 @@
       "description": "Enregistrez les changements, surveillez la santé."
     }
   },
+  "dashboard": {
+    "tabs": {
+      "home": "Accueil",
+      "chat": "Chat IA",
+      "health": "Santé",
+      "nutrition": "Nutrition",
+      "exercise": "Exercice",
+      "videos": "Vidéos"
+    },
+    "quickActions": "Actions rapides",
+    "smartPlan": "Plan intelligent",
+    "smartPlanDesc": "Mon plan quotidien et rapport PDF",
+    "myTrackingData": "Mes données de suivi",
+    "tools": "outils",
+    "categories": {
+      "dailyTracking": "Suivi quotidien",
+      "planning": "Planification",
+      "growth": "Croissance",
+      "postpartum": "Post-partum"
+    },
+    "trackingTools": {
+      "kickCounter": "Compteur de coups",
+      "kickCounterDesc": "Suivre les mouvements du bébé",
+      "weightTracker": "Suivi du poids",
+      "weightTrackerDesc": "Surveiller la prise de poids",
+      "vitaminTracker": "Suivi des vitamines",
+      "vitaminTrackerDesc": "Suppléments quotidiens",
+      "appointments": "Rendez-vous",
+      "appointmentsDesc": "Visites médicales",
+      "birthPlan": "Plan de naissance",
+      "birthPlanDesc": "Préférences d'accouchement",
+      "hospitalBag": "Sac d'hôpital",
+      "hospitalBagDesc": "Liste de préparation",
+      "fetalGrowth": "Croissance fœtale",
+      "fetalGrowthDesc": "Développement du bébé",
+      "babyGrowth": "Croissance du bébé",
+      "babyGrowthDesc": "Suivi postnatal",
+      "bumpPhotos": "Photos du ventre",
+      "bumpPhotosDesc": "Photos hebdomadaires",
+      "babySleep": "Sommeil du bébé",
+      "babySleepDesc": "Habitudes de sommeil",
+      "diaperTracker": "Suivi des couches",
+      "diaperTrackerDesc": "Changements quotidiens",
+      "groceryList": "Liste de courses",
+      "groceryListDesc": "Planificateur d'achats"
+    },
+    "summary": {
+      "noDataToday": "Aucune donnée aujourd'hui",
+      "startPlanning": "Commencer à planifier",
+      "trackGrowth": "Suivre la croissance",
+      "readyForBaby": "Prêt pour bébé",
+      "kicks": "coups",
+      "vitamins": "vitamines",
+      "appointments": "rendez-vous",
+      "itemsPacked": "articles préparés",
+      "plan": "plan",
+      "photos": "photos",
+      "sleep": "sommeil",
+      "diapers": "couches",
+      "items": "articles"
+    },
+    "aiTools": "Outils alimentés par l'IA",
+    "aiToolsList": {
+      "smartPlan": "Plan intelligent",
+      "aiAssistant": "Assistant IA",
+      "symptoms": "Symptômes",
+      "weekly": "Hebdomadaire"
+    },
+    "chat": {
+      "title": "Assistant grossesse IA",
+      "placeholder": "Tapez votre question...",
+      "welcomeMessage": "Bonjour ! Je suis votre assistant grossesse intelligent. Comment puis-je vous aider aujourd'hui ?",
+      "quickQuestions": {
+        "firstTrimester": "Symptômes du premier trimestre ?",
+        "coffee": "Le café est-il sûr ?",
+        "labor": "Préparation à l'accouchement ?",
+        "vitamins": "Vitamines importantes ?"
+      }
+    },
+    "health": {
+      "title": "Suivi santé IA",
+      "weekOfPregnancy": "Semaine de grossesse",
+      "weightKg": "Poids (kg)",
+      "bloodPressure": "Tension artérielle",
+      "mood": "Humeur",
+      "moods": {
+        "excellent": "Excellente",
+        "good": "Bonne",
+        "normal": "Normale",
+        "anxious": "Anxieuse",
+        "bad": "Mauvaise"
+      },
+      "todaysSymptoms": "Symptômes d'aujourd'hui",
+      "symptoms": {
+        "nausea": "Nausées",
+        "headache": "Maux de tête",
+        "fatigue": "Fatigue",
+        "backPain": "Mal de dos",
+        "swelling": "Gonflements",
+        "heartburn": "Brûlures d'estomac",
+        "insomnia": "Insomnie"
+      },
+      "saveAnalyze": "Enregistrer et analyser",
+      "smartAnalysis": "Analyse intelligente",
+      "analysis": {
+        "expectedGain": "Prise de poids attendue jusqu'ici : ~{{kg}} kg",
+        "bpHigh": "Tension artérielle élevée - consultez votre médecin",
+        "bpLow": "Tension artérielle basse - augmentez les liquides et reposez-vous",
+        "bpNormal": "Tension artérielle normale",
+        "mentalSupport": "Le soutien mental est important - parlez à quelqu'un de confiance",
+        "recordedSymptoms": "Symptômes enregistrés : {{symptoms}}",
+        "enterData": "Entrez vos données pour une analyse intelligente"
+      }
+    },
+    "nutrition": {
+      "title": "Plan nutrition intelligent",
+      "planForWeek": "Plan personnalisé pour la semaine {{week}} de grossesse",
+      "meals": {
+        "breakfast": "Petit-déjeuner",
+        "breakfastSuggestion": "Œufs durs + pain complet + jus d'orange frais",
+        "lunch": "Déjeuner",
+        "lunchSuggestion": "Poulet grillé + riz + salade verte",
+        "dinner": "Dîner",
+        "dinnerSuggestion": "Poisson grillé + légumes sautés + yaourt",
+        "snacks": "Collations",
+        "snacksSuggestion": "Fruits + noix + lait"
+      },
+      "totalCalories": "Calories quotidiennes totales : {{calories}} kcal",
+      "moreAiSuggestions": "Plus de suggestions IA"
+    },
+    "exercise": {
+      "title": "Exercices sûrs pour la grossesse",
+      "exercises": {
+        "walking": "Marche",
+        "walkingDuration": "30 min",
+        "walkingBenefit": "Améliore la circulation",
+        "swimming": "Natation",
+        "swimmingDuration": "20 min",
+        "swimmingBenefit": "Soulage le mal de dos",
+        "yoga": "Yoga prénatal",
+        "yogaDuration": "25 min",
+        "yogaBenefit": "Réduit le stress",
+        "kegel": "Exercices de Kegel",
+        "kegelDuration": "10 min",
+        "kegelBenefit": "Renforce le plancher pelvien"
+      },
+      "moreExercises": "Plus d'exercices"
+    },
+    "videos": {
+      "title": "Vidéos éducatives",
+      "fullLibrary": "Bibliothèque complète",
+      "videoTitles": {
+        "yoga": "Exercices de yoga prénatal",
+        "recipes": "Recettes saines pour la grossesse",
+        "tips": "Conseils santé pour la grossesse"
+      }
+    },
+    "checkAppointments": "Vérifier les rendez-vous"
+  },
   "layout": {
     "trustBar": {
       "scienceBacked": "Scientifique",
