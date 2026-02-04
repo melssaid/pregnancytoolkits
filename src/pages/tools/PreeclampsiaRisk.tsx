@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Heart, CheckCircle, AlertTriangle, Info } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
@@ -24,6 +25,7 @@ const riskFactors = [
 ];
 
 export default function PreeclampsiaRisk() {
+  const { t } = useTranslation();
   const [selectedFactors, setSelectedFactors] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
 
@@ -178,7 +180,7 @@ export default function PreeclampsiaRisk() {
                 {/* AI Prevention Coach */}
                 {selectedFactors.length > 0 && (
                   <AIInsightCard
-                    title="AI Preeclampsia Prevention Coach"
+                    title={t('toolsInternal.aiInsights.preeclampsiaCoach')}
                     prompt={`I'm assessing my preeclampsia risk. My risk level is: ${result.title}
 
 My risk factors:

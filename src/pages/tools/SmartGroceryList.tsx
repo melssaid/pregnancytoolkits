@@ -579,7 +579,7 @@ export default function SmartGroceryList() {
 
             {/* AI Nutrition Insights - Compact */}
             <AIInsightCard
-              title="AI Nutrition Analysis"
+              title={t('toolsInternal.aiInsights.nutritionAnalysis')}
               prompt={`Analyze this pregnancy grocery list for week ${currentWeek} and provide personalized nutrition advice:
 
 Items: ${items.map(i => i.name).join(', ')}

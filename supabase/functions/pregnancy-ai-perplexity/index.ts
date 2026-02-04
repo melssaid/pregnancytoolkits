@@ -174,19 +174,28 @@ serve(async (req) => {
     // Get requested language from context, default to English
     const requestedLanguage = context?.language || 'en';
     
-    // Language instruction based on user's preference
-    const languageNames: Record<string, string> = {
-      'en': 'English',
-      'ar': 'Arabic (العربية)',
-      'de': 'German (Deutsch)',
-      'tr': 'Turkish (Türkçe)',
-      'fr': 'French (Français)',
-      'es': 'Spanish (Español)',
-      'pt': 'Portuguese (Português)'
+    // Language instruction based on user's preference - with native instructions for better compliance
+    const languageConfig: Record<string, { name: string; native: string }> = {
+      'en': { name: 'English', native: 'Respond entirely in English.' },
+      'ar': { name: 'Arabic', native: 'يجب الرد بالعربية فقط. لا تستخدم كلمات إنجليزية.' },
+      'de': { name: 'German', native: 'Antworten Sie auf Deutsch. Keine englischen Wörter.' },
+      'tr': { name: 'Turkish', native: 'Türkçe yanıt verin. İngilizce kullanmayın.' },
+      'fr': { name: 'French', native: 'Répondez en français. Pas de mots anglais.' },
+      'es': { name: 'Spanish', native: 'Responda en español. Sin palabras en inglés.' },
+      'pt': { name: 'Portuguese', native: 'Responda em português. Sem palavras em inglês.' }
     };
     
-    const languageName = languageNames[requestedLanguage] || 'English';
-    const languageInstruction = `CRITICAL LANGUAGE REQUIREMENT: You MUST respond ENTIRELY in ${languageName}. All text, headings, bullet points, and content must be in ${languageName}. Do not mix languages.\n\n`;
+    const langConfig = languageConfig[requestedLanguage] || languageConfig['en'];
+    const languageName = langConfig.name;
+    const nativeInstruction = langConfig.native;
+    
+    const languageInstruction = `
+🌐 MANDATORY LANGUAGE: ${languageName}
+${nativeInstruction}
+• ALL headings, text, tables, bullets MUST be in ${languageName}
+• Translate markdown headers like "## Overview" to ${languageName}
+• No mixed languages allowed
+`;
 
     // Persona identifier for Lavy Pool
     const personaPrefix = languageInstruction + `You are "Lavy Pool" - a highly intelligent, supportive medical assistant for pregnant women. You are an AI assistant, NOT a doctor.

@@ -676,7 +676,13 @@
       "analyzing": "جاري التحليل...",
       "generatingInsights": "جاري إنشاء رؤى مخصصة...",
       "clickToExpand": "اضغطي للتوسيع",
-      "clickToCollapse": "اضغطي للطي"
+      "clickToCollapse": "اضغطي للطي",
+      "bloodTypeGuide": "دليل فصيلة الدم الذكي",
+      "cycleAnalysis": "تحليل الدورة الذكي",
+      "preeclampsiaCoach": "مدرب الوقاية من تسمم الحمل",
+      "nutritionAnalysis": "تحليل التغذية الذكي",
+      "weeklyMealPlan": "خطة الوجبات الأسبوعية",
+      "groceryOptimizer": "محسّن قائمة التسوق"
     },
     "fitnessCoach": {
       "title": "مدرب اللياقة الذكي",
