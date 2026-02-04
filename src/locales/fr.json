@@ -799,6 +799,68 @@
         "dizziness": "Vertiges"
       }
     },
+    "weeklySummary": {
+      "title": "Aperçus hebdomadaires",
+      "subtitle": "Suivi hebdomadaire intelligent de votre grossesse",
+      "daysToGo": "{{days}} jours restants",
+      "pregnancyWeek": "Semaine de grossesse",
+      "week": "Semaine {{week}}",
+      "showSummary": "Afficher le résumé de la semaine {{week}}",
+      "approximatelyRemaining": "Environ {{days}} jours restants",
+      "babyGrowth": "Croissance du bébé",
+      "momsHealth": "Santé de maman",
+      "checkups": "Bilans",
+      "normal": "Normal",
+      "good": "Bon",
+      "complete": "Complet",
+      "weekSummary": "Résumé semaine {{week}}",
+      "differentWeek": "Autre semaine",
+      "refresh": "Actualiser",
+      "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
+      "trimester": {
+        "first": "Premier trimestre",
+        "second": "Deuxième trimestre",
+        "third": "Troisième trimestre"
+      }
+    },
+    "bmi": {
+      "title": "Calculateur IMC Grossesse",
+      "subtitle": "Calculez votre IMC pré-grossesse et les recommandations de prise de poids",
+      "unitSystem": "Système d'unités",
+      "imperial": "Impérial (lbs, pouces)",
+      "metric": "Métrique (kg, cm)",
+      "prePregnancyWeight": "Poids avant grossesse",
+      "height": "Taille",
+      "calculateBtn": "Calculer l'IMC",
+      "prePregnancyBMI": "IMC avant grossesse",
+      "recommendedGain": "Gain total recommandé",
+      "pounds": "livres",
+      "weeklyGainTitle": "Gain hebdomadaire (2e & 3e trimestre)",
+      "lbsPerWeek": "lbs/semaine",
+      "firstTrimesterNote": "Premier trimestre : 1-4 livres au total",
+      "aiGuideTitle": "Guide IA de gestion du poids",
+      "getPersonalizedPlan": "Obtenir un plan personnalisé",
+      "disclaimer": "Ces recommandations sont basées sur les directives de l'Institute of Medicine. Votre médecin peut donner des conseils personnalisés basés sur votre situation de santé spécifique.",
+      "categories": {
+        "underweight": "Insuffisance pondérale",
+        "normalweight": "Poids normal",
+        "overweight": "Surpoids",
+        "obese": "Obèse"
+      }
+    },
+    "healthMonitor": {
+      "title": "Système de surveillance de la santé",
+      "subtitle": "Tableau de bord complet avec analyses prédictives",
+      "weight": "Poids",
+      "bloodPressure": "Tension artérielle",
+      "risks": "Risques",
+      "normal": "Normal",
+      "normalForWeek": "Normal pour la semaine {{week}}",
+      "pretermBirth": "Naissance prématurée",
+      "preeclampsia": "Prééclampsie",
+      "low": "Faible",
+      "medium": "Moyen"
+    },
     "vitaminTracker": {
       "title": "Suivi des vitamines",
       "subtitle": "Suivez vos vitamines prénatales",
