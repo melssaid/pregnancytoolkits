@@ -1809,5 +1809,129 @@
     "calculate": "Hesapla",
     "results": "Sonuçlar",
     "start": "Başla"
+  },
+  "nutritionOptimizer": {
+    "title": "Akıllı Beslenme Optimizörü",
+    "subtitle": "Her trimester için kişiselleştirilmiş beslenme planları",
+    "pregnancyWeek": "Hamilelik Haftası",
+    "trimester": "Trimester",
+    "dietaryPreference": "Diyet Tercihi",
+    "standard": "Standart",
+    "vegetarian": "Vejetaryen",
+    "vegan": "Vegan",
+    "keyNutrients": "Hafta {{week}} için Temel Besinler",
+    "sampleMealPlan": "Örnek Yemek Planı",
+    "breakfast": "Kahvaltı",
+    "lunch": "Öğle Yemeği",
+    "snack": "Atıştırmalık",
+    "dinner": "Akşam Yemeği",
+    "infoNote": "Beslenme ihtiyaçları değişiklik gösterir. Kişisel tavsiye için sağlık uzmanınıza danışın."
+  },
+  "smoothieAI": {
+    "title": "Hamilelik Smoothie Yapay Zeka",
+    "subtitle": "Her trimester için besleyici smoothie tarifleri",
+    "selectTrimester": "Trimesterinizi Seçin",
+    "trimester": "Trimester",
+    "createCustom": "Özel Yapay Zeka Smoothie Oluştur",
+    "preferencePlaceholder": "Tercihler? (ör: yüksek protein, düşük şeker)",
+    "randomRecipe": "Rastgele Tarif",
+    "aiGenerate": "Yapay Zeka ile Oluştur",
+    "aiGeneratedRecipe": "Yapay Zeka Tarafından Oluşturulan Tarif",
+    "ingredients": "Malzemeler",
+    "instructions": "Talimatlar",
+    "nutrition": "Besin Değeri",
+    "allRecipes": "Trimester {{trimester}} için Tüm Tarifler"
+  },
+  "groceryList": {
+    "title": "Akıllı Alışveriş Listesi",
+    "subtitle": "Hamilelik beslenmesi için yapay zeka destekli alışveriş listesi",
+    "smartNutrition": "Akıllı Hamilelik Beslenmesi",
+    "smartNutritionDesc": "Yemekleri planlayın, besinleri takip edin ve süper gıdaları keşfedin.",
+    "items": "Öğeler",
+    "done": "Tamamlandı",
+    "score": "Puan",
+    "super": "Süper",
+    "list": "Liste",
+    "analysis": "Analiz",
+    "planner": "Planlayıcı",
+    "addItem": "Öğe ekle...",
+    "yourList": "Listeniz",
+    "noItems": "Henüz öğe yok",
+    "clear": "Temizle",
+    "categories": {
+      "all": "Tümü",
+      "produce": "Meyve & Sebze",
+      "dairy": "Süt Ürünleri",
+      "protein": "Protein",
+      "grains": "Tahıllar",
+      "other": "Diğer"
+    }
+  },
+  "snackPlanner": {
+    "title": "Akıllı Atıştırmalık Planlayıcısı",
+    "subtitle": "Her istek için sağlıklı hamilelik atıştırmalıkları",
+    "feelingHungry": "Acıktınız mı?",
+    "letAIPick": "Size sağlıklı bir atıştırmalık seçelim!",
+    "surpriseMe": "Beni şaşırt!",
+    "calories": "kalori",
+    "prepTime": "hazırlık süresi",
+    "ingredients": "Malzemeler",
+    "howToMake": "Nasıl yapılır",
+    "categories": {
+      "all": "Tümü",
+      "quick": "Hızlı",
+      "energy": "Enerji",
+      "protein": "Protein",
+      "comfort": "Konfor"
+    },
+    "snackingTipsTitle": "Akıllı Atıştırmalık İpuçları",
+    "snackingTips": {
+      "tip1": "Sürekli enerji için protein + karbonhidrat kombinasyonlu atıştırmalıklar seçin",
+      "tip2": "Beklenmedik açlık için taşınabilir atıştırmalıklar bulundurun",
+      "tip3": "Kan şekerini stabil tutmak için her 2-3 saatte yiyin",
+      "tip4": "Susuz kalmayın - bazen susuzluk açlık gibi hissedilebilir"
+    }
+  },
+  "vitaminTracker": {
+    "subtitle": "Günlük prenatal vitaminlerinizi takip edin",
+    "pregnancyWeek": "Hamilelik Haftası",
+    "todaysProgress": "Bugünkü İlerleme",
+    "vitaminsCount": "Bugün {{taken}} / {{total}} vitamin alındı",
+    "aiAnalysisTitle": "Yapay Zeka Vitamin Analizi",
+    "analyzeRoutine": "Rutinimi Analiz Et",
+    "analyzingIntake": "Alımınız analiz ediliyor...",
+    "alreadyTaken": "Zaten alındı!",
+    "alreadyTakenDesc": "Bugün {{name}} zaten kaydettiniz.",
+    "logged": "Vitamin Kaydedildi!",
+    "loggedDesc": "{{name}} kaydedildi.",
+    "failedToLog": "Vitamin kaydedilemedi",
+    "done": "Tamamlandı",
+    "take": "Al",
+    "thisWeek": "bu hafta",
+    "weeklyStats": "Haftalık İstatistikler",
+    "days": "gün",
+    "recentHistory": "Son Geçmiş",
+    "tipTitle": "Profesyonel İpucu",
+    "tipContent": "Daha iyi emilim için demir takviyelerini C vitamini ile alın, ancak kalsiyum ile almaktan kaçının."
+  },
+  "babyGear": {
+    "title": "Bebek Eşyası Önerici",
+    "subtitle": "Yeni bebeğiniz için temel öğeler listesi",
+    "essentialsProgress": "Temel Öğeler İlerlemesi",
+    "itemsChecked": "{{total}} öğeden {{checked}} tanesi işaretlendi",
+    "filters": {
+      "all": "Tüm Öğeler",
+      "essential": "Temel",
+      "recommended": "Önerilen",
+      "niceToHave": "Olması İyi"
+    },
+    "shoppingSummary": "Alışveriş Özeti",
+    "tip": "İpucu",
+    "disclaimer": "Bu genel bir rehberdir. İhtiyaçlarınız farklılık gösterebilir.",
+    "categories": {
+      "essential": "Temel",
+      "recommended": "Önerilen",
+      "niceToHave": "Olması İyi"
+    }
   }
 }
