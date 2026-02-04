@@ -720,14 +720,22 @@
       "fitnessVideos": "Prenatal Fitness Videos",
       "fitnessVideosSubtitle": "Safe workout guides for every trimester",
       "safetyFirst": "Safety First",
-      "safetyMessage": "Stop immediately if you feel dizziness, pain, or shortness of breath. Keep water nearby.",
-      "exercises": {
-        "squat": {"name": "Prenatal Squats", "desc": "Stand with feet shoulder-width apart. Lower gently as if sitting in a chair."},
-        "birdDog": {"name": "Bird Dog", "desc": "On hands and knees, extend opposite arm and leg. Hold for balance."},
-        "pelvicTilt": {"name": "Pelvic Tilts", "desc": "Gently rock your pelvis forward and back to relieve lower back pressure."},
-        "wallPushup": {"name": "Wall Pushups", "desc": "Stand arm-length from wall. Lean in and push back out."},
-        "butterfly": {"name": "Butterfly Stretch", "desc": "Sit with feet together, knees out. Gently lean forward."},
-        "marching": {"name": "Seated Marching", "desc": "Sit on a stable chair or ball. Lift knees alternately."}
+      "safetyText": "Stop immediately if you feel dizziness, pain, or shortness of breath. Keep water nearby.",
+      "exerciseNames": {
+        "prenatalSquats": "Prenatal Squats",
+        "birdDog": "Bird Dog",
+        "pelvicTilts": "Pelvic Tilts",
+        "wallPushups": "Wall Pushups",
+        "butterflyStretch": "Butterfly Stretch",
+        "seatedMarching": "Seated Marching"
+      },
+      "exerciseDescs": {
+        "prenatalSquatsDesc": "Stand with feet shoulder-width apart. Lower gently as if sitting in a chair.",
+        "birdDogDesc": "On hands and knees, extend opposite arm and leg. Hold for balance.",
+        "pelvicTiltsDesc": "Gently rock your pelvis forward and back to relieve lower back pressure.",
+        "wallPushupsDesc": "Stand arm-length from wall. Lean in and push back out.",
+        "butterflyStretchDesc": "Sit with feet together, knees out. Gently lean forward.",
+        "seatedMarchingDesc": "Sit on a stable chair or ball. Lift knees alternately."
       },
       "categories": {
         "strength": "Strength",

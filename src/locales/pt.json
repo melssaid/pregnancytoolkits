@@ -742,7 +742,35 @@
       "generating": "Gerando plano de treino...",
       "safeExercises": "Exercícios Seguros",
       "avoidExercises": "Exercícios a Evitar",
-      "disclaimer": "Consulte seu médico antes de iniciar qualquer programa de exercícios."
+      "disclaimer": "Consulte seu médico antes de iniciar qualquer programa de exercícios.",
+      "start": "Iniciar",
+      "resume": "Retomar",
+      "pause": "Pausar",
+      "fitnessVideos": "Vídeos de Fitness Pré-natal",
+      "fitnessVideosSubtitle": "Guias de treino seguros para cada trimestre",
+      "safetyFirst": "Segurança Primeiro",
+      "safetyText": "Pare imediatamente se sentir tontura, dor ou falta de ar. Mantenha água por perto.",
+      "exerciseNames": {
+        "prenatalSquats": "Agachamentos Pré-natais",
+        "birdDog": "Cachorro-Pássaro",
+        "pelvicTilts": "Inclinações Pélvicas",
+        "wallPushups": "Flexões de Parede",
+        "butterflyStretch": "Alongamento Borboleta",
+        "seatedMarching": "Marcha Sentada"
+      },
+      "exerciseDescs": {
+        "prenatalSquatsDesc": "Fique em pé com os pés afastados na largura dos ombros. Desça suavemente como se fosse sentar.",
+        "birdDogDesc": "Em quatro apoios, estenda o braço e a perna opostos. Mantenha o equilíbrio.",
+        "pelvicTiltsDesc": "Balance suavemente sua pelve para frente e para trás para aliviar a lombar.",
+        "wallPushupsDesc": "Fique a um braço de distância da parede. Incline-se e empurre de volta.",
+        "butterflyStretchDesc": "Sente-se com os pés juntos, joelhos para fora. Incline-se suavemente para frente.",
+        "seatedMarchingDesc": "Sente-se em uma cadeira estável ou bola. Levante os joelhos alternadamente."
+      },
+      "categories": {
+        "strength": "Força",
+        "cardio": "Cardio",
+        "flexibility": "Flexibilidade"
+      }
     },
     "birthPlan": {
       "title": "Gerador de Plano de Parto IA",
@@ -1200,6 +1228,87 @@
       "aboveTarget": "Acima do Objetivo",
       "weeklyGain": "Ganho Semanal",
       "aiAnalysis": "Análise de Peso IA"
+    },
+    "birthPosition": {
+      "title": "Posições de Parto IA",
+      "subtitle": "Encontre as posições ideais para seu trabalho de parto",
+      "selectPreferences": "Selecione suas preferências",
+      "getRecommendations": "Obter Recomendações IA",
+      "generating": "Gerando recomendações...",
+      "positions": {
+        "squatting": {"name": "Agachada", "description": "Expande a pelve em até 30%"},
+        "handKnees": {"name": "De Quatro", "description": "Ideal para dor lombar no parto"},
+        "sidelying": {"name": "Deitada de Lado", "description": "Permite descanso mantendo o progresso"},
+        "standing": {"name": "Em Pé", "description": "Usa a gravidade para a descida"},
+        "kneeling": {"name": "Ajoelhada", "description": "Reduz pressão na coluna"},
+        "birthBall": {"name": "Bola de Parto", "description": "Incentiva mobilidade pélvica"}
+      },
+      "preferences": {
+        "backLabor": "Estou tendo dor lombar no parto",
+        "epidural": "Planejando usar anestesia",
+        "waterBirth": "Planejando parto na água",
+        "mobility": "Quero ficar móvel",
+        "tired": "Estou exausta"
+      }
+    },
+    "hospitalBag": {
+      "title": "Mala de Maternidade IA",
+      "subtitle": "Lista de preparação personalizada para o dia do parto",
+      "dueDate": "Sua data prevista",
+      "birthType": "Tipo de parto planejado",
+      "vaginal": "Vaginal",
+      "csection": "Cesárea",
+      "generateList": "Gerar lista",
+      "generating": "Criando lista personalizada...",
+      "categories": {
+        "forMom": "Para a Mamãe",
+        "forBaby": "Para o Bebê",
+        "forPartner": "Para o Acompanhante",
+        "documents": "Documentos",
+        "comfort": "Conforto"
+      },
+      "essentialItems": "Itens Essenciais",
+      "packingTips": "Dicas para Arrumar"
+    },
+    "stressRelief": {
+      "title": "Coach de Alívio do Estresse IA",
+      "subtitle": "Técnicas de relaxamento personalizadas para a gravidez",
+      "howFeeling": "Como você está se sentindo?",
+      "stressLevel": "Nível de estresse",
+      "low": "Baixo",
+      "medium": "Médio",
+      "high": "Alto",
+      "getAdvice": "Obter conselhos",
+      "generating": "Criando dicas personalizadas...",
+      "currentMood": "Humor atual",
+      "techniques": "Técnicas de relaxamento",
+      "affirmations": {
+        "title": "Afirmações diárias",
+        "list": [
+          "Meu corpo sabe como apoiar meu bebê",
+          "Sou forte, capaz e preparada",
+          "Cada respiração traz calma para mim e meu bebê",
+          "Confio na minha jornada para a maternidade",
+          "Sou suficiente, exatamente como sou"
+        ]
+      }
+    },
+    "mobilityCoach": {
+      "title": "Coach de Mobilidade IA",
+      "subtitle": "Movimentos suaves para o conforto da gravidez",
+      "selectArea": "Selecione sua área de foco",
+      "areas": {
+        "lowerBack": "Lombar",
+        "hips": "Quadris",
+        "shoulders": "Ombros",
+        "fullBody": "Corpo inteiro"
+      },
+      "duration": "Duração da sessão",
+      "minutes": "Minutos",
+      "generateRoutine": "Gerar rotina",
+      "generating": "Criando rotina personalizada...",
+      "safetyReminder": "Lembrete de segurança",
+      "safetyText": "Pare se sentir tontura, dor ou desconforto"
     }
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 import { ArrowLeft, Dumbbell, Play, Pause, RotateCcw, CheckCircle, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
@@ -14,20 +15,20 @@ const fitnessVideos: Video[] = [
 
 interface Exercise {
   id: string;
-  name: string;
-  duration: number; // seconds
-  description: string;
+  nameKey: string;
+  duration: number;
+  descriptionKey: string;
   category: 'strength' | 'cardio' | 'flexibility';
   difficulty: 'beginner' | 'intermediate';
 }
 
 const exerciseDatabase: Exercise[] = [
-  { id: 'squat', name: 'Prenatal Squats', duration: 45, description: 'Stand with feet shoulder-width apart. Lower gently as if sitting in a chair.', category: 'strength', difficulty: 'beginner' },
-  { id: 'bird-dog', name: 'Bird Dog', duration: 30, description: 'On hands and knees, extend opposite arm and leg. Hold for balance.', category: 'strength', difficulty: 'intermediate' },
-  { id: 'pelvic-tilt', name: 'Pelvic Tilts', duration: 60, description: 'Gently rock your pelvis forward and back to relieve lower back pressure.', category: 'flexibility', difficulty: 'beginner' },
-  { id: 'wall-pushup', name: 'Wall Pushups', duration: 45, description: 'Stand arm-length from wall. Lean in and push back out.', category: 'strength', difficulty: 'beginner' },
-  { id: 'butterfly', name: 'Butterfly Stretch', duration: 60, description: 'Sit with feet together, knees out. Gently lean forward.', category: 'flexibility', difficulty: 'beginner' },
-  { id: 'marching', name: 'Seated Marching', duration: 60, description: 'Sit on a stable chair or ball. Lift knees alternately.', category: 'cardio', difficulty: 'beginner' },
+  { id: 'squat', nameKey: 'prenatalSquats', duration: 45, descriptionKey: 'prenatalSquatsDesc', category: 'strength', difficulty: 'beginner' },
+  { id: 'bird-dog', nameKey: 'birdDog', duration: 30, descriptionKey: 'birdDogDesc', category: 'strength', difficulty: 'intermediate' },
+  { id: 'pelvic-tilt', nameKey: 'pelvicTilts', duration: 60, descriptionKey: 'pelvicTiltsDesc', category: 'flexibility', difficulty: 'beginner' },
+  { id: 'wall-pushup', nameKey: 'wallPushups', duration: 45, descriptionKey: 'wallPushupsDesc', category: 'strength', difficulty: 'beginner' },
+  { id: 'butterfly', nameKey: 'butterflyStretch', duration: 60, descriptionKey: 'butterflyStretchDesc', category: 'flexibility', difficulty: 'beginner' },
+  { id: 'marching', nameKey: 'seatedMarching', duration: 60, descriptionKey: 'seatedMarchingDesc', category: 'cardio', difficulty: 'beginner' },
 ];
 
 const AIFitnessCoach: React.FC = () => {
@@ -166,9 +167,9 @@ const AIFitnessCoach: React.FC = () => {
                         {index + 1}
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">{exercise.name}</h3>
+                        <h3 className="font-semibold text-gray-900">{t(`toolsInternal.fitnessCoach.exerciseNames.${exercise.nameKey}`)}</h3>
                         <span className="text-xs text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full capitalize">
-                          {exercise.category}
+                          {t(`toolsInternal.fitnessCoach.categories.${exercise.category}`)}
                         </span>
                       </div>
                     </div>
@@ -179,7 +180,7 @@ const AIFitnessCoach: React.FC = () => {
                     )}
                   </div>
                   
-                  <p className="text-gray-600 text-sm mb-4 ml-11">{exercise.description}</p>
+                  <p className="text-gray-600 text-sm mb-4 ml-11">{t(`toolsInternal.fitnessCoach.exerciseDescs.${exercise.descriptionKey}`)}</p>
                   
                   <div className="ml-11 flex gap-2">
                     {isActive ? (
@@ -190,14 +191,14 @@ const AIFitnessCoach: React.FC = () => {
                         }`}
                       >
                         {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
-                        {isPaused ? 'Resume' : 'Pause'}
+                        {isPaused ? t('toolsInternal.fitnessCoach.resume') : t('toolsInternal.fitnessCoach.pause')}
                       </button>
                     ) : (
                       <button
                         onClick={() => startExercise(index)}
                         className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-purple-700 transition-colors"
                       >
-                        <Play className="w-4 h-4" /> Start ({exercise.duration}s)
+                        <Play className="w-4 h-4" /> {t('common.start')} ({exercise.duration}s)
                       </button>
                     )}
                   </div>
@@ -217,15 +218,15 @@ const AIFitnessCoach: React.FC = () => {
         {/* Educational Videos */}
         <VideoLibrary
           videos={fitnessVideos}
-          title="Prenatal Fitness Videos"
-          subtitle="Safe workout guides for every trimester"
+          title={t('toolsInternal.fitnessCoach.fitnessVideos')}
+          subtitle={t('toolsInternal.fitnessCoach.fitnessVideosSubtitle')}
           accentColor="violet"
         />
 
         <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3">
           <Info className="w-5 h-5 text-blue-600 flex-shrink-0" />
           <p className="text-sm text-blue-800">
-            <strong>Safety First:</strong> Stop immediately if you feel dizziness, pain, or shortness of breath. Keep water nearby.
+            <strong>{t('toolsInternal.fitnessCoach.safetyFirst')}:</strong> {t('toolsInternal.fitnessCoach.safetyText')}
           </p>
         </div>
       </div>
