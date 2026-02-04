@@ -850,7 +850,7 @@
     },
     "babyGrowth": {
       "title": "نمو الطفل",
-      "subtitle": "تتبعي النمو بمخططات منظمة الصحة العالمية",
+      "subtitle": "تتبعي معالم نمو طفلك",
       "babyAge": "عمر الطفل",
       "months": "أشهر",
       "gender": "الجنس",
@@ -862,8 +862,30 @@
       "addMeasurement": "إضافة قياس",
       "growthChart": "مخطط النمو",
       "percentile": "النسبة المئوية",
-      "measurements": "القياسات",
-      "noMeasurements": "لا توجد قياسات بعد"
+      "measurements": "قياسات الطفل",
+      "noMeasurements": "لا توجد قياسات مضافة بعد",
+      "tabs": {
+        "add": "إضافة قياس",
+        "chart": "مخطط النمو",
+        "history": "السجل"
+      },
+      "status": {
+        "normal": "طبيعي",
+        "belowNormal": "أقل من الطبيعي",
+        "aboveNormal": "أعلى من الطبيعي"
+      },
+      "ageMonths": "العمر (بالأشهر)",
+      "weightKg": "الوزن (كغ)",
+      "heightCm": "الطول (سم)",
+      "headCircCm": "محيط الرأس (سم)",
+      "calculateResult": "احسبي النتيجة",
+      "result": "النتيجة",
+      "weightPercentile": "نسبة الوزن على مخطط النمو",
+      "normalRange": "النطاق الطبيعي لهذا العمر",
+      "saveToHistory": "حفظ في السجل",
+      "whoStandards": "مبني على معايير منظمة الصحة العالمية",
+      "month": "الشهر {{month}}",
+      "addFirst": "أضيفي أول قياس"
     },
     "babySleep": {
       "title": "متتبع نوم الطفل",

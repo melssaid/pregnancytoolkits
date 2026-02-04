@@ -1244,7 +1244,7 @@
     },
     "babyGrowth": {
       "title": "Baby Growth",
-      "subtitle": "Track growth with WHO charts",
+      "subtitle": "Track your baby's growth milestones",
       "babyAge": "Baby's Age",
       "months": "months",
       "gender": "Gender",
@@ -1256,8 +1256,30 @@
       "addMeasurement": "Add Measurement",
       "growthChart": "Growth Chart",
       "percentile": "Percentile",
-      "measurements": "Measurements",
-      "noMeasurements": "No measurements yet"
+      "measurements": "Baby Measurements",
+      "noMeasurements": "No measurements added yet",
+      "tabs": {
+        "add": "Add Measurement",
+        "chart": "Growth Chart",
+        "history": "History"
+      },
+      "status": {
+        "normal": "Normal",
+        "belowNormal": "Below Normal",
+        "aboveNormal": "Above Normal"
+      },
+      "ageMonths": "Age (months)",
+      "weightKg": "Weight (kg)",
+      "heightCm": "Height (cm)",
+      "headCircCm": "Head Circ. (cm)",
+      "calculateResult": "Calculate Result",
+      "result": "Result",
+      "weightPercentile": "Weight Percentile on Growth Chart",
+      "normalRange": "Normal Range for This Age",
+      "saveToHistory": "Save to History",
+      "whoStandards": "Based on WHO Growth Standards",
+      "month": "Month {{month}}",
+      "addFirst": "Add First Measurement"
     },
     "babySleep": {
       "title": "Baby Sleep Tracker",

@@ -152,15 +152,15 @@ const BabyGrowth = () => {
   };
 
   const getStatusText = (status: string) => {
-    if (status === "normal") return "Normal";
-    if (status === "underweight") return "Below Normal";
-    return "Above Normal";
+    if (status === "normal") return t('toolsInternal.babyGrowth.status.normal');
+    if (status === "underweight") return t('toolsInternal.babyGrowth.status.belowNormal');
+    return t('toolsInternal.babyGrowth.status.aboveNormal');
   };
 
   return (
     <ToolFrame 
       title={t('tools.babyGrowth.title')} 
-      subtitle="Track your baby's growth milestones"
+      subtitle={t('toolsInternal.babyGrowth.subtitle')}
       customIcon="baby-growth"
       mood="joyful"
       toolId="baby-growth"
@@ -175,15 +175,15 @@ const BabyGrowth = () => {
             <TabsList className="grid w-full grid-cols-3 mb-6">
               <TabsTrigger value="add" className="gap-2">
                 <Plus className="h-4 w-4" />
-                Add Measurement
+                {t('toolsInternal.babyGrowth.tabs.add')}
               </TabsTrigger>
               <TabsTrigger value="chart" className="gap-2">
                 <BarChart3 className="h-4 w-4" />
-                Growth Chart
+                {t('toolsInternal.babyGrowth.tabs.chart')}
               </TabsTrigger>
               <TabsTrigger value="history" className="gap-2">
                 <TrendingUp className="h-4 w-4" />
-                History
+                {t('toolsInternal.babyGrowth.tabs.history')}
               </TabsTrigger>
             </TabsList>
 
@@ -192,25 +192,25 @@ const BabyGrowth = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Baby className="h-5 w-5 text-primary" />
-                    Baby Measurements
+                    {t('toolsInternal.babyGrowth.measurements')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label>Gender</Label>
+                    <Label>{t('toolsInternal.babyGrowth.gender')}</Label>
                     <Select value={gender} onValueChange={(v) => setGender(v as "boy" | "girl")}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="boy">Boy 👦</SelectItem>
-                        <SelectItem value="girl">Girl 👧</SelectItem>
+                        <SelectItem value="boy">{t('toolsInternal.babyGrowth.boy')} 👦</SelectItem>
+                        <SelectItem value="girl">{t('toolsInternal.babyGrowth.girl')} 👧</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label>Age (months)</Label>
+                    <Label>{t('toolsInternal.babyGrowth.ageMonths')}</Label>
                     <Input
                       type="number"
                       min="0"
@@ -223,7 +223,7 @@ const BabyGrowth = () => {
 
                   <div className="grid grid-cols-3 gap-4">
                     <div className="space-y-2">
-                      <Label>Weight (kg) *</Label>
+                      <Label>{t('toolsInternal.babyGrowth.weightKg')} *</Label>
                       <Input
                         type="number"
                         step="0.1"
@@ -233,7 +233,7 @@ const BabyGrowth = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>Height (cm)</Label>
+                      <Label>{t('toolsInternal.babyGrowth.heightCm')}</Label>
                       <Input
                         type="number"
                         step="0.1"
@@ -243,7 +243,7 @@ const BabyGrowth = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>Head Circ. (cm)</Label>
+                      <Label>{t('toolsInternal.babyGrowth.headCircCm')}</Label>
                       <Input
                         type="number"
                         step="0.1"
@@ -255,7 +255,7 @@ const BabyGrowth = () => {
                   </div>
 
                   <Button onClick={calculate} className="w-full">
-                    Calculate Result
+                    {t('toolsInternal.babyGrowth.calculateResult')}
                   </Button>
                 </CardContent>
               </Card>
@@ -269,13 +269,13 @@ const BabyGrowth = () => {
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <TrendingUp className="h-5 w-5 text-primary" />
-                        Result
+                        {t('toolsInternal.babyGrowth.result')}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="rounded-lg bg-secondary p-4 text-center">
                         <p className="text-sm text-muted-foreground mb-1">
-                          Weight Percentile on Growth Chart
+                          {t('toolsInternal.babyGrowth.weightPercentile')}
                         </p>
                         <p className="text-2xl font-bold text-primary">
                           {result.weightPercentile}
@@ -287,7 +287,7 @@ const BabyGrowth = () => {
 
                       <div className="rounded-lg bg-muted p-4">
                         <p className="text-sm text-muted-foreground">
-                          Normal Range for This Age
+                          {t('toolsInternal.babyGrowth.normalRange')}
                         </p>
                         <p className="font-medium">
                           {result.expectedRange.min} - {result.expectedRange.max} kg
@@ -295,12 +295,12 @@ const BabyGrowth = () => {
                       </div>
 
                       <Button onClick={saveEntry} className="w-full">
-                        <Plus className="h-4 w-4 mr-2" />
-                        Save to History
+                        <Plus className="h-4 w-4 me-2" />
+                        {t('toolsInternal.babyGrowth.saveToHistory')}
                       </Button>
 
                       <p className="text-sm text-muted-foreground text-center">
-                        Based on WHO Growth Standards
+                        {t('toolsInternal.babyGrowth.whoStandards')}
                       </p>
                     </CardContent>
                   </Card>
@@ -330,7 +330,7 @@ const BabyGrowth = () => {
                               </div>
                               <div>
                                 <p className="font-medium">
-                                  Month {entry.ageMonths}
+                                  {t('toolsInternal.babyGrowth.month', { month: entry.ageMonths })}
                                 </p>
                                 <p className="text-sm text-muted-foreground">
                                   {format(new Date(entry.date), "d MMM yyyy")}
@@ -344,7 +344,7 @@ const BabyGrowth = () => {
                                 </p>
                                 {entry.height && (
                                   <p className="text-xs text-muted-foreground">
-                                    Height: {entry.height} cm
+                                    {t('toolsInternal.babyGrowth.height')}: {entry.height} cm
                                   </p>
                                 )}
                               </div>
@@ -367,14 +367,14 @@ const BabyGrowth = () => {
                   <CardContent className="py-8 text-center">
                     <Baby className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
                     <p className="text-muted-foreground">
-                      No measurements added yet
+                      {t('toolsInternal.babyGrowth.noMeasurements')}
                     </p>
                     <Button
                       variant="link"
                       onClick={() => setActiveTab("add")}
                       className="mt-2"
                     >
-                      Add First Measurement
+                      {t('toolsInternal.babyGrowth.addFirst')}
                     </Button>
                   </CardContent>
                 </Card>
