@@ -569,8 +569,15 @@
   },
   "settings": {
     "title": "Settings",
+    "subtitle": "Manage your preferences",
     "securityPrivacy": "Security & Privacy",
     "dataManagement": "Data Management",
+    "language": {
+      "sectionTitle": "Language",
+      "resetToAuto": "Use browser language",
+      "manualNote": "You have manually selected a language.",
+      "autoDetectNote": "Using your browser language automatically."
+    },
     "dataPrivacy": "Data Privacy",
     "privacyPoint1": "All your health data is stored locally on your device only",
     "privacyPoint2": "We don't collect or share your personal information",

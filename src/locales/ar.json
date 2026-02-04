@@ -320,8 +320,15 @@
   },
   "settings": {
     "title": "الإعدادات",
+    "subtitle": "إدارة تفضيلاتك",
     "securityPrivacy": "الأمان والخصوصية",
     "dataManagement": "إدارة البيانات",
+    "language": {
+      "sectionTitle": "اللغة",
+      "resetToAuto": "استخدام لغة المتصفح",
+      "manualNote": "لقد اخترت لغة يدوياً.",
+      "autoDetectNote": "يتم استخدام لغة المتصفح تلقائياً."
+    },
     "dataPrivacy": "خصوصية البيانات",
     "privacyPoint1": "جميع بياناتك الصحية تُخزن محلياً على جهازك فقط",
     "privacyPoint2": "لا نجمع أو نشارك معلوماتك الشخصية",

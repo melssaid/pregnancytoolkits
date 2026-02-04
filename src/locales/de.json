@@ -563,9 +563,15 @@
   },
   "settings": {
     "title": "Einstellungen",
+    "subtitle": "Verwalten Sie Ihre Einstellungen",
     "securityPrivacy": "Sicherheit & Datenschutz",
     "dataManagement": "Datenverwaltung",
-    "dataPrivacy": "Datenschutz",
+    "language": {
+      "sectionTitle": "Sprache",
+      "resetToAuto": "Browsersprache verwenden",
+      "manualNote": "Sie haben manuell eine Sprache ausgewählt.",
+      "autoDetectNote": "Ihre Browsersprache wird automatisch verwendet."
+    },
     "privacyPoint1": "Alle Ihre Gesundheitsdaten werden nur lokal auf Ihrem Gerät gespeichert",
     "privacyPoint2": "Wir sammeln oder teilen Ihre persönlichen Daten nicht",
     "privacyPoint3": "Sie können Ihre Daten jederzeit exportieren",
