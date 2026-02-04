@@ -1611,7 +1611,18 @@
     "subtitle": "7/24 hamilelik arkadaşınız",
     "hello": "Merhaba! Yardım etmek için buradayım 👋",
     "askAnything": "Hamilelik, beslenme veya bebek bakımı hakkında her şeyi sorun",
-    "placeholder": "Sorunuzu yazın..."
+    "placeholder": "Sorunuzu yazın...",
+    "trustIndicators": {
+      "available": "7/24 Mevcut",
+      "medical": "Tıbbi Bilgi",
+      "secure": "Özel ve Güvenli"
+    },
+    "quickQuestions": {
+      "symptoms": "İlk ay semptomları?",
+      "coffee": "Kahve güvenli mi?",
+      "labor": "Doğuma hazırlık?",
+      "vitamins": "Önemli vitaminler?"
+    }
   },
   "lactationPrep": {
     "title": "Yapay Zeka Emzirme Hazırlığı",
