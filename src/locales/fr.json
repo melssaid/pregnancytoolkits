@@ -358,6 +358,12 @@
       "contact": "Contact",
       "disclaimerTitle": "Avis Médical",
       "disclaimerText": "Cette application est uniquement à des fins éducatives et informatives et ne fournit pas de conseils médicaux, de diagnostic ou de traitement. Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé."
+    },
+    "contactPage": {
+      "title": "Contactez-nous",
+      "subtitle": "Vous avez des questions ou des commentaires ? Nous serions ravis de vous entendre.",
+      "email": "E-mail",
+      "phone": "Téléphone"
     }
   },
   "common": {

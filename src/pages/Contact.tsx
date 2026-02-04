@@ -1,8 +1,11 @@
 import { Layout } from "@/components/Layout";
 import { Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function Contact() {
+  const { t } = useTranslation();
+  
   return (
     <Layout showBack>
       <div className="container py-8 max-w-2xl">
@@ -12,7 +15,7 @@ export default function Contact() {
           className="space-y-8"
         >
           <p className="text-muted-foreground text-center">
-            Have questions or feedback? We'd love to hear from you.
+            {t('layout.contactPage.subtitle')}
           </p>
 
           <div className="grid gap-6">
@@ -28,7 +31,7 @@ export default function Contact() {
                 <Mail className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground">Email</h3>
+                <h3 className="font-semibold text-foreground">{t('layout.contactPage.email')}</h3>
                 <p className="text-muted-foreground">M.melssaid@gmail.com</p>
               </div>
             </motion.a>
@@ -45,7 +48,7 @@ export default function Contact() {
                 <Phone className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground">Phone</h3>
+                <h3 className="font-semibold text-foreground">{t('layout.contactPage.phone')}</h3>
                 <p className="text-muted-foreground">+973 3377 5705</p>
               </div>
             </motion.a>

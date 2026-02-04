@@ -358,6 +358,12 @@
       "contact": "İletişim",
       "disclaimerTitle": "Tıbbi Sorumluluk Reddi",
       "disclaimerText": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve tıbbi tavsiye, teşhis veya tedavi sağlamaz. Herhangi bir sağlık endişesi için her zaman nitelikli bir sağlık hizmeti sağlayıcısına danışın."
+    },
+    "contactPage": {
+      "title": "İletişim",
+      "subtitle": "Sorularınız veya geri bildirimleriniz mi var? Sizden haber almak isteriz.",
+      "email": "E-posta",
+      "phone": "Telefon"
     }
   },
   "common": {
