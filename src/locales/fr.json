@@ -881,6 +881,129 @@
         "chemicalSunscreens": {"name": "Écrans Solaires Chimiques", "risk": "medium", "icon": "⚠️"},
         "essentialOils": {"name": "Huiles Essentielles (certaines)", "risk": "medium", "icon": "⚠️"}
       }
+    },
+    "birthPosition": {
+      "title": "Positions d'Accouchement IA",
+      "subtitle": "Trouvez les positions optimales pour votre travail",
+      "selectPreferences": "Sélectionnez vos préférences",
+      "getRecommendations": "Obtenir des recommandations IA",
+      "generating": "Génération des recommandations...",
+      "positions": {
+        "squatting": {"name": "Accroupie", "description": "Élargit le bassin jusqu'à 30%"},
+        "handKnees": {"name": "À quatre pattes", "description": "Idéal pour le travail dorsal"},
+        "sidelying": {"name": "Sur le côté", "description": "Permet le repos tout en maintenant le progrès"},
+        "standing": {"name": "Debout", "description": "Utilise la gravité pour la descente"},
+        "kneeling": {"name": "À genoux", "description": "Réduit la pression sur la colonne"},
+        "birthBall": {"name": "Ballon de naissance", "description": "Encourage la mobilité du bassin"}
+      },
+      "preferences": {
+        "backLabor": "J'ai des douleurs dorsales",
+        "epidural": "Je prévois une péridurale",
+        "waterBirth": "Je prévois un accouchement dans l'eau",
+        "mobility": "Je veux rester mobile",
+        "tired": "Je suis épuisée"
+      }
+    },
+    "hospitalBag": {
+      "title": "Sac d'Hôpital IA",
+      "subtitle": "Liste de préparation personnalisée pour le jour J",
+      "dueDate": "Votre date prévue",
+      "birthType": "Type d'accouchement prévu",
+      "vaginal": "Vaginal",
+      "csection": "Césarienne",
+      "generateList": "Générer la liste",
+      "generating": "Création de la liste personnalisée...",
+      "categories": {
+        "forMom": "Pour Maman",
+        "forBaby": "Pour Bébé",
+        "forPartner": "Pour le Partenaire",
+        "documents": "Documents",
+        "comfort": "Confort"
+      },
+      "essentialItems": "Articles Essentiels",
+      "packingTips": "Conseils de Préparation"
+    },
+    "stressRelief": {
+      "title": "Coach Anti-Stress IA",
+      "subtitle": "Techniques de relaxation personnalisées pour la grossesse",
+      "howFeeling": "Comment vous sentez-vous ?",
+      "stressLevel": "Niveau de stress",
+      "low": "Faible",
+      "medium": "Moyen",
+      "high": "Élevé",
+      "getAdvice": "Obtenir des conseils",
+      "generating": "Création de conseils personnalisés...",
+      "currentMood": "Humeur actuelle",
+      "techniques": "Techniques de relaxation",
+      "affirmations": {
+        "title": "Affirmations quotidiennes",
+        "list": [
+          "Mon corps sait comment soutenir mon bébé",
+          "Je suis forte, capable et préparée",
+          "Chaque respiration apporte du calme à moi et mon bébé",
+          "Je fais confiance à mon parcours vers la maternité",
+          "Je suis suffisante, exactement comme je suis"
+        ]
+      }
+    },
+    "mobilityCoach": {
+      "title": "Coach de Mobilité IA",
+      "subtitle": "Mouvements doux pour le confort de grossesse",
+      "selectArea": "Sélectionnez votre zone de focus",
+      "areas": {
+        "lowerBack": "Bas du dos",
+        "hips": "Hanches",
+        "shoulders": "Épaules",
+        "fullBody": "Corps entier"
+      },
+      "duration": "Durée de la session",
+      "minutes": "Minutes",
+      "generateRoutine": "Générer la routine",
+      "generating": "Création de la routine personnalisée...",
+      "safetyReminder": "Rappel de sécurité",
+      "safetyText": "Arrêtez si vous ressentez des étourdissements, de la douleur ou de l'inconfort"
+    },
+    "fitnessCoach": {
+      "title": "Coach Fitness IA",
+      "subtitle": "Exercices sûrs pour votre stade de grossesse",
+      "currentWeek": "Semaine actuelle",
+      "activityLevel": "Niveau d'activité",
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "advanced": "Avancé",
+      "generatePlan": "Nouveau programme",
+      "generating": "Création du programme...",
+      "safeExercises": "Exercices sûrs",
+      "avoidExercises": "Exercices à éviter",
+      "disclaimer": "Consultez votre médecin avant de commencer tout programme d'exercices.",
+      "start": "Démarrer",
+      "resume": "Reprendre",
+      "pause": "Pause",
+      "fitnessVideos": "Vidéos Fitness Prénatal",
+      "fitnessVideosSubtitle": "Guides d'entraînement sûrs pour chaque trimestre",
+      "safetyFirst": "Sécurité d'abord",
+      "safetyText": "Arrêtez immédiatement si vous ressentez des étourdissements, des douleurs ou un essoufflement. Gardez de l'eau à portée de main.",
+      "exerciseNames": {
+        "prenatalSquats": "Squats prénataux",
+        "birdDog": "Chien-Oiseau",
+        "pelvicTilts": "Bascules du bassin",
+        "wallPushups": "Pompes murales",
+        "butterflyStretch": "Étirement papillon",
+        "seatedMarching": "Marche assise"
+      },
+      "exerciseDescs": {
+        "prenatalSquatsDesc": "Debout, pieds écartés de la largeur des épaules. Descendez doucement comme pour vous asseoir.",
+        "birdDogDesc": "À quatre pattes, étendez le bras et la jambe opposés. Maintenez l'équilibre.",
+        "pelvicTiltsDesc": "Basculez doucement votre bassin d'avant en arrière pour soulager le bas du dos.",
+        "wallPushupsDesc": "Debout à un bras du mur. Penchez-vous et repoussez.",
+        "butterflyStretchDesc": "Asseyez-vous pieds joints, genoux vers l'extérieur. Penchez-vous doucement en avant.",
+        "seatedMarchingDesc": "Asseyez-vous sur une chaise stable ou un ballon. Levez les genoux en alternance."
+      },
+      "categories": {
+        "strength": "Force",
+        "cardio": "Cardio",
+        "flexibility": "Flexibilité"
+      }
     }
   }
 }

@@ -742,7 +742,35 @@
       "generating": "Antrenman planı oluşturuluyor...",
       "safeExercises": "Güvenli Egzersizler",
       "avoidExercises": "Kaçınılacak Egzersizler",
-      "disclaimer": "Herhangi bir egzersiz programına başlamadan önce sağlık uzmanınıza danışın."
+      "disclaimer": "Herhangi bir egzersiz programına başlamadan önce sağlık uzmanınıza danışın.",
+      "start": "Başlat",
+      "resume": "Devam",
+      "pause": "Duraklat",
+      "fitnessVideos": "Hamilelik Fitness Videoları",
+      "fitnessVideosSubtitle": "Her trimester için güvenli antrenman rehberleri",
+      "safetyFirst": "Önce Güvenlik",
+      "safetyText": "Baş dönmesi, ağrı veya nefes darlığı hissederseniz hemen durun. Suyu yakında tutun.",
+      "exerciseNames": {
+        "prenatalSquats": "Hamilelik Squatları",
+        "birdDog": "Kuş-Köpek",
+        "pelvicTilts": "Pelvis Eğimleri",
+        "wallPushups": "Duvar Şınavları",
+        "butterflyStretch": "Kelebek Germe",
+        "seatedMarching": "Oturarak Yürüyüş"
+      },
+      "exerciseDescs": {
+        "prenatalSquatsDesc": "Omuz genişliğinde durun. Sandalyeye oturur gibi nazikçe alçalın.",
+        "birdDogDesc": "El ve dizlerinizin üzerinde, karşı kol ve bacağı uzatın. Dengeyi koruyun.",
+        "pelvicTiltsDesc": "Pelvisinizi nazikçe ileri geri sallayarak bel baskısını hafifletin.",
+        "wallPushupsDesc": "Duvardan bir kol uzaklıkta durun. Eğilin ve geri itin.",
+        "butterflyStretchDesc": "Ayaklarınız birleşik, dizleriniz dışa dönük oturun. Nazikçe öne eğilin.",
+        "seatedMarchingDesc": "Sabit bir sandalye veya top üzerinde oturun. Dönüşümlü olarak dizlerinizi kaldırın."
+      },
+      "categories": {
+        "strength": "Güç",
+        "cardio": "Kardiyo",
+        "flexibility": "Esneklik"
+      }
     },
     "birthPlan": {
       "title": "AI Doğum Planı Oluşturucu",
@@ -1200,6 +1228,87 @@
       "aboveTarget": "Hedefin Üstünde",
       "weeklyGain": "Haftalık Alım",
       "aiAnalysis": "AI Kilo Analizi"
+    },
+    "birthPosition": {
+      "title": "AI Doğum Pozisyonları",
+      "subtitle": "Doğumunuz için en uygun pozisyonları bulun",
+      "selectPreferences": "Tercihlerinizi seçin",
+      "getRecommendations": "AI Önerileri Al",
+      "generating": "Öneriler oluşturuluyor...",
+      "positions": {
+        "squatting": {"name": "Çömelme", "description": "Pelvisi %30'a kadar genişletir"},
+        "handKnees": {"name": "Dört Ayak Üstünde", "description": "Sırt ağrılı doğumlar için ideal"},
+        "sidelying": {"name": "Yan Yatma", "description": "İlerlemeyi sürdürürken dinlenmeye izin verir"},
+        "standing": {"name": "Ayakta", "description": "İniş için yerçekimini kullanır"},
+        "kneeling": {"name": "Diz Çökme", "description": "Omurgaya baskıyı azaltır"},
+        "birthBall": {"name": "Doğum Topu", "description": "Pelvis hareketliliğini teşvik eder"}
+      },
+      "preferences": {
+        "backLabor": "Sırt ağrılı doğum yaşıyorum",
+        "epidural": "Epidural planlıyorum",
+        "waterBirth": "Su doğumu planlıyorum",
+        "mobility": "Hareketli kalmak istiyorum",
+        "tired": "Çok yorgunum"
+      }
+    },
+    "hospitalBag": {
+      "title": "AI Hastane Çantası",
+      "subtitle": "Doğum günü için kişiselleştirilmiş paketleme listesi",
+      "dueDate": "Tahmini Doğum Tarihiniz",
+      "birthType": "Planlanan Doğum Türü",
+      "vaginal": "Vajinal",
+      "csection": "Sezaryen",
+      "generateList": "Liste Oluştur",
+      "generating": "Kişiselleştirilmiş liste oluşturuluyor...",
+      "categories": {
+        "forMom": "Anne İçin",
+        "forBaby": "Bebek İçin",
+        "forPartner": "Partner İçin",
+        "documents": "Belgeler",
+        "comfort": "Konfor"
+      },
+      "essentialItems": "Temel Eşyalar",
+      "packingTips": "Paketleme İpuçları"
+    },
+    "stressRelief": {
+      "title": "AI Stres Rahatlatma Koçu",
+      "subtitle": "Hamilelik için kişiselleştirilmiş rahatlama teknikleri",
+      "howFeeling": "Nasıl hissediyorsunuz?",
+      "stressLevel": "Stres seviyesi",
+      "low": "Düşük",
+      "medium": "Orta",
+      "high": "Yüksek",
+      "getAdvice": "Tavsiye Al",
+      "generating": "Kişiselleştirilmiş ipuçları oluşturuluyor...",
+      "currentMood": "Mevcut ruh hali",
+      "techniques": "Rahatlama teknikleri",
+      "affirmations": {
+        "title": "Günlük Olumlamalar",
+        "list": [
+          "Vücudum bebeğimi nasıl destekleyeceğini biliyor",
+          "Güçlüyüm, yetenekliyim ve hazırım",
+          "Her nefes bana ve bebeğime huzur getiriyor",
+          "Annelik yolculuğuma güveniyorum",
+          "Tam olduğum gibi yeterliyim"
+        ]
+      }
+    },
+    "mobilityCoach": {
+      "title": "AI Hareketlilik Koçu",
+      "subtitle": "Hamilelik konforu için nazik hareketler",
+      "selectArea": "Odak alanınızı seçin",
+      "areas": {
+        "lowerBack": "Bel",
+        "hips": "Kalçalar",
+        "shoulders": "Omuzlar",
+        "fullBody": "Tüm Vücut"
+      },
+      "duration": "Seans süresi",
+      "minutes": "Dakika",
+      "generateRoutine": "Rutin Oluştur",
+      "generating": "Kişiselleştirilmiş rutin oluşturuluyor...",
+      "safetyReminder": "Güvenlik Hatırlatması",
+      "safetyText": "Baş dönmesi, ağrı veya rahatsızlık hissederseniz durun"
     }
   }
 }

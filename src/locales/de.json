@@ -881,6 +881,129 @@
         "chemicalSunscreens": {"name": "Chemische Sonnenschutzmittel", "risk": "medium", "icon": "⚠️"},
         "essentialOils": {"name": "Ätherische Öle (einige)", "risk": "medium", "icon": "⚠️"}
       }
+    },
+    "birthPosition": {
+      "title": "KI-Geburtspositionen",
+      "subtitle": "Finden Sie optimale Positionen für Ihre Wehen",
+      "selectPreferences": "Wählen Sie Ihre Präferenzen",
+      "getRecommendations": "KI-Empfehlungen erhalten",
+      "generating": "Generiere Empfehlungen...",
+      "positions": {
+        "squatting": {"name": "Hocken", "description": "Erweitert das Becken um bis zu 30%"},
+        "handKnees": {"name": "Vierfüßlerstand", "description": "Ideal bei Rückenwehen"},
+        "sidelying": {"name": "Seitenlage", "description": "Ermöglicht Ruhe, erhält Fortschritt"},
+        "standing": {"name": "Stehen", "description": "Nutzt die Schwerkraft für den Abstieg"},
+        "kneeling": {"name": "Knien", "description": "Reduziert Druck auf die Wirbelsäule"},
+        "birthBall": {"name": "Geburtsball", "description": "Fördert Beckenbeweglichkeit"}
+      },
+      "preferences": {
+        "backLabor": "Ich habe Rückenwehen",
+        "epidural": "Ich plane eine PDA",
+        "waterBirth": "Ich plane eine Wassergeburt",
+        "mobility": "Ich möchte mobil bleiben",
+        "tired": "Ich bin erschöpft"
+      }
+    },
+    "hospitalBag": {
+      "title": "KI-Krankenhaustasche",
+      "subtitle": "Personalisierte Packliste für den Entbindungstag",
+      "dueDate": "Ihr Geburtstermin",
+      "birthType": "Geplante Geburtsart",
+      "vaginal": "Vaginal",
+      "csection": "Kaiserschnitt",
+      "generateList": "Packliste erstellen",
+      "generating": "Erstelle personalisierte Liste...",
+      "categories": {
+        "forMom": "Für Mama",
+        "forBaby": "Für Baby",
+        "forPartner": "Für Partner",
+        "documents": "Dokumente",
+        "comfort": "Komfort"
+      },
+      "essentialItems": "Wichtige Artikel",
+      "packingTips": "Packtipps"
+    },
+    "stressRelief": {
+      "title": "KI-Stressabbau-Coach",
+      "subtitle": "Personalisierte Entspannungstechniken für die Schwangerschaft",
+      "howFeeling": "Wie fühlen Sie sich?",
+      "stressLevel": "Stresslevel",
+      "low": "Niedrig",
+      "medium": "Mittel",
+      "high": "Hoch",
+      "getAdvice": "Beratung erhalten",
+      "generating": "Erstelle personalisierte Tipps...",
+      "currentMood": "Aktuelle Stimmung",
+      "techniques": "Entspannungstechniken",
+      "affirmations": {
+        "title": "Tägliche Affirmationen",
+        "list": [
+          "Mein Körper weiß, wie er mein Baby unterstützt",
+          "Ich bin stark, fähig und vorbereitet",
+          "Jeder Atemzug bringt Ruhe zu mir und meinem Baby",
+          "Ich vertraue meiner Reise zur Mutterschaft",
+          "Ich bin genug, genau so wie ich bin"
+        ]
+      }
+    },
+    "mobilityCoach": {
+      "title": "KI-Mobilitäts-Coach",
+      "subtitle": "Sanfte Bewegungen für Schwangerschaftskomfort",
+      "selectArea": "Wählen Sie Ihren Fokusbereich",
+      "areas": {
+        "lowerBack": "Unterer Rücken",
+        "hips": "Hüften",
+        "shoulders": "Schultern",
+        "fullBody": "Ganzkörper"
+      },
+      "duration": "Sitzungsdauer",
+      "minutes": "Minuten",
+      "generateRoutine": "Routine erstellen",
+      "generating": "Erstelle personalisierte Routine...",
+      "safetyReminder": "Sicherheitserinnerung",
+      "safetyText": "Stoppen Sie, wenn Sie Schwindel, Schmerzen oder Unbehagen verspüren"
+    },
+    "fitnessCoach": {
+      "title": "KI-Fitness-Coach",
+      "subtitle": "Sichere Übungen für Ihre Schwangerschaftsphase",
+      "currentWeek": "Aktuelle Woche",
+      "activityLevel": "Aktivitätsniveau",
+      "beginner": "Anfänger",
+      "intermediate": "Fortgeschritten",
+      "advanced": "Experte",
+      "generatePlan": "Neues Training erstellen",
+      "generating": "Trainingsplan wird erstellt...",
+      "safeExercises": "Sichere Übungen",
+      "avoidExercises": "Übungen vermeiden",
+      "disclaimer": "Konsultieren Sie Ihren Arzt, bevor Sie ein Trainingsprogramm beginnen.",
+      "start": "Start",
+      "resume": "Fortsetzen",
+      "pause": "Pause",
+      "fitnessVideos": "Schwangerschafts-Fitness-Videos",
+      "fitnessVideosSubtitle": "Sichere Trainingsanleitungen für jedes Trimester",
+      "safetyFirst": "Sicherheit zuerst",
+      "safetyText": "Stoppen Sie sofort bei Schwindel, Schmerzen oder Atemnot. Halten Sie Wasser bereit.",
+      "exerciseNames": {
+        "prenatalSquats": "Schwangerschafts-Kniebeugen",
+        "birdDog": "Vierfüßlerstand",
+        "pelvicTilts": "Beckenkippen",
+        "wallPushups": "Wand-Liegestütze",
+        "butterflyStretch": "Schmetterlings-Dehnung",
+        "seatedMarching": "Sitzmarsch"
+      },
+      "exerciseDescs": {
+        "prenatalSquatsDesc": "Stehen Sie schulterbreit. Senken Sie sich sanft ab wie beim Hinsetzen.",
+        "birdDogDesc": "Auf Händen und Knien, strecken Sie gegenüberliegenden Arm und Bein. Halten Sie das Gleichgewicht.",
+        "pelvicTiltsDesc": "Kippen Sie sanft Ihr Becken vor und zurück, um den unteren Rücken zu entlasten.",
+        "wallPushupsDesc": "Stehen Sie armlang von der Wand. Lehnen Sie sich vor und drücken Sie zurück.",
+        "butterflyStretchDesc": "Sitzen Sie mit zusammengeführten Füßen, Knie nach außen. Lehnen Sie sich sanft vor.",
+        "seatedMarchingDesc": "Sitzen Sie auf einem stabilen Stuhl oder Ball. Heben Sie abwechselnd die Knie."
+      },
+      "categories": {
+        "strength": "Kraft",
+        "cardio": "Kardio",
+        "flexibility": "Flexibilität"
+      }
     }
   }
 }
