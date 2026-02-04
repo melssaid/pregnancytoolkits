@@ -2,7 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Check, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { setManualLanguage, resetToBrowserLanguage } from '@/i18n';
+import { resetToBrowserLanguage } from '@/i18n';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 
 const languages = [
@@ -20,12 +21,12 @@ interface LanguageSelectorProps {
 }
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ compact = false }) => {
-  const { i18n, t } = useTranslation();
-  const currentLanguage = i18n.language?.split('-')[0] || 'en';
+  const { t } = useTranslation();
+  const { currentLanguage, changeLanguage, isChanging } = useLanguage();
   const hasManualSelection = localStorage.getItem('user_selected_language') !== null;
 
   const handleLanguageChange = (langCode: string) => {
-    setManualLanguage(langCode);
+    changeLanguage(langCode);
   };
 
   const handleResetToAuto = () => {
@@ -33,7 +34,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ compact = fa
   };
 
   return (
-    <div className="space-y-2">
+    <div className={cn("space-y-2", isChanging && "opacity-70 pointer-events-none")}>
       <div className={cn("grid gap-1.5", compact ? "grid-cols-3" : "grid-cols-2 gap-2")}>
         {languages.map((lang) => (
           <button

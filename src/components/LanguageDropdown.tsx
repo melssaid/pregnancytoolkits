@@ -1,9 +1,8 @@
-import React, { useState, forwardRef } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { forwardRef } from 'react';
 import { Globe } from 'lucide-react';
-import { setManualLanguage } from '@/i18n';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Popover,
   PopoverContent,
@@ -20,13 +19,13 @@ const MotionButton = forwardRef<HTMLButtonElement, HTMLMotionProps<"button"> & {
 );
 
 const languages = [
-  { code: 'en', flag: '🇺🇸', short: 'EN' },
-  { code: 'ar', flag: '🇸🇦', short: 'ع' },
-  { code: 'de', flag: '🇩🇪', short: 'DE' },
-  { code: 'tr', flag: '🇹🇷', short: 'TR' },
-  { code: 'fr', flag: '🇫🇷', short: 'FR' },
-  { code: 'es', flag: '🇪🇸', short: 'ES' },
-  { code: 'pt', flag: '🇵🇹', short: 'PT' },
+  { code: 'en', flag: '🇺🇸', short: 'EN', name: 'English' },
+  { code: 'ar', flag: '🇸🇦', short: 'ع', name: 'العربية' },
+  { code: 'de', flag: '🇩🇪', short: 'DE', name: 'Deutsch' },
+  { code: 'tr', flag: '🇹🇷', short: 'TR', name: 'Türkçe' },
+  { code: 'fr', flag: '🇫🇷', short: 'FR', name: 'Français' },
+  { code: 'es', flag: '🇪🇸', short: 'ES', name: 'Español' },
+  { code: 'pt', flag: '🇵🇹', short: 'PT', name: 'Português' },
 ];
 
 interface LanguageDropdownProps {
@@ -37,13 +36,12 @@ interface LanguageDropdownProps {
 export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({ 
   className 
 }) => {
-  const { i18n } = useTranslation();
-  const [open, setOpen] = useState(false);
-  const currentLanguage = i18n.language?.split('-')[0] || 'en';
+  const { currentLanguage, changeLanguage, isChanging } = useLanguage();
+  const [open, setOpen] = React.useState(false);
   const currentLang = languages.find(l => l.code === currentLanguage) || languages[0];
 
   const handleLanguageChange = (langCode: string) => {
-    setManualLanguage(langCode);
+    changeLanguage(langCode);
     setOpen(false);
   };
 
@@ -61,6 +59,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
             "shadow-sm hover:shadow-md hover:shadow-primary/20",
             "transition-all duration-300",
             "group overflow-hidden",
+            isChanging && "opacity-70 pointer-events-none",
             className
           )}
         >

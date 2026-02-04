@@ -325,3 +325,44 @@
     background: linear-gradient(to right, var(--tw-gradient-stops));
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   SMOOTH LANGUAGE TRANSITION
+   ═══════════════════════════════════════════════════════════════ */
+.language-transition {
+  transition: opacity 0.15s ease-out;
+}
+
+.language-transition * {
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out !important;
+}
+
+/* Fade effect during language change */
+body.language-changing {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Ensure smooth text transitions */
+[data-i18n-text] {
+  transition: opacity 0.1s ease;
+}
+
+/* RTL/LTR smooth flip */
+html {
+  transition: direction 0s;
+}
+
+html[dir="rtl"],
+html[dir="ltr"] {
+  transition: none;
+}
+
+/* Smooth icon flip for RTL */
+.rtl-flip {
+  transition: transform 0.2s ease-out;
+}
+
+html[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
