@@ -214,7 +214,7 @@ export default function SmartGroceryList() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Smart Grocery List"
+        toolName={t('groceryList.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -222,8 +222,8 @@ export default function SmartGroceryList() {
 
   return (
     <ToolFrame
-      title={t('toolsInternal.groceryList.title')}
-      subtitle={t('toolsInternal.groceryList.subtitle')}
+      title={t('groceryList.title')}
+      subtitle={t('groceryList.subtitle')}
       mood="joyful"
       toolId="grocery-list"
     >
@@ -238,9 +238,9 @@ export default function SmartGroceryList() {
               <ShoppingCart className="w-4 h-4 text-primary" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="font-semibold text-foreground text-sm">Smart Pregnancy Nutrition</h2>
+              <h2 className="font-semibold text-foreground text-sm">{t('groceryList.smartNutrition')}</h2>
               <p className="text-[11px] text-muted-foreground leading-snug">
-                Plan meals, track nutrients, and discover superfoods for you and your baby.
+                {t('groceryList.smartNutritionDesc')}
               </p>
             </div>
           </div>
@@ -252,28 +252,28 @@ export default function SmartGroceryList() {
             <CardContent className="p-2.5 text-center">
               <ShoppingCart className="w-3.5 h-3.5 mx-auto mb-0.5 text-primary" />
               <p className="text-lg font-bold text-primary">{items.length}</p>
-              <p className="text-[9px] text-muted-foreground">Items</p>
+              <p className="text-[9px] text-muted-foreground">{t('groceryList.items')}</p>
             </CardContent>
           </Card>
           <Card className="bg-gradient-to-br from-green-500/8 to-green-500/3 border-green-500/15">
             <CardContent className="p-2.5 text-center">
               <CheckCircle2 className="w-3.5 h-3.5 mx-auto mb-0.5 text-green-500" />
               <p className="text-lg font-bold text-green-600">{checkedCount}</p>
-              <p className="text-[9px] text-muted-foreground">Done</p>
+              <p className="text-[9px] text-muted-foreground">{t('groceryList.done')}</p>
             </CardContent>
           </Card>
           <Card className="bg-gradient-to-br from-amber-500/8 to-amber-500/3 border-amber-500/15">
             <CardContent className="p-2.5 text-center">
               <Target className="w-3.5 h-3.5 mx-auto mb-0.5 text-amber-500" />
               <p className="text-lg font-bold text-amber-600">{Math.round((nutrition.folate + nutrition.iron + nutrition.calcium) / 3)}%</p>
-              <p className="text-[9px] text-muted-foreground">Score</p>
+              <p className="text-[9px] text-muted-foreground">{t('groceryList.score')}</p>
             </CardContent>
           </Card>
           <Card className="bg-gradient-to-br from-violet-500/8 to-violet-500/3 border-violet-500/15">
             <CardContent className="p-2.5 text-center">
               <Leaf className="w-3.5 h-3.5 mx-auto mb-0.5 text-violet-500" />
               <p className="text-lg font-bold text-violet-600">{items.filter(i => i.pregnancyBenefit).length}</p>
-              <p className="text-[9px] text-muted-foreground">Super</p>
+              <p className="text-[9px] text-muted-foreground">{t('groceryList.super')}</p>
             </CardContent>
           </Card>
         </div>
@@ -283,15 +283,15 @@ export default function SmartGroceryList() {
           <TabsList className="grid w-full grid-cols-3 h-9 p-0.5">
             <TabsTrigger value="list" className="gap-1 text-[11px] py-2 data-[state=active]:shadow-sm">
               <ShoppingCart className="w-3 h-3" />
-              List
+              {t('groceryList.list')}
             </TabsTrigger>
             <TabsTrigger value="nutrition" className="gap-1 text-[11px] py-2 data-[state=active]:shadow-sm">
               <BarChart3 className="w-3 h-3" />
-              Analysis
+              {t('groceryList.analysis')}
             </TabsTrigger>
             <TabsTrigger value="planner" className="gap-1 text-[11px] py-2 data-[state=active]:shadow-sm">
               <Calendar className="w-3 h-3" />
-              Planner
+              {t('groceryList.planner')}
             </TabsTrigger>
           </TabsList>
 
@@ -300,7 +300,7 @@ export default function SmartGroceryList() {
             {/* Add Item - Inline */}
             <div className="flex gap-2">
               <Input
-                placeholder="Add item..."
+                placeholder={t('groceryList.addItem')}
                 value={newItem}
                 onChange={(e) => setNewItem(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && addItem()}
@@ -327,7 +327,7 @@ export default function SmartGroceryList() {
                   onClick={clearChecked}
                   className="text-[10px] text-muted-foreground hover:text-destructive transition-colors"
                 >
-                  Clear
+                  {t('groceryList.clear')}
                 </button>
               )}
             </div>
@@ -346,7 +346,7 @@ export default function SmartGroceryList() {
                     className="capitalize whitespace-nowrap gap-1 h-7 px-2 text-[10px]"
                   >
                     <Icon className="w-3 h-3" />
-                    {cat}
+                    {t(`groceryList.categories.${cat}`)}
                     <span className="text-[9px] opacity-70">({count})</span>
                   </Button>
                 );
@@ -359,10 +359,10 @@ export default function SmartGroceryList() {
                 <CardTitle className="text-xs flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <ShoppingCart className="w-3.5 h-3.5 text-primary" />
-                    Your List
+                    {t('groceryList.yourList')}
                   </div>
                   <span className="text-[10px] text-muted-foreground font-normal">
-                    {filteredItems.length} items
+                    {filteredItems.length} {t('groceryList.items')}
                   </span>
                 </CardTitle>
               </CardHeader>
@@ -370,7 +370,7 @@ export default function SmartGroceryList() {
                 {filteredItems.length === 0 ? (
                   <div className="text-center py-6">
                     <ShoppingCart className="w-6 h-6 mx-auto mb-2 text-muted-foreground/30" />
-                    <p className="text-xs text-muted-foreground">No items yet</p>
+                    <p className="text-xs text-muted-foreground">{t('groceryList.noItems')}</p>
                   </div>
                 ) : (
                   <div className="space-y-1.5 max-h-[320px] overflow-y-auto">

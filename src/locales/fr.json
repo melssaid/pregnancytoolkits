@@ -1504,5 +1504,129 @@
     "calculate": "Calculer",
     "results": "Résultats",
     "start": "Commencer"
+  },
+  "nutritionOptimizer": {
+    "title": "Optimiseur de Nutrition Intelligent",
+    "subtitle": "Plans nutritionnels personnalisés pour chaque trimestre",
+    "pregnancyWeek": "Semaine de grossesse",
+    "trimester": "Trimestre",
+    "dietaryPreference": "Préférence alimentaire",
+    "standard": "Standard",
+    "vegetarian": "Végétarien",
+    "vegan": "Végan",
+    "keyNutrients": "Nutriments clés pour la semaine {{week}}",
+    "sampleMealPlan": "Plan de repas exemple",
+    "breakfast": "Petit-déjeuner",
+    "lunch": "Déjeuner",
+    "snack": "Collation",
+    "dinner": "Dîner",
+    "infoNote": "Les besoins nutritionnels varient. Consultez votre professionnel de santé."
+  },
+  "smoothieAI": {
+    "title": "Smoothies Grossesse IA",
+    "subtitle": "Recettes de smoothies nutritifs pour chaque trimestre",
+    "selectTrimester": "Sélectionnez votre trimestre",
+    "trimester": "Trimestre",
+    "createCustom": "Créer un smoothie IA personnalisé",
+    "preferencePlaceholder": "Préférences? (ex: riche en protéines, peu sucré)",
+    "randomRecipe": "Recette aléatoire",
+    "aiGenerate": "Générer par IA",
+    "aiGeneratedRecipe": "Recette générée par IA",
+    "ingredients": "Ingrédients",
+    "instructions": "Instructions",
+    "nutrition": "Nutrition",
+    "allRecipes": "Toutes les recettes pour le trimestre {{trimester}}"
+  },
+  "groceryList": {
+    "title": "Liste de Courses Intelligente",
+    "subtitle": "Liste de courses alimentée par IA pour la nutrition de grossesse",
+    "smartNutrition": "Nutrition Intelligente Grossesse",
+    "smartNutritionDesc": "Planifiez les repas, suivez les nutriments et découvrez les superaliments.",
+    "items": "Articles",
+    "done": "Fait",
+    "score": "Score",
+    "super": "Super",
+    "list": "Liste",
+    "analysis": "Analyse",
+    "planner": "Planificateur",
+    "addItem": "Ajouter un article...",
+    "yourList": "Votre liste",
+    "noItems": "Pas encore d'articles",
+    "clear": "Effacer",
+    "categories": {
+      "all": "Tous",
+      "produce": "Fruits & Légumes",
+      "dairy": "Produits laitiers",
+      "protein": "Protéines",
+      "grains": "Céréales",
+      "other": "Autres"
+    }
+  },
+  "snackPlanner": {
+    "title": "Planificateur de Collations Intelligent",
+    "subtitle": "Collations saines de grossesse pour chaque envie",
+    "feelingHungry": "Vous avez faim?",
+    "letAIPick": "Laissez-nous choisir une collation saine pour vous!",
+    "surpriseMe": "Surprenez-moi!",
+    "calories": "calories",
+    "prepTime": "temps de préparation",
+    "ingredients": "Ingrédients",
+    "howToMake": "Comment préparer",
+    "categories": {
+      "all": "Tous",
+      "quick": "Rapide",
+      "energy": "Énergie",
+      "protein": "Protéines",
+      "comfort": "Confort"
+    },
+    "snackingTipsTitle": "Conseils Collations Intelligents",
+    "snackingTips": {
+      "tip1": "Visez des collations combinant protéines + glucides pour une énergie durable",
+      "tip2": "Gardez des collations portables dans votre sac pour la faim inattendue",
+      "tip3": "Mangez toutes les 2-3 heures pour maintenir une glycémie stable",
+      "tip4": "Restez hydratée - parfois la soif ressemble à la faim"
+    }
+  },
+  "vitaminTracker": {
+    "subtitle": "Suivez vos vitamines prénatales quotidiennes",
+    "pregnancyWeek": "Semaine de grossesse",
+    "todaysProgress": "Progrès du jour",
+    "vitaminsCount": "{{taken}} sur {{total}} vitamines prises aujourd'hui",
+    "aiAnalysisTitle": "Analyse IA des Vitamines",
+    "analyzeRoutine": "Analyser ma routine",
+    "analyzingIntake": "Analyse de votre prise...",
+    "alreadyTaken": "Déjà prise!",
+    "alreadyTakenDesc": "Vous avez déjà enregistré {{name}} aujourd'hui.",
+    "logged": "Vitamine enregistrée!",
+    "loggedDesc": "{{name}} a été enregistrée.",
+    "failedToLog": "Échec de l'enregistrement",
+    "done": "Fait",
+    "take": "Prendre",
+    "thisWeek": "cette semaine",
+    "weeklyStats": "Stats hebdomadaires",
+    "days": "jours",
+    "recentHistory": "Historique récent",
+    "tipTitle": "Conseil Pro",
+    "tipContent": "Prenez les suppléments de fer avec de la vitamine C pour une meilleure absorption, mais évitez de les prendre avec du calcium."
+  },
+  "babyGear": {
+    "title": "Recommandeur d'Équipement Bébé",
+    "subtitle": "Checklist des essentiels pour votre nouveau-né",
+    "essentialsProgress": "Progrès des essentiels",
+    "itemsChecked": "{{checked}} sur {{total}} articles cochés",
+    "filters": {
+      "all": "Tous les articles",
+      "essential": "Essentiel",
+      "recommended": "Recommandé",
+      "niceToHave": "Bien à avoir"
+    },
+    "shoppingSummary": "Résumé des achats",
+    "tip": "Conseil",
+    "disclaimer": "Ceci est un guide général. Vos besoins peuvent varier.",
+    "categories": {
+      "essential": "Essentiel",
+      "recommended": "Recommandé",
+      "niceToHave": "Bien à avoir"
+    }
   }
 }

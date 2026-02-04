@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -150,6 +151,7 @@ const typeIcons: Record<string, React.ElementType> = {
 };
 
 export default function BabyGearRecommender() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'essential' | 'recommended' | 'nice-to-have'>('all');
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
@@ -182,7 +184,7 @@ export default function BabyGearRecommender() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Baby Gear Recommender"
+        toolName={t('babyGear.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -190,8 +192,8 @@ export default function BabyGearRecommender() {
 
   return (
     <ToolFrame
-      title="Baby Gear Recommender"
-      subtitle="Essential items checklist for your new arrival"
+      title={t('babyGear.title')}
+      subtitle={t('babyGear.subtitle')}
       mood="joyful"
       toolId="baby-gear"
       icon={Package}
@@ -201,7 +203,7 @@ export default function BabyGearRecommender() {
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold">Essentials Progress</h3>
+                <h3 className="font-semibold">{t('babyGear.essentialsProgress')}</h3>
                 <span className="text-2xl font-bold text-primary">{getProgress()}%</span>
               </div>
               <div className="w-full h-3 bg-muted rounded-full overflow-hidden">
@@ -211,7 +213,7 @@ export default function BabyGearRecommender() {
                 />
               </div>
               <p className="text-sm text-muted-foreground mt-2">
-                {checkedItems.length} of {gearList.length} items checked
+                {t('babyGear.itemsChecked', { checked: checkedItems.length, total: gearList.length })}
               </p>
             </CardContent>
           </Card>
@@ -226,7 +228,7 @@ export default function BabyGearRecommender() {
                 onClick={() => setSelectedCategory(cat)}
                 className="capitalize whitespace-nowrap"
               >
-                {cat === 'all' ? 'All Items' : cat.replace('-', ' ')}
+                {t(`babyGear.filters.${cat === 'nice-to-have' ? 'niceToHave' : cat}`)}
               </Button>
             ))}
           </div>
@@ -262,7 +264,7 @@ export default function BabyGearRecommender() {
                             </h4>
                           </div>
                           <Badge className={getCategoryColor(item.category)}>
-                            {item.category}
+                            {t(`babyGear.categories.${item.category === 'nice-to-have' ? 'niceToHave' : item.category}`)}
                           </Badge>
                         </div>
                         
@@ -280,7 +282,7 @@ export default function BabyGearRecommender() {
                         <div className="bg-muted/50 rounded-lg p-3 mt-2">
                           <p className="text-xs text-muted-foreground">
                             <Star className="w-3 h-3 inline mr-1 text-amber-500" />
-                            <strong>Tip:</strong> {item.tips}
+                            <strong>{t('babyGear.tip')}:</strong> {item.tips}
                           </p>
                         </div>
                       </div>
@@ -294,25 +296,25 @@ export default function BabyGearRecommender() {
           {/* Summary */}
           <Card>
             <CardContent className="p-6">
-              <h3 className="font-semibold mb-4">Shopping Summary</h3>
+              <h3 className="font-semibold mb-4">{t('babyGear.shoppingSummary')}</h3>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="p-3 bg-destructive/5 rounded-lg">
                   <div className="text-2xl font-bold text-destructive">
                     {gearList.filter(i => i.category === 'essential').length}
                   </div>
-                  <div className="text-xs text-muted-foreground">Essential</div>
+                  <div className="text-xs text-muted-foreground">{t('babyGear.categories.essential')}</div>
                 </div>
                 <div className="p-3 bg-primary/5 rounded-lg">
                   <div className="text-2xl font-bold text-primary">
                     {gearList.filter(i => i.category === 'recommended').length}
                   </div>
-                  <div className="text-xs text-muted-foreground">Recommended</div>
+                  <div className="text-xs text-muted-foreground">{t('babyGear.categories.recommended')}</div>
                 </div>
                 <div className="p-3 bg-muted rounded-lg">
                   <div className="text-2xl font-bold text-muted-foreground">
                     {gearList.filter(i => i.category === 'nice-to-have').length}
                   </div>
-                  <div className="text-xs text-muted-foreground">Nice to Have</div>
+                  <div className="text-xs text-muted-foreground">{t('babyGear.categories.niceToHave')}</div>
                 </div>
               </div>
             </CardContent>
@@ -321,8 +323,7 @@ export default function BabyGearRecommender() {
           {/* Disclaimer */}
           <div className="bg-muted/30 rounded-xl p-4 text-center">
             <p className="text-xs text-muted-foreground">
-              💡 This is a general guide. Your specific needs may vary. 
-              Consider borrowing or buying secondhand for items used briefly.
+              💡 {t('babyGear.disclaimer')}
           </p>
         </div>
       </div>

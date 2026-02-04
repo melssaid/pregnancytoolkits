@@ -1752,5 +1752,129 @@
     "calculate": "احسبي",
     "results": "النتائج",
     "start": "ابدأي"
+  },
+  "nutritionOptimizer": {
+    "title": "مُحسّن التغذية الذكي",
+    "subtitle": "خطط تغذية مخصصة لكل فترة من الحمل",
+    "pregnancyWeek": "أسبوع الحمل",
+    "trimester": "الثلث",
+    "dietaryPreference": "التفضيل الغذائي",
+    "standard": "عادي",
+    "vegetarian": "نباتي",
+    "vegan": "نباتي صرف",
+    "keyNutrients": "العناصر الغذائية الرئيسية للأسبوع {{week}}",
+    "sampleMealPlan": "خطة وجبات نموذجية",
+    "breakfast": "الفطور",
+    "lunch": "الغداء",
+    "snack": "وجبة خفيفة",
+    "dinner": "العشاء",
+    "infoNote": "تختلف الاحتياجات الغذائية. استشيري مقدم الرعاية الصحية للحصول على نصائح مخصصة."
+  },
+  "smoothieAI": {
+    "title": "عصائر الحمل الذكية",
+    "subtitle": "وصفات عصائر مغذية لكل فترة",
+    "selectTrimester": "اختاري الثلث",
+    "trimester": "الثلث",
+    "createCustom": "أنشئي عصير مخصص بالذكاء الاصطناعي",
+    "preferencePlaceholder": "أي تفضيلات؟ (مثل: بروتين عالي، قليل السكر)",
+    "randomRecipe": "وصفة عشوائية",
+    "aiGenerate": "إنشاء بالذكاء الاصطناعي",
+    "aiGeneratedRecipe": "وصفة من الذكاء الاصطناعي",
+    "ingredients": "المكونات",
+    "instructions": "التعليمات",
+    "nutrition": "القيمة الغذائية",
+    "allRecipes": "جميع الوصفات للثلث {{trimester}}"
+  },
+  "groceryList": {
+    "title": "قائمة التسوق الذكية",
+    "subtitle": "قائمة تسوق مدعومة بالذكاء الاصطناعي لتغذية الحمل",
+    "smartNutrition": "تغذية الحمل الذكية",
+    "smartNutritionDesc": "خططي للوجبات، تتبعي العناصر الغذائية، واكتشفي الأطعمة الخارقة لكِ ولطفلكِ.",
+    "items": "العناصر",
+    "done": "تم",
+    "score": "النتيجة",
+    "super": "خارق",
+    "list": "القائمة",
+    "analysis": "التحليل",
+    "planner": "المخطط",
+    "addItem": "أضيفي عنصراً...",
+    "yourList": "قائمتكِ",
+    "noItems": "لا توجد عناصر بعد",
+    "clear": "مسح",
+    "categories": {
+      "all": "الكل",
+      "produce": "خضروات وفواكه",
+      "dairy": "منتجات الألبان",
+      "protein": "بروتين",
+      "grains": "حبوب",
+      "other": "أخرى"
+    }
+  },
+  "snackPlanner": {
+    "title": "مخطط الوجبات الخفيفة الذكي",
+    "subtitle": "وجبات خفيفة صحية للحمل لكل رغبة",
+    "feelingHungry": "تشعرين بالجوع؟",
+    "letAIPick": "دعينا نختار لكِ وجبة خفيفة صحية!",
+    "surpriseMe": "فاجئيني!",
+    "calories": "سعرات",
+    "prepTime": "وقت التحضير",
+    "ingredients": "المكونات",
+    "howToMake": "طريقة التحضير",
+    "categories": {
+      "all": "الكل",
+      "quick": "سريع",
+      "energy": "طاقة",
+      "protein": "بروتين",
+      "comfort": "مريح"
+    },
+    "snackingTipsTitle": "نصائح الوجبات الخفيفة الذكية",
+    "snackingTips": {
+      "tip1": "اهدفي لوجبات تجمع البروتين + الكربوهيدرات للحصول على طاقة مستدامة",
+      "tip2": "احتفظي بوجبات خفيفة محمولة في حقيبتكِ للجوع غير المتوقع",
+      "tip3": "تناولي كل 2-3 ساعات للحفاظ على استقرار سكر الدم",
+      "tip4": "حافظي على ترطيب جسمكِ - أحياناً العطش يشعركِ بالجوع"
+    }
+  },
+  "vitaminTracker": {
+    "subtitle": "تتبعي فيتامينات ما قبل الولادة اليومية",
+    "pregnancyWeek": "أسبوع الحمل",
+    "todaysProgress": "تقدم اليوم",
+    "vitaminsCount": "{{taken}} من {{total}} فيتامينات تم تناولها اليوم",
+    "aiAnalysisTitle": "تحليل الفيتامينات بالذكاء الاصطناعي",
+    "analyzeRoutine": "حللي روتيني",
+    "analyzingIntake": "جاري تحليل تناولكِ...",
+    "alreadyTaken": "تم تناوله بالفعل!",
+    "alreadyTakenDesc": "لقد سجلتِ {{name}} اليوم بالفعل.",
+    "logged": "تم تسجيل الفيتامين!",
+    "loggedDesc": "تم تسجيل {{name}}.",
+    "failedToLog": "فشل في تسجيل الفيتامين",
+    "done": "تم",
+    "take": "تناولي",
+    "thisWeek": "هذا الأسبوع",
+    "weeklyStats": "إحصائيات الأسبوع",
+    "days": "أيام",
+    "recentHistory": "السجل الأخير",
+    "tipTitle": "نصيحة احترافية",
+    "tipContent": "تناولي مكملات الحديد مع فيتامين سي لامتصاص أفضل، لكن تجنبي تناولها مع الكالسيوم."
+  },
+  "babyGear": {
+    "title": "مستلزمات الطفل",
+    "subtitle": "قائمة العناصر الأساسية لمولودكِ الجديد",
+    "essentialsProgress": "تقدم الأساسيات",
+    "itemsChecked": "{{checked}} من {{total}} عناصر تم التحقق منها",
+    "filters": {
+      "all": "كل العناصر",
+      "essential": "أساسي",
+      "recommended": "موصى به",
+      "niceToHave": "جيد امتلاكه"
+    },
+    "shoppingSummary": "ملخص التسوق",
+    "tip": "نصيحة",
+    "disclaimer": "هذا دليل عام. قد تختلف احتياجاتكِ. فكري في الاستعارة أو الشراء المستعمل للعناصر التي تُستخدم لفترة قصيرة.",
+    "categories": {
+      "essential": "أساسي",
+      "recommended": "موصى به",
+      "niceToHave": "جيد امتلاكه"
+    }
   }
 }

@@ -1504,5 +1504,129 @@
     "calculate": "Berechnen",
     "results": "Ergebnisse",
     "start": "Start"
+  },
+  "nutritionOptimizer": {
+    "title": "Intelligenter Ernährungsoptimierer",
+    "subtitle": "Personalisierte Ernährungspläne für jedes Trimester",
+    "pregnancyWeek": "Schwangerschaftswoche",
+    "trimester": "Trimester",
+    "dietaryPreference": "Ernährungspräferenz",
+    "standard": "Standard",
+    "vegetarian": "Vegetarisch",
+    "vegan": "Vegan",
+    "keyNutrients": "Wichtige Nährstoffe für Woche {{week}}",
+    "sampleMealPlan": "Beispiel-Mahlzeitenplan",
+    "breakfast": "Frühstück",
+    "lunch": "Mittagessen",
+    "snack": "Snack",
+    "dinner": "Abendessen",
+    "infoNote": "Der Nährstoffbedarf variiert. Konsultieren Sie Ihren Arzt für persönliche Beratung."
+  },
+  "smoothieAI": {
+    "title": "Schwangerschafts-Smoothie-KI",
+    "subtitle": "Nahrhafte Smoothie-Rezepte für jedes Trimester",
+    "selectTrimester": "Wählen Sie Ihr Trimester",
+    "trimester": "Trimester",
+    "createCustom": "Erstellen Sie einen individuellen KI-Smoothie",
+    "preferencePlaceholder": "Präferenzen? (z.B. proteinreich, zuckerarm)",
+    "randomRecipe": "Zufälliges Rezept",
+    "aiGenerate": "KI generieren",
+    "aiGeneratedRecipe": "KI-generiertes Rezept",
+    "ingredients": "Zutaten",
+    "instructions": "Anleitung",
+    "nutrition": "Nährwerte",
+    "allRecipes": "Alle Rezepte für Trimester {{trimester}}"
+  },
+  "groceryList": {
+    "title": "Intelligente Einkaufsliste",
+    "subtitle": "KI-gestützte Einkaufsliste für Schwangerschaftsernährung",
+    "smartNutrition": "Intelligente Schwangerschaftsernährung",
+    "smartNutritionDesc": "Planen Sie Mahlzeiten, verfolgen Sie Nährstoffe und entdecken Sie Superfoods.",
+    "items": "Artikel",
+    "done": "Erledigt",
+    "score": "Punktzahl",
+    "super": "Super",
+    "list": "Liste",
+    "analysis": "Analyse",
+    "planner": "Planer",
+    "addItem": "Artikel hinzufügen...",
+    "yourList": "Ihre Liste",
+    "noItems": "Noch keine Artikel",
+    "clear": "Löschen",
+    "categories": {
+      "all": "Alle",
+      "produce": "Obst & Gemüse",
+      "dairy": "Milchprodukte",
+      "protein": "Protein",
+      "grains": "Getreide",
+      "other": "Sonstiges"
+    }
+  },
+  "snackPlanner": {
+    "title": "Intelligenter Snack-Planer",
+    "subtitle": "Gesunde Schwangerschaftssnacks für jeden Heißhunger",
+    "feelingHungry": "Hungrig?",
+    "letAIPick": "Wir wählen einen gesunden Snack für Sie!",
+    "surpriseMe": "Überraschen Sie mich!",
+    "calories": "Kalorien",
+    "prepTime": "Zubereitungszeit",
+    "ingredients": "Zutaten",
+    "howToMake": "Zubereitung",
+    "categories": {
+      "all": "Alle",
+      "quick": "Schnell",
+      "energy": "Energie",
+      "protein": "Protein",
+      "comfort": "Comfort"
+    },
+    "snackingTipsTitle": "Intelligente Snack-Tipps",
+    "snackingTips": {
+      "tip1": "Streben Sie Snacks an, die Protein + Kohlenhydrate kombinieren",
+      "tip2": "Halten Sie tragbare Snacks in Ihrer Tasche für unerwarteten Hunger",
+      "tip3": "Essen Sie alle 2-3 Stunden für stabilen Blutzucker",
+      "tip4": "Bleiben Sie hydratisiert - manchmal fühlt sich Durst wie Hunger an"
+    }
+  },
+  "vitaminTracker": {
+    "subtitle": "Verfolgen Sie Ihre täglichen Schwangerschaftsvitamine",
+    "pregnancyWeek": "Schwangerschaftswoche",
+    "todaysProgress": "Heutiger Fortschritt",
+    "vitaminsCount": "{{taken}} von {{total}} Vitaminen heute eingenommen",
+    "aiAnalysisTitle": "KI-Vitaminanalyse",
+    "analyzeRoutine": "Routine analysieren",
+    "analyzingIntake": "Analyse Ihrer Einnahme...",
+    "alreadyTaken": "Bereits eingenommen!",
+    "alreadyTakenDesc": "Sie haben {{name}} heute bereits protokolliert.",
+    "logged": "Vitamin protokolliert!",
+    "loggedDesc": "{{name}} wurde protokolliert.",
+    "failedToLog": "Vitamin konnte nicht protokolliert werden",
+    "done": "Erledigt",
+    "take": "Nehmen",
+    "thisWeek": "diese Woche",
+    "weeklyStats": "Wochenstatistiken",
+    "days": "Tage",
+    "recentHistory": "Letzte Historie",
+    "tipTitle": "Profi-Tipp",
+    "tipContent": "Nehmen Sie Eisenpräparate mit Vitamin C für bessere Aufnahme, aber vermeiden Sie die Einnahme mit Kalzium."
+  },
+  "babyGear": {
+    "title": "Baby-Ausstattung Empfehlung",
+    "subtitle": "Checkliste für Ihren Neuankömmling",
+    "essentialsProgress": "Fortschritt bei Essentials",
+    "itemsChecked": "{{checked}} von {{total}} Artikeln abgehakt",
+    "filters": {
+      "all": "Alle Artikel",
+      "essential": "Essentiell",
+      "recommended": "Empfohlen",
+      "niceToHave": "Nice to Have"
+    },
+    "shoppingSummary": "Einkaufsübersicht",
+    "tip": "Tipp",
+    "disclaimer": "Dies ist ein allgemeiner Leitfaden. Ihre Bedürfnisse können variieren.",
+    "categories": {
+      "essential": "Essentiell",
+      "recommended": "Empfohlen",
+      "niceToHave": "Nice to Have"
+    }
   }
 }

@@ -35,46 +35,46 @@ export default function SmartNutritionOptimizer() {
     let keyNutrients: NutrientInfo[] = [];
     if (trimester === 1) {
       keyNutrients = [
-        { name: 'Folic Acid', amount: '600 mcg', benefits: 'Neural tube development', sources: ['Leafy greens', 'Fortified cereals', 'Legumes'] },
-        { name: 'Vitamin B6', amount: '1.9 mg', benefits: 'Reduces nausea', sources: ['Bananas', 'Whole grains', 'Nuts'] }
+        { name: 'folicAcid', amount: '600 mcg', benefits: 'neuralDevelopment', sources: ['leafyGreens', 'fortifiedCereals', 'legumes'] },
+        { name: 'vitaminB6', amount: '1.9 mg', benefits: 'reducesNausea', sources: ['bananas', 'wholeGrains', 'nuts'] }
       ];
     } else if (trimester === 2) {
       keyNutrients = [
-        { name: 'Calcium', amount: '1000 mg', benefits: 'Bone development', sources: ['Dairy', 'Tofu', 'Leafy greens'] },
-        { name: 'Iron', amount: '27 mg', benefits: 'Blood volume expansion', sources: ['Red meat', 'Spinach', 'Lentils'] }
+        { name: 'calcium', amount: '1000 mg', benefits: 'boneDevelopment', sources: ['dairy', 'tofu', 'leafyGreens'] },
+        { name: 'iron', amount: '27 mg', benefits: 'bloodVolume', sources: ['redMeat', 'spinach', 'lentils'] }
       ];
     } else {
       keyNutrients = [
-        { name: 'Omega-3 (DHA)', amount: '200 mg', benefits: 'Brain development', sources: ['Fatty fish', 'Walnuts', 'Chia seeds'] },
-        { name: 'Vitamin K', amount: '90 mcg', benefits: 'Blood clotting', sources: ['Kale', 'Broccoli', 'Spinach'] }
+        { name: 'omega3', amount: '200 mg', benefits: 'brainDevelopment', sources: ['fattyFish', 'walnuts', 'chiaSeeds'] },
+        { name: 'vitaminK', amount: '90 mcg', benefits: 'bloodClotting', sources: ['kale', 'broccoli', 'spinach'] }
       ];
     }
 
     const baseMeals = {
       standard: {
-        breakfast: ['Oatmeal with berries', 'Greek yogurt parfait'],
-        lunch: ['Grilled chicken salad', 'Quinoa bowl with veggies'],
-        dinner: ['Baked salmon with asparagus', 'Lean beef stir-fry'],
-        snack: ['Apple slices with almond butter', 'Hard-boiled egg']
+        breakfast: ['oatmealBerries', 'greekYogurtParfait'],
+        lunch: ['grilledChickenSalad', 'quinoaBowl'],
+        dinner: ['bakedSalmon', 'leanBeefStirFry'],
+        snack: ['appleAlmondButter', 'hardBoiledEgg']
       },
       vegetarian: {
-        breakfast: ['Smoothie bowl with seeds', 'Avocado toast'],
-        lunch: ['Lentil soup', 'Spinach and feta salad'],
-        dinner: ['Vegetable stir-fry with tofu', 'Chickpea curry'],
-        snack: ['Hummus with carrots', 'Handful of walnuts']
+        breakfast: ['smoothieBowl', 'avocadoToast'],
+        lunch: ['lentilSoup', 'spinachFetaSalad'],
+        dinner: ['vegStirFryTofu', 'chickpeaCurry'],
+        snack: ['hummusCarrots', 'handfulWalnuts']
       },
       vegan: {
-        breakfast: ['Chia pudding with almond milk', 'Tofu scramble'],
-        lunch: ['Black bean burrito bowl', 'Kale salad with tahini'],
-        dinner: ['Lentil bolognese', 'Tempeh stir-fry'],
-        snack: ['Mixed nuts', 'Banana']
+        breakfast: ['chiaPudding', 'tofuScramble'],
+        lunch: ['blackBeanBurrito', 'kaleSaladTahini'],
+        dinner: ['lentilBolognese', 'tempehStirFry'],
+        snack: ['mixedNuts', 'banana']
       }
     };
 
     const selectedPlan = baseMeals[diet as keyof typeof baseMeals] || baseMeals.standard;
 
     if (trimester > 1) {
-      selectedPlan.snack.push('Extra fruit or yogurt (300+ kcal)');
+      selectedPlan.snack.push('extraFruit');
     }
 
     setPlan(selectedPlan);
@@ -98,8 +98,8 @@ export default function SmartNutritionOptimizer() {
 
   return (
     <ToolFrame
-      title={t('toolsInternal.nutritionOptimizer.title')}
-      subtitle={t('toolsInternal.nutritionOptimizer.subtitle')}
+      title={t('nutritionOptimizer.title')}
+      subtitle={t('nutritionOptimizer.subtitle')}
       icon={Salad}
       mood="joyful"
       toolId="smart-nutrition"
@@ -109,7 +109,7 @@ export default function SmartNutritionOptimizer() {
           <CardContent className="p-4 space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2">
-                {t('toolsInternal.nutritionOptimizer.pregnancyWeek')}: <span className="text-primary font-bold">{currentWeek}</span>
+                {t('nutritionOptimizer.pregnancyWeek')}: <span className="text-primary font-bold">{currentWeek}</span>
               </label>
               <input
                 type="range"
@@ -121,13 +121,13 @@ export default function SmartNutritionOptimizer() {
               />
               <div className="flex justify-between text-xs text-muted-foreground mt-1">
                 <span>{t('common.week')} 4</span>
-                <span className="font-medium text-primary">{t('toolsInternal.nutritionOptimizer.trimester')} {trimester}</span>
+                <span className="font-medium text-primary">{t('nutritionOptimizer.trimester')} {trimester}</span>
                 <span>{t('common.week')} 42</span>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">{t('toolsInternal.nutritionOptimizer.dietaryPreference')}</label>
+              <label className="block text-sm font-medium mb-2">{t('nutritionOptimizer.dietaryPreference')}</label>
               <div className="flex flex-wrap gap-2">
                 {['standard', 'vegetarian', 'vegan'].map((type) => (
                   <button
@@ -139,7 +139,7 @@ export default function SmartNutritionOptimizer() {
                         : 'bg-muted hover:bg-muted/80 border-transparent'
                     }`}
                   >
-                    {t(`toolsInternal.nutritionOptimizer.${type}`)}
+                    {t(`nutritionOptimizer.${type}`)}
                   </button>
                 ))}
               </div>
@@ -152,20 +152,20 @@ export default function SmartNutritionOptimizer() {
             <CardContent className="p-4 space-y-4">
               <h3 className="font-semibold flex items-center gap-2">
                 <Apple className="w-5 h-5 text-primary" />
-                {t('toolsInternal.nutritionOptimizer.keyNutrients', { week: currentWeek })}
+                {t('nutritionOptimizer.keyNutrients', { week: currentWeek })}
               </h3>
               <div className="space-y-3">
                 {nutrients.map((nutrient, idx) => (
                   <div key={idx} className="bg-muted/50 rounded-xl p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-medium">{nutrient.name}</span>
+                      <span className="font-medium">{t(`nutritionOptimizer.nutrients.${nutrient.name}`)}</span>
                       <span className="text-sm text-primary font-semibold">{nutrient.amount}</span>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-2">{nutrient.benefits}</p>
+                    <p className="text-sm text-muted-foreground mb-2">{t(`nutritionOptimizer.benefits.${nutrient.benefits}`)}</p>
                     <div className="flex flex-wrap gap-1">
                       {nutrient.sources.map((source, i) => (
                         <span key={i} className="text-xs px-2 py-1 bg-background rounded-full">
-                          {source}
+                          {t(`nutritionOptimizer.sources.${source}`)}
                         </span>
                       ))}
                     </div>
@@ -181,19 +181,19 @@ export default function SmartNutritionOptimizer() {
             <CardContent className="p-4 space-y-4">
               <h3 className="font-semibold flex items-center gap-2">
                 <ShoppingBasket className="w-5 h-5 text-primary" />
-                {t('toolsInternal.nutritionOptimizer.sampleMealPlan')}
+                {t('nutritionOptimizer.sampleMealPlan')}
               </h3>
               
               {(['breakfast', 'lunch', 'snack', 'dinner'] as const).map((meal) => (
                 <div key={meal} className="bg-muted/50 rounded-xl p-4">
                   <h4 className="font-medium capitalize mb-2">
-                    {t(`toolsInternal.nutritionOptimizer.${meal}`)}
+                    {t(`nutritionOptimizer.${meal}`)}
                   </h4>
                   <ul className="space-y-1">
                     {plan[meal].map((item, i) => (
                       <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
                         <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                        {item}
+                        {t(`nutritionOptimizer.meals.${item}`)}
                       </li>
                     ))}
                   </ul>
@@ -208,7 +208,7 @@ export default function SmartNutritionOptimizer() {
             <div className="flex items-start gap-3">
               <Info className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
               <p className="text-sm text-muted-foreground">
-                {t('toolsInternal.nutritionOptimizer.infoNote')}
+                {t('nutritionOptimizer.infoNote')}
               </p>
             </div>
           </CardContent>

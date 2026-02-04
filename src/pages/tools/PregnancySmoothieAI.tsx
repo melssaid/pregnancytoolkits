@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -19,14 +20,14 @@ interface Smoothie {
   trimester: number[];
 }
 
-const smoothies: Smoothie[] = [
+const smoothieData = [
   {
     id: '1',
-    name: 'Morning Energy Boost',
-    benefit: 'Fights fatigue and provides sustained energy',
+    nameKey: 'morningEnergy',
+    benefitKey: 'fightsFatigue',
     icon: Sun,
-    ingredients: ['1 banana', '1 cup spinach', '1/2 cup Greek yogurt', '1 tbsp almond butter', '1 cup almond milk', '1 tbsp honey'],
-    instructions: 'Blend all ingredients until smooth. Add ice for a colder smoothie.',
+    ingredientKeys: ['1banana', '1cupSpinach', 'halfCupGreekYogurt', '1tbspAlmondButter', '1cupAlmondMilk', '1tbspHoney'],
+    instructionsKey: 'morningEnergyInstructions',
     nutrients: [
       { name: 'Folate', value: '25% DV' },
       { name: 'Iron', value: '15% DV' },
@@ -37,11 +38,11 @@ const smoothies: Smoothie[] = [
   },
   {
     id: '2',
-    name: 'Iron Power Blend',
-    benefit: 'Boosts iron levels and prevents anemia',
+    nameKey: 'ironPower',
+    benefitKey: 'boostsIron',
     icon: Heart,
-    ingredients: ['1 cup strawberries', '1/2 cup beets (cooked)', '1 orange', '1/2 cup pomegranate juice', '1 tbsp chia seeds'],
-    instructions: 'Blend beets first with juice, then add remaining ingredients.',
+    ingredientKeys: ['1cupStrawberries', 'halfCupBeets', '1orange', 'halfCupPomegranate', '1tbspChiaSeeds'],
+    instructionsKey: 'ironPowerInstructions',
     nutrients: [
       { name: 'Iron', value: '30% DV' },
       { name: 'Vitamin C', value: '100% DV' },
@@ -51,11 +52,11 @@ const smoothies: Smoothie[] = [
   },
   {
     id: '3',
-    name: 'Sleep Better Smoothie',
-    benefit: 'Promotes relaxation and better sleep',
+    nameKey: 'sleepBetter',
+    benefitKey: 'promotesSleep',
     icon: Moon,
-    ingredients: ['1 banana', '1 cup cherries', '1/2 cup milk', '1 tbsp honey', '1/4 tsp cinnamon', '1 tbsp oats'],
-    instructions: 'Blend until smooth. Best consumed 1 hour before bed.',
+    ingredientKeys: ['1banana', '1cupCherries', 'halfCupMilk', '1tbspHoney', 'quarterTspCinnamon', '1tbspOats'],
+    instructionsKey: 'sleepBetterInstructions',
     nutrients: [
       { name: 'Melatonin', value: 'Natural' },
       { name: 'Magnesium', value: '15% DV' },
@@ -65,11 +66,11 @@ const smoothies: Smoothie[] = [
   },
   {
     id: '4',
-    name: 'Nausea Relief Green',
-    benefit: 'Helps calm morning sickness',
+    nameKey: 'nauseaRelief',
+    benefitKey: 'calmsNausea',
     icon: Zap,
-    ingredients: ['1/2 cucumber', '1 green apple', '1 inch fresh ginger', '1/2 lemon (juiced)', '1 cup coconut water', 'Fresh mint leaves'],
-    instructions: 'Blend ginger with coconut water first, then add remaining ingredients.',
+    ingredientKeys: ['halfCucumber', '1greenApple', '1inchGinger', 'halfLemon', '1cupCoconutWater', 'freshMint'],
+    instructionsKey: 'nauseaReliefInstructions',
     nutrients: [
       { name: 'Electrolytes', value: 'High' },
       { name: 'Vitamin K', value: '25% DV' },
@@ -79,11 +80,11 @@ const smoothies: Smoothie[] = [
   },
   {
     id: '5',
-    name: 'Brain Builder Blend',
-    benefit: 'Supports baby brain development with Omega-3s',
+    nameKey: 'brainBuilder',
+    benefitKey: 'brainDev',
     icon: Sparkles,
-    ingredients: ['1 cup blueberries', '1/4 avocado', '1 tbsp flaxseed', '1 tbsp walnuts', '1 cup milk', '1 tbsp maple syrup'],
-    instructions: 'Blend walnuts and flaxseed first, then add remaining ingredients.',
+    ingredientKeys: ['1cupBlueberries', 'quarterAvocado', '1tbspFlaxseed', '1tbspWalnuts', '1cupMilk', '1tbspMapleSyrup'],
+    instructionsKey: 'brainBuilderInstructions',
     nutrients: [
       { name: 'Omega-3', value: '1.5g' },
       { name: 'DHA', value: '200mg' },
@@ -93,11 +94,11 @@ const smoothies: Smoothie[] = [
   },
   {
     id: '6',
-    name: 'Calcium Crush',
-    benefit: 'Strengthens bones for you and baby',
+    nameKey: 'calciumCrush',
+    benefitKey: 'strengthensBones',
     icon: Heart,
-    ingredients: ['1 cup Greek yogurt', '1 banana', '2 tbsp almond butter', '1 cup fortified almond milk', '1 tbsp sesame seeds', 'Honey to taste'],
-    instructions: 'Blend all ingredients until creamy smooth.',
+    ingredientKeys: ['1cupGreekYogurt', '1banana', '2tbspAlmondButter', '1cupFortifiedAlmondMilk', '1tbspSesameSeeds', 'honeyToTaste'],
+    instructionsKey: 'calciumCrushInstructions',
     nutrients: [
       { name: 'Calcium', value: '45% DV' },
       { name: 'Protein', value: '18g' },
@@ -108,9 +109,10 @@ const smoothies: Smoothie[] = [
 ];
 
 export default function PregnancySmoothieAI() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedTrimester, setSelectedTrimester] = useState(2);
-  const [currentSmoothie, setCurrentSmoothie] = useState<Smoothie | null>(null);
+  const [currentSmoothie, setCurrentSmoothie] = useState<typeof smoothieData[0] | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [showAIRecipe, setShowAIRecipe] = useState(false);
   const [aiResponse, setAiResponse] = useState('');
@@ -119,7 +121,7 @@ export default function PregnancySmoothieAI() {
   const { streamChat, isLoading, error } = usePregnancyAI();
 
   const getRandomSmoothie = () => {
-    const filtered = smoothies.filter(s => s.trimester.includes(selectedTrimester));
+    const filtered = smoothieData.filter(s => s.trimester.includes(selectedTrimester));
     const random = filtered[Math.floor(Math.random() * filtered.length)];
     setCurrentSmoothie(random);
     setShowAIRecipe(false);
@@ -150,12 +152,12 @@ export default function PregnancySmoothieAI() {
     );
   };
 
-  const filteredSmoothies = smoothies.filter(s => s.trimester.includes(selectedTrimester));
+  const filteredSmoothies = smoothieData.filter(s => s.trimester.includes(selectedTrimester));
 
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Pregnancy Smoothie AI"
+        toolName={t('smoothieAI.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -163,8 +165,8 @@ export default function PregnancySmoothieAI() {
 
   return (
     <ToolFrame
-      title="Pregnancy Smoothie AI"
-      subtitle="Nutritious smoothie recipes for each trimester"
+      title={t('smoothieAI.title')}
+      subtitle={t('smoothieAI.subtitle')}
       mood="joyful"
       toolId="smoothie-ai"
       icon={CupSoda}
@@ -173,19 +175,19 @@ export default function PregnancySmoothieAI() {
           {/* Trimester Selection */}
           <Card>
             <CardContent className="p-4">
-              <h3 className="font-semibold mb-3">Select Your Trimester</h3>
+              <h3 className="font-semibold mb-3">{t('smoothieAI.selectTrimester')}</h3>
               <div className="grid grid-cols-3 gap-2">
-                {[1, 2, 3].map(t => (
+                {[1, 2, 3].map(tri => (
                   <Button
-                    key={t}
-                    variant={selectedTrimester === t ? 'default' : 'outline'}
+                    key={tri}
+                    variant={selectedTrimester === tri ? 'default' : 'outline'}
                     onClick={() => {
-                      setSelectedTrimester(t);
+                      setSelectedTrimester(tri);
                       setCurrentSmoothie(null);
                       setShowAIRecipe(false);
                     }}
                   >
-                    Trimester {t}
+                    {t('smoothieAI.trimester')} {tri}
                   </Button>
                 ))}
               </div>
@@ -195,10 +197,10 @@ export default function PregnancySmoothieAI() {
           {/* AI Generator */}
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
             <CardContent className="p-6 text-center">
-              <h3 className="font-semibold mb-3">Create a Custom AI Smoothie</h3>
+              <h3 className="font-semibold mb-3">{t('smoothieAI.createCustom')}</h3>
               <input
                 type="text"
-                placeholder="Any preferences? (e.g., high protein, low sugar)"
+                placeholder={t('smoothieAI.preferencePlaceholder')}
                 value={preference}
                 onChange={(e) => setPreference(e.target.value)}
                 className="w-full p-2 mb-3 rounded-lg border border-border bg-background text-sm"
@@ -206,7 +208,7 @@ export default function PregnancySmoothieAI() {
               <div className="flex gap-2">
                 <Button onClick={getRandomSmoothie} variant="outline" className="flex-1">
                   <RefreshCw className="w-4 h-4 mr-2" />
-                  Random Recipe
+                  {t('smoothieAI.randomRecipe')}
                 </Button>
                 <Button onClick={generateAISmoothie} disabled={isLoading} className="flex-1">
                   {isLoading ? (
@@ -214,7 +216,7 @@ export default function PregnancySmoothieAI() {
                   ) : (
                     <Brain className="w-4 h-4 mr-2" />
                   )}
-                  AI Generate
+                  {t('smoothieAI.aiGenerate')}
                 </Button>
               </div>
             </CardContent>
@@ -226,7 +228,7 @@ export default function PregnancySmoothieAI() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">AI-Generated Recipe</h3>
+                  <h3 className="font-semibold">{t('smoothieAI.aiGeneratedRecipe')}</h3>
                 </div>
                 <MarkdownRenderer content={aiResponse} />
               </CardContent>
@@ -251,8 +253,8 @@ export default function PregnancySmoothieAI() {
                       <currentSmoothie.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg">{currentSmoothie.name}</h3>
-                      <p className="text-sm text-muted-foreground">{currentSmoothie.benefit}</p>
+                      <h3 className="font-bold text-lg">{t(`smoothieAI.smoothies.${currentSmoothie.nameKey}`)}</h3>
+                      <p className="text-sm text-muted-foreground">{t(`smoothieAI.benefits.${currentSmoothie.benefitKey}`)}</p>
                     </div>
                   </div>
                   <Button
@@ -266,9 +268,9 @@ export default function PregnancySmoothieAI() {
 
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-medium mb-2">Ingredients:</h4>
+                    <h4 className="font-medium mb-2">{t('smoothieAI.ingredients')}:</h4>
                     <ul className="space-y-1">
-                      {currentSmoothie.ingredients.map((ing, i) => (
+                      {currentSmoothie.ingredientKeys.map((ing, i) => (
                         <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                           {ing}
@@ -278,12 +280,12 @@ export default function PregnancySmoothieAI() {
                   </div>
 
                   <div>
-                    <h4 className="font-medium mb-2">Instructions:</h4>
-                    <p className="text-sm text-muted-foreground">{currentSmoothie.instructions}</p>
+                    <h4 className="font-medium mb-2">{t('smoothieAI.instructions')}:</h4>
+                    <p className="text-sm text-muted-foreground">{currentSmoothie.instructionsKey}</p>
                   </div>
 
                   <div>
-                    <h4 className="font-medium mb-2">Nutrition:</h4>
+                    <h4 className="font-medium mb-2">{t('smoothieAI.nutrition')}:</h4>
                     <div className="flex flex-wrap gap-2">
                       {currentSmoothie.nutrients.map((n, i) => (
                         <Badge key={i} variant="secondary">
@@ -299,7 +301,7 @@ export default function PregnancySmoothieAI() {
 
           {/* All Recipes */}
           <div className="space-y-4">
-            <h3 className="font-semibold">All Recipes for Trimester {selectedTrimester}</h3>
+            <h3 className="font-semibold">{t('smoothieAI.allRecipes', { trimester: selectedTrimester })}</h3>
             {filteredSmoothies.map(smoothie => (
               <Card 
                 key={smoothie.id}
@@ -315,8 +317,8 @@ export default function PregnancySmoothieAI() {
                       <smoothie.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-medium">{smoothie.name}</h4>
-                      <p className="text-xs text-muted-foreground">{smoothie.benefit}</p>
+                      <h4 className="font-medium">{t(`smoothieAI.smoothies.${smoothie.nameKey}`)}</h4>
+                      <p className="text-xs text-muted-foreground">{t(`smoothieAI.benefits.${smoothie.benefitKey}`)}</p>
                     </div>
                     {favorites.includes(smoothie.id) && (
                       <Heart className="w-4 h-4 fill-primary text-primary" />
