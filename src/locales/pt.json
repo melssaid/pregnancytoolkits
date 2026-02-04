@@ -229,6 +229,25 @@
       "diapers": "fraldas",
       "items": "itens"
     },
+    "quickStats": {
+      "weight": "Peso",
+      "lastRecorded": "Último registro",
+      "kicksToday": "Chutes hoje",
+      "goal": "Meta: {{goal}}",
+      "goalReached": "Meta alcançada!",
+      "mood": "Humor",
+      "howYouFeel": "Como você se sente",
+      "water": "Água",
+      "glassesToday": "Copos hoje",
+      "nextAppointment": "Próxima consulta",
+      "moods": {
+        "excellent": "Excelente",
+        "good": "Bom",
+        "normal": "Normal",
+        "anxious": "Ansiosa",
+        "tired": "Cansada"
+      }
+    },
     "aiTools": "Ferramentas com IA",
     "aiToolsList": {
       "smartPlan": "Plano inteligente",

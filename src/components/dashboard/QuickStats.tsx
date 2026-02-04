@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import { Scale, Activity, Heart, Droplets, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface StatCard {
   id: string;
   icon: React.ComponentType<{ className?: string }>;
-  label: string;
+  labelKey: string;
   value: string;
-  subtext?: string;
+  subtextKey?: string;
+  subtextParams?: Record<string, unknown>;
   href: string;
   color: string;
 }
@@ -23,44 +25,47 @@ interface QuickStatsProps {
 export function QuickStats({ 
   weight = 0, 
   kicks = 0, 
-  mood = "Good",
+  mood = "",
   waterGlasses = 0,
   nextAppointment
 }: QuickStatsProps) {
+  const { t } = useTranslation();
+  
   const stats: StatCard[] = [
     {
       id: "weight",
       icon: Scale,
-      label: "Weight",
+      labelKey: "dashboard.quickStats.weight",
       value: weight > 0 ? `${weight} kg` : "—",
-      subtext: "Last recorded",
+      subtextKey: "dashboard.quickStats.lastRecorded",
       href: "/tools/weight-gain",
       color: "from-blue-500 to-indigo-500"
     },
     {
       id: "kicks",
       icon: Activity,
-      label: "Kicks Today",
+      labelKey: "dashboard.quickStats.kicksToday",
       value: kicks > 0 ? String(kicks) : "—",
-      subtext: kicks >= 10 ? "Goal reached!" : "Goal: 10",
+      subtextKey: kicks >= 10 ? "dashboard.quickStats.goalReached" : "dashboard.quickStats.goal",
+      subtextParams: { goal: 10 },
       href: "/tools/kick-counter",
       color: "from-green-500 to-emerald-500"
     },
     {
       id: "mood",
       icon: Heart,
-      label: "Mood",
-      value: mood || "—",
-      subtext: "How you feel",
+      labelKey: "dashboard.quickStats.mood",
+      value: mood ? t(`dashboard.quickStats.moods.${mood.toLowerCase()}`, mood) : "—",
+      subtextKey: "dashboard.quickStats.howYouFeel",
       href: "/tools/mental-health-coach",
       color: "from-pink-500 to-rose-500"
     },
     {
       id: "water",
       icon: Droplets,
-      label: "Water",
+      labelKey: "dashboard.quickStats.water",
       value: `${waterGlasses}/10`,
-      subtext: "Glasses today",
+      subtextKey: "dashboard.quickStats.glassesToday",
       href: "/tools/vitamin-tracker",
       color: "from-cyan-500 to-blue-500"
     },
@@ -90,9 +95,11 @@ export function QuickStats({
                 <p className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                   {stat.value}
                 </p>
-                <p className="text-xs text-muted-foreground mt-0.5">{stat.label}</p>
-                {stat.subtext && (
-                  <p className="text-[10px] text-muted-foreground/70 mt-1">{stat.subtext}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{t(stat.labelKey)}</p>
+                {stat.subtextKey && (
+                  <p className="text-[10px] text-muted-foreground/70 mt-1">
+                    {t(stat.subtextKey, stat.subtextParams)}
+                  </p>
                 )}
               </div>
             </Link>
@@ -117,7 +124,7 @@ export function QuickStats({
             </div>
             <div className="flex-1">
               <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                Next Appointment
+                {t("dashboard.quickStats.nextAppointment")}
               </p>
               <p className="text-xs text-muted-foreground">{nextAppointment}</p>
             </div>

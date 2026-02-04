@@ -229,6 +229,25 @@
       "diapers": "diapers",
       "items": "items"
     },
+    "quickStats": {
+      "weight": "Weight",
+      "lastRecorded": "Last recorded",
+      "kicksToday": "Kicks Today",
+      "goal": "Goal: {{goal}}",
+      "goalReached": "Goal reached!",
+      "mood": "Mood",
+      "howYouFeel": "How you feel",
+      "water": "Water",
+      "glassesToday": "Glasses today",
+      "nextAppointment": "Next Appointment",
+      "moods": {
+        "excellent": "Excellent",
+        "good": "Good",
+        "normal": "Normal",
+        "anxious": "Anxious",
+        "tired": "Tired"
+      }
+    },
     "aiTools": "AI-Powered Tools",
     "aiToolsList": {
       "smartPlan": "Smart Plan",

@@ -229,6 +229,25 @@
       "diapers": "pañales",
       "items": "artículos"
     },
+    "quickStats": {
+      "weight": "Peso",
+      "lastRecorded": "Último registro",
+      "kicksToday": "Patadas hoy",
+      "goal": "Meta: {{goal}}",
+      "goalReached": "¡Meta alcanzada!",
+      "mood": "Ánimo",
+      "howYouFeel": "Cómo te sientes",
+      "water": "Agua",
+      "glassesToday": "Vasos hoy",
+      "nextAppointment": "Próxima cita",
+      "moods": {
+        "excellent": "Excelente",
+        "good": "Bien",
+        "normal": "Normal",
+        "anxious": "Ansiosa",
+        "tired": "Cansada"
+      }
+    },
     "aiTools": "Herramientas con IA",
     "aiToolsList": {
       "smartPlan": "Plan inteligente",

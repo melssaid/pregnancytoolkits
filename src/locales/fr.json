@@ -229,6 +229,25 @@
       "diapers": "couches",
       "items": "articles"
     },
+    "quickStats": {
+      "weight": "Poids",
+      "lastRecorded": "Dernier enregistrement",
+      "kicksToday": "Coups aujourd'hui",
+      "goal": "Objectif: {{goal}}",
+      "goalReached": "Objectif atteint!",
+      "mood": "Humeur",
+      "howYouFeel": "Comment vous vous sentez",
+      "water": "Eau",
+      "glassesToday": "Verres aujourd'hui",
+      "nextAppointment": "Prochain rendez-vous",
+      "moods": {
+        "excellent": "Excellent",
+        "good": "Bien",
+        "normal": "Normal",
+        "anxious": "Anxieux",
+        "tired": "Fatigué"
+      }
+    },
     "aiTools": "Outils alimentés par l'IA",
     "aiToolsList": {
       "smartPlan": "Plan intelligent",
