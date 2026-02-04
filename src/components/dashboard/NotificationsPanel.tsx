@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Bell, X, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, 
   Sparkles, ChevronRight, HardDrive, BellRing, Volume2, VolumeX,
-  Clock, Zap, Shield, Pin
+  Clock, Zap, Shield, Pin, AlertTriangle, Stethoscope
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -12,6 +12,12 @@ import { useNotifications, Notification } from '@/hooks/useNotifications';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { useTranslation } from 'react-i18next';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 const typeIcons: Record<string, any> = {
   appointment: Calendar,
@@ -49,16 +55,18 @@ const typeBgColors: Record<string, string> = {
   disclaimer: 'bg-amber-500/10 border-amber-500/20',
 };
 
-function NotificationItem({ notification, onRead, onClear, index }: { 
+function NotificationItem({ notification, onRead, onClear, index, onDisclaimerClick }: { 
   notification: Notification; 
   onRead: () => void;
   onClear: () => void;
   index: number;
+  onDisclaimerClick?: () => void;
 }) {
   const Icon = typeIcons[notification.type] || Bell;
   const gradientClass = typeColors[notification.type] || 'from-primary to-accent';
   const bgClass = typeBgColors[notification.type] || 'bg-primary/10 border-primary/20';
   const isPinned = notification.isPinned;
+  const isDisclaimer = notification.type === 'disclaimer';
   
   const timeAgo = () => {
     if (isPinned) return '';
@@ -70,6 +78,15 @@ function NotificationItem({ notification, onRead, onClear, index }: {
     if (hours > 0) return `${hours}h`;
     if (minutes > 0) return `${minutes}m`;
     return 'Now';
+  };
+
+  const handleActionClick = (e: React.MouseEvent) => {
+    if (isDisclaimer && onDisclaimerClick) {
+      e.preventDefault();
+      onDisclaimerClick();
+    } else {
+      onRead();
+    }
   };
 
   return (
@@ -127,7 +144,14 @@ function NotificationItem({ notification, onRead, onClear, index }: {
           
           <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{notification.message}</p>
           
-          {notification.actionUrl && (
+          {isDisclaimer ? (
+            <button 
+              onClick={handleActionClick}
+              className="inline-flex items-center gap-1 mt-2 text-xs font-medium text-primary hover:underline"
+            >
+              View Details <ChevronRight className="w-3 h-3" />
+            </button>
+          ) : notification.actionUrl && (
             <Link 
               to={notification.actionUrl} 
               onClick={onRead}
@@ -186,6 +210,7 @@ export function NotificationsPanel() {
   
   const [showSettings, setShowSettings] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
+  const [showDisclaimerDialog, setShowDisclaimerDialog] = useState(false);
 
   // Pinned default notifications (always shown)
   const pinnedNotifications: Notification[] = useMemo(() => [
@@ -380,6 +405,7 @@ export function NotificationsPanel() {
                   onRead={() => markAsRead(notification.id)}
                   onClear={() => clearNotification(notification.id)}
                   index={index}
+                  onDisclaimerClick={() => setShowDisclaimerDialog(true)}
                 />
               ))}
             </AnimatePresence>
@@ -406,6 +432,69 @@ export function NotificationsPanel() {
           </div>
         )}
       </CardContent>
+
+      {/* Medical Disclaimer Dialog */}
+      <Dialog open={showDisclaimerDialog} onOpenChange={setShowDisclaimerDialog}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-amber-600">
+              <Stethoscope className="w-5 h-5" />
+              {isArabic ? 'إخلاء المسؤولية الطبية' : 'Medical Disclaimer'}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 text-sm">
+            <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/20">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                <p className="text-muted-foreground">
+                  {isArabic 
+                    ? 'هذا التطبيق مخصص للأغراض التعليمية والمعلوماتية فقط ولا يُقدم نصائح طبية أو تشخيصية أو علاجية.'
+                    : 'This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment.'}
+                </p>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <h4 className="font-semibold text-foreground">
+                {isArabic ? 'يرجى الانتباه:' : 'Please note:'}
+              </h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  {isArabic 
+                    ? 'استشيري طبيبتك دائماً قبل اتخاذ أي قرار صحي.'
+                    : 'Always consult your healthcare provider before making any health decisions.'}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  {isArabic 
+                    ? 'نتائج الأدوات الذكية للمعلومات العامة فقط.'
+                    : 'AI tool results are for general information only.'}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  {isArabic 
+                    ? 'في حالات الطوارئ، اتصلي بالإسعاف أو اذهبي لأقرب مستشفى.'
+                    : 'In emergencies, call emergency services or go to the nearest hospital.'}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  {isArabic 
+                    ? 'بياناتك محفوظة محلياً على جهازك فقط.'
+                    : 'Your data is stored locally on your device only.'}
+                </li>
+              </ul>
+            </div>
+            
+            <Button 
+              onClick={() => setShowDisclaimerDialog(false)} 
+              className="w-full"
+            >
+              {isArabic ? 'فهمت' : 'I Understand'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }
