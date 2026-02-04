@@ -1349,5 +1349,39 @@
       "hotFlashes": "الهبات الساخنة",
       "snoring": "الشخير/مشاكل التنفس"
     }
+  },
+  "weeklySummary": {
+    "subtitle": "تتبع أسبوعي ذكي لحملك",
+    "daysToGo": "{{days}} يوم متبقي",
+    "pregnancyWeek": "أسبوع الحمل",
+    "week": "الأسبوع {{week}}",
+    "showSummary": "عرض ملخص الأسبوع {{week}}",
+    "babyGrowth": "نمو الطفل",
+    "momsHealth": "صحة الأم",
+    "checkups": "الفحوصات",
+    "normal": "طبيعي",
+    "good": "جيد",
+    "complete": "مكتمل",
+    "weekSummary": "ملخص الأسبوع {{week}}",
+    "differentWeek": "أسبوع آخر",
+    "refresh": "تحديث",
+    "trackTip": "تتبعي أسبوعك للحصول على معلومات مخصصة عن نمو طفلك وتغيرات جسمك",
+    "approximatelyRemaining": "حوالي {{days}} يوم متبقي",
+    "trimester": {
+      "first": "الثلث الأول",
+      "second": "الثلث الثاني",
+      "third": "الثلث الثالث"
+    }
+  },
+  "aiInsights": {
+    "title": "رؤى الذكاء الاصطناعي",
+    "getInsights": "احصلي على رؤى الذكاء الاصطناعي",
+    "analyze": "تحليل",
+    "regenerate": "إعادة الإنشاء",
+    "personalizedRec": "توصيات مخصصة",
+    "analyzing": "جاري التحليل...",
+    "generatingInsights": "جاري إنشاء رؤى مخصصة...",
+    "clickToExpand": "اضغطي للتوسيع",
+    "clickToCollapse": "اضغطي للطي"
   }
 }

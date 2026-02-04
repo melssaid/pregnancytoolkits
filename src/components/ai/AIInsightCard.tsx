@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Brain, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -20,18 +21,22 @@ interface AIInsightCardProps {
 }
 
 export const AIInsightCard: React.FC<AIInsightCardProps> = ({
-  title = 'AI Insights',
+  title,
   prompt,
   context,
-  buttonText = 'Get AI Insights',
+  buttonText,
   icon,
   variant = 'default',
   autoExpand = false,
 }) => {
+  const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const [insight, setInsight] = useState('');
   const [isExpanded, setIsExpanded] = useState(autoExpand);
   const [hasGenerated, setHasGenerated] = useState(false);
+
+  const displayTitle = title || t('toolsInternal.aiInsights.title');
+  const displayButtonText = buttonText || t('toolsInternal.aiInsights.getInsights');
 
   const generateInsight = async () => {
     if (isLoading) return;
@@ -64,7 +69,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
             ) : (
               icon || <Sparkles className="h-4 w-4 text-violet-500" />
             )}
-            {buttonText}
+            {displayButtonText}
           </Button>
         )}
 
@@ -80,7 +85,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                   {isLoading && !insight && (
                     <div className="flex items-center gap-2 text-violet-600">
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      <span className="text-sm">Analyzing...</span>
+                      <span className="text-sm">{t('toolsInternal.aiInsights.analyzing')}</span>
                     </div>
                   )}
                   {insight && <MarkdownRenderer content={insight} />}
@@ -112,8 +117,8 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                 {icon || <Brain className="w-6 h-6" />}
               </motion.div>
               <div>
-                <h3 className="font-semibold text-lg">{title}</h3>
-                <p className="text-white/80 text-sm">Personalized recommendations</p>
+                <h3 className="font-semibold text-lg">{displayTitle}</h3>
+                <p className="text-white/80 text-sm">{t('toolsInternal.aiInsights.personalizedRec')}</p>
               </div>
             </div>
             <Button
@@ -125,7 +130,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                'Analyze'
+                t('toolsInternal.aiInsights.analyze')
               )}
             </Button>
           </div>
@@ -161,10 +166,10 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               {icon || <Sparkles className="w-4 h-4 text-white" />}
             </div>
             <div>
-              <h3 className="font-semibold text-foreground">{title}</h3>
+              <h3 className="font-semibold text-foreground">{displayTitle}</h3>
               {hasGenerated && (
                 <p className="text-xs text-muted-foreground">
-                  Click to {isExpanded ? 'collapse' : 'expand'}
+                  {isExpanded ? t('toolsInternal.aiInsights.clickToCollapse') : t('toolsInternal.aiInsights.clickToExpand')}
                 </p>
               )}
             </div>
@@ -185,7 +190,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               ) : (
                 <>
                   <Sparkles className="h-3 w-3" />
-                  Analyze
+                  {t('toolsInternal.aiInsights.analyze')}
                 </>
               )}
             </Button>
@@ -207,7 +212,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               {isLoading && !insight && (
                 <div className="flex items-center gap-2 text-violet-600">
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="text-sm">Generating personalized insights...</span>
+                  <span className="text-sm">{t('toolsInternal.aiInsights.generatingInsights')}</span>
                 </div>
               )}
               {insight && <MarkdownRenderer content={insight} />}
@@ -223,7 +228,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                   className="mt-3 text-violet-600"
                 >
                   <Sparkles className="h-3 w-3 mr-1" />
-                  Regenerate
+                  {t('toolsInternal.aiInsights.regenerate')}
                 </Button>
               )}
             </motion.div>
