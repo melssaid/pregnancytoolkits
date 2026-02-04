@@ -9,136 +9,28 @@ import { Package, Check, Star, Filter, Baby, ShoppingBag, Home, Car, Heart } fro
 
 interface GearItem {
   id: string;
-  name: string;
+  nameKey: string;
   category: 'essential' | 'recommended' | 'nice-to-have';
   type: 'feeding' | 'sleeping' | 'travel' | 'clothing' | 'health' | 'nursery';
-  description: string;
+  descriptionKey: string;
   priceRange: '$' | '$$' | '$$$';
-  tips: string;
-  whenNeeded: string;
+  tipsKey: string;
+  whenNeededKey: string;
 }
 
 const gearList: GearItem[] = [
-  {
-    id: '1',
-    name: 'Car Seat (Infant)',
-    category: 'essential',
-    type: 'travel',
-    description: 'Required for bringing baby home from hospital',
-    priceRange: '$$',
-    tips: 'Look for one that clicks into a stroller. Check expiration dates.',
-    whenNeeded: 'Before birth'
-  },
-  {
-    id: '2',
-    name: 'Crib or Bassinet',
-    category: 'essential',
-    type: 'sleeping',
-    description: 'Safe sleep surface for baby',
-    priceRange: '$$',
-    tips: 'Ensure it meets current safety standards. Firm mattress only.',
-    whenNeeded: 'Before birth'
-  },
-  {
-    id: '3',
-    name: 'Diapers (Newborn size)',
-    category: 'essential',
-    type: 'health',
-    description: 'Stock up on newborn and size 1',
-    priceRange: '$',
-    tips: 'Don\'t buy too many newborn size - babies grow fast!',
-    whenNeeded: 'Before birth'
-  },
-  {
-    id: '4',
-    name: 'Baby Bottles',
-    category: 'essential',
-    type: 'feeding',
-    description: 'Even breastfeeding moms often need bottles',
-    priceRange: '$',
-    tips: 'Start with slow-flow nipples. Get 4-6 bottles initially.',
-    whenNeeded: 'Before birth'
-  },
-  {
-    id: '5',
-    name: 'Onesies (0-3 months)',
-    category: 'essential',
-    type: 'clothing',
-    description: 'Basic everyday wear for baby',
-    priceRange: '$',
-    tips: 'Look for front snaps or zippers for easy diaper changes.',
-    whenNeeded: 'Before birth'
-  },
-  {
-    id: '6',
-    name: 'Stroller',
-    category: 'recommended',
-    type: 'travel',
-    description: 'For walks and outings',
-    priceRange: '$$',
-    tips: 'Consider one that accepts your car seat for easier transitions.',
-    whenNeeded: 'First few weeks'
-  },
-  {
-    id: '7',
-    name: 'Baby Monitor',
-    category: 'recommended',
-    type: 'nursery',
-    description: 'Peace of mind while baby sleeps',
-    priceRange: '$$',
-    tips: 'Audio-only is often sufficient. Video adds convenience.',
-    whenNeeded: 'First few weeks'
-  },
-  {
-    id: '8',
-    name: 'Breast Pump',
-    category: 'recommended',
-    type: 'feeding',
-    description: 'For breastfeeding moms returning to work',
-    priceRange: '$$',
-    tips: 'Insurance often covers this. Check before buying.',
-    whenNeeded: 'After birth'
-  },
-  {
-    id: '9',
-    name: 'Baby Swing',
-    category: 'nice-to-have',
-    type: 'nursery',
-    description: 'Soothing motion for fussy babies',
-    priceRange: '$$',
-    tips: 'Some babies love them, others don\'t. Consider borrowing first.',
-    whenNeeded: 'First month'
-  },
-  {
-    id: '10',
-    name: 'Diaper Bag',
-    category: 'recommended',
-    type: 'travel',
-    description: 'For outings with baby',
-    priceRange: '$',
-    tips: 'Look for one with changing pad and multiple compartments.',
-    whenNeeded: 'After birth'
-  },
-  {
-    id: '11',
-    name: 'Baby Bathtub',
-    category: 'recommended',
-    type: 'health',
-    description: 'Makes bathing easier and safer',
-    priceRange: '$',
-    tips: 'The sink works fine too for newborns.',
-    whenNeeded: 'First few weeks'
-  },
-  {
-    id: '12',
-    name: 'Swaddle Blankets',
-    category: 'essential',
-    type: 'sleeping',
-    description: 'Helps newborns feel secure',
-    priceRange: '$',
-    tips: 'Muslin ones are breathable and versatile.',
-    whenNeeded: 'Before birth'
-  }
+  { id: '1', nameKey: 'babyGear.items.carSeat.name', category: 'essential', type: 'travel', descriptionKey: 'babyGear.items.carSeat.description', priceRange: '$$', tipsKey: 'babyGear.items.carSeat.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '2', nameKey: 'babyGear.items.crib.name', category: 'essential', type: 'sleeping', descriptionKey: 'babyGear.items.crib.description', priceRange: '$$', tipsKey: 'babyGear.items.crib.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '3', nameKey: 'babyGear.items.diapers.name', category: 'essential', type: 'health', descriptionKey: 'babyGear.items.diapers.description', priceRange: '$', tipsKey: 'babyGear.items.diapers.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '4', nameKey: 'babyGear.items.bottles.name', category: 'essential', type: 'feeding', descriptionKey: 'babyGear.items.bottles.description', priceRange: '$', tipsKey: 'babyGear.items.bottles.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '5', nameKey: 'babyGear.items.onesies.name', category: 'essential', type: 'clothing', descriptionKey: 'babyGear.items.onesies.description', priceRange: '$', tipsKey: 'babyGear.items.onesies.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '6', nameKey: 'babyGear.items.stroller.name', category: 'recommended', type: 'travel', descriptionKey: 'babyGear.items.stroller.description', priceRange: '$$', tipsKey: 'babyGear.items.stroller.tips', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
+  { id: '7', nameKey: 'babyGear.items.monitor.name', category: 'recommended', type: 'nursery', descriptionKey: 'babyGear.items.monitor.description', priceRange: '$$', tipsKey: 'babyGear.items.monitor.tips', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
+  { id: '8', nameKey: 'babyGear.items.breastPump.name', category: 'recommended', type: 'feeding', descriptionKey: 'babyGear.items.breastPump.description', priceRange: '$$', tipsKey: 'babyGear.items.breastPump.tips', whenNeededKey: 'babyGear.whenNeeded.afterBirth' },
+  { id: '9', nameKey: 'babyGear.items.swing.name', category: 'nice-to-have', type: 'nursery', descriptionKey: 'babyGear.items.swing.description', priceRange: '$$', tipsKey: 'babyGear.items.swing.tips', whenNeededKey: 'babyGear.whenNeeded.firstMonth' },
+  { id: '10', nameKey: 'babyGear.items.diaperBag.name', category: 'recommended', type: 'travel', descriptionKey: 'babyGear.items.diaperBag.description', priceRange: '$', tipsKey: 'babyGear.items.diaperBag.tips', whenNeededKey: 'babyGear.whenNeeded.afterBirth' },
+  { id: '11', nameKey: 'babyGear.items.bathtub.name', category: 'recommended', type: 'health', descriptionKey: 'babyGear.items.bathtub.description', priceRange: '$', tipsKey: 'babyGear.items.bathtub.tips', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
+  { id: '12', nameKey: 'babyGear.items.swaddles.name', category: 'essential', type: 'sleeping', descriptionKey: 'babyGear.items.swaddles.description', priceRange: '$', tipsKey: 'babyGear.items.swaddles.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' }
 ];
 
 const typeIcons: Record<string, React.ElementType> = {
@@ -260,7 +152,7 @@ export default function BabyGearRecommender() {
                           <div className="flex items-center gap-2">
                             <TypeIcon className="w-4 h-4 text-primary" />
                             <h4 className={`font-semibold ${checkedItems.includes(item.id) ? 'line-through text-muted-foreground' : ''}`}>
-                              {item.name}
+                              {t(item.nameKey)}
                             </h4>
                           </div>
                           <Badge className={getCategoryColor(item.category)}>
@@ -268,21 +160,21 @@ export default function BabyGearRecommender() {
                           </Badge>
                         </div>
                         
-                        <p className="text-sm text-muted-foreground mb-2">{item.description}</p>
+                        <p className="text-sm text-muted-foreground mb-2">{t(item.descriptionKey)}</p>
                         
                         <div className="flex flex-wrap gap-2 mb-2">
                           <Badge variant="outline" className="text-xs">
                             {item.priceRange}
                           </Badge>
                           <Badge variant="outline" className="text-xs">
-                            {item.whenNeeded}
+                            {t(item.whenNeededKey)}
                           </Badge>
                         </div>
                         
                         <div className="bg-muted/50 rounded-lg p-3 mt-2">
                           <p className="text-xs text-muted-foreground">
                             <Star className="w-3 h-3 inline mr-1 text-amber-500" />
-                            <strong>{t('babyGear.tip')}:</strong> {item.tips}
+                            <strong>{t('babyGear.tip')}:</strong> {t(item.tipsKey)}
                           </p>
                         </div>
                       </div>

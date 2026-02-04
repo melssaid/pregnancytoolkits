@@ -23,7 +23,7 @@ const hospitalBagVideos: Video[] = [
 
 interface BagItem {
   id: string;
-  name: string;
+  nameKey: string;
   category: "mom" | "baby" | "partner" | "documents";
   packed: boolean;
   priority: "essential" | "recommended" | "optional";
@@ -31,28 +31,28 @@ interface BagItem {
 
 const defaultItems: BagItem[] = [
   // Documents
-  { id: "1", name: "Hospital ID & Insurance cards", category: "documents", packed: false, priority: "essential" },
-  { id: "2", name: "Birth plan copies", category: "documents", packed: false, priority: "essential" },
+  { id: "1", nameKey: "toolsInternal.hospitalBag.items.hospitalID", category: "documents", packed: false, priority: "essential" },
+  { id: "2", nameKey: "toolsInternal.hospitalBag.items.birthPlanCopies", category: "documents", packed: false, priority: "essential" },
   // Mom essentials
-  { id: "3", name: "Comfortable nightgown/robe", category: "mom", packed: false, priority: "essential" },
-  { id: "4", name: "Comfortable supportive bras (2-3)", category: "mom", packed: false, priority: "essential" },
-  { id: "5", name: "Toiletries bag", category: "mom", packed: false, priority: "essential" },
-  { id: "6", name: "Slippers & socks", category: "mom", packed: false, priority: "recommended" },
-  { id: "7", name: "Going home outfit", category: "mom", packed: false, priority: "essential" },
-  { id: "8", name: "Moisturizing cream", category: "mom", packed: false, priority: "recommended" },
-  { id: "9", name: "Hair ties & headband", category: "mom", packed: false, priority: "optional" },
-  { id: "10", name: "Phone charger (long cord)", category: "mom", packed: false, priority: "essential" },
-  { id: "11", name: "Lip balm", category: "mom", packed: false, priority: "optional" },
+  { id: "3", nameKey: "toolsInternal.hospitalBag.items.nightgown", category: "mom", packed: false, priority: "essential" },
+  { id: "4", nameKey: "toolsInternal.hospitalBag.items.supportiveBras", category: "mom", packed: false, priority: "essential" },
+  { id: "5", nameKey: "toolsInternal.hospitalBag.items.toiletries", category: "mom", packed: false, priority: "essential" },
+  { id: "6", nameKey: "toolsInternal.hospitalBag.items.slippersSocks", category: "mom", packed: false, priority: "recommended" },
+  { id: "7", nameKey: "toolsInternal.hospitalBag.items.goingHomeOutfitMom", category: "mom", packed: false, priority: "essential" },
+  { id: "8", nameKey: "toolsInternal.hospitalBag.items.moisturizer", category: "mom", packed: false, priority: "recommended" },
+  { id: "9", nameKey: "toolsInternal.hospitalBag.items.hairTies", category: "mom", packed: false, priority: "optional" },
+  { id: "10", nameKey: "toolsInternal.hospitalBag.items.phoneCharger", category: "mom", packed: false, priority: "essential" },
+  { id: "11", nameKey: "toolsInternal.hospitalBag.items.lipBalm", category: "mom", packed: false, priority: "optional" },
   // Baby essentials
-  { id: "12", name: "Going home outfit", category: "baby", packed: false, priority: "essential" },
-  { id: "13", name: "Car seat (installed)", category: "baby", packed: false, priority: "essential" },
-  { id: "14", name: "Swaddle blankets (2)", category: "baby", packed: false, priority: "essential" },
-  { id: "15", name: "Newborn diapers", category: "baby", packed: false, priority: "recommended" },
-  { id: "16", name: "Baby hat", category: "baby", packed: false, priority: "recommended" },
+  { id: "12", nameKey: "toolsInternal.hospitalBag.items.goingHomeOutfitBaby", category: "baby", packed: false, priority: "essential" },
+  { id: "13", nameKey: "toolsInternal.hospitalBag.items.carSeat", category: "baby", packed: false, priority: "essential" },
+  { id: "14", nameKey: "toolsInternal.hospitalBag.items.swaddleBlankets", category: "baby", packed: false, priority: "essential" },
+  { id: "15", nameKey: "toolsInternal.hospitalBag.items.newbornDiapers", category: "baby", packed: false, priority: "recommended" },
+  { id: "16", nameKey: "toolsInternal.hospitalBag.items.babyHat", category: "baby", packed: false, priority: "recommended" },
   // Partner
-  { id: "17", name: "Change of clothes", category: "partner", packed: false, priority: "recommended" },
-  { id: "18", name: "Snacks & drinks", category: "partner", packed: false, priority: "recommended" },
-  { id: "19", name: "Camera/phone charger", category: "partner", packed: false, priority: "optional" },
+  { id: "17", nameKey: "toolsInternal.hospitalBag.items.changeOfClothes", category: "partner", packed: false, priority: "recommended" },
+  { id: "18", nameKey: "toolsInternal.hospitalBag.items.snacksDrinks", category: "partner", packed: false, priority: "recommended" },
+  { id: "19", nameKey: "toolsInternal.hospitalBag.items.cameraCharger", category: "partner", packed: false, priority: "optional" },
 ];
 
 const AIHospitalBag = () => {
@@ -78,9 +78,9 @@ const AIHospitalBag = () => {
 
   const addItem = () => {
     if (!newItem.trim()) return;
-    const updated = [...items, {
+    const updated: BagItem[] = [...items, {
       id: Date.now().toString(),
-      name: newItem,
+      nameKey: newItem, // Custom items use the raw name as the key (will be displayed as-is)
       category: "mom" as const,
       packed: false,
       priority: "optional" as const
@@ -223,7 +223,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             >
               <Checkbox checked={item.packed} />
               <span className={item.packed ? "line-through text-muted-foreground" : ""}>
-                {item.name}
+                {item.nameKey.startsWith('toolsInternal.') ? t(item.nameKey) : item.nameKey}
               </span>
               {item.priority === "essential" && (
                 <span className="ms-auto text-xs bg-destructive/10 text-destructive px-2 py-0.5 rounded shrink-0">

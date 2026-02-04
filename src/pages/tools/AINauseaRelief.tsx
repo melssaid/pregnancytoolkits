@@ -14,23 +14,23 @@ import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
 const nauseaTriggers = [
-  { id: "morning", label: "Worst in morning" },
-  { id: "evening", label: "Worst in evening" },
-  { id: "all-day", label: "All day" },
-  { id: "smells", label: "Strong smells" },
-  { id: "empty-stomach", label: "Empty stomach" },
-  { id: "after-eating", label: "After eating" },
-  { id: "motion", label: "Motion/car rides" },
-  { id: "cooking", label: "Cooking smells" },
+  { id: "morning", labelKey: "toolsInternal.nauseaRelief.triggers.morning" },
+  { id: "evening", labelKey: "toolsInternal.nauseaRelief.triggers.evening" },
+  { id: "all-day", labelKey: "toolsInternal.nauseaRelief.triggers.allDay" },
+  { id: "smells", labelKey: "toolsInternal.nauseaRelief.triggers.smells" },
+  { id: "empty-stomach", labelKey: "toolsInternal.nauseaRelief.triggers.emptyStomach" },
+  { id: "after-eating", labelKey: "toolsInternal.nauseaRelief.triggers.afterEating" },
+  { id: "motion", labelKey: "toolsInternal.nauseaRelief.triggers.motion" },
+  { id: "cooking", labelKey: "toolsInternal.nauseaRelief.triggers.cooking" },
 ];
 
 const quickRemedies = [
-  { name: "Lemon water", tip: "Sip slowly on waking" },
-  { name: "Ginger", tip: "Tea, candies, or fresh" },
-  { name: "Ice chips", tip: "Suck on ice when queasy" },
-  { name: "Dry crackers", tip: "Keep by bedside" },
-  { name: "Peppermint", tip: "Inhale or tea" },
-  { name: "Banana", tip: "Easy on stomach" },
+  { nameKey: "toolsInternal.nauseaRelief.remedies.lemonWater.name", tipKey: "toolsInternal.nauseaRelief.remedies.lemonWater.tip" },
+  { nameKey: "toolsInternal.nauseaRelief.remedies.ginger.name", tipKey: "toolsInternal.nauseaRelief.remedies.ginger.tip" },
+  { nameKey: "toolsInternal.nauseaRelief.remedies.iceChips.name", tipKey: "toolsInternal.nauseaRelief.remedies.iceChips.tip" },
+  { nameKey: "toolsInternal.nauseaRelief.remedies.dryCrackers.name", tipKey: "toolsInternal.nauseaRelief.remedies.dryCrackers.tip" },
+  { nameKey: "toolsInternal.nauseaRelief.remedies.peppermint.name", tipKey: "toolsInternal.nauseaRelief.remedies.peppermint.tip" },
+  { nameKey: "toolsInternal.nauseaRelief.remedies.banana.name", tipKey: "toolsInternal.nauseaRelief.remedies.banana.tip" },
 ];
 
 const nauseaVideos: Video[] = [
@@ -86,9 +86,10 @@ const AINauseaRelief = () => {
   };
 
   const getReliefPlan = async () => {
-    const triggerLabels = triggers.map(id => 
-      nauseaTriggers.find(t => t.id === id)?.label
-    ).filter(Boolean);
+    const triggerLabels = triggers.map(id => {
+      const trigger = nauseaTriggers.find(t => t.id === id);
+      return trigger ? t(trigger.labelKey) : null;
+    }).filter(Boolean);
 
     const prompt = `As a pregnancy nausea specialist, provide relief strategies:
 
@@ -141,13 +142,13 @@ Be compassionate - morning sickness is exhausting!`;
         <Card className="p-4 bg-muted/30 border-primary/20">
           <h3 className="font-semibold flex items-center gap-2 mb-3">
             <Wind className="w-4 h-4 text-primary" />
-            Quick Relief Remedies
+            {t('toolsInternal.nauseaRelief.quickRemediesTitle')}
           </h3>
           <div className="grid grid-cols-3 gap-2">
             {quickRemedies.map((remedy) => (
-              <div key={remedy.name} className="text-center p-2 bg-background/50 rounded-lg">
-                <div className="text-xs font-medium">{remedy.name}</div>
-                <div className="text-[10px] text-muted-foreground">{remedy.tip}</div>
+              <div key={remedy.nameKey} className="text-center p-2 bg-background/50 rounded-lg">
+                <div className="text-xs font-medium">{t(remedy.nameKey)}</div>
+                <div className="text-[10px] text-muted-foreground">{t(remedy.tipKey)}</div>
               </div>
             ))}
           </div>
@@ -156,7 +157,7 @@ Be compassionate - morning sickness is exhausting!`;
         {/* Severity Slider */}
         <div className="space-y-3">
           <Label className="flex items-center justify-between">
-            <span>Nausea Severity</span>
+            <span>{t('toolsInternal.nauseaRelief.severity')}</span>
             <span className={`font-bold ${
               severity[0] <= 3 ? "text-primary" : 
               severity[0] <= 6 ? "text-primary/70" : "text-destructive"
@@ -172,9 +173,9 @@ Be compassionate - morning sickness is exhausting!`;
             step={1}
           />
           <div className="flex justify-between text-xs text-muted-foreground">
-            <span>Mild</span>
-            <span>Moderate</span>
-            <span>Severe</span>
+            <span>{t('toolsInternal.nauseaRelief.mild')}</span>
+            <span>{t('toolsInternal.nauseaRelief.moderate')}</span>
+            <span>{t('toolsInternal.nauseaRelief.severe')}</span>
           </div>
         </div>
 
@@ -186,7 +187,7 @@ Be compassionate - morning sickness is exhausting!`;
             onCheckedChange={(checked) => setVomiting(checked as boolean)} 
           />
           <Label htmlFor="vomiting" className="cursor-pointer">
-            I'm experiencing vomiting, not just nausea
+            {t('toolsInternal.nauseaRelief.vomitingLabel')}
           </Label>
         </div>
 
@@ -194,7 +195,7 @@ Be compassionate - morning sickness is exhausting!`;
         <div className="space-y-2">
           <Label className="flex items-center gap-2 text-sm">
             <Utensils className="w-4 h-4 text-primary shrink-0" />
-            <span className="truncate">What triggers your nausea?</span>
+            <span className="truncate">{t('toolsInternal.nauseaRelief.triggersLabel')}</span>
           </Label>
           <div className="grid grid-cols-1 gap-1.5">
             {nauseaTriggers.map((trigger) => (
@@ -208,7 +209,7 @@ Be compassionate - morning sickness is exhausting!`;
                 }`}
               >
                 <Checkbox checked={triggers.includes(trigger.id)} className="shrink-0" />
-                <span className="truncate">{trigger.label}</span>
+                <span className="truncate">{t(trigger.labelKey)}</span>
               </div>
             ))}
           </div>
@@ -220,10 +221,9 @@ Be compassionate - morning sickness is exhausting!`;
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-medium text-destructive">Severe Nausea Warning</h4>
+                <h4 className="font-medium text-destructive">{t('toolsInternal.nauseaRelief.severeWarningTitle')}</h4>
                 <p className="text-sm text-muted-foreground mt-1">
-                  If you can't keep any food/water down for 24 hours, see blood in vomit, 
-                  or feel dizzy/faint, contact your healthcare provider immediately.
+                  {t('toolsInternal.nauseaRelief.severeWarningDesc')}
                 </p>
               </div>
             </div>
@@ -234,10 +234,10 @@ Be compassionate - morning sickness is exhausting!`;
         <Button
           onClick={getReliefPlan}
           disabled={isLoading}
-          className="w-full text-xs h-9"
+          className="w-full text-xs h-9 gap-1.5"
         >
-          <Sparkles className="w-3.5 h-3.5 me-1.5" />
-          {isLoading ? "Creating Plan..." : "Get AI Relief Plan"}
+          <Sparkles className="w-3.5 h-3.5" />
+          {isLoading ? t('toolsInternal.nauseaRelief.creatingPlan') : t('toolsInternal.nauseaRelief.getReliefPlan')}
         </Button>
 
         {/* AI Response */}
@@ -250,16 +250,15 @@ Be compassionate - morning sickness is exhausting!`;
         {/* Encouraging Note */}
         <Card className="p-3 bg-muted/30 text-center">
           <p className="text-xs text-muted-foreground leading-relaxed">
-            Remember: Morning sickness usually peaks around weeks 8-10 and 
-            improves significantly by week 12-14. You've got this!
+            {t('toolsInternal.nauseaRelief.encouragingNote')}
           </p>
         </Card>
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
           videos={nauseaVideos}
-          title="Nausea Relief Videos"
-          subtitle="Techniques and tips to ease morning sickness"
+          title={t('toolsInternal.nauseaRelief.videosTitle')}
+          subtitle={t('toolsInternal.nauseaRelief.videosSubtitle')}
           accentColor="emerald"
         />
       </div>
