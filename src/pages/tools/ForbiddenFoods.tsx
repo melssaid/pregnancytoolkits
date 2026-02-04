@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info, Sparkles, Loader2 } from 'lucide-react';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
@@ -29,6 +30,7 @@ const foodDatabase: FoodItem[] = [
 ];
 
 const ForbiddenFoods: React.FC = () => {
+  const { t } = useTranslation();
   const { streamChat, isLoading } = usePregnancyAI();
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -70,7 +72,7 @@ If it can be made safe, explain how`
   });
 
   if (!disclaimerAccepted) {
-    return <MedicalDisclaimer toolName="Foods to Avoid Guide" onAccept={() => setDisclaimerAccepted(true)} />;
+    return <MedicalDisclaimer toolName={t("toolsInternal.forbiddenFoods.title")} onAccept={() => setDisclaimerAccepted(true)} />;
   }
 
   const getStatusColor = (status: string) => {
@@ -93,8 +95,8 @@ If it can be made safe, explain how`
 
   return (
     <ToolFrame
-      title="Food Safety Guide"
-      subtitle="What to eat & avoid during pregnancy"
+      title={t("toolsInternal.forbiddenFoods.title")}
+      subtitle={t("toolsInternal.forbiddenFoods.subtitle")}
       mood="empowering"
       toolId="forbidden-foods"
     >
@@ -105,7 +107,7 @@ If it can be made safe, explain how`
             <Search className="w-5 h-5 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
             <input 
               type="text" 
-              placeholder="Search foods (e.g. sushi, cheese)..."
+              placeholder={t("toolsInternal.forbiddenFoods.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-3 bg-muted border-none rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all"
@@ -123,7 +125,7 @@ If it can be made safe, explain how`
                     : 'bg-muted text-muted-foreground hover:bg-muted/80 border-transparent'
                 }`}
               >
-                {f}
+                {t(`toolsInternal.forbiddenFoods.filters.${f}`)}
               </button>
             ))}
           </div>
@@ -152,7 +154,7 @@ If it can be made safe, explain how`
           
           {filteredFoods.length === 0 && (
             <div className="text-center py-10">
-              <p className="text-muted-foreground">No foods found matching "{searchTerm}"</p>
+              <p className="text-muted-foreground">{t("toolsInternal.forbiddenFoods.noResults", { term: searchTerm })}</p>
               {searchTerm && (
                 <Button 
                   onClick={() => askAIAboutFood(searchTerm)}
@@ -165,7 +167,7 @@ If it can be made safe, explain how`
                   ) : (
                     <Sparkles className="h-4 w-4 text-violet-500" />
                   )}
-                  Ask AI about "{searchTerm}"
+                  {t("toolsInternal.forbiddenFoods.askAI", { term: searchTerm })}
                 </Button>
               )}
             </div>
@@ -179,7 +181,7 @@ If it can be made safe, explain how`
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <Sparkles className="h-5 w-5 text-violet-500" />
-                  <h3 className="font-semibold">AI Food Safety Analysis</h3>
+                  <h3 className="font-semibold">{t("toolsInternal.forbiddenFoods.aiAnalysis")}</h3>
                 </div>
                 <button 
                   onClick={() => setShowAiResponse(false)}
@@ -191,7 +193,7 @@ If it can be made safe, explain how`
               {isLoading && !aiResponse && (
                 <div className="flex items-center gap-2 text-violet-600">
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="text-sm">Analyzing food safety...</span>
+                  <span className="text-sm">{t("toolsInternal.forbiddenFoods.analyzing")}</span>
                 </div>
               )}
               {aiResponse && <MarkdownRenderer content={aiResponse} />}
@@ -202,12 +204,12 @@ If it can be made safe, explain how`
         {/* Legend/Info */}
         <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
           <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
-            <Info className="w-4 h-4 text-primary" /> Quick Rules
+            <Info className="w-4 h-4 text-primary" /> {t("toolsInternal.forbiddenFoods.quickRules")}
           </h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li className="flex items-start gap-2">• <strong>Avoid:</strong> Raw meat/fish, unpasteurized dairy, deli meats (cold).</li>
-            <li className="flex items-start gap-2">• <strong>Cook:</strong> Meats to 165°F (75°C).</li>
-            <li className="flex items-start gap-2">• <strong>Wash:</strong> All fruits and vegetables thoroughly.</li>
+            <li className="flex items-start gap-2">• <strong>{t("toolsInternal.forbiddenFoods.rules.avoid")}:</strong> {t("toolsInternal.forbiddenFoods.rules.avoidDesc")}</li>
+            <li className="flex items-start gap-2">• <strong>{t("toolsInternal.forbiddenFoods.rules.cook")}:</strong> {t("toolsInternal.forbiddenFoods.rules.cookDesc")}</li>
+            <li className="flex items-start gap-2">• <strong>{t("toolsInternal.forbiddenFoods.rules.wash")}:</strong> {t("toolsInternal.forbiddenFoods.rules.washDesc")}</li>
           </ul>
         </div>
       </div>

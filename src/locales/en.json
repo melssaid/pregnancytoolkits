@@ -1780,6 +1780,110 @@
           "message": "Please reach out to your healthcare provider or a mental health professional."
         }
       }
+    },
+    "mealSuggestion": {
+      "subtitle": "Smart meal suggestions for your pregnancy",
+      "pregnancyStage": "Pregnancy Stage",
+      "mealType": "Meal Type",
+      "whatCraving": "What are you craving?",
+      "dietaryPreferences": "Dietary Preferences",
+      "suggestMeal": "Suggest a Healthy Meal",
+      "mealSuggestion": "Meal Suggestion",
+      "differentSuggestion": "Different Suggestion",
+      "refresh": "Refresh",
+      "quickTips": "Quick Tips",
+      "nutritionVideos": "Pregnancy Nutrition Videos",
+      "nutritionVideosSubtitle": "Expert guidance on healthy eating",
+      "trimesters": {
+        "first": "First Trimester",
+        "second": "Second Trimester",
+        "third": "Third Trimester"
+      },
+      "mealTypes": {
+        "breakfast": "Breakfast",
+        "lunch": "Lunch",
+        "dinner": "Dinner",
+        "snack": "Snack"
+      },
+      "cravings": {
+        "sweet": "Sweet",
+        "salty": "Salty",
+        "sour": "Sour",
+        "spicy": "Spicy",
+        "creamy": "Creamy"
+      },
+      "preferences": {
+        "vegetarian": "Vegetarian",
+        "low-sugar": "Low Sugar",
+        "high-protein": "High Protein",
+        "low-sodium": "Low Sodium",
+        "iron-rich": "Iron Rich",
+        "calcium-rich": "Calcium Rich"
+      },
+      "tips": {
+        "smallMeals": "Eat 5-6 small meals daily",
+        "drinkWater": "Drink 8-10 glasses of water",
+        "avoidRaw": "Avoid raw foods"
+      }
+    },
+    "ovulation": {
+      "subtitle": "Find your most fertile days",
+      "calculateTitle": "Calculate Your Fertile Window",
+      "calculateDesc": "Enter your cycle details to discover your best days ✨",
+      "firstDayLastPeriod": "First Day of Last Period",
+      "avgCycleLength": "Average Cycle Length (days)",
+      "cycleRange": "Most cycles range from 21-35 days",
+      "calculateBtn": "Calculate Ovulation",
+      "saveCalculation": "Save This Calculation",
+      "daysUntilOvulation": "Days Until Ovulation",
+      "getReady": "Get ready for your fertile window!",
+      "ovulationDay": "Ovulation Day",
+      "peakFertility": "Peak fertility day",
+      "nextPeriod": "Next Period",
+      "expectedStart": "Expected start",
+      "fertileWindow": "Fertile Window",
+      "bestDays": "Your best days for conception",
+      "start": "Start",
+      "end": "End",
+      "sixDays": "6 days of peak fertility",
+      "aiFertilityInsights": "AI Fertility Insights",
+      "getPersonalizedAdvice": "Get Personalized Fertility Advice",
+      "tip": "Tip",
+      "tipText": "For the best chances, try to be intimate during your fertile window, especially 1-2 days before ovulation.",
+      "savedCalculations": "Saved Calculations",
+      "ovulation": "Ovulation",
+      "cycle": "Cycle",
+      "days": "days",
+      "fertile": "Fertile",
+      "saved": "Saved!",
+      "savedDesc": "Your ovulation calculation has been saved.",
+      "deleted": "Deleted",
+      "deletedDesc": "Result removed from history.",
+      "disclaimer": "This calculator provides estimates based on average cycle patterns. Individual cycles may vary. Consider using ovulation predictor kits for more accuracy."
+    },
+    "forbiddenFoods": {
+      "title": "Food Safety Guide",
+      "subtitle": "What to eat & avoid during pregnancy",
+      "searchPlaceholder": "Search foods (e.g. sushi, cheese)...",
+      "noResults": "No foods found matching \"{{term}}\"",
+      "askAI": "Ask AI about \"{{term}}\"",
+      "aiAnalysis": "AI Food Safety Analysis",
+      "analyzing": "Analyzing food safety...",
+      "quickRules": "Quick Rules",
+      "filters": {
+        "all": "All",
+        "safe": "Safe",
+        "limit": "Limit",
+        "avoid": "Avoid"
+      },
+      "rules": {
+        "avoid": "Avoid",
+        "avoidDesc": "Raw meat/fish, unpasteurized dairy, deli meats (cold).",
+        "cook": "Cook",
+        "cookDesc": "Meats to 165°F (75°C).",
+        "wash": "Wash",
+        "washDesc": "All fruits and vegetables thoroughly."
+      }
     }
   },
   "welcome": {
@@ -2120,5 +2224,25 @@
     "generatingInsights": "Generating personalized insights...",
     "clickToExpand": "Click to expand",
     "clickToCollapse": "Click to collapse"
+  },
+  "conceptionPage": {
+    "fromDueDate": "From Due Date",
+    "fromLMP": "From Last Period",
+    "knowDueDate": "Know Your Due Date?",
+    "dueDate": "Due Date",
+    "planningPregnancy": "Planning a Pregnancy?",
+    "lmpDate": "First Day of Last Period",
+    "cycleLength": "Average Cycle Length (days)",
+    "estimatedConception": "Estimated Conception Date",
+    "fertileWindow": "Fertile Window",
+    "info": "Conception typically occurs around 2 weeks after the first day of your last period, during ovulation.",
+    "getAIAdvice": "Get AI Conception Advice",
+    "aiConceptionGuide": "AI Conception Guide",
+    "gettingAdvice": "Getting personalized advice..."
+  },
+  "common": {
+    "calculate": "Calculate",
+    "results": "Results",
+    "start": "Start"
   }
 }

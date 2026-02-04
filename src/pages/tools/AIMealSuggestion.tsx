@@ -236,7 +236,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
   return (
     <ToolFrame
       title={t("tools.aiMealSuggestion.title")}
-      subtitle="Smart meal suggestions for your pregnancy"
+      subtitle={t("toolsInternal.mealSuggestion.subtitle")}
       customIcon="nutrition"
       mood="joyful"
       toolId="ai-meal-suggestion"
@@ -249,16 +249,16 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
               <Card>
                 <CardContent className="p-4 space-y-2">
                   <label className="text-xs text-muted-foreground">
-                    Pregnancy Stage
+                    {t("toolsInternal.mealSuggestion.pregnancyStage")}
                   </label>
                   <Select value={trimester} onValueChange={setTrimester}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="1">First Trimester</SelectItem>
-                      <SelectItem value="2">Second Trimester</SelectItem>
-                      <SelectItem value="3">Third Trimester</SelectItem>
+                      <SelectItem value="1">{t("toolsInternal.mealSuggestion.trimesters.first")}</SelectItem>
+                      <SelectItem value="2">{t("toolsInternal.mealSuggestion.trimesters.second")}</SelectItem>
+                      <SelectItem value="3">{t("toolsInternal.mealSuggestion.trimesters.third")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </CardContent>
@@ -266,7 +266,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
 
               <Card>
                 <CardContent className="p-4 space-y-2">
-                  <label className="text-xs text-muted-foreground">Meal Type</label>
+                  <label className="text-xs text-muted-foreground">{t("toolsInternal.mealSuggestion.mealType")}</label>
                   <Select value={mealType} onValueChange={setMealType}>
                     <SelectTrigger>
                       <SelectValue />
@@ -274,7 +274,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                     <SelectContent>
                       {mealTypes.map((m) => (
                         <SelectItem key={m.id} value={m.id}>
-                          {m.label}
+                          {t(`toolsInternal.mealSuggestion.mealTypes.${m.id}`)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -286,7 +286,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             {/* Cravings */}
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-base">What are you craving?</CardTitle>
+                <CardTitle className="text-base">{t("toolsInternal.mealSuggestion.whatCraving")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -299,7 +299,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                       setSelectedCraving(selectedCraving === c.id ? "" : c.id)
                       }
                     >
-                      {c.label}
+                      {t(`toolsInternal.mealSuggestion.cravings.${c.id}`)}
                     </Button>
                   ))}
                 </div>
@@ -311,7 +311,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Leaf className="w-4 h-4 text-green-600" />
-                  Dietary Preferences
+                  {t("toolsInternal.mealSuggestion.dietaryPreferences")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -325,7 +325,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                         checked={preferences.includes(pref.id)}
                         onCheckedChange={() => togglePreference(pref.id)}
                       />
-                      <span className="text-sm">{pref.label}</span>
+                      <span className="text-sm">{t(`toolsInternal.mealSuggestion.preferences.${pref.id}`)}</span>
                     </label>
                   ))}
                 </div>
@@ -344,7 +344,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
               ) : (
                 <Sparkles className="w-4 h-4" />
               )}
-              Suggest a Healthy Meal
+              {t("toolsInternal.mealSuggestion.suggestMeal")}
             </Button>
           </>
         ) : (
@@ -355,8 +355,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-base flex items-center gap-2">
                     <Utensils className="w-5 h-5 text-green-600" />
-                    Meal Suggestion
-                  </CardTitle>
+                    {t("toolsInternal.mealSuggestion.mealSuggestion")}</CardTitle>
                   <div className="flex gap-1">
                     <Badge variant="secondary" className="text-xs">
                       {mealTypes.find((m) => m.id === mealType)?.label}
@@ -380,7 +379,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                 variant="outline"
                 className="flex-1"
               >
-                Different Suggestion
+                {t("toolsInternal.mealSuggestion.differentSuggestion")}
               </Button>
               <Button onClick={getSuggestion} disabled={isLoading} className="flex-1 gap-2">
                 {isLoading ? (
@@ -388,7 +387,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                 ) : (
                   <Sparkles className="w-4 h-4" />
                 )}
-                Refresh
+                {t("toolsInternal.mealSuggestion.refresh")}
               </Button>
             </div>
           </>
@@ -409,11 +408,11 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             <div className="flex items-start gap-3">
               <Apple className="w-5 h-5 text-green-600 shrink-0" />
               <div className="text-xs text-muted-foreground space-y-1">
-                <p className="font-medium text-foreground">Quick Tips:</p>
+                <p className="font-medium text-foreground">{t("toolsInternal.mealSuggestion.quickTips")}:</p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Eat 5-6 small meals daily</li>
-                  <li>Drink 8-10 glasses of water</li>
-                  <li>Avoid raw foods</li>
+                  <li>{t("toolsInternal.mealSuggestion.tips.smallMeals")}</li>
+                  <li>{t("toolsInternal.mealSuggestion.tips.drinkWater")}</li>
+                  <li>{t("toolsInternal.mealSuggestion.tips.avoidRaw")}</li>
                 </ul>
               </div>
             </div>
@@ -423,8 +422,8 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
         {/* Educational Videos */}
         <VideoLibrary
           videos={nutritionVideos}
-          title="Pregnancy Nutrition Videos"
-          subtitle="Expert guidance on healthy eating"
+          title={t("toolsInternal.mealSuggestion.nutritionVideos")}
+          subtitle={t("toolsInternal.mealSuggestion.nutritionVideosSubtitle")}
           accentColor="emerald"
         />
       </div>

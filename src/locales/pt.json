@@ -1649,5 +1649,129 @@
     "currentSleep": "Sono Atual: {{hours}} horas/noite",
     "usualBedtime": "Hora Habitual de Dormir",
     "sleepChallenges": "Desafios do Sono"
+  },
+  "mealSuggestion": {
+    "subtitle": "Sugestões inteligentes de refeições para sua gravidez",
+    "pregnancyStage": "Estágio da Gravidez",
+    "mealType": "Tipo de Refeição",
+    "whatCraving": "O que você está desejando?",
+    "dietaryPreferences": "Preferências Alimentares",
+    "suggestMeal": "Sugerir Refeição Saudável",
+    "mealSuggestion": "Sugestão de Refeição",
+    "differentSuggestion": "Outra Sugestão",
+    "refresh": "Atualizar",
+    "quickTips": "Dicas Rápidas",
+    "nutritionVideos": "Vídeos de Nutrição na Gravidez",
+    "nutritionVideosSubtitle": "Orientação especializada sobre alimentação saudável",
+    "trimesters": {
+      "first": "Primeiro Trimestre",
+      "second": "Segundo Trimestre",
+      "third": "Terceiro Trimestre"
+    },
+    "mealTypes": {
+      "breakfast": "Café da manhã",
+      "lunch": "Almoço",
+      "dinner": "Jantar",
+      "snack": "Lanche"
+    },
+    "cravings": {
+      "sweet": "Doce",
+      "salty": "Salgado",
+      "sour": "Azedo",
+      "spicy": "Picante",
+      "creamy": "Cremoso"
+    },
+    "preferences": {
+      "vegetarian": "Vegetariano",
+      "low-sugar": "Baixo Açúcar",
+      "high-protein": "Alto Proteína",
+      "low-sodium": "Baixo Sódio",
+      "iron-rich": "Rico em Ferro",
+      "calcium-rich": "Rico em Cálcio"
+    },
+    "tips": {
+      "smallMeals": "Coma 5-6 pequenas refeições por dia",
+      "drinkWater": "Beba 8-10 copos de água",
+      "avoidRaw": "Evite alimentos crus"
+    }
+  },
+  "ovulation": {
+    "subtitle": "Encontre seus dias mais férteis",
+    "calculateTitle": "Calcule sua Janela Fértil",
+    "calculateDesc": "Insira os detalhes do seu ciclo para descobrir seus melhores dias ✨",
+    "firstDayLastPeriod": "Primeiro Dia da Última Menstruação",
+    "avgCycleLength": "Duração Média do Ciclo (dias)",
+    "cycleRange": "A maioria dos ciclos varia de 21-35 dias",
+    "calculateBtn": "Calcular Ovulação",
+    "saveCalculation": "Salvar Este Cálculo",
+    "daysUntilOvulation": "Dias Até a Ovulação",
+    "getReady": "Prepare-se para sua janela fértil!",
+    "ovulationDay": "Dia da Ovulação",
+    "peakFertility": "Dia de pico de fertilidade",
+    "nextPeriod": "Próxima Menstruação",
+    "expectedStart": "Início esperado",
+    "fertileWindow": "Janela Fértil",
+    "bestDays": "Seus melhores dias para conceber",
+    "start": "Início",
+    "end": "Fim",
+    "sixDays": "6 dias de fertilidade máxima",
+    "aiFertilityInsights": "Insights IA de Fertilidade",
+    "getPersonalizedAdvice": "Obter Conselho Personalizado de Fertilidade",
+    "tip": "Dica",
+    "tipText": "Para melhores chances, tente ter relações durante sua janela fértil, especialmente 1-2 dias antes da ovulação.",
+    "savedCalculations": "Cálculos Salvos",
+    "ovulation": "Ovulação",
+    "cycle": "Ciclo",
+    "days": "dias",
+    "fertile": "Fértil",
+    "saved": "Salvo!",
+    "savedDesc": "Seu cálculo de ovulação foi salvo.",
+    "deleted": "Excluído",
+    "deletedDesc": "Resultado removido do histórico.",
+    "disclaimer": "Esta calculadora fornece estimativas baseadas em padrões médios de ciclo. Ciclos individuais podem variar. Considere usar kits de teste de ovulação para maior precisão."
+  },
+  "forbiddenFoods": {
+    "title": "Guia de Segurança Alimentar",
+    "subtitle": "O que comer e evitar durante a gravidez",
+    "searchPlaceholder": "Buscar alimentos (ex: sushi, queijo)...",
+    "noResults": "Nenhum alimento encontrado para \"{{term}}\"",
+    "askAI": "Perguntar à IA sobre \"{{term}}\"",
+    "aiAnalysis": "Análise IA de Segurança Alimentar",
+    "analyzing": "Analisando segurança alimentar...",
+    "quickRules": "Regras Rápidas",
+    "filters": {
+      "all": "Tudo",
+      "safe": "Seguro",
+      "limit": "Limitar",
+      "avoid": "Evitar"
+    },
+    "rules": {
+      "avoid": "Evitar",
+      "avoidDesc": "Carne/peixe cru, laticínios não pasteurizados, frios.",
+      "cook": "Cozinhar",
+      "cookDesc": "Carnes a 75°C (165°F).",
+      "wash": "Lavar",
+      "washDesc": "Todas as frutas e vegetais bem."
+    }
+  },
+  "conceptionPage": {
+    "fromDueDate": "Da Data Prevista",
+    "fromLMP": "Da Última Menstruação",
+    "knowDueDate": "Conhece sua data prevista?",
+    "dueDate": "Data Prevista",
+    "planningPregnancy": "Planejando uma Gravidez?",
+    "lmpDate": "Primeiro Dia da Última Menstruação",
+    "cycleLength": "Duração Média do Ciclo (dias)",
+    "estimatedConception": "Data Estimada de Concepção",
+    "fertileWindow": "Janela Fértil",
+    "info": "A concepção geralmente ocorre cerca de 2 semanas após o primeiro dia da sua última menstruação, durante a ovulação.",
+    "getAIAdvice": "Obter Conselho IA de Concepção",
+    "aiConceptionGuide": "Guia IA de Concepção",
+    "gettingAdvice": "Obtendo conselhos personalizados..."
+  },
+  "common": {
+    "calculate": "Calcular",
+    "results": "Resultados",
+    "start": "Iniciar"
   }
 }

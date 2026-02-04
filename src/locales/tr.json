@@ -1649,5 +1649,129 @@
     "currentSleep": "Mevcut Uyku: {{hours}} saat/gece",
     "usualBedtime": "Normal Yatma Saati",
     "sleepChallenges": "Uyku Zorlukları"
+  },
+  "mealSuggestion": {
+    "subtitle": "Hamileliğiniz için akıllı yemek önerileri",
+    "pregnancyStage": "Hamilelik Aşaması",
+    "mealType": "Öğün Türü",
+    "whatCraving": "Neye canınız çekiyor?",
+    "dietaryPreferences": "Beslenme Tercihleri",
+    "suggestMeal": "Sağlıklı Öğün Öner",
+    "mealSuggestion": "Öğün Önerisi",
+    "differentSuggestion": "Farklı Öneri",
+    "refresh": "Yenile",
+    "quickTips": "Hızlı İpuçları",
+    "nutritionVideos": "Hamilelik Beslenme Videoları",
+    "nutritionVideosSubtitle": "Sağlıklı beslenme uzman rehberliği",
+    "trimesters": {
+      "first": "Birinci Trimester",
+      "second": "İkinci Trimester",
+      "third": "Üçüncü Trimester"
+    },
+    "mealTypes": {
+      "breakfast": "Kahvaltı",
+      "lunch": "Öğle Yemeği",
+      "dinner": "Akşam Yemeği",
+      "snack": "Atıştırmalık"
+    },
+    "cravings": {
+      "sweet": "Tatlı",
+      "salty": "Tuzlu",
+      "sour": "Ekşi",
+      "spicy": "Baharatlı",
+      "creamy": "Kremalı"
+    },
+    "preferences": {
+      "vegetarian": "Vejetaryen",
+      "low-sugar": "Düşük Şeker",
+      "high-protein": "Yüksek Protein",
+      "low-sodium": "Düşük Sodyum",
+      "iron-rich": "Demir Zengini",
+      "calcium-rich": "Kalsiyum Zengini"
+    },
+    "tips": {
+      "smallMeals": "Günde 5-6 küçük öğün yiyin",
+      "drinkWater": "8-10 bardak su için",
+      "avoidRaw": "Çiğ yiyeceklerden kaçının"
+    }
+  },
+  "ovulation": {
+    "subtitle": "En verimli günlerinizi bulun",
+    "calculateTitle": "Doğurganlık Pencerenizi Hesaplayın",
+    "calculateDesc": "En iyi günlerinizi keşfetmek için döngü detaylarınızı girin ✨",
+    "firstDayLastPeriod": "Son Adet Döneminin İlk Günü",
+    "avgCycleLength": "Ortalama Döngü Uzunluğu (gün)",
+    "cycleRange": "Çoğu döngü 21-35 gün arasındadır",
+    "calculateBtn": "Yumurtlamayı Hesapla",
+    "saveCalculation": "Bu Hesaplamayı Kaydet",
+    "daysUntilOvulation": "Yumurtlamaya Kalan Gün",
+    "getReady": "Doğurganlık pencerenize hazırlanın!",
+    "ovulationDay": "Yumurtlama Günü",
+    "peakFertility": "En verimli gün",
+    "nextPeriod": "Sonraki Adet",
+    "expectedStart": "Beklenen başlangıç",
+    "fertileWindow": "Doğurganlık Penceresi",
+    "bestDays": "Gebe kalmak için en iyi günleriniz",
+    "start": "Başlangıç",
+    "end": "Bitiş",
+    "sixDays": "6 gün tepe doğurganlık",
+    "aiFertilityInsights": "Yapay Zeka Doğurganlık İçgörüleri",
+    "getPersonalizedAdvice": "Kişiselleştirilmiş Doğurganlık Tavsiyesi Al",
+    "tip": "İpucu",
+    "tipText": "En iyi şanslar için, doğurganlık pencereniz sırasında, özellikle yumurtlamadan 1-2 gün önce yakın olmayı deneyin.",
+    "savedCalculations": "Kayıtlı Hesaplamalar",
+    "ovulation": "Yumurtlama",
+    "cycle": "Döngü",
+    "days": "gün",
+    "fertile": "Verimli",
+    "saved": "Kaydedildi!",
+    "savedDesc": "Yumurtlama hesaplamanız kaydedildi.",
+    "deleted": "Silindi",
+    "deletedDesc": "Sonuç geçmişten kaldırıldı.",
+    "disclaimer": "Bu hesap makinesi ortalama döngü kalıplarına göre tahminler sunar. Bireysel döngüler farklılık gösterebilir. Daha fazla doğruluk için yumurtlama test kitleri kullanmayı düşünün."
+  },
+  "forbiddenFoods": {
+    "title": "Gıda Güvenliği Rehberi",
+    "subtitle": "Hamilelikte ne yenir ve nelerden kaçınılır",
+    "searchPlaceholder": "Yiyecek ara (ör: suşi, peynir)...",
+    "noResults": "\"{{term}}\" için yiyecek bulunamadı",
+    "askAI": "\"{{term}}\" hakkında yapay zekaya sor",
+    "aiAnalysis": "Yapay Zeka Gıda Güvenliği Analizi",
+    "analyzing": "Gıda güvenliği analiz ediliyor...",
+    "quickRules": "Hızlı Kurallar",
+    "filters": {
+      "all": "Tümü",
+      "safe": "Güvenli",
+      "limit": "Sınırla",
+      "avoid": "Kaçın"
+    },
+    "rules": {
+      "avoid": "Kaçının",
+      "avoidDesc": "Çiğ et/balık, pastörize edilmemiş süt ürünleri, soğuk şarküteri.",
+      "cook": "Pişirin",
+      "cookDesc": "Etleri 75°C'ye (165°F) kadar.",
+      "wash": "Yıkayın",
+      "washDesc": "Tüm meyve ve sebzeleri iyice."
+    }
+  },
+  "conceptionPage": {
+    "fromDueDate": "Doğum Tarihinden",
+    "fromLMP": "Son Adet'ten",
+    "knowDueDate": "Doğum Tarihinizi Biliyor musunuz?",
+    "dueDate": "Doğum Tarihi",
+    "planningPregnancy": "Hamilelik mi Planlıyorsunuz?",
+    "lmpDate": "Son Adetin İlk Günü",
+    "cycleLength": "Ortalama Döngü Uzunluğu (gün)",
+    "estimatedConception": "Tahmini Gebe Kalma Tarihi",
+    "fertileWindow": "Doğurganlık Penceresi",
+    "info": "Gebe kalma genellikle son adetinizin ilk gününden yaklaşık 2 hafta sonra, yumurtlama sırasında gerçekleşir.",
+    "getAIAdvice": "Yapay Zeka Gebe Kalma Tavsiyesi Al",
+    "aiConceptionGuide": "Yapay Zeka Gebe Kalma Rehberi",
+    "gettingAdvice": "Kişiselleştirilmiş tavsiye alınıyor..."
+  },
+  "common": {
+    "calculate": "Hesapla",
+    "results": "Sonuçlar",
+    "start": "Başla"
   }
 }
