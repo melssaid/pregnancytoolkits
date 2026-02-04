@@ -931,6 +931,68 @@
         "flexibility": "Esneklik"
       }
     },
+    "weeklySummary": {
+      "title": "Haftalık Özet",
+      "subtitle": "Hamileliğinizi akıllı haftalık takip",
+      "daysToGo": "{{days}} gün kaldı",
+      "pregnancyWeek": "Hamilelik Haftası",
+      "week": "Hafta {{week}}",
+      "showSummary": "Hafta {{week}} özetini göster",
+      "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
+      "babyGrowth": "Bebek Büyümesi",
+      "momsHealth": "Anne Sağlığı",
+      "checkups": "Kontroller",
+      "normal": "Normal",
+      "good": "İyi",
+      "complete": "Tamamlandı",
+      "weekSummary": "Hafta {{week}} Özeti",
+      "differentWeek": "Farklı Hafta",
+      "refresh": "Yenile",
+      "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
+      "trimester": {
+        "first": "Birinci Trimester",
+        "second": "İkinci Trimester",
+        "third": "Üçüncü Trimester"
+      }
+    },
+    "bmi": {
+      "title": "Hamilelik VKİ Hesaplayıcı",
+      "subtitle": "Hamilelik öncesi VKİ'nizi ve kilo alım önerilerini hesaplayın",
+      "unitSystem": "Birim Sistemi",
+      "imperial": "İngiliz (lbs, inç)",
+      "metric": "Metrik (kg, cm)",
+      "prePregnancyWeight": "Hamilelik Öncesi Kilo",
+      "height": "Boy",
+      "calculateBtn": "VKİ Hesapla",
+      "prePregnancyBMI": "Hamilelik Öncesi VKİ",
+      "recommendedGain": "Önerilen Toplam Kilo Alımı",
+      "pounds": "libre",
+      "weeklyGainTitle": "Haftalık Kilo Alımı (2. ve 3. Trimester)",
+      "lbsPerWeek": "lbs/hafta",
+      "firstTrimesterNote": "İlk trimester: toplamda 1-4 libre",
+      "aiGuideTitle": "AI Kilo Yönetimi Rehberi",
+      "getPersonalizedPlan": "Kişiselleştirilmiş Plan Al",
+      "disclaimer": "Bu öneriler Tıp Enstitüsü kılavuzlarına dayanmaktadır. Doktorunuz özel sağlık durumunuza göre kişiselleştirilmiş tavsiyeler verebilir.",
+      "categories": {
+        "underweight": "Zayıf",
+        "normalweight": "Normal kilolu",
+        "overweight": "Fazla kilolu",
+        "obese": "Obez"
+      }
+    },
+    "healthMonitor": {
+      "title": "Sağlık İzleme Sistemi",
+      "subtitle": "Tahmine dayalı analitik ile kapsamlı gösterge paneli",
+      "weight": "Kilo",
+      "bloodPressure": "Tansiyon",
+      "risks": "Riskler",
+      "normal": "Normal",
+      "normalForWeek": "Hafta {{week}} için normal",
+      "pretermBirth": "Erken doğum",
+      "preeclampsia": "Preeklampsi",
+      "low": "Düşük",
+      "medium": "Orta"
+    },
     "birthPlan": {
       "title": "AI Doğum Planı Oluşturucu",
       "subtitle": "Kişiselleştirilmiş doğum planınızı oluşturun",

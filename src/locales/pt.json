@@ -931,6 +931,68 @@
         "flexibility": "Flexibilidade"
       }
     },
+    "weeklySummary": {
+      "title": "Resumo Semanal",
+      "subtitle": "Acompanhamento semanal inteligente da sua gravidez",
+      "daysToGo": "{{days}} dias restantes",
+      "pregnancyWeek": "Semana de Gravidez",
+      "week": "Semana {{week}}",
+      "showSummary": "Mostrar resumo da semana {{week}}",
+      "approximatelyRemaining": "Aproximadamente {{days}} dias restantes",
+      "babyGrowth": "Crescimento do Bebê",
+      "momsHealth": "Saúde da Mamãe",
+      "checkups": "Consultas",
+      "normal": "Normal",
+      "good": "Bom",
+      "complete": "Completo",
+      "weekSummary": "Resumo Semana {{week}}",
+      "differentWeek": "Outra Semana",
+      "refresh": "Atualizar",
+      "trackTip": "Acompanhe sua semana para obter informações personalizadas sobre o crescimento do seu bebê e as mudanças do seu corpo",
+      "trimester": {
+        "first": "Primeiro Trimestre",
+        "second": "Segundo Trimestre",
+        "third": "Terceiro Trimestre"
+      }
+    },
+    "bmi": {
+      "title": "Calculadora de IMC na Gravidez",
+      "subtitle": "Calcule seu IMC pré-gravidez e recomendações de ganho de peso",
+      "unitSystem": "Sistema de Unidades",
+      "imperial": "Imperial (lbs, polegadas)",
+      "metric": "Métrico (kg, cm)",
+      "prePregnancyWeight": "Peso Pré-Gravidez",
+      "height": "Altura",
+      "calculateBtn": "Calcular IMC",
+      "prePregnancyBMI": "IMC Pré-Gravidez",
+      "recommendedGain": "Ganho Total Recomendado",
+      "pounds": "libras",
+      "weeklyGainTitle": "Ganho Semanal (2º e 3º Trimestre)",
+      "lbsPerWeek": "lbs/semana",
+      "firstTrimesterNote": "Primeiro trimestre: 1-4 libras no total",
+      "aiGuideTitle": "Guia IA de Gerenciamento de Peso",
+      "getPersonalizedPlan": "Obter Plano Personalizado",
+      "disclaimer": "Estas recomendações são baseadas nas diretrizes do Instituto de Medicina. Seu médico pode dar conselhos personalizados com base na sua situação de saúde específica.",
+      "categories": {
+        "underweight": "Abaixo do peso",
+        "normalweight": "Peso normal",
+        "overweight": "Sobrepeso",
+        "obese": "Obeso"
+      }
+    },
+    "healthMonitor": {
+      "title": "Sistema de Monitoramento de Saúde",
+      "subtitle": "Painel completo com análises preditivas",
+      "weight": "Peso",
+      "bloodPressure": "Pressão Arterial",
+      "risks": "Riscos",
+      "normal": "Normal",
+      "normalForWeek": "Normal para a semana {{week}}",
+      "pretermBirth": "Parto prematuro",
+      "preeclampsia": "Pré-eclâmpsia",
+      "low": "Baixo",
+      "medium": "Médio"
+    },
     "birthPlan": {
       "title": "Gerador de Plano de Parto IA",
       "subtitle": "Crie seu plano de parto personalizado",
