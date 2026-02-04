@@ -127,6 +127,25 @@
       "diapers": "حفاضات",
       "items": "عناصر"
     },
+    "quickStats": {
+      "weight": "الوزن",
+      "lastRecorded": "آخر قياس",
+      "kicksToday": "الركلات اليوم",
+      "goal": "الهدف: {{goal}}",
+      "goalReached": "تم تحقيق الهدف!",
+      "mood": "المزاج",
+      "howYouFeel": "كيف تشعرين",
+      "water": "الماء",
+      "glassesToday": "أكواب اليوم",
+      "nextAppointment": "الموعد القادم",
+      "moods": {
+        "excellent": "ممتاز",
+        "good": "جيد",
+        "normal": "عادي",
+        "anxious": "قلقة",
+        "tired": "متعبة"
+      }
+    },
     "aiTools": "أدوات الذكاء الاصطناعي",
     "aiToolsList": {
       "smartPlan": "الخطة الذكية",

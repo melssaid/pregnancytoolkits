@@ -229,6 +229,25 @@
       "diapers": "bez",
       "items": "eşya"
     },
+    "quickStats": {
+      "weight": "Kilo",
+      "lastRecorded": "Son kayıt",
+      "kicksToday": "Bugün tepmeler",
+      "goal": "Hedef: {{goal}}",
+      "goalReached": "Hedefe ulaşıldı!",
+      "mood": "Ruh hali",
+      "howYouFeel": "Nasıl hissediyorsunuz",
+      "water": "Su",
+      "glassesToday": "Bugün bardak",
+      "nextAppointment": "Sonraki randevu",
+      "moods": {
+        "excellent": "Mükemmel",
+        "good": "İyi",
+        "normal": "Normal",
+        "anxious": "Endişeli",
+        "tired": "Yorgun"
+      }
+    },
     "aiTools": "AI Destekli Araçlar",
     "aiToolsList": {
       "smartPlan": "Akıllı Plan",

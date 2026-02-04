@@ -229,6 +229,25 @@
       "diapers": "Windeln",
       "items": "Artikel"
     },
+    "quickStats": {
+      "weight": "Gewicht",
+      "lastRecorded": "Zuletzt erfasst",
+      "kicksToday": "Tritte heute",
+      "goal": "Ziel: {{goal}}",
+      "goalReached": "Ziel erreicht!",
+      "mood": "Stimmung",
+      "howYouFeel": "Wie Sie sich fühlen",
+      "water": "Wasser",
+      "glassesToday": "Gläser heute",
+      "nextAppointment": "Nächster Termin",
+      "moods": {
+        "excellent": "Ausgezeichnet",
+        "good": "Gut",
+        "normal": "Normal",
+        "anxious": "Ängstlich",
+        "tired": "Müde"
+      }
+    },
     "aiTools": "KI-gestützte Tools",
     "aiToolsList": {
       "smartPlan": "Smart-Plan",
