@@ -8,17 +8,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
-const riskFactors = [
-  { id: "age", label: "Age 35 or older", points: 1 },
-  { id: "bmi", label: "BMI 30 or higher before pregnancy", points: 2 },
-  { id: "family", label: "Family history of diabetes (parent or sibling)", points: 1 },
-  { id: "previous-gdm", label: "Previous gestational diabetes", points: 3 },
-  { id: "previous-large", label: "Previously gave birth to a baby over 9 lbs", points: 1 },
-  { id: "pcos", label: "Polycystic ovary syndrome (PCOS)", points: 1 },
-  { id: "prediabetes", label: "Prediabetes or high blood sugar", points: 2 },
-  { id: "ethnicity", label: "Higher-risk ethnicity", points: 1 },
-  { id: "multiple", label: "Pregnant with multiples (twins, triplets)", points: 1 },
-  { id: "sedentary", label: "Sedentary lifestyle before pregnancy", points: 1 },
+const RISK_FACTOR_KEYS = [
+  { id: "age", labelKey: "toolsInternal.gdm.riskFactors.age", points: 1 },
+  { id: "bmi", labelKey: "toolsInternal.gdm.riskFactors.bmi", points: 2 },
+  { id: "family", labelKey: "toolsInternal.gdm.riskFactors.family", points: 1 },
+  { id: "previous-gdm", labelKey: "toolsInternal.gdm.riskFactors.previousGdm", points: 3 },
+  { id: "previous-large", labelKey: "toolsInternal.gdm.riskFactors.previousLarge", points: 1 },
+  { id: "pcos", labelKey: "toolsInternal.gdm.riskFactors.pcos", points: 1 },
+  { id: "prediabetes", labelKey: "toolsInternal.gdm.riskFactors.prediabetes", points: 2 },
+  { id: "ethnicity", labelKey: "toolsInternal.gdm.riskFactors.ethnicity", points: 1 },
+  { id: "multiple", labelKey: "toolsInternal.gdm.riskFactors.multiple", points: 1 },
+  { id: "sedentary", labelKey: "toolsInternal.gdm.riskFactors.sedentary", points: 1 }
 ];
 
 export default function GestationalDiabetes() {
@@ -33,7 +33,7 @@ export default function GestationalDiabetes() {
   };
 
   const calculateRisk = () => {
-    const totalPoints = riskFactors
+    const totalPoints = RISK_FACTOR_KEYS
       .filter((f) => selectedFactors.includes(f.id))
       .reduce((sum, f) => sum + f.points, 0);
 
@@ -87,7 +87,7 @@ export default function GestationalDiabetes() {
           <CardContent className="pt-6">
             <h3 className="font-semibold mb-4">{t('toolsInternal.gdm.checkRiskFactors')}</h3>
             <div className="space-y-3">
-              {riskFactors.map((factor) => (
+              {RISK_FACTOR_KEYS.map((factor) => (
                 <button
                   key={factor.id}
                   type="button"
@@ -103,7 +103,7 @@ export default function GestationalDiabetes() {
                     onCheckedChange={() => toggleFactor(factor.id)}
                     className="mt-0.5 pointer-events-none"
                   />
-                  <span className="text-sm text-foreground font-medium">{factor.label}</span>
+                  <span className="text-sm text-foreground font-medium">{t(factor.labelKey)}</span>
                 </button>
               ))}
             </div>
@@ -145,7 +145,7 @@ export default function GestationalDiabetes() {
             prompt={`I'm assessing my gestational diabetes risk. My risk level is ${risk.level} (${risk.title}).
 
 My risk factors:
-${riskFactors.filter(f => selectedFactors.includes(f.id)).map(f => `- ${f.label}`).join('\n')}
+${RISK_FACTOR_KEYS.filter(f => selectedFactors.includes(f.id)).map(f => `- ${t(f.labelKey)}`).join('\n')}
 
 Please provide personalized advice:
 

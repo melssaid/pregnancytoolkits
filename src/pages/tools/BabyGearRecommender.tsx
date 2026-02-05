@@ -19,18 +19,18 @@ interface GearItem {
 }
 
 const gearList: GearItem[] = [
-  { id: '1', nameKey: 'babyGear.items.carSeat.name', category: 'essential', type: 'travel', descriptionKey: 'babyGear.items.carSeat.description', priceRange: '$$', tipsKey: 'babyGear.items.carSeat.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
-  { id: '2', nameKey: 'babyGear.items.crib.name', category: 'essential', type: 'sleeping', descriptionKey: 'babyGear.items.crib.description', priceRange: '$$', tipsKey: 'babyGear.items.crib.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
-  { id: '3', nameKey: 'babyGear.items.diapers.name', category: 'essential', type: 'health', descriptionKey: 'babyGear.items.diapers.description', priceRange: '$', tipsKey: 'babyGear.items.diapers.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
-  { id: '4', nameKey: 'babyGear.items.bottles.name', category: 'essential', type: 'feeding', descriptionKey: 'babyGear.items.bottles.description', priceRange: '$', tipsKey: 'babyGear.items.bottles.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
-  { id: '5', nameKey: 'babyGear.items.onesies.name', category: 'essential', type: 'clothing', descriptionKey: 'babyGear.items.onesies.description', priceRange: '$', tipsKey: 'babyGear.items.onesies.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
-  { id: '6', nameKey: 'babyGear.items.stroller.name', category: 'recommended', type: 'travel', descriptionKey: 'babyGear.items.stroller.description', priceRange: '$$', tipsKey: 'babyGear.items.stroller.tips', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
-  { id: '7', nameKey: 'babyGear.items.monitor.name', category: 'recommended', type: 'nursery', descriptionKey: 'babyGear.items.monitor.description', priceRange: '$$', tipsKey: 'babyGear.items.monitor.tips', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
-  { id: '8', nameKey: 'babyGear.items.breastPump.name', category: 'recommended', type: 'feeding', descriptionKey: 'babyGear.items.breastPump.description', priceRange: '$$', tipsKey: 'babyGear.items.breastPump.tips', whenNeededKey: 'babyGear.whenNeeded.afterBirth' },
-  { id: '9', nameKey: 'babyGear.items.swing.name', category: 'nice-to-have', type: 'nursery', descriptionKey: 'babyGear.items.swing.description', priceRange: '$$', tipsKey: 'babyGear.items.swing.tips', whenNeededKey: 'babyGear.whenNeeded.firstMonth' },
-  { id: '10', nameKey: 'babyGear.items.diaperBag.name', category: 'recommended', type: 'travel', descriptionKey: 'babyGear.items.diaperBag.description', priceRange: '$', tipsKey: 'babyGear.items.diaperBag.tips', whenNeededKey: 'babyGear.whenNeeded.afterBirth' },
-  { id: '11', nameKey: 'babyGear.items.bathtub.name', category: 'recommended', type: 'health', descriptionKey: 'babyGear.items.bathtub.description', priceRange: '$', tipsKey: 'babyGear.items.bathtub.tips', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
-  { id: '12', nameKey: 'babyGear.items.swaddles.name', category: 'essential', type: 'sleeping', descriptionKey: 'babyGear.items.swaddles.description', priceRange: '$', tipsKey: 'babyGear.items.swaddles.tips', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' }
+  { id: '1', nameKey: 'babyGear.items.carSeat', category: 'essential', type: 'travel', descriptionKey: 'babyGear.descriptions.carSeat', priceRange: '$$', tipsKey: 'babyGear.tips.carSeat', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '2', nameKey: 'babyGear.items.crib', category: 'essential', type: 'sleeping', descriptionKey: 'babyGear.descriptions.crib', priceRange: '$$', tipsKey: 'babyGear.tips.crib', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '3', nameKey: 'babyGear.items.diapers', category: 'essential', type: 'health', descriptionKey: 'babyGear.descriptions.diapers', priceRange: '$', tipsKey: 'babyGear.tips.diapers', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '4', nameKey: 'babyGear.items.bottles', category: 'essential', type: 'feeding', descriptionKey: 'babyGear.descriptions.bottles', priceRange: '$', tipsKey: 'babyGear.tips.bottles', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '5', nameKey: 'babyGear.items.onesies', category: 'essential', type: 'clothing', descriptionKey: 'babyGear.descriptions.onesies', priceRange: '$', tipsKey: 'babyGear.tips.onesies', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' },
+  { id: '6', nameKey: 'babyGear.items.stroller', category: 'recommended', type: 'travel', descriptionKey: 'babyGear.descriptions.stroller', priceRange: '$$', tipsKey: 'babyGear.tips.stroller', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
+  { id: '7', nameKey: 'babyGear.items.monitor', category: 'recommended', type: 'nursery', descriptionKey: 'babyGear.descriptions.monitor', priceRange: '$$', tipsKey: 'babyGear.tips.monitor', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
+  { id: '8', nameKey: 'babyGear.items.breastPump', category: 'recommended', type: 'feeding', descriptionKey: 'babyGear.descriptions.breastPump', priceRange: '$$', tipsKey: 'babyGear.tips.breastPump', whenNeededKey: 'babyGear.whenNeeded.afterBirth' },
+  { id: '9', nameKey: 'babyGear.items.swing', category: 'nice-to-have', type: 'nursery', descriptionKey: 'babyGear.descriptions.swing', priceRange: '$$', tipsKey: 'babyGear.tips.swing', whenNeededKey: 'babyGear.whenNeeded.firstMonth' },
+  { id: '10', nameKey: 'babyGear.items.diaperBag', category: 'recommended', type: 'travel', descriptionKey: 'babyGear.descriptions.diaperBag', priceRange: '$', tipsKey: 'babyGear.tips.diaperBag', whenNeededKey: 'babyGear.whenNeeded.afterBirth' },
+  { id: '11', nameKey: 'babyGear.items.bathtub', category: 'recommended', type: 'health', descriptionKey: 'babyGear.descriptions.bathtub', priceRange: '$', tipsKey: 'babyGear.tips.bathtub', whenNeededKey: 'babyGear.whenNeeded.firstWeeks' },
+  { id: '12', nameKey: 'babyGear.items.swaddles', category: 'essential', type: 'sleeping', descriptionKey: 'babyGear.descriptions.swaddles', priceRange: '$', tipsKey: 'babyGear.tips.swaddles', whenNeededKey: 'babyGear.whenNeeded.beforeBirth' }
 ];
 
 const typeIcons: Record<string, React.ElementType> = {

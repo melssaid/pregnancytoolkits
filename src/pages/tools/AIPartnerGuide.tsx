@@ -12,39 +12,39 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
-const partnerVideos: Video[] = [
+const getPartnerVideos = (t: any): Video[] => [
   {
     id: "1",
-    title: "Newborn Care Week 1",
-    description: "Pediatrician guide to first week with baby",
+    title: t('toolsInternal.partnerGuide.videos.v1.title'),
+    description: t('toolsInternal.partnerGuide.videos.v1.description'),
     youtubeId: "hpgjwK_oQe0",
     duration: "18:00",
-    category: "Newborn Care"
+    category: t('toolsInternal.partnerGuide.videos.v1.category')
   },
   {
     id: "2",
-    title: "Caring For Your Newborn",
-    description: "Comprehensive newborn care guide for new parents",
+    title: t('toolsInternal.partnerGuide.videos.v2.title'),
+    description: t('toolsInternal.partnerGuide.videos.v2.description'),
     youtubeId: "-CWJYxIvoFQ",
     duration: "15:00",
-    category: "Newborn Care"
+    category: t('toolsInternal.partnerGuide.videos.v2.category')
   },
   {
     id: "3",
-    title: "Labor & Birth Positions",
-    description: "How partners can help with comfort during labor",
+    title: t('toolsInternal.partnerGuide.videos.v3.title'),
+    description: t('toolsInternal.partnerGuide.videos.v3.description'),
     youtubeId: "nc8IbAAotHo",
     duration: "15:00",
-    category: "Labor Support"
+    category: t('toolsInternal.partnerGuide.videos.v3.category')
   },
   {
     id: "4",
-    title: "Hospital Bag Preparation",
-    description: "What to pack for labor and delivery",
+    title: t('toolsInternal.partnerGuide.videos.v4.title'),
+    description: t('toolsInternal.partnerGuide.videos.v4.description'),
     youtubeId: "NTulfAOzbp8",
     duration: "8:00",
-    category: "Preparation"
-  },
+    category: t('toolsInternal.partnerGuide.videos.v4.category')
+  }
 ];
 
 const TOPIC_KEYS = [
@@ -222,7 +222,7 @@ Be warm, practical, and specific. Include real examples.`;
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
-          videos={partnerVideos}
+          videos={getPartnerVideos(t)}
           title={t('toolsInternal.partnerGuide.partnerVideos')}
           subtitle={t('toolsInternal.partnerGuide.partnerVideosSubtitle')}
           accentColor="rose"

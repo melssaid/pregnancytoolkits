@@ -1180,6 +1180,12 @@
       "addCustomItem": "Add custom item...",
       "hospitalBagVideos": "Hospital Bag Prep Videos",
       "hospitalBagVideosSubtitle": "Tips from experienced moms",
+      "videos": {
+        "v1": { "title": "Hospital Bag Checklist", "description": "Midwife advice on what to pack", "category": "Essentials" },
+        "v2": { "title": "Essential Hospital Bag Items", "description": "Must-have items for labor and delivery", "category": "Essentials" },
+        "v3": { "title": "Hospital Bag Tips", "description": "Nurse-approved essentials you'll actually use", "category": "Tips" },
+        "v4": { "title": "What to Pack for Baby", "description": "Newborn essentials for hospital stay", "category": "Baby" }
+      },
       "items": {
         "hospitalID": "Hospital ID & Insurance cards",
         "birthPlanCopies": "Birth plan copies",
@@ -1308,6 +1314,12 @@
       "action4": "Read to the baby bump together",
       "partnerVideos": "Partner Support Videos",
       "partnerVideosSubtitle": "Learn how to be the best support partner",
+      "videos": {
+        "v1": { "title": "Newborn Care Week 1", "description": "Pediatrician guide to first week with baby", "category": "Newborn Care" },
+        "v2": { "title": "Caring For Your Newborn", "description": "Comprehensive newborn care guide for new parents", "category": "Newborn Care" },
+        "v3": { "title": "Labor & Birth Positions", "description": "How partners can help with comfort during labor", "category": "Labor Support" },
+        "v4": { "title": "Hospital Bag Preparation", "description": "What to pack for labor and delivery", "category": "Preparation" }
+      },
       "topics": {
         "emotional": {"label": "Emotional Support", "icon": "💝", "desc": "How to be emotionally present"},
         "physical": {"label": "Physical Comfort", "icon": "🤲", "desc": "Massage, help with tasks"},
@@ -1421,6 +1433,12 @@
       "eveningSteps": "Cleanse → Treat → Nourish",
       "skincareVideos": "Pregnancy Skincare Videos",
       "skincareVideosSubtitle": "Dermatologist-approved skincare guidance",
+      "videos": {
+        "v1": { "title": "Pregnancy Safe Skincare Routine", "description": "Board-certified dermatologist Dr. Joyce Park explains safe products", "category": "Skincare Routine" },
+        "v2": { "title": "Safe Skincare During Pregnancy", "description": "Dr. Sheila Farhang on what products to use and avoid", "category": "Product Safety" },
+        "v3": { "title": "Pregnancy Nutrition for Skin", "description": "Foods that promote healthy pregnancy and glowing skin", "category": "Nutrition" },
+        "v4": { "title": "Pregnancy Diet Guide", "description": "What to eat for healthy skin during pregnancy", "category": "Diet" }
+      },
       "concerns": {
         "acne": {"label": "Pregnancy Acne", "icon": "🔴"},
         "melasma": {"label": "Melasma/Dark Spots", "icon": "🟤"},
@@ -2035,6 +2053,18 @@
           "title": "Lower Risk",
           "description": "You have few risk factors, but routine screening at 24-28 weeks is still recommended."
         }
+      },
+      "riskFactors": {
+        "age": "Age 35 or older",
+        "bmi": "BMI 30 or higher before pregnancy",
+        "family": "Family history of diabetes (parent or sibling)",
+        "previousGdm": "Previous gestational diabetes",
+        "previousLarge": "Previously gave birth to a baby over 9 lbs",
+        "pcos": "Polycystic ovary syndrome (PCOS)",
+        "prediabetes": "Prediabetes or high blood sugar",
+        "ethnicity": "Higher-risk ethnicity",
+        "multiple": "Pregnant with multiples (twins, triplets)",
+        "sedentary": "Sedentary lifestyle before pregnancy"
       },
       "preventionTips": {
         "tip1": "Maintain a healthy weight before and during pregnancy",
