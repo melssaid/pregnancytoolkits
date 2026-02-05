@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check, Sparkles, Stethoscope, TestTube, Baby, Activity } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { AppointmentService, UserProfileService } from '@/services/supabaseServices';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { TimePicker } from '@/components/ui/time-picker';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
+import { ToolFrame } from '@/components/ToolFrame';
+import { WeekSlider } from '@/components/WeekSlider';
+import { MedicalDisclaimer } from '@/components/compliance';
+
 interface Appointment {
   id: string;
   title: string;
@@ -20,7 +26,17 @@ interface Appointment {
   reminder_sent: boolean;
 }
 
+const APPOINTMENT_TYPES = [
+  { key: 'checkup', icon: Stethoscope, color: 'bg-primary/10 text-primary' },
+  { key: 'ultrasound', icon: Baby, color: 'bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400' },
+  { key: 'bloodTest', icon: TestTube, color: 'bg-rose-100 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400' },
+  { key: 'glucoseTest', icon: Activity, color: 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400' },
+  { key: 'other', icon: Calendar, color: 'bg-muted text-muted-foreground' },
+];
+
 const SmartAppointmentReminder: React.FC = () => {
+  const { t } = useTranslation();
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -62,11 +78,6 @@ const SmartAppointmentReminder: React.FC = () => {
       
     } catch (error: any) {
       console.error('Error loading appointments:', error);
-      toast({
-        title: 'Loading Error',
-        description: error.message,
-        variant: 'destructive'
-      });
     } finally {
       setIsLoading(false);
     }
@@ -77,8 +88,8 @@ const SmartAppointmentReminder: React.FC = () => {
     
     if (!formData.title || !formData.appointment_date) {
       toast({
-        title: 'Error',
-        description: 'Please fill in the required fields',
+        title: t('common.error'),
+        description: t('toolsInternal.appointmentReminder.fillRequired'),
         variant: 'destructive'
       });
       return;
@@ -105,18 +116,18 @@ const SmartAppointmentReminder: React.FC = () => {
         setAppointments(prev => prev.map(a => 
           a.id === editingId ? { ...a, ...appointmentData } : a
         ));
-        toast({ title: 'Updated! ✅' });
+        toast({ title: t('common.success') + ' ✅' });
       } else {
         const newAppointment = await AppointmentService.add(appointmentData);
         setAppointments(prev => [...prev, newAppointment]);
-        toast({ title: 'Added! ✅' });
+        toast({ title: t('common.success') + ' ✅' });
       }
 
       resetForm();
       
     } catch (error: any) {
       toast({
-        title: 'Error',
+        title: t('common.error'),
         description: error.message,
         variant: 'destructive'
       });
@@ -126,15 +137,15 @@ const SmartAppointmentReminder: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this appointment?')) return;
+    if (!confirm(t('toolsInternal.appointmentReminder.confirmDelete'))) return;
 
     try {
       await AppointmentService.delete(id);
       setAppointments(prev => prev.filter(a => a.id !== id));
-      toast({ title: 'Deleted' });
+      toast({ title: t('common.delete') });
     } catch (error: any) {
       toast({
-        title: 'Error',
+        title: t('common.error'),
         description: error.message,
         variant: 'destructive'
       });
@@ -196,31 +207,23 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
         onDone: () => {
           if (abortRef.current) return;
           
-          // Parse the numbered questions from the response
           const lines = fullResponse.split('\n');
           const questions: string[] = [];
           
           for (const line of lines) {
             const trimmed = line.trim();
-            // Match numbered questions (1. 2. etc) or bullet points
             const match = trimmed.match(/^(?:\d+[.)\-]|\*|\-)\s*(.+)/);
             if (match && match[1] && match[1].length > 10) {
               questions.push(match[1].trim());
             }
           }
           
-          // Take up to 5 questions
           setSuggestedQuestions(questions.slice(0, 5));
         }
       });
       
     } catch (error) {
       console.error('Error generating questions:', error);
-      toast({
-        title: 'AI Error',
-        description: 'Could not generate questions. Please try again.',
-        variant: 'destructive'
-      });
     } finally {
       setIsGeneratingQuestions(false);
     }
@@ -258,10 +261,9 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
+    return date.toLocaleDateString(undefined, {
+      weekday: 'short',
+      month: 'short',
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit'
@@ -272,20 +274,50 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
     const now = new Date();
     const date = new Date(dateStr);
     const diff = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    if (diff === 0) return 'Today';
-    if (diff === 1) return 'Tomorrow';
-    if (diff < 0) return 'Passed';
-    return `In ${diff} days`;
+    if (diff === 0) return t('common.today');
+    if (diff === 1) return t('toolsInternal.appointmentReminder.tomorrow');
+    if (diff < 0) return t('toolsInternal.appointmentReminder.passed');
+    return t('toolsInternal.appointmentReminder.inDays', { count: diff });
   };
+
+  const getAppointmentIcon = (title: string) => {
+    const lowerTitle = title.toLowerCase();
+    if (lowerTitle.includes('ultrasound') || lowerTitle.includes('سونار') || lowerTitle.includes('ultrason')) {
+      return APPOINTMENT_TYPES[1];
+    }
+    if (lowerTitle.includes('blood') || lowerTitle.includes('دم') || lowerTitle.includes('blut')) {
+      return APPOINTMENT_TYPES[2];
+    }
+    if (lowerTitle.includes('glucose') || lowerTitle.includes('سكر') || lowerTitle.includes('glukose')) {
+      return APPOINTMENT_TYPES[3];
+    }
+    if (lowerTitle.includes('checkup') || lowerTitle.includes('فحص') || lowerTitle.includes('kontroll')) {
+      return APPOINTMENT_TYPES[0];
+    }
+    return APPOINTMENT_TYPES[4];
+  };
+
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName={t('toolsInternal.appointmentReminder.title')}
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
+  }
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-blue-500 mx-auto mb-4" />
-          <p className="text-gray-600">Loading your appointments...</p>
+      <ToolFrame
+        title={t('toolsInternal.appointmentReminder.title')}
+        subtitle={t('toolsInternal.appointmentReminder.subtitle')}
+        mood="calm"
+        toolId="appointment-reminder"
+      >
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
-      </div>
+      </ToolFrame>
     );
   }
 
@@ -293,105 +325,154 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
   const past = getPastAppointments();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 md:p-8">
-      <div className="max-w-4xl mx-auto space-y-6">
-        
-        {/* Header */}
-        <Card className="bg-gradient-to-r from-blue-500 to-purple-500 text-white border-0 shadow-xl">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-2xl">
-              <Calendar className="w-8 h-8" />
-              📅 My Medical Appointments
-            </CardTitle>
-            <p className="text-blue-100">
-              Week {currentWeek} - Organize your appointments with AI-suggested questions
-            </p>
-          </CardHeader>
-        </Card>
+    <ToolFrame
+      title={t('toolsInternal.appointmentReminder.title')}
+      subtitle={t('toolsInternal.appointmentReminder.subtitle')}
+      mood="calm"
+      toolId="appointment-reminder"
+    >
+      <div className="space-y-5">
+        {/* Week Slider */}
+        <WeekSlider week={currentWeek} onChange={setCurrentWeek} />
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-3 gap-2">
+          <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
+            <CardContent className="p-3 text-center">
+              <Calendar className="w-4 h-4 mx-auto mb-1 text-primary" />
+              <p className="text-lg font-bold text-primary">{upcoming.length}</p>
+              <p className="text-[10px] text-muted-foreground">{t('toolsInternal.appointmentReminder.upcoming')}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-violet-100/50 to-violet-50/30 dark:from-violet-900/20 dark:to-violet-800/10 border-violet-200/50">
+            <CardContent className="p-3 text-center">
+              <Bell className="w-4 h-4 mx-auto mb-1 text-violet-500" />
+              <p className="text-lg font-bold text-violet-600 dark:text-violet-400">{currentWeek}</p>
+              <p className="text-[10px] text-muted-foreground">{t('common.week')}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-muted/50 to-muted/30 border-border/50">
+            <CardContent className="p-3 text-center">
+              <Clock className="w-4 h-4 mx-auto mb-1 text-muted-foreground" />
+              <p className="text-lg font-bold text-muted-foreground">{past.length}</p>
+              <p className="text-[10px] text-muted-foreground">{t('toolsInternal.appointmentReminder.past')}</p>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Add Button */}
         {!showForm && (
           <Button
-            className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-6 text-lg"
+            className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground py-5 gap-2"
             onClick={() => setShowForm(true)}
           >
-            <Plus className="w-6 h-6 mr-2" />
-            Add New Appointment
+            <Plus className="w-5 h-5" />
+            {t('toolsInternal.appointmentReminder.addAppointment')}
           </Button>
         )}
 
         {/* Form */}
         {showForm && (
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle>{editingId ? 'Edit Appointment' : 'New Appointment'}</CardTitle>
+          <Card className="shadow-lg border-primary/20">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-primary" />
+                {editingId ? t('common.edit') : t('toolsInternal.appointmentReminder.addAppointment')}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Appointment Type Quick Select */}
                 <div>
-                  <label className="block text-sm font-medium mb-1">Appointment Type *</label>
+                  <label className="block text-xs font-medium mb-2">{t('toolsInternal.appointmentReminder.appointmentType')} *</label>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {APPOINTMENT_TYPES.map(type => {
+                      const Icon = type.icon;
+                      const isSelected = formData.title.toLowerCase().includes(t(`toolsInternal.appointmentReminder.${type.key}`).toLowerCase());
+                      return (
+                        <button
+                          key={type.key}
+                          type="button"
+                          onClick={() => setFormData(prev => ({ ...prev, title: t(`toolsInternal.appointmentReminder.${type.key}`) }))}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                            isSelected 
+                              ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2' 
+                              : type.color
+                          }`}
+                        >
+                          <Icon className="w-3.5 h-3.5" />
+                          {t(`toolsInternal.appointmentReminder.${type.key}`)}
+                        </button>
+                      );
+                    })}
+                  </div>
                   <Input
-                    placeholder="e.g., Regular checkup, Ultrasound..."
+                    placeholder={t('toolsInternal.appointmentReminder.customType')}
                     value={formData.title}
                     onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                    className="text-sm"
                     required
                   />
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Date *</label>
+                    <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.date')} *</label>
                     <Input
                       type="date"
                       value={formData.appointment_date}
                       onChange={(e) => setFormData(prev => ({ ...prev, appointment_date: e.target.value }))}
+                      className="text-sm"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Time</label>
+                    <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.time')}</label>
                     <TimePicker
                       value={formData.appointment_time}
                       onChange={(value) => setFormData(prev => ({ ...prev, appointment_time: value }))}
-                      placeholder="Select time"
+                      placeholder={t('toolsInternal.appointmentReminder.selectTime')}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Doctor's Name</label>
+                  <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.doctorName')}</label>
                   <Input
                     placeholder="Dr. ..."
                     value={formData.doctor_name}
                     onChange={(e) => setFormData(prev => ({ ...prev, doctor_name: e.target.value }))}
+                    className="text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Location</label>
+                  <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.location')}</label>
                   <Input
-                    placeholder="Hospital or clinic name"
+                    placeholder={t('toolsInternal.appointmentReminder.locationPlaceholder')}
                     value={formData.location}
                     onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
+                    className="text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1">Notes</label>
+                  <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.notes')}</label>
                   <Textarea
-                    placeholder="Any additional notes..."
+                    placeholder={t('toolsInternal.appointmentReminder.notesPlaceholder')}
                     value={formData.notes}
                     onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
                     rows={2}
+                    className="text-sm"
                   />
                 </div>
 
                 {/* AI Questions */}
                 <div className="border-t pt-4">
                   <div className="flex items-center justify-between mb-3">
-                    <label className="font-medium flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4" />
-                      Questions for Doctor
+                    <label className="text-xs font-medium flex items-center gap-1.5">
+                      <MessageSquare className="w-3.5 h-3.5 text-primary" />
+                      {t('toolsInternal.appointmentReminder.questionsForDoctor')}
                     </label>
                     <Button
                       type="button"
@@ -399,31 +480,32 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
                       size="sm"
                       onClick={generateQuestions}
                       disabled={isGeneratingQuestions || !formData.title}
+                      className="h-7 text-xs gap-1"
                     >
                       {isGeneratingQuestions ? (
-                        <Loader2 className="w-4 h-4 animate-spin mr-1" />
+                        <Loader2 className="w-3 h-3 animate-spin" />
                       ) : (
-                        '✨'
+                        <Sparkles className="w-3 h-3 text-violet-500" />
                       )}
-                      AI Suggestions
+                      {t('toolsInternal.appointmentReminder.aiSuggestions')}
                     </Button>
                   </div>
 
                   {/* Selected Questions */}
                   {formData.questions.length > 0 && (
-                    <div className="space-y-2 mb-3">
+                    <div className="space-y-1.5 mb-3">
                       {formData.questions.map((q, i) => (
-                        <div key={i} className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg">
-                          <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
-                          <span className="text-sm flex-1">{q}</span>
+                        <div key={i} className="flex items-center gap-2 bg-primary/5 p-2 rounded-lg">
+                          <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          <span className="text-xs flex-1">{q}</span>
                           <Button
                             type="button"
                             variant="ghost"
                             size="icon"
-                            className="h-6 w-6"
+                            className="h-5 w-5"
                             onClick={() => removeQuestion(i)}
                           >
-                            <Trash2 className="w-3 h-3 text-red-500" />
+                            <Trash2 className="w-3 h-3 text-destructive" />
                           </Button>
                         </div>
                       ))}
@@ -432,15 +514,18 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
 
                   {/* Suggested Questions */}
                   {suggestedQuestions.length > 0 && (
-                    <div className="space-y-2 bg-purple-50 p-3 rounded-lg">
-                      <p className="text-sm text-purple-600 font-medium">🤖 AI Suggestions:</p>
+                    <div className="space-y-1.5 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 p-3 rounded-lg border border-violet-200/50">
+                      <p className="text-xs text-violet-600 dark:text-violet-400 font-medium flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" />
+                        {t('toolsInternal.appointmentReminder.aiSuggestionsLabel')}
+                      </p>
                       {suggestedQuestions.map((q, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-2 text-sm cursor-pointer hover:bg-purple-100 p-2 rounded transition-colors"
+                          className="flex items-center gap-2 text-xs cursor-pointer hover:bg-violet-100 dark:hover:bg-violet-900/30 p-2 rounded transition-colors"
                           onClick={() => addQuestion(q)}
                         >
-                          <Plus className="w-4 h-4 text-purple-500" />
+                          <Plus className="w-3 h-3 text-violet-500" />
                           <span>{q}</span>
                         </div>
                       ))}
@@ -448,21 +533,20 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
                     </div>
                   )}
                   
-                  {/* AI Error Display */}
                   {aiError && (
-                    <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
+                    <div className="bg-destructive/10 text-destructive p-2 rounded-lg text-xs">
                       ⚠️ {aiError}
                     </div>
                   )}
                 </div>
 
-                <div className="flex gap-3 pt-4">
-                  <Button type="submit" className="flex-1" disabled={isSaving}>
-                    {isSaving ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                    {editingId ? 'Save Changes' : 'Add Appointment'}
+                <div className="flex gap-2 pt-2">
+                  <Button type="submit" className="flex-1" size="sm" disabled={isSaving}>
+                    {isSaving && <Loader2 className="w-3 h-3 animate-spin mr-1" />}
+                    {editingId ? t('common.save') : t('common.add')}
                   </Button>
-                  <Button type="button" variant="outline" onClick={resetForm}>
-                    Cancel
+                  <Button type="button" variant="outline" size="sm" onClick={resetForm}>
+                    {t('common.cancel')}
                   </Button>
                 </div>
               </form>
@@ -472,123 +556,121 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
 
         {/* Upcoming Appointments */}
         {upcoming.length > 0 && (
-          <div className="space-y-4">
-            <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-              <Bell className="w-5 h-5 text-blue-500" />
-              Upcoming Appointments ({upcoming.length})
-            </h2>
-            {upcoming.map(appointment => (
-              <Card key={appointment.id} className="shadow-lg hover:shadow-xl transition-shadow">
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h3 className="font-bold text-lg">{appointment.title}</h3>
-                        <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-                          {getDaysUntil(appointment.appointment_date)}
-                        </span>
-                      </div>
-                      
-                      <div className="space-y-1 text-sm text-gray-600">
-                        <p className="flex items-center gap-2">
-                          <Clock className="w-4 h-4" />
-                          {formatDate(appointment.appointment_date)}
-                        </p>
-                        {appointment.doctor_name && (
-                          <p className="flex items-center gap-2">
-                            <User className="w-4 h-4" />
-                            {appointment.doctor_name}
-                          </p>
-                        )}
-                        {appointment.location && (
-                          <p className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4" />
-                            {appointment.location}
-                          </p>
-                        )}
-                      </div>
-
-                      {appointment.questions && appointment.questions.length > 0 && (
-                        <div className="mt-3 bg-gray-50 p-2 rounded-lg">
-                          <p className="text-xs font-medium text-gray-500 mb-1">Your Questions:</p>
-                          <ul className="text-sm space-y-1">
-                            {appointment.questions.slice(0, 3).map((q: string, i: number) => (
-                              <li key={i} className="text-gray-700">• {q}</li>
-                            ))}
-                            {appointment.questions.length > 3 && (
-                              <li className="text-gray-400">+{appointment.questions.length - 3} more questions</li>
-                            )}
-                          </ul>
+          <div className="space-y-2">
+            <h3 className="text-xs font-semibold text-foreground/70 flex items-center gap-1.5 px-1">
+              <Bell className="w-3.5 h-3.5 text-primary" />
+              {t('toolsInternal.appointmentReminder.upcoming')} ({upcoming.length})
+            </h3>
+            <div className="space-y-2">
+              {upcoming.map(appointment => {
+                const typeInfo = getAppointmentIcon(appointment.title);
+                const Icon = typeInfo.icon;
+                return (
+                  <Card key={appointment.id} className="shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                    <CardContent className="p-3">
+                      <div className="flex gap-3">
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${typeInfo.color}`}>
+                          <Icon className="w-5 h-5" />
                         </div>
-                      )}
-                    </div>
-                    
-                    <div className="flex gap-2">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => handleEdit(appointment)}
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-red-500"
-                        onClick={() => handleDelete(appointment.id)}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2">
+                            <div>
+                              <h4 className="font-semibold text-sm">{appointment.title}</h4>
+                              <Badge variant="secondary" className="text-[10px] mt-0.5">
+                                {getDaysUntil(appointment.appointment_date)}
+                              </Badge>
+                            </div>
+                            <div className="flex gap-1">
+                              <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => handleEdit(appointment)}>
+                                <Edit2 className="w-3 h-3" />
+                              </Button>
+                              <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => handleDelete(appointment.id)}>
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </div>
+                          
+                          <div className="mt-2 space-y-1 text-xs text-muted-foreground">
+                            <p className="flex items-center gap-1.5">
+                              <Clock className="w-3 h-3" />
+                              {formatDate(appointment.appointment_date)}
+                            </p>
+                            {appointment.doctor_name && (
+                              <p className="flex items-center gap-1.5">
+                                <User className="w-3 h-3" />
+                                {appointment.doctor_name}
+                              </p>
+                            )}
+                            {appointment.location && (
+                              <p className="flex items-center gap-1.5">
+                                <MapPin className="w-3 h-3" />
+                                {appointment.location}
+                              </p>
+                            )}
+                          </div>
+
+                          {appointment.questions && appointment.questions.length > 0 && (
+                            <div className="mt-2 bg-muted/50 p-2 rounded-lg">
+                              <p className="text-[10px] font-medium text-muted-foreground mb-1">
+                                {t('toolsInternal.appointmentReminder.yourQuestions')}:
+                              </p>
+                              <ul className="text-xs space-y-0.5">
+                                {appointment.questions.slice(0, 2).map((q: string, i: number) => (
+                                  <li key={i} className="text-foreground/80">• {q}</li>
+                                ))}
+                                {appointment.questions.length > 2 && (
+                                  <li className="text-muted-foreground">+{appointment.questions.length - 2} {t('common.moreItems', { count: appointment.questions.length - 2 })}</li>
+                                )}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         )}
 
         {/* Past Appointments */}
         {past.length > 0 && (
-          <div className="space-y-4">
-            <h2 className="text-xl font-bold text-gray-500 flex items-center gap-2">
-              <Clock className="w-5 h-5" />
-              Past Appointments ({past.length})
-            </h2>
-            {past.slice(0, 3).map(appointment => (
-              <Card key={appointment.id} className="shadow opacity-70">
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-center">
+          <div className="space-y-2">
+            <h3 className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 px-1">
+              <Clock className="w-3.5 h-3.5" />
+              {t('toolsInternal.appointmentReminder.past')} ({past.length})
+            </h3>
+            <div className="space-y-1.5">
+              {past.slice(0, 3).map(appointment => (
+                <Card key={appointment.id} className="shadow-sm opacity-70">
+                  <CardContent className="p-2.5 flex items-center justify-between">
                     <div>
-                      <h3 className="font-medium">{appointment.title}</h3>
-                      <p className="text-sm text-gray-500">
+                      <h4 className="font-medium text-xs">{appointment.title}</h4>
+                      <p className="text-[10px] text-muted-foreground">
                         {formatDate(appointment.appointment_date)}
                       </p>
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="text-red-500"
-                      onClick={() => handleDelete(appointment.id)}
-                    >
-                      <Trash2 className="w-4 h-4" />
+                    <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => handleDelete(appointment.id)}>
+                      <Trash2 className="w-3 h-3" />
                     </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         )}
 
         {/* Empty State */}
         {appointments.length === 0 && !showForm && (
-          <div className="text-center py-12 text-gray-500">
-            <Calendar className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-            <p>No appointments scheduled</p>
-            <p className="text-sm">Add your next appointment now!</p>
+          <div className="text-center py-10">
+            <Calendar className="w-12 h-12 mx-auto mb-3 text-muted-foreground/30" />
+            <p className="text-sm text-muted-foreground">{t('toolsInternal.appointmentReminder.noAppointments')}</p>
+            <p className="text-xs text-muted-foreground/70">{t('toolsInternal.appointmentReminder.addFirst')}</p>
           </div>
         )}
       </div>
-    </div>
+    </ToolFrame>
   );
 };
 
