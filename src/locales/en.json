@@ -748,6 +748,30 @@
     "description": "App updated, reloading..."
   },
   "toolsInternal": {
+    "weeklySummary": {
+      "title": "Weekly Insights",
+      "subtitle": "Smart weekly tracking for your pregnancy",
+      "daysToGo": "{{days}} days to go",
+      "pregnancyWeek": "Pregnancy Week",
+      "week": "Week {{week}}",
+      "showSummary": "Show Week {{week}} Summary",
+      "babyGrowth": "Baby Growth",
+      "momsHealth": "Mom's Health",
+      "checkups": "Checkups",
+      "normal": "Normal",
+      "good": "Good",
+      "complete": "Complete",
+      "weekSummary": "Week {{week}} Summary",
+      "differentWeek": "Different Week",
+      "refresh": "Refresh",
+      "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
+      "approximatelyRemaining": "Approximately {{days}} days remaining",
+      "trimester": {
+        "first": "First Trimester",
+        "second": "Second Trimester",
+        "third": "Third Trimester"
+      }
+    },
     "dueDate": {
       "calculateTitle": "Calculate Your Due Date",
       "calculateDesc": "Estimate when your baby will arrive",

@@ -497,6 +497,30 @@
     "description": "تم تحديث التطبيق"
   },
   "toolsInternal": {
+    "weeklySummary": {
+      "title": "ملخص الأسبوع",
+      "subtitle": "تتبع أسبوعي ذكي لحملك",
+      "daysToGo": "{{days}} يوم متبقي",
+      "pregnancyWeek": "أسبوع الحمل",
+      "week": "الأسبوع {{week}}",
+      "showSummary": "عرض ملخص الأسبوع {{week}}",
+      "babyGrowth": "نمو الطفل",
+      "momsHealth": "صحة الأم",
+      "checkups": "الفحوصات",
+      "normal": "طبيعي",
+      "good": "جيد",
+      "complete": "مكتمل",
+      "weekSummary": "ملخص الأسبوع {{week}}",
+      "differentWeek": "أسبوع آخر",
+      "refresh": "تحديث",
+      "trackTip": "تتبعي أسبوعك للحصول على معلومات مخصصة عن نمو طفلك وتغيرات جسمك",
+      "approximatelyRemaining": "حوالي {{days}} يوم متبقي",
+      "trimester": {
+        "first": "الثلث الأول",
+        "second": "الثلث الثاني",
+        "third": "الثلث الثالث"
+      }
+    },
     "dueDate": {
       "calculateTitle": "احسبي موعد ولادتك",
       "calculateDesc": "تقدير موعد وصول طفلك",
