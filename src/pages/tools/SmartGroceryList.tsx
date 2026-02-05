@@ -429,14 +429,14 @@ export default function SmartGroceryList() {
             </Card>
 
             {/* Superfoods - Compact */}
-            {suggestedItems.filter(s => !items.find(i => i.name === s.name)).length > 0 && (
+            {suggestedItems.filter(s => !items.find(i => (i.nameKey ? t(i.nameKey) : i.name) === (s.nameKey ? t(s.nameKey) : s.name))).length > 0 && (
               <div className="space-y-2">
                 <p className="text-[11px] font-medium text-muted-foreground flex items-center gap-1">
                   <Leaf className="w-3 h-3 text-primary" />
-                  Recommended Superfoods
+                  {t('groceryList.recommendedSuperfoods', 'Recommended Superfoods')}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
-                  {suggestedItems.filter(s => !items.find(i => i.name === s.name)).slice(0, 6).map(item => (
+                  {suggestedItems.filter(s => !items.find(i => (i.nameKey ? t(i.nameKey) : i.name) === (s.nameKey ? t(s.nameKey) : s.name))).slice(0, 6).map(item => (
                     <Button
                       key={item.id}
                       variant="outline"
@@ -445,7 +445,7 @@ export default function SmartGroceryList() {
                       className="gap-1 h-7 px-2 text-[10px] bg-background hover:bg-primary/5"
                     >
                       <Plus className="w-2.5 h-2.5" />
-                      {item.name}
+                      {item.nameKey ? t(item.nameKey) : item.name}
                     </Button>
                   ))}
                 </div>

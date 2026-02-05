@@ -1903,6 +1903,7 @@
     "dailyMealIdeas": "Idées de Repas Quotidiens",
     "aiWeeklyMealPlan": "Plan de Repas Hebdomadaire IA",
     "addAllSuperfoods": "Ajouter tous les superaliments",
+    "recommendedSuperfoods": "Superaliments recommandés",
     "reset": "Réinitialiser",
     "superfoodsAdded": "{{count}} superaliments ajoutés à votre liste",
     "allSuperfoodsInList": "Tous les superaliments sont déjà dans votre liste",
