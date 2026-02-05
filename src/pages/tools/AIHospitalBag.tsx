@@ -62,7 +62,50 @@ const AIHospitalBag = () => {
   
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [items, setItems] = useState<BagItem[]>(() => {
-    return safeParseLocalStorage<BagItem[]>("hospital-bag-items", defaultItems);
+    const stored = safeParseLocalStorage<BagItem[]>("hospital-bag-items", null);
+    
+    // If no stored data or stored data is corrupted/outdated, use defaults
+    if (!stored || stored.length === 0) {
+      return defaultItems;
+    }
+    
+    // Check if stored items have the new nameKey format (translation keys)
+    // If any default item's nameKey is missing from stored, merge them
+    const storedIds = new Set(stored.map(item => item.id));
+    const defaultIds = new Set(defaultItems.map(item => item.id));
+    
+    // If stored items don't match default structure, reset to defaults but preserve packed status
+    const hasValidKeys = stored.every(item => item.nameKey !== undefined);
+    if (!hasValidKeys) {
+      // Reset to defaults - old data format
+      return defaultItems;
+    }
+    
+    // Merge: keep stored items (with their packed status) and add any new default items
+    const mergedItems: BagItem[] = [];
+    
+    // Add all default items, preserving packed status from stored if exists
+    defaultItems.forEach(defaultItem => {
+      const storedItem = stored.find(s => s.id === defaultItem.id);
+      if (storedItem) {
+        // Keep default nameKey but preserve packed status
+        mergedItems.push({
+          ...defaultItem,
+          packed: storedItem.packed
+        });
+      } else {
+        mergedItems.push(defaultItem);
+      }
+    });
+    
+    // Add custom items from stored (items not in defaults)
+    stored.forEach(storedItem => {
+      if (!defaultIds.has(storedItem.id)) {
+        mergedItems.push(storedItem);
+      }
+    });
+    
+    return mergedItems;
   });
   const [newItem, setNewItem] = useState("");
   const [response, setResponse] = useState("");
