@@ -1221,7 +1221,15 @@
       "markAllPacked": "Tout marquer",
       "resetList": "Réinitialiser",
       "progress": "Progression",
-      "itemsPacked": "{{packed}} sur {{total}} articles emballés"
+      "itemsPacked": "{{packed}} sur {{total}} articles emballés",
+      "hospitalBagVideos": "Vidéos de préparation du sac d'hôpital",
+      "hospitalBagVideosSubtitle": "Conseils de mamans expérimentées",
+      "videos": {
+        "v1": { "title": "Liste du sac d'hôpital", "description": "Conseils de sage-femme sur quoi emballer", "category": "Essentiels" },
+        "v2": { "title": "Articles essentiels pour l'hôpital", "description": "Indispensables pour le travail et l'accouchement", "category": "Essentiels" },
+        "v3": { "title": "Conseils pour le sac d'hôpital", "description": "Essentiels approuvés par les infirmières", "category": "Conseils" },
+        "v4": { "title": "Quoi emballer pour bébé", "description": "Essentiels nouveau-né pour le séjour à l'hôpital", "category": "Bébé" }
+      }
     },
     "nauseaRelief": {
       "title": "Soulagement des nausées IA",
@@ -1280,6 +1288,12 @@
       "action4": "Lisez ensemble au ventre du bébé",
       "partnerVideos": "Vidéos de Soutien pour Partenaires",
       "partnerVideosSubtitle": "Apprenez à être le meilleur partenaire de soutien",
+      "videos": {
+        "v1": { "title": "Soins du nouveau-né semaine 1", "description": "Guide du pédiatre pour la première semaine avec bébé", "category": "Soins nouveau-né" },
+        "v2": { "title": "Prendre soin de votre nouveau-né", "description": "Guide complet des soins du nouveau-né pour nouveaux parents", "category": "Soins nouveau-né" },
+        "v3": { "title": "Positions de travail et d'accouchement", "description": "Comment les partenaires peuvent aider au confort pendant le travail", "category": "Soutien au travail" },
+        "v4": { "title": "Préparation du sac d'hôpital", "description": "Quoi emballer pour le travail et l'accouchement", "category": "Préparation" }
+      },
       "topics": {
         "emotional": {"label": "Soutien Émotionnel", "icon": "💝", "desc": "Comment être présent émotionnellement"},
         "physical": {"label": "Confort Physique", "icon": "🤲", "desc": "Massage, aide aux tâches"},
@@ -1314,6 +1328,12 @@
       "eveningSteps": "Nettoyer → Traiter → Nourrir",
       "skincareVideos": "Vidéos Soins de Peau pour Femmes Enceintes",
       "skincareVideosSubtitle": "Conseils approuvés par les dermatologues",
+      "videos": {
+        "v1": { "title": "Routine de soins sûre pendant la grossesse", "description": "La dermatologue Dr. Joyce Park explique les produits sûrs", "category": "Routine de soins" },
+        "v2": { "title": "Soins de peau sûrs pendant la grossesse", "description": "Dr. Sheila Farhang sur les produits à utiliser et à éviter", "category": "Sécurité des produits" },
+        "v3": { "title": "Nutrition de grossesse pour la peau", "description": "Aliments qui favorisent une grossesse saine et une peau éclatante", "category": "Nutrition" },
+        "v4": { "title": "Guide d'alimentation de grossesse", "description": "Quoi manger pour une peau saine pendant la grossesse", "category": "Alimentation" }
+      },
       "concerns": {
         "acne": {"label": "Acné de Grossesse", "icon": "🔴"},
         "melasma": {"label": "Mélasma/Taches Sombres", "icon": "🟤"},

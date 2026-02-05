@@ -1159,7 +1159,15 @@
       "markAllPacked": "Alles markieren",
       "resetList": "Zurücksetzen",
       "progress": "Fortschritt",
-      "itemsPacked": "{{packed}} von {{total}} Artikeln gepackt"
+      "itemsPacked": "{{packed}} von {{total}} Artikeln gepackt",
+      "hospitalBagVideos": "Krankenhaus-Vorbereitungsvideos",
+      "hospitalBagVideosSubtitle": "Tipps von erfahrenen Müttern",
+      "videos": {
+        "v1": { "title": "Krankenhaustasche Checkliste", "description": "Hebammen-Tipps zum Packen", "category": "Grundlagen" },
+        "v2": { "title": "Wichtige Krankenhaus-Artikel", "description": "Must-haves für Wehen und Geburt", "category": "Grundlagen" },
+        "v3": { "title": "Krankenhaus-Packtipps", "description": "Von Krankenschwestern empfohlene Essentials", "category": "Tipps" },
+        "v4": { "title": "Was für Baby einpacken", "description": "Neugeborenen-Essentials für den Krankenhausaufenthalt", "category": "Baby" }
+      }
     },
     "nauseaRelief": {
       "title": "KI-Übelkeitslinderung",
@@ -1218,6 +1226,12 @@
       "action4": "Lesen Sie gemeinsam dem Babybauch vor",
       "partnerVideos": "Partner-Unterstützungsvideos",
       "partnerVideosSubtitle": "Lernen Sie, der beste unterstützende Partner zu sein",
+      "videos": {
+        "v1": { "title": "Neugeborenen-Pflege Woche 1", "description": "Kinderarzt-Guide für die erste Woche mit Baby", "category": "Neugeborenenpflege" },
+        "v2": { "title": "Pflege Ihres Neugeborenen", "description": "Umfassender Neugeborenen-Pflegeguide für neue Eltern", "category": "Neugeborenenpflege" },
+        "v3": { "title": "Wehen- und Geburtspositionen", "description": "Wie Partner beim Komfort während der Wehen helfen können", "category": "Geburtsunterstützung" },
+        "v4": { "title": "Krankenhaustasche Vorbereitung", "description": "Was für Wehen und Geburt einzupacken ist", "category": "Vorbereitung" }
+      },
       "topics": {
         "emotional": {"label": "Emotionale Unterstützung", "icon": "💝", "desc": "Wie man emotional präsent ist"},
         "physical": {"label": "Körperlicher Komfort", "icon": "🤲", "desc": "Massage, Hilfe bei Aufgaben"},
@@ -1252,6 +1266,12 @@
       "eveningSteps": "Reinigen → Behandeln → Nähren",
       "skincareVideos": "Schwangerschafts-Hautpflegevideos",
       "skincareVideosSubtitle": "Von Dermatologen genehmigte Hautpflege",
+      "videos": {
+        "v1": { "title": "Sichere Hautpflegeroutine in der Schwangerschaft", "description": "Dermatologin Dr. Joyce Park erklärt sichere Produkte", "category": "Hautpflegeroutine" },
+        "v2": { "title": "Sichere Hautpflege während der Schwangerschaft", "description": "Dr. Sheila Farhang über Produkte, die man verwenden und vermeiden sollte", "category": "Produktsicherheit" },
+        "v3": { "title": "Schwangerschaftsernährung für die Haut", "description": "Lebensmittel, die gesunde Schwangerschaft und strahlende Haut fördern", "category": "Ernährung" },
+        "v4": { "title": "Schwangerschafts-Ernährungsguide", "description": "Was man für gesunde Haut während der Schwangerschaft essen sollte", "category": "Ernährung" }
+      },
       "concerns": {
         "acne": {"label": "Schwangerschaftsakne", "icon": "🔴"},
         "melasma": {"label": "Melasma/Dunkle Flecken", "icon": "🟤"},

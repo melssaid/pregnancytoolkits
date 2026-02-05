@@ -1263,7 +1263,15 @@
       "markAllPacked": "Tümünü Paketlendi İşaretle",
       "resetList": "Listeyi Sıfırla",
       "progress": "Paketleme İlerlemesi",
-      "itemsPacked": "{{packed}}/{{total}} öğe paketlendi"
+      "itemsPacked": "{{packed}}/{{total}} öğe paketlendi",
+      "hospitalBagVideos": "Hastane Çantası Hazırlık Videoları",
+      "hospitalBagVideosSubtitle": "Deneyimli annelerden ipuçları",
+      "videos": {
+        "v1": { "title": "Hastane Çantası Kontrol Listesi", "description": "Ebe tavsiyesi ne paketlenmeli", "category": "Temel" },
+        "v2": { "title": "Temel Hastane Eşyaları", "description": "Doğum için olmazsa olmazlar", "category": "Temel" },
+        "v3": { "title": "Hastane Çantası İpuçları", "description": "Hemşire onaylı temel malzemeler", "category": "İpuçları" },
+        "v4": { "title": "Bebek İçin Ne Paketlenmeli", "description": "Hastane kalışı için yenidoğan ihtiyaçları", "category": "Bebek" }
+      }
     },
     "sleepOptimizer": {
       "title": "AI Uyku Optimizatörü",
@@ -1345,6 +1353,12 @@
       "action4": "Birlikte karnındaki bebeğe okuyun",
       "partnerVideos": "Partner Destek Videoları",
       "partnerVideosSubtitle": "En iyi destek partneri olmayı öğrenin",
+      "videos": {
+        "v1": { "title": "Yenidoğan Bakımı 1. Hafta", "description": "Bebekle ilk hafta için pediatrist rehberi", "category": "Yenidoğan Bakımı" },
+        "v2": { "title": "Yenidoğanınıza Bakım", "description": "Yeni ebeveynler için kapsamlı yenidoğan bakım rehberi", "category": "Yenidoğan Bakımı" },
+        "v3": { "title": "Doğum Pozisyonları", "description": "Partnerler doğum sırasında konforla nasıl yardımcı olabilir", "category": "Doğum Desteği" },
+        "v4": { "title": "Hastane Çantası Hazırlığı", "description": "Doğum için ne paketlenmeli", "category": "Hazırlık" }
+      },
       "topics": {
         "emotional": {"label": "Duygusal Destek", "icon": "💝", "desc": "Duygusal olarak nasıl hazır bulunulur"},
         "physical": {"label": "Fiziksel Konfor", "icon": "🤲", "desc": "Masaj, görevlerde yardım"},
@@ -1419,6 +1433,12 @@
       "eveningSteps": "Temizle → Tedavi Et → Besle",
       "skincareVideos": "Hamilelik Cilt Bakım Videoları",
       "skincareVideosSubtitle": "Dermatolog onaylı cilt bakım rehberi",
+      "videos": {
+        "v1": { "title": "Hamilelikte Güvenli Cilt Bakım Rutini", "description": "Dermatolog Dr. Joyce Park güvenli ürünleri açıklıyor", "category": "Cilt Bakım Rutini" },
+        "v2": { "title": "Hamilelikte Güvenli Cilt Bakımı", "description": "Dr. Sheila Farhang hangi ürünlerin kullanılacağı ve kaçınılacağı hakkında", "category": "Ürün Güvenliği" },
+        "v3": { "title": "Cilt için Hamilelik Beslenmesi", "description": "Sağlıklı hamilelik ve parlak cilt için besinler", "category": "Beslenme" },
+        "v4": { "title": "Hamilelik Diyet Rehberi", "description": "Hamilelikte sağlıklı cilt için ne yemeli", "category": "Diyet" }
+      },
       "concerns": {
         "acne": {"label": "Hamilelik Aknesi", "icon": "🔴"},
         "melasma": {"label": "Melasma/Koyu Lekeler", "icon": "🟤"},
