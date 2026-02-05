@@ -2046,6 +2046,54 @@
     "yourList": "قائمتكِ",
     "noItems": "لا توجد عناصر بعد",
     "clear": "مسح",
+    "addedToList": "أُضيف إلى القائمة",
+    "dailyNutritionGoals": "أهداف التغذية اليومية",
+    "categoriesChart": "الفئات",
+    "nutrientsChart": "العناصر الغذائية",
+    "weekFocus": "تركيز الأسبوع {{week}}",
+    "dailyMealIdeas": "أفكار الوجبات اليومية",
+    "aiWeeklyMealPlan": "خطة الوجبات الأسبوعية الذكية",
+    "addAllSuperfoods": "أضيفي جميع الأطعمة الخارقة",
+    "reset": "إعادة تعيين",
+    "superfoodsAdded": "تمت إضافة {{count}} أطعمة خارقة لقائمتكِ",
+    "allSuperfoodsInList": "جميع الأطعمة الخارقة موجودة في قائمتكِ بالفعل",
+    "nutrients": {
+      "protein": "البروتين",
+      "iron": "الحديد",
+      "folate": "حمض الفوليك",
+      "calcium": "الكالسيوم",
+      "omega3": "أوميغا-3"
+    },
+    "categoryNames": {
+      "produce": "خضروات وفواكه",
+      "dairy": "منتجات الألبان",
+      "protein": "بروتين",
+      "grains": "حبوب",
+      "other": "أخرى"
+    },
+    "weeklyRecommendations": {
+      "folateRich": "أطعمة غنية بحمض الفوليك",
+      "wholeGrains": "حبوب كاملة",
+      "leanProteins": "بروتينات قليلة الدسم",
+      "ironRich": "أطعمة غنية بالحديد",
+      "omega3Sources": "مصادر أوميغا-3",
+      "calciumFoods": "أطعمة غنية بالكالسيوم",
+      "highFiber": "أطعمة عالية الألياف",
+      "vitaminD": "مصادر فيتامين د",
+      "hydratingFoods": "أطعمة مرطبة"
+    },
+    "meals": {
+      "breakfast": "الإفطار",
+      "lunch": "الغداء",
+      "dinner": "العشاء",
+      "snacks": "الوجبات الخفيفة"
+    },
+    "mealSuggestions": {
+      "breakfast": "زبادي مع التوت",
+      "lunch": "سلطة السبانخ بالسلمون",
+      "dinner": "شوربة العدس",
+      "snacks": "برتقال + لوز"
+    },
     "categories": {
       "all": "الكل",
       "produce": "خضروات وفواكه",

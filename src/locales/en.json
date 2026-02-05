@@ -2991,6 +2991,54 @@
     "yourList": "Your List",
     "noItems": "No items yet",
     "clear": "Clear",
+    "addedToList": "added to list",
+    "dailyNutritionGoals": "Daily Nutrition Goals",
+    "categoriesChart": "Categories",
+    "nutrientsChart": "Nutrients",
+    "weekFocus": "Week {{week}} Focus",
+    "dailyMealIdeas": "Daily Meal Ideas",
+    "aiWeeklyMealPlan": "AI Weekly Meal Plan",
+    "addAllSuperfoods": "Add All Superfoods",
+    "reset": "Reset",
+    "superfoodsAdded": "{{count}} superfoods added to your list",
+    "allSuperfoodsInList": "All superfoods are already in your list",
+    "nutrients": {
+      "protein": "Protein",
+      "iron": "Iron",
+      "folate": "Folate",
+      "calcium": "Calcium",
+      "omega3": "Omega-3"
+    },
+    "categoryNames": {
+      "produce": "Produce",
+      "dairy": "Dairy",
+      "protein": "Protein",
+      "grains": "Grains",
+      "other": "Other"
+    },
+    "weeklyRecommendations": {
+      "folateRich": "Folate-rich foods",
+      "wholeGrains": "Whole grains",
+      "leanProteins": "Lean proteins",
+      "ironRich": "Iron-rich foods",
+      "omega3Sources": "Omega-3 sources",
+      "calciumFoods": "Calcium foods",
+      "highFiber": "High-fiber foods",
+      "vitaminD": "Vitamin D sources",
+      "hydratingFoods": "Hydrating foods"
+    },
+    "meals": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "snacks": "Snacks"
+    },
+    "mealSuggestions": {
+      "breakfast": "Yogurt with berries",
+      "lunch": "Salmon spinach salad",
+      "dinner": "Lentil soup",
+      "snacks": "Orange + almonds"
+    },
     "categories": {
       "all": "all",
       "produce": "produce",

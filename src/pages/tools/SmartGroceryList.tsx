@@ -60,11 +60,11 @@ const suggestedItems: GroceryItem[] = [
   { id: '12', nameKey: 'groceryList.groceryItems.chickenBreast', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.chickenBreast', nutrients: { protein: 25, iron: 6 } },
 ];
 
-const weeklyRecommendations: Record<string, string[]> = {
-  '1': ['Folate-rich foods', 'Whole grains', 'Lean proteins'],
-  '2': ['Iron-rich foods', 'Omega-3 sources', 'Calcium foods'],
-  '3': ['High-fiber foods', 'Vitamin D sources', 'Hydrating foods'],
-};
+const getWeeklyRecommendations = (t: (key: string) => string): Record<string, string[]> => ({
+  '1': [t('groceryList.weeklyRecommendations.folateRich'), t('groceryList.weeklyRecommendations.wholeGrains'), t('groceryList.weeklyRecommendations.leanProteins')],
+  '2': [t('groceryList.weeklyRecommendations.ironRich'), t('groceryList.weeklyRecommendations.omega3Sources'), t('groceryList.weeklyRecommendations.calciumFoods')],
+  '3': [t('groceryList.weeklyRecommendations.highFiber'), t('groceryList.weeklyRecommendations.vitaminD'), t('groceryList.weeklyRecommendations.hydratingFoods')],
+});
 
 const categoryIcons: Record<string, React.ElementType> = {
   produce: Apple,
@@ -190,21 +190,23 @@ export default function SmartGroceryList() {
   const nutrition = calculateNutrition();
 
   const nutritionGoals: NutritionGoal[] = [
-    { name: 'Protein', current: nutrition.protein, target: 100, unit: '%', icon: Dumbbell, color: '#ef4444' },
-    { name: 'Iron', current: nutrition.iron, target: 100, unit: '%', icon: Droplets, color: '#f59e0b' },
-    { name: 'Folate', current: nutrition.folate, target: 100, unit: '%', icon: Leaf, color: '#22c55e' },
-    { name: 'Calcium', current: nutrition.calcium, target: 100, unit: '%', icon: Heart, color: '#3b82f6' },
-    { name: 'Omega-3', current: nutrition.omega3, target: 100, unit: '%', icon: Brain, color: '#8b5cf6' },
+    { name: t('groceryList.nutrients.protein'), current: nutrition.protein, target: 100, unit: '%', icon: Dumbbell, color: '#ef4444' },
+    { name: t('groceryList.nutrients.iron'), current: nutrition.iron, target: 100, unit: '%', icon: Droplets, color: '#f59e0b' },
+    { name: t('groceryList.nutrients.folate'), current: nutrition.folate, target: 100, unit: '%', icon: Leaf, color: '#22c55e' },
+    { name: t('groceryList.nutrients.calcium'), current: nutrition.calcium, target: 100, unit: '%', icon: Heart, color: '#3b82f6' },
+    { name: t('groceryList.nutrients.omega3'), current: nutrition.omega3, target: 100, unit: '%', icon: Brain, color: '#8b5cf6' },
   ];
 
   // Category distribution for pie chart
   const categoryData = [
-    { name: 'Produce', value: items.filter(i => i.category === 'produce').length, color: categoryColors.produce },
-    { name: 'Dairy', value: items.filter(i => i.category === 'dairy').length, color: categoryColors.dairy },
-    { name: 'Protein', value: items.filter(i => i.category === 'protein').length, color: categoryColors.protein },
-    { name: 'Grains', value: items.filter(i => i.category === 'grains').length, color: categoryColors.grains },
-    { name: 'Other', value: items.filter(i => i.category === 'other').length, color: categoryColors.other },
+    { name: t('groceryList.categoryNames.produce'), value: items.filter(i => i.category === 'produce').length, color: categoryColors.produce },
+    { name: t('groceryList.categoryNames.dairy'), value: items.filter(i => i.category === 'dairy').length, color: categoryColors.dairy },
+    { name: t('groceryList.categoryNames.protein'), value: items.filter(i => i.category === 'protein').length, color: categoryColors.protein },
+    { name: t('groceryList.categoryNames.grains'), value: items.filter(i => i.category === 'grains').length, color: categoryColors.grains },
+    { name: t('groceryList.categoryNames.other'), value: items.filter(i => i.category === 'other').length, color: categoryColors.other },
   ].filter(d => d.value > 0);
+  
+  const weeklyRecommendations = getWeeklyRecommendations(t);
 
   // Nutrition bar chart data
   const nutritionChartData = nutritionGoals.map(goal => ({
@@ -458,7 +460,7 @@ export default function SmartGroceryList() {
               <CardHeader className="py-2 px-3">
                 <CardTitle className="text-xs flex items-center gap-1.5">
                   <Target className="w-3.5 h-3.5 text-primary" />
-                  Daily Nutrition Goals
+                  {t('groceryList.dailyNutritionGoals')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-3 pt-0 space-y-2.5">
@@ -496,12 +498,12 @@ export default function SmartGroceryList() {
             <div className="grid grid-cols-2 gap-2">
               {/* Category Distribution */}
               <Card className="shadow-sm">
-                <CardHeader className="py-2 px-3">
-                  <CardTitle className="text-xs flex items-center gap-1.5">
-                    <BarChart3 className="w-3 h-3 text-primary" />
-                    Categories
-                  </CardTitle>
-                </CardHeader>
+              <CardHeader className="py-2 px-3">
+                <CardTitle className="text-xs flex items-center gap-1.5">
+                  <BarChart3 className="w-3 h-3 text-primary" />
+                  {t('groceryList.categoriesChart')}
+                </CardTitle>
+              </CardHeader>
                 <CardContent className="p-2 pt-0">
                   {categoryData.length > 0 ? (
                     <div className="h-32">
@@ -542,12 +544,12 @@ export default function SmartGroceryList() {
 
               {/* Nutrition Bar Chart */}
               <Card className="shadow-sm">
-                <CardHeader className="py-2 px-3">
-                  <CardTitle className="text-xs flex items-center gap-1.5">
-                    <Zap className="w-3 h-3 text-primary" />
-                    Nutrients
-                  </CardTitle>
-                </CardHeader>
+              <CardHeader className="py-2 px-3">
+                <CardTitle className="text-xs flex items-center gap-1.5">
+                  <Zap className="w-3 h-3 text-primary" />
+                  {t('groceryList.nutrientsChart')}
+                </CardTitle>
+              </CardHeader>
                 <CardContent className="p-2 pt-0">
                   <div className="h-32">
                     <ResponsiveContainer width="100%" height="100%">
@@ -623,7 +625,7 @@ Provide:
             <div className="space-y-2">
               <p className="text-[11px] font-medium text-muted-foreground flex items-center gap-1">
                 <Target className="w-3 h-3 text-primary" />
-                Week {currentWeek} Focus
+                {t('groceryList.weekFocus', { week: currentWeek })}
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {(weeklyRecommendations[String(currentWeek % 3 + 1)] || weeklyRecommendations['1']).map((rec, idx) => (
@@ -640,15 +642,15 @@ Provide:
               <CardHeader className="py-2 px-3">
                 <CardTitle className="text-xs flex items-center gap-1.5">
                   <ChefHat className="w-3.5 h-3.5 text-primary" />
-                  Daily Meal Ideas
+                  {t('groceryList.dailyMealIdeas')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-3 pt-0 space-y-2">
                 {[
-                  { meal: 'Breakfast', icon: Clock, suggestion: 'Yogurt with berries', color: '#f59e0b' },
-                  { meal: 'Lunch', icon: Flame, suggestion: 'Salmon spinach salad', color: '#22c55e' },
-                  { meal: 'Dinner', icon: Heart, suggestion: 'Lentil soup', color: '#ec4899' },
-                  { meal: 'Snacks', icon: Zap, suggestion: 'Orange + almonds', color: '#8b5cf6' },
+                  { meal: t('groceryList.meals.breakfast'), icon: Clock, suggestion: t('groceryList.mealSuggestions.breakfast'), color: '#f59e0b' },
+                  { meal: t('groceryList.meals.lunch'), icon: Flame, suggestion: t('groceryList.mealSuggestions.lunch'), color: '#22c55e' },
+                  { meal: t('groceryList.meals.dinner'), icon: Heart, suggestion: t('groceryList.mealSuggestions.dinner'), color: '#ec4899' },
+                  { meal: t('groceryList.meals.snacks'), icon: Zap, suggestion: t('groceryList.mealSuggestions.snacks'), color: '#8b5cf6' },
                 ].map((item) => {
                   const Icon = item.icon;
                   return (
@@ -674,7 +676,7 @@ Provide:
 
             {/* AI Weekly Plan */}
             <AIInsightCard
-              title="AI Weekly Meal Plan"
+              title={t('groceryList.aiWeeklyMealPlan')}
               prompt={`Create a personalized weekly meal plan for pregnancy week ${currentWeek} using these available groceries:
 
 Items: ${items.map(i => i.name).join(', ')}
@@ -704,15 +706,15 @@ Provide a structured 7-day meal plan with breakfast, lunch, dinner, and snacks u
                   ).map(item => ({ ...item, id: Date.now().toString() + item.id }));
                   if (newItems.length > 0) {
                     setItems(prev => [...prev, ...newItems]);
-                    toast.success(`${newItems.length} superfoods added to your list`);
+                    toast.success(t('groceryList.superfoodsAdded', { count: newItems.length }));
                   } else {
-                    toast.info('All superfoods are already in your list');
+                    toast.info(t('groceryList.allSuperfoodsInList'));
                   }
                 }}
                 className="gap-1 h-7 px-2 text-[10px]"
               >
                 <Plus className="w-2.5 h-2.5" />
-                Add All Superfoods
+                {t('groceryList.addAllSuperfoods')}
               </Button>
               <Button 
                 variant="outline" 
@@ -721,7 +723,7 @@ Provide a structured 7-day meal plan with breakfast, lunch, dinner, and snacks u
                 className="gap-1 h-7 px-2 text-[10px]"
               >
                 <RefreshCw className="w-2.5 h-2.5" />
-                Reset
+                {t('groceryList.reset')}
               </Button>
             </div>
           </TabsContent>
