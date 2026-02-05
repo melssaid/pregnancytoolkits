@@ -799,6 +799,50 @@
         "third": "Tercer trimestre"
       }
     },
+    "hospitalBag": {
+      "title": "Lista de la bolsa de hospital",
+      "subtitle": "Prepara tu bolsa con confianza para el gran día",
+      "progress": "Progreso de empaque",
+      "itemsPacked": "{{packed}} de {{total}} artículos empacados",
+      "all": "Todo",
+      "mom": "Mamá",
+      "baby": "Bebé",
+      "partner": "Pareja",
+      "documents": "Documentos",
+      "essential": "Esencial",
+      "addCustomItem": "Añade un artículo...",
+      "getAIList": "Obtener lista con IA",
+      "generating": "Generando...",
+      "hospitalBagVideos": "Videos de la bolsa",
+      "hospitalBagVideosSubtitle": "Consejos rápidos para empacar mejor",
+      "videos": {
+        "v1": { "title": "Esenciales", "description": "Qué empacar para mamá, bebé y pareja", "category": "Básicos" },
+        "v2": { "title": "Cuándo empacar", "description": "Cuándo empezar y qué priorizar", "category": "Planificación" },
+        "v3": { "title": "Documentos", "description": "Papeles importantes que no debes olvidar", "category": "Documentos" },
+        "v4": { "title": "Consejos pro", "description": "Cosas que se olvidan y extras de comodidad", "category": "Consejos" }
+      },
+      "items": {
+        "hospitalID": "Identificación y tarjetas de seguro",
+        "birthPlanCopies": "Copias del plan de parto",
+        "nightgown": "Camisón/bata cómoda",
+        "supportiveBras": "Sujetadores de apoyo (2–3)",
+        "toiletries": "Neceser",
+        "slippersSocks": "Pantuflas y calcetines",
+        "goingHomeOutfitMom": "Ropa de salida (mamá)",
+        "moisturizer": "Hidratante",
+        "hairTies": "Gomas y diadema",
+        "phoneCharger": "Cargador (cable largo)",
+        "lipBalm": "Bálsamo labial",
+        "goingHomeOutfitBaby": "Ropa de salida (bebé)",
+        "carSeat": "Silla de coche (instalada)",
+        "swaddleBlankets": "Mantas de arrullo",
+        "newbornDiapers": "Pañales de recién nacido",
+        "babyHat": "Gorro para bebé",
+        "changeOfClothes": "Cambio de ropa",
+        "snacksDrinks": "Snacks y bebidas",
+        "cameraCharger": "Cargador de cámara/teléfono"
+      }
+    },
     "birthPlan": {
       "title": "Generador de Plan de Parto IA",
       "subtitle": "Crea tu plan de parto personalizado",

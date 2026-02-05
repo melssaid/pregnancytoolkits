@@ -799,6 +799,50 @@
         "third": "Üçüncü Trimester"
       }
     },
+    "hospitalBag": {
+      "title": "Hastane Çantası Listesi",
+      "subtitle": "Doğum günü için çantanı güvenle hazırla",
+      "progress": "Paketleme ilerlemesi",
+      "itemsPacked": "{{packed}} / {{total}} öğe paketlendi",
+      "all": "Tümü",
+      "mom": "Anne",
+      "baby": "Bebek",
+      "partner": "Partner",
+      "documents": "Belgeler",
+      "essential": "Gerekli",
+      "addCustomItem": "Özel bir öğe ekle...",
+      "getAIList": "Yapay zekadan liste al",
+      "generating": "Oluşturuluyor...",
+      "hospitalBagVideos": "Hastane çantası videoları",
+      "hospitalBagVideosSubtitle": "Daha iyi hazırlık için kısa ipuçları",
+      "videos": {
+        "v1": { "title": "Çanta temel ihtiyaçları", "description": "Anne, bebek ve partner için neler gerekli", "category": "Temeller" },
+        "v2": { "title": "Ne zaman hazırlamalı?", "description": "Paketlemeye ne zaman başlanır, ne öncelikli", "category": "Planlama" },
+        "v3": { "title": "Belgeler", "description": "Unutmamanız gereken evraklar", "category": "Belgeler" },
+        "v4": { "title": "Pro ipuçları", "description": "Sık unutulanlar ve konfor ekleri", "category": "İpuçları" }
+      },
+      "items": {
+        "hospitalID": "Hastane kimliği ve sigorta kartları",
+        "birthPlanCopies": "Doğum planı kopyaları",
+        "nightgown": "Rahat gecelik/bornoz",
+        "supportiveBras": "Destekli sütyen (2–3)",
+        "toiletries": "Kişisel bakım çantası",
+        "slippersSocks": "Terlik ve çorap",
+        "goingHomeOutfitMom": "Çıkış kıyafeti (anne)",
+        "moisturizer": "Nemlendirici",
+        "hairTies": "Saç tokası ve saç bandı",
+        "phoneCharger": "Telefon şarjı (uzun kablo)",
+        "lipBalm": "Dudak balmı",
+        "goingHomeOutfitBaby": "Çıkış kıyafeti (bebek)",
+        "carSeat": "Oto koltuğu (takılı)",
+        "swaddleBlankets": "Kundak örtüsü",
+        "newbornDiapers": "Yenidoğan bezi",
+        "babyHat": "Bebek şapkası",
+        "changeOfClothes": "Yedek kıyafet",
+        "snacksDrinks": "Atıştırmalık ve içecek",
+        "cameraCharger": "Kamera/telefon şarjı"
+      }
+    },
     "birthPlan": {
       "title": "Yapay Zeka Doğum Planı Oluşturucu",
       "subtitle": "Kişiselleştirilmiş doğum planınızı oluşturun",

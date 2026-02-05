@@ -772,6 +772,50 @@
         "third": "Third Trimester"
       }
     },
+    "hospitalBag": {
+      "title": "Hospital Bag Checklist",
+      "subtitle": "Pack confidently for delivery day",
+      "progress": "Packing progress",
+      "itemsPacked": "{{packed}} of {{total}} items packed",
+      "all": "All",
+      "mom": "Mom",
+      "baby": "Baby",
+      "partner": "Partner",
+      "documents": "Documents",
+      "essential": "Essential",
+      "addCustomItem": "Add a custom item...",
+      "getAIList": "Get AI packing list",
+      "generating": "Generating...",
+      "hospitalBagVideos": "Hospital bag videos",
+      "hospitalBagVideosSubtitle": "Quick expert tips to pack smarter",
+      "videos": {
+        "v1": { "title": "Hospital Bag Essentials", "description": "What to pack for mom, baby, and partner", "category": "Packing basics" },
+        "v2": { "title": "Packing Timeline", "description": "When to start packing and what to prioritize", "category": "Planning" },
+        "v3": { "title": "Documents & Admin", "description": "Paperwork and documents you shouldn't forget", "category": "Documents" },
+        "v4": { "title": "Pro Tips", "description": "Commonly forgotten items and comfort extras", "category": "Pro tips" }
+      },
+      "items": {
+        "hospitalID": "Hospital ID & insurance cards",
+        "birthPlanCopies": "Birth plan copies",
+        "nightgown": "Comfortable nightgown/robe",
+        "supportiveBras": "Supportive bras (2–3)",
+        "toiletries": "Toiletries bag",
+        "slippersSocks": "Slippers & socks",
+        "goingHomeOutfitMom": "Going home outfit (Mom)",
+        "moisturizer": "Moisturizer",
+        "hairTies": "Hair ties & headband",
+        "phoneCharger": "Phone charger (long cord)",
+        "lipBalm": "Lip balm",
+        "goingHomeOutfitBaby": "Going home outfit (Baby)",
+        "carSeat": "Car seat (installed)",
+        "swaddleBlankets": "Swaddle blankets",
+        "newbornDiapers": "Newborn diapers",
+        "babyHat": "Baby hat",
+        "changeOfClothes": "Change of clothes",
+        "snacksDrinks": "Snacks & drinks",
+        "cameraCharger": "Camera/phone charger"
+      }
+    },
     "birthPlan": {
       "title": "AI Birth Plan Generator",
       "subtitle": "Create your personalized birth plan",

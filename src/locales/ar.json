@@ -521,6 +521,50 @@
         "third": "الثلث الثالث"
       }
     },
+    "hospitalBag": {
+      "title": "قائمة حقيبة المستشفى",
+      "subtitle": "جهّزي حقيبتك بثقة ليوم الولادة",
+      "progress": "تقدّم التعبئة",
+      "itemsPacked": "تم تعبئة {{packed}} من أصل {{total}} عنصر",
+      "all": "الكل",
+      "mom": "الأم",
+      "baby": "الطفل",
+      "partner": "الشريك",
+      "documents": "المستندات",
+      "essential": "أساسي",
+      "addCustomItem": "أضيفي عنصرًا مخصصًا...",
+      "getAIList": "احصلي على قائمة تعبئة ذكية",
+      "generating": "جاري الإنشاء...",
+      "hospitalBagVideos": "فيديوهات حقيبة المستشفى",
+      "hospitalBagVideosSubtitle": "نصائح سريعة لتعبئة أفضل",
+      "videos": {
+        "v1": { "title": "أساسيات حقيبة المستشفى", "description": "ماذا تضعين للأم والطفل والشريك", "category": "الأساسيات" },
+        "v2": { "title": "متى أبدأ بالتجهيز؟", "description": "جدول بسيط لما يجب تعبئته حسب الوقت", "category": "التخطيط" },
+        "v3": { "title": "المستندات المهمة", "description": "أوراق ووثائق لا تنسيها", "category": "المستندات" },
+        "v4": { "title": "نصائح احترافية", "description": "أشياء كثيرًا ما تُنسى وإضافات للراحة", "category": "نصائح" }
+      },
+      "items": {
+        "hospitalID": "هوية المستشفى وبطاقات التأمين",
+        "birthPlanCopies": "نسخ من خطة الولادة",
+        "nightgown": "قميص نوم/روب مريح",
+        "supportiveBras": "حمالات صدر داعمة (2–3)",
+        "toiletries": "حقيبة مستلزمات النظافة",
+        "slippersSocks": "شبشب وجوارب",
+        "goingHomeOutfitMom": "ملابس الخروج (للأم)",
+        "moisturizer": "مرطب/كريم ترطيب",
+        "hairTies": "ربطات شعر/عصابة رأس",
+        "phoneCharger": "شاحن الهاتف (سلك طويل)",
+        "lipBalm": "مرطب شفاه",
+        "goingHomeOutfitBaby": "ملابس الخروج (للطفل)",
+        "carSeat": "مقعد سيارة (مثبّت)",
+        "swaddleBlankets": "أغطية لف/قماط",
+        "newbornDiapers": "حفاضات حديثي الولادة",
+        "babyHat": "قبعة للرضيع",
+        "changeOfClothes": "تغيير ملابس",
+        "snacksDrinks": "سناكات ومشروبات",
+        "cameraCharger": "شاحن كاميرا/هاتف"
+      }
+    },
     "birthPlan": {
       "title": "مُنشئ خطة الولادة الذكي",
       "subtitle": "أنشئي خطة ولادتك المخصصة",

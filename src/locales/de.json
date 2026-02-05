@@ -799,6 +799,50 @@
         "third": "Drittes Trimester"
       }
     },
+    "hospitalBag": {
+      "title": "Krankenhaustaschen-Checkliste",
+      "subtitle": "Packen Sie sicher für den Entbindungstag",
+      "progress": "Packfortschritt",
+      "itemsPacked": "{{packed}} von {{total}} Artikeln gepackt",
+      "all": "Alle",
+      "mom": "Mama",
+      "baby": "Baby",
+      "partner": "Partner",
+      "documents": "Dokumente",
+      "essential": "Unverzichtbar",
+      "addCustomItem": "Eigenen Artikel hinzufügen...",
+      "getAIList": "KI-Packliste erstellen",
+      "generating": "Wird erstellt...",
+      "hospitalBagVideos": "Videos zur Krankenhaustasche",
+      "hospitalBagVideosSubtitle": "Kurze Expertentipps zum besseren Packen",
+      "videos": {
+        "v1": { "title": "Wichtige Basics", "description": "Was für Mama, Baby und Partner in die Tasche gehört", "category": "Grundlagen" },
+        "v2": { "title": "Zeitplan fürs Packen", "description": "Wann anfangen und was priorisieren", "category": "Planung" },
+        "v3": { "title": "Dokumente", "description": "Wichtige Unterlagen, die Sie nicht vergessen sollten", "category": "Dokumente" },
+        "v4": { "title": "Pro-Tipps", "description": "Häufig vergessene Dinge und Komfort-Extras", "category": "Tipps" }
+      },
+      "items": {
+        "hospitalID": "Krankenhaus-ID & Versicherungskarten",
+        "birthPlanCopies": "Kopien des Geburtsplans",
+        "nightgown": "Bequemes Nachthemd/Bademantel",
+        "supportiveBras": "Stütz-BHs (2–3)",
+        "toiletries": "Kulturbeutel",
+        "slippersSocks": "Hausschuhe & Socken",
+        "goingHomeOutfitMom": "Outfit für die Heimfahrt (Mama)",
+        "moisturizer": "Feuchtigkeitscreme",
+        "hairTies": "Haargummis & Haarband",
+        "phoneCharger": "Handyladegerät (langes Kabel)",
+        "lipBalm": "Lippenbalsam",
+        "goingHomeOutfitBaby": "Outfit für die Heimfahrt (Baby)",
+        "carSeat": "Autositz (installiert)",
+        "swaddleBlankets": "Puckdecken",
+        "newbornDiapers": "Neugeborenen-Windeln",
+        "babyHat": "Babymütze",
+        "changeOfClothes": "Wechselkleidung",
+        "snacksDrinks": "Snacks & Getränke",
+        "cameraCharger": "Kamera-/Handyladegerät"
+      }
+    },
     "birthPlan": {
       "title": "KI-Geburtsplan-Generator",
       "subtitle": "Erstellen Sie Ihren persönlichen Geburtsplan",
