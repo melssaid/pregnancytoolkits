@@ -1627,6 +1627,34 @@
       "protein": "Protein",
       "grains": "Getreide",
       "other": "Sonstiges"
+    },
+    "groceryItems": {
+      "spinach": "Spinat",
+      "avocados": "Avocados",
+      "greekYogurt": "Griechischer Joghurt",
+      "eggs": "Eier",
+      "salmon": "Lachs",
+      "lentils": "Linsen",
+      "sweetPotatoes": "Süßkartoffeln",
+      "berries": "Beeren",
+      "wholeGrainBread": "Vollkornbrot",
+      "oranges": "Orangen",
+      "almonds": "Mandeln",
+      "chickenBreast": "Hähnchenbrust"
+    },
+    "benefits": {
+      "spinach": "Reich an Folsäure und Eisen",
+      "avocados": "Gesunde Fette für das Babygehirn",
+      "greekYogurt": "Kalzium und Probiotika",
+      "eggs": "Cholin für die Gehirnentwicklung",
+      "salmon": "Omega-3 für das Babygehirn",
+      "lentils": "Eisen und Protein",
+      "sweetPotatoes": "Vitamin A und Ballaststoffe",
+      "berries": "Antioxidantien und Vitamin C",
+      "wholeGrainBread": "Ballaststoffe und B-Vitamine",
+      "oranges": "Vitamin C für die Immunität",
+      "almonds": "Gesunde Fette und Kalzium",
+      "chickenBreast": "Mageres Protein"
     }
   },
   "snackPlanner": {

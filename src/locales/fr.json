@@ -1705,6 +1705,59 @@
       "bvitamins": "Vitamines B"
     }
   },
+  "groceryList": {
+    "title": "Liste de Courses Intelligente",
+    "subtitle": "Liste de courses IA pour la nutrition de grossesse",
+    "smartNutrition": "Nutrition de Grossesse Intelligente",
+    "smartNutritionDesc": "Planifiez les repas, suivez les nutriments et découvrez les superaliments.",
+    "items": "Articles",
+    "done": "Terminé",
+    "score": "Score",
+    "super": "Super",
+    "list": "Liste",
+    "analysis": "Analyse",
+    "planner": "Planificateur",
+    "addItem": "Ajouter un article...",
+    "yourList": "Votre liste",
+    "noItems": "Aucun article encore",
+    "clear": "Effacer",
+    "categories": {
+      "all": "Tout",
+      "produce": "Fruits & Légumes",
+      "dairy": "Produits laitiers",
+      "protein": "Protéines",
+      "grains": "Céréales",
+      "other": "Autre"
+    },
+    "groceryItems": {
+      "spinach": "Épinards",
+      "avocados": "Avocats",
+      "greekYogurt": "Yaourt Grec",
+      "eggs": "Œufs",
+      "salmon": "Saumon",
+      "lentils": "Lentilles",
+      "sweetPotatoes": "Patates Douces",
+      "berries": "Baies",
+      "wholeGrainBread": "Pain Complet",
+      "oranges": "Oranges",
+      "almonds": "Amandes",
+      "chickenBreast": "Blanc de Poulet"
+    },
+    "benefits": {
+      "spinach": "Riche en acide folique et fer",
+      "avocados": "Graisses saines pour le cerveau du bébé",
+      "greekYogurt": "Calcium et probiotiques",
+      "eggs": "Choline pour le développement cérébral",
+      "salmon": "Oméga-3 pour le cerveau du bébé",
+      "lentils": "Fer et protéines",
+      "sweetPotatoes": "Vitamine A et fibres",
+      "berries": "Antioxydants et vitamine C",
+      "wholeGrainBread": "Fibres et vitamines B",
+      "oranges": "Vitamine C pour l'immunité",
+      "almonds": "Graisses saines et calcium",
+      "chickenBreast": "Protéine maigre"
+    }
+  },
   "vitaminTracker": {
     "subtitle": "Suivez vos vitamines prénatales quotidiennes",
     "pregnancyWeek": "Semaine de grossesse",
