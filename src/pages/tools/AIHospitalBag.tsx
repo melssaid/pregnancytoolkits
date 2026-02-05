@@ -62,9 +62,9 @@ const AIHospitalBag = () => {
   
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [items, setItems] = useState<BagItem[]>(() => {
-    const stored = safeParseLocalStorage<BagItem[]>("hospital-bag-items", null);
+    const stored = safeParseLocalStorage<unknown>("hospital-bag-items", null);
 
-    if (!stored || stored.length === 0) return defaultItems;
+    if (!Array.isArray(stored) || stored.length === 0) return defaultItems;
 
     const legacyEnglishToKey: Record<string, string> = {
       "Hospital ID & Insurance cards": "toolsInternal.hospitalBag.items.hospitalID",
@@ -93,26 +93,85 @@ const AIHospitalBag = () => {
     };
 
     const defaultKeySet = new Set(defaultItems.map((i) => i.nameKey));
+    const defaultIdToKey = new Map(defaultItems.map((i) => [i.id, i.nameKey] as const));
+
     const packedByKey = new Map<string, boolean>();
     const customItems: BagItem[] = [];
 
-    for (const item of stored) {
-      const key = typeof item?.nameKey === "string" ? item.nameKey : "";
+    const usedIds = new Set(defaultItems.map((i) => i.id));
+    const makeUniqueId = (preferredId: string) => {
+      const base = preferredId || Date.now().toString();
+      if (!usedIds.has(base)) {
+        usedIds.add(base);
+        return base;
+      }
 
-      const resolvedKey = key.startsWith("toolsInternal.")
-        ? key
-        : legacyEnglishToKey[key] || "";
+      let i = 1;
+      while (usedIds.has(`${base}-c${i}`)) i += 1;
+      const next = `${base}-c${i}`;
+      usedIds.add(next);
+      return next;
+    };
 
-      if (resolvedKey && defaultKeySet.has(resolvedKey)) {
-        packedByKey.set(resolvedKey, !!item.packed);
+    for (const raw of stored) {
+      const item = raw as any;
+
+      const rawId = typeof item?.id === "string" ? item.id : "";
+      const rawNameKey = typeof item?.nameKey === "string" ? item.nameKey : "";
+      const packed = !!item?.packed;
+
+      // 1) If legacy storage preserved default IDs, treat as default item.
+      if (rawId && defaultIdToKey.has(rawId)) {
+        packedByKey.set(defaultIdToKey.get(rawId)!, packed);
         continue;
       }
 
-      // Not a known default item → keep as custom user input
-      customItems.push(item);
+      // 2) If stored value is a translation key or legacy English label.
+      const resolvedKey = rawNameKey.startsWith("toolsInternal.")
+        ? rawNameKey
+        : legacyEnglishToKey[rawNameKey] || "";
+
+      if (resolvedKey && defaultKeySet.has(resolvedKey)) {
+        packedByKey.set(resolvedKey, packed);
+        continue;
+      }
+
+      // 3) Otherwise keep it as a custom item (raw user input)
+      const customName =
+        rawNameKey || (typeof item?.name === "string" ? item.name : "");
+      if (!customName.trim()) continue;
+
+      const category: BagItem["category"] =
+        item?.category === "mom" ||
+        item?.category === "baby" ||
+        item?.category === "partner" ||
+        item?.category === "documents"
+          ? item.category
+          : "mom";
+
+      const priority: BagItem["priority"] =
+        item?.priority === "essential" ||
+        item?.priority === "recommended" ||
+        item?.priority === "optional"
+          ? item.priority
+          : "optional";
+
+      customItems.push({
+        id: makeUniqueId(rawId),
+        nameKey: customName,
+        category,
+        packed,
+        priority,
+      });
     }
 
-    return [...defaultItems.map((d) => ({ ...d, packed: packedByKey.get(d.nameKey) ?? d.packed })), ...customItems];
+    return [
+      ...defaultItems.map((d) => ({
+        ...d,
+        packed: packedByKey.get(d.nameKey) ?? d.packed,
+      })),
+      ...customItems,
+    ];
   });
   const [newItem, setNewItem] = useState("");
   const [response, setResponse] = useState("");

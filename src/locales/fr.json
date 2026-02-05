@@ -799,6 +799,50 @@
         "third": "Troisième trimestre"
       }
     },
+    "hospitalBag": {
+      "title": "Checklist du sac d’hôpital",
+      "subtitle": "Préparez votre sac sereinement pour le jour J",
+      "progress": "Progression",
+      "itemsPacked": "{{packed}} sur {{total}} articles préparés",
+      "all": "Tout",
+      "mom": "Maman",
+      "baby": "Bébé",
+      "partner": "Partenaire",
+      "documents": "Documents",
+      "essential": "Essentiel",
+      "addCustomItem": "Ajouter un élément...",
+      "getAIList": "Obtenir une liste IA",
+      "generating": "Génération...",
+      "hospitalBagVideos": "Vidéos : sac d’hôpital",
+      "hospitalBagVideosSubtitle": "Conseils rapides pour mieux préparer",
+      "videos": {
+        "v1": { "title": "Les essentiels", "description": "Quoi mettre pour maman, bébé et partenaire", "category": "Bases" },
+        "v2": { "title": "Quand préparer", "description": "Quand commencer et quoi prioriser", "category": "Planification" },
+        "v3": { "title": "Documents", "description": "Papiers importants à ne pas oublier", "category": "Documents" },
+        "v4": { "title": "Astuces", "description": "Objets souvent oubliés et extras confort", "category": "Conseils" }
+      },
+      "items": {
+        "hospitalID": "Pièce d’identité & carte(s) d’assurance",
+        "birthPlanCopies": "Copies du plan de naissance",
+        "nightgown": "Chemise de nuit/peignoir confortable",
+        "supportiveBras": "Soutiens-gorge (2–3)",
+        "toiletries": "Trousse de toilette",
+        "slippersSocks": "Chaussons et chaussettes",
+        "goingHomeOutfitMom": "Tenue de retour (maman)",
+        "moisturizer": "Crème hydratante",
+        "hairTies": "Élastiques & serre-tête",
+        "phoneCharger": "Chargeur (câble long)",
+        "lipBalm": "Baume à lèvres",
+        "goingHomeOutfitBaby": "Tenue de retour (bébé)",
+        "carSeat": "Siège auto (installé)",
+        "swaddleBlankets": "Couvertures d’emmaillotage",
+        "newbornDiapers": "Couches nouveau-né",
+        "babyHat": "Bonnet bébé",
+        "changeOfClothes": "Vêtements de rechange",
+        "snacksDrinks": "Snacks & boissons",
+        "cameraCharger": "Chargeur appareil/téléphone"
+      }
+    },
     "birthPlan": {
       "title": "Générateur de Plan de Naissance IA",
       "subtitle": "Créez votre plan de naissance personnalisé",

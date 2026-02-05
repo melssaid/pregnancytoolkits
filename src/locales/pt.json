@@ -799,6 +799,50 @@
         "third": "Terceiro trimestre"
       }
     },
+    "hospitalBag": {
+      "title": "Checklist da mala da maternidade",
+      "subtitle": "Prepare sua mala com confiança para o grande dia",
+      "progress": "Progresso",
+      "itemsPacked": "{{packed}} de {{total}} itens preparados",
+      "all": "Tudo",
+      "mom": "Mãe",
+      "baby": "Bebê",
+      "partner": "Parceiro(a)",
+      "documents": "Documentos",
+      "essential": "Essencial",
+      "addCustomItem": "Adicionar um item...",
+      "getAIList": "Obter lista com IA",
+      "generating": "Gerando...",
+      "hospitalBagVideos": "Vídeos da mala",
+      "hospitalBagVideosSubtitle": "Dicas rápidas para preparar melhor",
+      "videos": {
+        "v1": { "title": "Itens essenciais", "description": "O que levar para a mãe, o bebê e o(a) parceiro(a)", "category": "Básico" },
+        "v2": { "title": "Quando preparar", "description": "Quando começar e o que priorizar", "category": "Planejamento" },
+        "v3": { "title": "Documentos", "description": "Papéis importantes para não esquecer", "category": "Documentos" },
+        "v4": { "title": "Dicas", "description": "Itens frequentemente esquecidos e extras de conforto", "category": "Dicas" }
+      },
+      "items": {
+        "hospitalID": "Documento e cartão(ões) do convênio",
+        "birthPlanCopies": "Cópias do plano de parto",
+        "nightgown": "Camisola/roupão confortável",
+        "supportiveBras": "Sutiãs de suporte (2–3)",
+        "toiletries": "Necessaire",
+        "slippersSocks": "Chinelos e meias",
+        "goingHomeOutfitMom": "Roupa de saída (mãe)",
+        "moisturizer": "Hidratante",
+        "hairTies": "Elásticos e faixa",
+        "phoneCharger": "Carregador (cabo longo)",
+        "lipBalm": "Protetor labial",
+        "goingHomeOutfitBaby": "Roupa de saída (bebê)",
+        "carSeat": "Bebê conforto/cadeirinha (instalada)",
+        "swaddleBlankets": "Mantas para enrolar",
+        "newbornDiapers": "Fraldas de recém-nascido",
+        "babyHat": "Gorrinho",
+        "changeOfClothes": "Troca de roupa",
+        "snacksDrinks": "Lanches e bebidas",
+        "cameraCharger": "Carregador de câmera/celular"
+      }
+    },
     "birthPlan": {
       "title": "Gerador de Plano de Parto IA",
       "subtitle": "Crie seu plano de parto personalizado",
