@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import { Briefcase, Sparkles, Baby, User, Heart, Plus } from "lucide-react";
@@ -63,53 +63,67 @@ const AIHospitalBag = () => {
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [items, setItems] = useState<BagItem[]>(() => {
     const stored = safeParseLocalStorage<BagItem[]>("hospital-bag-items", null);
-    
-    // If no stored data or stored data is corrupted/outdated, use defaults
-    if (!stored || stored.length === 0) {
-      return defaultItems;
-    }
-    
-    // Check if stored items have the new nameKey format (translation keys)
-    // If any default item's nameKey is missing from stored, merge them
-    const storedIds = new Set(stored.map(item => item.id));
-    const defaultIds = new Set(defaultItems.map(item => item.id));
-    
-    // If stored items don't match default structure, reset to defaults but preserve packed status
-    const hasValidKeys = stored.every(item => item.nameKey !== undefined);
-    if (!hasValidKeys) {
-      // Reset to defaults - old data format
-      return defaultItems;
-    }
-    
-    // Merge: keep stored items (with their packed status) and add any new default items
-    const mergedItems: BagItem[] = [];
-    
-    // Add all default items, preserving packed status from stored if exists
-    defaultItems.forEach(defaultItem => {
-      const storedItem = stored.find(s => s.id === defaultItem.id);
-      if (storedItem) {
-        // Keep default nameKey but preserve packed status
-        mergedItems.push({
-          ...defaultItem,
-          packed: storedItem.packed
-        });
-      } else {
-        mergedItems.push(defaultItem);
+
+    if (!stored || stored.length === 0) return defaultItems;
+
+    const legacyEnglishToKey: Record<string, string> = {
+      "Hospital ID & Insurance cards": "toolsInternal.hospitalBag.items.hospitalID",
+      "Birth plan copies": "toolsInternal.hospitalBag.items.birthPlanCopies",
+      "Comfortable nightgown/robe": "toolsInternal.hospitalBag.items.nightgown",
+      "Nightgown": "toolsInternal.hospitalBag.items.nightgown",
+      "Comfortable supportive bras (2-3)": "toolsInternal.hospitalBag.items.supportiveBras",
+      "Supportive bras (2-3)": "toolsInternal.hospitalBag.items.supportiveBras",
+      "Supportive bras": "toolsInternal.hospitalBag.items.supportiveBras",
+      "Toiletries bag": "toolsInternal.hospitalBag.items.toiletries",
+      "Slippers & socks": "toolsInternal.hospitalBag.items.slippersSocks",
+      "Going home outfit (Mom)": "toolsInternal.hospitalBag.items.goingHomeOutfitMom",
+      "Moisturizing cream": "toolsInternal.hospitalBag.items.moisturizer",
+      "Hair ties & headband": "toolsInternal.hospitalBag.items.hairTies",
+      "Phone charger (long cord)": "toolsInternal.hospitalBag.items.phoneCharger",
+      "Phone charger": "toolsInternal.hospitalBag.items.phoneCharger",
+      "Lip balm": "toolsInternal.hospitalBag.items.lipBalm",
+      "Going home outfit (Baby)": "toolsInternal.hospitalBag.items.goingHomeOutfitBaby",
+      "Car seat (installed)": "toolsInternal.hospitalBag.items.carSeat",
+      "Swaddle blankets (2)": "toolsInternal.hospitalBag.items.swaddleBlankets",
+      "Newborn diapers": "toolsInternal.hospitalBag.items.newbornDiapers",
+      "Baby hat": "toolsInternal.hospitalBag.items.babyHat",
+      "Change of clothes": "toolsInternal.hospitalBag.items.changeOfClothes",
+      "Snacks & drinks": "toolsInternal.hospitalBag.items.snacksDrinks",
+      "Camera/phone charger": "toolsInternal.hospitalBag.items.cameraCharger",
+    };
+
+    const defaultKeySet = new Set(defaultItems.map((i) => i.nameKey));
+    const packedByKey = new Map<string, boolean>();
+    const customItems: BagItem[] = [];
+
+    for (const item of stored) {
+      const key = typeof item?.nameKey === "string" ? item.nameKey : "";
+
+      const resolvedKey = key.startsWith("toolsInternal.")
+        ? key
+        : legacyEnglishToKey[key] || "";
+
+      if (resolvedKey && defaultKeySet.has(resolvedKey)) {
+        packedByKey.set(resolvedKey, !!item.packed);
+        continue;
       }
-    });
-    
-    // Add custom items from stored (items not in defaults)
-    stored.forEach(storedItem => {
-      if (!defaultIds.has(storedItem.id)) {
-        mergedItems.push(storedItem);
-      }
-    });
-    
-    return mergedItems;
+
+      // Not a known default item → keep as custom user input
+      customItems.push(item);
+    }
+
+    return [...defaultItems.map((d) => ({ ...d, packed: packedByKey.get(d.nameKey) ?? d.packed })), ...customItems];
   });
   const [newItem, setNewItem] = useState("");
   const [response, setResponse] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<"all" | "mom" | "baby" | "partner" | "documents">("all");
+
+  // Persist migrated list once on mount (so legacy English labels don't reappear)
+  useEffect(() => {
+    safeSaveToLocalStorage("hospital-bag-items", items);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   const togglePacked = (itemId: string) => {
     const updated = items.map(item =>
