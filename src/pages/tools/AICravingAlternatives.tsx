@@ -13,18 +13,18 @@ import { WeekSlider } from '@/components/WeekSlider';
 
 // Common pregnancy cravings for quick selection
 const COMMON_CRAVINGS = [
-  { emoji: '🍕', name: 'Pizza', category: 'salty' },
-  { emoji: '🍫', name: 'Chocolate', category: 'sweet' },
-  { emoji: '🍦', name: 'Ice Cream', category: 'sweet' },
-  { emoji: '🍟', name: 'French Fries', category: 'salty' },
-  { emoji: '🥤', name: 'Soda', category: 'sweet' },
-  { emoji: '🍪', name: 'Cookies', category: 'sweet' },
-  { emoji: '🧀', name: 'Cheese', category: 'salty' },
-  { emoji: '🍿', name: 'Popcorn', category: 'salty' },
-  { emoji: '🍩', name: 'Donuts', category: 'sweet' },
-  { emoji: '🌮', name: 'Tacos', category: 'salty' },
-  { emoji: '🥓', name: 'Bacon', category: 'salty' },
-  { emoji: '🍔', name: 'Burger', category: 'salty' },
+  { emoji: '🍕', key: 'pizza', category: 'salty' },
+  { emoji: '🍫', key: 'chocolate', category: 'sweet' },
+  { emoji: '🍦', key: 'iceCream', category: 'sweet' },
+  { emoji: '🍟', key: 'frenchFries', category: 'salty' },
+  { emoji: '🥤', key: 'soda', category: 'sweet' },
+  { emoji: '🍪', key: 'cookies', category: 'sweet' },
+  { emoji: '🧀', key: 'cheese', category: 'salty' },
+  { emoji: '🍿', key: 'popcorn', category: 'salty' },
+  { emoji: '🍩', key: 'donuts', category: 'sweet' },
+  { emoji: '🌮', key: 'tacos', category: 'salty' },
+  { emoji: '🥓', key: 'bacon', category: 'salty' },
+  { emoji: '🍔', key: 'burger', category: 'salty' },
 ] as const;
 
 const AICravingAlternatives: React.FC = () => {
@@ -131,7 +131,6 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
             week={week}
             onChange={handleWeekChange}
             showTrimester
-            label="Pregnancy Week"
           />
 
           {/* Craving Input */}
@@ -144,7 +143,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
             </CardHeader>
             <CardContent className="space-y-4">
               <Input
-                placeholder="Type your craving... (e.g., chocolate, pizza, ice cream)"
+                placeholder={t('toolsInternal.cravingAlternatives.inputPlaceholder')}
                 value={craving}
                 onChange={(e) => setCraving(e.target.value)}
                 className="text-lg py-6"
@@ -152,20 +151,23 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
               
               {/* Quick Select */}
               <div>
-                <p className="text-sm text-muted-foreground mb-3">Or quick select:</p>
+                <p className="text-sm text-muted-foreground mb-3">{t('toolsInternal.cravingAlternatives.orQuickSelect')}</p>
                 <div className="flex flex-wrap gap-2">
-                  {COMMON_CRAVINGS.map((c) => (
-                    <Button
-                      key={c.name}
-                      variant={craving === c.name ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => handleCravingSelect(c.name)}
-                      className="transition-all hover:scale-105"
-                    >
-                      <span className="mr-1">{c.emoji}</span>
-                      {c.name}
-                    </Button>
-                  ))}
+                  {COMMON_CRAVINGS.map((c) => {
+                    const translatedName = t(`toolsInternal.cravingAlternatives.cravings.${c.key}`);
+                    return (
+                      <Button
+                        key={c.key}
+                        variant={craving === translatedName ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => handleCravingSelect(translatedName)}
+                        className="transition-all hover:scale-105"
+                      >
+                        <span className="mr-1">{c.emoji}</span>
+                        {translatedName}
+                      </Button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -219,7 +221,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
               <CardHeader className="bg-primary/5 border-b border-border">
                 <CardTitle className="flex items-center gap-2 text-primary">
                   <Salad className="w-6 h-6" />
-                  Healthy Alternatives for "{craving}"
+                  {t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
@@ -227,7 +229,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                   <div className="flex items-center justify-center py-12">
                     <div className="text-center">
                       <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-                      <p className="text-muted-foreground">Analyzing your craving...</p>
+                      <p className="text-muted-foreground">{t('toolsInternal.cravingAlternatives.analyzingCraving')}</p>
                     </div>
                   </div>
                 )}
@@ -249,24 +251,24 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
               <CardContent className="pt-6">
                 <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-primary" />
-                  Why Cravings Happen During Pregnancy
+                  {t('toolsInternal.cravingAlternatives.whyCravingsHappen')}
                 </h3>
                 <ul className="space-y-2 text-muted-foreground text-sm">
                   <li className="flex items-start gap-2">
                     <span className="text-primary">•</span>
-                    <span><strong className="text-foreground">Hormonal changes</strong> affect your taste buds and smell sensitivity</span>
+                    <span><strong className="text-foreground">{t('toolsInternal.cravingAlternatives.hormonalChanges')}</strong> {t('toolsInternal.cravingAlternatives.hormonalChangesDesc')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary">•</span>
-                    <span><strong className="text-foreground">Nutrient needs</strong> - your body may signal what it lacks</span>
+                    <span><strong className="text-foreground">{t('toolsInternal.cravingAlternatives.nutrientNeeds')}</strong> - {t('toolsInternal.cravingAlternatives.nutrientNeedsDesc')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary">•</span>
-                    <span><strong className="text-foreground">Emotional comfort</strong> - certain foods provide psychological relief</span>
+                    <span><strong className="text-foreground">{t('toolsInternal.cravingAlternatives.emotionalComfort')}</strong> - {t('toolsInternal.cravingAlternatives.emotionalComfortDesc')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary">•</span>
-                    <span><strong className="text-foreground">Blood sugar fluctuations</strong> can trigger sweet cravings</span>
+                    <span><strong className="text-foreground">{t('toolsInternal.cravingAlternatives.bloodSugar')}</strong> {t('toolsInternal.cravingAlternatives.bloodSugarDesc')}</span>
                   </li>
                 </ul>
               </CardContent>
