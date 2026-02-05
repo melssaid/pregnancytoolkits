@@ -11,9 +11,10 @@ import { LanguageDropdown } from "./LanguageDropdown";
 interface LayoutProps {
   children: React.ReactNode;
   showBack?: boolean;
+  hideHomeIcon?: boolean;
 }
 
-export function Layout({ children, showBack = false }: LayoutProps) {
+export function Layout({ children, showBack = false, hideHomeIcon = false }: LayoutProps) {
   const { t } = useTranslation();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -86,7 +87,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               <Settings className="h-5 w-5" />
             </Link>
 
-            {!isHome && (
+            {!isHome && !hideHomeIcon && (
               <Link 
                 to="/"
                 className="flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
