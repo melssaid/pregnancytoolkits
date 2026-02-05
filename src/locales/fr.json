@@ -775,6 +775,30 @@
     "description": "Application mise à jour, rechargement..."
   },
   "toolsInternal": {
+    "weeklySummary": {
+      "title": "Aperçus hebdomadaires",
+      "subtitle": "Suivi hebdomadaire intelligent de votre grossesse",
+      "daysToGo": "{{days}} jours restants",
+      "pregnancyWeek": "Semaine de grossesse",
+      "week": "Semaine {{week}}",
+      "showSummary": "Afficher le résumé de la semaine {{week}}",
+      "babyGrowth": "Croissance du bébé",
+      "momsHealth": "Santé de maman",
+      "checkups": "Examens",
+      "normal": "Normal",
+      "good": "Bon",
+      "complete": "Complet",
+      "weekSummary": "Résumé de la semaine {{week}}",
+      "differentWeek": "Autre semaine",
+      "refresh": "Actualiser",
+      "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
+      "approximatelyRemaining": "Environ {{days}} jours restants",
+      "trimester": {
+        "first": "Premier trimestre",
+        "second": "Deuxième trimestre",
+        "third": "Troisième trimestre"
+      }
+    },
     "mealSuggestion": {
       "subtitle": "Suggestions de repas intelligentes pour votre grossesse",
       "pregnancyStage": "Stade de grossesse",

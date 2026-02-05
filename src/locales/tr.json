@@ -775,6 +775,30 @@
     "description": "Uygulama güncellendi, yeniden yükleniyor..."
   },
   "toolsInternal": {
+    "weeklySummary": {
+      "title": "Haftalık Özet",
+      "subtitle": "Hamileliğinizi akıllı haftalık takip",
+      "daysToGo": "{{days}} gün kaldı",
+      "pregnancyWeek": "Hamilelik Haftası",
+      "week": "Hafta {{week}}",
+      "showSummary": "Hafta {{week}} özetini göster",
+      "babyGrowth": "Bebek Büyümesi",
+      "momsHealth": "Annenin Sağlığı",
+      "checkups": "Kontroller",
+      "normal": "Normal",
+      "good": "İyi",
+      "complete": "Tamamlandı",
+      "weekSummary": "Hafta {{week}} özeti",
+      "differentWeek": "Farklı Hafta",
+      "refresh": "Yenile",
+      "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
+      "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
+      "trimester": {
+        "first": "Birinci Trimester",
+        "second": "İkinci Trimester",
+        "third": "Üçüncü Trimester"
+      }
+    },
     "mealSuggestion": {
       "subtitle": "Hamileliğiniz için akıllı yemek önerileri",
       "pregnancyStage": "Hamilelik Aşaması",
