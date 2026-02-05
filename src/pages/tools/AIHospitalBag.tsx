@@ -92,8 +92,21 @@ const AIHospitalBag = () => {
       "Camera/phone charger": "toolsInternal.hospitalBag.items.cameraCharger",
     };
 
+    const normalizeLegacyLabel = (value: string) =>
+      value
+        .trim()
+        .toLowerCase()
+        .replace(/[–—−]/g, "-")
+        .replace(/[’‘]/g, "'")
+        .replace(/\s+/g, " ");
+
+    const legacyNormalizedToKey = new Map(
+      Object.entries(legacyEnglishToKey).map(([k, v]) => [normalizeLegacyLabel(k), v] as const)
+    );
+
     const defaultKeySet = new Set(defaultItems.map((i) => i.nameKey));
     const defaultIdToKey = new Map(defaultItems.map((i) => [i.id, i.nameKey] as const));
+
 
     const packedByKey = new Map<string, boolean>();
     const customItems: BagItem[] = [];
@@ -131,11 +144,15 @@ const AIHospitalBag = () => {
       }
 
       // 2) If stored value is a translation key or legacy key/English label.
+      const legacyLookup = legacyEnglishToKey[sourceLabel] ||
+        legacyNormalizedToKey.get(normalizeLegacyLabel(sourceLabel)) ||
+        "";
+
       const resolvedKey = sourceLabel.startsWith("toolsInternal.")
         ? sourceLabel
         : sourceLabel.startsWith("hospitalBag.")
           ? `toolsInternal.${sourceLabel}`
-          : legacyEnglishToKey[sourceLabel] || "";
+          : legacyLookup;
 
       if (resolvedKey && defaultKeySet.has(resolvedKey)) {
         packedByKey.set(resolvedKey, packed);
@@ -353,7 +370,13 @@ Include seasonal considerations and hospital-specific recommendations.`;
             >
               <Checkbox checked={item.packed} />
               <span className={item.packed ? "line-through text-muted-foreground" : ""}>
-                {item.nameKey && item.nameKey.startsWith('toolsInternal.') ? t(item.nameKey) : (item.nameKey || '')}
+                {(() => {
+                  const key = item.nameKey || "";
+                  if (!key) return "";
+                  if (key.startsWith("toolsInternal.")) return t(key);
+                  if (key.startsWith("hospitalBag.")) return t(`toolsInternal.${key}`);
+                  return key;
+                })()}
               </span>
               {item.priority === "essential" && (
                 <span className="ms-auto text-xs bg-destructive/10 text-destructive px-2 py-0.5 rounded shrink-0">
