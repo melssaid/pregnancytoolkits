@@ -772,6 +772,124 @@
         "third": "Third Trimester"
       }
     },
+    "birthPlan": {
+      "title": "AI Birth Plan Generator",
+      "subtitle": "Create your personalized birth plan",
+      "categories": {
+        "laborEnvironment": "Labor Environment",
+        "painManagement": "Pain Management",
+        "deliveryPreferences": "Delivery Preferences",
+        "afterBirth": "After Birth",
+        "specialCircumstances": "Special Circumstances"
+      },
+      "prefs": {
+        "lighting": {
+          "label": "Room Lighting",
+          "dim": "Dim/Low",
+          "natural": "Natural",
+          "bright": "Bright",
+          "noPreference": "No preference"
+        },
+        "music": {
+          "label": "Music/Sounds",
+          "relaxing": "Relaxing music",
+          "nature": "Nature sounds",
+          "silence": "Silence",
+          "ownPlaylist": "My own playlist"
+        },
+        "movement": {
+          "label": "Movement During Labor",
+          "walk": "Freedom to walk",
+          "ball": "Birth ball",
+          "shower": "Shower/tub access",
+          "bedRest": "Bed rest only"
+        },
+        "painRelief": {
+          "label": "Pain Relief Preference",
+          "natural": "Natural methods only",
+          "epidural": "Epidural when needed",
+          "iv": "IV pain medication",
+          "openToAll": "Open to all options"
+        },
+        "laborSupport": {
+          "label": "Labor Support",
+          "partner": "Partner only",
+          "doula": "Doula",
+          "family": "Family members",
+          "medical": "Medical team only"
+        },
+        "relaxation": {
+          "label": "Relaxation Techniques",
+          "breathing": "Breathing exercises",
+          "massage": "Massage",
+          "aromatherapy": "Aromatherapy",
+          "hypnobirthing": "Hypnobirthing"
+        },
+        "birthPosition": {
+          "label": "Birth Position",
+          "natural": "Natural/upright",
+          "squatting": "Squatting",
+          "sideLying": "Side-lying",
+          "supine": "Supine/reclined"
+        },
+        "pushing": {
+          "label": "Pushing Preference",
+          "coached": "Coached pushing",
+          "spontaneous": "Spontaneous pushing",
+          "noPreference": "No preference"
+        },
+        "episiotomy": {
+          "label": "Episiotomy",
+          "avoid": "Avoid if possible",
+          "ifNecessary": "Only if necessary",
+          "noPreference": "No preference"
+        },
+        "skinToSkin": {
+          "label": "Skin-to-Skin Contact",
+          "immediately": "Immediately after birth",
+          "afterChecks": "After initial checks",
+          "partnerFirst": "Partner first if needed"
+        },
+        "cordClamping": {
+          "label": "Cord Clamping",
+          "delayed": "Delayed clamping",
+          "immediate": "Immediate clamping",
+          "partnerCut": "Partner to cut cord",
+          "noPreference": "No preference"
+        },
+        "feeding": {
+          "label": "Feeding Preference",
+          "breastfeeding": "Breastfeeding",
+          "formula": "Formula feeding",
+          "combination": "Combination",
+          "undecided": "Undecided"
+        },
+        "cesarean": {
+          "label": "If Cesarean Needed",
+          "partnerPresent": "Partner present",
+          "clearDrape": "Clear drape requested",
+          "skinToSkin": "Immediate skin-to-skin"
+        },
+        "photography": {
+          "label": "Photography/Video",
+          "throughout": "Throughout labor & birth",
+          "photosOnly": "Photos only",
+          "afterBirth": "After birth only",
+          "none": "No photography"
+        }
+      },
+      "additionalNotes": "Additional Notes or Requests",
+      "notesPlaceholder": "Any specific concerns, cultural considerations, or special requests...",
+      "generateButton": "Generate My Birth Plan",
+      "generating": "Generating your plan...",
+      "yourBirthPlan": "Your Birth Plan",
+      "savedPlans": "Saved Plans ({{count}}/{{max}})",
+      "noSavedPlans": "No saved plans yet",
+      "planTitle": "Birth Plan",
+      "preferencesSet": "{{count}} preferences set",
+      "load": "Load",
+      "storageFull": "Storage full. Delete old plans to save new ones."
+    },
     "dueDate": {
       "calculateTitle": "Calculate Your Due Date",
       "calculateDesc": "Estimate when your baby will arrive",

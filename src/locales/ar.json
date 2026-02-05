@@ -521,6 +521,124 @@
         "third": "الثلث الثالث"
       }
     },
+    "birthPlan": {
+      "title": "مُنشئ خطة الولادة الذكي",
+      "subtitle": "أنشئي خطة ولادتك المخصصة",
+      "categories": {
+        "laborEnvironment": "بيئة المخاض",
+        "painManagement": "إدارة الألم",
+        "deliveryPreferences": "تفضيلات الولادة",
+        "afterBirth": "بعد الولادة",
+        "specialCircumstances": "ظروف خاصة"
+      },
+      "prefs": {
+        "lighting": {
+          "label": "إضاءة الغرفة",
+          "dim": "خافتة/منخفضة",
+          "natural": "طبيعية",
+          "bright": "ساطعة",
+          "noPreference": "لا تفضيل"
+        },
+        "music": {
+          "label": "الموسيقى/الأصوات",
+          "relaxing": "موسيقى هادئة",
+          "nature": "أصوات الطبيعة",
+          "silence": "صمت",
+          "ownPlaylist": "قائمة تشغيلي الخاصة"
+        },
+        "movement": {
+          "label": "الحركة أثناء المخاض",
+          "walk": "حرية المشي",
+          "ball": "كرة الولادة",
+          "shower": "الوصول للحمام/المغطس",
+          "bedRest": "الراحة في السرير فقط"
+        },
+        "painRelief": {
+          "label": "تخفيف الألم",
+          "natural": "طرق طبيعية فقط",
+          "epidural": "إبيدورال عند الحاجة",
+          "iv": "مسكنات وريدية",
+          "openToAll": "منفتحة على جميع الخيارات"
+        },
+        "laborSupport": {
+          "label": "دعم المخاض",
+          "partner": "الشريك فقط",
+          "doula": "دولا",
+          "family": "أفراد العائلة",
+          "medical": "الفريق الطبي فقط"
+        },
+        "relaxation": {
+          "label": "تقنيات الاسترخاء",
+          "breathing": "تمارين التنفس",
+          "massage": "التدليك",
+          "aromatherapy": "العلاج بالروائح",
+          "hypnobirthing": "التنويم المغناطيسي للولادة"
+        },
+        "birthPosition": {
+          "label": "وضعية الولادة",
+          "natural": "طبيعية/منتصبة",
+          "squatting": "القرفصاء",
+          "sideLying": "على الجانب",
+          "supine": "على الظهر/مائلة"
+        },
+        "pushing": {
+          "label": "تفضيل الدفع",
+          "coached": "دفع موجّه",
+          "spontaneous": "دفع تلقائي",
+          "noPreference": "لا تفضيل"
+        },
+        "episiotomy": {
+          "label": "شق العجان",
+          "avoid": "تجنب إن أمكن",
+          "ifNecessary": "فقط إذا لزم الأمر",
+          "noPreference": "لا تفضيل"
+        },
+        "skinToSkin": {
+          "label": "التلامس الجلدي",
+          "immediately": "فوراً بعد الولادة",
+          "afterChecks": "بعد الفحوصات الأولية",
+          "partnerFirst": "الشريك أولاً إذا لزم"
+        },
+        "cordClamping": {
+          "label": "قطع الحبل السري",
+          "delayed": "قطع متأخر",
+          "immediate": "قطع فوري",
+          "partnerCut": "الشريك يقطع الحبل",
+          "noPreference": "لا تفضيل"
+        },
+        "feeding": {
+          "label": "تفضيل الرضاعة",
+          "breastfeeding": "رضاعة طبيعية",
+          "formula": "رضاعة صناعية",
+          "combination": "مزيج",
+          "undecided": "لم أقرر بعد"
+        },
+        "cesarean": {
+          "label": "في حالة الولادة القيصرية",
+          "partnerPresent": "حضور الشريك",
+          "clearDrape": "ستارة شفافة",
+          "skinToSkin": "تلامس جلدي فوري"
+        },
+        "photography": {
+          "label": "التصوير/الفيديو",
+          "throughout": "طوال المخاض والولادة",
+          "photosOnly": "صور فقط",
+          "afterBirth": "بعد الولادة فقط",
+          "none": "لا تصوير"
+        }
+      },
+      "additionalNotes": "ملاحظات أو طلبات إضافية",
+      "notesPlaceholder": "أي مخاوف محددة أو اعتبارات ثقافية أو طلبات خاصة...",
+      "generateButton": "إنشاء خطة ولادتي",
+      "generating": "جاري إنشاء خطتك...",
+      "yourBirthPlan": "خطة ولادتك",
+      "savedPlans": "الخطط المحفوظة ({{count}}/{{max}})",
+      "noSavedPlans": "لا توجد خطط محفوظة بعد",
+      "planTitle": "خطة الولادة",
+      "preferencesSet": "{{count}} تفضيلات محددة",
+      "load": "تحميل",
+      "storageFull": "التخزين ممتلئ. احذفي خططاً قديمة لحفظ جديدة."
+    },
     "dueDate": {
       "calculateTitle": "احسبي موعد ولادتك",
       "calculateDesc": "تقدير موعد وصول طفلك",
