@@ -2079,6 +2079,54 @@
     "yourList": "Listeniz",
     "noItems": "Henüz öğe yok",
     "clear": "Temizle",
+    "addedToList": "listeye eklendi",
+    "dailyNutritionGoals": "Günlük Beslenme Hedefleri",
+    "categoriesChart": "Kategoriler",
+    "nutrientsChart": "Besinler",
+    "weekFocus": "Hafta {{week}} Odağı",
+    "dailyMealIdeas": "Günlük Öğün Fikirleri",
+    "aiWeeklyMealPlan": "Haftalık AI Yemek Planı",
+    "addAllSuperfoods": "Tüm süper gıdaları ekle",
+    "reset": "Sıfırla",
+    "superfoodsAdded": "{{count}} süper gıda listenize eklendi",
+    "allSuperfoodsInList": "Tüm süper gıdalar zaten listenizde",
+    "nutrients": {
+      "protein": "Protein",
+      "iron": "Demir",
+      "folate": "Folik Asit",
+      "calcium": "Kalsiyum",
+      "omega3": "Omega-3"
+    },
+    "categoryNames": {
+      "produce": "Meyve & Sebze",
+      "dairy": "Süt Ürünleri",
+      "protein": "Protein",
+      "grains": "Tahıllar",
+      "other": "Diğer"
+    },
+    "weeklyRecommendations": {
+      "folateRich": "Folik asit açısından zengin gıdalar",
+      "wholeGrains": "Tam tahıllar",
+      "leanProteins": "Yağsız proteinler",
+      "ironRich": "Demir açısından zengin gıdalar",
+      "omega3Sources": "Omega-3 kaynakları",
+      "calciumFoods": "Kalsiyum açısından zengin gıdalar",
+      "highFiber": "Lif açısından zengin gıdalar",
+      "vitaminD": "D vitamini kaynakları",
+      "hydratingFoods": "Nemlendirici gıdalar"
+    },
+    "meals": {
+      "breakfast": "Kahvaltı",
+      "lunch": "Öğle Yemeği",
+      "dinner": "Akşam Yemeği",
+      "snacks": "Atıştırmalıklar"
+    },
+    "mealSuggestions": {
+      "breakfast": "Meyveli yoğurt",
+      "lunch": "Somonlu ıspanak salatası",
+      "dinner": "Mercimek çorbası",
+      "snacks": "Portakal + badem"
+    },
     "categories": {
       "all": "Tümü",
       "produce": "Meyve & Sebze",
