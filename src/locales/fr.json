@@ -799,6 +799,124 @@
         "third": "Troisième trimestre"
       }
     },
+    "birthPlan": {
+      "title": "Générateur de Plan de Naissance IA",
+      "subtitle": "Créez votre plan de naissance personnalisé",
+      "categories": {
+        "laborEnvironment": "Environnement de travail",
+        "painManagement": "Gestion de la douleur",
+        "deliveryPreferences": "Préférences d'accouchement",
+        "afterBirth": "Après la naissance",
+        "specialCircumstances": "Circonstances spéciales"
+      },
+      "prefs": {
+        "lighting": {
+          "label": "Éclairage de la chambre",
+          "dim": "Tamisé/Faible",
+          "natural": "Naturel",
+          "bright": "Lumineux",
+          "noPreference": "Pas de préférence"
+        },
+        "music": {
+          "label": "Musique/Sons",
+          "relaxing": "Musique relaxante",
+          "nature": "Sons de la nature",
+          "silence": "Silence",
+          "ownPlaylist": "Ma propre playlist"
+        },
+        "movement": {
+          "label": "Mouvement pendant le travail",
+          "walk": "Liberté de marcher",
+          "ball": "Ballon de naissance",
+          "shower": "Accès douche/baignoire",
+          "bedRest": "Repos au lit uniquement"
+        },
+        "painRelief": {
+          "label": "Soulagement de la douleur",
+          "natural": "Méthodes naturelles uniquement",
+          "epidural": "Péridurale si nécessaire",
+          "iv": "Médicaments IV",
+          "openToAll": "Ouverte à toutes les options"
+        },
+        "laborSupport": {
+          "label": "Soutien pendant le travail",
+          "partner": "Partenaire uniquement",
+          "doula": "Doula",
+          "family": "Membres de la famille",
+          "medical": "Équipe médicale uniquement"
+        },
+        "relaxation": {
+          "label": "Techniques de relaxation",
+          "breathing": "Exercices de respiration",
+          "massage": "Massage",
+          "aromatherapy": "Aromathérapie",
+          "hypnobirthing": "Hypnonaissance"
+        },
+        "birthPosition": {
+          "label": "Position d'accouchement",
+          "natural": "Naturelle/Debout",
+          "squatting": "Accroupie",
+          "sideLying": "Sur le côté",
+          "supine": "Sur le dos"
+        },
+        "pushing": {
+          "label": "Préférence de poussée",
+          "coached": "Poussée dirigée",
+          "spontaneous": "Poussée spontanée",
+          "noPreference": "Pas de préférence"
+        },
+        "episiotomy": {
+          "label": "Épisiotomie",
+          "avoid": "Éviter si possible",
+          "ifNecessary": "Seulement si nécessaire",
+          "noPreference": "Pas de préférence"
+        },
+        "skinToSkin": {
+          "label": "Contact peau à peau",
+          "immediately": "Immédiatement après la naissance",
+          "afterChecks": "Après les premiers examens",
+          "partnerFirst": "Partenaire d'abord si nécessaire"
+        },
+        "cordClamping": {
+          "label": "Clampage du cordon",
+          "delayed": "Clampage retardé",
+          "immediate": "Clampage immédiat",
+          "partnerCut": "Partenaire coupe le cordon",
+          "noPreference": "Pas de préférence"
+        },
+        "feeding": {
+          "label": "Préférence d'alimentation",
+          "breastfeeding": "Allaitement",
+          "formula": "Biberon",
+          "combination": "Combinaison",
+          "undecided": "Pas encore décidé"
+        },
+        "cesarean": {
+          "label": "Si césarienne nécessaire",
+          "partnerPresent": "Partenaire présent",
+          "clearDrape": "Champ transparent demandé",
+          "skinToSkin": "Contact peau à peau immédiat"
+        },
+        "photography": {
+          "label": "Photographie/Vidéo",
+          "throughout": "Pendant le travail et l'accouchement",
+          "photosOnly": "Photos uniquement",
+          "afterBirth": "Après la naissance uniquement",
+          "none": "Pas de photographie"
+        }
+      },
+      "additionalNotes": "Notes ou demandes supplémentaires",
+      "notesPlaceholder": "Préoccupations spécifiques, considérations culturelles ou demandes spéciales...",
+      "generateButton": "Générer mon plan de naissance",
+      "generating": "Génération de votre plan...",
+      "yourBirthPlan": "Votre plan de naissance",
+      "savedPlans": "Plans sauvegardés ({{count}}/{{max}})",
+      "noSavedPlans": "Aucun plan sauvegardé",
+      "planTitle": "Plan de naissance",
+      "preferencesSet": "{{count}} préférences définies",
+      "load": "Charger",
+      "storageFull": "Stockage plein. Supprimez d'anciens plans pour en sauvegarder de nouveaux."
+    },
     "mealSuggestion": {
       "subtitle": "Suggestions de repas intelligentes pour votre grossesse",
       "pregnancyStage": "Stade de grossesse",

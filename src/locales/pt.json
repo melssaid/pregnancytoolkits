@@ -799,6 +799,124 @@
         "third": "Terceiro trimestre"
       }
     },
+    "birthPlan": {
+      "title": "Gerador de Plano de Parto IA",
+      "subtitle": "Crie seu plano de parto personalizado",
+      "categories": {
+        "laborEnvironment": "Ambiente de trabalho de parto",
+        "painManagement": "Gerenciamento da dor",
+        "deliveryPreferences": "Preferências de parto",
+        "afterBirth": "Após o parto",
+        "specialCircumstances": "Circunstâncias especiais"
+      },
+      "prefs": {
+        "lighting": {
+          "label": "Iluminação do quarto",
+          "dim": "Baixa/Suave",
+          "natural": "Natural",
+          "bright": "Brilhante",
+          "noPreference": "Sem preferência"
+        },
+        "music": {
+          "label": "Música/Sons",
+          "relaxing": "Música relaxante",
+          "nature": "Sons da natureza",
+          "silence": "Silêncio",
+          "ownPlaylist": "Minha própria playlist"
+        },
+        "movement": {
+          "label": "Movimento durante o trabalho de parto",
+          "walk": "Liberdade para andar",
+          "ball": "Bola de parto",
+          "shower": "Acesso ao chuveiro/banheira",
+          "bedRest": "Apenas repouso na cama"
+        },
+        "painRelief": {
+          "label": "Alívio da dor",
+          "natural": "Apenas métodos naturais",
+          "epidural": "Epidural se necessário",
+          "iv": "Medicação IV",
+          "openToAll": "Aberta a todas as opções"
+        },
+        "laborSupport": {
+          "label": "Suporte durante o parto",
+          "partner": "Apenas parceiro",
+          "doula": "Doula",
+          "family": "Familiares",
+          "medical": "Apenas equipe médica"
+        },
+        "relaxation": {
+          "label": "Técnicas de relaxamento",
+          "breathing": "Exercícios de respiração",
+          "massage": "Massagem",
+          "aromatherapy": "Aromaterapia",
+          "hypnobirthing": "Hipnoparto"
+        },
+        "birthPosition": {
+          "label": "Posição de parto",
+          "natural": "Natural/Vertical",
+          "squatting": "Agachada",
+          "sideLying": "De lado",
+          "supine": "De costas"
+        },
+        "pushing": {
+          "label": "Preferência de empurrar",
+          "coached": "Empurrar dirigido",
+          "spontaneous": "Empurrar espontâneo",
+          "noPreference": "Sem preferência"
+        },
+        "episiotomy": {
+          "label": "Episiotomia",
+          "avoid": "Evitar se possível",
+          "ifNecessary": "Apenas se necessário",
+          "noPreference": "Sem preferência"
+        },
+        "skinToSkin": {
+          "label": "Contato pele a pele",
+          "immediately": "Imediatamente após o parto",
+          "afterChecks": "Após os primeiros exames",
+          "partnerFirst": "Parceiro primeiro se necessário"
+        },
+        "cordClamping": {
+          "label": "Corte do cordão",
+          "delayed": "Corte tardio",
+          "immediate": "Corte imediato",
+          "partnerCut": "Parceiro corta o cordão",
+          "noPreference": "Sem preferência"
+        },
+        "feeding": {
+          "label": "Preferência de alimentação",
+          "breastfeeding": "Amamentação",
+          "formula": "Fórmula",
+          "combination": "Combinação",
+          "undecided": "Ainda não decidido"
+        },
+        "cesarean": {
+          "label": "Se cesárea for necessária",
+          "partnerPresent": "Parceiro presente",
+          "clearDrape": "Campo transparente solicitado",
+          "skinToSkin": "Contato pele imediato"
+        },
+        "photography": {
+          "label": "Fotografia/Vídeo",
+          "throughout": "Durante todo o parto",
+          "photosOnly": "Apenas fotos",
+          "afterBirth": "Apenas após o parto",
+          "none": "Sem fotografia"
+        }
+      },
+      "additionalNotes": "Notas ou solicitações adicionais",
+      "notesPlaceholder": "Preocupações específicas, considerações culturais ou solicitações especiais...",
+      "generateButton": "Gerar meu plano de parto",
+      "generating": "Gerando seu plano...",
+      "yourBirthPlan": "Seu plano de parto",
+      "savedPlans": "Planos salvos ({{count}}/{{max}})",
+      "noSavedPlans": "Nenhum plano salvo ainda",
+      "planTitle": "Plano de parto",
+      "preferencesSet": "{{count}} preferências definidas",
+      "load": "Carregar",
+      "storageFull": "Armazenamento cheio. Exclua planos antigos para salvar novos."
+    },
     "mealSuggestion": {
       "subtitle": "Sugestões inteligentes de refeições para sua gravidez",
       "pregnancyStage": "Estágio da Gravidez",

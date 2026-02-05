@@ -799,6 +799,124 @@
         "third": "Drittes Trimester"
       }
     },
+    "birthPlan": {
+      "title": "KI-Geburtsplan-Generator",
+      "subtitle": "Erstellen Sie Ihren persönlichen Geburtsplan",
+      "categories": {
+        "laborEnvironment": "Wehenumgebung",
+        "painManagement": "Schmerzmanagement",
+        "deliveryPreferences": "Geburtspräferenzen",
+        "afterBirth": "Nach der Geburt",
+        "specialCircumstances": "Besondere Umstände"
+      },
+      "prefs": {
+        "lighting": {
+          "label": "Raumbeleuchtung",
+          "dim": "Gedämpft/Niedrig",
+          "natural": "Natürlich",
+          "bright": "Hell",
+          "noPreference": "Keine Präferenz"
+        },
+        "music": {
+          "label": "Musik/Geräusche",
+          "relaxing": "Entspannende Musik",
+          "nature": "Naturgeräusche",
+          "silence": "Stille",
+          "ownPlaylist": "Meine eigene Playlist"
+        },
+        "movement": {
+          "label": "Bewegung während der Wehen",
+          "walk": "Freiheit zu gehen",
+          "ball": "Geburtsball",
+          "shower": "Dusche/Wanne-Zugang",
+          "bedRest": "Nur Bettruhe"
+        },
+        "painRelief": {
+          "label": "Schmerzlinderung",
+          "natural": "Nur natürliche Methoden",
+          "epidural": "Epidural bei Bedarf",
+          "iv": "IV-Schmerzmittel",
+          "openToAll": "Offen für alle Optionen"
+        },
+        "laborSupport": {
+          "label": "Wehenunterstützung",
+          "partner": "Nur Partner",
+          "doula": "Doula",
+          "family": "Familienmitglieder",
+          "medical": "Nur medizinisches Team"
+        },
+        "relaxation": {
+          "label": "Entspannungstechniken",
+          "breathing": "Atemübungen",
+          "massage": "Massage",
+          "aromatherapy": "Aromatherapie",
+          "hypnobirthing": "Hypnobirthing"
+        },
+        "birthPosition": {
+          "label": "Geburtsposition",
+          "natural": "Natürlich/Aufrecht",
+          "squatting": "Hockend",
+          "sideLying": "Seitenlage",
+          "supine": "Rückenlage"
+        },
+        "pushing": {
+          "label": "Pressen-Präferenz",
+          "coached": "Angeleitetes Pressen",
+          "spontaneous": "Spontanes Pressen",
+          "noPreference": "Keine Präferenz"
+        },
+        "episiotomy": {
+          "label": "Episiotomie",
+          "avoid": "Wenn möglich vermeiden",
+          "ifNecessary": "Nur wenn notwendig",
+          "noPreference": "Keine Präferenz"
+        },
+        "skinToSkin": {
+          "label": "Hautkontakt",
+          "immediately": "Sofort nach der Geburt",
+          "afterChecks": "Nach ersten Untersuchungen",
+          "partnerFirst": "Partner zuerst wenn nötig"
+        },
+        "cordClamping": {
+          "label": "Nabelschnur-Abklemmung",
+          "delayed": "Verzögerte Abklemmung",
+          "immediate": "Sofortige Abklemmung",
+          "partnerCut": "Partner schneidet Nabelschnur",
+          "noPreference": "Keine Präferenz"
+        },
+        "feeding": {
+          "label": "Fütterungspräferenz",
+          "breastfeeding": "Stillen",
+          "formula": "Flaschenfütterung",
+          "combination": "Kombination",
+          "undecided": "Noch unentschieden"
+        },
+        "cesarean": {
+          "label": "Bei Kaiserschnitt",
+          "partnerPresent": "Partner anwesend",
+          "clearDrape": "Durchsichtiges Tuch gewünscht",
+          "skinToSkin": "Sofortiger Hautkontakt"
+        },
+        "photography": {
+          "label": "Fotografie/Video",
+          "throughout": "Während Wehen & Geburt",
+          "photosOnly": "Nur Fotos",
+          "afterBirth": "Nur nach der Geburt",
+          "none": "Keine Fotografie"
+        }
+      },
+      "additionalNotes": "Zusätzliche Notizen oder Wünsche",
+      "notesPlaceholder": "Spezifische Bedenken, kulturelle Überlegungen oder besondere Wünsche...",
+      "generateButton": "Meinen Geburtsplan erstellen",
+      "generating": "Ihr Plan wird erstellt...",
+      "yourBirthPlan": "Ihr Geburtsplan",
+      "savedPlans": "Gespeicherte Pläne ({{count}}/{{max}})",
+      "noSavedPlans": "Noch keine gespeicherten Pläne",
+      "planTitle": "Geburtsplan",
+      "preferencesSet": "{{count}} Präferenzen festgelegt",
+      "load": "Laden",
+      "storageFull": "Speicher voll. Löschen Sie alte Pläne, um neue zu speichern."
+    },
     "mealSuggestion": {
       "subtitle": "Intelligente Mahlzeitenvorschläge für Ihre Schwangerschaft",
       "pregnancyStage": "Schwangerschaftsphase",

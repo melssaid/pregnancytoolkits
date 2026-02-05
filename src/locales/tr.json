@@ -799,6 +799,124 @@
         "third": "Üçüncü Trimester"
       }
     },
+    "birthPlan": {
+      "title": "Yapay Zeka Doğum Planı Oluşturucu",
+      "subtitle": "Kişiselleştirilmiş doğum planınızı oluşturun",
+      "categories": {
+        "laborEnvironment": "Doğum Ortamı",
+        "painManagement": "Ağrı Yönetimi",
+        "deliveryPreferences": "Doğum Tercihleri",
+        "afterBirth": "Doğum Sonrası",
+        "specialCircumstances": "Özel Durumlar"
+      },
+      "prefs": {
+        "lighting": {
+          "label": "Oda Aydınlatması",
+          "dim": "Loş/Düşük",
+          "natural": "Doğal",
+          "bright": "Parlak",
+          "noPreference": "Tercih yok"
+        },
+        "music": {
+          "label": "Müzik/Sesler",
+          "relaxing": "Rahatlatıcı müzik",
+          "nature": "Doğa sesleri",
+          "silence": "Sessizlik",
+          "ownPlaylist": "Kendi çalma listem"
+        },
+        "movement": {
+          "label": "Doğum Sırasında Hareket",
+          "walk": "Yürüme özgürlüğü",
+          "ball": "Doğum topu",
+          "shower": "Duş/küvet erişimi",
+          "bedRest": "Sadece yatak istirahati"
+        },
+        "painRelief": {
+          "label": "Ağrı Kesici Tercihi",
+          "natural": "Sadece doğal yöntemler",
+          "epidural": "Gerektiğinde epidural",
+          "iv": "IV ağrı kesici",
+          "openToAll": "Tüm seçeneklere açığım"
+        },
+        "laborSupport": {
+          "label": "Doğum Desteği",
+          "partner": "Sadece eş",
+          "doula": "Doula",
+          "family": "Aile üyeleri",
+          "medical": "Sadece tıbbi ekip"
+        },
+        "relaxation": {
+          "label": "Gevşeme Teknikleri",
+          "breathing": "Nefes egzersizleri",
+          "massage": "Masaj",
+          "aromatherapy": "Aromaterapi",
+          "hypnobirthing": "Hipnodoğum"
+        },
+        "birthPosition": {
+          "label": "Doğum Pozisyonu",
+          "natural": "Doğal/Dik",
+          "squatting": "Çömelme",
+          "sideLying": "Yan yatma",
+          "supine": "Sırt üstü"
+        },
+        "pushing": {
+          "label": "Itme Tercihi",
+          "coached": "Yönlendirilmiş ıkınma",
+          "spontaneous": "Kendiliğinden ıkınma",
+          "noPreference": "Tercih yok"
+        },
+        "episiotomy": {
+          "label": "Epizyotomi",
+          "avoid": "Mümkünse kaçının",
+          "ifNecessary": "Sadece gerekirse",
+          "noPreference": "Tercih yok"
+        },
+        "skinToSkin": {
+          "label": "Ten Tene Temas",
+          "immediately": "Doğumdan hemen sonra",
+          "afterChecks": "İlk kontrollerden sonra",
+          "partnerFirst": "Gerekirse önce eş"
+        },
+        "cordClamping": {
+          "label": "Kordon Kesimi",
+          "delayed": "Gecikmeli kesim",
+          "immediate": "Hemen kesim",
+          "partnerCut": "Eş kordonu keser",
+          "noPreference": "Tercih yok"
+        },
+        "feeding": {
+          "label": "Beslenme Tercihi",
+          "breastfeeding": "Emzirme",
+          "formula": "Formül mama",
+          "combination": "Kombinasyon",
+          "undecided": "Henüz kararsız"
+        },
+        "cesarean": {
+          "label": "Sezaryen Gerekirse",
+          "partnerPresent": "Eş mevcut",
+          "clearDrape": "Şeffaf örtü istendi",
+          "skinToSkin": "Hemen ten tene temas"
+        },
+        "photography": {
+          "label": "Fotoğraf/Video",
+          "throughout": "Doğum boyunca",
+          "photosOnly": "Sadece fotoğraf",
+          "afterBirth": "Sadece doğumdan sonra",
+          "none": "Fotoğraf yok"
+        }
+      },
+      "additionalNotes": "Ek Notlar veya İstekler",
+      "notesPlaceholder": "Özel endişeler, kültürel değerlendirmeler veya özel istekler...",
+      "generateButton": "Doğum Planımı Oluştur",
+      "generating": "Planınız oluşturuluyor...",
+      "yourBirthPlan": "Doğum Planınız",
+      "savedPlans": "Kayıtlı Planlar ({{count}}/{{max}})",
+      "noSavedPlans": "Henüz kayıtlı plan yok",
+      "planTitle": "Doğum Planı",
+      "preferencesSet": "{{count}} tercih belirlendi",
+      "load": "Yükle",
+      "storageFull": "Depolama dolu. Yeni kaydetmek için eski planları silin."
+    },
     "mealSuggestion": {
       "subtitle": "Hamileliğiniz için akıllı yemek önerileri",
       "pregnancyStage": "Hamilelik Aşaması",
