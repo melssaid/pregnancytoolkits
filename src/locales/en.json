@@ -2806,11 +2806,6 @@
     "aiConceptionGuide": "AI Conception Guide",
     "gettingAdvice": "Getting personalized advice..."
   },
-  "common": {
-    "calculate": "Calculate",
-    "results": "Results",
-    "start": "Start"
-  },
   "nutritionOptimizer": {
     "title": "Smart Nutrition Optimizer",
     "subtitle": "Personalized nutrition plans for each trimester",
