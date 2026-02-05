@@ -1895,6 +1895,54 @@
     "yourList": "Votre liste",
     "noItems": "Aucun article encore",
     "clear": "Effacer",
+    "addedToList": "ajouté à la liste",
+    "dailyNutritionGoals": "Objectifs Nutritionnels Quotidiens",
+    "categoriesChart": "Catégories",
+    "nutrientsChart": "Nutriments",
+    "weekFocus": "Focus Semaine {{week}}",
+    "dailyMealIdeas": "Idées de Repas Quotidiens",
+    "aiWeeklyMealPlan": "Plan de Repas Hebdomadaire IA",
+    "addAllSuperfoods": "Ajouter tous les superaliments",
+    "reset": "Réinitialiser",
+    "superfoodsAdded": "{{count}} superaliments ajoutés à votre liste",
+    "allSuperfoodsInList": "Tous les superaliments sont déjà dans votre liste",
+    "nutrients": {
+      "protein": "Protéines",
+      "iron": "Fer",
+      "folate": "Acide Folique",
+      "calcium": "Calcium",
+      "omega3": "Oméga-3"
+    },
+    "categoryNames": {
+      "produce": "Fruits & Légumes",
+      "dairy": "Produits Laitiers",
+      "protein": "Protéines",
+      "grains": "Céréales",
+      "other": "Autre"
+    },
+    "weeklyRecommendations": {
+      "folateRich": "Aliments riches en folate",
+      "wholeGrains": "Céréales complètes",
+      "leanProteins": "Protéines maigres",
+      "ironRich": "Aliments riches en fer",
+      "omega3Sources": "Sources d'oméga-3",
+      "calciumFoods": "Aliments riches en calcium",
+      "highFiber": "Aliments riches en fibres",
+      "vitaminD": "Sources de vitamine D",
+      "hydratingFoods": "Aliments hydratants"
+    },
+    "meals": {
+      "breakfast": "Petit-déjeuner",
+      "lunch": "Déjeuner",
+      "dinner": "Dîner",
+      "snacks": "Collations"
+    },
+    "mealSuggestions": {
+      "breakfast": "Yaourt aux fruits rouges",
+      "lunch": "Salade saumon épinards",
+      "dinner": "Soupe de lentilles",
+      "snacks": "Orange + amandes"
+    },
     "categories": {
       "all": "Tout",
       "produce": "Fruits & Légumes",

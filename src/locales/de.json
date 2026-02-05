@@ -1794,6 +1794,54 @@
     "yourList": "Ihre Liste",
     "noItems": "Noch keine Artikel",
     "clear": "Löschen",
+    "addedToList": "zur Liste hinzugefügt",
+    "dailyNutritionGoals": "Tägliche Ernährungsziele",
+    "categoriesChart": "Kategorien",
+    "nutrientsChart": "Nährstoffe",
+    "weekFocus": "Woche {{week}} Fokus",
+    "dailyMealIdeas": "Tägliche Mahlzeitenideen",
+    "aiWeeklyMealPlan": "KI Wöchentlicher Mahlzeitenplan",
+    "addAllSuperfoods": "Alle Superfoods hinzufügen",
+    "reset": "Zurücksetzen",
+    "superfoodsAdded": "{{count}} Superfoods zu Ihrer Liste hinzugefügt",
+    "allSuperfoodsInList": "Alle Superfoods sind bereits in Ihrer Liste",
+    "nutrients": {
+      "protein": "Protein",
+      "iron": "Eisen",
+      "folate": "Folsäure",
+      "calcium": "Kalzium",
+      "omega3": "Omega-3"
+    },
+    "categoryNames": {
+      "produce": "Obst & Gemüse",
+      "dairy": "Milchprodukte",
+      "protein": "Protein",
+      "grains": "Getreide",
+      "other": "Sonstiges"
+    },
+    "weeklyRecommendations": {
+      "folateRich": "Folsäurereiche Lebensmittel",
+      "wholeGrains": "Vollkornprodukte",
+      "leanProteins": "Mageres Protein",
+      "ironRich": "Eisenreiche Lebensmittel",
+      "omega3Sources": "Omega-3-Quellen",
+      "calciumFoods": "Kalziumreiche Lebensmittel",
+      "highFiber": "Ballaststoffreiche Lebensmittel",
+      "vitaminD": "Vitamin-D-Quellen",
+      "hydratingFoods": "Hydratisierende Lebensmittel"
+    },
+    "meals": {
+      "breakfast": "Frühstück",
+      "lunch": "Mittagessen",
+      "dinner": "Abendessen",
+      "snacks": "Snacks"
+    },
+    "mealSuggestions": {
+      "breakfast": "Joghurt mit Beeren",
+      "lunch": "Lachs-Spinat-Salat",
+      "dinner": "Linsensuppe",
+      "snacks": "Orange + Mandeln"
+    },
     "categories": {
       "all": "Alle",
       "produce": "Obst & Gemüse",

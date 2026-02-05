@@ -2079,6 +2079,54 @@
     "yourList": "Sua Lista",
     "noItems": "Nenhum item ainda",
     "clear": "Limpar",
+    "addedToList": "adicionado à lista",
+    "dailyNutritionGoals": "Metas Nutricionais Diárias",
+    "categoriesChart": "Categorias",
+    "nutrientsChart": "Nutrientes",
+    "weekFocus": "Foco da Semana {{week}}",
+    "dailyMealIdeas": "Ideias de Refeições Diárias",
+    "aiWeeklyMealPlan": "Plano de Refeições Semanal IA",
+    "addAllSuperfoods": "Adicionar todos os superalimentos",
+    "reset": "Redefinir",
+    "superfoodsAdded": "{{count}} superalimentos adicionados à sua lista",
+    "allSuperfoodsInList": "Todos os superalimentos já estão na sua lista",
+    "nutrients": {
+      "protein": "Proteína",
+      "iron": "Ferro",
+      "folate": "Ácido Fólico",
+      "calcium": "Cálcio",
+      "omega3": "Ômega-3"
+    },
+    "categoryNames": {
+      "produce": "Frutas e Vegetais",
+      "dairy": "Laticínios",
+      "protein": "Proteína",
+      "grains": "Grãos",
+      "other": "Outros"
+    },
+    "weeklyRecommendations": {
+      "folateRich": "Alimentos ricos em folato",
+      "wholeGrains": "Grãos integrais",
+      "leanProteins": "Proteínas magras",
+      "ironRich": "Alimentos ricos em ferro",
+      "omega3Sources": "Fontes de ômega-3",
+      "calciumFoods": "Alimentos com cálcio",
+      "highFiber": "Alimentos ricos em fibras",
+      "vitaminD": "Fontes de vitamina D",
+      "hydratingFoods": "Alimentos hidratantes"
+    },
+    "meals": {
+      "breakfast": "Café da manhã",
+      "lunch": "Almoço",
+      "dinner": "Jantar",
+      "snacks": "Lanches"
+    },
+    "mealSuggestions": {
+      "breakfast": "Iogurte com frutas vermelhas",
+      "lunch": "Salada de salmão e espinafre",
+      "dinner": "Sopa de lentilhas",
+      "snacks": "Laranja + amêndoas"
+    },
     "categories": {
       "all": "Todos",
       "produce": "Frutas e Vegetais",
