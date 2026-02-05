@@ -14,11 +14,11 @@ import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
-const hospitalBagVideos: Video[] = [
-  { id: "1", title: "Hospital Bag Checklist", description: "Midwife advice on what to pack", youtubeId: "NTulfAOzbp8", duration: "8:00", category: "Essentials" },
-  { id: "2", title: "Essential Hospital Bag Items", description: "Must-have items for labor and delivery", youtubeId: "oUxVPhwFuMM", duration: "12:30", category: "Essentials" },
-  { id: "3", title: "Hospital Bag Tips", description: "Nurse-approved essentials you'll actually use", youtubeId: "6YdwII4BO0g", duration: "10:00", category: "Tips" },
-  { id: "4", title: "What to Pack for Baby", description: "Newborn essentials for hospital stay", youtubeId: "hpgjwK_oQe0", duration: "18:00", category: "Baby" },
+const getHospitalBagVideos = (t: any): Video[] => [
+  { id: "1", title: t('toolsInternal.hospitalBag.videos.v1.title'), description: t('toolsInternal.hospitalBag.videos.v1.description'), youtubeId: "NTulfAOzbp8", duration: "8:00", category: t('toolsInternal.hospitalBag.videos.v1.category') },
+  { id: "2", title: t('toolsInternal.hospitalBag.videos.v2.title'), description: t('toolsInternal.hospitalBag.videos.v2.description'), youtubeId: "oUxVPhwFuMM", duration: "12:30", category: t('toolsInternal.hospitalBag.videos.v2.category') },
+  { id: "3", title: t('toolsInternal.hospitalBag.videos.v3.title'), description: t('toolsInternal.hospitalBag.videos.v3.description'), youtubeId: "6YdwII4BO0g", duration: "10:00", category: t('toolsInternal.hospitalBag.videos.v3.category') },
+  { id: "4", title: t('toolsInternal.hospitalBag.videos.v4.title'), description: t('toolsInternal.hospitalBag.videos.v4.description'), youtubeId: "hpgjwK_oQe0", duration: "18:00", category: t('toolsInternal.hospitalBag.videos.v4.category') }
 ];
 
 interface BagItem {
@@ -266,7 +266,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
 
         {/* Educational Videos */}
         <VideoLibrary
-          videos={hospitalBagVideos}
+          videos={getHospitalBagVideos(t)}
           title={t('toolsInternal.hospitalBag.hospitalBagVideos')}
           subtitle={t('toolsInternal.hospitalBag.hospitalBagVideosSubtitle')}
           accentColor="blue"
