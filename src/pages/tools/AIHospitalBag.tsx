@@ -229,12 +229,21 @@ Include seasonal considerations and hospital-specific recommendations.`;
           </p>
         </Card>
 
-        {/* Hospital Bag Image */}
-        <img
-          src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=300&fit=crop"
-          alt="Hospital bag essentials"
-          className="w-full rounded-xl"
-        />
+        {/* Quick Stats */}
+        <div className="grid grid-cols-4 gap-2">
+          {[
+            { icon: User, label: t('toolsInternal.hospitalBag.mom'), count: items.filter(i => i.category === 'mom').length, color: 'from-pink-500/20 to-rose-500/20' },
+            { icon: Baby, label: t('toolsInternal.hospitalBag.baby'), count: items.filter(i => i.category === 'baby').length, color: 'from-blue-500/20 to-cyan-500/20' },
+            { icon: Heart, label: t('toolsInternal.hospitalBag.partner'), count: items.filter(i => i.category === 'partner').length, color: 'from-purple-500/20 to-violet-500/20' },
+            { icon: Briefcase, label: t('toolsInternal.hospitalBag.documents'), count: items.filter(i => i.category === 'documents').length, color: 'from-amber-500/20 to-orange-500/20' },
+          ].map(({ icon: Icon, label, count, color }) => (
+            <Card key={label} className={`p-3 bg-gradient-to-br ${color} border-border/30 text-center`}>
+              <Icon className="w-5 h-5 mx-auto mb-1 text-muted-foreground" />
+              <p className="text-lg font-bold">{count}</p>
+              <p className="text-[10px] text-muted-foreground truncate">{label}</p>
+            </Card>
+          ))}
+        </div>
 
         {/* Category Tabs */}
         <div className="flex gap-2 overflow-x-auto pb-2">
