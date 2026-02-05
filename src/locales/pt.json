@@ -2294,5 +2294,53 @@
         "desc": "Escreva 3 coisas pelas quais você é grata"
       }
     }
+  },
+  "doctorQuestions": {
+    "startNewVisit": "Iniciar nova consulta",
+    "suggestedQuestions": "Perguntas sugeridas",
+    "startVisitToAdd": "Inicie uma nova consulta para adicionar estas perguntas",
+    "pastVisits": "Consultas anteriores",
+    "week": "Semana",
+    "questionsLabel": "perguntas",
+    "doctorVisit": "Consulta médica",
+    "questionsLeft": "perguntas restantes",
+    "typeQuestion": "Digite sua pergunta aqui...",
+    "addQuestion": "Adicionar pergunta",
+    "suggestedTapToAdd": "Sugestões - Toque para adicionar",
+    "yourQuestions": "Suas perguntas",
+    "cancelVisit": "Cancelar consulta",
+    "completeVisit": "Concluir consulta",
+    "questions": {
+      "testsNeeded": "Quais exames são necessários nesta fase?",
+      "babyGrowthOnTrack": "O bebé está a crescer bem?",
+      "warningSymptoms": "Quais sintomas requerem atenção imediata?",
+      "exerciseSafe": "Posso continuar a fazer exercício?",
+      "foodsToAvoid": "Quais alimentos devo evitar?",
+      "medicationsSafe": "Os meus medicamentos são seguros durante a gravidez?",
+      "birthClasses": "Quando devo inscrever-me nas aulas de preparação?",
+      "earlyLaborSigns": "Quais são os sinais do trabalho de parto prematuro?"
+    },
+    "categories": {
+      "checkups": { "label": "Exames", "icon": "🔬" },
+      "development": { "label": "Crescimento bebé", "icon": "👶" },
+      "warning": { "label": "Sinais de alerta", "icon": "⚠️" },
+      "lifestyle": { "label": "Estilo de vida", "icon": "🏃" },
+      "nutrition": { "label": "Nutrição", "icon": "🥗" },
+      "medications": { "label": "Medicamentos", "icon": "💊" },
+      "preparation": { "label": "Preparação", "icon": "📋" },
+      "other": { "label": "Outro", "icon": "❓" }
+    },
+    "priority": {
+      "high": "Importante",
+      "medium": "Médio",
+      "low": "Normal"
+    },
+    "tips": {
+      "title": "Dicas para a consulta",
+      "prepare": "Prepare as suas perguntas antes da consulta",
+      "writeDown": "Anote as respostas do médico imediatamente",
+      "askClarification": "Não hesite em pedir esclarecimentos",
+      "bringPartner": "Traga o seu parceiro se possível"
+    }
   }
 }
