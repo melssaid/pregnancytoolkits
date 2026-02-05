@@ -72,7 +72,7 @@ export function ToolFrame({
   const hasCustomIcon = toolId && hasToolIcon(toolId);
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${styles.gradient}`}>
+    <div className={`min-h-screen bg-gradient-to-br ${styles.gradient} overflow-x-hidden`}>
       {/* Ambient Background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className={`absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gradient-to-br ${styles.glow} to-transparent rounded-full blur-3xl opacity-60`} />
