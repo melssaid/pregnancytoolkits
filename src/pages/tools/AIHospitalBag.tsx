@@ -104,6 +104,20 @@ const AIHospitalBag = () => {
       Object.entries(legacyEnglishToKey).map(([k, v]) => [normalizeLegacyLabel(k), v] as const)
     );
 
+    // Also migrate when older versions stored the *translated labels* (e.g., Arabic/German/etc.)
+    // instead of stable translation keys.
+    const supportedLangs = ["en", "ar", "de", "tr", "fr", "es", "pt"] as const;
+    const localizedNormalizedToKey = new Map<string, string>();
+    for (const key of defaultItems.map((i) => i.nameKey)) {
+      for (const lng of supportedLangs) {
+        const label = i18n.t(key, { lng, defaultValue: "" }) as string;
+        if (!label) continue;
+        // If missing in that language, i18n can return the key itself.
+        if (label === key) continue;
+        localizedNormalizedToKey.set(normalizeLegacyLabel(label), key);
+      }
+    }
+
     const defaultKeySet = new Set(defaultItems.map((i) => i.nameKey));
     const defaultIdToKey = new Map(defaultItems.map((i) => [i.id, i.nameKey] as const));
 
@@ -144,15 +158,19 @@ const AIHospitalBag = () => {
       }
 
       // 2) If stored value is a translation key or legacy key/English label.
-      const legacyLookup = legacyEnglishToKey[sourceLabel] ||
+      const legacyLookup =
+        legacyEnglishToKey[sourceLabel] ||
         legacyNormalizedToKey.get(normalizeLegacyLabel(sourceLabel)) ||
         "";
+
+      const localizedLookup =
+        localizedNormalizedToKey.get(normalizeLegacyLabel(sourceLabel)) || "";
 
       const resolvedKey = sourceLabel.startsWith("toolsInternal.")
         ? sourceLabel
         : sourceLabel.startsWith("hospitalBag.")
           ? `toolsInternal.${sourceLabel}`
-          : legacyLookup;
+          : legacyLookup || localizedLookup;
 
       if (resolvedKey && defaultKeySet.has(resolvedKey)) {
         packedByKey.set(resolvedKey, packed);
