@@ -868,30 +868,6 @@
         "flexibility": "مرونة"
       }
     },
-    "birthPlan": {
-      "title": "منشئ خطة الولادة الذكي",
-      "subtitle": "أنشئي خطة ولادتك المخصصة",
-      "preferences": "تفضيلاتك",
-      "birthLocation": "مكان الولادة",
-      "hospital": "مستشفى",
-      "birthingCenter": "مركز ولادة",
-      "home": "المنزل",
-      "painManagement": "إدارة الألم",
-      "natural": "طبيعي / بدون أدوية",
-      "epidural": "إبرة الظهر",
-      "flexible": "مرن / أقرر وقت المخاض",
-      "support": "الأشخاص الداعمين",
-      "partner": "الشريك",
-      "doula": "دولا",
-      "familyMember": "أحد أفراد العائلة",
-      "generatePlan": "إنشاء خطة الولادة",
-      "generating": "جاري إنشاء خطة ولادتك...",
-      "savedPlans": "الخطط المحفوظة",
-      "downloadPDF": "تحميل PDF",
-      "sharePlan": "مشاركة الخطة",
-      "storageFull": "التخزين ممتلئ",
-      "storageFullDesc": "الحد الأقصى 9 خطط. احذفي خططاً قديمة لحفظ جديدة."
-    },
     "hospitalBag": {
       "title": "حقيبة المستشفى الذكية",
       "subtitle": "قائمة تعبئة ذكية ليوم الولادة",
