@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Home, Shield, Award, Heart, Settings } from "lucide-react";
+import { Shield, Award, Heart, Settings } from "lucide-react";
 import logoImage from "@/assets/logo.png";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
@@ -11,13 +11,10 @@ import { LanguageDropdown } from "./LanguageDropdown";
 interface LayoutProps {
   children: React.ReactNode;
   showBack?: boolean;
-  hideHomeIcon?: boolean;
 }
 
-export function Layout({ children, showBack = false, hideHomeIcon = false }: LayoutProps) {
+export function Layout({ children, showBack = false }: LayoutProps) {
   const { t } = useTranslation();
-  const location = useLocation();
-  const isHome = location.pathname === "/";
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -86,16 +83,6 @@ export function Layout({ children, showBack = false, hideHomeIcon = false }: Lay
             >
               <Settings className="h-5 w-5" />
             </Link>
-
-            {!isHome && !hideHomeIcon && (
-              <Link 
-                to="/"
-                className="flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-                title={t('app.allToolsBtn')}
-              >
-                <Home className="h-5 w-5" />
-              </Link>
-            )}
           </div>
         </div>
       </header>
