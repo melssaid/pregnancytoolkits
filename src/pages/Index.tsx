@@ -1,4 +1,4 @@
-import { useState, useMemo, memo, useCallback } from "react";
+import { useState, useMemo, memo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -27,16 +27,40 @@ const categoryConfig: CategoryConfig[] = [
   { key: "categories.postpartum", icon: Flower2, bgColor: "bg-primary/5", iconBg: "bg-primary/15" },
 ];
 
+const EXPANDED_CATEGORIES_KEY = 'pregnancy_expanded_categories';
+
 // Memoized ToolCard for performance
 const MemoizedToolCard = memo(ToolCard);
 
 const Index = () => {
   const { t } = useTranslation();
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  
+  // Load expanded state from localStorage
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(() => {
+    try {
+      const saved = localStorage.getItem(EXPANDED_CATEGORIES_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return new Set(Array.isArray(parsed) ? parsed : []);
+      }
+    } catch (e) {
+      console.error('Error loading expanded categories:', e);
+    }
+    return new Set();
+  });
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
   
   const sortedTools = useMemo(() => getSortedTools(), []);
   const totalTools = sortedTools.length;
+
+  // Save expanded state to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(EXPANDED_CATEGORIES_KEY, JSON.stringify([...expandedCategories]));
+    } catch (e) {
+      console.error('Error saving expanded categories:', e);
+    }
+  }, [expandedCategories]);
 
   const toggleCategory = useCallback((categoryKey: string) => {
     setExpandedCategories(prev => {
