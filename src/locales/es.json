@@ -1932,6 +1932,34 @@
       "protein": "Proteína",
       "grains": "Granos",
       "other": "Otros"
+    },
+    "groceryItems": {
+      "spinach": "Espinacas",
+      "avocados": "Aguacates",
+      "greekYogurt": "Yogur Griego",
+      "eggs": "Huevos",
+      "salmon": "Salmón",
+      "lentils": "Lentejas",
+      "sweetPotatoes": "Batatas",
+      "berries": "Bayas",
+      "wholeGrainBread": "Pan Integral",
+      "oranges": "Naranjas",
+      "almonds": "Almendras",
+      "chickenBreast": "Pechuga de Pollo"
+    },
+    "benefits": {
+      "spinach": "Rico en ácido fólico y hierro",
+      "avocados": "Grasas saludables para el cerebro del bebé",
+      "greekYogurt": "Calcio y probióticos",
+      "eggs": "Colina para el desarrollo cerebral",
+      "salmon": "Omega-3 para el cerebro del bebé",
+      "lentils": "Hierro y proteína",
+      "sweetPotatoes": "Vitamina A y fibra",
+      "berries": "Antioxidantes y vitamina C",
+      "wholeGrainBread": "Fibra y vitaminas B",
+      "oranges": "Vitamina C para la inmunidad",
+      "almonds": "Grasas saludables y calcio",
+      "chickenBreast": "Proteína magra"
     }
   },
   "snackPlanner": {

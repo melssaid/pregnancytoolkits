@@ -1932,6 +1932,34 @@
       "protein": "Protein",
       "grains": "Tahıllar",
       "other": "Diğer"
+    },
+    "groceryItems": {
+      "spinach": "Ispanak",
+      "avocados": "Avokado",
+      "greekYogurt": "Yunan Yoğurdu",
+      "eggs": "Yumurta",
+      "salmon": "Somon",
+      "lentils": "Mercimek",
+      "sweetPotatoes": "Tatlı Patates",
+      "berries": "Böğürtlenler",
+      "wholeGrainBread": "Tam Tahıl Ekmeği",
+      "oranges": "Portakal",
+      "almonds": "Badem",
+      "chickenBreast": "Tavuk Göğsü"
+    },
+    "benefits": {
+      "spinach": "Folik asit ve demir açısından zengin",
+      "avocados": "Bebek beyni için sağlıklı yağlar",
+      "greekYogurt": "Kalsiyum ve probiyotikler",
+      "eggs": "Beyin gelişimi için kolin",
+      "salmon": "Bebek beyni için Omega-3",
+      "lentils": "Demir ve protein",
+      "sweetPotatoes": "A vitamini ve lif",
+      "berries": "Antioksidanlar ve C vitamini",
+      "wholeGrainBread": "Lif ve B vitaminleri",
+      "oranges": "Bağışıklık için C vitamini",
+      "almonds": "Sağlıklı yağlar ve kalsiyum",
+      "chickenBreast": "Yağsız protein"
     }
   },
   "snackPlanner": {
