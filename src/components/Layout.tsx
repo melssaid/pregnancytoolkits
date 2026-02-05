@@ -17,7 +17,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Top Trust Bar - Compact & Professional */}
       <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-1 px-3">
         <div className="container flex items-center justify-center gap-3 sm:gap-5 text-[10px] font-medium tracking-wide">
