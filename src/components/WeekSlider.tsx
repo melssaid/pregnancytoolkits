@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -15,16 +16,16 @@ interface WeekSliderProps {
   className?: string;
 }
 
-const getTrimester = (week: number): string => {
-  if (week <= 13) return '1st Trimester';
-  if (week <= 26) return '2nd Trimester';
-  return '3rd Trimester';
+const getTrimesterKey = (week: number): string => {
+  if (week <= 13) return 'trimester1';
+  if (week <= 26) return 'trimester2';
+  return 'trimester3';
 };
 
 const getTrimesterColor = (week: number): string => {
-  if (week <= 13) return 'bg-emerald-100 text-emerald-700 border-emerald-200';
-  if (week <= 26) return 'bg-blue-100 text-blue-700 border-blue-200';
-  return 'bg-purple-100 text-purple-700 border-purple-200';
+  if (week <= 13) return 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300';
+  if (week <= 26) return 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300';
+  return 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300';
 };
 
 export const WeekSlider = memo(function WeekSlider({
@@ -34,12 +35,17 @@ export const WeekSlider = memo(function WeekSlider({
   max = 42,
   showCard = true,
   showTrimester = true,
-  label = 'Pregnancy Week',
+  label,
   className = '',
 }: WeekSliderProps) {
+  const { t } = useTranslation();
+  
   const handleChange = (value: number[]) => {
     onChange(value[0]);
   };
+
+  const displayLabel = label || t('toolsInternal.weekSlider.currentWeek');
+  const trimesterText = t(`toolsInternal.weekSlider.${getTrimesterKey(week)}`);
 
   const content = (
     <div className={`space-y-4 ${className}`}>
@@ -47,7 +53,7 @@ export const WeekSlider = memo(function WeekSlider({
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-primary" />
           <label className="font-medium text-foreground text-sm">
-            {label}
+            {displayLabel}
           </label>
         </div>
         {showTrimester && (
@@ -55,7 +61,7 @@ export const WeekSlider = memo(function WeekSlider({
             variant="outline" 
             className={`text-xs font-medium ${getTrimesterColor(week)}`}
           >
-            {getTrimester(week)}
+            {trimesterText}
           </Badge>
         )}
       </div>
@@ -71,11 +77,11 @@ export const WeekSlider = memo(function WeekSlider({
         />
         
         <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span>Week {min}</span>
+          <span>{t('common.week')} {min}</span>
           <div className="flex flex-col items-center">
-            <span className="text-2xl font-bold text-primary">Week {week}</span>
+            <span className="text-2xl font-bold text-primary">{t('common.week')} {week}</span>
           </div>
-          <span>Week {max}</span>
+          <span>{t('common.week')} {max}</span>
         </div>
       </div>
     </div>
