@@ -7,7 +7,7 @@ export default function Contact() {
   const { t } = useTranslation();
   
   return (
-    <Layout showBack>
+    <Layout showBack hideHomeIcon>
       <div className="container py-8 max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
