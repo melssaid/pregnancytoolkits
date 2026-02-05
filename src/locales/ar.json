@@ -2226,5 +2226,53 @@
         "desc": "اكتبي 3 أشياء تشعرين بالامتنان لها"
       }
     }
+  },
+  "doctorQuestions": {
+    "startNewVisit": "بدء زيارة جديدة",
+    "suggestedQuestions": "أسئلة مقترحة",
+    "startVisitToAdd": "ابدئي زيارة جديدة لإضافة هذه الأسئلة لقائمتك",
+    "pastVisits": "الزيارات السابقة",
+    "week": "الأسبوع",
+    "questionsLabel": "أسئلة",
+    "doctorVisit": "زيارة الطبيب",
+    "questionsLeft": "أسئلة متبقية",
+    "typeQuestion": "اكتبي سؤالك هنا...",
+    "addQuestion": "إضافة سؤال",
+    "suggestedTapToAdd": "مقترحات - اضغطي للإضافة",
+    "yourQuestions": "أسئلتك",
+    "cancelVisit": "إلغاء الزيارة",
+    "completeVisit": "إنهاء الزيارة",
+    "questions": {
+      "testsNeeded": "ما الفحوصات المطلوبة في هذه المرحلة؟",
+      "babyGrowthOnTrack": "هل نمو الطفل طبيعي؟",
+      "warningSymptoms": "ما الأعراض التي تستدعي اهتماماً فورياً؟",
+      "exerciseSafe": "هل يمكنني الاستمرار في ممارسة الرياضة؟",
+      "foodsToAvoid": "ما الأطعمة التي يجب تجنبها؟",
+      "medicationsSafe": "هل أدويتي آمنة أثناء الحمل؟",
+      "birthClasses": "متى يجب التسجيل في دورات الولادة؟",
+      "earlyLaborSigns": "ما علامات المخاض المبكر؟"
+    },
+    "categories": {
+      "checkups": { "label": "الفحوصات", "icon": "🔬" },
+      "development": { "label": "نمو الطفل", "icon": "👶" },
+      "warning": { "label": "علامات تحذيرية", "icon": "⚠️" },
+      "lifestyle": { "label": "نمط الحياة", "icon": "🏃" },
+      "nutrition": { "label": "التغذية", "icon": "🥗" },
+      "medications": { "label": "الأدوية", "icon": "💊" },
+      "preparation": { "label": "التحضير", "icon": "📋" },
+      "other": { "label": "أخرى", "icon": "❓" }
+    },
+    "priority": {
+      "high": "مهم",
+      "medium": "متوسط",
+      "low": "عادي"
+    },
+    "tips": {
+      "title": "نصائح لزيارة الطبيب",
+      "prepare": "جهزي أسئلتك قبل الزيارة",
+      "writeDown": "دوّني إجابات الطبيب فوراً",
+      "askClarification": "لا تترددي في طلب التوضيح",
+      "bringPartner": "اصطحبي شريكك إن أمكن"
+    }
   }
 }

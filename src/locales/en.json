@@ -3155,5 +3155,53 @@
       "afterBirth": "After birth",
       "firstMonth": "First month"
     }
+  },
+  "doctorQuestions": {
+    "startNewVisit": "Start New Visit",
+    "suggestedQuestions": "Suggested Questions",
+    "startVisitToAdd": "Start a new visit to add these questions to your list",
+    "pastVisits": "Past Visits",
+    "week": "Week",
+    "questionsLabel": "questions",
+    "doctorVisit": "Doctor Visit",
+    "questionsLeft": "questions left",
+    "typeQuestion": "Type your question here...",
+    "addQuestion": "Add Question",
+    "suggestedTapToAdd": "Suggested - Tap to add",
+    "yourQuestions": "Your Questions",
+    "cancelVisit": "Cancel Visit",
+    "completeVisit": "Complete Visit",
+    "questions": {
+      "testsNeeded": "What tests are needed at this stage?",
+      "babyGrowthOnTrack": "Is baby's growth on track?",
+      "warningSymptoms": "What symptoms require immediate attention?",
+      "exerciseSafe": "Can I continue exercising?",
+      "foodsToAvoid": "What foods should I avoid?",
+      "medicationsSafe": "Are my medications safe during pregnancy?",
+      "birthClasses": "When should I register for birth classes?",
+      "earlyLaborSigns": "What are signs of early labor?"
+    },
+    "categories": {
+      "checkups": { "label": "Checkups", "icon": "🔬" },
+      "development": { "label": "Baby Growth", "icon": "👶" },
+      "warning": { "label": "Warning Signs", "icon": "⚠️" },
+      "lifestyle": { "label": "Lifestyle", "icon": "🏃" },
+      "nutrition": { "label": "Nutrition", "icon": "🥗" },
+      "medications": { "label": "Medications", "icon": "💊" },
+      "preparation": { "label": "Preparation", "icon": "📋" },
+      "other": { "label": "Other", "icon": "❓" }
+    },
+    "priority": {
+      "high": "Important",
+      "medium": "Medium",
+      "low": "Normal"
+    },
+    "tips": {
+      "title": "Doctor Visit Tips",
+      "prepare": "Prepare your questions before the visit",
+      "writeDown": "Write down the doctor's answers immediately",
+      "askClarification": "Don't hesitate to ask for clarification",
+      "bringPartner": "Bring your partner if possible"
+    }
   }
 }

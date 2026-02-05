@@ -2014,5 +2014,53 @@
         "desc": "Écrivez 3 choses pour lesquelles vous êtes reconnaissante"
       }
     }
+  },
+  "doctorQuestions": {
+    "startNewVisit": "Commencer une nouvelle visite",
+    "suggestedQuestions": "Questions suggérées",
+    "startVisitToAdd": "Commencez une nouvelle visite pour ajouter ces questions",
+    "pastVisits": "Visites précédentes",
+    "week": "Semaine",
+    "questionsLabel": "questions",
+    "doctorVisit": "Visite médicale",
+    "questionsLeft": "questions restantes",
+    "typeQuestion": "Tapez votre question ici...",
+    "addQuestion": "Ajouter une question",
+    "suggestedTapToAdd": "Suggestions - Appuyez pour ajouter",
+    "yourQuestions": "Vos questions",
+    "cancelVisit": "Annuler la visite",
+    "completeVisit": "Terminer la visite",
+    "questions": {
+      "testsNeeded": "Quels tests sont nécessaires à ce stade?",
+      "babyGrowthOnTrack": "Le bébé grandit-il normalement?",
+      "warningSymptoms": "Quels symptômes nécessitent une attention immédiate?",
+      "exerciseSafe": "Puis-je continuer à faire de l'exercice?",
+      "foodsToAvoid": "Quels aliments dois-je éviter?",
+      "medicationsSafe": "Mes médicaments sont-ils sûrs pendant la grossesse?",
+      "birthClasses": "Quand dois-je m'inscrire aux cours de préparation?",
+      "earlyLaborSigns": "Quels sont les signes du travail précoce?"
+    },
+    "categories": {
+      "checkups": { "label": "Examens", "icon": "🔬" },
+      "development": { "label": "Croissance bébé", "icon": "👶" },
+      "warning": { "label": "Signes d'alerte", "icon": "⚠️" },
+      "lifestyle": { "label": "Mode de vie", "icon": "🏃" },
+      "nutrition": { "label": "Nutrition", "icon": "🥗" },
+      "medications": { "label": "Médicaments", "icon": "💊" },
+      "preparation": { "label": "Préparation", "icon": "📋" },
+      "other": { "label": "Autre", "icon": "❓" }
+    },
+    "priority": {
+      "high": "Important",
+      "medium": "Moyen",
+      "low": "Normal"
+    },
+    "tips": {
+      "title": "Conseils pour la visite",
+      "prepare": "Préparez vos questions avant la visite",
+      "writeDown": "Notez les réponses du médecin immédiatement",
+      "askClarification": "N'hésitez pas à demander des clarifications",
+      "bringPartner": "Amenez votre partenaire si possible"
+    }
   }
 }

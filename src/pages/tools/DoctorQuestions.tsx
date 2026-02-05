@@ -29,27 +29,18 @@ interface Visit {
 
 const STORAGE_KEY = "doctor-questions-data";
 
-const suggestedQuestions = [
-  { text: "What tests are needed at this stage?", category: "checkups", priority: "high" as const },
-  { text: "Is baby's growth on track?", category: "development", priority: "high" as const },
-  { text: "What symptoms require immediate attention?", category: "warning", priority: "high" as const },
-  { text: "Can I continue exercising?", category: "lifestyle", priority: "medium" as const },
-  { text: "What foods should I avoid?", category: "nutrition", priority: "medium" as const },
-  { text: "Are my medications safe during pregnancy?", category: "medications", priority: "high" as const },
-  { text: "When should I register for birth classes?", category: "preparation", priority: "low" as const },
-  { text: "What are signs of early labor?", category: "warning", priority: "high" as const },
+const SUGGESTED_QUESTION_KEYS = [
+  { key: "testsNeeded", category: "checkups", priority: "high" as const },
+  { key: "babyGrowthOnTrack", category: "development", priority: "high" as const },
+  { key: "warningSymptoms", category: "warning", priority: "high" as const },
+  { key: "exerciseSafe", category: "lifestyle", priority: "medium" as const },
+  { key: "foodsToAvoid", category: "nutrition", priority: "medium" as const },
+  { key: "medicationsSafe", category: "medications", priority: "high" as const },
+  { key: "birthClasses", category: "preparation", priority: "low" as const },
+  { key: "earlyLaborSigns", category: "warning", priority: "high" as const },
 ];
 
-const categoryLabels = {
-  checkups: { label: "Checkups", icon: "🔬" },
-  development: { label: "Baby Growth", icon: "👶" },
-  warning: { label: "Warning Signs", icon: "⚠️" },
-  lifestyle: { label: "Lifestyle", icon: "🏃" },
-  nutrition: { label: "Nutrition", icon: "🥗" },
-  medications: { label: "Medications", icon: "💊" },
-  preparation: { label: "Preparation", icon: "📋" },
-  other: { label: "Other", icon: "❓" },
-};
+const CATEGORY_KEYS = ["checkups", "development", "warning", "lifestyle", "nutrition", "medications", "preparation", "other"] as const;
 
 const priorityColors = {
   high: "bg-red-100 text-red-700 border-red-200",
@@ -166,7 +157,7 @@ const DoctorQuestions = () => {
                 className="w-full py-8 text-lg bg-gradient-to-r from-primary to-pink-500"
               >
                 <Calendar className="h-6 w-6 mr-3" />
-                Start New Visit
+                {t('toolsInternal.doctorQuestions.startNewVisit')}
               </Button>
             </motion.div>
 
@@ -175,17 +166,17 @@ const DoctorQuestions = () => {
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Stethoscope className="h-5 w-5 text-primary" />
-                  Suggested Questions
+                  {t('toolsInternal.doctorQuestions.suggestedQuestions')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Start a new visit to add these questions to your list
+                  {t('toolsInternal.doctorQuestions.startVisitToAdd')}
                 </p>
                 <div className="space-y-2">
-                  {suggestedQuestions.slice(0, 5).map((q, index) => (
+                  {SUGGESTED_QUESTION_KEYS.slice(0, 5).map((q, index) => (
                     <div key={index} className="p-3 rounded-lg bg-muted/30 text-sm">
-                      {q.text}
+                      {t(`toolsInternal.doctorQuestions.questions.${q.key}`)}
                     </div>
                   ))}
                 </div>
@@ -196,20 +187,20 @@ const DoctorQuestions = () => {
             {visits.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Past Visits</CardTitle>
+                  <CardTitle className="text-lg">{t('toolsInternal.doctorQuestions.pastVisits')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     {visits.slice(0, 5).map((visit) => (
                       <div key={visit.id} className="p-3 rounded-lg border flex items-center justify-between">
                         <div>
-                          <p className="font-medium">Week {visit.week}</p>
+                          <p className="font-medium">{t('toolsInternal.doctorQuestions.week')} {visit.week}</p>
                           <p className="text-sm text-muted-foreground">
                             {format(new Date(visit.date), 'MMM d, yyyy')}
                           </p>
                         </div>
                         <span className="text-sm text-primary">
-                          {visit.questions.length} questions
+                          {visit.questions.length} {t('toolsInternal.doctorQuestions.questionsLabel')}
                         </span>
                       </div>
                     ))}
@@ -225,9 +216,9 @@ const DoctorQuestions = () => {
               <CardContent className="pt-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-lg">Doctor Visit</h3>
+                    <h3 className="font-bold text-lg">{t('toolsInternal.doctorQuestions.doctorVisit')}</h3>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-sm text-muted-foreground">Week:</span>
+                      <span className="text-sm text-muted-foreground">{t('toolsInternal.doctorQuestions.week')}:</span>
                       <Input
                         type="number"
                         value={currentVisit.week}
@@ -240,7 +231,7 @@ const DoctorQuestions = () => {
                   </div>
                   <div className="text-right">
                     <span className="text-3xl font-bold text-primary">{unansweredCount}</span>
-                    <p className="text-xs text-muted-foreground">questions left</p>
+                    <p className="text-xs text-muted-foreground">{t('toolsInternal.doctorQuestions.questionsLeft')}</p>
                   </div>
                 </div>
               </CardContent>
@@ -252,18 +243,18 @@ const DoctorQuestions = () => {
                 <Input
                   value={newQuestion}
                   onChange={(e) => setNewQuestion(e.target.value)}
-                  placeholder="Type your question here..."
+                  placeholder={t('toolsInternal.doctorQuestions.typeQuestion')}
                   onKeyPress={(e) => e.key === 'Enter' && addQuestion(newQuestion, selectedCategory, selectedPriority)}
                 />
                 <div className="flex flex-wrap gap-2">
-                  {Object.entries(categoryLabels).slice(0, 4).map(([key, { label, icon }]) => (
+                  {CATEGORY_KEYS.slice(0, 4).map((key) => (
                     <Button
                       key={key}
                       variant={selectedCategory === key ? "default" : "outline"}
                       size="sm"
                       onClick={() => setSelectedCategory(key)}
                     >
-                      {icon} {label}
+                      {t(`toolsInternal.doctorQuestions.categories.${key}.icon`)} {t(`toolsInternal.doctorQuestions.categories.${key}.label`)}
                     </Button>
                   ))}
                 </div>
@@ -273,7 +264,7 @@ const DoctorQuestions = () => {
                   className="w-full"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Add Question
+                  {t('toolsInternal.doctorQuestions.addQuestion')}
                 </Button>
               </CardContent>
             </Card>
@@ -281,25 +272,28 @@ const DoctorQuestions = () => {
             {/* Suggested Questions */}
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-muted-foreground">Suggested - Tap to add</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">{t('toolsInternal.doctorQuestions.suggestedTapToAdd')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {suggestedQuestions
-                    .filter(sq => !currentVisit.questions.some(q => q.text === sq.text))
+                  {SUGGESTED_QUESTION_KEYS
+                    .filter(sq => !currentVisit.questions.some(q => q.text === t(`toolsInternal.doctorQuestions.questions.${sq.key}`)))
                     .slice(0, 4)
-                    .map((sq, index) => (
-                      <Button
-                        key={index}
-                        variant="outline"
-                        size="sm"
-                        onClick={() => addQuestion(sq.text, sq.category, sq.priority)}
-                        className="text-xs"
-                      >
-                        <Plus className="h-3 w-3 mr-1" />
-                        {sq.text.slice(0, 30)}...
-                      </Button>
-                    ))}
+                    .map((sq, index) => {
+                      const questionText = t(`toolsInternal.doctorQuestions.questions.${sq.key}`);
+                      return (
+                        <Button
+                          key={index}
+                          variant="outline"
+                          size="sm"
+                          onClick={() => addQuestion(questionText, sq.category, sq.priority)}
+                          className="text-xs"
+                        >
+                          <Plus className="h-3 w-3 mr-1" />
+                          {questionText.slice(0, 30)}...
+                        </Button>
+                      );
+                    })}
                 </div>
               </CardContent>
             </Card>
@@ -308,13 +302,11 @@ const DoctorQuestions = () => {
             {currentVisit.questions.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Your Questions ({currentVisit.questions.length})</CardTitle>
+                  <CardTitle className="text-lg">{t('toolsInternal.doctorQuestions.yourQuestions')} ({currentVisit.questions.length})</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <AnimatePresence>
                     {currentVisit.questions.map((question, index) => {
-                      const catInfo = categoryLabels[question.category as keyof typeof categoryLabels] || categoryLabels.other;
-                      
                       return (
                         <motion.div
                           key={question.id}
@@ -340,10 +332,10 @@ const DoctorQuestions = () => {
                               </p>
                               <div className="flex items-center gap-2 mt-2">
                                 <span className="text-xs px-2 py-0.5 rounded-full bg-muted">
-                                  {catInfo.icon} {catInfo.label}
+                                  {t(`toolsInternal.doctorQuestions.categories.${question.category}.icon`)} {t(`toolsInternal.doctorQuestions.categories.${question.category}.label`)}
                                 </span>
                                 <span className={`text-xs px-2 py-0.5 rounded-full border ${priorityColors[question.priority]}`}>
-                                  {question.priority === 'high' ? 'Important' : question.priority === 'medium' ? 'Medium' : 'Normal'}
+                                  {t(`toolsInternal.doctorQuestions.priority.${question.priority}`)}
                                 </span>
                               </div>
                             </div>
@@ -371,14 +363,14 @@ const DoctorQuestions = () => {
                 onClick={() => saveData(visits, null)}
                 className="flex-1"
               >
-                Cancel Visit
+                {t('toolsInternal.doctorQuestions.cancelVisit')}
               </Button>
               <Button
                 onClick={completeVisit}
                 className="flex-1 bg-green-600 hover:bg-green-700"
               >
                 <Check className="h-4 w-4 mr-2" />
-                Complete Visit
+                {t('toolsInternal.doctorQuestions.completeVisit')}
               </Button>
             </div>
           </>
@@ -390,12 +382,12 @@ const DoctorQuestions = () => {
             <div className="flex gap-3">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-medium text-blue-900">Doctor Visit Tips</p>
+                <p className="font-medium text-blue-900">{t('toolsInternal.doctorQuestions.tips.title')}</p>
                 <ul className="text-sm text-blue-700 mt-1 space-y-1 list-disc list-inside">
-                  <li>Prepare your questions before the visit</li>
-                  <li>Write down the doctor's answers immediately</li>
-                  <li>Don't hesitate to ask for clarification</li>
-                  <li>Bring your partner if possible</li>
+                  <li>{t('toolsInternal.doctorQuestions.tips.prepare')}</li>
+                  <li>{t('toolsInternal.doctorQuestions.tips.writeDown')}</li>
+                  <li>{t('toolsInternal.doctorQuestions.tips.askClarification')}</li>
+                  <li>{t('toolsInternal.doctorQuestions.tips.bringPartner')}</li>
                 </ul>
               </div>
             </div>

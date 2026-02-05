@@ -2294,5 +2294,53 @@
         "desc": "Minnettar olduğunuz 3 şeyi yazın"
       }
     }
+  },
+  "doctorQuestions": {
+    "startNewVisit": "Yeni Ziyaret Başlat",
+    "suggestedQuestions": "Önerilen Sorular",
+    "startVisitToAdd": "Bu soruları eklemek için yeni bir ziyaret başlatın",
+    "pastVisits": "Geçmiş Ziyaretler",
+    "week": "Hafta",
+    "questionsLabel": "soru",
+    "doctorVisit": "Doktor Ziyareti",
+    "questionsLeft": "soru kaldı",
+    "typeQuestion": "Sorunuzu buraya yazın...",
+    "addQuestion": "Soru Ekle",
+    "suggestedTapToAdd": "Öneriler - Eklemek için dokunun",
+    "yourQuestions": "Sorularınız",
+    "cancelVisit": "Ziyareti İptal Et",
+    "completeVisit": "Ziyareti Tamamla",
+    "questions": {
+      "testsNeeded": "Bu aşamada hangi testler gerekli?",
+      "babyGrowthOnTrack": "Bebek normal büyüyor mu?",
+      "warningSymptoms": "Hangi belirtiler acil dikkat gerektirir?",
+      "exerciseSafe": "Egzersiz yapmaya devam edebilir miyim?",
+      "foodsToAvoid": "Hangi yiyeceklerden kaçınmalıyım?",
+      "medicationsSafe": "İlaçlarım hamilelik sırasında güvenli mi?",
+      "birthClasses": "Doğum hazırlık kurslarına ne zaman kaydolmalıyım?",
+      "earlyLaborSigns": "Erken doğum belirtileri nelerdir?"
+    },
+    "categories": {
+      "checkups": { "label": "Kontroller", "icon": "🔬" },
+      "development": { "label": "Bebek Büyümesi", "icon": "👶" },
+      "warning": { "label": "Uyarı İşaretleri", "icon": "⚠️" },
+      "lifestyle": { "label": "Yaşam Tarzı", "icon": "🏃" },
+      "nutrition": { "label": "Beslenme", "icon": "🥗" },
+      "medications": { "label": "İlaçlar", "icon": "💊" },
+      "preparation": { "label": "Hazırlık", "icon": "📋" },
+      "other": { "label": "Diğer", "icon": "❓" }
+    },
+    "priority": {
+      "high": "Önemli",
+      "medium": "Orta",
+      "low": "Normal"
+    },
+    "tips": {
+      "title": "Doktor Ziyareti İpuçları",
+      "prepare": "Ziyaretten önce sorularınızı hazırlayın",
+      "writeDown": "Doktorun cevaplarını hemen not alın",
+      "askClarification": "Açıklama istemekten çekinmeyin",
+      "bringPartner": "Mümkünse partnerinizi getirin"
+    }
   }
 }
