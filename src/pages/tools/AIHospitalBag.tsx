@@ -114,11 +114,15 @@ const AIHospitalBag = () => {
     };
 
     for (const raw of stored) {
-      const item = raw as any;
+      const item = raw && typeof raw === "object" ? (raw as any) : {};
 
+      const legacyLabel = typeof raw === "string" ? raw : "";
       const rawId = typeof item?.id === "string" ? item.id : "";
       const rawNameKey = typeof item?.nameKey === "string" ? item.nameKey : "";
       const packed = !!item?.packed;
+
+      const sourceLabel =
+        rawNameKey || (typeof item?.name === "string" ? item.name : "") || legacyLabel;
 
       // 1) If legacy storage preserved default IDs, treat as default item.
       if (rawId && defaultIdToKey.has(rawId)) {
@@ -126,10 +130,12 @@ const AIHospitalBag = () => {
         continue;
       }
 
-      // 2) If stored value is a translation key or legacy English label.
-      const resolvedKey = rawNameKey.startsWith("toolsInternal.")
-        ? rawNameKey
-        : legacyEnglishToKey[rawNameKey] || "";
+      // 2) If stored value is a translation key or legacy key/English label.
+      const resolvedKey = sourceLabel.startsWith("toolsInternal.")
+        ? sourceLabel
+        : sourceLabel.startsWith("hospitalBag.")
+          ? `toolsInternal.${sourceLabel}`
+          : legacyEnglishToKey[sourceLabel] || "";
 
       if (resolvedKey && defaultKeySet.has(resolvedKey)) {
         packedByKey.set(resolvedKey, packed);
@@ -137,8 +143,7 @@ const AIHospitalBag = () => {
       }
 
       // 3) Otherwise keep it as a custom item (raw user input)
-      const customName =
-        rawNameKey || (typeof item?.name === "string" ? item.name : "");
+      const customName = sourceLabel;
       if (!customName.trim()) continue;
 
       const category: BagItem["category"] =
