@@ -17,70 +17,70 @@ const mentalHealthVideos: Video[] = [
 
 interface ScreeningQuestion {
   id: string;
-  question: string;
-  options: { label: string; value: number }[];
+  questionKey: string;
+  options: { labelKey: string; value: number }[];
 }
 
-const epdsQuestions: ScreeningQuestion[] = [
+const getEpdsQuestions = (t: any): ScreeningQuestion[] => [
   {
     id: '1',
-    question: 'I have been able to laugh and see the funny side of things',
+    questionKey: 'toolsInternal.mentalHealthCoach.epds.q1.question',
     options: [
-      { label: 'As much as I always could', value: 0 },
-      { label: 'Not quite so much now', value: 1 },
-      { label: 'Definitely not so much now', value: 2 },
-      { label: 'Not at all', value: 3 }
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q1.o0', value: 0 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q1.o1', value: 1 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q1.o2', value: 2 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q1.o3', value: 3 }
     ]
   },
   {
     id: '2',
-    question: 'I have looked forward with enjoyment to things',
+    questionKey: 'toolsInternal.mentalHealthCoach.epds.q2.question',
     options: [
-      { label: 'As much as I ever did', value: 0 },
-      { label: 'Rather less than I used to', value: 1 },
-      { label: 'Definitely less than I used to', value: 2 },
-      { label: 'Hardly at all', value: 3 }
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o0', value: 0 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o1', value: 1 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o2', value: 2 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o3', value: 3 }
     ]
   },
   {
     id: '3',
-    question: 'I have blamed myself unnecessarily when things went wrong',
+    questionKey: 'toolsInternal.mentalHealthCoach.epds.q3.question',
     options: [
-      { label: 'No, never', value: 0 },
-      { label: 'Not very often', value: 1 },
-      { label: 'Yes, some of the time', value: 2 },
-      { label: 'Yes, most of the time', value: 3 }
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o0', value: 0 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o1', value: 1 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o2', value: 2 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o3', value: 3 }
     ]
   },
   {
     id: '4',
-    question: 'I have been anxious or worried for no good reason',
+    questionKey: 'toolsInternal.mentalHealthCoach.epds.q4.question',
     options: [
-      { label: 'No, not at all', value: 0 },
-      { label: 'Hardly ever', value: 1 },
-      { label: 'Yes, sometimes', value: 2 },
-      { label: 'Yes, very often', value: 3 }
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o0', value: 0 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o1', value: 1 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o2', value: 2 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o3', value: 3 }
     ]
   },
   {
     id: '5',
-    question: 'I have felt scared or panicky for no very good reason',
+    questionKey: 'toolsInternal.mentalHealthCoach.epds.q5.question',
     options: [
-      { label: 'No, not at all', value: 0 },
-      { label: 'No, not much', value: 1 },
-      { label: 'Yes, sometimes', value: 2 },
-      { label: 'Yes, quite a lot', value: 3 }
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o0', value: 0 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o1', value: 1 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o2', value: 2 },
+      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o3', value: 3 }
     ]
   }
 ];
 
-const copingStrategies = [
-  { icon: '🌤️', title: 'Morning Sunlight', desc: 'Get 10-15 minutes of natural light each morning' },
-  { icon: '🚶‍♀️', title: 'Gentle Movement', desc: 'A short walk can boost mood significantly' },
-  { icon: '📞', title: 'Connect Daily', desc: 'Talk to a friend or family member each day' },
-  { icon: '😴', title: 'Rest When Possible', desc: 'Sleep when baby sleeps, even briefly' },
-  { icon: '🥗', title: 'Nourish Yourself', desc: 'Eat regular, nutritious meals' },
-  { icon: '✍️', title: 'Journal', desc: 'Write down 3 things you\'re grateful for' }
+const copingStrategyKeys = [
+  { icon: '🌤️', titleKey: 'toolsInternal.mentalHealthCoach.coping.sunlight.title', descKey: 'toolsInternal.mentalHealthCoach.coping.sunlight.desc' },
+  { icon: '🚶‍♀️', titleKey: 'toolsInternal.mentalHealthCoach.coping.movement.title', descKey: 'toolsInternal.mentalHealthCoach.coping.movement.desc' },
+  { icon: '📞', titleKey: 'toolsInternal.mentalHealthCoach.coping.connect.title', descKey: 'toolsInternal.mentalHealthCoach.coping.connect.desc' },
+  { icon: '😴', titleKey: 'toolsInternal.mentalHealthCoach.coping.rest.title', descKey: 'toolsInternal.mentalHealthCoach.coping.rest.desc' },
+  { icon: '🥗', titleKey: 'toolsInternal.mentalHealthCoach.coping.nourish.title', descKey: 'toolsInternal.mentalHealthCoach.coping.nourish.desc' },
+  { icon: '✍️', titleKey: 'toolsInternal.mentalHealthCoach.coping.journal.title', descKey: 'toolsInternal.mentalHealthCoach.coping.journal.desc' }
 ];
 
 export default function PostpartumMentalHealthCoach() {
@@ -94,6 +94,8 @@ export default function PostpartumMentalHealthCoach() {
   const [showAICoping, setShowAICoping] = useState(false);
   
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+  
+  const epdsQuestions = getEpdsQuestions(t);
 
   const handleAnswer = (questionId: string, value: number) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
@@ -282,7 +284,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                   </div>
                   
                   <h3 className="text-lg font-semibold mb-6">
-                    {epdsQuestions[currentQuestion].question}
+                    {t(epdsQuestions[currentQuestion].questionKey)}
                   </h3>
 
                   <div className="space-y-3">
@@ -292,7 +294,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                         onClick={() => handleAnswer(epdsQuestions[currentQuestion].id, option.value)}
                         className="w-full p-4 text-left rounded-xl border border-border hover:border-primary hover:bg-primary/5 transition-all"
                       >
-                        {option.label}
+                        {t(option.labelKey)}
                       </button>
                     ))}
                   </div>
@@ -366,11 +368,11 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                     <span className="truncate">{t('toolsInternal.mentalHealthCoach.dailyCopingStrategies')}</span>
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {copingStrategies.map((strategy, index) => (
+                    {copingStrategyKeys.map((strategy, index) => (
                       <div key={index} className="p-3 bg-muted/50 rounded-xl overflow-hidden">
                         <div className="text-xl mb-1">{strategy.icon}</div>
-                        <h4 className="font-medium text-xs sm:text-sm mb-0.5 truncate">{strategy.title}</h4>
-                        <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2">{strategy.desc}</p>
+                        <h4 className="font-medium text-xs sm:text-sm mb-0.5 truncate">{t(strategy.titleKey)}</h4>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2">{t(strategy.descKey)}</p>
                       </div>
                     ))}
                   </div>

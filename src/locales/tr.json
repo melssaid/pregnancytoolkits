@@ -2197,5 +2197,102 @@
       "recommended": "Önerilen",
       "niceToHave": "Olması İyi"
     }
+  },
+  "mentalHealthCoach": {
+    "title": "Doğum Sonrası Ruh Sağlığı Koçu",
+    "subtitle": "Edinburgh Doğum Sonrası Depresyon Ölçeği taraması",
+    "youreNotAlone": "Yalnız değilsin",
+    "emergencyMessage": "Yanıtlarınıza göre, yardımcı olabilecek biriyle konuşmanız önemli. Doğum sonrası depresyon yaygın ve tedavi edilebilir.",
+    "postpartumSupport": "Doğum sonrası destek",
+    "crisisHotline": "Kriz hattı",
+    "question": "Soru",
+    "of": "/",
+    "score": "Puan",
+    "takeScreeningAgain": "Taramayı tekrarla",
+    "aiPersonalizedPlan": "Yapay zeka kişiselleştirilmiş baş etme planı",
+    "generateMyPlan": "Kişisel planımı oluştur",
+    "creatingPlan": "Kişisel planınız oluşturuluyor...",
+    "dailyCopingStrategies": "Günlük baş etme stratejileri",
+    "supportResources": "Destek kaynakları",
+    "screeningDisclaimer": "⚠️ Bu, Edinburgh Doğum Sonrası Depresyon Ölçeği'ne (EPDS) dayalı bir tarama aracıdır. Tanı sağlamaz. Uygun değerlendirme için her zaman bir profesyonele danışın.",
+    "mentalWellnessVideos": "Ruh sağlığı videoları",
+    "videosSubtitle": "Destek ve öz bakım kaynakları",
+    "riskLevels": {
+      "low": {
+        "title": "Düşük risk",
+        "message": "Yanıtlarınız iyi başa çıktığınızı gösteriyor. Öz bakımı uygulamaya devam edin."
+      },
+      "moderate": {
+        "title": "Orta",
+        "message": "Nasıl hissettiğiniz hakkında doktorunuzla konuşmayı düşünün."
+      },
+      "high": {
+        "title": "Destek arayın",
+        "message": "Lütfen doktorunuza veya bir ruh sağlığı uzmanına başvurun."
+      }
+    },
+    "epds": {
+      "q1": {
+        "question": "Gülebildim ve olayların komik yanını görebildim",
+        "o0": "Her zamanki kadar",
+        "o1": "Şimdi o kadar değil",
+        "o2": "Kesinlikle şimdi o kadar değil",
+        "o3": "Hiç"
+      },
+      "q2": {
+        "question": "Olayları zevkle bekledim",
+        "o0": "Her zamanki kadar",
+        "o1": "Eskisinden biraz az",
+        "o2": "Eskisinden kesinlikle az",
+        "o3": "Neredeyse hiç"
+      },
+      "q3": {
+        "question": "İşler ters gittiğinde gereksiz yere kendimi suçladım",
+        "o0": "Hayır, hiçbir zaman",
+        "o1": "Çok sık değil",
+        "o2": "Evet, bazen",
+        "o3": "Evet, çoğu zaman"
+      },
+      "q4": {
+        "question": "İyi bir neden olmadan endişeli veya kaygılı oldum",
+        "o0": "Hayır, hiç",
+        "o1": "Neredeyse hiç",
+        "o2": "Evet, bazen",
+        "o3": "Evet, çok sık"
+      },
+      "q5": {
+        "question": "İyi bir neden olmadan korkmuş veya panik olmuş hissettim",
+        "o0": "Hayır, hiç",
+        "o1": "Hayır, pek değil",
+        "o2": "Evet, bazen",
+        "o3": "Evet, oldukça çok"
+      }
+    },
+    "coping": {
+      "sunlight": {
+        "title": "Sabah güneş ışığı",
+        "desc": "Her sabah 10-15 dakika doğal ışık alın"
+      },
+      "movement": {
+        "title": "Hafif hareket",
+        "desc": "Kısa bir yürüyüş ruh halini önemli ölçüde iyileştirebilir"
+      },
+      "connect": {
+        "title": "Günlük bağlantı",
+        "desc": "Her gün bir arkadaş veya aile üyesiyle konuşun"
+      },
+      "rest": {
+        "title": "Mümkün olduğunda dinlenin",
+        "desc": "Bebek uyuduğunda siz de uyuyun, kısa bile olsa"
+      },
+      "nourish": {
+        "title": "Kendinizi besleyin",
+        "desc": "Düzenli, besleyici öğünler yiyin"
+      },
+      "journal": {
+        "title": "Günlük",
+        "desc": "Minnettar olduğunuz 3 şeyi yazın"
+      }
+    }
   }
 }

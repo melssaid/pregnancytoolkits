@@ -2236,6 +2236,69 @@
           "title": "Seek Support",
           "message": "Please reach out to your healthcare provider or a mental health professional."
         }
+      },
+      "epds": {
+        "q1": {
+          "question": "I have been able to laugh and see the funny side of things",
+          "o0": "As much as I always could",
+          "o1": "Not quite so much now",
+          "o2": "Definitely not so much now",
+          "o3": "Not at all"
+        },
+        "q2": {
+          "question": "I have looked forward with enjoyment to things",
+          "o0": "As much as I ever did",
+          "o1": "Rather less than I used to",
+          "o2": "Definitely less than I used to",
+          "o3": "Hardly at all"
+        },
+        "q3": {
+          "question": "I have blamed myself unnecessarily when things went wrong",
+          "o0": "No, never",
+          "o1": "Not very often",
+          "o2": "Yes, some of the time",
+          "o3": "Yes, most of the time"
+        },
+        "q4": {
+          "question": "I have been anxious or worried for no good reason",
+          "o0": "No, not at all",
+          "o1": "Hardly ever",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, very often"
+        },
+        "q5": {
+          "question": "I have felt scared or panicky for no very good reason",
+          "o0": "No, not at all",
+          "o1": "No, not much",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, quite a lot"
+        }
+      },
+      "coping": {
+        "sunlight": {
+          "title": "Morning Sunlight",
+          "desc": "Get 10-15 minutes of natural light each morning"
+        },
+        "movement": {
+          "title": "Gentle Movement",
+          "desc": "A short walk can boost mood significantly"
+        },
+        "connect": {
+          "title": "Connect Daily",
+          "desc": "Talk to a friend or family member each day"
+        },
+        "rest": {
+          "title": "Rest When Possible",
+          "desc": "Sleep when baby sleeps, even briefly"
+        },
+        "nourish": {
+          "title": "Nourish Yourself",
+          "desc": "Eat regular, nutritious meals"
+        },
+        "journal": {
+          "title": "Journal",
+          "desc": "Write down 3 things you're grateful for"
+        }
       }
     },
     "mealSuggestion": {
