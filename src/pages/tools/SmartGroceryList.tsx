@@ -46,18 +46,18 @@ interface NutritionGoal {
 }
 
 const suggestedItems: GroceryItem[] = [
-  { id: '1', nameKey: 'groceryList.items.spinach.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.spinach.benefit', nutrients: { iron: 15, folate: 25, calcium: 5 } },
-  { id: '2', nameKey: 'groceryList.items.avocados.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.avocados.benefit', nutrients: { omega3: 10, folate: 15 } },
-  { id: '3', nameKey: 'groceryList.items.greekYogurt.name', category: 'dairy', isChecked: false, pregnancyBenefitKey: 'groceryList.items.greekYogurt.benefit', nutrients: { protein: 12, calcium: 20 } },
-  { id: '4', nameKey: 'groceryList.items.eggs.name', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.items.eggs.benefit', nutrients: { protein: 15, iron: 8 } },
-  { id: '5', nameKey: 'groceryList.items.salmon.name', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.items.salmon.benefit', nutrients: { protein: 20, omega3: 40 } },
-  { id: '6', nameKey: 'groceryList.items.lentils.name', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.items.lentils.benefit', nutrients: { protein: 18, iron: 20, folate: 30 } },
-  { id: '7', nameKey: 'groceryList.items.sweetPotatoes.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.sweetPotatoes.benefit', nutrients: { folate: 8, iron: 5 } },
-  { id: '8', nameKey: 'groceryList.items.berries.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.berries.benefit', nutrients: { folate: 5 } },
-  { id: '9', nameKey: 'groceryList.items.wholeGrainBread.name', category: 'grains', isChecked: false, pregnancyBenefitKey: 'groceryList.items.wholeGrainBread.benefit', nutrients: { iron: 10, folate: 12 } },
-  { id: '10', nameKey: 'groceryList.items.oranges.name', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.items.oranges.benefit', nutrients: { folate: 10 } },
-  { id: '11', nameKey: 'groceryList.items.almonds.name', category: 'other', isChecked: false, pregnancyBenefitKey: 'groceryList.items.almonds.benefit', nutrients: { protein: 8, calcium: 10, omega3: 5 } },
-  { id: '12', nameKey: 'groceryList.items.chickenBreast.name', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.items.chickenBreast.benefit', nutrients: { protein: 25, iron: 6 } },
+  { id: '1', nameKey: 'groceryList.groceryItems.spinach', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.spinach', nutrients: { iron: 15, folate: 25, calcium: 5 } },
+  { id: '2', nameKey: 'groceryList.groceryItems.avocados', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.avocados', nutrients: { omega3: 10, folate: 15 } },
+  { id: '3', nameKey: 'groceryList.groceryItems.greekYogurt', category: 'dairy', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.greekYogurt', nutrients: { protein: 12, calcium: 20 } },
+  { id: '4', nameKey: 'groceryList.groceryItems.eggs', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.eggs', nutrients: { protein: 15, iron: 8 } },
+  { id: '5', nameKey: 'groceryList.groceryItems.salmon', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.salmon', nutrients: { protein: 20, omega3: 40 } },
+  { id: '6', nameKey: 'groceryList.groceryItems.lentils', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.lentils', nutrients: { protein: 18, iron: 20, folate: 30 } },
+  { id: '7', nameKey: 'groceryList.groceryItems.sweetPotatoes', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.sweetPotatoes', nutrients: { folate: 8, iron: 5 } },
+  { id: '8', nameKey: 'groceryList.groceryItems.berries', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.berries', nutrients: { folate: 5 } },
+  { id: '9', nameKey: 'groceryList.groceryItems.wholeGrainBread', category: 'grains', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.wholeGrainBread', nutrients: { iron: 10, folate: 12 } },
+  { id: '10', nameKey: 'groceryList.groceryItems.oranges', category: 'produce', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.oranges', nutrients: { folate: 10 } },
+  { id: '11', nameKey: 'groceryList.groceryItems.almonds', category: 'other', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.almonds', nutrients: { protein: 8, calcium: 10, omega3: 5 } },
+  { id: '12', nameKey: 'groceryList.groceryItems.chickenBreast', category: 'protein', isChecked: false, pregnancyBenefitKey: 'groceryList.benefits.chickenBreast', nutrients: { protein: 25, iron: 6 } },
 ];
 
 const weeklyRecommendations: Record<string, string[]> = {
