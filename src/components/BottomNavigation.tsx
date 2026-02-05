@@ -64,7 +64,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
         {/* Bottom Navigation - Mobile only */}
         <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
           {/* Glass effect background */}
-          <div className="absolute inset-0 bg-card/95 backdrop-blur-lg border-t border-border/40 shadow-md" />
+          <div className="absolute inset-0 bg-card/95 backdrop-blur-lg border-t border-border/40 shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.08)]" />
           
           <div className="relative flex items-center justify-around px-1 py-1.5 safe-area-bottom">
             {navItems
