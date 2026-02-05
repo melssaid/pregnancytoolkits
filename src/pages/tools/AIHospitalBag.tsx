@@ -223,7 +223,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             >
               <Checkbox checked={item.packed} />
               <span className={item.packed ? "line-through text-muted-foreground" : ""}>
-                {item.nameKey.startsWith('toolsInternal.') ? t(item.nameKey) : item.nameKey}
+                {item.nameKey && item.nameKey.startsWith('toolsInternal.') ? t(item.nameKey) : (item.nameKey || '')}
               </span>
               {item.priority === "essential" && (
                 <span className="ms-auto text-xs bg-destructive/10 text-destructive px-2 py-0.5 rounded shrink-0">
