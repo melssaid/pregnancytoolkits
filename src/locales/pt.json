@@ -1263,7 +1263,15 @@
       "markAllPacked": "Marcar Tudo Empacotado",
       "resetList": "Reiniciar Lista",
       "progress": "Progresso de Empacotamento",
-      "itemsPacked": "{{packed}} de {{total}} itens empacotados"
+      "itemsPacked": "{{packed}} de {{total}} itens empacotados",
+      "hospitalBagVideos": "Vídeos de preparação da mala de maternidade",
+      "hospitalBagVideosSubtitle": "Dicas de mães experientes",
+      "videos": {
+        "v1": { "title": "Lista da mala de maternidade", "description": "Dicas de parteira sobre o que levar", "category": "Essenciais" },
+        "v2": { "title": "Itens essenciais de hospital", "description": "Indispensáveis para o trabalho de parto", "category": "Essenciais" },
+        "v3": { "title": "Dicas para a mala de maternidade", "description": "Essenciais aprovados por enfermeiras", "category": "Dicas" },
+        "v4": { "title": "O que levar para o bebê", "description": "Essenciais do recém-nascido para a estadia hospitalar", "category": "Bebê" }
+      }
     },
     "sleepOptimizer": {
       "title": "Otimizador de Sono IA",
@@ -1345,6 +1353,12 @@
       "action4": "Leiam juntos para a barriguinha",
       "partnerVideos": "Vídeos de Apoio para Parceiros",
       "partnerVideosSubtitle": "Aprenda a ser o melhor parceiro de apoio",
+      "videos": {
+        "v1": { "title": "Cuidados com o recém-nascido semana 1", "description": "Guia do pediatra para a primeira semana com o bebê", "category": "Cuidados com recém-nascido" },
+        "v2": { "title": "Cuidando do seu recém-nascido", "description": "Guia completo de cuidados com recém-nascido para novos pais", "category": "Cuidados com recém-nascido" },
+        "v3": { "title": "Posições de trabalho de parto e nascimento", "description": "Como os parceiros podem ajudar com o conforto durante o trabalho de parto", "category": "Apoio no parto" },
+        "v4": { "title": "Preparação da mala de maternidade", "description": "O que levar para o trabalho de parto e o parto", "category": "Preparação" }
+      },
       "topics": {
         "emotional": {"label": "Apoio Emocional", "icon": "💝", "desc": "Como estar emocionalmente presente"},
         "physical": {"label": "Conforto Físico", "icon": "🤲", "desc": "Massagem, ajuda nas tarefas"},
@@ -1419,6 +1433,12 @@
       "eveningSteps": "Limpar → Tratar → Nutrir",
       "skincareVideos": "Vídeos de Cuidados com a Pele para Grávidas",
       "skincareVideosSubtitle": "Orientação aprovada por dermatologistas",
+      "videos": {
+        "v1": { "title": "Rotina de cuidados com a pele segura na gravidez", "description": "A dermatologista Dra. Joyce Park explica produtos seguros", "category": "Rotina de cuidados" },
+        "v2": { "title": "Cuidados com a pele seguros durante a gravidez", "description": "Dra. Sheila Farhang sobre quais produtos usar e evitar", "category": "Segurança de produtos" },
+        "v3": { "title": "Nutrição da gravidez para a pele", "description": "Alimentos que promovem uma gravidez saudável e pele radiante", "category": "Nutrição" },
+        "v4": { "title": "Guia de dieta da gravidez", "description": "O que comer para uma pele saudável durante a gravidez", "category": "Dieta" }
+      },
       "concerns": {
         "acne": {"label": "Acne da Gravidez", "icon": "🔴"},
         "melasma": {"label": "Melasma/Manchas Escuras", "icon": "🟤"},
