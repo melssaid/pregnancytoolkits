@@ -1,5 +1,5 @@
 import { forwardRef, useState, memo } from "react";
-import { Home, LayoutDashboard, Search, Settings, Bell } from "lucide-react";
+import { LayoutDashboard, Search, Settings, Bell } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { SearchDialog } from "./SearchDialog";
@@ -7,7 +7,6 @@ import { NotificationsPanel } from "./dashboard/NotificationsPanel";
 import { useNotifications } from "@/hooks/useNotifications";
 
 const navItems = [
-  { id: "home", icon: Home, label: "Home", href: "/" },
   { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { id: "notifications", icon: Bell, label: "Alerts", href: null },
   { id: "search", icon: Search, label: "Search", href: null },
@@ -67,10 +66,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
           <div className="absolute inset-0 bg-card/95 backdrop-blur-lg border-t border-border/40 shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.08)]" />
           
           <div className="relative flex items-center justify-around px-1 py-1.5 safe-area-bottom">
-            {navItems
-              // Hide Home button on Settings page
-              .filter((item) => !(item.id === "home" && location.pathname === "/settings"))
-              .map((item) => {
+            {navItems.map((item) => {
               const active = isActive(item.href);
               const Icon = item.icon;
 
