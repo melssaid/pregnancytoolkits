@@ -1149,6 +1149,45 @@
       "yourQuestions": "Ihre Fragen",
       "addFirst": "Fügen Sie Ihren ersten Termin hinzu!"
     },
+    "babyGrowth": {
+      "title": "Baby-Wachstum",
+      "subtitle": "Wachstum mit WHO-Diagrammen verfolgen",
+      "babyAge": "Alter des Babys",
+      "months": "Monate",
+      "gender": "Geschlecht",
+      "boy": "Junge",
+      "girl": "Mädchen",
+      "weight": "Gewicht",
+      "height": "Größe",
+      "headCircumference": "Kopfumfang",
+      "addMeasurement": "Messung hinzufügen",
+      "growthChart": "Wachstumstabelle",
+      "percentile": "Perzentile",
+      "measurements": "Baby-Messungen",
+      "noMeasurements": "Noch keine Messungen hinzugefügt",
+      "tabs": {
+        "add": "Messung hinzufügen",
+        "chart": "Wachstumstabelle",
+        "history": "Verlauf"
+      },
+      "status": {
+        "normal": "Normal",
+        "belowNormal": "Unter Normal",
+        "aboveNormal": "Über Normal"
+      },
+      "ageMonths": "Alter (Monate)",
+      "weightKg": "Gewicht (kg)",
+      "heightCm": "Größe (cm)",
+      "headCircCm": "Kopfumfang (cm)",
+      "calculateResult": "Ergebnis berechnen",
+      "result": "Ergebnis",
+      "weightPercentile": "Gewichtsperzentile auf Wachstumstabelle",
+      "normalRange": "Normalbereich für dieses Alter",
+      "saveToHistory": "Im Verlauf speichern",
+      "whoStandards": "Basierend auf WHO-Wachstumsstandards",
+      "month": "Monat {{month}}",
+      "addFirst": "Erste Messung hinzufügen"
+    },
     "vitaminTracker": {
       "title": "Vitamin-Tracker",
       "subtitle": "Verfolgen Sie Ihre pränatalen Vitamine",

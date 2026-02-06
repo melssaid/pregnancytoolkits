@@ -1687,8 +1687,30 @@
       "addMeasurement": "Agregar Medición",
       "growthChart": "Gráfico de Crecimiento",
       "percentile": "Percentil",
-      "measurements": "Mediciones",
-      "noMeasurements": "Sin mediciones aún"
+      "measurements": "Mediciones del bebé",
+      "noMeasurements": "Sin mediciones aún",
+      "tabs": {
+        "add": "Agregar Medición",
+        "chart": "Gráfico",
+        "history": "Historial"
+      },
+      "status": {
+        "normal": "Normal",
+        "belowNormal": "Por debajo de lo normal",
+        "aboveNormal": "Por encima de lo normal"
+      },
+      "ageMonths": "Edad (meses)",
+      "weightKg": "Peso (kg)",
+      "heightCm": "Altura (cm)",
+      "headCircCm": "P. Cefálico (cm)",
+      "calculateResult": "Calcular Resultado",
+      "result": "Resultado",
+      "weightPercentile": "Percentil de peso en gráfico",
+      "normalRange": "Rango normal para esta edad",
+      "saveToHistory": "Guardar en historial",
+      "whoStandards": "Basado en estándares OMS",
+      "month": "Mes {{month}}",
+      "addFirst": "Agregar primera medición"
     },
     "babySleep": {
       "title": "Seguimiento del Sueño del Bebé",

@@ -1687,8 +1687,30 @@
       "addMeasurement": "Ölçüm Ekle",
       "growthChart": "Büyüme Grafiği",
       "percentile": "Yüzdelik",
-      "measurements": "Ölçümler",
-      "noMeasurements": "Henüz ölçüm yok"
+      "measurements": "Bebek Ölçümleri",
+      "noMeasurements": "Henüz ölçüm yok",
+      "tabs": {
+        "add": "Ölçüm Ekle",
+        "chart": "Grafik",
+        "history": "Geçmiş"
+      },
+      "status": {
+        "normal": "Normal",
+        "belowNormal": "Normalin Altı",
+        "aboveNormal": "Normalin Üstü"
+      },
+      "ageMonths": "Yaş (ay)",
+      "weightKg": "Ağırlık (kg)",
+      "heightCm": "Boy (cm)",
+      "headCircCm": "Baş Çevresi (cm)",
+      "calculateResult": "Sonucu Hesapla",
+      "result": "Sonuç",
+      "weightPercentile": "Ağırlık Yüzdeliği",
+      "normalRange": "Bu yaş için normal aralık",
+      "saveToHistory": "Geçmişe Kaydet",
+      "whoStandards": "WHO Büyüme Standartlarına dayalı",
+      "month": "Ay {{month}}",
+      "addFirst": "İlk Ölçümü Ekle"
     },
     "babySleep": {
       "title": "Bebek Uyku Takibi",

@@ -1149,6 +1149,45 @@
       "yourQuestions": "Vos questions",
       "addFirst": "Ajoutez votre premier rendez-vous!"
     },
+    "babyGrowth": {
+      "title": "Croissance du bébé",
+      "subtitle": "Suivez la croissance avec les courbes OMS",
+      "babyAge": "Âge du bébé",
+      "months": "mois",
+      "gender": "Genre",
+      "boy": "Garçon",
+      "girl": "Fille",
+      "weight": "Poids",
+      "height": "Taille",
+      "headCircumference": "Périmètre crânien",
+      "addMeasurement": "Ajouter une mesure",
+      "growthChart": "Courbe de croissance",
+      "percentile": "Percentile",
+      "measurements": "Mesures du bébé",
+      "noMeasurements": "Aucune mesure ajoutée",
+      "tabs": {
+        "add": "Ajouter mesure",
+        "chart": "Courbe",
+        "history": "Historique"
+      },
+      "status": {
+        "normal": "Normal",
+        "belowNormal": "Sous la normale",
+        "aboveNormal": "Au-dessus de la normale"
+      },
+      "ageMonths": "Âge (mois)",
+      "weightKg": "Poids (kg)",
+      "heightCm": "Taille (cm)",
+      "headCircCm": "Périmètre crânien (cm)",
+      "calculateResult": "Calculer le résultat",
+      "result": "Résultat",
+      "weightPercentile": "Percentile de poids sur la courbe",
+      "normalRange": "Plage normale pour cet âge",
+      "saveToHistory": "Sauvegarder dans l'historique",
+      "whoStandards": "Basé sur les normes OMS",
+      "month": "Mois {{month}}",
+      "addFirst": "Ajouter première mesure"
+    },
     "weeklySummary": {
       "title": "Aperçus hebdomadaires",
       "subtitle": "Suivi hebdomadaire intelligent de votre grossesse",
