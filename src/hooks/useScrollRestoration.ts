@@ -4,7 +4,7 @@ import { useLocation, useNavigationType } from "react-router-dom";
 const SCROLL_POSITIONS_KEY = "scrollPositions";
 const MAX_STORED_POSITIONS = 50;
 const SCROLL_DEBOUNCE_MS = 100;
-const RESTORE_DELAY_MS = 60;
+const RESTORE_DELAY_MS = 280; // Must exceed exit animation (80ms) + enter animation (150ms) + buffer
 
 interface ScrollPositions {
   [key: string]: number;
@@ -87,17 +87,29 @@ export function useScrollRestoration() {
       const savedPosition = positions[key];
 
       if (savedPosition !== undefined && savedPosition > 0) {
-        // Use a small delay to ensure DOM is ready after transition
+        // Wait for AnimatePresence exit + enter animations to complete before restoring
         const timer = setTimeout(() => {
-          requestAnimationFrame(() => {
-            window.scrollTo({ top: savedPosition, left: 0, behavior: "instant" });
-          });
+          const tryRestore = (attempts = 0) => {
+            requestAnimationFrame(() => {
+              // Check if the page is tall enough to scroll to the saved position
+              const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+              if (maxScroll >= savedPosition || attempts >= 5) {
+                window.scrollTo({ top: savedPosition, left: 0, behavior: "instant" });
+              } else {
+                // Page not ready yet, retry after a short delay
+                setTimeout(() => tryRestore(attempts + 1), 50);
+              }
+            });
+          };
+          tryRestore();
         }, RESTORE_DELAY_MS);
         return () => clearTimeout(timer);
       }
     } else {
-      // PUSH/REPLACE navigation → scroll to top
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      // PUSH/REPLACE navigation → scroll to top immediately
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      });
     }
   }, [location.pathname, location.search, navigationType]);
 
