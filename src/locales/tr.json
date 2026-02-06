@@ -1810,7 +1810,8 @@
       "toddler": "Yürümeye başlayan (1-2 yaş)",
       "child": "Çocuk (2+ yaş)",
       "hours": "saat",
-      "noDataYet": "Kişiselleştirilmiş AI tavsiyesi almak için en az 2-3 uyku seansı kaydedin."
+      "noDataYet": "Kişiselleştirilmiş AI tavsiyesi almak için en az 2-3 uyku seansı kaydedin.",
+      "disclaimer": "Bunlar genel yönergelerdir. Her bebek benzersizdir. Kişiselleştirilmiş tavsiye için pediatristinize danışın."
     },
     "diaperTracker": {
       "title": "Bez Takibi",

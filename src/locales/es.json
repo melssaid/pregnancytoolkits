@@ -1810,7 +1810,8 @@
       "toddler": "Niño pequeño (1-2 años)",
       "child": "Niño (2+ años)",
       "hours": "horas",
-      "noDataYet": "Registra al menos 2-3 sesiones para obtener consejos IA personalizados."
+      "noDataYet": "Registra al menos 2-3 sesiones para obtener consejos IA personalizados.",
+      "disclaimer": "Estas son pautas generales. Cada bebé es único. Consulta a tu pediatra para consejos personalizados."
     },
     "diaperTracker": {
       "title": "Seguimiento de Pañales",

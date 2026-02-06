@@ -1219,7 +1219,8 @@
       "toddler": "Bambin (1-2 ans)",
       "child": "Enfant (2+ ans)",
       "hours": "heures",
-      "noDataYet": "Enregistrez au moins 2-3 séances de sommeil pour obtenir des conseils IA personnalisés."
+      "noDataYet": "Enregistrez au moins 2-3 séances de sommeil pour obtenir des conseils IA personnalisés.",
+      "disclaimer": "Ce sont des directives générales. Chaque bébé est unique. Consultez votre pédiatre pour des conseils personnalisés."
     },
     "bloodType": {
       "title": "Calculateur de groupe sanguin",

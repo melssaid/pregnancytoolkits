@@ -451,7 +451,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
               </div>
             </div>
             <p className="text-xs text-muted-foreground mt-3 italic">
-              ⚠️ These are general guidelines. Every baby is unique. Consult your pediatrician for personalized advice.
+              ⚠️ {t('toolsInternal.babySleep.disclaimer')}
             </p>
           </CardContent>
         </Card>

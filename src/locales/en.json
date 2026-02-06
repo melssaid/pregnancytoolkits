@@ -1941,7 +1941,8 @@
       "toddler": "Toddler (1-2 years)",
       "child": "Child (2+ years)",
       "hours": "hours",
-      "noDataYet": "Record at least 2-3 sleep sessions to get personalized AI advice."
+      "noDataYet": "Record at least 2-3 sleep sessions to get personalized AI advice.",
+      "disclaimer": "These are general guidelines. Every baby is unique. Consult your pediatrician for personalized advice."
     },
     "diaperTracker": {
       "title": "Diaper Tracker",

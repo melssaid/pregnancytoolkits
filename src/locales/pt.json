@@ -1810,7 +1810,8 @@
       "toddler": "Criança (1-2 anos)",
       "child": "Criança (2+ anos)",
       "hours": "horas",
-      "noDataYet": "Registre pelo menos 2-3 sessões para obter conselhos IA personalizados."
+      "noDataYet": "Registre pelo menos 2-3 sessões para obter conselhos IA personalizados.",
+      "disclaimer": "Estas são diretrizes gerais. Cada bebê é único. Consulte o seu pediatra para conselhos personalizados."
     },
     "diaperTracker": {
       "title": "Rastreador de Fraldas",
