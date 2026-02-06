@@ -2206,7 +2206,7 @@
     "yourFavorites": "Tus favoritos",
     "moreTips": "Más consejos para el trimestre"
   },
-  "nauseaRelief": {
+  "toolsInternal.nauseaRelief": {
     "title": "Coach IA para náuseas",
     "subtitle": "Estrategias personalizadas contra las náuseas matutinas",
     "quickRemedies": "Remedios rápidos",
@@ -2214,14 +2214,14 @@
     "triggersTitle": "¿Qué desencadena tus náuseas?",
     "getReliefPlan": "Obtener plan de alivio"
   },
-  "legCrampPreventer": {
+  "toolsInternal.legCrampPreventer": {
     "title": "Prevención IA de calambres",
     "subtitle": "Prevenir y manejar calambres en las piernas durante el embarazo",
     "progressTitle": "Progreso de prevención",
     "getAdvice": "Obtener consejos IA",
     "checklistTitle": "Lista de prevención diaria"
   },
-  "weeklySummary": {
+  "toolsInternal.weeklySummary": {
     "title": "Resumen semanal",
     "subtitle": "Seguimiento semanal inteligente de tu embarazo",
     "daysToGo": "días restantes",
@@ -2251,25 +2251,60 @@
       "vitamins": "¿Vitaminas importantes?"
     }
   },
-  "lactationPrep": {
+  "toolsInternal.lactationPrep": {
     "title": "Preparación IA para lactancia",
     "subtitle": "Tu guía de preparación para la lactancia",
     "feedingGoal": "Tu objetivo de alimentación",
     "getLactationGuide": "Obtener guía IA de lactancia"
   },
-  "backPainRelief": {
+  "toolsInternal.backPainRelief": {
     "title": "Alivio IA del dolor de espalda",
     "subtitle": "Ejercicios seguros para el embarazo",
     "whereHurts": "¿Dónde te duele?",
     "getAdvice": "Obtener consejos IA",
     "exercisesTitle": "Ejercicios para dolor de espalda"
   },
-  "sleepOptimizer": {
+  "toolsInternal.sleepOptimizer": {
     "title": "Optimizador IA de sueño",
     "subtitle": "Guía personalizada de sueño para el embarazo",
     "currentSleep": "Sueño actual: {{hours}} horas/noche",
     "usualBedtime": "Hora habitual de dormir",
     "sleepChallenges": "Desafíos del sueño"
+  },
+  "toolsInternal.gdm": {
+    "title": "Evaluación de Riesgo de Diabetes Gestacional",
+    "subtitle": "Evalúa tus factores de riesgo de diabetes gestacional",
+    "disclaimer": "Esta es solo una herramienta educativa de detección. No diagnostica diabetes gestacional. Consulta siempre a tu médico.",
+    "checkRiskFactors": "Verifica tus Factores de Riesgo",
+    "riskFactorsSelected": "Factores de Riesgo Seleccionados",
+    "aiCoachTitle": "Coach IA de Prevención de Diabetes",
+    "getPreventionPlan": "Obtener Plan de Prevención Personalizado",
+    "preventionTipsTitle": "Consejos de Prevención",
+    "infoNote": "La detección de diabetes gestacional se realiza entre las semanas 24-28. Si tienes múltiples factores de riesgo, tu médico puede recomendar una detección más temprana.",
+    "riskLevels": {
+      "high": { "title": "Riesgo Alto", "description": "Tus factores de riesgo sugieren una mayor probabilidad. Se puede recomendar una detección temprana." },
+      "moderate": { "title": "Riesgo Moderado", "description": "Tienes algunos factores de riesgo. Se recomienda la detección estándar en las semanas 24-28." },
+      "low": { "title": "Riesgo Bajo", "description": "Tienes pocos factores de riesgo, pero la detección rutinaria en las semanas 24-28 sigue siendo recomendada." }
+    },
+    "riskFactors": {
+      "age": "35 años o más",
+      "bmi": "IMC 30 o más antes del embarazo",
+      "family": "Historial familiar de diabetes (padre o hermano)",
+      "previousGdm": "Diabetes gestacional previa",
+      "previousLarge": "Bebé anterior de más de 4 kg",
+      "pcos": "Síndrome de ovario poliquístico (SOP)",
+      "prediabetes": "Prediabetes o azúcar alta en sangre",
+      "ethnicity": "Etnia de mayor riesgo",
+      "multiple": "Embarazo múltiple (gemelos, trillizos)",
+      "sedentary": "Estilo de vida sedentario antes del embarazo"
+    },
+    "preventionTips": {
+      "tip1": "Mantén un peso saludable antes y durante el embarazo",
+      "tip2": "Come una dieta equilibrada rica en fibra y granos integrales",
+      "tip3": "Mantente físicamente activa con ejercicios aprobados por tu médico",
+      "tip4": "Asiste a todas las citas prenatales para un monitoreo regular",
+      "tip5": "Limita los alimentos azucarados y los carbohidratos refinados"
+    }
   },
   "ovulation": {
     "subtitle": "Encuentra tus días más fértiles",

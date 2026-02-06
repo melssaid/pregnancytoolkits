@@ -1903,7 +1903,7 @@
     "getAdvice": "KI-Ratschläge erhalten",
     "checklistTitle": "Tägliche Präventions-Checkliste"
   },
-  "weeklySummary": {
+  "toolsInternal.weeklySummary": {
     "title": "Wöchentliche Einblicke",
     "subtitle": "Intelligente wöchentliche Verfolgung Ihrer Schwangerschaft",
     "daysToGo": "Tage noch",
@@ -2590,5 +2590,40 @@
   "toolsInternal.mealSuggestion.allergiesLabel": "Allergien & Unverträglichkeiten",
   "toolsInternal.mealSuggestion.allergies": { "gluten": "Gluten", "dairy": "Milchprodukte", "nuts": "Nüsse", "eggs": "Eier", "soy": "Soja", "seafood": "Meeresfrüchte" },
   "toolsInternal.mealSuggestion.prepTimeLabel": "Zubereitungszeit",
-  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Schnell (< 15 Min)", "medium": "Mittel (15-30 Min)", "elaborate": "Aufwändig (30+ Min)" }
+  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Schnell (< 15 Min)", "medium": "Mittel (15-30 Min)", "elaborate": "Aufwändig (30+ Min)" },
+  "toolsInternal.gdm": {
+    "title": "Gestationsdiabetes-Risikobewertung",
+    "subtitle": "Bewerten Sie Ihre Risikofaktoren für Gestationsdiabetes",
+    "disclaimer": "Dies ist nur ein Bildungs-Screening-Tool. Es diagnostiziert keinen Gestationsdiabetes. Konsultieren Sie immer Ihren Arzt.",
+    "checkRiskFactors": "Überprüfen Sie Ihre Risikofaktoren",
+    "riskFactorsSelected": "Ausgewählte Risikofaktoren",
+    "aiCoachTitle": "KI-Diabetes-Präventionscoach",
+    "getPreventionPlan": "Personalisierten Präventionsplan erhalten",
+    "preventionTipsTitle": "Präventionstipps",
+    "infoNote": "Das Gestationsdiabetes-Screening erfolgt in der Regel zwischen der 24. und 28. Woche. Bei mehreren Risikofaktoren kann Ihr Arzt ein früheres Screening empfehlen.",
+    "riskLevels": {
+      "high": { "title": "Höheres Risiko", "description": "Ihre Risikofaktoren deuten auf eine erhöhte Wahrscheinlichkeit hin. Frühzeitiges Screening kann empfohlen werden." },
+      "moderate": { "title": "Mäßiges Risiko", "description": "Sie haben einige Risikofaktoren. Standard-Screening in den Wochen 24-28 wird empfohlen." },
+      "low": { "title": "Niedriges Risiko", "description": "Sie haben wenige Risikofaktoren, aber Routine-Screening in den Wochen 24-28 wird dennoch empfohlen." }
+    },
+    "riskFactors": {
+      "age": "Alter 35 oder älter",
+      "bmi": "BMI 30 oder höher vor der Schwangerschaft",
+      "family": "Familiengeschichte von Diabetes (Elternteil oder Geschwister)",
+      "previousGdm": "Früherer Gestationsdiabetes",
+      "previousLarge": "Früheres Baby über 4 kg",
+      "pcos": "Polyzystisches Ovarialsyndrom (PCOS)",
+      "prediabetes": "Prädiabetes oder erhöhter Blutzucker",
+      "ethnicity": "Ethnische Zugehörigkeit mit höherem Risiko",
+      "multiple": "Mehrlingsschwangerschaft (Zwillinge, Drillinge)",
+      "sedentary": "Sitzender Lebensstil vor der Schwangerschaft"
+    },
+    "preventionTips": {
+      "tip1": "Halten Sie ein gesundes Gewicht vor und während der Schwangerschaft",
+      "tip2": "Ernähren Sie sich ausgewogen mit viel Ballaststoffen und Vollkornprodukten",
+      "tip3": "Bleiben Sie mit ärztlich genehmigten Übungen körperlich aktiv",
+      "tip4": "Nehmen Sie alle Vorsorgeuntersuchungen zur regelmäßigen Überwachung wahr",
+      "tip5": "Begrenzen Sie zuckerhaltige Lebensmittel und raffinierte Kohlenhydrate"
+    }
+  }
 }
