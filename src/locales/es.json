@@ -507,6 +507,7 @@
   },
   "diaperPage": {
     "title": "Seguimiento de pañales",
+    "subtitle": "Rastrea los cambios de pañal de tu bebé",
     "logChange": "Registrar cambio",
     "quickAdd": "Agregar rápido",
     "wet": "Mojado",
@@ -1627,7 +1628,38 @@
         "12weeks": "Dentro de 12 semanas",
         "6months": "Después de 6 meses",
         "year": "Después de 1 año"
+      },
+      "videos": {
+        "video1": {"title": "Amamantar a un recién nacido", "description": "Lo normal, desafíos comunes y consejos del pediatra"},
+        "video2": {"title": "Cuidado del recién nacido Semana 1", "description": "Guía del pediatra incluyendo bases de alimentación"},
+        "video3": {"title": "Cuidando a tu recién nacido", "description": "Guía completa incluyendo horarios de alimentación"},
+        "video4": {"title": "Guía de cuidado del bebé", "description": "Bases de manejo, alimentación y sueño"}
+      },
+      "categories": {
+        "gettingStarted": "Primeros pasos",
+        "newbornCare": "Cuidado del recién nacido"
       }
+    },
+    "bloodType": {
+      "title": "Calculadora de Tipo de Sangre",
+      "subtitle": "Predice el tipo de sangre posible de tu bebé",
+      "mother": "Madre",
+      "father": "Padre",
+      "bloodType": "Tipo de Sangre",
+      "rhFactor": "Factor Rh",
+      "positive": "Positivo (+)",
+      "negative": "Negativo (-)",
+      "typeA": "Tipo A",
+      "typeB": "Tipo B",
+      "typeAB": "Tipo AB",
+      "typeO": "Tipo O",
+      "possibleTypes": "Tipos de Sangre Posibles para el Bebé",
+      "rhPositiveChance": "Probabilidad Rh+",
+      "rhNegativeChance": "Probabilidad Rh-",
+      "rhIncompatibility": "Incompatibilidad Rh",
+      "rhWarning": "Cuando la madre es Rh-negativa y el padre Rh-positivo, el bebé puede ser Rh-positivo. Tu médico puede recomendar inyecciones de RhoGAM durante el embarazo.",
+      "learnAboutBloodTypes": "Aprende sobre Tipos de Sangre",
+      "disclaimer": "Esta calculadora muestra tipos de sangre posibles basados en genética. El tipo de sangre real se confirmará mediante pruebas después del nacimiento."
     },
     "laborProgress": {
       "title": "Seguimiento del Trabajo de Parto IA",

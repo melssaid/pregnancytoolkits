@@ -136,8 +136,8 @@ Helpful tips for diaper changes and tracking`
 
   return (
     <ToolFrame 
-      title={t('tools.diaperTracker.title')} 
-      subtitle="Track your baby's diaper changes"
+      title={t('diaperPage.title')} 
+      subtitle={t('diaperPage.subtitle')}
       customIcon="mother-baby"
       mood="nurturing"
       toolId="diaper-tracker"

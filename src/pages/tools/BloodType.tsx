@@ -58,8 +58,8 @@ export default function BloodTypeCalculator() {
 
   return (
     <ToolFrame
-      title="Blood Type Calculator"
-      subtitle="Predict your baby's possible blood type"
+      title={t('toolsInternal.bloodType.title')}
+      subtitle={t('toolsInternal.bloodType.subtitle')}
       customIcon="blood-type"
       mood="calm"
       toolId="blood-type"
@@ -70,9 +70,9 @@ export default function BloodTypeCalculator() {
           {/* Parent 1 - Mother */}
           <Card>
             <CardContent className="pt-4 space-y-4">
-              <p className="font-semibold text-foreground">Mother</p>
+              <p className="font-semibold text-foreground">{t('toolsInternal.bloodType.mother')}</p>
               <div className="space-y-2">
-                <Label>Blood Type</Label>
+                <Label>{t('toolsInternal.bloodType.bloodType')}</Label>
                 <Select 
                   value={parent1.type} 
                   onValueChange={(v) => setParent1({ ...parent1, type: v as BloodType })}
@@ -81,15 +81,15 @@ export default function BloodTypeCalculator() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="A">Type A</SelectItem>
-                    <SelectItem value="B">Type B</SelectItem>
-                    <SelectItem value="AB">Type AB</SelectItem>
-                    <SelectItem value="O">Type O</SelectItem>
+                    <SelectItem value="A">{t('toolsInternal.bloodType.typeA')}</SelectItem>
+                    <SelectItem value="B">{t('toolsInternal.bloodType.typeB')}</SelectItem>
+                    <SelectItem value="AB">{t('toolsInternal.bloodType.typeAB')}</SelectItem>
+                    <SelectItem value="O">{t('toolsInternal.bloodType.typeO')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>Rh Factor</Label>
+                <Label>{t('toolsInternal.bloodType.rhFactor')}</Label>
                 <Select 
                   value={parent1.rh} 
                   onValueChange={(v) => setParent1({ ...parent1, rh: v as RhFactor })}
@@ -98,8 +98,8 @@ export default function BloodTypeCalculator() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="+">Positive (+)</SelectItem>
-                    <SelectItem value="-">Negative (-)</SelectItem>
+                    <SelectItem value="+">{t('toolsInternal.bloodType.positive')}</SelectItem>
+                    <SelectItem value="-">{t('toolsInternal.bloodType.negative')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -114,9 +114,9 @@ export default function BloodTypeCalculator() {
           {/* Parent 2 - Father */}
           <Card>
             <CardContent className="pt-4 space-y-4">
-              <p className="font-semibold text-foreground">Father</p>
+              <p className="font-semibold text-foreground">{t('toolsInternal.bloodType.father')}</p>
               <div className="space-y-2">
-                <Label>Blood Type</Label>
+                <Label>{t('toolsInternal.bloodType.bloodType')}</Label>
                 <Select 
                   value={parent2.type} 
                   onValueChange={(v) => setParent2({ ...parent2, type: v as BloodType })}
@@ -125,15 +125,15 @@ export default function BloodTypeCalculator() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="A">Type A</SelectItem>
-                    <SelectItem value="B">Type B</SelectItem>
-                    <SelectItem value="AB">Type AB</SelectItem>
-                    <SelectItem value="O">Type O</SelectItem>
+                    <SelectItem value="A">{t('toolsInternal.bloodType.typeA')}</SelectItem>
+                    <SelectItem value="B">{t('toolsInternal.bloodType.typeB')}</SelectItem>
+                    <SelectItem value="AB">{t('toolsInternal.bloodType.typeAB')}</SelectItem>
+                    <SelectItem value="O">{t('toolsInternal.bloodType.typeO')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>Rh Factor</Label>
+                <Label>{t('toolsInternal.bloodType.rhFactor')}</Label>
                 <Select 
                   value={parent2.rh} 
                   onValueChange={(v) => setParent2({ ...parent2, rh: v as RhFactor })}
@@ -142,8 +142,8 @@ export default function BloodTypeCalculator() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="+">Positive (+)</SelectItem>
-                    <SelectItem value="-">Negative (-)</SelectItem>
+                    <SelectItem value="+">{t('toolsInternal.bloodType.positive')}</SelectItem>
+                    <SelectItem value="-">{t('toolsInternal.bloodType.negative')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -165,7 +165,7 @@ export default function BloodTypeCalculator() {
         >
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
             <CardContent className="pt-6">
-              <h3 className="font-semibold mb-4">Possible Blood Types for Baby</h3>
+              <h3 className="font-semibold mb-4">{t('toolsInternal.bloodType.possibleTypes')}</h3>
               <div className="flex flex-wrap gap-3 justify-center mb-6">
                 {possibleTypes.map((type) => (
                   <div key={type} className="space-y-2">
@@ -185,11 +185,11 @@ export default function BloodTypeCalculator() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-xl bg-card p-4 text-center">
-                  <p className="text-sm text-muted-foreground">Rh+ Chance</p>
+                  <p className="text-sm text-muted-foreground">{t('toolsInternal.bloodType.rhPositiveChance')}</p>
                   <p className="text-2xl font-bold text-foreground">{rhProbs.positive}%</p>
                 </div>
                 <div className="rounded-xl bg-card p-4 text-center">
-                  <p className="text-sm text-muted-foreground">Rh- Chance</p>
+                  <p className="text-sm text-muted-foreground">{t('toolsInternal.bloodType.rhNegativeChance')}</p>
                   <p className="text-2xl font-bold text-foreground">{rhProbs.negative}%</p>
                 </div>
               </div>
@@ -223,7 +223,7 @@ Interesting facts about our blood type combination
 ## 🩺 Medical Considerations
 What to discuss with the doctor regarding blood types during pregnancy`}
           variant="compact"
-          buttonText="Learn About Blood Types"
+          buttonText={t('toolsInternal.bloodType.learnAboutBloodTypes')}
         />
 
         {/* Rh Warning */}
@@ -233,11 +233,9 @@ What to discuss with the doctor regarding blood types during pregnancy`}
               <div className="flex gap-3">
                 <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-amber-900 dark:text-amber-200">Rh Incompatibility</p>
+                  <p className="font-semibold text-amber-900 dark:text-amber-200">{t('toolsInternal.bloodType.rhIncompatibility')}</p>
                   <p className="text-sm text-amber-800 dark:text-amber-300 mt-1">
-                    When the mother is Rh-negative and father is Rh-positive, the baby may be 
-                    Rh-positive. Your doctor may recommend RhoGAM injections during pregnancy 
-                    to prevent complications.
+                    {t('toolsInternal.bloodType.rhWarning')}
                   </p>
                 </div>
               </div>
@@ -251,9 +249,7 @@ What to discuss with the doctor regarding blood types during pregnancy`}
             <div className="flex gap-3">
               <Info className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted-foreground">
-                This calculator shows possible blood types based on genetics. The actual 
-                blood type will be confirmed through testing after birth. Always consult 
-                your healthcare provider for medical advice.
+                {t('toolsInternal.bloodType.disclaimer')}
               </p>
             </div>
           </CardContent>

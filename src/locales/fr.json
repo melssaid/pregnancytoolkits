@@ -507,6 +507,7 @@
   },
   "diaperPage": {
     "title": "Suivi des couches",
+    "subtitle": "Suivez les changements de couches de votre bébé",
     "logChange": "Enregistrer le changement",
     "quickAdd": "Ajout rapide",
     "wet": "Mouillée",
@@ -1220,6 +1221,27 @@
       "hours": "heures",
       "noDataYet": "Enregistrez au moins 2-3 séances de sommeil pour obtenir des conseils IA personnalisés."
     },
+    "bloodType": {
+      "title": "Calculateur de groupe sanguin",
+      "subtitle": "Prédire le groupe sanguin possible de votre bébé",
+      "mother": "Mère",
+      "father": "Père",
+      "bloodType": "Groupe sanguin",
+      "rhFactor": "Facteur Rh",
+      "positive": "Positif (+)",
+      "negative": "Négatif (-)",
+      "typeA": "Type A",
+      "typeB": "Type B",
+      "typeAB": "Type AB",
+      "typeO": "Type O",
+      "possibleTypes": "Groupes sanguins possibles pour le bébé",
+      "rhPositiveChance": "Chance Rh+",
+      "rhNegativeChance": "Chance Rh-",
+      "rhIncompatibility": "Incompatibilité Rh",
+      "rhWarning": "Quand la mère est Rh-négative et le père Rh-positif, le bébé peut être Rh-positif. Votre médecin peut recommander des injections de RhoGAM pendant la grossesse.",
+      "learnAboutBloodTypes": "En savoir plus sur les groupes sanguins",
+      "disclaimer": "Ce calculateur montre les groupes sanguins possibles basés sur la génétique. Le groupe sanguin réel sera confirmé par des tests après la naissance."
+    },
     "weeklySummary": {
       "title": "Aperçus hebdomadaires",
       "subtitle": "Suivi hebdomadaire intelligent de votre grossesse",
@@ -1830,6 +1852,16 @@
       "12weeks": "Dans 12 semaines",
       "6months": "Après 6 mois",
       "year": "Après 1 an"
+    },
+    "videos": {
+      "video1": {"title": "Allaiter un nouveau-né", "description": "Ce qui est normal, défis courants et conseils d'un pédiatre IBCLC"},
+      "video2": {"title": "Soins du nouveau-né Semaine 1", "description": "Guide du pédiatre incluant les bases de l'alimentation"},
+      "video3": {"title": "Prendre soin de votre nouveau-né", "description": "Guide complet incluant les horaires d'alimentation"},
+      "video4": {"title": "Guide de soins du bébé", "description": "Bases de manipulation, alimentation et sommeil"}
+    },
+    "categories": {
+      "gettingStarted": "Pour commencer",
+      "newbornCare": "Soins du nouveau-né"
     }
   },
   "backPainRelief": {

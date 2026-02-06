@@ -507,6 +507,7 @@
   },
   "diaperPage": {
     "title": "Windel-Tracker",
+    "subtitle": "Verfolgen Sie die Windelwechsel Ihres Babys",
     "logChange": "Wechsel protokollieren",
     "quickAdd": "Schnell hinzufügen",
     "wet": "Nass",
@@ -1220,6 +1221,27 @@
       "hours": "Stunden",
       "noDataYet": "Mindestens 2-3 Schlafphasen aufzeichnen, um personalisierte KI-Beratung zu erhalten."
     },
+    "bloodType": {
+      "title": "Blutgruppen-Rechner",
+      "subtitle": "Vorhersage der möglichen Blutgruppe Ihres Babys",
+      "mother": "Mutter",
+      "father": "Vater",
+      "bloodType": "Blutgruppe",
+      "rhFactor": "Rh-Faktor",
+      "positive": "Positiv (+)",
+      "negative": "Negativ (-)",
+      "typeA": "Typ A",
+      "typeB": "Typ B",
+      "typeAB": "Typ AB",
+      "typeO": "Typ O",
+      "possibleTypes": "Mögliche Blutgruppen für das Baby",
+      "rhPositiveChance": "Rh+ Wahrscheinlichkeit",
+      "rhNegativeChance": "Rh- Wahrscheinlichkeit",
+      "rhIncompatibility": "Rh-Inkompatibilität",
+      "rhWarning": "Wenn die Mutter Rh-negativ und der Vater Rh-positiv ist, kann das Baby Rh-positiv sein. Ihr Arzt empfiehlt möglicherweise RhoGAM-Injektionen während der Schwangerschaft.",
+      "learnAboutBloodTypes": "Erfahren Sie mehr über Blutgruppen",
+      "disclaimer": "Dieser Rechner zeigt mögliche Blutgruppen basierend auf Genetik. Die tatsächliche Blutgruppe wird nach der Geburt durch Tests bestätigt."
+    },
     "vitaminTracker": {
       "title": "Vitamin-Tracker",
       "subtitle": "Verfolgen Sie Ihre pränatalen Vitamine",
@@ -1830,6 +1852,16 @@
       "12weeks": "Innerhalb von 12 Wochen",
       "6months": "Nach 6 Monaten",
       "year": "Nach 1 Jahr"
+    },
+    "videos": {
+      "video1": {"title": "Stillen eines Neugeborenen", "description": "Was normal ist, häufige Herausforderungen und Tipps vom Kinderarzt IBCLC"},
+      "video2": {"title": "Neugeborenenpflege Woche 1", "description": "Kinderarzt-Leitfaden inkl. Fütterungsgrundlagen"},
+      "video3": {"title": "Pflege Ihres Neugeborenen", "description": "Umfassender Leitfaden inkl. Fütterungspläne"},
+      "video4": {"title": "Babypflege-Leitfaden", "description": "Grundlagen zu Handling, Füttern und Schlafen"}
+    },
+    "categories": {
+      "gettingStarted": "Erste Schritte",
+      "newbornCare": "Neugeborenenpflege"
     }
   },
   "backPainRelief": {

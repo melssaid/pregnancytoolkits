@@ -507,6 +507,7 @@
   },
   "diaperPage": {
     "title": "Rastreador de fraldas",
+    "subtitle": "Acompanhe as trocas de fralda do seu bebê",
     "logChange": "Registrar troca",
     "quickAdd": "Adição rápida",
     "wet": "Molhada",
@@ -1627,7 +1628,38 @@
         "12weeks": "Dentro de 12 semanas",
         "6months": "Após 6 meses",
         "year": "Após 1 ano"
+      },
+      "videos": {
+        "video1": {"title": "Amamentar um recém-nascido", "description": "O que é normal, desafios comuns e dicas do pediatra"},
+        "video2": {"title": "Cuidados do recém-nascido Semana 1", "description": "Guia do pediatra incluindo bases de alimentação"},
+        "video3": {"title": "Cuidando do seu recém-nascido", "description": "Guia completo incluindo horários de alimentação"},
+        "video4": {"title": "Guia de cuidados do bebê", "description": "Bases de manuseio, alimentação e sono"}
+      },
+      "categories": {
+        "gettingStarted": "Para começar",
+        "newbornCare": "Cuidados do recém-nascido"
       }
+    },
+    "bloodType": {
+      "title": "Calculadora de Tipo Sanguíneo",
+      "subtitle": "Preveja o tipo sanguíneo possível do seu bebê",
+      "mother": "Mãe",
+      "father": "Pai",
+      "bloodType": "Tipo Sanguíneo",
+      "rhFactor": "Fator Rh",
+      "positive": "Positivo (+)",
+      "negative": "Negativo (-)",
+      "typeA": "Tipo A",
+      "typeB": "Tipo B",
+      "typeAB": "Tipo AB",
+      "typeO": "Tipo O",
+      "possibleTypes": "Tipos Sanguíneos Possíveis para o Bebê",
+      "rhPositiveChance": "Probabilidade Rh+",
+      "rhNegativeChance": "Probabilidade Rh-",
+      "rhIncompatibility": "Incompatibilidade Rh",
+      "rhWarning": "Quando a mãe é Rh-negativa e o pai Rh-positivo, o bebê pode ser Rh-positivo. O seu médico pode recomendar injeções de RhoGAM durante a gravidez.",
+      "learnAboutBloodTypes": "Saiba mais sobre Tipos Sanguíneos",
+      "disclaimer": "Esta calculadora mostra tipos sanguíneos possíveis baseados em genética. O tipo sanguíneo real será confirmado através de testes após o nascimento."
     },
     "laborProgress": {
       "title": "Rastreador de Trabalho de Parto IA",
