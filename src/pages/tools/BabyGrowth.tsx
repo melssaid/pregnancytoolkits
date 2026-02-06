@@ -188,7 +188,7 @@ const BabyGrowth = () => {
             </TabsList>
 
             <TabsContent value="add" className="space-y-6">
-              <Card>
+              <Card className="relative z-10">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Baby className="h-5 w-5 text-primary" />
@@ -196,13 +196,13 @@ const BabyGrowth = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-2">
+                  <div className="space-y-2 relative z-20">
                     <Label>{t('toolsInternal.babyGrowth.gender')}</Label>
                     <Select value={gender} onValueChange={(v) => setGender(v as "boy" | "girl")}>
-                      <SelectTrigger>
+                      <SelectTrigger className="relative z-20">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]">
                         <SelectItem value="boy">{t('toolsInternal.babyGrowth.boy')} 👦</SelectItem>
                         <SelectItem value="girl">{t('toolsInternal.babyGrowth.girl')} 👧</SelectItem>
                       </SelectContent>
