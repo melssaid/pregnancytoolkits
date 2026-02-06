@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { AppointmentService, UserProfileService } from '@/services/supabaseServices';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { TimePicker } from '@/components/ui/time-picker';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { ToolFrame } from '@/components/ToolFrame';
@@ -46,6 +47,10 @@ const SmartAppointmentReminder: React.FC = () => {
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
   const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
   const { streamChat, error: aiError } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setSuggestedQuestions([]);
+  });
   const abortRef = useRef(false);
   
   const [formData, setFormData] = useState({

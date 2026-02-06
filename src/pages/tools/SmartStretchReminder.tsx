@@ -8,6 +8,7 @@ import { Sparkles, Clock, Play, CheckCircle, Bell, Brain, Loader2 } from 'lucide
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { ExerciseIcon } from '@/components/ExerciseIcon';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 interface Stretch {
   id: string;
@@ -40,6 +41,11 @@ export default function SmartStretchReminder() {
   const [currentTrimester, setCurrentTrimester] = useState(2);
 
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAIAdvice(false);
+  });
 
   useEffect(() => {
     const saved = localStorage.getItem('stretchCompletedToday');

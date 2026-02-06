@@ -12,6 +12,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 const SmartKickCounter: React.FC = () => {
   const { t } = useTranslation();
@@ -35,6 +36,12 @@ const SmartKickCounter: React.FC = () => {
   
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const { toast } = useToast();
+
+  useResetOnLanguageChange(() => {
+    setAiPatternAnalysis('');
+    setAiHealthInsight('');
+    setAiTips('');
+  });
 
   useEffect(() => {
     loadData();

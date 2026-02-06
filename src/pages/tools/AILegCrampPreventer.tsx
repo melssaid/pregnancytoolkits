@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Zap, Moon, CheckCircle, Brain, Loader2 } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface PreventionTip {
@@ -49,6 +50,11 @@ export default function AILegCrampPreventer() {
   const [aiResponse, setAiResponse] = useState('');
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAIAdvice(false);
+  });
 
   useEffect(() => {
     const savedTips = localStorage.getItem('legCrampTips');

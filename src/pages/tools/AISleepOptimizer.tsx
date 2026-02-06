@@ -13,6 +13,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 const sleepIssueKeys = [
   { id: "back-pain", key: "backPain", icon: "🔙" },
@@ -64,6 +65,12 @@ const AISleepOptimizer = () => {
   const { t } = useTranslation();
   const { settings } = useSettings();
   const { streamChat, isLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setResponse('');
+    setMeditationScript('');
+    setRoutinePlan('');
+  });
   
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [sleepHours, setSleepHours] = useState([6]);

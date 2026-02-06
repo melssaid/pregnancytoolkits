@@ -46,6 +46,10 @@ const CONTEXT_OPTIONS = ["afterFeeding", "beforeSleep", "afterWaking", "duringCh
 export default function BabyCryTranslator() {
   const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAnalysis('');
+  });
   const [selectedPatterns, setSelectedPatterns] = useState<string[]>([]);
   const [duration, setDuration] = useState<string>("");
   const [context, setContext] = useState<string>("");

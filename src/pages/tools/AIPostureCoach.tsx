@@ -7,6 +7,7 @@ import { User, CheckCircle, AlertTriangle, Clock, Play, RefreshCw, Brain, Loader
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useTranslation } from 'react-i18next';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 interface PostureExercise {
   id: string;
@@ -108,6 +109,10 @@ export default function AIPostureCoach() {
   const [aiResponse, setAiResponse] = useState('');
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+  });
 
   useEffect(() => {
     const saved = localStorage.getItem('postureCompletedToday');

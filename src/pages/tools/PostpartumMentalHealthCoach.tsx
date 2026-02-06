@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Heart, AlertTriangle, Phone, CheckCircle, HelpCircle, Brain, MessageCircle, Sun, Loader2, Sparkles } from 'lucide-react';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 const getMenualHealthVideos = (t: any): Video[] => [
   { id: "1", title: t('toolsInternal.mentalHealthCoach.videos.v1.title'), description: t('toolsInternal.mentalHealthCoach.videos.v1.description'), youtubeId: "6kV2_L3uSS0", duration: "8:30", category: t('toolsInternal.mentalHealthCoach.videos.v1.category') },
@@ -94,6 +95,11 @@ export default function PostpartumMentalHealthCoach() {
   const [showAICoping, setShowAICoping] = useState(false);
   
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiCopingPlan('');
+    setShowAICoping(false);
+  });
   
   const epdsQuestions = getEpdsQuestions(t);
   const mentalHealthVideos = getMenualHealthVideos(t);

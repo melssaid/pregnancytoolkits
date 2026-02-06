@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CupSoda, Sparkles, RefreshCw, Heart, Zap, Moon, Sun, Brain, Loader2 } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface Smoothie {
@@ -119,6 +120,11 @@ export default function PregnancySmoothieAI() {
   const [preference, setPreference] = useState('');
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAIRecipe(false);
+  });
 
   const getRandomSmoothie = () => {
     const filtered = smoothieData.filter(s => s.trimester.includes(selectedTrimester));

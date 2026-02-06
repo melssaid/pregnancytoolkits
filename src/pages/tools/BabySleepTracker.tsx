@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { format, differenceInMinutes, startOfDay, subDays, eachDayOfInterval } from "date-fns";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 interface SleepSession {
   id: string;
@@ -22,6 +23,11 @@ const BabySleepTracker = () => {
   const { t } = useTranslation();
   const { trackAction } = useAnalytics("baby-sleep-tracker");
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiAdvice('');
+    setShowAiAdvice(false);
+  });
   const [sessions, setSessions] = useState<SleepSession[]>([]);
   const [activeSleep, setActiveSleep] = useState<SleepSession | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);

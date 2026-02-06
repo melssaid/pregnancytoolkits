@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Lightbulb, RefreshCw, Star, Calendar, Brain, Loader2 } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface DailyTip {
@@ -52,6 +53,11 @@ export default function AIPregnancyTipsDaily() {
   const [aiResponse, setAiResponse] = useState('');
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAITip(false);
+  });
 
   useEffect(() => {
     const today = new Date().toDateString();
