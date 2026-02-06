@@ -230,14 +230,14 @@ Helpful tips for diaper changes and tracking`
                     ) : (
                       <Sparkles className="h-4 w-4 shrink-0" />
                     )}
-                    <span className="truncate">Analyze Diaper Patterns with AI</span>
+                    <span className="truncate">{t('diaperPage.analyzeWithAI')}</span>
                   </Button>
                 ) : (
                   <div className="overflow-hidden">
                     <div className="flex items-center justify-between mb-2 gap-2">
                       <div className="flex items-center gap-2 min-w-0">
                         <Sparkles className="h-4 w-4 text-violet-500 shrink-0" />
-                        <h3 className="font-semibold text-sm truncate">AI Pattern Analysis</h3>
+                        <h3 className="font-semibold text-sm truncate">{t('diaperPage.aiPatternAnalysis')}</h3>
                       </div>
                       <Button 
                         variant="ghost" 
@@ -251,7 +251,7 @@ Helpful tips for diaper changes and tracking`
                     {aiLoading && !aiInsight && (
                       <div className="flex items-center gap-2 text-violet-600">
                         <Loader2 className="h-4 w-4 animate-spin shrink-0" />
-                        <span className="text-xs sm:text-sm">Analyzing patterns...</span>
+                        <span className="text-xs sm:text-sm">{t('diaperPage.analyzingPatterns')}</span>
                       </div>
                     )}
                     {aiInsight && (

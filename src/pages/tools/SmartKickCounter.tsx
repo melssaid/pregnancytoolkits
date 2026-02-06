@@ -520,7 +520,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                   ? Math.round(history.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / history.length)
                   : 0}
               </div>
-              <p className="text-xs text-muted-foreground">Avg Min</p>
+              <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.avgMin')}</p>
             </CardContent>
           </Card>
         </div>
@@ -532,7 +532,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-primary" />
-                  AI Data Analysis
+                  {t('toolsInternal.kickCounter.aiDataAnalysis')}
                 </h3>
                 <div className="flex items-center gap-2">
                   {(aiPatternAnalysis || aiHealthInsight || aiTips) && !aiLoading && (
@@ -563,21 +563,21 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                 <div className="bg-background/60 rounded-lg p-3 text-center">
                   <Target className="w-5 h-5 mx-auto mb-1 text-primary" />
                   <div className="text-lg font-bold">{getAverageKicks()}</div>
-                  <p className="text-[10px] text-muted-foreground">Avg/Session</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.avgPerSession')}</p>
                 </div>
                 <div className="bg-background/60 rounded-lg p-3 text-center">
                   <Activity className="w-5 h-5 mx-auto mb-1 text-primary" />
                   <div className={`text-lg font-bold ${getScoreColor(movementScore)}`}>
                     {movementScore}%
                   </div>
-                  <p className="text-[10px] text-muted-foreground">Health Score</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.healthScore')}</p>
                 </div>
                 <div className="bg-background/60 rounded-lg p-3 text-center">
                   <Shield className="w-5 h-5 mx-auto mb-1 text-primary" />
                   <div className="text-lg font-bold text-emerald-500">
                     {movementScore >= 70 ? '✓' : movementScore >= 40 ? '!' : '⚠'}
                   </div>
-                  <p className="text-[10px] text-muted-foreground">Status</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.status')}</p>
                 </div>
               </div>
 
@@ -602,7 +602,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                         ) : (
                           <BarChart3 className="w-3 h-3" />
                         )}
-                        <span className="text-xs">Patterns</span>
+                        <span className="text-xs">{t('toolsInternal.kickCounter.patterns')}</span>
                       </Button>
                       <Button
                         variant={aiActiveTab === 'health' ? 'default' : 'outline'}
@@ -616,7 +616,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                         ) : (
                           <Activity className="w-3 h-3" />
                         )}
-                        <span className="text-xs">Health</span>
+                        <span className="text-xs">{t('toolsInternal.kickCounter.health')}</span>
                       </Button>
                       <Button
                         variant={aiActiveTab === 'tips' ? 'default' : 'outline'}
@@ -644,7 +644,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                         {aiLoading && !aiPatternAnalysis && !aiHealthInsight && !aiTips ? (
                           <div className="flex items-center justify-center py-8 text-muted-foreground">
                             <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                            Analyzing your baby's movement patterns...
+                            {t('toolsInternal.kickCounter.analyzingMovements')}
                           </div>
                         ) : (
                           <MarkdownRenderer 
@@ -662,7 +662,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                       <div className="text-center py-6">
                         <Brain className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
                         <p className="text-sm text-muted-foreground">
-                          Tap a button above to get AI-powered insights about your baby's movements
+                          {t('toolsInternal.kickCounter.tapForInsights')}
                         </p>
                       </div>
                     )}
@@ -677,7 +677,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                   onClick={() => setShowAIDetails(true)}
                 >
                   <Brain className="w-4 h-4 mr-2" />
-                  View Detailed AI Analysis
+                  {t('toolsInternal.kickCounter.viewDetailedAnalysis')}
                 </Button>
               )}
             </CardContent>
@@ -690,7 +690,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Clock className="w-5 h-5 text-primary" />
-                Recent Sessions
+                {t('toolsInternal.kickCounter.recentSessions')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -709,10 +709,10 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                       </div>
                       <div>
                         <div className="font-medium">
-                          {session.total_kicks} movements
+                          {session.total_kicks} {t('toolsInternal.kickCounter.movements')}
                         </div>
                         <div className="text-xs text-muted-foreground">
-                          {session.duration_minutes} min • Week {session.week}
+                          {t('toolsInternal.kickCounter.minWeek', { min: session.duration_minutes, week: session.week })}
                         </div>
                       </div>
                     </div>
@@ -735,11 +735,11 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-semibold text-amber-800 dark:text-amber-300 mb-1">When to Call Your Doctor</h3>
+                <h3 className="font-semibold text-amber-800 dark:text-amber-300 mb-1">{t('toolsInternal.kickCounter.whenToCallDoctor')}</h3>
                 <ul className="text-sm text-amber-700 dark:text-amber-400 space-y-1">
-                  <li>• Fewer than 10 movements in 2 hours</li>
-                  <li>• Significant decrease in baby's usual activity</li>
-                  <li>• No movements felt for several hours</li>
+                  <li>• {t('toolsInternal.kickCounter.warningFewer')}</li>
+                  <li>• {t('toolsInternal.kickCounter.warningDecrease')}</li>
+                  <li>• {t('toolsInternal.kickCounter.warningNoMovements')}</li>
                 </ul>
               </div>
             </div>
@@ -749,7 +749,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
         {/* Educational Note */}
         <div className="bg-muted/30 rounded-xl p-4 text-center">
           <p className="text-xs text-muted-foreground">
-            💡 Babies are most active between 9 PM and 1 AM. Count kicks at the same time daily for consistent tracking.
+            💡 {t('toolsInternal.kickCounter.educationalNote')}
           </p>
         </div>
       </div>

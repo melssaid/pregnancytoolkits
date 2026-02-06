@@ -82,7 +82,7 @@ const AIBumpPhotos: React.FC = () => {
     } catch (error: any) {
       console.error('Error loading data:', error);
       toast({
-        title: 'Loading Error',
+        title: t('toolsInternal.bumpPhotos.loadingError'),
         description: error.message,
         variant: 'destructive'
       });
@@ -97,8 +97,8 @@ const AIBumpPhotos: React.FC = () => {
 
     if (!file.type.startsWith('image/')) {
       toast({
-        title: 'Error',
-        description: 'Please select an image file',
+        title: t('toolsInternal.kickCounter.error'),
+        description: t('toolsInternal.bumpPhotos.errorSelectImage'),
         variant: 'destructive'
       });
       return;
@@ -106,8 +106,8 @@ const AIBumpPhotos: React.FC = () => {
 
     if (file.size > 10 * 1024 * 1024) {
       toast({
-        title: 'Error',
-        description: 'Image too large. Maximum size is 10MB',
+        title: t('toolsInternal.kickCounter.error'),
+        description: t('toolsInternal.bumpPhotos.errorTooLarge'),
         variant: 'destructive'
       });
       return;
@@ -148,8 +148,8 @@ const AIBumpPhotos: React.FC = () => {
       setCaption('');
       
       toast({
-        title: 'Photo Saved!',
-        description: `Week ${currentWeek} photo stored locally on your device`
+        title: t('toolsInternal.bumpPhotos.photoSaved'),
+        description: t('toolsInternal.bumpPhotos.photoSavedDesc', { week: currentWeek })
       });
 
       // Auto analyze
@@ -158,7 +158,7 @@ const AIBumpPhotos: React.FC = () => {
     } catch (error: any) {
       console.error('Upload error:', error);
       toast({
-        title: 'Upload Failed',
+        title: t('toolsInternal.bumpPhotos.uploadFailed'),
         description: error.message,
         variant: 'destructive'
       });
@@ -182,12 +182,12 @@ const AIBumpPhotos: React.FC = () => {
       setEditingPhotoId(null);
       setEditCaption('');
       toast({
-        title: 'Caption Updated',
-        description: 'Your photo caption has been saved'
+        title: t('toolsInternal.bumpPhotos.captionUpdated'),
+        description: t('toolsInternal.bumpPhotos.captionUpdatedDesc')
       });
     } catch (error: any) {
       toast({
-        title: 'Update Failed',
+        title: t('toolsInternal.bumpPhotos.updateFailed'),
         description: error.message,
         variant: 'destructive'
       });
@@ -270,7 +270,7 @@ Please provide a comprehensive pregnancy update:
     } catch (error: any) {
       console.error('Analysis error:', error);
       toast({
-        title: 'Analysis Failed',
+        title: t('toolsInternal.bumpPhotos.analysisFailedTitle'),
         description: error.message,
         variant: 'destructive'
       });
@@ -279,7 +279,7 @@ Please provide a comprehensive pregnancy update:
   };
 
   const handleDelete = async (photo: BumpPhoto) => {
-    if (!confirm('Are you sure you want to delete this photo? This cannot be undone.')) return;
+    if (!confirm(t('toolsInternal.bumpPhotos.deleteConfirm'))) return;
 
     try {
       await BumpPhotoService.delete(photo.id, photo.storage_path);
@@ -291,12 +291,12 @@ Please provide a comprehensive pregnancy update:
       }
       
       toast({
-        title: 'Deleted',
-        description: 'Photo removed from local storage'
+        title: t('toolsInternal.bumpPhotos.photoDeleted'),
+        description: t('toolsInternal.bumpPhotos.deletedDesc')
       });
     } catch (error: any) {
       toast({
-        title: 'Delete Failed',
+        title: t('toolsInternal.bumpPhotos.deleteFailed'),
         description: error.message,
         variant: 'destructive'
       });
@@ -326,7 +326,7 @@ Please provide a comprehensive pregnancy update:
       } else {
         // Fallback to download
         handleDownload(photo);
-        toast({ title: 'Photo downloaded', description: 'You can now share it manually' });
+        toast({ title: t('toolsInternal.bumpPhotos.photoDownloaded'), description: t('toolsInternal.bumpPhotos.photoDownloadedDesc') });
       }
     } catch (error) {
       console.error('Share error:', error);
@@ -369,20 +369,18 @@ Please provide a comprehensive pregnancy update:
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <h4 className="font-semibold text-emerald-800 dark:text-emerald-300">Local Storage</h4>
+                <h4 className="font-semibold text-emerald-800 dark:text-emerald-300">{t('toolsInternal.bumpPhotos.localStorageTitle')}</h4>
                 <Badge variant="outline" className="text-xs border-emerald-300 text-emerald-700">
                   <Shield className="w-3 h-3 mr-1" />
-                  Private
+                  {t('toolsInternal.bumpPhotos.privateLabel')}
                 </Badge>
               </div>
-              <p className="text-sm text-emerald-700 dark:text-emerald-400 mb-3">
-                Your photos are stored <strong>only on your device</strong>. They never leave your phone and are not uploaded to any server.
-              </p>
+              <p className="text-sm text-emerald-700 dark:text-emerald-400 mb-3" dangerouslySetInnerHTML={{ __html: t('toolsInternal.bumpPhotos.localStorageDesc') }} />
               
               {/* Storage Usage Bar */}
               <div className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Storage Used</span>
+                  <span className="text-muted-foreground">{t('toolsInternal.bumpPhotos.storageUsed')}</span>
                   <span className={`font-medium ${
                     storageInfo.isCritical ? 'text-destructive' : 
                     storageInfo.isWarning ? 'text-amber-600' : 'text-emerald-600'
@@ -401,8 +399,8 @@ Please provide a comprehensive pregnancy update:
                   <p className="text-xs text-amber-600 flex items-center gap-1 mt-1">
                     <AlertTriangle className="w-3 h-3" />
                     {storageInfo.isCritical 
-                      ? 'Storage nearly full. Consider backing up and deleting old photos.'
-                      : 'Storage getting full. Consider exporting your photos.'}
+                      ? t('toolsInternal.bumpPhotos.storageCritical')
+                      : t('toolsInternal.bumpPhotos.storageWarning')}
                   </p>
                 )}
               </div>
@@ -416,7 +414,7 @@ Please provide a comprehensive pregnancy update:
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-primary" />
-                <span className="font-medium">Select Week</span>
+                <span className="font-medium">{t('toolsInternal.bumpPhotos.selectWeek')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Button
@@ -442,7 +440,7 @@ Please provide a comprehensive pregnancy update:
             </div>
             
             <Textarea
-              placeholder="Add a caption for this moment... (optional)"
+              placeholder={t('toolsInternal.bumpPhotos.captionPlaceholder')}
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
               className="resize-none"
@@ -473,7 +471,7 @@ Please provide a comprehensive pregnancy update:
                     className="text-center"
                   >
                     <Loader2 className="w-10 h-10 text-primary animate-spin mx-auto" />
-                    <span className="text-primary font-medium mt-2 block">Compressing & Saving...</span>
+                    <span className="text-primary font-medium mt-2 block">{t('toolsInternal.bumpPhotos.compressing')}</span>
                   </motion.div>
                 ) : (
                   <motion.div
@@ -485,9 +483,9 @@ Please provide a comprehensive pregnancy update:
                     <div className="p-3 rounded-full bg-primary/10 mx-auto w-fit mb-2">
                       <Camera className="w-8 h-8 text-primary" />
                     </div>
-                    <span className="text-primary font-medium">Take or Upload Photo</span>
+                    <span className="text-primary font-medium">{t('toolsInternal.bumpPhotos.takeOrUpload')}</span>
                     <span className="text-xs text-muted-foreground block mt-1">
-                      Auto-compressed for optimal storage • Max 10MB
+                      {t('toolsInternal.bumpPhotos.autoCompressed')}
                     </span>
                   </motion.div>
                 )}
@@ -505,7 +503,7 @@ Please provide a comprehensive pregnancy update:
               onClick={() => setShowCompare(!showCompare)}
             >
               <Columns className="w-4 h-4 mr-2" />
-              Compare Photos
+              {t('toolsInternal.bumpPhotos.comparePhotos')}
             </Button>
           </div>
         )}
@@ -522,13 +520,13 @@ Please provide a comprehensive pregnancy update:
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
                     <Columns className="w-5 h-5 text-primary" />
-                    Side-by-Side Comparison
+                    {t('toolsInternal.bumpPhotos.sideBySide')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p className="text-sm text-muted-foreground mb-2">Earlier Photo</p>
+                      <p className="text-sm text-muted-foreground mb-2">{t('toolsInternal.bumpPhotos.earlierPhoto')}</p>
                       <select
                         className="w-full p-2 rounded-lg border border-border bg-background mb-2"
                         value={comparePhoto?.id || ''}
@@ -537,9 +535,9 @@ Please provide a comprehensive pregnancy update:
                           setComparePhoto(photo || null);
                         }}
                       >
-                        <option value="">Select week...</option>
+                        <option value="">{t('toolsInternal.bumpPhotos.selectWeekOption')}</option>
                         {photos.map(p => (
-                          <option key={p.id} value={p.id}>Week {p.week}</option>
+                          <option key={p.id} value={p.id}>{t('toolsInternal.bumpPhotos.week')} {p.week}</option>
                         ))}
                       </select>
                       {comparePhoto && (
@@ -551,7 +549,7 @@ Please provide a comprehensive pregnancy update:
                       )}
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground mb-2">Later Photo</p>
+                      <p className="text-sm text-muted-foreground mb-2">{t('toolsInternal.bumpPhotos.laterPhoto')}</p>
                       <select
                         className="w-full p-2 rounded-lg border border-border bg-background mb-2"
                         value={selectedPhoto?.id || ''}
@@ -560,9 +558,9 @@ Please provide a comprehensive pregnancy update:
                           setSelectedPhoto(photo || null);
                         }}
                       >
-                        <option value="">Select week...</option>
+                        <option value="">{t('toolsInternal.bumpPhotos.selectWeekOption')}</option>
                         {photos.map(p => (
-                          <option key={p.id} value={p.id}>Week {p.week}</option>
+                          <option key={p.id} value={p.id}>{t('toolsInternal.bumpPhotos.week')} {p.week}</option>
                         ))}
                       </select>
                       {selectedPhoto && (
@@ -576,7 +574,7 @@ Please provide a comprehensive pregnancy update:
                   </div>
                   {comparePhoto && selectedPhoto && (
                     <p className="text-center text-sm text-muted-foreground mt-3">
-                      {Math.abs(selectedPhoto.week - comparePhoto.week)} weeks of beautiful progress! 🌟
+                      {t('toolsInternal.bumpPhotos.weeksProgress', { weeks: Math.abs(selectedPhoto.week - comparePhoto.week) })}
                     </p>
                   )}
                 </CardContent>
@@ -612,7 +610,7 @@ Please provide a comprehensive pregnancy update:
                       loading="lazy"
                     />
                     <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-bold shadow">
-                      Week {photo.week}
+                      {t('toolsInternal.bumpPhotos.week')} {photo.week}
                     </div>
                     {photo.ai_analysis && (
                       <div className="absolute top-2 left-2 bg-emerald-500 text-white p-1 rounded-full shadow">
@@ -665,7 +663,7 @@ Please provide a comprehensive pregnancy update:
                       </span>
                       <Badge variant="outline" className="text-[10px]">
                         <HardDrive className="w-2 h-2 mr-1" />
-                        Local
+                        {t('toolsInternal.bumpPhotos.localLabel')}
                       </Badge>
                     </div>
                     
@@ -715,7 +713,7 @@ Please provide a comprehensive pregnancy update:
                           </p>
                         ) : (
                           <p className="text-xs text-muted-foreground/50 italic flex-1">
-                            Add caption...
+                            {t('toolsInternal.bumpPhotos.addCaption')}
                           </p>
                         )}
                         <Edit3 className="w-3 h-3 text-muted-foreground/50 group-hover:text-primary flex-shrink-0 mt-0.5" />
@@ -730,9 +728,9 @@ Please provide a comprehensive pregnancy update:
           <Card className="border-dashed">
             <CardContent className="py-12 text-center">
               <ImageIcon className="w-16 h-16 mx-auto mb-4 text-muted-foreground/30" />
-              <h3 className="font-medium text-foreground mb-1">No photos yet</h3>
+              <h3 className="font-medium text-foreground mb-1">{t('toolsInternal.bumpPhotos.noPhotos')}</h3>
               <p className="text-sm text-muted-foreground">
-                Start documenting your pregnancy journey from week {currentWeek}!
+                {t('toolsInternal.bumpPhotos.startDocumenting', { week: currentWeek })}
               </p>
             </CardContent>
           </Card>
@@ -751,7 +749,7 @@ Please provide a comprehensive pregnancy update:
                   <CardTitle className="flex items-center justify-between text-base">
                     <span className="flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-primary" />
-                      AI Analysis - Week {selectedPhoto.week}
+                      {t('toolsInternal.bumpPhotos.aiAnalysisWeek', { week: selectedPhoto.week })}
                     </span>
                     <Button
                       variant="outline"
@@ -764,7 +762,7 @@ Please provide a comprehensive pregnancy update:
                       ) : (
                         <RefreshCw className="w-4 h-4 mr-2" />
                       )}
-                      {isAnalyzing ? 'Analyzing...' : 'Refresh'}
+                      {isAnalyzing ? t('toolsInternal.bumpPhotos.analyzing') : t('toolsInternal.bumpPhotos.refresh')}
                     </Button>
                   </CardTitle>
                 </CardHeader>
@@ -782,7 +780,7 @@ Please provide a comprehensive pregnancy update:
                   ) : (
                     <div className="text-center py-6 text-muted-foreground">
                       <Sparkles className="w-8 h-8 mx-auto mb-2 text-muted-foreground/30" />
-                      <p>Click "Refresh" for personalized AI insights</p>
+                      <p>{t('toolsInternal.bumpPhotos.clickRefresh')}</p>
                     </div>
                   )}
                 </CardContent>
@@ -797,7 +795,7 @@ Please provide a comprehensive pregnancy update:
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <Clock className="w-5 h-5 text-primary" />
-                Your Journey Timeline
+                {t('toolsInternal.bumpPhotos.journeyTimeline')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -830,7 +828,7 @@ Please provide a comprehensive pregnancy update:
                         </div>
                       )}
                     </div>
-                    <p className="text-xs mt-1 font-medium">Week {photo.week}</p>
+                    <p className="text-xs mt-1 font-medium">{t('toolsInternal.bumpPhotos.week')} {photo.week}</p>
                   </motion.div>
                 ))}
               </div>
@@ -844,12 +842,12 @@ Please provide a comprehensive pregnancy update:
             <div className="flex items-start gap-3">
               <Info className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-medium text-amber-800 dark:text-amber-300 mb-1">Photo Tips</h4>
+                <h4 className="font-medium text-amber-800 dark:text-amber-300 mb-1">{t('toolsInternal.bumpPhotos.photoTipsTitle')}</h4>
                 <ul className="text-sm text-amber-700 dark:text-amber-400 space-y-1">
-                  <li>• Take photos at the same time of day for consistent lighting</li>
-                  <li>• Wear fitted clothing to show belly growth clearly</li>
-                  <li>• Use the same pose and background each week</li>
-                  <li>• Back up your photos regularly using Settings → Data Backup</li>
+                  <li>• {t('toolsInternal.bumpPhotos.photoTip1')}</li>
+                  <li>• {t('toolsInternal.bumpPhotos.photoTip2')}</li>
+                  <li>• {t('toolsInternal.bumpPhotos.photoTip3')}</li>
+                  <li>• {t('toolsInternal.bumpPhotos.photoTip4')}</li>
                 </ul>
               </div>
             </div>

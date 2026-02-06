@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -32,6 +33,7 @@ const unsafeIngredientsDb: Record<string, { reason: string; alternative: string 
 };
 
 export default function AIRecipeModifier() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [recipe, setRecipe] = useState('');
   const [analysis, setAnalysis] = useState<RecipeAnalysis | null>(null);
@@ -90,7 +92,7 @@ export default function AIRecipeModifier() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="AI Recipe Modifier"
+        toolName={t('toolsInternal.recipeModifier.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -98,8 +100,8 @@ export default function AIRecipeModifier() {
 
   return (
     <ToolFrame
-      title="AI Recipe Modifier"
-      subtitle="Make any recipe pregnancy-safe"
+      title={t('toolsInternal.recipeModifier.title')}
+      subtitle={t('toolsInternal.recipeModifier.subtitle')}
       mood="joyful"
       toolId="recipe-modifier"
       icon={ChefHat}
@@ -112,10 +114,10 @@ export default function AIRecipeModifier() {
                 <CardContent className="p-6">
                   <h3 className="font-semibold mb-4 flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-primary" />
-                    Paste Your Recipe
+                    {t('toolsInternal.recipeModifier.pasteRecipe')}
                   </h3>
                   <Textarea
-                    placeholder="Paste your recipe here including all ingredients and instructions..."
+                    placeholder={t('toolsInternal.recipeModifier.placeholder')}
                     value={recipe}
                     onChange={(e) => setRecipe(e.target.value)}
                     rows={8}
@@ -129,12 +131,12 @@ export default function AIRecipeModifier() {
                     {isAnalyzing ? (
                       <>
                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Analyzing...
+                        {t('toolsInternal.recipeModifier.analyzing')}
                       </>
                     ) : (
                       <>
                         <Sparkles className="w-4 h-4 mr-2" />
-                        Analyze Recipe
+                        {t('toolsInternal.recipeModifier.analyzeRecipe')}
                       </>
                     )}
                   </Button>
@@ -144,7 +146,7 @@ export default function AIRecipeModifier() {
               {/* Example */}
               <Card>
                 <CardContent className="p-4">
-                  <h4 className="font-medium mb-2">Example ingredients we check:</h4>
+                  <h4 className="font-medium mb-2">{t('toolsInternal.recipeModifier.exampleTitle')}</h4>
                   <div className="flex flex-wrap gap-2">
                     {Object.keys(unsafeIngredientsDb).slice(0, 8).map(ing => (
                       <Badge key={ing} variant="outline" className="capitalize">
@@ -163,7 +165,7 @@ export default function AIRecipeModifier() {
                   <CardContent className="p-6">
                     <h3 className="font-semibold mb-4 flex items-center gap-2 text-amber-700">
                       <AlertTriangle className="w-5 h-5" />
-                      Ingredients to Modify ({analysis.unsafeIngredients.length})
+                      {t('toolsInternal.recipeModifier.ingredientsToModify', { count: analysis.unsafeIngredients.length })}
                     </h3>
                     <div className="space-y-3">
                       {analysis.unsafeIngredients.map((item, index) => (
@@ -185,9 +187,9 @@ export default function AIRecipeModifier() {
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-8 h-8 text-emerald-600" />
                       <div>
-                        <h3 className="font-semibold text-emerald-700">Recipe Looks Safe!</h3>
+                        <h3 className="font-semibold text-emerald-700">{t('toolsInternal.recipeModifier.recipeSafe')}</h3>
                         <p className="text-sm text-emerald-600">
-                          No obvious unsafe ingredients detected
+                          {t('toolsInternal.recipeModifier.noUnsafeFound')}
                         </p>
                       </div>
                     </div>
@@ -201,7 +203,7 @@ export default function AIRecipeModifier() {
                   <CardContent className="p-4">
                     <h4 className="font-medium mb-3 flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-emerald-600" />
-                      Safe Ingredients Found
+                      {t('toolsInternal.recipeModifier.safeFound')}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {analysis.safeIngredients.map(ing => (
@@ -218,7 +220,7 @@ export default function AIRecipeModifier() {
               {analysis.unsafeIngredients.length > 0 && (
                 <Card>
                   <CardContent className="p-4">
-                    <h4 className="font-medium mb-3">Modified Recipe</h4>
+                    <h4 className="font-medium mb-3">{t('toolsInternal.recipeModifier.modifiedRecipe')}</h4>
                     <div className="bg-muted/50 rounded-lg p-4 text-sm whitespace-pre-wrap">
                       {analysis.modifiedRecipe}
                     </div>
@@ -229,7 +231,7 @@ export default function AIRecipeModifier() {
               {/* Tips */}
               <Card>
                 <CardContent className="p-4">
-                  <h4 className="font-medium mb-3">Safety Tips</h4>
+                  <h4 className="font-medium mb-3">{t('toolsInternal.recipeModifier.safetyTips')}</h4>
                   <ul className="space-y-2">
                     {analysis.tips.map((tip, i) => (
                       <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
@@ -242,7 +244,7 @@ export default function AIRecipeModifier() {
               </Card>
 
               <Button onClick={resetAnalysis} variant="outline" className="w-full">
-                Analyze Another Recipe
+                {t('toolsInternal.recipeModifier.analyzeAnother')}
               </Button>
             </>
           )}
@@ -250,8 +252,7 @@ export default function AIRecipeModifier() {
           {/* Disclaimer */}
           <div className="bg-muted/30 rounded-xl p-4 text-center">
             <p className="text-xs text-muted-foreground">
-              ⚠️ This tool provides general guidance. Always consult your healthcare provider 
-              about specific dietary restrictions during your pregnancy.
+              {t('toolsInternal.recipeModifier.disclaimer')}
             </p>
         </div>
       </div>
