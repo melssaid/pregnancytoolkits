@@ -508,11 +508,15 @@
   "diaperPage": {
     "title": "Seguimiento de pañales",
     "logChange": "Registrar cambio",
+    "quickAdd": "Agregar rápido",
     "wet": "Mojado",
     "dirty": "Sucio",
     "both": "Ambos",
     "todayCount": "Cambios de hoy",
-    "recentChanges": "Cambios recientes"
+    "todayStats": "Estadísticas de hoy",
+    "total": "Total",
+    "recentChanges": "Cambios recientes",
+    "info": "El seguimiento de pañales ayuda a monitorear la hidratación y salud de tu bebé. Los recién nacidos típicamente necesitan de 6 a 8 pañales mojados diarios."
   },
   "babyGrowthPage": {
     "title": "Crecimiento del bebé",

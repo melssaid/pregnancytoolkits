@@ -492,6 +492,50 @@
       "recommendedRange": "النطاق الموصى به"
     }
   },
+  "babySleepPage": {
+    "title": "متتبع نوم الطفل",
+    "logSleep": "تسجيل النوم",
+    "startTime": "وقت البدء",
+    "endTime": "وقت الانتهاء",
+    "duration": "المدة",
+    "totalToday": "إجمالي النوم اليوم",
+    "sleepLog": "سجل النوم"
+  },
+  "diaperPage": {
+    "title": "متتبع الحفاضات",
+    "logChange": "تسجيل التغيير",
+    "quickAdd": "إضافة سريعة",
+    "wet": "مبللة",
+    "dirty": "متسخة",
+    "both": "كلاهما",
+    "todayCount": "تغييرات اليوم",
+    "todayStats": "إحصائيات اليوم",
+    "total": "الإجمالي",
+    "recentChanges": "التغييرات الأخيرة",
+    "info": "تتبع تغييرات الحفاضات يساعدك على مراقبة ترطيب طفلك وصحته. عادةً يحتاج الأطفال حديثو الولادة من 6-8 حفاضات مبللة يومياً."
+  },
+  "babyGrowthPage": {
+    "title": "نمو الطفل",
+    "age": "عمر الطفل",
+    "weight": "الوزن (كغم)",
+    "height": "الطول (سم)",
+    "headCircumference": "محيط الرأس (سم)",
+    "percentile": "النسبة المئوية",
+    "trackGrowth": "تتبع النمو"
+  },
+  "babyGearPage": {
+    "title": "مستلزمات الطفل الأساسية",
+    "categories": "الفئات",
+    "sleeping": "النوم",
+    "feeding": "التغذية",
+    "bathing": "الاستحمام",
+    "clothing": "الملابس",
+    "travel": "السفر",
+    "health": "الصحة",
+    "mustHave": "ضروري",
+    "niceToHave": "مفضل",
+    "canWait": "يمكن الانتظار"
+  },
   "appUpdated": {
     "title": "تم تحديث التطبيق، جاري إعادة التحميل...",
     "description": "تم تحديث التطبيق"

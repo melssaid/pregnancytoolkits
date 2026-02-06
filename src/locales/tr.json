@@ -508,11 +508,15 @@
   "diaperPage": {
     "title": "Bez Takibi",
     "logChange": "Değişiklik Kaydet",
+    "quickAdd": "Hızlı Ekle",
     "wet": "Islak",
     "dirty": "Kirli",
     "both": "İkisi de",
     "todayCount": "Bugünkü Değişiklikler",
-    "recentChanges": "Son Değişiklikler"
+    "todayStats": "Bugünkü İstatistikler",
+    "total": "Toplam",
+    "recentChanges": "Son Değişiklikler",
+    "info": "Bez değişikliklerini takip etmek, bebeğinizin sıvı alımını ve sağlığını izlemenize yardımcı olur. Yenidoğanlar genellikle günde 6-8 ıslak beze ihtiyaç duyar."
   },
   "babyGrowthPage": {
     "title": "Bebek Büyümesi",
