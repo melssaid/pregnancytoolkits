@@ -166,6 +166,14 @@
     "diaperTracker": {
       "title": "Suivi des couches",
       "description": "Enregistrez les changements, surveillez la santé."
+    },
+    "babyCryTranslator": {
+      "title": "Traducteur de pleurs de bébé",
+      "description": "Analyse IA des pleurs de votre bébé."
+    },
+    "postpartumRecovery": {
+      "title": "Guide de récupération post-partum",
+      "description": "Votre plan de récupération de 6 semaines."
     }
   },
   "dashboard": {
@@ -2500,5 +2508,25 @@
       "askClarification": "N'hésitez pas à demander des clarifications",
       "bringPartner": "Amenez votre partenaire si possible"
     }
-  }
+  },
+  "toolsInternal.babyCryTranslator": {
+    "subtitle": "Comprenez ce que votre bébé essaie de vous dire",
+    "babyAge": "Âge du bébé", "weeks": "semaines", "cryPattern": "Type de pleurs", "cryDuration": "Combien de temps?", "whenCrying": "Quand bébé pleure-t-il?", "analyzeButton": "Analyser les pleurs", "analysisResult": "Analyse des pleurs", "newAnalysis": "Nouvelle analyse", "reanalyze": "Réanalyser", "recentLogs": "Analyses récentes", "tipsTitle": "Conseils utiles",
+    "patterns": { "continuous": "Pleurs continus", "intermittent": "Intermittent", "highPitch": "Aigu", "whimpering": "Gémissements", "rhythmic": "Rythmique", "sudden": "Cris soudains" },
+    "durations": { "under1": "Moins d'1 min", "1to5": "1-5 min", "5to15": "5-15 min", "over15": "Plus de 15 min" },
+    "contexts": { "afterFeeding": "Après le repas", "beforeSleep": "Avant de dormir", "afterWaking": "Au réveil", "duringChange": "Pendant le change", "noReason": "Sans raison apparente", "afterBath": "Après le bain" },
+    "tips": { "tip1": "Chaque bébé a un type de pleurs unique", "tip2": "Les bébés pleurent 1-3 heures par jour en moyenne — c'est normal", "tip3": "Si les pleurs sont inhabituels ou persistants, consultez votre pédiatre" }
+  },
+  "toolsInternal.postpartumRecovery": {
+    "subtitle": "Votre parcours de récupération personnalisé après l'accouchement",
+    "welcomeTitle": "Votre parcours de récupération", "welcomeDesc": "Un plan de récupération de 6 semaines adapté à votre accouchement", "selectBirthType": "Comment avez-vous accouché?",
+    "birthTypes": { "vaginal": "Accouchement vaginal", "cesarean": "Césarienne" },
+    "progress": "Progrès", "getAIAdvice": "Obtenir des conseils IA", "aiAdviceTitle": "Conseils de récupération personnalisés", "changeBirthType": "Changer le type d'accouchement",
+    "phases": { "week1": { "title": "Semaine 1 — Repos et guérison", "description": "Repos, soins et lien avec bébé" }, "week2": { "title": "Semaine 2 — Début en douceur", "description": "Mouvements doux et routines" }, "week3_4": { "title": "Semaines 3-4 — Renforcement", "description": "Exercices légers et bien-être émotionnel" }, "week5_6": { "title": "Semaines 5-6 — Nouvelle normalité", "description": "Reprise d'activité et planification" } },
+    "checklist": { "rest": { "title": "Prioriser le repos", "desc": "Dormez quand bébé dort" }, "hydration": { "title": "Rester hydratée", "desc": "8-10 verres d'eau par jour" }, "woundCare": { "title": "Soins de la plaie", "desc": "Suivez les instructions du médecin" }, "feedingSchedule": { "title": "Programme d'alimentation", "desc": "Établir une routine régulière" }, "painManagement": { "title": "Gestion de la douleur", "desc": "Prenez les médicaments prescrits" }, "gentleWalking": { "title": "Marche douce", "desc": "Courtes promenades à la maison" }, "emotionalCheck": { "title": "Bilan émotionnel", "desc": "Surveillez votre humeur" }, "nutrition": { "title": "Repas nutritifs", "desc": "Repas riches en fer et protéines" }, "sleepRoutine": { "title": "Routine de sommeil", "desc": "Créez un environnement reposant" }, "socialSupport": { "title": "Soutien social", "desc": "Restez connectée avec vos proches" }, "lightExercise": { "title": "Exercice léger", "desc": "Étirements doux et marche" }, "posturalExercises": { "title": "Exercices posturaux", "desc": "Renforcez doucement votre sangle abdominale" }, "kegelExercises": { "title": "Exercices de Kegel", "desc": "Commencez le périnée" }, "mentalHealthCheck": { "title": "Bilan santé mentale", "desc": "Dépistage dépression post-partum" }, "doctorVisit": { "title": "Visite médicale", "desc": "Planifiez votre suivi post-partum" }, "returnToExercise": { "title": "Reprise du sport", "desc": "Augmentez progressivement l'activité" }, "intimacyReadiness": { "title": "Reprise de l'intimité", "desc": "Discutez avec votre partenaire" }, "fullCheckup": { "title": "Bilan complet", "desc": "Examen post-partum complet" }, "longTermPlan": { "title": "Plan à long terme", "desc": "Contraception et projets futurs" }, "selfCare": { "title": "Routine d'auto-soins", "desc": "Établir des pratiques de soins personnels" } }
+  },
+  "toolsInternal.mealSuggestion.allergiesLabel": "Allergies et intolérances",
+  "toolsInternal.mealSuggestion.allergies": { "gluten": "Gluten", "dairy": "Produits laitiers", "nuts": "Noix", "eggs": "Œufs", "soy": "Soja", "seafood": "Fruits de mer" },
+  "toolsInternal.mealSuggestion.prepTimeLabel": "Temps de préparation",
+  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Rapide (< 15 min)", "medium": "Moyen (15-30 min)", "elaborate": "Élaboré (30+ min)" }
 }

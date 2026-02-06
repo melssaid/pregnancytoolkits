@@ -166,6 +166,14 @@
     "diaperTracker": {
       "title": "Rastreador de fraldas",
       "description": "Registre trocas, monitore a saúde."
+    },
+    "babyCryTranslator": {
+      "title": "Tradutor de choro do bebê",
+      "description": "Análise IA dos padrões de choro do seu bebê."
+    },
+    "postpartumRecovery": {
+      "title": "Guia de recuperação pós-parto",
+      "description": "Seu plano de recuperação de 6 semanas após o parto."
     }
   },
   "dashboard": {
@@ -2722,5 +2730,25 @@
       "askClarification": "Não hesite em pedir esclarecimentos",
       "bringPartner": "Traga o seu parceiro se possível"
     }
-  }
+  },
+  "toolsInternal.babyCryTranslator": {
+    "subtitle": "Entenda o que seu bebê está tentando dizer",
+    "babyAge": "Idade do bebê", "weeks": "semanas", "cryPattern": "Padrão de choro", "cryDuration": "Quanto tempo?", "whenCrying": "Quando o bebê chora?", "analyzeButton": "Analisar padrão de choro", "analysisResult": "Análise do choro", "newAnalysis": "Nova análise", "reanalyze": "Reanalisar", "recentLogs": "Análises recentes", "tipsTitle": "Dicas úteis",
+    "patterns": { "continuous": "Choro contínuo", "intermittent": "Intermitente", "highPitch": "Tom agudo", "whimpering": "Choramingo", "rhythmic": "Rítmico", "sudden": "Grito repentino" },
+    "durations": { "under1": "Menos de 1 min", "1to5": "1-5 min", "5to15": "5-15 min", "over15": "Mais de 15 min" },
+    "contexts": { "afterFeeding": "Após a mamada", "beforeSleep": "Antes de dormir", "afterWaking": "Ao acordar", "duringChange": "Durante a troca", "noReason": "Sem razão aparente", "afterBath": "Após o banho" },
+    "tips": { "tip1": "Cada bebê tem um padrão de choro único", "tip2": "Bebês choram 1-3 horas por dia em média — é normal", "tip3": "Se o choro for incomum ou persistente, consulte o pediatra" }
+  },
+  "toolsInternal.postpartumRecovery": {
+    "subtitle": "Sua jornada de recuperação personalizada após o parto",
+    "welcomeTitle": "Sua jornada de recuperação", "welcomeDesc": "Um plano de recuperação de 6 semanas adaptado ao seu parto", "selectBirthType": "Como foi seu parto?",
+    "birthTypes": { "vaginal": "Parto normal", "cesarean": "Cesariana" },
+    "progress": "Progresso", "getAIAdvice": "Obter conselho IA", "aiAdviceTitle": "Conselhos de recuperação personalizados", "changeBirthType": "Alterar tipo de parto",
+    "phases": { "week1": { "title": "Semana 1 — Descanso e cura", "description": "Descanso, cuidado da ferida e vínculo com o bebê" }, "week2": { "title": "Semana 2 — Início suave", "description": "Movimento suave e rotinas" }, "week3_4": { "title": "Semanas 3-4 — Fortalecimento", "description": "Exercícios leves e bem-estar emocional" }, "week5_6": { "title": "Semanas 5-6 — Novo normal", "description": "Retorno à atividade e planejamento" } },
+    "checklist": { "rest": { "title": "Priorizar o descanso", "desc": "Durma quando o bebê dormir" }, "hydration": { "title": "Manter-se hidratada", "desc": "8-10 copos de água por dia" }, "woundCare": { "title": "Cuidado da ferida", "desc": "Siga as instruções do médico" }, "feedingSchedule": { "title": "Horário de alimentação", "desc": "Estabeleça uma rotina regular" }, "painManagement": { "title": "Gestão da dor", "desc": "Tome os medicamentos prescritos" }, "gentleWalking": { "title": "Caminhada leve", "desc": "Passeios curtos em casa" }, "emotionalCheck": { "title": "Controle emocional", "desc": "Monitore seu humor" }, "nutrition": { "title": "Refeições nutritivas", "desc": "Refeições ricas em ferro e proteína" }, "sleepRoutine": { "title": "Rotina de sono", "desc": "Crie um ambiente de descanso" }, "socialSupport": { "title": "Apoio social", "desc": "Mantenha-se conectada com seus queridos" }, "lightExercise": { "title": "Exercício leve", "desc": "Alongamentos suaves e caminhada" }, "posturalExercises": { "title": "Exercícios posturais", "desc": "Fortaleça o core suavemente" }, "kegelExercises": { "title": "Exercícios de Kegel", "desc": "Comece exercícios do assoalho pélvico" }, "mentalHealthCheck": { "title": "Saúde mental", "desc": "Triagem de depressão pós-parto" }, "doctorVisit": { "title": "Visita ao médico", "desc": "Agende seu check-up pós-parto" }, "returnToExercise": { "title": "Voltar ao exercício", "desc": "Aumente gradualmente a atividade" }, "intimacyReadiness": { "title": "Preparação para intimidade", "desc": "Converse com seu parceiro quando estiver pronta" }, "fullCheckup": { "title": "Check-up completo", "desc": "Exame médico pós-parto completo" }, "longTermPlan": { "title": "Plano de longo prazo", "desc": "Contracepção e planos futuros" }, "selfCare": { "title": "Rotina de autocuidado", "desc": "Estabeleça práticas de autocuidado" } }
+  },
+  "toolsInternal.mealSuggestion.allergiesLabel": "Alergias e intolerâncias",
+  "toolsInternal.mealSuggestion.allergies": { "gluten": "Glúten", "dairy": "Laticínios", "nuts": "Nozes", "eggs": "Ovos", "soy": "Soja", "seafood": "Frutos do mar" },
+  "toolsInternal.mealSuggestion.prepTimeLabel": "Tempo de preparo",
+  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Rápido (< 15 min)", "medium": "Médio (15-30 min)", "elaborate": "Elaborado (30+ min)" }
 }

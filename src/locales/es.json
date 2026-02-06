@@ -166,6 +166,14 @@
     "diaperTracker": {
       "title": "Seguimiento de pañales",
       "description": "Registra cambios, monitorea la salud."
+    },
+    "babyCryTranslator": {
+      "title": "Traductor de llanto del bebé",
+      "description": "Análisis IA de los patrones de llanto de tu bebé."
+    },
+    "postpartumRecovery": {
+      "title": "Guía de recuperación posparto",
+      "description": "Tu plan de recuperación de 6 semanas después del parto."
     }
   },
   "dashboard": {
@@ -2722,5 +2730,25 @@
       "askClarification": "No dudes en pedir aclaraciones",
       "bringPartner": "Lleva a tu pareja si es posible"
     }
-  }
+  },
+  "toolsInternal.babyCryTranslator": {
+    "subtitle": "Entiende lo que tu bebé intenta decirte",
+    "babyAge": "Edad del bebé", "weeks": "semanas", "cryPattern": "Patrón de llanto", "cryDuration": "¿Cuánto tiempo?", "whenCrying": "¿Cuándo llora el bebé?", "analyzeButton": "Analizar patrón de llanto", "analysisResult": "Análisis del llanto", "newAnalysis": "Nuevo análisis", "reanalyze": "Re-analizar", "recentLogs": "Análisis recientes", "tipsTitle": "Consejos útiles",
+    "patterns": { "continuous": "Llanto continuo", "intermittent": "Intermitente", "highPitch": "Tono agudo", "whimpering": "Gimoteo", "rhythmic": "Rítmico", "sudden": "Grito repentino" },
+    "durations": { "under1": "Menos de 1 min", "1to5": "1-5 min", "5to15": "5-15 min", "over15": "Más de 15 min" },
+    "contexts": { "afterFeeding": "Después de comer", "beforeSleep": "Antes de dormir", "afterWaking": "Al despertar", "duringChange": "Durante el cambio", "noReason": "Sin razón aparente", "afterBath": "Después del baño" },
+    "tips": { "tip1": "Cada bebé tiene un patrón de llanto único", "tip2": "Los bebés lloran 1-3 horas al día en promedio — es normal", "tip3": "Si el llanto es inusual o persistente, consulta al pediatra" }
+  },
+  "toolsInternal.postpartumRecovery": {
+    "subtitle": "Tu viaje de recuperación personalizado después del parto",
+    "welcomeTitle": "Tu viaje de recuperación", "welcomeDesc": "Un plan de recuperación de 6 semanas adaptado a tu parto", "selectBirthType": "¿Cómo fue tu parto?",
+    "birthTypes": { "vaginal": "Parto vaginal", "cesarean": "Cesárea" },
+    "progress": "Progreso", "getAIAdvice": "Obtener consejo IA", "aiAdviceTitle": "Consejos de recuperación personalizados", "changeBirthType": "Cambiar tipo de parto",
+    "phases": { "week1": { "title": "Semana 1 — Descanso y sanación", "description": "Descanso, cuidado de herida y vínculo con el bebé" }, "week2": { "title": "Semana 2 — Inicio suave", "description": "Movimiento suave y rutinas" }, "week3_4": { "title": "Semanas 3-4 — Fortalecimiento", "description": "Ejercicios ligeros y bienestar emocional" }, "week5_6": { "title": "Semanas 5-6 — Nueva normalidad", "description": "Regreso a la actividad y planificación" } },
+    "checklist": { "rest": { "title": "Priorizar el descanso", "desc": "Duerme cuando el bebé duerme" }, "hydration": { "title": "Mantenerse hidratada", "desc": "8-10 vasos de agua al día" }, "woundCare": { "title": "Cuidado de la herida", "desc": "Sigue las instrucciones del médico" }, "feedingSchedule": { "title": "Horario de alimentación", "desc": "Establece una rutina regular" }, "painManagement": { "title": "Manejo del dolor", "desc": "Toma los medicamentos recetados" }, "gentleWalking": { "title": "Caminata suave", "desc": "Paseos cortos en casa" }, "emotionalCheck": { "title": "Control emocional", "desc": "Monitorea tu estado de ánimo" }, "nutrition": { "title": "Comidas nutritivas", "desc": "Comidas ricas en hierro y proteínas" }, "sleepRoutine": { "title": "Rutina de sueño", "desc": "Crea un ambiente de descanso" }, "socialSupport": { "title": "Apoyo social", "desc": "Mantente conectada con tus seres queridos" }, "lightExercise": { "title": "Ejercicio ligero", "desc": "Estiramientos suaves y caminatas" }, "posturalExercises": { "title": "Ejercicios posturales", "desc": "Fortalece tu core suavemente" }, "kegelExercises": { "title": "Ejercicios de Kegel", "desc": "Comienza ejercicios del suelo pélvico" }, "mentalHealthCheck": { "title": "Salud mental", "desc": "Evaluación de depresión posparto" }, "doctorVisit": { "title": "Visita al médico", "desc": "Programa tu chequeo posparto" }, "returnToExercise": { "title": "Volver al ejercicio", "desc": "Aumenta gradualmente la actividad" }, "intimacyReadiness": { "title": "Preparación para la intimidad", "desc": "Habla con tu pareja cuando estés lista" }, "fullCheckup": { "title": "Chequeo completo", "desc": "Examen médico posparto completo" }, "longTermPlan": { "title": "Plan a largo plazo", "desc": "Anticoncepción y planes futuros" }, "selfCare": { "title": "Rutina de autocuidado", "desc": "Establece prácticas de autocuidado" } }
+  },
+  "toolsInternal.mealSuggestion.allergiesLabel": "Alergias e intolerancias",
+  "toolsInternal.mealSuggestion.allergies": { "gluten": "Gluten", "dairy": "Lácteos", "nuts": "Frutos secos", "eggs": "Huevos", "soy": "Soja", "seafood": "Mariscos" },
+  "toolsInternal.mealSuggestion.prepTimeLabel": "Tiempo de preparación",
+  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Rápido (< 15 min)", "medium": "Medio (15-30 min)", "elaborate": "Elaborado (30+ min)" }
 }

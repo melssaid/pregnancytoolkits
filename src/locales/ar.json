@@ -64,7 +64,9 @@
     "aiLactationPrep": {"title": "تحضير الرضاعة الذكي", "description": "دليل تحضير الرضاعة الطبيعية"},
     "babySleepTracker": {"title": "متتبع نوم الطفل", "description": "تتبعي أنماط نوم طفلك"},
     "babyGrowth": {"title": "نمو الطفل", "description": "تتبعي النمو بمخططات WHO"},
-    "diaperTracker": {"title": "متتبع الحفاضات", "description": "سجلي التغييرات وراقبي الصحة"}
+    "diaperTracker": {"title": "متتبع الحفاضات", "description": "سجلي التغييرات وراقبي الصحة"},
+    "babyCryTranslator": {"title": "مترجم بكاء الطفل", "description": "تحليل ذكي لأنماط بكاء طفلك"},
+    "postpartumRecovery": {"title": "دليل التعافي بعد الولادة", "description": "خطة تعافيك لمدة 6 أسابيع بعد الولادة"}
   },
   "dashboard": {
     "tabs": {
@@ -2699,5 +2701,103 @@
       "askClarification": "لا تترددي في طلب التوضيح",
       "bringPartner": "اصطحبي شريكك إن أمكن"
     }
+  },
+  "toolsInternal.babyCryTranslator": {
+    "subtitle": "افهمي ما يحاول طفلك إخبارك به",
+    "babyAge": "عمر الطفل",
+    "weeks": "أسبوع",
+    "cryPattern": "نمط البكاء",
+    "cryDuration": "مدة البكاء",
+    "whenCrying": "متى يبكي الطفل؟",
+    "analyzeButton": "تحليل نمط البكاء",
+    "analysisResult": "تحليل البكاء",
+    "newAnalysis": "تحليل جديد",
+    "reanalyze": "إعادة التحليل",
+    "recentLogs": "التحليلات الأخيرة",
+    "tipsTitle": "نصائح مفيدة",
+    "patterns": {
+      "continuous": "بكاء متواصل",
+      "intermittent": "متقطع",
+      "highPitch": "صوت حاد",
+      "whimpering": "أنين خفيف",
+      "rhythmic": "إيقاعي",
+      "sudden": "صراخ مفاجئ"
+    },
+    "durations": {
+      "under1": "أقل من دقيقة",
+      "1to5": "1-5 دقائق",
+      "5to15": "5-15 دقيقة",
+      "over15": "أكثر من 15 دقيقة"
+    },
+    "contexts": {
+      "afterFeeding": "بعد الرضاعة",
+      "beforeSleep": "قبل النوم",
+      "afterWaking": "بعد الاستيقاظ",
+      "duringChange": "أثناء تغيير الحفاض",
+      "noReason": "بدون سبب واضح",
+      "afterBath": "بعد الاستحمام"
+    },
+    "tips": {
+      "tip1": "لكل طفل نمط بكاء فريد — تعرفي على نمط طفلك",
+      "tip2": "يبكي الأطفال 1-3 ساعات يومياً في المتوسط — هذا طبيعي",
+      "tip3": "إذا كان البكاء غير عادي أو مستمر، استشيري طبيب الأطفال"
+    }
+  },
+  "toolsInternal.postpartumRecovery": {
+    "subtitle": "رحلة تعافيك المخصصة بعد الولادة",
+    "welcomeTitle": "رحلة التعافي",
+    "welcomeDesc": "خطة تعافي لمدة 6 أسابيع مصممة حسب تجربة ولادتك",
+    "selectBirthType": "كيف كانت ولادتك؟",
+    "birthTypes": {
+      "vaginal": "ولادة طبيعية",
+      "cesarean": "ولادة قيصرية"
+    },
+    "progress": "التقدم",
+    "getAIAdvice": "احصلي على نصائح ذكية للتعافي",
+    "aiAdviceTitle": "نصائح تعافي مخصصة",
+    "changeBirthType": "تغيير نوع الولادة",
+    "phases": {
+      "week1": { "title": "الأسبوع 1 — الراحة والشفاء", "description": "ركزي على الراحة والعناية بالجرح والترابط مع طفلك" },
+      "week2": { "title": "الأسبوع 2 — بداية لطيفة", "description": "ابدئي بحركات خفيفة وروتين يومي" },
+      "week3_4": { "title": "الأسبوعان 3-4 — بناء القوة", "description": "تمارين خفيفة وفحص الصحة النفسية" },
+      "week5_6": { "title": "الأسبوعان 5-6 — الوضع الجديد", "description": "العودة للنشاط والتخطيط طويل المدى" }
+    },
+    "checklist": {
+      "rest": { "title": "أولوية الراحة", "desc": "نامي عندما ينام الطفل واقبلي المساعدة" },
+      "hydration": { "title": "شرب الماء", "desc": "اشربي 8-10 أكواب ماء يومياً" },
+      "woundCare": { "title": "العناية بالجرح", "desc": "اتبعي تعليمات الطبيب للعناية بالجرح" },
+      "feedingSchedule": { "title": "جدول الرضاعة", "desc": "ضعي روتين رضاعة منتظم" },
+      "painManagement": { "title": "إدارة الألم", "desc": "تناولي الأدوية الموصوفة حسب التوجيهات" },
+      "gentleWalking": { "title": "مشي خفيف", "desc": "جولات قصيرة في المنزل" },
+      "emotionalCheck": { "title": "فحص المشاعر", "desc": "راقبي مزاجك ومشاعرك" },
+      "nutrition": { "title": "وجبات مغذية", "desc": "تناولي وجبات غنية بالحديد والبروتين" },
+      "sleepRoutine": { "title": "روتين النوم", "desc": "هيئي بيئة نوم مريحة" },
+      "socialSupport": { "title": "الدعم الاجتماعي", "desc": "ابقي على تواصل مع أحبائك" },
+      "lightExercise": { "title": "تمارين خفيفة", "desc": "تمدد لطيف ومشي" },
+      "posturalExercises": { "title": "تمارين وضعية", "desc": "قوّي عضلاتك الأساسية بلطف" },
+      "kegelExercises": { "title": "تمارين كيجل", "desc": "ابدئي تمارين قاع الحوض" },
+      "mentalHealthCheck": { "title": "فحص الصحة النفسية", "desc": "فحص اكتئاب ما بعد الولادة" },
+      "doctorVisit": { "title": "زيارة الطبيب", "desc": "حددي موعد فحص ما بعد الولادة" },
+      "returnToExercise": { "title": "العودة للتمارين", "desc": "زيدي مستوى النشاط تدريجياً" },
+      "intimacyReadiness": { "title": "الاستعداد للعلاقة", "desc": "تحدثي مع شريكك عندما تكونين جاهزة" },
+      "fullCheckup": { "title": "فحص شامل", "desc": "فحص طبي كامل بعد الولادة" },
+      "longTermPlan": { "title": "خطة طويلة المدى", "desc": "ناقشي وسائل المنع والخطط المستقبلية" },
+      "selfCare": { "title": "روتين العناية الذاتية", "desc": "ضعي ممارسات عناية ذاتية مستمرة" }
+    }
+  },
+  "toolsInternal.mealSuggestion.allergiesLabel": "الحساسية وعدم التحمل",
+  "toolsInternal.mealSuggestion.allergies": {
+    "gluten": "الجلوتين",
+    "dairy": "الألبان",
+    "nuts": "المكسرات",
+    "eggs": "البيض",
+    "soy": "الصويا",
+    "seafood": "المأكولات البحرية"
+  },
+  "toolsInternal.mealSuggestion.prepTimeLabel": "وقت التحضير",
+  "toolsInternal.mealSuggestion.prepTimes": {
+    "quick": "سريع (أقل من 15 دقيقة)",
+    "medium": "متوسط (15-30 دقيقة)",
+    "elaborate": "مفصّل (أكثر من 30 دقيقة)"
   }
 }

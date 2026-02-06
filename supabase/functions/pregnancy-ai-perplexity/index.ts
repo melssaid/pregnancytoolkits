@@ -9,7 +9,8 @@ interface AIRequest {
   type: "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | 
         "posture-coach" | "walking-coach" | "stretch-reminder" | "back-pain-relief" | 
         "leg-cramp-preventer" | "smoothie-generator" | "daily-tips" | "labor-tracker" |
-        "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice" | "bump-photos";
+        "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice" | "bump-photos" |
+        "baby-cry-analysis" | "postpartum-recovery";
   messages?: { role: string; content: string }[];
   context?: {
     week?: number;
@@ -28,7 +29,8 @@ const VALID_TYPES = [
   "symptom-analysis", "meal-suggestion", "pregnancy-assistant", "weekly-summary",
   "posture-coach", "walking-coach", "stretch-reminder", "back-pain-relief",
   "leg-cramp-preventer", "smoothie-generator", "daily-tips", "labor-tracker",
-  "appointment-prep", "kick-analysis", "sleep-analysis", "vitamin-advice", "bump-photos"
+  "appointment-prep", "kick-analysis", "sleep-analysis", "vitamin-advice", "bump-photos",
+  "baby-cry-analysis", "postpartum-recovery"
 ];
 const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
@@ -855,6 +857,104 @@ A warm, supportive message celebrating this stage of your pregnancy journey.
 ` + complianceDisclaimer + `
 
 Be warm, encouraging, and focus on celebrating this beautiful journey.`;
+        break;
+
+      case "baby-cry-analysis":
+        systemPrompt = personaPrefix + `You are specialized in understanding newborn and infant crying patterns to help new parents.
+
+IMPORTANT: You are providing GENERAL EDUCATIONAL guidance about common crying patterns, NOT diagnosing any condition.
+
+Structure your response:
+
+## 👶 Cry Pattern Analysis
+Based on the described crying pattern, provide a thoughtful interpretation of what the baby might be communicating.
+
+## 🔍 Possible Reasons
+Rank the most likely reasons for this type of crying:
+1. **[Reason]**: Explanation and signs to look for
+2. **[Reason]**: Explanation and signs to look for
+3. **[Reason]**: Explanation and signs to look for
+
+## 💝 Soothing Strategies
+Step-by-step calming techniques:
+1. **[Technique]**: Detailed instructions
+2. **[Technique]**: Detailed instructions
+3. **[Technique]**: Detailed instructions
+4. **[Technique]**: Detailed instructions
+
+## 🍼 Feeding Check
+Quick feeding assessment questions and tips.
+
+## 🌡️ Comfort Check
+Environmental and physical comfort considerations.
+
+## ⚠️ When to Call Your Pediatrician
+Contact your doctor immediately if:
+- Crying is accompanied by fever
+- Baby is inconsolable for more than 3 hours
+- Changes in feeding or stool patterns
+- Any signs of illness or distress
+
+## 💕 Reassurance
+Remind parents that crying is normal and they are doing a great job.
+
+` + complianceDisclaimer + `
+
+Be extremely warm, reassuring, and supportive. New parents are often anxious.`;
+        break;
+
+      case "postpartum-recovery":
+        systemPrompt = personaPrefix + `You are specialized in postpartum recovery guidance for new mothers.
+
+IMPORTANT: Recovery varies for every woman. Always recommend following up with their healthcare provider.
+
+Structure your response:
+
+## 🌸 Recovery Phase Overview
+Brief description of what to expect during this recovery phase.
+
+## 💪 Physical Recovery
+### What's Happening in Your Body
+- Healing process details
+- Normal vs. concerning symptoms
+- Expected timeline
+
+### Recommended Activities
+- Safe exercises for this phase
+- Activities to avoid
+- Gradual progression guide
+
+## 🥗 Nutrition for Recovery
+### Essential Nutrients
+| Nutrient | Why You Need It | Best Sources |
+|----------|----------------|--------------|
+| Iron | Recovery from blood loss | Leafy greens, lean meat |
+| Continue with 4-5 more items |
+
+### Hydration Tips
+Especially important for breastfeeding mothers.
+
+## 💆 Emotional Wellness
+- Normal emotional changes to expect
+- Signs of postpartum depression vs. "baby blues"
+- Self-care strategies
+- When to seek professional help
+
+## 🤱 Breastfeeding Support (if applicable)
+Tips for this stage of breastfeeding.
+
+## ⚠️ Warning Signs - Seek Medical Care If:
+- Heavy bleeding or large clots
+- Fever above 100.4°F/38°C
+- Severe pain or infection signs
+- Symptoms of postpartum depression
+
+## 💕 Words of Encouragement
+You're doing an incredible job. Recovery takes time - be patient with yourself.
+
+` + complianceDisclaimer + `
+
+Be compassionate, practical, and empowering. New mothers need support and reassurance.`;
         break;
     }
 

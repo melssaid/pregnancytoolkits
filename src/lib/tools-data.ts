@@ -35,6 +35,8 @@ import {
   Leaf,
   Wallet,
   Milk,
+  Volume2,
+  Flower2,
 } from "lucide-react";
 
 export interface Tool {
@@ -129,9 +131,11 @@ export const toolsData: Tool[] = [
   // Merged: doctor-questions functionality integrated
   // ═══════════════════════════════════════════════════════════════
   { id: "ai-lactation-prep", titleKey: "tools.aiLactationPrep.title", descriptionKey: "tools.aiLactationPrep.description", icon: Milk, categoryKey: "categories.postpartum", href: "/tools/ai-lactation-prep", priority: 31, hasAI: true },
-  { id: "baby-sleep-tracker", titleKey: "tools.babySleepTracker.title", descriptionKey: "tools.babySleepTracker.description", icon: Moon, categoryKey: "categories.postpartum", href: "/tools/baby-sleep-tracker", priority: 32, hasAI: true },
-  { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 33 },
-  { id: "diaper-tracker", titleKey: "tools.diaperTracker.title", descriptionKey: "tools.diaperTracker.description", icon: Baby, categoryKey: "categories.postpartum", href: "/tools/diaper-tracker", priority: 34 },
+  { id: "postpartum-recovery", titleKey: "tools.postpartumRecovery.title", descriptionKey: "tools.postpartumRecovery.description", icon: Flower2, categoryKey: "categories.postpartum", href: "/tools/postpartum-recovery", priority: 32, hasAI: true },
+  { id: "baby-cry-translator", titleKey: "tools.babyCryTranslator.title", descriptionKey: "tools.babyCryTranslator.description", icon: Volume2, categoryKey: "categories.postpartum", href: "/tools/baby-cry-translator", priority: 33, hasAI: true },
+  { id: "baby-sleep-tracker", titleKey: "tools.babySleepTracker.title", descriptionKey: "tools.babySleepTracker.description", icon: Moon, categoryKey: "categories.postpartum", href: "/tools/baby-sleep-tracker", priority: 34, hasAI: true },
+  { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 35 },
+  { id: "diaper-tracker", titleKey: "tools.diaperTracker.title", descriptionKey: "tools.diaperTracker.description", icon: Baby, categoryKey: "categories.postpartum", href: "/tools/diaper-tracker", priority: 36 },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -223,10 +227,12 @@ const toolRelationships: Record<string, string[]> = {
   "baby-gear-recommender": ["ai-hospital-bag", "ai-lactation-prep", "baby-growth"],
   
   // Postpartum
-  "ai-lactation-prep": ["baby-sleep-tracker", "baby-growth", "postpartum-mental-health"],
-  "baby-sleep-tracker": ["baby-growth", "ai-lactation-prep", "diaper-tracker"],
+  "ai-lactation-prep": ["postpartum-recovery", "baby-sleep-tracker", "baby-growth"],
+  "postpartum-recovery": ["ai-lactation-prep", "postpartum-mental-health", "baby-cry-translator"],
+  "baby-cry-translator": ["baby-sleep-tracker", "postpartum-recovery", "ai-lactation-prep"],
+  "baby-sleep-tracker": ["baby-growth", "baby-cry-translator", "diaper-tracker"],
   "baby-growth": ["baby-sleep-tracker", "diaper-tracker", "ai-lactation-prep"],
-  "diaper-tracker": ["baby-sleep-tracker", "baby-growth", "ai-lactation-prep"],
+  "diaper-tracker": ["baby-sleep-tracker", "baby-growth", "baby-cry-translator"],
 };
 
 // Get related tools based on logical relationships

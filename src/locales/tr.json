@@ -166,6 +166,14 @@
     "diaperTracker": {
       "title": "Bez Takibi",
       "description": "Değişiklikleri kaydedin, sağlığı izleyin."
+    },
+    "babyCryTranslator": {
+      "title": "Bebek Ağlama Çevirici",
+      "description": "Bebeğinizin ağlama kalıplarının AI analizi."
+    },
+    "postpartumRecovery": {
+      "title": "Doğum Sonrası İyileşme Rehberi",
+      "description": "Doğum sonrası 6 haftalık iyileşme planınız."
     }
   },
   "dashboard": {
@@ -2722,5 +2730,25 @@
       "askClarification": "Açıklama istemekten çekinmeyin",
       "bringPartner": "Mümkünse partnerinizi getirin"
     }
-  }
+  },
+  "toolsInternal.babyCryTranslator": {
+    "subtitle": "Bebeğinizin size ne söylemeye çalıştığını anlayın",
+    "babyAge": "Bebek Yaşı", "weeks": "hafta", "cryPattern": "Ağlama Kalıbı", "cryDuration": "Ne Kadar Sürdü?", "whenCrying": "Bebek Ne Zaman Ağlıyor?", "analyzeButton": "Ağlama Kalıbını Analiz Et", "analysisResult": "Ağlama Analizi", "newAnalysis": "Yeni Analiz", "reanalyze": "Tekrar Analiz Et", "recentLogs": "Son Analizler", "tipsTitle": "Faydalı İpuçları",
+    "patterns": { "continuous": "Sürekli ağlama", "intermittent": "Aralıklı", "highPitch": "Yüksek perdeli", "whimpering": "Sızlanma", "rhythmic": "Ritmik", "sudden": "Ani çığlık" },
+    "durations": { "under1": "1 dk altı", "1to5": "1-5 dk", "5to15": "5-15 dk", "over15": "15 dk üzeri" },
+    "contexts": { "afterFeeding": "Beslemeden sonra", "beforeSleep": "Uyumadan önce", "afterWaking": "Uyandıktan sonra", "duringChange": "Bez değişimi sırasında", "noReason": "Belirgin sebep yok", "afterBath": "Banyodan sonra" },
+    "tips": { "tip1": "Her bebeğin benzersiz bir ağlama kalıbı vardır", "tip2": "Bebekler günde ortalama 1-3 saat ağlar — bu normaldir", "tip3": "Olağandışı veya sürekli ağlama durumunda pediatristinize danışın" }
+  },
+  "toolsInternal.postpartumRecovery": {
+    "subtitle": "Doğum sonrası kişiselleştirilmiş iyileşme yolculuğunuz",
+    "welcomeTitle": "İyileşme Yolculuğunuz", "welcomeDesc": "Doğum deneyiminize özel 6 haftalık iyileşme planı", "selectBirthType": "Nasıl doğum yaptınız?",
+    "birthTypes": { "vaginal": "Normal Doğum", "cesarean": "Sezaryen" },
+    "progress": "İlerleme", "getAIAdvice": "AI İyileşme Tavsiyesi Al", "aiAdviceTitle": "Kişiselleştirilmiş İyileşme Tavsiyesi", "changeBirthType": "Doğum türünü değiştir",
+    "phases": { "week1": { "title": "Hafta 1 — Dinlenme ve İyileşme", "description": "Dinlenme, yara bakımı ve bebekle bağ kurma" }, "week2": { "title": "Hafta 2 — Yumuşak Başlangıç", "description": "Hafif hareket ve rutinler oluşturma" }, "week3_4": { "title": "Hafta 3-4 — Güç Kazanma", "description": "Hafif egzersizler ve duygusal sağlık kontrolü" }, "week5_6": { "title": "Hafta 5-6 — Yeni Normal", "description": "Aktiviteye dönüş ve uzun vadeli planlama" } },
+    "checklist": { "rest": { "title": "Dinlenmeyi Öncelikle", "desc": "Bebek uyurken uyuyun" }, "hydration": { "title": "Su İçin", "desc": "Günde 8-10 bardak su" }, "woundCare": { "title": "Yara Bakımı", "desc": "Doktor talimatlarını takip edin" }, "feedingSchedule": { "title": "Beslenme Programı", "desc": "Düzenli bir beslenme rutini oluşturun" }, "painManagement": { "title": "Ağrı Yönetimi", "desc": "Reçeteli ilaçları yönergelere göre alın" }, "gentleWalking": { "title": "Hafif Yürüyüş", "desc": "Evde kısa yürüyüşler" }, "emotionalCheck": { "title": "Duygusal Kontrol", "desc": "Ruh halinizi izleyin" }, "nutrition": { "title": "Besleyici Yemekler", "desc": "Demir ve protein açısından zengin yemekler" }, "sleepRoutine": { "title": "Uyku Rutini", "desc": "Dinlendirici bir uyku ortamı oluşturun" }, "socialSupport": { "title": "Sosyal Destek", "desc": "Sevdiklerinizle bağlantıda kalın" }, "lightExercise": { "title": "Hafif Egzersiz", "desc": "Nazik esneme ve yürüyüş" }, "posturalExercises": { "title": "Duruş Egzersizleri", "desc": "Çekirdek kaslarınızı nazikçe güçlendirin" }, "kegelExercises": { "title": "Kegel Egzersizleri", "desc": "Pelvik taban egzersizlerine başlayın" }, "mentalHealthCheck": { "title": "Ruh Sağlığı Kontrolü", "desc": "Doğum sonrası depresyon taraması" }, "doctorVisit": { "title": "Doktor Ziyareti", "desc": "Doğum sonrası kontrolünüzü planlayın" }, "returnToExercise": { "title": "Spora Dönüş", "desc": "Aktivite seviyesini kademeli olarak artırın" }, "intimacyReadiness": { "title": "Yakınlık Hazırlığı", "desc": "Hazır olduğunuzda partnerinizle konuşun" }, "fullCheckup": { "title": "Tam Kontrol", "desc": "Kapsamlı doğum sonrası muayene" }, "longTermPlan": { "title": "Uzun Vadeli Plan", "desc": "Doğum kontrolü ve gelecek planları" }, "selfCare": { "title": "Öz Bakım Rutini", "desc": "Sürekli öz bakım alışkanlıkları edinin" } }
+  },
+  "toolsInternal.mealSuggestion.allergiesLabel": "Alerjiler ve İntoleranslar",
+  "toolsInternal.mealSuggestion.allergies": { "gluten": "Gluten", "dairy": "Süt Ürünleri", "nuts": "Kuruyemiş", "eggs": "Yumurta", "soy": "Soya", "seafood": "Deniz Ürünleri" },
+  "toolsInternal.mealSuggestion.prepTimeLabel": "Hazırlık Süresi",
+  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Hızlı (< 15 dk)", "medium": "Orta (15-30 dk)", "elaborate": "Detaylı (30+ dk)" }
 }
