@@ -840,8 +840,17 @@
         "babyHat": "Gorrinho",
         "changeOfClothes": "Troca de roupa",
         "snacksDrinks": "Lanches e bebidas",
-        "cameraCharger": "Carregador de câmera/celular"
-      }
+        "cameraCharger": "Carregador de câmera/celular",
+        "totalItems": "itens"
+      },
+      "packed": "Preparado",
+      "notPacked": "Não preparado",
+      "recommended": "Recomendado",
+      "optional": "Opcional",
+      "exportPDF": "Exportar PDF",
+      "shareWhatsApp": "Compartilhar via WhatsApp",
+      "exportSuccess": "Checklist exportada com sucesso!",
+      "exportError": "Falha ao exportar"
     },
     "birthPlan": {
       "title": "Gerador de Plano de Parto IA",

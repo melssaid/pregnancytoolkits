@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Briefcase, Sparkles, Baby, User, Heart, Plus } from "lucide-react";
+import { Briefcase, Sparkles, Baby, User, Heart, Plus, FileDown, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -13,6 +13,8 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
+import { exportHospitalBagPDF, generateHospitalBagShareText } from "@/lib/pdfExport";
+import { toast } from "sonner";
 
 const getHospitalBagVideos = (t: any): Video[] => [
   { id: "1", title: t('toolsInternal.hospitalBag.videos.v1.title'), description: t('toolsInternal.hospitalBag.videos.v1.description'), youtubeId: "NTulfAOzbp8", duration: "8:00", category: t('toolsInternal.hospitalBag.videos.v1.category') },
@@ -246,6 +248,78 @@ const AIHospitalBag = () => {
     setNewItem("");
   };
 
+  // Helper to get item display name
+  const getItemDisplayName = (item: BagItem): string => {
+    const key = item.nameKey || "";
+    if (!key) return "";
+    if (key.startsWith("toolsInternal.")) return t(key);
+    if (key.startsWith("hospitalBag.")) return t(`toolsInternal.${key}`);
+    return key; // Custom items use raw name
+  };
+
+  // Export to PDF
+  const handleExportPDF = async () => {
+    try {
+      const pdfItems = items.map(item => ({
+        id: item.id,
+        name: getItemDisplayName(item),
+        category: item.category,
+        packed: item.packed,
+        priority: item.priority,
+      }));
+
+      await exportHospitalBagPDF({
+        title: t('toolsInternal.hospitalBag.title'),
+        subtitle: t('toolsInternal.hospitalBag.subtitle'),
+        items: pdfItems,
+        language: i18n.language as any,
+        labels: {
+          mom: t('toolsInternal.hospitalBag.mom'),
+          baby: t('toolsInternal.hospitalBag.baby'),
+          partner: t('toolsInternal.hospitalBag.partner'),
+          documents: t('toolsInternal.hospitalBag.documents'),
+          packed: t('toolsInternal.hospitalBag.packed'),
+          notPacked: t('toolsInternal.hospitalBag.notPacked'),
+          essential: t('toolsInternal.hospitalBag.essential'),
+          recommended: t('toolsInternal.hospitalBag.recommended'),
+          optional: t('toolsInternal.hospitalBag.optional'),
+          progress: t('toolsInternal.hospitalBag.progress'),
+          totalItems: t('toolsInternal.hospitalBag.items.totalItems'),
+        },
+      });
+
+      toast.success(t('toolsInternal.hospitalBag.exportSuccess'));
+    } catch (error) {
+      console.error('PDF export error:', error);
+      toast.error(t('toolsInternal.hospitalBag.exportError'));
+    }
+  };
+
+  // Share via WhatsApp
+  const handleShareWhatsApp = () => {
+    const shareItems = items.map(item => ({
+      id: item.id,
+      name: getItemDisplayName(item),
+      category: item.category,
+      packed: item.packed,
+      priority: item.priority,
+    }));
+
+    const shareText = generateHospitalBagShareText(shareItems, {
+      title: t('toolsInternal.hospitalBag.title'),
+      mom: t('toolsInternal.hospitalBag.mom'),
+      baby: t('toolsInternal.hospitalBag.baby'),
+      partner: t('toolsInternal.hospitalBag.partner'),
+      documents: t('toolsInternal.hospitalBag.documents'),
+      packed: t('toolsInternal.hospitalBag.packed'),
+      notPacked: t('toolsInternal.hospitalBag.notPacked'),
+      progress: t('toolsInternal.hospitalBag.progress'),
+    });
+
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   const getPersonalizedList = async () => {
     const currentLang = i18n.language;
     const langNames: Record<string, string> = {
@@ -418,15 +492,38 @@ Include seasonal considerations and hospital-specific recommendations.`;
           </Button>
         </div>
 
-        {/* AI Suggestions */}
+        {/* Action Buttons */}
+        <div className="grid grid-cols-2 gap-3">
+          <Button
+            onClick={getPersonalizedList}
+            disabled={isLoading}
+            className="bg-gradient-to-r from-teal-500 to-cyan-600"
+            size="lg"
+          >
+            <Sparkles className="w-4 h-4 me-2" />
+            {isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}
+          </Button>
+
+          <Button
+            onClick={handleExportPDF}
+            variant="outline"
+            size="lg"
+            className="border-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30"
+          >
+            <FileDown className="w-4 h-4 me-2" />
+            {t('toolsInternal.hospitalBag.exportPDF')}
+          </Button>
+        </div>
+
+        {/* Share Button */}
         <Button
-          onClick={getPersonalizedList}
-          disabled={isLoading}
-          className="w-full bg-gradient-to-r from-teal-500 to-cyan-600"
+          onClick={handleShareWhatsApp}
+          variant="outline"
+          className="w-full border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 text-green-700 dark:text-green-400"
           size="lg"
         >
-          <Sparkles className="w-4 h-4 me-2" />
-          {isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}
+          <Share2 className="w-4 h-4 me-2" />
+          {t('toolsInternal.hospitalBag.shareWhatsApp')}
         </Button>
 
         {response && (

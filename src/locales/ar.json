@@ -562,8 +562,17 @@
         "babyHat": "قبعة للرضيع",
         "changeOfClothes": "تغيير ملابس",
         "snacksDrinks": "سناكات ومشروبات",
-        "cameraCharger": "شاحن كاميرا/هاتف"
-      }
+        "cameraCharger": "شاحن كاميرا/هاتف",
+        "totalItems": "عنصر"
+      },
+      "packed": "معبأ",
+      "notPacked": "غير معبأ",
+      "recommended": "موصى به",
+      "optional": "اختياري",
+      "exportPDF": "تصدير PDF",
+      "shareWhatsApp": "مشاركة عبر واتساب",
+      "exportSuccess": "تم تصدير القائمة بنجاح!",
+      "exportError": "فشل تصدير القائمة"
     },
     "birthPlan": {
       "title": "مُنشئ خطة الولادة الذكي",
