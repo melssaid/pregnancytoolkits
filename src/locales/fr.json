@@ -2319,6 +2319,12 @@
     "screeningDisclaimer": "⚠️ Ceci est un outil de dépistage basé sur l'échelle de dépression postnatale d'Édimbourg (EPDS). Il ne fournit pas de diagnostic. Consultez toujours un professionnel pour une évaluation appropriée.",
     "mentalWellnessVideos": "Vidéos de bien-être mental",
     "videosSubtitle": "Ressources de soutien et d'auto-soins",
+    "videos": {
+      "v1": { "title": "Qu'est-ce que la dépression post-partum ?", "description": "Signes, symptômes et quand chercher de l'aide professionnelle", "category": "Éducation" },
+      "v2": { "title": "La dépression post-partum expliquée", "description": "Symptômes, facteurs de risque et options de traitement", "category": "Éducation" },
+      "v3": { "title": "Méditation de relaxation pendant la grossesse", "description": "Méditation apaisante pour une meilleure santé mentale", "category": "Relaxation" },
+      "v4": { "title": "Soins du nouveau-né - Semaine 1", "description": "Guide du pédiatre pour la première semaine avec bébé", "category": "Auto-soins" }
+    },
     "riskLevels": {
       "low": {
         "title": "Risque faible",

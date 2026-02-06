@@ -2468,6 +2468,12 @@
       "screeningDisclaimer": "⚠️ This is a screening tool based on the Edinburgh Postnatal Depression Scale (EPDS). It does not provide a diagnosis. Always consult with a healthcare professional for proper evaluation.",
       "mentalWellnessVideos": "Mental Wellness Videos",
       "videosSubtitle": "Support and self-care resources",
+      "videos": {
+        "v1": { "title": "What is Postpartum Depression?", "description": "Signs, symptoms, and when to seek help from mental health professionals", "category": "Education" },
+        "v2": { "title": "Postpartum Depression Explained", "description": "Symptoms, risk factors, and treatment options", "category": "Education" },
+        "v3": { "title": "Pregnancy Relaxation Meditation", "description": "Calming meditation for better mental health", "category": "Relaxation" },
+        "v4": { "title": "Newborn Care Week 1", "description": "Pediatrician guide to first week with baby", "category": "Self-Care" }
+      },
       "riskLevels": {
         "low": {
           "title": "Low Risk",

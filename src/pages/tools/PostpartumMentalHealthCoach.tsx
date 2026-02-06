@@ -8,11 +8,11 @@ import { Heart, AlertTriangle, Phone, CheckCircle, HelpCircle, Brain, MessageCir
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-const mentalHealthVideos: Video[] = [
-  { id: "1", title: "What is Postpartum Depression?", description: "Signs, symptoms, and when to seek help from mental health professionals", youtubeId: "6kV2_L3uSS0", duration: "8:30", category: "Education" },
-  { id: "2", title: "Postpartum Depression Explained", description: "Symptoms, risk factors, and treatment options", youtubeId: "Aj1Vk3q-4tg", duration: "10:15", category: "Education" },
-  { id: "3", title: "Pregnancy Relaxation Meditation", description: "Calming meditation for better mental health", youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: "Relaxation" },
-  { id: "4", title: "Newborn Care Week 1", description: "Pediatrician guide to first week with baby", youtubeId: "hpgjwK_oQe0", duration: "18:00", category: "Self-Care" },
+const getMenualHealthVideos = (t: any): Video[] => [
+  { id: "1", title: t('toolsInternal.mentalHealthCoach.videos.v1.title'), description: t('toolsInternal.mentalHealthCoach.videos.v1.description'), youtubeId: "6kV2_L3uSS0", duration: "8:30", category: t('toolsInternal.mentalHealthCoach.videos.v1.category') },
+  { id: "2", title: t('toolsInternal.mentalHealthCoach.videos.v2.title'), description: t('toolsInternal.mentalHealthCoach.videos.v2.description'), youtubeId: "Aj1Vk3q-4tg", duration: "10:15", category: t('toolsInternal.mentalHealthCoach.videos.v2.category') },
+  { id: "3", title: t('toolsInternal.mentalHealthCoach.videos.v3.title'), description: t('toolsInternal.mentalHealthCoach.videos.v3.description'), youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: t('toolsInternal.mentalHealthCoach.videos.v3.category') },
+  { id: "4", title: t('toolsInternal.mentalHealthCoach.videos.v4.title'), description: t('toolsInternal.mentalHealthCoach.videos.v4.description'), youtubeId: "hpgjwK_oQe0", duration: "18:00", category: t('toolsInternal.mentalHealthCoach.videos.v4.category') },
 ];
 
 interface ScreeningQuestion {
@@ -96,6 +96,7 @@ export default function PostpartumMentalHealthCoach() {
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   
   const epdsQuestions = getEpdsQuestions(t);
+  const mentalHealthVideos = getMenualHealthVideos(t);
 
   const handleAnswer = (questionId: string, value: number) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
