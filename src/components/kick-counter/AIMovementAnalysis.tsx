@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Brain, Zap, Shield, Clock, Activity, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface KickSession {
   date: string;
@@ -26,9 +27,23 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
   currentWeek = 28 
 }) => {
   const { streamChat, isLoading } = usePregnancyAI();
+  const { currentLanguage } = useLanguage();
   const [analysis, setAnalysis] = useState('');
   const [phase, setPhase] = useState<AnalysisPhase>('idle');
   const [progress, setProgress] = useState(0);
+  const prevLangRef = useRef(currentLanguage);
+
+  // Reset analysis when language changes
+  useEffect(() => {
+    if (prevLangRef.current !== currentLanguage) {
+      prevLangRef.current = currentLanguage;
+      if (phase === 'complete') {
+        setAnalysis('');
+        setPhase('idle');
+        setProgress(0);
+      }
+    }
+  }, [currentLanguage, phase]);
 
   const recentSessions = sessions.slice(0, 14);
 
@@ -134,7 +149,7 @@ Clear, non-alarming guidance on:
 
 Use markdown formatting with headers, bullet points, and **bold** for emphasis. Be supportive and reassuring while being clinically accurate. Avoid medical jargon where possible.`
       }],
-      context: { week: currentWeek },
+      context: { week: currentWeek, language: currentLanguage },
       onDelta: (text) => {
         setAnalysis(prev => prev + text);
         setProgress(prev => Math.min(prev + 0.5, 98));

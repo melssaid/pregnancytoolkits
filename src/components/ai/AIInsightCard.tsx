@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Brain, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
@@ -36,6 +36,19 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   const [insight, setInsight] = useState('');
   const [isExpanded, setIsExpanded] = useState(autoExpand);
   const [hasGenerated, setHasGenerated] = useState(false);
+  const prevLangRef = useRef(currentLanguage);
+
+  // Reset generated content when language changes
+  useEffect(() => {
+    if (prevLangRef.current !== currentLanguage) {
+      prevLangRef.current = currentLanguage;
+      if (hasGenerated) {
+        setInsight('');
+        setHasGenerated(false);
+        setIsExpanded(false);
+      }
+    }
+  }, [currentLanguage, hasGenerated]);
 
   // Always include current language in context for AI responses
   const contextWithLanguage = useMemo(() => ({
