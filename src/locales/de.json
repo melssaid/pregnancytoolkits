@@ -1219,7 +1219,8 @@
       "toddler": "Kleinkind (1-2 Jahre)",
       "child": "Kind (2+ Jahre)",
       "hours": "Stunden",
-      "noDataYet": "Mindestens 2-3 Schlafphasen aufzeichnen, um personalisierte KI-Beratung zu erhalten."
+      "noDataYet": "Mindestens 2-3 Schlafphasen aufzeichnen, um personalisierte KI-Beratung zu erhalten.",
+      "disclaimer": "Dies sind allgemeine Richtlinien. Jedes Baby ist einzigartig. Konsultieren Sie Ihren Kinderarzt für individuelle Beratung."
     },
     "bloodType": {
       "title": "Blutgruppen-Rechner",
