@@ -85,7 +85,7 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
             {!search.trim() && (
               <div className="px-3 py-2">
                 <p className="text-xs font-medium text-muted-foreground mb-2">
-                  Popular Tools
+                  {t('searchDialog.popularTools')}
                 </p>
               </div>
             )}
@@ -145,7 +145,7 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
                     {t('app.noToolsFound')}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Try a different search term
+                    {t('searchDialog.tryDifferent')}
                   </p>
                 </motion.div>
               )}
@@ -157,15 +157,15 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
             <div className="flex items-center gap-3 text-xs text-muted-foreground">
               <span className="flex items-center gap-1">
                 <kbd className="px-1.5 py-0.5 rounded bg-muted text-[10px] font-mono">↑↓</kbd>
-                Navigate
+                {t('searchDialog.navigate')}
               </span>
               <span className="flex items-center gap-1">
                 <kbd className="px-1.5 py-0.5 rounded bg-muted text-[10px] font-mono">↵</kbd>
-                Open
+                {t('searchDialog.open')}
               </span>
             </div>
             <span className="text-xs text-muted-foreground">
-              {filteredTools.length} tools
+              {t('searchDialog.toolsCount', { count: filteredTools.length })}
             </span>
           </div>
         </DialogContent>

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Clock, ExternalLink, Play, Video as VideoIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -79,10 +80,11 @@ const VideoThumbnail: React.FC<{
 
 export const VideoLibrary: React.FC<VideoLibraryProps> = ({
   videos,
-  title = "Educational Videos",
-  subtitle = "Learn more with expert guidance",
+  title,
+  subtitle,
   accentColor = "blue"
 }) => {
+  const { t } = useTranslation();
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [browseOpen, setBrowseOpen] = useState(false);
@@ -113,8 +115,8 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
               <VideoIcon className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground">{title}</h3>
-              <p className="text-xs text-muted-foreground">{subtitle}</p>
+              <h3 className="font-semibold text-foreground">{title || t('videoLibrary.defaultTitle')}</h3>
+              <p className="text-xs text-muted-foreground">{subtitle || t('videoLibrary.defaultSubtitle')}</p>
             </div>
           </div>
 
@@ -134,7 +136,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                         : ''
                     }`}
                   >
-                    {cat === 'all' ? 'All' : cat}
+                    {cat === 'all' ? t('videoLibrary.all') : cat}
                   </Button>
                 ))}
               </div>
@@ -192,7 +194,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
           {filteredVideos.length > 4 && (
             <div className="mt-3 flex flex-col items-center gap-2">
               <p className="text-xs text-center text-muted-foreground">
-                +{filteredVideos.length - 4} more videos available
+                {t('videoLibrary.moreVideos', { count: filteredVideos.length - 4 })}
               </p>
               <Button
                 type="button"
@@ -201,7 +203,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                 onClick={() => setBrowseOpen(true)}
                 className="text-xs"
               >
-                View all ({filteredVideos.length})
+                {t('videoLibrary.viewAll', { count: filteredVideos.length })}
               </Button>
             </div>
           )}
@@ -222,7 +224,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
             <div className="mb-3 p-3 bg-muted/50 border border-border rounded-lg flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5" />
               <p className="text-xs text-muted-foreground">
-                These videos are for educational purposes only and do not replace professional medical advice.
+                {t('videoLibrary.disclaimer')}
               </p>
             </div>
 
@@ -283,7 +285,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
             <div className="mb-3 p-3 bg-muted/50 border border-border rounded-lg flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5" />
               <p className="text-xs text-muted-foreground">
-                These videos are for educational purposes only and do not replace professional medical advice.
+                {t('videoLibrary.disclaimer')}
               </p>
             </div>
             
@@ -307,8 +309,8 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <ExternalLink className="w-3 h-3" />
-                  Open on YouTube
+                   <ExternalLink className="w-3 h-3" />
+                   {t('videoLibrary.openOnYouTube')}
                 </a>
               </div>
             )}

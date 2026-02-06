@@ -8,6 +8,22 @@
   "relatedTools": {
     "title": "Continuez votre parcours"
   },
+  "videoLibrary": {
+    "defaultTitle": "Vidéos éducatives",
+    "defaultSubtitle": "Apprenez avec des conseils d'experts",
+    "all": "Tout",
+    "moreVideos": "+{{count}} vidéos supplémentaires disponibles",
+    "viewAll": "Voir tout ({{count}})",
+    "disclaimer": "Ces vidéos sont à titre éducatif uniquement et ne remplacent pas un avis médical professionnel.",
+    "openOnYouTube": "Ouvrir sur YouTube"
+  },
+  "searchDialog": {
+    "popularTools": "Outils populaires",
+    "tryDifferent": "Essayez un autre terme de recherche",
+    "navigate": "Naviguer",
+    "open": "Ouvrir",
+    "toolsCount": "{{count}} outils"
+  },
   "app": {
     "name": "Outils de Grossesse",
     "tagline": "Votre compagnon complet de grossesse",
@@ -2019,7 +2035,24 @@
       "cook": "Cuire",
       "cookDesc": "Viandes à 75°C (165°F).",
       "wash": "Laver",
-    "washDesc": "Tous les fruits et légumes soigneusement."
+      "washDesc": "Tous les fruits et légumes soigneusement."
+    },
+    "status": {
+      "safe": "Sûr",
+      "avoid": "Éviter",
+      "limit": "Limiter"
+    },
+    "foods": {
+      "sushi": { "name": "Sushi (Poisson Cru)", "reason": "Risque de parasites et bactéries comme la Listeria" },
+      "softCheese": { "name": "Fromage à pâte molle (Non pasteurisé)", "reason": "Risque de contamination par Listeria" },
+      "coffee": { "name": "Café", "reason": "Limiter la caféine à 200mg/jour pour réduire le risque de faible poids à la naissance" },
+      "salmon": { "name": "Saumon (Cuit)", "reason": "Excellente source d'Oméga-3. Assurez-vous qu'il est bien cuit." },
+      "deliMeat": { "name": "Charcuterie", "reason": "Risque de Listeria sauf si chauffée jusqu'à être fumante" },
+      "rawEggs": { "name": "Œufs Crus", "reason": "Risque de Salmonelle" },
+      "tuna": { "name": "Thon (Germon)", "reason": "Teneur en mercure plus élevée. Limiter à 170g par semaine." },
+      "alcohol": { "name": "Alcool", "reason": "Aucune quantité sûre connue. Peut causer le syndrome d'alcoolisme fœtal." },
+      "hardCheese": { "name": "Fromages à pâte dure", "reason": "Généralement sûrs car pasteurisés et à faible humidité" },
+      "chicken": { "name": "Poulet", "reason": "Excellente source de protéines. Doit être bien cuit." }
     }
   },
   "conceptionPage": {
