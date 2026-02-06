@@ -2696,6 +2696,62 @@
       "essential": "Temel",
       "recommended": "Önerilen",
       "niceToHave": "Olması İyi"
+    },
+    "types": {
+      "feeding": "Beslenme",
+      "sleeping": "Uyku",
+      "travel": "Seyahat",
+      "clothing": "Giyim",
+      "health": "Sağlık",
+      "nursery": "Bebek Odası"
+    },
+    "items": {
+      "carSeat": "Oto Koltuğu (Bebek)",
+      "crib": "Beşik veya Sepet",
+      "diapers": "Bezler (Yenidoğan boyutu)",
+      "bottles": "Biberon",
+      "onesies": "Tulumlar (0-3 ay)",
+      "stroller": "Bebek Arabası",
+      "monitor": "Bebek Monitörü",
+      "breastPump": "Göğüs Pompası",
+      "swing": "Bebek Salıncağı",
+      "diaperBag": "Bez Çantası",
+      "bathtub": "Bebek Küveti",
+      "swaddles": "Kundak Battaniyeleri"
+    },
+    "descriptions": {
+      "carSeat": "Bebeği hastaneden eve getirmek için gerekli",
+      "crib": "Bebek için güvenli uyku yüzeyi",
+      "diapers": "Yenidoğan ve 1 numara stok yapın",
+      "bottles": "Emziren anneler bile genellikle biberona ihtiyaç duyar",
+      "onesies": "Bebek için temel günlük giysi",
+      "stroller": "Yürüyüşler ve gezintiler için",
+      "monitor": "Bebek uyurken huzur",
+      "breastPump": "İşe dönen emziren anneler için",
+      "swing": "Huzursuz bebekler için rahatlatıcı hareket",
+      "diaperBag": "Bebekle dışarı çıkmak için",
+      "bathtub": "Banyo yapmayı daha kolay ve güvenli hale getirir",
+      "swaddles": "Yenidoğanların güvende hissetmesine yardımcı olur"
+    },
+    "tips": {
+      "carSeat": "Bebek arabasına takılabilecek birini arayın. Son kullanma tarihini kontrol edin.",
+      "crib": "Güncel güvenlik standartlarını karşıladığından emin olun. Yalnızca sert yatak.",
+      "diapers": "Çok fazla yenidoğan boyutu almayın – bebekler hızlı büyür!",
+      "bottles": "Yavaş akışlı emziklerle başlayın. Başlangıçta 4-6 biberon alın.",
+      "onesies": "Kolay bez değiştirmek için önden çıtçıt veya fermuar arayın.",
+      "stroller": "Oto koltuğunuzu kabul eden birini düşünün.",
+      "monitor": "Yalnızca ses genellikle yeterlidir. Video kolaylık sağlar.",
+      "breastPump": "Sigorta genellikle bunu karşılar. Satın almadan önce kontrol edin.",
+      "swing": "Bazı bebekler sever, bazıları sevmez. Önce ödünç almayı düşünün.",
+      "diaperBag": "Alt değiştirme pedi ve birden fazla bölmeli birini arayın.",
+      "bathtub": "Lavabo da yenidoğanlar için iyi çalışır.",
+      "swaddles": "Muslin olanlar nefes alabilir ve çok yönlüdür."
+    },
+    "whenNeeded": {
+      "beforeBirth": "Doğumdan önce",
+      "firstWeeks": "İlk birkaç hafta",
+      "afterBirth": "Doğumdan sonra",
+      "firstMonth": "İlk ay"
     }
   },
   "mentalHealthCoach": {

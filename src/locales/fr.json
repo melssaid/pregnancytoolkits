@@ -2439,6 +2439,62 @@
       "essential": "Essentiel",
       "recommended": "Recommandé",
       "niceToHave": "Bien à avoir"
+    },
+    "types": {
+      "feeding": "Alimentation",
+      "sleeping": "Sommeil",
+      "travel": "Déplacement",
+      "clothing": "Vêtements",
+      "health": "Santé",
+      "nursery": "Chambre de bébé"
+    },
+    "items": {
+      "carSeat": "Siège auto (nourrisson)",
+      "crib": "Berceau ou lit de bébé",
+      "diapers": "Couches (taille nouveau-né)",
+      "bottles": "Biberons",
+      "onesies": "Bodies (0-3 mois)",
+      "stroller": "Poussette",
+      "monitor": "Moniteur bébé",
+      "breastPump": "Tire-lait",
+      "swing": "Balancelle bébé",
+      "diaperBag": "Sac à langer",
+      "bathtub": "Baignoire bébé",
+      "swaddles": "Couvertures d'emmaillotage"
+    },
+    "descriptions": {
+      "carSeat": "Obligatoire pour ramener bébé de l'hôpital",
+      "crib": "Surface de sommeil sûre pour bébé",
+      "diapers": "Faites le plein de taille nouveau-né et taille 1",
+      "bottles": "Même les mamans qui allaitent ont souvent besoin de biberons",
+      "onesies": "Vêtement de base quotidien pour bébé",
+      "stroller": "Pour les promenades et les sorties",
+      "monitor": "Tranquillité d'esprit pendant que bébé dort",
+      "breastPump": "Pour les mamans allaitantes reprenant le travail",
+      "swing": "Mouvement apaisant pour les bébés agités",
+      "diaperBag": "Pour les sorties avec bébé",
+      "bathtub": "Rend le bain plus facile et plus sûr",
+      "swaddles": "Aide les nouveau-nés à se sentir en sécurité"
+    },
+    "tips": {
+      "carSeat": "Cherchez-en un qui se clipse dans la poussette. Vérifiez la date d'expiration.",
+      "crib": "Assurez-vous qu'il respecte les normes de sécurité actuelles. Matelas ferme uniquement.",
+      "diapers": "N'achetez pas trop de taille nouveau-né – les bébés grandissent vite !",
+      "bottles": "Commencez avec des tétines à débit lent. Procurez-vous 4-6 biberons initialement.",
+      "onesies": "Cherchez des boutons-pression ou fermetures éclair devant pour changer facilement.",
+      "stroller": "Envisagez une qui accepte votre siège auto pour des transitions plus faciles.",
+      "monitor": "L'audio seul est souvent suffisant. La vidéo ajoute du confort.",
+      "breastPump": "L'assurance couvre souvent cela. Vérifiez avant d'acheter.",
+      "swing": "Certains bébés les adorent, d'autres non. Envisagez d'emprunter d'abord.",
+      "diaperBag": "Cherchez-en un avec tapis de change et plusieurs compartiments.",
+      "bathtub": "L'évier fonctionne aussi bien pour les nouveau-nés.",
+      "swaddles": "Les mousselines sont respirantes et polyvalentes."
+    },
+    "whenNeeded": {
+      "beforeBirth": "Avant la naissance",
+      "firstWeeks": "Premières semaines",
+      "afterBirth": "Après la naissance",
+      "firstMonth": "Premier mois"
     }
   },
   "mentalHealthCoach": {

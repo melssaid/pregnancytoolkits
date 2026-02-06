@@ -2696,6 +2696,62 @@
       "essential": "Esencial",
       "recommended": "Recomendado",
       "niceToHave": "Bueno tener"
+    },
+    "types": {
+      "feeding": "Alimentación",
+      "sleeping": "Sueño",
+      "travel": "Viaje",
+      "clothing": "Ropa",
+      "health": "Salud",
+      "nursery": "Habitación del bebé"
+    },
+    "items": {
+      "carSeat": "Silla de auto (bebé)",
+      "crib": "Cuna o moisés",
+      "diapers": "Pañales (talla recién nacido)",
+      "bottles": "Biberones",
+      "onesies": "Bodies (0-3 meses)",
+      "stroller": "Cochecito",
+      "monitor": "Monitor de bebé",
+      "breastPump": "Extractor de leche",
+      "swing": "Columpio de bebé",
+      "diaperBag": "Bolsa de pañales",
+      "bathtub": "Bañera de bebé",
+      "swaddles": "Mantas de arrullo"
+    },
+    "descriptions": {
+      "carSeat": "Necesaria para llevar al bebé del hospital a casa",
+      "crib": "Superficie de sueño segura para el bebé",
+      "diapers": "Abastécete de talla recién nacido y talla 1",
+      "bottles": "Incluso las mamás que amamantan a menudo necesitan biberones",
+      "onesies": "Ropa básica diaria para el bebé",
+      "stroller": "Para paseos y salidas",
+      "monitor": "Tranquilidad mientras el bebé duerme",
+      "breastPump": "Para mamás que amamantan y vuelven al trabajo",
+      "swing": "Movimiento relajante para bebés inquietos",
+      "diaperBag": "Para salidas con el bebé",
+      "bathtub": "Hace el baño más fácil y seguro",
+      "swaddles": "Ayuda a los recién nacidos a sentirse seguros"
+    },
+    "tips": {
+      "carSeat": "Busca una que se enganche al cochecito. Revisa la fecha de expiración.",
+      "crib": "Asegúrate de que cumpla con los estándares de seguridad actuales. Solo colchón firme.",
+      "diapers": "No compres demasiados talla recién nacido – ¡los bebés crecen rápido!",
+      "bottles": "Empieza con tetinas de flujo lento. Compra 4-6 biberones inicialmente.",
+      "onesies": "Busca broches o cremalleras delanteras para cambios de pañal fáciles.",
+      "stroller": "Considera uno que acepte tu silla de auto para transiciones más fáciles.",
+      "monitor": "Solo audio suele ser suficiente. El video añade comodidad.",
+      "breastPump": "El seguro a menudo cubre esto. Revisa antes de comprar.",
+      "swing": "A algunos bebés les encanta, a otros no. Considera pedir prestado primero.",
+      "diaperBag": "Busca una con cambiador y múltiples compartimentos.",
+      "bathtub": "El lavabo también funciona bien para recién nacidos.",
+      "swaddles": "Las de muselina son transpirables y versátiles."
+    },
+    "whenNeeded": {
+      "beforeBirth": "Antes del parto",
+      "firstWeeks": "Primeras semanas",
+      "afterBirth": "Después del parto",
+      "firstMonth": "Primer mes"
     }
   },
   "mentalHealthCoach": {
