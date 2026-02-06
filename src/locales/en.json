@@ -813,8 +813,17 @@
         "babyHat": "Baby hat",
         "changeOfClothes": "Change of clothes",
         "snacksDrinks": "Snacks & drinks",
-        "cameraCharger": "Camera/phone charger"
-      }
+        "cameraCharger": "Camera/phone charger",
+        "totalItems": "items"
+      },
+      "packed": "Packed",
+      "notPacked": "Not packed",
+      "recommended": "Recommended",
+      "optional": "Optional",
+      "exportPDF": "Export PDF",
+      "shareWhatsApp": "Share via WhatsApp",
+      "exportSuccess": "Checklist exported successfully!",
+      "exportError": "Failed to export checklist"
     },
     "birthPlan": {
       "title": "AI Birth Plan Generator",

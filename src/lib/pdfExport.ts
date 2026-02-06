@@ -853,3 +853,358 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
 }
 
 export const MAX_SAVED_PLANS = 9;
+
+// Hospital Bag Checklist Types
+interface HospitalBagItem {
+  id: string;
+  name: string;
+  category: 'mom' | 'baby' | 'partner' | 'documents';
+  packed: boolean;
+  priority: 'essential' | 'recommended' | 'optional';
+}
+
+interface HospitalBagPDFOptions {
+  title: string;
+  subtitle?: string;
+  items: HospitalBagItem[];
+  language?: 'en' | 'ar' | 'de' | 'fr' | 'es' | 'pt' | 'tr';
+  labels: {
+    mom: string;
+    baby: string;
+    partner: string;
+    documents: string;
+    packed: string;
+    notPacked: string;
+    essential: string;
+    recommended: string;
+    optional: string;
+    progress: string;
+    totalItems: string;
+  };
+}
+
+// Hospital Bag PDF export
+export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Promise<void> {
+  const { title, subtitle, items, language = 'en', labels } = options;
+  
+  // Load logo
+  const logoData = await loadLogoImage();
+  
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4'
+  });
+  
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 15;
+  const contentWidth = pageWidth - (margin * 2);
+  const isRTL = language === 'ar';
+  
+  // Accent color for hospital bag (teal)
+  const accentColor = { r: 20, g: 184, b: 166 }; // Teal
+  
+  // Draw clean header
+  drawCleanHeader(doc, pageWidth, 50, accentColor);
+  
+  // Add logo to header
+  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 6, 16);
+  
+  // Title
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(20);
+  doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+  doc.text(title, pageWidth / 2, 28, { align: 'center' });
+  
+  // Subtitle
+  if (subtitle) {
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+    doc.text(subtitle, pageWidth / 2, 36, { align: 'center' });
+  }
+  
+  // App branding
+  doc.setFontSize(8);
+  doc.setTextColor(accentColor.r, accentColor.g, accentColor.b);
+  doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
+  
+  let yPos = 58;
+  
+  // Calculate stats
+  const packedCount = items.filter(i => i.packed).length;
+  const totalCount = items.length;
+  const progress = Math.round((packedCount / totalCount) * 100);
+  
+  const categoryStats = {
+    mom: items.filter(i => i.category === 'mom'),
+    baby: items.filter(i => i.category === 'baby'),
+    partner: items.filter(i => i.category === 'partner'),
+    documents: items.filter(i => i.category === 'documents'),
+  };
+  
+  // Progress bar section
+  doc.setFillColor(accentColor.r, accentColor.g, accentColor.b, 0.1);
+  doc.roundedRect(margin, yPos, contentWidth, 22, 4, 4, 'F');
+  
+  // Progress label
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+  doc.text(`${labels.progress}: ${progress}%`, margin + 8, yPos + 8);
+  
+  // Items count
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+  doc.text(`${packedCount} / ${totalCount} ${labels.totalItems}`, margin + 8, yPos + 15);
+  
+  // Progress bar background
+  const barX = margin + 90;
+  const barWidth = contentWidth - 100;
+  const barHeight = 8;
+  const barY = yPos + 7;
+  
+  doc.setFillColor(230, 230, 235);
+  doc.roundedRect(barX, barY, barWidth, barHeight, 3, 3, 'F');
+  
+  // Progress bar fill
+  const fillWidth = (progress / 100) * barWidth;
+  if (fillWidth > 0) {
+    doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
+    doc.roundedRect(barX, barY, fillWidth, barHeight, 3, 3, 'F');
+  }
+  
+  yPos += 30;
+  
+  // Category summary cards
+  const cardWidth = (contentWidth - 15) / 4;
+  const cardHeight = 18;
+  const categoryColors = {
+    mom: { r: 236, g: 72, b: 153 }, // Pink
+    baby: { r: 59, g: 130, b: 246 }, // Blue
+    partner: { r: 139, g: 92, b: 246 }, // Purple
+    documents: { r: 245, g: 158, b: 11 }, // Amber
+  };
+  
+  const categoryLabels = {
+    mom: labels.mom,
+    baby: labels.baby,
+    partner: labels.partner,
+    documents: labels.documents,
+  };
+  
+  Object.entries(categoryStats).forEach(([cat, catItems], index) => {
+    const cardX = margin + index * (cardWidth + 5);
+    const color = categoryColors[cat as keyof typeof categoryColors];
+    const label = categoryLabels[cat as keyof typeof categoryLabels];
+    const catPacked = catItems.filter(i => i.packed).length;
+    
+    // Card background
+    doc.setFillColor(color.r, color.g, color.b, 0.12);
+    doc.roundedRect(cardX, yPos, cardWidth, cardHeight, 3, 3, 'F');
+    
+    // Left accent
+    doc.setFillColor(color.r, color.g, color.b);
+    doc.roundedRect(cardX, yPos, 2.5, cardHeight, 1, 1, 'F');
+    
+    // Count
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(color.r, color.g, color.b);
+    doc.text(`${catPacked}/${catItems.length}`, cardX + cardWidth / 2, yPos + 7, { align: 'center' });
+    
+    // Label
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+    doc.text(label.substring(0, 10), cardX + cardWidth / 2, yPos + 14, { align: 'center' });
+  });
+  
+  yPos += 28;
+  
+  // Separator
+  doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+  doc.setLineWidth(0.5);
+  doc.line(margin, yPos, pageWidth - margin, yPos);
+  yPos += 10;
+  
+  const lineHeight = 6;
+  
+  // Render items by category
+  Object.entries(categoryStats).forEach(([cat, catItems]) => {
+    if (catItems.length === 0) return;
+    
+    const color = categoryColors[cat as keyof typeof categoryColors];
+    const label = categoryLabels[cat as keyof typeof categoryLabels];
+    
+    // Check for new page
+    if (yPos > pageHeight - 40) {
+      doc.addPage();
+      yPos = margin;
+      
+      // Mini header on new page
+      doc.setFillColor(252, 252, 253);
+      doc.rect(0, 0, pageWidth, 12, 'F');
+      doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+      doc.setLineWidth(0.5);
+      doc.line(0, 12, pageWidth, 12);
+      doc.setFontSize(9);
+      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+      doc.text(`${title} (${isRTL ? 'تابع' : 'continued'})`, pageWidth / 2, 8, { align: 'center' });
+      yPos = 20;
+    }
+    
+    // Category header
+    doc.setFillColor(color.r, color.g, color.b, 0.15);
+    doc.roundedRect(margin, yPos - 2, contentWidth, 10, 3, 3, 'F');
+    
+    // Accent bar
+    doc.setFillColor(color.r, color.g, color.b);
+    doc.roundedRect(margin, yPos - 2, 3, 10, 1, 1, 'F');
+    
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(color.r, color.g, color.b);
+    doc.text(label, margin + 6, yPos + 4);
+    
+    // Count badge
+    const catPacked = catItems.filter(i => i.packed).length;
+    const badgeText = `${catPacked}/${catItems.length}`;
+    doc.setFillColor(color.r, color.g, color.b);
+    doc.roundedRect(pageWidth - margin - 18, yPos, 14, 6, 2, 2, 'F');
+    doc.setFontSize(8);
+    doc.setTextColor(255, 255, 255);
+    doc.text(badgeText, pageWidth - margin - 11, yPos + 4, { align: 'center' });
+    
+    yPos += 14;
+    
+    // Items
+    catItems.forEach((item) => {
+      if (yPos > pageHeight - 20) {
+        doc.addPage();
+        yPos = margin;
+      }
+      
+      // Checkbox
+      doc.setDrawColor(color.r, color.g, color.b);
+      doc.setLineWidth(0.4);
+      doc.rect(margin + 2, yPos - 3, 4, 4, 'S');
+      
+      if (item.packed) {
+        // Checkmark
+        doc.setFillColor(color.r, color.g, color.b);
+        doc.rect(margin + 2.5, yPos - 2.5, 3, 3, 'F');
+      }
+      
+      // Item name
+      doc.setFont('helvetica', item.packed ? 'normal' : 'normal');
+      doc.setFontSize(9);
+      
+      if (item.packed) {
+        doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+      } else {
+        doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+      }
+      
+      const itemText = item.name.substring(0, 45);
+      doc.text(itemText, margin + 10, yPos);
+      
+      // Status badge
+      const statusText = item.packed ? labels.packed : labels.notPacked;
+      const statusColor = item.packed ? { r: 34, g: 197, b: 94 } : { r: 239, g: 68, b: 68 };
+      
+      doc.setFillColor(statusColor.r, statusColor.g, statusColor.b, 0.15);
+      const statusWidth = doc.getTextWidth(statusText) + 6;
+      doc.roundedRect(pageWidth - margin - statusWidth - 2, yPos - 3.5, statusWidth, 5, 1.5, 1.5, 'F');
+      
+      doc.setFontSize(7);
+      doc.setTextColor(statusColor.r, statusColor.g, statusColor.b);
+      doc.text(statusText, pageWidth - margin - statusWidth / 2 - 2, yPos - 0.5, { align: 'center' });
+      
+      // Priority badge for essential items
+      if (item.priority === 'essential' && !item.packed) {
+        doc.setFillColor(239, 68, 68, 0.15);
+        const priorityWidth = doc.getTextWidth(labels.essential) + 4;
+        doc.roundedRect(pageWidth - margin - statusWidth - priorityWidth - 6, yPos - 3.5, priorityWidth, 5, 1.5, 1.5, 'F');
+        doc.setTextColor(239, 68, 68);
+        doc.text(labels.essential, pageWidth - margin - statusWidth - priorityWidth / 2 - 6, yPos - 0.5, { align: 'center' });
+      }
+      
+      yPos += lineHeight + 1;
+    });
+    
+    yPos += 5;
+  });
+  
+  // Footer
+  const footerY = pageHeight - 12;
+  doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+  doc.setLineWidth(0.3);
+  doc.line(margin, footerY - 5, pageWidth - margin, footerY - 5);
+  
+  doc.setFontSize(7);
+  doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+  const footerText = isRTL
+    ? `تم التصدير بتاريخ ${formatDateForPDF(new Date(), language)} • Pregnancy Tools`
+    : `Exported on ${formatDateForPDF(new Date(), language)} • Pregnancy Tools`;
+  doc.text(footerText, pageWidth / 2, footerY, { align: 'center' });
+  
+  // Decorative corners
+  drawDecorations(doc, pageWidth, pageHeight, accentColor);
+  
+  // Save
+  const fileName = `hospital-bag-checklist-${new Date().toISOString().split('T')[0]}.pdf`;
+  doc.save(fileName);
+}
+
+// Generate WhatsApp share text for hospital bag
+export function generateHospitalBagShareText(
+  items: HospitalBagItem[],
+  labels: {
+    title: string;
+    mom: string;
+    baby: string;
+    partner: string;
+    documents: string;
+    packed: string;
+    notPacked: string;
+    progress: string;
+  }
+): string {
+  const packedCount = items.filter(i => i.packed).length;
+  const totalCount = items.length;
+  const progress = Math.round((packedCount / totalCount) * 100);
+  
+  const categoryLabels = {
+    mom: labels.mom,
+    baby: labels.baby,
+    partner: labels.partner,
+    documents: labels.documents,
+  };
+  
+  let text = `*${labels.title}*\n`;
+  text += `${labels.progress}: ${progress}% (${packedCount}/${totalCount})\n\n`;
+  
+  const categories = ['documents', 'mom', 'baby', 'partner'] as const;
+  
+  categories.forEach(cat => {
+    const catItems = items.filter(i => i.category === cat);
+    if (catItems.length === 0) return;
+    
+    const catPacked = catItems.filter(i => i.packed).length;
+    text += `*${categoryLabels[cat]}* (${catPacked}/${catItems.length})\n`;
+    
+    catItems.forEach(item => {
+      const icon = item.packed ? '✅' : '⬜';
+      text += `${icon} ${item.name}\n`;
+    });
+    
+    text += '\n';
+  });
+  
+  text += `_Pregnancy Toolkits_`;
+  
+  return text;
+}

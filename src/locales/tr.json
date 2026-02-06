@@ -840,8 +840,17 @@
         "babyHat": "Bebek şapkası",
         "changeOfClothes": "Yedek kıyafet",
         "snacksDrinks": "Atıştırmalık ve içecek",
-        "cameraCharger": "Kamera/telefon şarjı"
-      }
+        "cameraCharger": "Kamera/telefon şarjı",
+        "totalItems": "öğe"
+      },
+      "packed": "Paketlendi",
+      "notPacked": "Paketlenmedi",
+      "recommended": "Önerilen",
+      "optional": "İsteğe bağlı",
+      "exportPDF": "PDF olarak dışa aktar",
+      "shareWhatsApp": "WhatsApp ile paylaş",
+      "exportSuccess": "Liste başarıyla dışa aktarıldı!",
+      "exportError": "Dışa aktarma başarısız"
     },
     "birthPlan": {
       "title": "Yapay Zeka Doğum Planı Oluşturucu",

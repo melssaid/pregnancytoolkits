@@ -840,8 +840,17 @@
         "babyHat": "Bonnet bébé",
         "changeOfClothes": "Vêtements de rechange",
         "snacksDrinks": "Snacks & boissons",
-        "cameraCharger": "Chargeur appareil/téléphone"
-      }
+        "cameraCharger": "Chargeur appareil/téléphone",
+        "totalItems": "articles"
+      },
+      "packed": "Préparé",
+      "notPacked": "Non préparé",
+      "recommended": "Recommandé",
+      "optional": "Optionnel",
+      "exportPDF": "Exporter PDF",
+      "shareWhatsApp": "Partager via WhatsApp",
+      "exportSuccess": "Checklist exportée avec succès !",
+      "exportError": "Échec de l'exportation"
     },
     "birthPlan": {
       "title": "Générateur de Plan de Naissance IA",

@@ -840,8 +840,17 @@
         "babyHat": "Babymütze",
         "changeOfClothes": "Wechselkleidung",
         "snacksDrinks": "Snacks & Getränke",
-        "cameraCharger": "Kamera-/Handyladegerät"
-      }
+        "cameraCharger": "Kamera-/Handyladegerät",
+        "totalItems": "Artikel"
+      },
+      "packed": "Gepackt",
+      "notPacked": "Nicht gepackt",
+      "recommended": "Empfohlen",
+      "optional": "Optional",
+      "exportPDF": "PDF exportieren",
+      "shareWhatsApp": "Via WhatsApp teilen",
+      "exportSuccess": "Checkliste erfolgreich exportiert!",
+      "exportError": "Export fehlgeschlagen"
     },
     "birthPlan": {
       "title": "KI-Geburtsplan-Generator",
