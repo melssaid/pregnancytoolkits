@@ -515,6 +515,7 @@
   },
   "diaperPage": {
     "title": "Diaper Tracker",
+    "subtitle": "Track your baby's diaper changes",
     "logChange": "Log Change",
     "quickAdd": "Quick Add",
     "wet": "Wet",
@@ -1636,6 +1637,16 @@
         "12weeks": "Within 12 weeks",
         "6months": "After 6 months",
         "year": "After 1 year"
+      },
+      "videos": {
+        "video1": {"title": "Breastfeeding a Newborn", "description": "What's normal, common challenges, and tips from pediatrician IBCLC"},
+        "video2": {"title": "Newborn Care Week 1", "description": "Pediatrician guide including feeding basics"},
+        "video3": {"title": "Caring For Your Newborn", "description": "Comprehensive guide including feeding schedules"},
+        "video4": {"title": "Newborn Baby Care Guide", "description": "Handling, feeding, and sleeping basics"}
+      },
+      "categories": {
+        "gettingStarted": "Getting Started",
+        "newbornCare": "Newborn Care"
       }
     },
     "laborTracker": {
@@ -2061,6 +2072,27 @@
       "aboveTarget": "Above Target",
       "weeklyGain": "Weekly Gain",
       "aiAnalysis": "AI Weight Analysis"
+    },
+    "bloodType": {
+      "title": "Blood Type Calculator",
+      "subtitle": "Predict your baby's possible blood type",
+      "mother": "Mother",
+      "father": "Father",
+      "bloodType": "Blood Type",
+      "rhFactor": "Rh Factor",
+      "positive": "Positive (+)",
+      "negative": "Negative (-)",
+      "typeA": "Type A",
+      "typeB": "Type B",
+      "typeAB": "Type AB",
+      "typeO": "Type O",
+      "possibleTypes": "Possible Blood Types for Baby",
+      "rhPositiveChance": "Rh+ Chance",
+      "rhNegativeChance": "Rh- Chance",
+      "rhIncompatibility": "Rh Incompatibility",
+      "rhWarning": "When the mother is Rh-negative and father is Rh-positive, the baby may be Rh-positive. Your doctor may recommend RhoGAM injections during pregnancy to prevent complications.",
+      "learnAboutBloodTypes": "Learn About Blood Types",
+      "disclaimer": "This calculator shows possible blood types based on genetics. The actual blood type will be confirmed through testing after birth. Always consult your healthcare provider for medical advice."
     },
     "bmi": {
       "title": "Pregnancy BMI Calculator",

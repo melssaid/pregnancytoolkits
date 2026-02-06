@@ -507,6 +507,7 @@
   },
   "diaperPage": {
     "title": "Bez Takibi",
+    "subtitle": "Bebeğinizin bez değişikliklerini takip edin",
     "logChange": "Değişiklik Kaydet",
     "quickAdd": "Hızlı Ekle",
     "wet": "Islak",
@@ -1627,7 +1628,38 @@
         "12weeks": "12 hafta içinde",
         "6months": "6 ay sonra",
         "year": "1 yıl sonra"
+      },
+      "videos": {
+        "video1": {"title": "Yenidoğanı Emzirme", "description": "Normal olan, yaygın zorluklar ve pediatrist ipuçları"},
+        "video2": {"title": "Yenidoğan Bakımı Hafta 1", "description": "Besleme temellerini içeren pediatrist rehberi"},
+        "video3": {"title": "Yenidoğanınıza Bakım", "description": "Besleme programlarını içeren kapsamlı rehber"},
+        "video4": {"title": "Bebek Bakım Rehberi", "description": "Taşıma, besleme ve uyku temelleri"}
+      },
+      "categories": {
+        "gettingStarted": "Başlarken",
+        "newbornCare": "Yenidoğan Bakımı"
       }
+    },
+    "bloodType": {
+      "title": "Kan Grubu Hesaplayıcı",
+      "subtitle": "Bebeğinizin olası kan grubunu tahmin edin",
+      "mother": "Anne",
+      "father": "Baba",
+      "bloodType": "Kan Grubu",
+      "rhFactor": "Rh Faktörü",
+      "positive": "Pozitif (+)",
+      "negative": "Negatif (-)",
+      "typeA": "Tip A",
+      "typeB": "Tip B",
+      "typeAB": "Tip AB",
+      "typeO": "Tip O",
+      "possibleTypes": "Bebek için Olası Kan Grupları",
+      "rhPositiveChance": "Rh+ Olasılığı",
+      "rhNegativeChance": "Rh- Olasılığı",
+      "rhIncompatibility": "Rh Uyumsuzluğu",
+      "rhWarning": "Anne Rh-negatif ve baba Rh-pozitif olduğunda, bebek Rh-pozitif olabilir. Doktorunuz gebelik sırasında RhoGAM enjeksiyonları önerebilir.",
+      "learnAboutBloodTypes": "Kan Grupları Hakkında Bilgi Edinin",
+      "disclaimer": "Bu hesaplayıcı genetiğe dayalı olası kan gruplarını gösterir. Gerçek kan grubu doğumdan sonra testlerle doğrulanacaktır."
     },
     "laborProgress": {
       "title": "AI Doğum İlerleme Takibi",
