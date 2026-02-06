@@ -780,6 +780,56 @@
     "description": "App aktualisiert, wird neu geladen..."
   },
   "toolsInternal": {
+    "mentalHealthCoach": {
+      "title": "Postpartum-Gesundheitscoach",
+      "subtitle": "Edinburgh Postpartum-Depressionsskala-Screening",
+      "youreNotAlone": "Du bist nicht allein",
+      "emergencyMessage": "Basierend auf deinen Antworten ist es wichtig, mit jemandem zu sprechen, der helfen kann. Postpartale Depression ist häufig und behandelbar.",
+      "postpartumSupport": "Postpartum-Unterstützung",
+      "crisisHotline": "Krisenhotline anrufen",
+      "question": "Frage",
+      "of": "von",
+      "score": "Punktzahl",
+      "takeScreeningAgain": "Screening wiederholen",
+      "aiPersonalizedPlan": "KI-personalisierter Bewältigungsplan",
+      "generateMyPlan": "Meinen persönlichen Plan erstellen",
+      "creatingPlan": "Erstelle deinen persönlichen Plan...",
+      "dailyCopingStrategies": "Tägliche Bewältigungsstrategien",
+      "supportResources": "Unterstützungsressourcen",
+      "psiName": "Internationale Postpartum-Unterstützung",
+      "psiNumber": "1-800-944-4773",
+      "crisisLinelineName": "988 Suizid- & Krisenhotline",
+      "crisisLinelineDesc": "Anrufen oder SMS an 988",
+      "screeningDisclaimer": "⚠️ Dies ist ein Screening-Tool basierend auf der Edinburgh Postnatal Depression Scale (EPDS). Es stellt keine Diagnose. Konsultiere immer einen Fachmann für eine ordnungsgemäße Bewertung.",
+      "mentalWellnessVideos": "Mentale Wellness-Videos",
+      "videosSubtitle": "Unterstützung und Selbstpflege-Ressourcen",
+      "videos": {
+        "v1": { "title": "Was ist eine postpartale Depression?", "description": "Anzeichen, Symptome und wann Sie Hilfe suchen sollten", "category": "Bildung" },
+        "v2": { "title": "Postpartale Depression erklärt", "description": "Symptome, Risikofaktoren und Behandlungsmöglichkeiten", "category": "Bildung" },
+        "v3": { "title": "Entspannungsmeditation in der Schwangerschaft", "description": "Beruhigende Meditation für bessere psychische Gesundheit", "category": "Entspannung" },
+        "v4": { "title": "Neugeborenenversorgung Woche 1", "description": "Kinderarzt-Leitfaden für die erste Woche mit dem Baby", "category": "Selbstpflege" }
+      },
+      "riskLevels": {
+        "low": { "title": "Niedriges Risiko", "message": "Deine Antworten deuten darauf hin, dass du gut zurechtkommst. Praktiziere weiterhin Selbstfürsorge." },
+        "moderate": { "title": "Moderat", "message": "Erwäge, mit deinem Arzt über deine Gefühle zu sprechen." },
+        "high": { "title": "Unterstützung suchen", "message": "Bitte wende dich an deinen Arzt oder einen Fachmann für psychische Gesundheit." }
+      },
+      "epds": {
+        "q1": { "question": "Ich konnte lachen und die lustige Seite der Dinge sehen", "o0": "So viel wie immer", "o1": "Jetzt nicht mehr so viel", "o2": "Definitiv jetzt nicht mehr so viel", "o3": "Überhaupt nicht" },
+        "q2": { "question": "Ich habe mich auf Dinge gefreut", "o0": "So viel wie früher", "o1": "Etwas weniger als früher", "o2": "Definitiv weniger als früher", "o3": "Kaum noch" },
+        "q3": { "question": "Ich habe mir unnötigerweise Vorwürfe gemacht, wenn etwas schief ging", "o0": "Nein, niemals", "o1": "Nicht sehr oft", "o2": "Ja, manchmal", "o3": "Ja, meistens" },
+        "q4": { "question": "Ich war ängstlich oder besorgt ohne guten Grund", "o0": "Nein, überhaupt nicht", "o1": "Kaum jemals", "o2": "Ja, manchmal", "o3": "Ja, sehr oft" },
+        "q5": { "question": "Ich hatte Angst oder Panik ohne guten Grund", "o0": "Nein, überhaupt nicht", "o1": "Nein, nicht viel", "o2": "Ja, manchmal", "o3": "Ja, ziemlich oft" }
+      },
+      "coping": {
+        "sunlight": { "title": "Morgensonnenlicht", "desc": "Hole dir jeden Morgen 10-15 Minuten natürliches Licht" },
+        "movement": { "title": "Sanfte Bewegung", "desc": "Ein kurzer Spaziergang kann die Stimmung deutlich heben" },
+        "connect": { "title": "Täglich verbinden", "desc": "Sprich jeden Tag mit einer Freundin oder einem Familienmitglied" },
+        "rest": { "title": "Ausruhen wenn möglich", "desc": "Schlafe, wenn das Baby schläft, auch wenn nur kurz" },
+        "nourish": { "title": "Ernähre dich gut", "desc": "Iss regelmäßige, nahrhafte Mahlzeiten" },
+        "journal": { "title": "Tagebuch", "desc": "Schreibe 3 Dinge auf, für die du dankbar bist" }
+      }
+    },
     "weeklySummary": {
       "title": "Wöchentliche Einblicke",
       "subtitle": "Intelligente wöchentliche Verfolgung Ihrer Schwangerschaft",
