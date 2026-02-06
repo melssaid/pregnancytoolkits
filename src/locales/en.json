@@ -822,6 +822,9 @@
       "optional": "Optional",
       "exportPDF": "Export PDF",
       "shareWhatsApp": "Share via WhatsApp",
+      "resetList": "Reset List",
+      "resetConfirm": "Are you sure you want to reset the list? This will remove all custom items and restore the default list.",
+      "resetSuccess": "List has been reset to defaults!",
       "exportSuccess": "Checklist exported successfully!",
       "exportError": "Failed to export checklist"
     },

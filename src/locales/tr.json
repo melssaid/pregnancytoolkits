@@ -849,6 +849,9 @@
       "optional": "İsteğe bağlı",
       "exportPDF": "PDF olarak dışa aktar",
       "shareWhatsApp": "WhatsApp ile paylaş",
+      "resetList": "Listeyi sıfırla",
+      "resetConfirm": "Listeyi sıfırlamak istediğinizden emin misiniz? Bu, tüm özel öğeleri kaldıracak ve varsayılan listeyi geri yükleyecektir.",
+      "resetSuccess": "Liste sıfırlandı!",
       "exportSuccess": "Liste başarıyla dışa aktarıldı!",
       "exportError": "Dışa aktarma başarısız"
     },

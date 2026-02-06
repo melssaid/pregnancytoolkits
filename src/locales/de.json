@@ -849,6 +849,9 @@
       "optional": "Optional",
       "exportPDF": "PDF exportieren",
       "shareWhatsApp": "Via WhatsApp teilen",
+      "resetList": "Liste zurücksetzen",
+      "resetConfirm": "Sind Sie sicher, dass Sie die Liste zurücksetzen möchten? Dies entfernt alle benutzerdefinierten Elemente und stellt die Standardliste wieder her.",
+      "resetSuccess": "Liste wurde zurückgesetzt!",
       "exportSuccess": "Checkliste erfolgreich exportiert!",
       "exportError": "Export fehlgeschlagen"
     },

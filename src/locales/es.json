@@ -849,6 +849,9 @@
       "optional": "Opcional",
       "exportPDF": "Exportar PDF",
       "shareWhatsApp": "Compartir por WhatsApp",
+      "resetList": "Restablecer lista",
+      "resetConfirm": "¿Estás segura de que deseas restablecer la lista? Esto eliminará todos los elementos personalizados y restaurará la lista predeterminada.",
+      "resetSuccess": "¡Lista restablecida!",
       "exportSuccess": "¡Lista exportada con éxito!",
       "exportError": "Error al exportar"
     },
