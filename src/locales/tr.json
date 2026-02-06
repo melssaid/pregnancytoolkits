@@ -1582,16 +1582,52 @@
     "lactationPrep": {
       "title": "AI Emzirme Hazırlığı",
       "subtitle": "Emzirme hazırlık rehberi",
-      "currentWeek": "Mevcut Hafta",
-      "concerns": "Endişeler",
-      "latch": "Tutunma",
-      "supply": "Süt Miktarı",
-      "positions": "Besleme Pozisyonları",
-      "storage": "Süt Saklama",
-      "getGuidance": "Emzirme Rehberliği Al",
-      "preparationTips": "Hazırlık İpuçları",
-      "commonChallenges": "Yaygın Zorluklar",
-      "essentialSupplies": "Temel Malzemeler"
+      "yourFeedingGoal": "Beslenme Hedefiniz",
+      "firstTimeBreastfeeding": "Bu ilk emzirme deneyimim",
+      "returningToWork": "İşe Dönüş",
+      "select": "Seçin...",
+      "anyConcerns": "Endişeleriniz Var mı?",
+      "suppliesChecklist": "Emzirme Malzemeleri Listesi",
+      "getAIGuide": "AI Emzirme Rehberi Al",
+      "creatingGuide": "Rehber Oluşturuluyor...",
+      "needSupport": "Desteğe mi İhtiyacınız Var?",
+      "supportNote": "Emzirmede zorlanıyorsanız, bir emzirme danışmanına ulaşın. Birçok hastane ücretsiz destek sunuyor. Önemli olan bebeğinizin beslenmesi!",
+      "videosTitle": "Emzirme Videoları",
+      "videosSubtitle": "Emzirme başarısı için uzman rehberliği",
+      "notSpecified": "Belirtilmedi",
+      "noneSpecified": "Hiçbiri belirtilmedi",
+      "feedingGoals": {
+        "exclusive": "Sadece anne sütü",
+        "combo": "Kombinasyon (anne sütü + mama)",
+        "pumping": "Sadece süt sağma",
+        "unsure": "Henüz karar vermedim"
+      },
+      "concerns": {
+        "latch": "Tutunma zorlukları",
+        "supply": "Süt miktarı endişeleri",
+        "pain": "Ağrı endişeleri",
+        "returningWork": "İşe dönüş",
+        "partnerFeeding": "Eş katılımı",
+        "public": "Halka açık yerde emzirme",
+        "medical": "Önceki meme ameliyatı",
+        "multiples": "İkiz/çoğul gebelik"
+      },
+      "supplies": {
+        "nursingBras": "Emzirme sütyenleri (3-4)",
+        "nursingPads": "Emzirme pedleri",
+        "nippleCream": "Meme ucu kremi (lanolin)",
+        "breastPump": "Göğüs pompası",
+        "storageBags": "Saklama poşetleri",
+        "nursingPillow": "Emzirme yastığı",
+        "nursingCover": "Emzirme örtüsü",
+        "haakaa": "Manuel pompa/Haakaa"
+      },
+      "workOptions": {
+        "no": "Dönmüyorum / Ev hanımı",
+        "12weeks": "12 hafta içinde",
+        "6months": "6 ay sonra",
+        "year": "1 yıl sonra"
+      }
     },
     "laborProgress": {
       "title": "AI Doğum İlerleme Takibi",

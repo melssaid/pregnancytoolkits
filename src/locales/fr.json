@@ -1785,8 +1785,52 @@
   "lactationPrep": {
     "title": "Préparation IA à l'allaitement",
     "subtitle": "Votre guide de préparation à l'allaitement",
-    "feedingGoal": "Votre objectif d'alimentation",
-    "getLactationGuide": "Obtenir le guide IA d'allaitement"
+    "yourFeedingGoal": "Votre Objectif d'Alimentation",
+    "firstTimeBreastfeeding": "C'est ma première expérience d'allaitement",
+    "returningToWork": "Retour au Travail",
+    "select": "Sélectionner...",
+    "anyConcerns": "Des Préoccupations?",
+    "suppliesChecklist": "Liste de Fournitures d'Allaitement",
+    "getAIGuide": "Obtenir le Guide IA d'Allaitement",
+    "creatingGuide": "Création du guide...",
+    "needSupport": "Besoin de Soutien?",
+    "supportNote": "Si vous avez des difficultés d'allaitement, contactez une consultante en lactation (IBCLC). De nombreux hôpitaux offrent un soutien gratuit. L'important c'est que bébé soit nourri et heureux!",
+    "videosTitle": "Vidéos d'Allaitement",
+    "videosSubtitle": "Conseils d'experts pour un allaitement réussi",
+    "notSpecified": "Non spécifié",
+    "noneSpecified": "Aucun spécifié",
+    "feedingGoals": {
+      "exclusive": "Allaitement exclusif",
+      "combo": "Combinaison (sein + biberon)",
+      "pumping": "Tire-lait exclusif",
+      "unsure": "Encore indécise"
+    },
+    "concerns": {
+      "latch": "Difficultés de prise",
+      "supply": "Inquiétudes sur la production",
+      "pain": "Préoccupations de douleur",
+      "returningWork": "Retour au travail",
+      "partnerFeeding": "Participation du partenaire",
+      "public": "Allaiter en public",
+      "medical": "Chirurgie mammaire antérieure",
+      "multiples": "Jumeaux/multiples"
+    },
+    "supplies": {
+      "nursingBras": "Soutiens-gorge d'allaitement (3-4)",
+      "nursingPads": "Coussinets d'allaitement",
+      "nippleCream": "Crème pour mamelons (lanoline)",
+      "breastPump": "Tire-lait",
+      "storageBags": "Sachets de conservation",
+      "nursingPillow": "Coussin d'allaitement",
+      "nursingCover": "Cape d'allaitement",
+      "haakaa": "Tire-lait manuel/Haakaa"
+    },
+    "workOptions": {
+      "no": "Pas de retour / Femme au foyer",
+      "12weeks": "Dans 12 semaines",
+      "6months": "Après 6 mois",
+      "year": "Après 1 an"
+    }
   },
   "backPainRelief": {
     "title": "Soulagement IA des douleurs dorsales",

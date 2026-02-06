@@ -1582,16 +1582,52 @@
     "lactationPrep": {
       "title": "Preparação para Amamentação IA",
       "subtitle": "Guia de preparação para amamentação",
-      "currentWeek": "Semana Atual",
-      "concerns": "Preocupações",
-      "latch": "Pega",
-      "supply": "Produção de Leite",
-      "positions": "Posições de Amamentação",
-      "storage": "Armazenamento de Leite",
-      "getGuidance": "Obter Orientação de Amamentação",
-      "preparationTips": "Dicas de Preparação",
-      "commonChallenges": "Desafios Comuns",
-      "essentialSupplies": "Suprimentos Essenciais"
+      "yourFeedingGoal": "Seu Objetivo de Alimentação",
+      "firstTimeBreastfeeding": "Esta é minha primeira vez amamentando",
+      "returningToWork": "Regresso ao Trabalho",
+      "select": "Selecionar...",
+      "anyConcerns": "Alguma Preocupação?",
+      "suppliesChecklist": "Lista de Suprimentos de Amamentação",
+      "getAIGuide": "Obter Guia IA de Amamentação",
+      "creatingGuide": "A criar Guia...",
+      "needSupport": "Precisa de Apoio?",
+      "supportNote": "Se está com dificuldades na amamentação, contacte uma consultora de lactação. Muitos hospitais oferecem apoio gratuito. O importante é que você e o bebé estejam bem!",
+      "videosTitle": "Vídeos de Amamentação",
+      "videosSubtitle": "Orientação especializada para o sucesso na amamentação",
+      "notSpecified": "Não especificado",
+      "noneSpecified": "Nenhum especificado",
+      "feedingGoals": {
+        "exclusive": "Amamentação exclusiva",
+        "combo": "Combinação (mama + fórmula)",
+        "pumping": "Extração exclusiva",
+        "unsure": "Ainda a decidir"
+      },
+      "concerns": {
+        "latch": "Dificuldades de pega",
+        "supply": "Preocupações de produção",
+        "pain": "Preocupações de dor",
+        "returningWork": "Regresso ao trabalho",
+        "partnerFeeding": "Participação do parceiro",
+        "public": "Amamentar em público",
+        "medical": "Cirurgia mamária prévia",
+        "multiples": "Gémeos/múltiplos"
+      },
+      "supplies": {
+        "nursingBras": "Soutiens de amamentação (3-4)",
+        "nursingPads": "Discos de amamentação",
+        "nippleCream": "Creme para mamilos (lanolina)",
+        "breastPump": "Bomba de extração",
+        "storageBags": "Sacos de armazenamento",
+        "nursingPillow": "Almofada de amamentação",
+        "nursingCover": "Capa de amamentação",
+        "haakaa": "Extrator manual/Haakaa"
+      },
+      "workOptions": {
+        "no": "Não regresso / Dona de casa",
+        "12weeks": "Dentro de 12 semanas",
+        "6months": "Após 6 meses",
+        "year": "Após 1 ano"
+      }
     },
     "laborProgress": {
       "title": "Rastreador de Trabalho de Parto IA",
