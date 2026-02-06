@@ -1923,7 +1923,14 @@
       "sessions": "Sessions",
       "naps": "Naps",
       "night": "Night",
-      "recentSessions": "Recent Sessions"
+      "recentSessions": "Recent Sessions",
+      "recommendedSleep": "Recommended Sleep by Age (AAP Guidelines)",
+      "newborn": "Newborn (0-3 months)",
+      "infant": "Infant (4-12 months)",
+      "toddler": "Toddler (1-2 years)",
+      "child": "Child (2+ years)",
+      "hours": "hours",
+      "noDataYet": "Record at least 2-3 sleep sessions to get personalized AI advice."
     },
     "diaperTracker": {
       "title": "Diaper Tracker",
