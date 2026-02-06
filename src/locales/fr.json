@@ -1850,7 +1850,7 @@
       "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque identifiés." }
     }
   },
-  "dailyTips": {
+  "toolsInternal.dailyTips": {
     "title": "Conseils quotidiens de grossesse",
     "subtitle": "Conseils IA pour chaque trimestre",
     "trimester": "Trimestre",
@@ -1860,7 +1860,7 @@
     "yourFavorites": "Vos favoris",
     "moreTips": "Plus de conseils pour le trimestre"
   },
-  "nauseaRelief": {
+  "toolsInternal.nauseaRelief": {
     "title": "Coach IA anti-nausées",
     "subtitle": "Stratégies personnalisées contre les nausées matinales",
     "quickRemedies": "Remèdes rapides",
@@ -1868,7 +1868,7 @@
     "triggersTitle": "Qu'est-ce qui déclenche vos nausées?",
     "getReliefPlan": "Obtenir un plan de soulagement"
   },
-  "legCrampPreventer": {
+  "toolsInternal.legCrampPreventer": {
     "title": "Prévention IA des crampes aux jambes",
     "subtitle": "Prévenir et gérer les crampes aux jambes pendant la grossesse",
     "progressTitle": "Progrès de prévention",
@@ -1905,7 +1905,7 @@
       "vitamins": "Vitamines importantes?"
     }
   },
-  "lactationPrep": {
+  "toolsInternal.lactationPrep": {
     "title": "Préparation IA à l'allaitement",
     "subtitle": "Votre guide de préparation à l'allaitement",
     "yourFeedingGoal": "Votre Objectif d'Alimentation",
@@ -1965,21 +1965,21 @@
       "newbornCare": "Soins du nouveau-né"
     }
   },
-  "backPainRelief": {
+  "toolsInternal.backPainRelief": {
     "title": "Soulagement IA des douleurs dorsales",
     "subtitle": "Exercices sûrs pour la grossesse contre les douleurs dorsales",
     "whereHurts": "Où avez-vous mal?",
     "getAdvice": "Obtenir des conseils IA",
     "exercisesTitle": "Exercices contre les douleurs dorsales"
   },
-  "sleepOptimizer": {
+  "toolsInternal.sleepOptimizer": {
     "title": "Optimiseur IA de sommeil",
     "subtitle": "Conseils de sommeil personnalisés pour la grossesse",
     "currentSleep": "Sommeil actuel: {{hours}} heures/nuit",
     "usualBedtime": "Heure de coucher habituelle",
     "sleepChallenges": "Défis de sommeil"
   },
-  "ovulation": {
+  "toolsInternal.ovulation": {
     "subtitle": "Trouvez vos jours les plus fertiles",
     "calculateTitle": "Calculez votre fenêtre fertile",
     "calculateDesc": "Entrez les détails de votre cycle pour découvrir vos meilleurs jours ✨",
@@ -2014,7 +2014,7 @@
     "deletedDesc": "Résultat retiré de l'historique.",
     "disclaimer": "Cette calculatrice fournit des estimations basées sur des schémas de cycle moyens. Les cycles individuels peuvent varier. Envisagez d'utiliser des tests d'ovulation pour plus de précision."
   },
-  "forbiddenFoods": {
+  "toolsInternal.forbiddenFoods": {
     "title": "Guide de sécurité alimentaire",
     "subtitle": "Quoi manger et éviter pendant la grossesse",
     "searchPlaceholder": "Rechercher des aliments (ex: sushi, fromage)...",
@@ -2055,7 +2055,7 @@
       "chicken": { "name": "Poulet", "reason": "Excellente source de protéines. Doit être bien cuit." }
     }
   },
-  "conceptionPage": {
+  "toolsInternal.conceptionPage": {
     "fromDueDate": "À partir de la date prévue",
     "fromLMP": "Depuis les dernières règles",
     "knowDueDate": "Connaissez-vous votre date prévue?",
@@ -2070,12 +2070,12 @@
     "aiConceptionGuide": "Guide IA de conception",
     "gettingAdvice": "Obtention de conseils personnalisés..."
   },
-  "common": {
+  "toolsInternal.common": {
     "calculate": "Calculer",
     "results": "Résultats",
     "start": "Commencer"
   },
-  "nutritionOptimizer": {
+  "toolsInternal.nutritionOptimizer": {
     "title": "Optimiseur de Nutrition Intelligent",
     "subtitle": "Plans nutritionnels personnalisés pour chaque trimestre",
     "pregnancyWeek": "Semaine de grossesse",
@@ -2153,7 +2153,7 @@
       "extraFruit": "Fruit ou yaourt supplémentaire (300+ kcal)"
     }
   },
-  "smoothieAI": {
+  "toolsInternal.smoothieAI": {
     "title": "Smoothies Grossesse IA",
     "subtitle": "Recettes de smoothies nutritifs pour chaque trimestre",
     "selectTrimester": "Sélectionnez votre trimestre",
@@ -2168,7 +2168,7 @@
     "nutrition": "Nutrition",
     "allRecipes": "Toutes les recettes pour le trimestre {{trimester}}"
   },
-  "groceryList": {
+  "toolsInternal.groceryList": {
     "title": "Liste de Courses Intelligente",
     "subtitle": "Liste de courses alimentée par IA pour la nutrition de grossesse",
     "smartNutrition": "Nutrition Intelligente Grossesse",
@@ -2193,7 +2193,7 @@
       "other": "Autres"
     }
   },
-  "snackPlanner": {
+  "toolsInternal.snackPlanner": {
     "title": "Planificateur de Collations Intelligent",
     "subtitle": "Collations saines de grossesse pour chaque envie",
     "feelingHungry": "Vous avez faim?",
@@ -2269,7 +2269,7 @@
       "bvitamins": "Vitamines B"
     }
   },
-  "groceryList": {
+  "toolsInternal.groceryList2": {
     "title": "Liste de Courses Intelligente",
     "subtitle": "Liste de courses IA pour la nutrition de grossesse",
     "smartNutrition": "Nutrition de Grossesse Intelligente",
@@ -2371,7 +2371,7 @@
       "chickenBreast": "Protéine maigre"
     }
   },
-  "vitaminTracker": {
+  "toolsInternal.vitaminTracker": {
     "subtitle": "Suivez vos vitamines prénatales quotidiennes",
     "pregnancyWeek": "Semaine de grossesse",
     "todaysProgress": "Progrès du jour",
@@ -2520,7 +2520,7 @@
       }
     }
   },
-  "doctorQuestions": {
+  "toolsInternal.doctorQuestions": {
     "startNewVisit": "Commencer une nouvelle visite",
     "suggestedQuestions": "Questions suggérées",
     "startVisitToAdd": "Commencez une nouvelle visite pour ajouter ces questions",
