@@ -10,13 +10,13 @@
     "allTools": "جميع الأدوات",
     "toolsAvailable": "{{count}} أداة متاحة",
     "noToolsFound": "لم يتم العثور على أدوات مطابقة",
-    "medicalDisclaimer": "هذه الأدوات للمعلومات فقط. استشيري طبيبتك دائماً",
-    "footer": "للمعلومات فقط. استشيري مقدم الرعاية الصحية دائماً",
+    "medicalDisclaimer": "هذه الأدوات للمعلومات فقط. استشر طبيبك دائماً",
+    "footer": "للمعلومات فقط. استشر مقدم الرعاية الصحية دائماً",
     "back": "رجوع",
     "allToolsBtn": "جميع الأدوات"
   },
   "ai": {
-    "resultDisclaimer": "مُولّد بالذكاء الاصطناعي • استشيري طبيبتك"
+    "resultDisclaimer": "مُولّد بالذكاء الاصطناعي • استشر طبيبك"
   },
   "categories": {
     "all": "الكل",
@@ -31,42 +31,42 @@
     "preparation": "التحضير"
   },
   "tools": {
-    "pregnancyAssistant": {"title": "المساعد الذكي للحمل", "description": "اسألي أي سؤال عن الحمل واحصلي على إجابة فورية"},
-    "symptomAnalyzer": {"title": "تحليل الأعراض الذكي", "description": "حللي أعراضك بذكاء اصطناعي"},
-    "aiMealSuggestion": {"title": "مخطط الوجبات الذكي", "description": "اقتراحات وجبات مخصصة لمرحلة حملك"},
-    "weeklySummary": {"title": "ملخص الأسبوع", "description": "تحديثات ذكية أسبوعية عن نمو طفلك"},
-    "aiBirthPlan": {"title": "مُنشئ خطة الولادة", "description": "أنشئي خطة ولادتك المخصصة بمساعدة AI"},
-    "smartAppointmentReminder": {"title": "مذكر المواعيد الذكي", "description": "لا تفوتي أي موعد متابعة"},
-    "aiCravingAlternatives": {"title": "بدائل الرغبات الصحية", "description": "بدائل صحية لرغباتك الغذائية أثناء الحمل"},
+    "pregnancyAssistant": {"title": "المساعد الذكي للحمل", "description": "اسأل أي سؤال عن الحمل واحصل على إجابة فورية"},
+    "symptomAnalyzer": {"title": "تحليل الأعراض الذكي", "description": "حلّل أعراضك بذكاء اصطناعي"},
+    "aiMealSuggestion": {"title": "مخطط الوجبات الذكي", "description": "اقتراحات وجبات مخصصة لمرحلة الحمل"},
+    "weeklySummary": {"title": "ملخص الأسبوع", "description": "تحديثات ذكية أسبوعية عن نمو الطفل"},
+    "aiBirthPlan": {"title": "مُنشئ خطة الولادة", "description": "أنشئ خطة ولادة مخصصة بمساعدة AI"},
+    "smartAppointmentReminder": {"title": "مذكر المواعيد الذكي", "description": "لا تفوّت أي موعد متابعة"},
+    "aiCravingAlternatives": {"title": "بدائل الرغبات الصحية", "description": "بدائل صحية للرغبات الغذائية أثناء الحمل"},
     "smartGroceryList": {"title": "قائمة التسوق الذكية", "description": "قائمة تسوق AI لتغذية الحمل"},
     "aiSleepOptimizer": {"title": "محسّن النوم الذكي", "description": "إرشادات نوم مخصصة للحمل"},
     "aiHospitalBag": {"title": "حقيبة المستشفى الذكية", "description": "قائمة تعبئة ذكية ليوم الولادة"},
     "aiPartnerGuide": {"title": "دليل الشريك الذكي", "description": "نصائح دعم للشركاء والأزواج"},
-    "aiBirthPosition": {"title": "وضعيات الولادة الذكية", "description": "وضعيات مثالية لمخاضك"},
+    "aiBirthPosition": {"title": "وضعيات الولادة الذكية", "description": "وضعيات مثالية للمخاض"},
     "aiSkincare": {"title": "العناية بالبشرة الذكية", "description": "روتين عناية آمن للحمل"},
     "aiNauseaRelief": {"title": "تخفيف الغثيان الذكي", "description": "علاجات ونصائح لغثيان الصباح"},
-    "aiBudgetPlanner": {"title": "مخطط الميزانية الذكي", "description": "خططي نفقات الطفل بذكاء"},
+    "aiBudgetPlanner": {"title": "مخطط الميزانية الذكي", "description": "خطط نفقات الطفل بذكاء"},
     "aiBumpPhotos": {"title": "لقطات أسبوعية", "description": "خط زمني ذكي لصور الحمل مع تحليلات AI"},
-    "aiFitnessCoach": {"title": "مدرب اللياقة الذكي", "description": "تمارين آمنة مخصصة لمرحلة حملك"},
+    "aiFitnessCoach": {"title": "مدرب اللياقة الذكي", "description": "تمارين آمنة مخصصة لمرحلة الحمل"},
     "aiBackPainRelief": {"title": "تخفيف آلام الظهر الذكي", "description": "تمارين مخصصة لآلام ظهر الحمل"},
-    "vitaminTracker": {"title": "متتبع الفيتامينات", "description": "لا تنسي فيتاميناتك"},
-    "forbiddenFoods": {"title": "الأطعمة الممنوعة", "description": "اعرفي ما هو آمن للأكل"},
-    "aiLaborProgress": {"title": "متتبع تقدم المخاض", "description": "تتبعي الانقباضات وراقبي تقدم المخاض"},
-    "cycleTracker": {"title": "متتبع الدورة والتبويض", "description": "تتبعي دورتك وأيام خصوبتك"},
-    "dueDateCalculator": {"title": "حاسبة موعد الولادة", "description": "اكتشفي متى سيصل طفلك"},
-    "fetalGrowth": {"title": "متتبع نمو الجنين", "description": "شاهدي حجم طفلك هذا الأسبوع!"},
-    "kickCounter": {"title": "عداد حركات الجنين", "description": "تتبعي حركات طفلك الثمينة"},
+    "vitaminTracker": {"title": "متتبع الفيتامينات", "description": "لا تنسَ فيتاميناتك"},
+    "forbiddenFoods": {"title": "الأطعمة الممنوعة", "description": "اعرف ما هو آمن للأكل"},
+    "aiLaborProgress": {"title": "متتبع تقدم المخاض", "description": "تتبع الانقباضات وراقب تقدم المخاض"},
+    "cycleTracker": {"title": "متتبع الدورة والتبويض", "description": "تتبع الدورة وأيام الخصوبة"},
+    "dueDateCalculator": {"title": "حاسبة موعد الولادة", "description": "اكتشف متى سيصل الطفل"},
+    "fetalGrowth": {"title": "متتبع نمو الجنين", "description": "شاهد حجم الطفل هذا الأسبوع!"},
+    "kickCounter": {"title": "عداد حركات الجنين", "description": "تتبع حركات الطفل"},
     "weightGain": {"title": "محلل زيادة الوزن", "description": "تحليل زيادة الوزن أثناء الحمل"},
     "postpartumMentalHealth": {"title": "مدرب الصحة النفسية", "description": "فحص EPDS ودعم الصحة النفسية"},
-    "gestationalDiabetes": {"title": "تقييم سكري الحمل", "description": "اعرفي عوامل خطر سكري الحمل"},
-    "preeclampsiaRisk": {"title": "تقييم تسمم الحمل", "description": "افحصي عوامل خطر تسمم الحمل"},
-    "babyGearRecommender": {"title": "مقترح مستلزمات الطفل", "description": "قائمة أساسيات لقدوم مولودك"},
+    "gestationalDiabetes": {"title": "تقييم سكري الحمل", "description": "اعرف عوامل خطر سكري الحمل"},
+    "preeclampsiaRisk": {"title": "تقييم تسمم الحمل", "description": "افحص عوامل خطر تسمم الحمل"},
+    "babyGearRecommender": {"title": "مقترح مستلزمات الطفل", "description": "قائمة أساسيات لقدوم المولود"},
     "aiLactationPrep": {"title": "تحضير الرضاعة الذكي", "description": "دليل تحضير الرضاعة الطبيعية"},
-    "babySleepTracker": {"title": "متتبع نوم الطفل", "description": "تتبعي أنماط نوم طفلك"},
-    "babyGrowth": {"title": "نمو الطفل", "description": "تتبعي النمو بمخططات WHO"},
-    "diaperTracker": {"title": "متتبع الحفاضات", "description": "سجلي التغييرات وراقبي الصحة"},
+    "babySleepTracker": {"title": "متتبع نوم الطفل", "description": "تتبع أنماط نوم الطفل"},
+    "babyGrowth": {"title": "نمو الطفل", "description": "تتبع النمو بمخططات WHO"},
+    "diaperTracker": {"title": "متتبع الحفاضات", "description": "سجّل التغييرات وراقب الصحة"},
     "babyCryTranslator": {"title": "مترجم بكاء الطفل", "description": "تحليل ذكي لأنماط بكاء طفلك"},
-    "postpartumRecovery": {"title": "دليل التعافي بعد الولادة", "description": "خطة تعافيك لمدة 6 أسابيع بعد الولادة"}
+    "postpartumRecovery": {"title": "دليل التعافي بعد الولادة", "description": "خطة تعافي لمدة 6 أسابيع بعد الولادة"}
   },
   "dashboard": {
     "tabs": {
@@ -2650,7 +2650,52 @@
       },
       "journal": {
         "title": "دفتر اليوميات",
-        "desc": "اكتبي 3 أشياء تشعرين بالامتنان لها"
+        "desc": "اكتب 3 أشياء تشعر بالامتنان لها"
+      }
+    },
+    "mealSuggestion": {
+      "subtitle": "اقتراحات وجبات ذكية لفترة الحمل",
+      "pregnancyStage": "مرحلة الحمل",
+      "mealType": "نوع الوجبة",
+      "whatCraving": "ماذا تشتهي؟",
+      "dietaryPreferences": "التفضيلات الغذائية",
+      "suggestMeal": "اقترح وجبة صحية",
+      "mealSuggestion": "اقتراح الوجبة",
+      "differentSuggestion": "اقتراح مختلف",
+      "refresh": "تحديث",
+      "quickTips": "نصائح سريعة",
+      "nutritionVideos": "فيديوهات تغذية الحمل",
+      "nutritionVideosSubtitle": "إرشادات خبراء حول الأكل الصحي",
+      "trimesters": {
+        "first": "الثلث الأول",
+        "second": "الثلث الثاني",
+        "third": "الثلث الثالث"
+      },
+      "mealTypes": {
+        "breakfast": "فطور",
+        "lunch": "غداء",
+        "dinner": "عشاء",
+        "snack": "وجبة خفيفة"
+      },
+      "cravings": {
+        "sweet": "حلو",
+        "salty": "مالح",
+        "sour": "حامض",
+        "spicy": "حار",
+        "creamy": "كريمي"
+      },
+      "preferences": {
+        "vegetarian": "نباتي",
+        "low-sugar": "قليل السكر",
+        "high-protein": "عالي البروتين",
+        "low-sodium": "قليل الصوديوم",
+        "iron-rich": "غني بالحديد",
+        "calcium-rich": "غني بالكالسيوم"
+      },
+      "tips": {
+        "smallMeals": "تناول 5-6 وجبات صغيرة يومياً",
+        "drinkWater": "اشرب 8-10 أكواب من الماء",
+        "avoidRaw": "تجنب الأطعمة النيئة"
       }
     }
   },
@@ -2703,7 +2748,7 @@
     }
   },
   "toolsInternal.babyCryTranslator": {
-    "subtitle": "افهمي ما يحاول طفلك إخبارك به",
+    "subtitle": "افهم ما يحاول طفلك إخبارك به",
     "babyAge": "عمر الطفل",
     "weeks": "أسبوع",
     "cryPattern": "نمط البكاء",
@@ -2738,51 +2783,51 @@
       "afterBath": "بعد الاستحمام"
     },
     "tips": {
-      "tip1": "لكل طفل نمط بكاء فريد — تعرفي على نمط طفلك",
+      "tip1": "لكل طفل نمط بكاء فريد — تعرّف على نمط طفلك",
       "tip2": "يبكي الأطفال 1-3 ساعات يومياً في المتوسط — هذا طبيعي",
-      "tip3": "إذا كان البكاء غير عادي أو مستمر، استشيري طبيب الأطفال"
+      "tip3": "إذا كان البكاء غير عادي أو مستمر، استشر طبيب الأطفال"
     }
   },
   "toolsInternal.postpartumRecovery": {
     "subtitle": "رحلة تعافيك المخصصة بعد الولادة",
     "welcomeTitle": "رحلة التعافي",
     "welcomeDesc": "خطة تعافي لمدة 6 أسابيع مصممة حسب تجربة ولادتك",
-    "selectBirthType": "كيف كانت ولادتك؟",
+    "selectBirthType": "كيف كانت الولادة؟",
     "birthTypes": {
       "vaginal": "ولادة طبيعية",
       "cesarean": "ولادة قيصرية"
     },
     "progress": "التقدم",
-    "getAIAdvice": "احصلي على نصائح ذكية للتعافي",
+    "getAIAdvice": "احصل على نصائح ذكية للتعافي",
     "aiAdviceTitle": "نصائح تعافي مخصصة",
     "changeBirthType": "تغيير نوع الولادة",
     "phases": {
-      "week1": { "title": "الأسبوع 1 — الراحة والشفاء", "description": "ركزي على الراحة والعناية بالجرح والترابط مع طفلك" },
-      "week2": { "title": "الأسبوع 2 — بداية لطيفة", "description": "ابدئي بحركات خفيفة وروتين يومي" },
+      "week1": { "title": "الأسبوع 1 — الراحة والشفاء", "description": "ركّز على الراحة والعناية بالجرح والترابط مع طفلك" },
+      "week2": { "title": "الأسبوع 2 — بداية لطيفة", "description": "ابدأ بحركات خفيفة وروتين يومي" },
       "week3_4": { "title": "الأسبوعان 3-4 — بناء القوة", "description": "تمارين خفيفة وفحص الصحة النفسية" },
       "week5_6": { "title": "الأسبوعان 5-6 — الوضع الجديد", "description": "العودة للنشاط والتخطيط طويل المدى" }
     },
     "checklist": {
-      "rest": { "title": "أولوية الراحة", "desc": "نامي عندما ينام الطفل واقبلي المساعدة" },
-      "hydration": { "title": "شرب الماء", "desc": "اشربي 8-10 أكواب ماء يومياً" },
-      "woundCare": { "title": "العناية بالجرح", "desc": "اتبعي تعليمات الطبيب للعناية بالجرح" },
-      "feedingSchedule": { "title": "جدول الرضاعة", "desc": "ضعي روتين رضاعة منتظم" },
-      "painManagement": { "title": "إدارة الألم", "desc": "تناولي الأدوية الموصوفة حسب التوجيهات" },
+      "rest": { "title": "أولوية الراحة", "desc": "نم عندما ينام الطفل واقبل المساعدة" },
+      "hydration": { "title": "شرب الماء", "desc": "اشرب 8-10 أكواب ماء يومياً" },
+      "woundCare": { "title": "العناية بالجرح", "desc": "اتبع تعليمات الطبيب للعناية بالجرح" },
+      "feedingSchedule": { "title": "جدول الرضاعة", "desc": "ضع روتين رضاعة منتظم" },
+      "painManagement": { "title": "إدارة الألم", "desc": "تناول الأدوية الموصوفة حسب التوجيهات" },
       "gentleWalking": { "title": "مشي خفيف", "desc": "جولات قصيرة في المنزل" },
-      "emotionalCheck": { "title": "فحص المشاعر", "desc": "راقبي مزاجك ومشاعرك" },
-      "nutrition": { "title": "وجبات مغذية", "desc": "تناولي وجبات غنية بالحديد والبروتين" },
-      "sleepRoutine": { "title": "روتين النوم", "desc": "هيئي بيئة نوم مريحة" },
-      "socialSupport": { "title": "الدعم الاجتماعي", "desc": "ابقي على تواصل مع أحبائك" },
+      "emotionalCheck": { "title": "فحص المشاعر", "desc": "راقب مزاجك ومشاعرك" },
+      "nutrition": { "title": "وجبات مغذية", "desc": "تناول وجبات غنية بالحديد والبروتين" },
+      "sleepRoutine": { "title": "روتين النوم", "desc": "هيّئ بيئة نوم مريحة" },
+      "socialSupport": { "title": "الدعم الاجتماعي", "desc": "ابقَ على تواصل مع أحبائك" },
       "lightExercise": { "title": "تمارين خفيفة", "desc": "تمدد لطيف ومشي" },
-      "posturalExercises": { "title": "تمارين وضعية", "desc": "قوّي عضلاتك الأساسية بلطف" },
-      "kegelExercises": { "title": "تمارين كيجل", "desc": "ابدئي تمارين قاع الحوض" },
+      "posturalExercises": { "title": "تمارين وضعية", "desc": "قوِّ عضلاتك الأساسية بلطف" },
+      "kegelExercises": { "title": "تمارين كيجل", "desc": "ابدأ تمارين قاع الحوض" },
       "mentalHealthCheck": { "title": "فحص الصحة النفسية", "desc": "فحص اكتئاب ما بعد الولادة" },
-      "doctorVisit": { "title": "زيارة الطبيب", "desc": "حددي موعد فحص ما بعد الولادة" },
-      "returnToExercise": { "title": "العودة للتمارين", "desc": "زيدي مستوى النشاط تدريجياً" },
-      "intimacyReadiness": { "title": "الاستعداد للعلاقة", "desc": "تحدثي مع شريكك عندما تكونين جاهزة" },
+      "doctorVisit": { "title": "زيارة الطبيب", "desc": "حدد موعد فحص ما بعد الولادة" },
+      "returnToExercise": { "title": "العودة للتمارين", "desc": "زد مستوى النشاط تدريجياً" },
+      "intimacyReadiness": { "title": "الاستعداد للعلاقة", "desc": "تحدث مع شريكتك عندما تكون جاهزاً" },
       "fullCheckup": { "title": "فحص شامل", "desc": "فحص طبي كامل بعد الولادة" },
-      "longTermPlan": { "title": "خطة طويلة المدى", "desc": "ناقشي وسائل المنع والخطط المستقبلية" },
-      "selfCare": { "title": "روتين العناية الذاتية", "desc": "ضعي ممارسات عناية ذاتية مستمرة" }
+      "longTermPlan": { "title": "خطة طويلة المدى", "desc": "ناقش وسائل المنع والخطط المستقبلية" },
+      "selfCare": { "title": "روتين العناية الذاتية", "desc": "ضع ممارسات عناية ذاتية مستمرة" }
     }
   },
   "toolsInternal.mealSuggestion.allergiesLabel": "الحساسية وعدم التحمل",
