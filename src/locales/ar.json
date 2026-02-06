@@ -2653,51 +2653,6 @@
         "desc": "اكتب 3 أشياء تشعر بالامتنان لها"
       }
     },
-    "mealSuggestion": {
-      "subtitle": "اقتراحات وجبات ذكية لفترة الحمل",
-      "pregnancyStage": "مرحلة الحمل",
-      "mealType": "نوع الوجبة",
-      "whatCraving": "ماذا تشتهي؟",
-      "dietaryPreferences": "التفضيلات الغذائية",
-      "suggestMeal": "اقترح وجبة صحية",
-      "mealSuggestion": "اقتراح الوجبة",
-      "differentSuggestion": "اقتراح مختلف",
-      "refresh": "تحديث",
-      "quickTips": "نصائح سريعة",
-      "nutritionVideos": "فيديوهات تغذية الحمل",
-      "nutritionVideosSubtitle": "إرشادات خبراء حول الأكل الصحي",
-      "trimesters": {
-        "first": "الثلث الأول",
-        "second": "الثلث الثاني",
-        "third": "الثلث الثالث"
-      },
-      "mealTypes": {
-        "breakfast": "فطور",
-        "lunch": "غداء",
-        "dinner": "عشاء",
-        "snack": "وجبة خفيفة"
-      },
-      "cravings": {
-        "sweet": "حلو",
-        "salty": "مالح",
-        "sour": "حامض",
-        "spicy": "حار",
-        "creamy": "كريمي"
-      },
-      "preferences": {
-        "vegetarian": "نباتي",
-        "low-sugar": "قليل السكر",
-        "high-protein": "عالي البروتين",
-        "low-sodium": "قليل الصوديوم",
-        "iron-rich": "غني بالحديد",
-        "calcium-rich": "غني بالكالسيوم"
-      },
-      "tips": {
-        "smallMeals": "تناول 5-6 وجبات صغيرة يومياً",
-        "drinkWater": "اشرب 8-10 أكواب من الماء",
-        "avoidRaw": "تجنب الأطعمة النيئة"
-      }
-    }
   },
   "doctorQuestions": {
     "startNewVisit": "بدء زيارة جديدة",
@@ -2830,6 +2785,44 @@
       "selfCare": { "title": "روتين العناية الذاتية", "desc": "ضع ممارسات عناية ذاتية مستمرة" }
     }
   },
+  "toolsInternal.mealSuggestion.subtitle": "اقتراحات وجبات ذكية لفترة الحمل",
+  "toolsInternal.mealSuggestion.pregnancyStage": "مرحلة الحمل",
+  "toolsInternal.mealSuggestion.mealType": "نوع الوجبة",
+  "toolsInternal.mealSuggestion.whatCraving": "ماذا تشتهي؟",
+  "toolsInternal.mealSuggestion.dietaryPreferences": "التفضيلات الغذائية",
+  "toolsInternal.mealSuggestion.suggestMeal": "اقترح وجبة صحية",
+  "toolsInternal.mealSuggestion.mealSuggestion": "اقتراح الوجبة",
+  "toolsInternal.mealSuggestion.differentSuggestion": "اقتراح مختلف",
+  "toolsInternal.mealSuggestion.refresh": "تحديث",
+  "toolsInternal.mealSuggestion.quickTips": "نصائح سريعة",
+  "toolsInternal.mealSuggestion.nutritionVideos": "فيديوهات تغذية الحمل",
+  "toolsInternal.mealSuggestion.nutritionVideosSubtitle": "إرشادات خبراء حول الأكل الصحي",
+  "toolsInternal.mealSuggestion.trimesters": {
+    "first": "الثلث الأول",
+    "second": "الثلث الثاني",
+    "third": "الثلث الثالث"
+  },
+  "toolsInternal.mealSuggestion.mealTypes": {
+    "breakfast": "فطور",
+    "lunch": "غداء",
+    "dinner": "عشاء",
+    "snack": "وجبة خفيفة"
+  },
+  "toolsInternal.mealSuggestion.cravings": {
+    "sweet": "حلو",
+    "salty": "مالح",
+    "sour": "حامض",
+    "spicy": "حار",
+    "creamy": "كريمي"
+  },
+  "toolsInternal.mealSuggestion.preferences": {
+    "vegetarian": "نباتي",
+    "low-sugar": "قليل السكر",
+    "high-protein": "عالي البروتين",
+    "low-sodium": "قليل الصوديوم",
+    "iron-rich": "غني بالحديد",
+    "calcium-rich": "غني بالكالسيوم"
+  },
   "toolsInternal.mealSuggestion.allergiesLabel": "الحساسية وعدم التحمل",
   "toolsInternal.mealSuggestion.allergies": {
     "gluten": "الجلوتين",
@@ -2844,5 +2837,10 @@
     "quick": "سريع (أقل من 15 دقيقة)",
     "medium": "متوسط (15-30 دقيقة)",
     "elaborate": "مفصّل (أكثر من 30 دقيقة)"
+  },
+  "toolsInternal.mealSuggestion.tips": {
+    "smallMeals": "تناول 5-6 وجبات صغيرة يومياً",
+    "drinkWater": "اشرب 8-10 أكواب من الماء",
+    "avoidRaw": "تجنب الأطعمة النيئة"
   }
 }
