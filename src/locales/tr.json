@@ -2206,7 +2206,7 @@
     "yourFavorites": "Favorileriniz",
     "moreTips": "Trimester için daha fazla ipucu"
   },
-  "nauseaRelief": {
+  "toolsInternal.nauseaRelief": {
     "title": "Yapay Zeka Bulantı Rahatlama Koçu",
     "subtitle": "Sabah bulantısı için kişiselleştirilmiş stratejiler",
     "quickRemedies": "Hızlı Çözümler",
@@ -2214,14 +2214,14 @@
     "triggersTitle": "Bulantınızı ne tetikliyor?",
     "getReliefPlan": "Rahatlama Planı Al"
   },
-  "legCrampPreventer": {
+  "toolsInternal.legCrampPreventer": {
     "title": "Yapay Zeka Bacak Krampı Önleyici",
     "subtitle": "Hamilelikte bacak kramplarını önleyin ve yönetin",
     "progressTitle": "Önleme İlerlemesi",
     "getAdvice": "Yapay Zeka Tavsiyesi Al",
     "checklistTitle": "Günlük Önleme Listesi"
   },
-  "weeklySummary": {
+  "toolsInternal.weeklySummary": {
     "title": "Haftalık İçgörüler",
     "subtitle": "Hamileliğinizi akıllı haftalık takip",
     "daysToGo": "gün kaldı",
@@ -2251,25 +2251,60 @@
       "vitamins": "Önemli vitaminler?"
     }
   },
-  "lactationPrep": {
+  "toolsInternal.lactationPrep": {
     "title": "Yapay Zeka Emzirme Hazırlığı",
     "subtitle": "Emzirme hazırlık rehberiniz",
     "feedingGoal": "Besleme Hedefiniz",
     "getLactationGuide": "Yapay Zeka Emzirme Rehberi Al"
   },
-  "backPainRelief": {
+  "toolsInternal.backPainRelief": {
     "title": "Yapay Zeka Sırt Ağrısı Rahatlatma",
     "subtitle": "Hamilelik için güvenli egzersizler",
     "whereHurts": "Nerede ağrıyor?",
     "getAdvice": "Yapay Zeka Tavsiyesi Al",
     "exercisesTitle": "Sırt Ağrısı Egzersizleri"
   },
-  "sleepOptimizer": {
+  "toolsInternal.sleepOptimizer": {
     "title": "Yapay Zeka Uyku Optimize Edici",
     "subtitle": "Hamilelik için kişiselleştirilmiş uyku rehberliği",
     "currentSleep": "Mevcut Uyku: {{hours}} saat/gece",
     "usualBedtime": "Normal Yatma Saati",
     "sleepChallenges": "Uyku Zorlukları"
+  },
+  "toolsInternal.gdm": {
+    "title": "Gestasyonel Diyabet Risk Değerlendirmesi",
+    "subtitle": "Gestasyonel diyabet risk faktörlerinizi değerlendirin",
+    "disclaimer": "Bu yalnızca eğitim amaçlı bir tarama aracıdır. Gestasyonel diyabeti teşhis etmez. Uygun test ve teşhis için her zaman doktorunuza danışın.",
+    "checkRiskFactors": "Risk Faktörlerinizi Kontrol Edin",
+    "riskFactorsSelected": "Seçilen Risk Faktörleri",
+    "aiCoachTitle": "Yapay Zeka Diyabet Önleme Koçu",
+    "getPreventionPlan": "Kişiselleştirilmiş Önleme Planı Al",
+    "preventionTipsTitle": "Önleme İpuçları",
+    "infoNote": "Gestasyonel diyabet taraması genellikle 24-28. haftalarda yapılır. Birden fazla risk faktörünüz varsa doktorunuz erken tarama önerebilir.",
+    "riskLevels": {
+      "high": { "title": "Yüksek Risk", "description": "Risk faktörleriniz yüksek olasılık gösteriyor. Erken tarama önerilebilir." },
+      "moderate": { "title": "Orta Risk", "description": "Bazı risk faktörleriniz var. 24-28. haftalarda standart tarama önerilir." },
+      "low": { "title": "Düşük Risk", "description": "Az risk faktörünüz var, ancak 24-28. haftalarda rutin tarama hâlâ önerilir." }
+    },
+    "riskFactors": {
+      "age": "35 yaş veya üzeri",
+      "bmi": "Hamilelik öncesi BMI 30 veya üzeri",
+      "family": "Ailede diyabet öyküsü (ebeveyn veya kardeş)",
+      "previousGdm": "Önceki gestasyonel diyabet",
+      "previousLarge": "Daha önce 4 kg üzeri bebek doğurma",
+      "pcos": "Polikistik over sendromu (PCOS)",
+      "prediabetes": "Prediyabet veya yüksek kan şekeri",
+      "ethnicity": "Yüksek riskli etnik köken",
+      "multiple": "Çoğul gebelik (ikiz, üçüz)",
+      "sedentary": "Hamilelik öncesi hareketsiz yaşam tarzı"
+    },
+    "preventionTips": {
+      "tip1": "Hamilelik öncesi ve sırasında sağlıklı kilonuzu koruyun",
+      "tip2": "Lif ve tam tahıl açısından zengin dengeli beslenin",
+      "tip3": "Doktor onaylı egzersizlerle fiziksel olarak aktif kalın",
+      "tip4": "Düzenli izleme için tüm doğum öncesi randevularınıza katılın",
+      "tip5": "Şekerli yiyecekleri ve rafine karbonhidratları sınırlayın"
+    }
   },
   "ovulation": {
     "subtitle": "En verimli günlerinizi bulun",

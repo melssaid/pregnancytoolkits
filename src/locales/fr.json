@@ -2615,5 +2615,40 @@
   "toolsInternal.mealSuggestion.allergiesLabel": "Allergies et intolérances",
   "toolsInternal.mealSuggestion.allergies": { "gluten": "Gluten", "dairy": "Produits laitiers", "nuts": "Noix", "eggs": "Œufs", "soy": "Soja", "seafood": "Fruits de mer" },
   "toolsInternal.mealSuggestion.prepTimeLabel": "Temps de préparation",
-  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Rapide (< 15 min)", "medium": "Moyen (15-30 min)", "elaborate": "Élaboré (30+ min)" }
+  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Rapide (< 15 min)", "medium": "Moyen (15-30 min)", "elaborate": "Élaboré (30+ min)" },
+  "toolsInternal.gdm": {
+    "title": "Évaluation du risque de diabète gestationnel",
+    "subtitle": "Évaluez vos facteurs de risque de diabète gestationnel",
+    "disclaimer": "Ceci est un outil de dépistage éducatif uniquement. Il ne diagnostique pas le diabète gestationnel. Consultez toujours votre médecin.",
+    "checkRiskFactors": "Vérifiez vos facteurs de risque",
+    "riskFactorsSelected": "Facteurs de risque sélectionnés",
+    "aiCoachTitle": "Coach IA de prévention du diabète",
+    "getPreventionPlan": "Obtenir un plan de prévention personnalisé",
+    "preventionTipsTitle": "Conseils de prévention",
+    "infoNote": "Le dépistage du diabète gestationnel a lieu entre les semaines 24-28. Si vous avez plusieurs facteurs de risque, votre médecin peut recommander un dépistage plus précoce.",
+    "riskLevels": {
+      "high": { "title": "Risque élevé", "description": "Vos facteurs de risque suggèrent une probabilité accrue. Un dépistage précoce peut être recommandé." },
+      "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque. Le dépistage standard aux semaines 24-28 est recommandé." },
+      "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque, mais le dépistage de routine aux semaines 24-28 est toujours recommandé." }
+    },
+    "riskFactors": {
+      "age": "35 ans ou plus",
+      "bmi": "IMC 30 ou plus avant la grossesse",
+      "family": "Antécédents familiaux de diabète (parent ou frère/sœur)",
+      "previousGdm": "Diabète gestationnel antérieur",
+      "previousLarge": "Bébé précédent de plus de 4 kg",
+      "pcos": "Syndrome des ovaires polykystiques (SOPK)",
+      "prediabetes": "Prédiabète ou glycémie élevée",
+      "ethnicity": "Origine ethnique à risque plus élevé",
+      "multiple": "Grossesse multiple (jumeaux, triplés)",
+      "sedentary": "Mode de vie sédentaire avant la grossesse"
+    },
+    "preventionTips": {
+      "tip1": "Maintenez un poids sain avant et pendant la grossesse",
+      "tip2": "Adoptez une alimentation équilibrée riche en fibres et céréales complètes",
+      "tip3": "Restez physiquement active avec des exercices approuvés par votre médecin",
+      "tip4": "Assistez à tous les rendez-vous prénataux pour un suivi régulier",
+      "tip5": "Limitez les aliments sucrés et les glucides raffinés"
+    }
+  }
 }

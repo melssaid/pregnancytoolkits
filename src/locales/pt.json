@@ -2206,7 +2206,7 @@
     "yourFavorites": "Seus Favoritos",
     "moreTips": "Mais dicas para o trimestre"
   },
-  "nauseaRelief": {
+  "toolsInternal.nauseaRelief": {
     "title": "Coach IA para Náuseas",
     "subtitle": "Estratégias personalizadas para enjoos matinais",
     "quickRemedies": "Remédios Rápidos",
@@ -2214,14 +2214,14 @@
     "triggersTitle": "O que desencadeia suas náuseas?",
     "getReliefPlan": "Obter Plano de Alívio"
   },
-  "legCrampPreventer": {
+  "toolsInternal.legCrampPreventer": {
     "title": "Prevenção IA de Cãibras",
     "subtitle": "Previna e gerencie cãibras nas pernas durante a gravidez",
     "progressTitle": "Progresso de Prevenção",
     "getAdvice": "Obter Conselho IA",
     "checklistTitle": "Lista de Prevenção Diária"
   },
-  "weeklySummary": {
+  "toolsInternal.weeklySummary": {
     "title": "Resumo Semanal",
     "subtitle": "Acompanhamento semanal inteligente da sua gravidez",
     "daysToGo": "dias restantes",
@@ -2251,25 +2251,60 @@
       "vitamins": "Vitaminas importantes?"
     }
   },
-  "lactationPrep": {
+  "toolsInternal.lactationPrep": {
     "title": "Preparação IA para Amamentação",
     "subtitle": "Seu guia de preparação para amamentação",
     "feedingGoal": "Seu Objetivo de Alimentação",
     "getLactationGuide": "Obter Guia IA de Amamentação"
   },
-  "backPainRelief": {
+  "toolsInternal.backPainRelief": {
     "title": "Alívio IA de Dor nas Costas",
     "subtitle": "Exercícios seguros para gravidez",
     "whereHurts": "Onde dói?",
     "getAdvice": "Obter Conselho IA",
     "exercisesTitle": "Exercícios para Dor nas Costas"
   },
-  "sleepOptimizer": {
+  "toolsInternal.sleepOptimizer": {
     "title": "Otimizador IA de Sono",
     "subtitle": "Orientação personalizada de sono para gravidez",
     "currentSleep": "Sono Atual: {{hours}} horas/noite",
     "usualBedtime": "Hora Habitual de Dormir",
     "sleepChallenges": "Desafios do Sono"
+  },
+  "toolsInternal.gdm": {
+    "title": "Avaliação de Risco de Diabetes Gestacional",
+    "subtitle": "Avalie seus fatores de risco para diabetes gestacional",
+    "disclaimer": "Esta é apenas uma ferramenta educacional de triagem. Não diagnostica diabetes gestacional. Consulte sempre seu médico.",
+    "checkRiskFactors": "Verifique seus Fatores de Risco",
+    "riskFactorsSelected": "Fatores de Risco Selecionados",
+    "aiCoachTitle": "Coach IA de Prevenção de Diabetes",
+    "getPreventionPlan": "Obter Plano de Prevenção Personalizado",
+    "preventionTipsTitle": "Dicas de Prevenção",
+    "infoNote": "A triagem de diabetes gestacional ocorre entre as semanas 24-28. Se você tiver múltiplos fatores de risco, seu médico pode recomendar triagem mais cedo.",
+    "riskLevels": {
+      "high": { "title": "Risco Alto", "description": "Seus fatores de risco sugerem maior probabilidade. Triagem precoce pode ser recomendada." },
+      "moderate": { "title": "Risco Moderado", "description": "Você tem alguns fatores de risco. Triagem padrão nas semanas 24-28 é recomendada." },
+      "low": { "title": "Risco Baixo", "description": "Você tem poucos fatores de risco, mas a triagem rotineira nas semanas 24-28 ainda é recomendada." }
+    },
+    "riskFactors": {
+      "age": "35 anos ou mais",
+      "bmi": "IMC 30 ou mais antes da gravidez",
+      "family": "Histórico familiar de diabetes (pai ou irmão)",
+      "previousGdm": "Diabetes gestacional anterior",
+      "previousLarge": "Bebê anterior com mais de 4 kg",
+      "pcos": "Síndrome do ovário policístico (SOP)",
+      "prediabetes": "Pré-diabetes ou açúcar alto no sangue",
+      "ethnicity": "Etnia de maior risco",
+      "multiple": "Gravidez múltipla (gêmeos, trigêmeos)",
+      "sedentary": "Estilo de vida sedentário antes da gravidez"
+    },
+    "preventionTips": {
+      "tip1": "Mantenha um peso saudável antes e durante a gravidez",
+      "tip2": "Tenha uma dieta equilibrada rica em fibras e grãos integrais",
+      "tip3": "Mantenha-se fisicamente ativa com exercícios aprovados pelo médico",
+      "tip4": "Compareça a todas as consultas pré-natais para monitoramento regular",
+      "tip5": "Limite alimentos açucarados e carboidratos refinados"
+    }
   },
   "ovulation": {
     "subtitle": "Encontre seus dias mais férteis",
