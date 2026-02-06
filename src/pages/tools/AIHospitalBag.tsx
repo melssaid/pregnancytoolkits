@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Briefcase, Sparkles, Baby, User, Heart, Plus, FileDown, Share2 } from "lucide-react";
+import { Briefcase, Sparkles, Baby, User, Heart, Plus, FileDown, Share2, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -246,6 +246,14 @@ const AIHospitalBag = () => {
     setItems(updated);
     safeSaveToLocalStorage("hospital-bag-items", updated);
     setNewItem("");
+  };
+
+  const resetList = () => {
+    if (window.confirm(t('toolsInternal.hospitalBag.resetConfirm'))) {
+      localStorage.removeItem("hospital-bag-items");
+      setItems(defaultItems);
+      toast.success(t('toolsInternal.hospitalBag.resetSuccess'));
+    }
   };
 
   // Helper to get item display name
@@ -515,16 +523,28 @@ Include seasonal considerations and hospital-specific recommendations.`;
           </Button>
         </div>
 
-        {/* Share Button */}
-        <Button
-          onClick={handleShareWhatsApp}
-          variant="outline"
-          className="w-full border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 text-green-700 dark:text-green-400"
-          size="lg"
-        >
-          <Share2 className="w-4 h-4 me-2" />
-          {t('toolsInternal.hospitalBag.shareWhatsApp')}
-        </Button>
+        {/* Share & Reset Buttons */}
+        <div className="grid grid-cols-2 gap-3">
+          <Button
+            onClick={handleShareWhatsApp}
+            variant="outline"
+            className="border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 text-green-700 dark:text-green-400"
+            size="lg"
+          >
+            <Share2 className="w-4 h-4 me-2" />
+            {t('toolsInternal.hospitalBag.shareWhatsApp')}
+          </Button>
+
+          <Button
+            onClick={resetList}
+            variant="outline"
+            className="border-destructive/50 hover:bg-destructive/10 text-destructive"
+            size="lg"
+          >
+            <RotateCcw className="w-4 h-4 me-2" />
+            {t('toolsInternal.hospitalBag.resetList')}
+          </Button>
+        </div>
 
         {response && (
           <Card className="p-4 bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-950/30 dark:to-cyan-950/30">

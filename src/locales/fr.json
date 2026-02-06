@@ -849,6 +849,9 @@
       "optional": "Optionnel",
       "exportPDF": "Exporter PDF",
       "shareWhatsApp": "Partager via WhatsApp",
+      "resetList": "Réinitialiser la liste",
+      "resetConfirm": "Êtes-vous sûre de vouloir réinitialiser la liste ? Cela supprimera tous les éléments personnalisés et restaurera la liste par défaut.",
+      "resetSuccess": "La liste a été réinitialisée !",
       "exportSuccess": "Checklist exportée avec succès !",
       "exportError": "Échec de l'exportation"
     },
