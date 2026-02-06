@@ -1,4 +1,13 @@
 {
+  "nav": {
+    "dashboard": "Painel",
+    "alerts": "Alertas",
+    "search": "Pesquisar",
+    "settings": "Configurações"
+  },
+  "relatedTools": {
+    "title": "Continue sua jornada"
+  },
   "app": {
     "name": "Ferramentas de Gravidez",
     "tagline": "Seu companheiro completo de gravidez",

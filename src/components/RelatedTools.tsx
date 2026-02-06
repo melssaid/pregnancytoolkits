@@ -28,7 +28,7 @@ export const RelatedTools = forwardRef<HTMLDivElement, RelatedToolsProps>(
       >
         <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
           <span className="h-1 w-8 rounded-full bg-gradient-to-r from-primary to-pink-500" />
-          Continue Your Journey
+          {t('relatedTools.title', 'Continue Your Journey')}
         </h3>
         
         <div className="grid gap-3 sm:grid-cols-3">

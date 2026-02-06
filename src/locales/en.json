@@ -1,4 +1,13 @@
 {
+  "nav": {
+    "dashboard": "Dashboard",
+    "alerts": "Alerts",
+    "search": "Search",
+    "settings": "Settings"
+  },
+  "relatedTools": {
+    "title": "Continue Your Journey"
+  },
   "app": {
     "name": "Pregnancy Toolkits",
     "tagline": "Your Complete Pregnancy Companion",

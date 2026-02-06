@@ -1,4 +1,13 @@
 {
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "alerts": "Alertes",
+    "search": "Rechercher",
+    "settings": "Paramètres"
+  },
+  "relatedTools": {
+    "title": "Continuez votre parcours"
+  },
   "app": {
     "name": "Outils de Grossesse",
     "tagline": "Votre compagnon complet de grossesse",

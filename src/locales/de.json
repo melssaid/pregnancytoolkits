@@ -1,4 +1,13 @@
 {
+  "nav": {
+    "dashboard": "Dashboard",
+    "alerts": "Benachrichtigungen",
+    "search": "Suche",
+    "settings": "Einstellungen"
+  },
+  "relatedTools": {
+    "title": "Setze deine Reise fort"
+  },
   "app": {
     "name": "Schwangerschafts-Toolkit",
     "tagline": "Ihr vollständiger Schwangerschaftsbegleiter",
