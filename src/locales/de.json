@@ -166,6 +166,14 @@
     "diaperTracker": {
       "title": "Windel-Tracker",
       "description": "Protokollieren Sie Wechsel, überwachen Sie die Gesundheit."
+    },
+    "babyCryTranslator": {
+      "title": "Baby-Wein-Übersetzer",
+      "description": "KI-Analyse der Weinmuster Ihres Babys."
+    },
+    "postpartumRecovery": {
+      "title": "Erholungsplan nach der Geburt",
+      "description": "Ihr 6-Wochen-Erholungsplan nach der Geburt."
     }
   },
   "dashboard": {
@@ -2475,5 +2483,25 @@
       "askClarification": "Zögern Sie nicht, um Erklärung zu bitten",
       "bringPartner": "Bringen Sie Ihren Partner mit, wenn möglich"
     }
-  }
+  },
+  "toolsInternal.babyCryTranslator": {
+    "subtitle": "Verstehen Sie, was Ihr Baby Ihnen sagen möchte",
+    "babyAge": "Alter des Babys", "weeks": "Wochen", "cryPattern": "Weinmuster", "cryDuration": "Wie lange?", "whenCrying": "Wann weint das Baby?", "analyzeButton": "Weinmuster analysieren", "analysisResult": "Wein-Analyse", "newAnalysis": "Neue Analyse", "reanalyze": "Erneut analysieren", "recentLogs": "Letzte Analysen", "tipsTitle": "Hilfreiche Tipps",
+    "patterns": { "continuous": "Dauerhaftes Weinen", "intermittent": "An und aus", "highPitch": "Hohe Tonlage", "whimpering": "Wimmern", "rhythmic": "Rhythmisch", "sudden": "Plötzliches Schreien" },
+    "durations": { "under1": "Unter 1 Min", "1to5": "1-5 Min", "5to15": "5-15 Min", "over15": "Über 15 Min" },
+    "contexts": { "afterFeeding": "Nach dem Füttern", "beforeSleep": "Vor dem Schlafen", "afterWaking": "Nach dem Aufwachen", "duringChange": "Beim Wickeln", "noReason": "Ohne erkennbaren Grund", "afterBath": "Nach dem Baden" },
+    "tips": { "tip1": "Jedes Baby hat ein einzigartiges Weinmuster", "tip2": "Babys weinen durchschnittlich 1-3 Stunden täglich — das ist normal", "tip3": "Bei ungewöhnlichem oder anhaltendem Weinen den Kinderarzt konsultieren" }
+  },
+  "toolsInternal.postpartumRecovery": {
+    "subtitle": "Ihre personalisierte Erholungsreise nach der Geburt",
+    "welcomeTitle": "Ihre Erholungsreise", "welcomeDesc": "Ein 6-Wochen-Erholungsplan angepasst an Ihre Geburtserfahrung", "selectBirthType": "Wie haben Sie entbunden?",
+    "birthTypes": { "vaginal": "Vaginale Geburt", "cesarean": "Kaiserschnitt" },
+    "progress": "Fortschritt", "getAIAdvice": "KI-Erholungsberatung erhalten", "aiAdviceTitle": "Personalisierte Erholungsberatung", "changeBirthType": "Geburtsart ändern",
+    "phases": { "week1": { "title": "Woche 1 — Ruhe & Heilung", "description": "Fokus auf Ruhe, Wundpflege und Bindung" }, "week2": { "title": "Woche 2 — Sanfter Start", "description": "Sanfte Bewegung und Routinen" }, "week3_4": { "title": "Wochen 3-4 — Kraft aufbauen", "description": "Leichte Übungen und emotionales Wohlbefinden" }, "week5_6": { "title": "Wochen 5-6 — Neue Normalität", "description": "Rückkehr zur Aktivität und langfristige Planung" } },
+    "checklist": { "rest": { "title": "Ruhe priorisieren", "desc": "Schlafen Sie, wenn das Baby schläft" }, "hydration": { "title": "Hydratisiert bleiben", "desc": "8-10 Gläser Wasser täglich" }, "woundCare": { "title": "Wundpflege", "desc": "Folgen Sie den Anweisungen Ihres Arztes" }, "feedingSchedule": { "title": "Fütterungsplan", "desc": "Etablieren Sie eine Routine" }, "painManagement": { "title": "Schmerzmanagement", "desc": "Nehmen Sie verschriebene Medikamente" }, "gentleWalking": { "title": "Sanftes Gehen", "desc": "Kurze Spaziergänge im Haus" }, "emotionalCheck": { "title": "Emotionale Kontrolle", "desc": "Überwachen Sie Ihre Stimmung" }, "nutrition": { "title": "Nahrhafte Mahlzeiten", "desc": "Eisen- und proteinreiche Mahlzeiten" }, "sleepRoutine": { "title": "Schlafroutine", "desc": "Schaffen Sie eine erholsame Umgebung" }, "socialSupport": { "title": "Soziale Unterstützung", "desc": "Bleiben Sie mit Ihren Lieben verbunden" }, "lightExercise": { "title": "Leichte Übungen", "desc": "Sanftes Dehnen und Gehen" }, "posturalExercises": { "title": "Haltungsübungen", "desc": "Stärken Sie sanft Ihre Körpermitte" }, "kegelExercises": { "title": "Kegel-Übungen", "desc": "Beginnen Sie mit Beckenbodenübungen" }, "mentalHealthCheck": { "title": "Psychische Gesundheit", "desc": "Postpartale Depression überprüfen" }, "doctorVisit": { "title": "Arztbesuch", "desc": "Vereinbaren Sie Ihre Nachsorge" }, "returnToExercise": { "title": "Zurück zum Sport", "desc": "Aktivitätsniveau schrittweise steigern" }, "intimacyReadiness": { "title": "Intimität", "desc": "Besprechen Sie es mit Ihrem Partner" }, "fullCheckup": { "title": "Vollständige Untersuchung", "desc": "Komplette Nachsorgeuntersuchung" }, "longTermPlan": { "title": "Langfristiger Plan", "desc": "Verhütung und Zukunftsplanung" }, "selfCare": { "title": "Selbstfürsorge", "desc": "Etablieren Sie Selbstfürsorge-Praktiken" } }
+  },
+  "toolsInternal.mealSuggestion.allergiesLabel": "Allergien & Unverträglichkeiten",
+  "toolsInternal.mealSuggestion.allergies": { "gluten": "Gluten", "dairy": "Milchprodukte", "nuts": "Nüsse", "eggs": "Eier", "soy": "Soja", "seafood": "Meeresfrüchte" },
+  "toolsInternal.mealSuggestion.prepTimeLabel": "Zubereitungszeit",
+  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Schnell (< 15 Min)", "medium": "Mittel (15-30 Min)", "elaborate": "Aufwändig (30+ Min)" }
 }

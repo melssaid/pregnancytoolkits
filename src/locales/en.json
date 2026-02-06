@@ -166,6 +166,14 @@
     "diaperTracker": {
       "title": "Diaper Tracker",
       "description": "Log changes, monitor health."
+    },
+    "babyCryTranslator": {
+      "title": "Baby Cry Translator",
+      "description": "AI analysis of your baby's crying patterns."
+    },
+    "postpartumRecovery": {
+      "title": "Postpartum Recovery Guide",
+      "description": "Your 6-week recovery plan after birth."
     }
   },
   "dashboard": {
@@ -3502,5 +3510,103 @@
       "askClarification": "Don't hesitate to ask for clarification",
       "bringPartner": "Bring your partner if possible"
     }
+  },
+  "toolsInternal.babyCryTranslator": {
+    "subtitle": "Understand what your baby is trying to tell you",
+    "babyAge": "Baby's Age",
+    "weeks": "weeks",
+    "cryPattern": "Crying Pattern",
+    "cryDuration": "How Long?",
+    "whenCrying": "When Does Baby Cry?",
+    "analyzeButton": "Analyze Crying Pattern",
+    "analysisResult": "Cry Analysis",
+    "newAnalysis": "New Analysis",
+    "reanalyze": "Re-analyze",
+    "recentLogs": "Recent Analyses",
+    "tipsTitle": "Helpful Tips",
+    "patterns": {
+      "continuous": "Continuous crying",
+      "intermittent": "On and off",
+      "highPitch": "High-pitched",
+      "whimpering": "Whimpering",
+      "rhythmic": "Rhythmic",
+      "sudden": "Sudden screaming"
+    },
+    "durations": {
+      "under1": "Under 1 min",
+      "1to5": "1-5 min",
+      "5to15": "5-15 min",
+      "over15": "Over 15 min"
+    },
+    "contexts": {
+      "afterFeeding": "After feeding",
+      "beforeSleep": "Before sleep",
+      "afterWaking": "After waking",
+      "duringChange": "During diaper change",
+      "noReason": "No apparent reason",
+      "afterBath": "After bath"
+    },
+    "tips": {
+      "tip1": "Every baby has a unique crying pattern — learn yours",
+      "tip2": "Babies cry 1-3 hours daily on average — it's normal",
+      "tip3": "If crying is unusual or persistent, consult your pediatrician"
+    }
+  },
+  "toolsInternal.postpartumRecovery": {
+    "subtitle": "Your personalized recovery journey after birth",
+    "welcomeTitle": "Your Recovery Journey",
+    "welcomeDesc": "A guided 6-week recovery plan tailored to your birth experience",
+    "selectBirthType": "How did you deliver?",
+    "birthTypes": {
+      "vaginal": "Vaginal Birth",
+      "cesarean": "C-Section"
+    },
+    "progress": "Progress",
+    "getAIAdvice": "Get AI Recovery Advice",
+    "aiAdviceTitle": "Personalized Recovery Advice",
+    "changeBirthType": "Change birth type",
+    "phases": {
+      "week1": { "title": "Week 1 — Rest & Heal", "description": "Focus on rest, wound care, and bonding with your baby" },
+      "week2": { "title": "Week 2 — Gentle Start", "description": "Begin gentle movement and establish routines" },
+      "week3_4": { "title": "Weeks 3-4 — Building Strength", "description": "Light exercises and emotional wellness check" },
+      "week5_6": { "title": "Weeks 5-6 — New Normal", "description": "Return to activity and long-term planning" }
+    },
+    "checklist": {
+      "rest": { "title": "Prioritize Rest", "desc": "Sleep when baby sleeps, accept help from others" },
+      "hydration": { "title": "Stay Hydrated", "desc": "Drink 8-10 glasses of water daily" },
+      "woundCare": { "title": "Wound Care", "desc": "Follow your doctor's wound care instructions" },
+      "feedingSchedule": { "title": "Feeding Schedule", "desc": "Establish a consistent feeding routine" },
+      "painManagement": { "title": "Pain Management", "desc": "Take prescribed medications as directed" },
+      "gentleWalking": { "title": "Gentle Walking", "desc": "Short walks around the house" },
+      "emotionalCheck": { "title": "Emotional Check-in", "desc": "Monitor your mood and feelings" },
+      "nutrition": { "title": "Nutritious Meals", "desc": "Eat iron-rich, protein-packed meals" },
+      "sleepRoutine": { "title": "Sleep Routine", "desc": "Create a restful sleep environment" },
+      "socialSupport": { "title": "Social Support", "desc": "Stay connected with loved ones" },
+      "lightExercise": { "title": "Light Exercise", "desc": "Gentle stretching and walking" },
+      "posturalExercises": { "title": "Postural Exercises", "desc": "Strengthen your core gently" },
+      "kegelExercises": { "title": "Kegel Exercises", "desc": "Start pelvic floor exercises" },
+      "mentalHealthCheck": { "title": "Mental Health Check", "desc": "Screen for postpartum depression" },
+      "doctorVisit": { "title": "Doctor Visit", "desc": "Schedule your postpartum checkup" },
+      "returnToExercise": { "title": "Return to Exercise", "desc": "Gradually increase activity level" },
+      "intimacyReadiness": { "title": "Intimacy Readiness", "desc": "Discuss with your partner when ready" },
+      "fullCheckup": { "title": "Full Checkup", "desc": "Complete postpartum medical exam" },
+      "longTermPlan": { "title": "Long-term Plan", "desc": "Discuss contraception and future plans" },
+      "selfCare": { "title": "Self-Care Routine", "desc": "Establish ongoing self-care practices" }
+    }
+  },
+  "toolsInternal.mealSuggestion.allergiesLabel": "Allergies & Intolerances",
+  "toolsInternal.mealSuggestion.allergies": {
+    "gluten": "Gluten",
+    "dairy": "Dairy",
+    "nuts": "Nuts",
+    "eggs": "Eggs",
+    "soy": "Soy",
+    "seafood": "Seafood"
+  },
+  "toolsInternal.mealSuggestion.prepTimeLabel": "Preparation Time",
+  "toolsInternal.mealSuggestion.prepTimes": {
+    "quick": "Quick (< 15 min)",
+    "medium": "Medium (15-30 min)",
+    "elaborate": "Elaborate (30+ min)"
   }
 }

@@ -63,8 +63,10 @@ const PreeclampsiaRisk = lazy(() => import("@/pages/tools/PreeclampsiaRisk"));
 // PREPARATION (1 tool)
 const BabyGearRecommender = lazy(() => import("@/pages/tools/BabyGearRecommender"));
 
-// POSTPARTUM (4 tools)
+// POSTPARTUM (6 tools)
 const AILactationPrep = lazy(() => import("@/pages/tools/AILactationPrep"));
+const PostpartumRecoveryGuide = lazy(() => import("@/pages/tools/PostpartumRecoveryGuide"));
+const BabyCryTranslator = lazy(() => import("@/pages/tools/BabyCryTranslator"));
 const BabySleepTracker = lazy(() => import("@/pages/tools/BabySleepTracker"));
 const BabyGrowth = lazy(() => import("@/pages/tools/BabyGrowth"));
 const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
@@ -137,6 +139,8 @@ export function AnimatedRoutes() {
 
           {/* POSTPARTUM */}
           <Route path="/tools/ai-lactation-prep" element={<PageTransition><AILactationPrep /></PageTransition>} />
+          <Route path="/tools/postpartum-recovery" element={<PageTransition><PostpartumRecoveryGuide /></PageTransition>} />
+          <Route path="/tools/baby-cry-translator" element={<PageTransition><BabyCryTranslator /></PageTransition>} />
           <Route path="/tools/baby-sleep-tracker" element={<PageTransition><BabySleepTracker /></PageTransition>} />
           <Route path="/tools/baby-growth" element={<PageTransition><BabyGrowth /></PageTransition>} />
           <Route path="/tools/diaper-tracker" element={<PageTransition><DiaperTracker /></PageTransition>} />
