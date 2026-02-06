@@ -21,6 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import { ToolFrame } from "@/components/ToolFrame";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 
 interface CryLog {
   id: string;

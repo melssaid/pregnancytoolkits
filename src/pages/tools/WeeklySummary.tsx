@@ -18,6 +18,7 @@ import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { WeekSlider } from "@/components/WeekSlider";
 
 const STORAGE_KEY = "weekly-summary-data";
@@ -34,6 +35,10 @@ export default function WeeklySummary() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [week, setWeek] = useState<number>(20);
   const [summary, setSummary] = useState<string>("");
+
+  useResetOnLanguageChange(() => {
+    setSummary('');
+  });
   const [savedSummaries, setSavedSummaries] = useState<WeeklySummaryData[]>([]);
 
   useEffect(() => {

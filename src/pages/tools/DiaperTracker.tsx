@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { format, differenceInHours } from "date-fns";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 
 type DiaperType = "wet" | "dirty" | "both";
 
@@ -23,6 +24,11 @@ const DiaperTracker = () => {
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [entries, setEntries] = useState<DiaperEntry[]>([]);
   const [aiInsight, setAiInsight] = useState('');
+
+  useResetOnLanguageChange(() => {
+    setAiInsight('');
+    setShowAiInsight(false);
+  });
   const [showAiInsight, setShowAiInsight] = useState(false);
 
   useEffect(() => {
