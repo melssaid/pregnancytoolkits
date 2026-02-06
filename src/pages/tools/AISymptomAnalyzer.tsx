@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { WeekSlider } from '@/components/WeekSlider';
 import { useTranslation } from 'react-i18next';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 interface Symptom {
   id: string;
@@ -36,6 +37,11 @@ const AISymptomAnalyzer: React.FC = () => {
   const [analyzed, setAnalyzed] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<Record<string, string>>({});
+
+  useResetOnLanguageChange(() => {
+    setAnalyzed(false);
+    setAnalysisResult({});
+  });
 
   const toggleSymptom = (symptomId: string, symptomName: string) => {
     const exists = selectedSymptoms.find(s => s.id === symptomId);

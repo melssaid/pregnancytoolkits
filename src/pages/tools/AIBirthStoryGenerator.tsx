@@ -8,6 +8,7 @@ import { FileText, Sparkles, Download, Heart, Baby, Share2 } from 'lucide-react'
 import { useToast } from '@/components/ui/use-toast';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { useTranslation } from 'react-i18next';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 interface BirthStoryData {
   babyName: string;
@@ -48,6 +49,10 @@ export default function AIBirthStoryGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const isInitialized = useRef(false);
   const { toast } = useToast();
+
+  useResetOnLanguageChange(() => {
+    setGeneratedStory('');
+  });
 
   useEffect(() => {
     const saved = safeParseLocalStorage<BirthStoryData>('birthStoryData', DEFAULT_DATA, isValidData);

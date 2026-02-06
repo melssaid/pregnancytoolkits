@@ -21,6 +21,7 @@ import { Progress } from "@/components/ui/progress";
 import { ToolFrame } from "@/components/ToolFrame";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 
 type BirthType = "vaginal" | "cesarean";
 type RecoveryPhase = "week1" | "week2" | "week3_4" | "week5_6";

@@ -11,6 +11,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 
 const getPartnerVideos = (t: any): Video[] => [
   {
@@ -68,6 +69,10 @@ const AIPartnerGuide = () => {
   const [trimester, setTrimester] = useState<string>("second");
   const [partnerType, setPartnerType] = useState<string>("husband");
   const [response, setResponse] = useState("");
+
+  useResetOnLanguageChange(() => {
+    setResponse('');
+  });
 
   const currentLang = i18n.language;
 
