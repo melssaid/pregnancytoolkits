@@ -2541,6 +2541,12 @@
     "screeningDisclaimer": "⚠️ Esta é uma ferramenta de triagem baseada na Escala de Depressão Pós-Natal de Edimburgo (EPDS). Não fornece diagnóstico. Sempre consulte um profissional para avaliação adequada.",
     "mentalWellnessVideos": "Vídeos de bem-estar mental",
     "videosSubtitle": "Recursos de apoio e autocuidado",
+    "videos": {
+      "v1": { "title": "O que é a depressão pós-parto?", "description": "Sinais, sintomas e quando procurar ajuda profissional", "category": "Educação" },
+      "v2": { "title": "Depressão pós-parto explicada", "description": "Sintomas, fatores de risco e opções de tratamento", "category": "Educação" },
+      "v3": { "title": "Meditação de relaxamento na gravidez", "description": "Meditação calmante para melhor saúde mental", "category": "Relaxamento" },
+      "v4": { "title": "Cuidados com o recém-nascido - Semana 1", "description": "Guia do pediatra para a primeira semana com o bebê", "category": "Autocuidado" }
+    },
     "riskLevels": {
       "low": {
         "title": "Risco baixo",

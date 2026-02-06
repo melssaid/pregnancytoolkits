@@ -2541,6 +2541,12 @@
     "screeningDisclaimer": "⚠️ Esta es una herramienta de detección basada en la Escala de Depresión Postnatal de Edimburgo (EPDS). No proporciona un diagnóstico. Consulta siempre a un profesional para una evaluación adecuada.",
     "mentalWellnessVideos": "Videos de bienestar mental",
     "videosSubtitle": "Recursos de apoyo y autocuidado",
+    "videos": {
+      "v1": { "title": "¿Qué es la depresión posparto?", "description": "Signos, síntomas y cuándo buscar ayuda profesional", "category": "Educación" },
+      "v2": { "title": "La depresión posparto explicada", "description": "Síntomas, factores de riesgo y opciones de tratamiento", "category": "Educación" },
+      "v3": { "title": "Meditación de relajación en el embarazo", "description": "Meditación calmante para una mejor salud mental", "category": "Relajación" },
+      "v4": { "title": "Cuidado del recién nacido - Semana 1", "description": "Guía del pediatra para la primera semana con el bebé", "category": "Autocuidado" }
+    },
     "riskLevels": {
       "low": {
         "title": "Riesgo bajo",

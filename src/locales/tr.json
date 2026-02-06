@@ -2541,6 +2541,12 @@
     "screeningDisclaimer": "⚠️ Bu, Edinburgh Doğum Sonrası Depresyon Ölçeği'ne (EPDS) dayalı bir tarama aracıdır. Tanı sağlamaz. Uygun değerlendirme için her zaman bir profesyonele danışın.",
     "mentalWellnessVideos": "Ruh sağlığı videoları",
     "videosSubtitle": "Destek ve öz bakım kaynakları",
+    "videos": {
+      "v1": { "title": "Doğum sonrası depresyon nedir?", "description": "Belirtiler, semptomlar ve ne zaman yardım aramalısınız", "category": "Eğitim" },
+      "v2": { "title": "Doğum sonrası depresyon açıklandı", "description": "Semptomlar, risk faktörleri ve tedavi seçenekleri", "category": "Eğitim" },
+      "v3": { "title": "Hamilelikte rahatlama meditasyonu", "description": "Daha iyi ruh sağlığı için sakinleştirici meditasyon", "category": "Rahatlama" },
+      "v4": { "title": "Yenidoğan bakımı - 1. Hafta", "description": "Bebekle ilk hafta için pediatrist rehberi", "category": "Öz Bakım" }
+    },
     "riskLevels": {
       "low": {
         "title": "Düşük risk",
