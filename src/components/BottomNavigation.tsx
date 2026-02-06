@@ -2,20 +2,22 @@ import { forwardRef, useState, memo } from "react";
 import { LayoutDashboard, Search, Settings, Bell } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { SearchDialog } from "./SearchDialog";
 import { NotificationsPanel } from "./dashboard/NotificationsPanel";
 import { useNotifications } from "@/hooks/useNotifications";
 
-const navItems = [
-  { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
-  { id: "notifications", icon: Bell, label: "Alerts", href: null },
-  { id: "search", icon: Search, label: "Search", href: null },
-  { id: "settings", icon: Settings, label: "Settings", href: "/settings" },
-];
+const NAV_ITEM_IDS = [
+  { id: "dashboard", icon: LayoutDashboard, labelKey: "nav.dashboard", href: "/dashboard" },
+  { id: "notifications", icon: Bell, labelKey: "nav.alerts", href: null },
+  { id: "search", icon: Search, labelKey: "nav.search", href: null },
+  { id: "settings", icon: Settings, labelKey: "nav.settings", href: "/settings" },
+] as const;
 
 export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, never>>(
   function BottomNavigation(_, ref) {
     const location = useLocation();
+    const { t } = useTranslation();
     const [searchOpen, setSearchOpen] = useState(false);
     const [notificationsOpen, setNotificationsOpen] = useState(false);
     const { unreadCount } = useNotifications();
@@ -66,7 +68,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
           <div className="absolute inset-0 bg-card/95 backdrop-blur-lg border-t border-border/40 shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.08)]" />
           
           <div className="relative flex items-center justify-around px-1 py-1.5 safe-area-bottom">
-            {navItems.map((item) => {
+            {NAV_ITEM_IDS.map((item) => {
               const active = isActive(item.href);
               const Icon = item.icon;
 
@@ -96,7 +98,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                     <span className={`text-[9px] font-medium ${
                       notificationsOpen ? "text-primary" : "text-muted-foreground"
                     }`}>
-                      {item.label}
+                      {t(item.labelKey)}
                     </span>
                   </button>
                 );
@@ -123,7 +125,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                     <span className={`text-[9px] font-medium ${
                       searchOpen ? "text-primary" : "text-muted-foreground"
                     }`}>
-                      {item.label}
+                      {t(item.labelKey)}
                     </span>
                   </button>
                 );
@@ -149,7 +151,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                   <span className={`text-[9px] font-medium ${
                     active ? "text-primary" : "text-muted-foreground"
                   }`}>
-                    {item.label}
+                    {t(item.labelKey)}
                   </span>
                 </Link>
               );

@@ -1,4 +1,13 @@
 {
+  "nav": {
+    "dashboard": "Panel",
+    "alerts": "Alertas",
+    "search": "Buscar",
+    "settings": "Configuración"
+  },
+  "relatedTools": {
+    "title": "Continúa tu viaje"
+  },
   "app": {
     "name": "Herramientas de Embarazo",
     "tagline": "Tu compañero completo de embarazo",

@@ -1,4 +1,13 @@
 {
+  "nav": {
+    "dashboard": "Panel",
+    "alerts": "Bildirimler",
+    "search": "Ara",
+    "settings": "Ayarlar"
+  },
+  "relatedTools": {
+    "title": "Yolculuğuna devam et"
+  },
   "app": {
     "name": "Hamilelik Araçları",
     "tagline": "Tam Hamilelik Rehberiniz",
