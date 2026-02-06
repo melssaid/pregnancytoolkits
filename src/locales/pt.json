@@ -2696,6 +2696,62 @@
       "essential": "Essencial",
       "recommended": "Recomendado",
       "niceToHave": "Bom Ter"
+    },
+    "types": {
+      "feeding": "Alimentação",
+      "sleeping": "Sono",
+      "travel": "Viagem",
+      "clothing": "Roupas",
+      "health": "Saúde",
+      "nursery": "Quarto do bebê"
+    },
+    "items": {
+      "carSeat": "Cadeirinha de carro (bebê)",
+      "crib": "Berço ou moisés",
+      "diapers": "Fraldas (tamanho recém-nascido)",
+      "bottles": "Mamadeiras",
+      "onesies": "Bodies (0-3 meses)",
+      "stroller": "Carrinho de bebê",
+      "monitor": "Monitor de bebê",
+      "breastPump": "Bomba de leite",
+      "swing": "Balanço de bebê",
+      "diaperBag": "Bolsa de fraldas",
+      "bathtub": "Banheira de bebê",
+      "swaddles": "Mantas de cueiro"
+    },
+    "descriptions": {
+      "carSeat": "Necessário para levar o bebê do hospital para casa",
+      "crib": "Superfície de sono segura para o bebê",
+      "diapers": "Estoque tamanho recém-nascido e tamanho 1",
+      "bottles": "Mesmo mães que amamentam frequentemente precisam de mamadeiras",
+      "onesies": "Roupa básica diária para o bebê",
+      "stroller": "Para passeios e saídas",
+      "monitor": "Tranquilidade enquanto o bebê dorme",
+      "breastPump": "Para mães que amamentam e voltam ao trabalho",
+      "swing": "Movimento calmante para bebês inquietos",
+      "diaperBag": "Para saídas com o bebê",
+      "bathtub": "Torna o banho mais fácil e seguro",
+      "swaddles": "Ajuda recém-nascidos a se sentirem seguros"
+    },
+    "tips": {
+      "carSeat": "Procure uma que encaixe no carrinho. Verifique a data de validade.",
+      "crib": "Certifique-se de que atende aos padrões de segurança atuais. Apenas colchão firme.",
+      "diapers": "Não compre muitas tamanho recém-nascido – bebês crescem rápido!",
+      "bottles": "Comece com bicos de fluxo lento. Compre 4-6 mamadeiras inicialmente.",
+      "onesies": "Procure botões de pressão ou zíperes frontais para trocas fáceis.",
+      "stroller": "Considere um que aceite sua cadeirinha para transições mais fáceis.",
+      "monitor": "Apenas áudio geralmente é suficiente. Vídeo adiciona conveniência.",
+      "breastPump": "O plano de saúde muitas vezes cobre isso. Verifique antes de comprar.",
+      "swing": "Alguns bebês adoram, outros não. Considere emprestar primeiro.",
+      "diaperBag": "Procure uma com trocador e múltiplos compartimentos.",
+      "bathtub": "A pia também funciona bem para recém-nascidos.",
+      "swaddles": "As de musselina são respiráveis e versáteis."
+    },
+    "whenNeeded": {
+      "beforeBirth": "Antes do parto",
+      "firstWeeks": "Primeiras semanas",
+      "afterBirth": "Após o parto",
+      "firstMonth": "Primeiro mês"
     }
   },
   "mentalHealthCoach": {

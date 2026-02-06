@@ -2414,6 +2414,62 @@
       "essential": "Essentiell",
       "recommended": "Empfohlen",
       "niceToHave": "Nice to Have"
+    },
+    "types": {
+      "feeding": "Fütterung",
+      "sleeping": "Schlafen",
+      "travel": "Unterwegs",
+      "clothing": "Kleidung",
+      "health": "Gesundheit",
+      "nursery": "Kinderzimmer"
+    },
+    "items": {
+      "carSeat": "Kindersitz (Säugling)",
+      "crib": "Kinderbett oder Wiege",
+      "diapers": "Windeln (Neugeborenen-Größe)",
+      "bottles": "Babyflaschen",
+      "onesies": "Strampler (0-3 Monate)",
+      "stroller": "Kinderwagen",
+      "monitor": "Babyphone",
+      "breastPump": "Milchpumpe",
+      "swing": "Babyschaukel",
+      "diaperBag": "Wickeltasche",
+      "bathtub": "Babybadewanne",
+      "swaddles": "Pucktücher"
+    },
+    "descriptions": {
+      "carSeat": "Erforderlich, um das Baby aus dem Krankenhaus zu bringen",
+      "crib": "Sichere Schlafunterlage für das Baby",
+      "diapers": "Neugeborenen- und Größe 1 bevorraten",
+      "bottles": "Auch stillende Mütter brauchen oft Flaschen",
+      "onesies": "Alltägliche Grundkleidung für das Baby",
+      "stroller": "Für Spaziergänge und Ausflüge",
+      "monitor": "Beruhigung während das Baby schläft",
+      "breastPump": "Für stillende Mütter, die zur Arbeit zurückkehren",
+      "swing": "Beruhigende Bewegung für unruhige Babys",
+      "diaperBag": "Für Ausflüge mit dem Baby",
+      "bathtub": "Macht das Baden einfacher und sicherer",
+      "swaddles": "Hilft Neugeborenen sich sicher zu fühlen"
+    },
+    "tips": {
+      "carSeat": "Suchen Sie einen, der in den Kinderwagen klickt. Prüfen Sie das Verfallsdatum.",
+      "crib": "Stellen Sie sicher, dass es den aktuellen Sicherheitsstandards entspricht. Nur feste Matratze.",
+      "diapers": "Kaufen Sie nicht zu viele Neugeborenen-Größe – Babys wachsen schnell!",
+      "bottles": "Beginnen Sie mit langsam fließenden Saugern. Kaufen Sie zunächst 4-6 Flaschen.",
+      "onesies": "Achten Sie auf Druckknöpfe oder Reißverschlüsse vorne für einfaches Wickeln.",
+      "stroller": "Erwägen Sie einen, der Ihren Kindersitz aufnehmen kann.",
+      "monitor": "Nur Audio reicht oft aus. Video bietet zusätzlichen Komfort.",
+      "breastPump": "Die Versicherung deckt dies oft ab. Prüfen Sie vor dem Kauf.",
+      "swing": "Manche Babys lieben sie, andere nicht. Erwägen Sie, zunächst zu leihen.",
+      "diaperBag": "Suchen Sie eine mit Wickelunterlage und mehreren Fächern.",
+      "bathtub": "Das Waschbecken funktioniert auch für Neugeborene.",
+      "swaddles": "Musselin-Tücher sind atmungsaktiv und vielseitig."
+    },
+    "whenNeeded": {
+      "beforeBirth": "Vor der Geburt",
+      "firstWeeks": "Erste Wochen",
+      "afterBirth": "Nach der Geburt",
+      "firstMonth": "Erster Monat"
     }
   },
   "mentalHealthCoach": {
