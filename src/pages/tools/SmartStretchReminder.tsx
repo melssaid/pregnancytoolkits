@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Clock, Play, CheckCircle, RotateCcw, Bell, AlertCircle, Brain, Loader2, RotateCw, Hand, ArrowUp, Zap, Activity, Circle, Footprints, Wind } from 'lucide-react';
+import { Sparkles, Clock, Play, CheckCircle, Bell, Brain, Loader2 } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { ExerciseIcon } from '@/components/ExerciseIcon';
 
 interface Stretch {
   id: string;
-  name: string;
+  key: string;
   duration: number;
-  description: string;
   icon: string;
-  bodyPart: string;
 }
 
 const stretches: Stretch[] = [
-  { id: '1', name: 'Neck Rolls', duration: 30, description: 'Gently roll your head in circles', icon: 'neck', bodyPart: 'Neck' },
-  { id: '2', name: 'Shoulder Shrugs', duration: 20, description: 'Raise shoulders to ears, then release', icon: 'shoulders', bodyPart: 'Shoulders' },
-  { id: '3', name: 'Wrist Circles', duration: 20, description: 'Rotate wrists in both directions', icon: 'wrists', bodyPart: 'Wrists' },
-  { id: '4', name: 'Side Stretch', duration: 30, description: 'Reach arm overhead and lean to side', icon: 'back', bodyPart: 'Back' },
-  { id: '5', name: 'Cat-Cow', duration: 45, description: 'Alternate arching and rounding back', icon: 'spine', bodyPart: 'Spine' },
-  { id: '6', name: 'Hip Circles', duration: 30, description: 'Stand and rotate hips in circles', icon: 'hips', bodyPart: 'Hips' },
-  { id: '7', name: 'Calf Raises', duration: 30, description: 'Rise up on toes, then lower', icon: 'legs', bodyPart: 'Legs' },
-  { id: '8', name: 'Deep Breathing', duration: 60, description: 'Slow, deep breaths with hands on belly', icon: 'breathing', bodyPart: 'Relaxation' },
+  { id: '1', key: 'neckRolls', duration: 30, icon: 'neck' },
+  { id: '2', key: 'shoulderShrugs', duration: 20, icon: 'shoulders' },
+  { id: '3', key: 'wristCircles', duration: 20, icon: 'wrists' },
+  { id: '4', key: 'sideStretch', duration: 30, icon: 'back' },
+  { id: '5', key: 'catCow', duration: 45, icon: 'spine' },
+  { id: '6', key: 'hipCircles', duration: 30, icon: 'hips' },
+  { id: '7', key: 'calfRaises', duration: 30, icon: 'legs' },
+  { id: '8', key: 'deepBreathing', duration: 60, icon: 'breathing' },
 ];
 
 export default function SmartStretchReminder() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [activeStretch, setActiveStretch] = useState<Stretch | null>(null);
   const [timeRemaining, setTimeRemaining] = useState(0);
@@ -94,25 +94,27 @@ export default function SmartStretchReminder() {
   };
 
   const getTimeSinceLastStretch = () => {
-    if (!lastStretchTime) return 'No stretches yet today';
+    if (!lastStretchTime) return t('stretchReminder.noStretchesYet');
     const diff = Date.now() - lastStretchTime.getTime();
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(minutes / 60);
-    if (hours > 0) return `${hours}h ${minutes % 60}m ago`;
-    return `${minutes}m ago`;
+    if (hours > 0) return t('stretchReminder.hoursAgo', { hours, minutes: minutes % 60 });
+    return t('stretchReminder.minutesAgo', { minutes });
   };
 
   const getAIStretchAdvice = async () => {
     setShowAIAdvice(true);
     setAiResponse('');
 
-    const completedNames = completedStretches.map(id => 
-      stretches.find(s => s.id === id)?.name
-    ).filter(Boolean);
+    const completedNames = completedStretches.map(id => {
+      const s = stretches.find(s => s.id === id);
+      return s ? t(`stretchReminder.stretches.${s.key}.name`) : '';
+    }).filter(Boolean);
 
-    const bodyParts = completedStretches.map(id =>
-      stretches.find(s => s.id === id)?.bodyPart
-    ).filter(Boolean);
+    const bodyParts = completedStretches.map(id => {
+      const s = stretches.find(s => s.id === id);
+      return s ? t(`stretchReminder.stretches.${s.key}.bodyPart`) : '';
+    }).filter(Boolean);
 
     await streamChat({
       type: 'stretch-reminder' as any,
@@ -131,7 +133,7 @@ export default function SmartStretchReminder() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Smart Stretch Reminder"
+        toolName={t('stretchReminder.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -139,8 +141,8 @@ export default function SmartStretchReminder() {
 
   return (
     <ToolFrame
-      title="Smart Stretch Reminder"
-      subtitle="Personalized stretching reminders to keep you comfortable"
+      title={t('stretchReminder.title')}
+      subtitle={t('stretchReminder.subtitle')}
       icon={Sparkles}
       mood="empowering"
       toolId="smart-stretch-reminder"
@@ -149,19 +151,19 @@ export default function SmartStretchReminder() {
         {/* Trimester Selector */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-sm font-medium text-muted-foreground mb-3">Your Trimester</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">{t('stretchReminder.yourTrimester')}</h3>
             <div className="grid grid-cols-3 gap-2">
-              {[1, 2, 3].map((t) => (
+              {[1, 2, 3].map((tri) => (
                 <button
-                  key={t}
-                  onClick={() => setCurrentTrimester(t)}
+                  key={tri}
+                  onClick={() => setCurrentTrimester(tri)}
                   className={`py-2 rounded-lg font-semibold transition-all ${
-                    currentTrimester === t
+                    currentTrimester === tri
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted hover:bg-muted/80'
                   }`}
                 >
-                  Trimester {t}
+                  {t('stretchReminder.trimester')} {tri}
                 </button>
               ))}
             </div>
@@ -173,9 +175,9 @@ export default function SmartStretchReminder() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold">Today's Progress</h3>
+                <h3 className="font-semibold">{t('stretchReminder.todaysProgress')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  {completedStretches.length}/{stretches.length} stretches done
+                  {t('stretchReminder.stretchesDone', { done: completedStretches.length, total: stretches.length })}
                 </p>
               </div>
               <div className="text-right">
@@ -198,7 +200,7 @@ export default function SmartStretchReminder() {
         <div className="flex gap-2">
           <Button onClick={startQuickRoutine} className="flex-1 gap-2" size="lg" disabled={isActive}>
             <Play className="w-5 h-5" />
-            Start Routine
+            {t('stretchReminder.startRoutine')}
           </Button>
           <Button onClick={getAIStretchAdvice} variant="outline" size="lg" disabled={isLoading}>
             {isLoading ? (
@@ -216,10 +218,10 @@ export default function SmartStretchReminder() {
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">AI Stretch Coach</h3>
+                  <h3 className="font-semibold">{t('stretchReminder.aiStretchCoach')}</h3>
                 </div>
                 <Button variant="ghost" size="sm" onClick={() => setShowAIAdvice(false)}>
-                  Close
+                  {t('stretchReminder.close')}
                 </Button>
               </div>
               <MarkdownRenderer content={aiResponse} />
@@ -242,14 +244,14 @@ export default function SmartStretchReminder() {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                 <ExerciseIcon type={activeStretch.icon} className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-2">{activeStretch.name}</h3>
-              <p className="text-muted-foreground mb-4">{activeStretch.description}</p>
+              <h3 className="text-xl font-bold mb-2">{t(`stretchReminder.stretches.${activeStretch.key}.name`)}</h3>
+              <p className="text-muted-foreground mb-4">{t(`stretchReminder.stretches.${activeStretch.key}.desc`)}</p>
               <div className="text-5xl font-bold text-primary mb-4">
                 {timeRemaining}
               </div>
-              <p className="text-sm text-muted-foreground">seconds remaining</p>
+              <p className="text-sm text-muted-foreground">{t('stretchReminder.secondsRemaining')}</p>
               <Button variant="outline" onClick={() => setIsActive(false)} className="mt-4">
-                Skip
+                {t('stretchReminder.skip')}
               </Button>
             </CardContent>
           </Card>
@@ -258,7 +260,7 @@ export default function SmartStretchReminder() {
         {/* Stretch List */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-lg font-semibold mb-4">All Stretches</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('stretchReminder.allStretches')}</h3>
             <div className="space-y-2">
               {stretches.map((stretch) => {
                 const isCompleted = completedStretches.includes(stretch.id);
@@ -277,8 +279,8 @@ export default function SmartStretchReminder() {
                       <ExerciseIcon type={stretch.icon} className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1 text-left">
-                      <p className="font-medium text-sm">{stretch.name}</p>
-                      <p className="text-xs text-muted-foreground">{stretch.duration}s • {stretch.bodyPart}</p>
+                      <p className="font-medium text-sm">{t(`stretchReminder.stretches.${stretch.key}.name`)}</p>
+                      <p className="text-xs text-muted-foreground">{stretch.duration}s • {t(`stretchReminder.stretches.${stretch.key}.bodyPart`)}</p>
                     </div>
                     {isCompleted ? (
                       <CheckCircle className="w-5 h-5 text-primary" />
@@ -297,13 +299,13 @@ export default function SmartStretchReminder() {
           <CardContent className="p-4">
             <h3 className="font-semibold mb-2 flex items-center gap-2">
               <Bell className="w-4 h-4 text-primary" />
-              Stretch Reminders
+              {t('stretchReminder.stretchReminders')}
             </h3>
             <ul className="text-sm text-muted-foreground space-y-1">
-              <li>• Stretch every 1-2 hours when sitting</li>
-              <li>• Never force a stretch - go gently</li>
-              <li>• Breathe deeply during each stretch</li>
-              <li>• Stay hydrated for flexible muscles</li>
+              <li>• {t('stretchReminder.tips.tip1')}</li>
+              <li>• {t('stretchReminder.tips.tip2')}</li>
+              <li>• {t('stretchReminder.tips.tip3')}</li>
+              <li>• {t('stretchReminder.tips.tip4')}</li>
             </ul>
           </CardContent>
         </Card>

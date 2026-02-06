@@ -1669,7 +1669,14 @@
         "breastTenderness": "حساسية الثدي",
         "acne": "حب الشباب",
         "backPain": "آلام الظهر"
-      }
+      },
+      "saved": "تم الحفظ!",
+      "savedDesc": "تم تسجيل الدورة.",
+      "deleted": "تم الحذف",
+      "deletedDesc": "تم حذف سجل الدورة.",
+      "days": "أيام",
+      "copied": "تم النسخ!",
+      "copiedDesc": "تم نسخ الإحصائيات."
     },
     "weightGain": {
       "title": "محلل زيادة الوزن",
@@ -1686,7 +1693,37 @@
       "belowTarget": "أقل من الهدف",
       "aboveTarget": "أعلى من الهدف",
       "weeklyGain": "الزيادة الأسبوعية",
-      "aiAnalysis": "تحليل الوزن AI"
+      "aiAnalysis": "تحليل الوزن AI",
+      "yourProfile": "ملفك الشخصي",
+      "heightCm": "الطول (سم)",
+      "prePregnancyWeightKg": "الوزن قبل الحمل (كغ)",
+      "bmiCategory": "فئة مؤشر كتلة الجسم",
+      "recommendedTotalGain": "الزيادة الإجمالية الموصى بها",
+      "addWeightEntry": "إضافة إدخال وزن",
+      "pregnancyWeek": "أسبوع الحمل",
+      "currentWeightKg": "الوزن الحالي (كغ)",
+      "addEntry": "إضافة إدخال",
+      "weightGainTrend": "اتجاه زيادة الوزن",
+      "chartNote": "المنطقة المظللة تعرض نطاق الزيادة الموصى به",
+      "recentEntries": "الإدخالات الأخيرة",
+      "week": "الأسبوع",
+      "totalWeightGainLabel": "إجمالي زيادة الوزن",
+      "bmiCategories": {
+        "underweight": "نقص الوزن (BMI < 18.5)",
+        "normal": "طبيعي (BMI 18.5-24.9)",
+        "overweight": "زيادة الوزن (BMI 25-29.9)",
+        "obese": "سمنة (BMI ≥ 30)"
+      },
+      "statusMessages": {
+        "below": { "message": "زيادة وزنك أقل من النطاق الموصى به.", "recommendation": "فكري في استشارة طبيبتك حول التغذية." },
+        "above": { "message": "زيادة وزنك أعلى من النطاق الموصى به.", "recommendation": "ناقشي مع طبيبتك عادات الأكل الصحية." },
+        "normal": { "message": "زيادة وزنك ضمن النطاق الصحي!", "recommendation": "استمري في التغذية المتوازنة." }
+      },
+      "minRecommended": "الحد الأدنى الموصى",
+      "maxRecommended": "الحد الأعلى الموصى",
+      "yourWeight": "وزنك",
+      "weekAxis": "الأسبوع",
+      "weightGainKg": "زيادة الوزن (كغ)"
     },
     "stressRelief": {
       "title": "مدرب تخفيف التوتر الذكي",
@@ -2013,6 +2050,40 @@
       "bath": { "title": "حمام دافئ قبل النوم", "desc": "يرخي العضلات ويحسن الدورة الدموية" },
       "sleep": { "title": "وضعية النوم", "desc": "نامي على جانبك الأيسر مع وسادة بين ركبتيك" },
       "toes": { "title": "تجنبي مد أصابع القدم", "desc": "اثني قدميك بدلاً من مدها عند التمدد" }
+    }
+  },
+  "stretchReminder": {
+    "title": "تذكير التمدد الذكي",
+    "subtitle": "تذكيرات تمدد مخصصة لراحتك",
+    "yourTrimester": "الثلث الخاص بك",
+    "trimester": "الثلث",
+    "todaysProgress": "تقدم اليوم",
+    "stretchesDone": "{{done}}/{{total}} تمارين مكتملة",
+    "noStretchesYet": "لا تمارين بعد اليوم",
+    "hoursAgo": "منذ {{hours}} ساعة و {{minutes}} دقيقة",
+    "minutesAgo": "منذ {{minutes}} دقيقة",
+    "startRoutine": "ابدئي الروتين",
+    "aiStretchCoach": "مدرب التمدد الذكي",
+    "close": "إغلاق",
+    "secondsRemaining": "ثوانٍ متبقية",
+    "skip": "تخطي",
+    "allStretches": "جميع التمارين",
+    "stretchReminders": "تذكيرات التمدد",
+    "tips": {
+      "tip1": "تمددي كل 1-2 ساعة أثناء الجلوس",
+      "tip2": "لا تجبري التمدد - كوني لطيفة",
+      "tip3": "تنفسي بعمق أثناء كل تمدد",
+      "tip4": "ابقي رطبة لعضلات مرنة"
+    },
+    "stretches": {
+      "neckRolls": { "name": "لف الرقبة", "desc": "لفي رأسك بلطف في دوائر", "bodyPart": "الرقبة" },
+      "shoulderShrugs": { "name": "رفع الأكتاف", "desc": "ارفعي الأكتاف نحو الأذنين ثم أرخيها", "bodyPart": "الأكتاف" },
+      "wristCircles": { "name": "دوائر المعصم", "desc": "دوّري المعصمين في الاتجاهين", "bodyPart": "المعصمان" },
+      "sideStretch": { "name": "تمدد جانبي", "desc": "مدي ذراعك فوق رأسك وميلي للجانب", "bodyPart": "الظهر" },
+      "catCow": { "name": "القطة والبقرة", "desc": "بدّلي بين تقويس وتدوير الظهر", "bodyPart": "العمود الفقري" },
+      "hipCircles": { "name": "دوائر الورك", "desc": "قفي ودوّري الوركين في دوائر", "bodyPart": "الوركان" },
+      "calfRaises": { "name": "رفع الساق", "desc": "ارتفعي على أصابع القدم ثم انزلي", "bodyPart": "الساقان" },
+      "deepBreathing": { "name": "التنفس العميق", "desc": "أنفاس بطيئة وعميقة مع وضع اليدين على البطن", "bodyPart": "الاسترخاء" }
     }
   },
   "pregnancyAssistant": {

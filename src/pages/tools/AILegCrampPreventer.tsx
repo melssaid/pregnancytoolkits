@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Zap, Moon, AlertTriangle, CheckCircle, Brain, Loader2 } from 'lucide-react';
+import { Zap, Moon, CheckCircle, Brain, Loader2 } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface PreventionTip {
   id: string;
-  title: string;
-  description: string;
+  key: string;
   icon: string;
   checked: boolean;
 }
@@ -23,20 +23,26 @@ interface CrampEpisode {
   timeOfDay: string;
 }
 
-const preventionTips: PreventionTip[] = [
-  { id: '1', title: 'Stay Hydrated', description: 'Drink at least 8-10 glasses of water daily', icon: '💧', checked: false },
-  { id: '2', title: 'Stretch Before Bed', description: 'Gentle calf stretches can prevent nighttime cramps', icon: '🧘', checked: false },
-  { id: '3', title: 'Magnesium-Rich Foods', description: 'Eat nuts, seeds, bananas, and leafy greens', icon: '🥜', checked: false },
-  { id: '4', title: 'Avoid Standing Too Long', description: 'Take breaks and elevate your legs when possible', icon: '🪑', checked: false },
-  { id: '5', title: 'Wear Supportive Shoes', description: 'Good footwear supports leg muscles', icon: '👟', checked: false },
-  { id: '6', title: 'Warm Bath Before Bed', description: 'Relaxes muscles and improves circulation', icon: '🛁', checked: false },
-  { id: '7', title: 'Sleep Position', description: 'Sleep on your left side with pillow between knees', icon: '😴', checked: false },
-  { id: '8', title: 'Avoid Pointing Toes', description: 'Flex feet instead of pointing when stretching', icon: '🦶', checked: false },
+const tipKeys = [
+  { id: '1', key: 'hydrated', icon: '💧' },
+  { id: '2', key: 'stretch', icon: '🧘' },
+  { id: '3', key: 'magnesium', icon: '🥜' },
+  { id: '4', key: 'standing', icon: '🪑' },
+  { id: '5', key: 'shoes', icon: '👟' },
+  { id: '6', key: 'bath', icon: '🛁' },
+  { id: '7', key: 'sleep', icon: '😴' },
+  { id: '8', key: 'toes', icon: '🦶' },
 ];
 
+const locationKeys = ['leftCalf', 'rightCalf', 'leftThigh', 'rightThigh'];
+const reliefStepKeys = ['step1', 'step2', 'step3', 'step4', 'step5'];
+
 export default function AILegCrampPreventer() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
-  const [tips, setTips] = useState(preventionTips);
+  const [tips, setTips] = useState<PreventionTip[]>(
+    tipKeys.map(tk => ({ ...tk, checked: false }))
+  );
   const [episodes, setEpisodes] = useState<CrampEpisode[]>([]);
   const [showReliefGuide, setShowReliefGuide] = useState(false);
   const [showAIAdvice, setShowAIAdvice] = useState(false);
@@ -47,7 +53,16 @@ export default function AILegCrampPreventer() {
   useEffect(() => {
     const savedTips = localStorage.getItem('legCrampTips');
     const savedEpisodes = localStorage.getItem('legCrampEpisodes');
-    if (savedTips) setTips(JSON.parse(savedTips));
+    if (savedTips) {
+      try {
+        const parsed = JSON.parse(savedTips);
+        // Merge saved checked state with current tip keys
+        setTips(tipKeys.map(tk => ({
+          ...tk,
+          checked: parsed.find((p: any) => p.id === tk.id)?.checked || false,
+        })));
+      } catch { /* use defaults */ }
+    }
     if (savedEpisodes) setEpisodes(JSON.parse(savedEpisodes));
   }, []);
 
@@ -62,18 +77,23 @@ export default function AILegCrampPreventer() {
     ));
   };
 
-  const logCramp = (location: string, severity: number) => {
-    const now = new Date();
-    const timeOfDay = now.getHours() < 6 ? 'Night' : 
-                      now.getHours() < 12 ? 'Morning' :
-                      now.getHours() < 18 ? 'Afternoon' : 'Evening';
+  const getTimeOfDayKey = (): string => {
+    const hour = new Date().getHours();
+    if (hour < 6) return 'night';
+    if (hour < 12) return 'morning';
+    if (hour < 18) return 'afternoon';
+    return 'evening';
+  };
+
+  const logCramp = (locationKey: string, severity: number) => {
+    const timeOfDayKey = getTimeOfDayKey();
     
     const episode: CrampEpisode = {
       id: Date.now().toString(),
-      date: now.toISOString(),
-      location,
+      date: new Date().toISOString(),
+      location: locationKey,
       severity,
-      timeOfDay,
+      timeOfDay: timeOfDayKey,
     };
     setEpisodes([episode, ...episodes.slice(0, 9)]);
   };
@@ -84,8 +104,8 @@ export default function AILegCrampPreventer() {
     setShowAIAdvice(true);
     setAiResponse('');
     
-    const completedPreventions = tips.filter(t => t.checked).map(t => t.title);
-    const recentCramps = episodes.slice(0, 5).map(e => `${e.location} (${e.timeOfDay})`);
+    const completedPreventions = tips.filter(tip => tip.checked).map(tip => t(`legCrampPreventer.preventionTips.${tip.key}.title`));
+    const recentCramps = episodes.slice(0, 5).map(e => `${t(`legCrampPreventer.locations.${e.location}`)} (${t(`legCrampPreventer.timeOfDay.${e.timeOfDay}`)})`);
 
     await streamChat({
       type: 'leg-cramp-preventer' as any,
@@ -103,7 +123,7 @@ export default function AILegCrampPreventer() {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="AI Leg Cramp Preventer"
+        toolName={t('legCrampPreventer.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -111,8 +131,8 @@ export default function AILegCrampPreventer() {
 
   return (
     <ToolFrame
-      title="AI Leg Cramp Preventer"
-      subtitle="Prevent and manage pregnancy leg cramps with smart tips"
+      title={t('legCrampPreventer.title')}
+      subtitle={t('legCrampPreventer.subtitle')}
       icon={Zap}
       mood="empowering"
       toolId="ai-leg-cramp-preventer"
@@ -122,7 +142,7 @@ export default function AILegCrampPreventer() {
         <Card className="bg-gradient-to-r from-primary/10 to-primary/5">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-semibold">Prevention Progress</h3>
+              <h3 className="font-semibold">{t('legCrampPreventer.progressTitle')}</h3>
               <span className="text-primary font-bold">{completedTips}/{tips.length}</span>
             </div>
             <div className="w-full h-2 bg-primary/20 rounded-full mb-3">
@@ -142,7 +162,7 @@ export default function AILegCrampPreventer() {
               ) : (
                 <Brain className="w-4 h-4" />
               )}
-              Get AI Cramp Prevention Advice
+              {t('legCrampPreventer.getAdvice')}
             </Button>
           </CardContent>
         </Card>
@@ -153,7 +173,7 @@ export default function AILegCrampPreventer() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Brain className="w-5 h-5 text-primary" />
-                <h3 className="font-semibold">AI Cramp Prevention Coach</h3>
+                <h3 className="font-semibold">{t('legCrampPreventer.aiCoachTitle')}</h3>
               </div>
               <MarkdownRenderer content={aiResponse} />
             </CardContent>
@@ -175,49 +195,35 @@ export default function AILegCrampPreventer() {
           className="w-full"
         >
           <Zap className="w-4 h-4 mr-2" />
-          {showReliefGuide ? 'Hide Relief Guide' : 'Having a Cramp? Quick Relief'}
+          {showReliefGuide ? t('legCrampPreventer.hideRelief') : t('legCrampPreventer.quickReliefBtn')}
         </Button>
 
         {/* Quick Relief Guide */}
         {showReliefGuide && (
           <Card className="border-2 border-destructive">
             <CardContent className="p-6">
-              <h3 className="text-lg font-bold text-destructive mb-4">Quick Relief Steps</h3>
+              <h3 className="text-lg font-bold text-destructive mb-4">{t('legCrampPreventer.quickReliefTitle')}</h3>
               <ol className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center text-sm font-bold">1</span>
-                  <p className="text-sm"><strong>Flex your foot</strong> - Pull toes toward your shin</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center text-sm font-bold">2</span>
-                  <p className="text-sm"><strong>Massage the muscle</strong> - Rub gently in the direction of the cramp</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center text-sm font-bold">3</span>
-                  <p className="text-sm"><strong>Apply heat</strong> - Use a warm towel or heating pad</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center text-sm font-bold">4</span>
-                  <p className="text-sm"><strong>Walk around</strong> - Gentle movement helps release the cramp</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center text-sm font-bold">5</span>
-                  <p className="text-sm"><strong>Drink water</strong> - Hydration helps prevent recurrence</p>
-                </li>
+                {reliefStepKeys.map((stepKey, index) => (
+                  <li key={stepKey} className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center text-sm font-bold">{index + 1}</span>
+                    <p className="text-sm"><strong>{t(`legCrampPreventer.reliefSteps.${stepKey}.title`)}</strong> - {t(`legCrampPreventer.reliefSteps.${stepKey}.desc`)}</p>
+                  </li>
+                ))}
               </ol>
               
               <div className="mt-3 pt-3 border-t border-border">
-                <h4 className="font-semibold mb-2 text-sm">Log this cramp:</h4>
+                <h4 className="font-semibold mb-2 text-sm">{t('legCrampPreventer.logCramp')}</h4>
                 <div className="grid grid-cols-2 gap-1.5">
-                  {['Left Calf', 'Right Calf', 'Left Thigh', 'Right Thigh'].map((loc) => (
+                  {locationKeys.map((locKey) => (
                     <Button 
-                      key={loc}
+                      key={locKey}
                       variant="outline" 
                       size="sm"
                       className="text-xs overflow-hidden"
-                      onClick={() => logCramp(loc, 5)}
+                      onClick={() => logCramp(locKey, 5)}
                     >
-                      <span className="truncate">{loc}</span>
+                      <span className="truncate">{t(`legCrampPreventer.locations.${locKey}`)}</span>
                     </Button>
                   ))}
                 </div>
@@ -231,7 +237,7 @@ export default function AILegCrampPreventer() {
           <CardContent className="p-4">
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
               <Moon className="w-5 h-5 text-primary" />
-              Daily Prevention Checklist
+              {t('legCrampPreventer.checklistTitle')}
             </h3>
             <div className="space-y-2">
               {tips.map((tip) => (
@@ -240,18 +246,18 @@ export default function AILegCrampPreventer() {
                   onClick={() => toggleTip(tip.id)}
                   className={`w-full p-3 rounded-lg text-left transition-all flex items-center gap-3 ${
                     tip.checked 
-                      ? 'bg-green-500/10 border border-green-500/20' 
+                      ? 'bg-success/10 border border-success/20' 
                       : 'bg-muted/50 hover:bg-muted'
                   }`}
                 >
                   <span className="text-xl">{tip.icon}</span>
                   <div className="flex-1">
                     <span className={`font-medium ${tip.checked ? 'line-through text-muted-foreground' : ''}`}>
-                      {tip.title}
+                      {t(`legCrampPreventer.preventionTips.${tip.key}.title`)}
                     </span>
-                    <p className="text-xs text-muted-foreground">{tip.description}</p>
+                    <p className="text-xs text-muted-foreground">{t(`legCrampPreventer.preventionTips.${tip.key}.desc`)}</p>
                   </div>
-                  {tip.checked && <CheckCircle className="w-5 h-5 text-green-600" />}
+                  {tip.checked && <CheckCircle className="w-5 h-5 text-success" />}
                 </button>
               ))}
             </div>
@@ -262,18 +268,18 @@ export default function AILegCrampPreventer() {
         {episodes.length > 0 && (
           <Card>
             <CardContent className="p-4">
-              <h3 className="text-lg font-semibold mb-4">Recent Cramps</h3>
+              <h3 className="text-lg font-semibold mb-4">{t('legCrampPreventer.recentCramps')}</h3>
               <div className="space-y-2">
                 {episodes.slice(0, 5).map((ep) => (
                   <div key={ep.id} className="flex items-center justify-between p-2 bg-muted/50 rounded-lg">
                     <div>
-                      <span className="font-medium">{ep.location}</span>
+                      <span className="font-medium">{t(`legCrampPreventer.locations.${ep.location}`)}</span>
                       <p className="text-xs text-muted-foreground">
-                        {new Date(ep.date).toLocaleDateString()} • {ep.timeOfDay}
+                        {new Date(ep.date).toLocaleDateString()} • {t(`legCrampPreventer.timeOfDay.${ep.timeOfDay}`)}
                       </p>
                     </div>
                     <span className="text-xs px-2 py-0.5 bg-destructive/10 text-destructive rounded-full">
-                      {ep.timeOfDay}
+                      {t(`legCrampPreventer.timeOfDay.${ep.timeOfDay}`)}
                     </span>
                   </div>
                 ))}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,27 +12,26 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 interface DailyTip {
   id: string;
   category: 'health' | 'nutrition' | 'exercise' | 'mental' | 'baby';
-  tip: string;
-  detail: string;
+  tipKey: string;
   trimester: number[];
 }
 
 const tips: DailyTip[] = [
-  { id: '1', category: 'health', tip: 'Stay hydrated!', detail: 'Aim for 8-10 glasses of water daily to support amniotic fluid and reduce swelling.', trimester: [1, 2, 3] },
-  { id: '2', category: 'nutrition', tip: 'Eat your greens', detail: 'Leafy greens like spinach and kale are packed with folate essential for neural development.', trimester: [1, 2] },
-  { id: '3', category: 'exercise', tip: 'Take a 15-minute walk', detail: 'Walking improves circulation, reduces swelling, and helps with labor preparation.', trimester: [1, 2, 3] },
-  { id: '4', category: 'mental', tip: 'Practice gratitude', detail: 'Write down 3 things you\'re grateful for today. This reduces stress and improves mood.', trimester: [1, 2, 3] },
-  { id: '5', category: 'baby', tip: 'Talk to your baby', detail: 'Your baby can hear you! Reading or singing strengthens your bond.', trimester: [2, 3] },
-  { id: '6', category: 'health', tip: 'Sleep on your left side', detail: 'This position improves blood flow to your baby and reduces pressure on organs.', trimester: [2, 3] },
-  { id: '7', category: 'nutrition', tip: 'Include omega-3s', detail: 'Salmon, walnuts, and chia seeds support baby\'s brain development.', trimester: [1, 2, 3] },
-  { id: '8', category: 'exercise', tip: 'Do your Kegels', detail: 'Pelvic floor exercises prepare you for labor and prevent incontinence.', trimester: [1, 2, 3] },
-  { id: '9', category: 'mental', tip: 'Connect with other moms', detail: 'Join a prenatal class or online community for support and shared experiences.', trimester: [1, 2, 3] },
-  { id: '10', category: 'baby', tip: 'Count those kicks', detail: 'After week 28, track baby movements. You should feel 10 kicks in 2 hours.', trimester: [3] },
-  { id: '11', category: 'health', tip: 'Elevate your feet', detail: 'Reduce swelling by putting your feet up for 15 minutes several times a day.', trimester: [2, 3] },
-  { id: '12', category: 'nutrition', tip: 'Don\'t skip breakfast', detail: 'A protein-rich breakfast stabilizes blood sugar and reduces nausea.', trimester: [1] },
-  { id: '13', category: 'exercise', tip: 'Practice prenatal yoga', detail: 'Gentle stretching relieves back pain and prepares your body for labor.', trimester: [1, 2, 3] },
-  { id: '14', category: 'mental', tip: 'Take a tech break', detail: 'Step away from screens for 30 minutes to reduce stress and eye strain.', trimester: [1, 2, 3] },
-  { id: '15', category: 'baby', tip: 'Create a nursery playlist', detail: 'Play calming music for baby - they\'ll recognize it after birth!', trimester: [2, 3] },
+  { id: '1', category: 'health', tipKey: 't1', trimester: [1, 2, 3] },
+  { id: '2', category: 'nutrition', tipKey: 't2', trimester: [1, 2] },
+  { id: '3', category: 'exercise', tipKey: 't3', trimester: [1, 2, 3] },
+  { id: '4', category: 'mental', tipKey: 't4', trimester: [1, 2, 3] },
+  { id: '5', category: 'baby', tipKey: 't5', trimester: [2, 3] },
+  { id: '6', category: 'health', tipKey: 't6', trimester: [2, 3] },
+  { id: '7', category: 'nutrition', tipKey: 't7', trimester: [1, 2, 3] },
+  { id: '8', category: 'exercise', tipKey: 't8', trimester: [1, 2, 3] },
+  { id: '9', category: 'mental', tipKey: 't9', trimester: [1, 2, 3] },
+  { id: '10', category: 'baby', tipKey: 't10', trimester: [3] },
+  { id: '11', category: 'health', tipKey: 't11', trimester: [2, 3] },
+  { id: '12', category: 'nutrition', tipKey: 't12', trimester: [1] },
+  { id: '13', category: 'exercise', tipKey: 't13', trimester: [1, 2, 3] },
+  { id: '14', category: 'mental', tipKey: 't14', trimester: [1, 2, 3] },
+  { id: '15', category: 'baby', tipKey: 't15', trimester: [2, 3] },
 ];
 
 const categoryColors: Record<string, string> = {
@@ -43,6 +43,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function AIPregnancyTipsDaily() {
+  const { t } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentTrimester, setCurrentTrimester] = useState(2);
   const [dailyTip, setDailyTip] = useState<DailyTip | null>(null);
@@ -55,10 +56,12 @@ export default function AIPregnancyTipsDaily() {
   useEffect(() => {
     const today = new Date().toDateString();
     const savedDate = localStorage.getItem('tipOfTheDayDate');
-    const savedTip = localStorage.getItem('tipOfTheDay');
+    const savedTipId = localStorage.getItem('tipOfTheDayId');
     
-    if (savedDate === today && savedTip) {
-      setDailyTip(JSON.parse(savedTip));
+    if (savedDate === today && savedTipId) {
+      const found = tips.find(t => t.id === savedTipId);
+      if (found) setDailyTip(found);
+      else getNewTip();
     } else {
       getNewTip();
     }
@@ -72,13 +75,13 @@ export default function AIPregnancyTipsDaily() {
   }, [favorites]);
 
   const getNewTip = () => {
-    const filtered = tips.filter(t => t.trimester.includes(currentTrimester));
+    const filtered = tips.filter(tip => tip.trimester.includes(currentTrimester));
     const random = filtered[Math.floor(Math.random() * filtered.length)];
     setDailyTip(random);
     setShowAITip(false);
     
     localStorage.setItem('tipOfTheDayDate', new Date().toDateString());
-    localStorage.setItem('tipOfTheDay', JSON.stringify(random));
+    localStorage.setItem('tipOfTheDayId', random.id);
   };
 
   const generateAITip = async () => {
@@ -105,12 +108,12 @@ export default function AIPregnancyTipsDaily() {
     );
   };
 
-  const filteredTips = tips.filter(t => t.trimester.includes(currentTrimester));
+  const filteredTips = tips.filter(tip => tip.trimester.includes(currentTrimester));
 
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="Daily Pregnancy Tips"
+        toolName={t('dailyTips.title')}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -118,8 +121,8 @@ export default function AIPregnancyTipsDaily() {
 
   return (
     <ToolFrame
-      title="Daily Pregnancy Tips"
-      subtitle="AI-curated tips for each trimester"
+      title={t('dailyTips.title')}
+      subtitle={t('dailyTips.subtitle')}
       mood="joyful"
       toolId="daily-tips"
       icon={Lightbulb}
@@ -127,15 +130,15 @@ export default function AIPregnancyTipsDaily() {
       <div className="space-y-6">
           {/* Trimester Selection */}
           <div className="flex gap-2">
-            {[1, 2, 3].map(t => (
+            {[1, 2, 3].map(tri => (
               <Button
-                key={t}
-                variant={currentTrimester === t ? 'default' : 'outline'}
+                key={tri}
+                variant={currentTrimester === tri ? 'default' : 'outline'}
                 size="sm"
-                onClick={() => setCurrentTrimester(t)}
+                onClick={() => setCurrentTrimester(tri)}
                 className="flex-1"
               >
-                Trimester {t}
+                {t('dailyTips.trimester')} {tri}
               </Button>
             ))}
           </div>
@@ -146,7 +149,7 @@ export default function AIPregnancyTipsDaily() {
               <div className="flex gap-2">
                 <Button onClick={getNewTip} variant="outline" className="flex-1">
                   <RefreshCw className="w-4 h-4 mr-2" />
-                  Random Tip
+                  {t('dailyTips.randomTip')}
                 </Button>
                 <Button onClick={generateAITip} disabled={isLoading} className="flex-1">
                   {isLoading ? (
@@ -154,7 +157,7 @@ export default function AIPregnancyTipsDaily() {
                   ) : (
                     <Brain className="w-4 h-4 mr-2" />
                   )}
-                  AI Tip
+                  {t('dailyTips.aiTip')}
                 </Button>
               </div>
             </CardContent>
@@ -166,7 +169,7 @@ export default function AIPregnancyTipsDaily() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">AI-Powered Tip</h3>
+                  <h3 className="font-semibold">{t('dailyTips.aiPoweredTip')}</h3>
                 </div>
                 <MarkdownRenderer content={aiResponse} />
               </CardContent>
@@ -187,15 +190,15 @@ export default function AIPregnancyTipsDaily() {
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-3">
                   <Calendar className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">Tip of the Day</span>
+                  <span className="text-sm font-medium text-primary">{t('dailyTips.tipOfTheDay')}</span>
                 </div>
                 
-                <h3 className="text-xl font-bold mb-2">{dailyTip.tip}</h3>
-                <p className="text-muted-foreground mb-4">{dailyTip.detail}</p>
+                <h3 className="text-xl font-bold mb-2">{t(`dailyTips.tips.${dailyTip.tipKey}.tip`)}</h3>
+                <p className="text-muted-foreground mb-4">{t(`dailyTips.tips.${dailyTip.tipKey}.detail`)}</p>
                 
                 <div className="flex items-center justify-between">
                   <Badge className={categoryColors[dailyTip.category]}>
-                    {dailyTip.category}
+                    {t(`dailyTips.categories.${dailyTip.category}`)}
                   </Badge>
                   <Button
                     variant="ghost"
@@ -215,13 +218,13 @@ export default function AIPregnancyTipsDaily() {
               <CardContent className="p-4">
                 <h3 className="font-semibold mb-3 flex items-center gap-2">
                   <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                  Your Favorites ({favorites.length})
+                  {t('dailyTips.yourFavorites')} ({favorites.length})
                 </h3>
                 <div className="space-y-2">
-                  {tips.filter(t => favorites.includes(t.id)).map(tip => (
+                  {tips.filter(tip => favorites.includes(tip.id)).map(tip => (
                     <div key={tip.id} className="p-3 bg-muted/50 rounded-lg">
-                      <p className="font-medium text-sm">{tip.tip}</p>
-                      <p className="text-xs text-muted-foreground">{tip.detail}</p>
+                      <p className="font-medium text-sm">{t(`dailyTips.tips.${tip.tipKey}.tip`)}</p>
+                      <p className="text-xs text-muted-foreground">{t(`dailyTips.tips.${tip.tipKey}.detail`)}</p>
                     </div>
                   ))}
                 </div>
@@ -231,7 +234,7 @@ export default function AIPregnancyTipsDaily() {
 
           {/* All Tips */}
           <div className="space-y-3">
-            <h3 className="font-semibold">More Tips for Trimester {currentTrimester}</h3>
+            <h3 className="font-semibold">{t('dailyTips.moreTips')} {currentTrimester}</h3>
             {filteredTips.map(tip => (
               <Card key={tip.id}>
                 <CardContent className="p-4">
@@ -240,8 +243,8 @@ export default function AIPregnancyTipsDaily() {
                       <Lightbulb className="w-4 h-4" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-medium text-sm">{tip.tip}</h4>
-                      <p className="text-xs text-muted-foreground">{tip.detail}</p>
+                      <h4 className="font-medium text-sm">{t(`dailyTips.tips.${tip.tipKey}.tip`)}</h4>
+                      <p className="text-xs text-muted-foreground">{t(`dailyTips.tips.${tip.tipKey}.detail`)}</p>
                     </div>
                     <Button
                       variant="ghost"
