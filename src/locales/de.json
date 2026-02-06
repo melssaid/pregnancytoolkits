@@ -1844,10 +1844,38 @@
     "disclaimer": "Dieses Tool identifiziert Risikofaktoren, kann aber Präeklampsie nicht vorhersagen oder diagnostizieren.",
     "aiCoachTitle": "KI-Präeklampsie-Präventionscoach",
     "getPreventionPlan": "Präventionsplan erhalten",
+    "riskFactors": {
+      "firstPregnancy": "Erste Schwangerschaft",
+      "prevPreeclampsia": "Frühere Schwangerschaft mit Präeklampsie",
+      "chronicHypertension": "Chronischer Bluthochdruck",
+      "diabetes": "Typ-1- oder Typ-2-Diabetes",
+      "kidneyDisease": "Nierenerkrankung",
+      "autoimmune": "Autoimmunerkrankung (Lupus, Antiphospholipid-Syndrom)",
+      "multiples": "Mehrlingsschwangerschaft",
+      "age35": "Alter 35 oder älter",
+      "age40": "Alter 40 oder älter",
+      "obesity": "Adipositas (BMI 30 oder höher)",
+      "ivf": "Schwangerschaft durch IVF",
+      "familyHistory": "Familiengeschichte von Präeklampsie",
+      "longGap": "Mehr als 10 Jahre seit der letzten Schwangerschaft"
+    },
+    "categories": {
+      "pregnancy": "Schwangerschaft",
+      "history": "Vorgeschichte",
+      "medical": "Medizinisch",
+      "demographics": "Demografie"
+    },
     "riskLevels": {
-      "high": { "title": "Höheres Risiko", "description": "Sie haben einen oder mehrere bedeutende Risikofaktoren." },
-      "moderate": { "title": "Mäßiges Risiko", "description": "Sie haben einige Risikofaktoren." },
-      "low": { "title": "Niedriges Risiko", "description": "Sie haben wenige identifizierte Risikofaktoren." }
+      "high": { "title": "Höheres Risiko", "description": "Sie haben einen oder mehrere bedeutende Risikofaktoren für Präeklampsie. Ihr Arzt kann niedrig dosiertes Aspirin ab der 12. Woche empfehlen.", "recommendation": "Besprechen Sie die Aspirin-Prophylaxe mit Ihrem Arzt" },
+      "moderate": { "title": "Mäßiges Risiko", "description": "Sie haben einige Risikofaktoren. Verstärkte Überwachung und Lebensstiländerungen können empfohlen werden.", "recommendation": "Erwägen Sie, das Risiko mit Ihrem Arzt zu besprechen" },
+      "low": { "title": "Niedriges Risiko", "description": "Sie haben wenige identifizierte Risikofaktoren. Setzen Sie die reguläre Schwangerschaftsvorsorge fort.", "recommendation": "Regelmäßige Vorsorgeuntersuchungen beibehalten" }
+    },
+    "warningSigns": {
+      "headaches": "Starke Kopfschmerzen, die nicht nachlassen",
+      "vision": "Sehveränderungen (Verschwommenheit, Flecken sehen)",
+      "abdominalPain": "Oberbauchschmerzen (besonders rechte Seite)",
+      "swelling": "Plötzliche Schwellungen (Gesicht, Hände, Füße)",
+      "weightGain": "Plötzliche Gewichtszunahme (mehr als 2,5 kg in einer Woche)"
     }
   },
   "toolsInternal.dailyTips": {
