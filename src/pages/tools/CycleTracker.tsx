@@ -23,15 +23,9 @@ interface CycleEntry {
 
 const STORAGE_KEY = "cycle-tracker-data";
 
-const symptomOptions = [
-  "Cramps",
-  "Headache",
-  "Bloating",
-  "Mood swings",
-  "Fatigue",
-  "Breast tenderness",
-  "Acne",
-  "Back pain",
+const symptomKeys = [
+  "cramps", "headache", "bloating", "moodSwings",
+  "fatigue", "breastTenderness", "acne", "backPain",
 ];
 
 const isValidCycles = (data: unknown): data is CycleEntry[] => {
@@ -75,7 +69,7 @@ export default function CycleTracker() {
     };
 
     setCycles(prev => [newCycle, ...prev].slice(0, 12));
-    toast({ title: 'Saved!', description: 'Cycle entry has been recorded.' });
+    toast({ title: t('toolsInternal.cycleTracker.saved'), description: t('toolsInternal.cycleTracker.savedDesc') });
 
     setStartDate("");
     setEndDate("");
@@ -85,7 +79,7 @@ export default function CycleTracker() {
 
   const deleteCycle = (id: string) => {
     setCycles(prev => prev.filter((c) => c.id !== id));
-    toast({ title: 'Deleted', description: 'Cycle entry removed.' });
+    toast({ title: t('toolsInternal.cycleTracker.deleted'), description: t('toolsInternal.cycleTracker.deletedDesc') });
   };
 
   const toggleSymptom = (symptom: string) => {
@@ -94,6 +88,10 @@ export default function CycleTracker() {
         ? prev.filter((s) => s !== symptom)
         : [...prev, symptom]
     );
+  };
+
+  const getSymptomLabel = (key: string) => {
+    return t(`toolsInternal.cycleTracker.symptomOptions.${key}`, key);
   };
 
   const getStats = () => {
@@ -143,28 +141,27 @@ export default function CycleTracker() {
   const shareStats = async () => {
     if (!stats) return;
     
-    const text = `My Cycle Stats
+    const text = `${t('toolsInternal.cycleTracker.yourStatistics')}
 
-Average Cycle: ${stats.avgCycleLength} days
-${stats.avgPeriodLength ? `Average Period: ${stats.avgPeriodLength} days\n` : ''}Next Period: ${format(stats.nextPeriod, "MMMM d, yyyy")}
+${t('toolsInternal.cycleTracker.avgCycleLength')}: ${stats.avgCycleLength} ${t('toolsInternal.cycleTracker.days')}
+${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: ${stats.avgPeriodLength} ${t('toolsInternal.cycleTracker.days')}\n` : ''}${t('toolsInternal.cycleTracker.nextPeriod')}: ${format(stats.nextPeriod, "MMMM d, yyyy")}
 
-Tracked ${cycles.length} cycles
 — via Pregnancy Toolkits`;
 
     if (navigator.share) {
       try {
-        await navigator.share({ title: 'My Cycle Stats', text });
+        await navigator.share({ title: t('toolsInternal.cycleTracker.yourStatistics'), text });
       } catch (err) {}
     } else {
       await navigator.clipboard.writeText(text);
-      toast({ title: 'Copied!', description: 'Stats copied to clipboard.' });
+      toast({ title: t('toolsInternal.cycleTracker.copied'), description: t('toolsInternal.cycleTracker.copiedDesc') });
     }
   };
 
   return (
     <ToolFrame 
-      title="Menstrual Cycle Tracker" 
-      subtitle="Track your cycle and predict your period"
+      title={t('toolsInternal.cycleTracker.title')}
+      subtitle={t('toolsInternal.cycleTracker.subtitle')}
       customIcon="calendar"
       mood="nurturing"
       toolId="cycle-tracker"
@@ -178,10 +175,10 @@ Tracked ${cycles.length} cycles
             {stats && (
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-medium text-muted-foreground">Your Statistics</h3>
+                  <h3 className="text-sm font-medium text-muted-foreground">{t('toolsInternal.cycleTracker.yourStatistics')}</h3>
                   <Button variant="ghost" size="sm" onClick={shareStats} className="gap-1">
                     <Share2 className="h-4 w-4" />
-                    Share
+                    {t('toolsInternal.cycleTracker.share')}
                   </Button>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-3">
@@ -189,7 +186,7 @@ Tracked ${cycles.length} cycles
                     <CardContent className="pt-4 text-center">
                       <TrendingUp className="h-5 w-5 text-primary mx-auto mb-2" />
                       <p className="text-2xl font-bold text-foreground">{stats.avgCycleLength}</p>
-                      <p className="text-xs text-muted-foreground">Avg Cycle Length</p>
+                      <p className="text-xs text-muted-foreground">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
                     </CardContent>
                   </Card>
                   
@@ -198,7 +195,7 @@ Tracked ${cycles.length} cycles
                       <CardContent className="pt-4 text-center">
                         <Activity className="h-5 w-5 text-primary mx-auto mb-2" />
                         <p className="text-2xl font-bold text-foreground">{stats.avgPeriodLength}</p>
-                        <p className="text-xs text-muted-foreground">Avg Period Length</p>
+                        <p className="text-xs text-muted-foreground">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
                       </CardContent>
                     </Card>
                   )}
@@ -209,12 +206,11 @@ Tracked ${cycles.length} cycles
                       <p className="text-lg font-bold text-primary">
                         {format(stats.nextPeriod, "MMM d")}
                       </p>
-                      <p className="text-xs text-muted-foreground">Next Period</p>
+                      <p className="text-xs text-muted-foreground">{t('toolsInternal.cycleTracker.nextPeriod')}</p>
                     </CardContent>
                   </Card>
               </div>
                 
-                {/* AI Analysis for Cycle Patterns */}
                 <AIInsightCard
                   title={t('toolsInternal.aiInsights.cycleAnalysis')}
                   prompt={`Analyze my menstrual cycle patterns:
@@ -228,7 +224,7 @@ ${cycles.slice(0, 5).map((c, i) => {
   const length = i < cycles.length - 1 
     ? differenceInDays(new Date(c.startDate), new Date(cycles[i + 1].startDate))
     : null;
-  return `- ${format(new Date(c.startDate), "MMM d")}: ${c.flowIntensity} flow${c.symptoms?.length ? `, symptoms: ${c.symptoms.join(', ')}` : ''}${length ? `, ${length} day cycle` : ''}`;
+  return `- ${format(new Date(c.startDate), "MMM d")}: ${c.flowIntensity} flow${c.symptoms?.length ? `, symptoms: ${c.symptoms.map(s => getSymptomLabel(s)).join(', ')}` : ''}${length ? `, ${length} day cycle` : ''}`;
 }).join('\n')}
 
 Please provide:
@@ -244,7 +240,7 @@ Personalized tips based on my cycle patterns and symptoms
 ## Things to Watch
 Any patterns that might be worth discussing with a doctor`}
                   variant="compact"
-                  buttonText="Analyze My Patterns"
+                  buttonText={t('toolsInternal.cycleTracker.analyzePatterns')}
                 />
               </div>
             )}
@@ -253,16 +249,16 @@ Any patterns that might be worth discussing with a doctor`}
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Plus className="h-5 w-5 text-primary" />
-                  Log Period
+                  {t('toolsInternal.cycleTracker.logPeriod')}
                 </CardTitle>
                 <CardDescription>
-                  Record the start and end of your menstrual cycle
+                  {t('toolsInternal.cycleTracker.subtitle')}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="startDate">Start Date</Label>
+                    <Label htmlFor="startDate">{t('toolsInternal.cycleTracker.startDate')}</Label>
                     <Input
                       id="startDate"
                       type="date"
@@ -272,7 +268,7 @@ Any patterns that might be worth discussing with a doctor`}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="endDate">End Date (optional)</Label>
+                    <Label htmlFor="endDate">{t('toolsInternal.cycleTracker.endDate')}</Label>
                     <Input
                       id="endDate"
                       type="date"
@@ -285,41 +281,41 @@ Any patterns that might be worth discussing with a doctor`}
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Flow Intensity</Label>
+                  <Label>{t('toolsInternal.cycleTracker.flowIntensity')}</Label>
                   <Select value={flowIntensity} onValueChange={(v) => setFlowIntensity(v as "light" | "medium" | "heavy")}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="light">Light</SelectItem>
-                      <SelectItem value="medium">Medium</SelectItem>
-                      <SelectItem value="heavy">Heavy</SelectItem>
+                      <SelectItem value="light">{t('toolsInternal.cycleTracker.flowLevels.light')}</SelectItem>
+                      <SelectItem value="medium">{t('toolsInternal.cycleTracker.flowLevels.medium')}</SelectItem>
+                      <SelectItem value="heavy">{t('toolsInternal.cycleTracker.flowLevels.heavy')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Symptoms (optional)</Label>
+                  <Label>{t('toolsInternal.cycleTracker.symptoms')}</Label>
                   <div className="flex flex-wrap gap-2">
-                    {symptomOptions.map((symptom) => (
+                    {symptomKeys.map((key) => (
                       <button
-                        key={symptom}
+                        key={key}
                         type="button"
-                        onClick={() => toggleSymptom(symptom)}
+                        onClick={() => toggleSymptom(key)}
                         className={`rounded-full px-3 py-1.5 text-sm transition-all border-2 ${
-                          selectedSymptoms.includes(symptom)
+                          selectedSymptoms.includes(key)
                             ? "bg-primary text-primary-foreground border-primary"
                             : "bg-secondary text-secondary-foreground hover:bg-muted border-transparent"
                         }`}
                       >
-                        {symptom}
+                        {getSymptomLabel(key)}
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <Button onClick={addCycle} disabled={!startDate} className="w-full">
-                  Log Period
+                  {t('toolsInternal.cycleTracker.logPeriod')}
                 </Button>
               </CardContent>
             </Card>
@@ -327,7 +323,7 @@ Any patterns that might be worth discussing with a doctor`}
             {cycles.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Cycle History</CardTitle>
+                  <CardTitle className="text-lg">{t('toolsInternal.cycleTracker.cycleHistory')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -356,12 +352,12 @@ Any patterns that might be worth discussing with a doctor`}
                                 )}
                               </p>
                               <div className="flex flex-wrap gap-2 mt-1">
-                                <span className="text-xs text-muted-foreground capitalize">
-                                  {cycle.flowIntensity} flow
+                                <span className="text-xs text-muted-foreground">
+                                  {t(`toolsInternal.cycleTracker.flowLevels.${cycle.flowIntensity}`)} {t('toolsInternal.cycleTracker.flow')}
                                 </span>
                                 {cycleLength && (
                                   <span className="text-xs text-primary">
-                                    • {cycleLength} day cycle
+                                    • {cycleLength} {t('toolsInternal.cycleTracker.dayCycle')}
                                   </span>
                                 )}
                               </div>
@@ -372,7 +368,7 @@ Any patterns that might be worth discussing with a doctor`}
                                       key={s}
                                       className="rounded bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"
                                     >
-                                      {s}
+                                      {getSymptomLabel(s)}
                                     </span>
                                   ))}
                                 </div>
@@ -396,8 +392,7 @@ Any patterns that might be worth discussing with a doctor`}
             <div className="mt-6 flex items-start gap-3 rounded-lg bg-muted p-4">
               <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
               <p className="text-sm text-muted-foreground">
-                Track at least 3-6 cycles for more accurate predictions. Cycle length can 
-                vary due to stress, illness, or other factors.
+                {t('toolsInternal.cycleTracker.trackTip')}
               </p>
             </div>
           </motion.div>

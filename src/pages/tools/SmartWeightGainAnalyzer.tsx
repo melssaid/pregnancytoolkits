@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -28,17 +29,18 @@ interface WeightEntry {
 interface WeightRange {
   min: number;
   max: number;
-  category: string;
+  categoryKey: string;
 }
 
 const BMI_WEIGHT_GAIN: Record<string, WeightRange> = {
-  underweight: { min: 12.7, max: 18.1, category: 'Underweight (BMI < 18.5)' },
-  normal: { min: 11.3, max: 15.9, category: 'Normal (BMI 18.5-24.9)' },
-  overweight: { min: 6.8, max: 11.3, category: 'Overweight (BMI 25-29.9)' },
-  obese: { min: 5.0, max: 9.1, category: 'Obese (BMI ≥ 30)' },
+  underweight: { min: 12.7, max: 18.1, categoryKey: 'underweight' },
+  normal: { min: 11.3, max: 15.9, categoryKey: 'normal' },
+  overweight: { min: 6.8, max: 11.3, categoryKey: 'overweight' },
+  obese: { min: 5.0, max: 9.1, categoryKey: 'obese' },
 };
 
 export default function SmartWeightGainAnalyzer() {
+  const { t } = useTranslation();
   const [prePregnancyWeight, setPrePregnancyWeight] = useState<string>('');
   const [height, setHeight] = useState<string>('');
   const [currentWeight, setCurrentWeight] = useState<string>('');
@@ -148,26 +150,26 @@ export default function SmartWeightGainAnalyzer() {
     if (totalGain < expected.min) {
       return {
         status: 'below',
-        message: 'Your weight gain is below the recommended range.',
-        recommendation: 'Consider consulting your healthcare provider about nutrition.',
-        color: 'text-yellow-600',
-        bgColor: 'bg-yellow-50 border-yellow-200',
+        message: t('toolsInternal.weightGain.statusMessages.below.message'),
+        recommendation: t('toolsInternal.weightGain.statusMessages.below.recommendation'),
+        color: 'text-warning',
+        bgColor: 'bg-warning/10 border-warning/20',
       };
     } else if (totalGain > expected.max) {
       return {
         status: 'above',
-        message: 'Your weight gain is above the recommended range.',
-        recommendation: 'Discuss with your doctor about healthy eating habits.',
-        color: 'text-orange-600',
-        bgColor: 'bg-orange-50 border-orange-200',
+        message: t('toolsInternal.weightGain.statusMessages.above.message'),
+        recommendation: t('toolsInternal.weightGain.statusMessages.above.recommendation'),
+        color: 'text-destructive',
+        bgColor: 'bg-destructive/10 border-destructive/20',
       };
     }
     return {
       status: 'normal',
-      message: 'Your weight gain is within the healthy range!',
-      recommendation: 'Keep up the good work with balanced nutrition.',
-      color: 'text-green-600',
-      bgColor: 'bg-green-50 border-green-200',
+      message: t('toolsInternal.weightGain.statusMessages.normal.message'),
+      recommendation: t('toolsInternal.weightGain.statusMessages.normal.recommendation'),
+      color: 'text-success',
+      bgColor: 'bg-success/10 border-success/20',
     };
   };
 
@@ -176,8 +178,8 @@ export default function SmartWeightGainAnalyzer() {
 
   return (
     <ToolFrame 
-      title="Smart Weight Gain Analyzer" 
-      subtitle="Track and analyze your pregnancy weight gain"
+      title={t('toolsInternal.weightGain.title')}
+      subtitle={t('toolsInternal.weightGain.subtitle')}
       customIcon="weight-scale"
       mood="calm"
       toolId="weight-gain"
@@ -186,13 +188,13 @@ export default function SmartWeightGainAnalyzer() {
         <Card>
           <CardContent className="p-4 space-y-3">
             <h3 className="text-base font-semibold flex items-center gap-2">
-              <Target className="w-4 h-4 text-purple-600 shrink-0" />
-              <span className="truncate">Your Profile</span>
+              <Target className="w-4 h-4 text-primary shrink-0" />
+              <span className="truncate">{t('toolsInternal.weightGain.yourProfile')}</span>
             </h3>
             
             <div className="space-y-3">
               <div>
-                <Label htmlFor="height" className="text-xs">Height (cm)</Label>
+                <Label htmlFor="height" className="text-xs">{t('toolsInternal.weightGain.heightCm')}</Label>
                 <Input
                   id="height"
                   type="number"
@@ -203,7 +205,7 @@ export default function SmartWeightGainAnalyzer() {
                 />
               </div>
               <div>
-                <Label htmlFor="preWeight" className="text-xs">Pre-Pregnancy Weight (kg)</Label>
+                <Label htmlFor="preWeight" className="text-xs">{t('toolsInternal.weightGain.prePregnancyWeightKg')}</Label>
                 <Input
                   id="preWeight"
                   type="number"
@@ -216,12 +218,12 @@ export default function SmartWeightGainAnalyzer() {
             </div>
             
             {prePregnancyWeight && height && (
-              <div className="p-4 bg-purple-50 rounded-lg border border-purple-100">
-                <p className="text-sm text-gray-600">
-                  <span className="font-medium text-gray-900">BMI Category:</span> {range.category}
+              <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <p className="text-sm text-foreground">
+                  <span className="font-medium">{t('toolsInternal.weightGain.bmiCategory')}:</span> {t(`toolsInternal.weightGain.bmiCategories.${range.categoryKey}`)}
                 </p>
-                <p className="text-sm text-gray-600 mt-1">
-                  <span className="font-medium text-gray-900">Recommended Total Gain:</span> {range.min} - {range.max} kg
+                <p className="text-sm text-foreground mt-1">
+                  <span className="font-medium">{t('toolsInternal.weightGain.recommendedTotalGain')}:</span> {range.min} - {range.max} kg
                 </p>
               </div>
             )}
@@ -230,7 +232,7 @@ export default function SmartWeightGainAnalyzer() {
 
         <Card>
           <CardContent className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold">Add Weight Entry</h3>
+            <h3 className="text-lg font-semibold">{t('toolsInternal.weightGain.addWeightEntry')}</h3>
             
             <div className="space-y-4">
               <WeekSlider
@@ -238,12 +240,12 @@ export default function SmartWeightGainAnalyzer() {
                 onChange={(week) => setCurrentWeek(week.toString())}
                 showCard={false}
                 showTrimester={false}
-                label="Pregnancy Week"
+                label={t('toolsInternal.weightGain.pregnancyWeek')}
               />
             </div>
             <div className="grid grid-cols-1 gap-4 mt-4">
               <div>
-                <Label htmlFor="weight">Current Weight (kg)</Label>
+                <Label htmlFor="weight">{t('toolsInternal.weightGain.currentWeightKg')}</Label>
                 <Input
                   id="weight"
                   type="number"
@@ -257,7 +259,7 @@ export default function SmartWeightGainAnalyzer() {
             </div>
             
             <Button onClick={addEntry} className="w-full" disabled={!currentWeight || !currentWeek}>
-              Add Entry
+              {t('toolsInternal.weightGain.addEntry')}
             </Button>
           </CardContent>
         </Card>
@@ -273,9 +275,9 @@ export default function SmartWeightGainAnalyzer() {
                 )}
                 <div>
                   <p className={`font-semibold ${status.color}`}>{status.message}</p>
-                  <p className="text-sm text-gray-600 mt-1">{status.recommendation}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{status.recommendation}</p>
                   <p className="text-sm font-medium mt-2">
-                    Total Weight Gain: {getTotalGain().toFixed(1)} kg
+                    {t('toolsInternal.weightGain.totalWeightGainLabel')}: {getTotalGain().toFixed(1)} kg
                   </p>
                 </div>
               </div>
@@ -287,26 +289,26 @@ export default function SmartWeightGainAnalyzer() {
           <Card>
             <CardContent className="p-6">
               <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
-                <TrendingUp className="w-5 h-5 text-purple-600" />
-                Weight Gain Trend
+                <TrendingUp className="w-5 h-5 text-primary" />
+                {t('toolsInternal.weightGain.weightGainTrend')}
               </h3>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={getChartData()}>
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200" />
+                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                     <XAxis 
                       dataKey="week" 
                       tick={{ fontSize: 11 }}
-                      label={{ value: 'Week', position: 'insideBottom', offset: -5, fontSize: 12 }}
+                      label={{ value: t('toolsInternal.weightGain.weekAxis'), position: 'insideBottom', offset: -5, fontSize: 12 }}
                     />
                     <YAxis 
                       tick={{ fontSize: 11 }}
-                      label={{ value: 'Weight Gain (kg)', angle: -90, position: 'insideLeft', fontSize: 12 }}
+                      label={{ value: t('toolsInternal.weightGain.weightGainKg'), angle: -90, position: 'insideLeft', fontSize: 12 }}
                     />
                     <Tooltip 
                       contentStyle={{ 
-                        backgroundColor: 'white', 
-                        border: '1px solid #e5e7eb',
+                        backgroundColor: 'hsl(var(--card))', 
+                        border: '1px solid hsl(var(--border))',
                         borderRadius: '8px'
                       }}
                       formatter={(value: number | null) => value !== null ? `${value.toFixed(1)} kg` : 'N/A'}
@@ -315,47 +317,47 @@ export default function SmartWeightGainAnalyzer() {
                       type="monotone" 
                       dataKey="expectedMax" 
                       stroke="none"
-                      fill="#a855f7"
+                      fill="hsl(var(--primary))"
                       fillOpacity={0.1}
                     />
                     <Area 
                       type="monotone" 
                       dataKey="expectedMin" 
                       stroke="none"
-                      fill="#ffffff"
+                      fill="hsl(var(--background))"
                     />
                     <Line 
                       type="monotone" 
                       dataKey="expectedMin" 
-                      stroke="#a855f7" 
+                      stroke="hsl(var(--primary))" 
                       strokeDasharray="5 5"
                       strokeWidth={1}
                       dot={false}
-                      name="Min Recommended"
+                      name={t('toolsInternal.weightGain.minRecommended')}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="expectedMax" 
-                      stroke="#a855f7" 
+                      stroke="hsl(var(--primary))" 
                       strokeDasharray="5 5"
                       strokeWidth={1}
                       dot={false}
-                      name="Max Recommended"
+                      name={t('toolsInternal.weightGain.maxRecommended')}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="actual" 
-                      stroke="#9333ea" 
+                      stroke="hsl(var(--primary))" 
                       strokeWidth={2}
-                      dot={{ fill: '#9333ea', strokeWidth: 2, r: 4 }}
+                      dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 4 }}
                       connectNulls
-                      name="Your Weight"
+                      name={t('toolsInternal.weightGain.yourWeight')}
                     />
                   </ComposedChart>
                 </ResponsiveContainer>
               </div>
-              <p className="text-xs text-gray-500 text-center mt-2">
-                Shaded area shows the recommended weight gain range
+              <p className="text-xs text-muted-foreground text-center mt-2">
+                {t('toolsInternal.weightGain.chartNote')}
               </p>
             </CardContent>
           </Card>
@@ -364,19 +366,19 @@ export default function SmartWeightGainAnalyzer() {
         {entries.length > 0 && (
           <Card>
             <CardContent className="p-6">
-              <h3 className="text-lg font-semibold mb-4">Recent Entries</h3>
+              <h3 className="text-lg font-semibold mb-4">{t('toolsInternal.weightGain.recentEntries')}</h3>
               <div className="space-y-2">
                 {entries.slice(-5).reverse().map((entry) => (
-                  <div key={entry.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div key={entry.id} className="flex justify-between items-center p-3 bg-muted rounded-lg">
                     <div>
-                      <span className="font-medium">Week {entry.week}</span>
-                      <span className="text-sm text-gray-500 ml-2">
+                      <span className="font-medium">{t('toolsInternal.weightGain.week')} {entry.week}</span>
+                      <span className="text-sm text-muted-foreground ml-2">
                         {new Date(entry.date).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="text-right">
                       <span className="font-semibold">{entry.weight} kg</span>
-                      <span className="text-sm text-gray-500 ml-2">
+                      <span className="text-sm text-muted-foreground ml-2">
                         (+{(entry.weight - parseFloat(prePregnancyWeight || '0')).toFixed(1)} kg)
                       </span>
                     </div>

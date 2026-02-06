@@ -8,21 +8,30 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
-const riskFactors = [
-  { id: "first-pregnancy", label: "First pregnancy", points: 1, category: "Pregnancy" },
-  { id: "prev-preeclampsia", label: "Previous pregnancy with preeclampsia", points: 3, category: "History" },
-  { id: "chronic-hypertension", label: "Chronic hypertension (high blood pressure)", points: 2, category: "Medical" },
-  { id: "diabetes", label: "Type 1 or Type 2 diabetes", points: 2, category: "Medical" },
-  { id: "kidney-disease", label: "Kidney disease", points: 2, category: "Medical" },
-  { id: "autoimmune", label: "Autoimmune disease (lupus, antiphospholipid syndrome)", points: 2, category: "Medical" },
-  { id: "multiples", label: "Pregnant with multiples", points: 2, category: "Pregnancy" },
-  { id: "age-35", label: "Age 35 or older", points: 1, category: "Demographics" },
-  { id: "age-40", label: "Age 40 or older", points: 2, category: "Demographics" },
-  { id: "obesity", label: "Obesity (BMI 30 or higher)", points: 1, category: "Medical" },
-  { id: "ivf", label: "Pregnancy through IVF", points: 1, category: "Pregnancy" },
-  { id: "family-history", label: "Family history of preeclampsia", points: 1, category: "History" },
-  { id: "long-gap", label: "10+ years since last pregnancy", points: 1, category: "History" },
+interface RiskFactor {
+  id: string;
+  labelKey: string;
+  points: number;
+  categoryKey: string;
+}
+
+const riskFactors: RiskFactor[] = [
+  { id: "first-pregnancy", labelKey: "firstPregnancy", points: 1, categoryKey: "pregnancy" },
+  { id: "prev-preeclampsia", labelKey: "prevPreeclampsia", points: 3, categoryKey: "history" },
+  { id: "chronic-hypertension", labelKey: "chronicHypertension", points: 2, categoryKey: "medical" },
+  { id: "diabetes", labelKey: "diabetes", points: 2, categoryKey: "medical" },
+  { id: "kidney-disease", labelKey: "kidneyDisease", points: 2, categoryKey: "medical" },
+  { id: "autoimmune", labelKey: "autoimmune", points: 2, categoryKey: "medical" },
+  { id: "multiples", labelKey: "multiples", points: 2, categoryKey: "pregnancy" },
+  { id: "age-35", labelKey: "age35", points: 1, categoryKey: "demographics" },
+  { id: "age-40", labelKey: "age40", points: 2, categoryKey: "demographics" },
+  { id: "obesity", labelKey: "obesity", points: 1, categoryKey: "medical" },
+  { id: "ivf", labelKey: "ivf", points: 1, categoryKey: "pregnancy" },
+  { id: "family-history", labelKey: "familyHistory", points: 1, categoryKey: "history" },
+  { id: "long-gap", labelKey: "longGap", points: 1, categoryKey: "history" },
 ];
+
+const warningSignKeys = ["headaches", "vision", "abdominalPain", "swelling", "weightGain"];
 
 export default function PreeclampsiaRisk() {
   const { t } = useTranslation();
@@ -40,40 +49,39 @@ export default function PreeclampsiaRisk() {
       .filter((f) => selectedFactors.includes(f.id))
       .reduce((sum, f) => sum + f.points, 0);
 
-    // Check for high-risk factors
     const hasHighRiskFactor = selectedFactors.some((id) =>
       ["prev-preeclampsia", "chronic-hypertension", "diabetes", "kidney-disease", "autoimmune", "multiples"].includes(id)
     );
 
     if (hasHighRiskFactor || totalPoints >= 6) {
       return {
-        level: "high",
-        title: "Higher Risk",
-        description: "You have one or more significant risk factors for preeclampsia. Your provider may recommend low-dose aspirin starting at 12 weeks.",
+        level: "high" as const,
+        title: t('preeclampsiaRisk.riskLevels.high.title'),
+        description: t('preeclampsiaRisk.riskLevels.high.description'),
         color: "text-destructive",
         bgColor: "bg-destructive/10",
         borderColor: "border-destructive/20",
-        recommendation: "Discuss aspirin prophylaxis with your healthcare provider",
+        recommendation: t('preeclampsiaRisk.riskLevels.high.recommendation'),
       };
     } else if (totalPoints >= 3) {
       return {
-        level: "moderate",
-        title: "Moderate Risk",
-        description: "You have some risk factors. Enhanced monitoring and lifestyle modifications may be recommended.",
+        level: "moderate" as const,
+        title: t('preeclampsiaRisk.riskLevels.moderate.title'),
+        description: t('preeclampsiaRisk.riskLevels.moderate.description'),
         color: "text-warning",
         bgColor: "bg-warning/10",
         borderColor: "border-warning/20",
-        recommendation: "Consider discussing risk with your healthcare provider",
+        recommendation: t('preeclampsiaRisk.riskLevels.moderate.recommendation'),
       };
     } else {
       return {
-        level: "low",
-        title: "Lower Risk",
-        description: "You have few identified risk factors. Continue with standard prenatal care.",
+        level: "low" as const,
+        title: t('preeclampsiaRisk.riskLevels.low.title'),
+        description: t('preeclampsiaRisk.riskLevels.low.description'),
         color: "text-success",
         bgColor: "bg-success/10",
         borderColor: "border-success/20",
-        recommendation: "Maintain regular prenatal visits",
+        recommendation: t('preeclampsiaRisk.riskLevels.low.recommendation'),
       };
     }
   };
@@ -82,8 +90,8 @@ export default function PreeclampsiaRisk() {
 
   return (
     <ToolFrame 
-      title="Preeclampsia Risk Calculator" 
-      subtitle="Evaluate your risk factors for preeclampsia"
+      title={t('preeclampsiaRisk.title')}
+      subtitle={t('preeclampsiaRisk.subtitle')}
       customIcon="health-shield"
       mood="calm"
       toolId="preeclampsia-risk"
@@ -98,10 +106,10 @@ export default function PreeclampsiaRisk() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Heart className="h-5 w-5 text-primary" />
-                  Risk Factors for Preeclampsia
+                  {t('preeclampsiaRisk.riskFactorsTitle')}
                 </CardTitle>
                 <CardDescription>
-                  Check all factors that apply to evaluate your risk level
+                  {t('preeclampsiaRisk.riskFactorsDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -120,10 +128,10 @@ export default function PreeclampsiaRisk() {
                       />
                       <div>
                         <span className="text-foreground group-hover:text-primary transition-colors">
-                          {factor.label}
+                          {t(`preeclampsiaRisk.riskFactors.${factor.labelKey}`)}
                         </span>
                         <span className="text-xs text-muted-foreground ml-2">
-                          ({factor.category})
+                          ({t(`preeclampsiaRisk.categories.${factor.categoryKey}`)})
                         </span>
                       </div>
                     </label>
@@ -134,7 +142,7 @@ export default function PreeclampsiaRisk() {
                   onClick={() => setShowResults(true)} 
                   className="w-full mt-4"
                 >
-                  Calculate Risk
+                  {t('preeclampsiaRisk.calculateRisk')}
                 </Button>
               </CardContent>
             </Card>
@@ -162,12 +170,12 @@ export default function PreeclampsiaRisk() {
 
                         {selectedFactors.length > 0 && (
                           <div className="mt-4 p-3 rounded-lg bg-card">
-                            <p className="font-medium text-foreground mb-2">Your Risk Factors:</p>
+                            <p className="font-medium text-foreground mb-2">{t('preeclampsiaRisk.yourRiskFactors')}</p>
                             <ul className="text-sm text-muted-foreground space-y-1">
                               {riskFactors
                                 .filter((f) => selectedFactors.includes(f.id))
                                 .map((f) => (
-                                  <li key={f.id}>• {f.label}</li>
+                                  <li key={f.id}>• {t(`preeclampsiaRisk.riskFactors.${f.labelKey}`)}</li>
                                 ))}
                             </ul>
                           </div>
@@ -177,14 +185,13 @@ export default function PreeclampsiaRisk() {
                   </CardContent>
                 </Card>
 
-                {/* AI Prevention Coach */}
                 {selectedFactors.length > 0 && (
                   <AIInsightCard
-                    title={t('toolsInternal.aiInsights.preeclampsiaCoach')}
+                    title={t('preeclampsiaRisk.aiCoachTitle')}
                     prompt={`I'm assessing my preeclampsia risk. My risk level is: ${result.title}
 
 My risk factors:
-${riskFactors.filter(f => selectedFactors.includes(f.id)).map(f => `- ${f.label} (${f.category})`).join('\n')}
+${riskFactors.filter(f => selectedFactors.includes(f.id)).map(f => `- ${t(`preeclampsiaRisk.riskFactors.${f.labelKey}`)} (${t(`preeclampsiaRisk.categories.${f.categoryKey}`)})`).join('\n')}
 
 Please provide personalized guidance:
 
@@ -206,39 +213,25 @@ Specific questions to ask my doctor about my risk profile
 ## 🌟 Positive Steps
 Encouraging message about proactive health management`}
                     variant="default"
-                    buttonText="Get Prevention Plan"
+                    buttonText={t('preeclampsiaRisk.getPreventionPlan')}
                   />
                 )}
 
                 <Card className="mt-4">
                   <CardHeader>
-                    <CardTitle className="text-lg">Warning Signs to Watch For</CardTitle>
+                    <CardTitle className="text-lg">{t('preeclampsiaRisk.warningSignsTitle')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <AlertTriangle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
-                        <span>Severe headaches that don't go away</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <AlertTriangle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
-                        <span>Vision changes (blurriness, seeing spots)</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <AlertTriangle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
-                        <span>Upper abdominal pain (especially right side)</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <AlertTriangle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
-                        <span>Sudden swelling (face, hands, feet)</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <AlertTriangle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
-                        <span>Sudden weight gain (more than 5 lbs in a week)</span>
-                      </li>
+                      {warningSignKeys.map((key) => (
+                        <li key={key} className="flex items-start gap-2">
+                          <AlertTriangle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
+                          <span>{t(`preeclampsiaRisk.warningSigns.${key}`)}</span>
+                        </li>
+                      ))}
                     </ul>
                     <p className="mt-3 text-sm font-medium text-destructive">
-                      If you experience any of these symptoms, contact your healthcare provider immediately.
+                      {t('preeclampsiaRisk.warningNote')}
                     </p>
                   </CardContent>
                 </Card>
@@ -248,8 +241,7 @@ Encouraging message about proactive health management`}
             <div className="mt-6 flex items-start gap-3 rounded-lg bg-muted p-4">
               <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
               <p className="text-sm text-muted-foreground">
-                This tool identifies risk factors but cannot predict or diagnose preeclampsia. 
-                Regular prenatal care with blood pressure monitoring is essential for all pregnancies.
+                {t('preeclampsiaRisk.disclaimer')}
               </p>
             </div>
           </motion.div>

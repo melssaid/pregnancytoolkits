@@ -2055,7 +2055,14 @@
         "breastTenderness": "Breast tenderness",
         "acne": "Acne",
         "backPain": "Back pain"
-      }
+      },
+      "saved": "Saved!",
+      "savedDesc": "Cycle entry has been recorded.",
+      "deleted": "Deleted",
+      "deletedDesc": "Cycle entry removed.",
+      "days": "days",
+      "copied": "Copied!",
+      "copiedDesc": "Stats copied to clipboard."
     },
     "weightGain": {
       "title": "Weight Gain Analyzer",
@@ -2072,7 +2079,37 @@
       "belowTarget": "Below Target",
       "aboveTarget": "Above Target",
       "weeklyGain": "Weekly Gain",
-      "aiAnalysis": "AI Weight Analysis"
+      "aiAnalysis": "AI Weight Analysis",
+      "yourProfile": "Your Profile",
+      "heightCm": "Height (cm)",
+      "prePregnancyWeightKg": "Pre-Pregnancy Weight (kg)",
+      "bmiCategory": "BMI Category",
+      "recommendedTotalGain": "Recommended Total Gain",
+      "addWeightEntry": "Add Weight Entry",
+      "pregnancyWeek": "Pregnancy Week",
+      "currentWeightKg": "Current Weight (kg)",
+      "addEntry": "Add Entry",
+      "weightGainTrend": "Weight Gain Trend",
+      "chartNote": "Shaded area shows the recommended weight gain range",
+      "recentEntries": "Recent Entries",
+      "week": "Week",
+      "totalWeightGainLabel": "Total Weight Gain",
+      "bmiCategories": {
+        "underweight": "Underweight (BMI < 18.5)",
+        "normal": "Normal (BMI 18.5-24.9)",
+        "overweight": "Overweight (BMI 25-29.9)",
+        "obese": "Obese (BMI ≥ 30)"
+      },
+      "statusMessages": {
+        "below": { "message": "Your weight gain is below the recommended range.", "recommendation": "Consider consulting your healthcare provider about nutrition." },
+        "above": { "message": "Your weight gain is above the recommended range.", "recommendation": "Discuss with your doctor about healthy eating habits." },
+        "normal": { "message": "Your weight gain is within the healthy range!", "recommendation": "Keep up the good work with balanced nutrition." }
+      },
+      "minRecommended": "Min Recommended",
+      "maxRecommended": "Max Recommended",
+      "yourWeight": "Your Weight",
+      "weekAxis": "Week",
+      "weightGainKg": "Weight Gain (kg)"
     },
     "bloodType": {
       "title": "Blood Type Calculator",
@@ -2775,6 +2812,40 @@
       "bath": { "title": "Warm Bath Before Bed", "desc": "Relaxes muscles and improves circulation" },
       "sleep": { "title": "Sleep Position", "desc": "Sleep on your left side with pillow between knees" },
       "toes": { "title": "Avoid Pointing Toes", "desc": "Flex feet instead of pointing when stretching" }
+    }
+  },
+  "stretchReminder": {
+    "title": "Smart Stretch Reminder",
+    "subtitle": "Personalized stretching reminders to keep you comfortable",
+    "yourTrimester": "Your Trimester",
+    "trimester": "Trimester",
+    "todaysProgress": "Today's Progress",
+    "stretchesDone": "{{done}}/{{total}} stretches done",
+    "noStretchesYet": "No stretches yet today",
+    "hoursAgo": "{{hours}}h {{minutes}}m ago",
+    "minutesAgo": "{{minutes}}m ago",
+    "startRoutine": "Start Routine",
+    "aiStretchCoach": "AI Stretch Coach",
+    "close": "Close",
+    "secondsRemaining": "seconds remaining",
+    "skip": "Skip",
+    "allStretches": "All Stretches",
+    "stretchReminders": "Stretch Reminders",
+    "tips": {
+      "tip1": "Stretch every 1-2 hours when sitting",
+      "tip2": "Never force a stretch - go gently",
+      "tip3": "Breathe deeply during each stretch",
+      "tip4": "Stay hydrated for flexible muscles"
+    },
+    "stretches": {
+      "neckRolls": { "name": "Neck Rolls", "desc": "Gently roll your head in circles", "bodyPart": "Neck" },
+      "shoulderShrugs": { "name": "Shoulder Shrugs", "desc": "Raise shoulders to ears, then release", "bodyPart": "Shoulders" },
+      "wristCircles": { "name": "Wrist Circles", "desc": "Rotate wrists in both directions", "bodyPart": "Wrists" },
+      "sideStretch": { "name": "Side Stretch", "desc": "Reach arm overhead and lean to side", "bodyPart": "Back" },
+      "catCow": { "name": "Cat-Cow", "desc": "Alternate arching and rounding back", "bodyPart": "Spine" },
+      "hipCircles": { "name": "Hip Circles", "desc": "Stand and rotate hips in circles", "bodyPart": "Hips" },
+      "calfRaises": { "name": "Calf Raises", "desc": "Rise up on toes, then lower", "bodyPart": "Legs" },
+      "deepBreathing": { "name": "Deep Breathing", "desc": "Slow, deep breaths with hands on belly", "bodyPart": "Relaxation" }
     }
   },
   "weeklySummary": {
