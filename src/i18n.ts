@@ -9,14 +9,48 @@ import fr from './locales/fr.json';
 import es from './locales/es.json';
 import pt from './locales/pt.json';
 
+// Expand flat dotted keys (e.g. "toolsInternal.babyCryTranslator") into nested objects
+function expandDottedKeys(obj: Record<string, any>): Record<string, any> {
+  const result: Record<string, any> = {};
+  for (const key in obj) {
+    if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+    const value = typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])
+      ? expandDottedKeys(obj[key])
+      : obj[key];
+    if (key.includes('.')) {
+      const parts = key.split('.');
+      let current = result;
+      for (let i = 0; i < parts.length - 1; i++) {
+        if (!current[parts[i]] || typeof current[parts[i]] !== 'object') {
+          current[parts[i]] = {};
+        }
+        current = current[parts[i]];
+      }
+      const lastPart = parts[parts.length - 1];
+      if (typeof value === 'object' && typeof current[lastPart] === 'object') {
+        current[lastPart] = { ...current[lastPart], ...value };
+      } else {
+        current[lastPart] = value;
+      }
+    } else {
+      if (typeof value === 'object' && typeof result[key] === 'object') {
+        result[key] = { ...result[key], ...value };
+      } else {
+        result[key] = value;
+      }
+    }
+  }
+  return result;
+}
+
 const resources = {
-  en: { translation: en },
-  ar: { translation: ar },
-  de: { translation: de },
-  tr: { translation: tr },
-  fr: { translation: fr },
-  es: { translation: es },
-  pt: { translation: pt },
+  en: { translation: expandDottedKeys(en as Record<string, any>) },
+  ar: { translation: expandDottedKeys(ar as Record<string, any>) },
+  de: { translation: expandDottedKeys(de as Record<string, any>) },
+  tr: { translation: expandDottedKeys(tr as Record<string, any>) },
+  fr: { translation: expandDottedKeys(fr as Record<string, any>) },
+  es: { translation: expandDottedKeys(es as Record<string, any>) },
+  pt: { translation: expandDottedKeys(pt as Record<string, any>) },
 };
 
 const SUPPORTED_LANGUAGES = ['en', 'ar', 'de', 'tr', 'fr', 'es', 'pt'];
