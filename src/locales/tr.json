@@ -1454,17 +1454,34 @@
       "mild": "Hafif",
       "moderate": "Orta",
       "severe": "Şiddetli",
-      "triggers": "Bilinen Tetikleyiciler",
-      "smells": "Belirli Kokular",
-      "foods": "Belirli Yiyecekler",
-      "motion": "Hareket",
-      "empty": "Boş Mide",
+      "quickRemediesTitle": "Hızlı Rahatlama Çözümleri",
+      "triggersLabel": "Bulantınızı ne tetikliyor?",
+      "vomitingLabel": "Sadece bulantı değil, kusma da yaşıyorum",
+      "severeWarningTitle": "Uyarı: Şiddetli Bulantı",
+      "severeWarningDesc": "24 saat boyunca hiçbir yiyecek/su tutamıyorsanız, kusmukta kan görüyorsanız veya baş dönmesi hissediyorsanız, hemen doktorunuza başvurun.",
       "getReliefPlan": "AI Rahatlama Planı Al",
       "creatingPlan": "Plan Oluşturuluyor...",
-      "dietaryTips": "Beslenme İpuçları",
-      "lifestyleTips": "Yaşam Tarzı İpuçları",
-      "naturalRemedies": "Doğal Çözümler",
-      "whenToCall": "Doktorunuzu Ne Zaman Aramalısınız"
+      "encouragingNote": "Unutmayın: Sabah bulantısı genellikle 8-10. haftalarda zirve yapar ve 12-14. haftalarda belirgin şekilde iyileşir. Başarabilirsiniz!",
+      "videosTitle": "Bulantı Giderme Videoları",
+      "videosSubtitle": "Sabah bulantısını hafifletmek için teknikler ve ipuçları",
+      "triggers": {
+        "morning": "Sabahları en kötü",
+        "evening": "Akşamları en kötü",
+        "allDay": "Tüm gün",
+        "smells": "Güçlü kokular",
+        "emptyStomach": "Boş mide",
+        "afterEating": "Yemekten sonra",
+        "motion": "Hareket/araba",
+        "cooking": "Yemek kokuları"
+      },
+      "remedies": {
+        "lemonWater": { "name": "Limonlu su", "tip": "Uyanınca yavaşça için" },
+        "ginger": { "name": "Zencefil", "tip": "Çay, şeker veya taze" },
+        "iceChips": { "name": "Buz parçaları", "tip": "Bulantıda emebilirsiniz" },
+        "dryCrackers": { "name": "Kuru kraker", "tip": "Yatağın yanında tutun" },
+        "peppermint": { "name": "Nane", "tip": "Koklamak veya çay" },
+        "banana": { "name": "Muz", "tip": "Mideye hafif" }
+      }
     },
     "groceryList": {
       "title": "Akıllı Alışveriş Listesi",
