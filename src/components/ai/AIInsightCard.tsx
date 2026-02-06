@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Brain, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface AIInsightCardProps {
   title?: string;
@@ -30,10 +31,17 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   autoExpand = false,
 }) => {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const [insight, setInsight] = useState('');
   const [isExpanded, setIsExpanded] = useState(autoExpand);
   const [hasGenerated, setHasGenerated] = useState(false);
+
+  // Always include current language in context for AI responses
+  const contextWithLanguage = useMemo(() => ({
+    ...context,
+    language: currentLanguage,
+  }), [context, currentLanguage]);
 
   const displayTitle = title || t('toolsInternal.aiInsights.title');
   const displayButtonText = buttonText || t('toolsInternal.aiInsights.getInsights');
@@ -48,7 +56,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     await streamChat({
       type: 'pregnancy-assistant',
       messages: [{ role: 'user', content: prompt }],
-      context,
+      context: contextWithLanguage,
       onDelta: (text) => setInsight(prev => prev + text),
       onDone: () => {},
     });
