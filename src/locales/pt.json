@@ -780,6 +780,56 @@
     "description": "Aplicativo atualizado, recarregando..."
   },
   "toolsInternal": {
+    "mentalHealthCoach": {
+      "title": "Coach de saúde mental pós-parto",
+      "subtitle": "Triagem da Escala de Depressão Pós-Natal de Edimburgo",
+      "youreNotAlone": "Você não está sozinha",
+      "emergencyMessage": "Com base nas suas respostas, é importante conversar com alguém que possa ajudar. A depressão pós-parto é comum e tratável.",
+      "postpartumSupport": "Apoio pós-parto",
+      "crisisHotline": "Linha de crise",
+      "question": "Pergunta",
+      "of": "de",
+      "score": "Pontuação",
+      "takeScreeningAgain": "Refazer triagem",
+      "aiPersonalizedPlan": "Plano de enfrentamento personalizado com IA",
+      "generateMyPlan": "Gerar meu plano personalizado",
+      "creatingPlan": "Criando seu plano personalizado...",
+      "dailyCopingStrategies": "Estratégias de enfrentamento diárias",
+      "supportResources": "Recursos de apoio",
+      "psiName": "Apoio Internacional Pós-Parto",
+      "psiNumber": "1-800-944-4773",
+      "crisisLinelineName": "988 Linha de Crise e Suicídio",
+      "crisisLinelineDesc": "Ligue ou envie mensagem para 988",
+      "screeningDisclaimer": "⚠️ Esta é uma ferramenta de triagem baseada na Escala de Depressão Pós-Natal de Edimburgo (EPDS). Não fornece diagnóstico. Sempre consulte um profissional para avaliação adequada.",
+      "mentalWellnessVideos": "Vídeos de bem-estar mental",
+      "videosSubtitle": "Recursos de apoio e autocuidado",
+      "videos": {
+        "v1": { "title": "O que é a depressão pós-parto?", "description": "Sinais, sintomas e quando procurar ajuda", "category": "Educação" },
+        "v2": { "title": "Depressão pós-parto explicada", "description": "Sintomas, fatores de risco e opções de tratamento", "category": "Educação" },
+        "v3": { "title": "Meditação de relaxamento na gravidez", "description": "Meditação calmante para melhor saúde mental", "category": "Relaxamento" },
+        "v4": { "title": "Cuidados com o recém-nascido - Semana 1", "description": "Guia do pediatra para a primeira semana", "category": "Autocuidado" }
+      },
+      "riskLevels": {
+        "low": { "title": "Risco baixo", "message": "Suas respostas sugerem que você está lidando bem. Continue praticando o autocuidado." },
+        "moderate": { "title": "Moderado", "message": "Considere conversar com seu médico sobre como você está se sentindo." },
+        "high": { "title": "Busque apoio", "message": "Por favor, entre em contato com seu médico ou profissional de saúde mental." }
+      },
+      "epds": {
+        "q1": { "question": "Consegui rir e ver o lado engraçado das coisas", "o0": "Tanto quanto sempre pude", "o1": "Não tanto agora", "o2": "Definitivamente não tanto agora", "o3": "De jeito nenhum" },
+        "q2": { "question": "Esperei as coisas com prazer", "o0": "Tanto quanto sempre", "o1": "Um pouco menos do que antes", "o2": "Definitivamente menos do que antes", "o3": "Quase nada" },
+        "q3": { "question": "Me culpei desnecessariamente quando as coisas deram errado", "o0": "Não, nunca", "o1": "Não muito frequentemente", "o2": "Sim, às vezes", "o3": "Sim, na maioria das vezes" },
+        "q4": { "question": "Fiquei ansiosa ou preocupada sem motivo", "o0": "Não, de jeito nenhum", "o1": "Quase nunca", "o2": "Sim, às vezes", "o3": "Sim, muito frequentemente" },
+        "q5": { "question": "Senti medo ou pânico sem motivo", "o0": "Não, de jeito nenhum", "o1": "Não, não muito", "o2": "Sim, às vezes", "o3": "Sim, bastante" }
+      },
+      "coping": {
+        "sunlight": { "title": "Luz solar matinal", "desc": "Pegue 10-15 minutos de luz natural toda manhã" },
+        "movement": { "title": "Movimento suave", "desc": "Uma caminhada curta pode melhorar significativamente o humor" },
+        "connect": { "title": "Conecte-se diariamente", "desc": "Converse com uma amiga ou familiar todos os dias" },
+        "rest": { "title": "Descanse quando possível", "desc": "Durma quando o bebê dormir, mesmo que brevemente" },
+        "nourish": { "title": "Alimente-se bem", "desc": "Faça refeições regulares e nutritivas" },
+        "journal": { "title": "Diário", "desc": "Escreva 3 coisas pelas quais você é grata" }
+      }
+    },
     "weeklySummary": {
       "title": "Resumo Semanal",
       "subtitle": "Acompanhamento semanal inteligente da sua gravidez",

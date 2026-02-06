@@ -780,6 +780,56 @@
     "description": "Application mise à jour, rechargement..."
   },
   "toolsInternal": {
+    "mentalHealthCoach": {
+      "title": "Coach de santé mentale post-partum",
+      "subtitle": "Dépistage de l'échelle de dépression postnatale d'Édimbourg",
+      "youreNotAlone": "Vous n'êtes pas seule",
+      "emergencyMessage": "D'après vos réponses, il est important de parler à quelqu'un qui peut vous aider. La dépression post-partum est courante et traitable.",
+      "postpartumSupport": "Support post-partum",
+      "crisisHotline": "Ligne de crise",
+      "question": "Question",
+      "of": "sur",
+      "score": "Score",
+      "takeScreeningAgain": "Refaire le dépistage",
+      "aiPersonalizedPlan": "Plan de gestion personnalisé IA",
+      "generateMyPlan": "Générer mon plan personnalisé",
+      "creatingPlan": "Création de votre plan personnalisé...",
+      "dailyCopingStrategies": "Stratégies de gestion quotidiennes",
+      "supportResources": "Ressources de soutien",
+      "psiName": "Soutien international post-partum",
+      "psiNumber": "1-800-944-4773",
+      "crisisLinelineName": "988 Ligne de crise et suicide",
+      "crisisLinelineDesc": "Appelez ou envoyez un SMS au 988",
+      "screeningDisclaimer": "⚠️ Ceci est un outil de dépistage basé sur l'échelle de dépression postnatale d'Édimbourg (EPDS). Il ne fournit pas de diagnostic. Consultez toujours un professionnel pour une évaluation appropriée.",
+      "mentalWellnessVideos": "Vidéos de bien-être mental",
+      "videosSubtitle": "Ressources de soutien et d'auto-soins",
+      "videos": {
+        "v1": { "title": "Qu'est-ce que la dépression post-partum ?", "description": "Signes, symptômes et quand chercher de l'aide", "category": "Éducation" },
+        "v2": { "title": "La dépression post-partum expliquée", "description": "Symptômes, facteurs de risque et options de traitement", "category": "Éducation" },
+        "v3": { "title": "Méditation de relaxation pendant la grossesse", "description": "Méditation apaisante pour une meilleure santé mentale", "category": "Relaxation" },
+        "v4": { "title": "Soins du nouveau-né - Semaine 1", "description": "Guide du pédiatre pour la première semaine avec bébé", "category": "Auto-soins" }
+      },
+      "riskLevels": {
+        "low": { "title": "Risque faible", "message": "Vos réponses suggèrent que vous vous en sortez bien. Continuez à pratiquer l'auto-soin." },
+        "moderate": { "title": "Modéré", "message": "Envisagez de parler à votre médecin de ce que vous ressentez." },
+        "high": { "title": "Cherchez du soutien", "message": "Veuillez contacter votre médecin ou un professionnel de la santé mentale." }
+      },
+      "epds": {
+        "q1": { "question": "J'ai pu rire et voir le côté amusant des choses", "o0": "Autant que d'habitude", "o1": "Pas tout à fait autant maintenant", "o2": "Certainement pas autant maintenant", "o3": "Pas du tout" },
+        "q2": { "question": "J'ai attendu les choses avec plaisir", "o0": "Autant que jamais", "o1": "Plutôt moins qu'avant", "o2": "Certainement moins qu'avant", "o3": "Presque pas" },
+        "q3": { "question": "Je me suis blâmée inutilement quand les choses ont mal tourné", "o0": "Non, jamais", "o1": "Pas très souvent", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
+        "q4": { "question": "J'ai été anxieuse ou inquiète sans bonne raison", "o0": "Non, pas du tout", "o1": "Presque jamais", "o2": "Oui, parfois", "o3": "Oui, très souvent" },
+        "q5": { "question": "J'ai eu peur ou panique sans bonne raison", "o0": "Non, pas du tout", "o1": "Non, pas beaucoup", "o2": "Oui, parfois", "o3": "Oui, assez souvent" }
+      },
+      "coping": {
+        "sunlight": { "title": "Lumière matinale", "desc": "Exposez-vous 10-15 minutes à la lumière naturelle chaque matin" },
+        "movement": { "title": "Mouvement doux", "desc": "Une courte promenade peut améliorer significativement l'humeur" },
+        "connect": { "title": "Connectez-vous quotidiennement", "desc": "Parlez à une amie ou un membre de la famille chaque jour" },
+        "rest": { "title": "Reposez-vous quand c'est possible", "desc": "Dormez quand bébé dort, même brièvement" },
+        "nourish": { "title": "Nourrissez-vous", "desc": "Mangez des repas réguliers et nutritifs" },
+        "journal": { "title": "Journal", "desc": "Écrivez 3 choses pour lesquelles vous êtes reconnaissante" }
+      }
+    },
     "weeklySummary": {
       "title": "Aperçus hebdomadaires",
       "subtitle": "Suivi hebdomadaire intelligent de votre grossesse",
