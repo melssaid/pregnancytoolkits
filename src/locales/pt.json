@@ -2162,10 +2162,38 @@
     "disclaimer": "Esta ferramenta identifica fatores de risco mas não pode prever ou diagnosticar pré-eclâmpsia.",
     "aiCoachTitle": "Coach IA de Prevenção de Pré-eclâmpsia",
     "getPreventionPlan": "Obter Plano de Prevenção",
+    "riskFactors": {
+      "firstPregnancy": "Primeira gravidez",
+      "prevPreeclampsia": "Gravidez anterior com pré-eclâmpsia",
+      "chronicHypertension": "Hipertensão arterial crônica",
+      "diabetes": "Diabetes tipo 1 ou tipo 2",
+      "kidneyDisease": "Doença renal",
+      "autoimmune": "Doença autoimune (lúpus, síndrome antifosfolípide)",
+      "multiples": "Gravidez múltipla",
+      "age35": "Idade de 35 anos ou mais",
+      "age40": "Idade de 40 anos ou mais",
+      "obesity": "Obesidade (IMC 30 ou mais)",
+      "ivf": "Gravidez por FIV",
+      "familyHistory": "Histórico familiar de pré-eclâmpsia",
+      "longGap": "Mais de 10 anos desde a última gravidez"
+    },
+    "categories": {
+      "pregnancy": "Gravidez",
+      "history": "Histórico",
+      "medical": "Médico",
+      "demographics": "Demografia"
+    },
     "riskLevels": {
-      "high": { "title": "Risco Alto", "description": "Você tem um ou mais fatores de risco significativos." },
-      "moderate": { "title": "Risco Moderado", "description": "Você tem alguns fatores de risco." },
-      "low": { "title": "Risco Baixo", "description": "Você tem poucos fatores de risco identificados." }
+      "high": { "title": "Risco Alto", "description": "Você tem um ou mais fatores de risco significativos para pré-eclâmpsia. Seu médico pode recomendar aspirina em dose baixa a partir da 12ª semana.", "recommendation": "Discuta a profilaxia com aspirina com seu médico" },
+      "moderate": { "title": "Risco Moderado", "description": "Você tem alguns fatores de risco. Monitoramento aprimorado e modificações no estilo de vida podem ser recomendados.", "recommendation": "Considere discutir o risco com seu médico" },
+      "low": { "title": "Risco Baixo", "description": "Você tem poucos fatores de risco identificados. Continue com os cuidados pré-natais padrão.", "recommendation": "Mantenha as consultas pré-natais regulares" }
+    },
+    "warningSigns": {
+      "headaches": "Dores de cabeça severas que não passam",
+      "vision": "Alterações na visão (embaçamento, ver manchas)",
+      "abdominalPain": "Dor abdominal superior (especialmente lado direito)",
+      "swelling": "Inchaço repentino (rosto, mãos, pés)",
+      "weightGain": "Ganho de peso repentino (mais de 2,5 kg em uma semana)"
     }
   },
   "dailyTips": {

@@ -2162,10 +2162,38 @@
     "disclaimer": "Bu araç risk faktörlerini tanımlar ancak preeklampsiyı tahmin edemez veya teşhis edemez.",
     "aiCoachTitle": "Yapay Zeka Preeklampsi Önleme Koçu",
     "getPreventionPlan": "Önleme Planı Al",
+    "riskFactors": {
+      "firstPregnancy": "İlk hamilelik",
+      "prevPreeclampsia": "Önceki hamilelikte preeklampsi",
+      "chronicHypertension": "Kronik yüksek tansiyon",
+      "diabetes": "Tip 1 veya Tip 2 diyabet",
+      "kidneyDisease": "Böbrek hastalığı",
+      "autoimmune": "Otoimmün hastalık (lupus, antifosfolipid sendromu)",
+      "multiples": "Çoğul gebelik",
+      "age35": "35 yaş veya üzeri",
+      "age40": "40 yaş veya üzeri",
+      "obesity": "Obezite (BMI 30 veya üzeri)",
+      "ivf": "Tüp bebek ile hamilelik",
+      "familyHistory": "Ailede preeklampsi öyküsü",
+      "longGap": "Son hamilelikten bu yana 10+ yıl"
+    },
+    "categories": {
+      "pregnancy": "Hamilelik",
+      "history": "Öykü",
+      "medical": "Tıbbi",
+      "demographics": "Demografi"
+    },
     "riskLevels": {
-      "high": { "title": "Yüksek Risk", "description": "Bir veya daha fazla önemli risk faktörünüz var." },
-      "moderate": { "title": "Orta Risk", "description": "Bazı risk faktörleriniz var." },
-      "low": { "title": "Düşük Risk", "description": "Çok az tanımlanmış risk faktörünüz var." }
+      "high": { "title": "Yüksek Risk", "description": "Bir veya daha fazla önemli preeklampsi risk faktörünüz var. Doktorunuz 12. haftadan itibaren düşük doz aspirin önerebilir.", "recommendation": "Doktorunuzla aspirin profilaksisini tartışın" },
+      "moderate": { "title": "Orta Risk", "description": "Bazı risk faktörleriniz var. Geliştirilmiş izleme ve yaşam tarzı değişiklikleri önerilebilir.", "recommendation": "Doktorunuzla riski tartışmayı düşünün" },
+      "low": { "title": "Düşük Risk", "description": "Çok az tanımlanmış risk faktörünüz var. Standart doğum öncesi bakıma devam edin.", "recommendation": "Düzenli doğum öncesi ziyaretleri sürdürün" }
+    },
+    "warningSigns": {
+      "headaches": "Geçmeyen şiddetli baş ağrıları",
+      "vision": "Görme değişiklikleri (bulanıklık, leke görme)",
+      "abdominalPain": "Üst karın ağrısı (özellikle sağ taraf)",
+      "swelling": "Ani şişlik (yüz, eller, ayaklar)",
+      "weightGain": "Ani kilo artışı (bir haftada 2,5 kg'dan fazla)"
     }
   },
   "dailyTips": {

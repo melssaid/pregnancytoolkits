@@ -2162,10 +2162,38 @@
     "disclaimer": "Esta herramienta identifica factores de riesgo pero no puede predecir o diagnosticar preeclampsia.",
     "aiCoachTitle": "Coach IA de prevención de preeclampsia",
     "getPreventionPlan": "Obtener plan de prevención",
+    "riskFactors": {
+      "firstPregnancy": "Primer embarazo",
+      "prevPreeclampsia": "Embarazo previo con preeclampsia",
+      "chronicHypertension": "Hipertensión arterial crónica",
+      "diabetes": "Diabetes tipo 1 o tipo 2",
+      "kidneyDisease": "Enfermedad renal",
+      "autoimmune": "Enfermedad autoinmune (lupus, síndrome antifosfolípido)",
+      "multiples": "Embarazo múltiple",
+      "age35": "Edad de 35 años o más",
+      "age40": "Edad de 40 años o más",
+      "obesity": "Obesidad (IMC 30 o más)",
+      "ivf": "Embarazo por FIV",
+      "familyHistory": "Historial familiar de preeclampsia",
+      "longGap": "Más de 10 años desde el último embarazo"
+    },
+    "categories": {
+      "pregnancy": "Embarazo",
+      "history": "Historial",
+      "medical": "Médico",
+      "demographics": "Demografía"
+    },
     "riskLevels": {
-      "high": { "title": "Riesgo alto", "description": "Tienes uno o más factores de riesgo significativos." },
-      "moderate": { "title": "Riesgo moderado", "description": "Tienes algunos factores de riesgo." },
-      "low": { "title": "Riesgo bajo", "description": "Tienes pocos factores de riesgo identificados." }
+      "high": { "title": "Riesgo alto", "description": "Tienes uno o más factores de riesgo significativos para preeclampsia. Tu médico puede recomendar aspirina en dosis baja a partir de la semana 12.", "recommendation": "Discute la profilaxis con aspirina con tu médico" },
+      "moderate": { "title": "Riesgo moderado", "description": "Tienes algunos factores de riesgo. Se puede recomendar monitoreo mejorado y modificaciones en el estilo de vida.", "recommendation": "Considera discutir el riesgo con tu médico" },
+      "low": { "title": "Riesgo bajo", "description": "Tienes pocos factores de riesgo identificados. Continúa con la atención prenatal estándar.", "recommendation": "Mantén las visitas prenatales regulares" }
+    },
+    "warningSigns": {
+      "headaches": "Dolores de cabeza severos que no desaparecen",
+      "vision": "Cambios en la visión (visión borrosa, ver manchas)",
+      "abdominalPain": "Dolor abdominal superior (especialmente lado derecho)",
+      "swelling": "Hinchazón repentina (cara, manos, pies)",
+      "weightGain": "Aumento de peso repentino (más de 2,5 kg en una semana)"
     }
   },
   "dailyTips": {

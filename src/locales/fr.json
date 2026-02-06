@@ -1844,10 +1844,38 @@
     "disclaimer": "Cet outil identifie les facteurs de risque mais ne peut pas prédire ou diagnostiquer la prééclampsie.",
     "aiCoachTitle": "Coach IA de prévention de la prééclampsie",
     "getPreventionPlan": "Obtenir un plan de prévention",
+    "riskFactors": {
+      "firstPregnancy": "Première grossesse",
+      "prevPreeclampsia": "Grossesse précédente avec prééclampsie",
+      "chronicHypertension": "Hypertension artérielle chronique",
+      "diabetes": "Diabète de type 1 ou 2",
+      "kidneyDisease": "Maladie rénale",
+      "autoimmune": "Maladie auto-immune (lupus, syndrome des antiphospholipides)",
+      "multiples": "Grossesse multiple",
+      "age35": "Âge de 35 ans ou plus",
+      "age40": "Âge de 40 ans ou plus",
+      "obesity": "Obésité (IMC 30 ou plus)",
+      "ivf": "Grossesse par FIV",
+      "familyHistory": "Antécédents familiaux de prééclampsie",
+      "longGap": "Plus de 10 ans depuis la dernière grossesse"
+    },
+    "categories": {
+      "pregnancy": "Grossesse",
+      "history": "Antécédents",
+      "medical": "Médical",
+      "demographics": "Démographie"
+    },
     "riskLevels": {
-      "high": { "title": "Risque élevé", "description": "Vous avez un ou plusieurs facteurs de risque significatifs." },
-      "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque." },
-      "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque identifiés." }
+      "high": { "title": "Risque élevé", "description": "Vous avez un ou plusieurs facteurs de risque significatifs pour la prééclampsie. Votre médecin peut recommander de l'aspirine à faible dose dès la 12e semaine.", "recommendation": "Discutez de la prophylaxie par aspirine avec votre médecin" },
+      "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque. Un suivi renforcé et des modifications du mode de vie peuvent être recommandés.", "recommendation": "Envisagez de discuter du risque avec votre médecin" },
+      "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque identifiés. Continuez les soins prénataux habituels.", "recommendation": "Maintenez les visites prénatales régulières" }
+    },
+    "warningSigns": {
+      "headaches": "Maux de tête sévères qui ne disparaissent pas",
+      "vision": "Changements de vision (flou, taches)",
+      "abdominalPain": "Douleur abdominale haute (surtout côté droit)",
+      "swelling": "Gonflement soudain (visage, mains, pieds)",
+      "weightGain": "Prise de poids soudaine (plus de 2,5 kg en une semaine)"
     }
   },
   "toolsInternal.dailyTips": {
