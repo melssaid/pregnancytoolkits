@@ -392,8 +392,8 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                     >
                       <Phone className="w-5 h-5 text-primary" />
                       <div>
-                        <div className="font-medium">Postpartum Support International</div>
-                        <div className="text-sm text-muted-foreground">1-800-944-4773</div>
+                        <div className="font-medium">{t('toolsInternal.mentalHealthCoach.psiName')}</div>
+                        <div className="text-sm text-muted-foreground">{t('toolsInternal.mentalHealthCoach.psiNumber')}</div>
                       </div>
                     </a>
                     <a 
@@ -402,8 +402,8 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                     >
                       <Phone className="w-5 h-5 text-primary" />
                       <div>
-                        <div className="font-medium">988 Suicide & Crisis Lifeline</div>
-                        <div className="text-sm text-muted-foreground">Call or text 988</div>
+                        <div className="font-medium">{t('toolsInternal.mentalHealthCoach.crisisLinelineName')}</div>
+                        <div className="text-sm text-muted-foreground">{t('toolsInternal.mentalHealthCoach.crisisLinelineDesc')}</div>
                       </div>
                     </a>
                   </div>
