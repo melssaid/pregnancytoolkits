@@ -100,19 +100,20 @@ export default function PreeclampsiaRisk() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="space-y-6"
+        className="space-y-4"
       >
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Heart className="h-5 w-5 text-primary" />
-                  {t('preeclampsiaRisk.riskFactorsTitle')}
+            {/* Risk Factors Card */}
+            <Card className="overflow-hidden">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Heart className="h-4 w-4 text-primary shrink-0" />
+                  <span className="truncate">{t('preeclampsiaRisk.riskFactorsTitle')}</span>
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-xs sm:text-sm">
                   {t('preeclampsiaRisk.riskFactorsDesc')}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-1 pt-0">
                 {riskFactors.map((factor, index) => (
                   <motion.div
                     key={factor.id}
@@ -120,17 +121,16 @@ export default function PreeclampsiaRisk() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.03 }}
                   >
-                    <label className="flex items-start gap-3 cursor-pointer group p-3 rounded-lg hover:bg-muted transition-colors">
+                    <label className="flex items-center gap-3 cursor-pointer group p-2.5 rounded-lg hover:bg-muted transition-colors">
                       <Checkbox
                         checked={selectedFactors.includes(factor.id)}
                         onCheckedChange={() => toggleFactor(factor.id)}
-                        className="mt-0.5"
                       />
-                      <div>
-                        <span className="text-foreground group-hover:text-primary transition-colors">
+                      <div className="min-w-0 flex-1">
+                        <span className="text-sm text-foreground group-hover:text-primary transition-colors">
                           {t(`preeclampsiaRisk.riskFactors.${factor.labelKey}`)}
                         </span>
-                        <span className="text-xs text-muted-foreground ml-2">
+                        <span className="text-[10px] sm:text-xs text-muted-foreground ml-1.5">
                           ({t(`preeclampsiaRisk.categories.${factor.categoryKey}`)})
                         </span>
                       </div>
@@ -140,38 +140,41 @@ export default function PreeclampsiaRisk() {
 
                 <Button 
                   onClick={() => setShowResults(true)} 
-                  className="w-full mt-4"
+                  className="w-full mt-3 text-sm"
                 >
                   {t('preeclampsiaRisk.calculateRisk')}
                 </Button>
               </CardContent>
             </Card>
 
+            {/* Results */}
             {showResults && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                className="space-y-4"
               >
-                <Card className={`border ${result.borderColor} ${result.bgColor}`}>
-                  <CardContent className="pt-6">
+                {/* Risk Level Result */}
+                <Card className={`overflow-hidden border ${result.borderColor} ${result.bgColor}`}>
+                  <CardContent className="py-4">
                     <div className="flex items-start gap-3">
                       {result.level === "low" ? (
-                        <CheckCircle className={`h-6 w-6 ${result.color} flex-shrink-0`} />
+                        <CheckCircle className={`h-5 w-5 ${result.color} shrink-0 mt-0.5`} />
                       ) : (
-                        <AlertTriangle className={`h-6 w-6 ${result.color} flex-shrink-0`} />
+                        <AlertTriangle className={`h-5 w-5 ${result.color} shrink-0 mt-0.5`} />
                       )}
-                      <div className="flex-1">
-                        <p className={`font-semibold text-lg ${result.color}`}>{result.title}</p>
-                        <p className="text-foreground mt-1">{result.description}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className={`font-semibold text-base ${result.color}`}>{result.title}</p>
+                        <p className="text-sm text-foreground mt-1 leading-relaxed">{result.description}</p>
                         
-                        <div className="mt-3 p-3 rounded-lg bg-card border border-border">
-                          <p className="text-sm font-medium text-primary">{result.recommendation}</p>
+                        <div className="mt-3 p-2.5 rounded-lg bg-card border border-border">
+                          <p className="text-xs sm:text-sm font-medium text-primary leading-relaxed">{result.recommendation}</p>
                         </div>
 
                         {selectedFactors.length > 0 && (
-                          <div className="mt-4 p-3 rounded-lg bg-card">
-                            <p className="font-medium text-foreground mb-2">{t('preeclampsiaRisk.yourRiskFactors')}</p>
-                            <ul className="text-sm text-muted-foreground space-y-1">
+                          <div className="mt-3 p-2.5 rounded-lg bg-card">
+                            <p className="font-medium text-sm text-foreground mb-1.5">{t('preeclampsiaRisk.yourRiskFactors')}</p>
+                            <ul className="text-xs sm:text-sm text-muted-foreground space-y-1">
                               {riskFactors
                                 .filter((f) => selectedFactors.includes(f.id))
                                 .map((f) => (
@@ -185,6 +188,7 @@ export default function PreeclampsiaRisk() {
                   </CardContent>
                 </Card>
 
+                {/* AI Coach */}
                 {selectedFactors.length > 0 && (
                   <AIInsightCard
                     title={t('preeclampsiaRisk.aiCoachTitle')}
@@ -217,20 +221,21 @@ Encouraging message about proactive health management`}
                   />
                 )}
 
-                <Card className="mt-4">
-                  <CardHeader>
-                    <CardTitle className="text-lg">{t('preeclampsiaRisk.warningSignsTitle')}</CardTitle>
+                {/* Warning Signs */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base">{t('preeclampsiaRisk.warningSignsTitle')}</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                  <CardContent className="pt-0">
+                    <ul className="space-y-2">
                       {warningSignKeys.map((key) => (
                         <li key={key} className="flex items-start gap-2">
-                          <AlertTriangle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
-                          <span>{t(`preeclampsiaRisk.warningSigns.${key}`)}</span>
+                          <AlertTriangle className="h-4 w-4 text-warning mt-0.5 shrink-0" />
+                          <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{t(`preeclampsiaRisk.warningSigns.${key}`)}</span>
                         </li>
                       ))}
                     </ul>
-                    <p className="mt-3 text-sm font-medium text-destructive">
+                    <p className="mt-3 text-xs sm:text-sm font-medium text-destructive">
                       {t('preeclampsiaRisk.warningNote')}
                     </p>
                   </CardContent>
@@ -238,12 +243,17 @@ Encouraging message about proactive health management`}
               </motion.div>
             )}
 
-            <div className="mt-6 flex items-start gap-3 rounded-lg bg-muted p-4">
-              <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
-              <p className="text-sm text-muted-foreground">
-                {t('preeclampsiaRisk.disclaimer')}
-              </p>
-            </div>
+            {/* Disclaimer */}
+            <Card className="overflow-hidden bg-muted/50">
+              <CardContent className="py-3">
+                <div className="flex items-start gap-2.5">
+                  <Info className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    {t('preeclampsiaRisk.disclaimer')}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
     </ToolFrame>
   );
