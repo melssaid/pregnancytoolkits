@@ -1785,8 +1785,52 @@
   "lactationPrep": {
     "title": "KI-Stillvorbereitung",
     "subtitle": "Ihr Stillvorbereitungs-Guide",
-    "feedingGoal": "Ihr Ernährungsziel",
-    "getLactationGuide": "KI-Stillführer erhalten"
+    "yourFeedingGoal": "Ihr Ernährungsziel",
+    "firstTimeBreastfeeding": "Dies ist meine erste Stillerfahrung",
+    "returningToWork": "Rückkehr zur Arbeit",
+    "select": "Auswählen...",
+    "anyConcerns": "Irgendwelche Bedenken?",
+    "suppliesChecklist": "Still-Checkliste",
+    "getAIGuide": "KI-Stillführer erhalten",
+    "creatingGuide": "Guide wird erstellt...",
+    "needSupport": "Brauchen Sie Unterstützung?",
+    "supportNote": "Wenn Sie Stillschwierigkeiten haben, wenden Sie sich an eine Stillberaterin (IBCLC). Viele Krankenhäuser bieten kostenlose Unterstützung. Hauptsache, Ihr Baby ist satt und glücklich!",
+    "videosTitle": "Still-Videos",
+    "videosSubtitle": "Expertentipps für erfolgreiches Stillen",
+    "notSpecified": "Nicht angegeben",
+    "noneSpecified": "Keine angegeben",
+    "feedingGoals": {
+      "exclusive": "Ausschließliches Stillen",
+      "combo": "Kombination (Stillen + Flasche)",
+      "pumping": "Ausschließliches Abpumpen",
+      "unsure": "Noch unentschlossen"
+    },
+    "concerns": {
+      "latch": "Anlege-Schwierigkeiten",
+      "supply": "Milchmenge-Sorgen",
+      "pain": "Schmerzbedenken",
+      "returningWork": "Rückkehr zur Arbeit",
+      "partnerFeeding": "Partner-Beteiligung",
+      "public": "Stillen in der Öffentlichkeit",
+      "medical": "Frühere Brust-OP",
+      "multiples": "Zwillinge/Mehrlinge"
+    },
+    "supplies": {
+      "nursingBras": "Still-BHs (3-4)",
+      "nursingPads": "Stilleinlagen",
+      "nippleCream": "Brustwarzencreme (Lanolin)",
+      "breastPump": "Milchpumpe",
+      "storageBags": "Aufbewahrungsbeutel",
+      "nursingPillow": "Stillkissen",
+      "nursingCover": "Stillschal",
+      "haakaa": "Handpumpe/Haakaa"
+    },
+    "workOptions": {
+      "no": "Nicht zurückkehren / Hausfrau",
+      "12weeks": "Innerhalb von 12 Wochen",
+      "6months": "Nach 6 Monaten",
+      "year": "Nach 1 Jahr"
+    }
   },
   "backPainRelief": {
     "title": "KI-Rückenschmerzlinderung",

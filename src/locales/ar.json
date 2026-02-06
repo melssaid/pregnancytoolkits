@@ -1327,16 +1327,52 @@
     "lactationPrep": {
       "title": "تحضير الرضاعة الذكي",
       "subtitle": "دليل تحضير الرضاعة الطبيعية",
-      "currentWeek": "الأسبوع الحالي",
-      "concerns": "المخاوف",
-      "latch": "الإمساك",
-      "supply": "إدرار الحليب",
-      "positions": "وضعيات الرضاعة",
-      "storage": "تخزين الحليب",
-      "getGuidance": "احصلي على إرشادات الرضاعة",
-      "preparationTips": "نصائح التحضير",
-      "commonChallenges": "التحديات الشائعة",
-      "essentialSupplies": "المستلزمات الأساسية"
+      "yourFeedingGoal": "هدفك للرضاعة",
+      "firstTimeBreastfeeding": "هذه أول تجربة رضاعة لي",
+      "returningToWork": "العودة للعمل",
+      "select": "اختاري...",
+      "anyConcerns": "هل لديكِ مخاوف؟",
+      "suppliesChecklist": "قائمة مستلزمات الرضاعة",
+      "getAIGuide": "احصلي على دليل الرضاعة الذكي",
+      "creatingGuide": "جارٍ إنشاء الدليل...",
+      "needSupport": "تحتاجين دعم؟",
+      "supportNote": "إذا كنتِ تواجهين صعوبة في الرضاعة، تواصلي مع استشارية رضاعة. العديد من المستشفيات تقدم دعماً مجانياً. المهم أن يكون طفلك سعيداً وشبعان!",
+      "videosTitle": "فيديوهات الرضاعة",
+      "videosSubtitle": "إرشادات من الخبراء لنجاح الرضاعة",
+      "notSpecified": "غير محدد",
+      "noneSpecified": "لا يوجد",
+      "feedingGoals": {
+        "exclusive": "رضاعة طبيعية حصرية",
+        "combo": "مزيج (طبيعية + صناعية)",
+        "pumping": "شفط الحليب حصرياً",
+        "unsure": "لم أقرر بعد"
+      },
+      "concerns": {
+        "latch": "صعوبات الإمساك",
+        "supply": "مخاوف إدرار الحليب",
+        "pain": "مخاوف الألم",
+        "returningWork": "العودة للعمل",
+        "partnerFeeding": "مشاركة الزوج",
+        "public": "الرضاعة في الأماكن العامة",
+        "medical": "عملية سابقة في الثدي",
+        "multiples": "توأم أو أكثر"
+      },
+      "supplies": {
+        "nursingBras": "حمالات الرضاعة (3-4)",
+        "nursingPads": "وسادات الرضاعة",
+        "nippleCream": "كريم الحلمات (لانولين)",
+        "breastPump": "شفاطة الحليب",
+        "storageBags": "أكياس التخزين",
+        "nursingPillow": "وسادة الرضاعة",
+        "nursingCover": "غطاء الرضاعة",
+        "haakaa": "شفاطة يدوية"
+      },
+      "workOptions": {
+        "no": "لن أعود / ربة منزل",
+        "12weeks": "خلال 12 أسبوع",
+        "6months": "بعد 6 أشهر",
+        "year": "بعد سنة"
+      }
     },
     "laborProgress": {
       "title": "متتبع تقدم المخاض الذكي",
