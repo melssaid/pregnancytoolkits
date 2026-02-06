@@ -508,11 +508,15 @@
   "diaperPage": {
     "title": "Windel-Tracker",
     "logChange": "Wechsel protokollieren",
+    "quickAdd": "Schnell hinzufügen",
     "wet": "Nass",
     "dirty": "Schmutzig",
     "both": "Beides",
     "todayCount": "Heutige Wechsel",
-    "recentChanges": "Letzte Wechsel"
+    "todayStats": "Heutige Statistik",
+    "total": "Gesamt",
+    "recentChanges": "Letzte Wechsel",
+    "info": "Das Verfolgen von Windelwechseln hilft, die Flüssigkeitszufuhr und Gesundheit Ihres Babys zu überwachen. Neugeborene benötigen typischerweise 6-8 nasse Windeln täglich."
   },
   "babyGrowthPage": {
     "title": "Baby-Wachstum",

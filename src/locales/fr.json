@@ -508,11 +508,15 @@
   "diaperPage": {
     "title": "Suivi des couches",
     "logChange": "Enregistrer le changement",
+    "quickAdd": "Ajout rapide",
     "wet": "Mouillée",
     "dirty": "Sale",
     "both": "Les deux",
     "todayCount": "Changements aujourd'hui",
-    "recentChanges": "Changements récents"
+    "todayStats": "Statistiques du jour",
+    "total": "Total",
+    "recentChanges": "Changements récents",
+    "info": "Le suivi des couches aide à surveiller l'hydratation et la santé de votre bébé. Les nouveau-nés ont généralement besoin de 6 à 8 couches mouillées par jour."
   },
   "babyGrowthPage": {
     "title": "Croissance bébé",

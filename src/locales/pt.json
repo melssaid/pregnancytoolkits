@@ -508,11 +508,15 @@
   "diaperPage": {
     "title": "Rastreador de fraldas",
     "logChange": "Registrar troca",
+    "quickAdd": "Adição rápida",
     "wet": "Molhada",
     "dirty": "Suja",
     "both": "Ambas",
     "todayCount": "Trocas de hoje",
-    "recentChanges": "Trocas recentes"
+    "todayStats": "Estatísticas de hoje",
+    "total": "Total",
+    "recentChanges": "Trocas recentes",
+    "info": "O acompanhamento de fraldas ajuda a monitorar a hidratação e a saúde do seu bebê. Recém-nascidos normalmente precisam de 6 a 8 fraldas molhadas por dia."
   },
   "babyGrowthPage": {
     "title": "Crescimento do bebê",
