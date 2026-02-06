@@ -10,23 +10,23 @@ import { ToolFrame } from '@/components/ToolFrame';
 
 interface FoodItem {
   id: string;
-  name: string;
+  nameKey: string;
   category: 'fish' | 'dairy' | 'meat' | 'drinks' | 'other';
   status: 'safe' | 'avoid' | 'limit';
-  reason: string;
+  reasonKey: string;
 }
 
 const foodDatabase: FoodItem[] = [
-  { id: '1', name: 'Sushi (Raw Fish)', category: 'fish', status: 'avoid', reason: 'Risk of parasites and bacteria like Listeria' },
-  { id: '2', name: 'Soft Cheese (Unpasteurized)', category: 'dairy', status: 'avoid', reason: 'Risk of Listeria contamination' },
-  { id: '3', name: 'Coffee', category: 'drinks', status: 'limit', reason: 'Limit caffeine to 200mg/day to reduce risk of low birth weight' },
-  { id: '4', name: 'Salmon (Cooked)', category: 'fish', status: 'safe', reason: 'Great source of Omega-3s. Ensure it is fully cooked.' },
-  { id: '5', name: 'Deli Meat', category: 'meat', status: 'avoid', reason: 'Listeria risk unless heated until steaming hot' },
-  { id: '6', name: 'Raw Eggs', category: 'other', status: 'avoid', reason: 'Risk of Salmonella' },
-  { id: '7', name: 'Tuna (Albacore)', category: 'fish', status: 'limit', reason: 'Higher mercury content. Limit to 6oz per week.' },
-  { id: '8', name: 'Alcohol', category: 'drinks', status: 'avoid', reason: 'No known safe amount. Can cause fetal alcohol spectrum disorders.' },
-  { id: '9', name: 'Hard Cheeses', category: 'dairy', status: 'safe', reason: 'Generally safe as they are pasteurized and have low moisture' },
-  { id: '10', name: 'Chicken', category: 'meat', status: 'safe', reason: 'Excellent protein source. Must be fully cooked.' },
+  { id: '1', nameKey: 'toolsInternal.forbiddenFoods.foods.sushi.name', category: 'fish', status: 'avoid', reasonKey: 'toolsInternal.forbiddenFoods.foods.sushi.reason' },
+  { id: '2', nameKey: 'toolsInternal.forbiddenFoods.foods.softCheese.name', category: 'dairy', status: 'avoid', reasonKey: 'toolsInternal.forbiddenFoods.foods.softCheese.reason' },
+  { id: '3', nameKey: 'toolsInternal.forbiddenFoods.foods.coffee.name', category: 'drinks', status: 'limit', reasonKey: 'toolsInternal.forbiddenFoods.foods.coffee.reason' },
+  { id: '4', nameKey: 'toolsInternal.forbiddenFoods.foods.salmon.name', category: 'fish', status: 'safe', reasonKey: 'toolsInternal.forbiddenFoods.foods.salmon.reason' },
+  { id: '5', nameKey: 'toolsInternal.forbiddenFoods.foods.deliMeat.name', category: 'meat', status: 'avoid', reasonKey: 'toolsInternal.forbiddenFoods.foods.deliMeat.reason' },
+  { id: '6', nameKey: 'toolsInternal.forbiddenFoods.foods.rawEggs.name', category: 'other', status: 'avoid', reasonKey: 'toolsInternal.forbiddenFoods.foods.rawEggs.reason' },
+  { id: '7', nameKey: 'toolsInternal.forbiddenFoods.foods.tuna.name', category: 'fish', status: 'limit', reasonKey: 'toolsInternal.forbiddenFoods.foods.tuna.reason' },
+  { id: '8', nameKey: 'toolsInternal.forbiddenFoods.foods.alcohol.name', category: 'drinks', status: 'avoid', reasonKey: 'toolsInternal.forbiddenFoods.foods.alcohol.reason' },
+  { id: '9', nameKey: 'toolsInternal.forbiddenFoods.foods.hardCheese.name', category: 'dairy', status: 'safe', reasonKey: 'toolsInternal.forbiddenFoods.foods.hardCheese.reason' },
+  { id: '10', nameKey: 'toolsInternal.forbiddenFoods.foods.chicken.name', category: 'meat', status: 'safe', reasonKey: 'toolsInternal.forbiddenFoods.foods.chicken.reason' },
 ];
 
 const ForbiddenFoods: React.FC = () => {
@@ -66,7 +66,8 @@ If it can be made safe, explain how`
   };
 
   const filteredFoods = foodDatabase.filter(food => {
-    const matchesSearch = food.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const name = t(food.nameKey).toLowerCase();
+    const matchesSearch = name.includes(searchTerm.toLowerCase());
     const matchesFilter = filter === 'all' || food.status === filter;
     return matchesSearch && matchesFilter;
   });
@@ -140,13 +141,13 @@ If it can be made safe, explain how`
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-semibold text-foreground">{food.name}</h3>
+                  <h3 className="font-semibold text-foreground">{t(food.nameKey)}</h3>
                   <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold ${getStatusColor(food.status)} border-0`}>
-                    {food.status}
+                    {t(`toolsInternal.forbiddenFoods.status.${food.status}`)}
                   </span>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {food.reason}
+                  {t(food.reasonKey)}
                 </p>
               </div>
             </div>

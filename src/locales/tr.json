@@ -8,6 +8,22 @@
   "relatedTools": {
     "title": "Yolculuğuna devam et"
   },
+  "videoLibrary": {
+    "defaultTitle": "Eğitim Videoları",
+    "defaultSubtitle": "Uzman rehberliğiyle daha fazla öğrenin",
+    "all": "Tümü",
+    "moreVideos": "+{{count}} video daha mevcut",
+    "viewAll": "Tümünü gör ({{count}})",
+    "disclaimer": "Bu videolar yalnızca eğitim amaçlıdır ve profesyonel tıbbi tavsiyenin yerini almaz.",
+    "openOnYouTube": "YouTube'da aç"
+  },
+  "searchDialog": {
+    "popularTools": "Popüler Araçlar",
+    "tryDifferent": "Farklı bir arama terimi deneyin",
+    "navigate": "Gezin",
+    "open": "Aç",
+    "toolsCount": "{{count}} araç"
+  },
   "app": {
     "name": "Hamilelik Araçları",
     "tagline": "Tam Hamilelik Rehberiniz",
@@ -1917,7 +1933,24 @@
       "caution": "Dikkat",
       "safe": "Güvenli",
       "askAI": "AI'ya bir yiyecek hakkında sor",
-      "foodQuestion": "{{food}} hamilelikte güvenli mi?"
+      "foodQuestion": "{{food}} hamilelikte güvenli mi?",
+      "status": {
+        "safe": "Güvenli",
+        "avoid": "Kaçının",
+        "limit": "Sınırlı"
+      },
+      "foods": {
+        "sushi": { "name": "Suşi (Çiğ Balık)", "reason": "Parazit ve Listeria gibi bakteri riski" },
+        "softCheese": { "name": "Yumuşak Peynir (Pastörize Edilmemiş)", "reason": "Listeria kontaminasyon riski" },
+        "coffee": { "name": "Kahve", "reason": "Düşük doğum ağırlığı riskini azaltmak için kafeini günde 200mg ile sınırlayın" },
+        "salmon": { "name": "Somon (Pişmiş)", "reason": "Mükemmel Omega-3 kaynağı. Tamamen pişirildiğinden emin olun." },
+        "deliMeat": { "name": "Hazır Et Ürünleri", "reason": "Buhar çıkana kadar ısıtılmadığı sürece Listeria riski" },
+        "rawEggs": { "name": "Çiğ Yumurta", "reason": "Salmonella riski" },
+        "tuna": { "name": "Ton Balığı (Albacore)", "reason": "Yüksek cıva içeriği. Haftada 170g ile sınırlayın." },
+        "alcohol": { "name": "Alkol", "reason": "Bilinen güvenli miktar yok. Fetal alkol spektrum bozukluklarına neden olabilir." },
+        "hardCheese": { "name": "Sert Peynirler", "reason": "Pastörize ve düşük nem oranına sahip oldukları için genellikle güvenlidir" },
+        "chicken": { "name": "Tavuk", "reason": "Mükemmel protein kaynağı. Tamamen pişirilmelidir." }
+      }
     },
     "gestationalDiabetes": {
       "title": "GDM Risk Değerlendirmesi",

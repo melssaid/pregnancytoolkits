@@ -8,6 +8,22 @@
   "relatedTools": {
     "title": "Continue Your Journey"
   },
+  "videoLibrary": {
+    "defaultTitle": "Educational Videos",
+    "defaultSubtitle": "Learn more with expert guidance",
+    "all": "All",
+    "moreVideos": "+{{count}} more videos available",
+    "viewAll": "View all ({{count}})",
+    "disclaimer": "These videos are for educational purposes only and do not replace professional medical advice.",
+    "openOnYouTube": "Open on YouTube"
+  },
+  "searchDialog": {
+    "popularTools": "Popular Tools",
+    "tryDifferent": "Try a different search term",
+    "navigate": "Navigate",
+    "open": "Open",
+    "toolsCount": "{{count}} tools"
+  },
   "app": {
     "name": "Pregnancy Toolkits",
     "tagline": "Your Complete Pregnancy Companion",
@@ -1981,7 +1997,24 @@
       "caution": "Caution",
       "safe": "Safe",
       "askAI": "Ask AI about a food",
-      "foodQuestion": "Is {{food}} safe during pregnancy?"
+      "foodQuestion": "Is {{food}} safe during pregnancy?",
+      "status": {
+        "safe": "Safe",
+        "avoid": "Avoid",
+        "limit": "Limit"
+      },
+      "foods": {
+        "sushi": { "name": "Sushi (Raw Fish)", "reason": "Risk of parasites and bacteria like Listeria" },
+        "softCheese": { "name": "Soft Cheese (Unpasteurized)", "reason": "Risk of Listeria contamination" },
+        "coffee": { "name": "Coffee", "reason": "Limit caffeine to 200mg/day to reduce risk of low birth weight" },
+        "salmon": { "name": "Salmon (Cooked)", "reason": "Great source of Omega-3s. Ensure it is fully cooked." },
+        "deliMeat": { "name": "Deli Meat", "reason": "Listeria risk unless heated until steaming hot" },
+        "rawEggs": { "name": "Raw Eggs", "reason": "Risk of Salmonella" },
+        "tuna": { "name": "Tuna (Albacore)", "reason": "Higher mercury content. Limit to 6oz per week." },
+        "alcohol": { "name": "Alcohol", "reason": "No known safe amount. Can cause fetal alcohol spectrum disorders." },
+        "hardCheese": { "name": "Hard Cheeses", "reason": "Generally safe as they are pasteurized and have low moisture" },
+        "chicken": { "name": "Chicken", "reason": "Excellent protein source. Must be fully cooked." }
+      }
     },
     "gestationalDiabetes": {
       "title": "GDM Risk Assessment",

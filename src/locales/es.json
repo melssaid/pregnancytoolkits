@@ -8,6 +8,22 @@
   "relatedTools": {
     "title": "Continúa tu viaje"
   },
+  "videoLibrary": {
+    "defaultTitle": "Videos educativos",
+    "defaultSubtitle": "Aprende más con guía experta",
+    "all": "Todo",
+    "moreVideos": "+{{count}} videos más disponibles",
+    "viewAll": "Ver todo ({{count}})",
+    "disclaimer": "Estos videos son solo con fines educativos y no reemplazan el consejo médico profesional.",
+    "openOnYouTube": "Abrir en YouTube"
+  },
+  "searchDialog": {
+    "popularTools": "Herramientas populares",
+    "tryDifferent": "Prueba con otro término de búsqueda",
+    "navigate": "Navegar",
+    "open": "Abrir",
+    "toolsCount": "{{count}} herramientas"
+  },
   "app": {
     "name": "Herramientas de Embarazo",
     "tagline": "Tu compañero completo de embarazo",
@@ -1917,7 +1933,24 @@
       "caution": "Precaución",
       "safe": "Seguro",
       "askAI": "Pregunta a IA sobre un alimento",
-      "foodQuestion": "¿Es {{food}} seguro durante el embarazo?"
+      "foodQuestion": "¿Es {{food}} seguro durante el embarazo?",
+      "status": {
+        "safe": "Seguro",
+        "avoid": "Evitar",
+        "limit": "Limitar"
+      },
+      "foods": {
+        "sushi": { "name": "Sushi (Pescado Crudo)", "reason": "Riesgo de parásitos y bacterias como Listeria" },
+        "softCheese": { "name": "Queso Blando (Sin Pasteurizar)", "reason": "Riesgo de contaminación por Listeria" },
+        "coffee": { "name": "Café", "reason": "Limitar la cafeína a 200mg/día para reducir riesgo de bajo peso al nacer" },
+        "salmon": { "name": "Salmón (Cocido)", "reason": "Gran fuente de Omega-3. Asegúrate de que esté bien cocido." },
+        "deliMeat": { "name": "Embutidos", "reason": "Riesgo de Listeria a menos que se calienten hasta estar humeantes" },
+        "rawEggs": { "name": "Huevos Crudos", "reason": "Riesgo de Salmonella" },
+        "tuna": { "name": "Atún (Albacora)", "reason": "Mayor contenido de mercurio. Limitar a 170g por semana." },
+        "alcohol": { "name": "Alcohol", "reason": "No hay cantidad segura conocida. Puede causar trastornos del espectro alcohólico fetal." },
+        "hardCheese": { "name": "Quesos Duros", "reason": "Generalmente seguros por ser pasteurizados y de baja humedad" },
+        "chicken": { "name": "Pollo", "reason": "Excelente fuente de proteínas. Debe estar bien cocido." }
+      }
     },
     "gestationalDiabetes": {
       "title": "Evaluación de Riesgo de GDM",

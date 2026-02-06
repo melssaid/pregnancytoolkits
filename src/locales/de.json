@@ -8,6 +8,22 @@
   "relatedTools": {
     "title": "Setze deine Reise fort"
   },
+  "videoLibrary": {
+    "defaultTitle": "Lehrvideos",
+    "defaultSubtitle": "Lernen Sie mehr mit Expertenberatung",
+    "all": "Alle",
+    "moreVideos": "+{{count}} weitere Videos verfügbar",
+    "viewAll": "Alle anzeigen ({{count}})",
+    "disclaimer": "Diese Videos dienen nur zu Bildungszwecken und ersetzen keine professionelle medizinische Beratung.",
+    "openOnYouTube": "Auf YouTube öffnen"
+  },
+  "searchDialog": {
+    "popularTools": "Beliebte Tools",
+    "tryDifferent": "Versuchen Sie einen anderen Suchbegriff",
+    "navigate": "Navigieren",
+    "open": "Öffnen",
+    "toolsCount": "{{count}} Tools"
+  },
   "app": {
     "name": "Schwangerschafts-Toolkit",
     "tagline": "Ihr vollständiger Schwangerschaftsbegleiter",
@@ -2019,7 +2035,24 @@
       "cook": "Kochen",
       "cookDesc": "Fleisch auf 75°C (165°F).",
       "wash": "Waschen",
-    "washDesc": "Alle Früchte und Gemüse gründlich."
+      "washDesc": "Alle Früchte und Gemüse gründlich."
+    },
+    "status": {
+      "safe": "Sicher",
+      "avoid": "Vermeiden",
+      "limit": "Begrenzen"
+    },
+    "foods": {
+      "sushi": { "name": "Sushi (Roher Fisch)", "reason": "Risiko von Parasiten und Bakterien wie Listerien" },
+      "softCheese": { "name": "Weichkäse (Unpasteurisiert)", "reason": "Risiko einer Listerien-Kontamination" },
+      "coffee": { "name": "Kaffee", "reason": "Koffein auf 200mg/Tag begrenzen, um das Risiko eines niedrigen Geburtsgewichts zu reduzieren" },
+      "salmon": { "name": "Lachs (Gekocht)", "reason": "Hervorragende Omega-3-Quelle. Muss vollständig durchgegart sein." },
+      "deliMeat": { "name": "Aufschnitt", "reason": "Listerien-Risiko, es sei denn, er wird dampfend heiß erhitzt" },
+      "rawEggs": { "name": "Rohe Eier", "reason": "Salmonellen-Risiko" },
+      "tuna": { "name": "Thunfisch (Albacore)", "reason": "Höherer Quecksilbergehalt. Auf 170g pro Woche begrenzen." },
+      "alcohol": { "name": "Alkohol", "reason": "Keine bekannte sichere Menge. Kann fetale Alkoholspektrumstörungen verursachen." },
+      "hardCheese": { "name": "Hartkäse", "reason": "Generell sicher, da pasteurisiert und feuchtigkeitsarm" },
+      "chicken": { "name": "Hähnchen", "reason": "Hervorragende Proteinquelle. Muss vollständig durchgegart sein." }
     }
   },
   "conceptionPage": {
