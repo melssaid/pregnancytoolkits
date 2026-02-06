@@ -51,7 +51,8 @@ import fitnessCoach from '@/assets/icons/fitness-coach.png';
 import legCramp from '@/assets/icons/leg-cramp.png';
 import stressRelief from '@/assets/icons/stress-relief.png';
 import massageGuide from '@/assets/icons/massage-guide.png';
-
+import babyCryTranslator from '@/assets/icons/baby-cry-translator.png';
+import postpartumRecovery from '@/assets/icons/postpartum-recovery.png';
 // Map tool IDs to their icon imports
 export const toolIconMap: Record<string, string> = {
   // AI Core Tools
@@ -139,8 +140,8 @@ export const toolIconMap: Record<string, string> = {
   'baby-growth': babyGrowth,
   'doctor-questions': doctorQuestions,
   'diaper-tracker': babyGrowth,
-  'baby-cry-translator': babySleep,
-  'postpartum-recovery': mentalHealth,
+  'baby-cry-translator': babyCryTranslator,
+  'postpartum-recovery': postpartumRecovery,
   
   // Workout & Personalized Plans
   'personalized-workout-planner': fitnessCoach,
