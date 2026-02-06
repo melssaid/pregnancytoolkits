@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ToolFrame } from "@/components/ToolFrame";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 interface Message {
@@ -25,6 +26,10 @@ const getQuickQuestions = (t: (key: string) => string) => [
 export default function PregnancyAssistant() {
   const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setMessages([]);
+  });
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);

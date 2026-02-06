@@ -6,6 +6,7 @@ import { useToast } from '@/hooks/use-toast';
 import { VitaminService, UserProfileService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { WeekSlider } from '@/components/WeekSlider';
 import { useTranslation } from 'react-i18next';
@@ -39,6 +40,11 @@ const VitaminTracker: React.FC = () => {
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { toast } = useToast();
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiAnalysis('');
+    setShowAiAnalysis(false);
+  });
 
   const VITAMINS: Vitamin[] = useMemo(() => VITAMIN_IDS.map(v => ({
     id: v.id,

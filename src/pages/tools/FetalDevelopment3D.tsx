@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { Baby, ChevronLeft, ChevronRight, Heart, Brain, Ear, Eye, Hand, Footprints, Scale, Ruler, Sparkles, Calendar, Loader2, Stethoscope, Apple, Dumbbell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 interface WeekData {
@@ -58,6 +59,11 @@ const FetalDevelopment3D: React.FC = () => {
   const [activeAITab, setActiveAITab] = useState<'development' | 'nutrition' | 'exercise' | null>(null);
   
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiInsight('');
+    setActiveAITab(null);
+  });
 
   useEffect(() => {
     const saved = localStorage.getItem('pregnancy-current-week');

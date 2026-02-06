@@ -8,6 +8,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useTranslation } from 'react-i18next';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 interface Contraction {
   id: string;
@@ -29,6 +30,11 @@ export default function AILaborProgressTracker() {
   const [aiResponse, setAiResponse] = useState('');
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAIAnalysis(false);
+  });
 
   useEffect(() => {
     const saved = localStorage.getItem('laborContractions');

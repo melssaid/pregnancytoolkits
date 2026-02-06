@@ -25,6 +25,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
@@ -55,6 +56,10 @@ const PREP_TIME_IDS = ["quick", "medium", "elaborate"] as const;
 export default function AIMealSuggestion() {
   const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setSuggestion('');
+  });
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [trimester, setTrimester] = useState<string>("2");
   const [mealType, setMealType] = useState<string>("lunch");

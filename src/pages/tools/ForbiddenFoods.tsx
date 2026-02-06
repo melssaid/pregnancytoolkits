@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info, Sparkles, Loader2 } from 'lucide-react';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -32,6 +33,11 @@ const foodDatabase: FoodItem[] = [
 const ForbiddenFoods: React.FC = () => {
   const { t } = useTranslation();
   const { streamChat, isLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAiResponse(false);
+  });
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState<'all' | 'safe' | 'avoid' | 'limit'>('all');

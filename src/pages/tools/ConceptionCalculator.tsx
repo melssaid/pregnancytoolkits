@@ -10,11 +10,17 @@ import { Calendar, Baby, ArrowRight, Sparkles, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { format, addDays, subDays, addWeeks, differenceInDays } from "date-fns";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 const ConceptionCalculator = () => {
   const { t } = useTranslation();
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiAdvice('');
+    setShowAiAdvice(false);
+  });
   const [dueDate, setDueDate] = useState("");
   const [lmpDate, setLmpDate] = useState("");
   const [cycleLength, setCycleLength] = useState("28");

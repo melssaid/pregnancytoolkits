@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { FileText, Download, Sparkles, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, FileDown, AlertCircle } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { toast } from 'sonner';
@@ -79,6 +80,10 @@ export default function AIBirthPlanGenerator() {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['toolsInternal.birthPlan.categories.laborEnvironment']));
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setGeneratedPlan('');
+  });
   const isInitialized = useRef(false);
 
   // Load saved plans

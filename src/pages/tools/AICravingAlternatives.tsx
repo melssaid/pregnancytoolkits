@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { RelatedTools } from '@/components/RelatedTools';
@@ -34,6 +35,10 @@ const AICravingAlternatives: React.FC = () => {
   const [result, setResult] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { streamChat, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setResult('');
+  });
   const abortRef = useRef(false);
   const resultRef = useRef<HTMLDivElement>(null);
 

@@ -50,6 +50,10 @@ export default function PostpartumRecoveryGuide() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiAdvice('');
+  });
   const [birthType, setBirthType] = useState<BirthType | null>(null);
   const [currentPhase, setCurrentPhase] = useState(0);
   const [aiAdvice, setAiAdvice] = useState<string>("");

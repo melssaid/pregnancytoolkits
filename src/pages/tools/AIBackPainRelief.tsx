@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { ExerciseIcon } from '@/components/ExerciseIcon';
 
@@ -89,6 +90,11 @@ export default function AIBackPainRelief() {
   const [painLocation, setPainLocation] = useState<string>('lower back');
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAIAdvice(false);
+  });
 
   const painLocations = [
     { key: 'lower back', label: t('toolsInternal.backPainRelief.lowerBack') },

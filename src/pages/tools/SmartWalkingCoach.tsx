@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Footprints, Play, Pause, Clock, TrendingUp, MapPin, AlertCircle, Brain, Loader2 } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 interface WalkSession {
   id: string;
@@ -27,6 +28,11 @@ export default function SmartWalkingCoach() {
   const [aiResponse, setAiResponse] = useState('');
   
   const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAICoach(false);
+  });
 
   useEffect(() => {
     const saved = localStorage.getItem('walkingSessions');

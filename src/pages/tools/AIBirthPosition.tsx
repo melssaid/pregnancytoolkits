@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
@@ -52,6 +53,10 @@ const AIBirthPosition = () => {
   const { t } = useTranslation();
   const { settings } = useSettings();
   const { streamChat, isLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setResponse('');
+  });
   
   const [birthPlan, setBirthPlan] = useState("natural");
   const [conditions, setConditions] = useState<string[]>([]);

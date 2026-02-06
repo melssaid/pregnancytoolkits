@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { NutritionService, UserProfileService } from '@/services/supabaseServices';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { useTranslation } from 'react-i18next';

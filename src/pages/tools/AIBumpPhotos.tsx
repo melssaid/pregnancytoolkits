@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { BumpPhotoService, UserProfileService } from '@/services/localStorageServices';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { ToolFrame } from '@/components/ToolFrame';
 import { compressImage, estimateDataUrlSize, formatBytes } from '@/lib/imageCompression';
@@ -49,6 +50,10 @@ const AIBumpPhotos: React.FC = () => {
   const abortRef = useRef(false);
   const { toast } = useToast();
   const { streamChat } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiAnalysis('');
+  });
 
   // Calculate storage usage
   const storageInfo = useMemo(() => {

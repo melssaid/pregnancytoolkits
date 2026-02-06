@@ -10,6 +10,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary, Video } from "@/components/VideoLibrary";
 
@@ -72,6 +73,10 @@ const AINauseaRelief = () => {
   const { t } = useTranslation();
   const { settings } = useSettings();
   const { streamChat, isLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setResponse('');
+  });
   
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [severity, setSeverity] = useState([5]);
