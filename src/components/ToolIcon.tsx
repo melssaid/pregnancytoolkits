@@ -139,6 +139,8 @@ export const toolIconMap: Record<string, string> = {
   'baby-growth': babyGrowth,
   'doctor-questions': doctorQuestions,
   'diaper-tracker': babyGrowth,
+  'baby-cry-translator': babySleep,
+  'postpartum-recovery': mentalHealth,
   
   // Workout & Personalized Plans
   'personalized-workout-planner': fitnessCoach,
