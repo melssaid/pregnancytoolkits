@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ interface SleepSession {
 const STORAGE_KEY = "baby-sleep-tracker-data";
 
 const BabySleepTracker = () => {
+  const { t } = useTranslation();
   const { trackAction } = useAnalytics("baby-sleep-tracker");
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [sessions, setSessions] = useState<SleepSession[]>([]);
@@ -168,7 +170,7 @@ const BabySleepTracker = () => {
   // AI-powered personalized advice
   const getAIAdvice = async () => {
     if (sessions.length < 2) {
-      setAiAdvice("💡 Record at least 2-3 sleep sessions to get personalized AI advice based on your baby's patterns.");
+      setAiAdvice(`💡 ${t('toolsInternal.babySleep.noDataYet')}`);
       setShowAiAdvice(true);
       return;
     }
@@ -213,8 +215,8 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
 
   return (
     <ToolFrame
-      title="Baby Sleep Tracker"
-      subtitle="AI-powered sleep pattern analysis for your baby"
+      title={t('toolsInternal.babySleep.title')}
+      subtitle={t('toolsInternal.babySleep.subtitle')}
       customIcon="mother-baby"
       mood="nurturing"
       toolId="baby-sleep-tracker"
@@ -243,7 +245,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                     )}
                   </motion.div>
                   <h3 className="text-xl font-semibold mb-2">
-                    {activeSleep.type === "night" ? "Night Sleep" : "Nap Time"} in Progress
+                    {activeSleep.type === "night" ? t('toolsInternal.babySleep.nightSleep') : t('toolsInternal.babySleep.napTime')} {t('toolsInternal.babySleep.inProgress')}
                   </h3>
                   <div className="text-4xl font-bold text-primary mb-2">
                     {formatDuration(elapsedTime)}
@@ -252,7 +254,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                     Started at {format(new Date(activeSleep.startTime), "h:mm a")}
                   </p>
                   <Button onClick={endSleep} size="lg" className="w-full">
-                    End Sleep Session
+                    {t('toolsInternal.babySleep.endSleep')}
                   </Button>
                 </CardContent>
               </Card>
@@ -268,7 +270,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                 <CardHeader>
                   <CardTitle className="text-center flex items-center justify-center gap-2">
                     <Clock className="h-5 w-5" />
-                    Start Sleep Tracking
+                    {t('toolsInternal.babySleep.startSleepTracking')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pb-4">
@@ -280,7 +282,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                         className="h-20 sm:h-24 w-full flex-col gap-2 border-2 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20 overflow-hidden"
                       >
                         <Sun className="h-7 w-7 sm:h-8 sm:w-8 text-amber-500 shrink-0" />
-                        <span className="font-semibold text-xs sm:text-sm truncate">Start Nap</span>
+                        <span className="font-semibold text-xs sm:text-sm truncate">{t('toolsInternal.babySleep.startNap')}</span>
                       </Button>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
@@ -290,7 +292,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                         className="h-20 sm:h-24 w-full flex-col gap-2 border-2 hover:border-primary hover:bg-primary/10 overflow-hidden"
                       >
                         <Moon className="h-7 w-7 sm:h-8 sm:w-8 text-primary shrink-0" />
-                        <span className="font-semibold text-xs sm:text-sm truncate">Night Sleep</span>
+                        <span className="font-semibold text-xs sm:text-sm truncate">{t('toolsInternal.babySleep.nightSleep')}</span>
                       </Button>
                     </motion.div>
                   </div>
@@ -306,14 +308,14 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
             <CardContent className="py-3 text-center">
               <TrendingUp className="h-5 w-5 mx-auto text-primary mb-1 shrink-0" />
               <p className="text-lg sm:text-xl font-bold text-primary truncate">{formatDuration(stats.totalMinutes)}</p>
-              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">Today's Total</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('toolsInternal.babySleep.totalToday')}</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="py-3 text-center">
               <BarChart3 className="h-5 w-5 mx-auto text-muted-foreground mb-1 shrink-0" />
               <p className="text-lg sm:text-xl font-bold truncate">{formatDuration(weeklyAvg)}</p>
-              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">7-Day Avg</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('toolsInternal.babySleep.avgSleep')}</p>
             </CardContent>
           </Card>
         </div>
@@ -329,7 +331,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
           ) : (
             <Sparkles className="h-4 w-4 me-1.5" />
           )}
-          Get AI Sleep Advice
+          {t('toolsInternal.babySleep.getAISleepAdvice')}
         </Button>
 
         {/* AI Advice Card */}
@@ -344,7 +346,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                 <CardHeader className="pb-1.5 pt-3">
                   <CardTitle className="text-sm flex items-center gap-1.5">
                     <Sparkles className="h-4 w-4 text-violet-500" />
-                    AI Sleep Advisor
+                    {t('toolsInternal.babySleep.aiSleepAdvisor')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pb-3">
@@ -359,21 +361,21 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
         {stats.count > 0 && (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Today's Breakdown</CardTitle>
+              <CardTitle className="text-lg">{t('toolsInternal.babySleep.todaysBreakdown')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="p-3 rounded-lg bg-secondary">
                   <p className="text-xl font-bold">{stats.count}</p>
-                  <p className="text-xs text-muted-foreground">Sessions</p>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.babySleep.sessions')}</p>
                 </div>
                 <div className="p-3 rounded-lg bg-amber-100 dark:bg-amber-900/20">
                   <p className="text-xl font-bold text-amber-600">{formatDuration(stats.napMinutes)}</p>
-                  <p className="text-xs text-muted-foreground">Naps</p>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.babySleep.naps')}</p>
                 </div>
                 <div className="p-3 rounded-lg bg-primary/10">
                   <p className="text-xl font-bold text-primary">{formatDuration(stats.nightMinutes)}</p>
-                  <p className="text-xs text-muted-foreground">Night</p>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.babySleep.night')}</p>
                 </div>
               </div>
             </CardContent>
@@ -384,7 +386,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
         {sessions.length > 0 && (
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Recent Sessions</CardTitle>
+              <CardTitle className="text-lg">{t('toolsInternal.babySleep.recentSessions')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {sessions.slice(0, 10).map((session) => (
@@ -429,23 +431,23 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
         {/* Sleep Reference Guide */}
         <Card className="bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-sky-900/20 dark:to-indigo-900/20">
           <CardContent className="pt-4">
-            <h4 className="font-medium mb-3">💤 Recommended Sleep by Age (AAP Guidelines)</h4>
+            <h4 className="font-medium mb-3">💤 {t('toolsInternal.babySleep.recommendedSleep')}</h4>
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
-                <span>Newborn (0-3 months)</span>
-                <span className="font-medium">14-17 hours</span>
+                <span>{t('toolsInternal.babySleep.newborn')}</span>
+                <span className="font-medium">14-17 {t('toolsInternal.babySleep.hours')}</span>
               </div>
               <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
-                <span>Infant (4-12 months)</span>
-                <span className="font-medium">12-16 hours</span>
+                <span>{t('toolsInternal.babySleep.infant')}</span>
+                <span className="font-medium">12-16 {t('toolsInternal.babySleep.hours')}</span>
               </div>
               <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
-                <span>Toddler (1-2 years)</span>
-                <span className="font-medium">11-14 hours</span>
+                <span>{t('toolsInternal.babySleep.toddler')}</span>
+                <span className="font-medium">11-14 {t('toolsInternal.babySleep.hours')}</span>
               </div>
               <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
-                <span>Preschool (3-5 years)</span>
-                <span className="font-medium">10-13 hours</span>
+                <span>{t('toolsInternal.babySleep.child')}</span>
+                <span className="font-medium">10-13 {t('toolsInternal.babySleep.hours')}</span>
               </div>
             </div>
             <p className="text-xs text-muted-foreground mt-3 italic">
