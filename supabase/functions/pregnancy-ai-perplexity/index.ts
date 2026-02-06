@@ -159,10 +159,10 @@ serve(async (req) => {
       }
     }
 
-    const PERPLEXITY_API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
+    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
 
-    if (!PERPLEXITY_API_KEY) {
-      console.error("PERPLEXITY_API_KEY is not configured");
+    if (!LOVABLE_API_KEY) {
+      console.error("LOVABLE_API_KEY is not configured");
       return new Response(
         JSON.stringify({ error: "AI service is not properly configured" }),
         { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -192,11 +192,15 @@ serve(async (req) => {
     const nativeInstruction = langConfig.native;
     
     const languageInstruction = `
-🌐 MANDATORY LANGUAGE: ${languageName}
+🌐 CRITICAL LANGUAGE REQUIREMENT — YOU MUST FOLLOW THIS:
+Target language: ${languageName}
 ${nativeInstruction}
-• ALL headings, text, tables, bullets MUST be in ${languageName}
-• Translate markdown headers like "## Overview" to ${languageName}
-• No mixed languages allowed
+• EVERY word, heading, table header, bullet point, emoji label, and sentence MUST be written in ${languageName}.
+• Do NOT write any content in English or Arabic unless the target language IS English or Arabic.
+• Translate ALL markdown headers (e.g., "## Overview" → translate to ${languageName}).
+• Translate ALL table headers and cell contents to ${languageName}.
+• Translate ALL medical terms to their ${languageName} equivalents.
+• This is NON-NEGOTIABLE. Mixing languages will be considered a failure.
 `;
 
     // Persona identifier for Lavy Pool
@@ -958,16 +962,16 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
         break;
     }
 
-    console.log(`Processing ${type} request from client: ${clientId}`);
+    console.log(`Processing ${type} request from client: ${clientId}, language: ${requestedLanguage}`);
 
-    const response = await fetch("https://api.perplexity.ai/chat/completions", {
+    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+        Authorization: `Bearer ${LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "sonar",
+        model: "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: systemPrompt },
           ...(messages || []),
@@ -985,12 +989,12 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ error: "API credits exhausted" }),
+          JSON.stringify({ error: "Please add credit to Lovable AI account" }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       const errorText = await response.text();
-      console.error("Perplexity API error:", response.status, errorText);
+      console.error("AI gateway error:", response.status, errorText);
       return new Response(
         JSON.stringify({ error: "AI service error" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -1001,7 +1005,7 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (error) {
-    console.error("pregnancy-ai-perplexity error:", error);
+    console.error("pregnancy-ai-gateway error:", error);
     return new Response(
       JSON.stringify({ error: "An unexpected error occurred. Please try again." }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
