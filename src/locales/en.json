@@ -2085,7 +2085,13 @@
       "child": "Child (2+ years)",
       "hours": "hours",
       "noDataYet": "Record at least 2-3 sleep sessions to get personalized AI advice.",
-      "disclaimer": "These are general guidelines. Every baby is unique. Consult your pediatrician for personalized advice."
+      "disclaimer": "These are general guidelines. Every baby is unique. Consult your pediatrician for personalized advice.",
+      "sleepQuality": "Sleep Quality",
+      "qualityExcellent": "Excellent",
+      "qualityGood": "Good",
+      "qualityFair": "Fair",
+      "qualityNeedsAttention": "Needs Attention",
+      "startedAt": "Started at"
     },
     "diaperTracker": {
       "title": "Diaper Tracker",

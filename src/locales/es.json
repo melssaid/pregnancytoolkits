@@ -2034,7 +2034,13 @@
       "child": "Niño (2+ años)",
       "hours": "horas",
       "noDataYet": "Registra al menos 2-3 sesiones para obtener consejos IA personalizados.",
-      "disclaimer": "Estas son pautas generales. Cada bebé es único. Consulta a tu pediatra para consejos personalizados."
+      "disclaimer": "Estas son pautas generales. Cada bebé es único. Consulta a tu pediatra para consejos personalizados.",
+      "sleepQuality": "Calidad del Sueño",
+      "qualityExcellent": "Excelente",
+      "qualityGood": "Bueno",
+      "qualityFair": "Regular",
+      "qualityNeedsAttention": "Necesita Atención",
+      "startedAt": "Comenzó a las"
     },
     "diaperTracker": {
       "title": "Seguimiento de Pañales",

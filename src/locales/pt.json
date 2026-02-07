@@ -2034,7 +2034,13 @@
       "child": "Criança (2+ anos)",
       "hours": "horas",
       "noDataYet": "Registre pelo menos 2-3 sessões para obter conselhos IA personalizados.",
-      "disclaimer": "Estas são diretrizes gerais. Cada bebê é único. Consulte o seu pediatra para conselhos personalizados."
+      "disclaimer": "Estas são diretrizes gerais. Cada bebê é único. Consulte o seu pediatra para conselhos personalizados.",
+      "sleepQuality": "Qualidade do Sono",
+      "qualityExcellent": "Excelente",
+      "qualityGood": "Bom",
+      "qualityFair": "Regular",
+      "qualityNeedsAttention": "Precisa de Atenção",
+      "startedAt": "Começou às"
     },
     "diaperTracker": {
       "title": "Rastreador de Fraldas",

@@ -2034,7 +2034,13 @@
       "child": "Çocuk (2+ yaş)",
       "hours": "saat",
       "noDataYet": "Kişiselleştirilmiş AI tavsiyesi almak için en az 2-3 uyku seansı kaydedin.",
-      "disclaimer": "Bunlar genel yönergelerdir. Her bebek benzersizdir. Kişiselleştirilmiş tavsiye için pediatristinize danışın."
+      "disclaimer": "Bunlar genel yönergelerdir. Her bebek benzersizdir. Kişiselleştirilmiş tavsiye için pediatristinize danışın.",
+      "sleepQuality": "Uyku Kalitesi",
+      "qualityExcellent": "Mükemmel",
+      "qualityGood": "İyi",
+      "qualityFair": "Orta",
+      "qualityNeedsAttention": "Dikkat Gerekiyor",
+      "startedAt": "Başlama saati"
     },
     "diaperTracker": {
       "title": "Bez Takibi",
