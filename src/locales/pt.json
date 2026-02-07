@@ -1473,7 +1473,10 @@
         "cardio": { "title": "Cardio HIIT Seguro na Gravidez", "description": "Treino de 20 minutos de baixo impacto sem repetições" },
         "yoga": { "title": "Yoga Pré-natal de Relaxamento", "description": "Yoga de relaxamento profundo para a gravidez" },
         "relaxation": { "title": "Meditação de Relaxamento na Gravidez", "description": "Meditação calmante para futuras mamães" }
-      }
+      },
+      "aiWorkoutAnalysis": "Análise de Treino Personalizada",
+      "aiWorkoutButton": "Analisar Meu Plano de Fitness",
+      "aiWorkoutPromptTitle": "Análise de Fitness Pré-natal Personalizada"
     },
     "weeklySummary": {
       "title": "Resumo Semanal",

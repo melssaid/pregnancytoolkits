@@ -1190,7 +1190,10 @@
         "cardio": { "title": "كارديو آمن أثناء الحمل", "description": "تمرين 20 دقيقة منخفض التأثير بدون تكرار" },
         "yoga": { "title": "يوغا ما قبل الولادة للاسترخاء", "description": "يوغا استرخاء عميق للحامل" },
         "relaxation": { "title": "تأمل استرخاء الحمل", "description": "تأمل مهدئ للأمهات الحوامل" }
-      }
+      },
+      "aiWorkoutAnalysis": "تحليل تمارين مخصص",
+      "aiWorkoutButton": "حلّل خطتي الرياضية",
+      "aiWorkoutPromptTitle": "تحليل لياقة الحمل الشخصي"
     },
     "hospitalBag": {
       "title": "حقيبة المستشفى الذكية",

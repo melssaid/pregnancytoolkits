@@ -2059,7 +2059,10 @@
         "cardio": { "title": "Sicheres HIIT-Kardio in der Schwangerschaft", "description": "20-Minuten gelenkschonendes Training ohne Wiederholungen" },
         "yoga": { "title": "Schwangerschafts-Yoga zur Entspannung", "description": "Tiefenentspannung Yoga für Schwangere" },
         "relaxation": { "title": "Schwangerschafts-Entspannungsmeditation", "description": "Beruhigende Meditation für werdende Mütter" }
-      }
+      },
+      "aiWorkoutAnalysis": "Personalisierte Trainingsanalyse",
+      "aiWorkoutButton": "Meinen Fitnessplan analysieren",
+      "aiWorkoutPromptTitle": "Persönliche Schwangerschafts-Fitnessanalyse"
     },
     "weeklySummary": {
       "title": "Wöchentliche Einblicke",

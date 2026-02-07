@@ -1473,7 +1473,10 @@
         "cardio": { "title": "Cardio HIIT Seguro en el Embarazo", "description": "Entrenamiento de 20 minutos de bajo impacto sin repeticiones" },
         "yoga": { "title": "Yoga Prenatal de Relajación", "description": "Yoga de relajación profunda para el embarazo" },
         "relaxation": { "title": "Meditación de Relajación para el Embarazo", "description": "Meditación calmante para futuras madres" }
-      }
+      },
+      "aiWorkoutAnalysis": "Análisis de Entrenamiento Personalizado",
+      "aiWorkoutButton": "Analizar Mi Plan de Fitness",
+      "aiWorkoutPromptTitle": "Análisis de Fitness Prenatal Personalizado"
     },
     "weeklySummary": {
       "title": "Resumen Semanal",
