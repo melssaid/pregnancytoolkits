@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Cookie, X } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 const CookieConsent: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,7 +27,7 @@ const CookieConsent: React.FC = () => {
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 p-4 md:p-6">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-4">
         <div className="flex items-center gap-3 flex-1">
-          <Cookie className="w-8 h-8 text-pink-500 flex-shrink-0" />
+          <ShieldCheck className="w-8 h-8 text-primary flex-shrink-0" />
           <p className="text-sm text-gray-600">
             We use cookies and local storage to enhance your experience. Your data stays on your device and is never shared.
             <a href="/privacy-policy" className="text-pink-500 hover:underline ml-1">Learn more</a>
