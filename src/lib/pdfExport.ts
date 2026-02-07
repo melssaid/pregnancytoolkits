@@ -688,6 +688,36 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
   doc.save(fileName);
 }
 
+// Strip emoji characters from text to prevent Arabic text shaping issues in html2canvas
+function stripEmojis(text: string): string {
+  return text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+}
+
+// Convert markdown to HTML with language-aware styling
+function markdownToHTMLWithLang(markdown: string, fontFamily: string, isRTL: boolean): string {
+  const borderSide = isRTL ? 'right' : 'left';
+  const paddingSide = isRTL ? 'right' : 'left';
+  // Strip emojis to prevent Arabic text shaping issues
+  const cleaned = stripEmojis(markdown);
+  
+  return cleaned
+    .replace(/^### (.*$)/gm, `<h3 style="font-size:15px;font-weight:600;color:#ec4899;margin:16px 0 8px;padding:6px 12px;background:rgba(236,72,153,0.08);border-radius:6px;border-${borderSide}:3px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${isRTL ? 'right' : 'left'};">$1</h3>`)
+    .replace(/^## (.*$)/gm, `<h2 style="font-size:17px;font-weight:700;color:#ec4899;margin:20px 0 10px;padding:8px 14px;background:rgba(236,72,153,0.08);border-radius:8px;border-${borderSide}:4px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${isRTL ? 'right' : 'left'};">$1</h2>`)
+    .replace(/^# (.*$)/gm, `<h1 style="font-size:20px;font-weight:700;color:#1e293b;margin:20px 0 12px;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${isRTL ? 'right' : 'left'};">$1</h1>`)
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/^[-*+] (.*$)/gm, `<div style="padding:3px 0 3px 16px;padding-${paddingSide}:16px;position:relative;font-family:${fontFamily};"><span style="position:absolute;${paddingSide}:0;top:8px;width:6px;height:6px;background:#ec4899;border-radius:50%;display:inline-block;"></span>$1</div>`)
+    .replace(/^\d+\. (.*$)/gm, `<div style="padding:3px 0 3px 8px;font-family:${fontFamily};">$1</div>`)
+    .replace(/\n{2,}/g, '<div style="height:10px;"></div>')
+    .replace(/\n/g, '<br/>')
+    .trim();
+}
+
+// Strip emojis from HTML content (for contentElement innerHTML)
+function stripEmojisFromHTML(html: string): string {
+  return html.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '');
+}
+
 // Birth plan PDF export using pure html2canvas for full multilingual support
 export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
   const { title, content, date, preferences, language = 'en', contentElement } = options;
@@ -708,8 +738,10 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   const l = labels[language] || labels.en;
   const prefCount = preferences ? Object.keys(preferences).length : 0;
   
-  // Get the actual HTML content from the rendered element or convert markdown
-  const mainContent = contentElement ? contentElement.innerHTML : markdownToHTML(content);
+  // Get content - strip emojis for clean rendering, or use language-aware markdown converter
+  const mainContent = contentElement 
+    ? stripEmojisFromHTML(contentElement.innerHTML) 
+    : markdownToHTMLWithLang(content, "'Tajawal', 'Plus Jakarta Sans', sans-serif", isRTL);
   
   // Font family matching what the app uses
   const fontFamily = isRTL
@@ -733,9 +765,15 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     z-index: -1;
   `;
   
-  // Build the full HTML content - NO gradients, NO complex CSS patterns
-  // Every element gets explicit font-family to ensure Arabic fonts are used
+  // Build the full HTML content with a <style> tag to force font inheritance on ALL elements
   container.innerHTML = `
+    <style>
+      * { font-family: ${fontFamily} !important; text-rendering: optimizeLegibility; }
+      h1, h2, h3, h4, h5, h6, p, div, span, strong, em, li, ul, ol {
+        font-family: ${fontFamily} !important;
+        direction: ${isRTL ? 'rtl' : 'ltr'};
+      }
+    </style>
     <div style="background: #fcfcfd; border-bottom: 2px solid #ec4899; padding: 24px 40px 20px; text-align: center;">
       <div style="font-size: 28px; font-weight: 700; color: #1e293b; margin-bottom: 6px; font-family: ${fontFamily};">${l.title}</div>
       <div style="font-size: 13px; color: #94a3b8; margin-bottom: 4px; font-family: ${fontFamily};">${date}</div>
@@ -843,19 +881,9 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   }
 }
 
-// Convert markdown to simple HTML for PDF rendering
+// Convert markdown to simple HTML for PDF rendering (legacy fallback - uses LTR)
 function markdownToHTML(markdown: string): string {
-  return markdown
-    .replace(/^### (.*$)/gm, '<h3 style="font-size:15px;font-weight:600;color:#ec4899;margin:16px 0 8px;padding:6px 12px;background:rgba(236,72,153,0.08);border-radius:6px;border-left:3px solid #ec4899;">$1</h3>')
-    .replace(/^## (.*$)/gm, '<h2 style="font-size:17px;font-weight:700;color:#ec4899;margin:20px 0 10px;padding:8px 14px;background:rgba(236,72,153,0.08);border-radius:8px;border-left:4px solid #ec4899;">$1</h2>')
-    .replace(/^# (.*$)/gm, '<h1 style="font-size:20px;font-weight:700;color:#1e293b;margin:20px 0 12px;">$1</h1>')
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/^[-*+] (.*$)/gm, '<div style="padding:3px 0 3px 16px;position:relative;"><span style="position:absolute;left:0;top:8px;width:6px;height:6px;background:#ec4899;border-radius:50;display:inline-block;"></span>$1</div>')
-    .replace(/^\d+\. (.*$)/gm, '<div style="padding:3px 0 3px 8px;">$1</div>')
-    .replace(/\n{2,}/g, '<div style="height:10px;"></div>')
-    .replace(/\n/g, '<br/>')
-    .trim();
+  return markdownToHTMLWithLang(markdown, "'Plus Jakarta Sans', system-ui, sans-serif", false);
 }
 
 export const MAX_SAVED_PLANS = 9;
