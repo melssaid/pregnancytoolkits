@@ -1094,6 +1094,43 @@
         "insomnia": "Insomnia",
         "moodswings": "Mood Swings",
         "dizziness": "Dizziness"
+      },
+      "insights": {
+        "nausea": {
+          "early": "Very common in the first trimester. Try small, frequent meals and ginger.",
+          "late": "Less common at this stage. If severe or accompanied by other symptoms, consult your doctor."
+        },
+        "fatigue": {
+          "early": "Normal for this stage. Your body is working hard! Prioritize rest.",
+          "mid": "You might be in the 'honeymoon phase', but listen to your body if you need rest."
+        },
+        "headache": {
+          "general": "Hormonal changes and increased blood volume can cause headaches. Stay hydrated and rest in a dark room."
+        },
+        "backpain": {
+          "early": "Monitor closely. If accompanied by cramping, contact your provider.",
+          "late": "Common as baby grows and center of gravity shifts. Gentle stretching and good posture help."
+        },
+        "cramps": {
+          "general": "Mild cramping can be normal as your uterus stretches. Severe or persistent cramping should be evaluated by your doctor."
+        },
+        "swelling": {
+          "general": "Mild swelling in feet and ankles is common, especially later in pregnancy. Elevate your feet and stay hydrated. Sudden or severe swelling requires immediate medical attention."
+        },
+        "heartburn": {
+          "general": "Very common during pregnancy due to hormonal changes. Eat smaller meals, avoid spicy foods, and don't lie down right after eating."
+        },
+        "insomnia": {
+          "general": "Sleep difficulties are common. Try a consistent bedtime routine, use pillows for support, and limit screen time before bed."
+        },
+        "moodswings": {
+          "general": "Hormonal fluctuations make mood changes normal. Talk to your support network and consider relaxation techniques."
+        },
+        "dizziness": {
+          "general": "Can be caused by blood pressure changes. Stand up slowly, stay hydrated, and eat regular meals. If frequent, tell your doctor."
+        },
+        "default": "This is a known pregnancy symptom. Monitor intensity and frequency and discuss with your provider.",
+        "defaultFallback": "Symptom noted. Discuss persistence with your doctor."
       }
     },
     "vitaminTracker": {

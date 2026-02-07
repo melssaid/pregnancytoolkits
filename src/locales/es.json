@@ -1195,6 +1195,43 @@
         "insomnia": "Insomnio",
         "moodswings": "Cambios de Humor",
         "dizziness": "Mareos"
+      },
+      "insights": {
+        "nausea": {
+          "early": "Muy común en el primer trimestre. Prueba comidas pequeñas y frecuentes y jengibre.",
+          "late": "Menos común en esta etapa. Si es severo o viene con otros síntomas, consulta a tu médico."
+        },
+        "fatigue": {
+          "early": "Normal para esta etapa. ¡Tu cuerpo está trabajando duro! Prioriza el descanso.",
+          "mid": "Podrías estar en la 'fase de luna de miel', pero escucha a tu cuerpo si necesitas descansar."
+        },
+        "headache": {
+          "general": "Los cambios hormonales y el aumento del volumen sanguíneo pueden causar dolores de cabeza. Mantente hidratada y descansa en una habitación oscura."
+        },
+        "backpain": {
+          "early": "Observa de cerca. Si viene acompañado de calambres, contacta a tu médico.",
+          "late": "Común a medida que el bebé crece y el centro de gravedad cambia. Los estiramientos suaves y una buena postura ayudan."
+        },
+        "cramps": {
+          "general": "Los calambres leves son normales ya que el útero se estira. Los calambres severos o persistentes deben ser evaluados por tu médico."
+        },
+        "swelling": {
+          "general": "La hinchazón leve en pies y tobillos es común, especialmente al final del embarazo. Eleva tus pies y mantente hidratada. La hinchazón repentina o severa requiere atención médica inmediata."
+        },
+        "heartburn": {
+          "general": "Muy común durante el embarazo debido a cambios hormonales. Come porciones más pequeñas, evita alimentos picantes y no te acuestes justo después de comer."
+        },
+        "insomnia": {
+          "general": "Las dificultades para dormir son comunes. Prueba una rutina de sueño consistente, usa almohadas de apoyo y limita el tiempo de pantalla antes de dormir."
+        },
+        "moodswings": {
+          "general": "Las fluctuaciones hormonales hacen que los cambios de humor sean normales. Habla con tu red de apoyo y considera técnicas de relajación."
+        },
+        "dizziness": {
+          "general": "Puede ser causado por cambios en la presión arterial. Levántate despacio, mantente hidratada y come regularmente. Si es frecuente, informa a tu médico."
+        },
+        "default": "Este es un síntoma conocido del embarazo. Monitorea la intensidad y frecuencia y discútelo con tu médico.",
+        "defaultFallback": "Síntoma registrado. Discute su persistencia con tu médico."
       }
     },
     "vitaminTracker": {

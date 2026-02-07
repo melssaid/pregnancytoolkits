@@ -59,6 +59,41 @@ const AISymptomAnalyzer: React.FC = () => {
     }
   };
 
+  const getSymptomInsight = (symptomId: string, week: number): string => {
+    const prefix = 'toolsInternal.symptomAnalyzer.insights';
+    
+    switch (symptomId) {
+      case 'nausea':
+        return week < 14
+          ? t(`${prefix}.nausea.early`)
+          : t(`${prefix}.nausea.late`);
+      case 'fatigue':
+        return (week < 14 || week > 28)
+          ? t(`${prefix}.fatigue.early`)
+          : t(`${prefix}.fatigue.mid`);
+      case 'backpain':
+        return week > 20
+          ? t(`${prefix}.backpain.late`)
+          : t(`${prefix}.backpain.early`);
+      case 'headache':
+        return t(`${prefix}.headache.general`);
+      case 'cramps':
+        return t(`${prefix}.cramps.general`);
+      case 'swelling':
+        return t(`${prefix}.swelling.general`);
+      case 'heartburn':
+        return t(`${prefix}.heartburn.general`);
+      case 'insomnia':
+        return t(`${prefix}.insomnia.general`);
+      case 'moodswings':
+        return t(`${prefix}.moodswings.general`);
+      case 'dizziness':
+        return t(`${prefix}.dizziness.general`);
+      default:
+        return t(`${prefix}.default`);
+    }
+  };
+
   const analyzeSymptoms = async () => {
     if (selectedSymptoms.length === 0) return;
     
@@ -69,29 +104,7 @@ const AISymptomAnalyzer: React.FC = () => {
       const results: Record<string, string> = {};
       
       selectedSymptoms.forEach(symptom => {
-        let insight = "";
-        
-        switch(symptom.id) {
-          case 'nausea':
-            insight = currentWeek < 14 
-              ? "Very common in the first trimester. Try small, frequent meals and ginger." 
-              : "Less common in week " + currentWeek + ". If severe or accompanied by other symptoms, consult your doctor.";
-            break;
-          case 'fatigue':
-            insight = (currentWeek < 14 || currentWeek > 28)
-              ? "Normal for this stage. Your body is working hard! Prioritize rest."
-              : "You might be in the 'honeymoon phase', but listen to your body if you need rest.";
-            break;
-          case 'backpain':
-             insight = currentWeek > 20
-              ? "Common as baby grows and center of gravity shifts. Gentle stretching and good posture help."
-              : "Monitor closely. If accompanied by cramping, contact your provider.";
-            break;
-          default:
-            insight = `${symptom.name} is a known pregnancy symptom. Monitor intensity and frequency.`;
-        }
-        
-        results[symptom.id] = insight;
+        results[symptom.id] = getSymptomInsight(symptom.id, currentWeek);
       });
 
       setAnalysisResult(results);
@@ -193,7 +206,7 @@ const AISymptomAnalyzer: React.FC = () => {
                     </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    {analysisResult[symptom.id] || "Symptom noted. Discuss persistence with your doctor."}
+                    {analysisResult[symptom.id] || t('toolsInternal.symptomAnalyzer.insights.defaultFallback')}
                   </p>
                   <div className="mt-3 flex items-center gap-2 text-xs text-primary bg-primary/10 p-2 rounded-lg">
                     <Info className="w-4 h-4 flex-shrink-0" />

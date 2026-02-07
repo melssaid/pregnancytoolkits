@@ -1195,6 +1195,43 @@
         "insomnia": "Schlaflosigkeit",
         "moodswings": "Stimmungsschwankungen",
         "dizziness": "Schwindel"
+      },
+      "insights": {
+        "nausea": {
+          "early": "Sehr häufig im ersten Trimester. Versuchen Sie kleine, häufige Mahlzeiten und Ingwer.",
+          "late": "In diesem Stadium weniger häufig. Bei starker Übelkeit oder Begleitsymptomen konsultieren Sie Ihren Arzt."
+        },
+        "fatigue": {
+          "early": "Normal für dieses Stadium. Ihr Körper arbeitet hart! Priorisieren Sie Ruhe.",
+          "mid": "Sie könnten in der 'Honeymoon-Phase' sein, aber hören Sie auf Ihren Körper, wenn Sie Ruhe brauchen."
+        },
+        "headache": {
+          "general": "Hormonelle Veränderungen und erhöhtes Blutvolumen können Kopfschmerzen verursachen. Trinken Sie genug und ruhen Sie sich in einem dunklen Raum aus."
+        },
+        "backpain": {
+          "early": "Genau beobachten. Bei begleitenden Krämpfen kontaktieren Sie Ihren Arzt.",
+          "late": "Häufig, da das Baby wächst und sich der Schwerpunkt verlagert. Sanftes Dehnen und gute Haltung helfen."
+        },
+        "cramps": {
+          "general": "Leichte Krämpfe sind normal, da sich die Gebärmutter dehnt. Starke oder anhaltende Krämpfe sollten von Ihrem Arzt untersucht werden."
+        },
+        "swelling": {
+          "general": "Leichte Schwellungen an Füßen und Knöcheln sind häufig, besonders in der späten Schwangerschaft. Lagern Sie die Füße hoch und trinken Sie genug. Plötzliche oder starke Schwellungen erfordern sofortige ärztliche Aufmerksamkeit."
+        },
+        "heartburn": {
+          "general": "Sehr häufig während der Schwangerschaft durch hormonelle Veränderungen. Essen Sie kleinere Mahlzeiten, vermeiden Sie scharfes Essen und legen Sie sich nicht direkt nach dem Essen hin."
+        },
+        "insomnia": {
+          "general": "Schlafprobleme sind häufig. Versuchen Sie eine feste Schlafroutine, verwenden Sie Kissen zur Unterstützung und begrenzen Sie die Bildschirmzeit vor dem Schlafengehen."
+        },
+        "moodswings": {
+          "general": "Hormonelle Schwankungen machen Stimmungsänderungen normal. Sprechen Sie mit Ihrem Unterstützungsnetzwerk und erwägen Sie Entspannungstechniken."
+        },
+        "dizziness": {
+          "general": "Kann durch Blutdruckveränderungen verursacht werden. Stehen Sie langsam auf, trinken Sie genug und essen Sie regelmäßig. Bei häufigem Auftreten informieren Sie Ihren Arzt."
+        },
+        "default": "Dies ist ein bekanntes Schwangerschaftssymptom. Beobachten Sie Intensität und Häufigkeit und besprechen Sie es mit Ihrem Arzt.",
+        "defaultFallback": "Symptom notiert. Besprechen Sie das Fortbestehen mit Ihrem Arzt."
       }
     },
     "appointmentReminder": {

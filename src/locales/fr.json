@@ -1195,6 +1195,43 @@
         "insomnia": "Insomnie",
         "moodswings": "Sautes d'humeur",
         "dizziness": "Vertiges"
+      },
+      "insights": {
+        "nausea": {
+          "early": "Très fréquent au premier trimestre. Essayez de petits repas fréquents et du gingembre.",
+          "late": "Moins fréquent à ce stade. Si sévère ou accompagné d'autres symptômes, consultez votre médecin."
+        },
+        "fatigue": {
+          "early": "Normal à ce stade. Votre corps travaille dur ! Priorisez le repos.",
+          "mid": "Vous êtes peut-être dans la 'phase de lune de miel', mais écoutez votre corps si vous avez besoin de repos."
+        },
+        "headache": {
+          "general": "Les changements hormonaux et l'augmentation du volume sanguin peuvent causer des maux de tête. Restez hydratée et reposez-vous dans une pièce sombre."
+        },
+        "backpain": {
+          "early": "Surveillez attentivement. Si accompagné de crampes, contactez votre médecin.",
+          "late": "Fréquent à mesure que bébé grandit et que le centre de gravité se déplace. Des étirements doux et une bonne posture aident."
+        },
+        "cramps": {
+          "general": "De légères crampes peuvent être normales car votre utérus s'étend. Les crampes sévères ou persistantes doivent être évaluées par votre médecin."
+        },
+        "swelling": {
+          "general": "Un léger gonflement des pieds et des chevilles est fréquent, surtout en fin de grossesse. Surélevez vos pieds et restez hydratée. Un gonflement soudain ou sévère nécessite une attention médicale immédiate."
+        },
+        "heartburn": {
+          "general": "Très fréquent pendant la grossesse en raison des changements hormonaux. Mangez de plus petits repas, évitez les aliments épicés et ne vous allongez pas juste après manger."
+        },
+        "insomnia": {
+          "general": "Les difficultés de sommeil sont fréquentes. Essayez une routine de coucher régulière, utilisez des oreillers pour le soutien et limitez le temps d'écran avant le coucher."
+        },
+        "moodswings": {
+          "general": "Les fluctuations hormonales rendent les changements d'humeur normaux. Parlez à votre réseau de soutien et envisagez des techniques de relaxation."
+        },
+        "dizziness": {
+          "general": "Peut être causé par des changements de pression artérielle. Levez-vous lentement, restez hydratée et mangez régulièrement. Si fréquent, informez votre médecin."
+        },
+        "default": "C'est un symptôme de grossesse connu. Surveillez l'intensité et la fréquence et discutez-en avec votre médecin.",
+        "defaultFallback": "Symptôme noté. Discutez de sa persistance avec votre médecin."
       }
     },
     "appointmentReminder": {

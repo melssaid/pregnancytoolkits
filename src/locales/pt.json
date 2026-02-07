@@ -1195,6 +1195,43 @@
         "insomnia": "Insônia",
         "moodswings": "Mudanças de Humor",
         "dizziness": "Tontura"
+      },
+      "insights": {
+        "nausea": {
+          "early": "Muito comum no primeiro trimestre. Tente refeições pequenas e frequentes e gengibre.",
+          "late": "Menos comum neste estágio. Se severo ou acompanhado de outros sintomas, consulte seu médico."
+        },
+        "fatigue": {
+          "early": "Normal para este estágio. Seu corpo está trabalhando muito! Priorize o descanso.",
+          "mid": "Você pode estar na 'fase de lua de mel', mas ouça seu corpo se precisar descansar."
+        },
+        "headache": {
+          "general": "Mudanças hormonais e aumento do volume sanguíneo podem causar dores de cabeça. Mantenha-se hidratada e descanse em um quarto escuro."
+        },
+        "backpain": {
+          "early": "Monitore de perto. Se acompanhado de cólicas, entre em contato com seu médico.",
+          "late": "Comum à medida que o bebê cresce e o centro de gravidade muda. Alongamentos suaves e boa postura ajudam."
+        },
+        "cramps": {
+          "general": "Cólicas leves podem ser normais à medida que o útero se expande. Cólicas severas ou persistentes devem ser avaliadas pelo seu médico."
+        },
+        "swelling": {
+          "general": "Inchaço leve nos pés e tornozelos é comum, especialmente no final da gravidez. Eleve os pés e mantenha-se hidratada. Inchaço súbito ou severo requer atenção médica imediata."
+        },
+        "heartburn": {
+          "general": "Muito comum durante a gravidez devido a mudanças hormonais. Coma porções menores, evite alimentos picantes e não deite logo após comer."
+        },
+        "insomnia": {
+          "general": "Dificuldades para dormir são comuns. Tente uma rotina de sono consistente, use travesseiros para apoio e limite o tempo de tela antes de dormir."
+        },
+        "moodswings": {
+          "general": "Flutuações hormonais tornam as mudanças de humor normais. Converse com sua rede de apoio e considere técnicas de relaxamento."
+        },
+        "dizziness": {
+          "general": "Pode ser causada por mudanças na pressão arterial. Levante-se devagar, mantenha-se hidratada e coma regularmente. Se frequente, informe seu médico."
+        },
+        "default": "Este é um sintoma de gravidez conhecido. Monitore a intensidade e frequência e discuta com seu médico.",
+        "defaultFallback": "Sintoma registrado. Discuta a persistência com seu médico."
       }
     },
     "vitaminTracker": {
