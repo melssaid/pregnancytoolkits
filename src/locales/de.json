@@ -392,6 +392,17 @@
       "disclaimerTitle": "Medizinischer Haftungsausschluss",
       "disclaimerText": "Diese App dient nur zu Bildungs- und Informationszwecken und bietet keine medizinische Beratung, Diagnose oder Behandlung. Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Gesundheitsdienstleister."
     },
+    "privacyPolicy": {
+      "title": "Datenschutzrichtlinie",
+      "subtitle": "Ihre Privatsphäre ist uns wichtig. Diese Mitteilung erklärt, wie wir mit Ihren Informationen umgehen.",
+      "lastUpdated": "Zuletzt aktualisiert: 26. Januar 2026",
+      "footerNote": "Durch die weitere Nutzung von Pregnancy Toolkits bestätigen Sie, dass Sie diese Datenschutzrichtlinie gelesen und verstanden haben. Für den vollständigen Rechtstext kontaktieren Sie uns bitte.",
+      "privacyFirst": {
+        "title": "Datenschutz an erster Stelle",
+        "badge": "Wichtig",
+        "content": "Wir bieten alle Dienste ohne Erhebung persönlicher Daten an. Unsere Anwendung ist darauf spezialisiert, Tools zur Unterstützung schwangerer Frauen bereitzustellen, mit strikter Einhaltung, keine Benutzerdaten für kommerzielle Zwecke zu sammeln. Alle Gesundheitsdaten werden lokal auf Ihrem Gerät gespeichert."
+      }
+    },
     "contactPage": {
       "title": "Kontakt",
       "subtitle": "Haben Sie Fragen oder Feedback? Wir freuen uns von Ihnen zu hören.",

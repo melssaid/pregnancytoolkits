@@ -392,6 +392,17 @@
       "disclaimerTitle": "Aviso Médico",
       "disclaimerText": "Esta aplicación es solo para fines educativos e informativos y no proporciona consejo médico, diagnóstico o tratamiento. Siempre consulte a un proveedor de atención médica calificado para cualquier preocupación de salud."
     },
+    "privacyPolicy": {
+      "title": "Política de Privacidad",
+      "subtitle": "Tu privacidad es importante para nosotros. Este aviso explica cómo manejamos tu información.",
+      "lastUpdated": "Última actualización: 26 de enero de 2026",
+      "footerNote": "Al continuar usando Pregnancy Toolkits, reconoces que has leído y comprendido esta Política de Privacidad. Para el texto legal completo, por favor contáctanos.",
+      "privacyFirst": {
+        "title": "Enfoque de Privacidad Primero",
+        "badge": "Importante",
+        "content": "Ofrecemos todos nuestros servicios sin recopilar datos personales. Nuestra aplicación está especializada en proporcionar herramientas de apoyo a mujeres embarazadas, con un estricto compromiso de no recopilar datos de usuario con fines comerciales. Todos los datos de salud se almacenan localmente en tu dispositivo."
+      }
+    },
     "contactPage": {
       "title": "Contáctanos",
       "subtitle": "¿Tienes preguntas o comentarios? Nos encantaría saber de ti.",
