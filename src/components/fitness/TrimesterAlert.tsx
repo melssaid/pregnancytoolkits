@@ -42,7 +42,7 @@ export const TrimesterAlert: React.FC<TrimesterAlertProps> = ({ week }) => {
     <Card className={`${config.borderClass} border`}>
       <CardContent className="p-3 flex gap-3">
         <Icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${config.iconClass}`} />
-        <div>
+        <div className="min-w-0 flex-1">
           <h4 className="font-semibold text-xs text-foreground mb-0.5">
             {t(`toolsInternal.fitnessCoach.trimesterAlerts.t${trimester}.title`)}
           </h4>
