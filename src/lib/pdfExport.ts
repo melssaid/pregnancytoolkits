@@ -708,51 +708,55 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   const l = labels[language] || labels.en;
   const prefCount = preferences ? Object.keys(preferences).length : 0;
   
-  // Create a temporary styled container with EVERYTHING rendered in HTML
+  // Get the actual HTML content from the rendered element or convert markdown
+  const mainContent = contentElement ? contentElement.innerHTML : markdownToHTML(content);
+  
+  // Create a temporary styled container - use absolute positioning with visibility
   const container = document.createElement('div');
   container.style.cssText = `
-    position: fixed; top: -9999px; left: -9999px;
-    width: 794px; /* A4 at 96dpi */
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    width: 794px;
     background: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Arabic', 'Arial', sans-serif;
+    font-family: ${isRTL ? "'Tajawal', 'Noto Sans Arabic', " : ''}-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Arial', sans-serif;
     color: #1e293b;
     direction: ${isRTL ? 'rtl' : 'ltr'};
     padding: 0;
     line-height: 1.6;
+    z-index: -1;
   `;
   
-  // Build the full HTML content
+  // Build the full HTML content - NO gradients, NO complex CSS patterns
   container.innerHTML = `
-    <!-- Header -->
     <div style="background: #fcfcfd; border-bottom: 2px solid #ec4899; padding: 24px 40px 20px; text-align: center;">
       <div style="font-size: 28px; font-weight: 700; color: #1e293b; margin-bottom: 6px;">${l.title}</div>
       <div style="font-size: 13px; color: #94a3b8; margin-bottom: 4px;">${date}</div>
       <div style="font-size: 11px; color: #ec4899; font-weight: 500;">${l.brand}</div>
     </div>
     
-    <!-- Preferences Summary -->
     ${prefCount > 0 ? `
-    <div style="margin: 20px 40px 0; padding: 12px 16px; background: rgba(236,72,153,0.06); border-radius: 8px; border-${isRTL ? 'right' : 'left'}: 4px solid #ec4899;">
+    <div style="margin: 20px 40px 0; padding: 12px 16px; background: #fdf2f8; border-radius: 8px; border-${isRTL ? 'right' : 'left'}: 4px solid #ec4899;">
       <div style="font-size: 14px; font-weight: 600; color: #ec4899;">${l.prefSummary}</div>
       <div style="font-size: 12px; color: #94a3b8; margin-top: 2px;">${prefCount} ${l.prefCount}</div>
     </div>
     ` : ''}
     
-    <!-- Separator -->
-    <div style="margin: 16px 40px; height: 1px; background: linear-gradient(to right, #ec4899, transparent);"></div>
+    <div style="margin: 16px 40px; height: 1px; background: #ec4899;"></div>
     
-    <!-- Main Content (from the rendered element or markdown) -->
     <div style="padding: 0 40px 20px; font-size: 13px; line-height: 1.8; color: #1e293b;">
-      ${contentElement ? contentElement.innerHTML : markdownToHTML(content)}
+      ${mainContent}
     </div>
     
-    <!-- Footer -->
-    <div style="margin: 10px 40px 0; padding-top: 10px; border-top: 1px solid #ec4899; text-align: center;">
+    <div style="margin: 10px 40px 20px; padding-top: 10px; border-top: 1px solid #ec4899; text-align: center;">
       <div style="font-size: 9px; color: #94a3b8; line-height: 1.5;">${l.footer}</div>
     </div>
   `;
   
   document.body.appendChild(container);
+  
+  // Wait for fonts and rendering to settle
+  await new Promise(resolve => setTimeout(resolve, 300));
   
   try {
     // Render the entire container to canvas
@@ -763,13 +767,16 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       backgroundColor: '#ffffff',
       width: 794,
       windowWidth: 794,
+      removeContainer: false,
     });
+    
+    if (canvas.width === 0 || canvas.height === 0) {
+      throw new Error('Canvas rendered with 0 dimensions');
+    }
     
     // PDF dimensions in mm
     const A4_WIDTH_MM = 210;
     const A4_HEIGHT_MM = 297;
-    const MARGIN_MM = 0; // Content already has padding
-    const CONTENT_WIDTH_MM = A4_WIDTH_MM;
     
     // Calculate how many pixels of the canvas fit on one page
     const pixelsPerMM = canvas.width / A4_WIDTH_MM;
@@ -799,17 +806,17 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
         ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
         ctx.drawImage(
           canvas,
-          0, srcYPx,           // Source x, y
-          canvas.width, sliceHeightPx,  // Source width, height
-          0, 0,                // Dest x, y
-          pageCanvas.width, sliceHeightPx // Dest width, height
+          0, srcYPx,
+          canvas.width, sliceHeightPx,
+          0, 0,
+          pageCanvas.width, sliceHeightPx
         );
       }
       
       const pageImgData = pageCanvas.toDataURL('image/png');
       const sliceHeightMM = sliceHeightPx / pixelsPerMM;
       
-      doc.addImage(pageImgData, 'PNG', 0, 0, CONTENT_WIDTH_MM, sliceHeightMM);
+      doc.addImage(pageImgData, 'PNG', 0, 0, A4_WIDTH_MM, sliceHeightMM);
       
       srcYPx += sliceHeightPx;
       remainingHeight -= sliceHeightPx;
