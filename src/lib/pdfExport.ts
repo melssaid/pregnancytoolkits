@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas-pro';
 
 interface PDFExportOptions {
   title: string;
@@ -697,25 +697,35 @@ function stripEmojis(text: string): string {
 function markdownToHTMLWithLang(markdown: string, fontFamily: string, isRTL: boolean): string {
   const borderSide = isRTL ? 'right' : 'left';
   const paddingSide = isRTL ? 'right' : 'left';
+  // IMPORTANT: Use 'justify' instead of 'right' for Arabic because html2canvas 
+  // only does word-level rendering for text-align: left|justify|auto.
+  // Using 'right' causes character-by-character rendering which breaks Arabic letter joining.
+  const textAlign = isRTL ? 'justify' : 'left';
   // Strip emojis to prevent Arabic text shaping issues
   const cleaned = stripEmojis(markdown);
   
   return cleaned
-    .replace(/^### (.*$)/gm, `<h3 style="font-size:15px;font-weight:600;color:#ec4899;margin:16px 0 8px;padding:6px 12px;background:rgba(236,72,153,0.08);border-radius:6px;border-${borderSide}:3px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${isRTL ? 'right' : 'left'};">$1</h3>`)
-    .replace(/^## (.*$)/gm, `<h2 style="font-size:17px;font-weight:700;color:#ec4899;margin:20px 0 10px;padding:8px 14px;background:rgba(236,72,153,0.08);border-radius:8px;border-${borderSide}:4px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${isRTL ? 'right' : 'left'};">$1</h2>`)
-    .replace(/^# (.*$)/gm, `<h1 style="font-size:20px;font-weight:700;color:#1e293b;margin:20px 0 12px;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${isRTL ? 'right' : 'left'};">$1</h1>`)
+    .replace(/^### (.*$)/gm, `<h3 style="font-size:15px;font-weight:600;color:#ec4899;margin:16px 0 8px;padding:6px 12px;background:rgba(236,72,153,0.08);border-radius:6px;border-${borderSide}:3px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h3>`)
+    .replace(/^## (.*$)/gm, `<h2 style="font-size:17px;font-weight:700;color:#ec4899;margin:20px 0 10px;padding:8px 14px;background:rgba(236,72,153,0.08);border-radius:8px;border-${borderSide}:4px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h2>`)
+    .replace(/^# (.*$)/gm, `<h1 style="font-size:20px;font-weight:700;color:#1e293b;margin:20px 0 12px;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h1>`)
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/^[-*+] (.*$)/gm, `<div style="padding:3px 0 3px 16px;padding-${paddingSide}:16px;position:relative;font-family:${fontFamily};"><span style="position:absolute;${paddingSide}:0;top:8px;width:6px;height:6px;background:#ec4899;border-radius:50%;display:inline-block;"></span>$1</div>`)
-    .replace(/^\d+\. (.*$)/gm, `<div style="padding:3px 0 3px 8px;font-family:${fontFamily};">$1</div>`)
+    .replace(/^[-*+] (.*$)/gm, `<div style="padding:3px 0 3px 16px;padding-${paddingSide}:16px;position:relative;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};"><span style="position:absolute;${paddingSide}:0;top:8px;width:6px;height:6px;background:#ec4899;border-radius:50%;display:inline-block;"></span>$1</div>`)
+    .replace(/^\d+\. (.*$)/gm, `<div style="padding:3px 0 3px 8px;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</div>`)
     .replace(/\n{2,}/g, '<div style="height:10px;"></div>')
     .replace(/\n/g, '<br/>')
     .trim();
 }
 
-// Strip emojis from HTML content (for contentElement innerHTML)
-function stripEmojisFromHTML(html: string): string {
-  return html.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '');
+// Strip emojis from HTML content and fix text-align for html2canvas compatibility
+function stripEmojisFromHTML(html: string, isRTL: boolean = false): string {
+  let cleaned = html.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '');
+  // CRITICAL: Replace text-align:right with text-align:justify for html2canvas compatibility
+  // html2canvas only does word-level rendering for text-align: left|justify|auto
+  if (isRTL) {
+    cleaned = cleaned.replace(/text-align:\s*right/gi, 'text-align: justify');
+  }
+  return cleaned;
 }
 
 // Birth plan PDF export using pure html2canvas for full multilingual support
@@ -740,7 +750,7 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   
   // Get content - strip emojis for clean rendering, or use language-aware markdown converter
   const mainContent = contentElement 
-    ? stripEmojisFromHTML(contentElement.innerHTML) 
+    ? stripEmojisFromHTML(contentElement.innerHTML, isRTL) 
     : markdownToHTMLWithLang(content, "'Tajawal', 'Plus Jakarta Sans', sans-serif", isRTL);
   
   // Font family matching what the app uses
@@ -750,6 +760,10 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   
   // Create a temporary styled container
   const container = document.createElement('div');
+  // CRITICAL: Use text-align 'justify' not 'right' for Arabic!
+  // html2canvas only does word-level rendering for text-align: left|justify|auto.
+  // Using 'right' causes character-by-character rendering which breaks Arabic letter joining.
+  const containerTextAlign = isRTL ? 'justify' : 'left';
   container.style.cssText = `
     position: absolute;
     left: -9999px;
@@ -759,19 +773,27 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     font-family: ${fontFamily};
     color: #1e293b;
     direction: ${isRTL ? 'rtl' : 'ltr'};
-    text-align: ${isRTL ? 'right' : 'left'};
+    text-align: ${containerTextAlign};
     padding: 0;
     line-height: 1.6;
     z-index: -1;
+    letter-spacing: normal;
+    word-spacing: normal;
   `;
   
   // Build the full HTML content with a <style> tag to force font inheritance on ALL elements
   container.innerHTML = `
     <style>
-      * { font-family: ${fontFamily} !important; text-rendering: optimizeLegibility; }
+      * { 
+        font-family: ${fontFamily} !important; 
+        text-rendering: optimizeLegibility;
+        letter-spacing: normal !important;
+        word-spacing: normal !important;
+      }
       h1, h2, h3, h4, h5, h6, p, div, span, strong, em, li, ul, ol {
         font-family: ${fontFamily} !important;
         direction: ${isRTL ? 'rtl' : 'ltr'};
+        text-align: ${containerTextAlign} !important;
       }
     </style>
     <div style="background: #fcfcfd; border-bottom: 2px solid #ec4899; padding: 24px 40px 20px; text-align: center;">
@@ -781,15 +803,15 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     </div>
     
     ${prefCount > 0 ? `
-    <div style="margin: 20px 40px 0; padding: 12px 16px; background: #fdf2f8; border-radius: 8px; border-${isRTL ? 'right' : 'left'}: 4px solid #ec4899;">
-      <div style="font-size: 14px; font-weight: 600; color: #ec4899; font-family: ${fontFamily};">${l.prefSummary}</div>
-      <div style="font-size: 12px; color: #94a3b8; margin-top: 2px; font-family: ${fontFamily};">${prefCount} ${l.prefCount}</div>
+    <div style="margin: 20px 40px 0; padding: 12px 16px; background: #fdf2f8; border-radius: 8px; border-${isRTL ? 'right' : 'left'}: 4px solid #ec4899; text-align: ${containerTextAlign};">
+      <div style="font-size: 14px; font-weight: 600; color: #ec4899; font-family: ${fontFamily}; text-align: ${containerTextAlign};">${l.prefSummary}</div>
+      <div style="font-size: 12px; color: #94a3b8; margin-top: 2px; font-family: ${fontFamily}; text-align: ${containerTextAlign};">${prefCount} ${l.prefCount}</div>
     </div>
     ` : ''}
     
     <div style="margin: 16px 40px; height: 1px; background: #ec4899;"></div>
     
-    <div style="padding: 0 40px 20px; font-size: 13px; line-height: 1.8; color: #1e293b; font-family: ${fontFamily};">
+    <div style="padding: 0 40px 20px; font-size: 13px; line-height: 1.8; color: #1e293b; font-family: ${fontFamily}; text-align: ${containerTextAlign}; direction: ${isRTL ? 'rtl' : 'ltr'};">
       ${mainContent}
     </div>
     
