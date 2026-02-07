@@ -401,6 +401,85 @@
         "title": "Privacy-First Approach",
         "badge": "Important",
         "content": "We offer all services without the collection of personal data. Our application is specialized in providing tools to support pregnant women, with strict adherence not to collect user data for any commercial purposes. All health data is stored locally on your device."
+      },
+      "keyPoint": "Key Point",
+      "sections": {
+        "collection": {
+          "title": "Information We Collect",
+          "desc": "We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services.",
+          "noSensitive": "We do NOT process sensitive personal information",
+          "noThirdParty": "We do NOT collect information from third parties",
+          "paymentSecure": "Payment data is handled securely by Google Play"
+        },
+        "localStorage": {
+          "title": "Local Data Storage",
+          "desc": "All personal health data, appointments, and tracking information you enter into our tools is stored locally on your device only using browser localStorage/JSON.",
+          "neverLeaves": "Data never leaves your device",
+          "notUploaded": "Not uploaded to our servers",
+          "notShared": "Not shared with any third parties",
+          "canDelete": "Can be deleted at any time"
+        },
+        "processing": {
+          "title": "How We Process Information",
+          "desc": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law.",
+          "legalBasis": "We process your information only when we have a valid legal reason to do so under applicable law."
+        },
+        "sharing": {
+          "title": "Information Sharing",
+          "desc": "We may share information in specific situations and with specific third parties:",
+          "businessTransfers": "Business Transfers: During mergers, sales, or acquisitions",
+          "noSold": "We have NOT sold or shared any personal information to third parties for commercial purposes in the past 12 months."
+        },
+        "aiProducts": {
+          "title": "AI-Powered Products",
+          "desc": "We offer products powered by artificial intelligence through third-party service providers including Perplexity AI.",
+          "tools": ["AI Pregnancy Assistant", "AI Symptom Analyzer", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Coaches", "Labor Progress Tracker"],
+          "dataNote": "When using AI features, only your specific query (anonymized) is processed. Your stored health data remains on your device."
+        },
+        "notifications": {
+          "title": "Notification Sounds",
+          "desc": "Our application uses audio notification sounds generated locally using the Web Audio API.",
+          "noTransmission": "No data transmission required",
+          "noAudioCollected": "No audio data collected or transmitted",
+          "canDisable": "Can be enabled/disabled in settings"
+        },
+        "retention": {
+          "title": "Data Retention",
+          "desc": "We keep your information for as long as necessary to fulfill the purposes outlined in this Privacy Notice unless otherwise required by law. When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information."
+        },
+        "security": {
+          "title": "Information Security",
+          "desc": "We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process.",
+          "note": "However, no electronic transmission over the Internet can be guaranteed to be 100% secure."
+        },
+        "minors": {
+          "title": "Information from Minors",
+          "desc": "We do not knowingly collect data from or market to children under 18 years of age. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent's use of the Services."
+        },
+        "rights": {
+          "title": "Your Privacy Rights",
+          "desc": "Depending on your location, you may have certain rights regarding your personal information:",
+          "access": "Right to access your personal data",
+          "correct": "Right to correct inaccuracies",
+          "delete": "Right to request deletion",
+          "optOut": "Right to opt out of data processing"
+        },
+        "international": {
+          "title": "International Users",
+          "desc": "We comply with applicable data protection laws including GDPR (EU/UK) and regional privacy laws.",
+          "eu": "EU/UK: GDPR compliance with consent-based processing",
+          "us": "US: State-specific privacy rights (California, Virginia, etc.)",
+          "canada": "Canada: Express and implied consent framework"
+        },
+        "updates": {
+          "title": "Policy Updates",
+          "desc": "We may update this Privacy Notice from time to time. The updated version will be indicated by an updated \"Last updated\" date. We encourage you to review this Privacy Notice frequently to be informed of how we are protecting your information."
+        },
+        "contact": {
+          "title": "Contact Us",
+          "desc": "If you have questions or comments about this notice:",
+          "contactPage": "Contact Page"
+        }
       }
     },
     "contactPage": {

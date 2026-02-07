@@ -396,11 +396,90 @@
       "title": "Política de Privacidade",
       "subtitle": "Sua privacidade é importante para nós. Este aviso explica como lidamos com suas informações.",
       "lastUpdated": "Última atualização: 26 de janeiro de 2026",
-      "footerNote": "Ao continuar usando o Pregnancy Toolkits, você reconhece que leu e compreendeu esta Política de Privacidade. Para o texto legal completo, entre em contato conosco.",
+      "footerNote": "Ao continuar usando o Pregnancy Toolkits, você reconhece que leu e compreendeu esta Política de Privacidade.",
       "privacyFirst": {
         "title": "Abordagem de Privacidade em Primeiro Lugar",
         "badge": "Importante",
-        "content": "Oferecemos todos os nossos serviços sem coletar dados pessoais. Nosso aplicativo é especializado em fornecer ferramentas de apoio a mulheres grávidas, com rigoroso compromisso de não coletar dados de usuários para fins comerciais. Todos os dados de saúde são armazenados localmente no seu dispositivo."
+        "content": "Oferecemos todos os nossos serviços sem coletar dados pessoais. Nosso aplicativo é especializado em fornecer ferramentas de apoio a mulheres grávidas. Todos os dados de saúde são armazenados localmente no seu dispositivo."
+      },
+      "keyPoint": "Ponto-chave",
+      "sections": {
+        "collection": {
+          "title": "Informações que coletamos",
+          "desc": "Coletamos informações pessoais que você nos fornece voluntariamente ao expressar interesse em nossos produtos e serviços.",
+          "noSensitive": "NÃO processamos informações pessoais sensíveis",
+          "noThirdParty": "NÃO coletamos informações de terceiros",
+          "paymentSecure": "Dados de pagamento são tratados com segurança pelo Google Play"
+        },
+        "localStorage": {
+          "title": "Armazenamento local de dados",
+          "desc": "Todos os dados pessoais de saúde, consultas e informações de acompanhamento são armazenados apenas localmente no seu dispositivo.",
+          "neverLeaves": "Os dados nunca saem do seu dispositivo",
+          "notUploaded": "Não são enviados para nossos servidores",
+          "notShared": "Não são compartilhados com terceiros",
+          "canDelete": "Podem ser excluídos a qualquer momento"
+        },
+        "processing": {
+          "title": "Como processamos informações",
+          "desc": "Processamos suas informações para fornecer, melhorar e administrar nossos serviços, nos comunicar com você, para segurança e prevenção de fraudes.",
+          "legalBasis": "Processamos suas informações apenas quando temos uma razão legal válida para fazê-lo."
+        },
+        "sharing": {
+          "title": "Compartilhamento de informações",
+          "desc": "Podemos compartilhar informações em situações específicas com terceiros específicos:",
+          "businessTransfers": "Transferências comerciais: durante fusões, vendas ou aquisições",
+          "noSold": "NÃO vendemos nem compartilhamos informações pessoais com terceiros para fins comerciais nos últimos 12 meses."
+        },
+        "aiProducts": {
+          "title": "Produtos com tecnologia de IA",
+          "desc": "Oferecemos produtos alimentados por inteligência artificial através de provedores de serviços terceirizados, incluindo Perplexity AI.",
+          "tools": ["Assistente de gravidez IA", "Analisador de sintomas IA", "Sugestão de refeições IA", "Lembrete inteligente de consultas", "Treinadores fitness IA", "Rastreador de progresso do parto"],
+          "dataNote": "Ao usar recursos de IA, apenas sua consulta específica (anonimizada) é processada. Seus dados de saúde armazenados permanecem no seu dispositivo."
+        },
+        "notifications": {
+          "title": "Sons de notificação",
+          "desc": "Nosso aplicativo usa sons de notificação gerados localmente usando a API Web Audio.",
+          "noTransmission": "Nenhuma transmissão de dados necessária",
+          "noAudioCollected": "Nenhum dado de áudio coletado ou transmitido",
+          "canDisable": "Pode ser ativado/desativado nas configurações"
+        },
+        "retention": {
+          "title": "Retenção de dados",
+          "desc": "Mantemos suas informações pelo tempo necessário para cumprir os propósitos descritos neste aviso de privacidade. Quando não tivermos mais necessidade comercial legítima, excluiremos ou anonimizaremos essas informações."
+        },
+        "security": {
+          "title": "Segurança da informação",
+          "desc": "Implementamos medidas de segurança técnicas e organizacionais apropriadas para proteger a segurança de qualquer informação pessoal que processamos.",
+          "note": "No entanto, nenhuma transmissão eletrônica pela Internet pode ser garantida como 100% segura."
+        },
+        "minors": {
+          "title": "Informações de menores",
+          "desc": "Não coletamos intencionalmente dados de crianças menores de 18 anos. Ao usar os serviços, você declara ter pelo menos 18 anos."
+        },
+        "rights": {
+          "title": "Seus direitos de privacidade",
+          "desc": "Dependendo da sua localização, você pode ter certos direitos em relação às suas informações pessoais:",
+          "access": "Direito de acessar seus dados pessoais",
+          "correct": "Direito de corrigir imprecisões",
+          "delete": "Direito de solicitar exclusão",
+          "optOut": "Direito de recusar o processamento de dados"
+        },
+        "international": {
+          "title": "Usuários internacionais",
+          "desc": "Cumprimos as leis de proteção de dados aplicáveis, incluindo o GDPR (UE/UK) e leis regionais de privacidade.",
+          "eu": "UE/UK: Conformidade com GDPR com processamento baseado em consentimento",
+          "us": "EUA: Direitos de privacidade específicos por estado (Califórnia, Virgínia, etc.)",
+          "canada": "Canadá: Estrutura de consentimento expresso e implícito"
+        },
+        "updates": {
+          "title": "Atualizações da política",
+          "desc": "Podemos atualizar este aviso de privacidade periodicamente. A versão atualizada será indicada por uma data atualizada."
+        },
+        "contact": {
+          "title": "Fale Conosco",
+          "desc": "Se você tiver perguntas ou comentários sobre este aviso:",
+          "contactPage": "Página de contato"
+        }
       }
     },
     "contactPage": {

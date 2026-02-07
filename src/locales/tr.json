@@ -396,11 +396,90 @@
       "title": "Gizlilik Politikası",
       "subtitle": "Gizliliğiniz bizim için önemlidir. Bu bildirim, bilgilerinizi nasıl işlediğimizi açıklar.",
       "lastUpdated": "Son güncelleme: 26 Ocak 2026",
-      "footerNote": "Pregnancy Toolkits'i kullanmaya devam ederek, bu Gizlilik Politikasını okuduğunuzu ve anladığınızı kabul edersiniz. Tam yasal metin için lütfen bizimle iletişime geçin.",
+      "footerNote": "Pregnancy Toolkits'i kullanmaya devam ederek, bu Gizlilik Politikasını okuduğunuzu ve anladığınızı kabul edersiniz.",
       "privacyFirst": {
         "title": "Önce Gizlilik Yaklaşımı",
         "badge": "Önemli",
-        "content": "Tüm hizmetlerimizi kişisel veri toplamadan sunuyoruz. Uygulamamız hamile kadınlara destek araçları sağlamaya özelleşmiştir ve kullanıcı verilerini ticari amaçlarla toplamamaya sıkı sıkıya bağlıdır. Tüm sağlık verileri cihazınızda yerel olarak saklanır."
+        "content": "Tüm hizmetlerimizi kişisel veri toplamadan sunuyoruz. Uygulamamız hamile kadınlara destek araçları sağlamaya özelleşmiştir. Tüm sağlık verileri cihazınızda yerel olarak saklanır."
+      },
+      "keyPoint": "Anahtar Nokta",
+      "sections": {
+        "collection": {
+          "title": "Topladığımız Bilgiler",
+          "desc": "Ürünlerimiz ve hizmetlerimiz hakkında bilgi almak istediğinizde gönüllü olarak sağladığınız kişisel bilgileri topluyoruz.",
+          "noSensitive": "Hassas kişisel bilgileri İŞLEMİYORUZ",
+          "noThirdParty": "Üçüncü taraflardan bilgi TOPLAMIYORUZ",
+          "paymentSecure": "Ödeme verileri Google Play tarafından güvenli bir şekilde işlenir"
+        },
+        "localStorage": {
+          "title": "Yerel Veri Depolama",
+          "desc": "Araçlarımıza girdiğiniz tüm kişisel sağlık verileri, randevular ve takip bilgileri yalnızca cihazınızda yerel olarak saklanır.",
+          "neverLeaves": "Veriler cihazınızdan asla ayrılmaz",
+          "notUploaded": "Sunucularımıza yüklenmez",
+          "notShared": "Üçüncü taraflarla paylaşılmaz",
+          "canDelete": "İstenildiği zaman silinebilir"
+        },
+        "processing": {
+          "title": "Bilgileri Nasıl İşliyoruz",
+          "desc": "Bilgilerinizi hizmetlerimizi sağlamak, iyileştirmek ve yönetmek, sizinle iletişim kurmak, güvenlik ve dolandırıcılık önleme amacıyla işliyoruz.",
+          "legalBasis": "Bilgilerinizi yalnızca geçerli bir yasal nedenimiz olduğunda işliyoruz."
+        },
+        "sharing": {
+          "title": "Bilgi Paylaşımı",
+          "desc": "Belirli durumlarda ve belirli üçüncü taraflarla bilgi paylaşabiliriz:",
+          "businessTransfers": "İş Transferleri: Birleşme, satış veya devralma sırasında",
+          "noSold": "Son 12 ayda ticari amaçlarla üçüncü taraflara herhangi bir kişisel bilgi SATMADIK veya PAYLAŞMADIK."
+        },
+        "aiProducts": {
+          "title": "Yapay Zeka Destekli Ürünler",
+          "desc": "Perplexity AI dahil üçüncü taraf hizmet sağlayıcılar aracılığıyla yapay zeka destekli ürünler sunuyoruz.",
+          "tools": ["AI Gebelik Asistanı", "AI Semptom Analizörü", "AI Yemek Önerisi", "Akıllı Randevu Hatırlatıcı", "AI Fitness Koçları", "Doğum İlerleme Takibi"],
+          "dataNote": "AI özelliklerini kullanırken yalnızca spesifik sorgunuz (anonim olarak) işlenir. Saklanan sağlık verileriniz cihazınızda kalır."
+        },
+        "notifications": {
+          "title": "Bildirim Sesleri",
+          "desc": "Uygulamamız Web Audio API kullanılarak yerel olarak üretilen bildirim sesleri kullanır.",
+          "noTransmission": "Veri iletimi gerektirmez",
+          "noAudioCollected": "Ses verisi toplanmaz veya iletilmez",
+          "canDisable": "Ayarlardan etkinleştirilebilir/devre dışı bırakılabilir"
+        },
+        "retention": {
+          "title": "Veri Saklama",
+          "desc": "Bilgilerinizi bu Gizlilik Bildiriminde belirtilen amaçları yerine getirmek için gerekli olduğu sürece saklarız. Devam eden meşru bir iş ihtiyacımız kalmadığında, bu bilgileri sileriz veya anonimleştiririz."
+        },
+        "security": {
+          "title": "Bilgi Güvenliği",
+          "desc": "İşlediğimiz herhangi bir kişisel bilginin güvenliğini korumak için uygun teknik ve organizasyonel güvenlik önlemleri uyguladık.",
+          "note": "Ancak, internet üzerinden hiçbir elektronik iletim %100 güvenli olarak garanti edilemez."
+        },
+        "minors": {
+          "title": "Küçüklerden Bilgi",
+          "desc": "18 yaşın altındaki çocuklardan bilerek veri toplamıyoruz. Hizmetleri kullanarak en az 18 yaşında olduğunuzu beyan edersiniz."
+        },
+        "rights": {
+          "title": "Gizlilik Haklarınız",
+          "desc": "Konumunuza bağlı olarak, kişisel bilgilerinizle ilgili belirli haklara sahip olabilirsiniz:",
+          "access": "Kişisel verilerinize erişim hakkı",
+          "correct": "Yanlışlıkları düzeltme hakkı",
+          "delete": "Silme talep etme hakkı",
+          "optOut": "Veri işlemeyi reddetme hakkı"
+        },
+        "international": {
+          "title": "Uluslararası Kullanıcılar",
+          "desc": "GDPR (AB/İngiltere) dahil geçerli veri koruma yasalarına uyuyoruz.",
+          "eu": "AB/İngiltere: Onay tabanlı işleme ile GDPR uyumu",
+          "us": "ABD: Eyalete özel gizlilik hakları (Kaliforniya, Virginia, vb.)",
+          "canada": "Kanada: Açık ve zımni onay çerçevesi"
+        },
+        "updates": {
+          "title": "Politika Güncellemeleri",
+          "desc": "Bu Gizlilik Bildirimini zaman zaman güncelleyebiliriz. Güncellenmiş sürüm, güncellenmiş bir tarihle belirtilecektir."
+        },
+        "contact": {
+          "title": "İletişim",
+          "desc": "Bu bildirim hakkında sorularınız veya yorumlarınız varsa:",
+          "contactPage": "İletişim Sayfası"
+        }
       }
     },
     "contactPage": {
