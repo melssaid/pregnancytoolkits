@@ -734,6 +734,9 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   
   const isRTL = language === 'ar';
   
+  // Load logo as base64 for embedding in HTML
+  const logoData = await loadLogoImage();
+  
   // Labels translations
   const labels: Record<string, Record<string, string>> = {
     en: { title: 'Birth Plan', prefSummary: 'Preferences Summary', prefCount: 'preferences selected', footer: 'This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', brand: 'Pregnancy Toolkits' },
@@ -797,6 +800,7 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       }
     </style>
     <div style="background: #fcfcfd; border-bottom: 2px solid #ec4899; padding: 24px 40px 20px; text-align: center;">
+      ${logoData ? `<img src="${logoData}" style="width: 40px; height: 40px; margin: 0 auto 8px; display: block; border-radius: 8px;" />` : ''}
       <div style="font-size: 28px; font-weight: 700; color: #1e293b; margin-bottom: 6px; font-family: ${fontFamily};">${l.title}</div>
       <div style="font-size: 13px; color: #94a3b8; margin-bottom: 4px; font-family: ${fontFamily};">${date}</div>
       <div style="font-size: 11px; color: #ec4899; font-weight: 500; font-family: ${fontFamily};">${l.brand}</div>
