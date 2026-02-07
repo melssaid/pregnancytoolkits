@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
-import { ArrowLeft, Dumbbell, Play, Pause, RotateCcw, CheckCircle, Info } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Dumbbell, Play, Pause, RotateCcw, CheckCircle, Info } from 'lucide-react';
+import { BackButton } from '@/components/BackButton';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
 
@@ -33,7 +33,6 @@ const exerciseDatabase: Exercise[] = [
 
 const AIFitnessCoach: React.FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [currentWeek, setCurrentWeek] = useState(12);
   const [fitnessLevel, setFitnessLevel] = useState<'beginner' | 'intermediate'>('beginner');
@@ -96,9 +95,7 @@ const AIFitnessCoach: React.FC = () => {
       {/* Header */}
       <div className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
-          <button onClick={() => navigate('/')} className="p-2 hover:bg-gray-100 rounded-full">
-            <ArrowLeft className="w-6 h-6 text-gray-600" />
-          </button>
+          <BackButton />
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
               <Dumbbell className="w-5 h-5 text-purple-600" />
