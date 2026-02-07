@@ -116,40 +116,36 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
         <div className="max-w-4xl mx-auto space-y-6">
           
           {/* Professional Stats Bar */}
-          <div className="grid grid-cols-3 gap-3">
-            <Card className="border-border bg-card shadow-sm">
-              <CardContent className="pt-4 pb-4 px-4 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Apple className="w-5 h-5 text-primary" />
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-border bg-card shadow-sm">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Apple className="w-4 h-4 text-primary" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground">{t('toolsInternal.cravingAlternatives.title')}</p>
+                <p className="text-sm font-semibold text-foreground truncate">{t('toolsInternal.cravingAlternatives.subtitle')}</p>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <div className="flex-1 flex items-center gap-2.5 px-3 py-2.5 rounded-xl border border-border bg-card shadow-sm">
+                <div className="p-1.5 rounded-md bg-secondary">
+                  <ShieldCheck className="w-3.5 h-3.5 text-primary" />
                 </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">{t('toolsInternal.cravingAlternatives.title')}</p>
-                  <p className="text-sm font-semibold text-foreground">{t('toolsInternal.cravingAlternatives.subtitle')}</p>
+                <div className="min-w-0">
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cravingAlternatives.pregnancySafe')}</p>
+                  <p className="text-xs font-semibold text-foreground truncate">{t('toolsInternal.cravingAlternatives.verifiedSafe')}</p>
                 </div>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card shadow-sm">
-              <CardContent className="pt-4 pb-4 px-4 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-secondary">
-                  <ShieldCheck className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1 flex items-center gap-2.5 px-3 py-2.5 rounded-xl border border-border bg-card shadow-sm">
+                <div className="p-1.5 rounded-md bg-accent">
+                  <TrendingUp className="w-3.5 h-3.5 text-accent-foreground" />
                 </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">{t('toolsInternal.cravingAlternatives.pregnancySafe')}</p>
-                  <p className="text-sm font-semibold text-foreground">{t('toolsInternal.cravingAlternatives.verifiedSafe')}</p>
+                <div className="min-w-0">
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cravingAlternatives.nutrientDense')}</p>
+                  <p className="text-xs font-semibold text-foreground truncate">{t('toolsInternal.cravingAlternatives.optimalNutrition')}</p>
                 </div>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card shadow-sm">
-              <CardContent className="pt-4 pb-4 px-4 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-accent">
-                  <TrendingUp className="w-5 h-5 text-accent-foreground" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">{t('toolsInternal.cravingAlternatives.nutrientDense')}</p>
-                  <p className="text-sm font-semibold text-foreground">{t('toolsInternal.cravingAlternatives.optimalNutrition')}</p>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
 
           {/* Week Selector - Using new slider component */}
