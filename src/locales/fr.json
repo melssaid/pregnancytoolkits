@@ -1344,7 +1344,13 @@
       "child": "Enfant (2+ ans)",
       "hours": "heures",
       "noDataYet": "Enregistrez au moins 2-3 séances de sommeil pour obtenir des conseils IA personnalisés.",
-      "disclaimer": "Ce sont des directives générales. Chaque bébé est unique. Consultez votre pédiatre pour des conseils personnalisés."
+      "disclaimer": "Ce sont des directives générales. Chaque bébé est unique. Consultez votre pédiatre pour des conseils personnalisés.",
+      "sleepQuality": "Qualité du sommeil",
+      "qualityExcellent": "Excellent",
+      "qualityGood": "Bon",
+      "qualityFair": "Passable",
+      "qualityNeedsAttention": "Nécessite attention",
+      "startedAt": "Commencé à"
     },
     "bloodType": {
       "title": "Calculateur de groupe sanguin",

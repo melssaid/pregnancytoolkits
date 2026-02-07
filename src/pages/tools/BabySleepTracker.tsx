@@ -3,12 +3,14 @@ import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Clock, Trash2, TrendingUp, Baby, BarChart3, Sparkles, Loader2 } from "lucide-react";
+import { Moon, Sun, Clock, Trash2, TrendingUp, BarChart3, Sparkles, Loader2, AlertTriangle, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, differenceInMinutes, startOfDay, subDays, eachDayOfInterval } from "date-fns";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { Progress } from "@/components/ui/progress";
 
 interface SleepSession {
   id: string;
@@ -28,6 +30,7 @@ const BabySleepTracker = () => {
     setAiAdvice('');
     setShowAiAdvice(false);
   });
+
   const [sessions, setSessions] = useState<SleepSession[]>([]);
   const [activeSleep, setActiveSleep] = useState<SleepSession | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -37,24 +40,25 @@ const BabySleepTracker = () => {
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
-      const parsed = JSON.parse(saved);
-      setSessions(parsed.filter((s: SleepSession) => s.endTime));
-      const active = parsed.find((s: SleepSession) => !s.endTime);
-      if (active) setActiveSleep(active);
+      try {
+        const parsed = JSON.parse(saved);
+        setSessions(parsed.filter((s: SleepSession) => s.endTime));
+        const active = parsed.find((s: SleepSession) => !s.endTime);
+        if (active) setActiveSleep(active);
+      } catch (e) {
+        console.error('Failed to load sleep data');
+      }
     }
   }, []);
 
-  // Timer for active session
   useEffect(() => {
     if (!activeSleep) {
       setElapsedTime(0);
       return;
     }
-    
     const interval = setInterval(() => {
       setElapsedTime(differenceInMinutes(new Date(), new Date(activeSleep.startTime)));
     }, 1000);
-    
     return () => clearInterval(interval);
   }, [activeSleep]);
 
@@ -82,7 +86,7 @@ const BabySleepTracker = () => {
     setSessions(updated);
     setActiveSleep(null);
     saveToStorage(updated, null);
-    trackAction("sleep_ended", { 
+    trackAction("sleep_ended", {
       type: activeSleep.type,
       duration: differenceInMinutes(new Date(), new Date(activeSleep.startTime))
     });
@@ -98,9 +102,7 @@ const BabySleepTracker = () => {
     if (mins < 0) mins = 0;
     const hours = Math.floor(mins / 60);
     const remaining = Math.abs(mins % 60);
-    if (hours > 0) {
-      return `${hours}h ${remaining}m`;
-    }
+    if (hours > 0) return `${hours}h ${remaining}m`;
     return `${mins}m`;
   };
 
@@ -109,11 +111,10 @@ const BabySleepTracker = () => {
     const todaySessions = sessions.filter(
       (s) => new Date(s.startTime) >= new Date(today) && s.endTime
     );
-    
     let totalMinutes = 0;
     let napMinutes = 0;
     let nightMinutes = 0;
-    
+
     todaySessions.forEach((s) => {
       if (s.endTime) {
         const mins = Math.max(0, differenceInMinutes(new Date(s.endTime), new Date(s.startTime)));
@@ -123,60 +124,89 @@ const BabySleepTracker = () => {
       }
     });
 
-    return {
-      count: todaySessions.length,
-      totalMinutes,
-      napMinutes,
-      nightMinutes,
-    };
+    return { count: todaySessions.length, totalMinutes, napMinutes, nightMinutes };
   };
 
-  // Fixed 7-day average calculation - includes all 7 days even with no data
   const getLast7DaysAverage = () => {
     const days = eachDayOfInterval({
       start: subDays(new Date(), 6),
       end: new Date()
     });
-    
     let totalMinutes = 0;
-    
     days.forEach(day => {
       const dayStart = startOfDay(day);
       const nextDay = new Date(dayStart);
       nextDay.setDate(nextDay.getDate() + 1);
-      
       const daySessions = sessions.filter(s => {
         const sessionDate = new Date(s.startTime);
         return sessionDate >= dayStart && sessionDate < nextDay && s.endTime;
       });
-      
       daySessions.forEach(s => {
         if (s.endTime) {
-          const mins = Math.max(0, differenceInMinutes(new Date(s.endTime), new Date(s.startTime)));
-          totalMinutes += mins;
+          totalMinutes += Math.max(0, differenceInMinutes(new Date(s.endTime), new Date(s.startTime)));
         }
       });
     });
-    
-    // Always divide by 7 for true weekly average
     return Math.round(totalMinutes / 7);
   };
 
-  // Get baby's age category based on sleep patterns for AI
   const getBabyAgeEstimate = () => {
     const avgDailyMinutes = getLast7DaysAverage();
     const avgHours = avgDailyMinutes / 60;
-    
     if (avgHours >= 14) return "newborn (0-3 months)";
     if (avgHours >= 12) return "infant (4-12 months)";
     if (avgHours >= 11) return "toddler (1-2 years)";
     return "child (2+ years)";
   };
 
-  // AI-powered personalized advice
+  // Sleep quality score (0-100) based on consistency and total
+  const getSleepQuality = () => {
+    if (sessions.length < 3) return null;
+    const weeklyAvg = getLast7DaysAverage();
+    const avgHours = weeklyAvg / 60;
+    
+    // Score based on recommended range (12-17 hours for babies)
+    let score = 0;
+    if (avgHours >= 12 && avgHours <= 17) score = 90;
+    else if (avgHours >= 10 && avgHours <= 19) score = 70;
+    else if (avgHours >= 8) score = 50;
+    else score = 30;
+    
+    // Adjust for consistency (check if sessions exist on recent days)
+    const days = eachDayOfInterval({ start: subDays(new Date(), 6), end: new Date() });
+    let daysWithData = 0;
+    days.forEach(day => {
+      const dayStart = startOfDay(day);
+      const nextDay = new Date(dayStart);
+      nextDay.setDate(nextDay.getDate() + 1);
+      const hasData = sessions.some(s => {
+        const d = new Date(s.startTime);
+        return d >= dayStart && d < nextDay && s.endTime;
+      });
+      if (hasData) daysWithData++;
+    });
+    
+    const consistencyBonus = Math.round((daysWithData / 7) * 10);
+    return Math.min(100, score + consistencyBonus);
+  };
+
+  const getQualityLabel = (score: number) => {
+    if (score >= 80) return t('toolsInternal.babySleep.qualityExcellent', 'Excellent');
+    if (score >= 60) return t('toolsInternal.babySleep.qualityGood', 'Good');
+    if (score >= 40) return t('toolsInternal.babySleep.qualityFair', 'Fair');
+    return t('toolsInternal.babySleep.qualityNeedsAttention', 'Needs Attention');
+  };
+
+  const getQualityColor = (score: number) => {
+    if (score >= 80) return 'text-emerald-600';
+    if (score >= 60) return 'text-primary';
+    if (score >= 40) return 'text-amber-600';
+    return 'text-destructive';
+  };
+
   const getAIAdvice = async () => {
     if (sessions.length < 2) {
-      setAiAdvice(`💡 ${t('toolsInternal.babySleep.noDataYet')}`);
+      setAiAdvice(t('toolsInternal.babySleep.noDataYet'));
       setShowAiAdvice(true);
       return;
     }
@@ -184,13 +214,10 @@ const BabySleepTracker = () => {
     const stats = getTodayStats();
     const weeklyAvg = getLast7DaysAverage();
     const ageEstimate = getBabyAgeEstimate();
-    
-    // Analyze patterns
     const recentSessions = sessions.slice(0, 10);
     const napCount = recentSessions.filter(s => s.type === "nap").length;
     const nightCount = recentSessions.filter(s => s.type === "night").length;
-    
-    const avgNapDuration = napCount > 0 
+    const avgNapDuration = napCount > 0
       ? recentSessions.filter(s => s.type === "nap" && s.endTime)
           .reduce((sum, s) => sum + differenceInMinutes(new Date(s.endTime!), new Date(s.startTime)), 0) / napCount
       : 0;
@@ -207,7 +234,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
 
     setAiAdvice("");
     setShowAiAdvice(true);
-    
+
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
@@ -218,46 +245,46 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
 
   const stats = getTodayStats();
   const weeklyAvg = getLast7DaysAverage();
+  const sleepQuality = getSleepQuality();
 
   return (
     <ToolFrame
       title={t('toolsInternal.babySleep.title')}
       subtitle={t('toolsInternal.babySleep.subtitle')}
-      customIcon="mother-baby"
       mood="nurturing"
       toolId="baby-sleep-tracker"
     >
-      <div className="space-y-6">
-        {/* Active Session */}
+      <div className="space-y-4">
+        {/* Active Session or Start Buttons */}
         <AnimatePresence mode="wait">
           {activeSleep ? (
             <motion.div
               key="active"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -16 }}
             >
-              <Card className="border-2 border-primary bg-gradient-to-br from-primary/10 to-primary/5">
-                <CardContent className="pt-6 text-center">
+              <Card className="border-primary/40 bg-primary/5">
+                <CardContent className="pt-5 pb-4 text-center">
                   <motion.div
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="mb-4"
+                    animate={{ opacity: [0.6, 1, 0.6] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="mb-3"
                   >
                     {activeSleep.type === "night" ? (
-                      <Moon className="h-16 w-16 mx-auto text-primary" />
+                      <Moon className="h-10 w-10 mx-auto text-primary" />
                     ) : (
-                      <Sun className="h-16 w-16 mx-auto text-amber-500" />
+                      <Sun className="h-10 w-10 mx-auto text-amber-500" />
                     )}
                   </motion.div>
-                  <h3 className="text-xl font-semibold mb-2">
+                  <p className="text-xs font-medium text-muted-foreground mb-1">
                     {activeSleep.type === "night" ? t('toolsInternal.babySleep.nightSleep') : t('toolsInternal.babySleep.napTime')} {t('toolsInternal.babySleep.inProgress')}
-                  </h3>
-                  <div className="text-4xl font-bold text-primary mb-2">
+                  </p>
+                  <div className="text-3xl font-bold text-primary mb-1">
                     {formatDuration(elapsedTime)}
                   </div>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Started at {format(new Date(activeSleep.startTime), "h:mm a")}
+                  <p className="text-[11px] text-muted-foreground mb-4">
+                    {t('toolsInternal.babySleep.startedAt', 'Started at')} {format(new Date(activeSleep.startTime), "HH:mm")}
                   </p>
                   <Button onClick={endSleep} size="lg" className="w-full">
                     {t('toolsInternal.babySleep.endSleep')}
@@ -268,37 +295,37 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
           ) : (
             <motion.div
               key="start"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -16 }}
             >
               <Card>
-                <CardHeader>
-                  <CardTitle className="text-center flex items-center justify-center gap-2">
-                    <Clock className="h-5 w-5" />
+                <CardHeader className="pb-2 pt-4">
+                  <CardTitle className="text-sm flex items-center justify-center gap-1.5">
+                    <Clock className="h-4 w-4 text-muted-foreground" />
                     {t('toolsInternal.babySleep.startSleepTracking')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pb-4">
                   <div className="grid grid-cols-2 gap-2">
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <motion.div whileTap={{ scale: 0.97 }}>
                       <Button
                         onClick={() => startSleep("nap")}
                         variant="outline"
-                        className="h-20 sm:h-24 w-full flex-col gap-2 border-2 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20 overflow-hidden"
+                        className="h-16 w-full flex-col gap-1.5 border hover:border-amber-400 hover:bg-amber-50/50 dark:hover:bg-amber-900/20"
                       >
-                        <Sun className="h-7 w-7 sm:h-8 sm:w-8 text-amber-500 shrink-0" />
-                        <span className="font-semibold text-xs sm:text-sm truncate">{t('toolsInternal.babySleep.startNap')}</span>
+                        <Sun className="h-5 w-5 text-amber-500 shrink-0" />
+                        <span className="font-medium text-xs">{t('toolsInternal.babySleep.startNap')}</span>
                       </Button>
                     </motion.div>
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <motion.div whileTap={{ scale: 0.97 }}>
                       <Button
                         onClick={() => startSleep("night")}
                         variant="outline"
-                        className="h-20 sm:h-24 w-full flex-col gap-2 border-2 hover:border-primary hover:bg-primary/10 overflow-hidden"
+                        className="h-16 w-full flex-col gap-1.5 border hover:border-primary/60 hover:bg-primary/5"
                       >
-                        <Moon className="h-7 w-7 sm:h-8 sm:w-8 text-primary shrink-0" />
-                        <span className="font-semibold text-xs sm:text-sm truncate">{t('toolsInternal.babySleep.nightSleep')}</span>
+                        <Moon className="h-5 w-5 text-primary shrink-0" />
+                        <span className="font-medium text-xs">{t('toolsInternal.babySleep.nightSleep')}</span>
                       </Button>
                     </motion.div>
                   </div>
@@ -308,34 +335,52 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
           )}
         </AnimatePresence>
 
-        {/* Today's Stats */}
+        {/* Stats Row */}
         <div className="grid grid-cols-2 gap-2">
           <Card>
-            <CardContent className="py-3 text-center">
-              <TrendingUp className="h-5 w-5 mx-auto text-primary mb-1 shrink-0" />
-              <p className="text-lg sm:text-xl font-bold text-primary truncate">{formatDuration(stats.totalMinutes)}</p>
-              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('toolsInternal.babySleep.totalToday')}</p>
+            <CardContent className="py-3 px-3 text-center">
+              <TrendingUp className="h-4 w-4 mx-auto text-primary mb-1" />
+              <p className="text-base font-bold text-primary">{formatDuration(stats.totalMinutes)}</p>
+              <p className="text-[10px] text-muted-foreground">{t('toolsInternal.babySleep.totalToday')}</p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="py-3 text-center">
-              <BarChart3 className="h-5 w-5 mx-auto text-muted-foreground mb-1 shrink-0" />
-              <p className="text-lg sm:text-xl font-bold truncate">{formatDuration(weeklyAvg)}</p>
-              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('toolsInternal.babySleep.avgSleep')}</p>
+            <CardContent className="py-3 px-3 text-center">
+              <BarChart3 className="h-4 w-4 mx-auto text-muted-foreground mb-1" />
+              <p className="text-base font-bold">{formatDuration(weeklyAvg)}</p>
+              <p className="text-[10px] text-muted-foreground">{t('toolsInternal.babySleep.avgSleep')}</p>
             </CardContent>
           </Card>
         </div>
+
+        {/* Sleep Quality Score */}
+        {sleepQuality !== null && (
+          <Card>
+            <CardContent className="py-3 px-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-medium text-muted-foreground">
+                  {t('toolsInternal.babySleep.sleepQuality', 'Sleep Quality')}
+                </span>
+                <span className={`text-xs font-semibold ${getQualityColor(sleepQuality)}`}>
+                  {getQualityLabel(sleepQuality)} ({sleepQuality}%)
+                </span>
+              </div>
+              <Progress value={sleepQuality} className="h-1.5" />
+            </CardContent>
+          </Card>
+        )}
 
         {/* AI Advice Button */}
         <Button
           onClick={getAIAdvice}
           disabled={aiLoading}
-          className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-xs h-9"
+          variant="outline"
+          className="w-full text-xs h-9 gap-1.5"
         >
           {aiLoading ? (
-            <Loader2 className="h-4 w-4 me-1.5 animate-spin" />
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
           ) : (
-            <Sparkles className="h-4 w-4 me-1.5" />
+            <Sparkles className="h-3.5 w-3.5" />
           )}
           {t('toolsInternal.babySleep.getAISleepAdvice')}
         </Button>
@@ -348,40 +393,42 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <Card className="border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20">
+              <Card className="border-primary/20 bg-primary/5">
                 <CardHeader className="pb-1.5 pt-3">
-                  <CardTitle className="text-sm flex items-center gap-1.5">
-                    <Sparkles className="h-4 w-4 text-violet-500" />
+                  <CardTitle className="text-xs flex items-center gap-1.5">
+                    <Sparkles className="h-3.5 w-3.5 text-primary" />
                     {t('toolsInternal.babySleep.aiSleepAdvisor')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pb-3">
-                  <div className="text-xs whitespace-pre-wrap leading-relaxed">{aiAdvice}</div>
+                  <div className="text-xs leading-relaxed">
+                    <MarkdownRenderer content={aiAdvice} />
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Today Breakdown */}
+        {/* Today's Breakdown */}
         {stats.count > 0 && (
           <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">{t('toolsInternal.babySleep.todaysBreakdown')}</CardTitle>
+            <CardHeader className="pb-2 pt-3">
+              <CardTitle className="text-sm">{t('toolsInternal.babySleep.todaysBreakdown')}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="p-3 rounded-lg bg-secondary">
-                  <p className="text-xl font-bold">{stats.count}</p>
-                  <p className="text-xs text-muted-foreground">{t('toolsInternal.babySleep.sessions')}</p>
+            <CardContent className="pb-3">
+              <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="p-2.5 rounded-lg bg-secondary/60">
+                  <p className="text-base font-bold">{stats.count}</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.babySleep.sessions')}</p>
                 </div>
-                <div className="p-3 rounded-lg bg-amber-100 dark:bg-amber-900/20">
-                  <p className="text-xl font-bold text-amber-600">{formatDuration(stats.napMinutes)}</p>
-                  <p className="text-xs text-muted-foreground">{t('toolsInternal.babySleep.naps')}</p>
+                <div className="p-2.5 rounded-lg bg-amber-50 dark:bg-amber-900/15">
+                  <p className="text-base font-bold text-amber-600">{formatDuration(stats.napMinutes)}</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.babySleep.naps')}</p>
                 </div>
-                <div className="p-3 rounded-lg bg-primary/10">
-                  <p className="text-xl font-bold text-primary">{formatDuration(stats.nightMinutes)}</p>
-                  <p className="text-xs text-muted-foreground">{t('toolsInternal.babySleep.night')}</p>
+                <div className="p-2.5 rounded-lg bg-primary/5">
+                  <p className="text-base font-bold text-primary">{formatDuration(stats.nightMinutes)}</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.babySleep.night')}</p>
                 </div>
               </div>
             </CardContent>
@@ -391,76 +438,94 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
         {/* Recent Sessions */}
         {sessions.length > 0 && (
           <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t('toolsInternal.babySleep.recentSessions')}</CardTitle>
+            <CardHeader className="pb-2 pt-3">
+              <CardTitle className="text-sm">{t('toolsInternal.babySleep.recentSessions')}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2">
-              {sessions.slice(0, 10).map((session) => (
-                <motion.div
-                  key={session.id}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="flex items-center justify-between py-3 px-3 rounded-lg bg-secondary/50"
-                >
-                  <div className="flex items-center gap-3">
-                    {session.type === "night" ? (
-                      <Moon className="h-5 w-5 text-primary" />
-                    ) : (
-                      <Sun className="h-5 w-5 text-amber-500" />
-                    )}
-                    <div>
-                      <p className="font-medium text-sm">
-                        {format(new Date(session.startTime), "MMM d")} • {format(new Date(session.startTime), "h:mm a")}
-                        {session.endTime && ` - ${format(new Date(session.endTime), "h:mm a")}`}
-                      </p>
-                      <p className="text-xs text-muted-foreground capitalize">
-                        {session.type} • {session.endTime && formatDuration(
-                          Math.max(0, differenceInMinutes(new Date(session.endTime), new Date(session.startTime)))
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => deleteSession(session.id)}
-                    className="h-8 w-8"
+            <CardContent className="space-y-1.5 pb-3">
+              {sessions.slice(0, 8).map((session) => {
+                const duration = session.endTime
+                  ? Math.max(0, differenceInMinutes(new Date(session.endTime), new Date(session.startTime)))
+                  : 0;
+                return (
+                  <div
+                    key={session.id}
+                    className="flex items-center justify-between py-2 px-2.5 rounded-lg bg-muted/40 hover:bg-muted/60 transition-colors"
                   >
-                    <Trash2 className="h-4 w-4 text-destructive" />
-                  </Button>
-                </motion.div>
-              ))}
+                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                      {session.type === "night" ? (
+                        <Moon className="h-4 w-4 text-primary shrink-0" />
+                      ) : (
+                        <Sun className="h-4 w-4 text-amber-500 shrink-0" />
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-medium truncate">
+                          {format(new Date(session.startTime), "MMM d")}
+                          <span className="text-muted-foreground mx-1">·</span>
+                          {format(new Date(session.startTime), "HH:mm")}
+                          {session.endTime && (
+                            <>
+                              <ChevronRight className="inline h-3 w-3 text-muted-foreground mx-0.5" />
+                              {format(new Date(session.endTime), "HH:mm")}
+                            </>
+                          )}
+                        </p>
+                        <p className="text-[10px] text-muted-foreground">
+                          {session.type === "night" ? t('toolsInternal.babySleep.nightSleep') : t('toolsInternal.babySleep.napTime')}
+                          <span className="mx-1">·</span>
+                          {formatDuration(duration)}
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => deleteSession(session.id)}
+                      className="h-7 w-7 shrink-0"
+                    >
+                      <Trash2 className="h-3.5 w-3.5 text-destructive/60" />
+                    </Button>
+                  </div>
+                );
+              })}
             </CardContent>
           </Card>
         )}
 
         {/* Sleep Reference Guide */}
-        <Card className="bg-gradient-to-r from-sky-50 to-indigo-50 dark:from-sky-900/20 dark:to-indigo-900/20">
-          <CardContent className="pt-4">
-            <h4 className="font-medium mb-3">💤 {t('toolsInternal.babySleep.recommendedSleep')}</h4>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
+        <Card className="bg-muted/30">
+          <CardContent className="pt-3 pb-3">
+            <h4 className="text-xs font-semibold mb-2 flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+              {t('toolsInternal.babySleep.recommendedSleep')}
+            </h4>
+            <div className="space-y-1 text-xs text-muted-foreground">
+              <div className="flex justify-between p-1.5 bg-background/60 rounded">
                 <span>{t('toolsInternal.babySleep.newborn')}</span>
-                <span className="font-medium">14-17 {t('toolsInternal.babySleep.hours')}</span>
+                <span className="font-medium text-foreground">14-17 {t('toolsInternal.babySleep.hours')}</span>
               </div>
-              <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
+              <div className="flex justify-between p-1.5 bg-background/60 rounded">
                 <span>{t('toolsInternal.babySleep.infant')}</span>
-                <span className="font-medium">12-16 {t('toolsInternal.babySleep.hours')}</span>
+                <span className="font-medium text-foreground">12-16 {t('toolsInternal.babySleep.hours')}</span>
               </div>
-              <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
+              <div className="flex justify-between p-1.5 bg-background/60 rounded">
                 <span>{t('toolsInternal.babySleep.toddler')}</span>
-                <span className="font-medium">11-14 {t('toolsInternal.babySleep.hours')}</span>
+                <span className="font-medium text-foreground">11-14 {t('toolsInternal.babySleep.hours')}</span>
               </div>
-              <div className="flex justify-between p-2 bg-white/50 dark:bg-white/5 rounded">
+              <div className="flex justify-between p-1.5 bg-background/60 rounded">
                 <span>{t('toolsInternal.babySleep.child')}</span>
-                <span className="font-medium">10-13 {t('toolsInternal.babySleep.hours')}</span>
+                <span className="font-medium text-foreground">10-13 {t('toolsInternal.babySleep.hours')}</span>
               </div>
             </div>
-            <p className="text-xs text-muted-foreground mt-3 italic">
-              ⚠️ {t('toolsInternal.babySleep.disclaimer')}
-            </p>
           </CardContent>
         </Card>
+
+        {/* Disclaimer */}
+        <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/20">
+          <AlertTriangle className="h-3.5 w-3.5 text-muted-foreground shrink-0 mt-0.5" />
+          <p className="text-[10px] text-muted-foreground leading-relaxed">
+            {t('toolsInternal.babySleep.disclaimer')}
+          </p>
+        </div>
       </div>
     </ToolFrame>
   );
