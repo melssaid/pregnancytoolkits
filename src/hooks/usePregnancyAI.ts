@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery";
@@ -24,11 +24,9 @@ export function usePregnancyAI() {
   const [error, setError] = useState<string | null>(null);
   const { i18n } = useTranslation();
 
-  // Get current language code
-  const getCurrentLanguage = useCallback(() => {
-    const lang = i18n.language?.split('-')[0] || 'en';
-    return lang;
-  }, [i18n.language]);
+  // Use a ref so streamChat always reads the latest language without needing to be in the dep array
+  const languageRef = useRef(i18n.language);
+  languageRef.current = i18n.language;
 
   const streamChat = useCallback(
     async ({
@@ -47,10 +45,13 @@ export function usePregnancyAI() {
       setIsLoading(true);
       setError(null);
 
+      // Always read the LATEST language from the ref at call time
+      const currentLang = languageRef.current?.split('-')[0] || 'en';
+
       // Add language to context
       const contextWithLanguage = {
         ...context,
-        language: context?.language || getCurrentLanguage(),
+        language: context?.language || currentLang,
       };
 
       try {
