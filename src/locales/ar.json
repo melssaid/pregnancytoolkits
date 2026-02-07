@@ -3005,5 +3005,23 @@
       "afterBirth": "بعد الولادة",
       "firstMonth": "الشهر الأول"
     }
-  }
+  },
+  "toolsInternal.kickCounter.avgMin": "متوسط الدقائق",
+  "toolsInternal.kickCounter.aiDataAnalysis": "تحليل البيانات بالذكاء الاصطناعي",
+  "toolsInternal.kickCounter.avgPerSession": "المتوسط/الجلسة",
+  "toolsInternal.kickCounter.healthScore": "نقاط الصحة",
+  "toolsInternal.kickCounter.status": "الحالة",
+  "toolsInternal.kickCounter.patterns": "الأنماط",
+  "toolsInternal.kickCounter.health": "الصحة",
+  "toolsInternal.kickCounter.analyzingMovements": "جاري تحليل أنماط حركة طفلك...",
+  "toolsInternal.kickCounter.tapForInsights": "اضغط على زر أعلاه للحصول على تحليلات ذكية عن حركات طفلك",
+  "toolsInternal.kickCounter.viewDetailedAnalysis": "عرض التحليل التفصيلي",
+  "toolsInternal.kickCounter.recentSessions": "الجلسات الأخيرة",
+  "toolsInternal.kickCounter.movements": "حركات",
+  "toolsInternal.kickCounter.minWeek": "{{min}} دقيقة • الأسبوع {{week}}",
+  "toolsInternal.kickCounter.whenToCallDoctor": "متى تتصل بطبيبك",
+  "toolsInternal.kickCounter.warningFewer": "أقل من 10 حركات في ساعتين",
+  "toolsInternal.kickCounter.warningDecrease": "انخفاض ملحوظ في نشاط الطفل المعتاد",
+  "toolsInternal.kickCounter.warningNoMovements": "عدم الشعور بحركات لعدة ساعات",
+  "toolsInternal.kickCounter.educationalNote": "الأطفال أكثر نشاطاً بين 9 مساءً و1 صباحاً. عد الركلات في نفس الوقت يومياً لتتبع منتظم."
 }
