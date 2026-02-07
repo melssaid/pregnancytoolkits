@@ -1379,6 +1379,18 @@
         "strength": "Força",
         "cardio": "Cardio",
         "flexibility": "Flexibilidade"
+      },
+      "videoCategories": {
+        "core": "Core",
+        "cardio": "Cardio",
+        "yoga": "Yoga",
+        "relaxation": "Relaxamento"
+      },
+      "videos": {
+        "core": { "title": "Treino Pré-natal Seguro de Core", "description": "Treino abdominal seguro de 10 minutos para o primeiro trimestre" },
+        "cardio": { "title": "Cardio HIIT Seguro na Gravidez", "description": "Treino de 20 minutos de baixo impacto sem repetições" },
+        "yoga": { "title": "Yoga Pré-natal de Relaxamento", "description": "Yoga de relaxamento profundo para a gravidez" },
+        "relaxation": { "title": "Meditação de Relaxamento na Gravidez", "description": "Meditação calmante para futuras mamães" }
       }
     },
     "weeklySummary": {

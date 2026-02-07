@@ -1965,6 +1965,18 @@
         "strength": "Kraft",
         "cardio": "Kardio",
         "flexibility": "Flexibilität"
+      },
+      "videoCategories": {
+        "core": "Rumpf",
+        "cardio": "Kardio",
+        "yoga": "Yoga",
+        "relaxation": "Entspannung"
+      },
+      "videos": {
+        "core": { "title": "Sicheres Rumpftraining in der Schwangerschaft", "description": "10-Minuten sicheres Bauchtraining für das erste Trimester" },
+        "cardio": { "title": "Sicheres HIIT-Kardio in der Schwangerschaft", "description": "20-Minuten gelenkschonendes Training ohne Wiederholungen" },
+        "yoga": { "title": "Schwangerschafts-Yoga zur Entspannung", "description": "Tiefenentspannung Yoga für Schwangere" },
+        "relaxation": { "title": "Schwangerschafts-Entspannungsmeditation", "description": "Beruhigende Meditation für werdende Mütter" }
       }
     },
     "weeklySummary": {

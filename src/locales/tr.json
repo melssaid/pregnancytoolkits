@@ -1379,6 +1379,18 @@
         "strength": "Güç",
         "cardio": "Kardiyo",
         "flexibility": "Esneklik"
+      },
+      "videoCategories": {
+        "core": "Karın",
+        "cardio": "Kardiyo",
+        "yoga": "Yoga",
+        "relaxation": "Rahatlama"
+      },
+      "videos": {
+        "core": { "title": "Güvenli Hamilelik Karın Egzersizi", "description": "İlk trimester için 10 dakikalık güvenli karın egzersizi" },
+        "cardio": { "title": "Hamilelikte Güvenli HIIT Kardiyo", "description": "20 dakikalık tekrarsız düşük etki antrenmanı" },
+        "yoga": { "title": "Doğum Öncesi Rahatlama Yogası", "description": "Hamilelik için derin rahatlama yogası" },
+        "relaxation": { "title": "Hamilelik Rahatlama Meditasyonu", "description": "Beklentili anneler için sakinleştirici meditasyon" }
       }
     },
     "weeklySummary": {

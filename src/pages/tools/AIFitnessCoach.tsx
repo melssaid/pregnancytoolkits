@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import i18n from '@/i18n';
-import { Dumbbell, Play, Pause, RotateCcw, CheckCircle, Info } from 'lucide-react';
-import { BackButton } from '@/components/BackButton';
-import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
+import { Play, Pause, RotateCcw, Info, Loader2 } from 'lucide-react';
+import { ToolFrame } from '@/components/ToolFrame';
+import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
-
-const fitnessVideos: Video[] = [
-  { id: "1", title: "Safe Prenatal Core Workout", description: "10-minute safe abs workout for first trimester", youtubeId: "f7KnXTEpf5M", duration: "10:00", category: "Core" },
-  { id: "2", title: "Pregnancy Safe HIIT Cardio", description: "20 minute no repeat low impact workout", youtubeId: "DeaayKWssak", duration: "20:00", category: "Cardio" },
-  { id: "3", title: "Prenatal Yoga for Relaxation", description: "Deep relaxation yoga for pregnancy", youtubeId: "vEcZD8Js2Ws", duration: "25:00", category: "Yoga" },
-  { id: "4", title: "Pregnancy Relaxation Meditation", description: "Calming meditation for expecting mothers", youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: "Relaxation" },
-];
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { WeekSlider } from '@/components/WeekSlider';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 
 interface Exercise {
   id: string;
@@ -31,9 +28,16 @@ const exerciseDatabase: Exercise[] = [
   { id: 'marching', nameKey: 'seatedMarching', duration: 60, descriptionKey: 'seatedMarchingDesc', category: 'cardio', difficulty: 'beginner' },
 ];
 
+const fitnessVideoIds = [
+  { youtubeId: "f7KnXTEpf5M", duration: "10:00", categoryKey: "core" },
+  { youtubeId: "DeaayKWssak", duration: "20:00", categoryKey: "cardio" },
+  { youtubeId: "vEcZD8Js2Ws", duration: "25:00", categoryKey: "yoga" },
+  { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
+];
+
 const AIFitnessCoach: React.FC = () => {
   const { t } = useTranslation();
-  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentWeek, setCurrentWeek] = useState(12);
   const [fitnessLevel, setFitnessLevel] = useState<'beginner' | 'intermediate'>('beginner');
   const [generatedWorkout, setGeneratedWorkout] = useState<Exercise[]>([]);
@@ -41,21 +45,20 @@ const AIFitnessCoach: React.FC = () => {
   const [timer, setTimer] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
 
-  // Generate workout based on week and level
+  useResetOnLanguageChange(() => {
+    // Reset workout on language change to refresh translated content
+    generateWorkout();
+  });
+
   const generateWorkout = () => {
-    // Filter exercises appropriate for the level
-    // (In a real AI app, this would be more complex)
     let exercises = exerciseDatabase.filter(e => 
       fitnessLevel === 'intermediate' ? true : e.difficulty === 'beginner'
     );
     
-    // Customize by trimester
     if (currentWeek > 28) {
-      // 3rd trimester: focus on flexibility and gentle movement
       exercises = exercises.filter(e => e.category !== 'cardio');
     }
 
-    // Shuffle and pick 3-4 exercises
     const shuffled = [...exercises].sort(() => 0.5 - Math.random());
     setGeneratedWorkout(shuffled.slice(0, 4));
     setActiveExerciseIndex(null);
@@ -67,7 +70,6 @@ const AIFitnessCoach: React.FC = () => {
     generateWorkout();
   }, [currentWeek, fitnessLevel]);
 
-  // Timer logic
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (!isPaused && activeExerciseIndex !== null && timer > 0) {
@@ -86,131 +88,136 @@ const AIFitnessCoach: React.FC = () => {
     setIsPaused(false);
   };
 
-  if (!disclaimerAccepted) {
-    return <MedicalDisclaimer toolName="AI Fitness Coach" onAccept={() => setDisclaimerAccepted(true)} />;
+  // Build translated video list
+  const fitnessVideos: Video[] = fitnessVideoIds.map((v, i) => ({
+    id: String(i + 1),
+    title: t(`toolsInternal.fitnessCoach.videos.${v.categoryKey}.title`),
+    description: t(`toolsInternal.fitnessCoach.videos.${v.categoryKey}.description`),
+    youtubeId: v.youtubeId,
+    duration: v.duration,
+    category: t(`toolsInternal.fitnessCoach.videoCategories.${v.categoryKey}`),
+  }));
+
+  if (showDisclaimer) {
+    return (
+      <MedicalDisclaimer
+        toolName={t('toolsInternal.fitnessCoach.title')}
+        onAccept={() => setShowDisclaimer(false)}
+      />
+    );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
-      {/* Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
-          <BackButton />
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
-              <Dumbbell className="w-5 h-5 text-purple-600" />
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">{t('toolsInternal.fitnessCoach.title')}</h1>
-              <p className="text-xs text-gray-500">{t('toolsInternal.common.week')} {currentWeek}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <ToolFrame
+      title={t('toolsInternal.fitnessCoach.title')}
+      subtitle={t('toolsInternal.fitnessCoach.subtitle')}
+      mood="empowering"
+      toolId="ai-fitness-coach"
+    >
+      <div className="space-y-6">
+        {/* Week Selector */}
+        <WeekSlider
+          week={currentWeek}
+          onChange={(week) => {
+            setCurrentWeek(week);
+          }}
+          label={t('toolsInternal.fitnessCoach.currentWeek')}
+          showTrimester
+        />
 
-      <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
-        {/* Controls */}
-        <div className="bg-white rounded-2xl p-5 shadow-sm space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{t('toolsInternal.fitnessCoach.currentWeek')}: {currentWeek}</label>
-            <input
-              type="range"
-              min="4"
-              max="40"
-              value={currentWeek}
-              onChange={(e) => setCurrentWeek(Number(e.target.value))}
-              className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{t('toolsInternal.fitnessCoach.activityLevel')}</label>
+        {/* Activity Level */}
+        <Card>
+          <CardContent className="p-3">
+            <h2 className="text-sm font-semibold mb-2">{t('toolsInternal.fitnessCoach.activityLevel')}</h2>
             <div className="flex gap-2">
               {(['beginner', 'intermediate'] as const).map(level => (
-                <button
+                <Button
                   key={level}
+                  variant={fitnessLevel === level ? 'default' : 'outline'}
+                  size="sm"
                   onClick={() => setFitnessLevel(level)}
-                  className={`flex-1 py-2 rounded-lg text-sm font-medium capitalize transition-all ${
-                    fitnessLevel === level 
-                      ? 'bg-purple-600 text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-600'
-                  }`}
+                  className="flex-1 capitalize text-xs"
                 >
                   {t(`toolsInternal.fitnessCoach.${level}`)}
-                </button>
+                </Button>
               ))}
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Workout List */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {generatedWorkout.map((exercise, index) => {
             const isActive = activeExerciseIndex === index;
-            const isCompleted = false; // Could add state for this
 
             return (
-              <div 
+              <Card 
                 key={exercise.id}
-                className={`bg-white rounded-2xl overflow-hidden shadow-sm transition-all ${
-                  isActive ? 'ring-2 ring-purple-500 transform scale-102' : ''
-                }`}
+                className={`transition-all ${isActive ? 'ring-2 ring-primary shadow-md' : ''}`}
               >
-                <div className="p-5">
+                <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex items-center gap-3">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                        isActive ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-500'
+                        isActive ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
                       }`}>
                         {index + 1}
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">{t(`toolsInternal.fitnessCoach.exerciseNames.${exercise.nameKey}`)}</h3>
-                        <span className="text-xs text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full capitalize">
+                        <h3 className="font-semibold text-sm text-foreground">
+                          {t(`toolsInternal.fitnessCoach.exerciseNames.${exercise.nameKey}`)}
+                        </h3>
+                        <Badge variant="secondary" className="text-[10px] mt-0.5">
                           {t(`toolsInternal.fitnessCoach.categories.${exercise.category}`)}
-                        </span>
+                        </Badge>
                       </div>
                     </div>
                     {isActive && (
-                      <span className="text-2xl font-mono font-bold text-purple-600">
+                      <span className="text-2xl font-mono font-bold text-primary">
                         00:{timer.toString().padStart(2, '0')}
                       </span>
                     )}
                   </div>
                   
-                  <p className="text-gray-600 text-sm mb-4 ml-11">{t(`toolsInternal.fitnessCoach.exerciseDescs.${exercise.descriptionKey}`)}</p>
+                  <p className="text-muted-foreground text-xs mb-3 ms-11">
+                    {t(`toolsInternal.fitnessCoach.exerciseDescs.${exercise.descriptionKey}`)}
+                  </p>
                   
-                  <div className="ml-11 flex gap-2">
+                  <div className="ms-11 flex gap-2">
                     {isActive ? (
-                      <button
+                      <Button
+                        size="sm"
+                        variant={isPaused ? 'default' : 'outline'}
                         onClick={() => setIsPaused(!isPaused)}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 ${
-                          isPaused ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
-                        }`}
+                        className="gap-1.5 text-xs"
                       >
-                        {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+                        {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
                         {isPaused ? t('toolsInternal.fitnessCoach.resume') : t('toolsInternal.fitnessCoach.pause')}
-                      </button>
+                      </Button>
                     ) : (
-                      <button
+                      <Button
+                        size="sm"
                         onClick={() => startExercise(index)}
-                        className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-purple-700 transition-colors"
+                        className="gap-1.5 text-xs"
                       >
-                        <Play className="w-4 h-4" /> {t('common.start')} ({exercise.duration}s)
-                      </button>
+                        <Play className="w-3.5 h-3.5" /> {t('common.start')} ({exercise.duration}s)
+                      </Button>
                     )}
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             );
           })}
         </div>
 
-        <button 
+        {/* Generate New Button */}
+        <Button
+          variant="outline"
           onClick={generateWorkout}
-          className="w-full py-3 bg-white border border-gray-200 text-gray-600 rounded-xl font-medium hover:bg-gray-50 flex items-center justify-center gap-2"
+          className="w-full gap-2 text-xs"
         >
           <RotateCcw className="w-4 h-4" /> {t('toolsInternal.fitnessCoach.generatePlan')}
-        </button>
+        </Button>
 
         {/* Educational Videos */}
         <VideoLibrary
@@ -220,14 +227,18 @@ const AIFitnessCoach: React.FC = () => {
           accentColor="violet"
         />
 
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3">
-          <Info className="w-5 h-5 text-blue-600 flex-shrink-0" />
-          <p className="text-sm text-blue-800">
-            <strong>{t('toolsInternal.fitnessCoach.safetyFirst')}:</strong> {t('toolsInternal.fitnessCoach.safetyText')}
-          </p>
-        </div>
+        {/* Safety Card */}
+        <Card className="border-primary/20 bg-primary/5">
+          <CardContent className="p-4 flex gap-3">
+            <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-muted-foreground">
+              <strong>{t('toolsInternal.fitnessCoach.safetyFirst')}:</strong>{' '}
+              {t('toolsInternal.fitnessCoach.safetyText')}
+            </p>
+          </CardContent>
+        </Card>
       </div>
-    </div>
+    </ToolFrame>
   );
 };
 
