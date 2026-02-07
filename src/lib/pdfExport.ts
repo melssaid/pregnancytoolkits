@@ -688,7 +688,7 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
   doc.save(fileName);
 }
 
-// Birth plan PDF export using html2canvas for full multilingual support
+// Birth plan PDF export using pure html2canvas for full multilingual support
 export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
   const { title, content, date, preferences, language = 'en', contentElement } = options;
   
@@ -696,295 +696,146 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   
   // Labels translations
   const labels: Record<string, Record<string, string>> = {
-    en: { title: 'Birth Plan', prefSummary: 'Preferences Summary', prefCount: 'preferences selected', continued: 'continued', footer: 'This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', exportedOn: 'Exported on' },
-    ar: { title: 'خطة الولادة', prefSummary: 'ملخص التفضيلات', prefCount: 'تفضيلات محددة', continued: 'تابع', footer: 'خطة الولادة هذه هي دليل لفريقك الطبي. قد تكون المرونة مطلوبة بناءً على الظروف الطبية.', exportedOn: 'تم التصدير بتاريخ' },
-    de: { title: 'Geburtsplan', prefSummary: 'Präferenzen Zusammenfassung', prefCount: 'Präferenzen ausgewählt', continued: 'Fortsetzung', footer: 'Dieser Geburtsplan ist ein Leitfaden für Ihr medizinisches Team. Flexibilität kann aufgrund medizinischer Umstände erforderlich sein.', exportedOn: 'Exportiert am' },
-    tr: { title: 'Doğum Planı', prefSummary: 'Tercihler Özeti', prefCount: 'tercih seçildi', continued: 'devam', footer: 'Bu doğum planı sağlık ekibiniz için bir rehberdir. Tıbbi koşullara göre esneklik gerekebilir.', exportedOn: 'Dışa aktarıldı' },
-    fr: { title: 'Plan de naissance', prefSummary: 'Résumé des préférences', prefCount: 'préférences sélectionnées', continued: 'suite', footer: 'Ce plan de naissance est un guide pour votre équipe soignante. Une flexibilité peut être nécessaire selon les circonstances médicales.', exportedOn: 'Exporté le' },
-    es: { title: 'Plan de parto', prefSummary: 'Resumen de preferencias', prefCount: 'preferencias seleccionadas', continued: 'continuación', footer: 'Este plan de parto es una guía para su equipo médico. Puede ser necesaria flexibilidad según las circunstancias médicas.', exportedOn: 'Exportado el' },
-    pt: { title: 'Plano de parto', prefSummary: 'Resumo das preferências', prefCount: 'preferências selecionadas', continued: 'continuação', footer: 'Este plano de parto é um guia para a sua equipa médica. Pode ser necessária flexibilidade com base nas circunstâncias médicas.', exportedOn: 'Exportado em' },
+    en: { title: 'Birth Plan', prefSummary: 'Preferences Summary', prefCount: 'preferences selected', footer: 'This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', brand: 'Pregnancy Toolkits' },
+    ar: { title: 'خطة الولادة', prefSummary: 'ملخص التفضيلات', prefCount: 'تفضيلات محددة', footer: 'خطة الولادة هذه هي دليل لفريقك الطبي. قد تكون المرونة مطلوبة بناءً على الظروف الطبية.', brand: 'Pregnancy Toolkits' },
+    de: { title: 'Geburtsplan', prefSummary: 'Präferenzen Zusammenfassung', prefCount: 'Präferenzen ausgewählt', footer: 'Dieser Geburtsplan ist ein Leitfaden für Ihr medizinisches Team.', brand: 'Pregnancy Toolkits' },
+    tr: { title: 'Doğum Planı', prefSummary: 'Tercihler Özeti', prefCount: 'tercih seçildi', footer: 'Bu doğum planı sağlık ekibiniz için bir rehberdir.', brand: 'Pregnancy Toolkits' },
+    fr: { title: 'Plan de naissance', prefSummary: 'Résumé des préférences', prefCount: 'préférences sélectionnées', footer: 'Ce plan de naissance est un guide pour votre équipe soignante.', brand: 'Pregnancy Toolkits' },
+    es: { title: 'Plan de parto', prefSummary: 'Resumen de preferencias', prefCount: 'preferencias seleccionadas', footer: 'Este plan de parto es una guía para su equipo médico.', brand: 'Pregnancy Toolkits' },
+    pt: { title: 'Plano de parto', prefSummary: 'Resumo das preferências', prefCount: 'preferências selecionadas', footer: 'Este plano de parto é um guia para a sua equipa médica.', brand: 'Pregnancy Toolkits' },
   };
   
   const l = labels[language] || labels.en;
+  const prefCount = preferences ? Object.keys(preferences).length : 0;
   
-  // If we have a content element, use html2canvas for perfect rendering
-  if (contentElement) {
-    try {
-      const canvas = await html2canvas(contentElement, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff',
-      });
-      
-      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-      const pageWidth = doc.internal.pageSize.getWidth();
-      const pageHeight = doc.internal.pageSize.getHeight();
-      const margin = 15;
-      const contentWidth = pageWidth - (margin * 2);
-      
-      // Load logo
-      const logoData = await loadLogoImage();
-      
-      // --- Page 1: Header ---
-      drawCleanHeader(doc, pageWidth, 45, COLORS.primary);
-      addLogoToHeader(doc, logoData, pageWidth / 2 - 6, 5, 12);
-      
-      // Title
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(18);
-      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-      doc.text(l.title, pageWidth / 2, 24, { align: 'center' });
-      
-      // Date
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-      doc.text(date, pageWidth / 2, 32, { align: 'center' });
-      
-      // Branding
-      doc.setFontSize(7);
-      doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-      doc.text('Pregnancy Toolkits', pageWidth / 2, 39, { align: 'center' });
-      
-      let yPos = 50;
-      
-      // Preferences summary if available
-      if (preferences && Object.keys(preferences).length > 0) {
-        const prefCount = Object.keys(preferences).length;
-        
-        doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b, 0.08);
-        doc.roundedRect(margin, yPos, contentWidth, 16, 3, 3, 'F');
-        doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-        doc.roundedRect(margin, yPos, 3, 16, 1, 1, 'F');
-        
-        doc.setFontSize(10);
-        doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-        doc.setFont('helvetica', 'bold');
-        doc.text(l.prefSummary, margin + 7, yPos + 6);
-        
-        doc.setFontSize(8);
-        doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-        doc.setFont('helvetica', 'normal');
-        doc.text(`${prefCount} ${l.prefCount}`, margin + 7, yPos + 12);
-        
-        yPos += 22;
+  // Create a temporary styled container with EVERYTHING rendered in HTML
+  const container = document.createElement('div');
+  container.style.cssText = `
+    position: fixed; top: -9999px; left: -9999px;
+    width: 794px; /* A4 at 96dpi */
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Arabic', 'Arial', sans-serif;
+    color: #1e293b;
+    direction: ${isRTL ? 'rtl' : 'ltr'};
+    padding: 0;
+    line-height: 1.6;
+  `;
+  
+  // Build the full HTML content
+  container.innerHTML = `
+    <!-- Header -->
+    <div style="background: #fcfcfd; border-bottom: 2px solid #ec4899; padding: 24px 40px 20px; text-align: center;">
+      <div style="font-size: 28px; font-weight: 700; color: #1e293b; margin-bottom: 6px;">${l.title}</div>
+      <div style="font-size: 13px; color: #94a3b8; margin-bottom: 4px;">${date}</div>
+      <div style="font-size: 11px; color: #ec4899; font-weight: 500;">${l.brand}</div>
+    </div>
+    
+    <!-- Preferences Summary -->
+    ${prefCount > 0 ? `
+    <div style="margin: 20px 40px 0; padding: 12px 16px; background: rgba(236,72,153,0.06); border-radius: 8px; border-${isRTL ? 'right' : 'left'}: 4px solid #ec4899;">
+      <div style="font-size: 14px; font-weight: 600; color: #ec4899;">${l.prefSummary}</div>
+      <div style="font-size: 12px; color: #94a3b8; margin-top: 2px;">${prefCount} ${l.prefCount}</div>
+    </div>
+    ` : ''}
+    
+    <!-- Separator -->
+    <div style="margin: 16px 40px; height: 1px; background: linear-gradient(to right, #ec4899, transparent);"></div>
+    
+    <!-- Main Content (from the rendered element or markdown) -->
+    <div style="padding: 0 40px 20px; font-size: 13px; line-height: 1.8; color: #1e293b;">
+      ${contentElement ? contentElement.innerHTML : markdownToHTML(content)}
+    </div>
+    
+    <!-- Footer -->
+    <div style="margin: 10px 40px 0; padding-top: 10px; border-top: 1px solid #ec4899; text-align: center;">
+      <div style="font-size: 9px; color: #94a3b8; line-height: 1.5;">${l.footer}</div>
+    </div>
+  `;
+  
+  document.body.appendChild(container);
+  
+  try {
+    // Render the entire container to canvas
+    const canvas = await html2canvas(container, {
+      scale: 2,
+      useCORS: true,
+      logging: false,
+      backgroundColor: '#ffffff',
+      width: 794,
+      windowWidth: 794,
+    });
+    
+    // PDF dimensions in mm
+    const A4_WIDTH_MM = 210;
+    const A4_HEIGHT_MM = 297;
+    const MARGIN_MM = 0; // Content already has padding
+    const CONTENT_WIDTH_MM = A4_WIDTH_MM;
+    
+    // Calculate how many pixels of the canvas fit on one page
+    const pixelsPerMM = canvas.width / A4_WIDTH_MM;
+    const pageHeightPx = A4_HEIGHT_MM * pixelsPerMM;
+    
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    
+    let remainingHeight = canvas.height;
+    let srcYPx = 0;
+    let pageIndex = 0;
+    
+    while (remainingHeight > 0) {
+      if (pageIndex > 0) {
+        doc.addPage();
       }
       
-      // Add canvas content as image, paginated
-      const imgData = canvas.toDataURL('image/png');
-      const imgWidth = contentWidth;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const sliceHeightPx = Math.min(remainingHeight, pageHeightPx);
       
-      const availableFirstPage = pageHeight - yPos - 20;
-      let heightLeft = imgHeight;
-      let srcY = 0;
-      let isFirstPage = true;
+      // Create a slice canvas for this page
+      const pageCanvas = document.createElement('canvas');
+      pageCanvas.width = canvas.width;
+      pageCanvas.height = sliceHeightPx;
+      const ctx = pageCanvas.getContext('2d');
       
-      while (heightLeft > 0) {
-        const availableHeight = isFirstPage ? availableFirstPage : (pageHeight - 30);
-        const sliceHeight = Math.min(heightLeft, availableHeight);
-        
-        // Create a slice of the canvas for this page
-        const sliceCanvas = document.createElement('canvas');
-        sliceCanvas.width = canvas.width;
-        sliceCanvas.height = (sliceHeight / imgHeight) * canvas.height;
-        const ctx = sliceCanvas.getContext('2d');
-        if (ctx) {
-          ctx.drawImage(
-            canvas,
-            0, srcY * (canvas.height / imgHeight) * (imgHeight / imgWidth) * (imgWidth / contentWidth),
-            canvas.width,
-            sliceCanvas.height,
-            0, 0,
-            sliceCanvas.width,
-            sliceCanvas.height
-          );
-        }
-        
-        if (!isFirstPage) {
-          doc.addPage();
-          // Mini header
-          doc.setFillColor(252, 252, 253);
-          doc.rect(0, 0, pageWidth, 10, 'F');
-          doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-          doc.setLineWidth(0.5);
-          doc.line(0, 10, pageWidth, 10);
-          doc.setFontSize(8);
-          doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-          doc.text(`${l.title} (${l.continued})`, pageWidth / 2, 7, { align: 'center' });
-        }
-        
-        const pageY = isFirstPage ? yPos : 14;
-        
-        try {
-          const sliceImgData = sliceCanvas.toDataURL('image/png');
-          doc.addImage(sliceImgData, 'PNG', margin, pageY, imgWidth, sliceHeight);
-        } catch (e) {
-          // Fallback: add full image offset
-          doc.addImage(imgData, 'PNG', margin, pageY - srcY, imgWidth, imgHeight);
-        }
-        
-        srcY += sliceHeight;
-        heightLeft -= sliceHeight;
-        isFirstPage = false;
+      if (ctx) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+        ctx.drawImage(
+          canvas,
+          0, srcYPx,           // Source x, y
+          canvas.width, sliceHeightPx,  // Source width, height
+          0, 0,                // Dest x, y
+          pageCanvas.width, sliceHeightPx // Dest width, height
+        );
       }
       
-      // Footer on last page
-      const footerY = pageHeight - 12;
-      doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-      doc.setLineWidth(0.3);
-      doc.line(margin, footerY - 4, pageWidth - margin, footerY - 4);
-      doc.setFontSize(6);
-      doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-      doc.text(l.footer, pageWidth / 2, footerY, { align: 'center' });
+      const pageImgData = pageCanvas.toDataURL('image/png');
+      const sliceHeightMM = sliceHeightPx / pixelsPerMM;
       
-      const fileName = `birth-plan-${new Date().toISOString().split('T')[0]}.pdf`;
-      doc.save(fileName);
-      return;
-    } catch (canvasError) {
-      console.warn('html2canvas failed, falling back to text-based PDF:', canvasError);
-      // Fall through to text-based approach
+      doc.addImage(pageImgData, 'PNG', 0, 0, CONTENT_WIDTH_MM, sliceHeightMM);
+      
+      srcYPx += sliceHeightPx;
+      remainingHeight -= sliceHeightPx;
+      pageIndex++;
     }
+    
+    const fileName = `birth-plan-${new Date().toISOString().split('T')[0]}.pdf`;
+    doc.save(fileName);
+  } finally {
+    document.body.removeChild(container);
   }
-  
-  // Fallback: Text-based PDF (for non-Arabic languages or when no contentElement)
-  const logoData = await loadLogoImage();
-  
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 20;
-  const contentWidth = pageWidth - (margin * 2);
-  
-  drawCleanHeader(doc, pageWidth, 50, COLORS.primary);
-  addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 6, 16);
-  
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(22);
-  doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-  doc.text(l.title, pageWidth / 2, 28, { align: 'center' });
-  
-  doc.setFontSize(10);
-  doc.setFont('helvetica', 'normal');
-  doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-  doc.text(date, pageWidth / 2, 36, { align: 'center' });
-  
-  doc.setFontSize(8);
-  doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-  doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
-  
-  let yPos = 58;
-  
-  doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-  doc.setLineWidth(0.5);
-  doc.line(margin, yPos, pageWidth - margin, yPos);
-  yPos += 10;
-  
-  if (preferences && Object.keys(preferences).length > 0) {
-    const prefCount = Object.keys(preferences).length;
-    
-    doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b, 0.08);
-    doc.roundedRect(margin, yPos, contentWidth, 20, 4, 4, 'F');
-    doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-    doc.roundedRect(margin, yPos, 4, 20, 2, 2, 'F');
-    
-    doc.setFontSize(11);
-    doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-    doc.setFont('helvetica', 'bold');
-    doc.text(l.prefSummary, margin + 8, yPos + 8);
-    
-    doc.setFontSize(9);
-    doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`${prefCount} ${l.prefCount}`, margin + 8, yPos + 15);
-    
-    doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-    doc.roundedRect(pageWidth - margin - 20, yPos + 6, 16, 8, 3, 3, 'F');
-    doc.setFontSize(8);
-    doc.setTextColor(255, 255, 255);
-    doc.text(String(prefCount), pageWidth - margin - 12, yPos + 11, { align: 'center' });
-    
-    yPos += 28;
-  }
-  
-  doc.setFontSize(10);
-  doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-  doc.setFont('helvetica', 'normal');
-  
-  const cleanContent = markdownToText(content);
-  const lines = splitTextToLines(doc, cleanContent, contentWidth);
-  
-  const lineHeight = 5.5;
-  let currentSection = '';
-  
-  lines.forEach((line) => {
-    if (yPos > pageHeight - margin - 20) {
-      doc.addPage();
-      yPos = margin;
-      
-      doc.setFillColor(252, 252, 253);
-      doc.rect(0, 0, pageWidth, 12, 'F');
-      doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-      doc.setLineWidth(0.5);
-      doc.line(0, 12, pageWidth, 12);
-      doc.setFontSize(9);
-      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-      doc.text(`${l.title} (${l.continued})`, pageWidth / 2, 8, { align: 'center' });
-      yPos = 20;
-      
-      doc.setFontSize(10);
-      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-    }
-    
-    if (line && !line.startsWith('•') && !line.startsWith(' ') && line.length < 50) {
-      if (line !== currentSection) {
-        currentSection = line;
-        yPos += 4;
-        
-        doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b, 0.12);
-        doc.roundedRect(margin, yPos - 4, contentWidth, 9, 3, 3, 'F');
-        doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-        doc.roundedRect(margin, yPos - 4, 3, 9, 1, 1, 'F');
-        
-        doc.setFont('helvetica', 'bold');
-        doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-        doc.text(line, margin + 6, yPos + 1);
-        doc.setFont('helvetica', 'normal');
-        doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-        
-        yPos += lineHeight + 4;
-        return;
-      }
-    }
-    
-    if (line.startsWith('•')) {
-      doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-      doc.circle(margin + 3, yPos - 1, 1, 'F');
-      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-      doc.text(line.substring(2), margin + 7, yPos);
-    } else if (line.trim() === '') {
-      yPos += 2;
-      return;
-    } else {
-      doc.text(line, margin, yPos);
-    }
-    
-    yPos += lineHeight;
-  });
-  
-  const footerY = pageHeight - 15;
-  doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
-  doc.setLineWidth(0.3);
-  doc.line(margin, footerY - 5, pageWidth - margin, footerY - 5);
-  doc.setFontSize(7);
-  doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-  doc.text(l.footer, pageWidth / 2, footerY, { align: 'center' });
-  
-  drawDecorations(doc, pageWidth, pageHeight, COLORS.primary);
-  
-  const fileName = `birth-plan-${new Date().toISOString().split('T')[0]}.pdf`;
-  doc.save(fileName);
+}
+
+// Convert markdown to simple HTML for PDF rendering
+function markdownToHTML(markdown: string): string {
+  return markdown
+    .replace(/^### (.*$)/gm, '<h3 style="font-size:15px;font-weight:600;color:#ec4899;margin:16px 0 8px;padding:6px 12px;background:rgba(236,72,153,0.08);border-radius:6px;border-left:3px solid #ec4899;">$1</h3>')
+    .replace(/^## (.*$)/gm, '<h2 style="font-size:17px;font-weight:700;color:#ec4899;margin:20px 0 10px;padding:8px 14px;background:rgba(236,72,153,0.08);border-radius:8px;border-left:4px solid #ec4899;">$1</h2>')
+    .replace(/^# (.*$)/gm, '<h1 style="font-size:20px;font-weight:700;color:#1e293b;margin:20px 0 12px;">$1</h1>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/^[-*+] (.*$)/gm, '<div style="padding:3px 0 3px 16px;position:relative;"><span style="position:absolute;left:0;top:8px;width:6px;height:6px;background:#ec4899;border-radius:50;display:inline-block;"></span>$1</div>')
+    .replace(/^\d+\. (.*$)/gm, '<div style="padding:3px 0 3px 8px;">$1</div>')
+    .replace(/\n{2,}/g, '<div style="height:10px;"></div>')
+    .replace(/\n/g, '<br/>')
+    .trim();
 }
 
 export const MAX_SAVED_PLANS = 9;
