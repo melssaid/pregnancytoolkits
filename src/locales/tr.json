@@ -392,6 +392,17 @@
       "disclaimerTitle": "Tıbbi Sorumluluk Reddi",
       "disclaimerText": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve tıbbi tavsiye, teşhis veya tedavi sağlamaz. Herhangi bir sağlık endişesi için her zaman nitelikli bir sağlık hizmeti sağlayıcısına danışın."
     },
+    "privacyPolicy": {
+      "title": "Gizlilik Politikası",
+      "subtitle": "Gizliliğiniz bizim için önemlidir. Bu bildirim, bilgilerinizi nasıl işlediğimizi açıklar.",
+      "lastUpdated": "Son güncelleme: 26 Ocak 2026",
+      "footerNote": "Pregnancy Toolkits'i kullanmaya devam ederek, bu Gizlilik Politikasını okuduğunuzu ve anladığınızı kabul edersiniz. Tam yasal metin için lütfen bizimle iletişime geçin.",
+      "privacyFirst": {
+        "title": "Önce Gizlilik Yaklaşımı",
+        "badge": "Önemli",
+        "content": "Tüm hizmetlerimizi kişisel veri toplamadan sunuyoruz. Uygulamamız hamile kadınlara destek araçları sağlamaya özelleşmiştir ve kullanıcı verilerini ticari amaçlarla toplamamaya sıkı sıkıya bağlıdır. Tüm sağlık verileri cihazınızda yerel olarak saklanır."
+      }
+    },
     "contactPage": {
       "title": "İletişim",
       "subtitle": "Sorularınız veya geri bildirimleriniz mi var? Sizden haber almak isteriz.",

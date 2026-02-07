@@ -1,5 +1,6 @@
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { 
   Shield, 
   Database, 
@@ -360,6 +361,8 @@ const sections = [
 ];
 
 export default function PrivacyPolicy() {
+  const { t } = useTranslation();
+  
   return (
     <Layout showBack>
       <div className="container py-6 pb-24">
@@ -372,15 +375,15 @@ export default function PrivacyPolicy() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 text-sm text-muted-foreground">
               <Shield className="w-4 h-4" />
-              <span>Last updated: January 26, 2026</span>
+              <span>{t('privacyPolicy.lastUpdated', 'Last updated: January 26, 2026')}</span>
             </div>
-            <h1 className="text-2xl font-bold text-foreground">Privacy Policy</h1>
+            <h1 className="text-2xl font-bold text-foreground">{t('privacyPolicy.title', 'Privacy Policy')}</h1>
             <p className="text-muted-foreground text-sm max-w-xl mx-auto">
-              Your privacy is important to us. This notice explains how we handle your information.
+              {t('privacyPolicy.subtitle', 'Your privacy is important to us. This notice explains how we handle your information.')}
             </p>
           </motion.div>
 
-          {/* Important Notice */}
+          {/* Important Notice - Privacy-First Approach */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -392,18 +395,15 @@ export default function PrivacyPolicy() {
                   <div className="p-2 rounded-lg bg-background/80">
                     <Shield className="w-5 h-5" />
                   </div>
-                  Privacy-First Approach
+                  {t('privacyPolicy.privacyFirst.title', 'Privacy-First Approach')}
                   <span className="ml-auto text-xs bg-green-500/20 px-2 py-1 rounded-full">
-                    Important
+                    {t('privacyPolicy.privacyFirst.badge', 'Important')}
                   </span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-4">
                 <p className="text-muted-foreground leading-relaxed text-sm">
-                  We offer all services <strong>without the collection of personal data</strong>. 
-                  Our application is specialized in providing tools to support pregnant women, 
-                  with strict adherence not to collect user data for any commercial purposes. 
-                  All health data is stored locally on your device.
+                  {t('privacyPolicy.privacyFirst.content', 'We offer all services without the collection of personal data. Our application is specialized in providing tools to support pregnant women, with strict adherence not to collect user data for any commercial purposes. All health data is stored locally on your device.')}
                 </p>
               </CardContent>
             </Card>
@@ -468,8 +468,7 @@ export default function PrivacyPolicy() {
             className="text-center pt-6 border-t border-border mt-8"
           >
             <p className="text-xs text-muted-foreground">
-              By continuing to use Pregnancy Toolkits, you acknowledge that you have read and 
-              understood this Privacy Policy. For the full legal text, please contact us.
+              {t('privacyPolicy.footerNote', 'By continuing to use Pregnancy Toolkits, you acknowledge that you have read and understood this Privacy Policy. For the full legal text, please contact us.')}
             </p>
           </motion.div>
         </div>

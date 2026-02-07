@@ -392,6 +392,17 @@
       "disclaimerTitle": "Medical Disclaimer",
       "disclaimerText": "This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns."
     },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "subtitle": "Your privacy is important to us. This notice explains how we handle your information.",
+      "lastUpdated": "Last updated: January 26, 2026",
+      "footerNote": "By continuing to use Pregnancy Toolkits, you acknowledge that you have read and understood this Privacy Policy. For the full legal text, please contact us.",
+      "privacyFirst": {
+        "title": "Privacy-First Approach",
+        "badge": "Important",
+        "content": "We offer all services without the collection of personal data. Our application is specialized in providing tools to support pregnant women, with strict adherence not to collect user data for any commercial purposes. All health data is stored locally on your device."
+      }
+    },
     "contactPage": {
       "title": "Contact Us",
       "subtitle": "Have questions or feedback? We'd love to hear from you.",
