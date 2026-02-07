@@ -1059,7 +1059,11 @@
       "planTitle": "Doğum Planı",
       "preferencesSet": "{{count}} tercih belirlendi",
       "load": "Yükle",
-      "storageFull": "Depolama dolu. Yeni kaydetmek için eski planları silin."
+      "storageFull": "Depolama dolu. Yeni kaydetmek için eski planları silin.",
+      "selectPreference": "Lütfen en az bir tercih seçin",
+      "planGenerated": "Doğum planı başarıyla oluşturuldu!",
+      "pdfSuccess": "PDF başarıyla indirildi!",
+      "pdfError": "PDF dışa aktarılamadı"
     },
     "mealSuggestion": {
       "subtitle": "Hamileliğiniz için akıllı yemek önerileri",

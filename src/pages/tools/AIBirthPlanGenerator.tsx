@@ -71,7 +71,7 @@ const birthPlanCategories: { titleKey: string; preferences: BirthPlanPreference[
 ];
 
 export default function AIBirthPlanGenerator() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [preferences, setPreferences] = useState<Record<string, string>>({});
   const [additionalNotes, setAdditionalNotes] = useState('');
   const [generatedPlan, setGeneratedPlan] = useState('');
@@ -129,18 +129,27 @@ export default function AIBirthPlanGenerator() {
       .join('\n');
 
     if (!selectedPrefs) {
-      toast.error('Please select at least one preference');
+      toast.error(t('toolsInternal.birthPlan.selectPreference'));
       return;
     }
 
     setGeneratedPlan('');
+
+    const langCode = i18n.language?.split('-')[0] || 'en';
+    const langNames: Record<string, string> = {
+      en: 'English', ar: 'Arabic', de: 'German', tr: 'Turkish',
+      fr: 'French', es: 'Spanish', pt: 'Portuguese'
+    };
+    const langName = langNames[langCode] || 'English';
 
     await streamChat({
       type: 'pregnancy-assistant',
       messages: [
         {
           role: 'user',
-          content: `Please create a comprehensive, professional birth plan based on these preferences:
+          content: `IMPORTANT: You MUST write the ENTIRE response in ${langName} language ONLY. Every word, title, section header, and bullet point must be in ${langName}.
+
+Create a comprehensive, professional birth plan based on these preferences:
 
 ${selectedPrefs}
 
@@ -154,15 +163,17 @@ Create a detailed, well-organized birth plan document that:
 5. Is formatted beautifully with headers and bullet points
 6. Ends with a note about flexibility and trust in the medical team
 
-Make it comprehensive and ready to share with healthcare providers.`
+Make it comprehensive and ready to share with healthcare providers.
+REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other language.`
         }
       ],
+      context: { language: langCode },
       onDelta: (text) => setGeneratedPlan(prev => prev + text),
       onDone: () => {
-        toast.success('Birth plan generated successfully!');
+        toast.success(t('toolsInternal.birthPlan.planGenerated'));
       }
     });
-  }, [preferences, additionalNotes, streamChat]);
+  }, [preferences, additionalNotes, streamChat, t, i18n.language]);
 
   const savePlan = useCallback(() => {
     if (!generatedPlan) {
@@ -192,22 +203,26 @@ Make it comprehensive and ready to share with healthcare providers.`
     toast.success('Plan deleted');
   }, []);
 
+  const planContentRef = useRef<HTMLDivElement>(null);
+
   const exportPlanAsPDF = useCallback(async () => {
-    if (!generatedPlan) return;
+    if (!generatedPlan || !planContentRef.current) return;
     
     try {
       await exportBirthPlanToPDF({
-        title: 'Birth Plan',
+        title: t('toolsInternal.birthPlan.title'),
         content: generatedPlan,
         date: format(new Date(), 'MMMM d, yyyy'),
-        preferences
+        preferences,
+        language: i18n.language?.split('-')[0] || 'en',
+        contentElement: planContentRef.current,
       });
-      toast.success('PDF downloaded successfully!');
+      toast.success(t('toolsInternal.birthPlan.pdfSuccess'));
     } catch (error) {
       console.error('PDF export error:', error);
-      toast.error('Failed to export PDF');
+      toast.error(t('toolsInternal.birthPlan.pdfError'));
     }
-  }, [generatedPlan, preferences]);
+  }, [generatedPlan, preferences, t, i18n.language]);
 
   const loadPlan = useCallback((plan: SavedPlan) => {
     setPreferences(plan.preferences);
@@ -343,7 +358,9 @@ Make it comprehensive and ready to share with healthcare providers.`
                   </Button>
                 </div>
               </div>
-              <MarkdownRenderer content={generatedPlan} />
+              <div ref={planContentRef}>
+                <MarkdownRenderer content={generatedPlan} />
+              </div>
             </CardContent>
           </Card>
         )}

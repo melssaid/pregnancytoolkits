@@ -1059,7 +1059,11 @@
       "planTitle": "Plano de parto",
       "preferencesSet": "{{count}} preferências definidas",
       "load": "Carregar",
-      "storageFull": "Armazenamento cheio. Exclua planos antigos para salvar novos."
+      "storageFull": "Armazenamento cheio. Exclua planos antigos para salvar novos.",
+      "selectPreference": "Selecione pelo menos uma preferência",
+      "planGenerated": "Plano de parto criado com sucesso!",
+      "pdfSuccess": "PDF baixado com sucesso!",
+      "pdfError": "Falha ao exportar o PDF"
     },
     "mealSuggestion": {
       "subtitle": "Sugestões inteligentes de refeições para sua gravidez",

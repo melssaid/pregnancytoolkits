@@ -1,10 +1,13 @@
 import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface PDFExportOptions {
   title: string;
   content: string;
   date: string;
   preferences?: Record<string, string>;
+  language?: string;
+  contentElement?: HTMLElement;
 }
 
 interface DataBackupPDFOptions {
@@ -685,77 +688,217 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
   doc.save(fileName);
 }
 
-// Birth plan PDF export
+// Birth plan PDF export using html2canvas for full multilingual support
 export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
-  const { title, content, date, preferences } = options;
+  const { title, content, date, preferences, language = 'en', contentElement } = options;
   
-  // Load logo
+  const isRTL = language === 'ar';
+  
+  // Labels translations
+  const labels: Record<string, Record<string, string>> = {
+    en: { title: 'Birth Plan', prefSummary: 'Preferences Summary', prefCount: 'preferences selected', continued: 'continued', footer: 'This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', exportedOn: 'Exported on' },
+    ar: { title: 'خطة الولادة', prefSummary: 'ملخص التفضيلات', prefCount: 'تفضيلات محددة', continued: 'تابع', footer: 'خطة الولادة هذه هي دليل لفريقك الطبي. قد تكون المرونة مطلوبة بناءً على الظروف الطبية.', exportedOn: 'تم التصدير بتاريخ' },
+    de: { title: 'Geburtsplan', prefSummary: 'Präferenzen Zusammenfassung', prefCount: 'Präferenzen ausgewählt', continued: 'Fortsetzung', footer: 'Dieser Geburtsplan ist ein Leitfaden für Ihr medizinisches Team. Flexibilität kann aufgrund medizinischer Umstände erforderlich sein.', exportedOn: 'Exportiert am' },
+    tr: { title: 'Doğum Planı', prefSummary: 'Tercihler Özeti', prefCount: 'tercih seçildi', continued: 'devam', footer: 'Bu doğum planı sağlık ekibiniz için bir rehberdir. Tıbbi koşullara göre esneklik gerekebilir.', exportedOn: 'Dışa aktarıldı' },
+    fr: { title: 'Plan de naissance', prefSummary: 'Résumé des préférences', prefCount: 'préférences sélectionnées', continued: 'suite', footer: 'Ce plan de naissance est un guide pour votre équipe soignante. Une flexibilité peut être nécessaire selon les circonstances médicales.', exportedOn: 'Exporté le' },
+    es: { title: 'Plan de parto', prefSummary: 'Resumen de preferencias', prefCount: 'preferencias seleccionadas', continued: 'continuación', footer: 'Este plan de parto es una guía para su equipo médico. Puede ser necesaria flexibilidad según las circunstancias médicas.', exportedOn: 'Exportado el' },
+    pt: { title: 'Plano de parto', prefSummary: 'Resumo das preferências', prefCount: 'preferências selecionadas', continued: 'continuação', footer: 'Este plano de parto é um guia para a sua equipa médica. Pode ser necessária flexibilidade com base nas circunstâncias médicas.', exportedOn: 'Exportado em' },
+  };
+  
+  const l = labels[language] || labels.en;
+  
+  // If we have a content element, use html2canvas for perfect rendering
+  if (contentElement) {
+    try {
+      const canvas = await html2canvas(contentElement, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#ffffff',
+      });
+      
+      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const margin = 15;
+      const contentWidth = pageWidth - (margin * 2);
+      
+      // Load logo
+      const logoData = await loadLogoImage();
+      
+      // --- Page 1: Header ---
+      drawCleanHeader(doc, pageWidth, 45, COLORS.primary);
+      addLogoToHeader(doc, logoData, pageWidth / 2 - 6, 5, 12);
+      
+      // Title
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+      doc.text(l.title, pageWidth / 2, 24, { align: 'center' });
+      
+      // Date
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+      doc.text(date, pageWidth / 2, 32, { align: 'center' });
+      
+      // Branding
+      doc.setFontSize(7);
+      doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+      doc.text('Pregnancy Toolkits', pageWidth / 2, 39, { align: 'center' });
+      
+      let yPos = 50;
+      
+      // Preferences summary if available
+      if (preferences && Object.keys(preferences).length > 0) {
+        const prefCount = Object.keys(preferences).length;
+        
+        doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b, 0.08);
+        doc.roundedRect(margin, yPos, contentWidth, 16, 3, 3, 'F');
+        doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+        doc.roundedRect(margin, yPos, 3, 16, 1, 1, 'F');
+        
+        doc.setFontSize(10);
+        doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+        doc.setFont('helvetica', 'bold');
+        doc.text(l.prefSummary, margin + 7, yPos + 6);
+        
+        doc.setFontSize(8);
+        doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`${prefCount} ${l.prefCount}`, margin + 7, yPos + 12);
+        
+        yPos += 22;
+      }
+      
+      // Add canvas content as image, paginated
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = contentWidth;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      
+      const availableFirstPage = pageHeight - yPos - 20;
+      let heightLeft = imgHeight;
+      let srcY = 0;
+      let isFirstPage = true;
+      
+      while (heightLeft > 0) {
+        const availableHeight = isFirstPage ? availableFirstPage : (pageHeight - 30);
+        const sliceHeight = Math.min(heightLeft, availableHeight);
+        
+        // Create a slice of the canvas for this page
+        const sliceCanvas = document.createElement('canvas');
+        sliceCanvas.width = canvas.width;
+        sliceCanvas.height = (sliceHeight / imgHeight) * canvas.height;
+        const ctx = sliceCanvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(
+            canvas,
+            0, srcY * (canvas.height / imgHeight) * (imgHeight / imgWidth) * (imgWidth / contentWidth),
+            canvas.width,
+            sliceCanvas.height,
+            0, 0,
+            sliceCanvas.width,
+            sliceCanvas.height
+          );
+        }
+        
+        if (!isFirstPage) {
+          doc.addPage();
+          // Mini header
+          doc.setFillColor(252, 252, 253);
+          doc.rect(0, 0, pageWidth, 10, 'F');
+          doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+          doc.setLineWidth(0.5);
+          doc.line(0, 10, pageWidth, 10);
+          doc.setFontSize(8);
+          doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+          doc.text(`${l.title} (${l.continued})`, pageWidth / 2, 7, { align: 'center' });
+        }
+        
+        const pageY = isFirstPage ? yPos : 14;
+        
+        try {
+          const sliceImgData = sliceCanvas.toDataURL('image/png');
+          doc.addImage(sliceImgData, 'PNG', margin, pageY, imgWidth, sliceHeight);
+        } catch (e) {
+          // Fallback: add full image offset
+          doc.addImage(imgData, 'PNG', margin, pageY - srcY, imgWidth, imgHeight);
+        }
+        
+        srcY += sliceHeight;
+        heightLeft -= sliceHeight;
+        isFirstPage = false;
+      }
+      
+      // Footer on last page
+      const footerY = pageHeight - 12;
+      doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
+      doc.setLineWidth(0.3);
+      doc.line(margin, footerY - 4, pageWidth - margin, footerY - 4);
+      doc.setFontSize(6);
+      doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+      doc.text(l.footer, pageWidth / 2, footerY, { align: 'center' });
+      
+      const fileName = `birth-plan-${new Date().toISOString().split('T')[0]}.pdf`;
+      doc.save(fileName);
+      return;
+    } catch (canvasError) {
+      console.warn('html2canvas failed, falling back to text-based PDF:', canvasError);
+      // Fall through to text-based approach
+    }
+  }
+  
+  // Fallback: Text-based PDF (for non-Arabic languages or when no contentElement)
   const logoData = await loadLogoImage();
   
-  const doc = new jsPDF({
-    orientation: 'portrait',
-    unit: 'mm',
-    format: 'a4'
-  });
-  
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 20;
   const contentWidth = pageWidth - (margin * 2);
   
-  // Draw clean header
   drawCleanHeader(doc, pageWidth, 50, COLORS.primary);
-  
-  // Add logo to header
   addLogoToHeader(doc, logoData, pageWidth / 2 - 8, 6, 16);
   
-  // Title (dark text on light background)
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(22);
   doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-  doc.text('Birth Plan', pageWidth / 2, 28, { align: 'center' });
+  doc.text(l.title, pageWidth / 2, 28, { align: 'center' });
   
-  // Date
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
   doc.text(date, pageWidth / 2, 36, { align: 'center' });
   
-  // Branding
   doc.setFontSize(8);
   doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
   doc.text('Pregnancy Toolkits', pageWidth / 2, 44, { align: 'center' });
   
   let yPos = 58;
   
-  // Decorative line
   doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
   doc.setLineWidth(0.5);
   doc.line(margin, yPos, pageWidth - margin, yPos);
   yPos += 10;
   
-  // Preferences summary card
   if (preferences && Object.keys(preferences).length > 0) {
     const prefCount = Object.keys(preferences).length;
     
     doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b, 0.08);
     doc.roundedRect(margin, yPos, contentWidth, 20, 4, 4, 'F');
-    
-    // Accent bar
     doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
     doc.roundedRect(margin, yPos, 4, 20, 2, 2, 'F');
     
     doc.setFontSize(11);
     doc.setTextColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
     doc.setFont('helvetica', 'bold');
-    doc.text('Preferences Summary', margin + 8, yPos + 8);
+    doc.text(l.prefSummary, margin + 8, yPos + 8);
     
     doc.setFontSize(9);
     doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
     doc.setFont('helvetica', 'normal');
-    doc.text(`${prefCount} preferences selected`, margin + 8, yPos + 15);
+    doc.text(`${prefCount} ${l.prefCount}`, margin + 8, yPos + 15);
     
-    // Badge
     doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
     doc.roundedRect(pageWidth - margin - 20, yPos + 6, 16, 8, 3, 3, 'F');
     doc.setFontSize(8);
@@ -765,7 +908,6 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     yPos += 28;
   }
   
-  // Main content
   doc.setFontSize(10);
   doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
   doc.setFont('helvetica', 'normal');
@@ -781,7 +923,6 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       doc.addPage();
       yPos = margin;
       
-      // Mini header on new page (light style)
       doc.setFillColor(252, 252, 253);
       doc.rect(0, 0, pageWidth, 12, 'F');
       doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
@@ -789,14 +930,13 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       doc.line(0, 12, pageWidth, 12);
       doc.setFontSize(9);
       doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
-      doc.text('Birth Plan (continued)', pageWidth / 2, 8, { align: 'center' });
+      doc.text(`${l.title} (${l.continued})`, pageWidth / 2, 8, { align: 'center' });
       yPos = 20;
       
       doc.setFontSize(10);
       doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
     }
     
-    // Detect section headers
     if (line && !line.startsWith('•') && !line.startsWith(' ') && line.length < 50) {
       if (line !== currentSection) {
         currentSection = line;
@@ -804,7 +944,6 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
         
         doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b, 0.12);
         doc.roundedRect(margin, yPos - 4, contentWidth, 9, 3, 3, 'F');
-        
         doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
         doc.roundedRect(margin, yPos - 4, 3, 9, 1, 1, 'F');
         
@@ -819,7 +958,6 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       }
     }
     
-    // Bullet points
     if (line.startsWith('•')) {
       doc.setFillColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
       doc.circle(margin + 3, yPos - 1, 1, 'F');
@@ -835,20 +973,17 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     yPos += lineHeight;
   });
   
-  // Footer
   const footerY = pageHeight - 15;
   doc.setDrawColor(COLORS.primary.r, COLORS.primary.g, COLORS.primary.b);
   doc.setLineWidth(0.3);
   doc.line(margin, footerY - 5, pageWidth - margin, footerY - 5);
-  
   doc.setFontSize(7);
   doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-  doc.text('This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', pageWidth / 2, footerY, { align: 'center' });
+  doc.text(l.footer, pageWidth / 2, footerY, { align: 'center' });
   
-  // Decorative corners
   drawDecorations(doc, pageWidth, pageHeight, COLORS.primary);
   
-  const fileName = `birth-plan-${date.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`;
+  const fileName = `birth-plan-${new Date().toISOString().split('T')[0]}.pdf`;
   doc.save(fileName);
 }
 

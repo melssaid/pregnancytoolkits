@@ -1059,7 +1059,11 @@
       "planTitle": "Plan de parto",
       "preferencesSet": "{{count}} preferencias establecidas",
       "load": "Cargar",
-      "storageFull": "Almacenamiento lleno. Elimina planes antiguos para guardar nuevos."
+      "storageFull": "Almacenamiento lleno. Elimina planes antiguos para guardar nuevos.",
+      "selectPreference": "Por favor selecciona al menos una preferencia",
+      "planGenerated": "¡Plan de parto creado con éxito!",
+      "pdfSuccess": "¡PDF descargado con éxito!",
+      "pdfError": "Error al exportar el PDF"
     },
     "mealSuggestion": {
       "subtitle": "Sugerencias inteligentes de comidas para tu embarazo",

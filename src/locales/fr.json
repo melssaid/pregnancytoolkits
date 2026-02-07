@@ -1059,7 +1059,11 @@
       "planTitle": "Plan de naissance",
       "preferencesSet": "{{count}} préférences définies",
       "load": "Charger",
-      "storageFull": "Stockage plein. Supprimez d'anciens plans pour en sauvegarder de nouveaux."
+      "storageFull": "Stockage plein. Supprimez d'anciens plans pour en sauvegarder de nouveaux.",
+      "selectPreference": "Veuillez sélectionner au moins une préférence",
+      "planGenerated": "Plan de naissance créé avec succès !",
+      "pdfSuccess": "PDF téléchargé avec succès !",
+      "pdfError": "Échec de l'export PDF"
     },
     "mealSuggestion": {
       "subtitle": "Suggestions de repas intelligentes pour votre grossesse",
