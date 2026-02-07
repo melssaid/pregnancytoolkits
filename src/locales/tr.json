@@ -2136,7 +2136,42 @@
       "ovulationDay": "Tahmini Yumurtlama",
       "nextPeriod": "Sonraki Adet",
       "logPeriod": "Adet Kaydet",
-      "aiInsights": "AI Doğurganlık İçgörüleri"
+      "aiInsights": "AI Doğurganlık İçgörüleri",
+      "yourStatistics": "İstatistikleriniz",
+      "share": "Paylaş",
+      "avgCycleLength": "Ort. Döngü Uzunluğu",
+      "avgPeriodLength": "Ort. Adet Süresi",
+      "analyzePatterns": "Kalıplarımı Analiz Et",
+      "startDate": "Başlangıç Tarihi",
+      "endDate": "Bitiş Tarihi (opsiyonel)",
+      "flowIntensity": "Akış Yoğunluğu",
+      "symptoms": "Belirtiler (opsiyonel)",
+      "cycleHistory": "Döngü Geçmişi",
+      "dayCycle": "günlük döngü",
+      "flow": "akış",
+      "trackTip": "Daha doğru tahminler için en az 3-6 döngü takip edin. Döngü uzunluğu stres, hastalık veya diğer faktörler nedeniyle değişebilir.",
+      "flowLevels": {
+        "light": "Hafif",
+        "medium": "Orta",
+        "heavy": "Yoğun"
+      },
+      "symptomOptions": {
+        "cramps": "Kramplar",
+        "headache": "Baş ağrısı",
+        "bloating": "Şişkinlik",
+        "moodSwings": "Ruh hali değişimleri",
+        "fatigue": "Yorgunluk",
+        "breastTenderness": "Göğüs hassasiyeti",
+        "acne": "Akne",
+        "backPain": "Sırt ağrısı"
+      },
+      "saved": "Kaydedildi!",
+      "savedDesc": "Döngü kaydı eklendi.",
+      "deleted": "Silindi",
+      "deletedDesc": "Döngü kaydı kaldırıldı.",
+      "days": "gün",
+      "copied": "Kopyalandı!",
+      "copiedDesc": "İstatistikler panoya kopyalandı."
     },
     "weightGain": {
       "title": "Kilo Alımı Analizörü",
