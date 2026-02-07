@@ -56,7 +56,7 @@ const birthPlanCategories: { titleKey: string; preferences: BirthPlanPreference[
   {
     titleKey: "toolsInternal.birthPlan.categories.afterBirth",
     preferences: [
-      { id: "skinToSkin", labelKey: "toolsInternal.birthPlan.prefs.skinToSkin.label", optionKeys: ["toolsInternal.birthPlan.prefs.skinToSkin.immediately", "toolsInternal.birthPlan.prefs.skinToSkin.afterChecks", "toolsInternal.birthPlan.prefs.skinToSkin.partnerFirst"] },
+      { id: "firstMoments", labelKey: "toolsInternal.birthPlan.prefs.firstMoments.label", optionKeys: ["toolsInternal.birthPlan.prefs.firstMoments.immediately", "toolsInternal.birthPlan.prefs.firstMoments.afterChecks", "toolsInternal.birthPlan.prefs.firstMoments.partnerFirst"] },
       { id: "cordClamping", labelKey: "toolsInternal.birthPlan.prefs.cordClamping.label", optionKeys: ["toolsInternal.birthPlan.prefs.cordClamping.delayed", "toolsInternal.birthPlan.prefs.cordClamping.immediate", "toolsInternal.birthPlan.prefs.cordClamping.partnerCut", "toolsInternal.birthPlan.prefs.cordClamping.noPreference"] },
       { id: "feeding", labelKey: "toolsInternal.birthPlan.prefs.feeding.label", optionKeys: ["toolsInternal.birthPlan.prefs.feeding.breastfeeding", "toolsInternal.birthPlan.prefs.feeding.formula", "toolsInternal.birthPlan.prefs.feeding.combination", "toolsInternal.birthPlan.prefs.feeding.undecided"] },
     ]
@@ -64,7 +64,7 @@ const birthPlanCategories: { titleKey: string; preferences: BirthPlanPreference[
   {
     titleKey: "toolsInternal.birthPlan.categories.specialCircumstances",
     preferences: [
-      { id: "cesarean", labelKey: "toolsInternal.birthPlan.prefs.cesarean.label", optionKeys: ["toolsInternal.birthPlan.prefs.cesarean.partnerPresent", "toolsInternal.birthPlan.prefs.cesarean.clearDrape", "toolsInternal.birthPlan.prefs.cesarean.skinToSkin"] },
+      { id: "cesarean", labelKey: "toolsInternal.birthPlan.prefs.cesarean.label", optionKeys: ["toolsInternal.birthPlan.prefs.cesarean.partnerPresent", "toolsInternal.birthPlan.prefs.cesarean.familyCentered", "toolsInternal.birthPlan.prefs.cesarean.calmEnvironment"] },
       { id: "photography", labelKey: "toolsInternal.birthPlan.prefs.photography.label", optionKeys: ["toolsInternal.birthPlan.prefs.photography.throughout", "toolsInternal.birthPlan.prefs.photography.photosOnly", "toolsInternal.birthPlan.prefs.photography.afterBirth", "toolsInternal.birthPlan.prefs.photography.none"] },
     ]
   }

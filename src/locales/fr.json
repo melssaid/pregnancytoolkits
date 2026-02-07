@@ -1015,11 +1015,11 @@
           "ifNecessary": "Seulement si nécessaire",
           "noPreference": "Pas de préférence"
         },
-        "skinToSkin": {
-          "label": "Contact peau à peau",
-          "immediately": "Immédiatement après la naissance",
-          "afterChecks": "Après les premiers examens",
-          "partnerFirst": "Partenaire d'abord si nécessaire"
+        "firstMoments": {
+          "label": "Premiers instants avec bébé",
+          "immediately": "Prendre bébé immédiatement",
+          "afterChecks": "Après les premiers examens médicaux",
+          "partnerFirst": "Le partenaire prend bébé en premier"
         },
         "cordClamping": {
           "label": "Clampage du cordon",
@@ -1038,8 +1038,8 @@
         "cesarean": {
           "label": "Si césarienne nécessaire",
           "partnerPresent": "Partenaire présent",
-          "clearDrape": "Champ transparent demandé",
-          "skinToSkin": "Contact peau à peau immédiat"
+          "familyCentered": "Approche centrée sur la famille",
+          "calmEnvironment": "Environnement calme et serein"
         },
         "photography": {
           "label": "Photographie/Vidéo",

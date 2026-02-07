@@ -771,11 +771,11 @@
           "ifNecessary": "فقط إذا لزم الأمر",
           "noPreference": "لا تفضيل"
         },
-        "skinToSkin": {
-          "label": "التلامس الجلدي",
-          "immediately": "فوراً بعد الولادة",
-          "afterChecks": "بعد الفحوصات الأولية",
-          "partnerFirst": "الشريك أولاً إذا لزم"
+        "firstMoments": {
+          "label": "اللحظات الأولى مع المولود",
+          "immediately": "احتضان المولود فوراً",
+          "afterChecks": "بعد الفحوصات الطبية الأولية",
+          "partnerFirst": "الشريك يحمل المولود أولاً"
         },
         "cordClamping": {
           "label": "قطع الحبل السري",
@@ -794,8 +794,8 @@
         "cesarean": {
           "label": "في حالة الولادة القيصرية",
           "partnerPresent": "حضور الشريك",
-          "clearDrape": "ستارة شفافة",
-          "skinToSkin": "تلامس جلدي فوري"
+          "familyCentered": "رعاية تركز على الأسرة",
+          "calmEnvironment": "بيئة هادئة ومريحة"
         },
         "photography": {
           "label": "التصوير/الفيديو",

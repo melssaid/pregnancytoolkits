@@ -1015,11 +1015,11 @@
           "ifNecessary": "Sadece gerekirse",
           "noPreference": "Tercih yok"
         },
-        "skinToSkin": {
-          "label": "Ten Tene Temas",
-          "immediately": "Doğumdan hemen sonra",
-          "afterChecks": "İlk kontrollerden sonra",
-          "partnerFirst": "Gerekirse önce eş"
+        "firstMoments": {
+          "label": "Bebekle İlk Anlar",
+          "immediately": "Bebeği hemen kucağa almak",
+          "afterChecks": "İlk tıbbi kontrollerden sonra",
+          "partnerFirst": "Eş bebeği önce tutar"
         },
         "cordClamping": {
           "label": "Kordon Kesimi",
@@ -1038,8 +1038,8 @@
         "cesarean": {
           "label": "Sezaryen Gerekirse",
           "partnerPresent": "Eş mevcut",
-          "clearDrape": "Şeffaf örtü istendi",
-          "skinToSkin": "Hemen ten tene temas"
+          "familyCentered": "Aile odaklı yaklaşım",
+          "calmEnvironment": "Sakin ve rahat ortam"
         },
         "photography": {
           "label": "Fotoğraf/Video",
