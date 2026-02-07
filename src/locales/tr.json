@@ -1195,6 +1195,43 @@
         "insomnia": "Uykusuzluk",
         "moodswings": "Ruh Hali Değişimleri",
         "dizziness": "Baş Dönmesi"
+      },
+      "insights": {
+        "nausea": {
+          "early": "İlk trimesterde çok yaygındır. Küçük, sık öğünler ve zencefil deneyin.",
+          "late": "Bu aşamada daha az yaygın. Şiddetli veya başka belirtilerle birlikteyse doktorunuza danışın."
+        },
+        "fatigue": {
+          "early": "Bu aşama için normal. Vücudunuz çok çalışıyor! Dinlenmeye öncelik verin.",
+          "mid": "'Balayı dönemi'nde olabilirsiniz, ancak dinlenmeye ihtiyacınız varsa vücudunuzu dinleyin."
+        },
+        "headache": {
+          "general": "Hormonal değişiklikler ve artan kan hacmi baş ağrısına neden olabilir. Bol su için ve karanlık bir odada dinlenin."
+        },
+        "backpain": {
+          "early": "Yakından izleyin. Kramplarla birlikteyse sağlık uzmanınızla iletişime geçin.",
+          "late": "Bebek büyüdükçe ve ağırlık merkezi kaydıkça yaygındır. Hafif esneme ve doğru duruş yardımcı olur."
+        },
+        "cramps": {
+          "general": "Hafif kramplar, rahminiz genişledikçe normal olabilir. Şiddetli veya sürekli kramplar doktorunuz tarafından değerlendirilmelidir."
+        },
+        "swelling": {
+          "general": "Ayak ve bileklerde hafif şişlik yaygındır, özellikle gebeliğin sonlarında. Ayaklarınızı yukarı kaldırın ve bol su için. Ani veya şiddetli şişlik acil tıbbi müdahale gerektirir."
+        },
+        "heartburn": {
+          "general": "Hormonal değişiklikler nedeniyle hamilelikte çok yaygın. Daha küçük öğünler yiyin, baharatlı yiyeceklerden kaçının ve yemekten hemen sonra uzanmayın."
+        },
+        "insomnia": {
+          "general": "Uyku güçlükleri yaygındır. Tutarlı bir uyku rutini deneyin, destek için yastık kullanın ve yatmadan önce ekran süresini sınırlayın."
+        },
+        "moodswings": {
+          "general": "Hormonal dalgalanmalar ruh hali değişikliklerini normal kılar. Destek ağınızla konuşun ve rahatlama tekniklerini düşünün."
+        },
+        "dizziness": {
+          "general": "Kan basıncı değişikliklerinden kaynaklanabilir. Yavaş kalkın, bol su için ve düzenli yemek yiyin. Sık tekrarlanıyorsa doktorunuza bildirin."
+        },
+        "default": "Bu bilinen bir hamilelik belirtisidir. Yoğunluğu ve sıklığı izleyin ve sağlık uzmanınızla görüşün.",
+        "defaultFallback": "Belirti kaydedildi. Devam etmesi durumunda doktorunuzla görüşün."
       }
     },
     "vitaminTracker": {
