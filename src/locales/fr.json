@@ -2003,17 +2003,36 @@
       "start": "Démarrer",
       "resume": "Reprendre",
       "pause": "Pause",
+      "completed": "Terminé",
+      "allCategories": "Tout",
+      "workoutProgress": "Progression de l'entraînement",
+      "workoutComplete": "Entraînement terminé ! 🎉",
+      "greatJob": "Bravo ! Vous avez terminé votre entraînement aujourd'hui !",
+      "calories": "cal",
+      "seconds": "sec",
+      "restTime": "Temps de repos",
+      "skip": "Passer",
+      "dailyTip": "Conseil fitness du jour",
       "fitnessVideos": "Vidéos Fitness Prénatal",
       "fitnessVideosSubtitle": "Guides d'entraînement sûrs pour chaque trimestre",
       "safetyFirst": "Sécurité d'abord",
-      "safetyText": "Arrêtez immédiatement si vous ressentez des étourdissements, des douleurs ou un essoufflement. Gardez de l'eau à portée de main.",
+      "safetyText": "Arrêtez immédiatement si vous ressentez des étourdissements, des douleurs ou un essoufflement.",
       "exerciseNames": {
         "prenatalSquats": "Squats prénataux",
         "birdDog": "Chien-Oiseau",
         "pelvicTilts": "Bascules du bassin",
         "wallPushups": "Pompes murales",
         "butterflyStretch": "Étirement papillon",
-        "seatedMarching": "Marche assise"
+        "seatedMarching": "Marche assise",
+        "neckRolls": "Rotations du cou",
+        "armCircles": "Cercles de bras",
+        "gluteBridge": "Pont fessier",
+        "sideLyingLeg": "Élévation jambe latérale",
+        "stepTouch": "Pas chassé",
+        "catCow": "Étirement chat-vache",
+        "sideStretch": "Étirement latéral",
+        "childPose": "Posture de l'enfant",
+        "deepBreathing": "Respiration profonde"
       },
       "exerciseDescs": {
         "prenatalSquatsDesc": "Debout, pieds écartés de la largeur des épaules. Descendez doucement comme pour vous asseoir.",
@@ -2021,12 +2040,75 @@
         "pelvicTiltsDesc": "Basculez doucement votre bassin d'avant en arrière pour soulager le bas du dos.",
         "wallPushupsDesc": "Debout à un bras du mur. Penchez-vous et repoussez.",
         "butterflyStretchDesc": "Asseyez-vous pieds joints, genoux vers l'extérieur. Penchez-vous doucement en avant.",
-        "seatedMarchingDesc": "Asseyez-vous sur une chaise stable ou un ballon. Levez les genoux en alternance."
+        "seatedMarchingDesc": "Asseyez-vous sur une chaise stable ou un ballon. Levez les genoux en alternance.",
+        "neckRollsDesc": "Roulez lentement votre tête en cercles doux. Changez de direction après 15 secondes.",
+        "armCirclesDesc": "Étendez les bras sur les côtés et faites de petits cercles. Augmentez progressivement.",
+        "gluteBridgeDesc": "Allongée sur le dos, genoux pliés. Soulevez les hanches vers le plafond et maintenez.",
+        "sideLyingLegDesc": "Allongée sur le côté. Soulevez la jambe du dessus lentement et redescendez avec contrôle.",
+        "stepTouchDesc": "Faites des pas de côté en rythme contrôlé. Gardez le tronc engagé.",
+        "catCowDesc": "À quatre pattes, alternez entre dos creux et dos rond.",
+        "sideStretchDesc": "Debout, tendez un bras au-dessus de la tête et inclinez-vous doucement sur le côté.",
+        "childPoseDesc": "Agenouillez-vous et asseyez-vous sur les talons. Étendez les bras vers l'avant.",
+        "deepBreathingDesc": "Inspirez par le nez pendant 4 temps, retenez 4, expirez par la bouche pendant 6."
       },
       "categories": {
+        "warmup": "Échauffement",
         "strength": "Force",
         "cardio": "Cardio",
-        "flexibility": "Flexibilité"
+        "flexibility": "Flexibilité",
+        "cooldown": "Récupération"
+      },
+      "muscleGroups": {
+        "neck": "Cou & trapèze supérieur",
+        "shoulders": "Épaules & deltoïdes",
+        "legs": "Quadriceps & ischio-jambiers",
+        "core": "Tronc & abdominaux profonds",
+        "arms": "Poitrine & triceps",
+        "glutes": "Fessiers & extenseurs de hanche",
+        "hips": "Abducteurs de hanche",
+        "pelvis": "Plancher pelvien",
+        "fullBody": "Corps entier",
+        "spine": "Colonne vertébrale & muscles dorsaux",
+        "obliques": "Obliques & muscles latéraux",
+        "back": "Bas du dos & grand dorsal",
+        "diaphragm": "Diaphragme & muscles respiratoires"
+      },
+      "trimesterAlerts": {
+        "t1": {
+          "title": "Premier trimestre (Semaines 1-13)",
+          "text": "Concentrez-vous sur des exercices de faible intensité. Évitez la surchauffe et restez bien hydratée."
+        },
+        "t2": {
+          "title": "Deuxième trimestre (Semaines 14-26)",
+          "text": "Votre énergie est plus élevée ! Bon moment pour des exercices modérés. Évitez de rester allongée sur le dos longtemps."
+        },
+        "t3": {
+          "title": "Troisième trimestre (Semaines 27-42)",
+          "text": "Concentrez-vous sur les étirements doux et la respiration. Évitez les mouvements à fort impact."
+        }
+      },
+      "warmup": {
+        "title": "Routine d'échauffement",
+        "duration": "3-5 minutes",
+        "step1": "Commencez par des rotations douces du cou et des haussements d'épaules.",
+        "step2": "Faites des cercles de bras, en commençant petit puis en augmentant.",
+        "step3": "Marchez doucement sur place pendant 30 secondes pour activer la circulation.",
+        "step4": "Prenez 5 respirations profondes en expandant pleinement les côtes."
+      },
+      "cooldown": {
+        "title": "Routine de récupération",
+        "duration": "3-5 minutes",
+        "step1": "Marchez lentement sur place pendant 30 secondes pour abaisser le rythme cardiaque.",
+        "step2": "Étirez doucement le cou et les épaules, en maintenant 15 secondes chaque.",
+        "step3": "Pratiquez la respiration abdominale profonde pendant 1 minute.",
+        "step4": "Terminez par un étirement complet et une affirmation positive."
+      },
+      "tips": {
+        "tip1": "Buvez au moins 8 verres d'eau les jours d'entraînement. L'hydratation prévient les crampes.",
+        "tip2": "Le meilleur moment pour s'entraîner est quand vous vous sentez le plus énergique.",
+        "tip3": "Les exercices de Kegel sont invisibles mais puissants ! Pratiquez tout au long de la journée.",
+        "tip4": "La marche est l'un des exercices les plus sûrs pendant la grossesse. Visez 20-30 minutes par jour.",
+        "tip5": "La respiration correcte pendant l'exercice est essentielle. Ne retenez jamais votre souffle."
       },
       "videoCategories": {
         "core": "Gainage",

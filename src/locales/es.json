@@ -1355,6 +1355,16 @@
       "start": "Iniciar",
       "resume": "Reanudar",
       "pause": "Pausar",
+      "completed": "Completado",
+      "allCategories": "Todos",
+      "workoutProgress": "Progreso del Entrenamiento",
+      "workoutComplete": "¡Entrenamiento Completado! 🎉",
+      "greatJob": "¡Excelente! ¡Completaste tu entrenamiento hoy!",
+      "calories": "cal",
+      "seconds": "seg",
+      "restTime": "Tiempo de Descanso",
+      "skip": "Saltar",
+      "dailyTip": "Consejo Fitness del Día",
       "fitnessVideos": "Videos de Fitness Prenatal",
       "fitnessVideosSubtitle": "Guías de entrenamiento seguro para cada trimestre",
       "safetyFirst": "Seguridad Primero",
@@ -1365,7 +1375,16 @@
         "pelvicTilts": "Inclinaciones Pélvicas",
         "wallPushups": "Flexiones de Pared",
         "butterflyStretch": "Estiramiento Mariposa",
-        "seatedMarching": "Marcha Sentada"
+        "seatedMarching": "Marcha Sentada",
+        "neckRolls": "Rotaciones de Cuello",
+        "armCircles": "Círculos de Brazos",
+        "gluteBridge": "Puente de Glúteos",
+        "sideLyingLeg": "Elevación de Pierna Lateral",
+        "stepTouch": "Paso y Toque",
+        "catCow": "Estiramiento Gato-Vaca",
+        "sideStretch": "Estiramiento Lateral",
+        "childPose": "Postura del Niño",
+        "deepBreathing": "Respiración Profunda"
       },
       "exerciseDescs": {
         "prenatalSquatsDesc": "Párate con los pies a la anchura de los hombros. Baja suavemente como si te sentaras.",
@@ -1373,12 +1392,75 @@
         "pelvicTiltsDesc": "Balancea suavemente tu pelvis hacia adelante y atrás para aliviar la espalda baja.",
         "wallPushupsDesc": "Párate a un brazo de distancia de la pared. Inclínate y empuja hacia atrás.",
         "butterflyStretchDesc": "Siéntate con los pies juntos, rodillas hacia afuera. Inclínate suavemente hacia adelante.",
-        "seatedMarchingDesc": "Siéntate en una silla estable o pelota. Levanta las rodillas alternadamente."
+        "seatedMarchingDesc": "Siéntate en una silla estable o pelota. Levanta las rodillas alternadamente.",
+        "neckRollsDesc": "Gira la cabeza lentamente en círculos suaves. Cambia de dirección después de 15 segundos.",
+        "armCirclesDesc": "Extiende los brazos a los lados y haz pequeños círculos. Aumenta gradualmente el tamaño.",
+        "gluteBridgeDesc": "Acuéstate boca arriba con las rodillas flexionadas. Levanta las caderas hacia el techo y mantén.",
+        "sideLyingLegDesc": "Acuéstate de lado. Levanta la pierna superior lentamente y bájala con control.",
+        "stepTouchDesc": "Da pasos laterales a un ritmo controlado. Mantén el core activado.",
+        "catCowDesc": "En cuatro puntos, alterna entre arquear y redondear la espalda.",
+        "sideStretchDesc": "De pie, extiende un brazo sobre la cabeza e inclínate suavemente hacia un lado.",
+        "childPoseDesc": "Arrodíllate y siéntate sobre los talones. Extiende los brazos hacia adelante.",
+        "deepBreathingDesc": "Inhala por la nariz contando 4, mantén 4, exhala por la boca contando 6."
       },
       "categories": {
+        "warmup": "Calentamiento",
         "strength": "Fuerza",
         "cardio": "Cardio",
-        "flexibility": "Flexibilidad"
+        "flexibility": "Flexibilidad",
+        "cooldown": "Enfriamiento"
+      },
+      "muscleGroups": {
+        "neck": "Cuello y Trapecio Superior",
+        "shoulders": "Hombros y Deltoides",
+        "legs": "Cuádriceps e Isquiotibiales",
+        "core": "Core y Abdominales Profundos",
+        "arms": "Pecho y Tríceps",
+        "glutes": "Glúteos y Extensores de Cadera",
+        "hips": "Abductores de Cadera",
+        "pelvis": "Suelo Pélvico",
+        "fullBody": "Cuerpo Completo",
+        "spine": "Columna y Músculos Dorsales",
+        "obliques": "Oblicuos y Core Lateral",
+        "back": "Espalda Baja y Dorsales",
+        "diaphragm": "Diafragma y Músculos Respiratorios"
+      },
+      "trimesterAlerts": {
+        "t1": {
+          "title": "Primer Trimestre (Semanas 1-13)",
+          "text": "Concéntrate en ejercicios de baja intensidad. Evita el sobrecalentamiento y mantente hidratada."
+        },
+        "t2": {
+          "title": "Segundo Trimestre (Semanas 14-26)",
+          "text": "¡Tu energía es más alta! Buen momento para ejercicio moderado. Evita estar acostada boca arriba mucho tiempo."
+        },
+        "t3": {
+          "title": "Tercer Trimestre (Semanas 27-42)",
+          "text": "Enfócate en estiramientos suaves y ejercicios de respiración. Evita movimientos de alto impacto."
+        }
+      },
+      "warmup": {
+        "title": "Rutina de Calentamiento",
+        "duration": "3-5 minutos",
+        "step1": "Comienza con rotaciones suaves de cuello y encogimiento de hombros.",
+        "step2": "Haz círculos de brazos, empezando pequeños y aumentando gradualmente.",
+        "step3": "Marcha suavemente en el lugar durante 30 segundos.",
+        "step4": "Toma 5 respiraciones profundas expandiendo completamente las costillas."
+      },
+      "cooldown": {
+        "title": "Rutina de Enfriamiento",
+        "duration": "3-5 minutos",
+        "step1": "Camina lentamente en el lugar 30 segundos para bajar el ritmo cardíaco.",
+        "step2": "Estira suavemente el cuello y los hombros, manteniendo cada uno 15 segundos.",
+        "step3": "Practica respiración abdominal profunda durante 1 minuto.",
+        "step4": "Termina con un estiramiento completo y una afirmación positiva."
+      },
+      "tips": {
+        "tip1": "Bebe al menos 8 vasos de agua en días de entrenamiento. La hidratación previene calambres.",
+        "tip2": "El mejor momento para ejercitarte es cuando te sientes con más energía.",
+        "tip3": "¡Los ejercicios de Kegel son invisibles pero poderosos! Practícalos todo el día.",
+        "tip4": "Caminar es uno de los ejercicios más seguros durante el embarazo. Apunta a 20-30 minutos diarios.",
+        "tip5": "La respiración correcta durante el ejercicio es clave. Nunca contengas la respiración."
       },
       "videoCategories": {
         "core": "Core",
