@@ -149,8 +149,8 @@ export function ToolFrame({
             transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
             className={`relative bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg shadow-black/[0.04] ${styles.border} border overflow-hidden`}
           >
-            {/* Content - Tighter padding */}
-            <div className="relative z-10 p-4 sm:p-5">
+            {/* Content - Tighter padding with text containment */}
+            <div className="relative z-10 p-4 sm:p-5 overflow-hidden [&_*]:min-w-0">
               {children}
             </div>
           </motion.div>

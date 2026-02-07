@@ -64,11 +64,11 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({
         }`}
       >
         <CardContent className="p-4">
-          <div className="flex justify-between items-start mb-2">
-            <div className="flex items-center gap-3">
+          <div className="flex justify-between items-start mb-2 gap-2">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
               {/* Number/Check circle */}
               <div
-                className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
+                className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all flex-shrink-0 ${
                   isCompleted
                     ? 'bg-primary text-primary-foreground'
                     : isActive
@@ -79,8 +79,8 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({
                 {isCompleted ? <Check className="w-4 h-4" /> : index + 1}
               </div>
 
-              <div>
-                <h3 className="font-semibold text-sm text-foreground">
+              <div className="min-w-0 flex-1">
+                <h3 className="font-semibold text-sm text-foreground break-words">
                   {t(`toolsInternal.fitnessCoach.exerciseNames.${exercise.nameKey}`)}
                 </h3>
                 <div className="flex items-center gap-1.5 mt-0.5">
@@ -102,14 +102,14 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({
               <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="text-2xl font-mono font-bold text-primary"
+                className="text-2xl font-mono font-bold text-primary flex-shrink-0"
               >
                 00:{timer.toString().padStart(2, '0')}
               </motion.span>
             )}
           </div>
 
-          <p className="text-muted-foreground text-xs mb-3 ms-12 leading-relaxed">
+          <p className="text-muted-foreground text-xs mb-3 ms-12 leading-relaxed break-words">
             {t(`toolsInternal.fitnessCoach.exerciseDescs.${exercise.descriptionKey}`)}
           </p>
 

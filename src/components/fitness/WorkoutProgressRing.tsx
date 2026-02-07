@@ -66,8 +66,8 @@ export const WorkoutProgressRing: React.FC<WorkoutProgressRingProps> = ({
           </div>
 
           {/* Stats */}
-          <div className="flex-1 space-y-2">
-            <h3 className="font-semibold text-sm text-foreground">
+          <div className="flex-1 min-w-0 space-y-2">
+            <h3 className="font-semibold text-sm text-foreground break-words">
               {isComplete
                 ? t('toolsInternal.fitnessCoach.workoutComplete')
                 : t('toolsInternal.fitnessCoach.workoutProgress')}

@@ -115,6 +115,17 @@
     box-sizing: border-box;
   }
 
+  /* Global text containment for all languages */
+  p, span, h1, h2, h3, h4, h5, h6, li, td, th, label, a, div, blockquote {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Ensure flex/grid children don't overflow */
+  .flex > *, .grid > *, [class*="flex"] > *, [class*="grid"] > * {
+    min-width: 0;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
@@ -250,6 +261,11 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* ═══════════════════════════════════════════════════════════════
+     GLOBAL TEXT CONTAINMENT - prevents text overflow in all cards/containers
+     across all 7 languages (including Arabic RTL and German long words)
+     ═══════════════════════════════════════════════════════════════ */
 
   /* Global text overflow prevention */
   .overflow-wrap-anywhere {
