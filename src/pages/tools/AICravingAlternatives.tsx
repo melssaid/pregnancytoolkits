@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Cookie, Sparkles, Loader2, Heart, AlertTriangle, Salad, RefreshCw } from 'lucide-react';
+import { Sparkles, Loader2, Heart, AlertTriangle, Salad, RefreshCw, Apple, ShieldCheck, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -115,21 +115,42 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
       <div className="container py-6">
         <div className="max-w-4xl mx-auto space-y-6">
           
-          {/* Header */}
-          <Card className="bg-primary text-primary-foreground border-0 shadow-xl overflow-hidden relative">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOGM5Ljk0MSAwIDE4LTguMDU5IDE4LTE4cy04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNHMxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L2c+PC9zdmc+')] opacity-30" />
-            <CardHeader className="relative">
-              <CardTitle className="flex items-center gap-3 text-2xl md:text-3xl">
-                <div className="p-3 bg-background/20 rounded-2xl backdrop-blur-sm">
-                  <Cookie className="w-8 h-8" />
+          {/* Professional Stats Bar */}
+          <div className="grid grid-cols-3 gap-3">
+            <Card className="border-border bg-card shadow-sm">
+              <CardContent className="pt-4 pb-4 px-4 flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Apple className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <span className="block">{t('toolsInternal.cravingAlternatives.title')}</span>
-                  <span className="text-sm font-normal opacity-90">{t('toolsInternal.cravingAlternatives.subtitle')}</span>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.cravingAlternatives.title')}</p>
+                  <p className="text-sm font-semibold text-foreground">{t('toolsInternal.cravingAlternatives.subtitle')}</p>
                 </div>
-              </CardTitle>
-            </CardHeader>
-          </Card>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card shadow-sm">
+              <CardContent className="pt-4 pb-4 px-4 flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-secondary">
+                  <ShieldCheck className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.cravingAlternatives.pregnancySafe')}</p>
+                  <p className="text-sm font-semibold text-foreground">{t('toolsInternal.cravingAlternatives.verifiedSafe')}</p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card shadow-sm">
+              <CardContent className="pt-4 pb-4 px-4 flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-accent">
+                  <TrendingUp className="w-5 h-5 text-accent-foreground" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.cravingAlternatives.nutrientDense')}</p>
+                  <p className="text-sm font-semibold text-foreground">{t('toolsInternal.cravingAlternatives.optimalNutrition')}</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Week Selector - Using new slider component */}
           <WeekSlider

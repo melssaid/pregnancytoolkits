@@ -1422,7 +1422,11 @@
         "tacos": "تاكو",
         "bacon": "لحم مقدد",
         "burger": "برجر"
-      }
+      },
+      "pregnancySafe": "الأمان",
+      "verifiedSafe": "بدائل آمنة للحمل",
+      "nutrientDense": "التغذية",
+      "optimalNutrition": "خيارات غنية بالعناصر"
     },
     "birthPosition": {
       "title": "وضعيات الولادة الذكية",
