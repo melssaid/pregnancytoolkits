@@ -320,17 +320,17 @@ A supportive message for this stage of pregnancy`}
                     {savedDates.map((saved) => (
                       <div
                         key={saved.id}
-                        className="flex items-center justify-between rounded-lg bg-muted p-4"
+                        className="flex items-center justify-between gap-2 rounded-lg bg-muted p-4"
                       >
-                        <div>
-                          <p className="font-medium text-foreground">
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-foreground text-sm break-words">
                             {t('toolsInternal.dueDate.due')}: {format(new Date(saved.dueDate), "MMMM d, yyyy")}
                           </p>
                           <p className="text-xs text-muted-foreground">
                             {t('toolsInternal.dueDate.calculated')}: {format(new Date(saved.calculatedAt), "MMM d, yyyy")}
                           </p>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-shrink-0">
                           {!saved.reminderSet && (
                             <Button
                               size="sm"

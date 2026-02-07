@@ -115,8 +115,8 @@ Encouragement and realistic expectations`
         >
           <Tabs defaultValue="duedate">
             <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="duedate">{t('conceptionPage.fromDueDate')}</TabsTrigger>
-              <TabsTrigger value="lmp">{t('conceptionPage.fromLMP')}</TabsTrigger>
+              <TabsTrigger value="duedate" className="text-xs sm:text-sm px-2">{t('conceptionPage.fromDueDate')}</TabsTrigger>
+              <TabsTrigger value="lmp" className="text-xs sm:text-sm px-2">{t('conceptionPage.fromLMP')}</TabsTrigger>
             </TabsList>
 
             <TabsContent value="duedate">
