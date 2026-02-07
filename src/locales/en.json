@@ -1285,6 +1285,18 @@
         "strength": "Strength",
         "cardio": "Cardio",
         "flexibility": "Flexibility"
+      },
+      "videoCategories": {
+        "core": "Core",
+        "cardio": "Cardio",
+        "yoga": "Yoga",
+        "relaxation": "Relaxation"
+      },
+      "videos": {
+        "core": { "title": "Safe Prenatal Core Workout", "description": "10-minute safe abs workout for first trimester" },
+        "cardio": { "title": "Pregnancy Safe HIIT Cardio", "description": "20 minute no repeat low impact workout" },
+        "yoga": { "title": "Prenatal Yoga for Relaxation", "description": "Deep relaxation yoga for pregnancy" },
+        "relaxation": { "title": "Pregnancy Relaxation Meditation", "description": "Calming meditation for expecting mothers" }
       }
     },
     "birthPlan": {
