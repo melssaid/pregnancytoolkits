@@ -2939,5 +2939,35 @@
     "ankleCircles": {"name": "Knöchelkreise", "desc": "Jeden Knöchel in Kreisen drehen"},
     "toePoints": {"name": "Zehenspitzen", "desc": "Zehen strecken und beugen für bessere Durchblutung"},
     "legStretches": {"name": "Sanfte Beindehnung", "desc": "Waden und Oberschenkel sanft dehnen"}
-  }
+  },
+  "toolsInternal.weightGain.yourProfile": "Dein Profil",
+  "toolsInternal.weightGain.heightCm": "Größe (cm)",
+  "toolsInternal.weightGain.prePregnancyWeightKg": "Gewicht vor der Schwangerschaft (kg)",
+  "toolsInternal.weightGain.bmiCategory": "BMI-Kategorie",
+  "toolsInternal.weightGain.recommendedTotalGain": "Empfohlene Gesamtzunahme",
+  "toolsInternal.weightGain.addWeightEntry": "Gewichtseintrag hinzufügen",
+  "toolsInternal.weightGain.pregnancyWeek": "Schwangerschaftswoche",
+  "toolsInternal.weightGain.currentWeightKg": "Aktuelles Gewicht (kg)",
+  "toolsInternal.weightGain.addEntry": "Eintrag hinzufügen",
+  "toolsInternal.weightGain.weightGainTrend": "Gewichtszunahme-Trend",
+  "toolsInternal.weightGain.chartNote": "Schattierter Bereich zeigt den empfohlenen Zunahmebereich",
+  "toolsInternal.weightGain.recentEntries": "Letzte Einträge",
+  "toolsInternal.weightGain.week": "Woche",
+  "toolsInternal.weightGain.totalWeightGainLabel": "Gesamtgewichtszunahme",
+  "toolsInternal.weightGain.bmiCategories": {
+    "underweight": "Untergewicht (BMI < 18,5)",
+    "normal": "Normal (BMI 18,5-24,9)",
+    "overweight": "Übergewicht (BMI 25-29,9)",
+    "obese": "Adipositas (BMI ≥ 30)"
+  },
+  "toolsInternal.weightGain.statusMessages": {
+    "below": { "message": "Deine Gewichtszunahme liegt unter dem empfohlenen Bereich.", "recommendation": "Sprich mit deinem Arzt über deine Ernährung." },
+    "above": { "message": "Deine Gewichtszunahme liegt über dem empfohlenen Bereich.", "recommendation": "Besprich mit deinem Arzt gesunde Ernährungsgewohnheiten." },
+    "normal": { "message": "Deine Gewichtszunahme liegt im gesunden Bereich!", "recommendation": "Weiter so mit ausgewogener Ernährung." }
+  },
+  "toolsInternal.weightGain.minRecommended": "Min. empfohlen",
+  "toolsInternal.weightGain.maxRecommended": "Max. empfohlen",
+  "toolsInternal.weightGain.yourWeight": "Dein Gewicht",
+  "toolsInternal.weightGain.weekAxis": "Woche",
+  "toolsInternal.weightGain.weightGainKg": "Gewichtszunahme (kg)"
 }
