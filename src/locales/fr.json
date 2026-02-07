@@ -2964,5 +2964,35 @@
     "ankleCircles": {"name": "Cercles de chevilles", "desc": "Tourner chaque cheville en cercles"},
     "toePoints": {"name": "Pointes de pieds", "desc": "Pointer et fléchir les orteils pour la circulation"},
     "legStretches": {"name": "Étirements doux des jambes", "desc": "Étirer mollets et ischio-jambiers doucement"}
-  }
+  },
+  "toolsInternal.weightGain.yourProfile": "Votre profil",
+  "toolsInternal.weightGain.heightCm": "Taille (cm)",
+  "toolsInternal.weightGain.prePregnancyWeightKg": "Poids avant grossesse (kg)",
+  "toolsInternal.weightGain.bmiCategory": "Catégorie IMC",
+  "toolsInternal.weightGain.recommendedTotalGain": "Prise de poids totale recommandée",
+  "toolsInternal.weightGain.addWeightEntry": "Ajouter une entrée de poids",
+  "toolsInternal.weightGain.pregnancyWeek": "Semaine de grossesse",
+  "toolsInternal.weightGain.currentWeightKg": "Poids actuel (kg)",
+  "toolsInternal.weightGain.addEntry": "Ajouter",
+  "toolsInternal.weightGain.weightGainTrend": "Tendance de prise de poids",
+  "toolsInternal.weightGain.chartNote": "La zone ombrée indique la plage de prise de poids recommandée",
+  "toolsInternal.weightGain.recentEntries": "Entrées récentes",
+  "toolsInternal.weightGain.week": "Semaine",
+  "toolsInternal.weightGain.totalWeightGainLabel": "Prise de poids totale",
+  "toolsInternal.weightGain.bmiCategories": {
+    "underweight": "Insuffisance pondérale (IMC < 18,5)",
+    "normal": "Normal (IMC 18,5-24,9)",
+    "overweight": "Surpoids (IMC 25-29,9)",
+    "obese": "Obésité (IMC ≥ 30)"
+  },
+  "toolsInternal.weightGain.statusMessages": {
+    "below": { "message": "Votre prise de poids est inférieure à la plage recommandée.", "recommendation": "Consultez votre médecin concernant votre nutrition." },
+    "above": { "message": "Votre prise de poids est supérieure à la plage recommandée.", "recommendation": "Discutez avec votre médecin des habitudes alimentaires saines." },
+    "normal": { "message": "Votre prise de poids est dans la plage saine !", "recommendation": "Continuez ainsi avec une alimentation équilibrée." }
+  },
+  "toolsInternal.weightGain.minRecommended": "Min. recommandé",
+  "toolsInternal.weightGain.maxRecommended": "Max. recommandé",
+  "toolsInternal.weightGain.yourWeight": "Votre poids",
+  "toolsInternal.weightGain.weekAxis": "Semaine",
+  "toolsInternal.weightGain.weightGainKg": "Prise de poids (kg)"
 }

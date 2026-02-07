@@ -3163,5 +3163,35 @@
     "ankleCircles": {"name": "Ayak Bileği Daireleri", "desc": "Her ayak bileğini daireler çizerek döndürün"},
     "toePoints": {"name": "Ayak Parmağı Esnetme", "desc": "Dolaşımı iyileştirmek için parmakları uzatıp bükün"},
     "legStretches": {"name": "Nazik Bacak Esnetmeleri", "desc": "Baldır ve arka bacak kaslarını nazikçe esnetin"}
-  }
+  },
+  "toolsInternal.weightGain.yourProfile": "Profiliniz",
+  "toolsInternal.weightGain.heightCm": "Boy (cm)",
+  "toolsInternal.weightGain.prePregnancyWeightKg": "Hamilelik öncesi kilo (kg)",
+  "toolsInternal.weightGain.bmiCategory": "VKİ Kategorisi",
+  "toolsInternal.weightGain.recommendedTotalGain": "Önerilen Toplam Kilo Artışı",
+  "toolsInternal.weightGain.addWeightEntry": "Kilo Kaydı Ekle",
+  "toolsInternal.weightGain.pregnancyWeek": "Hamilelik Haftası",
+  "toolsInternal.weightGain.currentWeightKg": "Mevcut Kilo (kg)",
+  "toolsInternal.weightGain.addEntry": "Kayıt Ekle",
+  "toolsInternal.weightGain.weightGainTrend": "Kilo Artış Trendi",
+  "toolsInternal.weightGain.chartNote": "Gölgeli alan önerilen kilo artış aralığını gösterir",
+  "toolsInternal.weightGain.recentEntries": "Son Kayıtlar",
+  "toolsInternal.weightGain.week": "Hafta",
+  "toolsInternal.weightGain.totalWeightGainLabel": "Toplam Kilo Artışı",
+  "toolsInternal.weightGain.bmiCategories": {
+    "underweight": "Düşük Kilo (VKİ < 18,5)",
+    "normal": "Normal (VKİ 18,5-24,9)",
+    "overweight": "Fazla Kilolu (VKİ 25-29,9)",
+    "obese": "Obez (VKİ ≥ 30)"
+  },
+  "toolsInternal.weightGain.statusMessages": {
+    "below": { "message": "Kilo artışınız önerilen aralığın altında.", "recommendation": "Beslenme hakkında doktorunuza danışın." },
+    "above": { "message": "Kilo artışınız önerilen aralığın üstünde.", "recommendation": "Sağlıklı beslenme alışkanlıkları hakkında doktorunuzla konuşun." },
+    "normal": { "message": "Kilo artışınız sağlıklı aralıkta!", "recommendation": "Dengeli beslenmeye bu şekilde devam edin." }
+  },
+  "toolsInternal.weightGain.minRecommended": "Min. Önerilen",
+  "toolsInternal.weightGain.maxRecommended": "Maks. Önerilen",
+  "toolsInternal.weightGain.yourWeight": "Kilonuz",
+  "toolsInternal.weightGain.weekAxis": "Hafta",
+  "toolsInternal.weightGain.weightGainKg": "Kilo Artışı (kg)"
 }

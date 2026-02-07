@@ -3163,5 +3163,35 @@
     "ankleCircles": {"name": "Círculos de Tornozelo", "desc": "Gire cada tornozelo em círculos nas duas direções"},
     "toePoints": {"name": "Ponta dos Pés", "desc": "Estique e flexione os dedos para melhorar a circulação"},
     "legStretches": {"name": "Alongamentos Suaves de Pernas", "desc": "Alongue panturrilhas e tendões suavemente"}
-  }
+  },
+  "toolsInternal.weightGain.yourProfile": "Seu Perfil",
+  "toolsInternal.weightGain.heightCm": "Altura (cm)",
+  "toolsInternal.weightGain.prePregnancyWeightKg": "Peso antes da gravidez (kg)",
+  "toolsInternal.weightGain.bmiCategory": "Categoria de IMC",
+  "toolsInternal.weightGain.recommendedTotalGain": "Ganho Total Recomendado",
+  "toolsInternal.weightGain.addWeightEntry": "Adicionar Registro de Peso",
+  "toolsInternal.weightGain.pregnancyWeek": "Semana de Gravidez",
+  "toolsInternal.weightGain.currentWeightKg": "Peso Atual (kg)",
+  "toolsInternal.weightGain.addEntry": "Adicionar",
+  "toolsInternal.weightGain.weightGainTrend": "Tendência de Ganho de Peso",
+  "toolsInternal.weightGain.chartNote": "A área sombreada mostra a faixa de ganho de peso recomendada",
+  "toolsInternal.weightGain.recentEntries": "Registros Recentes",
+  "toolsInternal.weightGain.week": "Semana",
+  "toolsInternal.weightGain.totalWeightGainLabel": "Ganho de Peso Total",
+  "toolsInternal.weightGain.bmiCategories": {
+    "underweight": "Abaixo do peso (IMC < 18,5)",
+    "normal": "Normal (IMC 18,5-24,9)",
+    "overweight": "Sobrepeso (IMC 25-29,9)",
+    "obese": "Obesidade (IMC ≥ 30)"
+  },
+  "toolsInternal.weightGain.statusMessages": {
+    "below": { "message": "Seu ganho de peso está abaixo da faixa recomendada.", "recommendation": "Consulte seu médico sobre sua nutrição." },
+    "above": { "message": "Seu ganho de peso está acima da faixa recomendada.", "recommendation": "Converse com seu médico sobre hábitos alimentares saudáveis." },
+    "normal": { "message": "Seu ganho de peso está dentro da faixa saudável!", "recommendation": "Continue assim com uma alimentação equilibrada." }
+  },
+  "toolsInternal.weightGain.minRecommended": "Mín. Recomendado",
+  "toolsInternal.weightGain.maxRecommended": "Máx. Recomendado",
+  "toolsInternal.weightGain.yourWeight": "Seu Peso",
+  "toolsInternal.weightGain.weekAxis": "Semana",
+  "toolsInternal.weightGain.weightGainKg": "Ganho de Peso (kg)"
 }
