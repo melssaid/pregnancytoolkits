@@ -395,7 +395,7 @@ export default function PersonalizedWorkoutPlanner() {
 
                 <Button 
                   onClick={() => completeExercise(activeWorkout.exercises[currentExercise].id)}
-                  className="w-full h-14 text-lg"
+                  className="w-full h-11 text-sm"
                   disabled={completedExercises.includes(activeWorkout.exercises[currentExercise].id)}
                 >
                   {completedExercises.includes(activeWorkout.exercises[currentExercise].id) ? (

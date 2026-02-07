@@ -154,7 +154,7 @@ const DoctorQuestions = () => {
               <Button
                 onClick={startNewVisit}
                 size="lg"
-                className="w-full py-8 text-lg bg-gradient-to-r from-primary to-pink-500"
+                className="w-full py-4 text-sm bg-gradient-to-r from-primary to-pink-500"
               >
                 <Calendar className="h-6 w-6 mr-3" />
                 {t('toolsInternal.doctorQuestions.startNewVisit')}
