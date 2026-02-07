@@ -941,11 +941,11 @@
           "ifNecessary": "Only if necessary",
           "noPreference": "No preference"
         },
-        "skinToSkin": {
-          "label": "Skin-to-Skin Contact",
-          "immediately": "Immediately after birth",
-          "afterChecks": "After initial checks",
-          "partnerFirst": "Partner first if needed"
+        "firstMoments": {
+          "label": "First Moments with Baby",
+          "immediately": "Hold baby immediately",
+          "afterChecks": "After initial medical checks",
+          "partnerFirst": "Partner holds baby first"
         },
         "cordClamping": {
           "label": "Cord Clamping",
@@ -964,8 +964,8 @@
         "cesarean": {
           "label": "If Cesarean Needed",
           "partnerPresent": "Partner present",
-          "clearDrape": "Clear drape requested",
-          "skinToSkin": "Immediate skin-to-skin"
+          "familyCentered": "Family-centered approach",
+          "calmEnvironment": "Calm and quiet environment"
         },
         "photography": {
           "label": "Photography/Video",
@@ -1307,10 +1307,10 @@
         "birthPosition": { "label": "Birth Position", "natural": "Whatever feels natural", "squatting": "Squatting", "sideLying": "Side-lying", "supine": "Standard/supine" },
         "pushing": { "label": "Pushing Style", "coached": "Coached pushing", "spontaneous": "Spontaneous/instinctive", "noPreference": "No preference" },
         "episiotomy": { "label": "Episiotomy", "avoid": "Avoid if possible", "ifNecessary": "Only if necessary", "noPreference": "No preference" },
-        "skinToSkin": { "label": "Immediate Skin-to-Skin", "immediately": "Yes, immediately", "afterChecks": "After initial checks", "partnerFirst": "Partner first if needed" },
+        "firstMoments": { "label": "First Moments with Baby", "immediately": "Hold baby immediately", "afterChecks": "After initial medical checks", "partnerFirst": "Partner holds baby first" },
         "cordClamping": { "label": "Cord Clamping", "delayed": "Delayed clamping", "immediate": "Immediate", "partnerCut": "Partner to cut cord", "noPreference": "No preference" },
         "feeding": { "label": "Feeding Plan", "breastfeeding": "Breastfeeding", "formula": "Formula feeding", "combination": "Combination", "undecided": "Undecided" },
-        "cesarean": { "label": "If C-Section Needed", "partnerPresent": "Partner present", "clearDrape": "Clear drape to see baby", "skinToSkin": "Skin-to-skin in OR if possible" },
+        "cesarean": { "label": "If C-Section Needed", "partnerPresent": "Partner present", "familyCentered": "Family-centered approach", "calmEnvironment": "Calm and quiet environment" },
         "photography": { "label": "Photography/Video", "throughout": "Yes, throughout", "photosOnly": "Photos only", "afterBirth": "After birth only", "none": "No photography" }
       }
     },

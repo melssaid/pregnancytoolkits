@@ -1015,11 +1015,11 @@
           "ifNecessary": "Nur wenn notwendig",
           "noPreference": "Keine Präferenz"
         },
-        "skinToSkin": {
-          "label": "Hautkontakt",
-          "immediately": "Sofort nach der Geburt",
-          "afterChecks": "Nach ersten Untersuchungen",
-          "partnerFirst": "Partner zuerst wenn nötig"
+        "firstMoments": {
+          "label": "Erste Momente mit dem Baby",
+          "immediately": "Baby sofort halten",
+          "afterChecks": "Nach den ersten Untersuchungen",
+          "partnerFirst": "Partner hält das Baby zuerst"
         },
         "cordClamping": {
           "label": "Nabelschnur-Abklemmung",
@@ -1038,8 +1038,8 @@
         "cesarean": {
           "label": "Bei Kaiserschnitt",
           "partnerPresent": "Partner anwesend",
-          "clearDrape": "Durchsichtiges Tuch gewünscht",
-          "skinToSkin": "Sofortiger Hautkontakt"
+          "familyCentered": "Familienzentrierte Betreuung",
+          "calmEnvironment": "Ruhige und entspannte Umgebung"
         },
         "photography": {
           "label": "Fotografie/Video",
