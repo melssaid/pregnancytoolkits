@@ -711,7 +711,12 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   // Get the actual HTML content from the rendered element or convert markdown
   const mainContent = contentElement ? contentElement.innerHTML : markdownToHTML(content);
   
-  // Create a temporary styled container - use absolute positioning with visibility
+  // Font family matching what the app uses
+  const fontFamily = isRTL
+    ? "'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+    : "'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  
+  // Create a temporary styled container
   const container = document.createElement('div');
   container.style.cssText = `
     position: absolute;
@@ -719,44 +724,52 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     top: 0;
     width: 794px;
     background: #ffffff;
-    font-family: ${isRTL ? "'Tajawal', 'Noto Sans Arabic', " : ''}-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Arial', sans-serif;
+    font-family: ${fontFamily};
     color: #1e293b;
     direction: ${isRTL ? 'rtl' : 'ltr'};
+    text-align: ${isRTL ? 'right' : 'left'};
     padding: 0;
     line-height: 1.6;
     z-index: -1;
   `;
   
   // Build the full HTML content - NO gradients, NO complex CSS patterns
+  // Every element gets explicit font-family to ensure Arabic fonts are used
   container.innerHTML = `
     <div style="background: #fcfcfd; border-bottom: 2px solid #ec4899; padding: 24px 40px 20px; text-align: center;">
-      <div style="font-size: 28px; font-weight: 700; color: #1e293b; margin-bottom: 6px;">${l.title}</div>
-      <div style="font-size: 13px; color: #94a3b8; margin-bottom: 4px;">${date}</div>
-      <div style="font-size: 11px; color: #ec4899; font-weight: 500;">${l.brand}</div>
+      <div style="font-size: 28px; font-weight: 700; color: #1e293b; margin-bottom: 6px; font-family: ${fontFamily};">${l.title}</div>
+      <div style="font-size: 13px; color: #94a3b8; margin-bottom: 4px; font-family: ${fontFamily};">${date}</div>
+      <div style="font-size: 11px; color: #ec4899; font-weight: 500; font-family: ${fontFamily};">${l.brand}</div>
     </div>
     
     ${prefCount > 0 ? `
     <div style="margin: 20px 40px 0; padding: 12px 16px; background: #fdf2f8; border-radius: 8px; border-${isRTL ? 'right' : 'left'}: 4px solid #ec4899;">
-      <div style="font-size: 14px; font-weight: 600; color: #ec4899;">${l.prefSummary}</div>
-      <div style="font-size: 12px; color: #94a3b8; margin-top: 2px;">${prefCount} ${l.prefCount}</div>
+      <div style="font-size: 14px; font-weight: 600; color: #ec4899; font-family: ${fontFamily};">${l.prefSummary}</div>
+      <div style="font-size: 12px; color: #94a3b8; margin-top: 2px; font-family: ${fontFamily};">${prefCount} ${l.prefCount}</div>
     </div>
     ` : ''}
     
     <div style="margin: 16px 40px; height: 1px; background: #ec4899;"></div>
     
-    <div style="padding: 0 40px 20px; font-size: 13px; line-height: 1.8; color: #1e293b;">
+    <div style="padding: 0 40px 20px; font-size: 13px; line-height: 1.8; color: #1e293b; font-family: ${fontFamily};">
       ${mainContent}
     </div>
     
     <div style="margin: 10px 40px 20px; padding-top: 10px; border-top: 1px solid #ec4899; text-align: center;">
-      <div style="font-size: 9px; color: #94a3b8; line-height: 1.5;">${l.footer}</div>
+      <div style="font-size: 9px; color: #94a3b8; line-height: 1.5; font-family: ${fontFamily};">${l.footer}</div>
     </div>
   `;
   
   document.body.appendChild(container);
   
-  // Wait for fonts and rendering to settle
-  await new Promise(resolve => setTimeout(resolve, 300));
+  // Wait for all fonts to be loaded before rendering
+  try {
+    await document.fonts.ready;
+  } catch {
+    // Fallback if fonts.ready is not supported
+  }
+  // Additional wait for rendering to settle
+  await new Promise(resolve => setTimeout(resolve, 500));
   
   try {
     // Render the entire container to canvas

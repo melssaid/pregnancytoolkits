@@ -431,10 +431,11 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
                           variant="outline" 
                           onClick={async () => {
                             await exportBirthPlanToPDF({
-                              title: 'Birth Plan',
+                              title: t('toolsInternal.birthPlan.title'),
                               content: plan.generatedPlan,
                               date: format(new Date(plan.date), 'MMMM d, yyyy'),
-                              preferences: plan.preferences
+                              preferences: plan.preferences,
+                              language: i18n.language?.split('-')[0] || 'en',
                             });
                           }}
                         >
