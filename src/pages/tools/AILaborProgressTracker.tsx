@@ -244,13 +244,13 @@ export default function AILaborProgressTracker() {
               <Button
                 size="lg"
                 onClick={isTracking ? endContraction : startContraction}
-                className={`w-full h-16 text-lg rounded-2xl ${
+                className={`w-full h-12 text-sm rounded-2xl ${
                   isTracking 
                     ? 'bg-destructive hover:bg-destructive/90' 
                     : 'bg-primary hover:bg-primary/90'
                 }`}
               >
-                <Timer className="w-6 h-6 mr-2" />
+                <Timer className="w-5 h-5 me-2" />
                 {isTracking ? t('toolsInternal.laborTracker.endContraction', 'End Contraction') : t('toolsInternal.laborTracker.startContraction', 'Start Contraction')}
               </Button>
             </CardContent>

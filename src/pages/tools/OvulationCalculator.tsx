@@ -161,7 +161,7 @@ export default function OvulationCalculator() {
 
             <Button 
               onClick={calculate} 
-              className="w-full h-14 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="w-full h-11 text-sm font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <Heart className="h-5 w-5 mr-2" />
               {t("toolsInternal.ovulation.calculateBtn")}
