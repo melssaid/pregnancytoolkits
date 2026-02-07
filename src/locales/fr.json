@@ -2084,7 +2084,23 @@
     "subtitle": "Conseils de sommeil personnalisés pour la grossesse",
     "currentSleep": "Sommeil actuel: {{hours}} heures/nuit",
     "usualBedtime": "Heure de coucher habituelle",
-    "sleepChallenges": "Défis de sommeil"
+    "sleepChallenges": "Défis de sommeil",
+    "sleepPlan": "Plan de sommeil",
+    "meditation": "Méditation",
+    "routine": "Routine",
+    "leftSideTip": "💡 Après la 20e semaine, dormir sur le côté gauche est recommandé pour une circulation sanguine optimale",
+    "sleepVideos": "Vidéos sur le sommeil pendant la grossesse",
+    "sleepVideosSubtitle": "Conseils d'experts pour mieux dormir pendant la grossesse",
+    "issues": {
+      "backPain": "Mal de dos",
+      "frequentUrination": "Mictions fréquentes",
+      "legCramps": "Crampes aux jambes",
+      "heartburn": "Brûlures d'estomac",
+      "anxiety": "Anxiété/pensées agitées",
+      "babyMovements": "Mouvements du bébé",
+      "hotFlashes": "Bouffées de chaleur",
+      "snoring": "Ronflements/problèmes respiratoires"
+    }
   },
   "toolsInternal.ovulation": {
     "subtitle": "Trouvez vos jours les plus fertiles",
