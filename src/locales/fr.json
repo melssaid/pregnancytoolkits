@@ -396,11 +396,90 @@
       "title": "Politique de Confidentialité",
       "subtitle": "Votre vie privée est importante pour nous. Cet avis explique comment nous traitons vos informations.",
       "lastUpdated": "Dernière mise à jour : 26 janvier 2026",
-      "footerNote": "En continuant à utiliser Pregnancy Toolkits, vous reconnaissez avoir lu et compris cette politique de confidentialité. Pour le texte juridique complet, veuillez nous contacter.",
+      "footerNote": "En continuant à utiliser Pregnancy Toolkits, vous reconnaissez avoir lu et compris cette politique de confidentialité.",
       "privacyFirst": {
         "title": "Approche Confidentialité d'Abord",
         "badge": "Important",
-        "content": "Nous offrons tous nos services sans collecter de données personnelles. Notre application est spécialisée dans la fourniture d'outils de soutien aux femmes enceintes, avec un strict respect de ne pas collecter de données utilisateur à des fins commerciales. Toutes les données de santé sont stockées localement sur votre appareil."
+        "content": "Nous offrons tous nos services sans collecter de données personnelles. Notre application est spécialisée dans la fourniture d'outils de soutien aux femmes enceintes. Toutes les données de santé sont stockées localement sur votre appareil."
+      },
+      "keyPoint": "Point clé",
+      "sections": {
+        "collection": {
+          "title": "Informations que nous collectons",
+          "desc": "Nous collectons les informations personnelles que vous nous fournissez volontairement lorsque vous exprimez un intérêt pour nos produits et services.",
+          "noSensitive": "Nous ne traitons PAS d'informations personnelles sensibles",
+          "noThirdParty": "Nous ne collectons PAS d'informations auprès de tiers",
+          "paymentSecure": "Les données de paiement sont traitées en toute sécurité par Google Play"
+        },
+        "localStorage": {
+          "title": "Stockage local des données",
+          "desc": "Toutes les données de santé personnelles, rendez-vous et informations de suivi sont stockées uniquement localement sur votre appareil.",
+          "neverLeaves": "Les données ne quittent jamais votre appareil",
+          "notUploaded": "Non téléchargées sur nos serveurs",
+          "notShared": "Non partagées avec des tiers",
+          "canDelete": "Peuvent être supprimées à tout moment"
+        },
+        "processing": {
+          "title": "Comment nous traitons les informations",
+          "desc": "Nous traitons vos informations pour fournir, améliorer et administrer nos services, communiquer avec vous, pour la sécurité et la prévention de la fraude.",
+          "legalBasis": "Nous ne traitons vos informations que lorsque nous avons une raison juridique valable."
+        },
+        "sharing": {
+          "title": "Partage d'informations",
+          "desc": "Nous pouvons partager des informations dans des situations spécifiques avec des tiers spécifiques :",
+          "businessTransfers": "Transferts d'entreprise : lors de fusions, ventes ou acquisitions",
+          "noSold": "Nous n'avons PAS vendu ni partagé d'informations personnelles à des fins commerciales au cours des 12 derniers mois."
+        },
+        "aiProducts": {
+          "title": "Produits alimentés par l'IA",
+          "desc": "Nous proposons des produits alimentés par l'intelligence artificielle via des fournisseurs tiers dont Perplexity AI.",
+          "tools": ["Assistant de grossesse IA", "Analyseur de symptômes IA", "Suggestion de repas IA", "Rappel de rendez-vous intelligent", "Coaches fitness IA", "Suivi du travail"],
+          "dataNote": "Lors de l'utilisation des fonctionnalités IA, seule votre requête spécifique (anonymisée) est traitée. Vos données de santé restent sur votre appareil."
+        },
+        "notifications": {
+          "title": "Sons de notification",
+          "desc": "Notre application utilise des sons de notification générés localement via l'API Web Audio.",
+          "noTransmission": "Aucune transmission de données requise",
+          "noAudioCollected": "Aucune donnée audio collectée ou transmise",
+          "canDisable": "Peut être activé/désactivé dans les paramètres"
+        },
+        "retention": {
+          "title": "Conservation des données",
+          "desc": "Nous conservons vos informations aussi longtemps que nécessaire pour atteindre les objectifs décrits dans cet avis de confidentialité. Lorsque nous n'avons plus de besoin commercial légitime, nous supprimerons ou anonymiserons ces informations."
+        },
+        "security": {
+          "title": "Sécurité des informations",
+          "desc": "Nous avons mis en œuvre des mesures de sécurité techniques et organisationnelles appropriées pour protéger la sécurité de toute information personnelle que nous traitons.",
+          "note": "Cependant, aucune transmission électronique sur Internet ne peut être garantie à 100%."
+        },
+        "minors": {
+          "title": "Informations des mineurs",
+          "desc": "Nous ne collectons pas sciemment de données auprès d'enfants de moins de 18 ans. En utilisant les services, vous déclarez avoir au moins 18 ans."
+        },
+        "rights": {
+          "title": "Vos droits à la vie privée",
+          "desc": "Selon votre localisation, vous pouvez avoir certains droits concernant vos informations personnelles :",
+          "access": "Droit d'accéder à vos données personnelles",
+          "correct": "Droit de corriger les inexactitudes",
+          "delete": "Droit de demander la suppression",
+          "optOut": "Droit de refuser le traitement des données"
+        },
+        "international": {
+          "title": "Utilisateurs internationaux",
+          "desc": "Nous respectons les lois applicables en matière de protection des données, y compris le RGPD (UE/UK) et les lois régionales sur la confidentialité.",
+          "eu": "UE/UK : Conformité RGPD avec traitement basé sur le consentement",
+          "us": "USA : Droits de confidentialité spécifiques à chaque État (Californie, Virginie, etc.)",
+          "canada": "Canada : Cadre de consentement explicite et implicite"
+        },
+        "updates": {
+          "title": "Mises à jour de la politique",
+          "desc": "Nous pouvons mettre à jour cet avis de confidentialité de temps en temps. La version mise à jour sera indiquée par une date de mise à jour."
+        },
+        "contact": {
+          "title": "Nous contacter",
+          "desc": "Si vous avez des questions ou des commentaires sur cet avis :",
+          "contactPage": "Page de contact"
+        }
       }
     },
     "contactPage": {

@@ -401,6 +401,85 @@
         "title": "Datenschutz an erster Stelle",
         "badge": "Wichtig",
         "content": "Wir bieten alle Dienste ohne Erhebung persönlicher Daten an. Unsere Anwendung ist darauf spezialisiert, Tools zur Unterstützung schwangerer Frauen bereitzustellen, mit strikter Einhaltung, keine Benutzerdaten für kommerzielle Zwecke zu sammeln. Alle Gesundheitsdaten werden lokal auf Ihrem Gerät gespeichert."
+      },
+      "keyPoint": "Kernpunkt",
+      "sections": {
+        "collection": {
+          "title": "Informationen, die wir erheben",
+          "desc": "Wir erheben persönliche Informationen, die Sie uns freiwillig zur Verfügung stellen, wenn Sie Interesse an unseren Produkten und Dienstleistungen bekunden.",
+          "noSensitive": "Wir verarbeiten KEINE sensiblen personenbezogenen Daten",
+          "noThirdParty": "Wir erheben KEINE Informationen von Dritten",
+          "paymentSecure": "Zahlungsdaten werden sicher über Google Play verarbeitet"
+        },
+        "localStorage": {
+          "title": "Lokale Datenspeicherung",
+          "desc": "Alle persönlichen Gesundheitsdaten, Termine und Tracking-Informationen, die Sie in unsere Tools eingeben, werden ausschließlich lokal auf Ihrem Gerät gespeichert.",
+          "neverLeaves": "Daten verlassen niemals Ihr Gerät",
+          "notUploaded": "Nicht auf unsere Server hochgeladen",
+          "notShared": "Nicht an Dritte weitergegeben",
+          "canDelete": "Können jederzeit gelöscht werden"
+        },
+        "processing": {
+          "title": "Wie wir Informationen verarbeiten",
+          "desc": "Wir verarbeiten Ihre Informationen, um unsere Dienste bereitzustellen, zu verbessern und zu verwalten, mit Ihnen zu kommunizieren, für Sicherheit und Betrugsprävention sowie zur Einhaltung von Gesetzen.",
+          "legalBasis": "Wir verarbeiten Ihre Informationen nur, wenn wir einen gültigen rechtlichen Grund dafür haben."
+        },
+        "sharing": {
+          "title": "Informationsweitergabe",
+          "desc": "Wir können Informationen in bestimmten Situationen und an bestimmte Dritte weitergeben:",
+          "businessTransfers": "Unternehmensübertragungen: Bei Fusionen, Verkäufen oder Übernahmen",
+          "noSold": "Wir haben in den letzten 12 Monaten KEINE personenbezogenen Daten zu kommerziellen Zwecken an Dritte verkauft oder weitergegeben."
+        },
+        "aiProducts": {
+          "title": "KI-gestützte Produkte",
+          "desc": "Wir bieten Produkte an, die durch künstliche Intelligenz über Drittanbieter einschließlich Perplexity AI unterstützt werden.",
+          "tools": ["KI-Schwangerschaftsassistent", "KI-Symptomanalysator", "KI-Mahlzeitenvorschlag", "Intelligente Terminerinnerung", "KI-Fitness-Coaches", "Geburtsfortschritts-Tracker"],
+          "dataNote": "Bei der Nutzung von KI-Funktionen wird nur Ihre spezifische Anfrage (anonymisiert) verarbeitet. Ihre gespeicherten Gesundheitsdaten bleiben auf Ihrem Gerät."
+        },
+        "notifications": {
+          "title": "Benachrichtigungstöne",
+          "desc": "Unsere Anwendung verwendet Benachrichtigungstöne, die lokal über die Web Audio API erzeugt werden.",
+          "noTransmission": "Keine Datenübertragung erforderlich",
+          "noAudioCollected": "Keine Audiodaten gesammelt oder übertragen",
+          "canDisable": "Kann in den Einstellungen aktiviert/deaktiviert werden"
+        },
+        "retention": {
+          "title": "Datenaufbewahrung",
+          "desc": "Wir bewahren Ihre Informationen so lange auf, wie es zur Erfüllung der in diesem Datenschutzhinweis beschriebenen Zwecke erforderlich ist. Wenn wir keinen fortlaufenden geschäftlichen Bedarf mehr haben, werden wir solche Informationen löschen oder anonymisieren."
+        },
+        "security": {
+          "title": "Informationssicherheit",
+          "desc": "Wir haben geeignete technische und organisatorische Sicherheitsmaßnahmen implementiert, um die Sicherheit aller von uns verarbeiteten personenbezogenen Daten zu schützen.",
+          "note": "Keine elektronische Übertragung über das Internet kann jedoch zu 100% als sicher garantiert werden."
+        },
+        "minors": {
+          "title": "Informationen von Minderjährigen",
+          "desc": "Wir erheben wissentlich keine Daten von Kindern unter 18 Jahren und vermarkten auch nicht an diese. Durch die Nutzung der Dienste erklären Sie, dass Sie mindestens 18 Jahre alt sind."
+        },
+        "rights": {
+          "title": "Ihre Datenschutzrechte",
+          "desc": "Je nach Ihrem Standort haben Sie möglicherweise bestimmte Rechte bezüglich Ihrer persönlichen Informationen:",
+          "access": "Recht auf Zugang zu Ihren persönlichen Daten",
+          "correct": "Recht auf Berichtigung von Ungenauigkeiten",
+          "delete": "Recht auf Löschung",
+          "optOut": "Recht auf Widerspruch gegen die Datenverarbeitung"
+        },
+        "international": {
+          "title": "Internationale Nutzer",
+          "desc": "Wir halten die geltenden Datenschutzgesetze ein, einschließlich DSGVO (EU/UK) und regionale Datenschutzgesetze.",
+          "eu": "EU/UK: DSGVO-Konformität mit einwilligungsbasierter Verarbeitung",
+          "us": "USA: Bundesstaatsspezifische Datenschutzrechte (Kalifornien, Virginia, etc.)",
+          "canada": "Kanada: Rahmenwerk für ausdrückliche und stillschweigende Einwilligung"
+        },
+        "updates": {
+          "title": "Richtlinienaktualisierungen",
+          "desc": "Wir können diesen Datenschutzhinweis von Zeit zu Zeit aktualisieren. Die aktualisierte Version wird durch ein aktualisiertes Datum gekennzeichnet."
+        },
+        "contact": {
+          "title": "Kontakt",
+          "desc": "Wenn Sie Fragen oder Kommentare zu diesem Hinweis haben:",
+          "contactPage": "Kontaktseite"
+        }
       }
     },
     "contactPage": {
