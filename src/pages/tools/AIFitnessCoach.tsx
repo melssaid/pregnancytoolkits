@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { RotateCcw, Info, Dumbbell, Filter } from 'lucide-react';
+import { RotateCcw, Info, Dumbbell, Filter, Activity } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
@@ -14,6 +14,7 @@ import { RestTimer } from '@/components/fitness/RestTimer';
 import { TrimesterAlert } from '@/components/fitness/TrimesterAlert';
 import { ExerciseCard, Exercise } from '@/components/fitness/ExerciseCard';
 import { WarmupCooldownSection } from '@/components/fitness/WarmupCooldownSection';
+import { AIInsightCard } from '@/components/ai/AIInsightCard';
 
 const REST_DURATION = 15;
 
@@ -267,6 +268,38 @@ const AIFitnessCoach: React.FC = () => {
 
         {/* Cooldown Guide */}
         <WarmupCooldownSection type="cooldown" />
+
+        {/* AI Workout Analysis */}
+        <AIInsightCard
+          title={t('toolsInternal.fitnessCoach.aiWorkoutAnalysis')}
+          prompt={`I am ${currentWeek} weeks pregnant with a ${fitnessLevel} fitness level. I just completed ${completedExercises.size} out of ${generatedWorkout.length} exercises, burning approximately ${caloriesBurned} calories in ${Math.round(totalTimeSpent / 60)} minutes.
+
+My workout included: ${generatedWorkout.map(e => t(`toolsInternal.fitnessCoach.exerciseNames.${e.nameKey}`)).join(', ')}.
+
+Please provide a comprehensive personalized fitness analysis:
+
+## Weekly Fitness Assessment
+Evaluate my workout performance for week ${currentWeek} and ${fitnessLevel} level
+
+## Muscle Balance Analysis
+Which muscle groups were well-targeted and which need more attention
+
+## Progressive Overload Recommendations
+How to safely increase intensity over the coming weeks
+
+## Recovery & Nutrition Tips
+Post-workout recovery and nutrition specific to week ${currentWeek}
+
+## Next Workout Suggestions
+3-4 specific exercises to add or swap for my next session
+
+## Safety Reminders
+Trimester-specific precautions for my current stage`}
+          context={{ week: currentWeek }}
+          buttonText={t('toolsInternal.fitnessCoach.aiWorkoutButton')}
+          icon={<Activity className="w-4 h-4 text-white" />}
+          variant="default"
+        />
 
         {/* Generate New Workout */}
         <Button

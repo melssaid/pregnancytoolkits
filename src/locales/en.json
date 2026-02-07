@@ -1379,7 +1379,10 @@
         "cardio": { "title": "Pregnancy Safe HIIT Cardio", "description": "20 minute no repeat low impact workout" },
         "yoga": { "title": "Prenatal Yoga for Relaxation", "description": "Deep relaxation yoga for pregnancy" },
         "relaxation": { "title": "Pregnancy Relaxation Meditation", "description": "Calming meditation for expecting mothers" }
-      }
+      },
+      "aiWorkoutAnalysis": "Personalized Workout Analysis",
+      "aiWorkoutButton": "Analyze My Fitness Plan",
+      "aiWorkoutPromptTitle": "Personalized Pregnancy Fitness Analysis"
     },
     "birthPlan": {
       "title": "AI Birth Plan Generator",

@@ -2121,7 +2121,10 @@
         "cardio": { "title": "Cardio HIIT sûr pour la grossesse", "description": "Entraînement de 20 minutes à faible impact sans répétition" },
         "yoga": { "title": "Yoga prénatal de relaxation", "description": "Yoga de relaxation profonde pour la grossesse" },
         "relaxation": { "title": "Méditation de relaxation grossesse", "description": "Méditation apaisante pour futures mamans" }
-      }
+      },
+      "aiWorkoutAnalysis": "Analyse d'entraînement personnalisée",
+      "aiWorkoutButton": "Analyser mon programme fitness",
+      "aiWorkoutPromptTitle": "Analyse fitness personnalisée de grossesse"
     }
   },
   "preeclampsiaRisk": {

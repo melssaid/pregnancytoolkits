@@ -1473,7 +1473,10 @@
         "cardio": { "title": "Hamilelikte Güvenli HIIT Kardiyo", "description": "20 dakikalık tekrarsız düşük etki antrenmanı" },
         "yoga": { "title": "Doğum Öncesi Rahatlama Yogası", "description": "Hamilelik için derin rahatlama yogası" },
         "relaxation": { "title": "Hamilelik Rahatlama Meditasyonu", "description": "Beklentili anneler için sakinleştirici meditasyon" }
-      }
+      },
+      "aiWorkoutAnalysis": "Kişiselleştirilmiş Antrenman Analizi",
+      "aiWorkoutButton": "Fitness Planımı Analiz Et",
+      "aiWorkoutPromptTitle": "Kişiselleştirilmiş Hamilelik Fitness Analizi"
     },
     "weeklySummary": {
       "title": "Haftalık Özet",
