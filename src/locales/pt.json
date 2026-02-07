@@ -2136,7 +2136,42 @@
       "ovulationDay": "Ovulação Estimada",
       "nextPeriod": "Próximo Período",
       "logPeriod": "Registrar Período",
-      "aiInsights": "Insights de Fertilidade IA"
+      "aiInsights": "Insights de Fertilidade IA",
+      "yourStatistics": "Suas Estatísticas",
+      "share": "Compartilhar",
+      "avgCycleLength": "Duração Méd. do Ciclo",
+      "avgPeriodLength": "Duração Méd. do Período",
+      "analyzePatterns": "Analisar Meus Padrões",
+      "startDate": "Data de Início",
+      "endDate": "Data de Fim (opcional)",
+      "flowIntensity": "Intensidade do Fluxo",
+      "symptoms": "Sintomas (opcional)",
+      "cycleHistory": "Histórico de Ciclos",
+      "dayCycle": "dias de ciclo",
+      "flow": "fluxo",
+      "trackTip": "Acompanhe pelo menos 3-6 ciclos para previsões mais precisas. A duração do ciclo pode variar devido ao estresse, doença ou outros fatores.",
+      "flowLevels": {
+        "light": "Leve",
+        "medium": "Médio",
+        "heavy": "Intenso"
+      },
+      "symptomOptions": {
+        "cramps": "Cólicas",
+        "headache": "Dor de cabeça",
+        "bloating": "Inchaço",
+        "moodSwings": "Mudanças de humor",
+        "fatigue": "Fadiga",
+        "breastTenderness": "Sensibilidade mamária",
+        "acne": "Acne",
+        "backPain": "Dor nas costas"
+      },
+      "saved": "Salvo!",
+      "savedDesc": "Entrada do ciclo registrada.",
+      "deleted": "Excluído",
+      "deletedDesc": "Entrada do ciclo removida.",
+      "days": "dias",
+      "copied": "Copiado!",
+      "copiedDesc": "Estatísticas copiadas para a área de transferência."
     },
     "weightGain": {
       "title": "Analisador de Ganho de Peso",
