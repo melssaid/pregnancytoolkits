@@ -37,6 +37,7 @@ const AICravingAlternatives: React.FC = () => {
   const { streamChat, error } = usePregnancyAI();
 
   useResetOnLanguageChange(() => {
+    setCraving('');
     setResult('');
   });
   const abortRef = useRef(false);
