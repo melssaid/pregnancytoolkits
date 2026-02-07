@@ -2332,7 +2332,23 @@
     "subtitle": "Orientação personalizada de sono para gravidez",
     "currentSleep": "Sono Atual: {{hours}} horas/noite",
     "usualBedtime": "Hora Habitual de Dormir",
-    "sleepChallenges": "Desafios do Sono"
+    "sleepChallenges": "Desafios do Sono",
+    "sleepPlan": "Plano de sono",
+    "meditation": "Meditação",
+    "routine": "Rotina",
+    "leftSideTip": "💡 Após a 20ª semana, dormir do lado esquerdo é recomendado para um fluxo sanguíneo ideal",
+    "sleepVideos": "Vídeos de sono na gravidez",
+    "sleepVideosSubtitle": "Dicas de especialistas para dormir melhor durante a gravidez",
+    "issues": {
+      "backPain": "Dor nas costas",
+      "frequentUrination": "Micção frequente",
+      "legCramps": "Cãibras nas pernas",
+      "heartburn": "Azia",
+      "anxiety": "Ansiedade/pensamentos acelerados",
+      "babyMovements": "Movimentos do bebê",
+      "hotFlashes": "Ondas de calor",
+      "snoring": "Ronco/problemas respiratórios"
+    }
   },
   "toolsInternal.gdm": {
     "title": "Avaliação de Risco de Diabetes Gestacional",

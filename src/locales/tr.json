@@ -2332,7 +2332,23 @@
     "subtitle": "Hamilelik için kişiselleştirilmiş uyku rehberliği",
     "currentSleep": "Mevcut Uyku: {{hours}} saat/gece",
     "usualBedtime": "Normal Yatma Saati",
-    "sleepChallenges": "Uyku Zorlukları"
+    "sleepChallenges": "Uyku Zorlukları",
+    "sleepPlan": "Uyku Planı",
+    "meditation": "Meditasyon",
+    "routine": "Rutin",
+    "leftSideTip": "💡 20. haftadan sonra sol tarafa yatmak optimal kan akışı için önerilir",
+    "sleepVideos": "Hamilelik Uyku Videoları",
+    "sleepVideosSubtitle": "Hamilelikte daha iyi uyku için uzman ipuçları",
+    "issues": {
+      "backPain": "Sırt ağrısı",
+      "frequentUrination": "Sık idrara çıkma",
+      "legCramps": "Bacak krampları",
+      "heartburn": "Mide yanması",
+      "anxiety": "Kaygı/hızlı düşünceler",
+      "babyMovements": "Bebek hareketleri",
+      "hotFlashes": "Sıcak basması",
+      "snoring": "Horlama/nefes sorunları"
+    }
   },
   "toolsInternal.gdm": {
     "title": "Gestasyonel Diyabet Risk Değerlendirmesi",

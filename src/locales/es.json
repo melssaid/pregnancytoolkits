@@ -2332,7 +2332,23 @@
     "subtitle": "Guía personalizada de sueño para el embarazo",
     "currentSleep": "Sueño actual: {{hours}} horas/noche",
     "usualBedtime": "Hora habitual de dormir",
-    "sleepChallenges": "Desafíos del sueño"
+    "sleepChallenges": "Desafíos del sueño",
+    "sleepPlan": "Plan de sueño",
+    "meditation": "Meditación",
+    "routine": "Rutina",
+    "leftSideTip": "💡 Después de la semana 20, dormir del lado izquierdo es recomendado para un flujo sanguíneo óptimo",
+    "sleepVideos": "Videos de sueño en el embarazo",
+    "sleepVideosSubtitle": "Consejos de expertos para dormir mejor durante el embarazo",
+    "issues": {
+      "backPain": "Dolor de espalda",
+      "frequentUrination": "Micción frecuente",
+      "legCramps": "Calambres en las piernas",
+      "heartburn": "Acidez estomacal",
+      "anxiety": "Ansiedad/pensamientos acelerados",
+      "babyMovements": "Movimientos del bebé",
+      "hotFlashes": "Sofocos",
+      "snoring": "Ronquidos/problemas respiratorios"
+    }
   },
   "toolsInternal.gdm": {
     "title": "Evaluación de Riesgo de Diabetes Gestacional",

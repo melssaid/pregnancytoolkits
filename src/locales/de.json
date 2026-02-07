@@ -2084,7 +2084,23 @@
     "subtitle": "Personalisierte Schlafanleitung für die Schwangerschaft",
     "currentSleep": "Aktueller Schlaf: {{hours}} Stunden/Nacht",
     "usualBedtime": "Übliche Schlafenszeit",
-    "sleepChallenges": "Schlafprobleme"
+    "sleepChallenges": "Schlafprobleme",
+    "sleepPlan": "Schlafplan",
+    "meditation": "Meditation",
+    "routine": "Routine",
+    "leftSideTip": "💡 Nach der 20. Woche wird das Schlafen auf der linken Seite für eine optimale Durchblutung empfohlen",
+    "sleepVideos": "Schwangerschafts-Schlafvideos",
+    "sleepVideosSubtitle": "Expertentipps für besseren Schlaf in der Schwangerschaft",
+    "issues": {
+      "backPain": "Rückenschmerzen",
+      "frequentUrination": "Häufiges Wasserlassen",
+      "legCramps": "Wadenkrämpfe",
+      "heartburn": "Sodbrennen",
+      "anxiety": "Angst/Gedankenrasen",
+      "babyMovements": "Babybewegungen",
+      "hotFlashes": "Hitzewallungen",
+      "snoring": "Schnarchen/Atemprobleme"
+    }
   },
   "toolsInternal.ovulation": {
     "subtitle": "Finden Sie Ihre fruchtbarsten Tage",
