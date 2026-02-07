@@ -985,7 +985,11 @@
       "planTitle": "Birth Plan",
       "preferencesSet": "{{count}} preferences set",
       "load": "Load",
-      "storageFull": "Storage full. Delete old plans to save new ones."
+      "storageFull": "Storage full. Delete old plans to save new ones.",
+      "selectPreference": "Please select at least one preference",
+      "planGenerated": "Birth plan generated successfully!",
+      "pdfSuccess": "PDF downloaded successfully!",
+      "pdfError": "Failed to export PDF"
     },
     "dueDate": {
       "calculateTitle": "Calculate Your Due Date",

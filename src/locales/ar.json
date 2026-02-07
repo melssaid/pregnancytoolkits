@@ -815,7 +815,11 @@
       "planTitle": "خطة الولادة",
       "preferencesSet": "{{count}} تفضيلات محددة",
       "load": "تحميل",
-      "storageFull": "التخزين ممتلئ. احذفي خططاً قديمة لحفظ جديدة."
+      "storageFull": "التخزين ممتلئ. احذفي خططاً قديمة لحفظ جديدة.",
+      "selectPreference": "يرجى اختيار تفضيل واحد على الأقل",
+      "planGenerated": "تم إنشاء خطة الولادة بنجاح!",
+      "pdfSuccess": "تم تحميل ملف PDF بنجاح!",
+      "pdfError": "فشل في تصدير ملف PDF"
     },
     "dueDate": {
       "calculateTitle": "احسبي موعد ولادتك",

@@ -1059,7 +1059,11 @@
       "planTitle": "Geburtsplan",
       "preferencesSet": "{{count}} Präferenzen festgelegt",
       "load": "Laden",
-      "storageFull": "Speicher voll. Löschen Sie alte Pläne, um neue zu speichern."
+      "storageFull": "Speicher voll. Löschen Sie alte Pläne, um neue zu speichern.",
+      "selectPreference": "Bitte wählen Sie mindestens eine Präferenz",
+      "planGenerated": "Geburtsplan erfolgreich erstellt!",
+      "pdfSuccess": "PDF erfolgreich heruntergeladen!",
+      "pdfError": "PDF-Export fehlgeschlagen"
     },
     "mealSuggestion": {
       "subtitle": "Intelligente Mahlzeitenvorschläge für Ihre Schwangerschaft",
