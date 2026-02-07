@@ -1690,7 +1690,11 @@
         "tacos": "Tacos",
         "bacon": "Bacon",
         "burger": "Burger"
-      }
+      },
+      "pregnancySafe": "Safety",
+      "verifiedSafe": "Pregnancy-Safe Swaps",
+      "nutrientDense": "Nutrition",
+      "optimalNutrition": "Nutrient-Dense Options"
     },
     "birthPosition": {
       "title": "AI Birth Positions",
