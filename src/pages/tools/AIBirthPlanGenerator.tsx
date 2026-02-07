@@ -333,9 +333,9 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
         {generatedPlan && (
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-primary" />
+              <div className="flex flex-col gap-2 mb-4">
+                <h3 className="font-semibold flex items-center gap-2 text-sm">
+                  <FileText className="w-4 h-4 text-primary shrink-0" />
                   {t('toolsInternal.birthPlan.yourBirthPlan')}
                 </h3>
                 <div className="flex gap-2">
@@ -344,6 +344,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
                     variant="outline" 
                     onClick={savePlan}
                     disabled={savedPlans.length >= MAX_SAVED_PLANS}
+                    className="flex-1"
                   >
                     {t('common.save')}
                   </Button>
@@ -351,9 +352,9 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
                     size="sm" 
                     variant="default" 
                     onClick={exportPlanAsPDF}
-                    className="gap-1"
+                    className="gap-1 flex-1"
                   >
-                    <FileDown className="w-4 h-4" />
+                    <FileDown className="w-4 h-4 shrink-0" />
                     PDF
                   </Button>
                 </div>
