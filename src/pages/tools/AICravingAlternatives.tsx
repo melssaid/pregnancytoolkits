@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Sparkles, Loader2, Heart, AlertTriangle, Salad, RefreshCw, Apple, ShieldCheck, TrendingUp } from 'lucide-react';
+import { Sparkles, Loader2, Heart, AlertTriangle, Salad, RefreshCw, ShieldCheck, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -115,34 +115,28 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
       <div className="container py-6">
         <div className="max-w-4xl mx-auto space-y-6">
           
-          {/* Professional Stats Bar */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-border bg-card shadow-sm">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <Apple className="w-4 h-4 text-primary" />
+          {/* Tool Header */}
+          <div className="rounded-xl border border-border bg-card p-4 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="p-2.5 rounded-xl bg-primary/10">
+                <Salad className="w-5 h-5 text-primary" />
               </div>
-              <div className="min-w-0">
-                <p className="text-xs text-muted-foreground">{t('toolsInternal.cravingAlternatives.title')}</p>
-                <p className="text-sm font-semibold text-foreground truncate">{t('toolsInternal.cravingAlternatives.subtitle')}</p>
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <div className="flex-1 flex items-center gap-2.5 px-3 py-2.5 rounded-xl border border-border bg-card shadow-sm">
-                <div className="p-1.5 rounded-md bg-secondary">
-                  <ShieldCheck className="w-3.5 h-3.5 text-primary" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cravingAlternatives.pregnancySafe')}</p>
-                  <p className="text-xs font-semibold text-foreground truncate">{t('toolsInternal.cravingAlternatives.verifiedSafe')}</p>
-                </div>
-              </div>
-              <div className="flex-1 flex items-center gap-2.5 px-3 py-2.5 rounded-xl border border-border bg-card shadow-sm">
-                <div className="p-1.5 rounded-md bg-accent">
-                  <TrendingUp className="w-3.5 h-3.5 text-accent-foreground" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cravingAlternatives.nutrientDense')}</p>
-                  <p className="text-xs font-semibold text-foreground truncate">{t('toolsInternal.cravingAlternatives.optimalNutrition')}</p>
+              <div className="flex-1 min-w-0">
+                <h1 className="text-base font-bold text-foreground">{t('toolsInternal.cravingAlternatives.title')}</h1>
+                <p className="text-xs text-muted-foreground mt-0.5">{t('toolsInternal.cravingAlternatives.subtitle')}</p>
+                <div className="flex flex-wrap gap-1.5 mt-2.5">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/8 text-[10px] font-medium text-primary">
+                    <ShieldCheck className="w-3 h-3" />
+                    {t('toolsInternal.cravingAlternatives.pregnancySafe')}
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent text-[10px] font-medium text-accent-foreground">
+                    <Zap className="w-3 h-3" />
+                    {t('toolsInternal.cravingAlternatives.nutrientDense')}
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary text-[10px] font-medium text-foreground">
+                    <Sparkles className="w-3 h-3" />
+                    AI
+                  </span>
                 </div>
               </div>
             </div>
