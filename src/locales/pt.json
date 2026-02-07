@@ -1355,6 +1355,16 @@
       "start": "Iniciar",
       "resume": "Retomar",
       "pause": "Pausar",
+      "completed": "Concluído",
+      "allCategories": "Todos",
+      "workoutProgress": "Progresso do Treino",
+      "workoutComplete": "Treino Concluído! 🎉",
+      "greatJob": "Parabéns! Você completou seu treino hoje!",
+      "calories": "cal",
+      "seconds": "seg",
+      "restTime": "Tempo de Descanso",
+      "skip": "Pular",
+      "dailyTip": "Dica Fitness do Dia",
       "fitnessVideos": "Vídeos de Fitness Pré-natal",
       "fitnessVideosSubtitle": "Guias de treino seguros para cada trimestre",
       "safetyFirst": "Segurança Primeiro",
@@ -1365,7 +1375,16 @@
         "pelvicTilts": "Inclinações Pélvicas",
         "wallPushups": "Flexões de Parede",
         "butterflyStretch": "Alongamento Borboleta",
-        "seatedMarching": "Marcha Sentada"
+        "seatedMarching": "Marcha Sentada",
+        "neckRolls": "Rotações de Pescoço",
+        "armCircles": "Círculos de Braços",
+        "gluteBridge": "Ponte de Glúteos",
+        "sideLyingLeg": "Elevação de Perna Lateral",
+        "stepTouch": "Passo e Toque",
+        "catCow": "Alongamento Gato-Vaca",
+        "sideStretch": "Alongamento Lateral",
+        "childPose": "Postura da Criança",
+        "deepBreathing": "Respiração Profunda"
       },
       "exerciseDescs": {
         "prenatalSquatsDesc": "Fique em pé com os pés afastados na largura dos ombros. Desça suavemente como se fosse sentar.",
@@ -1373,12 +1392,75 @@
         "pelvicTiltsDesc": "Balance suavemente sua pelve para frente e para trás para aliviar a lombar.",
         "wallPushupsDesc": "Fique a um braço de distância da parede. Incline-se e empurre de volta.",
         "butterflyStretchDesc": "Sente-se com os pés juntos, joelhos para fora. Incline-se suavemente para frente.",
-        "seatedMarchingDesc": "Sente-se em uma cadeira estável ou bola. Levante os joelhos alternadamente."
+        "seatedMarchingDesc": "Sente-se em uma cadeira estável ou bola. Levante os joelhos alternadamente.",
+        "neckRollsDesc": "Gire a cabeça lentamente em círculos suaves. Mude de direção após 15 segundos.",
+        "armCirclesDesc": "Estenda os braços para os lados e faça pequenos círculos. Aumente gradualmente.",
+        "gluteBridgeDesc": "Deite de costas com os joelhos dobrados. Levante os quadris em direção ao teto e segure.",
+        "sideLyingLegDesc": "Deite de lado. Levante a perna de cima lentamente e desça com controle.",
+        "stepTouchDesc": "Dê passos laterais em ritmo controlado. Mantenha o core ativado.",
+        "catCowDesc": "Em quatro apoios, alterne entre arqueamento e arredondamento das costas.",
+        "sideStretchDesc": "De pé, estenda um braço sobre a cabeça e incline-se suavemente para o lado.",
+        "childPoseDesc": "Ajoelhe-se e sente-se sobre os calcanhares. Estenda os braços para frente.",
+        "deepBreathingDesc": "Inspire pelo nariz contando 4, segure 4, expire pela boca contando 6."
       },
       "categories": {
+        "warmup": "Aquecimento",
         "strength": "Força",
         "cardio": "Cardio",
-        "flexibility": "Flexibilidade"
+        "flexibility": "Flexibilidade",
+        "cooldown": "Resfriamento"
+      },
+      "muscleGroups": {
+        "neck": "Pescoço e Trapézio Superior",
+        "shoulders": "Ombros e Deltoides",
+        "legs": "Quadríceps e Isquiotibiais",
+        "core": "Core e Abdominais Profundos",
+        "arms": "Peito e Tríceps",
+        "glutes": "Glúteos e Extensores do Quadril",
+        "hips": "Abdutores do Quadril",
+        "pelvis": "Assoalho Pélvico",
+        "fullBody": "Corpo Inteiro",
+        "spine": "Coluna e Músculos Dorsais",
+        "obliques": "Oblíquos e Core Lateral",
+        "back": "Lombar e Grande Dorsal",
+        "diaphragm": "Diafragma e Músculos Respiratórios"
+      },
+      "trimesterAlerts": {
+        "t1": {
+          "title": "Primeiro Trimestre (Semanas 1-13)",
+          "text": "Foque em exercícios de baixa intensidade. Evite superaquecimento e mantenha-se hidratada."
+        },
+        "t2": {
+          "title": "Segundo Trimestre (Semanas 14-26)",
+          "text": "Sua energia está mais alta! Ótimo momento para exercícios moderados. Evite ficar deitada de costas por muito tempo."
+        },
+        "t3": {
+          "title": "Terceiro Trimestre (Semanas 27-42)",
+          "text": "Foque em alongamentos suaves e exercícios de respiração. Evite movimentos de alto impacto."
+        }
+      },
+      "warmup": {
+        "title": "Rotina de Aquecimento",
+        "duration": "3-5 minutos",
+        "step1": "Comece com rotações suaves de pescoço e encolhimento de ombros.",
+        "step2": "Faça círculos com os braços, começando pequenos e aumentando gradualmente.",
+        "step3": "Marche suavemente no lugar por 30 segundos.",
+        "step4": "Faça 5 respirações profundas expandindo totalmente as costelas."
+      },
+      "cooldown": {
+        "title": "Rotina de Resfriamento",
+        "duration": "3-5 minutos",
+        "step1": "Caminhe lentamente no lugar por 30 segundos para baixar a frequência cardíaca.",
+        "step2": "Alongue suavemente pescoço e ombros, segurando cada um por 15 segundos.",
+        "step3": "Pratique respiração abdominal profunda por 1 minuto.",
+        "step4": "Termine com um alongamento completo e uma afirmação positiva."
+      },
+      "tips": {
+        "tip1": "Beba pelo menos 8 copos de água nos dias de treino. A hidratação previne cãibras.",
+        "tip2": "O melhor horário para se exercitar é quando você se sente com mais energia.",
+        "tip3": "Os exercícios de Kegel são invisíveis mas poderosos! Pratique ao longo do dia.",
+        "tip4": "Caminhar é um dos exercícios mais seguros durante a gravidez. Mire 20-30 minutos diários.",
+        "tip5": "A respiração correta durante o exercício é fundamental. Nunca prenda a respiração."
       },
       "videoCategories": {
         "core": "Core",

@@ -1941,6 +1941,16 @@
       "start": "Start",
       "resume": "Fortsetzen",
       "pause": "Pause",
+      "completed": "Abgeschlossen",
+      "allCategories": "Alle",
+      "workoutProgress": "Trainingsfortschritt",
+      "workoutComplete": "Training abgeschlossen! 🎉",
+      "greatJob": "Super! Sie haben Ihr Training heute geschafft!",
+      "calories": "kcal",
+      "seconds": "Sek",
+      "restTime": "Pausenzeit",
+      "skip": "Überspringen",
+      "dailyTip": "Täglicher Fitness-Tipp",
       "fitnessVideos": "Schwangerschafts-Fitness-Videos",
       "fitnessVideosSubtitle": "Sichere Trainingsanleitungen für jedes Trimester",
       "safetyFirst": "Sicherheit zuerst",
@@ -1951,20 +1961,92 @@
         "pelvicTilts": "Beckenkippen",
         "wallPushups": "Wand-Liegestütze",
         "butterflyStretch": "Schmetterlings-Dehnung",
-        "seatedMarching": "Sitzmarsch"
+        "seatedMarching": "Sitzmarsch",
+        "neckRolls": "Nackenkreisen",
+        "armCircles": "Armkreisen",
+        "gluteBridge": "Gesäßbrücke",
+        "sideLyingLeg": "Seitliches Beinheben",
+        "stepTouch": "Seitschritt",
+        "catCow": "Katze-Kuh-Dehnung",
+        "sideStretch": "Seitdehnung",
+        "childPose": "Kindeshaltung",
+        "deepBreathing": "Tiefes Atmen"
       },
       "exerciseDescs": {
         "prenatalSquatsDesc": "Stehen Sie schulterbreit. Senken Sie sich sanft ab wie beim Hinsetzen.",
-        "birdDogDesc": "Auf Händen und Knien, strecken Sie gegenüberliegenden Arm und Bein. Halten Sie das Gleichgewicht.",
+        "birdDogDesc": "Auf Händen und Knien, strecken Sie gegenüberliegenden Arm und Bein.",
         "pelvicTiltsDesc": "Kippen Sie sanft Ihr Becken vor und zurück, um den unteren Rücken zu entlasten.",
         "wallPushupsDesc": "Stehen Sie armlang von der Wand. Lehnen Sie sich vor und drücken Sie zurück.",
         "butterflyStretchDesc": "Sitzen Sie mit zusammengeführten Füßen, Knie nach außen. Lehnen Sie sich sanft vor.",
-        "seatedMarchingDesc": "Sitzen Sie auf einem stabilen Stuhl oder Ball. Heben Sie abwechselnd die Knie."
+        "seatedMarchingDesc": "Sitzen Sie auf einem stabilen Stuhl oder Ball. Heben Sie abwechselnd die Knie.",
+        "neckRollsDesc": "Rollen Sie Ihren Kopf langsam in sanften Kreisen. Wechseln Sie nach 15 Sekunden die Richtung.",
+        "armCirclesDesc": "Strecken Sie die Arme zur Seite und machen kleine Kreise. Vergrößern Sie schrittweise.",
+        "gluteBridgeDesc": "Liegen Sie auf dem Rücken, Knie gebeugt. Heben Sie die Hüften zur Decke und halten.",
+        "sideLyingLegDesc": "Liegen Sie auf der Seite. Heben Sie das obere Bein langsam und senken kontrolliert.",
+        "stepTouchDesc": "Schreiten Sie rhythmisch von Seite zu Seite. Halten Sie den Rumpf angespannt.",
+        "catCowDesc": "Auf allen Vieren, wechseln Sie zwischen Hohlkreuz und Rundrücken.",
+        "sideStretchDesc": "Stehen Sie aufrecht, strecken Sie einen Arm über den Kopf und neigen Sie sanft zur Seite.",
+        "childPoseDesc": "Knien Sie und setzen Sie sich auf die Fersen. Strecken Sie die Arme nach vorne.",
+        "deepBreathingDesc": "Atmen Sie tief durch die Nase für 4 Zähler ein, halten 4, atmen 6 durch den Mund aus."
       },
       "categories": {
+        "warmup": "Aufwärmen",
         "strength": "Kraft",
         "cardio": "Kardio",
-        "flexibility": "Flexibilität"
+        "flexibility": "Flexibilität",
+        "cooldown": "Abkühlung"
+      },
+      "muscleGroups": {
+        "neck": "Nacken & oberer Trapezius",
+        "shoulders": "Schultern & Deltamuskeln",
+        "legs": "Quadrizeps & hintere Oberschenkel",
+        "core": "Rumpf & tiefe Bauchmuskeln",
+        "arms": "Brust & Trizeps",
+        "glutes": "Gesäß & Hüftstrecker",
+        "hips": "Hüftabduktoren",
+        "pelvis": "Beckenboden",
+        "fullBody": "Ganzer Körper",
+        "spine": "Wirbelsäule & Rückenmuskeln",
+        "obliques": "Schräge Bauchmuskeln",
+        "back": "Unterer Rücken & Latissimus",
+        "diaphragm": "Zwerchfell & Atemmuskulatur"
+      },
+      "trimesterAlerts": {
+        "t1": {
+          "title": "Erstes Trimester (Wochen 1-13)",
+          "text": "Konzentrieren Sie sich auf Übungen niedriger Intensität. Vermeiden Sie Überhitzung und bleiben Sie hydratisiert."
+        },
+        "t2": {
+          "title": "Zweites Trimester (Wochen 14-26)",
+          "text": "Ihre Energie ist höher! Gute Zeit für moderate Übungen. Vermeiden Sie langes Liegen auf dem Rücken."
+        },
+        "t3": {
+          "title": "Drittes Trimester (Wochen 27-42)",
+          "text": "Fokus auf sanftes Dehnen und Atemübungen. Vermeiden Sie hochintensive Bewegungen."
+        }
+      },
+      "warmup": {
+        "title": "Aufwärmroutine",
+        "duration": "3-5 Minuten",
+        "step1": "Beginnen Sie mit sanftem Nackenrollen und Schulterzucken.",
+        "step2": "Machen Sie Armkreise, erst klein, dann größer werdend.",
+        "step3": "Marschieren Sie 30 Sekunden sanft auf der Stelle.",
+        "step4": "Nehmen Sie 5 tiefe Atemzüge mit voller Rippenexpansion."
+      },
+      "cooldown": {
+        "title": "Abkühlroutine",
+        "duration": "3-5 Minuten",
+        "step1": "Gehen Sie 30 Sekunden langsam auf der Stelle zur Herzfrequenzsenkung.",
+        "step2": "Dehnen Sie sanft Nacken und Schultern, je 15 Sekunden halten.",
+        "step3": "Praktizieren Sie 1 Minute tiefe Bauchatmung.",
+        "step4": "Beenden Sie mit einer sanften Ganzkörperdehnung und positiver Affirmation."
+      },
+      "tips": {
+        "tip1": "Trinken Sie an Trainingstagen mindestens 8 Gläser Wasser. Hydratation beugt Muskelkrämpfen vor.",
+        "tip2": "Die beste Trainingszeit ist, wenn Sie sich am energiegeladensten fühlen. Vormittags funktioniert oft gut.",
+        "tip3": "Kegel-Übungen sind unsichtbar aber kraftvoll! Üben Sie den ganzen Tag für Beckenbodenstärke.",
+        "tip4": "Gehen ist eine der sichersten Übungen in der Schwangerschaft. Streben Sie 20-30 Minuten täglich an.",
+        "tip5": "Richtige Atmung beim Training ist entscheidend. Halten Sie nie den Atem an — atmen Sie bei Anstrengung aus."
       },
       "videoCategories": {
         "core": "Rumpf",

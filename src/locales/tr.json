@@ -1355,6 +1355,16 @@
       "start": "Başlat",
       "resume": "Devam",
       "pause": "Duraklat",
+      "completed": "Tamamlandı",
+      "allCategories": "Tümü",
+      "workoutProgress": "Antrenman İlerlemesi",
+      "workoutComplete": "Antrenman Tamamlandı! 🎉",
+      "greatJob": "Harika! Bugünkü antrenmanınızı tamamladınız!",
+      "calories": "kal",
+      "seconds": "sn",
+      "restTime": "Dinlenme Süresi",
+      "skip": "Atla",
+      "dailyTip": "Günlük Fitness İpucu",
       "fitnessVideos": "Hamilelik Fitness Videoları",
       "fitnessVideosSubtitle": "Her trimester için güvenli antrenman rehberleri",
       "safetyFirst": "Önce Güvenlik",
@@ -1365,7 +1375,16 @@
         "pelvicTilts": "Pelvis Eğimleri",
         "wallPushups": "Duvar Şınavları",
         "butterflyStretch": "Kelebek Germe",
-        "seatedMarching": "Oturarak Yürüyüş"
+        "seatedMarching": "Oturarak Yürüyüş",
+        "neckRolls": "Boyun Çevirme",
+        "armCircles": "Kol Daireleri",
+        "gluteBridge": "Kalça Köprüsü",
+        "sideLyingLeg": "Yan Yatış Bacak Kaldırma",
+        "stepTouch": "Adım Dokunuş",
+        "catCow": "Kedi-İnek Germe",
+        "sideStretch": "Yan Germe",
+        "childPose": "Çocuk Pozu",
+        "deepBreathing": "Derin Nefes"
       },
       "exerciseDescs": {
         "prenatalSquatsDesc": "Omuz genişliğinde durun. Sandalyeye oturur gibi nazikçe alçalın.",
@@ -1373,12 +1392,75 @@
         "pelvicTiltsDesc": "Pelvisinizi nazikçe ileri geri sallayarak bel baskısını hafifletin.",
         "wallPushupsDesc": "Duvardan bir kol uzaklıkta durun. Eğilin ve geri itin.",
         "butterflyStretchDesc": "Ayaklarınız birleşik, dizleriniz dışa dönük oturun. Nazikçe öne eğilin.",
-        "seatedMarchingDesc": "Sabit bir sandalye veya top üzerinde oturun. Dönüşümlü olarak dizlerinizi kaldırın."
+        "seatedMarchingDesc": "Sabit bir sandalye veya top üzerinde oturun. Dönüşümlü olarak dizlerinizi kaldırın.",
+        "neckRollsDesc": "Başınızı yavaşça nazik daireler çizerek döndürün. 15 saniye sonra yön değiştirin.",
+        "armCirclesDesc": "Kollarınızı yana uzatın ve küçük daireler çizin. Kademeli olarak büyütün.",
+        "gluteBridgeDesc": "Sırtüstü yatın, dizler bükülü. Kalçalarınızı tavana doğru kaldırın ve tutun.",
+        "sideLyingLegDesc": "Yan tarafınıza uzanın. Üst bacağı yavaşça kaldırın ve kontrollü indirin.",
+        "stepTouchDesc": "Kontrollü ritimde yan adımlar atın. Gövdenizi sıkı tutun.",
+        "catCowDesc": "Dört ayak üzerinde, sırtınızı kavislendirme ve yuvarlaştırma arasında geçiş yapın.",
+        "sideStretchDesc": "Dik durun, bir kolunuzu başınızın üzerinden uzatın ve nazikçe yana eğilin.",
+        "childPoseDesc": "Dizlerinizin üzerinde oturup topuklarınıza yaslanın. Kollarınızı öne uzatın.",
+        "deepBreathingDesc": "Burundan 4 sayarak derin nefes alın, 4 tutun, ağızdan 6 sayarak verin."
       },
       "categories": {
+        "warmup": "Isınma",
         "strength": "Güç",
         "cardio": "Kardiyo",
-        "flexibility": "Esneklik"
+        "flexibility": "Esneklik",
+        "cooldown": "Soğuma"
+      },
+      "muscleGroups": {
+        "neck": "Boyun & Üst Trapez",
+        "shoulders": "Omuzlar & Deltoidler",
+        "legs": "Quadriceps & Hamstring",
+        "core": "Gövde & Derin Karın Kasları",
+        "arms": "Göğüs & Triceps",
+        "glutes": "Kalçalar & Kalça Uzatıcıları",
+        "hips": "Kalça Abdüktörleri",
+        "pelvis": "Pelvik Taban",
+        "fullBody": "Tüm Vücut",
+        "spine": "Omurga & Sırt Kasları",
+        "obliques": "Oblikler & Yan Karın",
+        "back": "Alt Sırt & Latissimus",
+        "diaphragm": "Diyafram & Solunum Kasları"
+      },
+      "trimesterAlerts": {
+        "t1": {
+          "title": "Birinci Trimester (Hafta 1-13)",
+          "text": "Düşük yoğunluklu egzersizlere odaklanın. Aşırı ısınmaktan kaçının ve bol su için."
+        },
+        "t2": {
+          "title": "İkinci Trimester (Hafta 14-26)",
+          "text": "Enerjiniz daha yüksek! Orta düzey egzersizler için harika bir zaman. Uzun süre sırtüstü yatmaktan kaçının."
+        },
+        "t3": {
+          "title": "Üçüncü Trimester (Hafta 27-42)",
+          "text": "Nazik germe ve nefes egzersizlerine odaklanın. Yüksek etkili hareketlerden kaçının."
+        }
+      },
+      "warmup": {
+        "title": "Isınma Rutini",
+        "duration": "3-5 dakika",
+        "step1": "Nazik boyun çevirme ve omuz silkme ile başlayın.",
+        "step2": "Kol daireleri yapın, küçük başlayıp kademeli olarak büyütün.",
+        "step3": "30 saniye nazikçe yerinde yürüyün.",
+        "step4": "Kaburgalarınızı tam genişleterek 5 derin nefes alın."
+      },
+      "cooldown": {
+        "title": "Soğuma Rutini",
+        "duration": "3-5 dakika",
+        "step1": "Kalp hızını düşürmek için 30 saniye yavaşça yerinde yürüyün.",
+        "step2": "Nazikçe boyun ve omuz germeleri yapın, her birini 15 saniye tutun.",
+        "step3": "1 dakika derin karın nefesi yapın.",
+        "step4": "Nazik bir tam vücut germe ve olumlu bir söylemle bitirin."
+      },
+      "tips": {
+        "tip1": "Antrenman günlerinde en az 8 bardak su için. Hidrasyon kas kramplarını önler.",
+        "tip2": "Egzersiz için en iyi zaman en enerjik hissettiğiniz zamandır.",
+        "tip3": "Kegel egzersizleri görünmez ama güçlüdür! Pelvik taban gücü için gün boyunca yapın.",
+        "tip4": "Yürüyüş hamilelikte en güvenli egzersizlerden biridir. Günde 20-30 dakika hedefleyin.",
+        "tip5": "Egzersiz sırasında doğru nefes almak çok önemlidir. Nefesini asla tutma — zorlanırken nefes ver."
       },
       "videoCategories": {
         "core": "Karın",

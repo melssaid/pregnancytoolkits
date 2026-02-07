@@ -1261,6 +1261,16 @@
       "start": "Start",
       "resume": "Resume",
       "pause": "Pause",
+      "completed": "Completed",
+      "allCategories": "All",
+      "workoutProgress": "Workout Progress",
+      "workoutComplete": "Workout Complete! 🎉",
+      "greatJob": "Great job! You completed your workout today!",
+      "calories": "cal",
+      "seconds": "sec",
+      "restTime": "Rest Time",
+      "skip": "Skip",
+      "dailyTip": "Daily Fitness Tip",
       "fitnessVideos": "Prenatal Fitness Videos",
       "fitnessVideosSubtitle": "Safe workout guides for every trimester",
       "safetyFirst": "Safety First",
@@ -1271,7 +1281,16 @@
         "pelvicTilts": "Pelvic Tilts",
         "wallPushups": "Wall Pushups",
         "butterflyStretch": "Butterfly Stretch",
-        "seatedMarching": "Seated Marching"
+        "seatedMarching": "Seated Marching",
+        "neckRolls": "Neck Rolls",
+        "armCircles": "Arm Circles",
+        "gluteBridge": "Glute Bridge",
+        "sideLyingLeg": "Side-Lying Leg Lifts",
+        "stepTouch": "Step Touch",
+        "catCow": "Cat-Cow Stretch",
+        "sideStretch": "Side Stretch",
+        "childPose": "Child's Pose",
+        "deepBreathing": "Deep Breathing"
       },
       "exerciseDescs": {
         "prenatalSquatsDesc": "Stand with feet shoulder-width apart. Lower gently as if sitting in a chair.",
@@ -1279,12 +1298,75 @@
         "pelvicTiltsDesc": "Gently rock your pelvis forward and back to relieve lower back pressure.",
         "wallPushupsDesc": "Stand arm-length from wall. Lean in and push back out.",
         "butterflyStretchDesc": "Sit with feet together, knees out. Gently lean forward.",
-        "seatedMarchingDesc": "Sit on a stable chair or ball. Lift knees alternately."
+        "seatedMarchingDesc": "Sit on a stable chair or ball. Lift knees alternately.",
+        "neckRollsDesc": "Slowly roll your head in gentle circles. Switch direction after 15 seconds.",
+        "armCirclesDesc": "Extend arms to sides and make small circles. Gradually increase size.",
+        "gluteBridgeDesc": "Lie on your back, knees bent. Lift hips towards the ceiling and hold.",
+        "sideLyingLegDesc": "Lie on your side. Lift the top leg slowly and lower with control.",
+        "stepTouchDesc": "Step side to side in a controlled rhythm. Keep your core engaged.",
+        "catCowDesc": "On all fours, alternate between arching and rounding your back.",
+        "sideStretchDesc": "Stand tall, reach one arm overhead and lean gently to the side.",
+        "childPoseDesc": "Kneel and sit back on heels. Extend arms forward and rest forehead down.",
+        "deepBreathingDesc": "Inhale deeply through nose for 4 counts, hold 4, exhale through mouth for 6."
       },
       "categories": {
+        "warmup": "Warm-up",
         "strength": "Strength",
         "cardio": "Cardio",
-        "flexibility": "Flexibility"
+        "flexibility": "Flexibility",
+        "cooldown": "Cool-down"
+      },
+      "muscleGroups": {
+        "neck": "Neck & Upper Trapezius",
+        "shoulders": "Shoulders & Deltoids",
+        "legs": "Quadriceps & Hamstrings",
+        "core": "Core & Deep Abdominals",
+        "arms": "Chest & Triceps",
+        "glutes": "Glutes & Hip Extensors",
+        "hips": "Hip Abductors",
+        "pelvis": "Pelvic Floor",
+        "fullBody": "Full Body",
+        "spine": "Spine & Back Muscles",
+        "obliques": "Obliques & Side Core",
+        "back": "Lower Back & Lats",
+        "diaphragm": "Diaphragm & Respiratory"
+      },
+      "trimesterAlerts": {
+        "t1": {
+          "title": "First Trimester (Weeks 1-13)",
+          "text": "Focus on low-intensity exercises. Avoid overheating and stay well hydrated. Listen to your body and rest when needed."
+        },
+        "t2": {
+          "title": "Second Trimester (Weeks 14-26)",
+          "text": "Your energy is higher! Great time for moderate exercise. Avoid lying flat on your back for long periods. Use support when needed."
+        },
+        "t3": {
+          "title": "Third Trimester (Weeks 27-42)",
+          "text": "Focus on gentle stretching and breathing exercises. Avoid high-impact movements. Prioritize comfort and balance support."
+        }
+      },
+      "warmup": {
+        "title": "Warm-Up Routine",
+        "duration": "3-5 minutes",
+        "step1": "Start with gentle neck rolls and shoulder shrugs to release tension.",
+        "step2": "Do arm circles, starting small and gradually increasing the range.",
+        "step3": "March in place gently for 30 seconds to get blood flowing.",
+        "step4": "Take 5 deep breaths, expanding your ribs fully."
+      },
+      "cooldown": {
+        "title": "Cool-Down Routine",
+        "duration": "3-5 minutes",
+        "step1": "Walk slowly in place for 30 seconds to lower heart rate.",
+        "step2": "Do gentle neck and shoulder stretches, holding each for 15 seconds.",
+        "step3": "Practice deep belly breathing for 1 minute.",
+        "step4": "End with a gentle full-body stretch and positive affirmation."
+      },
+      "tips": {
+        "tip1": "Drink at least 8 glasses of water on workout days. Hydration helps prevent muscle cramps.",
+        "tip2": "The best time to exercise is when you feel most energetic. Many find mid-morning works well.",
+        "tip3": "Kegel exercises are invisible but powerful! Practice throughout the day for pelvic floor strength.",
+        "tip4": "Walking is one of the safest exercises during pregnancy. Aim for 20-30 minutes daily.",
+        "tip5": "Proper breathing during exercise is key. Never hold your breath — exhale on exertion."
       },
       "videoCategories": {
         "core": "Core",
