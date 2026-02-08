@@ -2496,8 +2496,15 @@
         "babyHat": "Gorrito de bebé",
         "changeOfClothes": "Ropa de cambio",
         "snacksDrinks": "Snacks y bebidas",
-        "cameraCharger": "Cargador de cámara/teléfono"
-      }
+        "cameraCharger": "Cargador de cámara/teléfono",
+        "totalItems": "artículos"
+      },
+      "exportPDF": "Exportar PDF",
+      "shareWhatsApp": "Compartir por WhatsApp",
+      "resetConfirm": "¿Estás segura de que deseas restablecer la lista? Esto eliminará todos los artículos personalizados y restaurará la lista predeterminada.",
+      "resetSuccess": "¡La lista ha sido restablecida!",
+      "exportSuccess": "¡Lista exportada con éxito!",
+      "exportError": "Error al exportar la lista"
     },
     "stressRelief": {
       "title": "Coach de Alivio del Estrés IA",

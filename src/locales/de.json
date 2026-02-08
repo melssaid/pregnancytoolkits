@@ -1961,8 +1961,15 @@
         "babyHat": "Baby-Mütze",
         "changeOfClothes": "Wechselkleidung",
         "snacksDrinks": "Snacks & Getränke",
-        "cameraCharger": "Kamera/Handy-Ladegerät"
-      }
+        "cameraCharger": "Kamera/Handy-Ladegerät",
+        "totalItems": "Artikel"
+      },
+      "exportPDF": "PDF exportieren",
+      "shareWhatsApp": "Via WhatsApp teilen",
+      "resetConfirm": "Sind Sie sicher, dass Sie die Liste zurücksetzen möchten? Alle benutzerdefinierten Artikel werden entfernt und die Standardliste wiederhergestellt.",
+      "resetSuccess": "Liste wurde auf Standard zurückgesetzt!",
+      "exportSuccess": "Checkliste erfolgreich exportiert!",
+      "exportError": "Export der Checkliste fehlgeschlagen"
     },
     "stressRelief": {
       "title": "KI-Stressabbau-Coach",

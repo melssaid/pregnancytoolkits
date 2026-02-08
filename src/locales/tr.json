@@ -2496,8 +2496,15 @@
         "babyHat": "Bebek şapkası",
         "changeOfClothes": "Yedek kıyafet",
         "snacksDrinks": "Atıştırmalıklar ve içecekler",
-        "cameraCharger": "Kamera/telefon şarj cihazı"
-      }
+        "cameraCharger": "Kamera/telefon şarj cihazı",
+        "totalItems": "öğe"
+      },
+      "exportPDF": "PDF olarak dışa aktar",
+      "shareWhatsApp": "WhatsApp ile paylaş",
+      "resetConfirm": "Listeyi sıfırlamak istediğinizden emin misiniz? Bu, tüm özel öğeleri kaldırarak varsayılan listeyi geri yükleyecektir.",
+      "resetSuccess": "Liste varsayılanlara sıfırlandı!",
+      "exportSuccess": "Liste başarıyla dışa aktarıldı!",
+      "exportError": "Liste dışa aktarılamadı"
     },
     "stressRelief": {
       "title": "AI Stres Rahatlatma Koçu",

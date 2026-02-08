@@ -2496,8 +2496,15 @@
         "babyHat": "Touca de bebê",
         "changeOfClothes": "Troca de roupa",
         "snacksDrinks": "Lanches e bebidas",
-        "cameraCharger": "Carregador de câmera/celular"
-      }
+        "cameraCharger": "Carregador de câmera/celular",
+        "totalItems": "itens"
+      },
+      "exportPDF": "Exportar PDF",
+      "shareWhatsApp": "Compartilhar via WhatsApp",
+      "resetConfirm": "Tem certeza de que deseja redefinir a lista? Isso removerá todos os itens personalizados e restaurará a lista padrão.",
+      "resetSuccess": "A lista foi redefinida para os padrões!",
+      "exportSuccess": "Lista exportada com sucesso!",
+      "exportError": "Falha ao exportar a lista"
     },
     "stressRelief": {
       "title": "Coach de Alívio do Estresse IA",
