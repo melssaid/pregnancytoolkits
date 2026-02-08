@@ -2190,16 +2190,24 @@
         "tip5": "La respiration correcte pendant l'exercice est essentielle. Ne retenez jamais votre souffle."
       },
       "videoCategories": {
-        "core": "Gainage",
-        "cardio": "Cardio",
+        "fullBody": "Corps entier",
+        "strength": "Renforcement",
+        "stretching": "Étirements",
         "yoga": "Yoga",
-        "relaxation": "Relaxation"
+        "relaxation": "Relaxation",
+        "birthPrep": "Prépa accouchement",
+        "core": "Gainage",
+        "lowImpact": "Faible impact"
       },
       "videos": {
-        "core": { "title": "Entraînement abdominal prénatal sûr", "description": "Entraînement abdos de 10 minutes pour le premier trimestre" },
-        "cardio": { "title": "Cardio HIIT sûr pour la grossesse", "description": "Entraînement de 20 minutes à faible impact sans répétition" },
+        "fullBody": { "title": "Entraînement prénatal corps entier", "description": "25 minutes d'exercice doux pour tout le corps — sûr pour tous les trimestres" },
+        "strength": { "title": "Renforcement au poids du corps prénatal", "description": "35 minutes de renforcement sans équipement pour la grossesse" },
+        "stretching": { "title": "Étirements doux pour débutantes enceintes", "description": "20 minutes d'étirements sûrs pour tous les trimestres" },
         "yoga": { "title": "Yoga prénatal de relaxation", "description": "Yoga de relaxation profonde pour la grossesse" },
-        "relaxation": { "title": "Méditation de relaxation grossesse", "description": "Méditation apaisante pour futures mamans" }
+        "relaxation": { "title": "Méditation de relaxation grossesse", "description": "Méditation apaisante pour futures mamans" },
+        "birthPrep": { "title": "Cardio grossesse + préparation accouchement", "description": "30 minutes de cardio et exercices de préparation à l'accouchement" },
+        "core": { "title": "Entraînement abdominal prénatal sûr", "description": "10 minutes de gainage sûr pour le premier trimestre" },
+        "lowImpact": { "title": "Entraînement prénatal à faible impact", "description": "25 minutes d'exercice doux pour tout le corps" }
       },
       "aiWorkoutAnalysis": "Analyse d'entraînement personnalisée",
       "aiWorkoutButton": "Analyser mon programme fitness",

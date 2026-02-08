@@ -1542,16 +1542,24 @@
         "tip5": "Egzersiz sırasında doğru nefes almak çok önemlidir. Nefesini asla tutma — zorlanırken nefes ver."
       },
       "videoCategories": {
-        "core": "Karın",
-        "cardio": "Kardiyo",
+        "fullBody": "Tüm Vücut",
+        "strength": "Güçlendirme",
+        "stretching": "Esneme",
         "yoga": "Yoga",
-        "relaxation": "Rahatlama"
+        "relaxation": "Rahatlama",
+        "birthPrep": "Doğum Hazırlığı",
+        "core": "Karın",
+        "lowImpact": "Düşük Etki"
       },
       "videos": {
-        "core": { "title": "Güvenli Hamilelik Karın Egzersizi", "description": "İlk trimester için 10 dakikalık güvenli karın egzersizi" },
-        "cardio": { "title": "Hamilelikte Güvenli HIIT Kardiyo", "description": "20 dakikalık tekrarsız düşük etki antrenmanı" },
+        "fullBody": { "title": "Tüm Vücut Hamilelik Egzersizi", "description": "25 dakika düşük etkili tüm vücut egzersizi — tüm trimesterler için güvenli" },
+        "strength": { "title": "Vücut Ağırlığı ile Hamilelik Güçlendirme", "description": "35 dakika ekipmansız güçlendirme egzersizi" },
+        "stretching": { "title": "Başlangıç Seviyesi Hamilelik Esneme", "description": "20 dakika nazik esneme — tüm trimesterler için güvenli" },
         "yoga": { "title": "Doğum Öncesi Rahatlama Yogası", "description": "Hamilelik için derin rahatlama yogası" },
-        "relaxation": { "title": "Hamilelik Rahatlama Meditasyonu", "description": "Beklentili anneler için sakinleştirici meditasyon" }
+        "relaxation": { "title": "Hamilelik Rahatlama Meditasyonu", "description": "Beklentili anneler için sakinleştirici meditasyon" },
+        "birthPrep": { "title": "Hamilelik Kardiyo + Doğum Hazırlığı", "description": "30 dakika kardiyo ve doğum hazırlık egzersizleri" },
+        "core": { "title": "Güvenli Hamilelik Karın Egzersizi", "description": "10 dakika güvenli karın egzersizi" },
+        "lowImpact": { "title": "Düşük Etkili Hamilelik Egzersizi", "description": "25 dakika nazik tüm vücut egzersizi" }
       },
       "aiWorkoutAnalysis": "Kişiselleştirilmiş Antrenman Analizi",
       "aiWorkoutButton": "Fitness Planımı Analiz Et",
