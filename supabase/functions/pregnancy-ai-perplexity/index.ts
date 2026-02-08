@@ -74,7 +74,7 @@ serve(async (req) => {
     // Rate limiting check
     const clientId = getClientIdentifier(req);
     if (!checkRateLimit(clientId)) {
-      console.log(`Rate limit exceeded for client: ${clientId}`);
+      console.log("Rate limit exceeded for a client");
       return new Response(
         JSON.stringify({ error: "Rate limit exceeded. Please wait a minute before trying again." }),
         { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -969,7 +969,7 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
         break;
     }
 
-    console.log(`Processing ${type} request from client: ${clientId}, language: ${requestedLanguage}`);
+    console.log(`Processing ${type} request, language: ${requestedLanguage}`);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",

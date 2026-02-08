@@ -380,7 +380,9 @@ Please provide a comprehensive pregnancy update:
                   {t('toolsInternal.bumpPhotos.privateLabel')}
                 </Badge>
               </div>
-              <p className="text-sm text-emerald-700 dark:text-emerald-400 mb-3" dangerouslySetInnerHTML={{ __html: t('toolsInternal.bumpPhotos.localStorageDesc') }} />
+              <p className="text-sm text-emerald-700 dark:text-emerald-400 mb-3">
+                {t('toolsInternal.bumpPhotos.localStorageDesc')}
+              </p>
               
               {/* Storage Usage Bar */}
               <div className="space-y-1">
