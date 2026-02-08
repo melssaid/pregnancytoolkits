@@ -30,7 +30,7 @@
     "title": "Tam Hamilelik",
     "titleHighlight": "Rehberiniz",
     "titleEnd": "",
-    "description": "Hamilelik yolculuğunuz için 34 profesyonel araç — doğurganlıktan doğum sonrası bakıma.",
+    "description": "Hamilelik yolculuğunuz için 35 profesyonel araç — doğurganlıktan doğum sonrası bakıma.",
     "searchPlaceholder": "Araç ara...",
     "allTools": "Tüm Araçlar",
     "toolsAvailable": "{{count}} araç mevcut",
@@ -527,7 +527,7 @@
   "subscription": {
     "subscribeNow": "Premium Al - ₺24.99/ay",
     "premiumFeature": "Premium Özellik",
-    "unlockAccess": "Tüm 34 aracı açın",
+    "unlockAccess": "Tüm 35 aracı açın",
     "subscribeToAccess": "Açmak için abone olun"
   },
   "dueDatePage": {

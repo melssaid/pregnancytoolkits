@@ -5,7 +5,7 @@ import { Suspense, lazy } from "react";
 import { PageSkeleton, IndexSkeleton } from "./PageSkeleton";
 
 // ═══════════════════════════════════════════════════════════════
-// LAZY LOADED PAGES - 34 Curated Professional Tools
+// LAZY LOADED PAGES - 35 Curated Professional Tools
 // ═══════════════════════════════════════════════════════════════
 const Index = lazy(() => import("@/pages/Index"));
 const SmartDashboard = lazy(() => import("@/pages/SmartDashboard"));

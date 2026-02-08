@@ -30,7 +30,7 @@
     "title": "Seu companheiro",
     "titleHighlight": "completo",
     "titleEnd": "de gravidez",
-    "description": "34 ferramentas profissionais para sua gravidez — da fertilidade ao pós-parto.",
+    "description": "35 ferramentas profissionais para sua gravidez — da fertilidade ao pós-parto.",
     "searchPlaceholder": "Buscar ferramenta...",
     "allTools": "Todas as ferramentas",
     "toolsAvailable": "{{count}} ferramentas disponíveis",
@@ -527,7 +527,7 @@
   "subscription": {
     "subscribeNow": "Premium - R$4,99/mês",
     "premiumFeature": "Recurso Premium",
-    "unlockAccess": "Desbloqueie as 34 ferramentas",
+    "unlockAccess": "Desbloqueie as 35 ferramentas",
     "subscribeToAccess": "Assine para desbloquear"
   },
   "dueDatePage": {
