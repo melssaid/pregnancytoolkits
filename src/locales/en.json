@@ -1622,8 +1622,18 @@
         "babyHat": "Baby hat",
         "changeOfClothes": "Change of clothes",
         "snacksDrinks": "Snacks & drinks",
-        "cameraCharger": "Camera/phone charger"
-      }
+        "cameraCharger": "Camera/phone charger",
+        "totalItems": "items"
+      },
+      "packed": "Packed",
+      "notPacked": "Not packed",
+      "resetList": "Reset List",
+      "exportPDF": "Export PDF",
+      "shareWhatsApp": "Share via WhatsApp",
+      "resetConfirm": "Are you sure you want to reset the list? This will remove all custom items and restore the default list.",
+      "resetSuccess": "List has been reset to defaults!",
+      "exportSuccess": "Checklist exported successfully!",
+      "exportError": "Failed to export checklist"
     },
     "sleepOptimizer": {
       "title": "AI Sleep Optimizer",

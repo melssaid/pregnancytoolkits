@@ -2023,8 +2023,15 @@
         "babyHat": "Bonnet de bébé",
         "changeOfClothes": "Vêtements de rechange",
         "snacksDrinks": "Collations et boissons",
-        "cameraCharger": "Chargeur appareil photo/téléphone"
-      }
+        "cameraCharger": "Chargeur appareil photo/téléphone",
+        "totalItems": "articles"
+      },
+      "exportPDF": "Exporter PDF",
+      "shareWhatsApp": "Partager via WhatsApp",
+      "resetConfirm": "Êtes-vous sûre de vouloir réinitialiser la liste ? Cela supprimera tous les articles personnalisés et restaurera la liste par défaut.",
+      "resetSuccess": "La liste a été réinitialisée !",
+      "exportSuccess": "Checklist exportée avec succès !",
+      "exportError": "Échec de l'exportation de la checklist"
     },
     "stressRelief": {
       "title": "Coach Anti-Stress IA",
