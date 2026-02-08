@@ -3408,5 +3408,11 @@
   "toolsInternal.weightGain.maxRecommended": "Máx. Recomendado",
   "toolsInternal.weightGain.yourWeight": "Tu Peso",
   "toolsInternal.weightGain.weekAxis": "Semana",
-  "toolsInternal.weightGain.weightGainKg": "Aumento de Peso (kg)"
+  "toolsInternal.weightGain.weightGainKg": "Aumento de Peso (kg)",
+  "toolsInternal.ovulation.videosTitle": "Videos de Fertilidad y Ovulación",
+  "toolsInternal.ovulation.videosSubtitle": "Aprende sobre tu ventana de fertilidad y ciclo de ovulación",
+  "toolsInternal.cycleTracker.videosTitle": "Videos del Ciclo Menstrual",
+  "toolsInternal.cycleTracker.videosSubtitle": "Aprende sobre seguimiento del ciclo y salud reproductiva",
+  "toolsInternal.dueDate.videosTitle": "Videos de Línea de Tiempo del Embarazo",
+  "toolsInternal.dueDate.videosSubtitle": "Guías de desarrollo semanal y preparación para el parto"
 }

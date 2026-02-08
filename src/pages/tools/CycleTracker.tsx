@@ -12,6 +12,8 @@ import { format, addDays, differenceInDays } from "date-fns";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { cycleTrackerVideosByLang } from "@/data/videoData";
 
 interface CycleEntry {
   id: string;
@@ -388,6 +390,12 @@ Any patterns that might be worth discussing with a doctor`}
                 </CardContent>
               </Card>
             )}
+
+            <VideoLibrary
+              videosByLang={cycleTrackerVideosByLang}
+              title={t('toolsInternal.cycleTracker.videosTitle')}
+              subtitle={t('toolsInternal.cycleTracker.videosSubtitle')}
+            />
 
             <div className="mt-6 flex items-start gap-3 rounded-lg bg-muted p-4">
               <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />

@@ -13,6 +13,8 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage
 import { useNotifications } from "@/hooks/useNotifications";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
 import { useTranslation } from "react-i18next";
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { dueDateVideosByLang } from "@/data/videoData";
 
 interface SavedDueDate {
   id: string;
@@ -390,6 +392,12 @@ A supportive message for this stage of pregnancy`}
                 </CardContent>
               </Card>
             )}
+
+            <VideoLibrary
+              videosByLang={dueDateVideosByLang}
+              title={t('toolsInternal.dueDate.videosTitle')}
+              subtitle={t('toolsInternal.dueDate.videosSubtitle')}
+            />
 
             <div className="flex items-start gap-3 rounded-lg bg-muted p-4">
               <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />

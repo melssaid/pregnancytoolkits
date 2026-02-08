@@ -13,6 +13,8 @@ import useAnalytics from "@/hooks/useAnalytics";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { ovulationVideosByLang } from "@/data/videoData";
 interface OvulationResult {
   id: string;
   lastPeriod: string;
@@ -346,6 +348,12 @@ Any important reminders about fertility tracking`}
             </CardContent>
           </Card>
         )}
+
+        <VideoLibrary
+          videosByLang={ovulationVideosByLang}
+          title={t('toolsInternal.ovulation.videosTitle')}
+          subtitle={t('toolsInternal.ovulation.videosSubtitle')}
+        />
 
         <div className="flex items-start gap-3 rounded-xl bg-muted/50 p-4 text-sm text-muted-foreground">
           <Sparkles className="h-5 w-5 mt-0.5 flex-shrink-0 text-primary/50" />
