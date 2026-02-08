@@ -64,91 +64,100 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({
             : 'border-border'
         }`}
       >
-        <CardContent className="p-4">
-          <div className="flex justify-between items-start mb-2 gap-2">
-            <div className="flex items-center gap-3 min-w-0 flex-1">
-              {/* Animated exercise illustration */}
-              <div
-                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0 border ${
-                  isCompleted
-                    ? 'bg-primary/10 border-primary/30'
-                    : isActive
-                    ? 'bg-primary/5 border-primary/50 shadow-sm'
-                    : 'bg-muted/50 border-border/50'
-                }`}
-              >
-                {isCompleted ? (
-                  <Check className="w-4 h-4 text-primary" />
-                ) : (
-                  <ExerciseAnimation
-                    exerciseId={exercise.id}
-                    isActive={isActive}
-                    className="w-8 h-8"
-                  />
+        <CardContent className="p-3">
+          <div className="flex gap-3">
+            {/* Animated exercise illustration — prominent */}
+            <div
+              className={`w-20 h-20 rounded-xl flex items-center justify-center transition-all flex-shrink-0 border-2 ${
+                isCompleted
+                  ? 'bg-primary/5 border-primary/20'
+                  : isActive
+                  ? 'bg-background border-primary/40 shadow-md shadow-primary/10'
+                  : 'bg-muted/30 border-border/40'
+              }`}
+            >
+              {isCompleted ? (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', damping: 12 }}
+                >
+                  <Check className="w-8 h-8 text-primary" />
+                </motion.div>
+              ) : (
+                <ExerciseAnimation
+                  exerciseId={exercise.id}
+                  isActive={isActive}
+                  className="w-16 h-16"
+                />
+              )}
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              <div className="flex justify-between items-start gap-2">
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-sm text-foreground break-words leading-tight">
+                    {t(`toolsInternal.fitnessCoach.exerciseNames.${exercise.nameKey}`)}
+                  </h3>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <Badge
+                      variant="secondary"
+                      className={`text-[10px] border-0 ${categoryColors[exercise.category] || ''}`}
+                    >
+                      {t(`toolsInternal.fitnessCoach.categories.${exercise.category}`)}
+                    </Badge>
+                    <span className="text-[10px] text-muted-foreground flex items-center gap-0.5">
+                      <Timer className="w-2.5 h-2.5" />
+                      {exercise.duration}s
+                    </span>
+                  </div>
+                </div>
+
+                {isActive && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="text-2xl font-mono font-bold text-primary flex-shrink-0"
+                  >
+                    00:{timer.toString().padStart(2, '0')}
+                  </motion.span>
                 )}
               </div>
 
-              <div className="min-w-0 flex-1">
-                <h3 className="font-semibold text-sm text-foreground break-words">
-                  {t(`toolsInternal.fitnessCoach.exerciseNames.${exercise.nameKey}`)}
-                </h3>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <Badge
-                    variant="secondary"
-                    className={`text-[10px] border-0 ${categoryColors[exercise.category] || ''}`}
-                  >
-                    {t(`toolsInternal.fitnessCoach.categories.${exercise.category}`)}
+              <p className="text-muted-foreground text-[11px] mt-1.5 leading-relaxed break-words line-clamp-2">
+                {t(`toolsInternal.fitnessCoach.exerciseDescs.${exercise.descriptionKey}`)}
+              </p>
+
+              {/* Muscle group + Action */}
+              <div className="flex items-center justify-between mt-2 gap-2">
+                <span className="text-[10px] text-muted-foreground">
+                  💪 {t(`toolsInternal.fitnessCoach.muscleGroups.${exercise.muscleGroupKey}`)}
+                </span>
+
+                {isCompleted ? (
+                  <Badge variant="outline" className="text-[10px] border-primary/30 text-primary px-2 py-0">
+                    ✓ {t('toolsInternal.fitnessCoach.completed')}
                   </Badge>
-                  <span className="text-[10px] text-muted-foreground flex items-center gap-0.5">
-                    <Timer className="w-2.5 h-2.5" />
-                    {exercise.duration}s
-                  </span>
-                </div>
+                ) : isActive ? (
+                  <Button
+                    size="sm"
+                    variant={isPaused ? 'default' : 'outline'}
+                    onClick={onTogglePause}
+                    className="gap-1 text-[11px] h-7 px-2.5"
+                  >
+                    {isPaused ? <Play className="w-3 h-3" /> : <Pause className="w-3 h-3" />}
+                    {isPaused
+                      ? t('toolsInternal.fitnessCoach.resume')
+                      : t('toolsInternal.fitnessCoach.pause')}
+                  </Button>
+                ) : (
+                  <Button size="sm" onClick={onStart} className="gap-1 text-[11px] h-7 px-2.5">
+                    <Play className="w-3 h-3" /> {exercise.duration}s
+                  </Button>
+                )}
               </div>
             </div>
-
-            {isActive && (
-              <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="text-2xl font-mono font-bold text-primary flex-shrink-0"
-              >
-                00:{timer.toString().padStart(2, '0')}
-              </motion.span>
-            )}
-          </div>
-
-          <p className="text-muted-foreground text-xs mb-3 ms-12 leading-relaxed break-words">
-            {t(`toolsInternal.fitnessCoach.exerciseDescs.${exercise.descriptionKey}`)}
-          </p>
-
-          {/* Muscle group */}
-          <p className="text-[10px] text-muted-foreground ms-12 mb-2">
-            💪 {t(`toolsInternal.fitnessCoach.muscleGroups.${exercise.muscleGroupKey}`)}
-          </p>
-
-          <div className="ms-12 flex gap-2">
-            {isCompleted ? (
-              <Badge variant="outline" className="text-xs border-primary/30 text-primary">
-                ✓ {t('toolsInternal.fitnessCoach.completed')}
-              </Badge>
-            ) : isActive ? (
-              <Button
-                size="sm"
-                variant={isPaused ? 'default' : 'outline'}
-                onClick={onTogglePause}
-                className="gap-1.5 text-xs"
-              >
-                {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
-                {isPaused
-                  ? t('toolsInternal.fitnessCoach.resume')
-                  : t('toolsInternal.fitnessCoach.pause')}
-              </Button>
-            ) : (
-              <Button size="sm" onClick={onStart} className="gap-1.5 text-xs">
-                <Play className="w-3.5 h-3.5" /> {t('common.start')} ({exercise.duration}s)
-              </Button>
-            )}
           </div>
         </CardContent>
       </Card>
