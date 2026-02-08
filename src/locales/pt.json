@@ -1561,6 +1561,16 @@
         "core": { "title": "Treino Pré-natal Seguro de Core", "description": "10 minutos de treino abdominal seguro" },
         "lowImpact": { "title": "Treino Pré-natal de Baixo Impacto", "description": "25 minutos de exercício suave para o corpo inteiro" }
       },
+      "sections": {
+        "setup": "Configuração e preferências",
+        "setupDesc": "Configure sua semana e nível de condicionamento",
+        "workout": "Treino de hoje",
+        "workoutDesc": "Siga seus exercícios personalizados",
+        "analysis": "Análise e dicas",
+        "analysisDesc": "Análises de IA e dicas diárias",
+        "resources": "Vídeos e segurança",
+        "resourcesDesc": "Conteúdo educacional e lembretes importantes"
+      },
       "aiWorkoutAnalysis": "Análise de Treino Personalizada",
       "aiWorkoutButton": "Analisar Meu Plano de Fitness",
       "aiWorkoutPromptTitle": "Análise de Fitness Pré-natal Personalizada"

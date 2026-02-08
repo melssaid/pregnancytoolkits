@@ -1561,6 +1561,16 @@
         "core": { "title": "Ejercicio Prenatal Seguro de Core", "description": "10 minutos de ejercicio abdominal seguro" },
         "lowImpact": { "title": "Ejercicio Prenatal de Bajo Impacto", "description": "25 minutos de ejercicio suave para todo el cuerpo" }
       },
+      "sections": {
+        "setup": "Configuración y preferencias",
+        "setupDesc": "Configura tu semana y nivel de actividad",
+        "workout": "Entrenamiento de hoy",
+        "workoutDesc": "Sigue tus ejercicios personalizados",
+        "analysis": "Análisis y consejos",
+        "analysisDesc": "Análisis de IA y consejos diarios",
+        "resources": "Videos y seguridad",
+        "resourcesDesc": "Contenido educativo y recordatorios importantes"
+      },
       "aiWorkoutAnalysis": "Análisis de Entrenamiento Personalizado",
       "aiWorkoutButton": "Analizar Mi Plan de Fitness",
       "aiWorkoutPromptTitle": "Análisis de Fitness Prenatal Personalizado"

@@ -1561,6 +1561,16 @@
         "core": { "title": "Güvenli Hamilelik Karın Egzersizi", "description": "10 dakika güvenli karın egzersizi" },
         "lowImpact": { "title": "Düşük Etkili Hamilelik Egzersizi", "description": "25 dakika nazik tüm vücut egzersizi" }
       },
+      "sections": {
+        "setup": "Ayarlar ve tercihler",
+        "setupDesc": "Haftanızı ve fitness seviyenizi yapılandırın",
+        "workout": "Bugünkü antrenman",
+        "workoutDesc": "Kişiselleştirilmiş egzersizlerinizi takip edin",
+        "analysis": "Analiz ve ipuçları",
+        "analysisDesc": "Yapay zeka analizleri ve günlük tavsiyeler",
+        "resources": "Videolar ve güvenlik",
+        "resourcesDesc": "Eğitim içeriği ve önemli hatırlatmalar"
+      },
       "aiWorkoutAnalysis": "Kişiselleştirilmiş Antrenman Analizi",
       "aiWorkoutButton": "Fitness Planımı Analiz Et",
       "aiWorkoutPromptTitle": "Kişiselleştirilmiş Hamilelik Fitness Analizi"
