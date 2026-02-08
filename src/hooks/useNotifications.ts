@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { playNotificationSound } from '@/lib/notificationSound';
+import { showPushNotification, getPermissionStatus } from '@/lib/pushNotifications';
 
 export interface Notification {
   id: string;
@@ -321,6 +322,19 @@ export function useNotifications() {
         if (hasAppointmentReminder) {
           playNotificationSound('reminder');
         }
+
+        // Send push notifications if enabled
+        const pushEnabled = localStorage.getItem('pushNotificationsEnabled') === 'true';
+        if (pushEnabled && getPermissionStatus() === 'granted') {
+          for (const n of newNotifications) {
+            showPushNotification({
+              title: n.title,
+              body: n.message,
+              tag: n.id,
+              url: n.actionUrl || '/',
+            });
+          }
+        }
       }
     };
 
@@ -342,6 +356,17 @@ export function useNotifications() {
     // Play notification sound based on type
     const soundType = notification.type === 'appointment' ? 'reminder' : 'gentle';
     playNotificationSound(soundType);
+
+    // Send push notification if enabled
+    const pushEnabled = localStorage.getItem('pushNotificationsEnabled') === 'true';
+    if (pushEnabled && getPermissionStatus() === 'granted') {
+      showPushNotification({
+        title: newNotification.title,
+        body: newNotification.message,
+        tag: newNotification.id,
+        url: newNotification.actionUrl || '/',
+      });
+    }
   }, []);
 
   const markAsRead = useCallback((id: string) => {

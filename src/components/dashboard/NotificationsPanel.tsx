@@ -3,15 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Bell, X, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, 
   Sparkles, ChevronRight, HardDrive, BellRing, Volume2, VolumeX,
-  Clock, Zap, Shield, Pin, AlertTriangle, Stethoscope
+  Clock, Zap, Shield, Pin, AlertTriangle, Stethoscope, BellPlus, BellOff
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
+import { usePushNotifications } from '@/hooks/usePushNotifications';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogContent,
@@ -211,6 +213,8 @@ export function NotificationsPanel() {
   const [showSettings, setShowSettings] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
   const [showDisclaimerDialog, setShowDisclaimerDialog] = useState(false);
+  
+  const { supported: pushSupported, permission: pushPermission, enabled: pushEnabled, enablePush, disablePush } = usePushNotifications();
 
   // Check if pinned notifications should be hidden (after 3 hours from first visit)
   const shouldShowPinnedNotifications = useMemo(() => {
@@ -398,6 +402,52 @@ export function NotificationsPanel() {
                   }}
                 />
               </div>
+
+              {/* Push Notifications Toggle */}
+              {pushSupported && (
+                <div className="mt-3 pt-3 border-t border-border/30">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <BellPlus className="w-3 h-3 text-primary" />
+                    <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                      {t('notificationsPanel.pushNotifications')}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/30 transition-colors">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-5 h-5 rounded bg-primary flex items-center justify-center">
+                        {pushEnabled ? <BellPlus className="w-2.5 h-2.5 text-primary-foreground" /> : <BellOff className="w-2.5 h-2.5 text-primary-foreground" />}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[11px] font-medium">
+                          {t('notificationsPanel.enablePush')}
+                        </span>
+                        {pushPermission === 'denied' && (
+                          <span className="text-[9px] text-destructive">
+                            {t('notificationsPanel.pushBlocked')}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <Switch 
+                      checked={pushEnabled} 
+                      onCheckedChange={async (v) => {
+                        if (v) {
+                          const success = await enablePush();
+                          if (success) {
+                            toast.success(t('notificationsPanel.pushEnabledSuccess'));
+                          } else if (pushPermission === 'denied') {
+                            toast.error(t('notificationsPanel.pushBlockedDesc'));
+                          }
+                        } else {
+                          disablePush();
+                        }
+                      }} 
+                      className="scale-75"
+                      disabled={pushPermission === 'denied'}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

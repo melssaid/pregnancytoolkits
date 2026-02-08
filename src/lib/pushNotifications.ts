@@ -1,0 +1,139 @@
+/**
+ * Push Notification utility using Service Worker + Notification API
+ * Enables real browser notifications even when the tab is in background
+ */
+
+let swRegistration: ServiceWorkerRegistration | null = null;
+
+/**
+ * Check if push notifications are supported
+ */
+export const isPushSupported = (): boolean => {
+  return 'serviceWorker' in navigator && 'Notification' in window;
+};
+
+/**
+ * Get current notification permission status
+ */
+export const getPermissionStatus = (): NotificationPermission | 'unsupported' => {
+  if (!isPushSupported()) return 'unsupported';
+  return Notification.permission;
+};
+
+/**
+ * Register the service worker for notifications
+ */
+export const registerServiceWorker = async (): Promise<ServiceWorkerRegistration | null> => {
+  if (!isPushSupported()) {
+    console.warn('[Push] Service Worker not supported');
+    return null;
+  }
+
+  try {
+    const registration = await navigator.serviceWorker.register('/sw-notifications.js', {
+      scope: '/',
+    });
+    swRegistration = registration;
+    console.log('[Push] Service Worker registered successfully');
+    return registration;
+  } catch (error) {
+    console.error('[Push] Service Worker registration failed:', error);
+    return null;
+  }
+};
+
+/**
+ * Request notification permission from the user
+ */
+export const requestPermission = async (): Promise<NotificationPermission> => {
+  if (!isPushSupported()) return 'denied';
+
+  try {
+    const permission = await Notification.requestPermission();
+    console.log('[Push] Permission result:', permission);
+    return permission;
+  } catch (error) {
+    console.error('[Push] Permission request failed:', error);
+    return 'denied';
+  }
+};
+
+/**
+ * Get active service worker registration
+ */
+const getRegistration = async (): Promise<ServiceWorkerRegistration | null> => {
+  if (swRegistration) return swRegistration;
+
+  try {
+    const registration = await navigator.serviceWorker.ready;
+    swRegistration = registration;
+    return registration;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Show a native push notification via the Service Worker
+ */
+export const showPushNotification = async (options: {
+  title: string;
+  body: string;
+  tag?: string;
+  url?: string;
+  icon?: string;
+}): Promise<boolean> => {
+  if (Notification.permission !== 'granted') return false;
+
+  const registration = await getRegistration();
+
+  if (registration?.active) {
+    // Use Service Worker to show notification (works in background)
+    registration.active.postMessage({
+      type: 'SHOW_NOTIFICATION',
+      payload: {
+        title: options.title,
+        body: options.body,
+        tag: options.tag || 'pregnancy-tools-' + Date.now(),
+        url: options.url || '/',
+        icon: options.icon || '/favicon.png',
+        badge: '/favicon.png',
+      },
+    });
+    return true;
+  } else {
+    // Fallback: use Notification API directly (only works when tab is active)
+    try {
+      new Notification(options.title, {
+        body: options.body,
+        icon: options.icon || '/favicon.png',
+        tag: options.tag,
+      });
+      return true;
+    } catch (error) {
+      console.error('[Push] Fallback notification failed:', error);
+      return false;
+    }
+  }
+};
+
+/**
+ * Initialize push notification system
+ * Should be called once when the app starts
+ */
+export const initPushNotifications = async (): Promise<{
+  supported: boolean;
+  permission: NotificationPermission | 'unsupported';
+  registration: ServiceWorkerRegistration | null;
+}> => {
+  const supported = isPushSupported();
+
+  if (!supported) {
+    return { supported: false, permission: 'unsupported', registration: null };
+  }
+
+  const registration = await registerServiceWorker();
+  const permission = getPermissionStatus();
+
+  return { supported, permission, registration };
+};
