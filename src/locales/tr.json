@@ -640,7 +640,20 @@
     "todayStats": "Bugünkü İstatistikler",
     "total": "Toplam",
     "recentChanges": "Son Değişiklikler",
-    "info": "Bez değişikliklerini takip etmek, bebeğinizin sıvı alımını ve sağlığını izlemenize yardımcı olur. Yenidoğanlar genellikle günde 6-8 ıslak beze ihtiyaç duyar."
+    "info": "Bez değişikliklerini takip etmek, bebeğinizin sıvı alımını ve sağlığını izlemenize yardımcı olur. Yenidoğanlar genellikle günde 6-8 ıslak beze ihtiyaç duyar.",
+    "analyzeWithAI": "Bez Kalıplarını Yapay Zekâ ile Analiz Et",
+    "aiPatternAnalysis": "Yapay Zekâ Kalıp Analizi",
+    "analyzingPatterns": "Kalıplar analiz ediliyor...",
+    "timeSinceLastChange": "Son değişiklikten beri",
+    "noChangesYet": "Henüz değişiklik kaydedilmedi",
+    "dailyGoal": "günlük hedef",
+    "weeklyTrend": "Haftalık Eğilim",
+    "avgPerDay": "günde",
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "h": "sa",
+    "m": "dk",
+    "s": "sn"
   },
   "babyGrowthPage": {
     "title": "Bebek Büyümesi",

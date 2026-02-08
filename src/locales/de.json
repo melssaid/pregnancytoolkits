@@ -640,7 +640,20 @@
     "todayStats": "Heutige Statistik",
     "total": "Gesamt",
     "recentChanges": "Letzte Wechsel",
-    "info": "Das Verfolgen von Windelwechseln hilft, die Flüssigkeitszufuhr und Gesundheit Ihres Babys zu überwachen. Neugeborene benötigen typischerweise 6-8 nasse Windeln täglich."
+    "info": "Das Verfolgen von Windelwechseln hilft, die Flüssigkeitszufuhr und Gesundheit Ihres Babys zu überwachen. Neugeborene benötigen typischerweise 6-8 nasse Windeln täglich.",
+    "analyzeWithAI": "Windelmuster mit KI analysieren",
+    "aiPatternAnalysis": "KI-Musteranalyse",
+    "analyzingPatterns": "Muster werden analysiert...",
+    "timeSinceLastChange": "Seit letztem Wechsel",
+    "noChangesYet": "Noch keine Wechsel erfasst",
+    "dailyGoal": "Tagesziel",
+    "weeklyTrend": "Wochentrend",
+    "avgPerDay": "pro Tag",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "h": "Std",
+    "m": "Min",
+    "s": "Sek"
   },
   "babyGrowthPage": {
     "title": "Baby-Wachstum",

@@ -640,7 +640,20 @@
     "todayStats": "Estatísticas de hoje",
     "total": "Total",
     "recentChanges": "Trocas recentes",
-    "info": "O acompanhamento de fraldas ajuda a monitorar a hidratação e a saúde do seu bebê. Recém-nascidos normalmente precisam de 6 a 8 fraldas molhadas por dia."
+    "info": "O acompanhamento de fraldas ajuda a monitorar a hidratação e a saúde do seu bebê. Recém-nascidos normalmente precisam de 6 a 8 fraldas molhadas por dia.",
+    "analyzeWithAI": "Analisar padrões com IA",
+    "aiPatternAnalysis": "Análise de padrões com IA",
+    "analyzingPatterns": "Analisando padrões...",
+    "timeSinceLastChange": "Desde a última troca",
+    "noChangesYet": "Nenhuma troca registrada ainda",
+    "dailyGoal": "meta diária",
+    "weeklyTrend": "Tendência semanal",
+    "avgPerDay": "por dia",
+    "today": "Hoje",
+    "yesterday": "Ontem",
+    "h": "h",
+    "m": "m",
+    "s": "s"
   },
   "babyGrowthPage": {
     "title": "Crescimento do bebê",

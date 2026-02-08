@@ -651,7 +651,17 @@
     "info": "Tracking diaper changes helps monitor your baby's hydration and health. Newborns typically need 6-8 wet diapers daily.",
     "analyzeWithAI": "Analyze Diaper Patterns with AI",
     "aiPatternAnalysis": "AI Pattern Analysis",
-    "analyzingPatterns": "Analyzing patterns..."
+    "analyzingPatterns": "Analyzing patterns...",
+    "timeSinceLastChange": "Since last change",
+    "noChangesYet": "No changes recorded yet",
+    "dailyGoal": "daily goal",
+    "weeklyTrend": "Weekly Trend",
+    "avgPerDay": "per day",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "h": "h",
+    "m": "m",
+    "s": "s"
   },
   "babyGrowthPage": {
     "title": "Baby Growth",

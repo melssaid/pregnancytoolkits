@@ -640,7 +640,20 @@
     "todayStats": "Statistiques du jour",
     "total": "Total",
     "recentChanges": "Changements récents",
-    "info": "Le suivi des couches aide à surveiller l'hydratation et la santé de votre bébé. Les nouveau-nés ont généralement besoin de 6 à 8 couches mouillées par jour."
+    "info": "Le suivi des couches aide à surveiller l'hydratation et la santé de votre bébé. Les nouveau-nés ont généralement besoin de 6 à 8 couches mouillées par jour.",
+    "analyzeWithAI": "Analyser les patterns avec l'IA",
+    "aiPatternAnalysis": "Analyse IA des patterns",
+    "analyzingPatterns": "Analyse en cours...",
+    "timeSinceLastChange": "Depuis le dernier change",
+    "noChangesYet": "Aucun changement enregistré",
+    "dailyGoal": "objectif quotidien",
+    "weeklyTrend": "Tendance hebdomadaire",
+    "avgPerDay": "par jour",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "h": "h",
+    "m": "m",
+    "s": "s"
   },
   "babyGrowthPage": {
     "title": "Croissance bébé",

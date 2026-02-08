@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Droplet, Circle, Trash2, TrendingUp, Sparkles, Loader2 } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { QuickAddButtons } from "@/components/diaper/QuickAddButtons";
+import { TimeSinceLastChange } from "@/components/diaper/TimeSinceLastChange";
+import { DailyGoalProgress } from "@/components/diaper/DailyGoalProgress";
+import { DiaperChart } from "@/components/diaper/DiaperChart";
+import { DiaperHistory } from "@/components/diaper/DiaperHistory";
+import { DiaperAIAnalysis } from "@/components/diaper/DiaperAIAnalysis";
+import { Info } from "lucide-react";
 import { motion } from "framer-motion";
-import { format, differenceInHours } from "date-fns";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
-import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 
 type DiaperType = "wet" | "dirty" | "both";
 
@@ -16,20 +17,11 @@ interface DiaperEntry {
   id: string;
   time: string;
   type: DiaperType;
-  notes?: string;
 }
 
 const DiaperTracker = () => {
   const { t } = useTranslation();
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [entries, setEntries] = useState<DiaperEntry[]>([]);
-  const [aiInsight, setAiInsight] = useState('');
-
-  useResetOnLanguageChange(() => {
-    setAiInsight('');
-    setShowAiInsight(false);
-  });
-  const [showAiInsight, setShowAiInsight] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("diaperEntries");
@@ -58,7 +50,6 @@ const DiaperTracker = () => {
     const todayEntries = entries.filter(
       (e) => new Date(e.time).toDateString() === today
     );
-    
     return {
       wet: todayEntries.filter((e) => e.type === "wet" || e.type === "both").length,
       dirty: todayEntries.filter((e) => e.type === "dirty" || e.type === "both").length,
@@ -67,257 +58,57 @@ const DiaperTracker = () => {
   };
 
   const stats = getTodayStats();
-
-  // Calculate frequency for AI
-  const getFrequencyData = () => {
-    const last24h = entries.filter(e => {
-      const hours = differenceInHours(new Date(), new Date(e.time));
-      return hours <= 24;
-    });
-    return {
-      wet24h: last24h.filter(e => e.type === 'wet' || e.type === 'both').length,
-      dirty24h: last24h.filter(e => e.type === 'dirty' || e.type === 'both').length,
-      total24h: last24h.length,
-    };
-  };
-
-  const analyzeWithAI = async () => {
-    const freq = getFrequencyData();
-    setAiInsight('');
-    setShowAiInsight(true);
-
-    await streamChat({
-      type: 'pregnancy-assistant',
-      messages: [{
-        role: 'user',
-        content: `Analyze my baby's diaper patterns:
-        
-Today's stats:
-- Wet diapers: ${stats.wet}
-- Dirty diapers: ${stats.dirty}
-- Total changes: ${stats.total}
-
-Last 24 hours:
-- Wet: ${freq.wet24h}
-- Dirty: ${freq.dirty24h}
-- Total: ${freq.total24h}
-
-Please provide:
-
-## Hydration Assessment
-Is the wet diaper count normal? What does it indicate?
-
-## Health Indicators
-What the diaper patterns might tell us about baby's health
-
-## Normal Ranges
-Remind me of typical diaper counts for different ages
-
-## When to Be Concerned
-Signs that would warrant calling the pediatrician
-
-## Tips
-Helpful tips for diaper changes and tracking`
-      }],
-      onDelta: (text) => setAiInsight(prev => prev + text),
-      onDone: () => {},
-    });
-  };
-
-  const getTypeIcon = (type: DiaperType) => {
-    switch (type) {
-      case "wet":
-        return <Droplet className="h-5 w-5 text-blue-500" />;
-      case "dirty":
-        return <Circle className="h-5 w-5 text-amber-600 fill-amber-600" />;
-      case "both":
-        return (
-          <div className="flex gap-1">
-            <Droplet className="h-4 w-4 text-blue-500" />
-            <Circle className="h-4 w-4 text-amber-600 fill-amber-600" />
-          </div>
-        );
-    }
-  };
+  const lastChangeTime = entries.length > 0 ? entries[0].time : null;
 
   return (
-    <ToolFrame 
-      title={t('diaperPage.title')} 
+    <ToolFrame
+      title={t('diaperPage.title')}
       subtitle={t('diaperPage.subtitle')}
       customIcon="mother-baby"
       mood="nurturing"
       toolId="diaper-tracker"
     >
+      <div className="space-y-4">
+        {/* Live Timer */}
+        <TimeSinceLastChange lastChangeTime={lastChangeTime} />
+
+        {/* Quick Add */}
+        <QuickAddButtons onAdd={addEntry} />
+
+        {/* Daily Progress with Goal */}
+        <DailyGoalProgress
+          wet={stats.wet}
+          dirty={stats.dirty}
+          total={stats.total}
+        />
+
+        {/* Weekly Chart */}
+        <DiaperChart entries={entries} />
+
+        {/* AI Analysis */}
+        <DiaperAIAnalysis entries={entries} todayStats={stats} />
+
+        {/* Info */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.35 }}
         >
-          {/* Quick Add */}
-          <Card className="overflow-hidden">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-center text-base">{t('diaperPage.quickAdd')}</CardTitle>
-            </CardHeader>
-            <CardContent className="pb-4">
-              <div className="grid grid-cols-3 gap-2">
-                <Button
-                  onClick={() => addEntry("wet")}
-                  variant="outline"
-                  className="h-16 sm:h-20 flex-col gap-1.5 text-xs sm:text-sm overflow-hidden"
-                >
-                  <Droplet className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500 shrink-0" />
-                  <span className="truncate w-full text-center">{t('diaperPage.wet')}</span>
-                </Button>
-                <Button
-                  onClick={() => addEntry("dirty")}
-                  variant="outline"
-                  className="h-16 sm:h-20 flex-col gap-1.5 text-xs sm:text-sm overflow-hidden"
-                >
-                  <Circle className="h-6 w-6 sm:h-8 sm:w-8 text-amber-600 fill-amber-600 shrink-0" />
-                  <span className="truncate w-full text-center">{t('diaperPage.dirty')}</span>
-                </Button>
-                <Button
-                  onClick={() => addEntry("both")}
-                  variant="outline"
-                  className="h-16 sm:h-20 flex-col gap-1.5 text-xs sm:text-sm overflow-hidden"
-                >
-                  <div className="flex gap-0.5 shrink-0">
-                    <Droplet className="h-5 w-5 sm:h-6 sm:w-6 text-blue-500" />
-                    <Circle className="h-5 w-5 sm:h-6 sm:w-6 text-amber-600 fill-amber-600" />
-                  </div>
-                  <span className="truncate w-full text-center">{t('diaperPage.both')}</span>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Today's Stats */}
-          <Card className="overflow-hidden">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-base">
-                <TrendingUp className="h-4 w-4 text-primary shrink-0" />
-                <span className="truncate">{t('diaperPage.todayStats')}</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pb-4">
-              <div className="grid grid-cols-3 gap-2 text-center">
-                <div className="rounded-lg bg-blue-50 dark:bg-blue-950 p-2 sm:p-3 overflow-hidden">
-                  <Droplet className="h-5 w-5 text-blue-500 mx-auto mb-0.5 shrink-0" />
-                  <p className="text-xl sm:text-2xl font-bold text-blue-600">{stats.wet}</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('diaperPage.wet')}</p>
-                </div>
-                <div className="rounded-lg bg-amber-50 dark:bg-amber-950 p-2 sm:p-3 overflow-hidden">
-                  <Circle className="h-5 w-5 text-amber-600 fill-amber-600 mx-auto mb-0.5 shrink-0" />
-                  <p className="text-xl sm:text-2xl font-bold text-amber-600">{stats.dirty}</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('diaperPage.dirty')}</p>
-                </div>
-                <div className="rounded-lg bg-secondary p-2 sm:p-3 overflow-hidden">
-                  <div className="h-5 w-5 mx-auto mb-0.5" />
-                  <p className="text-xl sm:text-2xl font-bold text-primary">{stats.total}</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('diaperPage.total')}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* AI Analysis Button */}
-          {entries.length >= 3 && (
-            <Card className="overflow-hidden bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
-              <CardContent className="py-3">
-                {!showAiInsight ? (
-                  <Button
-                    onClick={analyzeWithAI}
-                    disabled={aiLoading}
-                    className="w-full gap-2 bg-gradient-to-r from-violet-500 to-purple-500 text-xs sm:text-sm h-9"
-                  >
-                    {aiLoading ? (
-                      <Loader2 className="h-4 w-4 animate-spin shrink-0" />
-                    ) : (
-                      <Sparkles className="h-4 w-4 shrink-0" />
-                    )}
-                    <span className="truncate">{t('diaperPage.analyzeWithAI')}</span>
-                  </Button>
-                ) : (
-                  <div className="overflow-hidden">
-                    <div className="flex items-center justify-between mb-2 gap-2">
-                      <div className="flex items-center gap-2 min-w-0">
-                        <Sparkles className="h-4 w-4 text-violet-500 shrink-0" />
-                        <h3 className="font-semibold text-sm truncate">{t('diaperPage.aiPatternAnalysis')}</h3>
-                      </div>
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        className="shrink-0 h-7 w-7 p-0"
-                        onClick={() => setShowAiInsight(false)}
-                      >
-                        ✕
-                      </Button>
-                    </div>
-                    {aiLoading && !aiInsight && (
-                      <div className="flex items-center gap-2 text-violet-600">
-                        <Loader2 className="h-4 w-4 animate-spin shrink-0" />
-                        <span className="text-xs sm:text-sm">{t('diaperPage.analyzingPatterns')}</span>
-                      </div>
-                    )}
-                    {aiInsight && (
-                      <div className="overflow-x-auto">
-                        <MarkdownRenderer content={aiInsight} />
-                      </div>
-                    )}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Info */}
           <Card className="overflow-hidden bg-muted/50">
             <CardContent className="py-3">
-              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                {t('diaperPage.info')}
-              </p>
+              <div className="flex gap-2">
+                <Info className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {t('diaperPage.info')}
+                </p>
+              </div>
             </CardContent>
           </Card>
-
-          {/* Recent Entries */}
-          {entries.length > 0 && (
-            <div className="overflow-hidden">
-              <h2 className="text-sm sm:text-base font-semibold mb-2">{t('diaperPage.recentChanges')}</h2>
-              <div className="space-y-1.5">
-                {entries.slice(0, 15).map((entry) => (
-                  <Card key={entry.id} className="overflow-hidden">
-                    <CardContent className="py-2 px-3">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2 min-w-0 flex-1">
-                          <div className="shrink-0">
-                            {getTypeIcon(entry.type)}
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <p className="font-medium text-sm truncate">
-                              {t(`diaperPage.${entry.type}`)}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                              {format(new Date(entry.time), "MMM d, HH:mm")}
-                            </p>
-                          </div>
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 shrink-0"
-                          onClick={() => deleteEntry(entry.id)}
-                        >
-                          <Trash2 className="h-4 w-4 text-destructive" />
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
         </motion.div>
+
+        {/* History grouped by day */}
+        <DiaperHistory entries={entries} onDelete={deleteEntry} />
+      </div>
     </ToolFrame>
   );
 };
