@@ -1566,6 +1566,8 @@
       "sections": {
         "setup": "Ayarlar ve tercihler",
         "setupDesc": "Haftanızı ve fitness seviyenizi yapılandırın",
+        "buildWorkout": "Antrenmanını Oluştur",
+        "buildWorkoutDesc": "Enerji, hedef ve süreyi seçin",
         "workout": "Bugünkü antrenman",
         "workoutDesc": "Kişiselleştirilmiş egzersizlerinizi takip edin",
         "analysis": "Analiz ve ipuçları",

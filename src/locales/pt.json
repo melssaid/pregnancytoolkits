@@ -1566,6 +1566,8 @@
       "sections": {
         "setup": "Configuração e preferências",
         "setupDesc": "Configure sua semana e nível de condicionamento",
+        "buildWorkout": "Monte seu treino",
+        "buildWorkoutDesc": "Escolha sua energia, objetivo e duração",
         "workout": "Treino de hoje",
         "workoutDesc": "Siga seus exercícios personalizados",
         "analysis": "Análise e dicas",

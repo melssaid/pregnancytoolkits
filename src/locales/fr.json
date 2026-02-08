@@ -2221,6 +2221,8 @@
       "sections": {
         "setup": "Configuration et préférences",
         "setupDesc": "Configurez votre semaine et niveau de forme",
+        "buildWorkout": "Créer votre entraînement",
+        "buildWorkoutDesc": "Choisissez votre énergie, objectif et durée",
         "workout": "Entraînement du jour",
         "workoutDesc": "Suivez vos exercices personnalisés",
         "analysis": "Analyse et conseils",
