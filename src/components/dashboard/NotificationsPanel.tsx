@@ -68,6 +68,7 @@ function NotificationItem({ notification, onRead, onClear, index, onDisclaimerCl
   const isPinned = notification.isPinned;
   const isDisclaimer = notification.type === 'disclaimer';
   
+  const { t } = useTranslation();
   const timeAgo = () => {
     if (isPinned) return '';
     const diff = Date.now() - new Date(notification.time).getTime();
@@ -77,7 +78,7 @@ function NotificationItem({ notification, onRead, onClear, index, onDisclaimerCl
     if (days > 0) return `${days}d`;
     if (hours > 0) return `${hours}h`;
     if (minutes > 0) return `${minutes}m`;
-    return 'Now';
+    return t('notificationsPanel.now');
   };
 
   const handleActionClick = (e: React.MouseEvent) => {
@@ -149,7 +150,7 @@ function NotificationItem({ notification, onRead, onClear, index, onDisclaimerCl
               onClick={handleActionClick}
               className="inline-flex items-center gap-1 mt-2 text-xs font-medium text-primary hover:underline"
             >
-              View Details <ChevronRight className="w-3 h-3" />
+              {t('notificationsPanel.viewDetails')} <ChevronRight className="w-3 h-3" />
             </button>
           ) : notification.actionUrl && (
             <Link 
@@ -157,7 +158,7 @@ function NotificationItem({ notification, onRead, onClear, index, onDisclaimerCl
               onClick={onRead}
               className="inline-flex items-center gap-1 mt-2 text-xs font-medium text-primary hover:underline"
             >
-              View Details <ChevronRight className="w-3 h-3" />
+              {t('notificationsPanel.viewDetails')} <ChevronRight className="w-3 h-3" />
             </Link>
           )}
         </div>
@@ -193,8 +194,7 @@ function SettingsItem({
 }
 
 export function NotificationsPanel() {
-  const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === 'ar';
+  const { t } = useTranslation();
   
   const { 
     notifications, 
@@ -248,10 +248,8 @@ export function NotificationsPanel() {
       {
         id: 'pinned-welcome',
         type: 'welcome',
-        title: isArabic ? '👋 مرحباً بك!' : '👋 Welcome!',
-        message: isArabic 
-          ? 'استمتعي بأكثر من 40 أداة ذكية لمتابعة حملك بطريقة سهلة وآمنة.'
-          : 'Enjoy 40+ smart tools to track your pregnancy easily and safely.',
+        title: t('notificationsPanel.welcome'),
+        message: t('notificationsPanel.welcomeDesc'),
         time: new Date().toISOString(),
         read: true,
         isPinned: true,
@@ -260,17 +258,15 @@ export function NotificationsPanel() {
       {
         id: 'pinned-disclaimer',
         type: 'disclaimer',
-        title: isArabic ? '⚕️ إخلاء مسؤولية طبية' : '⚕️ Medical Disclaimer',
-        message: isArabic 
-          ? 'هذا التطبيق للمعلومات فقط ولا يُغني عن استشارة الطبيب المختص.'
-          : 'This app is for informational purposes only and does not replace professional medical advice.',
+        title: t('notificationsPanel.disclaimer'),
+        message: t('notificationsPanel.disclaimerDesc'),
         time: new Date().toISOString(),
         read: true,
         isPinned: true,
         actionUrl: '/privacy-policy',
       },
     ];
-  }, [isArabic, shouldShowPinnedNotifications]);
+  }, [t, shouldShowPinnedNotifications]);
 
   // Combine pinned + regular notifications
   const allNotifications = useMemo(() => {
@@ -301,9 +297,9 @@ export function NotificationsPanel() {
               )}
             </div>
             <div>
-              <h3 className="text-xs font-bold">Notifications</h3>
+              <h3 className="text-xs font-bold">{t('notificationsPanel.title')}</h3>
               <p className="text-[9px] text-muted-foreground">
-                {unreadCount > 0 ? `${unreadCount} unread` : 'All caught up!'}
+                {unreadCount > 0 ? t('notificationsPanel.unread', { count: unreadCount }) : t('notificationsPanel.allCaughtUp')}
               </p>
             </div>
           </div>
@@ -344,48 +340,48 @@ export function NotificationsPanel() {
             <div className="p-3 bg-muted/20">
               <div className="flex items-center gap-1.5 mb-2">
                 <Shield className="w-3 h-3 text-primary" />
-                <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">Reminders</span>
+                <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">{t('notificationsPanel.reminders')}</span>
               </div>
               
               <div className="grid grid-cols-2 gap-1">
                 <SettingsItem 
                   icon={Calendar} 
-                  label="Appointments" 
+                  label={t('notificationsPanel.appointments')} 
                   color="bg-blue-500"
                   checked={settings.appointmentReminders}
                   onChange={(v) => updateSettings({ appointmentReminders: v })}
                 />
                 <SettingsItem 
                   icon={Pill} 
-                  label="Vitamins" 
+                  label={t('notificationsPanel.vitamins')} 
                   color="bg-amber-500"
                   checked={settings.vitaminReminders}
                   onChange={(v) => updateSettings({ vitaminReminders: v })}
                 />
                 <SettingsItem 
                   icon={Dumbbell} 
-                  label="Exercise" 
+                  label={t('notificationsPanel.exercise')} 
                   color="bg-emerald-500"
                   checked={settings.exerciseReminders}
                   onChange={(v) => updateSettings({ exerciseReminders: v })}
                 />
                 <SettingsItem 
                   icon={Droplet} 
-                  label="Water" 
+                  label={t('notificationsPanel.water')} 
                   color="bg-sky-500"
                   checked={settings.waterReminders}
                   onChange={(v) => updateSettings({ waterReminders: v })}
                 />
                 <SettingsItem 
                   icon={Sparkles} 
-                  label="Stretching" 
+                  label={t('notificationsPanel.stretching')} 
                   color="bg-violet-500"
                   checked={settings.stretchReminders}
                   onChange={(v) => updateSettings({ stretchReminders: v })}
                 />
                 <SettingsItem 
                   icon={HardDrive} 
-                  label="Backup" 
+                  label={t('notificationsPanel.backup')} 
                   color="bg-rose-500"
                   checked={settings.backupReminders ?? true}
                   onChange={(v) => {
@@ -394,8 +390,8 @@ export function NotificationsPanel() {
                       localStorage.setItem('backup_reminder_first_enabled', 'true');
                       addNotification({
                         type: 'backup',
-                        title: 'Backup Reminders Enabled',
-                        message: 'You will be reminded weekly to backup your pregnancy data.',
+                        title: t('notificationsPanel.backupEnabled'),
+                        message: t('notificationsPanel.backupEnabledDesc'),
                         actionUrl: '/settings',
                       });
                     }
@@ -419,12 +415,10 @@ export function NotificationsPanel() {
               <Bell className="w-8 h-8 text-muted-foreground/50" />
             </div>
             <h3 className="font-semibold text-foreground">
-              {isArabic ? 'لا توجد إشعارات!' : 'All Caught Up!'}
+              {t('notificationsPanel.noCaughtUp')}
             </h3>
             <p className="text-xs text-muted-foreground mt-1 max-w-[200px] mx-auto">
-              {isArabic 
-                ? 'سنذكرك بالفيتامينات والتمارين والمواعيد'
-                : "We'll remind you about vitamins, exercises & appointments"}
+              {t('notificationsPanel.noDesc')}
             </p>
           </motion.div>
         ) : (
@@ -445,7 +439,7 @@ export function NotificationsPanel() {
             {allNotifications.length > 7 && (
               <div className="text-center pt-2">
                 <span className="text-xs text-muted-foreground">
-                  +{allNotifications.length - 7} {isArabic ? 'إشعارات أخرى' : 'more notifications'}
+                  {t('notificationsPanel.moreNotifications', { count: allNotifications.length - 7 })}
                 </span>
               </div>
             )}
@@ -458,7 +452,7 @@ export function NotificationsPanel() {
                 className="w-full text-xs text-muted-foreground hover:text-destructive mt-2"
               >
                 <X className="w-3 h-3 mr-1" />
-                {isArabic ? 'مسح الكل' : 'Clear All'}
+                {t('notificationsPanel.clearAll')}
               </Button>
             )}
           </div>
@@ -471,7 +465,7 @@ export function NotificationsPanel() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-amber-600">
               <Stethoscope className="w-5 h-5" />
-              {isArabic ? 'إخلاء المسؤولية الطبية' : 'Medical Disclaimer'}
+              {t('notificationsPanel.disclaimerTitle')}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4 text-sm">
@@ -479,41 +473,31 @@ export function NotificationsPanel() {
               <div className="flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
                 <p className="text-muted-foreground">
-                  {isArabic 
-                    ? 'هذا التطبيق مخصص للأغراض التعليمية والمعلوماتية فقط ولا يُقدم نصائح طبية أو تشخيصية أو علاجية.'
-                    : 'This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment.'}
+                  {t('notificationsPanel.disclaimerBody')}
                 </p>
               </div>
             </div>
             
             <div className="space-y-3">
               <h4 className="font-semibold text-foreground">
-                {isArabic ? 'يرجى الانتباه:' : 'Please note:'}
+                {t('notificationsPanel.pleaseNote')}
               </h4>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  {isArabic 
-                    ? 'استشيري طبيبتك دائماً قبل اتخاذ أي قرار صحي.'
-                    : 'Always consult your healthcare provider before making any health decisions.'}
+                  {t('notificationsPanel.consultDoctor')}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  {isArabic 
-                    ? 'نتائج الأدوات الذكية للمعلومات العامة فقط.'
-                    : 'AI tool results are for general information only.'}
+                  {t('notificationsPanel.aiGeneral')}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  {isArabic 
-                    ? 'في حالات الطوارئ، اتصلي بالإسعاف أو اذهبي لأقرب مستشفى.'
-                    : 'In emergencies, call emergency services or go to the nearest hospital.'}
+                  {t('notificationsPanel.emergency')}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  {isArabic 
-                    ? 'بياناتك محفوظة محلياً على جهازك فقط.'
-                    : 'Your data is stored locally on your device only.'}
+                  {t('notificationsPanel.dataLocal')}
                 </li>
               </ul>
             </div>
@@ -522,7 +506,7 @@ export function NotificationsPanel() {
               onClick={() => setShowDisclaimerDialog(false)} 
               className="w-full"
             >
-              {isArabic ? 'فهمت' : 'I Understand'}
+              {t('notificationsPanel.understood')}
             </Button>
           </div>
         </DialogContent>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Baby } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ProgressRingProps {
   currentWeek: number;
@@ -8,8 +9,9 @@ interface ProgressRingProps {
 }
 
 export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: ProgressRingProps) {
+  const { t } = useTranslation();
   const progress = Math.min((currentWeek / totalWeeks) * 100, 100);
-  const circumference = 2 * Math.PI * 45; // radius = 45
+  const circumference = 2 * Math.PI * 45;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
   
   const daysRemaining = dueDate 
@@ -17,12 +19,11 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
     : (totalWeeks - currentWeek) * 7;
 
   const trimester = currentWeek <= 12 ? 1 : currentWeek <= 26 ? 2 : 3;
-  const trimesterLabel = trimester === 1 ? "First" : trimester === 2 ? "Second" : "Third";
+  const trimesterKey = trimester === 1 ? "firstTrimester" : trimester === 2 ? "secondTrimester" : "thirdTrimester";
 
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-40 h-40">
-        {/* Background ring */}
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
           <circle
             cx="50"
@@ -33,7 +34,6 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
             strokeWidth="6"
             className="text-muted/30"
           />
-          {/* Progress ring */}
           <motion.circle
             cx="50"
             cy="50"
@@ -55,7 +55,6 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
           </defs>
         </svg>
 
-        {/* Center content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
@@ -71,7 +70,7 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
             transition={{ delay: 0.5 }}
             className="text-2xl font-bold text-foreground"
           >
-            Week {currentWeek}
+            {t('progressRing.week', { week: currentWeek })}
           </motion.span>
           <motion.span
             initial={{ opacity: 0 }}
@@ -79,12 +78,11 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
             transition={{ delay: 0.7 }}
             className="text-xs text-muted-foreground"
           >
-            {trimesterLabel} Trimester
+            {t(`progressRing.${trimesterKey}`)}
           </motion.span>
         </div>
       </div>
 
-      {/* Stats below ring */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -93,12 +91,12 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
       >
         <div className="text-center">
           <span className="text-lg font-bold text-foreground">{daysRemaining}</span>
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wide">Days Left</p>
+          <p className="text-[10px] text-muted-foreground uppercase tracking-wide">{t('progressRing.daysLeft')}</p>
         </div>
         <div className="w-px bg-border" />
         <div className="text-center">
           <span className="text-lg font-bold text-foreground">{Math.round(progress)}%</span>
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wide">Complete</p>
+          <p className="text-[10px] text-muted-foreground uppercase tracking-wide">{t('progressRing.complete')}</p>
         </div>
       </motion.div>
     </div>

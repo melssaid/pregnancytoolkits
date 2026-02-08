@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Lock, LockOpen } from 'lucide-react';
 import { isEncryptionEnabled } from '@/lib/encryption';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Tooltip,
   TooltipContent,
@@ -10,20 +11,18 @@ import {
 } from '@/components/ui/tooltip';
 
 export function EncryptionIndicator() {
+  const { t } = useTranslation();
   const [encrypted, setEncrypted] = useState(false);
 
   useEffect(() => {
-    // Check encryption status
     setEncrypted(isEncryptionEnabled());
 
-    // Listen for storage changes (in case encryption is toggled in another tab)
     const handleStorageChange = () => {
       setEncrypted(isEncryptionEnabled());
     };
 
     window.addEventListener('storage', handleStorageChange);
     
-    // Also check periodically for same-tab changes
     const interval = setInterval(() => {
       setEncrypted(isEncryptionEnabled());
     }, 2000);
@@ -57,12 +56,12 @@ export function EncryptionIndicator() {
           {encrypted ? (
             <span className="flex items-center gap-1">
               <Lock className="h-3 w-3 text-emerald-500" />
-              Data Encrypted
+              {t('encryption.dataEncrypted')}
             </span>
           ) : (
             <span className="flex items-center gap-1">
               <LockOpen className="h-3 w-3" />
-              Encryption Off
+              {t('encryption.encryptionOff')}
             </span>
           )}
         </TooltipContent>

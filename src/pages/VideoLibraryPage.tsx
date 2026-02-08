@@ -3,8 +3,11 @@ import { BookOpen, ShieldCheck } from 'lucide-react';
 import { VideoLibrary } from '@/components/VideoLibrary';
 import { Layout } from '@/components/Layout';
 import { generalVideosByLang } from '@/data/videoData';
+import { useTranslation } from 'react-i18next';
 
 export default function VideoLibraryPage() {
+  const { t } = useTranslation();
+
   return (
     <Layout showBack>
       <div className="container py-6 space-y-6">
@@ -14,8 +17,8 @@ export default function VideoLibraryPage() {
             <BookOpen className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h2 className="font-semibold text-foreground">Video Library</h2>
-            <p className="text-sm text-muted-foreground">Specialized content for expecting mothers</p>
+            <h2 className="font-semibold text-foreground">{t('videoLibraryPage.title')}</h2>
+            <p className="text-sm text-muted-foreground">{t('videoLibraryPage.subtitle')}</p>
           </div>
         </div>
 
@@ -25,15 +28,15 @@ export default function VideoLibraryPage() {
           <div className="flex items-center gap-3 p-4 pl-5">
             <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0" />
             <p className="text-sm font-medium text-muted-foreground">
-              Educational content only — Always consult your doctor before following any advice.
+              {t('videoLibraryPage.disclaimerBanner')}
             </p>
           </div>
         </div>
 
         <VideoLibrary
           videosByLang={generalVideosByLang}
-          title="Educational Videos"
-          subtitle="Specialized content for expecting mothers"
+          title={t('videoLibraryPage.videosTitle')}
+          subtitle={t('videoLibraryPage.subtitle')}
           accentColor="blue"
         />
       </div>

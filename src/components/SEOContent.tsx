@@ -3,7 +3,6 @@ import { Heart, Baby, Activity, Brain, Shield, Clock } from "lucide-react";
 
 export function SEOContent() {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
 
   const seoKeywords: Record<string, string[]> = {
     ar: [
@@ -67,67 +66,26 @@ export function SEOContent() {
   const currentKeywords = seoKeywords[i18n.language] || seoKeywords.en;
 
   const features = [
-    {
-      icon: Baby,
-      titleAr: "متابعة نمو الجنين",
-      titleEn: "Baby Growth Tracking",
-      descAr: "تتبعي تطور طفلك أسبوعياً مع مقارنات حجم الفاكهة والمعالم التنموية",
-      descEn: "Track your baby's weekly development with fruit size comparisons and milestones"
-    },
-    {
-      icon: Activity,
-      titleAr: "عداد حركة الجنين",
-      titleEn: "Kick Counter",
-      descAr: "سجلي حركات طفلك وتابعي أنماط النشاط للاطمئنان على صحته",
-      descEn: "Record baby movements and monitor activity patterns for peace of mind"
-    },
-    {
-      icon: Brain,
-      titleAr: "مساعد الحمل بالذكاء الاصطناعي",
-      titleEn: "AI Pregnancy Assistant",
-      descAr: "احصلي على إجابات فورية لأسئلتك من مساعد ذكي متخصص في الحمل",
-      descEn: "Get instant answers to your questions from an AI specialized in pregnancy"
-    },
-    {
-      icon: Heart,
-      titleAr: "صحة الأم والجنين",
-      titleEn: "Maternal & Fetal Health",
-      descAr: "نصائح يومية مخصصة للتغذية والتمارين والعناية بصحتك وصحة طفلك",
-      descEn: "Personalized daily tips for nutrition, exercise, and caring for you and your baby"
-    },
-    {
-      icon: Clock,
-      titleAr: "مؤقت الطلق",
-      titleEn: "Contraction Timer",
-      descAr: "قياس دقيق لوقت ومدة الانقباضات لمعرفة الوقت المناسب للذهاب للمستشفى",
-      descEn: "Accurately measure contraction timing to know when to go to the hospital"
-    },
-    {
-      icon: Shield,
-      titleAr: "خصوصية وأمان",
-      titleEn: "Privacy & Security",
-      descAr: "بياناتك مشفرة ومحمية - خصوصيتك أولويتنا القصوى",
-      descEn: "Your data is encrypted and protected - your privacy is our top priority"
-    }
+    { icon: Baby, titleKey: "seo.babyGrowth", descKey: "seo.babyGrowthDesc" },
+    { icon: Activity, titleKey: "seo.kickCounter", descKey: "seo.kickCounterDesc" },
+    { icon: Brain, titleKey: "seo.aiAssistant", descKey: "seo.aiAssistantDesc" },
+    { icon: Heart, titleKey: "seo.maternalHealth", descKey: "seo.maternalHealthDesc" },
+    { icon: Clock, titleKey: "seo.contractionTimer", descKey: "seo.contractionTimerDesc" },
+    { icon: Shield, titleKey: "seo.privacy", descKey: "seo.privacyDesc" },
   ];
 
   return (
     <section className="py-8 bg-gradient-to-b from-background to-muted/30">
       <div className="container">
-        {/* SEO Rich Content */}
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-foreground mb-3">
-            {isRTL ? "أفضل تطبيق لمتابعة الحمل" : "Best Pregnancy Tracking App"}
+            {t('seo.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm leading-relaxed">
-            {isRTL 
-              ? "تطبيق الحمل الشامل مع 42+ أداة ذكية لكل مرحلة من رحلة الأمومة - من التخطيط للحمل حتى ما بعد الولادة. مجاني 100% ومتوفر بـ 7 لغات."
-              : "Complete pregnancy app with 42+ AI-powered tools for every stage of motherhood - from planning to postpartum. 100% free and available in 7 languages."
-            }
+            {t('seo.description')}
           </p>
         </div>
 
-        {/* Feature Cards */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
@@ -141,22 +99,19 @@ export function SEOContent() {
                     <Icon className="w-4 h-4 text-primary" />
                   </div>
                   <h3 className="font-semibold text-foreground text-sm">
-                    {isRTL ? feature.titleAr : feature.titleEn}
+                    {t(feature.titleKey)}
                   </h3>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  {isRTL ? feature.descAr : feature.descEn}
+                  {t(feature.descKey)}
                 </p>
               </div>
             );
           })}
         </div>
 
-        {/* SEO Keywords Cloud - Hidden but crawlable */}
         <div className="sr-only" aria-hidden="false">
-          <h3>
-            {isRTL ? "كلمات مفتاحية للبحث" : "Search Keywords"}
-          </h3>
+          <h3>{t('seo.searchKeywords')}</h3>
           <ul>
             {currentKeywords.map((keyword, index) => (
               <li key={index}>{keyword}</li>
@@ -164,7 +119,6 @@ export function SEOContent() {
           </ul>
         </div>
 
-        {/* Visible Keywords Tags */}
         <div className="flex flex-wrap justify-center gap-2">
           {currentKeywords.slice(0, 12).map((keyword, index) => (
             <span 

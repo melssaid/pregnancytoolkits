@@ -7,6 +7,7 @@ import { Switch } from '@/components/ui/switch';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
 import { Link } from 'react-router-dom';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { useTranslation } from 'react-i18next';
 
 const typeIcons: Record<string, any> = {
   appointment: Calendar,
@@ -33,6 +34,7 @@ function NotificationItem({ notification, onRead, onClear }: {
   onRead: () => void;
   onClear: () => void;
 }) {
+  const { t } = useTranslation();
   const Icon = typeIcons[notification.type] || Bell;
   const colorClass = typeColors[notification.type] || 'bg-primary';
   
@@ -40,9 +42,9 @@ function NotificationItem({ notification, onRead, onClear }: {
     const diff = Date.now() - new Date(notification.time).getTime();
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(minutes / 60);
-    if (hours > 0) return `${hours}h ago`;
-    if (minutes > 0) return `${minutes}m ago`;
-    return 'Just now';
+    if (hours > 0) return t('notificationCenter.hAgo', { h: hours });
+    if (minutes > 0) return t('notificationCenter.mAgo', { m: minutes });
+    return t('notificationCenter.justNow');
   };
 
   return (
@@ -78,7 +80,7 @@ function NotificationItem({ notification, onRead, onClear }: {
                 onClick={onRead}
                 className="text-xs text-primary font-medium flex items-center gap-1 hover:underline"
               >
-                Open <ChevronRight className="w-3 h-3" />
+                {t('notificationCenter.open')} <ChevronRight className="w-3 h-3" />
               </Link>
             )}
           </div>
@@ -89,6 +91,7 @@ function NotificationItem({ notification, onRead, onClear }: {
 }
 
 export function NotificationCenter() {
+  const { t } = useTranslation();
   const { 
     notifications, 
     unreadCount, 
@@ -118,7 +121,7 @@ export function NotificationCenter() {
       <SheetContent className="w-full sm:max-w-md p-0">
         <SheetHeader className="p-4 border-b border-border">
           <div className="flex items-center justify-between">
-            <SheetTitle className="text-lg">Notifications</SheetTitle>
+            <SheetTitle className="text-lg">{t('notificationCenter.title')}</SheetTitle>
             <div className="flex items-center gap-2">
               <button 
                 onClick={() => setShowSettings(!showSettings)}
@@ -130,7 +133,7 @@ export function NotificationCenter() {
                 <button 
                   onClick={markAllAsRead}
                   className="p-2 rounded-lg hover:bg-muted transition-colors"
-                  title="Mark all as read"
+                  title={t('notificationCenter.markAllRead')}
                 >
                   <CheckCheck className="w-4 h-4 text-muted-foreground" />
                 </button>
@@ -140,7 +143,6 @@ export function NotificationCenter() {
         </SheetHeader>
 
         <div className="p-4 max-h-[calc(100vh-120px)] overflow-y-auto">
-          {/* Settings Panel */}
           <AnimatePresence>
             {showSettings && (
               <motion.div
@@ -151,79 +153,63 @@ export function NotificationCenter() {
               >
                 <Card>
                   <CardContent className="p-4 space-y-3">
-                    <h4 className="font-semibold text-sm">Reminder Settings</h4>
+                    <h4 className="font-semibold text-sm">{t('notificationCenter.reminderSettings')}</h4>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-blue-500" />
-                        <span className="text-sm">Appointments</span>
+                        <span className="text-sm">{t('notificationCenter.appointments')}</span>
                       </div>
-                      <Switch 
-                        checked={settings.appointmentReminders}
-                        onCheckedChange={(v) => updateSettings({ appointmentReminders: v })}
-                      />
+                      <Switch checked={settings.appointmentReminders} onCheckedChange={(v) => updateSettings({ appointmentReminders: v })} />
                     </div>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Pill className="w-4 h-4 text-amber-500" />
-                        <span className="text-sm">Vitamins</span>
+                        <span className="text-sm">{t('notificationCenter.vitamins')}</span>
                       </div>
-                      <Switch 
-                        checked={settings.vitaminReminders}
-                        onCheckedChange={(v) => updateSettings({ vitaminReminders: v })}
-                      />
+                      <Switch checked={settings.vitaminReminders} onCheckedChange={(v) => updateSettings({ vitaminReminders: v })} />
                     </div>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Dumbbell className="w-4 h-4 text-emerald-500" />
-                        <span className="text-sm">Exercise</span>
+                        <span className="text-sm">{t('notificationCenter.exercise')}</span>
                       </div>
-                      <Switch 
-                        checked={settings.exerciseReminders}
-                        onCheckedChange={(v) => updateSettings({ exerciseReminders: v })}
-                      />
+                      <Switch checked={settings.exerciseReminders} onCheckedChange={(v) => updateSettings({ exerciseReminders: v })} />
                     </div>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Droplet className="w-4 h-4 text-sky-500" />
-                        <span className="text-sm">Water</span>
+                        <span className="text-sm">{t('notificationCenter.water')}</span>
                       </div>
-                      <Switch 
-                        checked={settings.waterReminders}
-                        onCheckedChange={(v) => updateSettings({ waterReminders: v })}
-                      />
+                      <Switch checked={settings.waterReminders} onCheckedChange={(v) => updateSettings({ waterReminders: v })} />
                     </div>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Sparkles className="w-4 h-4 text-violet-500" />
-                        <span className="text-sm">Stretching</span>
+                        <span className="text-sm">{t('notificationCenter.stretching')}</span>
                       </div>
-                      <Switch 
-                        checked={settings.stretchReminders}
-                        onCheckedChange={(v) => updateSettings({ stretchReminders: v })}
-                      />
+                      <Switch checked={settings.stretchReminders} onCheckedChange={(v) => updateSettings({ stretchReminders: v })} />
                     </div>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <HardDrive className="w-4 h-4 text-rose-500" />
-                        <span className="text-sm">Backup (weekly)</span>
+                        <span className="text-sm">{t('notificationCenter.backupWeekly')}</span>
                       </div>
-                      <Switch 
+                      <Switch
                         checked={settings.backupReminders ?? true}
                         onCheckedChange={(v) => {
                           updateSettings({ backupReminders: v });
-                          // Show immediate notification when backup reminder is enabled for the first time
                           if (v && !localStorage.getItem('backup_reminder_first_enabled')) {
                             localStorage.setItem('backup_reminder_first_enabled', 'true');
                             addNotification({
                               type: 'backup',
-                              title: '💾 Backup Reminders Enabled',
-                              message: 'You will be reminded weekly to backup your pregnancy data. Go to Settings to create your first backup!',
+                              title: t('notificationCenter.backupEnabled'),
+                              message: t('notificationCenter.backupEnabledDesc'),
                               actionUrl: '/settings',
                             });
                           }
@@ -236,13 +222,12 @@ export function NotificationCenter() {
             )}
           </AnimatePresence>
 
-          {/* Notifications List */}
           {notifications.length === 0 ? (
             <div className="text-center py-12">
               <Bell className="w-12 h-12 mx-auto text-muted-foreground/50 mb-3" />
-              <h3 className="font-medium text-muted-foreground">No notifications yet</h3>
+              <h3 className="font-medium text-muted-foreground">{t('notificationCenter.noNotifications')}</h3>
               <p className="text-xs text-muted-foreground mt-1">
-                We'll remind you about vitamins, exercises & more
+                {t('notificationCenter.remindYou')}
               </p>
             </div>
           ) : (
@@ -265,7 +250,7 @@ export function NotificationCenter() {
                   onClick={clearAll}
                   className="w-full text-xs text-muted-foreground mt-4"
                 >
-                  Clear All Notifications
+                  {t('notificationCenter.clearAll')}
                 </Button>
               )}
             </div>
