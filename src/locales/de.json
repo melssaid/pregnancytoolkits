@@ -1225,6 +1225,8 @@
       "savedDesc": "Ihr Termin wurde gespeichert.",
       "reminderSetTitle": "Erinnerung gesetzt!",
       "reminderSetDesc": "Wir erinnern Sie an Ihren Termin: {{date}}",
+      "dueDateReminderTitle": "📅 Geburtstermin-Erinnerung",
+      "dueDateReminderMessage": "Der Geburtstermin Ihres Babys ist {{date}}. Machen Sie sich bereit!",
       "deleted": "Gelöscht",
       "deletedDesc": "Termin aus dem Verlauf entfernt.",
       "copied": "Kopiert!",

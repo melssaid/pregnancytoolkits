@@ -1225,6 +1225,8 @@
       "savedDesc": "Sua data prevista foi salva.",
       "reminderSetTitle": "Lembrete Configurado!",
       "reminderSetDesc": "Vamos lembrá-la da sua data prevista: {{date}}",
+      "dueDateReminderTitle": "📅 Lembrete de data prevista",
+      "dueDateReminderMessage": "A data prevista do seu bebê é {{date}}. Prepare-se!",
       "deleted": "Excluído",
       "deletedDesc": "Data prevista removida do histórico.",
       "copied": "Copiado!",

@@ -1225,6 +1225,8 @@
       "savedDesc": "Tu fecha de parto ha sido guardada.",
       "reminderSetTitle": "¡Recordatorio Configurado!",
       "reminderSetDesc": "Te recordaremos tu fecha de parto: {{date}}",
+      "dueDateReminderTitle": "📅 Recordatorio de fecha de parto",
+      "dueDateReminderMessage": "La fecha de parto de tu bebé es {{date}}. ¡Prepárate!",
       "deleted": "Eliminado",
       "deletedDesc": "Fecha de parto eliminada del historial.",
       "copied": "¡Copiado!",

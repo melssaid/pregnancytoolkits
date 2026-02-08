@@ -1106,6 +1106,8 @@
       "savedDesc": "Your due date has been saved.",
       "reminderSetTitle": "Reminder Set!",
       "reminderSetDesc": "We'll remind you about your due date: {{date}}",
+      "dueDateReminderTitle": "📅 Due Date Reminder",
+      "dueDateReminderMessage": "Your baby's due date is {{date}}. Get ready!",
       "deleted": "Deleted",
       "deletedDesc": "Due date removed from history.",
       "copied": "Copied!",

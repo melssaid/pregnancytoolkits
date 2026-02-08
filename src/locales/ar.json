@@ -936,6 +936,8 @@
       "savedDesc": "تم حفظ موعد ولادتك.",
       "reminderSetTitle": "تم ضبط التذكير!",
       "reminderSetDesc": "سنذكرك بموعد ولادتك: {{date}}",
+      "dueDateReminderTitle": "📅 تذكير بموعد الولادة",
+      "dueDateReminderMessage": "موعد ولادة طفلك هو {{date}}. استعدي!",
       "deleted": "تم الحذف",
       "deletedDesc": "تمت إزالة الموعد من السجل.",
       "copied": "تم النسخ!",

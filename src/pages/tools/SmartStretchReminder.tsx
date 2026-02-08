@@ -204,11 +204,11 @@ export default function SmartStretchReminder() {
 
         {/* Quick Start */}
         <div className="flex gap-2">
-          <Button onClick={startQuickRoutine} className="flex-1 gap-2" size="lg" disabled={isActive}>
-            <Play className="w-5 h-5" />
-            {t('stretchReminder.startRoutine')}
+          <Button onClick={startQuickRoutine} className="flex-1 gap-2 text-sm h-10" disabled={isActive}>
+            <Play className="w-5 h-5 shrink-0" />
+            <span className="truncate">{t('stretchReminder.startRoutine')}</span>
           </Button>
-          <Button onClick={getAIStretchAdvice} variant="outline" size="lg" disabled={isLoading}>
+          <Button onClick={getAIStretchAdvice} variant="outline" className="h-10" disabled={isLoading}>
             {isLoading ? (
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (

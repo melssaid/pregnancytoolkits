@@ -229,7 +229,7 @@ Helpful tips for diaper changes and tracking`
                   <Button
                     onClick={analyzeWithAI}
                     disabled={aiLoading}
-                    className="w-full gap-2 bg-gradient-to-r from-violet-500 to-purple-500 text-xs sm:text-sm"
+                    className="w-full gap-2 bg-gradient-to-r from-violet-500 to-purple-500 text-xs sm:text-sm h-9"
                   >
                     {aiLoading ? (
                       <Loader2 className="h-4 w-4 animate-spin shrink-0" />

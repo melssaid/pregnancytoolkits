@@ -117,8 +117,8 @@ export default function DueDateCalculator() {
     
     addNotification({
       type: 'appointment',
-      title: 'Due Date Reminder',
-      message: `Your baby's due date is ${formattedDate}. Get ready!`,
+      title: t('toolsInternal.dueDate.dueDateReminderTitle'),
+      message: t('toolsInternal.dueDate.dueDateReminderMessage', { date: formattedDate }),
       actionUrl: '/tools/birth-prep',
     });
 
@@ -299,13 +299,13 @@ export default function DueDateCalculator() {
                     </div>
 
                     <div className="flex gap-2">
-                      <Button onClick={saveResult} variant="outline" className="flex-1 gap-2">
-                        <Save className="h-4 w-4" />
-                        {t('toolsInternal.dueDate.save')}
+                      <Button onClick={saveResult} variant="outline" className="flex-1 gap-2 text-sm h-9">
+                        <Save className="h-4 w-4 shrink-0" />
+                        <span className="truncate">{t('toolsInternal.dueDate.save')}</span>
                       </Button>
-                      <Button onClick={shareResult} variant="outline" className="flex-1 gap-2">
-                        <Share2 className="h-4 w-4" />
-                        {t('toolsInternal.dueDate.share')}
+                      <Button onClick={shareResult} variant="outline" className="flex-1 gap-2 text-sm h-9">
+                        <Share2 className="h-4 w-4 shrink-0" />
+                        <span className="truncate">{t('toolsInternal.dueDate.share')}</span>
                       </Button>
                     </div>
                   </CardContent>

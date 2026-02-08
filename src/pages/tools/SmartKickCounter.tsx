@@ -637,7 +637,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                         ) : (
                           <Brain className="w-3 h-3" />
                         )}
-                        <span className="text-xs">Tips</span>
+                        <span className="text-xs">{t('toolsInternal.kickCounter.tips')}</span>
                       </Button>
                     </div>
 

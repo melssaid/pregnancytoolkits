@@ -79,7 +79,7 @@ const VitaminTracker: React.FC = () => {
     } catch (error: any) {
       console.error('Error loading vitamins:', error);
       toast({
-        title: 'Loading Error',
+        title: t('common.error'),
         description: error.message,
         variant: 'destructive'
       });
