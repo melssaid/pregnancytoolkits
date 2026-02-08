@@ -2128,16 +2128,24 @@
         "tip5": "Richtige Atmung beim Training ist entscheidend. Halten Sie nie den Atem an — atmen Sie bei Anstrengung aus."
       },
       "videoCategories": {
-        "core": "Rumpf",
-        "cardio": "Kardio",
+        "fullBody": "Ganzkörper",
+        "strength": "Krafttraining",
+        "stretching": "Dehnung",
         "yoga": "Yoga",
-        "relaxation": "Entspannung"
+        "relaxation": "Entspannung",
+        "birthPrep": "Geburtsvorbereitung",
+        "core": "Rumpf",
+        "lowImpact": "Gelenkschonend"
       },
       "videos": {
-        "core": { "title": "Sicheres Rumpftraining in der Schwangerschaft", "description": "10-Minuten sicheres Bauchtraining für das erste Trimester" },
-        "cardio": { "title": "Sicheres HIIT-Kardio in der Schwangerschaft", "description": "20-Minuten gelenkschonendes Training ohne Wiederholungen" },
+        "fullBody": { "title": "Ganzkörper-Schwangerschaftstraining", "description": "25-Minuten gelenkschonendes Ganzkörpertraining — sicher für alle Trimester" },
+        "strength": { "title": "Bodyweight-Krafttraining für Schwangere", "description": "35-Minuten Krafttraining ohne Geräte für die Schwangerschaft" },
+        "stretching": { "title": "Sanftes Dehnen für Schwangerschaftsanfängerinnen", "description": "20-Minuten sanftes Dehnen für alle Trimester" },
         "yoga": { "title": "Schwangerschafts-Yoga zur Entspannung", "description": "Tiefenentspannung Yoga für Schwangere" },
-        "relaxation": { "title": "Schwangerschafts-Entspannungsmeditation", "description": "Beruhigende Meditation für werdende Mütter" }
+        "relaxation": { "title": "Schwangerschafts-Entspannungsmeditation", "description": "Beruhigende Meditation für werdende Mütter" },
+        "birthPrep": { "title": "Schwangerschafts-Kardio + Geburtsvorbereitung", "description": "30-Minuten Kardio und Geburtsvorbereitungsübungen" },
+        "core": { "title": "Sicheres Rumpftraining in der Schwangerschaft", "description": "10-Minuten sicheres Rumpftraining für das erste Trimester" },
+        "lowImpact": { "title": "Gelenkschonendes Schwangerschaftstraining", "description": "25-Minuten sanftes Ganzkörpertraining für Schwangere" }
       },
       "aiWorkoutAnalysis": "Personalisierte Trainingsanalyse",
       "aiWorkoutButton": "Meinen Fitnessplan analysieren",

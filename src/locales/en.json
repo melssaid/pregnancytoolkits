@@ -1448,16 +1448,24 @@
         "tip5": "Proper breathing during exercise is key. Never hold your breath — exhale on exertion."
       },
       "videoCategories": {
-        "core": "Core",
-        "cardio": "Cardio",
+        "fullBody": "Full Body",
+        "strength": "Strength",
+        "stretching": "Stretching",
         "yoga": "Yoga",
-        "relaxation": "Relaxation"
+        "relaxation": "Relaxation",
+        "birthPrep": "Birth Prep",
+        "core": "Core",
+        "lowImpact": "Low Impact"
       },
       "videos": {
-        "core": { "title": "Safe Prenatal Core Workout", "description": "10-minute safe abs workout for first trimester" },
-        "cardio": { "title": "Pregnancy Safe HIIT Cardio", "description": "20 minute no repeat low impact workout" },
+        "fullBody": { "title": "Full Body Prenatal Workout", "description": "25-minute low impact full body workout — safe for all trimesters" },
+        "strength": { "title": "Bodyweight Prenatal Strength", "description": "35-minute no equipment strength workout for pregnancy" },
+        "stretching": { "title": "Beginner Pregnancy Stretch", "description": "20-minute gentle stretching safe for all trimesters" },
         "yoga": { "title": "Prenatal Yoga for Relaxation", "description": "Deep relaxation yoga for pregnancy" },
-        "relaxation": { "title": "Pregnancy Relaxation Meditation", "description": "Calming meditation for expecting mothers" }
+        "relaxation": { "title": "Pregnancy Relaxation Meditation", "description": "Calming meditation for expecting mothers" },
+        "birthPrep": { "title": "Pregnancy Cardio + Birth Prep", "description": "30-minute cardio and birth preparation exercises" },
+        "core": { "title": "Safe Prenatal Core Workout", "description": "10-minute safe core workout for first trimester" },
+        "lowImpact": { "title": "Low Impact Prenatal Workout", "description": "25-minute gentle full body prenatal exercise" }
       },
       "aiWorkoutAnalysis": "Personalized Workout Analysis",
       "aiWorkoutButton": "Analyze My Fitness Plan",

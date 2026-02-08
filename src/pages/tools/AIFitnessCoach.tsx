@@ -42,10 +42,14 @@ const exerciseDatabase: Exercise[] = [
 ];
 
 const fitnessVideoIds = [
-  { youtubeId: "f7KnXTEpf5M", duration: "10:00", categoryKey: "core" },
-  { youtubeId: "DeaayKWssak", duration: "20:00", categoryKey: "cardio" },
+  { youtubeId: "UfrXvINRIbM", duration: "25:00", categoryKey: "fullBody" },
+  { youtubeId: "tn54beUcPgo", duration: "35:00", categoryKey: "strength" },
+  { youtubeId: "TgrBkANcHw4", duration: "20:00", categoryKey: "stretching" },
   { youtubeId: "vEcZD8Js2Ws", duration: "25:00", categoryKey: "yoga" },
   { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
+  { youtubeId: "ta9IGkgEXts", duration: "30:00", categoryKey: "birthPrep" },
+  { youtubeId: "f7KnXTEpf5M", duration: "10:00", categoryKey: "core" },
+  { youtubeId: "InQu8jMT130", duration: "25:00", categoryKey: "lowImpact" },
 ];
 
 type CategoryFilter = 'all' | 'warmup' | 'strength' | 'cardio' | 'flexibility' | 'cooldown';

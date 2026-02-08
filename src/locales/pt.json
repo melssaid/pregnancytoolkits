@@ -1542,16 +1542,24 @@
         "tip5": "A respiração correta durante o exercício é fundamental. Nunca prenda a respiração."
       },
       "videoCategories": {
-        "core": "Core",
-        "cardio": "Cardio",
+        "fullBody": "Corpo inteiro",
+        "strength": "Fortalecimento",
+        "stretching": "Alongamento",
         "yoga": "Yoga",
-        "relaxation": "Relaxamento"
+        "relaxation": "Relaxamento",
+        "birthPrep": "Preparação parto",
+        "core": "Core",
+        "lowImpact": "Baixo impacto"
       },
       "videos": {
-        "core": { "title": "Treino Pré-natal Seguro de Core", "description": "Treino abdominal seguro de 10 minutos para o primeiro trimestre" },
-        "cardio": { "title": "Cardio HIIT Seguro na Gravidez", "description": "Treino de 20 minutos de baixo impacto sem repetições" },
+        "fullBody": { "title": "Treino Pré-natal Corpo Inteiro", "description": "25 minutos de exercício suave para o corpo inteiro — seguro para todos os trimestres" },
+        "strength": { "title": "Fortalecimento Pré-natal com Peso Corporal", "description": "35 minutos de fortalecimento sem equipamento para a gravidez" },
+        "stretching": { "title": "Alongamento Suave para Gestantes Iniciantes", "description": "20 minutos de alongamento seguro para todos os trimestres" },
         "yoga": { "title": "Yoga Pré-natal de Relaxamento", "description": "Yoga de relaxamento profundo para a gravidez" },
-        "relaxation": { "title": "Meditação de Relaxamento na Gravidez", "description": "Meditação calmante para futuras mamães" }
+        "relaxation": { "title": "Meditação de Relaxamento na Gravidez", "description": "Meditação calmante para futuras mamães" },
+        "birthPrep": { "title": "Cardio Gravidez + Preparação para o Parto", "description": "30 minutos de cardio e exercícios de preparação para o parto" },
+        "core": { "title": "Treino Pré-natal Seguro de Core", "description": "10 minutos de treino abdominal seguro" },
+        "lowImpact": { "title": "Treino Pré-natal de Baixo Impacto", "description": "25 minutos de exercício suave para o corpo inteiro" }
       },
       "aiWorkoutAnalysis": "Análise de Treino Personalizada",
       "aiWorkoutButton": "Analisar Meu Plano de Fitness",
