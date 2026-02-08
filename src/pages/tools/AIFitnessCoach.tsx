@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { RotateCcw, Info, Dumbbell, Filter, Activity } from 'lucide-react';
+import { RotateCcw, Info, Dumbbell, Filter, Activity, Settings2, Heart, PlayCircle, BarChart3 } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { WeekSlider } from '@/components/WeekSlider';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { WorkoutProgressRing } from '@/components/fitness/WorkoutProgressRing';
@@ -15,58 +14,23 @@ import { TrimesterAlert } from '@/components/fitness/TrimesterAlert';
 import { ExerciseCard, Exercise } from '@/components/fitness/ExerciseCard';
 import { WarmupCooldownSection } from '@/components/fitness/WarmupCooldownSection';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
+import { exerciseDatabase, fitnessVideosByLang, getVideosByLanguage } from '@/data/fitnessData';
 
 const REST_DURATION = 15;
 
-const exerciseDatabase: Exercise[] = [
-  // Warmup
-  { id: 'neck-rolls', nameKey: 'neckRolls', duration: 30, descriptionKey: 'neckRollsDesc', category: 'warmup', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'neck' },
-  { id: 'arm-circles', nameKey: 'armCircles', duration: 30, descriptionKey: 'armCirclesDesc', category: 'warmup', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'shoulders' },
-  // Strength
-  { id: 'squat', nameKey: 'prenatalSquats', duration: 45, descriptionKey: 'prenatalSquatsDesc', category: 'strength', difficulty: 'beginner', caloriesPerMin: 5, muscleGroupKey: 'legs' },
-  { id: 'bird-dog', nameKey: 'birdDog', duration: 30, descriptionKey: 'birdDogDesc', category: 'strength', difficulty: 'intermediate', caloriesPerMin: 4, muscleGroupKey: 'core' },
-  { id: 'wall-pushup', nameKey: 'wallPushups', duration: 45, descriptionKey: 'wallPushupsDesc', category: 'strength', difficulty: 'beginner', caloriesPerMin: 4, muscleGroupKey: 'arms' },
-  { id: 'glute-bridge', nameKey: 'gluteBridge', duration: 40, descriptionKey: 'gluteBridgeDesc', category: 'strength', difficulty: 'beginner', caloriesPerMin: 4, muscleGroupKey: 'glutes' },
-  { id: 'side-lying-leg', nameKey: 'sideLyingLeg', duration: 35, descriptionKey: 'sideLyingLegDesc', category: 'strength', difficulty: 'intermediate', caloriesPerMin: 3, muscleGroupKey: 'hips' },
-  // Cardio
-  { id: 'marching', nameKey: 'seatedMarching', duration: 60, descriptionKey: 'seatedMarchingDesc', category: 'cardio', difficulty: 'beginner', caloriesPerMin: 5, muscleGroupKey: 'legs' },
-  { id: 'step-touch', nameKey: 'stepTouch', duration: 45, descriptionKey: 'stepTouchDesc', category: 'cardio', difficulty: 'beginner', caloriesPerMin: 4, muscleGroupKey: 'fullBody' },
-  // Flexibility
-  { id: 'pelvic-tilt', nameKey: 'pelvicTilts', duration: 60, descriptionKey: 'pelvicTiltsDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'pelvis' },
-  { id: 'butterfly', nameKey: 'butterflyStretch', duration: 60, descriptionKey: 'butterflyStretchDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'hips' },
-  { id: 'cat-cow', nameKey: 'catCow', duration: 45, descriptionKey: 'catCowDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'spine' },
-  { id: 'side-stretch', nameKey: 'sideStretch', duration: 30, descriptionKey: 'sideStretchDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'obliques' },
-  // Cooldown
-  { id: 'child-pose', nameKey: 'childPose', duration: 45, descriptionKey: 'childPoseDesc', category: 'cooldown', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'back' },
-  { id: 'deep-breathing', nameKey: 'deepBreathing', duration: 60, descriptionKey: 'deepBreathingDesc', category: 'cooldown', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'diaphragm' },
-];
-
-// Language-specific video sets for cultural relevance
-const fitnessVideosByLang: Record<string, { youtubeId: string; duration: string; categoryKey: string }[]> = {
-  ar: [
-    { youtubeId: "pHzsNfr2NCQ", duration: "15:00", categoryKey: "yoga" },
-    { youtubeId: "qa7RY4V6ihM", duration: "10:00", categoryKey: "fullBody" },
-    { youtubeId: "Vy6jonW1lFg", duration: "12:00", categoryKey: "strength" },
-    { youtubeId: "jvY_KDCy7E4", duration: "8:00", categoryKey: "birthPrep" },
-    { youtubeId: "oBY_25mR2WU", duration: "15:00", categoryKey: "stretching" },
-    { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
-  ],
-  default: [
-    { youtubeId: "Mcic8Z-8pxY", duration: "30:00", categoryKey: "fullBody" },
-    { youtubeId: "M4IoSwHGezg", duration: "30:00", categoryKey: "strength" },
-    { youtubeId: "gb8ZF-8i160", duration: "15:00", categoryKey: "stretching" },
-    { youtubeId: "vEcZD8Js2Ws", duration: "25:00", categoryKey: "yoga" },
-    { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
-    { youtubeId: "f7KnXTEpf5M", duration: "10:00", categoryKey: "core" },
-    { youtubeId: "zk5eFlXUbCs", duration: "12:00", categoryKey: "birthPrep" },
-  ],
-};
-
-const getVideosByLanguage = (lang: string) => {
-  return fitnessVideosByLang[lang] || fitnessVideosByLang.default;
-};
-
 type CategoryFilter = 'all' | 'warmup' | 'strength' | 'cardio' | 'flexibility' | 'cooldown';
+
+const SectionHeader: React.FC<{ icon: React.ReactNode; title: string; subtitle?: string }> = ({ icon, title, subtitle }) => (
+  <div className="flex items-center gap-2.5 pt-2">
+    <div className="p-1.5 rounded-lg bg-primary/10">
+      {icon}
+    </div>
+    <div>
+      <h2 className="font-semibold text-sm text-foreground">{title}</h2>
+      {subtitle && <p className="text-[10px] text-muted-foreground">{subtitle}</p>}
+    </div>
+  </div>
+);
 
 const AIFitnessCoach: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -95,7 +59,6 @@ const AIFitnessCoach: React.FC = () => {
       exercises = exercises.filter(e => e.category !== 'cardio');
     }
 
-    // Build structured workout: warmup + main + cooldown
     const warmups = exercises.filter(e => e.category === 'warmup');
     const main = exercises.filter(e => !['warmup', 'cooldown'].includes(e.category));
     const cooldowns = exercises.filter(e => e.category === 'cooldown');
@@ -126,13 +89,11 @@ const AIFitnessCoach: React.FC = () => {
         setTotalTimeSpent((prev) => prev + 1);
       }, 1000);
     } else if (timer === 0 && activeExerciseIndex !== null && !isPaused) {
-      // Exercise complete
       const exercise = generatedWorkout[activeExerciseIndex];
       setCompletedExercises(prev => new Set([...prev, exercise.id]));
       setIsPaused(true);
       setActiveExerciseIndex(null);
 
-      // Show rest timer if not the last exercise
       if (activeExerciseIndex < generatedWorkout.length - 1) {
         setShowRestTimer(true);
       }
@@ -193,7 +154,16 @@ const AIFitnessCoach: React.FC = () => {
       toolId="ai-fitness-coach"
     >
       <div className="space-y-5">
-        {/* Week Selector */}
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 1: Setup & Configuration
+        ══════════════════════════════════════════════════════════════ */}
+        <SectionHeader
+          icon={<Settings2 className="w-4 h-4 text-primary" />}
+          title={t('toolsInternal.fitnessCoach.sections.setup')}
+          subtitle={t('toolsInternal.fitnessCoach.sections.setupDesc')}
+        />
+
         <WeekSlider
           week={currentWeek}
           onChange={setCurrentWeek}
@@ -201,7 +171,6 @@ const AIFitnessCoach: React.FC = () => {
           showTrimester
         />
 
-        {/* Activity Level */}
         <Card>
           <CardContent className="p-3">
             <h2 className="text-sm font-semibold mb-2">
@@ -223,10 +192,25 @@ const AIFitnessCoach: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* Trimester Safety Alert */}
         <TrimesterAlert week={currentWeek} />
 
-        {/* Workout Progress */}
+        <Button
+          variant="outline"
+          onClick={generateWorkout}
+          className="w-full gap-2 text-xs"
+        >
+          <RotateCcw className="w-4 h-4" /> {t('toolsInternal.fitnessCoach.generatePlan')}
+        </Button>
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 2: Today's Workout
+        ══════════════════════════════════════════════════════════════ */}
+        <SectionHeader
+          icon={<PlayCircle className="w-4 h-4 text-primary" />}
+          title={t('toolsInternal.fitnessCoach.sections.workout')}
+          subtitle={t('toolsInternal.fitnessCoach.sections.workoutDesc')}
+        />
+
         <WorkoutProgressRing
           completed={completedExercises.size}
           total={generatedWorkout.length}
@@ -234,10 +218,8 @@ const AIFitnessCoach: React.FC = () => {
           totalTime={totalTimeSpent}
         />
 
-        {/* Warmup Guide */}
         <WarmupCooldownSection type="warmup" />
 
-        {/* Category Filter */}
         {availableCategories.length > 2 && (
           <div className="flex gap-1.5 flex-wrap">
             <Filter className="w-4 h-4 text-muted-foreground mt-1" />
@@ -257,7 +239,6 @@ const AIFitnessCoach: React.FC = () => {
           </div>
         )}
 
-        {/* Rest Timer */}
         <RestTimer
           duration={REST_DURATION}
           onComplete={handleRestComplete}
@@ -265,9 +246,8 @@ const AIFitnessCoach: React.FC = () => {
           isActive={showRestTimer}
         />
 
-        {/* Exercise List */}
         <div className="space-y-3">
-          {filteredWorkout.map((exercise, index) => {
+          {filteredWorkout.map((exercise) => {
             const realIndex = generatedWorkout.indexOf(exercise);
             return (
               <ExerciseCard
@@ -285,10 +265,17 @@ const AIFitnessCoach: React.FC = () => {
           })}
         </div>
 
-        {/* Cooldown Guide */}
         <WarmupCooldownSection type="cooldown" />
 
-        {/* AI Workout Analysis */}
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 3: Analysis & Tips
+        ══════════════════════════════════════════════════════════════ */}
+        <SectionHeader
+          icon={<BarChart3 className="w-4 h-4 text-primary" />}
+          title={t('toolsInternal.fitnessCoach.sections.analysis')}
+          subtitle={t('toolsInternal.fitnessCoach.sections.analysisDesc')}
+        />
+
         <AIInsightCard
           title={t('toolsInternal.fitnessCoach.aiWorkoutAnalysis')}
           prompt={`I am ${currentWeek} weeks pregnant with a ${fitnessLevel} fitness level. I just completed ${completedExercises.size} out of ${generatedWorkout.length} exercises, burning approximately ${caloriesBurned} calories in ${Math.round(totalTimeSpent / 60)} minutes.
@@ -320,16 +307,6 @@ Trimester-specific precautions for my current stage`}
           variant="default"
         />
 
-        {/* Generate New Workout */}
-        <Button
-          variant="outline"
-          onClick={generateWorkout}
-          className="w-full gap-2 text-xs"
-        >
-          <RotateCcw className="w-4 h-4" /> {t('toolsInternal.fitnessCoach.generatePlan')}
-        </Button>
-
-        {/* Daily Tip */}
         <Card className="border-primary/20 bg-primary/5">
           <CardContent className="p-4 flex gap-3">
             <Dumbbell className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -344,7 +321,15 @@ Trimester-specific precautions for my current stage`}
           </CardContent>
         </Card>
 
-        {/* Videos */}
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 4: Videos & Safety
+        ══════════════════════════════════════════════════════════════ */}
+        <SectionHeader
+          icon={<Heart className="w-4 h-4 text-primary" />}
+          title={t('toolsInternal.fitnessCoach.sections.resources')}
+          subtitle={t('toolsInternal.fitnessCoach.sections.resourcesDesc')}
+        />
+
         <VideoLibrary
           videos={fitnessVideos}
           title={t('toolsInternal.fitnessCoach.fitnessVideos')}
@@ -352,7 +337,6 @@ Trimester-specific precautions for my current stage`}
           accentColor="violet"
         />
 
-        {/* Safety Card */}
         <Card className="border-primary/20 bg-primary/5">
           <CardContent className="p-4 flex gap-3">
             <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />

@@ -2147,6 +2147,16 @@
         "core": { "title": "Sicheres Rumpftraining in der Schwangerschaft", "description": "10-Minuten sicheres Rumpftraining für das erste Trimester" },
         "lowImpact": { "title": "Gelenkschonendes Schwangerschaftstraining", "description": "25-Minuten sanftes Ganzkörpertraining für Schwangere" }
       },
+      "sections": {
+        "setup": "Einstellungen & Vorlieben",
+        "setupDesc": "Woche und Fitnesslevel konfigurieren",
+        "workout": "Heutiges Training",
+        "workoutDesc": "Folgen Sie Ihren personalisierten Übungen",
+        "analysis": "Analyse & Tipps",
+        "analysisDesc": "KI-Analysen und tägliche Ratschläge",
+        "resources": "Videos & Sicherheit",
+        "resourcesDesc": "Bildungsinhalte und wichtige Erinnerungen"
+      },
       "aiWorkoutAnalysis": "Personalisierte Trainingsanalyse",
       "aiWorkoutButton": "Meinen Fitnessplan analysieren",
       "aiWorkoutPromptTitle": "Persönliche Schwangerschafts-Fitnessanalyse"

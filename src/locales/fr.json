@@ -2209,6 +2209,16 @@
         "core": { "title": "Entraînement abdominal prénatal sûr", "description": "10 minutes de gainage sûr pour le premier trimestre" },
         "lowImpact": { "title": "Entraînement prénatal à faible impact", "description": "25 minutes d'exercice doux pour tout le corps" }
       },
+      "sections": {
+        "setup": "Configuration et préférences",
+        "setupDesc": "Configurez votre semaine et niveau de forme",
+        "workout": "Entraînement du jour",
+        "workoutDesc": "Suivez vos exercices personnalisés",
+        "analysis": "Analyse et conseils",
+        "analysisDesc": "Analyses IA et conseils quotidiens",
+        "resources": "Vidéos et sécurité",
+        "resourcesDesc": "Contenu éducatif et rappels importants"
+      },
       "aiWorkoutAnalysis": "Analyse d'entraînement personnalisée",
       "aiWorkoutButton": "Analyser mon programme fitness",
       "aiWorkoutPromptTitle": "Analyse fitness personnalisée de grossesse"
