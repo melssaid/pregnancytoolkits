@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Globe, Check } from 'lucide-react';
+import { Check, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 
 const FIRST_VISIT_KEY = 'language_selected_first_visit';
 
 const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+  { code: 'en', name: 'English', flag: '🇺🇸', short: 'EN' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦', short: 'ع' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪', short: 'DE' },
+  { code: 'tr', name: 'Türkçe', flag: '🇹🇷', short: 'TR' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷', short: 'FR' },
+  { code: 'es', name: 'Español', flag: '🇪🇸', short: 'ES' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹', short: 'PT' },
 ];
 
 export const FirstVisitLanguageSelector: React.FC = () => {
@@ -25,7 +25,6 @@ export const FirstVisitLanguageSelector: React.FC = () => {
     const hasSelected = localStorage.getItem(FIRST_VISIT_KEY);
     const hasManual = localStorage.getItem('user_selected_language');
     if (!hasSelected && !hasManual) {
-      // Small delay so the app renders first
       const timer = setTimeout(() => setShow(true), 600);
       return () => clearTimeout(timer);
     }
@@ -50,74 +49,96 @@ export const FirstVisitLanguageSelector: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-md p-4"
+          onClick={() => {
+            localStorage.setItem(FIRST_VISIT_KEY, 'true');
+            setShow(false);
+          }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 shadow-2xl"
+            exit={{ opacity: 0, scale: 0.85, y: 30 }}
+            transition={{ type: 'spring', damping: 22, stiffness: 280 }}
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-[280px] rounded-2xl border border-border/50 bg-card/95 backdrop-blur-xl shadow-2xl overflow-hidden"
           >
-            {/* Header */}
-            <div className="flex flex-col items-center text-center mb-5">
-              <div className="p-3 rounded-full bg-primary/10 mb-3">
-                <Globe className="w-6 h-6 text-primary" />
+            {/* Decorative top gradient bar */}
+            <div className="h-1 w-full bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
+
+            {/* Header - compact */}
+            <div className="flex items-center gap-2.5 px-4 pt-4 pb-2">
+              <motion.div
+                animate={{ rotate: [0, 8, -8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                className="p-1.5 rounded-lg bg-primary/10"
+              >
+                <Sparkles className="w-4 h-4 text-primary" />
+              </motion.div>
+              <div>
+                <h2 className="text-sm font-bold text-foreground leading-tight">
+                  Choose Language
+                </h2>
+                <p className="text-[10px] text-muted-foreground">
+                  اختاري لغتك المفضلة
+                </p>
               </div>
-              <h2 className="text-lg font-bold text-foreground">
-                Choose your language
-              </h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                اختاري لغتك المفضلة
-              </p>
             </div>
 
-            {/* Language Grid */}
-            <div className="grid grid-cols-2 gap-2 mb-5">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => handleSelect(lang.code)}
-                  className={cn(
-                    "flex items-center gap-2.5 px-3 py-2.5 rounded-xl border transition-all duration-200",
-                    selectedLang === lang.code
-                      ? "bg-primary/10 border-primary/50 ring-1 ring-primary/30"
-                      : "bg-background border-border hover:bg-muted"
-                  )}
-                >
-                  <span className="text-xl">{lang.flag}</span>
-                  <span className={cn(
-                    "text-sm font-medium flex-1 text-start",
-                    selectedLang === lang.code ? "text-primary" : "text-foreground"
-                  )}>
-                    {lang.name}
-                  </span>
-                  {selectedLang === lang.code && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: 'spring', damping: 15 }}
-                    >
-                      <Check className="w-4 h-4 text-primary" />
-                    </motion.div>
-                  )}
-                </button>
-              ))}
+            {/* Language Grid - compact */}
+            <div className="px-3 pb-3 pt-1">
+              <div className="grid grid-cols-2 gap-1.5">
+                {languages.map((lang, i) => (
+                  <motion.button
+                    key={lang.code}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 * i, duration: 0.2 }}
+                    onClick={() => handleSelect(lang.code)}
+                    className={cn(
+                      "flex items-center gap-2 px-2.5 py-2 rounded-xl border transition-all duration-200 text-start",
+                      selectedLang === lang.code
+                        ? "bg-primary/10 border-primary/40 shadow-sm shadow-primary/10"
+                        : "bg-background/60 border-transparent hover:bg-muted/80"
+                    )}
+                  >
+                    <span className="text-base leading-none">{lang.flag}</span>
+                    <span className={cn(
+                      "text-xs font-medium flex-1 truncate",
+                      selectedLang === lang.code ? "text-primary" : "text-foreground"
+                    )}>
+                      {lang.name}
+                    </span>
+                    {selectedLang === lang.code && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', damping: 12 }}
+                      >
+                        <Check className="w-3 h-3 text-primary" />
+                      </motion.div>
+                    )}
+                  </motion.button>
+                ))}
+              </div>
             </div>
 
             {/* Confirm Button */}
-            <button
-              onClick={handleConfirm}
-              className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm transition-all hover:opacity-90 active:scale-[0.98]"
-            >
-              {selectedLang === 'ar' ? 'تأكيد' : 
-               selectedLang === 'de' ? 'Bestätigen' :
-               selectedLang === 'tr' ? 'Onayla' :
-               selectedLang === 'fr' ? 'Confirmer' :
-               selectedLang === 'es' ? 'Confirmar' :
-               selectedLang === 'pt' ? 'Confirmar' :
-               'Continue'}
-            </button>
+            <div className="px-3 pb-3">
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                onClick={handleConfirm}
+                className="w-full py-2 rounded-xl bg-primary text-primary-foreground font-semibold text-xs transition-all hover:opacity-90 shadow-md shadow-primary/20"
+              >
+                {selectedLang === 'ar' ? 'تأكيد ✨' : 
+                 selectedLang === 'de' ? 'Bestätigen ✨' :
+                 selectedLang === 'tr' ? 'Onayla ✨' :
+                 selectedLang === 'fr' ? 'Confirmer ✨' :
+                 selectedLang === 'es' ? 'Confirmar ✨' :
+                 selectedLang === 'pt' ? 'Confirmar ✨' :
+                 'Continue ✨'}
+              </motion.button>
+            </div>
           </motion.div>
         </motion.div>
       )}
