@@ -1225,6 +1225,8 @@
       "savedDesc": "Votre date a été enregistrée.",
       "reminderSetTitle": "Rappel défini !",
       "reminderSetDesc": "Nous vous rappellerons votre date : {{date}}",
+      "dueDateReminderTitle": "📅 Rappel de date prévue",
+      "dueDateReminderMessage": "La date prévue de votre bébé est le {{date}}. Préparez-vous !",
       "deleted": "Supprimé",
       "deletedDesc": "Date supprimée de l'historique.",
       "copied": "Copié !",

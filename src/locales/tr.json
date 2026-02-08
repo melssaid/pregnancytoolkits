@@ -1225,6 +1225,8 @@
       "savedDesc": "Doğum tarihiniz kaydedildi.",
       "reminderSetTitle": "Hatırlatıcı Ayarlandı!",
       "reminderSetDesc": "Doğum tarihinizi hatırlatacağız: {{date}}",
+      "dueDateReminderTitle": "📅 Doğum Tarihi Hatırlatıcısı",
+      "dueDateReminderMessage": "Bebeğinizin doğum tarihi {{date}}. Hazırlanın!",
       "deleted": "Silindi",
       "deletedDesc": "Doğum tarihi geçmişten kaldırıldı.",
       "copied": "Kopyalandı!",

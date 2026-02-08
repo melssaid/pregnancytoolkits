@@ -222,7 +222,7 @@ Encouragement and realistic expectations`
                     <Button
                       onClick={getAIConceptionAdvice}
                       disabled={aiLoading}
-                      className="w-full mt-4 gap-2 bg-gradient-to-r from-violet-500 to-purple-500"
+                      className="w-full mt-4 gap-2 bg-gradient-to-r from-violet-500 to-purple-500 text-sm h-10"
                     >
                       {aiLoading ? (
                         <Loader2 className="h-4 w-4 animate-spin" />

@@ -879,11 +879,11 @@ Please provide a comprehensive pregnancy update:
               <X className="w-6 h-6" />
             </Button>
             <div className="absolute top-4 left-4 text-white">
-              <Badge className="bg-white/20">Week {selectedPhoto.week}</Badge>
+              <Badge className="bg-white/20">{t('common.week')} {selectedPhoto.week}</Badge>
             </div>
             <img
               src={selectedPhoto.public_url}
-              alt={`Week ${selectedPhoto.week}`}
+              alt={`${t('common.week')} ${selectedPhoto.week}`}
               className="max-w-full max-h-[90vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
