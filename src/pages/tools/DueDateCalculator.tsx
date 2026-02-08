@@ -135,17 +135,47 @@ export default function DueDateCalculator() {
     toast({ title: t('toolsInternal.dueDate.deleted'), description: t('toolsInternal.dueDate.deletedDesc') });
   };
 
+  const copyToClipboardFallback = (text: string): boolean => {
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      const success = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return success;
+    } catch {
+      return false;
+    }
+  };
+
   const shareResult = async () => {
     if (!result) return;
-    const text = `My Baby's Due Date: ${format(result.dueDate, "MMMM d, yyyy")}\nCurrently: ${result.currentWeeks} weeks, ${result.currentDays} days\nTrimester ${result.trimester}`;
+    const text = `${t('toolsInternal.dueDate.estimatedDueDate')}: ${format(result.dueDate, "MMMM d, yyyy")}\n${t('toolsInternal.dueDate.currentlyAt')}: ${t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}\n${t('toolsInternal.dueDate.trimester', { number: result.trimester })}`;
     
     if (navigator.share) {
       try {
-        await navigator.share({ title: "My Due Date", text });
-      } catch (err) {}
-    } else {
+        await navigator.share({ title: t('tools.dueDateCalculator.title'), text });
+        return;
+      } catch (err) {
+        // User cancelled or share failed, fall through to clipboard
+      }
+    }
+
+    try {
       await navigator.clipboard.writeText(text);
       toast({ title: t('toolsInternal.dueDate.copied'), description: t('toolsInternal.dueDate.copiedDesc') });
+    } catch {
+      const success = copyToClipboardFallback(text);
+      if (success) {
+        toast({ title: t('toolsInternal.dueDate.copied'), description: t('toolsInternal.dueDate.copiedDesc') });
+      } else {
+        toast({ title: t('toolsInternal.dueDate.shareError', 'خطأ'), description: t('toolsInternal.dueDate.shareErrorDesc', 'تعذّر نسخ النص'), variant: "destructive" });
+      }
     }
   };
 
