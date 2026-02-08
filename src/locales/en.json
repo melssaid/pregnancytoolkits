@@ -2865,10 +2865,11 @@
       "mentalWellnessVideos": "Mental Wellness Videos",
       "videosSubtitle": "Support and self-care resources",
       "videos": {
-        "v1": { "title": "What is Postpartum Depression?", "description": "Signs, symptoms, and when to seek help from mental health professionals", "category": "Education" },
-        "v2": { "title": "Postpartum Depression Explained", "description": "Symptoms, risk factors, and treatment options", "category": "Education" },
-        "v3": { "title": "Pregnancy Relaxation Meditation", "description": "Calming meditation for better mental health", "category": "Relaxation" },
-        "v4": { "title": "Newborn Care Week 1", "description": "Pediatrician guide to first week with baby", "category": "Self-Care" }
+        "v1": { "title": "Postpartum Depression: Signs & Symptoms", "description": "Medical professionals explain how to recognize postpartum depression", "category": "Education" },
+        "v2": { "title": "Understanding Postpartum Depression", "description": "From causes to treatment: a comprehensive guide", "category": "Education" },
+        "v3": { "title": "Postpartum Meditation for Calm", "description": "Guided meditation to feel calm and grounded in motherhood", "category": "Relaxation" },
+        "v4": { "title": "Mental Health and Pregnancy", "description": "ACOG explains mental health during pregnancy and postpartum", "category": "Wellness" },
+        "v5": { "title": "Managing Pregnancy Anxiety", "description": "Practical strategies for coping with anxiety during pregnancy", "category": "Anxiety" }
       },
       "riskLevels": {
         "low": {
