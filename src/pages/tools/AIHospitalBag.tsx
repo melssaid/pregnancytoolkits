@@ -13,16 +13,10 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
-import { VideoLibrary, Video } from "@/components/VideoLibrary";
+import { VideoLibrary } from "@/components/VideoLibrary";
 import { exportHospitalBagPDF, generateHospitalBagShareText } from "@/lib/pdfExport";
 import { toast } from "sonner";
-
-const getHospitalBagVideos = (t: any): Video[] => [
-  { id: "1", title: t('toolsInternal.hospitalBag.videos.v1.title'), description: t('toolsInternal.hospitalBag.videos.v1.description'), youtubeId: "NTulfAOzbp8", duration: "8:00", category: t('toolsInternal.hospitalBag.videos.v1.category') },
-  { id: "2", title: t('toolsInternal.hospitalBag.videos.v2.title'), description: t('toolsInternal.hospitalBag.videos.v2.description'), youtubeId: "oUxVPhwFuMM", duration: "12:30", category: t('toolsInternal.hospitalBag.videos.v2.category') },
-  { id: "3", title: t('toolsInternal.hospitalBag.videos.v3.title'), description: t('toolsInternal.hospitalBag.videos.v3.description'), youtubeId: "6YdwII4BO0g", duration: "10:00", category: t('toolsInternal.hospitalBag.videos.v3.category') },
-  { id: "4", title: t('toolsInternal.hospitalBag.videos.v4.title'), description: t('toolsInternal.hospitalBag.videos.v4.description'), youtubeId: "hpgjwK_oQe0", duration: "18:00", category: t('toolsInternal.hospitalBag.videos.v4.category') }
-];
+import { hospitalBagVideosByLang } from "@/data/videoData";
 
 interface BagItem {
   id: string;
@@ -559,7 +553,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
 
         {/* Educational Videos */}
         <VideoLibrary
-          videos={getHospitalBagVideos(t)}
+          videosByLang={hospitalBagVideosByLang(t)}
           title={t('toolsInternal.hospitalBag.hospitalBagVideos')}
           subtitle={t('toolsInternal.hospitalBag.hospitalBagVideosSubtitle')}
           accentColor="blue"

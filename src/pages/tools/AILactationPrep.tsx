@@ -12,7 +12,8 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
-import { VideoLibrary, Video } from "@/components/VideoLibrary";
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { lactationVideosByLang } from "@/data/videoData";
 
 const feedingGoals = [
   { id: "exclusive", labelKey: "toolsInternal.lactationPrep.feedingGoals.exclusive", icon: "🤱" },
@@ -43,40 +44,6 @@ const essentialSupplies = [
   { nameKey: "toolsInternal.lactationPrep.supplies.haakaa", essential: false },
 ];
 
-const lactationVideos: Video[] = [
-  {
-    id: "1",
-    title: "Breastfeeding a Newborn",
-    description: "What's normal, common challenges, and tips from pediatrician IBCLC",
-    youtubeId: "rNjJyTga__w",
-    duration: "20:00",
-    category: "Getting Started"
-  },
-  {
-    id: "2",
-    title: "Newborn Care Week 1",
-    description: "Pediatrician guide including feeding basics",
-    youtubeId: "hpgjwK_oQe0",
-    duration: "18:00",
-    category: "Newborn Care"
-  },
-  {
-    id: "3",
-    title: "Caring For Your Newborn",
-    description: "Comprehensive guide including feeding schedules",
-    youtubeId: "-CWJYxIvoFQ",
-    duration: "15:00",
-    category: "Newborn Care"
-  },
-  {
-    id: "4",
-    title: "Newborn Baby Care Guide",
-    description: "Handling, feeding, and sleeping basics",
-    youtubeId: "CXWzqbe1i9c",
-    duration: "6:00",
-    category: "Getting Started"
-  },
-];
 
 const AILactationPrep = () => {
   const { t } = useTranslation();
@@ -283,7 +250,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
-          videos={lactationVideos}
+          videosByLang={lactationVideosByLang}
           title={t('toolsInternal.lactationPrep.videosTitle')}
           subtitle={t('toolsInternal.lactationPrep.videosSubtitle')}
           accentColor="rose"

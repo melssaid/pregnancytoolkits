@@ -27,25 +27,8 @@ import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { VideoLibrary, Video } from "@/components/VideoLibrary";
-
-const nutritionVideos: Video[] = [
-  { id: "1", title: "Healthy Pregnancy Meal Plan", description: "Step-by-step guide to healthy eating during pregnancy", youtubeId: "vNZ2GsJOsZc", duration: "18:42", category: "Nutrition" },
-  { id: "2", title: "What A Nutritionist Eats Pregnant", description: "Daily meals and tips from a certified nutritionist", youtubeId: "xZs3gCHcjhY", duration: "14:23", category: "Nutrition" },
-  { id: "3", title: "Top 10 Foods For Pregnancy", description: "Best foods to eat during pregnancy with free meal plan", youtubeId: "3GTK6MLPJ9g", duration: "12:15", category: "Nutrition" },
-  { id: "4", title: "10 Foods I Eat Every Day Pregnant", description: "Daily pregnancy superfoods for you and baby", youtubeId: "2kNGY3gyrEc", duration: "11:30", category: "Nutrition" },
-  { id: "5", title: "Diet by Trimester - Dietitian Guide", description: "What to eat in each trimester - expert advice", youtubeId: "dq7ovxsAfX8", duration: "15:45", category: "Trimester Guide" },
-  { id: "6", title: "First & Second Trimester Diet", description: "Pregnancy diet chart for healthy baby development", youtubeId: "Y0FdMnvyTC4", duration: "13:20", category: "Trimester Guide" },
-  { id: "7", title: "5 Weeks Pregnant - Diet Tips", description: "Early pregnancy dietary and lifestyle changes", youtubeId: "cq4LJM5Vh2o", duration: "10:15", category: "Trimester Guide" },
-  { id: "8", title: "Simple Pregnancy Meals", description: "5 quick and nutritious meal ideas for busy moms", youtubeId: "0QZWIuJGVZY", duration: "12:30", category: "Recipes" },
-  { id: "9", title: "What I Eat 8 Months Pregnant", description: "Real meals in third trimester - honest and practical", youtubeId: "tAaoN09CHGM", duration: "16:45", category: "Recipes" },
-  { id: "10", title: "15 Foods For Healthy Pregnancy", description: "Weekly foods for optimal pregnancy nutrition", youtubeId: "FprOVxmwzR8", duration: "14:20", category: "Recipes" },
-  { id: "11", title: "Foods to Avoid While Pregnant", description: "UC Davis dietitian explains pregnancy food safety", youtubeId: "pozcaggYIWk", duration: "11:55", category: "Safety" },
-  { id: "12", title: "Gestational Diabetes Diet", description: "Healthy eating with gestational diabetes - nutrition tips", youtubeId: "68NMhivpmWQ", duration: "9:30", category: "Special Diets" },
-  { id: "13", title: "Gestational Diabetes Meal Plan", description: "What to eat with gestational diabetes - EatingWell", youtubeId: "DevakSgDEpU", duration: "8:45", category: "Special Diets" },
-  { id: "14", title: "Gestational Diabetes Story", description: "Real experience and tips from Diabetes UK", youtubeId: "8xz4VCgx-uE", duration: "6:20", category: "Special Diets" },
-  { id: "15", title: "Morning Sickness Smoothie", description: "Nausea-fighting smoothie with ginger and pineapple", youtubeId: "nAQUFef_0nU", duration: "3:45", category: "Special Diets" },
-];
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { nutritionVideosByLang } from "@/data/videoData";
 
 const MEAL_TYPE_IDS = ["breakfast", "lunch", "dinner", "snack"] as const;
 const DIETARY_PREF_IDS = ["vegetarian", "low-sugar", "high-protein", "low-sodium", "iron-rich", "calcium-rich"] as const;
@@ -380,7 +363,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
 
         {/* Educational Videos */}
         <VideoLibrary
-          videos={nutritionVideos}
+          videosByLang={nutritionVideosByLang}
           title={t("toolsInternal.mealSuggestion.nutritionVideos")}
           subtitle={t("toolsInternal.mealSuggestion.nutritionVideosSubtitle")}
           accentColor="emerald"

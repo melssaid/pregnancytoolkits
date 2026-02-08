@@ -10,44 +10,9 @@ import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
-import { VideoLibrary, Video } from "@/components/VideoLibrary";
+import { VideoLibrary } from "@/components/VideoLibrary";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
-
-const getPartnerVideos = (t: any): Video[] => [
-  {
-    id: "1",
-    title: t('toolsInternal.partnerGuide.videos.v1.title'),
-    description: t('toolsInternal.partnerGuide.videos.v1.description'),
-    youtubeId: "hpgjwK_oQe0",
-    duration: "18:00",
-    category: t('toolsInternal.partnerGuide.videos.v1.category')
-  },
-  {
-    id: "2",
-    title: t('toolsInternal.partnerGuide.videos.v2.title'),
-    description: t('toolsInternal.partnerGuide.videos.v2.description'),
-    youtubeId: "-CWJYxIvoFQ",
-    duration: "15:00",
-    category: t('toolsInternal.partnerGuide.videos.v2.category')
-  },
-  {
-    id: "3",
-    title: t('toolsInternal.partnerGuide.videos.v3.title'),
-    description: t('toolsInternal.partnerGuide.videos.v3.description'),
-    youtubeId: "nc8IbAAotHo",
-    duration: "15:00",
-    category: t('toolsInternal.partnerGuide.videos.v3.category')
-  },
-  {
-    id: "4",
-    title: t('toolsInternal.partnerGuide.videos.v4.title'),
-    description: t('toolsInternal.partnerGuide.videos.v4.description'),
-    youtubeId: "NTulfAOzbp8",
-    duration: "8:00",
-    category: t('toolsInternal.partnerGuide.videos.v4.category')
-  }
-];
-
+import { partnerVideosByLang } from "@/data/videoData";
 const TOPIC_KEYS = [
   "emotional",
   "physical",
@@ -227,7 +192,7 @@ Be warm, practical, and specific. Include real examples.`;
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
-          videos={getPartnerVideos(t)}
+          videosByLang={partnerVideosByLang(t)}
           title={t('toolsInternal.partnerGuide.partnerVideos')}
           subtitle={t('toolsInternal.partnerGuide.partnerVideosSubtitle')}
           accentColor="rose"

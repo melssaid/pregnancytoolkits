@@ -5,16 +5,11 @@ import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, AlertTriangle, Phone, CheckCircle, HelpCircle, Brain, MessageCircle, Sun, Loader2, Sparkles } from 'lucide-react';
-import { VideoLibrary, Video } from '@/components/VideoLibrary';
+import { VideoLibrary } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-const getMenualHealthVideos = (t: any): Video[] => [
-  { id: "1", title: t('toolsInternal.mentalHealthCoach.videos.v1.title'), description: t('toolsInternal.mentalHealthCoach.videos.v1.description'), youtubeId: "6kV2_L3uSS0", duration: "8:30", category: t('toolsInternal.mentalHealthCoach.videos.v1.category') },
-  { id: "2", title: t('toolsInternal.mentalHealthCoach.videos.v2.title'), description: t('toolsInternal.mentalHealthCoach.videos.v2.description'), youtubeId: "Aj1Vk3q-4tg", duration: "10:15", category: t('toolsInternal.mentalHealthCoach.videos.v2.category') },
-  { id: "3", title: t('toolsInternal.mentalHealthCoach.videos.v3.title'), description: t('toolsInternal.mentalHealthCoach.videos.v3.description'), youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: t('toolsInternal.mentalHealthCoach.videos.v3.category') },
-  { id: "4", title: t('toolsInternal.mentalHealthCoach.videos.v4.title'), description: t('toolsInternal.mentalHealthCoach.videos.v4.description'), youtubeId: "hpgjwK_oQe0", duration: "18:00", category: t('toolsInternal.mentalHealthCoach.videos.v4.category') },
-];
+import { mentalHealthVideosByLang } from '@/data/videoData';
 
 interface ScreeningQuestion {
   id: string;
@@ -102,7 +97,7 @@ export default function PostpartumMentalHealthCoach() {
   });
   
   const epdsQuestions = getEpdsQuestions(t);
-  const mentalHealthVideos = getMenualHealthVideos(t);
+  const mentalHealthVideos = mentalHealthVideosByLang(t);
 
   const handleAnswer = (questionId: string, value: number) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
@@ -430,7 +425,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
           </div>
 
           <VideoLibrary
-            videos={mentalHealthVideos}
+            videosByLang={mentalHealthVideos}
             title={t('toolsInternal.mentalHealthCoach.mentalWellnessVideos')}
             subtitle={t('toolsInternal.mentalHealthCoach.videosSubtitle')}
             accentColor="rose"
