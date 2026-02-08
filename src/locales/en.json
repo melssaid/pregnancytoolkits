@@ -3327,7 +3327,11 @@
       "symptoms": "First month symptoms?",
       "coffee": "Is coffee safe?",
       "labor": "Prepare for labor?",
-      "vitamins": "Important vitamins?"
+      "vitamins": "Important vitamins?",
+      "sleep": "Sleep tips for pregnancy?",
+      "exercise": "Safe exercises?",
+      "nutrition": "Best foods for baby?",
+      "emotions": "Mood swings normal?"
     }
   },
   "lactationPrep": {

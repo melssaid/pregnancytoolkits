@@ -2343,7 +2343,11 @@
       "symptoms": "Symptômes du premier mois?",
       "coffee": "Le café est-il sûr?",
       "labor": "Préparation à l'accouchement?",
-      "vitamins": "Vitamines importantes?"
+      "vitamins": "Vitamines importantes?",
+      "sleep": "Conseils sommeil grossesse?",
+      "exercise": "Exercices sans risque?",
+      "nutrition": "Meilleurs aliments pour bébé?",
+      "emotions": "Sautes d'humeur normales?"
     }
   },
   "toolsInternal.lactationPrep": {
