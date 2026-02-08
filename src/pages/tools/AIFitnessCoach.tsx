@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Info, Dumbbell, Filter, Activity, Settings2, Heart, PlayCircle, BarChart3 } from 'lucide-react';
+import { Info, Dumbbell, Filter, Activity, Heart, PlayCircle, BarChart3 } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { WeekSlider } from '@/components/WeekSlider';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { WorkoutProgressRing } from '@/components/fitness/WorkoutProgressRing';
@@ -15,23 +16,11 @@ import { ExerciseCard, Exercise } from '@/components/fitness/ExerciseCard';
 import { WarmupCooldownSection } from '@/components/fitness/WarmupCooldownSection';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
 import { SmartWorkoutGenerator } from '@/components/fitness/SmartWorkoutGenerator';
-import { exerciseDatabase, fitnessVideosByLang, getVideosByLanguage } from '@/data/fitnessData';
+import { exerciseDatabase, getVideosByLanguage } from '@/data/fitnessData';
 
 const REST_DURATION = 15;
 
 type CategoryFilter = 'all' | 'warmup' | 'strength' | 'cardio' | 'flexibility' | 'cooldown';
-
-const SectionHeader: React.FC<{ icon: React.ReactNode; title: string; subtitle?: string }> = ({ icon, title, subtitle }) => (
-  <div className="flex items-center gap-2.5 pt-2">
-    <div className="p-1.5 rounded-lg bg-primary/10">
-      {icon}
-    </div>
-    <div>
-      <h2 className="font-semibold text-sm text-foreground">{title}</h2>
-      {subtitle && <p className="text-[10px] text-muted-foreground">{subtitle}</p>}
-    </div>
-  </div>
-);
 
 const AIFitnessCoach: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -64,7 +53,6 @@ const AIFitnessCoach: React.FC = () => {
       exercises = exercises.filter(e => e.category !== 'cardio');
     }
 
-    // Smart filtering based on preferences
     if (preferences) {
       const goalCategoryMap: Record<string, string[]> = {
         backRelief: ['flexibility', 'cooldown'],
@@ -76,14 +64,12 @@ const AIFitnessCoach: React.FC = () => {
 
       const preferredCategories = goalCategoryMap[preferences.goal] || [];
 
-      // Sort exercises: preferred categories first
       exercises = exercises.sort((a, b) => {
         const aPreferred = preferredCategories.includes(a.category) ? 0 : 1;
         const bPreferred = preferredCategories.includes(b.category) ? 0 : 1;
         return aPreferred - bPreferred;
       });
 
-      // Adjust count based on time & energy
       const energyMultiplier = preferences.energy === 'low' ? 0.6 : preferences.energy === 'high' ? 1.2 : 1;
       const maxExercises = Math.max(3, Math.min(8, Math.round((preferences.time / 3) * energyMultiplier)));
 
@@ -98,7 +84,6 @@ const AIFitnessCoach: React.FC = () => {
 
       setGeneratedWorkout([...selectedWarmup, ...selectedMain, ...selectedCooldown]);
     } else {
-      // Random generation (original behavior)
       const warmups = exercises.filter(e => e.category === 'warmup');
       const main = exercises.filter(e => !['warmup', 'cooldown'].includes(e.category));
       const cooldowns = exercises.filter(e => e.category === 'cooldown');
@@ -179,6 +164,9 @@ const AIFitnessCoach: React.FC = () => {
     category: t(`toolsInternal.fitnessCoach.videoCategories.${v.categoryKey}`),
   }));
 
+  const totalExercises = exerciseDatabase.length;
+  const totalCategories = new Set(exerciseDatabase.map(e => e.category)).size;
+
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
@@ -197,15 +185,18 @@ const AIFitnessCoach: React.FC = () => {
     >
       <div className="space-y-5">
 
-        {/* ══════════════════════════════════════════════════════════════
-            SECTION 1: Setup & Configuration
-        ══════════════════════════════════════════════════════════════ */}
-        <SectionHeader
-          icon={<Settings2 className="w-4 h-4 text-primary" />}
-          title={t('toolsInternal.fitnessCoach.sections.setup')}
-          subtitle={t('toolsInternal.fitnessCoach.sections.setupDesc')}
-        />
+        {/* Library Stats Banner */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <Badge variant="secondary" className="text-[10px] gap-1">
+            <Dumbbell className="w-3 h-3" />
+            {t('toolsInternal.fitnessCoach.libraryStats', { count: totalExercises })}
+          </Badge>
+          <Badge variant="outline" className="text-[10px] gap-1">
+            {t('toolsInternal.fitnessCoach.categoriesCount', { count: totalCategories })}
+          </Badge>
+        </div>
 
+        {/* Week & Level Configuration */}
         <WeekSlider
           week={currentWeek}
           onChange={setCurrentWeek}
@@ -236,19 +227,26 @@ const AIFitnessCoach: React.FC = () => {
 
         <TrimesterAlert week={currentWeek} />
 
+        {/* Smart Workout Generator */}
         <SmartWorkoutGenerator
           onGenerate={(prefs) => generateWorkout(prefs)}
           onRandomGenerate={() => generateWorkout()}
         />
 
-        {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: Today's Workout
-        ══════════════════════════════════════════════════════════════ */}
-        <SectionHeader
-          icon={<PlayCircle className="w-4 h-4 text-primary" />}
-          title={t('toolsInternal.fitnessCoach.sections.workout')}
-          subtitle={t('toolsInternal.fitnessCoach.sections.workoutDesc')}
-        />
+        {/* Today's Workout Section */}
+        <div className="flex items-center gap-2.5 pt-2">
+          <div className="p-1.5 rounded-lg bg-primary/10">
+            <PlayCircle className="w-4 h-4 text-primary" />
+          </div>
+          <div>
+            <h2 className="font-semibold text-sm text-foreground">
+              {t('toolsInternal.fitnessCoach.sections.workout')}
+            </h2>
+            <p className="text-[10px] text-muted-foreground">
+              {t('toolsInternal.fitnessCoach.sections.workoutDesc')}
+            </p>
+          </div>
+        </div>
 
         <WorkoutProgressRing
           completed={completedExercises.size}
@@ -259,6 +257,7 @@ const AIFitnessCoach: React.FC = () => {
 
         <WarmupCooldownSection type="warmup" />
 
+        {/* Category Filter */}
         {availableCategories.length > 2 && (
           <div className="flex gap-1.5 flex-wrap">
             <Filter className="w-4 h-4 text-muted-foreground mt-1" />
@@ -285,6 +284,7 @@ const AIFitnessCoach: React.FC = () => {
           isActive={showRestTimer}
         />
 
+        {/* Exercise Cards */}
         <div className="space-y-3">
           {filteredWorkout.map((exercise) => {
             const realIndex = generatedWorkout.indexOf(exercise);
@@ -306,14 +306,20 @@ const AIFitnessCoach: React.FC = () => {
 
         <WarmupCooldownSection type="cooldown" />
 
-        {/* ══════════════════════════════════════════════════════════════
-            SECTION 3: Analysis & Tips
-        ══════════════════════════════════════════════════════════════ */}
-        <SectionHeader
-          icon={<BarChart3 className="w-4 h-4 text-primary" />}
-          title={t('toolsInternal.fitnessCoach.sections.analysis')}
-          subtitle={t('toolsInternal.fitnessCoach.sections.analysisDesc')}
-        />
+        {/* Analysis Section */}
+        <div className="flex items-center gap-2.5 pt-2">
+          <div className="p-1.5 rounded-lg bg-primary/10">
+            <BarChart3 className="w-4 h-4 text-primary" />
+          </div>
+          <div>
+            <h2 className="font-semibold text-sm text-foreground">
+              {t('toolsInternal.fitnessCoach.sections.analysis')}
+            </h2>
+            <p className="text-[10px] text-muted-foreground">
+              {t('toolsInternal.fitnessCoach.sections.analysisDesc')}
+            </p>
+          </div>
+        </div>
 
         <AIInsightCard
           title={t('toolsInternal.fitnessCoach.aiWorkoutAnalysis')}
@@ -360,14 +366,20 @@ Trimester-specific precautions for my current stage`}
           </CardContent>
         </Card>
 
-        {/* ══════════════════════════════════════════════════════════════
-            SECTION 4: Videos & Safety
-        ══════════════════════════════════════════════════════════════ */}
-        <SectionHeader
-          icon={<Heart className="w-4 h-4 text-primary" />}
-          title={t('toolsInternal.fitnessCoach.sections.resources')}
-          subtitle={t('toolsInternal.fitnessCoach.sections.resourcesDesc')}
-        />
+        {/* Videos & Safety Section */}
+        <div className="flex items-center gap-2.5 pt-2">
+          <div className="p-1.5 rounded-lg bg-primary/10">
+            <Heart className="w-4 h-4 text-primary" />
+          </div>
+          <div>
+            <h2 className="font-semibold text-sm text-foreground">
+              {t('toolsInternal.fitnessCoach.sections.resources')}
+            </h2>
+            <p className="text-[10px] text-muted-foreground">
+              {t('toolsInternal.fitnessCoach.sections.resourcesDesc')}
+            </p>
+          </div>
+        </div>
 
         <VideoLibrary
           videos={fitnessVideos}

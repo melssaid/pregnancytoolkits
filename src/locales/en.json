@@ -1356,6 +1356,8 @@
       "fitnessVideosSubtitle": "Safe workout guides for every trimester",
       "safetyFirst": "Safety First",
       "safetyText": "Stop immediately if you feel dizziness, pain, or shortness of breath. Keep water nearby.",
+      "libraryStats": "{{count}} exercises available",
+      "categoriesCount": "{{count}} categories",
       "exerciseNames": {
         "prenatalSquats": "Prenatal Squats",
         "birdDog": "Bird Dog",
@@ -1371,7 +1373,21 @@
         "catCow": "Cat-Cow Stretch",
         "sideStretch": "Side Stretch",
         "childPose": "Child's Pose",
-        "deepBreathing": "Deep Breathing"
+        "deepBreathing": "Deep Breathing",
+        "ankleCircles": "Ankle Circles",
+        "hipCircles": "Hip Circles",
+        "shoulderShrugs": "Shoulder Shrugs",
+        "wallSit": "Wall Sit",
+        "calfRaises": "Calf Raises",
+        "sumoSquat": "Sumo Squat",
+        "standingMarch": "Standing March",
+        "lowImpactJacks": "Low-Impact Jacks",
+        "kegelExercise": "Kegel Exercise",
+        "seatedTwist": "Seated Twist",
+        "hamstringStretch": "Hamstring Stretch",
+        "figureFour": "Figure-Four Stretch",
+        "savasana": "Savasana",
+        "gentleTwist": "Gentle Spinal Twist"
       },
       "exerciseDescs": {
         "prenatalSquatsDesc": "Stand with feet shoulder-width apart. Lower gently as if sitting in a chair.",
@@ -1388,7 +1404,21 @@
         "catCowDesc": "On all fours, alternate between arching and rounding your back.",
         "sideStretchDesc": "Stand tall, reach one arm overhead and lean gently to the side.",
         "childPoseDesc": "Kneel and sit back on heels. Extend arms forward and rest forehead down.",
-        "deepBreathingDesc": "Inhale deeply through nose for 4 counts, hold 4, exhale through mouth for 6."
+        "deepBreathingDesc": "Inhale deeply through nose for 4 counts, hold 4, exhale through mouth for 6.",
+        "ankleCirclesDesc": "Lift one foot and rotate your ankle in slow circles, then switch direction.",
+        "hipCirclesDesc": "Stand with feet apart and rotate your hips in wide circles.",
+        "shoulderShrugsDesc": "Lift your shoulders towards your ears, then slowly lower them. Repeat.",
+        "wallSitDesc": "Lean your back against a wall and slide down until knees are at 90 degrees. Hold.",
+        "calfRaisesDesc": "Stand straight, raise your heels off the ground, hold, then lower slowly.",
+        "sumoSquatDesc": "Stand with feet wider than shoulders, toes pointed out, and lower down.",
+        "standingMarchDesc": "March in place, lifting knees high alternately while swinging arms.",
+        "lowImpactJacksDesc": "Open arms and step one leg out at a time — a gentle version of jumping jacks.",
+        "kegelExerciseDesc": "Squeeze your pelvic floor muscles as if stopping urination. Hold 5 seconds, release.",
+        "seatedTwistDesc": "Sit upright and slowly twist your torso to the right, then left, while breathing.",
+        "hamstringStretchDesc": "Sit and extend one leg forward, gently reaching for your toes.",
+        "figureFourDesc": "Lie down, place one ankle on the opposite knee, and pull gently towards you.",
+        "savasanaDesc": "Lie on your back or side, close your eyes, breathe deeply and relax completely.",
+        "gentleTwistDesc": "Lie on your back, drop both knees gently to one side, then switch."
       },
       "categories": {
         "warmup": "Warm-up",
@@ -1410,7 +1440,10 @@
         "spine": "Spine & Back Muscles",
         "obliques": "Obliques & Side Core",
         "back": "Lower Back & Lats",
-        "diaphragm": "Diaphragm & Respiratory"
+        "diaphragm": "Diaphragm & Respiratory",
+        "ankles": "Ankles & Feet",
+        "calves": "Calf Muscles",
+        "pelvicFloor": "Pelvic Floor"
       },
       "trimesterAlerts": {
         "t1": {
