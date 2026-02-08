@@ -1479,7 +1479,28 @@
       },
       "aiWorkoutAnalysis": "Personalized Workout Analysis",
       "aiWorkoutButton": "Analyze My Fitness Plan",
-      "aiWorkoutPromptTitle": "Personalized Pregnancy Fitness Analysis"
+      "aiWorkoutPromptTitle": "Personalized Pregnancy Fitness Analysis",
+      "smartGen": {
+        "title": "Smart Workout",
+        "random": "Random workout",
+        "step1": "How are you feeling?",
+        "step2": "What's your focus?",
+        "step3": "Available time?",
+        "cancel": "Cancel",
+        "min": "min",
+        "energy": {
+          "low": "Tired",
+          "medium": "Normal",
+          "high": "Energetic"
+        },
+        "goals": {
+          "backRelief": "Back Relief",
+          "flexibility": "Flexibility",
+          "energyBoost": "Energy Boost",
+          "fullBody": "Full Body",
+          "relaxation": "Relaxation"
+        }
+      }
     },
     "birthPlan": {
       "title": "AI Birth Plan Generator",

@@ -2159,7 +2159,28 @@
       },
       "aiWorkoutAnalysis": "Personalisierte Trainingsanalyse",
       "aiWorkoutButton": "Meinen Fitnessplan analysieren",
-      "aiWorkoutPromptTitle": "Persönliche Schwangerschafts-Fitnessanalyse"
+      "aiWorkoutPromptTitle": "Persönliche Schwangerschafts-Fitnessanalyse",
+      "smartGen": {
+        "title": "Smartes Training",
+        "random": "Zufälliges Training",
+        "step1": "Wie fühlen Sie sich?",
+        "step2": "Was ist Ihr Ziel?",
+        "step3": "Verfügbare Zeit?",
+        "cancel": "Abbrechen",
+        "min": "Min",
+        "energy": {
+          "low": "Müde",
+          "medium": "Normal",
+          "high": "Energiegeladen"
+        },
+        "goals": {
+          "backRelief": "Rückenentlastung",
+          "flexibility": "Flexibilität",
+          "energyBoost": "Energieschub",
+          "fullBody": "Ganzkörper",
+          "relaxation": "Entspannung"
+        }
+      }
     },
     "weeklySummary": {
       "title": "Wöchentliche Einblicke",
