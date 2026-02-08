@@ -1573,7 +1573,28 @@
       },
       "aiWorkoutAnalysis": "Análisis de Entrenamiento Personalizado",
       "aiWorkoutButton": "Analizar Mi Plan de Fitness",
-      "aiWorkoutPromptTitle": "Análisis de Fitness Prenatal Personalizado"
+      "aiWorkoutPromptTitle": "Análisis de Fitness Prenatal Personalizado",
+      "smartGen": {
+        "title": "Entrenamiento Inteligente",
+        "random": "Entrenamiento aleatorio",
+        "step1": "¿Cómo te sientes hoy?",
+        "step2": "¿Cuál es tu objetivo?",
+        "step3": "¿Tiempo disponible?",
+        "cancel": "Cancelar",
+        "min": "min",
+        "energy": {
+          "low": "Cansado",
+          "medium": "Normal",
+          "high": "Enérgico"
+        },
+        "goals": {
+          "backRelief": "Alivio de Espalda",
+          "flexibility": "Flexibilidad",
+          "energyBoost": "Más Energía",
+          "fullBody": "Cuerpo Completo",
+          "relaxation": "Relajación"
+        }
+      }
     },
     "weeklySummary": {
       "title": "Resumen Semanal",

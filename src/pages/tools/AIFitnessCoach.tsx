@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { RotateCcw, Info, Dumbbell, Filter, Activity, Settings2, Heart, PlayCircle, BarChart3 } from 'lucide-react';
+import { Info, Dumbbell, Filter, Activity, Settings2, Heart, PlayCircle, BarChart3 } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
@@ -14,6 +14,7 @@ import { TrimesterAlert } from '@/components/fitness/TrimesterAlert';
 import { ExerciseCard, Exercise } from '@/components/fitness/ExerciseCard';
 import { WarmupCooldownSection } from '@/components/fitness/WarmupCooldownSection';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
+import { SmartWorkoutGenerator } from '@/components/fitness/SmartWorkoutGenerator';
 import { exerciseDatabase, fitnessVideosByLang, getVideosByLanguage } from '@/data/fitnessData';
 
 const REST_DURATION = 15;
@@ -50,7 +51,11 @@ const AIFitnessCoach: React.FC = () => {
     generateWorkout();
   });
 
-  const generateWorkout = useCallback(() => {
+  const generateWorkout = useCallback((preferences?: {
+    energy: 'low' | 'medium' | 'high';
+    goal: 'backRelief' | 'flexibility' | 'energyBoost' | 'fullBody' | 'relaxation';
+    time: number;
+  }) => {
     let exercises = exerciseDatabase.filter(e =>
       fitnessLevel === 'intermediate' ? true : e.difficulty === 'beginner'
     );
@@ -59,15 +64,52 @@ const AIFitnessCoach: React.FC = () => {
       exercises = exercises.filter(e => e.category !== 'cardio');
     }
 
-    const warmups = exercises.filter(e => e.category === 'warmup');
-    const main = exercises.filter(e => !['warmup', 'cooldown'].includes(e.category));
-    const cooldowns = exercises.filter(e => e.category === 'cooldown');
+    // Smart filtering based on preferences
+    if (preferences) {
+      const goalCategoryMap: Record<string, string[]> = {
+        backRelief: ['flexibility', 'cooldown'],
+        flexibility: ['flexibility', 'warmup'],
+        energyBoost: ['cardio', 'strength'],
+        fullBody: ['strength', 'cardio', 'flexibility'],
+        relaxation: ['cooldown', 'flexibility', 'warmup'],
+      };
 
-    const shuffledMain = [...main].sort(() => 0.5 - Math.random()).slice(0, 4);
-    const selectedWarmup = warmups.length > 0 ? [warmups[Math.floor(Math.random() * warmups.length)]] : [];
-    const selectedCooldown = cooldowns.length > 0 ? [cooldowns[Math.floor(Math.random() * cooldowns.length)]] : [];
+      const preferredCategories = goalCategoryMap[preferences.goal] || [];
 
-    setGeneratedWorkout([...selectedWarmup, ...shuffledMain, ...selectedCooldown]);
+      // Sort exercises: preferred categories first
+      exercises = exercises.sort((a, b) => {
+        const aPreferred = preferredCategories.includes(a.category) ? 0 : 1;
+        const bPreferred = preferredCategories.includes(b.category) ? 0 : 1;
+        return aPreferred - bPreferred;
+      });
+
+      // Adjust count based on time & energy
+      const energyMultiplier = preferences.energy === 'low' ? 0.6 : preferences.energy === 'high' ? 1.2 : 1;
+      const maxExercises = Math.max(3, Math.min(8, Math.round((preferences.time / 3) * energyMultiplier)));
+
+      const warmups = exercises.filter(e => e.category === 'warmup');
+      const main = exercises.filter(e => !['warmup', 'cooldown'].includes(e.category));
+      const cooldowns = exercises.filter(e => e.category === 'cooldown');
+
+      const mainCount = Math.max(2, maxExercises - 2);
+      const selectedMain = main.slice(0, mainCount);
+      const selectedWarmup = warmups.length > 0 ? [warmups[0]] : [];
+      const selectedCooldown = cooldowns.length > 0 ? [cooldowns[0]] : [];
+
+      setGeneratedWorkout([...selectedWarmup, ...selectedMain, ...selectedCooldown]);
+    } else {
+      // Random generation (original behavior)
+      const warmups = exercises.filter(e => e.category === 'warmup');
+      const main = exercises.filter(e => !['warmup', 'cooldown'].includes(e.category));
+      const cooldowns = exercises.filter(e => e.category === 'cooldown');
+
+      const shuffledMain = [...main].sort(() => 0.5 - Math.random()).slice(0, 4);
+      const selectedWarmup = warmups.length > 0 ? [warmups[Math.floor(Math.random() * warmups.length)]] : [];
+      const selectedCooldown = cooldowns.length > 0 ? [cooldowns[Math.floor(Math.random() * cooldowns.length)]] : [];
+
+      setGeneratedWorkout([...selectedWarmup, ...shuffledMain, ...selectedCooldown]);
+    }
+
     setActiveExerciseIndex(null);
     setTimer(0);
     setIsPaused(true);
@@ -194,13 +236,10 @@ const AIFitnessCoach: React.FC = () => {
 
         <TrimesterAlert week={currentWeek} />
 
-        <Button
-          variant="outline"
-          onClick={generateWorkout}
-          className="w-full gap-2 text-xs"
-        >
-          <RotateCcw className="w-4 h-4" /> {t('toolsInternal.fitnessCoach.generatePlan')}
-        </Button>
+        <SmartWorkoutGenerator
+          onGenerate={(prefs) => generateWorkout(prefs)}
+          onRandomGenerate={() => generateWorkout()}
+        />
 
         {/* ══════════════════════════════════════════════════════════════
             SECTION 2: Today's Workout

@@ -2221,7 +2221,28 @@
       },
       "aiWorkoutAnalysis": "Analyse d'entraînement personnalisée",
       "aiWorkoutButton": "Analyser mon programme fitness",
-      "aiWorkoutPromptTitle": "Analyse fitness personnalisée de grossesse"
+      "aiWorkoutPromptTitle": "Analyse fitness personnalisée de grossesse",
+      "smartGen": {
+        "title": "Entraînement Intelligent",
+        "random": "Entraînement aléatoire",
+        "step1": "Comment vous sentez-vous ?",
+        "step2": "Quel est votre objectif ?",
+        "step3": "Temps disponible ?",
+        "cancel": "Annuler",
+        "min": "min",
+        "energy": {
+          "low": "Fatigué",
+          "medium": "Normal",
+          "high": "Énergique"
+        },
+        "goals": {
+          "backRelief": "Soulager le Dos",
+          "flexibility": "Souplesse",
+          "energyBoost": "Boost d'Énergie",
+          "fullBody": "Corps Entier",
+          "relaxation": "Relaxation"
+        }
+      }
     }
   },
   "preeclampsiaRisk": {

@@ -1573,7 +1573,28 @@
       },
       "aiWorkoutAnalysis": "Kişiselleştirilmiş Antrenman Analizi",
       "aiWorkoutButton": "Fitness Planımı Analiz Et",
-      "aiWorkoutPromptTitle": "Kişiselleştirilmiş Hamilelik Fitness Analizi"
+      "aiWorkoutPromptTitle": "Kişiselleştirilmiş Hamilelik Fitness Analizi",
+      "smartGen": {
+        "title": "Akıllı Antrenman",
+        "random": "Rastgele antrenman",
+        "step1": "Bugün nasıl hissediyorsun?",
+        "step2": "Hedefiniz ne?",
+        "step3": "Müsait zamanınız?",
+        "cancel": "İptal",
+        "min": "dk",
+        "energy": {
+          "low": "Yorgun",
+          "medium": "Normal",
+          "high": "Enerjik"
+        },
+        "goals": {
+          "backRelief": "Bel Ağrısı Giderme",
+          "flexibility": "Esneklik",
+          "energyBoost": "Enerji Artırma",
+          "fullBody": "Tüm Vücut",
+          "relaxation": "Rahatlama"
+        }
+      }
     },
     "weeklySummary": {
       "title": "Haftalık Özet",

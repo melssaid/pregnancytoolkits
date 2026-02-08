@@ -1290,7 +1290,28 @@
       },
       "aiWorkoutAnalysis": "تحليل تمارين مخصص",
       "aiWorkoutButton": "حلّل خطتي الرياضية",
-      "aiWorkoutPromptTitle": "تحليل لياقة الحمل الشخصي"
+      "aiWorkoutPromptTitle": "تحليل لياقة الحمل الشخصي",
+      "smartGen": {
+        "title": "تمرين ذكي",
+        "random": "تمرين عشوائي",
+        "step1": "كيف تشعر اليوم؟",
+        "step2": "ما هدفك؟",
+        "step3": "كم وقت متاح؟",
+        "cancel": "إلغاء",
+        "min": "دقيقة",
+        "energy": {
+          "low": "متعب",
+          "medium": "عادي",
+          "high": "نشيط"
+        },
+        "goals": {
+          "backRelief": "تخفيف آلام الظهر",
+          "flexibility": "مرونة",
+          "energyBoost": "تعزيز الطاقة",
+          "fullBody": "تمرين شامل",
+          "relaxation": "استرخاء"
+        }
+      }
     },
     "hospitalBag": {
       "title": "حقيبة المستشفى الذكية",
