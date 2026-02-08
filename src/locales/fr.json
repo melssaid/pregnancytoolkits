@@ -30,7 +30,7 @@
     "title": "Votre compagnon",
     "titleHighlight": "complet",
     "titleEnd": "de grossesse",
-    "description": "34 outils professionnels pour votre grossesse — de la fertilité aux soins post-partum.",
+    "description": "35 outils professionnels pour votre grossesse — de la fertilité aux soins post-partum.",
     "searchPlaceholder": "Rechercher un outil...",
     "allTools": "Tous les outils",
     "toolsAvailable": "{{count}} outils disponibles",
@@ -527,7 +527,7 @@
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mois",
     "premiumFeature": "Fonctionnalité Premium",
-    "unlockAccess": "Débloquez les 34 outils",
+    "unlockAccess": "Débloquez les 35 outils",
     "subscribeToAccess": "Abonnez-vous pour débloquer"
   },
   "dueDatePage": {

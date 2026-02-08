@@ -30,7 +30,7 @@
     "title": "Tu compañero",
     "titleHighlight": "completo",
     "titleEnd": "de embarazo",
-    "description": "34 herramientas profesionales para tu embarazo — desde la fertilidad hasta el posparto.",
+    "description": "35 herramientas profesionales para tu embarazo — desde la fertilidad hasta el posparto.",
     "searchPlaceholder": "Buscar herramienta...",
     "allTools": "Todas las herramientas",
     "toolsAvailable": "{{count}} herramientas disponibles",
@@ -527,7 +527,7 @@
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mes",
     "premiumFeature": "Función Premium",
-    "unlockAccess": "Desbloquea las 34 herramientas",
+    "unlockAccess": "Desbloquea las 35 herramientas",
     "subscribeToAccess": "Suscríbete para desbloquear"
   },
   "dueDatePage": {
