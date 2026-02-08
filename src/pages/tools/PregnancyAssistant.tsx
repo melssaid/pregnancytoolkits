@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Bot, User, Sparkles, Loader2, MessageCircle, Zap, Heart, Baby, Coffee, Apple, Stethoscope } from "lucide-react";
+import { Send, Bot, User, Sparkles, Loader2, MessageCircle, Zap, Heart, Baby, Coffee, Apple, Stethoscope, Moon, Dumbbell, UtensilsCrossed, SmilePlus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,6 +21,10 @@ const getQuickQuestions = (t: (key: string) => string) => [
   { icon: Coffee, textKey: "pregnancyAssistant.quickQuestions.coffee", color: "from-amber-500 to-orange-500" },
   { icon: Stethoscope, textKey: "pregnancyAssistant.quickQuestions.labor", color: "from-blue-500 to-indigo-500" },
   { icon: Apple, textKey: "pregnancyAssistant.quickQuestions.vitamins", color: "from-green-500 to-emerald-500" },
+  { icon: Moon, textKey: "pregnancyAssistant.quickQuestions.sleep", color: "from-indigo-500 to-violet-500" },
+  { icon: Dumbbell, textKey: "pregnancyAssistant.quickQuestions.exercise", color: "from-teal-500 to-cyan-500" },
+  { icon: UtensilsCrossed, textKey: "pregnancyAssistant.quickQuestions.nutrition", color: "from-lime-500 to-green-500" },
+  { icon: SmilePlus, textKey: "pregnancyAssistant.quickQuestions.emotions", color: "from-purple-500 to-fuchsia-500" },
 ];
 
 export default function PregnancyAssistant() {
@@ -120,8 +124,8 @@ export default function PregnancyAssistant() {
                       </p>
                     </div>
 
-                    {/* Quick Questions - 2x2 Grid */}
-                    <div className="grid grid-cols-2 gap-1.5 w-full max-w-xs">
+                    {/* Quick Questions - 2x4 Grid */}
+                    <div className="grid grid-cols-2 gap-1.5 w-full max-w-sm">
                       {quickQuestions.map((q, i) => (
                         <motion.button
                           key={i}

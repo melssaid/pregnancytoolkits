@@ -2638,7 +2638,11 @@
       "symptoms": "¿Síntomas del primer mes?",
       "coffee": "¿Es seguro el café?",
       "labor": "¿Preparación para el parto?",
-      "vitamins": "¿Vitaminas importantes?"
+      "vitamins": "¿Vitaminas importantes?",
+      "sleep": "¿Consejos para dormir?",
+      "exercise": "¿Ejercicios seguros?",
+      "nutrition": "¿Mejores alimentos para el bebé?",
+      "emotions": "¿Cambios de humor normales?"
     }
   },
   "toolsInternal.lactationPrep": {

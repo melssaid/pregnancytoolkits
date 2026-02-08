@@ -2638,7 +2638,11 @@
       "symptoms": "İlk ay semptomları?",
       "coffee": "Kahve güvenli mi?",
       "labor": "Doğuma hazırlık?",
-      "vitamins": "Önemli vitaminler?"
+      "vitamins": "Önemli vitaminler?",
+      "sleep": "Hamilelikte uyku ipuçları?",
+      "exercise": "Güvenli egzersizler?",
+      "nutrition": "Bebek için en iyi gıdalar?",
+      "emotions": "Duygu değişimleri normal mi?"
     }
   },
   "toolsInternal.lactationPrep": {
