@@ -1794,7 +1794,7 @@
       "storageInfo": "Photos stored locally on your device",
       "localStorageTitle": "Local Storage",
       "privateLabel": "Private",
-      "localStorageDesc": "Your photos are stored <strong>only on your device</strong>. They never leave your phone and are not uploaded to any server.",
+      "localStorageDesc": "Your photos are stored only on your device. They never leave your phone and are not uploaded to any server.",
       "storageUsed": "Storage Used",
       "storageCritical": "Storage nearly full. Consider backing up and deleting old photos.",
       "storageWarning": "Storage getting full. Consider exporting your photos.",
