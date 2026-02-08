@@ -431,23 +431,23 @@ Include seasonal considerations and hospital-specific recommendations.`;
             { icon: Heart, label: t('toolsInternal.hospitalBag.partner'), count: items.filter(i => i.category === 'partner').length, color: 'from-purple-500/20 to-violet-500/20' },
             { icon: Briefcase, label: t('toolsInternal.hospitalBag.documents'), count: items.filter(i => i.category === 'documents').length, color: 'from-amber-500/20 to-orange-500/20' },
           ].map(({ icon: Icon, label, count, color }) => (
-            <Card key={label} className={`p-3 bg-gradient-to-br ${color} border-border/30 text-center`}>
-              <Icon className="w-5 h-5 mx-auto mb-1 text-muted-foreground" />
-              <p className="text-lg font-bold">{count}</p>
-              <p className="text-[10px] text-muted-foreground truncate">{label}</p>
+            <Card key={label} className={`p-2.5 bg-gradient-to-br ${color} border-border/30 text-center overflow-hidden`}>
+              <Icon className="w-4 h-4 mx-auto mb-1 text-muted-foreground" />
+              <p className="text-base font-bold">{count}</p>
+              <p className="text-[10px] text-muted-foreground truncate leading-tight">{label}</p>
             </Card>
           ))}
         </div>
 
         {/* Category Tabs */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
+        <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-none">
           {(["all", "mom", "baby", "partner", "documents"] as const).map((cat) => (
             <Button
               key={cat}
               variant={selectedCategory === cat ? "default" : "outline"}
               size="sm"
               onClick={() => setSelectedCategory(cat)}
-              className="whitespace-nowrap"
+              className="whitespace-nowrap text-xs h-8 px-2.5 shrink-0"
             >
               {cat !== "all" && categoryIcons[cat]}
               <span className="ms-1">{categoryLabels[cat]}</span>
@@ -456,19 +456,19 @@ Include seasonal considerations and hospital-specific recommendations.`;
         </div>
 
         {/* Items List */}
-        <div className="space-y-2 max-h-[300px] overflow-y-auto">
+        <div className="space-y-1.5 max-h-[300px] overflow-y-auto">
           {filteredItems.map((item) => (
             <div
               key={item.id}
               onClick={() => togglePacked(item.id)}
-              className={`p-3 rounded-lg border cursor-pointer transition-all flex items-center gap-3 ${
+              className={`p-2.5 rounded-lg border cursor-pointer transition-all flex items-center gap-2.5 ${
                 item.packed 
                   ? "bg-primary/10 border-primary/30" 
                   : "bg-card hover:bg-muted"
               }`}
             >
-              <Checkbox checked={item.packed} />
-              <span className={item.packed ? "line-through text-muted-foreground" : ""}>
+              <Checkbox checked={item.packed} className="shrink-0" />
+              <span className={`text-sm leading-snug break-words min-w-0 ${item.packed ? "line-through text-muted-foreground" : ""}`}>
                 {(() => {
                   const key = item.nameKey || "";
                   if (!key) return "";
@@ -478,7 +478,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
                 })()}
               </span>
               {item.priority === "essential" && (
-                <span className="ms-auto text-xs bg-destructive/10 text-destructive px-2 py-0.5 rounded shrink-0">
+                <span className="ms-auto text-[10px] bg-destructive/10 text-destructive px-1.5 py-0.5 rounded shrink-0 leading-none">
                   {t('toolsInternal.hospitalBag.essential')}
                 </span>
               )}
@@ -500,48 +500,44 @@ Include seasonal considerations and hospital-specific recommendations.`;
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           <Button
             onClick={getPersonalizedList}
             disabled={isLoading}
-            className="bg-gradient-to-r from-teal-500 to-cyan-600"
-            size="lg"
+            className="bg-gradient-to-r from-teal-500 to-cyan-600 text-[12px] sm:text-[13px] h-9 px-2"
           >
-            <Sparkles className="w-4 h-4 me-2" />
-            {isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}
+            <Sparkles className="w-3.5 h-3.5 me-1.5 shrink-0" />
+            <span className="truncate">{isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}</span>
           </Button>
 
           <Button
             onClick={handleExportPDF}
             variant="outline"
-            size="lg"
-            className="border-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30"
+            className="border-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30 text-[12px] sm:text-[13px] h-9 px-2"
           >
-            <FileDown className="w-4 h-4 me-2" />
-            {t('toolsInternal.hospitalBag.exportPDF')}
+            <FileDown className="w-3.5 h-3.5 me-1.5 shrink-0" />
+            <span className="truncate">{t('toolsInternal.hospitalBag.exportPDF')}</span>
           </Button>
         </div>
 
         {/* Share & Reset Buttons */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           <Button
             onClick={handleShareWhatsApp}
             variant="outline"
-            className="border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 text-green-700 dark:text-green-400"
-            size="lg"
+            className="border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 text-green-700 dark:text-green-400 text-[12px] sm:text-[13px] h-9 px-2"
           >
-            <Share2 className="w-4 h-4 me-2" />
-            {t('toolsInternal.hospitalBag.shareWhatsApp')}
+            <Share2 className="w-3.5 h-3.5 me-1.5 shrink-0" />
+            <span className="truncate">{t('toolsInternal.hospitalBag.shareWhatsApp')}</span>
           </Button>
 
           <Button
             onClick={resetList}
             variant="outline"
-            className="border-destructive/50 hover:bg-destructive/10 text-destructive"
-            size="lg"
+            className="border-destructive/50 hover:bg-destructive/10 text-destructive text-[12px] sm:text-[13px] h-9 px-2"
           >
-            <RotateCcw className="w-4 h-4 me-2" />
-            {t('toolsInternal.hospitalBag.resetList')}
+            <RotateCcw className="w-3.5 h-3.5 me-1.5 shrink-0" />
+            <span className="truncate">{t('toolsInternal.hospitalBag.resetList')}</span>
           </Button>
         </div>
 
