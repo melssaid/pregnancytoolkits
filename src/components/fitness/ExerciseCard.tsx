@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { ExerciseAnimation } from './ExerciseAnimation';
 
 export interface Exercise {
   id: string;
@@ -66,17 +67,25 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({
         <CardContent className="p-4">
           <div className="flex justify-between items-start mb-2 gap-2">
             <div className="flex items-center gap-3 min-w-0 flex-1">
-              {/* Number/Check circle */}
+              {/* Animated exercise illustration */}
               <div
-                className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all flex-shrink-0 ${
+                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0 border ${
                   isCompleted
-                    ? 'bg-primary text-primary-foreground'
+                    ? 'bg-primary/10 border-primary/30'
                     : isActive
-                    ? 'bg-primary text-primary-foreground animate-pulse'
-                    : 'bg-muted text-muted-foreground'
+                    ? 'bg-primary/5 border-primary/50 shadow-sm'
+                    : 'bg-muted/50 border-border/50'
                 }`}
               >
-                {isCompleted ? <Check className="w-4 h-4" /> : index + 1}
+                {isCompleted ? (
+                  <Check className="w-4 h-4 text-primary" />
+                ) : (
+                  <ExerciseAnimation
+                    exerciseId={exercise.id}
+                    isActive={isActive}
+                    className="w-8 h-8"
+                  />
+                )}
               </div>
 
               <div className="min-w-0 flex-1">
