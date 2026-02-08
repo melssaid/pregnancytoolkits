@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ShieldCheck } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const CookieConsent: React.FC = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -24,27 +26,27 @@ const CookieConsent: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 p-4 md:p-6">
+    <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border shadow-lg z-50 p-4 md:p-6">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-4">
         <div className="flex items-center gap-3 flex-1">
           <ShieldCheck className="w-8 h-8 text-primary flex-shrink-0" />
-          <p className="text-sm text-gray-600">
-            We use cookies and local storage to enhance your experience. Your data stays on your device and is never shared.
-            <a href="/privacy-policy" className="text-pink-500 hover:underline ml-1">Learn more</a>
+          <p className="text-sm text-muted-foreground">
+            {t('cookieConsent.message')}
+            <a href="/privacy-policy" className="text-primary hover:underline ml-1">{t('cookieConsent.learnMore')}</a>
           </p>
         </div>
         <div className="flex gap-3 w-full md:w-auto">
           <button
             onClick={handleDecline}
-            className="flex-1 md:flex-none px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
+            className="flex-1 md:flex-none px-4 py-2 text-muted-foreground hover:text-foreground font-medium transition-colors"
           >
-            Decline
+            {t('cookieConsent.decline')}
           </button>
           <button
             onClick={handleAccept}
-            className="flex-1 md:flex-none px-6 py-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition-colors"
+            className="flex-1 md:flex-none px-6 py-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-colors"
           >
-            Accept
+            {t('cookieConsent.accept')}
           </button>
         </div>
       </div>

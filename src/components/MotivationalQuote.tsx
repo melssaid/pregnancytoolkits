@@ -1,51 +1,23 @@
 import { motion } from "framer-motion";
 import { Heart, Sparkles, Quote } from "lucide-react";
 import { useMemo } from "react";
-
-const quotes = [
-  {
-    text: "Every day brings you closer to your beautiful moment 💕",
-    author: "For the expecting mom",
-  },
-  {
-    text: "You’re creating a miracle of life within you ✨",
-    author: "A gentle reminder",
-  },
-  {
-    text: "Your baby feels your love even before seeing you 👶",
-    author: "A beautiful truth",
-  },
-  {
-    text: "Savor every moment—this journey is unforgettable 🌸",
-    author: "From the heart",
-  },
-  {
-    text: "Your strength as a mother begins right now 💪",
-    author: "We believe in you",
-  },
-  {
-    text: "Every little movement is a love note from your baby 💗",
-    author: "From your baby",
-  },
-  {
-    text: "You are the hero of a brand‑new story 🌟",
-    author: "A simple truth",
-  },
-  {
-    text: "Take care of yourself—you’re your baby’s whole world 🤱",
-    author: "An important reminder",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 interface MotivationalQuoteProps {
   variant?: "card" | "inline" | "banner";
 }
 
 export function MotivationalQuote({ variant = "card" }: MotivationalQuoteProps) {
+  const { t } = useTranslation();
+
   const quote = useMemo(() => {
-    const todayIndex = new Date().getDate() % quotes.length;
-    return quotes[todayIndex];
-  }, []);
+    const todayIndex = new Date().getDate() % 8;
+    const num = todayIndex + 1;
+    return {
+      text: t(`quotes.q${num}`),
+      author: t(`quotes.q${num}Author`),
+    };
+  }, [t]);
 
   if (variant === "inline") {
     return (
