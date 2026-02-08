@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Info, Dumbbell, Filter, Activity, Heart, PlayCircle, BarChart3 } from 'lucide-react';
+import { Info, Dumbbell, Filter, Heart, PlayCircle, BarChart3 } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
@@ -14,7 +14,7 @@ import { RestTimer } from '@/components/fitness/RestTimer';
 import { TrimesterAlert } from '@/components/fitness/TrimesterAlert';
 import { ExerciseCard, Exercise } from '@/components/fitness/ExerciseCard';
 import { WarmupCooldownSection } from '@/components/fitness/WarmupCooldownSection';
-import { AIInsightCard } from '@/components/ai/AIInsightCard';
+// AIInsightCard removed - was not user-friendly
 import { SmartWorkoutGenerator } from '@/components/fitness/SmartWorkoutGenerator';
 import { exerciseDatabase, getVideosByLanguage } from '@/data/fitnessData';
 
@@ -233,7 +233,29 @@ const AIFitnessCoach: React.FC = () => {
           onRandomGenerate={() => generateWorkout()}
         />
 
-        {/* Today's Workout Section */}
+        {/* Progress & Today's Workout */}
+        <div className="flex items-center gap-2.5 pt-2">
+          <div className="p-1.5 rounded-lg bg-primary/10">
+            <BarChart3 className="w-4 h-4 text-primary" />
+          </div>
+          <div>
+            <h2 className="font-semibold text-sm text-foreground">
+              {t('toolsInternal.fitnessCoach.sections.analysis')}
+            </h2>
+            <p className="text-[10px] text-muted-foreground">
+              {t('toolsInternal.fitnessCoach.sections.analysisDesc')}
+            </p>
+          </div>
+        </div>
+
+        <WorkoutProgressRing
+          completed={completedExercises.size}
+          total={generatedWorkout.length}
+          caloriesBurned={caloriesBurned}
+          totalTime={totalTimeSpent}
+        />
+
+        {/* Today's Workout */}
         <div className="flex items-center gap-2.5 pt-2">
           <div className="p-1.5 rounded-lg bg-primary/10">
             <PlayCircle className="w-4 h-4 text-primary" />
@@ -247,13 +269,6 @@ const AIFitnessCoach: React.FC = () => {
             </p>
           </div>
         </div>
-
-        <WorkoutProgressRing
-          completed={completedExercises.size}
-          total={generatedWorkout.length}
-          caloriesBurned={caloriesBurned}
-          totalTime={totalTimeSpent}
-        />
 
         <WarmupCooldownSection type="warmup" />
 
@@ -306,51 +321,7 @@ const AIFitnessCoach: React.FC = () => {
 
         <WarmupCooldownSection type="cooldown" />
 
-        {/* Analysis Section */}
-        <div className="flex items-center gap-2.5 pt-2">
-          <div className="p-1.5 rounded-lg bg-primary/10">
-            <BarChart3 className="w-4 h-4 text-primary" />
-          </div>
-          <div>
-            <h2 className="font-semibold text-sm text-foreground">
-              {t('toolsInternal.fitnessCoach.sections.analysis')}
-            </h2>
-            <p className="text-[10px] text-muted-foreground">
-              {t('toolsInternal.fitnessCoach.sections.analysisDesc')}
-            </p>
-          </div>
-        </div>
-
-        <AIInsightCard
-          title={t('toolsInternal.fitnessCoach.aiWorkoutAnalysis')}
-          prompt={`I am ${currentWeek} weeks pregnant with a ${fitnessLevel} fitness level. I just completed ${completedExercises.size} out of ${generatedWorkout.length} exercises, burning approximately ${caloriesBurned} calories in ${Math.round(totalTimeSpent / 60)} minutes.
-
-My workout included: ${generatedWorkout.map(e => t(`toolsInternal.fitnessCoach.exerciseNames.${e.nameKey}`)).join(', ')}.
-
-Please provide a comprehensive personalized fitness analysis:
-
-## Weekly Fitness Assessment
-Evaluate my workout performance for week ${currentWeek} and ${fitnessLevel} level
-
-## Muscle Balance Analysis
-Which muscle groups were well-targeted and which need more attention
-
-## Progressive Overload Recommendations
-How to safely increase intensity over the coming weeks
-
-## Recovery & Nutrition Tips
-Post-workout recovery and nutrition specific to week ${currentWeek}
-
-## Next Workout Suggestions
-3-4 specific exercises to add or swap for my next session
-
-## Safety Reminders
-Trimester-specific precautions for my current stage`}
-          context={{ week: currentWeek }}
-          buttonText={t('toolsInternal.fitnessCoach.aiWorkoutButton')}
-          icon={<Activity className="w-4 h-4 text-white" />}
-          variant="default"
-        />
+        {/* Daily Tip */}
 
         <Card className="border-primary/20 bg-primary/5">
           <CardContent className="p-4 flex gap-3">
