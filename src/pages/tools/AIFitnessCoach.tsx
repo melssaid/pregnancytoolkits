@@ -18,7 +18,7 @@ import { AIInsightCard } from '@/components/ai/AIInsightCard';
 import { SmartWorkoutGenerator } from '@/components/fitness/SmartWorkoutGenerator';
 import { exerciseDatabase, getVideosByLanguage } from '@/data/fitnessData';
 
-const REST_DURATION = 15;
+const REST_DURATION = 15; // workout rest interval
 
 type CategoryFilter = 'all' | 'warmup' | 'strength' | 'cardio' | 'flexibility' | 'cooldown';
 
