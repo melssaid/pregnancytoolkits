@@ -52,10 +52,6 @@ const animations = `
   0%, 100% { transform: scale(1); opacity: 0.6; }
   50% { transform: scale(1.15); opacity: 1; }
 }
-@keyframes ex-cat-cow {
-  0%, 100% { d: path("M8 20 Q20 14 32 20"); }
-  50% { d: path("M8 20 Q20 26 32 20"); }
-}
 @keyframes ex-pushup {
   0%, 100% { transform: rotate(0deg); }
   50% { transform: rotate(-8deg); }
@@ -63,6 +59,26 @@ const animations = `
 @keyframes ex-idle-bob {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(1.5px); }
+}
+@keyframes ex-shrug {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@keyframes ex-twist {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+@keyframes ex-kegel {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.9); }
+}
+@keyframes ex-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.95); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+@keyframes ex-calf {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 `;
 
@@ -94,6 +110,47 @@ const exerciseSVGs: Record<string, (active: boolean) => React.ReactNode> = {
       </g>
       <line x1="20" y1="18" x2="28" y2="22" stroke="currentColor" strokeWidth="1.5" />
       <circle cx="12" cy="14" r="5" stroke="currentColor" strokeWidth="0.6" opacity="0.15" strokeDasharray="2 2" />
+    </svg>
+  ),
+
+  'ankle-circles': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="11.5" x2="20" y2="22" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="13" y1="17" x2="27" y2="17" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="22" x2="16" y2="30" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="22" x2="24" y2="30" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ transformOrigin: '24px 34px', animation: `ex-arm-circle ${getSpeed(a, 2.5)}s linear infinite` }}>
+        <circle cx="26" cy="32" r="1" fill="currentColor" opacity={a ? 0.5 : 0.25} />
+      </g>
+      <circle cx="24" cy="34" r="3" stroke="currentColor" strokeWidth="0.6" opacity="0.2" strokeDasharray="2 2" />
+    </svg>
+  ),
+
+  'hip-circles': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="12" x2="20" y2="22" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="13" y1="17" x2="27" y2="17" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ transformOrigin: '20px 22px', animation: `ex-arm-circle ${getSpeed(a, 3)}s linear infinite` }}>
+        <circle cx="20" cy="19" r="1.5" fill="currentColor" opacity={a ? 0.5 : 0.2} />
+      </g>
+      <ellipse cx="20" cy="22" rx="5" ry="3" stroke="currentColor" strokeWidth="0.6" opacity="0.2" strokeDasharray="2 2" />
+      <line x1="20" y1="22" x2="15" y2="34" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="22" x2="25" y2="34" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  ),
+
+  'shoulder-shrugs': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="14" x2="20" y2="26" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ animation: `ex-shrug ${getSpeed(a, 1)}s ease-in-out infinite` }}>
+        <line x1="12" y1="20" x2="20" y2="18" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="28" y1="20" x2="20" y2="18" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <line x1="20" y1="26" x2="15" y2="36" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="26" x2="25" y2="36" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   ),
 
@@ -167,6 +224,49 @@ const exerciseSVGs: Record<string, (active: boolean) => React.ReactNode> = {
     </svg>
   ),
 
+  'wall-sit': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="4" width="3" height="32" rx="1" stroke="currentColor" strokeWidth="1.2" fill="none" opacity="0.4" />
+      <g style={{ animation: `ex-breathe ${getSpeed(a, 3)}s ease-in-out infinite`, transformOrigin: '22px 20px' }}>
+        <circle cx="18" cy="10" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="16" y1="13" x2="10" y2="22" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="10" y1="22" x2="10" y2="18" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="10" y1="22" x2="16" y2="22" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="16" y1="22" x2="16" y2="30" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="16" y1="30" x2="20" y2="36" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+    </svg>
+  ),
+
+  'calf-raises': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g style={{ animation: `ex-calf ${getSpeed(a, 1)}s ease-in-out infinite` }}>
+        <circle cx="20" cy="6" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="20" y1="9.5" x2="20" y2="20" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="14" y1="16" x2="26" y2="16" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="20" y1="20" x2="17" y2="30" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="20" y1="20" x2="23" y2="30" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <line x1="15" y1="36" x2="25" y2="36" stroke="currentColor" strokeWidth="1" opacity="0.2" />
+      <line x1="17" y1="30" x2="17" y2="36" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="23" y1="30" x2="23" y2="36" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  ),
+
+  'sumo-squat': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g style={{ animation: `ex-squat ${getSpeed(a, 1.4)}s ease-in-out infinite` }}>
+        <circle cx="20" cy="6" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="20" y1="9.5" x2="20" y2="18" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="14" y1="14" x2="26" y2="14" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="20" y1="18" x2="10" y2="28" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="20" y1="18" x2="30" y2="28" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="10" y1="28" x2="8" y2="36" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="30" y1="28" x2="32" y2="36" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+    </svg>
+  ),
+
   // ─── Cardio ────────────────────────────────────────────
   'marching': (a) => (
     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -195,6 +295,42 @@ const exerciseSVGs: Record<string, (active: boolean) => React.ReactNode> = {
       </g>
       <circle cx="10" cy="36" r="1" fill="currentColor" opacity="0.2" />
       <circle cx="30" cy="36" r="1" fill="currentColor" opacity="0.2" />
+    </svg>
+  ),
+
+  'standing-march': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="6" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="9.5" x2="20" y2="20" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ animation: `ex-march ${getSpeed(a, 0.7)}s ease-in-out infinite` }}>
+        <line x1="14" y1="14" x2="20" y2="16" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <g style={{ animation: `ex-march ${getSpeed(a, 0.7)}s ease-in-out infinite 0.35s` }}>
+        <line x1="26" y1="14" x2="20" y2="16" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <g style={{ animation: `ex-march ${getSpeed(a, 0.7)}s ease-in-out infinite` }}>
+        <line x1="20" y1="20" x2="14" y2="30" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="14" y1="30" x2="14" y2="36" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <g style={{ animation: `ex-march ${getSpeed(a, 0.7)}s ease-in-out infinite 0.35s` }}>
+        <line x1="20" y1="20" x2="26" y2="30" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="26" y1="30" x2="26" y2="36" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+    </svg>
+  ),
+
+  'low-impact-jacks': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="6" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="9.5" x2="20" y2="20" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ animation: `ex-stretch ${getSpeed(a, 0.8)}s ease-in-out infinite`, transformOrigin: '20px 14px' }}>
+        <line x1="12" y1="10" x2="20" y2="14" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="28" y1="10" x2="20" y2="14" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <g style={{ animation: `ex-stretch ${getSpeed(a, 0.8)}s ease-in-out infinite`, transformOrigin: '20px 20px' }}>
+        <line x1="20" y1="20" x2="10" y2="34" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="20" y1="20" x2="30" y2="34" stroke="currentColor" strokeWidth="1.5" />
+      </g>
     </svg>
   ),
 
@@ -249,6 +385,59 @@ const exerciseSVGs: Record<string, (active: boolean) => React.ReactNode> = {
     </svg>
   ),
 
+  'kegel': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="12" x2="20" y2="24" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="14" y1="18" x2="26" y2="18" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="24" x2="14" y2="36" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="24" x2="26" y2="36" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ animation: `ex-kegel ${getSpeed(a, 1.5)}s ease-in-out infinite`, transformOrigin: '20px 26px' }}>
+        <ellipse cx="20" cy="26" rx="4" ry="2" stroke="currentColor" strokeWidth="1" opacity={a ? 0.6 : 0.3} fill="none" />
+      </g>
+      <g style={{ animation: `ex-pulse ${getSpeed(a, 2)}s ease-in-out infinite`, transformOrigin: '20px 26px' }}>
+        <ellipse cx="20" cy="26" rx="7" ry="3.5" stroke="currentColor" strokeWidth="0.5" opacity="0.15" fill="none" />
+      </g>
+    </svg>
+  ),
+
+  'seated-twist': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="4" y1="32" x2="36" y2="32" stroke="currentColor" strokeWidth="0.8" opacity="0.15" />
+      <circle cx="20" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="14" x2="20" y2="26" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ transformOrigin: '20px 18px', animation: `ex-twist ${getSpeed(a, 2)}s ease-in-out infinite` }}>
+        <line x1="12" y1="18" x2="28" y2="18" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <path d="M14 26 Q20 30 26 26" stroke="currentColor" strokeWidth="1.5" fill="none" />
+    </svg>
+  ),
+
+  'hamstring-stretch': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="4" y1="32" x2="36" y2="32" stroke="currentColor" strokeWidth="0.8" opacity="0.15" />
+      <circle cx="14" cy="14" r="3" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ transformOrigin: '14px 17px', animation: `ex-tilt ${getSpeed(a, 2.5)}s ease-in-out infinite` }}>
+        <line x1="14" y1="17" x2="20" y2="26" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="14" y1="20" x2="8" y2="24" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <line x1="20" y1="26" x2="34" y2="28" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="34" cy="28" r="1" fill="currentColor" opacity="0.3" />
+    </svg>
+  ),
+
+  'figure-four': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="4" y1="32" x2="36" y2="32" stroke="currentColor" strokeWidth="0.8" opacity="0.15" />
+      <circle cx="10" cy="20" r="3" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="13" y1="22" x2="20" y2="26" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="26" x2="30" y2="32" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ transformOrigin: '20px 26px', animation: `ex-leg-lift ${getSpeed(a, 1.8)}s ease-in-out infinite` }}>
+        <path d="M20 26 L26 22 L30 26" stroke="currentColor" strokeWidth="1.5" fill="none" />
+      </g>
+    </svg>
+  ),
+
   // ─── Cooldown ──────────────────────────────────────────
   'child-pose': (a) => (
     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -274,6 +463,33 @@ const exerciseSVGs: Record<string, (active: boolean) => React.ReactNode> = {
       <g style={{ animation: `ex-breathe ${getSpeed(a, 3)}s ease-in-out infinite 1.5s`, transformOrigin: '20px 18px' }}>
         <ellipse cx="20" cy="18" rx="9" ry="5" stroke="currentColor" strokeWidth="0.5" opacity="0.12" fill="none" />
       </g>
+    </svg>
+  ),
+
+  'savasana': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="4" y1="24" x2="36" y2="24" stroke="currentColor" strokeWidth="0.8" opacity="0.15" />
+      <g style={{ animation: `ex-breathe ${getSpeed(a, 4)}s ease-in-out infinite`, transformOrigin: '20px 20px' }}>
+        <circle cx="8" cy="20" r="3" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="11" y1="20" x2="30" y2="20" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="30" y1="20" x2="34" y2="16" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="30" y1="20" x2="34" y2="24" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="14" y1="20" x2="10" y2="14" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="14" y1="20" x2="10" y2="26" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+    </svg>
+  ),
+
+  'gentle-twist': (a) => (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="12" x2="20" y2="24" stroke="currentColor" strokeWidth="1.5" />
+      <g style={{ transformOrigin: '20px 16px', animation: `ex-twist ${getSpeed(a, 2.5)}s ease-in-out infinite` }}>
+        <line x1="12" y1="16" x2="28" y2="16" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <line x1="20" y1="24" x2="14" y2="34" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="20" y1="24" x2="26" y2="34" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M16 13 Q20 10 24 13" stroke="currentColor" strokeWidth="0.6" opacity="0.2" strokeDasharray="2 2" />
     </svg>
   ),
 };

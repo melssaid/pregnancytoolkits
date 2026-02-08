@@ -1,26 +1,44 @@
 import { Exercise } from '@/components/fitness/ExerciseCard';
 
 export const exerciseDatabase: Exercise[] = [
-  // Warmup
+  // ─── Warmup ────────────────────────────────────────────
   { id: 'neck-rolls', nameKey: 'neckRolls', duration: 30, descriptionKey: 'neckRollsDesc', category: 'warmup', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'neck' },
   { id: 'arm-circles', nameKey: 'armCircles', duration: 30, descriptionKey: 'armCirclesDesc', category: 'warmup', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'shoulders' },
-  // Strength
+  { id: 'ankle-circles', nameKey: 'ankleCircles', duration: 30, descriptionKey: 'ankleCirclesDesc', category: 'warmup', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'ankles' },
+  { id: 'hip-circles', nameKey: 'hipCircles', duration: 30, descriptionKey: 'hipCirclesDesc', category: 'warmup', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'hips' },
+  { id: 'shoulder-shrugs', nameKey: 'shoulderShrugs', duration: 25, descriptionKey: 'shoulderShrugsDesc', category: 'warmup', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'shoulders' },
+
+  // ─── Strength ──────────────────────────────────────────
   { id: 'squat', nameKey: 'prenatalSquats', duration: 45, descriptionKey: 'prenatalSquatsDesc', category: 'strength', difficulty: 'beginner', caloriesPerMin: 5, muscleGroupKey: 'legs' },
   { id: 'bird-dog', nameKey: 'birdDog', duration: 30, descriptionKey: 'birdDogDesc', category: 'strength', difficulty: 'intermediate', caloriesPerMin: 4, muscleGroupKey: 'core' },
   { id: 'wall-pushup', nameKey: 'wallPushups', duration: 45, descriptionKey: 'wallPushupsDesc', category: 'strength', difficulty: 'beginner', caloriesPerMin: 4, muscleGroupKey: 'arms' },
   { id: 'glute-bridge', nameKey: 'gluteBridge', duration: 40, descriptionKey: 'gluteBridgeDesc', category: 'strength', difficulty: 'beginner', caloriesPerMin: 4, muscleGroupKey: 'glutes' },
   { id: 'side-lying-leg', nameKey: 'sideLyingLeg', duration: 35, descriptionKey: 'sideLyingLegDesc', category: 'strength', difficulty: 'intermediate', caloriesPerMin: 3, muscleGroupKey: 'hips' },
-  // Cardio
+  { id: 'wall-sit', nameKey: 'wallSit', duration: 30, descriptionKey: 'wallSitDesc', category: 'strength', difficulty: 'intermediate', caloriesPerMin: 5, muscleGroupKey: 'legs' },
+  { id: 'calf-raises', nameKey: 'calfRaises', duration: 30, descriptionKey: 'calfRaisesDesc', category: 'strength', difficulty: 'beginner', caloriesPerMin: 3, muscleGroupKey: 'calves' },
+  { id: 'sumo-squat', nameKey: 'sumoSquat', duration: 40, descriptionKey: 'sumoSquatDesc', category: 'strength', difficulty: 'intermediate', caloriesPerMin: 5, muscleGroupKey: 'legs' },
+
+  // ─── Cardio ────────────────────────────────────────────
   { id: 'marching', nameKey: 'seatedMarching', duration: 60, descriptionKey: 'seatedMarchingDesc', category: 'cardio', difficulty: 'beginner', caloriesPerMin: 5, muscleGroupKey: 'legs' },
   { id: 'step-touch', nameKey: 'stepTouch', duration: 45, descriptionKey: 'stepTouchDesc', category: 'cardio', difficulty: 'beginner', caloriesPerMin: 4, muscleGroupKey: 'fullBody' },
-  // Flexibility
+  { id: 'standing-march', nameKey: 'standingMarch', duration: 60, descriptionKey: 'standingMarchDesc', category: 'cardio', difficulty: 'beginner', caloriesPerMin: 5, muscleGroupKey: 'fullBody' },
+  { id: 'low-impact-jacks', nameKey: 'lowImpactJacks', duration: 30, descriptionKey: 'lowImpactJacksDesc', category: 'cardio', difficulty: 'intermediate', caloriesPerMin: 6, muscleGroupKey: 'fullBody' },
+
+  // ─── Flexibility ───────────────────────────────────────
   { id: 'pelvic-tilt', nameKey: 'pelvicTilts', duration: 60, descriptionKey: 'pelvicTiltsDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'pelvis' },
   { id: 'butterfly', nameKey: 'butterflyStretch', duration: 60, descriptionKey: 'butterflyStretchDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'hips' },
   { id: 'cat-cow', nameKey: 'catCow', duration: 45, descriptionKey: 'catCowDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'spine' },
   { id: 'side-stretch', nameKey: 'sideStretch', duration: 30, descriptionKey: 'sideStretchDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'obliques' },
-  // Cooldown
+  { id: 'kegel', nameKey: 'kegelExercise', duration: 60, descriptionKey: 'kegelExerciseDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'pelvicFloor' },
+  { id: 'seated-twist', nameKey: 'seatedTwist', duration: 30, descriptionKey: 'seatedTwistDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 2, muscleGroupKey: 'spine' },
+  { id: 'hamstring-stretch', nameKey: 'hamstringStretch', duration: 40, descriptionKey: 'hamstringStretchDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'legs' },
+  { id: 'figure-four', nameKey: 'figureFour', duration: 40, descriptionKey: 'figureFourDesc', category: 'flexibility', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'hips' },
+
+  // ─── Cooldown ──────────────────────────────────────────
   { id: 'child-pose', nameKey: 'childPose', duration: 45, descriptionKey: 'childPoseDesc', category: 'cooldown', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'back' },
   { id: 'deep-breathing', nameKey: 'deepBreathing', duration: 60, descriptionKey: 'deepBreathingDesc', category: 'cooldown', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'diaphragm' },
+  { id: 'savasana', nameKey: 'savasana', duration: 60, descriptionKey: 'savasanaDesc', category: 'cooldown', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'fullBody' },
+  { id: 'gentle-twist', nameKey: 'gentleTwist', duration: 30, descriptionKey: 'gentleTwistDesc', category: 'cooldown', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'spine' },
 ];
 
 // Language-specific video sets for cultural relevance
