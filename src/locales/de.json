@@ -2159,6 +2159,8 @@
       "sections": {
         "setup": "Einstellungen & Vorlieben",
         "setupDesc": "Woche und Fitnesslevel konfigurieren",
+        "buildWorkout": "Training erstellen",
+        "buildWorkoutDesc": "Wählen Sie Energie, Ziel und Dauer",
         "workout": "Heutiges Training",
         "workoutDesc": "Folgen Sie Ihren personalisierten Übungen",
         "analysis": "Analyse & Tipps",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Info, Dumbbell, Filter, Heart, PlayCircle, BarChart3 } from 'lucide-react';
+import { Info, Dumbbell, Filter, Heart, PlayCircle, BarChart3, Settings2, Sparkles } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video } from '@/components/VideoLibrary';
@@ -14,11 +14,12 @@ import { RestTimer } from '@/components/fitness/RestTimer';
 import { TrimesterAlert } from '@/components/fitness/TrimesterAlert';
 import { ExerciseCard, Exercise } from '@/components/fitness/ExerciseCard';
 import { WarmupCooldownSection } from '@/components/fitness/WarmupCooldownSection';
-// AIInsightCard removed - was not user-friendly
 import { SmartWorkoutGenerator } from '@/components/fitness/SmartWorkoutGenerator';
+import { StepSection } from '@/components/fitness/StepSection';
 import { exerciseDatabase, getVideosByLanguage } from '@/data/fitnessData';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const REST_DURATION = 15; // workout rest interval
+const REST_DURATION = 15;
 
 type CategoryFilter = 'all' | 'warmup' | 'strength' | 'cardio' | 'flexibility' | 'cooldown';
 
@@ -183,9 +184,9 @@ const AIFitnessCoach: React.FC = () => {
       mood="empowering"
       toolId="ai-fitness-coach"
     >
-      <div className="space-y-5">
+      <div className="space-y-6">
 
-        {/* Library Stats Banner */}
+        {/* Library Stats */}
         <div className="flex items-center gap-2 flex-wrap">
           <Badge variant="secondary" className="text-[10px] gap-1">
             <Dumbbell className="w-3 h-3" />
@@ -196,178 +197,175 @@ const AIFitnessCoach: React.FC = () => {
           </Badge>
         </div>
 
-        {/* Week & Level Configuration */}
-        <WeekSlider
-          week={currentWeek}
-          onChange={setCurrentWeek}
-          label={t('toolsInternal.fitnessCoach.currentWeek')}
-          showTrimester
-        />
+        {/* ── STEP 1: Setup ── */}
+        <StepSection
+          step={1}
+          title={t('toolsInternal.fitnessCoach.sections.setup')}
+          description={t('toolsInternal.fitnessCoach.sections.setupDesc')}
+          icon={<Settings2 className="w-3.5 h-3.5" />}
+        >
+          <WeekSlider
+            week={currentWeek}
+            onChange={setCurrentWeek}
+            label={t('toolsInternal.fitnessCoach.currentWeek')}
+            showTrimester
+          />
 
-        <Card>
-          <CardContent className="p-3">
-            <h2 className="text-sm font-semibold mb-2">
-              {t('toolsInternal.fitnessCoach.activityLevel')}
-            </h2>
-            <div className="flex gap-2">
-              {(['beginner', 'intermediate'] as const).map(level => (
-                <Button
-                  key={level}
-                  variant={fitnessLevel === level ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setFitnessLevel(level)}
-                  className="flex-1 text-xs"
-                >
-                  {t(`toolsInternal.fitnessCoach.${level}`)}
-                </Button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardContent className="p-3">
+              <h3 className="text-xs font-semibold mb-2 text-muted-foreground uppercase tracking-wide">
+                {t('toolsInternal.fitnessCoach.activityLevel')}
+              </h3>
+              <div className="flex gap-2">
+                {(['beginner', 'intermediate'] as const).map(level => (
+                  <Button
+                    key={level}
+                    variant={fitnessLevel === level ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setFitnessLevel(level)}
+                    className="flex-1 text-xs"
+                  >
+                    {t(`toolsInternal.fitnessCoach.${level}`)}
+                  </Button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
-        <TrimesterAlert week={currentWeek} />
+          <TrimesterAlert week={currentWeek} />
+        </StepSection>
 
-        {/* Smart Workout Generator */}
-        <SmartWorkoutGenerator
-          onGenerate={(prefs) => generateWorkout(prefs)}
-          onRandomGenerate={() => generateWorkout()}
-        />
+        {/* ── STEP 2: Build Workout ── */}
+        <StepSection
+          step={2}
+          title={t('toolsInternal.fitnessCoach.sections.buildWorkout')}
+          description={t('toolsInternal.fitnessCoach.sections.buildWorkoutDesc')}
+          icon={<Sparkles className="w-3.5 h-3.5" />}
+        >
+          <SmartWorkoutGenerator
+            onGenerate={(prefs) => generateWorkout(prefs)}
+            onRandomGenerate={() => generateWorkout()}
+          />
+        </StepSection>
 
-        {/* Progress & Today's Workout */}
-        <div className="flex items-center gap-2.5 pt-2">
-          <div className="p-1.5 rounded-lg bg-primary/10">
-            <BarChart3 className="w-4 h-4 text-primary" />
-          </div>
-          <div>
-            <h2 className="font-semibold text-sm text-foreground">
-              {t('toolsInternal.fitnessCoach.sections.analysis')}
-            </h2>
-            <p className="text-[10px] text-muted-foreground">
-              {t('toolsInternal.fitnessCoach.sections.analysisDesc')}
-            </p>
-          </div>
-        </div>
+        {/* ── STEP 3: Your Workout ── */}
+        <StepSection
+          step={3}
+          title={t('toolsInternal.fitnessCoach.sections.workout')}
+          description={t('toolsInternal.fitnessCoach.sections.workoutDesc')}
+          icon={<PlayCircle className="w-3.5 h-3.5" />}
+        >
+          {/* Progress Ring */}
+          <WorkoutProgressRing
+            completed={completedExercises.size}
+            total={generatedWorkout.length}
+            caloriesBurned={caloriesBurned}
+            totalTime={totalTimeSpent}
+          />
 
-        <WorkoutProgressRing
-          completed={completedExercises.size}
-          total={generatedWorkout.length}
-          caloriesBurned={caloriesBurned}
-          totalTime={totalTimeSpent}
-        />
+          {/* Warmup */}
+          <WarmupCooldownSection type="warmup" />
 
-        {/* Today's Workout */}
-        <div className="flex items-center gap-2.5 pt-2">
-          <div className="p-1.5 rounded-lg bg-primary/10">
-            <PlayCircle className="w-4 h-4 text-primary" />
-          </div>
-          <div>
-            <h2 className="font-semibold text-sm text-foreground">
-              {t('toolsInternal.fitnessCoach.sections.workout')}
-            </h2>
-            <p className="text-[10px] text-muted-foreground">
-              {t('toolsInternal.fitnessCoach.sections.workoutDesc')}
-            </p>
-          </div>
-        </div>
-
-        <WarmupCooldownSection type="warmup" />
-
-        {/* Category Filter */}
-        {availableCategories.length > 2 && (
-          <div className="flex gap-1.5 flex-wrap">
-            <Filter className="w-4 h-4 text-muted-foreground mt-1" />
-            {availableCategories.map(cat => (
-              <Button
-                key={cat}
-                variant={categoryFilter === cat ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setCategoryFilter(cat)}
-                className="text-[10px] h-7 px-2.5"
+          {/* Category Filter */}
+          <AnimatePresence>
+            {availableCategories.length > 2 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex gap-1.5 flex-wrap"
               >
-                {cat === 'all'
-                  ? t('toolsInternal.fitnessCoach.allCategories')
-                  : t(`toolsInternal.fitnessCoach.categories.${cat}`)}
-              </Button>
-            ))}
+                <Filter className="w-4 h-4 text-muted-foreground mt-1" />
+                {availableCategories.map(cat => (
+                  <Button
+                    key={cat}
+                    variant={categoryFilter === cat ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setCategoryFilter(cat)}
+                    className="text-[10px] h-7 px-2.5"
+                  >
+                    {cat === 'all'
+                      ? t('toolsInternal.fitnessCoach.allCategories')
+                      : t(`toolsInternal.fitnessCoach.categories.${cat}`)}
+                  </Button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Rest Timer */}
+          <RestTimer
+            duration={REST_DURATION}
+            onComplete={handleRestComplete}
+            onSkip={handleRestComplete}
+            isActive={showRestTimer}
+          />
+
+          {/* Exercise Cards */}
+          <div className="space-y-3">
+            {filteredWorkout.map((exercise) => {
+              const realIndex = generatedWorkout.indexOf(exercise);
+              return (
+                <ExerciseCard
+                  key={exercise.id}
+                  exercise={exercise}
+                  index={realIndex}
+                  isActive={activeExerciseIndex === realIndex}
+                  isCompleted={completedExercises.has(exercise.id)}
+                  isPaused={isPaused}
+                  timer={timer}
+                  onStart={() => startExercise(realIndex)}
+                  onTogglePause={() => setIsPaused(!isPaused)}
+                />
+              );
+            })}
           </div>
-        )}
 
-        <RestTimer
-          duration={REST_DURATION}
-          onComplete={handleRestComplete}
-          onSkip={handleRestComplete}
-          isActive={showRestTimer}
-        />
+          {/* Cooldown */}
+          <WarmupCooldownSection type="cooldown" />
+        </StepSection>
 
-        {/* Exercise Cards */}
-        <div className="space-y-3">
-          {filteredWorkout.map((exercise) => {
-            const realIndex = generatedWorkout.indexOf(exercise);
-            return (
-              <ExerciseCard
-                key={exercise.id}
-                exercise={exercise}
-                index={realIndex}
-                isActive={activeExerciseIndex === realIndex}
-                isCompleted={completedExercises.has(exercise.id)}
-                isPaused={isPaused}
-                timer={timer}
-                onStart={() => startExercise(realIndex)}
-                onTogglePause={() => setIsPaused(!isPaused)}
-              />
-            );
-          })}
-        </div>
+        {/* ── STEP 4: Resources ── */}
+        <StepSection
+          step={4}
+          title={t('toolsInternal.fitnessCoach.sections.resources')}
+          description={t('toolsInternal.fitnessCoach.sections.resourcesDesc')}
+          icon={<Heart className="w-3.5 h-3.5" />}
+          isLast
+        >
+          {/* Daily Tip */}
+          <Card className="border-primary/20 bg-primary/5">
+            <CardContent className="p-4 flex gap-3">
+              <Dumbbell className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+              <div>
+                <h4 className="font-semibold text-sm text-foreground mb-1">
+                  {t('toolsInternal.fitnessCoach.dailyTip')}
+                </h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {t(`toolsInternal.fitnessCoach.tips.tip${(currentWeek % 5) + 1}`)}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
-        <WarmupCooldownSection type="cooldown" />
+          {/* Videos */}
+          <VideoLibrary
+            videos={fitnessVideos}
+            title={t('toolsInternal.fitnessCoach.fitnessVideos')}
+            subtitle={t('toolsInternal.fitnessCoach.fitnessVideosSubtitle')}
+            accentColor="violet"
+          />
 
-        {/* Daily Tip */}
-
-        <Card className="border-primary/20 bg-primary/5">
-          <CardContent className="p-4 flex gap-3">
-            <Dumbbell className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <div>
-              <h4 className="font-semibold text-sm text-foreground mb-1">
-                {t('toolsInternal.fitnessCoach.dailyTip')}
-              </h4>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                {t(`toolsInternal.fitnessCoach.tips.tip${(currentWeek % 5) + 1}`)}
+          {/* Safety */}
+          <Card className="border-primary/20 bg-primary/5">
+            <CardContent className="p-4 flex gap-3">
+              <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-muted-foreground">
+                <strong>{t('toolsInternal.fitnessCoach.safetyFirst')}:</strong>{' '}
+                {t('toolsInternal.fitnessCoach.safetyText')}
               </p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Videos & Safety Section */}
-        <div className="flex items-center gap-2.5 pt-2">
-          <div className="p-1.5 rounded-lg bg-primary/10">
-            <Heart className="w-4 h-4 text-primary" />
-          </div>
-          <div>
-            <h2 className="font-semibold text-sm text-foreground">
-              {t('toolsInternal.fitnessCoach.sections.resources')}
-            </h2>
-            <p className="text-[10px] text-muted-foreground">
-              {t('toolsInternal.fitnessCoach.sections.resourcesDesc')}
-            </p>
-          </div>
-        </div>
-
-        <VideoLibrary
-          videos={fitnessVideos}
-          title={t('toolsInternal.fitnessCoach.fitnessVideos')}
-          subtitle={t('toolsInternal.fitnessCoach.fitnessVideosSubtitle')}
-          accentColor="violet"
-        />
-
-        <Card className="border-primary/20 bg-primary/5">
-          <CardContent className="p-4 flex gap-3">
-            <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground">
-              <strong>{t('toolsInternal.fitnessCoach.safetyFirst')}:</strong>{' '}
-              {t('toolsInternal.fitnessCoach.safetyText')}
-            </p>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </StepSection>
       </div>
     </ToolFrame>
   );

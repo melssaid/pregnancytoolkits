@@ -1507,6 +1507,8 @@
       "sections": {
         "setup": "Setup & Preferences",
         "setupDesc": "Configure your week and fitness level",
+        "buildWorkout": "Build Your Workout",
+        "buildWorkoutDesc": "Choose your energy, goal, and duration",
         "workout": "Today's Workout",
         "workoutDesc": "Follow along with your personalized exercises",
         "analysis": "Analysis & Tips",
