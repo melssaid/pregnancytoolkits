@@ -11,42 +11,42 @@ import type { Video, VideosByLang } from '@/components/VideoLibrary';
 // ════════════════════════════════════════════════════════════
 export const nutritionVideosByLang: VideosByLang = {
   ar: [
-    { id: "1", title: "تغذية الحامل - نصائح مهمة", description: "نصائح غذائية أساسية للحامل من أخصائية تغذية", youtubeId: "JYP1yTpfSLk", duration: "12:00", category: "تغذية" },
-    { id: "2", title: "أطعمة مفيدة أثناء الحمل", description: "أفضل الأطعمة لصحة الأم والجنين", youtubeId: "3xN2g0tYbHo", duration: "10:00", category: "تغذية" },
-    { id: "3", title: "نظام غذائي صحي للحامل", description: "خطة وجبات صحية لكل ثلث من الحمل", youtubeId: "QZpEq5JFHSQ", duration: "15:00", category: "تغذية" },
-    { id: "4", title: "أطعمة ممنوعة أثناء الحمل", description: "أطعمة يجب تجنبها أثناء الحمل", youtubeId: "sJ0lDZ6qfhM", duration: "8:00", category: "سلامة غذائية" },
-    { id: "5", title: "سكر الحمل - نظام غذائي", description: "التغذية المناسبة لسكري الحمل", youtubeId: "68NMhivpmWQ", duration: "9:30", category: "حمية خاصة" },
-    { id: "6", title: "وجبات صحية للحامل", description: "أفكار وجبات سريعة ومغذية", youtubeId: "0QZWIuJGVZY", duration: "12:30", category: "وصفات" },
+    { id: "1", title: "تغذية الحامل في الثلث الثاني", description: "أهم المأكولات لتغذية الحامل", youtubeId: "fYsBctNUamo", duration: "10:00", category: "تغذية" },
+    { id: "2", title: "ماذا تأكل الحامل في الشهر التاسع", description: "غذاء صحي لصحة الجنين في الأشهر الأخيرة", youtubeId: "3ggC4hbvjkc", duration: "12:00", category: "تغذية" },
+    { id: "3", title: "الأكل الممنوع للحامل في الشهور الأولى", description: "الأطعمة التي يجب تجنبها خلال فترة الحمل", youtubeId: "1xVgisdrTUY", duration: "10:00", category: "سلامة غذائية" },
+    { id: "4", title: "أفضل نظام غذائي لسكري الحمل", description: "نصائح شاملة من أخصائية تغذية", youtubeId: "UqYAbM8Drl4", duration: "15:00", category: "حمية خاصة" },
+    { id: "5", title: "الأكل بعد الولادة القيصرية والطبيعية", description: "متى يبدأ وكيف يسرع التعافي", youtubeId: "lyFyFCOR4Ms", duration: "12:00", category: "وصفات" },
+    { id: "6", title: "أهم الأسئلة عن تغذية الحامل", description: "نصائح طبية شاملة حول التغذية أثناء الحمل", youtubeId: "lzE61vNG3Ug", duration: "14:00", category: "تغذية" },
   ],
   tr: [
     { id: "1", title: "Hamilelikte Beslenme Rehberi", description: "Gebelikte doğru beslenme ve önemli besinler", youtubeId: "0_z0oqZyHq8", duration: "15:00", category: "Beslenme" },
-    { id: "2", title: "Gebelikte Yenmemesi Gerekenler", description: "Hamilelikte sakınılması gereken yiyecekler", youtubeId: "MxFf7P-DK6c", duration: "12:00", category: "Beslenme" },
+    { id: "2", title: "Hamilelikte Sağlıklı Beslenme", description: "Sağlıklı beslenme için gıda seçimi", youtubeId: "LhN0BxSKWN8", duration: "10:00", category: "Beslenme" },
     { id: "3", title: "Hamilelikte Sağlıklı Tarifler", description: "Kolay ve besleyici hamilelik tarifleri", youtubeId: "ohLIZdyOKFs", duration: "10:00", category: "Tarifler" },
     { id: "4", title: "Gebelik Diyabetinde Beslenme", description: "Gestasyonel diyabette doğru beslenme planı", youtubeId: "9yx64E6BZ6g", duration: "14:00", category: "Özel Diyet" },
   ],
   de: [
-    { id: "1", title: "Ernährung in der Schwangerschaft", description: "Gesunde Ernährungstipps für Schwangere", youtubeId: "4JfuBEJLbDc", duration: "12:00", category: "Ernährung" },
-    { id: "2", title: "Gewichtszunahme in der Schwangerschaft", description: "Wie viel Gewicht ist normal?", youtubeId: "M3dMkgv2JPw", duration: "15:00", category: "Ernährung" },
+    { id: "1", title: "Gewichtszunahme in der Schwangerschaft", description: "Wie viel Gewicht ist normal? Hebamme erklärt", youtubeId: "4JfuBEJLbDc", duration: "12:00", category: "Ernährung" },
+    { id: "2", title: "Worauf Schwangere bei der Ernährung achten sollten", description: "Ärztliche Empfehlungen zur Ernährung", youtubeId: "ceahxb6bUPg", duration: "15:00", category: "Ernährung" },
     { id: "3", title: "Verbotene Lebensmittel", description: "Was Sie in der Schwangerschaft meiden sollten", youtubeId: "VxFhaplv7dc", duration: "10:00", category: "Sicherheit" },
     { id: "4", title: "Schwangerschaftsdiabetes Ernährung", description: "Richtige Ernährung bei Gestationsdiabetes", youtubeId: "96zbdupk5xo", duration: "11:00", category: "Spezialdiät" },
   ],
   fr: [
-    { id: "1", title: "Alimentation pendant la grossesse", description: "Guide nutritionnel complet pour femmes enceintes", youtubeId: "EswSlduwhDg", duration: "14:00", category: "Nutrition" },
-    { id: "2", title: "Aliments à éviter enceinte", description: "Ce qu'il ne faut pas manger pendant la grossesse", youtubeId: "9zxp0DtuasU", duration: "10:00", category: "Sécurité" },
-    { id: "3", title: "Recettes saines pour la grossesse", description: "Repas nutritifs et faciles pour futures mamans", youtubeId: "US0V_iJiGwE", duration: "12:00", category: "Recettes" },
-    { id: "4", title: "Diabète gestationnel - Nutrition", description: "Conseils alimentaires pour le diabète de grossesse", youtubeId: "gqIo3ezq-j0", duration: "11:00", category: "Régime spécial" },
+    { id: "1", title: "15 infos pour les femmes enceintes", description: "Suivi de grossesse: alimentation, vaccins, vitamines", youtubeId: "NoyKEfe-t2k", duration: "14:00", category: "Nutrition" },
+    { id: "2", title: "Vitamines et grossesse", description: "Complémentation en acide folique et vitamines essentielles", youtubeId: "LFP2b6Hdgeo", duration: "10:00", category: "Nutrition" },
+    { id: "3", title: "Régime lors de Diabète gestationnel", description: "Conseils alimentaires pour le diabète de grossesse", youtubeId: "jG_GaN_VREI", duration: "12:00", category: "Régime spécial" },
+    { id: "4", title: "Alimentation pendant la grossesse", description: "Guide nutritionnel complet pour femmes enceintes", youtubeId: "EswSlduwhDg", duration: "14:00", category: "Nutrition" },
   ],
   es: [
-    { id: "1", title: "Alimentación en el embarazo", description: "Guía nutricional completa para embarazadas", youtubeId: "yvsnl79qH28", duration: "14:00", category: "Nutrición" },
+    { id: "1", title: "Alimentos recomendables en el embarazo", description: "Qué alimentos son los más recomendables", youtubeId: "8EhS6tIljiY", duration: "14:00", category: "Nutrición" },
     { id: "2", title: "Alimentos prohibidos y permitidos", description: "Qué comer y qué evitar durante el embarazo", youtubeId: "spRcfWdfqMY", duration: "12:00", category: "Seguridad" },
-    { id: "3", title: "Nutrición por trimestre", description: "Plan de alimentación adaptado a cada trimestre", youtubeId: "8EhS6tIljiY", duration: "15:00", category: "Nutrición" },
-    { id: "4", title: "Alimentación y lactancia", description: "Nutrición durante el embarazo y lactancia", youtubeId: "D28cW3qYiRc", duration: "10:00", category: "Lactancia" },
+    { id: "3", title: "10 alimentos que toda embarazada debe comer", description: "Alimentos esenciales durante la gestación", youtubeId: "7Mr1uIWJ2CE", duration: "10:00", category: "Nutrición" },
+    { id: "4", title: "Frutas para embarazadas", description: "Las 6 frutas que toda embarazada debería comer", youtubeId: "ViLkH2FN0m8", duration: "8:00", category: "Nutrición" },
     { id: "5", title: "Diabetes gestacional - Dieta", description: "Plan alimenticio para diabetes en el embarazo", youtubeId: "0qrlkS0AU7U", duration: "11:00", category: "Dieta especial" },
   ],
   pt: [
-    { id: "1", title: "Alimentação na gravidez", description: "Guia nutricional completo para gestantes", youtubeId: "83irOqL0DUc", duration: "14:00", category: "Nutrição" },
+    { id: "1", title: "Alimentos proibidos na gravidez", description: "O que não pode comer na gestação", youtubeId: "qHIkg_bqU4A", duration: "12:00", category: "Segurança" },
     { id: "2", title: "O que comer na gravidez", description: "Alimentos essenciais para mãe e bebê", youtubeId: "qFpOwKdJTwo", duration: "12:00", category: "Nutrição" },
-    { id: "3", title: "Mitos sobre alimentação na gravidez", description: "Verdades e mentiras sobre a dieta gestacional", youtubeId: "JRaMsOccox0", duration: "10:00", category: "Segurança" },
+    { id: "3", title: "Alimentação na gravidez", description: "Guia nutricional completo para gestantes", youtubeId: "83irOqL0DUc", duration: "14:00", category: "Nutrição" },
     { id: "4", title: "Introdução alimentar do bebê", description: "Alimentação equilibrada para bebê de 6 meses", youtubeId: "yoA_k8Vx0N8", duration: "15:00", category: "Pós-parto" },
   ],
   default: [
@@ -459,9 +459,9 @@ export const mentalHealthVideosByLang = (t: (key: string) => string): VideosByLa
 // ════════════════════════════════════════════════════════════
 export const generalVideosByLang: VideosByLang = {
   ar: [
-    { id: "1", youtubeId: "JYP1yTpfSLk", title: "تغذية الحامل - نصائح مهمة", description: "نصائح غذائية أساسية للحامل", category: "تغذية", duration: "12:00" },
-    { id: "2", youtubeId: "3xN2g0tYbHo", title: "أطعمة مفيدة أثناء الحمل", description: "أفضل الأطعمة لصحة الأم والجنين", category: "تغذية", duration: "10:00" },
-    { id: "3", youtubeId: "sJ0lDZ6qfhM", title: "أطعمة ممنوعة أثناء الحمل", description: "أطعمة يجب تجنبها", category: "تغذية", duration: "8:00" },
+    { id: "1", youtubeId: "fYsBctNUamo", title: "تغذية الحامل في الثلث الثاني", description: "أهم المأكولات لتغذية الحامل", category: "تغذية", duration: "10:00" },
+    { id: "2", youtubeId: "1xVgisdrTUY", title: "الأكل الممنوع للحامل", description: "الأطعمة التي يجب تجنبها", category: "تغذية", duration: "10:00" },
+    { id: "3", youtubeId: "UqYAbM8Drl4", title: "نظام غذائي لسكري الحمل", description: "نصائح من أخصائية تغذية", category: "تغذية", duration: "15:00" },
     { id: "4", youtubeId: "pCSjhbVOdYQ", title: "تأمل استرخاء الحمل", description: "تأمل مهدئ للأمهات الحوامل", category: "صحة نفسية", duration: "60:00" },
     { id: "5", youtubeId: "pHzsNfr2NCQ", title: "يوغا ما قبل الولادة", description: "يوغا استرخاء للحامل", category: "صحة نفسية", duration: "15:00" },
     { id: "6", youtubeId: "qa7RY4V6ihM", title: "تمرين كامل للحامل", description: "تمرين لطيف لكامل الجسم", category: "تمارين", duration: "10:00" },

@@ -94,9 +94,11 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
   const [browseOpen, setBrowseOpen] = useState(false);
 
   // Resolve videos: prefer videosByLang with language fallback, then videosProp
+  // Normalize language code (e.g. 'ar-SA' → 'ar') to match videosByLang keys
   const videos = useMemo(() => {
     if (videosByLang) {
-      return videosByLang[i18n.language] || videosByLang['default'] || videosProp || [];
+      const lang = i18n.language?.split('-')[0] || 'en';
+      return videosByLang[lang] || videosByLang['default'] || videosProp || [];
     }
     return videosProp || [];
   }, [videosByLang, videosProp, i18n.language]);
