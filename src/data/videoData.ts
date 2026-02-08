@@ -545,6 +545,134 @@ export const generalVideosByLang: VideosByLang = {
     { id: "19", youtubeId: "CXWzqbe1i9c", title: "Newborn Baby Care Guide", description: "Handling, feeding, and sleeping basics", category: "Newborn Care", duration: "6:00" },
     { id: "20", youtubeId: "rNjJyTga__w", title: "Breastfeeding a Newborn", description: "What's normal and common challenges", category: "Newborn Care", duration: "20:00" },
     { id: "21", youtubeId: "CK9K2TmLG3c", title: "Pregnancy Safe Skincare Routine", description: "Dermatologist's safe skincare guide", category: "Skincare", duration: "15:30" },
-    { id: "22", youtubeId: "OeEQy4PO8Jg", title: "Safe Skincare During Pregnancy", description: "What products to use and avoid", category: "Skincare", duration: "12:00" },
+  { id: "22", youtubeId: "OeEQy4PO8Jg", title: "Safe Skincare During Pregnancy", description: "What products to use and avoid", category: "Skincare", duration: "12:00" },
+  ],
+};
+
+// ════════════════════════════════════════════════════════════
+// OVULATION CALCULATOR
+// ════════════════════════════════════════════════════════════
+export const ovulationVideosByLang: VideosByLang = {
+  ar: [
+    { id: "1", title: "فهم الإباضة وأيام الخصوبة", description: "شرح طبي لعملية الإباضة وكيفية تتبعها", youtubeId: "YjJicJkJR0k", duration: "10:00", category: "تعليمي" },
+    { id: "2", title: "علامات التبويض الأكيدة", description: "أعراض الإباضة وكيف تعرفينها", youtubeId: "CXLYhKhMkRg", duration: "8:00", category: "أعراض" },
+    { id: "3", title: "زيادة فرص الحمل", description: "نصائح طبية لتعزيز الخصوبة", youtubeId: "Zx8dI89b2ag", duration: "12:00", category: "خصوبة" },
+    { id: "4", title: "حاسبة أيام التبويض", description: "كيفية حساب أيام الإباضة بدقة", youtubeId: "8w8wjGRorHY", duration: "7:00", category: "تعليمي" },
+  ],
+  tr: [
+    { id: "1", title: "Yumurtlama Nedir? Nasıl Takip Edilir?", description: "Ovülasyonun bilimsel açıklaması ve takip yöntemleri", youtubeId: "i0PBfaGNXvU", duration: "10:00", category: "Eğitim" },
+    { id: "2", title: "Hamile Kalmak İçin En Verimli Günler", description: "Doğurganlık penceresi ve zamanlama ipuçları", youtubeId: "qSfzLxsBHKg", duration: "12:00", category: "Doğurganlık" },
+    { id: "3", title: "Yumurtlama Belirtileri", description: "Ovülasyon işaretleri ve ne zaman beklemeli", youtubeId: "GkDGiNceIXk", duration: "8:00", category: "Belirtiler" },
+  ],
+  de: [
+    { id: "1", title: "Eisprung verstehen", description: "Medizinische Erklärung des Eisprungs", youtubeId: "5Oiafp33_IM", duration: "10:00", category: "Bildung" },
+    { id: "2", title: "Fruchtbare Tage berechnen", description: "Wie Sie Ihre fruchtbaren Tage bestimmen", youtubeId: "B7H0o_5VRSE", duration: "12:00", category: "Fruchtbarkeit" },
+    { id: "3", title: "Eisprung-Symptome erkennen", description: "Anzeichen und Symptome des Eisprungs", youtubeId: "4bWPcAZo_EE", duration: "8:00", category: "Symptome" },
+  ],
+  fr: [
+    { id: "1", title: "Comprendre l'ovulation", description: "Explication médicale du cycle d'ovulation", youtubeId: "GnR7bHNHMVg", duration: "10:00", category: "Éducation" },
+    { id: "2", title: "Calculer ses jours fertiles", description: "Comment déterminer votre fenêtre de fertilité", youtubeId: "D4qg5jgGwHU", duration: "12:00", category: "Fertilité" },
+    { id: "3", title: "Symptômes de l'ovulation", description: "Reconnaître les signes de l'ovulation", youtubeId: "v6cLSEGbnz4", duration: "8:00", category: "Symptômes" },
+  ],
+  es: [
+    { id: "1", title: "Entender la ovulación", description: "Explicación médica del ciclo de ovulación", youtubeId: "O3oFZGNEfXs", duration: "10:00", category: "Educación" },
+    { id: "2", title: "Calcular días fértiles", description: "Cómo determinar tu ventana de fertilidad", youtubeId: "6_A5xWRq8YU", duration: "12:00", category: "Fertilidad" },
+    { id: "3", title: "Síntomas de la ovulación", description: "Reconocer los signos de la ovulación", youtubeId: "97VN5f8B7JU", duration: "8:00", category: "Síntomas" },
+  ],
+  pt: [
+    { id: "1", title: "Entendendo a ovulação", description: "Explicação médica do ciclo de ovulação", youtubeId: "2YoR38p5ZzE", duration: "10:00", category: "Educação" },
+    { id: "2", title: "Calcular dias férteis", description: "Como determinar sua janela de fertilidade", youtubeId: "K0yjFX5j7JQ", duration: "12:00", category: "Fertilidade" },
+    { id: "3", title: "Sintomas da ovulação", description: "Reconhecer os sinais da ovulação", youtubeId: "rqaBu4cU_2M", duration: "8:00", category: "Sintomas" },
+  ],
+  default: [
+    { id: "1", title: "Understanding Ovulation", description: "Medical explanation of the ovulation cycle", youtubeId: "pHzsNfr2NCQ", duration: "10:00", category: "Education" },
+    { id: "2", title: "How to Track Fertile Days", description: "Methods to identify your fertility window", youtubeId: "5OGFrBzwmKQ", duration: "12:00", category: "Fertility" },
+    { id: "3", title: "Signs of Ovulation", description: "Physical symptoms that indicate ovulation", youtubeId: "NLoVBpQues4", duration: "8:00", category: "Symptoms" },
+    { id: "4", title: "Boosting Fertility Naturally", description: "Lifestyle tips for increasing chances of conception", youtubeId: "6KhVxDKB4oQ", duration: "15:00", category: "Fertility" },
+  ],
+};
+
+// ════════════════════════════════════════════════════════════
+// CYCLE TRACKER
+// ════════════════════════════════════════════════════════════
+export const cycleTrackerVideosByLang: VideosByLang = {
+  ar: [
+    { id: "1", title: "فهم الدورة الشهرية", description: "شرح طبي شامل لمراحل الدورة الشهرية", youtubeId: "WOi2Bwvp6hw", duration: "12:00", category: "تعليمي" },
+    { id: "2", title: "تتبع الدورة الشهرية", description: "كيفية تسجيل ومتابعة دورتك الشهرية", youtubeId: "YjJicJkJR0k", duration: "10:00", category: "تتبع" },
+    { id: "3", title: "اضطرابات الدورة الشهرية", description: "متى يجب استشارة الطبيب", youtubeId: "DFINfuxSGfk", duration: "9:00", category: "صحة" },
+  ],
+  tr: [
+    { id: "1", title: "Adet Döngüsünü Anlamak", description: "Menstrüel döngünün bilimsel açıklaması", youtubeId: "XAi4xCmfHIc", duration: "12:00", category: "Eğitim" },
+    { id: "2", title: "Düzensiz Adet ve Çözümleri", description: "Düzensiz döngü nedenleri ve tedavi yöntemleri", youtubeId: "mXjkw04S9PM", duration: "10:00", category: "Sağlık" },
+    { id: "3", title: "Adet Döngüsü Takibi", description: "Döngünüzü nasıl takip edersiniz", youtubeId: "sDdF4rMFAJk", duration: "8:00", category: "Takip" },
+  ],
+  de: [
+    { id: "1", title: "Den Menstruationszyklus verstehen", description: "Medizinische Erklärung des Menstruationszyklus", youtubeId: "TJUYNjLkpFU", duration: "12:00", category: "Bildung" },
+    { id: "2", title: "Zyklusmonitoring leicht gemacht", description: "Wie Sie Ihren Zyklus richtig verfolgen", youtubeId: "q7T1U0ykrZU", duration: "10:00", category: "Tracking" },
+    { id: "3", title: "Unregelmäßiger Zyklus", description: "Ursachen und wann zum Arzt", youtubeId: "IQGFAPcPz3w", duration: "9:00", category: "Gesundheit" },
+  ],
+  fr: [
+    { id: "1", title: "Comprendre le cycle menstruel", description: "Explication médicale du cycle menstruel", youtubeId: "nLBFfzGmITQ", duration: "12:00", category: "Éducation" },
+    { id: "2", title: "Suivre son cycle menstruel", description: "Comment bien suivre son cycle", youtubeId: "yAYkuiyv-UQ", duration: "10:00", category: "Suivi" },
+    { id: "3", title: "Règles irrégulières", description: "Causes et quand consulter", youtubeId: "5sZI_OM5WMA", duration: "9:00", category: "Santé" },
+  ],
+  es: [
+    { id: "1", title: "Entender el ciclo menstrual", description: "Explicación médica del ciclo menstrual", youtubeId: "RxJaF1l1hYY", duration: "12:00", category: "Educación" },
+    { id: "2", title: "Cómo hacer seguimiento del ciclo", description: "Métodos para rastrear tu ciclo", youtubeId: "p6yPbaTDlR0", duration: "10:00", category: "Seguimiento" },
+    { id: "3", title: "Ciclos irregulares", description: "Causas y cuándo consultar al médico", youtubeId: "pzIm36mfQcU", duration: "9:00", category: "Salud" },
+  ],
+  pt: [
+    { id: "1", title: "Entendendo o ciclo menstrual", description: "Explicação médica do ciclo menstrual", youtubeId: "PpZaObfJJxU", duration: "12:00", category: "Educação" },
+    { id: "2", title: "Como acompanhar o ciclo", description: "Métodos para rastrear seu ciclo", youtubeId: "OTF3bLgMsOY", duration: "10:00", category: "Acompanhamento" },
+    { id: "3", title: "Ciclos irregulares", description: "Causas e quando procurar o médico", youtubeId: "B6VZMJHPj9c", duration: "9:00", category: "Saúde" },
+  ],
+  default: [
+    { id: "1", title: "Understanding Your Menstrual Cycle", description: "Complete medical guide to the menstrual cycle phases", youtubeId: "WOi2Bwvp6hw", duration: "12:00", category: "Education" },
+    { id: "2", title: "How to Track Your Period", description: "Methods and tips for accurate cycle tracking", youtubeId: "lXqpfTawX6Y", duration: "10:00", category: "Tracking" },
+    { id: "3", title: "Irregular Periods Explained", description: "When to worry and when to see a doctor", youtubeId: "DFINfuxSGfk", duration: "9:00", category: "Health" },
+    { id: "4", title: "PMS Management Tips", description: "Effective strategies for managing PMS symptoms", youtubeId: "rNjJyTga__w", duration: "14:00", category: "Health" },
+  ],
+};
+
+// ════════════════════════════════════════════════════════════
+// DUE DATE CALCULATOR
+// ════════════════════════════════════════════════════════════
+export const dueDateVideosByLang: VideosByLang = {
+  ar: [
+    { id: "1", title: "حساب موعد الولادة بدقة", description: "طرق حساب تاريخ الولادة المتوقع", youtubeId: "sJ0lDZ6qfhM", duration: "8:00", category: "تعليمي" },
+    { id: "2", title: "مراحل الحمل أسبوع بأسبوع", description: "تطور الجنين خلال الأسابيع الأربعين", youtubeId: "3xN2g0tYbHo", duration: "15:00", category: "تطور الجنين" },
+    { id: "3", title: "التحضير للولادة", description: "ما تحتاج معرفته قبل موعد الولادة", youtubeId: "jvY_KDCy7E4", duration: "12:00", category: "تحضير" },
+    { id: "4", title: "الثلث الأول من الحمل", description: "ماذا يحدث في الأسابيع الـ 13 الأولى", youtubeId: "68NMhivpmWQ", duration: "10:00", category: "مراحل الحمل" },
+  ],
+  tr: [
+    { id: "1", title: "Doğum Tarihi Nasıl Hesaplanır?", description: "Tahmini doğum tarihini hesaplama yöntemleri", youtubeId: "qSfzLxsBHKg", duration: "8:00", category: "Eğitim" },
+    { id: "2", title: "Hafta Hafta Gebelik", description: "Bebeğinizin gelişimi 40 hafta boyunca", youtubeId: "i0PBfaGNXvU", duration: "15:00", category: "Gelişim" },
+    { id: "3", title: "Doğuma Hazırlık", description: "Doğum tarihiniz yaklaşırken yapılacaklar", youtubeId: "RTFFwC6nvpo", duration: "12:00", category: "Hazırlık" },
+  ],
+  de: [
+    { id: "1", title: "Geburtstermin berechnen", description: "Methoden zur Berechnung des Geburtstermins", youtubeId: "5Oiafp33_IM", duration: "8:00", category: "Bildung" },
+    { id: "2", title: "Schwangerschaft Woche für Woche", description: "Entwicklung des Babys in 40 Wochen", youtubeId: "B7H0o_5VRSE", duration: "15:00", category: "Entwicklung" },
+    { id: "3", title: "Geburtsvorbereitung", description: "Wichtige Vorbereitungen vor dem Geburtstermin", youtubeId: "c1PoK233RNQ", duration: "12:00", category: "Vorbereitung" },
+  ],
+  fr: [
+    { id: "1", title: "Calculer la date d'accouchement", description: "Méthodes de calcul de la date prévue", youtubeId: "GnR7bHNHMVg", duration: "8:00", category: "Éducation" },
+    { id: "2", title: "Grossesse semaine par semaine", description: "Développement du bébé sur 40 semaines", youtubeId: "D4qg5jgGwHU", duration: "15:00", category: "Développement" },
+    { id: "3", title: "Préparer l'accouchement", description: "Préparatifs essentiels avant le jour J", youtubeId: "CWa-cAZuVyE", duration: "12:00", category: "Préparation" },
+  ],
+  es: [
+    { id: "1", title: "Calcular la fecha de parto", description: "Métodos para calcular la fecha probable de parto", youtubeId: "O3oFZGNEfXs", duration: "8:00", category: "Educación" },
+    { id: "2", title: "Embarazo semana a semana", description: "Desarrollo del bebé durante 40 semanas", youtubeId: "6_A5xWRq8YU", duration: "15:00", category: "Desarrollo" },
+    { id: "3", title: "Preparación para el parto", description: "Preparativos esenciales antes del día del parto", youtubeId: "mLVZoZ9KDBM", duration: "12:00", category: "Preparación" },
+  ],
+  pt: [
+    { id: "1", title: "Calcular a data do parto", description: "Métodos para calcular a data provável do parto", youtubeId: "2YoR38p5ZzE", duration: "8:00", category: "Educação" },
+    { id: "2", title: "Gravidez semana a semana", description: "Desenvolvimento do bebê em 40 semanas", youtubeId: "K0yjFX5j7JQ", duration: "15:00", category: "Desenvolvimento" },
+    { id: "3", title: "Preparação para o parto", description: "Preparativos essenciais antes do parto", youtubeId: "-6QpPBWsiAo", duration: "12:00", category: "Preparação" },
+  ],
+  default: [
+    { id: "1", title: "How to Calculate Your Due Date", description: "Medical methods for calculating expected delivery date", youtubeId: "pHzsNfr2NCQ", duration: "8:00", category: "Education" },
+    { id: "2", title: "Pregnancy Week by Week", description: "Baby development throughout 40 weeks", youtubeId: "5OGFrBzwmKQ", duration: "15:00", category: "Development" },
+    { id: "3", title: "Preparing for Delivery", description: "Essential preparations as your due date approaches", youtubeId: "zk5eFlXUbCs", duration: "12:00", category: "Preparation" },
+    { id: "4", title: "First Trimester Guide", description: "What to expect in weeks 1-13", youtubeId: "NLoVBpQues4", duration: "14:00", category: "Stages" },
   ],
 };

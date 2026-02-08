@@ -3184,5 +3184,11 @@
   "toolsInternal.weightGain.maxRecommended": "Max. empfohlen",
   "toolsInternal.weightGain.yourWeight": "Dein Gewicht",
   "toolsInternal.weightGain.weekAxis": "Woche",
-  "toolsInternal.weightGain.weightGainKg": "Gewichtszunahme (kg)"
+  "toolsInternal.weightGain.weightGainKg": "Gewichtszunahme (kg)",
+  "toolsInternal.ovulation.videosTitle": "Fruchtbarkeits- und Eisprung-Videos",
+  "toolsInternal.ovulation.videosSubtitle": "Erfahren Sie mehr über Ihr Fruchtbarkeitsfenster",
+  "toolsInternal.cycleTracker.videosTitle": "Menstruationszyklus-Videos",
+  "toolsInternal.cycleTracker.videosSubtitle": "Lernen Sie über Zyklusverfolgung und Gesundheit",
+  "toolsInternal.dueDate.videosTitle": "Schwangerschafts-Zeitplan-Videos",
+  "toolsInternal.dueDate.videosSubtitle": "Wöchentliche Entwicklung und Vorbereitungsanleitungen"
 }

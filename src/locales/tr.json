@@ -3408,5 +3408,11 @@
   "toolsInternal.weightGain.maxRecommended": "Maks. Önerilen",
   "toolsInternal.weightGain.yourWeight": "Kilonuz",
   "toolsInternal.weightGain.weekAxis": "Hafta",
-  "toolsInternal.weightGain.weightGainKg": "Kilo Artışı (kg)"
+  "toolsInternal.weightGain.weightGainKg": "Kilo Artışı (kg)",
+  "toolsInternal.ovulation.videosTitle": "Doğurganlık ve Yumurtlama Videoları",
+  "toolsInternal.ovulation.videosSubtitle": "Doğurganlık penceresi ve yumurtlama döngüsü hakkında bilgi edinin",
+  "toolsInternal.cycleTracker.videosTitle": "Adet Döngüsü Videoları",
+  "toolsInternal.cycleTracker.videosSubtitle": "Döngü takibi ve üreme sağlığı hakkında bilgi edinin",
+  "toolsInternal.dueDate.videosTitle": "Gebelik Zaman Çizelgesi Videoları",
+  "toolsInternal.dueDate.videosSubtitle": "Haftalık gelişim ve doğuma hazırlık rehberleri"
 }

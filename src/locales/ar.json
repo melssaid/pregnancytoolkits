@@ -3295,5 +3295,11 @@
   "toolsInternal.kickCounter.warningFewer": "أقل من 10 حركات في ساعتين",
   "toolsInternal.kickCounter.warningDecrease": "انخفاض ملحوظ في نشاط الطفل المعتاد",
   "toolsInternal.kickCounter.warningNoMovements": "عدم الشعور بحركات لعدة ساعات",
-  "toolsInternal.kickCounter.educationalNote": "الأطفال أكثر نشاطاً بين 9 مساءً و1 صباحاً. عد الركلات في نفس الوقت يومياً لتتبع منتظم."
+  "toolsInternal.kickCounter.educationalNote": "الأطفال أكثر نشاطاً بين 9 مساءً و1 صباحاً. عد الركلات في نفس الوقت يومياً لتتبع منتظم.",
+  "toolsInternal.ovulation.videosTitle": "فيديوهات الخصوبة والإباضة",
+  "toolsInternal.ovulation.videosSubtitle": "تعرّف على نافذة الخصوبة ودورة الإباضة",
+  "toolsInternal.cycleTracker.videosTitle": "فيديوهات الدورة الشهرية",
+  "toolsInternal.cycleTracker.videosSubtitle": "تعلّم عن تتبع الدورة والصحة الإنجابية",
+  "toolsInternal.dueDate.videosTitle": "فيديوهات الجدول الزمني للحمل",
+  "toolsInternal.dueDate.videosSubtitle": "أدلة التطور الأسبوعي والتحضير للولادة"
 }

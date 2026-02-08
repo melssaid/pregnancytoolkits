@@ -1114,7 +1114,9 @@
       "save": "Save",
       "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your healthcare provider may adjust your due date based on ultrasound measurements.",
       "aiGuideTitle": "AI Pregnancy Guide",
-      "getWeeklyGuide": "Get Weekly Guide"
+      "getWeeklyGuide": "Get Weekly Guide",
+      "videosTitle": "Pregnancy Timeline Videos",
+      "videosSubtitle": "Week by week development and preparation guides"
     },
     "kickCounter": {
       "title": "Smart Kick Counter",
@@ -2433,6 +2435,8 @@
       "dayCycle": "day cycle",
       "flow": "flow",
       "trackTip": "Track at least 3-6 cycles for more accurate predictions. Cycle length can vary due to stress, illness, or other factors.",
+      "videosTitle": "Menstrual Cycle Videos",
+      "videosSubtitle": "Learn about cycle tracking and reproductive health",
       "flowLevels": {
         "light": "Light",
         "medium": "Medium",
@@ -3022,7 +3026,9 @@
       "savedDesc": "Your ovulation calculation has been saved.",
       "deleted": "Deleted",
       "deletedDesc": "Result removed from history.",
-      "disclaimer": "This calculator provides estimates based on average cycle patterns. Individual cycles may vary. Consider using ovulation predictor kits for more accuracy."
+      "disclaimer": "This calculator provides estimates based on average cycle patterns. Individual cycles may vary. Consider using ovulation predictor kits for more accuracy.",
+      "videosTitle": "Fertility & Ovulation Videos",
+      "videosSubtitle": "Learn about your fertile window and ovulation cycle"
     },
     "forbiddenFoods": {
       "title": "Food Safety Guide",
