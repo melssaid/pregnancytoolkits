@@ -12,43 +12,8 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
-import { VideoLibrary, Video } from "@/components/VideoLibrary";
-
-const getSkincareVideos = (t: any): Video[] => [
-  {
-    id: "1",
-    title: t('toolsInternal.skincare.videos.v1.title'),
-    description: t('toolsInternal.skincare.videos.v1.description'),
-    youtubeId: "CK9K2TmLG3c",
-    duration: "15:30",
-    category: t('toolsInternal.skincare.videos.v1.category')
-  },
-  {
-    id: "2",
-    title: t('toolsInternal.skincare.videos.v2.title'),
-    description: t('toolsInternal.skincare.videos.v2.description'),
-    youtubeId: "OeEQy4PO8Jg",
-    duration: "12:00",
-    category: t('toolsInternal.skincare.videos.v2.category')
-  },
-  {
-    id: "3",
-    title: t('toolsInternal.skincare.videos.v3.title'),
-    description: t('toolsInternal.skincare.videos.v3.description'),
-    youtubeId: "2kNGY3gyrEc",
-    duration: "11:30",
-    category: t('toolsInternal.skincare.videos.v3.category')
-  },
-  {
-    id: "4",
-    title: t('toolsInternal.skincare.videos.v4.title'),
-    description: t('toolsInternal.skincare.videos.v4.description'),
-    youtubeId: "pozcaggYIWk",
-    duration: "8:42",
-    category: t('toolsInternal.skincare.videos.v4.category')
-  }
-];
-
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { skincareVideosByLang } from "@/data/videoData";
 const CONCERN_KEYS = [
   "acne",
   "melasma",
@@ -253,7 +218,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
-          videos={getSkincareVideos(t)}
+          videosByLang={skincareVideosByLang(t)}
           title={t('toolsInternal.skincare.skincareVideos')}
           subtitle={t('toolsInternal.skincare.skincareVideosSubtitle')}
           accentColor="violet"

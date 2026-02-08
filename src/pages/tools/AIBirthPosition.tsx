@@ -12,42 +12,8 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
-import { VideoLibrary, Video } from "@/components/VideoLibrary";
-
-const birthPositionVideos: Video[] = [
-  {
-    id: "1",
-    title: "Top 5 Pushing Positions for Childbirth",
-    description: "Best positions for effective pushing during labor",
-    youtubeId: "npGb1aHQteo",
-    duration: "10:00",
-    category: "Pushing"
-  },
-  {
-    id: "2",
-    title: "Birth Faster With Less Pain",
-    description: "Childbirth positions for easier labor",
-    youtubeId: "nc8IbAAotHo",
-    duration: "15:00",
-    category: "Labor Positions"
-  },
-  {
-    id: "3",
-    title: "Different Pushing Positions in Labour",
-    description: "Various positions explained for delivery",
-    youtubeId: "i7vcGKtyqCY",
-    duration: "12:00",
-    category: "Pushing"
-  },
-  {
-    id: "4",
-    title: "The Best Positions for Birth",
-    description: "Expert guide to optimal birthing positions",
-    youtubeId: "CENq9lrciN0",
-    duration: "14:00",
-    category: "Labor Positions"
-  },
-];
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { birthPositionVideosByLang } from "@/data/videoData";
 
 const AIBirthPosition = () => {
   const { t } = useTranslation();
@@ -249,7 +215,7 @@ Include safety considerations and when to change positions.`;
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
-          videos={birthPositionVideos}
+          videosByLang={birthPositionVideosByLang}
           title={t('toolsInternal.birthPosition.birthPositionVideos')}
           subtitle={t('toolsInternal.birthPosition.birthPositionVideosSubtitle')}
           accentColor="rose"

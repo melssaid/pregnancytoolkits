@@ -12,7 +12,8 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
-import { VideoLibrary, Video } from "@/components/VideoLibrary";
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { nauseaVideosByLang } from "@/data/videoData";
 
 const nauseaTriggers = [
   { id: "morning", labelKey: "toolsInternal.nauseaRelief.triggers.morning" },
@@ -34,40 +35,6 @@ const quickRemedies = [
   { nameKey: "toolsInternal.nauseaRelief.remedies.banana.name", tipKey: "toolsInternal.nauseaRelief.remedies.banana.tip" },
 ];
 
-const nauseaVideos: Video[] = [
-  {
-    id: "1",
-    title: "Top Tips for Nausea in Pregnancy",
-    description: "Expert advice from Dr. Lora Shahine on morning sickness",
-    youtubeId: "qTEDyHPUeYQ",
-    duration: "8:30",
-    category: "Relief Tips"
-  },
-  {
-    id: "2",
-    title: "4 Tips to Cope with Morning Sickness",
-    description: "Practical strategies to manage pregnancy nausea",
-    youtubeId: "C5TTWuV2Ztw",
-    duration: "5:15",
-    category: "Relief Tips"
-  },
-  {
-    id: "3",
-    title: "Managing Nausea During Pregnancy",
-    description: "Dr. Chloe Rozon discusses effective strategies",
-    youtubeId: "Y3-oVdPmh7U",
-    duration: "10:00",
-    category: "Medical Advice"
-  },
-  {
-    id: "4",
-    title: "First Trimester Survival Tips",
-    description: "OB/GYN tips for early pregnancy symptoms",
-    youtubeId: "KPA3DRZeH4A",
-    duration: "12:00",
-    category: "First Trimester"
-  },
-];
 
 const AINauseaRelief = () => {
   const { t } = useTranslation();
@@ -261,7 +228,7 @@ Be compassionate - morning sickness is exhausting!`;
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
-          videos={nauseaVideos}
+          videosByLang={nauseaVideosByLang}
           title={t('toolsInternal.nauseaRelief.videosTitle')}
           subtitle={t('toolsInternal.nauseaRelief.videosSubtitle')}
           accentColor="emerald"

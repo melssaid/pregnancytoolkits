@@ -12,8 +12,9 @@ import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
-import { VideoLibrary, Video } from "@/components/VideoLibrary";
+import { VideoLibrary } from "@/components/VideoLibrary";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { sleepVideosByLang } from "@/data/videoData";
 
 const sleepIssueKeys = [
   { id: "back-pain", key: "backPain", icon: "🔙" },
@@ -24,41 +25,6 @@ const sleepIssueKeys = [
   { id: "baby-movements", key: "babyMovements", icon: "👶" },
   { id: "hot-flashes", key: "hotFlashes", icon: "🌡️" },
   { id: "snoring", key: "snoring", icon: "😮‍💨" },
-];
-
-const sleepVideos: Video[] = [
-  {
-    id: "1",
-    title: "Pregnancy Relaxation Meditation",
-    description: "Calming meditation for better sleep during pregnancy",
-    youtubeId: "pCSjhbVOdYQ",
-    duration: "60:00",
-    category: "Meditation"
-  },
-  {
-    id: "2",
-    title: "Prenatal Sleep Meditation",
-    description: "Cozy sleep meditation for expecting mothers",
-    youtubeId: "FdeqyQTavzI",
-    duration: "25:00",
-    category: "Meditation"
-  },
-  {
-    id: "3",
-    title: "Prenatal Yoga for Relaxation",
-    description: "Deep relaxation yoga nidra for pregnancy",
-    youtubeId: "vEcZD8Js2Ws",
-    duration: "25:00",
-    category: "Sleep Tips"
-  },
-  {
-    id: "4",
-    title: "Newborn Sleep Preparation",
-    description: "Prepare for baby's sleep schedule",
-    youtubeId: "hpgjwK_oQe0",
-    duration: "18:00",
-    category: "Preparation"
-  },
 ];
 
 const AISleepOptimizer = () => {
@@ -362,7 +328,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
 
         {/* Educational Videos with Thumbnails */}
         <VideoLibrary
-          videos={sleepVideos}
+          videosByLang={sleepVideosByLang}
           title={t('toolsInternal.sleepOptimizer.sleepVideos')}
           subtitle={t('toolsInternal.sleepOptimizer.sleepVideosSubtitle')}
           accentColor="violet"

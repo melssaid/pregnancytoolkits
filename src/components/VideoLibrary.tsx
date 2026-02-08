@@ -19,8 +19,11 @@ export interface Video {
   thumbnail?: string;
 }
 
+export type VideosByLang = Record<string, Video[]>;
+
 interface VideoLibraryProps {
-  videos: Video[];
+  videos?: Video[];
+  videosByLang?: VideosByLang;
   title?: string;
   subtitle?: string;
   accentColor?: string;
@@ -79,7 +82,8 @@ const VideoThumbnail: React.FC<{
 };
 
 export const VideoLibrary: React.FC<VideoLibraryProps> = ({
-  videos,
+  videos: videosProp,
+  videosByLang,
   title,
   subtitle,
   accentColor = "blue"
@@ -88,6 +92,14 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [browseOpen, setBrowseOpen] = useState(false);
+
+  // Resolve videos: prefer videosByLang with language fallback, then videosProp
+  const videos = useMemo(() => {
+    if (videosByLang) {
+      return videosByLang[i18n.language] || videosByLang['default'] || videosProp || [];
+    }
+    return videosProp || [];
+  }, [videosByLang, videosProp, i18n.language]);
 
   const categories = useMemo(() => ['all', ...new Set(videos.map(v => v.category))], [videos]);
   
