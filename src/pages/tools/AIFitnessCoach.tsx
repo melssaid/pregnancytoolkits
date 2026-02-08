@@ -41,21 +41,35 @@ const exerciseDatabase: Exercise[] = [
   { id: 'deep-breathing', nameKey: 'deepBreathing', duration: 60, descriptionKey: 'deepBreathingDesc', category: 'cooldown', difficulty: 'beginner', caloriesPerMin: 1, muscleGroupKey: 'diaphragm' },
 ];
 
-const fitnessVideoIds = [
-  { youtubeId: "UfrXvINRIbM", duration: "25:00", categoryKey: "fullBody" },
-  { youtubeId: "tn54beUcPgo", duration: "35:00", categoryKey: "strength" },
-  { youtubeId: "TgrBkANcHw4", duration: "20:00", categoryKey: "stretching" },
-  { youtubeId: "vEcZD8Js2Ws", duration: "25:00", categoryKey: "yoga" },
-  { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
-  { youtubeId: "ta9IGkgEXts", duration: "30:00", categoryKey: "birthPrep" },
-  { youtubeId: "f7KnXTEpf5M", duration: "10:00", categoryKey: "core" },
-  { youtubeId: "InQu8jMT130", duration: "25:00", categoryKey: "lowImpact" },
-];
+// Language-specific video sets for cultural relevance
+const fitnessVideosByLang: Record<string, { youtubeId: string; duration: string; categoryKey: string }[]> = {
+  ar: [
+    { youtubeId: "pHzsNfr2NCQ", duration: "15:00", categoryKey: "yoga" },
+    { youtubeId: "qa7RY4V6ihM", duration: "10:00", categoryKey: "fullBody" },
+    { youtubeId: "Vy6jonW1lFg", duration: "12:00", categoryKey: "strength" },
+    { youtubeId: "jvY_KDCy7E4", duration: "8:00", categoryKey: "birthPrep" },
+    { youtubeId: "oBY_25mR2WU", duration: "15:00", categoryKey: "stretching" },
+    { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
+  ],
+  default: [
+    { youtubeId: "Mcic8Z-8pxY", duration: "30:00", categoryKey: "fullBody" },
+    { youtubeId: "M4IoSwHGezg", duration: "30:00", categoryKey: "strength" },
+    { youtubeId: "gb8ZF-8i160", duration: "15:00", categoryKey: "stretching" },
+    { youtubeId: "vEcZD8Js2Ws", duration: "25:00", categoryKey: "yoga" },
+    { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
+    { youtubeId: "f7KnXTEpf5M", duration: "10:00", categoryKey: "core" },
+    { youtubeId: "zk5eFlXUbCs", duration: "12:00", categoryKey: "birthPrep" },
+  ],
+};
+
+const getVideosByLanguage = (lang: string) => {
+  return fitnessVideosByLang[lang] || fitnessVideosByLang.default;
+};
 
 type CategoryFilter = 'all' | 'warmup' | 'strength' | 'cardio' | 'flexibility' | 'cooldown';
 
 const AIFitnessCoach: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentWeek, setCurrentWeek] = useState(12);
   const [fitnessLevel, setFitnessLevel] = useState<'beginner' | 'intermediate'>('beginner');
@@ -152,7 +166,8 @@ const AIFitnessCoach: React.FC = () => {
     c => c === 'all' || generatedWorkout.some(e => e.category === c)
   );
 
-  const fitnessVideos: Video[] = fitnessVideoIds.map((v, i) => ({
+  const currentVideoIds = getVideosByLanguage(i18n.language);
+  const fitnessVideos: Video[] = currentVideoIds.map((v, i) => ({
     id: String(i + 1),
     title: t(`toolsInternal.fitnessCoach.videos.${v.categoryKey}.title`),
     description: t(`toolsInternal.fitnessCoach.videos.${v.categoryKey}.description`),

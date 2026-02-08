@@ -84,7 +84,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
   subtitle,
   accentColor = "blue"
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [browseOpen, setBrowseOpen] = useState(false);
@@ -292,7 +292,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
             <AspectRatio ratio={16 / 9}>
               {selectedVideo && (
                 <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1&hl=${i18n.language}&cc_lang_pref=${i18n.language}`}
                   title={selectedVideo.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
