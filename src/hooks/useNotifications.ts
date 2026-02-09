@@ -312,6 +312,41 @@ export function useNotifications() {
             }
           }
         }
+
+        // 2-hour before appointment reminder (checks every minute)
+        const allUpcoming = appointments.filter((apt: any) => {
+          const aptDate = new Date(apt.appointment_date);
+          const diffMs = aptDate.getTime() - now.getTime();
+          const diffMinutes = diffMs / (1000 * 60);
+          // Trigger when appointment is between 119 and 121 minutes away (2-hour window)
+          return diffMinutes > 0 && diffMinutes <= 120 && diffMinutes > 118;
+        });
+
+        for (const apt of allUpcoming) {
+          const existingReminder = notifications.find(
+            n => n.type === 'appointment' && 
+            n.id.includes(`2h-${apt.id}`)
+          );
+          
+          if (!existingReminder) {
+            const aptDate = new Date(apt.appointment_date);
+            const timeStr = aptDate.toLocaleTimeString('en-US', { 
+              hour: 'numeric', 
+              minute: '2-digit',
+              hour12: true 
+            });
+            
+            newNotifications.push({
+              id: `appointment-2h-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              type: 'appointment',
+              title: '⏰ Appointment in 2 Hours!',
+              message: `${apt.title}${apt.doctor_name ? ` with ${apt.doctor_name}` : ''} at ${timeStr}${apt.location ? ` - ${apt.location}` : ''}`,
+              time: nowISO,
+              read: false,
+              actionUrl: '/tools/smart-appointment-reminder',
+            });
+          }
+        }
       }
 
       if (newNotifications.length > 0) {
