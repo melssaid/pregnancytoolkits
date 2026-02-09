@@ -1,10 +1,11 @@
 import { useState, forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Crown, Sparkles, Zap, Brain, Shield, Clock } from 'lucide-react';
+import { X, Crown, Sparkles, Zap, Brain, Shield, Clock, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
+import useSubscription from '@/hooks/useSubscription';
 
 interface SubscriptionModalProps {
   isOpen: boolean;
@@ -16,31 +17,27 @@ export const SubscriptionModal = forwardRef<HTMLDivElement, SubscriptionModalPro
   const { t } = useTranslation();
   const [selectedPlan, setSelectedPlan] = useState<'monthly' | 'yearly'>('yearly');
   const [isLoading, setIsLoading] = useState(false);
+  const { subscribeMonthly, subscribeYearly, restorePurchases, trialDaysLeft, isTrialActive } = useSubscription();
 
   const handleSubscribe = async () => {
     setIsLoading(true);
     try {
-      toast.info('Google Play Billing', {
-        description: t('subscriptionModal.comingSoon'),
-      });
-      setTimeout(() => {
-        toast.success(t('subscriptionModal.thankYou'), {
-          description: t('subscriptionModal.comingSoon'),
-        });
-        setIsLoading(false);
-        onClose();
-      }, 1500);
+      if (selectedPlan === 'monthly') {
+        subscribeMonthly();
+      } else {
+        subscribeYearly();
+      }
+      toast.info(t('subscriptionModal.processingPurchase', 'Processing purchase...'));
+      setTimeout(() => setIsLoading(false), 2000);
     } catch (error) {
       toast.error(t('subscriptionModal.errorProcessing'));
       setIsLoading(false);
     }
   };
 
-  const startFreeTrial = () => {
-    toast.success(t('subscriptionModal.trialActivated'), {
-      description: t('subscriptionModal.trialDesc'),
-    });
-    onClose();
+  const handleRestore = () => {
+    restorePurchases();
+    toast.info(t('subscriptionModal.restoringPurchases', 'Restoring purchases...'));
   };
 
   const features = [
@@ -85,16 +82,33 @@ export const SubscriptionModal = forwardRef<HTMLDivElement, SubscriptionModalPro
               </div>
 
               <CardContent className="p-5 space-y-4">
+                {/* Trial banner */}
                 <div className="bg-accent/50 border border-accent rounded-xl p-3 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm font-bold text-foreground">{t('subscriptionModal.freeTrialDays')}</p>
-                    <p className="text-[10px] text-muted-foreground">{t('subscriptionModal.fullAccessCancel')}</p>
+                    {isTrialActive ? (
+                      <>
+                        <p className="text-sm font-bold text-foreground">
+                          {t('subscriptionModal.trialRemaining', '{{days}} days remaining', { days: trialDaysLeft })}
+                        </p>
+                        <p className="text-[10px] text-muted-foreground">{t('subscriptionModal.fullAccessCancel')}</p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-sm font-bold text-foreground">
+                          {t('subscriptionModal.trialEnded', 'Free trial ended')}
+                        </p>
+                        <p className="text-[10px] text-muted-foreground">
+                          {t('subscriptionModal.subscribeToUnlock', 'Subscribe to unlock all premium tools')}
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
 
+                {/* Plan selector */}
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     onClick={() => setSelectedPlan('monthly')}
@@ -105,7 +119,7 @@ export const SubscriptionModal = forwardRef<HTMLDivElement, SubscriptionModalPro
                     }`}
                   >
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wide">{t('subscriptionModal.monthly')}</p>
-                    <p className="text-lg font-bold text-foreground">$1.99</p>
+                    <p className="text-lg font-bold text-foreground">$2.99</p>
                     <p className="text-[10px] text-muted-foreground">{t('subscriptionModal.perMonth')}</p>
                   </button>
 
@@ -118,14 +132,15 @@ export const SubscriptionModal = forwardRef<HTMLDivElement, SubscriptionModalPro
                     }`}
                   >
                     <div className="absolute -top-2 -right-1 px-2 py-0.5 bg-primary text-primary-foreground text-[8px] font-bold rounded-full uppercase">
-                      {t('subscriptionModal.save')}
+                      {t('subscriptionModal.save', 'Save 44%')}
                     </div>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wide">{t('subscriptionModal.yearly')}</p>
-                    <p className="text-lg font-bold text-foreground">$14.99</p>
+                    <p className="text-lg font-bold text-foreground">$19.99</p>
                     <p className="text-[10px] text-muted-foreground">{t('subscriptionModal.perYear')}</p>
                   </button>
                 </div>
 
+                {/* Features */}
                 <div className="space-y-2">
                   {features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-2">
@@ -137,23 +152,27 @@ export const SubscriptionModal = forwardRef<HTMLDivElement, SubscriptionModalPro
                   ))}
                 </div>
 
+                {/* Actions */}
                 <div className="space-y-2 pt-2">
                   <Button
-                    onClick={startFreeTrial}
+                    onClick={handleSubscribe}
                     className="w-full h-11 rounded-xl font-semibold text-sm"
                     disabled={isLoading}
                   >
                     <Sparkles className="w-4 h-4 mr-2" />
-                    {t('subscriptionModal.startFreeTrial')}
+                    {isLoading
+                      ? t('subscriptionModal.processing')
+                      : `${t('subscriptionModal.subscribe', 'Subscribe')} - ${selectedPlan === 'monthly' ? '$2.99/' + t('subscriptionModal.perMonth', 'mo') : '$19.99/' + t('subscriptionModal.perYear', 'yr')}`
+                    }
                   </Button>
-                  
+
                   <Button
-                    onClick={handleSubscribe}
+                    onClick={handleRestore}
                     variant="outline"
                     className="w-full h-10 rounded-xl text-xs"
-                    disabled={isLoading}
                   >
-                    {isLoading ? t('subscriptionModal.processing') : `${t('subscriptionModal.subscribe')} ${selectedPlan === 'monthly' ? '$1.99/mo' : '$14.99/yr'}`}
+                    <RotateCcw className="w-3 h-3 mr-2" />
+                    {t('subscriptionModal.restorePurchases', 'Restore Purchases')}
                   </Button>
                 </div>
 
