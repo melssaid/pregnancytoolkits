@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check, Sparkles, Stethoscope, TestTube, Baby, Activity } from 'lucide-react';
+import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check, Sparkles, Stethoscope, TestTube, Baby, Activity, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -42,6 +42,7 @@ const SmartAppointmentReminder: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [showAllPast, setShowAllPast] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [currentWeek, setCurrentWeek] = useState(20);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
@@ -666,27 +667,72 @@ Respond in the same language the user is using. Format as a numbered list (1-5),
         {/* Past Appointments */}
         {past.length > 0 && (
           <div className="space-y-2">
-            <h3 className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 px-1">
-              <Clock className="w-3.5 h-3.5" />
-              {t('toolsInternal.appointmentReminder.past')} ({past.length})
-            </h3>
-            <div className="space-y-1.5">
-              {past.slice(0, 3).map(appointment => (
-                <Card key={appointment.id} className="shadow-sm opacity-70">
-                  <CardContent className="p-2.5 flex items-center justify-between">
-                    <div>
-                      <h4 className="font-medium text-xs">{appointment.title}</h4>
-                      <p className="text-[10px] text-muted-foreground">
-                        {formatDate(appointment.appointment_date)}
-                      </p>
-                    </div>
-                    <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => handleDelete(appointment.id)}>
-                      <Trash2 className="w-3 h-3" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <button
+              onClick={() => setShowAllPast(prev => !prev)}
+              className="w-full flex items-center justify-between px-1 group"
+            >
+              <h3 className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5" />
+                {t('toolsInternal.appointmentReminder.past')} ({past.length})
+              </h3>
+              {showAllPast ? (
+                <ChevronUp className="w-4 h-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-muted-foreground" />
+              )}
+            </button>
+            {showAllPast && (
+              <div className="space-y-1.5">
+                {past.map(appointment => {
+                  const typeInfo = getAppointmentIcon(appointment.title);
+                  const Icon = typeInfo.icon;
+                  return (
+                    <Card key={appointment.id} className="shadow-sm opacity-80 hover:opacity-100 transition-opacity">
+                      <CardContent className="p-3">
+                        <div className="flex gap-3">
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${typeInfo.color}`}>
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between gap-2">
+                              <div>
+                                <h4 className="font-medium text-sm">{appointment.title}</h4>
+                                <p className="text-[10px] text-muted-foreground">
+                                  {formatDate(appointment.appointment_date)}
+                                </p>
+                              </div>
+                              <div className="flex gap-1">
+                                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => handleEdit(appointment)}>
+                                  <Edit2 className="w-3 h-3" />
+                                </Button>
+                                <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => handleDelete(appointment.id)}>
+                                  <Trash2 className="w-3 h-3" />
+                                </Button>
+                              </div>
+                            </div>
+                            {appointment.doctor_name && (
+                              <p className="text-[10px] text-muted-foreground flex items-center gap-1 mt-1">
+                                <User className="w-2.5 h-2.5" />
+                                {appointment.doctor_name}
+                              </p>
+                            )}
+                            {appointment.questions && appointment.questions.length > 0 && (
+                              <div className="mt-1.5 bg-muted/50 p-1.5 rounded">
+                                <ul className="text-[10px] space-y-0.5">
+                                  {appointment.questions.map((q: string, i: number) => (
+                                    <li key={i} className="text-foreground/70">• {q}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
 
