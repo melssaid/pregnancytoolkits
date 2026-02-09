@@ -214,19 +214,21 @@ export const BumpPhotoService = {
         
         if (uploadError) throw uploadError;
         
-        // Get public URL
-        const { data: urlData } = supabase.storage
+        // Generate a signed URL (1 hour expiry) instead of a public URL
+        const { data: urlData, error: urlError } = await supabase.storage
           .from('bump-photos')
-          .getPublicUrl(fileName);
+          .createSignedUrl(fileName, 3600);
         
-        // Save to database
+        if (urlError) throw urlError;
+        
+        // Save to database - store path for on-demand URL generation
         const { data, error } = await supabase
           .from('bump_photos')
           .insert({
             user_id: userId,
             week: week,
             storage_path: fileName,
-            public_url: urlData.publicUrl,
+            public_url: urlData.signedUrl,
             caption: caption || null
           })
           .select()
@@ -275,7 +277,27 @@ export const BumpPhotoService = {
           .eq('user_id', userId)
           .order('week', { ascending: true });
         
-        if (!error && data) return data;
+        if (!error && data) {
+          // Regenerate signed URLs for all photos (stored URLs may have expired)
+          const photosWithFreshUrls = await Promise.all(
+            data.map(async (photo) => {
+              if (photo.storage_path && !photo.storage_path.startsWith('local_')) {
+                try {
+                  const { data: urlData, error: urlError } = await supabase.storage
+                    .from('bump-photos')
+                    .createSignedUrl(photo.storage_path, 3600); // 1 hour expiry
+                  if (!urlError && urlData) {
+                    return { ...photo, public_url: urlData.signedUrl };
+                  }
+                } catch {
+                  // Fall back to stored URL
+                }
+              }
+              return photo;
+            })
+          );
+          return photosWithFreshUrls;
+        }
       } catch (e) {
         console.warn('Supabase fetch failed, using localStorage:', e);
       }

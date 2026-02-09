@@ -67,7 +67,27 @@ export function useBumpPhotosStorage(): UseBumpPhotosStorageReturn {
         .order('week', { ascending: true });
 
       if (error) throw error;
-      setPhotos(data || []);
+      
+      // Regenerate signed URLs on-demand (stored URLs may have expired)
+      const photosWithFreshUrls = await Promise.all(
+        (data || []).map(async (photo) => {
+          if (photo.storage_path && !photo.storage_path.startsWith('local')) {
+            try {
+              const { data: urlData, error: urlError } = await supabase.storage
+                .from('bump-photos')
+                .createSignedUrl(photo.storage_path, 3600); // 1 hour expiry
+              if (!urlError && urlData) {
+                return { ...photo, public_url: urlData.signedUrl };
+              }
+            } catch {
+              // Fall back to stored URL
+            }
+          }
+          return photo;
+        })
+      );
+      
+      setPhotos(photosWithFreshUrls);
     } catch (error) {
       console.error('Error fetching photos:', error);
       toast.error('Failed to load photos');
