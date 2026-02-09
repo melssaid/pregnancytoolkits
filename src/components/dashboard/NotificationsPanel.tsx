@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Bell, X, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, 
   Sparkles, ChevronRight, HardDrive, BellRing, Volume2, VolumeX,
-  Clock, Zap, Shield, Pin, AlertTriangle, Stethoscope, BellPlus, BellOff
+  Clock, Zap, Shield, Pin, AlertTriangle, Stethoscope, BellPlus, BellOff,
+  CheckCircle, ExternalLink, Smartphone
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -412,40 +413,76 @@ export function NotificationsPanel() {
                       {t('notificationsPanel.pushNotifications')}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/30 transition-colors">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded bg-primary flex items-center justify-center">
-                        {pushEnabled ? <BellPlus className="w-2.5 h-2.5 text-primary-foreground" /> : <BellOff className="w-2.5 h-2.5 text-primary-foreground" />}
+
+                  {/* In-App alerts always active indicator */}
+                  <div className="flex items-center gap-2 py-1.5 px-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 mb-2">
+                    <CheckCircle className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                    <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium">
+                      {t('notificationsPanel.inAppActive')}
+                    </span>
+                  </div>
+
+                  {pushPermission === 'denied' ? (
+                    /* Beautiful permission guide when blocked */
+                    <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-2.5 space-y-2">
+                      <div className="flex items-center gap-1.5">
+                        <Smartphone className="w-3.5 h-3.5 text-amber-500" />
+                        <span className="text-[11px] font-semibold text-amber-700 dark:text-amber-400">
+                          {t('notificationsPanel.pushGuideTitle')}
+                        </span>
                       </div>
-                      <div className="flex flex-col">
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                        {t('notificationsPanel.pushGuideDesc')}
+                      </p>
+                      <div className="space-y-1">
+                        <div className="flex items-start gap-1.5 text-[10px] text-muted-foreground">
+                          <span className="font-bold text-foreground shrink-0">1.</span>
+                          <span>{t('notificationsPanel.pushGuideStep1')}</span>
+                        </div>
+                        <div className="flex items-start gap-1.5 text-[10px] text-muted-foreground">
+                          <span className="font-bold text-foreground shrink-0">2.</span>
+                          <span>{t('notificationsPanel.pushGuideStep2')}</span>
+                        </div>
+                        <div className="flex items-start gap-1.5 text-[10px] text-muted-foreground">
+                          <span className="font-bold text-foreground shrink-0">3.</span>
+                          <span>{t('notificationsPanel.pushGuideStep3')}</span>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => window.location.reload()}
+                        className="w-full mt-1 py-1.5 rounded-md bg-amber-500/15 hover:bg-amber-500/25 text-[10px] font-medium text-amber-700 dark:text-amber-400 transition-colors flex items-center justify-center gap-1"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        {t('notificationsPanel.pushGuideReload')}
+                      </button>
+                    </div>
+                  ) : (
+                    /* Normal push toggle when not blocked */
+                    <div className="flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/30 transition-colors">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-5 h-5 rounded bg-primary flex items-center justify-center">
+                          {pushEnabled ? <BellPlus className="w-2.5 h-2.5 text-primary-foreground" /> : <BellOff className="w-2.5 h-2.5 text-primary-foreground" />}
+                        </div>
                         <span className="text-[11px] font-medium">
                           {t('notificationsPanel.enablePush')}
                         </span>
-                        {pushPermission === 'denied' && (
-                          <span className="text-[9px] text-destructive">
-                            {t('notificationsPanel.pushBlocked')}
-                          </span>
-                        )}
                       </div>
-                    </div>
-                    <Switch 
-                      checked={pushEnabled} 
-                      onCheckedChange={async (v) => {
-                        if (v) {
-                          const success = await enablePush();
-                          if (success) {
-                            toast.success(t('notificationsPanel.pushEnabledSuccess'));
-                          } else if (pushPermission === 'denied') {
-                            toast.error(t('notificationsPanel.pushBlockedDesc'));
+                      <Switch 
+                        checked={pushEnabled} 
+                        onCheckedChange={async (v) => {
+                          if (v) {
+                            const success = await enablePush();
+                            if (success) {
+                              toast.success(t('notificationsPanel.pushEnabledSuccess'));
+                            }
+                          } else {
+                            disablePush();
                           }
-                        } else {
-                          disablePush();
-                        }
-                      }} 
-                      className="scale-75"
-                      disabled={pushPermission === 'denied'}
-                    />
-                  </div>
+                        }} 
+                        className="scale-75"
+                      />
+                    </div>
+                  )}
                 </div>
               )}
             </div>
