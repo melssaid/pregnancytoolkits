@@ -146,15 +146,14 @@ export function useBumpPhotosStorage(): UseBumpPhotosStorageReturn {
 
       if (uploadError) throw uploadError;
 
-      // Get signed URL (bucket is private for security)
+      // Get signed URL for immediate display (bucket is private)
       const { data: urlData, error: urlError } = await supabase.storage
         .from('bump-photos')
-        .createSignedUrl(fileName, 86400); // 24 hour expiry
+        .createSignedUrl(fileName, 3600); // 1 hour expiry for display
 
       if (urlError) throw urlError;
-      const publicUrl = urlData.signedUrl;
 
-      // Save metadata to database
+      // Store only the storage path reference in DB - never store signed URLs permanently
       const { data: photoData, error: dbError } = await supabase
         .from('bump_photos')
         .insert({
@@ -162,16 +161,21 @@ export function useBumpPhotosStorage(): UseBumpPhotosStorageReturn {
           week,
           caption: caption || `Week ${week} bump photo`,
           storage_path: fileName,
-          public_url: publicUrl
+          public_url: fileName // Store path reference, not a URL
         })
         .select()
         .single();
 
       if (dbError) throw dbError;
 
-      setPhotos(prev => [...prev, photoData].sort((a, b) => a.week - b.week));
+      // Use the fresh signed URL for immediate display
+      const displayPhoto = { ...photoData, public_url: urlData.signedUrl };
+
+      if (dbError) throw dbError;
+
+      setPhotos(prev => [...prev, displayPhoto].sort((a, b) => a.week - b.week));
       toast.success('Photo saved to cloud! ☁️');
-      return photoData;
+      return displayPhoto;
     } catch (error) {
       console.error('Error uploading photo:', error);
       toast.error('Failed to upload photo');
