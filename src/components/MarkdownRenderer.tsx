@@ -26,7 +26,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
             className={`my-3 space-y-2 ${listType === 'ol' ? 'list-decimal' : 'list-disc'} list-inside`}
           >
             {listItems.map((item, i) => (
-              <li key={i} className="text-sm leading-relaxed text-foreground/90 pl-1">
+              <li key={i} className="text-xs leading-relaxed text-foreground/90 pl-1">
                 {parseInlineStyles(item)}
               </li>
             ))}
@@ -42,7 +42,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
         elements.push(
           <blockquote 
             key={`quote-${elements.length}`} 
-            className="my-3 pl-4 border-l-4 border-primary/30 bg-primary/5 py-2 pr-3 rounded-r-lg italic text-sm text-muted-foreground"
+            className="my-2 pl-3 border-l-3 border-primary/30 bg-primary/5 py-1.5 pr-2 rounded-r-lg italic text-xs text-muted-foreground"
           >
             {blockquoteLines.map((line, i) => (
               <p key={i}>{parseInlineStyles(line)}</p>
@@ -102,8 +102,8 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
       if (h4Match) {
         flushList();
         elements.push(
-          <h4 key={`h4-${index}`} className="text-sm font-semibold text-foreground mt-4 mb-2 flex items-center gap-2">
-            <span className="w-1 h-4 bg-primary/60 rounded-full" />
+          <h4 key={`h4-${index}`} className="text-xs font-semibold text-foreground mt-3 mb-1.5 flex items-center gap-2">
+            <span className="w-1 h-3.5 bg-primary/60 rounded-full" />
             {h4Match[1]}
           </h4>
         );
@@ -113,8 +113,8 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
       if (h3Match) {
         flushList();
         elements.push(
-          <h3 key={`h3-${index}`} className="text-base font-semibold text-foreground mt-5 mb-2 flex items-center gap-2">
-            <span className="w-1.5 h-5 bg-primary/70 rounded-full" />
+          <h3 key={`h3-${index}`} className="text-sm font-semibold text-foreground mt-4 mb-1.5 flex items-center gap-2">
+            <span className="w-1 h-4 bg-primary/70 rounded-full" />
             {h3Match[1]}
           </h3>
         );
@@ -124,8 +124,8 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
       if (h2Match) {
         flushList();
         elements.push(
-          <h2 key={`h2-${index}`} className="text-lg font-bold text-foreground mt-6 mb-3 flex items-center gap-2 pb-2 border-b border-border/50">
-            <span className="w-2 h-6 bg-primary rounded-full" />
+          <h2 key={`h2-${index}`} className="text-sm font-bold text-foreground mt-5 mb-2 flex items-center gap-2 pb-1.5 border-b border-border/50">
+            <span className="w-1.5 h-5 bg-primary rounded-full" />
             {h2Match[1]}
           </h2>
         );
@@ -135,8 +135,8 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
       if (h1Match) {
         flushList();
         elements.push(
-          <h1 key={`h1-${index}`} className="text-xl font-bold text-foreground mt-6 mb-4 flex items-center gap-3">
-            <span className="w-2 h-7 bg-gradient-to-b from-primary to-primary/50 rounded-full" />
+          <h1 key={`h1-${index}`} className="text-base font-bold text-foreground mt-5 mb-3 flex items-center gap-2">
+            <span className="w-1.5 h-5 bg-gradient-to-b from-primary to-primary/50 rounded-full" />
             {h1Match[1]}
           </h1>
         );
@@ -195,7 +195,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
       // Regular paragraph
       flushList();
       elements.push(
-        <p key={`p-${index}`} className="text-sm leading-relaxed text-foreground/90 my-2">
+        <p key={`p-${index}`} className="text-xs leading-relaxed text-foreground/90 my-1.5">
           {parseInlineStyles(trimmedLine)}
         </p>
       );

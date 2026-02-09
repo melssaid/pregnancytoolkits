@@ -124,7 +124,7 @@ export function ToolFrame({
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              className="text-lg sm:text-xl font-bold text-foreground tracking-tight leading-tight"
+              className="text-base font-bold text-foreground tracking-tight leading-tight"
             >
               {title}
             </motion.h1>
