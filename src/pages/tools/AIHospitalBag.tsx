@@ -410,7 +410,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
         <Card className="p-4 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border-teal-200">
           <div className="flex items-center justify-between mb-2">
             <span className="font-medium">{t('toolsInternal.hospitalBag.progress')}</span>
-            <span className="text-2xl font-bold text-primary">{progress}%</span>
+            <span className="text-base font-bold text-primary">{progress}%</span>
           </div>
           <div className="w-full bg-muted rounded-full h-3">
             <div 

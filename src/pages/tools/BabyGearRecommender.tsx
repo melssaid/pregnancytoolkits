@@ -96,7 +96,7 @@ export default function BabyGearRecommender() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-semibold">{t('babyGear.essentialsProgress')}</h3>
-                <span className="text-2xl font-bold text-primary">{getProgress()}%</span>
+                <span className="text-base font-bold text-primary">{getProgress()}%</span>
               </div>
               <div className="w-full h-3 bg-muted rounded-full overflow-hidden">
                 <div 
@@ -191,19 +191,19 @@ export default function BabyGearRecommender() {
               <h3 className="font-semibold mb-4">{t('babyGear.shoppingSummary')}</h3>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="p-3 bg-destructive/5 rounded-lg">
-                  <div className="text-2xl font-bold text-destructive">
+                  <div className="text-base font-bold text-destructive">
                     {gearList.filter(i => i.category === 'essential').length}
                   </div>
                   <div className="text-xs text-muted-foreground">{t('babyGear.categories.essential')}</div>
                 </div>
                 <div className="p-3 bg-primary/5 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">
+                  <div className="text-base font-bold text-primary">
                     {gearList.filter(i => i.category === 'recommended').length}
                   </div>
                   <div className="text-xs text-muted-foreground">{t('babyGear.categories.recommended')}</div>
                 </div>
                 <div className="p-3 bg-muted rounded-lg">
-                  <div className="text-2xl font-bold text-muted-foreground">
+                  <div className="text-base font-bold text-muted-foreground">
                     {gearList.filter(i => i.category === 'nice-to-have').length}
                   </div>
                   <div className="text-xs text-muted-foreground">{t('babyGear.categories.niceToHave')}</div>

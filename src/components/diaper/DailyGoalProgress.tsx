@@ -96,7 +96,7 @@ const StatBox = ({
 }) => (
   <div className={`rounded-xl ${bgClass} p-2.5 text-center overflow-hidden`}>
     <div className="flex justify-center mb-0.5 shrink-0">{icon}</div>
-    <p className={`text-2xl font-bold ${valueClass}`}>{value}</p>
+    <p className={`text-base font-bold ${valueClass}`}>{value}</p>
     <p className="text-[10px] text-muted-foreground truncate">{label}</p>
   </div>
 );

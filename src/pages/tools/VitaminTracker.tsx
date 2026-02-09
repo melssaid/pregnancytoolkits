@@ -236,7 +236,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                 <Calendar className="w-5 h-5 text-primary" />
                 {t('toolsInternal.vitaminTracker.todaysProgress')}
               </span>
-              <span className="text-2xl font-bold text-primary">{todayProgress}%</span>
+              <span className="text-base font-bold text-primary">{todayProgress}%</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -320,9 +320,9 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="text-4xl">{vitamin.icon}</span>
+                      <span className="text-xl">{vitamin.icon}</span>
                       <div>
-                        <h3 className="font-bold text-gray-800 text-lg">{vitamin.name}</h3>
+                        <h3 className="font-bold text-gray-800 text-sm">{vitamin.name}</h3>
                         <p className="text-sm text-gray-600">{vitamin.dosage}</p>
                         <p className="text-xs text-gray-500 mt-1">{vitamin.importance}</p>
                       </div>
@@ -371,7 +371,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                 
                 return (
                   <div key={vitamin.id} className="text-center p-3 bg-gray-50 rounded-lg">
-                    <span className="text-2xl">{vitamin.icon}</span>
+                    <span className="text-base">{vitamin.icon}</span>
                     <p className="text-sm font-medium mt-1">{vitamin.name}</p>
                     <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
                       <div

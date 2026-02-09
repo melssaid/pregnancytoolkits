@@ -196,7 +196,7 @@ export function MoodChart({ entries }: MoodChartProps) {
         {/* Stats */}
         <div className="flex items-center justify-center gap-6 mt-4">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">
+            <span className="text-base">
               {MOODS.find((m) => m.value === Math.round(stats.avg))?.emoji}
             </span>
             <div>

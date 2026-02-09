@@ -81,7 +81,7 @@ export const RestTimer: React.FC<RestTimerProps> = ({
             </div>
             
             <div className="text-center">
-              <span className="text-3xl font-mono font-bold text-primary">
+              <span className="text-lg font-mono font-bold text-primary">
                 {timeLeft}
               </span>
               <span className="text-sm text-muted-foreground ms-1">

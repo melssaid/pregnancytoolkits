@@ -89,7 +89,7 @@ export const TimeSinceLastChange = ({ lastChangeTime }: TimeSinceLastChangeProps
 
 const TimeUnit = ({ value, label, isUrgent }: { value: number; label: string; isUrgent: boolean }) => (
   <div className="text-center">
-    <span className={`text-2xl font-bold tabular-nums ${
+    <span className={`text-base font-bold tabular-nums ${
       isUrgent ? 'text-destructive' : 'text-foreground'
     }`}>
       {String(value).padStart(2, '0')}

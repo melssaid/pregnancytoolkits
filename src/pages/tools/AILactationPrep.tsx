@@ -140,7 +140,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
                     : "bg-card hover:bg-muted"
                 }`}
               >
-                <div className="text-2xl mb-1">{goal.icon}</div>
+                <div className="text-base mb-1">{goal.icon}</div>
                 <div className="text-sm">{t(goal.labelKey)}</div>
               </div>
             ))}

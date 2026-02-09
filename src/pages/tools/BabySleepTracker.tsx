@@ -280,7 +280,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                   <p className="text-xs font-medium text-muted-foreground mb-1">
                     {activeSleep.type === "night" ? t('toolsInternal.babySleep.nightSleep') : t('toolsInternal.babySleep.napTime')} {t('toolsInternal.babySleep.inProgress')}
                   </p>
-                  <div className="text-3xl font-bold text-primary mb-1">
+                  <div className="text-lg font-bold text-primary mb-1">
                     {formatDuration(elapsedTime)}
                   </div>
                   <p className="text-[11px] text-muted-foreground mb-4">

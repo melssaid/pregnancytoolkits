@@ -174,7 +174,7 @@ export default function AIMobilityCoach() {
         {/* Walk Timer */}
         <Card className="bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20">
           <CardContent className="p-6 text-center">
-            <div className="text-5xl font-bold text-primary mb-4">
+            <div className="text-2xl font-bold text-primary mb-4">
               {formatTime(walkTime)}
             </div>
             <p className="text-sm text-muted-foreground mb-4">

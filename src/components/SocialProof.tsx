@@ -17,7 +17,7 @@ export function SocialProof() {
       <div className="container">
         {/* Features */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">
+          <h2 className="text-base font-bold text-foreground mb-2">
             {t('socialProof.title')}
           </h2>
           <p className="text-muted-foreground">

@@ -193,7 +193,7 @@ Encouragement and realistic expectations`
                     <p className="text-sm text-muted-foreground mb-1">
                       {t('conceptionPage.estimatedConception')}
                     </p>
-                    <p className="text-2xl font-bold text-primary">
+                    <p className="text-base font-bold text-primary">
                       {format(result.conceptionDate, "MMMM d, yyyy")}
                     </p>
                   </div>

@@ -260,7 +260,7 @@ Please provide a comprehensive daily nutrition analysis:
         {/* Header */}
         <Card className="bg-gradient-to-r from-green-500 to-teal-500 text-white border-0 shadow-xl">
           <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-2xl">
+            <CardTitle className="flex items-center gap-3 text-base">
               <Utensils className="w-8 h-8" />
               🥗 {t('tools.aiNutritionTracker.title', 'Smart Nutrition Tracker')}
             </CardTitle>
@@ -299,7 +299,7 @@ Please provide a comprehensive daily nutrition analysis:
                   <TrendingUp className="w-5 h-5 text-green-500" />
                   <span className="font-medium">{t('nutrition.totalCalories', 'Total Calories Today')}</span>
                 </div>
-                <span className="text-2xl font-bold text-green-600">
+                <span className="text-base font-bold text-green-600">
                   {getTotalCalories()} {t('nutrition.cal', 'cal')}
                 </span>
               </div>

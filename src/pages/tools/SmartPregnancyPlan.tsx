@@ -48,7 +48,7 @@ const SmartPregnancyPlan = () => {
   return (
     <div className="container mx-auto p-4 max-w-4xl space-y-6">
       <div className="text-center space-y-2 mb-8">
-        <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
+        <h1 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
           {t("smartPlan.title")}
         </h1>
         <p className="text-muted-foreground">{t("smartPlan.subtitle")}</p>
@@ -188,8 +188,8 @@ const SmartPregnancyPlan = () => {
       <div className="hidden print:block fixed inset-0 bg-white z-[9999] p-8">
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="text-center border-b pb-4">
-            <h1 className="text-2xl font-bold text-primary">{t("app.name")}</h1>
-            <h2 className="text-xl">{t("smartPlan.weeklyReport")} - {t("common.week")} {week}</h2>
+            <h1 className="text-base font-bold text-primary">{t("app.name")}</h1>
+            <h2 className="text-sm">{t("smartPlan.weeklyReport")} - {t("common.week")} {week}</h2>
           </div>
           
           <div className="grid grid-cols-2 gap-8">

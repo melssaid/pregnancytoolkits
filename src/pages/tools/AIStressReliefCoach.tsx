@@ -159,8 +159,8 @@ export default function AIStressReliefCoach() {
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-6">
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-2">{t(selectedExercise.nameKey)}</h3>
-                <div className="text-4xl font-bold text-primary mb-4">
+                <h3 className="text-sm font-bold mb-2">{t(selectedExercise.nameKey)}</h3>
+                <div className="text-xl font-bold text-primary mb-4">
                   {formatTime(timer)}
                 </div>
                 
