@@ -58,10 +58,10 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                 </span>
               ) : (
                 <div className="flex flex-col min-w-0">
-                  <span className="text-sm sm:text-base font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[140px] sm:max-w-[200px] md:max-w-none">
+                  <span className="text-xs sm:text-sm font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[130px] sm:max-w-[200px] md:max-w-none">
                     {t('app.name')}
                   </span>
-                  <span className="text-[10px] sm:text-xs text-muted-foreground font-medium mt-0.5 whitespace-nowrap truncate max-w-[140px] sm:max-w-[200px] md:max-w-none">
+                  <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium mt-0.5 whitespace-nowrap truncate max-w-[130px] sm:max-w-[200px] md:max-w-none">
                     {t('app.tagline')}
                   </span>
                 </div>
