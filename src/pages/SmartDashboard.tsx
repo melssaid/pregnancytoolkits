@@ -40,44 +40,40 @@ interface HealthData {
 
 // أدوات التتبع والتخزين - مرتبة منطقياً
 const trackingTools = [
-  // قسم التتبع اليومي
   { 
-    category: "Daily Tracking",
+    categoryKey: "dailyTracking",
     icon: Clock,
     tools: [
-      { id: "kick-counter", title: "Kick Counter", icon: Hand, href: "/tools/kick-counter", description: "Track baby movements" },
-      { id: "weight-gain", title: "Weight Tracker", icon: Scale, href: "/tools/weight-gain", description: "Monitor weight gain" },
-      { id: "vitamin-tracker", title: "Vitamin Tracker", icon: Pill, href: "/tools/vitamin-tracker", description: "Daily supplements" },
+      { id: "kick-counter", titleKey: "kickCounter", icon: Hand, href: "/tools/kick-counter", descKey: "kickCounterDesc" },
+      { id: "weight-gain", titleKey: "weightTracker", icon: Scale, href: "/tools/weight-gain", descKey: "weightTrackerDesc" },
+      { id: "vitamin-tracker", titleKey: "vitaminTracker", icon: Pill, href: "/tools/vitamin-tracker", descKey: "vitaminTrackerDesc" },
     ]
   },
-  // قسم التخطيط
   { 
-    category: "Planning",
+    categoryKey: "planning",
     icon: Calendar,
     tools: [
-      { id: "smart-appointment", title: "Appointments", icon: Bell, href: "/tools/smart-appointment-reminder", description: "Medical visits" },
-      { id: "birth-plan", title: "Birth Plan", icon: FileText, href: "/tools/ai-birth-plan", description: "Delivery preferences" },
-      { id: "hospital-bag", title: "Hospital Bag", icon: Briefcase, href: "/tools/ai-hospital-bag", description: "Packing checklist" },
+      { id: "smart-appointment", titleKey: "appointments", icon: Bell, href: "/tools/smart-appointment-reminder", descKey: "appointmentsDesc" },
+      { id: "birth-plan", titleKey: "birthPlan", icon: FileText, href: "/tools/ai-birth-plan", descKey: "birthPlanDesc" },
+      { id: "hospital-bag", titleKey: "hospitalBag", icon: Briefcase, href: "/tools/ai-hospital-bag", descKey: "hospitalBagDesc" },
     ]
   },
-  // قسم التطور
   { 
-    category: "Growth",
+    categoryKey: "growth",
     icon: TrendingUp,
     tools: [
-      { id: "fetal-growth", title: "Fetal Growth", icon: TrendingUp, href: "/tools/fetal-growth", description: "Baby development" },
-      { id: "baby-growth", title: "Baby Growth", icon: Ruler, href: "/tools/baby-growth", description: "Postnatal tracking" },
-      { id: "bump-photos", title: "Bump Photos", icon: Camera, href: "/tools/ai-bump-photos", description: "Weekly snapshots" },
+      { id: "fetal-growth", titleKey: "fetalGrowth", icon: TrendingUp, href: "/tools/fetal-growth", descKey: "fetalGrowthDesc" },
+      { id: "baby-growth", titleKey: "babyGrowth", icon: Ruler, href: "/tools/baby-growth", descKey: "babyGrowthDesc" },
+      { id: "bump-photos", titleKey: "bumpPhotos", icon: Camera, href: "/tools/ai-bump-photos", descKey: "bumpPhotosDesc" },
     ]
   },
-  // قسم ما بعد الولادة
   { 
-    category: "Postpartum",
+    categoryKey: "postpartum",
     icon: Baby,
     tools: [
-      { id: "baby-sleep", title: "Baby Sleep", icon: Moon, href: "/tools/baby-sleep-tracker", description: "Sleep patterns" },
-      { id: "diaper-tracker", title: "Diaper Tracker", icon: Baby, href: "/tools/diaper-tracker", description: "Daily changes" },
-      { id: "grocery-list", title: "Grocery List", icon: ShoppingCart, href: "/tools/smart-grocery-list", description: "Shopping planner" },
+      { id: "baby-sleep", titleKey: "babySleep", icon: Moon, href: "/tools/baby-sleep-tracker", descKey: "babySleepDesc" },
+      { id: "diaper-tracker", titleKey: "diaperTracker", icon: Baby, href: "/tools/diaper-tracker", descKey: "diaperTrackerDesc" },
+      { id: "grocery-list", titleKey: "groceryList", icon: ShoppingCart, href: "/tools/smart-grocery-list", descKey: "groceryListDesc" },
     ]
   },
 ];
@@ -352,43 +348,47 @@ const SmartDashboard = () => {
                 
                 <div className="space-y-4">
                   {trackingTools.map((category, catIndex) => {
-                    // Get category summary based on category name
+                    // Get category summary based on category key
                     const getCategorySummary = () => {
-                      switch (category.category) {
-                        case "Daily Tracking":
+                      let hasDataFlag = false;
+                      switch (category.categoryKey) {
+                        case "dailyTracking":
                           const dailyItems = [];
-                          if (stats.dailyTracking.todayKicks > 0) dailyItems.push(`${stats.dailyTracking.todayKicks} kicks`);
-                          if (stats.dailyTracking.vitaminsTaken > 0) dailyItems.push(`${stats.dailyTracking.vitaminsTaken} vitamins`);
-                          if (stats.dailyTracking.lastWeight) dailyItems.push(stats.dailyTracking.lastWeight);
-                          return dailyItems.length > 0 ? dailyItems.join(" • ") : "No data today";
-                        case "Planning":
+                          if (stats.dailyTracking.todayKicks > 0) { dailyItems.push(`${stats.dailyTracking.todayKicks} ${t('dashboard.summary.kicks')}`); }
+                          if (stats.dailyTracking.vitaminsTaken > 0) { dailyItems.push(`${stats.dailyTracking.vitaminsTaken} ${t('dashboard.summary.vitamins')}`); }
+                          if (stats.dailyTracking.lastWeight) { dailyItems.push(stats.dailyTracking.lastWeight); }
+                          hasDataFlag = dailyItems.length > 0;
+                          return { text: hasDataFlag ? dailyItems.join(" • ") : t('dashboard.summary.noDataToday'), hasData: hasDataFlag };
+                        case "planning":
                           const planItems = [];
-                          if (stats.planning.upcomingAppointments > 0) planItems.push(`${stats.planning.upcomingAppointments} appointments`);
-                          if (stats.planning.bagItemsChecked > 0) planItems.push(`${stats.planning.bagItemsChecked} items packed`);
-                          if (stats.planning.birthPlanProgress > 0) planItems.push(`${stats.planning.birthPlanProgress}% plan`);
-                          return planItems.length > 0 ? planItems.join(" • ") : "Start planning";
-                        case "Growth":
+                          if (stats.planning.upcomingAppointments > 0) { planItems.push(`${stats.planning.upcomingAppointments} ${t('dashboard.summary.appointments')}`); }
+                          if (stats.planning.bagItemsChecked > 0) { planItems.push(`${stats.planning.bagItemsChecked} ${t('dashboard.summary.itemsPacked')}`); }
+                          if (stats.planning.birthPlanProgress > 0) { planItems.push(`${stats.planning.birthPlanProgress}% ${t('dashboard.summary.plan')}`); }
+                          hasDataFlag = planItems.length > 0;
+                          return { text: hasDataFlag ? planItems.join(" • ") : t('dashboard.summary.startPlanning'), hasData: hasDataFlag };
+                        case "growth":
                           const growthItems = [];
-                          if (stats.growth.photosCount > 0) growthItems.push(`${stats.growth.photosCount} photos`);
-                          if (stats.growth.lastMeasurement) growthItems.push(stats.growth.lastMeasurement);
-                          return growthItems.length > 0 ? growthItems.join(" • ") : "Track growth";
-                        case "Postpartum":
+                          if (stats.growth.photosCount > 0) { growthItems.push(`${stats.growth.photosCount} ${t('dashboard.summary.photos')}`); }
+                          if (stats.growth.lastMeasurement) { growthItems.push(stats.growth.lastMeasurement); }
+                          hasDataFlag = growthItems.length > 0;
+                          return { text: hasDataFlag ? growthItems.join(" • ") : t('dashboard.summary.trackGrowth'), hasData: hasDataFlag };
+                        case "postpartum":
                           const postItems = [];
-                          if (stats.postpartum.sleepHoursToday > 0) postItems.push(`${stats.postpartum.sleepHoursToday}h sleep`);
-                          if (stats.postpartum.diapersToday > 0) postItems.push(`${stats.postpartum.diapersToday} diapers`);
-                          if (stats.postpartum.groceryItems > 0) postItems.push(`${stats.postpartum.groceryItems} items`);
-                          return postItems.length > 0 ? postItems.join(" • ") : "Ready for baby";
+                          if (stats.postpartum.sleepHoursToday > 0) { postItems.push(`${stats.postpartum.sleepHoursToday}h ${t('dashboard.summary.sleep')}`); }
+                          if (stats.postpartum.diapersToday > 0) { postItems.push(`${stats.postpartum.diapersToday} ${t('dashboard.summary.diapers')}`); }
+                          if (stats.postpartum.groceryItems > 0) { postItems.push(`${stats.postpartum.groceryItems} ${t('dashboard.summary.items')}`); }
+                          hasDataFlag = postItems.length > 0;
+                          return { text: hasDataFlag ? postItems.join(" • ") : t('dashboard.summary.readyForBaby'), hasData: hasDataFlag };
                         default:
-                          return "";
+                          return { text: "", hasData: false };
                       }
                     };
 
-                    const summary = getCategorySummary();
-                    const hasData = !summary.includes("No data") && !summary.includes("Start") && !summary.includes("Track") && !summary.includes("Ready");
+                    const { text: summary, hasData } = getCategorySummary();
 
                     return (
                     <motion.div
-                      key={category.category}
+                      key={category.categoryKey}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: catIndex * 0.05 }}
@@ -397,7 +397,7 @@ const SmartDashboard = () => {
                         <div className="flex items-center gap-2">
                           <category.icon className="w-3 h-3 text-muted-foreground" />
                           <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
-                            {category.category}
+                            {t(`dashboard.categories.${category.categoryKey}`)}
                           </span>
                         </div>
                         <div className="flex items-center gap-1">
@@ -428,7 +428,7 @@ const SmartDashboard = () => {
                                 <tool.icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.75} />
                               </div>
                               <span className="text-[10px] font-medium text-foreground text-center leading-tight">
-                                {tool.title}
+                                {t(`dashboard.trackingTools.${tool.titleKey}`)}
                               </span>
                             </motion.div>
                           </Link>
