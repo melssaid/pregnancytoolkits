@@ -53,7 +53,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
           whileTap={{ scale: 0.95 }}
           className={cn(
             "relative inline-flex items-center justify-center",
-            "h-7 w-7 rounded-full",
+            "h-9 w-9 rounded-full",
             "bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20",
             "border border-primary/30 hover:border-primary/50",
             "shadow-sm hover:shadow-md hover:shadow-primary/20",
