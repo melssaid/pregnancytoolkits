@@ -250,9 +250,9 @@ export default function SmartStretchReminder() {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                 <ExerciseIcon type={activeStretch.icon} className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-2">{t(`stretchReminder.stretches.${activeStretch.key}.name`)}</h3>
+              <h3 className="text-sm font-bold mb-2">{t(`stretchReminder.stretches.${activeStretch.key}.name`)}</h3>
               <p className="text-muted-foreground mb-4">{t(`stretchReminder.stretches.${activeStretch.key}.desc`)}</p>
-              <div className="text-5xl font-bold text-primary mb-4">
+              <div className="text-2xl font-bold text-primary mb-4">
                 {timeRemaining}
               </div>
               <p className="text-sm text-muted-foreground">{t('stretchReminder.secondsRemaining')}</p>

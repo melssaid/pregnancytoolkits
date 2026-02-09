@@ -233,7 +233,7 @@ export default function AILaborProgressTracker() {
           <Card>
             <CardContent className="p-8 text-center">
               <div className="mb-6">
-                <div className={`text-6xl font-bold ${isTracking ? 'text-destructive' : 'text-primary'}`}>
+                <div className={`text-3xl font-bold ${isTracking ? 'text-destructive' : 'text-primary'}`}>
                   {formatTimer(timer)}
                 </div>
                 <p className="text-muted-foreground mt-2">
@@ -299,19 +299,19 @@ export default function AILaborProgressTracker() {
             <div className="grid grid-cols-3 gap-4">
               <Card>
                 <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-primary">{contractions.length}</div>
+                  <div className="text-base font-bold text-primary">{contractions.length}</div>
                   <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.contractions', 'Contractions')}</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-primary">{getAverageInterval()} {t('common.min', 'min')}</div>
+                  <div className="text-base font-bold text-primary">{getAverageInterval()} {t('common.min', 'min')}</div>
                   <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.avgInterval', 'Avg Interval')}</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-primary">{getAverageDuration()} {t('common.sec', 'sec')}</div>
+                  <div className="text-base font-bold text-primary">{getAverageDuration()} {t('common.sec', 'sec')}</div>
                   <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.avgDuration', 'Avg Duration')}</div>
                 </CardContent>
               </Card>

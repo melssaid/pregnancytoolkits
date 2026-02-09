@@ -371,9 +371,9 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">{t('toolsInternal.kickCounter.movementScore')}</p>
-                  <div className={`text-4xl font-bold ${getScoreColor(movementScore)}`}>
+                  <div className={`text-xl font-bold ${getScoreColor(movementScore)}`}>
                     {movementScore}
-                    <span className="text-lg text-muted-foreground">/100</span>
+                    <span className="text-sm text-muted-foreground">/100</span>
                   </div>
                 </div>
                 <div className="relative w-20 h-20">
@@ -415,7 +415,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
           <CardContent className="p-6">
             {/* Timer Display */}
             <div className="text-center mb-6">
-              <div className="text-5xl font-bold text-foreground mb-2">
+              <div className="text-2xl font-bold text-foreground mb-2">
                 {formatTime(elapsedTime)}
               </div>
               <p className="text-muted-foreground">{t('toolsInternal.kickCounter.elapsedTime')}</p>
@@ -436,11 +436,11 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                   key={kicks.length}
                   initial={{ scale: 1.2 }}
                   animate={{ scale: 1 }}
-                  className="text-6xl font-bold"
+                  className="text-3xl font-bold"
                 >
                   {kicks.length}
                 </motion.div>
-                <div className="text-lg opacity-90">{t('toolsInternal.kickCounter.kicks')}</div>
+                <div className="text-sm opacity-90">{t('toolsInternal.kickCounter.kicks')}</div>
               </div>
               
               {isActive && (

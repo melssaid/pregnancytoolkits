@@ -210,7 +210,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 <span className={`text-xs px-3 py-1 rounded-full font-medium ${trimester.color}`}>
                   {t(`toolsInternal.fetalDevelopment.${trimester.nameKey}`)}
                 </span>
-                <p className="text-4xl font-bold text-primary mt-2">
+                <p className="text-xl font-bold text-primary mt-2">
                   {t('toolsInternal.common.week')} {currentData.week}
                 </p>
                 {userWeek === currentData.week && (

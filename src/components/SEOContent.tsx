@@ -78,7 +78,7 @@ export function SEOContent() {
     <section className="py-8 bg-gradient-to-b from-background to-muted/30">
       <div className="container">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-3">
+          <h2 className="text-base font-bold text-foreground mb-3">
             {t('seo.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm leading-relaxed">

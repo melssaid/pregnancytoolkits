@@ -145,7 +145,7 @@ export default function PregnancyBMI() {
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="rounded-xl bg-card p-4 shadow-sm text-center">
                     <p className="text-sm text-muted-foreground">{t('toolsInternal.bmi.prePregnancyBMI')}</p>
-                    <p className="text-3xl font-bold text-primary">{result.bmi}</p>
+                    <p className="text-lg font-bold text-primary">{result.bmi}</p>
                     <p className={`text-sm font-medium ${getCategoryColor(result.category)}`}>
                       {t(`toolsInternal.bmi.categories.${result.category.toLowerCase().replace(' ', '')}`)}
                     </p>
@@ -153,7 +153,7 @@ export default function PregnancyBMI() {
                   
                   <div className="rounded-xl bg-card p-4 shadow-sm text-center">
                     <p className="text-sm text-muted-foreground">{t('toolsInternal.bmi.recommendedGain')}</p>
-                    <p className="text-3xl font-bold text-foreground">
+                    <p className="text-lg font-bold text-foreground">
                       {result.recommendedGain.min}-{result.recommendedGain.max}
                     </p>
                     <p className="text-sm text-muted-foreground">{t('toolsInternal.bmi.pounds')}</p>
@@ -164,7 +164,7 @@ export default function PregnancyBMI() {
                   <p className="font-medium text-foreground mb-2">
                     {t('toolsInternal.bmi.weeklyGainTitle')}
                   </p>
-                  <p className="text-2xl font-bold text-primary">
+                  <p className="text-base font-bold text-primary">
                     {result.weeklyGain.min} - {result.weeklyGain.max} {t('toolsInternal.bmi.lbsPerWeek')}
                   </p>
                   <p className="text-sm text-muted-foreground mt-2">

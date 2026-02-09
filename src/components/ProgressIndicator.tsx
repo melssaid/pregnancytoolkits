@@ -72,7 +72,7 @@ export function ProgressIndicator({
         animate={{ opacity: 1, y: 0 }}
         className="text-center py-3 px-4 bg-gradient-to-r from-primary/5 to-pink-50 rounded-xl"
       >
-        <p className="text-2xl font-bold text-primary">{daysRemaining}</p>
+        <p className="text-base font-bold text-primary">{daysRemaining}</p>
         <p className="text-sm text-muted-foreground">days until you meet your baby 💕</p>
       </motion.div>
 

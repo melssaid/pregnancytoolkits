@@ -118,7 +118,7 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="text-2xl font-mono font-bold text-primary flex-shrink-0"
+                    className="text-base font-mono font-bold text-primary flex-shrink-0"
                   >
                     00:{timer.toString().padStart(2, '0')}
                   </motion.span>

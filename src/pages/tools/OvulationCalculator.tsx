@@ -197,7 +197,7 @@ export default function OvulationCalculator() {
                 </motion.div>
                 <div className="relative z-10 text-center">
                   <p className="text-primary-foreground/80 text-sm font-medium mb-1">{t("toolsInternal.ovulation.daysUntilOvulation")}</p>
-                  <p className="text-5xl font-bold mb-2">{result.daysUntilOvulation}</p>
+                  <p className="text-2xl font-bold mb-2">{result.daysUntilOvulation}</p>
                   <p className="text-primary-foreground/90">{t("toolsInternal.ovulation.getReady")} 🌸</p>
                 </div>
               </motion.div>
@@ -214,7 +214,7 @@ export default function OvulationCalculator() {
                   <Heart className="h-5 w-5 text-primary" />
                   <p className="text-sm font-medium text-muted-foreground">{t("toolsInternal.ovulation.ovulationDay")}</p>
                 </div>
-                <p className="text-2xl font-bold text-primary">
+                <p className="text-base font-bold text-primary">
                   {format(result.ovulationDate, "MMM d")}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
@@ -232,7 +232,7 @@ export default function OvulationCalculator() {
                   <Calendar className="h-5 w-5 text-primary" />
                   <p className="text-sm font-medium text-muted-foreground">{t("toolsInternal.ovulation.nextPeriod")}</p>
                 </div>
-                <p className="text-2xl font-bold text-foreground">
+                <p className="text-base font-bold text-foreground">
                   {format(result.nextPeriod, "MMM d")}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">

@@ -104,7 +104,7 @@ export default function BloodTypeCalculator() {
                 </Select>
               </div>
               <div className="text-center pt-2">
-                <span className="text-3xl font-bold text-primary">
+                <span className="text-lg font-bold text-primary">
                   {parent1.type}{parent1.rh}
                 </span>
               </div>
@@ -148,7 +148,7 @@ export default function BloodTypeCalculator() {
                 </Select>
               </div>
               <div className="text-center pt-2">
-                <span className="text-3xl font-bold text-primary">
+                <span className="text-lg font-bold text-primary">
                   {parent2.type}{parent2.rh}
                 </span>
               </div>
@@ -171,12 +171,12 @@ export default function BloodTypeCalculator() {
                   <div key={type} className="space-y-2">
                     {rhProbs.positive > 0 && (
                       <div className="rounded-xl bg-card p-4 shadow-sm text-center min-w-[70px]">
-                        <p className="text-2xl font-bold text-primary">{type}+</p>
+                        <p className="text-base font-bold text-primary">{type}+</p>
                       </div>
                     )}
                     {rhProbs.negative > 0 && (
                       <div className="rounded-xl bg-card p-4 shadow-sm text-center min-w-[70px]">
-                        <p className="text-2xl font-bold text-primary">{type}-</p>
+                        <p className="text-base font-bold text-primary">{type}-</p>
                       </div>
                     )}
                   </div>
@@ -186,11 +186,11 @@ export default function BloodTypeCalculator() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-xl bg-card p-4 text-center">
                   <p className="text-sm text-muted-foreground">{t('toolsInternal.bloodType.rhPositiveChance')}</p>
-                  <p className="text-2xl font-bold text-foreground">{rhProbs.positive}%</p>
+                  <p className="text-base font-bold text-foreground">{rhProbs.positive}%</p>
                 </div>
                 <div className="rounded-xl bg-card p-4 text-center">
                   <p className="text-sm text-muted-foreground">{t('toolsInternal.bloodType.rhNegativeChance')}</p>
-                  <p className="text-2xl font-bold text-foreground">{rhProbs.negative}%</p>
+                  <p className="text-base font-bold text-foreground">{rhProbs.negative}%</p>
                 </div>
               </div>
             </CardContent>

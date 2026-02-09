@@ -230,7 +230,7 @@ const DoctorQuestions = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-3xl font-bold text-primary">{unansweredCount}</span>
+                    <span className="text-lg font-bold text-primary">{unansweredCount}</span>
                     <p className="text-xs text-muted-foreground">{t('toolsInternal.doctorQuestions.questionsLeft')}</p>
                   </div>
                 </div>

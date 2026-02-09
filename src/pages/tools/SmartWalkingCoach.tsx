@@ -196,7 +196,7 @@ export default function SmartWalkingCoach() {
                     />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-4xl font-bold">{formatTime(currentTime)}</span>
+                    <span className="text-xl font-bold">{formatTime(currentTime)}</span>
                     <span className="text-sm text-muted-foreground">/ {goal} min</span>
                   </div>
                 </div>
@@ -273,14 +273,14 @@ export default function SmartWalkingCoach() {
           <Card>
             <CardContent className="p-4 text-center">
               <Clock className="w-6 h-6 mx-auto text-primary mb-2" />
-              <p className="text-2xl font-bold">{Math.round(getTodayTotal() / 60)}</p>
+              <p className="text-base font-bold">{Math.round(getTodayTotal() / 60)}</p>
               <p className="text-xs text-muted-foreground">{t('toolsInternal.walkingCoach.minutesToday')}</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
               <TrendingUp className="w-6 h-6 mx-auto text-green-600 mb-2" />
-              <p className="text-2xl font-bold">{Math.round(getWeekTotal() / 60)}</p>
+              <p className="text-base font-bold">{Math.round(getWeekTotal() / 60)}</p>
               <p className="text-xs text-muted-foreground">{t('toolsInternal.walkingCoach.minutesThisWeek')}</p>
             </CardContent>
           </Card>

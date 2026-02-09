@@ -357,7 +357,7 @@ export default function PersonalizedWorkoutPlanner() {
             <Card>
               <CardContent className="p-6">
                 <div className="text-center mb-6">
-                  <h4 className="text-2xl font-bold mb-2">
+                  <h4 className="text-base font-bold mb-2">
                     {activeWorkout.exercises[currentExercise].name}
                   </h4>
                   <div className="flex justify-center gap-4 text-muted-foreground">

@@ -270,8 +270,8 @@ export default function AIPostureCoach() {
         {activeExercise && isActive && (
           <Card className="border-primary">
             <CardContent className="p-6 text-center">
-              <h3 className="text-xl font-bold mb-2">{activeExercise.name}</h3>
-              <div className="text-5xl font-bold text-primary mb-4">
+              <h3 className="text-sm font-bold mb-2">{activeExercise.name}</h3>
+              <div className="text-2xl font-bold text-primary mb-4">
                 {Math.floor(timeRemaining / 60)}:{(timeRemaining % 60).toString().padStart(2, '0')}
               </div>
               <div className="space-y-2 text-left bg-muted/50 p-4 rounded-lg">

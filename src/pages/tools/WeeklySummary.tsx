@@ -133,7 +133,7 @@ export default function WeeklySummary() {
                   <p className="text-xs text-muted-foreground">{trimesterInfo.label}</p>
                 </div>
               </div>
-              <span className="text-2xl font-bold text-primary">{Math.round(progress)}%</span>
+              <span className="text-base font-bold text-primary">{Math.round(progress)}%</span>
             </div>
 
             {/* Progress */}

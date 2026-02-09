@@ -137,7 +137,7 @@ Please analyze what the baby might be communicating and provide soothing strateg
                     -
                   </Button>
                   <div className="flex-1 text-center">
-                    <span className="text-2xl font-bold text-foreground">{babyAgeWeeks}</span>
+                    <span className="text-base font-bold text-foreground">{babyAgeWeeks}</span>
                     <span className="text-xs text-muted-foreground ms-1">
                       {t("toolsInternal.babyCryTranslator.weeks")}
                     </span>

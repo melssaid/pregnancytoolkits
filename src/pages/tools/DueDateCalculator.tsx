@@ -260,7 +260,7 @@ export default function DueDateCalculator() {
                   <CardContent className="space-y-4">
                     <div className="rounded-lg bg-primary p-6 text-center">
                       <p className="text-sm text-primary-foreground/80 mb-1">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
-                      <p className="text-3xl font-bold text-primary-foreground">
+                      <p className="text-lg font-bold text-primary-foreground">
                         {format(result.dueDate, "MMMM d, yyyy")}
                       </p>
                     </div>
@@ -268,7 +268,7 @@ export default function DueDateCalculator() {
                     {result.currentWeeks >= 0 && (
                       <div className="rounded-lg bg-card p-4 shadow-card text-center">
                         <p className="text-sm text-muted-foreground mb-1">{t('toolsInternal.dueDate.currentlyAt')}</p>
-                        <p className="text-2xl font-semibold text-foreground">
+                        <p className="text-base font-semibold text-foreground">
                           {t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}
                         </p>
                         <p className="text-sm text-primary mt-1">

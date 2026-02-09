@@ -277,7 +277,7 @@ const BabyGrowth = () => {
                         <p className="text-sm text-muted-foreground mb-1">
                           {t('toolsInternal.babyGrowth.weightPercentile')}
                         </p>
-                        <p className="text-2xl font-bold text-primary">
+                        <p className="text-base font-bold text-primary">
                           {result.weightPercentile}
                         </p>
                         <p className={`text-sm mt-2 ${getStatusColor(result.status)}`}>
@@ -325,7 +325,7 @@ const BabyGrowth = () => {
                         <CardContent className="py-3">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                              <div className="text-2xl">
+                              <div className="text-base">
                                 {entry.gender === "boy" ? "👦" : "👧"}
                               </div>
                               <div>

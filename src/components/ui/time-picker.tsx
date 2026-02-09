@@ -85,7 +85,7 @@ export function TimePicker({ value, onChange, placeholder = "Select time", class
         <div className="p-3 space-y-3">
           {/* Time Display */}
           <div className="text-center bg-muted rounded-lg p-2">
-            <span className="text-2xl font-bold tabular-nums">
+            <span className="text-base font-bold tabular-nums">
               {selectedHour || "--"}:{selectedMinute || "--"}
             </span>
             <span className="ml-2 text-base font-medium text-muted-foreground">

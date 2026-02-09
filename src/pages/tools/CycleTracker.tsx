@@ -187,7 +187,7 @@ ${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: $
                   <Card className="bg-secondary/50">
                     <CardContent className="pt-4 text-center">
                       <TrendingUp className="h-5 w-5 text-primary mx-auto mb-2" />
-                      <p className="text-2xl font-bold text-foreground">{stats.avgCycleLength}</p>
+                      <p className="text-base font-bold text-foreground">{stats.avgCycleLength}</p>
                       <p className="text-xs text-muted-foreground">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
                     </CardContent>
                   </Card>
@@ -196,7 +196,7 @@ ${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: $
                     <Card className="bg-secondary/50">
                       <CardContent className="pt-4 text-center">
                         <Activity className="h-5 w-5 text-primary mx-auto mb-2" />
-                        <p className="text-2xl font-bold text-foreground">{stats.avgPeriodLength}</p>
+                        <p className="text-base font-bold text-foreground">{stats.avgPeriodLength}</p>
                         <p className="text-xs text-muted-foreground">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
                       </CardContent>
                     </Card>

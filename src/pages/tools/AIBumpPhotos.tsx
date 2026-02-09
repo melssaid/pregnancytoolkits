@@ -432,7 +432,7 @@ Please provide a comprehensive pregnancy update:
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </Button>
-                <span className="text-2xl font-bold text-primary min-w-[60px] text-center">
+                <span className="text-base font-bold text-primary min-w-[60px] text-center">
                   {currentWeek}
                 </span>
                 <Button

@@ -68,7 +68,7 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-2xl font-bold text-foreground"
+            className="text-base font-bold text-foreground"
           >
             {t('progressRing.week', { week: currentWeek })}
           </motion.span>

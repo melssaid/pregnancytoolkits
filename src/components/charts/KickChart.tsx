@@ -153,11 +153,11 @@ export function KickChart({ sessions }: KickChartProps) {
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4 mt-4">
           <div className="bg-secondary rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-primary">{averageKicks.toFixed(0)}</p>
+            <p className="text-base font-bold text-primary">{averageKicks.toFixed(0)}</p>
             <p className="text-xs text-muted-foreground">{t('charts.kick.avgKicks')}</p>
           </div>
           <div className="bg-secondary rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-success">
+            <p className="text-base font-bold text-success">
               {chartData.filter(d => d.isGood).length}
             </p>
             <p className="text-xs text-muted-foreground">{t('charts.kick.excellentSessions')}</p>
