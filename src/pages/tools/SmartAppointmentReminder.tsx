@@ -159,12 +159,15 @@ const SmartAppointmentReminder: React.FC = () => {
 
   const handleEdit = (appointment: Appointment) => {
     const date = new Date(appointment.appointment_date);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     setFormData({
       title: appointment.title,
       doctor_name: appointment.doctor_name || '',
       location: appointment.location || '',
-      appointment_date: date.toISOString().split('T')[0],
-      appointment_time: date.toTimeString().slice(0, 5),
+      appointment_date: `${year}-${month}-${day}`,
+      appointment_time: `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`,
       notes: appointment.notes || '',
       questions: appointment.questions || []
     });
@@ -195,11 +198,15 @@ const SmartAppointmentReminder: React.FC = () => {
       
       let fullResponse = '';
       
-      const prompt = `I am in week ${currentWeek} of pregnancy and I have a doctor's appointment titled: "${formData.title}".
+      const prompt = `I am in week ${currentWeek} of pregnancy and I have a "${formData.title}" appointment.
 
-Please suggest 5 important and specific questions I should ask my doctor during this appointment. 
+Suggest 5 highly specific, actionable questions I should ask my doctor. Focus on:
+- Questions specific to week ${currentWeek} concerns
+- Red flags I should mention
+- Tests or screenings relevant at this stage
+- Practical advice I need right now
 
-Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on its own line. Keep each question concise but meaningful.`;
+Respond in the same language the user is using. Format as a numbered list (1-5), one question per line. Be concise but medically relevant.`;
 
       await streamChat({
         type: 'pregnancy-assistant',
@@ -277,8 +284,10 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
 
   const getDaysUntil = (dateStr: string) => {
     const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const date = new Date(dateStr);
-    const diff = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    const appointmentDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const diff = Math.round((appointmentDay.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
     if (diff === 0) return t('common.today');
     if (diff === 1) return t('toolsInternal.appointmentReminder.tomorrow');
     if (diff < 0) return t('toolsInternal.appointmentReminder.passed');
@@ -519,21 +528,36 @@ Format your response as a numbered list (1. 2. 3. 4. 5.) with each question on i
 
                   {/* Suggested Questions */}
                   {suggestedQuestions.length > 0 && (
-                    <div className="space-y-1.5 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 p-3 rounded-lg border border-violet-200/50">
-                      <p className="text-xs text-violet-600 dark:text-violet-400 font-medium flex items-center gap-1">
-                        <Sparkles className="w-3 h-3" />
+                    <div className="space-y-2 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 p-4 rounded-xl border border-violet-200/50">
+                      <p className="text-sm text-violet-600 dark:text-violet-400 font-semibold flex items-center gap-1.5 mb-3">
+                        <Sparkles className="w-4 h-4" />
                         {t('toolsInternal.appointmentReminder.aiSuggestionsLabel')}
                       </p>
-                      {suggestedQuestions.map((q, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-2 text-xs cursor-pointer hover:bg-violet-100 dark:hover:bg-violet-900/30 p-2 rounded transition-colors"
-                          onClick={() => addQuestion(q)}
-                        >
-                          <Plus className="w-3 h-3 text-violet-500" />
-                          <span>{q}</span>
-                        </div>
-                      ))}
+                      <div className="flex flex-col gap-2">
+                        {suggestedQuestions.map((q, i) => {
+                          const isAdded = formData.questions.includes(q);
+                          return (
+                            <button
+                              key={i}
+                              type="button"
+                              onClick={() => !isAdded && addQuestion(q)}
+                              disabled={isAdded}
+                              className={`flex items-start gap-3 w-full text-start p-3 rounded-lg border transition-all duration-200 ${
+                                isAdded
+                                  ? 'bg-primary/10 border-primary/30 opacity-70'
+                                  : 'bg-white dark:bg-card border-violet-200/50 hover:border-primary/40 hover:shadow-sm active:scale-[0.98]'
+                              }`}
+                            >
+                              <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
+                                isAdded ? 'bg-primary text-primary-foreground' : 'bg-violet-100 dark:bg-violet-900/50 text-violet-500'
+                              }`}>
+                                {isAdded ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
+                              </div>
+                              <span className="text-xs leading-relaxed flex-1">{q}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                       <AIResultDisclaimer />
                     </div>
                   )}
