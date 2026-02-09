@@ -140,49 +140,46 @@ export function useNotifications() {
       const hour = now.getHours();
       const newNotifications: Notification[] = [];
 
-      // Morning vitamin reminder (8 AM only - once daily)
-      if (settings.vitaminReminders && hour === 8) {
-        const lastVitaminReminder = notifications.find(
-          n => n.type === 'vitamin' && 
+      // Helper: check if a reminder was already sent today for a given type
+      const hasTodayReminder = (type: string, subKey?: string) => {
+        return notifications.some(
+          n => n.type === type && 
+          (!subKey || n.id.includes(subKey)) &&
           new Date(n.time).toDateString() === now.toDateString()
         );
-        if (!lastVitaminReminder) {
-          newNotifications.push({
-            id: `vitamin-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-            type: 'vitamin',
-            title: tn('vitaminReminderTitle'),
-            message: tn('vitaminReminderMsg'),
-            time: nowISO,
-            read: false,
-            actionUrl: '/tools/vitamin-tracker',
-          });
-        }
+      };
+
+      // Morning vitamin reminder (8 AM+ window - once daily)
+      if (settings.vitaminReminders && hour >= 8 && !hasTodayReminder('vitamin')) {
+        newNotifications.push({
+          id: `vitamin-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          type: 'vitamin',
+          title: tn('vitaminReminderTitle'),
+          message: tn('vitaminReminderMsg'),
+          time: nowISO,
+          read: false,
+          actionUrl: '/tools/vitamin-tracker',
+        });
       }
 
-      // Stretch reminder (once daily at 10 AM)
-      if (settings.stretchReminders && hour === 10) {
-        const lastStretchReminder = notifications.find(
-          n => n.type === 'stretch' && 
-          new Date(n.time).toDateString() === now.toDateString()
-        );
-        if (!lastStretchReminder) {
-          newNotifications.push({
-            id: `stretch-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-            type: 'stretch',
-            title: tn('stretchReminderTitle'),
-            message: tn('stretchReminderMsg'),
-            time: nowISO,
-            read: false,
-            actionUrl: '/tools/smart-stretch-reminder',
-          });
-        }
+      // Stretch reminder (10 AM+ window - once daily)
+      if (settings.stretchReminders && hour >= 10 && !hasTodayReminder('stretch')) {
+        newNotifications.push({
+          id: `stretch-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          type: 'stretch',
+          title: tn('stretchReminderTitle'),
+          message: tn('stretchReminderMsg'),
+          time: nowISO,
+          read: false,
+          actionUrl: '/tools/smart-stretch-reminder',
+        });
       }
 
-      // Water reminders (every 6 hours - 8 AM, 2 PM, 8 PM)
-      if (settings.waterReminders && (hour === 8 || hour === 14 || hour === 20)) {
+      // Water reminders (every 4 hours while app is open)
+      if (settings.waterReminders) {
         const recentWaterReminder = notifications.find(
           n => n.type === 'water' && 
-          (now.getTime() - new Date(n.time).getTime()) < 6 * 60 * 60 * 1000
+          (now.getTime() - new Date(n.time).getTime()) < 4 * 60 * 60 * 1000
         );
         if (!recentWaterReminder) {
           newNotifications.push({
@@ -197,58 +194,45 @@ export function useNotifications() {
         }
       }
 
-      // Exercise reminder (once daily at 4 PM)
-      if (settings.exerciseReminders && hour === 16) {
-        const lastExerciseReminder = notifications.find(
-          n => n.type === 'exercise' && 
-          new Date(n.time).toDateString() === now.toDateString()
-        );
-        if (!lastExerciseReminder) {
+      // Exercise reminder (4 PM+ window - once daily)
+      if (settings.exerciseReminders && hour >= 16 && !hasTodayReminder('exercise')) {
+        newNotifications.push({
+          id: `exercise-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          type: 'exercise',
+          title: tn('exerciseReminderTitle'),
+          message: tn('exerciseReminderMsg'),
+          time: nowISO,
+          read: false,
+          actionUrl: '/tools/smart-walking-coach',
+        });
+      }
+
+      // Backup reminder (9 AM+ window - once daily if backup is old)
+      if (settings.backupReminders && hour >= 9 && !hasTodayReminder('backup')) {
+        const lastBackupDate = localStorage.getItem('last_backup_date');
+        const daysSinceBackup = lastBackupDate 
+          ? Math.floor((now.getTime() - new Date(lastBackupDate).getTime()) / (1000 * 60 * 60 * 24))
+          : 999;
+        
+        if (daysSinceBackup >= BACKUP_REMINDER_DAYS) {
+          const message = lastBackupDate 
+            ? tn('backupReminderMsgDays', { days: daysSinceBackup })
+            : tn('backupReminderMsgNever');
+          
           newNotifications.push({
-            id: `exercise-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-            type: 'exercise',
-            title: tn('exerciseReminderTitle'),
-            message: tn('exerciseReminderMsg'),
+            id: `backup-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            type: 'backup',
+            title: tn('backupReminderTitle'),
+            message,
             time: nowISO,
             read: false,
-            actionUrl: '/tools/smart-walking-coach',
+            actionUrl: '/settings',
           });
         }
       }
 
-      // Backup reminder (check once daily at 9 AM if backup is older than BACKUP_REMINDER_DAYS)
-      if (settings.backupReminders && hour === 9) {
-        const lastBackupDate = localStorage.getItem('last_backup_date');
-        const daysSinceBackup = lastBackupDate 
-          ? Math.floor((now.getTime() - new Date(lastBackupDate).getTime()) / (1000 * 60 * 60 * 24))
-          : 999; // No backup ever = always remind
-        
-        // Only remind if no backup in the last BACKUP_REMINDER_DAYS days
-        if (daysSinceBackup >= BACKUP_REMINDER_DAYS) {
-          const lastBackupReminder = notifications.find(
-            n => n.type === 'backup' && 
-            new Date(n.time).toDateString() === now.toDateString()
-          );
-          if (!lastBackupReminder) {
-            const message = lastBackupDate 
-              ? tn('backupReminderMsgDays', { days: daysSinceBackup })
-              : tn('backupReminderMsgNever');
-            
-            newNotifications.push({
-              id: `backup-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-              type: 'backup',
-              title: tn('backupReminderTitle'),
-              message,
-              time: nowISO,
-              read: false,
-              actionUrl: '/settings',
-            });
-          }
-        }
-      }
-
-      // Appointment reminders (check for appointments tomorrow - runs at 8 AM and 8 PM)
-      if (settings.appointmentReminders && (hour === 8 || hour === 20)) {
+      // Appointment reminders - tomorrow (8 AM+ window, once daily)
+      if (settings.appointmentReminders && hour >= 8) {
         const appointments = getAppointmentsFromStorage();
         const tomorrow = new Date(now);
         tomorrow.setDate(tomorrow.getDate() + 1);
@@ -257,26 +241,24 @@ export function useNotifications() {
         const dayAfterTomorrow = new Date(tomorrow);
         dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
         
-        // Find appointments scheduled for tomorrow
         const tomorrowAppointments = appointments.filter((apt: any) => {
           const aptDate = new Date(apt.appointment_date);
           return aptDate >= tomorrow && aptDate < dayAfterTomorrow;
         });
         
         for (const apt of tomorrowAppointments) {
-          // Check if we already sent a reminder for this appointment today
           const existingReminder = notifications.find(
             n => n.type === 'appointment' && 
             n.id.includes(apt.id) &&
+            !n.id.includes('today-') &&
+            !n.id.includes('2h-') &&
             new Date(n.time).toDateString() === now.toDateString()
           );
           
           if (!existingReminder) {
             const aptDate = new Date(apt.appointment_date);
             const timeStr = aptDate.toLocaleTimeString('en-US', { 
-              hour: 'numeric', 
-              minute: '2-digit',
-              hour12: true 
+              hour: 'numeric', minute: '2-digit', hour12: true 
             });
             
             newNotifications.push({
@@ -291,51 +273,49 @@ export function useNotifications() {
           }
         }
         
-        // Also check for today's appointments (same day reminder at 8 AM only)
-        if (hour === 8) {
-          const todayStart = new Date(now);
-          todayStart.setHours(0, 0, 0, 0);
+        // Today's appointments (once daily)
+        const todayStart = new Date(now);
+        todayStart.setHours(0, 0, 0, 0);
+        
+        const todayAppointments = appointments.filter((apt: any) => {
+          const aptDate = new Date(apt.appointment_date);
+          return aptDate >= todayStart && aptDate < tomorrow;
+        });
+        
+        for (const apt of todayAppointments) {
+          const existingReminder = notifications.find(
+            n => n.type === 'appointment' && 
+            n.id.includes(`today-${apt.id}`) &&
+            new Date(n.time).toDateString() === now.toDateString()
+          );
           
-          const todayAppointments = appointments.filter((apt: any) => {
+          if (!existingReminder) {
             const aptDate = new Date(apt.appointment_date);
-            return aptDate >= todayStart && aptDate < tomorrow;
-          });
-          
-          for (const apt of todayAppointments) {
-            const existingReminder = notifications.find(
-              n => n.type === 'appointment' && 
-              n.id.includes(`today-${apt.id}`) &&
-              new Date(n.time).toDateString() === now.toDateString()
-            );
+            const timeStr = aptDate.toLocaleTimeString('en-US', { 
+              hour: 'numeric', minute: '2-digit', hour12: true 
+            });
             
-            if (!existingReminder) {
-              const aptDate = new Date(apt.appointment_date);
-              const timeStr = aptDate.toLocaleTimeString('en-US', { 
-                hour: 'numeric', 
-                minute: '2-digit',
-                hour12: true 
-              });
-              
-              newNotifications.push({
-                id: `appointment-today-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-                type: 'appointment',
-                title: tn('appointmentTodayTitle'),
-                message: formatAppointmentMsg(apt, timeStr),
-                time: nowISO,
-                read: false,
-                actionUrl: '/tools/smart-appointment-reminder',
-              });
-            }
+            newNotifications.push({
+              id: `appointment-today-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              type: 'appointment',
+              title: tn('appointmentTodayTitle'),
+              message: formatAppointmentMsg(apt, timeStr),
+              time: nowISO,
+              read: false,
+              actionUrl: '/tools/smart-appointment-reminder',
+            });
           }
         }
+      }
 
-        // 2-hour before appointment reminder (checks every minute)
+      // 2-hour before appointment reminder (runs EVERY check, not gated by hour)
+      if (settings.appointmentReminders) {
+        const appointments = getAppointmentsFromStorage();
         const allUpcoming = appointments.filter((apt: any) => {
           const aptDate = new Date(apt.appointment_date);
           const diffMs = aptDate.getTime() - now.getTime();
           const diffMinutes = diffMs / (1000 * 60);
-          // Trigger when appointment is between 119 and 121 minutes away (2-hour window)
-          return diffMinutes > 0 && diffMinutes <= 120 && diffMinutes > 118;
+          return diffMinutes > 0 && diffMinutes <= 125;
         });
 
         for (const apt of allUpcoming) {
@@ -347,9 +327,7 @@ export function useNotifications() {
           if (!existingReminder) {
             const aptDate = new Date(apt.appointment_date);
             const timeStr = aptDate.toLocaleTimeString('en-US', { 
-              hour: 'numeric', 
-              minute: '2-digit',
-              hour12: true 
+              hour: 'numeric', minute: '2-digit', hour12: true 
             });
             
             newNotifications.push({
