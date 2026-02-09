@@ -25,24 +25,24 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index }: 
       transition={{ duration: 0.15, delay: Math.min(index * 0.015, 0.08) }}
     >
       <Link to={href} className="block">
-        <div className="group flex items-center gap-3 p-3 rounded-xl bg-card border border-border/50 hover:border-slate-300 hover:shadow-sm transition-all duration-200">
+        <div className="group flex items-center gap-2.5 p-2.5 rounded-xl bg-card border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
           {/* Minimal Icon */}
-          <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-slate-50 flex items-center justify-center">
-            <Icon className="w-5 h-5 text-slate-500" strokeWidth={1.75} />
+          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
+            <Icon className="w-4 h-4 text-muted-foreground" strokeWidth={1.75} />
           </div>
           
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold text-gray-900 truncate leading-snug">
+            <h3 className="text-xs font-semibold text-foreground truncate leading-snug">
               {t(titleKey)}
             </h3>
-            <p className="text-xs text-slate-500 truncate mt-0.5">
+            <p className="text-[10px] text-muted-foreground truncate mt-0.5">
               {t(descriptionKey)}
             </p>
           </div>
           
           {/* Chevron - direction aware */}
-          <ChevronIcon className="flex-shrink-0 w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
+          <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/60 group-hover:text-foreground/60 transition-colors" />
         </div>
       </Link>
     </motion.div>
