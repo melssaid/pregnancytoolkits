@@ -2,6 +2,22 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { playNotificationSound } from '@/lib/notificationSound';
 import { showPushNotification, getPermissionStatus } from '@/lib/pushNotifications';
+import i18n from 'i18next';
+
+const tn = (key: string, options?: Record<string, any>): string => String(i18n.t(`notificationsPanel.${key}`, options));
+
+const formatAppointmentMsg = (apt: any, timeStr: string): string => {
+  if (apt.doctor_name && apt.location) {
+    return tn('appointmentMsgDoctorLocation', { title: apt.title, doctor: apt.doctor_name, time: timeStr, location: apt.location });
+  }
+  if (apt.doctor_name) {
+    return tn('appointmentMsgDoctor', { title: apt.title, doctor: apt.doctor_name, time: timeStr });
+  }
+  if (apt.location) {
+    return tn('appointmentMsgLocation', { title: apt.title, time: timeStr, location: apt.location });
+  }
+  return tn('appointmentMsg', { title: apt.title, time: timeStr });
+};
 
 export interface Notification {
   id: string;
@@ -134,8 +150,8 @@ export function useNotifications() {
           newNotifications.push({
             id: `vitamin-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'vitamin',
-            title: '💊 Vitamin Reminder',
-            message: "Don't forget to take your prenatal vitamins!",
+            title: tn('vitaminReminderTitle'),
+            message: tn('vitaminReminderMsg'),
             time: nowISO,
             read: false,
             actionUrl: '/tools/vitamin-tracker',
@@ -153,8 +169,8 @@ export function useNotifications() {
           newNotifications.push({
             id: `stretch-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'stretch',
-            title: '🧘 Time to Stretch',
-            message: 'Take a quick stretch break to stay comfortable!',
+            title: tn('stretchReminderTitle'),
+            message: tn('stretchReminderMsg'),
             time: nowISO,
             read: false,
             actionUrl: '/tools/smart-stretch-reminder',
@@ -172,8 +188,8 @@ export function useNotifications() {
           newNotifications.push({
             id: `water-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'water',
-            title: '💧 Stay Hydrated',
-            message: 'Time for a glass of water!',
+            title: tn('waterReminderTitle'),
+            message: tn('waterReminderMsg'),
             time: nowISO,
             read: false,
             actionUrl: '/tools/vitamin-tracker',
@@ -191,8 +207,8 @@ export function useNotifications() {
           newNotifications.push({
             id: `exercise-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'exercise',
-            title: '🚶‍♀️ Walking Time',
-            message: 'A short walk will boost your energy and mood!',
+            title: tn('exerciseReminderTitle'),
+            message: tn('exerciseReminderMsg'),
             time: nowISO,
             read: false,
             actionUrl: '/tools/smart-walking-coach',
@@ -214,15 +230,15 @@ export function useNotifications() {
             new Date(n.time).toDateString() === now.toDateString()
           );
           if (!lastBackupReminder) {
-            const daysText = lastBackupDate 
-              ? `It's been ${daysSinceBackup} days since your last backup.`
-              : "You haven't backed up your data yet.";
+            const message = lastBackupDate 
+              ? tn('backupReminderMsgDays', { days: daysSinceBackup })
+              : tn('backupReminderMsgNever');
             
             newNotifications.push({
               id: `backup-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
               type: 'backup',
-              title: '💾 Backup Reminder',
-              message: `${daysText} Protect your pregnancy journey!`,
+              title: tn('backupReminderTitle'),
+              message,
               time: nowISO,
               read: false,
               actionUrl: '/settings',
@@ -266,8 +282,8 @@ export function useNotifications() {
             newNotifications.push({
               id: `appointment-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
               type: 'appointment',
-              title: '📅 Appointment Tomorrow',
-              message: `${apt.title}${apt.doctor_name ? ` with ${apt.doctor_name}` : ''} at ${timeStr}${apt.location ? ` - ${apt.location}` : ''}`,
+              title: tn('appointmentTomorrowTitle'),
+              message: formatAppointmentMsg(apt, timeStr),
               time: nowISO,
               read: false,
               actionUrl: '/tools/smart-appointment-reminder',
@@ -303,8 +319,8 @@ export function useNotifications() {
               newNotifications.push({
                 id: `appointment-today-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
                 type: 'appointment',
-                title: '🔔 Appointment Today!',
-                message: `${apt.title}${apt.doctor_name ? ` with ${apt.doctor_name}` : ''} at ${timeStr}${apt.location ? ` - ${apt.location}` : ''}`,
+                title: tn('appointmentTodayTitle'),
+                message: formatAppointmentMsg(apt, timeStr),
                 time: nowISO,
                 read: false,
                 actionUrl: '/tools/smart-appointment-reminder',
@@ -339,8 +355,8 @@ export function useNotifications() {
             newNotifications.push({
               id: `appointment-2h-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
               type: 'appointment',
-              title: '⏰ Appointment in 2 Hours!',
-              message: `${apt.title}${apt.doctor_name ? ` with ${apt.doctor_name}` : ''} at ${timeStr}${apt.location ? ` - ${apt.location}` : ''}`,
+              title: tn('appointment2hTitle'),
+              message: formatAppointmentMsg(apt, timeStr),
               time: nowISO,
               read: false,
               actionUrl: '/tools/smart-appointment-reminder',
