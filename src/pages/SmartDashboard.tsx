@@ -22,6 +22,7 @@ import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 import { NotificationsPanel } from "@/components/dashboard/NotificationsPanel";
 import { useNotifications } from "@/hooks/useNotifications";
+import useSubscription from "@/hooks/useSubscription";
 
 type TabType = "home" | "chat" | "health" | "nutrition" | "exercise" | "videos";
 
@@ -112,6 +113,7 @@ const SmartDashboard = () => {
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, loading: statsLoading } = useTrackingStats();
   const { unreadCount } = useNotifications();
+  const { isTrialActive, trialDaysLeft, isSubscribed } = useSubscription();
   const [activeTab, setActiveTab] = useState<TabType>("home");
   const [showNotifications, setShowNotifications] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -277,8 +279,46 @@ const SmartDashboard = () => {
               </CardContent>
             </Card>
 
+            {/* Trial/Subscription Badge */}
+            {!isSubscribed && (
+              <motion.div
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`flex items-center gap-3 p-3 rounded-xl border ${
+                  isTrialActive
+                    ? 'bg-accent/30 border-accent'
+                    : 'bg-destructive/10 border-destructive/30'
+                }`}
+              >
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center ${
+                  isTrialActive ? 'bg-primary text-primary-foreground' : 'bg-destructive text-destructive-foreground'
+                }`}>
+                  <Clock className="w-4 h-4" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold text-foreground truncate">
+                    {isTrialActive
+                      ? t('subscriptionModal.trialRemaining', '{{days}} days remaining', { days: trialDaysLeft })
+                      : t('subscriptionModal.trialEnded', 'Free trial ended')}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground truncate">
+                    {isTrialActive
+                      ? t('subscriptionModal.fullAccessCancel')
+                      : t('subscriptionModal.subscribeToUnlock', 'Subscribe to unlock all premium tools')}
+                  </p>
+                </div>
+                {!isTrialActive && (
+                  <Link to="/" className="shrink-0">
+                    <Button size="sm" className="text-xs h-7 rounded-lg">
+                      {t('subscriptionModal.subscribe', 'Subscribe')}
+                    </Button>
+                  </Link>
+                )}
+              </motion.div>
+            )}
+
             {/* Quick Stats */}
-            <QuickStats 
+            <QuickStats
               weight={parseFloat(healthData.weight) || 0}
               kicks={0}
               mood={healthData.mood}
