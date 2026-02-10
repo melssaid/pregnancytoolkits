@@ -1,15 +1,33 @@
 import { supabase } from '@/integrations/supabase/client';
+import { ensureAuthenticated } from '@/lib/auth';
 
 // =====================================================
 // HELPER FUNCTIONS
 // =====================================================
-const getUserId = (): string => {
+
+/**
+ * Get the local-only user ID for localStorage operations.
+ * This ID is NEVER sent to Supabase - only used as a localStorage namespace.
+ */
+const getLocalUserId = (): string => {
   let userId = localStorage.getItem('pregnancy_user_id');
   if (!userId) {
     userId = 'user_' + Math.random().toString(36).substring(2, 15);
     localStorage.setItem('pregnancy_user_id', userId);
   }
   return userId;
+};
+
+/**
+ * Get the authenticated Supabase user ID.
+ * Uses anonymous auth for seamless experience with proper RLS isolation.
+ */
+const getAuthUserId = async (): Promise<string> => {
+  const user = await ensureAuthenticated();
+  if (!user?.id) {
+    throw new Error('Authentication failed - cannot perform Supabase operation');
+  }
+  return user.id;
 };
 
 const getLocalData = <T>(key: string): T[] => {
@@ -45,13 +63,13 @@ const isSupabaseConfigured = (): boolean => {
 // =====================================================
 export const UserProfileService = {
   async get() {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const profiles = getLocalData<any>('user_profiles');
     return profiles.find(p => p.user_id === userId) || null;
   },
 
   async upsert(profile: any) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     let profiles = getLocalData<any>('user_profiles');
     const index = profiles.findIndex(p => p.user_id === userId);
     
@@ -78,7 +96,7 @@ export const UserProfileService = {
 // =====================================================
 export const VitaminService = {
   async log(vitaminName: string, dosage: string, week: number) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const logs = getLocalData<any>('vitamin_logs');
     
     const newLog = {
@@ -97,7 +115,7 @@ export const VitaminService = {
   },
 
   async getTodayLogs() {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const logs = getLocalData<any>('vitamin_logs');
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -111,7 +129,7 @@ export const VitaminService = {
   },
 
   async getHistory(days: number = 7) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const logs = getLocalData<any>('vitamin_logs');
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
@@ -130,7 +148,7 @@ export const VitaminService = {
 // =====================================================
 export const KickService = {
   async startSession(week: number) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const sessions = getLocalData<any>('kick_sessions');
     
     const newSession = {
@@ -151,7 +169,7 @@ export const KickService = {
   },
 
   async getActiveSession() {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const sessions = getLocalData<any>('kick_sessions');
     return sessions
       .filter(s => s.user_id === userId && !s.ended_at)
@@ -185,7 +203,7 @@ export const KickService = {
   },
 
   async getHistory(limit: number = 10) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const sessions = getLocalData<any>('kick_sessions');
     
     return sessions
@@ -200,12 +218,11 @@ export const KickService = {
 // =====================================================
 export const BumpPhotoService = {
   async upload(file: File, week: number, caption?: string) {
-    const userId = getUserId();
-    
-    // Try Supabase first
+    // Try Supabase first with authenticated user ID
     if (isSupabaseConfigured()) {
       try {
-        const fileName = `${userId}/${week}_${Date.now()}.${file.name.split('.').pop()}`;
+        const authUserId = await getAuthUserId();
+        const fileName = `${authUserId}/${week}_${Date.now()}.${file.name.split('.').pop()}`;
         
         // Upload to storage
         const { error: uploadError } = await supabase.storage
@@ -225,7 +242,7 @@ export const BumpPhotoService = {
         const { data, error } = await supabase
           .from('bump_photos')
           .insert({
-            user_id: userId,
+            user_id: authUserId,
             week: week,
             storage_path: fileName,
             public_url: urlData.signedUrl,
@@ -242,13 +259,14 @@ export const BumpPhotoService = {
     }
     
     // Fallback to localStorage with base64
+    const localUserId = getLocalUserId();
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => {
         const photos = getLocalData<any>('bump_photos');
         const newPhoto = {
           id: generateId(),
-          user_id: userId,
+          user_id: localUserId,
           week: week,
           public_url: reader.result as string,
           storage_path: `local_${Date.now()}`,
@@ -266,15 +284,14 @@ export const BumpPhotoService = {
   },
 
   async getAll() {
-    const userId = getUserId();
-    
-    // Try Supabase first
+    // Try Supabase first with authenticated user
     if (isSupabaseConfigured()) {
       try {
+        const authUserId = await getAuthUserId();
         const { data, error } = await supabase
           .from('bump_photos')
           .select('*')
-          .eq('user_id', userId)
+          .eq('user_id', authUserId)
           .order('week', { ascending: true });
         
         if (!error && data) {
@@ -304,9 +321,10 @@ export const BumpPhotoService = {
     }
     
     // Fallback to localStorage
+    const localUserId = getLocalUserId();
     const photos = getLocalData<any>('bump_photos');
     return photos
-      .filter(p => p.user_id === userId)
+      .filter(p => p.user_id === localUserId)
       .sort((a, b) => a.week - b.week);
   },
 
@@ -365,7 +383,7 @@ export const BumpPhotoService = {
 // =====================================================
 export const AppointmentService = {
   async add(appointment: any) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const appointments = getLocalData<any>('appointments');
     
     const newAppointment = {
@@ -382,7 +400,7 @@ export const AppointmentService = {
   },
 
   async getAll() {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const appointments = getLocalData<any>('appointments');
     
     return appointments
@@ -412,7 +430,7 @@ export const AppointmentService = {
 // =====================================================
 export const NutritionService = {
   async logMeal(mealType: string, foods: any[], calories?: number, week?: number) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const logs = getLocalData<any>('nutrition_logs');
     
     const newLog = {
@@ -432,7 +450,7 @@ export const NutritionService = {
   },
 
   async getTodayMeals() {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const logs = getLocalData<any>('nutrition_logs');
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -467,7 +485,7 @@ export const NutritionService = {
 // =====================================================
 export const HealthService = {
   async log(data: any) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const logs = getLocalData<any>('health_tracking');
     
     const newLog = {
@@ -483,7 +501,7 @@ export const HealthService = {
   },
 
   async getHistory(limit: number = 30) {
-    const userId = getUserId();
+    const userId = getLocalUserId();
     const logs = getLocalData<any>('health_tracking');
     
     return logs
