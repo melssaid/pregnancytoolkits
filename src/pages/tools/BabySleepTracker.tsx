@@ -374,15 +374,15 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
         <Button
           onClick={getAIAdvice}
           disabled={aiLoading}
-          variant="outline"
-          className="w-full text-xs h-9 gap-1.5"
+          className="w-full text-xs h-10 gap-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-md hover:shadow-lg hover:from-primary/90 hover:to-primary/70 transition-all duration-300"
         >
           {aiLoading ? (
-            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <Sparkles className="h-3.5 w-3.5" />
+            <Sparkles className="h-4 w-4" />
           )}
           {t('toolsInternal.babySleep.getAISleepAdvice')}
+          <ChevronRight className="h-3.5 w-3.5 ms-auto opacity-60" />
         </Button>
 
         {/* AI Advice Card */}
