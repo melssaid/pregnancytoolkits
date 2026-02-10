@@ -220,7 +220,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
       mood="joyful"
       toolId="vitamin-tracker"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Week Selector */}
         <WeekSlider
           week={currentWeek}
@@ -231,12 +231,12 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
         {/* Today's Progress */}
         <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
           <CardHeader className="pb-2">
-            <CardTitle className="flex items-center justify-between text-base">
+            <CardTitle className="flex items-center justify-between text-sm">
               <span className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-primary" />
                 {t('toolsInternal.vitaminTracker.todaysProgress')}
               </span>
-              <span className="text-base font-bold text-primary">{todayProgress}%</span>
+              <span className="text-sm font-bold text-primary">{todayProgress}%</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -255,7 +255,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
         {/* AI Analysis Card */}
         <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
           <CardHeader className="pb-2">
-            <CardTitle className="flex items-center justify-between text-base">
+            <CardTitle className="flex items-center justify-between text-sm">
               <span className="flex items-center gap-2">
                 <Brain className="w-5 h-5 text-violet-500" />
                 {t('toolsInternal.vitaminTracker.aiAnalysisTitle')}
@@ -302,7 +302,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
         </Card>
 
         {/* Vitamins Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {VITAMINS.map((vitamin) => {
             const taken = isVitaminTakenToday(vitamin.name);
             const isSaving = savingId === vitamin.id;
@@ -364,7 +364,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {VITAMINS.map(vitamin => {
                 const count = weeklyStats[vitamin.name] || 0;
                 const percentage = Math.round((count / 7) * 100);

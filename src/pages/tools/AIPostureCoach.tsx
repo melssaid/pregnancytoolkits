@@ -191,7 +191,7 @@ export default function AIPostureCoach() {
       mood="empowering"
       toolId="ai-posture-coach"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Trimester Selector */}
         <Card>
           <CardContent className="p-4">
@@ -218,12 +218,12 @@ export default function AIPostureCoach() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold">{t('toolsInternal.postureCoach.todaysProgress', "Today's Progress")}</h3>
+              <h3 className="text-sm font-semibold">{t('toolsInternal.postureCoach.todaysProgress', "Today's Progress")}</h3>
               <span className="text-primary font-bold">
                 {completedToday.length}/{filteredExercises.length}
               </span>
             </div>
-            <div className="w-full h-2 bg-muted rounded-full mb-4">
+            <div className="w-full h-2 bg-muted rounded-full mb-3">
               <div 
                 className="h-full bg-primary rounded-full transition-all"
                 style={{ width: `${(completedToday.length / filteredExercises.length) * 100}%` }}
@@ -251,7 +251,7 @@ export default function AIPostureCoach() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Brain className="w-5 h-5 text-primary" />
-                <h3 className="font-semibold">{t('toolsInternal.postureCoach.aiPostureCoach', 'AI Posture Coach')}</h3>
+                <h3 className="text-sm font-semibold">{t('toolsInternal.postureCoach.aiPostureCoach', 'AI Posture Coach')}</h3>
               </div>
               <MarkdownRenderer content={aiResponse} />
             </CardContent>
@@ -269,14 +269,14 @@ export default function AIPostureCoach() {
         {/* Active Exercise */}
         {activeExercise && isActive && (
           <Card className="border-primary">
-            <CardContent className="p-6 text-center">
+          <CardContent className="p-4 text-center">
               <h3 className="text-sm font-bold mb-2">{activeExercise.name}</h3>
-              <div className="text-2xl font-bold text-primary mb-4">
+              <div className="text-base font-bold text-primary mb-3">
                 {Math.floor(timeRemaining / 60)}:{(timeRemaining % 60).toString().padStart(2, '0')}
               </div>
-              <div className="space-y-2 text-left bg-muted/50 p-4 rounded-lg">
+              <div className="space-y-1.5 text-left bg-muted/50 p-3 rounded-lg">
                 {activeExercise.steps.map((step, i) => (
-                  <p key={i} className="text-sm flex items-start gap-2">
+                  <p key={i} className="text-xs flex items-start gap-2">
                     <span className="text-primary font-bold">{i + 1}.</span>
                     {step}
                   </p>
@@ -296,14 +296,14 @@ export default function AIPostureCoach() {
         {/* Exercise List */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-lg font-semibold mb-4">{t('toolsInternal.postureCoach.postureExercises', 'Posture Exercises')}</h3>
+            <h3 className="text-sm font-semibold mb-3">{t('toolsInternal.postureCoach.postureExercises', 'Posture Exercises')}</h3>
             <div className="space-y-3">
               {filteredExercises.map((exercise) => {
                 const isCompleted = completedToday.includes(exercise.id);
                 return (
                   <div
                     key={exercise.id}
-                    className={`p-4 rounded-lg transition-all ${
+                    className={`p-3 rounded-lg transition-all ${
                       isCompleted ? 'bg-green-500/10 border border-green-500/20' : 'bg-muted/50'
                     }`}
                   >
@@ -315,9 +315,9 @@ export default function AIPostureCoach() {
                           ) : (
                             <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/30" />
                           )}
-                          <span className="font-semibold">{exercise.name}</span>
+                          <span className="text-xs font-semibold">{exercise.name}</span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-1 ml-7">
+                        <p className="text-[11px] text-muted-foreground mt-0.5 ml-7">
                           {exercise.description}
                         </p>
                         <div className="flex items-center gap-3 mt-2 ml-7">

@@ -109,10 +109,10 @@ Be compassionate - morning sickness is exhausting!`;
       mood="calm"
       toolId="ai-nausea-relief"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Quick Relief Card */}
         <Card className="p-4 bg-muted/30 border-primary/20">
-          <h3 className="font-semibold flex items-center gap-2 mb-3">
+          <h3 className="text-sm font-semibold flex items-center gap-2 mb-2">
             <Wind className="w-4 h-4 text-primary" />
             {t('toolsInternal.nauseaRelief.quickRemediesTitle')}
           </h3>

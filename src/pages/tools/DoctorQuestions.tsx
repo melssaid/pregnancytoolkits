@@ -143,7 +143,7 @@ const DoctorQuestions = () => {
       mood="calm"
       toolId="doctor-questions"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {!currentVisit ? (
           <>
             {/* Start New Visit */}
@@ -164,7 +164,7 @@ const DoctorQuestions = () => {
             {/* Suggested Questions */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
+                <CardTitle className="text-sm flex items-center gap-2">
                   <Stethoscope className="h-5 w-5 text-primary" />
                   {t('toolsInternal.doctorQuestions.suggestedQuestions')}
                 </CardTitle>
@@ -187,7 +187,7 @@ const DoctorQuestions = () => {
             {visits.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">{t('toolsInternal.doctorQuestions.pastVisits')}</CardTitle>
+                  <CardTitle className="text-sm">{t('toolsInternal.doctorQuestions.pastVisits')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
@@ -216,7 +216,7 @@ const DoctorQuestions = () => {
               <CardContent className="pt-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-lg">{t('toolsInternal.doctorQuestions.doctorVisit')}</h3>
+                    <h3 className="text-sm font-bold">{t('toolsInternal.doctorQuestions.doctorVisit')}</h3>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-sm text-muted-foreground">{t('toolsInternal.doctorQuestions.week')}:</span>
                       <Input
@@ -230,7 +230,7 @@ const DoctorQuestions = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-lg font-bold text-primary">{unansweredCount}</span>
+                    <span className="text-sm font-bold text-primary">{unansweredCount}</span>
                     <p className="text-xs text-muted-foreground">{t('toolsInternal.doctorQuestions.questionsLeft')}</p>
                   </div>
                 </div>
@@ -302,7 +302,7 @@ const DoctorQuestions = () => {
             {currentVisit.questions.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">{t('toolsInternal.doctorQuestions.yourQuestions')} ({currentVisit.questions.length})</CardTitle>
+                  <CardTitle className="text-sm">{t('toolsInternal.doctorQuestions.yourQuestions')} ({currentVisit.questions.length})</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <AnimatePresence>

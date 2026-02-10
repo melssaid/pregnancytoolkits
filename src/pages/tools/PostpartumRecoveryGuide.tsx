@@ -127,20 +127,20 @@ Please provide detailed recovery advice for this phase including:
         mood="nurturing"
         toolId="postpartum-recovery"
       >
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Welcome */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center space-y-3"
           >
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center mx-auto shadow-lg shadow-primary/20">
-              <Heart className="w-8 h-8 text-white" />
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center mx-auto shadow-lg shadow-primary/20">
+              <Heart className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-lg font-bold text-foreground">
+            <h2 className="text-sm font-bold text-foreground">
               {t("toolsInternal.postpartumRecovery.welcomeTitle")}
             </h2>
-            <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+            <p className="text-xs text-muted-foreground max-w-xs mx-auto">
               {t("toolsInternal.postpartumRecovery.welcomeDesc")}
             </p>
           </motion.div>

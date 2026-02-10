@@ -144,20 +144,20 @@ export default function AIMobilityCoach() {
       mood="empowering"
       toolId="ai-mobility-coach"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Weekly Goal */}
         <Card>
-          <CardContent className="p-5">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Flame className="w-5 h-5 text-primary" />
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-sm font-semibold flex items-center gap-2">
+                <Flame className="w-4 h-4 text-primary" />
                 {t('toolsInternal.mobilityCoach.weeklyGoal')}
               </h3>
-              <span className="text-lg font-bold text-primary">
+              <span className="text-sm font-bold text-primary">
                 {getWeeklyMinutes()} / {data.weeklyGoal} {t('common.min')}
               </span>
             </div>
-            <Progress value={weeklyProgress} className="h-3 mb-3" />
+            <Progress value={weeklyProgress} className="h-2.5 mb-3" />
             <div className="space-y-2">
               <label className="text-sm text-muted-foreground">{t('toolsInternal.mobilityCoach.adjustGoal')}</label>
               <Slider
@@ -173,11 +173,11 @@ export default function AIMobilityCoach() {
 
         {/* Walk Timer */}
         <Card className="bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20">
-          <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-primary mb-4">
+          <CardContent className="p-4 text-center">
+            <div className="text-base font-bold text-primary mb-3">
               {formatTime(walkTime)}
             </div>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-xs text-muted-foreground mb-3">
               {isWalking ? t('toolsInternal.mobilityCoach.walkingInProgress') : t('toolsInternal.mobilityCoach.startWalkDesc')}
             </p>
             <Button
@@ -192,9 +192,9 @@ export default function AIMobilityCoach() {
 
         {/* Leg Cramp Prevention Exercises */}
         <Card>
-          <CardContent className="p-5">
-            <h3 className="font-semibold flex items-center gap-2 mb-4">
-              <Sparkles className="w-5 h-5 text-primary" />
+          <CardContent className="p-4">
+            <h3 className="text-sm font-semibold flex items-center gap-2 mb-3">
+              <Sparkles className="w-4 h-4 text-primary" />
               {t('toolsInternal.mobilityCoach.legCrampExercises')}
             </h3>
             <div className="space-y-3">
@@ -202,7 +202,7 @@ export default function AIMobilityCoach() {
                 <button
                   key={key}
                   onClick={() => toggleExercise(key)}
-                  className={`w-full text-start p-4 rounded-xl border-2 transition-all ${
+                  className={`w-full text-start p-3 rounded-xl border-2 transition-all ${
                     completedExercises.includes(key)
                       ? 'bg-accent/20 border-primary/40'
                       : 'bg-muted/50 border-transparent hover:border-primary/20'
@@ -210,11 +210,11 @@ export default function AIMobilityCoach() {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t(`toolsInternal.mobilityCoach.legExercises.${key}.name`)}</p>
-                      <p className="text-sm text-muted-foreground">{t(`toolsInternal.mobilityCoach.legExercises.${key}.desc`)}</p>
+                      <p className="text-xs font-medium">{t(`toolsInternal.mobilityCoach.legExercises.${key}.name`)}</p>
+                      <p className="text-[11px] text-muted-foreground">{t(`toolsInternal.mobilityCoach.legExercises.${key}.desc`)}</p>
                     </div>
                     {completedExercises.includes(key) && (
-                      <CheckCircle className="w-5 h-5 text-primary shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                     )}
                   </div>
                 </button>
@@ -229,13 +229,13 @@ export default function AIMobilityCoach() {
         {/* Recent Sessions */}
         {data.sessions.length > 0 && (
           <Card>
-            <CardContent className="p-5">
-              <h3 className="font-semibold mb-4">{t('toolsInternal.mobilityCoach.recentSessions')}</h3>
-              <div className="space-y-3">
+          <CardContent className="p-4">
+              <h3 className="text-sm font-semibold mb-3">{t('toolsInternal.mobilityCoach.recentSessions')}</h3>
+              <div className="space-y-2">
                 {data.sessions.slice(0, 5).map((session) => (
                   <div key={session.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                     <div>
-                      <p className="font-medium">{Math.floor(session.duration / 60)} {t('common.min')} {t('toolsInternal.mobilityCoach.walk')}</p>
+                      <p className="text-xs font-medium">{Math.floor(session.duration / 60)} {t('common.min')} {t('toolsInternal.mobilityCoach.walk')}</p>
                       <p className="text-xs text-muted-foreground">
                         {new Date(session.date).toLocaleDateString()} • ~{session.steps} {t('toolsInternal.mobilityCoach.steps')}
                         {session.legExercises > 0 && ` • ${session.legExercises} ${t('toolsInternal.mobilityCoach.exercises')}`}
@@ -253,9 +253,9 @@ export default function AIMobilityCoach() {
 
         {/* Tips */}
         <Card className="bg-muted/30">
-          <CardContent className="p-5">
-            <h4 className="font-semibold mb-3">{t('toolsInternal.mobilityCoach.walkingTips')}</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+          <CardContent className="p-4">
+            <h4 className="text-sm font-semibold mb-2">{t('toolsInternal.mobilityCoach.walkingTips')}</h4>
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
               <li>• {t('toolsInternal.mobilityCoach.tip1')}</li>
               <li>• {t('toolsInternal.mobilityCoach.tip2')}</li>
               <li>• {t('toolsInternal.mobilityCoach.tip3')}</li>

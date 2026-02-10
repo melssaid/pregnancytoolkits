@@ -177,11 +177,11 @@ export default function PregnancySmoothieAI() {
       toolId="smoothie-ai"
       icon={CupSoda}
     >
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Trimester Selection */}
           <Card>
             <CardContent className="p-4">
-              <h3 className="font-semibold mb-3">{t('smoothieAI.selectTrimester')}</h3>
+              <h3 className="text-sm font-semibold mb-2">{t('smoothieAI.selectTrimester')}</h3>
               <div className="grid grid-cols-3 gap-2">
                 {[1, 2, 3].map(tri => (
                   <Button
@@ -202,8 +202,8 @@ export default function PregnancySmoothieAI() {
 
           {/* AI Generator */}
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
-            <CardContent className="p-6 text-center">
-              <h3 className="font-semibold mb-3">{t('smoothieAI.createCustom')}</h3>
+            <CardContent className="p-4 text-center">
+              <h3 className="text-sm font-semibold mb-2">{t('smoothieAI.createCustom')}</h3>
               <input
                 type="text"
                 placeholder={t('smoothieAI.preferencePlaceholder')}
@@ -234,7 +234,7 @@ export default function PregnancySmoothieAI() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">{t('smoothieAI.aiGeneratedRecipe')}</h3>
+                  <h3 className="text-sm font-semibold">{t('smoothieAI.aiGeneratedRecipe')}</h3>
                 </div>
                 <MarkdownRenderer content={aiResponse} />
               </CardContent>
@@ -252,15 +252,15 @@ export default function PregnancySmoothieAI() {
           {/* Current Smoothie */}
           {currentSmoothie && (
             <Card className="border-primary/30">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-3 rounded-xl bg-primary/10">
-                      <currentSmoothie.icon className="w-6 h-6 text-primary" />
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <currentSmoothie.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg">{t(`smoothieAI.smoothies.${currentSmoothie.nameKey}`)}</h3>
-                      <p className="text-sm text-muted-foreground">{t(`smoothieAI.benefits.${currentSmoothie.benefitKey}`)}</p>
+                      <h3 className="text-sm font-bold">{t(`smoothieAI.smoothies.${currentSmoothie.nameKey}`)}</h3>
+                      <p className="text-xs text-muted-foreground">{t(`smoothieAI.benefits.${currentSmoothie.benefitKey}`)}</p>
                     </div>
                   </div>
                   <Button
@@ -272,12 +272,12 @@ export default function PregnancySmoothieAI() {
                   </Button>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div>
-                    <h4 className="font-medium mb-2">{t('smoothieAI.ingredients')}:</h4>
+                    <h4 className="text-xs font-medium mb-1.5">{t('smoothieAI.ingredients')}:</h4>
                     <ul className="space-y-1">
                       {currentSmoothie.ingredientKeys.map((ing, i) => (
-                        <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                        <li key={i} className="text-xs text-muted-foreground flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                           {t(`smoothieAI.ingredients.${ing}`)}
                         </li>
@@ -286,12 +286,12 @@ export default function PregnancySmoothieAI() {
                   </div>
 
                   <div>
-                    <h4 className="font-medium mb-2">{t('smoothieAI.instructions')}:</h4>
-                    <p className="text-sm text-muted-foreground">{t(`smoothieAI.instructionsText.${currentSmoothie.instructionsKey}`)}</p>
+                    <h4 className="text-xs font-medium mb-1.5">{t('smoothieAI.instructions')}:</h4>
+                    <p className="text-xs text-muted-foreground">{t(`smoothieAI.instructionsText.${currentSmoothie.instructionsKey}`)}</p>
                   </div>
 
                   <div>
-                    <h4 className="font-medium mb-2">{t('smoothieAI.nutrition')}:</h4>
+                    <h4 className="text-xs font-medium mb-1.5">{t('smoothieAI.nutrition')}:</h4>
                     <div className="flex flex-wrap gap-2">
                       {currentSmoothie.nutrients.map((n, i) => (
                         <Badge key={i} variant="secondary">
@@ -306,8 +306,8 @@ export default function PregnancySmoothieAI() {
           )}
 
           {/* All Recipes */}
-          <div className="space-y-4">
-            <h3 className="font-semibold">{t('smoothieAI.allRecipes', { trimester: selectedTrimester })}</h3>
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold">{t('smoothieAI.allRecipes', { trimester: selectedTrimester })}</h3>
             {filteredSmoothies.map(smoothie => (
               <Card 
                 key={smoothie.id}
@@ -323,7 +323,7 @@ export default function PregnancySmoothieAI() {
                       <smoothie.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-medium">{t(`smoothieAI.smoothies.${smoothie.nameKey}`)}</h4>
+                      <h4 className="text-xs font-medium">{t(`smoothieAI.smoothies.${smoothie.nameKey}`)}</h4>
                       <p className="text-xs text-muted-foreground">{t(`smoothieAI.benefits.${smoothie.benefitKey}`)}</p>
                     </div>
                     {favorites.includes(smoothie.id) && (
