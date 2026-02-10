@@ -193,9 +193,9 @@ export default function DueDateCalculator() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="space-y-6"
+        className="space-y-4"
       >
-            <Card className="mb-6">
+            <Card className="mb-4">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Baby className="h-5 w-5 text-primary" />
@@ -250,17 +250,17 @@ export default function DueDateCalculator() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <Card className="border-primary/20 bg-secondary/30 mb-6">
+                <Card className="border-primary/20 bg-secondary/30 mb-4">
                   <CardHeader>
-                    <CardTitle className="text-lg flex items-center gap-2">
+                    <CardTitle className="text-sm flex items-center gap-2">
                       <Calendar className="h-5 w-5 text-primary" />
                       {t('toolsInternal.dueDate.timeline')}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="rounded-lg bg-primary p-6 text-center">
-                      <p className="text-sm text-primary-foreground/80 mb-1">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
-                      <p className="text-lg font-bold text-primary-foreground">
+                    <div className="rounded-lg bg-primary p-4 text-center">
+                      <p className="text-xs text-primary-foreground/80 mb-1">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
+                      <p className="text-sm font-bold text-primary-foreground">
                         {format(result.dueDate, "MMMM d, yyyy")}
                       </p>
                     </div>
@@ -268,7 +268,7 @@ export default function DueDateCalculator() {
                     {result.currentWeeks >= 0 && (
                       <div className="rounded-lg bg-card p-4 shadow-card text-center">
                         <p className="text-sm text-muted-foreground mb-1">{t('toolsInternal.dueDate.currentlyAt')}</p>
-                        <p className="text-base font-semibold text-foreground">
+                        <p className="text-sm font-semibold text-foreground">
                           {t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}
                         </p>
                         <p className="text-sm text-primary mt-1">
@@ -343,9 +343,9 @@ A supportive message for this stage of pregnancy`}
             )}
 
             {savedDates.length > 0 && (
-              <Card className="mb-6">
+              <Card className="mb-4">
                 <CardHeader>
-                  <CardTitle className="text-lg">{t('toolsInternal.dueDate.savedDueDates')}</CardTitle>
+                  <CardTitle className="text-sm">{t('toolsInternal.dueDate.savedDueDates')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">

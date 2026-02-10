@@ -139,10 +139,10 @@ export default function SmartWalkingCoach() {
       mood="empowering"
       toolId="smart-walking-coach"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-sm font-medium text-muted-foreground mb-3">{t('toolsInternal.walkingCoach.yourTrimester')}</h3>
+            <h3 className="text-xs font-medium text-muted-foreground mb-3">{t('toolsInternal.walkingCoach.yourTrimester')}</h3>
             <div className="grid grid-cols-3 gap-2">
               {[1, 2, 3].map((tri) => (
                 <button
@@ -151,7 +151,7 @@ export default function SmartWalkingCoach() {
                     setCurrentTrimester(tri);
                     setGoal(trimesterGoals[tri as keyof typeof trimesterGoals].min);
                   }}
-                  className={`py-3 rounded-lg font-semibold transition-all ${
+                  className={`py-2.5 rounded-lg text-xs font-semibold transition-all ${
                     currentTrimester === tri
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted hover:bg-muted/80'
@@ -161,7 +161,7 @@ export default function SmartWalkingCoach() {
                 </button>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
+            <p className="text-[10px] text-muted-foreground mt-2 text-center">
               {t(`toolsInternal.walkingCoach.trimesterNotes.${currentTrimester}`)} • {t('toolsInternal.walkingCoach.goal')}: {currentGoal.min}-{currentGoal.max} min
             </p>
           </CardContent>
@@ -169,38 +169,20 @@ export default function SmartWalkingCoach() {
 
         {/* Walk Timer */}
         <Card className={isWalking ? 'border-2 border-primary' : ''}>
-          <CardContent className="p-6 text-center">
+          <CardContent className="p-4 text-center">
             {isWalking ? (
               <>
-                <div className="relative w-40 h-40 mx-auto mb-4">
+                <div className="relative w-32 h-32 mx-auto mb-3">
                   <svg className="w-full h-full transform -rotate-90">
-                    <circle
-                      cx="80"
-                      cy="80"
-                      r="70"
-                      stroke="currentColor"
-                      strokeWidth="8"
-                      fill="none"
-                      className="text-muted"
-                    />
-                    <circle
-                      cx="80"
-                      cy="80"
-                      r="70"
-                      stroke="currentColor"
-                      strokeWidth="8"
-                      fill="none"
-                      strokeDasharray={440}
-                      strokeDashoffset={440 - (440 * progress) / 100}
-                      className="text-primary transition-all"
-                    />
+                    <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="6" fill="none" className="text-muted" />
+                    <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="6" fill="none" strokeDasharray={352} strokeDashoffset={352 - (352 * progress) / 100} className="text-primary transition-all" />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-xl font-bold">{formatTime(currentTime)}</span>
-                    <span className="text-sm text-muted-foreground">/ {goal} min</span>
+                    <span className="text-base font-bold">{formatTime(currentTime)}</span>
+                    <span className="text-xs text-muted-foreground">/ {goal} min</span>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">{t('toolsInternal.walkingCoach.keepUp')}</p>
+                <p className="text-xs text-muted-foreground mb-3">{t('toolsInternal.walkingCoach.keepUp')}</p>
                 <Button onClick={endWalk} variant="destructive" size="lg">
                   <Pause className="w-4 h-4 mr-2" />
                   {t('toolsInternal.walkingCoach.endWalk')}
@@ -208,16 +190,16 @@ export default function SmartWalkingCoach() {
               </>
             ) : (
               <>
-                <Footprints className="w-16 h-16 mx-auto text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">{t('toolsInternal.walkingCoach.readyToWalk')}</h3>
-                <div className="mb-4">
-                  <label className="block text-sm text-muted-foreground mb-2">{t('toolsInternal.walkingCoach.goal')}</label>
+                <Footprints className="w-12 h-12 mx-auto text-primary mb-3" />
+                <h3 className="text-sm font-bold mb-2">{t('toolsInternal.walkingCoach.readyToWalk')}</h3>
+                <div className="mb-3">
+                  <label className="block text-xs text-muted-foreground mb-2">{t('toolsInternal.walkingCoach.goal')}</label>
                   <div className="flex items-center justify-center gap-2">
                     {[currentGoal.min, Math.round((currentGoal.min + currentGoal.max) / 2), currentGoal.max].map((g) => (
                       <button
                         key={g}
                         onClick={() => setGoal(g)}
-                        className={`px-4 py-2 rounded-lg ${
+                        className={`px-3 py-1.5 rounded-lg text-xs ${
                           goal === g ? 'bg-primary text-primary-foreground' : 'bg-muted'
                         }`}
                       >
@@ -252,9 +234,9 @@ export default function SmartWalkingCoach() {
         {showAICoach && aiResponse && (
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-3">
-                <Brain className="w-5 h-5 text-primary" />
-                <h3 className="font-semibold">{t('toolsInternal.walkingCoach.aiCoachTitle')}</h3>
+              <div className="flex items-center gap-2 mb-2">
+                <Brain className="w-4 h-4 text-primary" />
+                <h3 className="text-sm font-semibold">{t('toolsInternal.walkingCoach.aiCoachTitle')}</h3>
               </div>
               <MarkdownRenderer content={aiResponse} />
             </CardContent>
@@ -263,25 +245,25 @@ export default function SmartWalkingCoach() {
 
         {error && (
           <Card className="border-destructive/30 bg-destructive/5">
-            <CardContent className="p-4 text-destructive text-sm">
+            <CardContent className="p-4 text-destructive text-xs">
               {error}
             </CardContent>
           </Card>
         )}
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           <Card>
-            <CardContent className="p-4 text-center">
-              <Clock className="w-6 h-6 mx-auto text-primary mb-2" />
-              <p className="text-base font-bold">{Math.round(getTodayTotal() / 60)}</p>
-              <p className="text-xs text-muted-foreground">{t('toolsInternal.walkingCoach.minutesToday')}</p>
+            <CardContent className="p-3 text-center">
+              <Clock className="w-5 h-5 mx-auto text-primary mb-1" />
+              <p className="text-sm font-bold">{Math.round(getTodayTotal() / 60)}</p>
+              <p className="text-[10px] text-muted-foreground">{t('toolsInternal.walkingCoach.minutesToday')}</p>
             </CardContent>
           </Card>
           <Card>
-            <CardContent className="p-4 text-center">
-              <TrendingUp className="w-6 h-6 mx-auto text-green-600 mb-2" />
-              <p className="text-base font-bold">{Math.round(getWeekTotal() / 60)}</p>
-              <p className="text-xs text-muted-foreground">{t('toolsInternal.walkingCoach.minutesThisWeek')}</p>
+            <CardContent className="p-3 text-center">
+              <TrendingUp className="w-5 h-5 mx-auto text-primary mb-1" />
+              <p className="text-sm font-bold">{Math.round(getWeekTotal() / 60)}</p>
+              <p className="text-[10px] text-muted-foreground">{t('toolsInternal.walkingCoach.minutesThisWeek')}</p>
             </CardContent>
           </Card>
         </div>
@@ -289,20 +271,20 @@ export default function SmartWalkingCoach() {
         {sessions.length > 0 && (
           <Card>
             <CardContent className="p-4">
-              <h3 className="text-lg font-semibold mb-4">{t('toolsInternal.walkingCoach.recentWalks')}</h3>
+              <h3 className="text-sm font-semibold mb-3">{t('toolsInternal.walkingCoach.recentWalks')}</h3>
               <div className="space-y-2">
                 {sessions.slice(0, 5).map((session) => (
-                  <div key={session.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                  <div key={session.id} className="flex items-center justify-between p-2.5 bg-muted/50 rounded-lg">
                     <div>
-                      <span className="font-medium">{Math.round(session.duration / 60)} minutes</span>
-                      <p className="text-xs text-muted-foreground">
+                      <span className="text-xs font-medium">{Math.round(session.duration / 60)} minutes</span>
+                      <p className="text-[10px] text-muted-foreground">
                         {new Date(session.date).toLocaleDateString()}
                       </p>
                     </div>
-                    <span className={`text-sm px-2 py-0.5 rounded-full ${
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full ${
                       session.duration >= session.goal 
-                        ? 'bg-green-500/10 text-green-600' 
-                        : 'bg-amber-500/10 text-amber-600'
+                        ? 'bg-primary/10 text-primary' 
+                        : 'bg-warning/10 text-warning'
                     }`}>
                       {session.duration >= session.goal ? t('toolsInternal.walkingCoach.goalMet') : `${Math.round((session.duration / session.goal) * 100)}%`}
                     </span>
@@ -315,11 +297,11 @@ export default function SmartWalkingCoach() {
 
         <Card className="bg-muted/30">
           <CardContent className="p-4">
-            <h3 className="font-semibold mb-2 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-primary" />
+            <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
+              <MapPin className="w-3.5 h-3.5 text-primary" />
               {t('toolsInternal.walkingCoach.walkingTipsTitle')}
             </h3>
-            <ul className="text-sm text-muted-foreground space-y-1">
+            <ul className="text-xs text-muted-foreground space-y-1">
               <li>• {t('toolsInternal.walkingCoach.walkingTips.tip1')}</li>
               <li>• {t('toolsInternal.walkingCoach.walkingTips.tip2')}</li>
               <li>• {t('toolsInternal.walkingCoach.walkingTips.tip3')}</li>
@@ -332,8 +314,8 @@ export default function SmartWalkingCoach() {
         <Card className="bg-destructive/5 border-destructive/20">
           <CardContent className="p-4">
             <div className="flex gap-3">
-              <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0" />
-              <p className="text-xs text-muted-foreground">
+              <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0" />
+              <p className="text-[10px] text-muted-foreground">
                 {t('toolsInternal.walkingCoach.warningMessage')}
               </p>
             </div>

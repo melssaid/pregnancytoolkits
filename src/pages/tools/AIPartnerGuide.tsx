@@ -96,9 +96,9 @@ Be warm, practical, and specific. Include real examples.`;
       mood="nurturing"
       toolId="ai-partner-guide"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Settings */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           <div className="space-y-2">
             <Label className="text-xs">{t('toolsInternal.partnerGuide.iAmHer')}</Label>
             <Select value={partnerType} onValueChange={setPartnerType}>

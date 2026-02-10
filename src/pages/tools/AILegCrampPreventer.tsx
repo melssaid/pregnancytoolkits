@@ -143,12 +143,12 @@ export default function AILegCrampPreventer() {
       mood="empowering"
       toolId="ai-leg-cramp-preventer"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Progress */}
         <Card className="bg-gradient-to-r from-primary/10 to-primary/5">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-semibold">{t('legCrampPreventer.progressTitle')}</h3>
+              <h3 className="text-sm font-semibold">{t('legCrampPreventer.progressTitle')}</h3>
               <span className="text-primary font-bold">{completedTips}/{tips.length}</span>
             </div>
             <div className="w-full h-2 bg-primary/20 rounded-full mb-3">
@@ -178,8 +178,8 @@ export default function AILegCrampPreventer() {
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-3">
-                <Brain className="w-5 h-5 text-primary" />
-                <h3 className="font-semibold">{t('legCrampPreventer.aiCoachTitle')}</h3>
+                <Brain className="w-4 h-4 text-primary" />
+                <h3 className="text-sm font-semibold">{t('legCrampPreventer.aiCoachTitle')}</h3>
               </div>
               <MarkdownRenderer content={aiResponse} />
             </CardContent>
@@ -207,19 +207,19 @@ export default function AILegCrampPreventer() {
         {/* Quick Relief Guide */}
         {showReliefGuide && (
           <Card className="border-2 border-destructive">
-            <CardContent className="p-6">
-              <h3 className="text-lg font-bold text-destructive mb-4">{t('legCrampPreventer.quickReliefTitle')}</h3>
+            <CardContent className="p-4">
+              <h3 className="text-sm font-bold text-destructive mb-3">{t('legCrampPreventer.quickReliefTitle')}</h3>
               <ol className="space-y-3">
                 {reliefStepKeys.map((stepKey, index) => (
                   <li key={stepKey} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center text-sm font-bold">{index + 1}</span>
-                    <p className="text-sm"><strong>{t(`legCrampPreventer.reliefSteps.${stepKey}.title`)}</strong> - {t(`legCrampPreventer.reliefSteps.${stepKey}.desc`)}</p>
+                    <span className="w-5 h-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center text-[10px] font-bold shrink-0">{index + 1}</span>
+                    <p className="text-xs"><strong>{t(`legCrampPreventer.reliefSteps.${stepKey}.title`)}</strong> - {t(`legCrampPreventer.reliefSteps.${stepKey}.desc`)}</p>
                   </li>
                 ))}
               </ol>
               
               <div className="mt-3 pt-3 border-t border-border">
-                <h4 className="font-semibold mb-2 text-sm">{t('legCrampPreventer.logCramp')}</h4>
+                <h4 className="text-xs font-semibold mb-2">{t('legCrampPreventer.logCramp')}</h4>
                 <div className="grid grid-cols-2 gap-1.5">
                   {locationKeys.map((locKey) => (
                     <Button 
@@ -241,8 +241,8 @@ export default function AILegCrampPreventer() {
         {/* Prevention Checklist */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Moon className="w-5 h-5 text-primary" />
+            <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+              <Moon className="w-4 h-4 text-primary" />
               {t('legCrampPreventer.checklistTitle')}
             </h3>
             <div className="space-y-2">
@@ -250,20 +250,20 @@ export default function AILegCrampPreventer() {
                 <button
                   key={tip.id}
                   onClick={() => toggleTip(tip.id)}
-                  className={`w-full p-3 rounded-lg text-left transition-all flex items-center gap-3 ${
+                  className={`w-full p-2.5 rounded-lg text-left transition-all flex items-center gap-2.5 ${
                     tip.checked 
                       ? 'bg-success/10 border border-success/20' 
                       : 'bg-muted/50 hover:bg-muted'
                   }`}
                 >
-                  <span className="text-xl">{tip.icon}</span>
-                  <div className="flex-1">
-                    <span className={`font-medium ${tip.checked ? 'line-through text-muted-foreground' : ''}`}>
+                  <span className="text-base">{tip.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <span className={`text-xs font-medium ${tip.checked ? 'line-through text-muted-foreground' : ''}`}>
                       {t(`legCrampPreventer.preventionTips.${tip.key}.title`)}
                     </span>
                     <p className="text-xs text-muted-foreground">{t(`legCrampPreventer.preventionTips.${tip.key}.desc`)}</p>
                   </div>
-                  {tip.checked && <CheckCircle className="w-5 h-5 text-success" />}
+                  {tip.checked && <CheckCircle className="w-4 h-4 text-success shrink-0" />}
                 </button>
               ))}
             </div>
@@ -274,12 +274,12 @@ export default function AILegCrampPreventer() {
         {episodes.length > 0 && (
           <Card>
             <CardContent className="p-4">
-              <h3 className="text-lg font-semibold mb-4">{t('legCrampPreventer.recentCramps')}</h3>
+              <h3 className="text-sm font-semibold mb-3">{t('legCrampPreventer.recentCramps')}</h3>
               <div className="space-y-2">
                 {episodes.slice(0, 5).map((ep) => (
                   <div key={ep.id} className="flex items-center justify-between p-2 bg-muted/50 rounded-lg">
                     <div>
-                      <span className="font-medium">{t(`legCrampPreventer.locations.${ep.location}`)}</span>
+                      <span className="font-medium text-xs">{t(`legCrampPreventer.locations.${ep.location}`)}</span>
                       <p className="text-xs text-muted-foreground">
                         {new Date(ep.date).toLocaleDateString()} • {t(`legCrampPreventer.timeOfDay.${ep.timeOfDay}`)}
                       </p>

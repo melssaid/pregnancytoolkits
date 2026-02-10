@@ -105,7 +105,7 @@ export default function WeeklySummary() {
       mood="nurturing"
       toolId="weekly-summary"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Progress Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10">
           <Badge className={`${trimesterInfo.color} text-white text-xs`}>{trimesterInfo.label}</Badge>
@@ -129,11 +129,11 @@ export default function WeeklySummary() {
                   <Baby className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold text-foreground">{t("toolsInternal.weeklySummary.week", { week })}</p>
+                  <p className="text-sm font-bold text-foreground">{t("toolsInternal.weeklySummary.week", { week })}</p>
                   <p className="text-xs text-muted-foreground">{trimesterInfo.label}</p>
                 </div>
               </div>
-              <span className="text-base font-bold text-primary">{Math.round(progress)}%</span>
+              <span className="text-sm font-bold text-primary">{Math.round(progress)}%</span>
             </div>
 
             {/* Progress */}

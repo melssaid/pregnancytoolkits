@@ -169,10 +169,10 @@ const BabyGrowth = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="space-y-6"
+        className="space-y-4"
       >
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-3 mb-6">
+            <TabsList className="grid w-full grid-cols-3 mb-4">
               <TabsTrigger value="add" className="gap-2">
                 <Plus className="h-4 w-4" />
                 {t('toolsInternal.babyGrowth.tabs.add')}
@@ -187,7 +187,7 @@ const BabyGrowth = () => {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="add" className="space-y-6">
+            <TabsContent value="add" className="space-y-4">
               <Card className="relative z-10">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -277,7 +277,7 @@ const BabyGrowth = () => {
                         <p className="text-sm text-muted-foreground mb-1">
                           {t('toolsInternal.babyGrowth.weightPercentile')}
                         </p>
-                        <p className="text-base font-bold text-primary">
+                        <p className="text-sm font-bold text-primary">
                           {result.weightPercentile}
                         </p>
                         <p className={`text-sm mt-2 ${getStatusColor(result.status)}`}>
@@ -339,7 +339,7 @@ const BabyGrowth = () => {
                             </div>
                             <div className="flex items-center gap-3">
                               <div className="text-right">
-                                <p className={`text-xl font-bold ${isNormal ? "text-success" : "text-warning"}`}>
+                                <p className={`text-sm font-bold ${isNormal ? "text-success" : "text-warning"}`}>
                                   {entry.weight} kg
                                 </p>
                                 {entry.height && (
