@@ -19,7 +19,7 @@ export default function AIHealthMonitor() {
       subtitle={t('toolsInternal.healthMonitor.subtitle')}
       toolId="ai-health-monitor"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-primary">
@@ -28,7 +28,7 @@ export default function AIHealthMonitor() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">{weightTrend}kg</div>
+            <div className="text-sm font-bold">{weightTrend}kg</div>
             <Progress value={75} className="mt-2" />
             <p className="text-sm text-muted-foreground mt-2">
               {t('toolsInternal.healthMonitor.normalForWeek', { week: 28 })}
@@ -43,7 +43,7 @@ export default function AIHealthMonitor() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-base font-bold">{bpTrend.sys}/{bpTrend.dia}</div>
+            <div className="text-sm font-bold">{bpTrend.sys}/{bpTrend.dia}</div>
             <Badge className="mt-2">{t('toolsInternal.healthMonitor.normal')}</Badge>
           </CardContent>
         </Card>

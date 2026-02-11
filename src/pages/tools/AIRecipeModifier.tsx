@@ -106,14 +106,14 @@ export default function AIRecipeModifier() {
       toolId="recipe-modifier"
       icon={ChefHat}
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
           {!analysis ? (
             <>
               {/* Input */}
               <Card>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold mb-4 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-primary" />
+                <CardContent className="p-4">
+                  <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-primary" />
                     {t('toolsInternal.recipeModifier.pasteRecipe')}
                   </h3>
                   <Textarea
@@ -162,9 +162,9 @@ export default function AIRecipeModifier() {
               {/* Analysis Results */}
               {analysis.unsafeIngredients.length > 0 ? (
                 <Card className="border-amber-200 bg-amber-50/50">
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold mb-4 flex items-center gap-2 text-amber-700">
-                      <AlertTriangle className="w-5 h-5" />
+                  <CardContent className="p-4">
+                    <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-amber-700">
+                      <AlertTriangle className="w-4 h-4" />
                       {t('toolsInternal.recipeModifier.ingredientsToModify', { count: analysis.unsafeIngredients.length })}
                     </h3>
                     <div className="space-y-3">
@@ -183,11 +183,11 @@ export default function AIRecipeModifier() {
                 </Card>
               ) : (
                 <Card className="border-emerald-200 bg-emerald-50/50">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-8 h-8 text-emerald-600" />
+                      <CheckCircle className="w-5 h-5 text-emerald-600" />
                       <div>
-                        <h3 className="font-semibold text-emerald-700">{t('toolsInternal.recipeModifier.recipeSafe')}</h3>
+                        <h3 className="text-sm font-semibold text-emerald-700">{t('toolsInternal.recipeModifier.recipeSafe')}</h3>
                         <p className="text-sm text-emerald-600">
                           {t('toolsInternal.recipeModifier.noUnsafeFound')}
                         </p>

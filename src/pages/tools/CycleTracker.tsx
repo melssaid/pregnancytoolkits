@@ -172,7 +172,7 @@ ${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: $
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="space-y-6"
+        className="space-y-4"
       >
             {stats && (
               <div className="mb-6">
@@ -186,29 +186,29 @@ ${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: $
                 <div className="grid gap-4 sm:grid-cols-3">
                   <Card className="bg-secondary/50">
                     <CardContent className="pt-4 text-center">
-                      <TrendingUp className="h-5 w-5 text-primary mx-auto mb-2" />
-                      <p className="text-base font-bold text-foreground">{stats.avgCycleLength}</p>
-                      <p className="text-xs text-muted-foreground">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
+                      <TrendingUp className="h-4 w-4 text-primary mx-auto mb-1.5" />
+                      <p className="text-sm font-bold text-foreground">{stats.avgCycleLength}</p>
+                      <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
                     </CardContent>
                   </Card>
                   
                   {stats.avgPeriodLength && (
                     <Card className="bg-secondary/50">
                       <CardContent className="pt-4 text-center">
-                        <Activity className="h-5 w-5 text-primary mx-auto mb-2" />
-                        <p className="text-base font-bold text-foreground">{stats.avgPeriodLength}</p>
-                        <p className="text-xs text-muted-foreground">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
+                        <Activity className="h-4 w-4 text-primary mx-auto mb-1.5" />
+                        <p className="text-sm font-bold text-foreground">{stats.avgPeriodLength}</p>
+                        <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
                       </CardContent>
                     </Card>
                   )}
 
                   <Card className="bg-primary/10 border-primary/20">
                     <CardContent className="pt-4 text-center">
-                      <Calendar className="h-5 w-5 text-primary mx-auto mb-2" />
-                      <p className="text-lg font-bold text-primary">
+                      <Calendar className="h-4 w-4 text-primary mx-auto mb-1.5" />
+                      <p className="text-base font-bold text-primary">
                         {format(stats.nextPeriod, "MMM d")}
                       </p>
-                      <p className="text-xs text-muted-foreground">{t('toolsInternal.cycleTracker.nextPeriod')}</p>
+                      <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.nextPeriod')}</p>
                     </CardContent>
                   </Card>
               </div>
@@ -250,17 +250,17 @@ Any patterns that might be worth discussing with a doctor`}
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Plus className="h-5 w-5 text-primary" />
+                  <Plus className="h-4 w-4 text-primary" />
                   {t('toolsInternal.cycleTracker.logPeriod')}
                 </CardTitle>
                 <CardDescription>
                   {t('toolsInternal.cycleTracker.subtitle')}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-3 p-4">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="startDate">{t('toolsInternal.cycleTracker.startDate')}</Label>
+                    <Label htmlFor="startDate" className="text-xs">{t('toolsInternal.cycleTracker.startDate')}</Label>
                     <Input
                       id="startDate"
                       type="date"
@@ -270,7 +270,7 @@ Any patterns that might be worth discussing with a doctor`}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="endDate">{t('toolsInternal.cycleTracker.endDate')}</Label>
+                    <Label htmlFor="endDate" className="text-xs">{t('toolsInternal.cycleTracker.endDate')}</Label>
                     <Input
                       id="endDate"
                       type="date"
@@ -283,7 +283,7 @@ Any patterns that might be worth discussing with a doctor`}
                 </div>
 
                 <div className="space-y-2">
-                  <Label>{t('toolsInternal.cycleTracker.flowIntensity')}</Label>
+                  <Label className="text-xs">{t('toolsInternal.cycleTracker.flowIntensity')}</Label>
                   <Select value={flowIntensity} onValueChange={(v) => setFlowIntensity(v as "light" | "medium" | "heavy")}>
                     <SelectTrigger>
                       <SelectValue />
@@ -297,14 +297,14 @@ Any patterns that might be worth discussing with a doctor`}
                 </div>
 
                 <div className="space-y-2">
-                  <Label>{t('toolsInternal.cycleTracker.symptoms')}</Label>
+                  <Label className="text-xs">{t('toolsInternal.cycleTracker.symptoms')}</Label>
                   <div className="flex flex-wrap gap-2">
                     {symptomKeys.map((key) => (
                       <button
                         key={key}
                         type="button"
                         onClick={() => toggleSymptom(key)}
-                        className={`rounded-full px-3 py-1.5 text-sm transition-all border-2 ${
+                        className={`rounded-full px-2.5 py-1 text-xs transition-all border-2 ${
                           selectedSymptoms.includes(key)
                             ? "bg-primary text-primary-foreground border-primary"
                             : "bg-secondary text-secondary-foreground hover:bg-muted border-transparent"
@@ -345,7 +345,7 @@ Any patterns that might be worth discussing with a doctor`}
                           <div className="flex items-start gap-3">
                             <div className={`h-3 w-3 rounded-full mt-1.5 ${getFlowColor(cycle.flowIntensity)}`} />
                             <div>
-                              <p className="font-medium text-foreground">
+                              <p className="font-medium text-sm text-foreground">
                                 {format(new Date(cycle.startDate), "MMM d, yyyy")}
                                 {cycle.endDate && (
                                   <span className="text-muted-foreground">
@@ -354,11 +354,11 @@ Any patterns that might be worth discussing with a doctor`}
                                 )}
                               </p>
                               <div className="flex flex-wrap gap-2 mt-1">
-                                <span className="text-xs text-muted-foreground">
+                                <span className="text-[10px] text-muted-foreground">
                                   {t(`toolsInternal.cycleTracker.flowLevels.${cycle.flowIntensity}`)} {t('toolsInternal.cycleTracker.flow')}
                                 </span>
                                 {cycleLength && (
-                                  <span className="text-xs text-primary">
+                                  <span className="text-[10px] text-primary">
                                     • {cycleLength} {t('toolsInternal.cycleTracker.dayCycle')}
                                   </span>
                                 )}
@@ -368,7 +368,7 @@ Any patterns that might be worth discussing with a doctor`}
                                   {cycle.symptoms.map((s) => (
                                     <span
                                       key={s}
-                                      className="rounded bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"
+                                      className="rounded bg-secondary px-1.5 py-0.5 text-[10px] text-secondary-foreground"
                                     >
                                       {getSymptomLabel(s)}
                                     </span>

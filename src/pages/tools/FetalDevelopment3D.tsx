@@ -174,12 +174,12 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
       mood="nurturing"
       toolId="fetal-development"
     >
-      <div className="space-y-5">
+      <div className="space-y-4">
         {/* Progress Bar */}
         <Card className="overflow-hidden">
           <CardContent className="py-4">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-muted-foreground">
+              <span className="text-xs font-medium text-muted-foreground">
                 {t('toolsInternal.fetalDevelopment.pregnancyProgress')}
               </span>
               <span className="text-sm font-bold text-primary">{Math.round(progressPercent)}%</span>
@@ -210,7 +210,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 <span className={`text-xs px-3 py-1 rounded-full font-medium ${trimester.color}`}>
                   {t(`toolsInternal.fetalDevelopment.${trimester.nameKey}`)}
                 </span>
-                <p className="text-xl font-bold text-primary mt-2">
+                <p className="text-lg font-bold text-primary mt-1.5">
                   {t('toolsInternal.common.week')} {currentData.week}
                 </p>
                 {userWeek === currentData.week && (
@@ -259,7 +259,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                   >
                     <Baby className="w-12 h-12 text-primary" />
                   </motion.div>
-                  <p className="text-xl font-bold text-foreground">
+                  <p className="text-lg font-bold text-foreground">
                     {t('toolsInternal.fetalDevelopment.sizeOf', { 
                       size: t(`toolsInternal.fetalDevelopment.sizes.${currentData.sizeKey}`) 
                     })}
@@ -321,10 +321,10 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
           <CardContent className="py-4">
             <div className="flex items-start gap-3">
               <div className="p-2.5 rounded-xl bg-primary/10">
-                <Baby className="w-5 h-5 text-primary" />
+                <Baby className="w-4 h-4 text-primary" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-foreground">
+                <h3 className="font-semibold text-sm text-foreground">
                   {t('toolsInternal.fetalDevelopment.thisWeeksDevelopment')}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-1 leading-relaxed">

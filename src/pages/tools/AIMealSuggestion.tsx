@@ -118,13 +118,13 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
       mood="joyful"
       toolId="ai-meal-suggestion"
     >
-      <div className="space-y-5">
+      <div className="space-y-4">
         {!suggestion ? (
           <>
             {/* Trimester & Meal Type */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2">
               <Card className="border-border/50">
-                <CardContent className="p-4 space-y-2">
+                <CardContent className="p-3 space-y-2">
                   <label className="text-xs font-medium text-muted-foreground">
                     {t("toolsInternal.mealSuggestion.pregnancyStage")}
                   </label>
@@ -142,7 +142,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
               </Card>
 
               <Card className="border-border/50">
-                <CardContent className="p-4 space-y-2">
+                <CardContent className="p-3 space-y-2">
                   <label className="text-xs font-medium text-muted-foreground">
                     {t("toolsInternal.mealSuggestion.mealType")}
                   </label>
@@ -165,8 +165,8 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             {/* Prep Time */}
             <Card className="border-border/50">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
+                <CardTitle className="text-sm flex items-center gap-2">
+                  <Clock className="w-3.5 h-3.5 text-primary" />
                   {t("toolsInternal.mealSuggestion.prepTimeLabel")}
                 </CardTitle>
               </CardHeader>
@@ -190,8 +190,8 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             {/* Cravings */}
             <Card className="border-border/50">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <Heart className="w-4 h-4 text-primary" />
+                <CardTitle className="text-sm flex items-center gap-2">
+                  <Heart className="w-3.5 h-3.5 text-primary" />
                   {t("toolsInternal.mealSuggestion.whatCraving")}
                 </CardTitle>
               </CardHeader>
@@ -217,8 +217,8 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             {/* Dietary Preferences */}
             <Card className="border-border/50">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <Leaf className="w-4 h-4 text-primary" />
+                <CardTitle className="text-sm flex items-center gap-2">
+                  <Leaf className="w-3.5 h-3.5 text-primary" />
                   {t("toolsInternal.mealSuggestion.dietaryPreferences")}
                 </CardTitle>
               </CardHeader>
@@ -227,7 +227,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                   {DIETARY_PREF_IDS.map((pref) => (
                     <label
                       key={pref}
-                      className="flex items-center gap-2 p-2.5 rounded-xl hover:bg-muted/50 cursor-pointer border border-transparent hover:border-border/50 transition-all"
+                      className="flex items-center gap-2 p-2 rounded-xl hover:bg-muted/50 cursor-pointer border border-transparent hover:border-border/50 transition-all"
                     >
                       <Checkbox
                         checked={preferences.includes(pref)}
@@ -245,8 +245,8 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             {/* Allergies */}
             <Card className="border-border/50">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-destructive" />
+                <CardTitle className="text-sm flex items-center gap-2">
+                  <AlertTriangle className="w-3.5 h-3.5 text-destructive" />
                   {t("toolsInternal.mealSuggestion.allergiesLabel")}
                 </CardTitle>
               </CardHeader>
@@ -271,8 +271,8 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             <Button
               onClick={getSuggestion}
               disabled={isLoading}
-              className="w-full gap-2 rounded-xl h-12"
-              size="lg"
+              className="w-full gap-2 rounded-xl h-10 text-xs"
+              size="sm"
             >
               {isLoading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -288,12 +288,12 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             <Card className="border-primary/20 bg-primary/5">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <Utensils className="w-5 h-5 text-primary" />
+                  <CardTitle className="text-sm flex items-center gap-2">
+                    <Utensils className="w-4 h-4 text-primary" />
                     {t("toolsInternal.mealSuggestion.mealSuggestion")}
                   </CardTitle>
                   <div className="flex gap-1">
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="text-[10px]">
                       {t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
                     </Badge>
                   </div>
@@ -313,14 +313,14 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
               <Button
                 onClick={() => setSuggestion("")}
                 variant="outline"
-                className="flex-1 rounded-xl"
+                className="flex-1 rounded-xl text-xs h-9"
               >
                 {t("toolsInternal.mealSuggestion.differentSuggestion")}
               </Button>
               <Button
                 onClick={getSuggestion}
                 disabled={isLoading}
-                className="flex-1 gap-2 rounded-xl"
+                className="flex-1 gap-2 rounded-xl text-xs h-9"
               >
                 {isLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -344,10 +344,10 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
 
         {/* Tips */}
         <Card className="border-border/50">
-          <CardContent className="p-4">
+          <CardContent className="p-3">
             <div className="flex items-start gap-3">
-              <Apple className="w-5 h-5 text-primary shrink-0" />
-              <div className="text-xs text-muted-foreground space-y-1">
+              <Apple className="w-4 h-4 text-primary shrink-0" />
+              <div className="text-[10px] text-muted-foreground space-y-1">
                 <p className="font-medium text-foreground">
                   {t("toolsInternal.mealSuggestion.quickTips")}:
                 </p>

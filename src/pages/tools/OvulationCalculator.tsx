@@ -114,24 +114,24 @@ export default function OvulationCalculator() {
       mood="nurturing"
       toolId="ovulation-calculator"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         <MotivationalQuote variant="banner" />
 
         <Card className="border-0 shadow-lg bg-gradient-to-br from-card to-secondary/30">
           <CardHeader className="pb-4">
-            <CardTitle className="flex items-center gap-3 text-xl">
+            <CardTitle className="flex items-center gap-2 text-lg">
               <div className="p-2 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5">
-                <Flower2 className="h-5 w-5 text-primary" />
+                <Flower2 className="h-4 w-4 text-primary" />
               </div>
               {t("toolsInternal.ovulation.calculateTitle")}
             </CardTitle>
-            <CardDescription className="text-base">
+            <CardDescription className="text-sm">
               {t("toolsInternal.ovulation.calculateDesc")}
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-5">
+          <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="lastPeriod" className="text-sm font-medium">
+              <Label htmlFor="lastPeriod" className="text-xs font-medium">
                 {t("toolsInternal.ovulation.firstDayLastPeriod")}
               </Label>
               <Input
@@ -139,12 +139,12 @@ export default function OvulationCalculator() {
                 type="date"
                 value={lastPeriod}
                 onChange={(e) => setLastPeriod(e.target.value)}
-                className="h-12 text-base border-2 border-primary/20 focus:border-primary/50 rounded-xl"
+                className="h-10 text-sm border-2 border-primary/20 focus:border-primary/50 rounded-xl"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="cycleLength" className="text-sm font-medium">
+              <Label htmlFor="cycleLength" className="text-xs font-medium">
                 {t("toolsInternal.ovulation.avgCycleLength")}
               </Label>
               <Input
@@ -154,7 +154,7 @@ export default function OvulationCalculator() {
                 max="45"
                 value={cycleLength}
                 onChange={(e) => setCycleLength(e.target.value)}
-                className="h-12 text-base border-2 border-primary/20 focus:border-primary/50 rounded-xl"
+                className="h-10 text-sm border-2 border-primary/20 focus:border-primary/50 rounded-xl"
               />
               <p className="text-xs text-muted-foreground">
                 {t("toolsInternal.ovulation.cycleRange")}
@@ -163,9 +163,9 @@ export default function OvulationCalculator() {
 
             <Button 
               onClick={calculate} 
-              className="w-full h-11 text-sm font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="w-full h-10 text-xs font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <Heart className="h-5 w-5 mr-2" />
+              <Heart className="h-4 w-4 mr-2" />
               {t("toolsInternal.ovulation.calculateBtn")}
             </Button>
           </CardContent>
@@ -196,8 +196,8 @@ export default function OvulationCalculator() {
                   <Sparkles className="h-40 w-40" />
                 </motion.div>
                 <div className="relative z-10 text-center">
-                  <p className="text-primary-foreground/80 text-sm font-medium mb-1">{t("toolsInternal.ovulation.daysUntilOvulation")}</p>
-                  <p className="text-2xl font-bold mb-2">{result.daysUntilOvulation}</p>
+                  <p className="text-primary-foreground/80 text-xs font-medium mb-1">{t("toolsInternal.ovulation.daysUntilOvulation")}</p>
+                  <p className="text-xl font-bold mb-1.5">{result.daysUntilOvulation}</p>
                   <p className="text-primary-foreground/90">{t("toolsInternal.ovulation.getReady")} 🌸</p>
                 </div>
               </motion.div>
@@ -211,13 +211,13 @@ export default function OvulationCalculator() {
                 className="rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/50 p-5 border border-primary/20 shadow-md"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <Heart className="h-5 w-5 text-primary" />
-                  <p className="text-sm font-medium text-muted-foreground">{t("toolsInternal.ovulation.ovulationDay")}</p>
+                  <Heart className="h-4 w-4 text-primary" />
+                  <p className="text-xs font-medium text-muted-foreground">{t("toolsInternal.ovulation.ovulationDay")}</p>
                 </div>
-                <p className="text-base font-bold text-primary">
+                <p className="text-sm font-bold text-primary">
                   {format(result.ovulationDate, "MMM d")}
                 </p>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {t("toolsInternal.ovulation.peakFertility")}
                 </p>
               </motion.div>
@@ -229,13 +229,13 @@ export default function OvulationCalculator() {
                 className="rounded-2xl bg-gradient-to-br from-secondary to-muted p-5 border border-border shadow-md"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="h-5 w-5 text-primary" />
-                  <p className="text-sm font-medium text-muted-foreground">{t("toolsInternal.ovulation.nextPeriod")}</p>
+                  <Calendar className="h-4 w-4 text-primary" />
+                  <p className="text-xs font-medium text-muted-foreground">{t("toolsInternal.ovulation.nextPeriod")}</p>
                 </div>
-                <p className="text-base font-bold text-foreground">
+                <p className="text-sm font-bold text-foreground">
                   {format(result.nextPeriod, "MMM d")}
                 </p>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {t("toolsInternal.ovulation.expectedStart")}
                 </p>
               </motion.div>
@@ -249,18 +249,18 @@ export default function OvulationCalculator() {
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-xl bg-accent">
-                  <Baby className="h-6 w-6 text-accent-foreground" />
+                  <Baby className="h-5 w-5 text-accent-foreground" />
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-lg">{t("toolsInternal.ovulation.fertileWindow")}</p>
-                  <p className="text-sm text-muted-foreground">{t("toolsInternal.ovulation.bestDays")}</p>
+                  <p className="font-bold text-foreground text-base">{t("toolsInternal.ovulation.fertileWindow")}</p>
+                  <p className="text-xs text-muted-foreground">{t("toolsInternal.ovulation.bestDays")}</p>
                 </div>
               </div>
               
               <div className="flex items-center justify-center gap-4 py-4">
                 <div className="text-center">
-                  <p className="text-sm text-muted-foreground">{t("toolsInternal.ovulation.start")}</p>
-                  <p className="text-xl font-bold text-foreground">{format(result.fertileStart, "MMM d")}</p>
+                  <p className="text-xs text-muted-foreground">{t("toolsInternal.ovulation.start")}</p>
+                  <p className="text-lg font-bold text-foreground">{format(result.fertileStart, "MMM d")}</p>
                 </div>
                 <div className="flex items-center gap-1 text-primary/60">
                   <span>→</span>
@@ -268,12 +268,12 @@ export default function OvulationCalculator() {
                   <span>→</span>
                 </div>
                 <div className="text-center">
-                  <p className="text-sm text-muted-foreground">{t("toolsInternal.ovulation.end")}</p>
-                  <p className="text-xl font-bold text-foreground">{format(result.fertileEnd, "MMM d")}</p>
+                  <p className="text-xs text-muted-foreground">{t("toolsInternal.ovulation.end")}</p>
+                  <p className="text-lg font-bold text-foreground">{format(result.fertileEnd, "MMM d")}</p>
                 </div>
               </div>
               
-              <p className="text-sm text-center text-muted-foreground mt-2">
+              <p className="text-xs text-center text-muted-foreground mt-2">
                 {t("toolsInternal.ovulation.sixDays")} 💕
               </p>
             </motion.div>
@@ -306,7 +306,7 @@ Any important reminders about fertility tracking`}
               transition={{ delay: 0.4 }}
               className="rounded-xl bg-muted border border-border p-4"
             >
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 <span className="font-semibold">💡 {t("toolsInternal.ovulation.tip")}:</span> {t("toolsInternal.ovulation.tipText")}
               </p>
             </motion.div>
@@ -316,7 +316,7 @@ Any important reminders about fertility tracking`}
         {savedResults.length > 0 && (
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">{t("toolsInternal.ovulation.savedCalculations")}</CardTitle>
+              <CardTitle className="text-base">{t("toolsInternal.ovulation.savedCalculations")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -329,10 +329,10 @@ Any important reminders about fertility tracking`}
                       <p className="font-medium text-foreground">
                         {t("toolsInternal.ovulation.ovulation")}: {format(new Date(saved.ovulationDate), "MMM d, yyyy")}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs text-muted-foreground">
                         {t("toolsInternal.ovulation.cycle")}: {saved.cycleLength} {t("toolsInternal.ovulation.days")} • LMP: {format(new Date(saved.lastPeriod), "MMM d")}
                       </p>
-                      <p className="text-xs text-primary mt-1">
+                      <p className="text-[10px] text-primary mt-1">
                         {t("toolsInternal.ovulation.fertile")}: {format(new Date(saved.fertileStart), "MMM d")} - {format(new Date(saved.fertileEnd), "MMM d")}
                       </p>
                     </div>
@@ -356,7 +356,7 @@ Any important reminders about fertility tracking`}
         />
 
         <div className="flex items-start gap-3 rounded-xl bg-muted/50 p-4 text-sm text-muted-foreground">
-          <Sparkles className="h-5 w-5 mt-0.5 flex-shrink-0 text-primary/50" />
+          <Sparkles className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary/50" />
           <p>
             {t("toolsInternal.ovulation.disclaimer")}
           </p>

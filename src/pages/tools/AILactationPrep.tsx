@@ -125,10 +125,10 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
       mood="nurturing"
       toolId="ai-lactation-prep"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Feeding Goal */}
         <div className="space-y-3">
-          <Label>{t('toolsInternal.lactationPrep.yourFeedingGoal')}</Label>
+          <Label className="text-xs">{t('toolsInternal.lactationPrep.yourFeedingGoal')}</Label>
           <div className="grid grid-cols-2 gap-2">
             {feedingGoals.map((goal) => (
               <div
@@ -141,7 +141,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
                 }`}
               >
                 <div className="text-base mb-1">{goal.icon}</div>
-                <div className="text-sm">{t(goal.labelKey)}</div>
+                <div className="text-xs">{t(goal.labelKey)}</div>
               </div>
             ))}
           </div>
@@ -154,20 +154,20 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
             checked={firstTimeMom} 
             onCheckedChange={(checked) => setFirstTimeMom(checked as boolean)} 
           />
-          <Label htmlFor="first-time" className="cursor-pointer">
+          <Label htmlFor="first-time" className="cursor-pointer text-xs">
             {t('toolsInternal.lactationPrep.firstTimeBreastfeeding')}
           </Label>
         </div>
 
         {/* Returning to Work */}
         <div className="space-y-2">
-          <Label className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-primary" />
+          <Label className="flex items-center gap-2 text-xs">
+            <Clock className="w-3.5 h-3.5 text-primary" />
             {t('toolsInternal.lactationPrep.returningToWork')}
           </Label>
           <Select value={returningToWork} onValueChange={setReturningToWork}>
             <SelectTrigger>
-              <SelectValue placeholder={t('toolsInternal.lactationPrep.select')} />
+              <SelectValue placeholder={t('toolsInternal.lactationPrep.select')} className="text-xs"/>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="no">{t('toolsInternal.lactationPrep.workOptions.no')}</SelectItem>
@@ -180,7 +180,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
         {/* Concerns */}
         <div className="space-y-3">
-          <Label>{t('toolsInternal.lactationPrep.anyConcerns')}</Label>
+          <Label className="text-xs">{t('toolsInternal.lactationPrep.anyConcerns')}</Label>
           <div className="grid grid-cols-2 gap-2">
             {concerns.map((concern) => (
               <div
@@ -193,7 +193,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
                 }`}
               >
                 <Checkbox checked={selectedConcerns.includes(concern.id)} />
-                <span className="text-sm">{t(concern.labelKey)}</span>
+                <span className="text-xs">{t(concern.labelKey)}</span>
               </div>
             ))}
           </div>
@@ -201,13 +201,13 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
         {/* Essential Supplies */}
         <Card className="p-4 bg-muted/30">
-          <h4 className="font-medium mb-3 flex items-center gap-2">
-            <ShoppingBag className="w-4 h-4 text-primary" />
+          <h4 className="font-medium mb-3 flex items-center gap-2 text-sm">
+            <ShoppingBag className="w-3.5 h-3.5 text-primary" />
             {t('toolsInternal.lactationPrep.suppliesChecklist')}
           </h4>
           <div className="grid grid-cols-2 gap-2">
             {essentialSupplies.map((item, i) => (
-              <div key={i} className="flex items-center gap-2 text-sm">
+              <div key={i} className="flex items-center gap-2 text-xs">
                 <span className={item.essential ? "text-primary" : "text-muted-foreground"}>
                   {item.essential ? "★" : "○"}
                 </span>
@@ -221,8 +221,8 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         <Button
           onClick={getLactationPlan}
           disabled={isLoading}
-          className="w-full"
-          size="lg"
+          className="w-full text-xs"
+          size="sm"
         >
           <Sparkles className="w-4 h-4 mr-2" />
           {isLoading ? t('toolsInternal.lactationPrep.creatingGuide') : t('toolsInternal.lactationPrep.getAIGuide')}
@@ -238,10 +238,10 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         {/* Support Note */}
         <Card className="p-4 bg-muted/30 border-primary/20">
           <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-primary flex-shrink-0" />
+            <AlertCircle className="w-4 h-4 text-primary flex-shrink-0" />
             <div>
-              <h4 className="font-medium">{t('toolsInternal.lactationPrep.needSupport')}</h4>
-              <p className="text-sm text-muted-foreground mt-1">
+              <h4 className="font-medium text-xs">{t('toolsInternal.lactationPrep.needSupport')}</h4>
+              <p className="text-[10px] text-muted-foreground mt-1">
                 {t('toolsInternal.lactationPrep.supportNote')}
               </p>
             </div>

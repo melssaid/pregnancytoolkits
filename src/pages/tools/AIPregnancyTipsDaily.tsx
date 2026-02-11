@@ -133,7 +133,7 @@ export default function AIPregnancyTipsDaily() {
       toolId="daily-tips"
       icon={Lightbulb}
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
           {/* Trimester Selection */}
           <div className="flex gap-2">
             {[1, 2, 3].map(tri => (
@@ -193,15 +193,15 @@ export default function AIPregnancyTipsDaily() {
           {/* Tip of the Day */}
           {dailyTip && !showAITip && (
             <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Calendar className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">{t('dailyTips.tipOfTheDay')}</span>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Calendar className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-xs font-medium text-primary">{t('dailyTips.tipOfTheDay')}</span>
                 </div>
                 
-                <h3 className="text-xl font-bold mb-2">{t(`dailyTips.tips.${dailyTip.tipKey}.tip`)}</h3>
-                <p className="text-muted-foreground mb-4">{t(`dailyTips.tips.${dailyTip.tipKey}.detail`)}</p>
-                
+                <h3 className="text-sm font-bold mb-1.5">{t(`dailyTips.tips.${dailyTip.tipKey}.tip`)}</h3>
+                <p className="text-xs text-muted-foreground mb-3">{t(`dailyTips.tips.${dailyTip.tipKey}.detail`)}</p>
+
                 <div className="flex items-center justify-between">
                   <Badge className={categoryColors[dailyTip.category]}>
                     {t(`dailyTips.categories.${dailyTip.category}`)}
