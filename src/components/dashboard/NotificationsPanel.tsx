@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Switch } from '@/components/ui/switch';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
 import { Link } from 'react-router-dom';
@@ -184,15 +183,28 @@ function SettingsItem({
   onChange: (v: boolean) => void;
 }) {
   return (
-    <div className="flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/30 transition-colors">
+    <button
+      onClick={() => onChange(!checked)}
+      className={`flex items-center justify-between py-2 px-2.5 rounded-lg border transition-all duration-200 w-full ${
+        checked 
+          ? 'bg-primary/8 border-primary/30 shadow-sm' 
+          : 'bg-muted/20 border-border/40 opacity-60 hover:opacity-80'
+      }`}
+    >
       <div className="flex items-center gap-1.5">
-        <div className={`w-5 h-5 rounded ${color} flex items-center justify-center`}>
+        <div className={`w-5 h-5 rounded-md ${checked ? color : 'bg-muted-foreground/30'} flex items-center justify-center transition-colors`}>
           <Icon className="w-2.5 h-2.5 text-white" />
         </div>
-        <span className="text-[11px] font-medium">{label}</span>
+        <span className={`text-[11px] font-medium transition-colors ${checked ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
       </div>
-      <Switch checked={checked} onCheckedChange={onChange} className="scale-75" />
-    </div>
+      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${
+        checked 
+          ? 'border-primary bg-primary' 
+          : 'border-muted-foreground/40 bg-transparent'
+      }`}>
+        {checked && <CheckCircle className="w-3 h-3 text-primary-foreground" />}
+      </div>
+    </button>
   );
 }
 
@@ -388,7 +400,7 @@ export function NotificationsPanel() {
                   icon={HardDrive} 
                   label={t('notificationsPanel.backup')} 
                   color="bg-rose-500"
-                  checked={settings.backupReminders ?? true}
+                  checked={settings.backupReminders ?? false}
                   onChange={(v) => {
                     updateSettings({ backupReminders: v });
                     if (v && !localStorage.getItem('backup_reminder_first_enabled')) {
@@ -458,30 +470,39 @@ export function NotificationsPanel() {
                     </div>
                   ) : (
                     /* Normal push toggle when not blocked */
-                    <div className="flex items-center justify-between py-1.5 px-2 rounded-md hover:bg-muted/30 transition-colors">
+                    <button
+                      onClick={async () => {
+                        if (!pushEnabled) {
+                          const success = await enablePush();
+                          if (success) {
+                            toast.success(t('notificationsPanel.pushEnabledSuccess'));
+                          }
+                        } else {
+                          disablePush();
+                        }
+                      }}
+                      className={`flex items-center justify-between py-2 px-2.5 rounded-lg border transition-all duration-200 w-full ${
+                        pushEnabled 
+                          ? 'bg-primary/8 border-primary/30 shadow-sm' 
+                          : 'bg-muted/20 border-border/40 opacity-60 hover:opacity-80'
+                      }`}
+                    >
                       <div className="flex items-center gap-1.5">
-                        <div className="w-5 h-5 rounded bg-primary flex items-center justify-center">
-                          {pushEnabled ? <BellPlus className="w-2.5 h-2.5 text-primary-foreground" /> : <BellOff className="w-2.5 h-2.5 text-primary-foreground" />}
+                        <div className={`w-5 h-5 rounded-md ${pushEnabled ? 'bg-primary' : 'bg-muted-foreground/30'} flex items-center justify-center transition-colors`}>
+                          {pushEnabled ? <BellPlus className="w-2.5 h-2.5 text-primary-foreground" /> : <BellOff className="w-2.5 h-2.5 text-white" />}
                         </div>
-                        <span className="text-[11px] font-medium">
+                        <span className={`text-[11px] font-medium transition-colors ${pushEnabled ? 'text-foreground' : 'text-muted-foreground'}`}>
                           {t('notificationsPanel.enablePush')}
                         </span>
                       </div>
-                      <Switch 
-                        checked={pushEnabled} 
-                        onCheckedChange={async (v) => {
-                          if (v) {
-                            const success = await enablePush();
-                            if (success) {
-                              toast.success(t('notificationsPanel.pushEnabledSuccess'));
-                            }
-                          } else {
-                            disablePush();
-                          }
-                        }} 
-                        className="scale-75"
-                      />
-                    </div>
+                      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${
+                        pushEnabled 
+                          ? 'border-primary bg-primary' 
+                          : 'border-muted-foreground/40 bg-transparent'
+                      }`}>
+                        {pushEnabled && <CheckCircle className="w-3 h-3 text-primary-foreground" />}
+                      </div>
+                    </button>
                   )}
                 </div>
               )}
