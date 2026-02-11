@@ -41,11 +41,11 @@ interface NotificationSettings {
 
 const DEFAULT_SETTINGS: NotificationSettings = {
   appointmentReminders: true,
-  vitaminReminders: true,
-  exerciseReminders: true,
-  waterReminders: true,
-  stretchReminders: true,
-  backupReminders: true,
+  vitaminReminders: false,
+  exerciseReminders: false,
+  waterReminders: false,
+  stretchReminders: false,
+  backupReminders: false,
 };
 
 // Backup reminder interval in days
