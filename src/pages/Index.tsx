@@ -6,6 +6,7 @@ import { Layout } from "@/components/Layout";
 import { ToolCard } from "@/components/ToolCard";
 import { getSortedTools, getToolsByCategory } from "@/lib/tools-data";
 import { SubscriptionModal } from "@/components/SubscriptionModal";
+import useSubscription from "@/hooks/useSubscription";
 
 interface CategoryConfig {
   key: string;
@@ -49,6 +50,7 @@ const Index = () => {
     return new Set();
   });
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
+  const { hasAccess } = useSubscription();
   
   const sortedTools = useMemo(() => getSortedTools(), []);
   const totalTools = sortedTools.length;
@@ -133,6 +135,9 @@ const Index = () => {
                             categoryKey={tool.categoryKey}
                             index={index}
                             hasAI={false}
+                            isPremium={tool.isPremium}
+                            isLocked={tool.isPremium && !hasAccess(true)}
+                            onLockedClick={openModal}
                           />
                         </motion.div>
                       ))}
