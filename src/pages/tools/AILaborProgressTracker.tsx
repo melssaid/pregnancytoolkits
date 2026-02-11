@@ -194,15 +194,15 @@ export default function AILaborProgressTracker() {
       toolId="labor-progress"
       icon={Activity}
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
           {/* Hospital Alert */}
           {showHospitalAlert && (
             <Card className="border-destructive bg-destructive/5">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <AlertTriangle className="w-8 h-8 text-destructive flex-shrink-0" />
+              <CardContent className="p-4">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 text-destructive flex-shrink-0" />
                 <div className="flex-1">
-                    <h3 className="font-bold text-destructive text-lg mb-2">
+                    <h3 className="font-bold text-destructive text-sm mb-1.5">
                       🏥 {t('toolsInternal.laborTracker.hospitalAlert', 'Time to Go to the Hospital!')}
                     </h3>
                     <p className="text-sm text-foreground mb-4">
@@ -231,9 +231,9 @@ export default function AILaborProgressTracker() {
 
           {/* Main Timer */}
           <Card>
-            <CardContent className="p-8 text-center">
-              <div className="mb-6">
-                <div className={`text-3xl font-bold ${isTracking ? 'text-destructive' : 'text-primary'}`}>
+            <CardContent className="p-4 text-center">
+              <div className="mb-4">
+                <div className={`text-xl font-bold ${isTracking ? 'text-destructive' : 'text-primary'}`}>
                   {formatTimer(timer)}
                 </div>
                 <p className="text-muted-foreground mt-2">
@@ -242,9 +242,8 @@ export default function AILaborProgressTracker() {
               </div>
 
               <Button
-                size="lg"
                 onClick={isTracking ? endContraction : startContraction}
-                className={`w-full h-12 text-sm rounded-2xl ${
+                className={`w-full h-10 text-xs rounded-xl ${
                   isTracking 
                     ? 'bg-destructive hover:bg-destructive/90' 
                     : 'bg-primary hover:bg-primary/90'
@@ -296,7 +295,7 @@ export default function AILaborProgressTracker() {
 
           {/* Stats Overview */}
           {contractions.length > 0 && (
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <Card>
                 <CardContent className="p-4 text-center">
                   <div className="text-base font-bold text-primary">{contractions.length}</div>
@@ -321,11 +320,11 @@ export default function AILaborProgressTracker() {
           {/* Labor Phase */}
           {contractions.length >= 3 && (
             <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <Baby className="w-10 h-10 text-primary" />
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <Baby className="w-6 h-6 text-primary" />
                   <div>
-                    <h3 className={`text-lg font-bold ${getLaborPhase().color}`}>
+                    <h3 className={`text-sm font-bold ${getLaborPhase().color}`}>
                       {getLaborPhase().phase}
                     </h3>
                     <p className="text-sm text-muted-foreground">{getLaborPhase().desc}</p>
@@ -338,9 +337,9 @@ export default function AILaborProgressTracker() {
           {/* Contraction Chart */}
           {contractions.length >= 3 && (
             <Card>
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-primary" />
+              <CardContent className="p-4">
+                <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-primary" />
                   {t('toolsInternal.laborTracker.contractionPattern', 'Contraction Pattern')}
                 </h3>
                 <div className="h-48">
@@ -374,8 +373,8 @@ export default function AILaborProgressTracker() {
           {contractions.length > 0 && (
             <Card>
               <CardContent className="p-4">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-primary" />
+                <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary" />
                   {t('toolsInternal.laborTracker.recentContractions', 'Recent Contractions')}
                 </h3>
                 <div className="space-y-2">

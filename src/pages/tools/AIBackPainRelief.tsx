@@ -182,7 +182,7 @@ export default function AIBackPainRelief() {
       mood="calm"
       toolId="ai-back-pain-relief"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Pain Location Selector */}
         <Card>
           <CardContent className="p-4">
@@ -194,7 +194,7 @@ export default function AIBackPainRelief() {
                 <button
                   key={loc.key}
                   onClick={() => setPainLocation(loc.key)}
-                  className={`py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                  className={`py-1.5 px-2.5 rounded-lg text-xs font-medium transition-all ${
                     painLocation === loc.key
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted hover:bg-muted/80'
@@ -212,7 +212,7 @@ export default function AIBackPainRelief() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-3">
               <div>
-                <h3 className="font-semibold">{t('toolsInternal.backPainRelief.todaysRoutine')}</h3>
+                <h3 className="text-sm font-semibold">{t('toolsInternal.backPainRelief.todaysRoutine')}</h3>
                 <p className="text-sm text-muted-foreground">
                   {t('toolsInternal.backPainRelief.exercisesCompleted', {
                     completed: completedExercises.length,
@@ -220,7 +220,7 @@ export default function AIBackPainRelief() {
                   })}
                 </p>
               </div>
-              <div className="text-lg font-bold text-primary">
+              <div className="text-sm font-bold text-primary">
                 {Math.round((completedExercises.length / backPainExercises.length) * 100)}%
               </div>
             </div>
@@ -268,22 +268,22 @@ export default function AIBackPainRelief() {
             animate={{ opacity: 1, scale: 1 }}
           >
             <Card className="border-2 border-primary">
-              <CardContent className="p-6 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                  <ExerciseIcon type={selectedExercise.icon} className="w-8 h-8 text-primary" />
+              <CardContent className="p-4 text-center">
+                <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-primary/10 flex items-center justify-center">
+                  <ExerciseIcon type={selectedExercise.icon} className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-sm font-bold mb-2">
                   {t(`toolsInternal.backPainRelief.${selectedExercise.nameKey}`)}
                 </h3>
                 
-                <div className="text-2xl font-bold text-primary my-6">
+                <div className="text-base font-bold text-primary my-4">
                   {timeRemaining}s
                 </div>
 
-                <div className="bg-muted/50 p-4 rounded-lg text-start mb-4">
-                  <h4 className="font-semibold mb-2">{t('toolsInternal.backPainRelief.steps')}:</h4>
+                <div className="bg-muted/50 p-3 rounded-lg text-start mb-3">
+                  <h4 className="text-xs font-semibold mb-1.5">{t('toolsInternal.backPainRelief.steps')}:</h4>
                   {(t(`toolsInternal.backPainRelief.${selectedExercise.stepsKey}`, { returnObjects: true }) as string[]).map((step, i) => (
-                    <p key={i} className="text-sm text-muted-foreground">
+                    <p key={i} className="text-xs text-muted-foreground">
                       {i + 1}. {step}
                     </p>
                   ))}
@@ -301,8 +301,8 @@ export default function AIBackPainRelief() {
         {/* Exercise List */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-lg font-semibold mb-4">{t('toolsInternal.backPainRelief.exerciseList')}</h3>
-            <div className="space-y-3">
+            <h3 className="text-sm font-semibold mb-3">{t('toolsInternal.backPainRelief.exerciseList')}</h3>
+            <div className="space-y-2">
               {backPainExercises.map((exercise) => {
                 const isCompleted = completedExercises.includes(exercise.id);
                 return (
@@ -314,18 +314,18 @@ export default function AIBackPainRelief() {
                         : 'bg-muted/50'
                     }`}
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <ExerciseIcon type={exercise.icon} className="w-6 h-6 text-primary" />
+                    <div className="flex items-start gap-3">
+                      <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <ExerciseIcon type={exercise.icon} className="w-4 h-4 text-primary" />
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold">
+                          <span className="text-xs font-semibold">
                             {t(`toolsInternal.backPainRelief.${exercise.nameKey}`)}
                           </span>
                           {isCompleted && <CheckCircle className="w-4 h-4 text-primary" />}
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-xs text-muted-foreground">
                           {t(`toolsInternal.backPainRelief.${exercise.descriptionKey}`)}
                         </p>
                         <div className="flex gap-2 mt-2">
@@ -357,9 +357,9 @@ export default function AIBackPainRelief() {
         <Card className="bg-destructive/5 border-destructive/20">
           <CardContent className="p-4">
             <div className="flex gap-3">
-              <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0" />
+              <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0" />
               <div>
-                <h4 className="font-semibold text-destructive">
+                <h4 className="text-xs font-semibold text-destructive">
                   {t('toolsInternal.backPainRelief.safetyNotice')}
                 </h4>
                 <p className="text-sm text-muted-foreground mt-1">

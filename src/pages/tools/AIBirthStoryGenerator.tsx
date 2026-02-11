@@ -172,12 +172,12 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
       mood="joyful"
       toolId="ai-birth-story"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Baby Details */}
         <Card>
-          <CardContent className="p-4 space-y-4">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Baby className="w-5 h-5 text-primary" />
+          <CardContent className="p-3 space-y-3">
+            <h3 className="text-sm font-semibold flex items-center gap-2">
+              <Baby className="w-4 h-4 text-primary" />
               {t('toolsInternal.birthStory.babyDetails', "Baby's Details")}
             </h3>
             
@@ -230,7 +230,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
         {/* Delivery Type */}
         <Card>
           <CardContent className="p-4 space-y-3">
-            <h3 className="text-base font-semibold">{t('toolsInternal.birthStory.deliveryType', 'Delivery Type')}</h3>
+            <h3 className="text-sm font-semibold">{t('toolsInternal.birthStory.deliveryType', 'Delivery Type')}</h3>
             <div className="grid grid-cols-2 gap-2">
               {deliveryTypes.map((type) => (
                 <button
@@ -252,14 +252,14 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
 
         {/* Personal Touch */}
         <Card>
-          <CardContent className="p-4 space-y-4">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Heart className="w-5 h-5 text-primary" />
+          <CardContent className="p-3 space-y-3">
+            <h3 className="text-sm font-semibold flex items-center gap-2">
+              <Heart className="w-4 h-4 text-primary" />
               {t('toolsInternal.birthStory.personalTouch', 'Personal Touch')}
             </h3>
             
             <div>
-              <label className="block text-sm font-medium mb-2">{t('toolsInternal.birthStory.firstFeeling', 'First feeling when you saw your baby')}</label>
+              <label className="block text-xs font-medium mb-1.5">{t('toolsInternal.birthStory.firstFeeling', 'First feeling when you saw your baby')}</label>
               <Textarea
                 placeholder={t('toolsInternal.birthStory.firstFeelingPlaceholder', 'Describe that magical first moment...')}
                 value={storyData.firstFeeling}
@@ -269,7 +269,7 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">{t('toolsInternal.birthStory.specialMoments', 'Special moments to remember')}</label>
+              <label className="block text-xs font-medium mb-1.5">{t('toolsInternal.birthStory.specialMoments', 'Special moments to remember')}</label>
               <Textarea
                 placeholder={t('toolsInternal.birthStory.specialMomentsPlaceholder', 'Any special details, who was there, funny moments, etc...')}
                 value={storyData.specialMoments}
@@ -324,8 +324,8 @@ ${storyData.dedicatedTo ? `\n💝 Dedicated with love to ${storyData.dedicatedTo
 
         {/* Info */}
         <Card className="bg-muted/30">
-          <CardContent className="p-4">
-            <p className="text-sm text-muted-foreground">
+          <CardContent className="p-3">
+            <p className="text-xs text-muted-foreground">
               💝 <strong>{t('toolsInternal.birthStory.keepsakeTitle', 'Create a keepsake')}:</strong> {t('toolsInternal.birthStory.keepsakeDesc', 'This story can be saved, printed, and included in a baby book or shared with family and friends.')}
             </p>
           </CardContent>

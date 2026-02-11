@@ -135,19 +135,19 @@ export default function AIStressReliefCoach() {
       toolId="stress-relief"
       icon={Heart}
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Daily Affirmation */}
         <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
-          <CardContent className="p-6">
-            <div className="flex items-center gap-2 mb-3">
-              <Sun className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-primary">{t('toolsInternal.stressRelief.todaysAffirmation')}</span>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Sun className="w-4 h-4 text-primary" />
+              <span className="text-xs font-medium text-primary">{t('toolsInternal.stressRelief.todaysAffirmation')}</span>
             </div>
             <motion.p 
               key={currentAffirmationIndex}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-lg font-medium text-foreground italic"
+              className="text-sm font-medium text-foreground italic"
             >
               "{currentAffirmation}"
             </motion.p>
@@ -157,10 +157,10 @@ export default function AIStressReliefCoach() {
         {/* Active Exercise */}
         {selectedExercise && isPlaying && (
           <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-6">
+            <CardContent className="p-4">
               <div className="text-center">
-                <h3 className="text-sm font-bold mb-2">{t(selectedExercise.nameKey)}</h3>
-                <div className="text-xl font-bold text-primary mb-4">
+                <h3 className="text-xs font-bold mb-2">{t(selectedExercise.nameKey)}</h3>
+                <div className="text-base font-bold text-primary mb-3">
                   {formatTime(timer)}
                 </div>
                 
@@ -172,9 +172,9 @@ export default function AIStressReliefCoach() {
                         key={currentStep}
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="bg-background rounded-xl p-6 mb-4"
+                        className="bg-background rounded-xl p-4 mb-3"
                       >
-                        <p className="text-lg font-medium">
+                        <p className="text-sm font-medium">
                           {steps[currentStep]}
                         </p>
                       </motion.div>
@@ -207,19 +207,19 @@ export default function AIStressReliefCoach() {
 
         {/* Exercise List */}
         {(!selectedExercise || !isPlaying) && (
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t('toolsInternal.stressRelief.relaxationExercises')}</h3>
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold">{t('toolsInternal.stressRelief.relaxationExercises')}</h3>
             {exercises.map(exercise => {
               const TypeIcon = getTypeIcon(exercise.type);
               return (
                 <Card key={exercise.id}>
                   <CardContent className="p-4">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-xl bg-primary/10">
-                        <TypeIcon className="w-5 h-5 text-primary" />
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 rounded-xl bg-primary/10">
+                        <TypeIcon className="w-4 h-4 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold">{t(exercise.nameKey)}</h4>
+                        <h4 className="text-xs font-semibold">{t(exercise.nameKey)}</h4>
                         <p className="text-sm text-muted-foreground mb-2">
                           {t(exercise.descKey)}
                         </p>
@@ -249,7 +249,7 @@ export default function AIStressReliefCoach() {
         {/* Quick Tips */}
         <Card>
           <CardContent className="p-4">
-            <h4 className="font-semibold mb-3 flex items-center gap-2">
+            <h4 className="text-xs font-semibold mb-2 flex items-center gap-2">
               <Moon className="w-4 h-4 text-primary" />
               {t('toolsInternal.stressRelief.quickTips')}
             </h4>

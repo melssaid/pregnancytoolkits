@@ -64,15 +64,15 @@ export default function BloodTypeCalculator() {
       mood="calm"
       toolId="blood-type"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Parents Selection */}
         <div className="grid gap-4 sm:grid-cols-2">
           {/* Parent 1 - Mother */}
           <Card>
-            <CardContent className="pt-4 space-y-4">
-              <p className="font-semibold text-foreground">{t('toolsInternal.bloodType.mother')}</p>
+            <CardContent className="pt-3 space-y-3">
+              <p className="text-sm font-semibold text-foreground">{t('toolsInternal.bloodType.mother')}</p>
               <div className="space-y-2">
-                <Label>{t('toolsInternal.bloodType.bloodType')}</Label>
+                <Label className="text-xs">{t('toolsInternal.bloodType.bloodType')}</Label>
                 <Select 
                   value={parent1.type} 
                   onValueChange={(v) => setParent1({ ...parent1, type: v as BloodType })}
@@ -89,7 +89,7 @@ export default function BloodTypeCalculator() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>{t('toolsInternal.bloodType.rhFactor')}</Label>
+                <Label className="text-xs">{t('toolsInternal.bloodType.rhFactor')}</Label>
                 <Select 
                   value={parent1.rh} 
                   onValueChange={(v) => setParent1({ ...parent1, rh: v as RhFactor })}
@@ -104,7 +104,7 @@ export default function BloodTypeCalculator() {
                 </Select>
               </div>
               <div className="text-center pt-2">
-                <span className="text-lg font-bold text-primary">
+                <span className="text-base font-bold text-primary">
                   {parent1.type}{parent1.rh}
                 </span>
               </div>
@@ -113,10 +113,10 @@ export default function BloodTypeCalculator() {
 
           {/* Parent 2 - Father */}
           <Card>
-            <CardContent className="pt-4 space-y-4">
-              <p className="font-semibold text-foreground">{t('toolsInternal.bloodType.father')}</p>
+            <CardContent className="pt-3 space-y-3">
+              <p className="text-sm font-semibold text-foreground">{t('toolsInternal.bloodType.father')}</p>
               <div className="space-y-2">
-                <Label>{t('toolsInternal.bloodType.bloodType')}</Label>
+                <Label className="text-xs">{t('toolsInternal.bloodType.bloodType')}</Label>
                 <Select 
                   value={parent2.type} 
                   onValueChange={(v) => setParent2({ ...parent2, type: v as BloodType })}
@@ -133,7 +133,7 @@ export default function BloodTypeCalculator() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>{t('toolsInternal.bloodType.rhFactor')}</Label>
+                <Label className="text-xs">{t('toolsInternal.bloodType.rhFactor')}</Label>
                 <Select 
                   value={parent2.rh} 
                   onValueChange={(v) => setParent2({ ...parent2, rh: v as RhFactor })}
@@ -148,7 +148,7 @@ export default function BloodTypeCalculator() {
                 </Select>
               </div>
               <div className="text-center pt-2">
-                <span className="text-lg font-bold text-primary">
+                <span className="text-base font-bold text-primary">
                   {parent2.type}{parent2.rh}
                 </span>
               </div>
@@ -164,19 +164,19 @@ export default function BloodTypeCalculator() {
           transition={{ duration: 0.3 }}
         >
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
-            <CardContent className="pt-6">
-              <h3 className="font-semibold mb-4">{t('toolsInternal.bloodType.possibleTypes')}</h3>
+            <CardContent className="pt-4">
+              <h3 className="text-sm font-semibold mb-3">{t('toolsInternal.bloodType.possibleTypes')}</h3>
               <div className="flex flex-wrap gap-3 justify-center mb-6">
                 {possibleTypes.map((type) => (
                   <div key={type} className="space-y-2">
                     {rhProbs.positive > 0 && (
                       <div className="rounded-xl bg-card p-4 shadow-sm text-center min-w-[70px]">
-                        <p className="text-base font-bold text-primary">{type}+</p>
+                        <p className="text-sm font-bold text-primary">{type}+</p>
                       </div>
                     )}
                     {rhProbs.negative > 0 && (
                       <div className="rounded-xl bg-card p-4 shadow-sm text-center min-w-[70px]">
-                        <p className="text-base font-bold text-primary">{type}-</p>
+                        <p className="text-sm font-bold text-primary">{type}-</p>
                       </div>
                     )}
                   </div>
@@ -185,12 +185,12 @@ export default function BloodTypeCalculator() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-xl bg-card p-4 text-center">
-                  <p className="text-sm text-muted-foreground">{t('toolsInternal.bloodType.rhPositiveChance')}</p>
-                  <p className="text-base font-bold text-foreground">{rhProbs.positive}%</p>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.bloodType.rhPositiveChance')}</p>
+                  <p className="text-sm font-bold text-foreground">{rhProbs.positive}%</p>
                 </div>
                 <div className="rounded-xl bg-card p-4 text-center">
-                  <p className="text-sm text-muted-foreground">{t('toolsInternal.bloodType.rhNegativeChance')}</p>
-                  <p className="text-base font-bold text-foreground">{rhProbs.negative}%</p>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.bloodType.rhNegativeChance')}</p>
+                  <p className="text-sm font-bold text-foreground">{rhProbs.negative}%</p>
                 </div>
               </div>
             </CardContent>
@@ -231,10 +231,10 @@ What to discuss with the doctor regarding blood types during pregnancy`}
           <Card className="bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-800">
             <CardContent className="pt-4">
               <div className="flex gap-3">
-                <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-amber-900 dark:text-amber-200">{t('toolsInternal.bloodType.rhIncompatibility')}</p>
-                  <p className="text-sm text-amber-800 dark:text-amber-300 mt-1">
+                  <p className="text-sm font-semibold text-amber-900 dark:text-amber-200">{t('toolsInternal.bloodType.rhIncompatibility')}</p>
+                  <p className="text-xs text-amber-800 dark:text-amber-300 mt-1">
                     {t('toolsInternal.bloodType.rhWarning')}
                   </p>
                 </div>
@@ -247,7 +247,7 @@ What to discuss with the doctor regarding blood types during pregnancy`}
         <Card className="bg-muted/30">
           <CardContent className="pt-4">
             <div className="flex gap-3">
-              <Info className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+              <Info className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted-foreground">
                 {t('toolsInternal.bloodType.disclaimer')}
               </p>

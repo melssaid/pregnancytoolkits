@@ -80,18 +80,18 @@ export default function GestationalDiabetes() {
       mood="calm"
       toolId="gestational-diabetes"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
 
         {/* Risk Factors Checklist */}
         <Card>
           <CardContent className="pt-6">
-            <h3 className="font-semibold mb-4">{t('toolsInternal.gdm.checkRiskFactors')}</h3>
+            <h3 className="font-semibold text-sm mb-3">{t('toolsInternal.gdm.checkRiskFactors')}</h3>
             <div className="space-y-3">
               {RISK_FACTOR_KEYS.map((factor) => (
                 <button
                   key={factor.id}
                   type="button"
-                  className={`flex items-start gap-3 p-4 rounded-xl transition-all w-full text-left border-2 ${
+                  className={`flex items-start gap-3 p-3 rounded-xl transition-all w-full text-left border-2 ${
                     selectedFactors.includes(factor.id)
                       ? "bg-primary/10 border-primary/40 shadow-sm"
                       : "bg-muted/50 hover:bg-muted border-transparent"
@@ -103,7 +103,7 @@ export default function GestationalDiabetes() {
                     onCheckedChange={() => toggleFactor(factor.id)}
                     className="mt-0.5 pointer-events-none"
                   />
-                  <span className="text-sm text-foreground font-medium">{t(factor.labelKey)}</span>
+                  <span className="text-xs text-foreground font-medium">{t(factor.labelKey)}</span>
                 </button>
               ))}
             </div>
@@ -123,14 +123,14 @@ export default function GestationalDiabetes() {
                   <risk.icon className={`h-6 w-6 ${risk.color}`} />
                 </div>
                 <div className="flex-1">
-                  <h3 className={`font-bold text-lg ${risk.color}`}>
+                  <h3 className={`font-bold text-base ${risk.color}`}>
                     {t(`toolsInternal.gdm.riskLevels.${risk.level}.title`)}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     {t(`toolsInternal.gdm.riskLevels.${risk.level}.description`)}
                   </p>
                   <div className="mt-4 flex items-center gap-2">
-                    <span className="text-sm text-muted-foreground">{t('toolsInternal.gdm.riskFactorsSelected')}:</span>
+                    <span className="text-xs text-muted-foreground">{t('toolsInternal.gdm.riskFactorsSelected')}:</span>
                     <span className="font-bold text-foreground">{selectedFactors.length}</span>
                   </div>
                 </div>
@@ -173,11 +173,11 @@ Encouraging message about managing this condition`}
 
         <Card>
           <CardContent className="pt-6">
-            <h3 className="font-semibold mb-4 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-emerald-600" />
+            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-emerald-600" />
               {t('toolsInternal.gdm.preventionTipsTitle')}
             </h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2 text-xs text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600">•</span>
                 {t('toolsInternal.gdm.preventionTips.tip1')}
@@ -205,7 +205,7 @@ Encouraging message about managing this condition`}
         <Card className="bg-muted/30">
           <CardContent className="pt-4">
             <div className="flex gap-3">
-              <Info className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+              <Info className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
               <p className="text-xs text-muted-foreground">
                 {t('toolsInternal.gdm.infoNote')}
               </p>
