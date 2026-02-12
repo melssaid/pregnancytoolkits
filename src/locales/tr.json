@@ -70,9 +70,9 @@
       "title": "Akıllı Hamilelik Rehberi",
       "description": "Hamilelik hakkında herhangi bir soru sorun ve anında cevap alın."
     },
-    "symptomAnalyzer": {
-      "title": "Akıllı Semptom Analizi",
-      "description": "Semptomlarınızı akıllı içgörülerle analiz edin."
+    "wellnessDiary": {
+      "title": "Hamilelik Sağlık Günlüğü",
+      "description": "Hamilelik yolculuğunuz boyunca nasıl hissettiğinizi kaydedin ve düşünün."
     },
     "aiMealSuggestion": {
       "title": "Akıllı Öğün Planlayıcı",
@@ -1332,18 +1332,18 @@
       "analyzing": "Analiz ediliyor..."
     },
     "symptomAnalyzer": {
-      "title": "AI Semptom Analizörü",
-      "subtitle": "Hamilelik semptomları için eğitici içgörüler",
-      "disclaimer": "Bu araç yalnızca eğitici bilgi sağlar. Tıbbi tavsiye için her zaman sağlık uzmanınıza danışın.",
-      "selectSymptoms": "Semptomlarınızı Seçin",
-      "analyze": "Analiz Et",
-      "analyzing": "Analiz ediliyor...",
-      "analyzeCount": "{{count}} Semptomu Analiz Et",
-      "analyzeCountPlural": "{{count}} Semptomu Analiz Et",
-      "results": "Analiz Sonuçları",
+      "title": "Hamilelik Sağlık Günlüğü",
+      "subtitle": "Günlük sağlığınızı kaydedin ve düşünün",
+      "disclaimer": "Bu araç yalnızca günlük tutma ve eğitim amaçlıdır. Her zaman sağlık uzmanınıza danışın.",
+      "selectSymptoms": "Bugün nasıl hissediyorsunuz?",
+      "analyze": "Kaydet",
+      "analyzing": "Kaydediliyor...",
+      "analyzeCount": "{{count}} his kaydet",
+      "analyzeCountPlural": "{{count}} his kaydet",
+      "results": "Sağlık Notlarınız",
       "week": "Hafta {{week}}",
-      "discussWithProvider": "Kişiselleştirilmiş tavsiye için sağlık uzmanınızla görüşün",
-      "remember": "Unutmayın: Her hamilelik benzersizdir. Bu içgörüler yalnızca eğitim amaçlıdır ve profesyonel tıbbi tavsiyenin yerini almaz.",
+      "discussWithProvider": "Günlüğünüzü bir sonraki ziyaretinizde sağlık uzmanınızla paylaşın",
+      "remember": "Her hamilelik benzersizdir. Bu günlük yolculuğunuzu düşünmenize ve danışmanınızla notlar paylaşmanıza yardımcı olur.",
       "symptoms": {
         "nausea": "Mide Bulantısı",
         "fatigue": "Yorgunluk",
@@ -1358,40 +1358,40 @@
       },
       "insights": {
         "nausea": {
-          "early": "İlk trimesterde çok yaygındır. Küçük, sık öğünler ve zencefil deneyin.",
-          "late": "Bu aşamada daha az yaygın. Şiddetli veya başka belirtilerle birlikteyse doktorunuza danışın."
+          "early": "İlk trimesterde çok yaygın. Birçok kadın küçük, sık öğünler ve zencefili faydalı buluyor.",
+          "late": "Bu aşamada daha az yaygın. Devam ederse, bir sonraki ziyaretinizde danışmanınıza söyleyin."
         },
         "fatigue": {
-          "early": "Bu aşama için normal. Vücudunuz çok çalışıyor! Dinlenmeye öncelik verin.",
-          "mid": "'Balayı dönemi'nde olabilirsiniz, ancak dinlenmeye ihtiyacınız varsa vücudunuzu dinleyin."
+          "early": "Vücudunuz şu anda harika bir iş yapıyor. Yapabildiğinizde dinlenmeye öncelik verin.",
+          "mid": "Birçok kadın ikinci trimesterde daha enerjik hisseder — ama vücudunuzu dinleyin."
         },
         "headache": {
-          "general": "Hormonal değişiklikler ve artan kan hacmi baş ağrısına neden olabilir. Bol su için ve karanlık bir odada dinlenin."
+          "general": "Bol su içmek ve sakin bir ortamda dinlenmek yardımcı olabilir. Danışmanınız için sıklığı not edin."
         },
         "backpain": {
-          "early": "Yakından izleyin. Kramplarla birlikteyse sağlık uzmanınızla iletişime geçin.",
-          "late": "Bebek büyüdükçe ve ağırlık merkezi kaydıkça yaygındır. Hafif esneme ve doğru duruş yardımcı olur."
+          "early": "Ne zaman olduğunu not edin. Hafif esneme rahatlık sağlayabilir.",
+          "late": "Vücudunuz uyum sağladıkça yaygın. İyi duruş ve nazik hareket yardımcı olabilir."
         },
         "cramps": {
-          "general": "Hafif kramplar, rahminiz genişledikçe normal olabilir. Şiddetli veya sürekli kramplar doktorunuz tarafından değerlendirilmelidir."
+          "general": "Hafif hisler hamileliğin normal bir parçası olabilir. Kayıtlarınız için zamanlama ve yoğunluğu not edin."
         },
         "swelling": {
-          "general": "Ayak ve bileklerde hafif şişlik yaygındır, özellikle gebeliğin sonlarında. Ayaklarınızı yukarı kaldırın ve bol su için. Ani veya şiddetli şişlik acil tıbbi müdahale gerektirir."
+          "general": "Ayak ve bileklerde hafif şişlik yaygındır, özellikle daha sonra. Ayakları yükseltmek ve bol su içmek yardımcı olabilir."
         },
         "heartburn": {
-          "general": "Hormonal değişiklikler nedeniyle hamilelikte çok yaygın. Daha küçük öğünler yiyin, baharatlı yiyeceklerden kaçının ve yemekten hemen sonra uzanmayın."
+          "general": "Hamilelikte çok yaygın. Daha küçük öğünler ve yemekten hemen sonra uzanmamak yardımcı olabilir."
         },
         "insomnia": {
-          "general": "Uyku güçlükleri yaygındır. Tutarlı bir uyku rutini deneyin, destek için yastık kullanın ve yatmadan önce ekran süresini sınırlayın."
+          "general": "Uyku zorlukları yaygındır. Tutarlı bir uyku rutini ve rahat pozisyonlama yardımcı olabilir."
         },
         "moodswings": {
-          "general": "Hormonal dalgalanmalar ruh hali değişikliklerini normal kılar. Destek ağınızla konuşun ve rahatlama tekniklerini düşünün."
+          "general": "Duygusal değişiklikler hamileliğin normal bir parçasıdır. Destek ağınızla bağlantı kurmak rahatlatıcı olabilir."
         },
         "dizziness": {
-          "general": "Kan basıncı değişikliklerinden kaynaklanabilir. Yavaş kalkın, bol su için ve düzenli yemek yiyin. Sık tekrarlanıyorsa doktorunuza bildirin."
+          "general": "Yavaş kalkmak, bol su içmek ve düzenli yemek yardımcı olabilir. Danışmanınız için sıklığı not edin."
         },
-        "default": "Bu bilinen bir hamilelik belirtisidir. Yoğunluğu ve sıklığı izleyin ve sağlık uzmanınızla görüşün.",
-        "defaultFallback": "Belirti kaydedildi. Devam etmesi durumunda doktorunuzla görüşün."
+        "default": "Bu hamilelikte yaygın bir deneyimdir. Kaydetmek zaman içinde kalıpları izlemenize yardımcı olur.",
+        "defaultFallback": "Günlüğünüze kaydedildi. Günlüğünüzü bir sonraki ziyaretinizde danışmanınızla paylaşın."
       }
     },
     "vitaminTracker": {

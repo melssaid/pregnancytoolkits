@@ -70,9 +70,9 @@
       "title": "Intelligenter Schwangerschaftsführer",
       "description": "Stellen Sie jede Frage zur Schwangerschaft und erhalten Sie sofortige Antworten."
     },
-    "symptomAnalyzer": {
-      "title": "Intelligente Symptomanalyse",
-      "description": "Analysieren Sie Ihre Symptome mit intelligenten Einblicken."
+    "wellnessDiary": {
+      "title": "Schwangerschafts-Wohlbefinden-Tagebuch",
+      "description": "Dokumentieren und reflektieren Sie Ihr Befinden während der Schwangerschaft."
     },
     "aiMealSuggestion": {
       "title": "Intelligenter Mahlzeitenplaner",
@@ -1332,18 +1332,18 @@
       "analyzing": "Analysiere..."
     },
     "symptomAnalyzer": {
-      "title": "KI-Symptomanalyse",
-      "subtitle": "Bildungsinformationen zu Symptomen",
-      "disclaimer": "Dieses Tool bietet nur Bildungsinformationen. Konsultieren Sie immer Ihren Arzt.",
-      "selectSymptoms": "Wählen Sie Ihre Symptome",
-      "analyze": "Analysieren",
-      "analyzing": "Analysiere...",
-      "analyzeCount": "{{count}} Symptom analysieren",
-      "analyzeCountPlural": "{{count}} Symptome analysieren",
-      "results": "Analyseergebnisse",
+      "title": "Schwangerschafts-Wohlbefinden-Tagebuch",
+      "subtitle": "Dokumentieren und reflektieren Sie Ihr tägliches Wohlbefinden",
+      "disclaimer": "Dieses Tool dient nur zu Tagebuch- und Bildungszwecken. Konsultieren Sie immer Ihren Arzt.",
+      "selectSymptoms": "Wie fühlen Sie sich heute?",
+      "analyze": "Eintrag speichern",
+      "analyzing": "Wird gespeichert...",
+      "analyzeCount": "{{count}} Gefühl dokumentieren",
+      "analyzeCountPlural": "{{count}} Gefühle dokumentieren",
+      "results": "Ihre Wohlbefinden-Notizen",
       "week": "Woche {{week}}",
-      "discussWithProvider": "Besprechen Sie mit Ihrem Arzt für persönliche Beratung",
-      "remember": "Denken Sie daran: Jede Schwangerschaft ist einzigartig. Diese Informationen dienen nur zu Bildungszwecken.",
+      "discussWithProvider": "Teilen Sie Ihr Tagebuch bei Ihrem nächsten Besuch mit Ihrem Arzt",
+      "remember": "Jede Schwangerschaft ist einzigartig. Dieses Tagebuch hilft Ihnen, Ihre Reise zu reflektieren und Notizen mit Ihrem Berater zu teilen.",
       "symptoms": {
         "nausea": "Übelkeit",
         "fatigue": "Müdigkeit",
@@ -1358,40 +1358,40 @@
       },
       "insights": {
         "nausea": {
-          "early": "Sehr häufig im ersten Trimester. Versuchen Sie kleine, häufige Mahlzeiten und Ingwer.",
-          "late": "In diesem Stadium weniger häufig. Bei starker Übelkeit oder Begleitsymptomen konsultieren Sie Ihren Arzt."
+          "early": "Sehr häufig im ersten Trimester. Viele Frauen finden kleine, häufige Mahlzeiten und Ingwer hilfreich.",
+          "late": "In diesem Stadium weniger häufig. Wenn es anhält, erwähnen Sie es bei Ihrem nächsten Besuch."
         },
         "fatigue": {
-          "early": "Normal für dieses Stadium. Ihr Körper arbeitet hart! Priorisieren Sie Ruhe.",
-          "mid": "Sie könnten in der 'Honeymoon-Phase' sein, aber hören Sie auf Ihren Körper, wenn Sie Ruhe brauchen."
+          "early": "Ihr Körper leistet gerade erstaunliche Arbeit. Priorisieren Sie Ruhe, wenn möglich.",
+          "mid": "Viele Frauen fühlen sich im zweiten Trimester energiegeladener — aber hören Sie auf Ihren Körper."
         },
         "headache": {
-          "general": "Hormonelle Veränderungen und erhöhtes Blutvolumen können Kopfschmerzen verursachen. Trinken Sie genug und ruhen Sie sich in einem dunklen Raum aus."
+          "general": "Ausreichend trinken und in ruhiger Umgebung ruhen kann helfen. Notieren Sie die Häufigkeit für Ihren Berater."
         },
         "backpain": {
-          "early": "Genau beobachten. Bei begleitenden Krämpfen kontaktieren Sie Ihren Arzt.",
-          "late": "Häufig, da das Baby wächst und sich der Schwerpunkt verlagert. Sanftes Dehnen und gute Haltung helfen."
+          "early": "Notieren Sie, wann es auftritt. Sanftes Dehnen kann Erleichterung bringen.",
+          "late": "Häufig, wenn sich Ihr Körper anpasst. Gute Haltung und sanfte Bewegung können helfen."
         },
         "cramps": {
-          "general": "Leichte Krämpfe sind normal, da sich die Gebärmutter dehnt. Starke oder anhaltende Krämpfe sollten von Ihrem Arzt untersucht werden."
+          "general": "Leichte Empfindungen können ein normaler Teil der Schwangerschaft sein. Notieren Sie Zeitpunkt und Intensität."
         },
         "swelling": {
-          "general": "Leichte Schwellungen an Füßen und Knöcheln sind häufig, besonders in der späten Schwangerschaft. Lagern Sie die Füße hoch und trinken Sie genug. Plötzliche oder starke Schwellungen erfordern sofortige ärztliche Aufmerksamkeit."
+          "general": "Leichte Schwellungen an Füßen und Knöcheln sind häufig, besonders später. Füße hochlegen und ausreichend trinken kann helfen."
         },
         "heartburn": {
-          "general": "Sehr häufig während der Schwangerschaft durch hormonelle Veränderungen. Essen Sie kleinere Mahlzeiten, vermeiden Sie scharfes Essen und legen Sie sich nicht direkt nach dem Essen hin."
+          "general": "Sehr häufig in der Schwangerschaft. Kleinere Mahlzeiten und nicht direkt nach dem Essen hinlegen kann helfen."
         },
         "insomnia": {
-          "general": "Schlafprobleme sind häufig. Versuchen Sie eine feste Schlafroutine, verwenden Sie Kissen zur Unterstützung und begrenzen Sie die Bildschirmzeit vor dem Schlafengehen."
+          "general": "Schlafprobleme sind häufig. Eine feste Schlafroutine und bequeme Positionierung können helfen."
         },
         "moodswings": {
-          "general": "Hormonelle Schwankungen machen Stimmungsänderungen normal. Sprechen Sie mit Ihrem Unterstützungsnetzwerk und erwägen Sie Entspannungstechniken."
+          "general": "Emotionale Veränderungen sind ein normaler Teil der Schwangerschaft. Der Kontakt zu Ihrem Unterstützungsnetzwerk kann tröstlich sein."
         },
         "dizziness": {
-          "general": "Kann durch Blutdruckveränderungen verursacht werden. Stehen Sie langsam auf, trinken Sie genug und essen Sie regelmäßig. Bei häufigem Auftreten informieren Sie Ihren Arzt."
+          "general": "Langsam aufstehen, ausreichend trinken und regelmäßig essen kann helfen. Notieren Sie die Häufigkeit für Ihren Berater."
         },
-        "default": "Dies ist ein bekanntes Schwangerschaftssymptom. Beobachten Sie Intensität und Häufigkeit und besprechen Sie es mit Ihrem Arzt.",
-        "defaultFallback": "Symptom notiert. Besprechen Sie das Fortbestehen mit Ihrem Arzt."
+        "default": "Dies ist eine häufige Erfahrung während der Schwangerschaft. Das Dokumentieren hilft Ihnen, Muster zu erkennen.",
+        "defaultFallback": "In Ihrem Tagebuch notiert. Teilen Sie Ihr Tagebuch bei Ihrem nächsten Besuch mit Ihrem Berater."
       }
     },
     "appointmentReminder": {

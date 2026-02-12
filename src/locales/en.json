@@ -70,9 +70,9 @@
       "title": "Smart Pregnancy Guide",
       "description": "Ask any pregnancy question and get instant answers."
     },
-    "symptomAnalyzer": {
-      "title": "Smart Symptom Analysis",
-      "description": "Analyze your symptoms with intelligent insights."
+    "wellnessDiary": {
+      "title": "Pregnancy Wellness Diary",
+      "description": "Log and reflect on how you feel throughout your pregnancy journey."
     },
     "aiMealSuggestion": {
       "title": "Smart Meal Planner",
@@ -443,7 +443,7 @@
         "aiProducts": {
           "title": "AI-Powered Products",
           "desc": "We offer products powered by artificial intelligence through third-party service providers including Perplexity AI.",
-          "tools": ["AI Pregnancy Assistant", "AI Symptom Analyzer", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Coaches", "Labor Progress Tracker"],
+          "tools": ["AI Pregnancy Assistant", "Pregnancy Wellness Diary", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Coaches", "Labor Progress Tracker"],
           "dataNote": "When using AI features, only your specific query (anonymized) is processed. Your stored health data remains on your device."
         },
         "notifications": {
@@ -1233,18 +1233,18 @@
       "exportPDF": "Share your journal with your consultant"
     },
     "symptomAnalyzer": {
-      "title": "AI Symptom Analyzer",
-      "subtitle": "Educational insights for pregnancy symptoms",
-      "disclaimer": "This tool provides educational information only. Always consult your healthcare provider for medical advice.",
-      "selectSymptoms": "Select Your Symptoms",
-      "analyze": "Analyze",
-      "analyzing": "Analyzing...",
-      "analyzeCount": "Analyze {{count}} Symptom",
-      "analyzeCountPlural": "Analyze {{count}} Symptoms",
-      "results": "Analysis Results",
+      "title": "Pregnancy Wellness Diary",
+      "subtitle": "Log and reflect on your daily wellness",
+      "disclaimer": "This tool is for journaling and educational purposes only. Always consult your healthcare provider for medical advice.",
+      "selectSymptoms": "How Are You Feeling Today?",
+      "analyze": "Log Entry",
+      "analyzing": "Saving...",
+      "analyzeCount": "Log {{count}} Feeling",
+      "analyzeCountPlural": "Log {{count}} Feelings",
+      "results": "Your Wellness Notes",
       "week": "Week {{week}}",
-      "discussWithProvider": "Discuss with your healthcare provider for personalized advice",
-      "remember": "Remember: Every pregnancy is unique. These insights are for educational purposes only and should not replace professional medical advice.",
+      "discussWithProvider": "Share your journal with your healthcare provider at your next visit",
+      "remember": "Every pregnancy is unique. This diary helps you reflect on your journey and share notes with your consultant.",
       "symptoms": {
         "nausea": "Nausea",
         "fatigue": "Fatigue",
@@ -1259,40 +1259,40 @@
       },
       "insights": {
         "nausea": {
-          "early": "Very common in the first trimester. Try small, frequent meals and ginger.",
-          "late": "Less common at this stage. If severe or accompanied by other symptoms, consult your doctor."
+          "early": "Very common in the first trimester. Many women find small, frequent meals and ginger helpful.",
+          "late": "Less common at this stage. If it persists, mention it to your consultant at your next visit."
         },
         "fatigue": {
-          "early": "Normal for this stage. Your body is working hard! Prioritize rest.",
-          "mid": "You might be in the 'honeymoon phase', but listen to your body if you need rest."
+          "early": "Your body is doing amazing work right now. Prioritize rest when you can.",
+          "mid": "Many women feel more energized in the second trimester — but listen to your body."
         },
         "headache": {
-          "general": "Hormonal changes and increased blood volume can cause headaches. Stay hydrated and rest in a dark room."
+          "general": "Staying hydrated and resting in a calm environment may help. Note the frequency for your consultant."
         },
         "backpain": {
-          "early": "Monitor closely. If accompanied by cramping, contact your provider.",
-          "late": "Common as baby grows and center of gravity shifts. Gentle stretching and good posture help."
+          "early": "Note when it occurs. Gentle stretching may provide comfort.",
+          "late": "Common as your body adjusts. Good posture and gentle movement can help."
         },
         "cramps": {
-          "general": "Mild cramping can be normal as your uterus stretches. Severe or persistent cramping should be evaluated by your doctor."
+          "general": "Mild sensations can be a normal part of pregnancy. Note the timing and intensity for your records."
         },
         "swelling": {
-          "general": "Mild swelling in feet and ankles is common, especially later in pregnancy. Elevate your feet and stay hydrated. Sudden or severe swelling requires immediate medical attention."
+          "general": "Mild puffiness in feet and ankles is common, especially later on. Elevating your feet and staying hydrated may help."
         },
         "heartburn": {
-          "general": "Very common during pregnancy due to hormonal changes. Eat smaller meals, avoid spicy foods, and don't lie down right after eating."
+          "general": "Very common during pregnancy. Smaller meals and avoiding lying down right after eating may help."
         },
         "insomnia": {
-          "general": "Sleep difficulties are common. Try a consistent bedtime routine, use pillows for support, and limit screen time before bed."
+          "general": "Sleep challenges are common. A consistent bedtime routine and comfortable positioning may help."
         },
         "moodswings": {
-          "general": "Hormonal fluctuations make mood changes normal. Talk to your support network and consider relaxation techniques."
+          "general": "Emotional changes are a normal part of pregnancy. Connecting with your support network can be comforting."
         },
         "dizziness": {
-          "general": "Can be caused by blood pressure changes. Stand up slowly, stay hydrated, and eat regular meals. If frequent, tell your doctor."
+          "general": "Standing up slowly, staying hydrated, and eating regularly may help. Note the frequency for your consultant."
         },
-        "default": "This is a known pregnancy symptom. Monitor intensity and frequency and discuss with your provider.",
-        "defaultFallback": "Symptom noted. Discuss persistence with your doctor."
+        "default": "This is a common experience during pregnancy. Logging it helps you track patterns over time.",
+        "defaultFallback": "Noted in your diary. Share your journal with your consultant at your next visit."
       }
     },
     "vitaminTracker": {

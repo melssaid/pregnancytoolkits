@@ -57,7 +57,7 @@ import postpartumRecovery from '@/assets/icons/postpartum-recovery.png';
 export const toolIconMap: Record<string, string> = {
   // AI Core Tools
   'pregnancy-assistant': chatAssistant,
-  'symptom-analyzer': symptomAnalyzer,
+  'wellness-diary': symptomAnalyzer,
   'ai-meal-suggestion': mealSuggestion,
   'weekly-summary': weeklySummary,
   'ai-birth-plan': birthPlan,

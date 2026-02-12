@@ -4,7 +4,6 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { WeekSlider } from '@/components/WeekSlider';
 import { useTranslation } from 'react-i18next';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -17,16 +16,16 @@ interface Symptom {
 }
 
 const symptomDatabase = [
-  { id: 'nausea', name: 'Nausea', category: 'digestive' },
-  { id: 'fatigue', name: 'Fatigue', category: 'general' },
-  { id: 'headache', name: 'Headache', category: 'neurological' },
-  { id: 'backpain', name: 'Back Pain', category: 'musculoskeletal' },
-  { id: 'cramps', name: 'Cramping', category: 'abdominal' },
-  { id: 'swelling', name: 'Swelling', category: 'circulation' },
-  { id: 'heartburn', name: 'Heartburn', category: 'digestive' },
-  { id: 'insomnia', name: 'Insomnia', category: 'sleep' },
-  { id: 'moodswings', name: 'Mood Swings', category: 'emotional' },
-  { id: 'dizziness', name: 'Dizziness', category: 'neurological' },
+  { id: 'nausea', name: 'Nausea' },
+  { id: 'fatigue', name: 'Fatigue' },
+  { id: 'headache', name: 'Headache' },
+  { id: 'backpain', name: 'Back Pain' },
+  { id: 'cramps', name: 'Cramping' },
+  { id: 'swelling', name: 'Swelling' },
+  { id: 'heartburn', name: 'Heartburn' },
+  { id: 'insomnia', name: 'Insomnia' },
+  { id: 'moodswings', name: 'Mood Swings' },
+  { id: 'dizziness', name: 'Dizziness' },
 ];
 
 const AISymptomAnalyzer: React.FC = () => {
@@ -124,11 +123,11 @@ const AISymptomAnalyzer: React.FC = () => {
 
   return (
     <ToolFrame
-      title={t('tools.symptomAnalyzer.title')}
+      title={t('tools.wellnessDiary.title')}
       subtitle={t('toolsInternal.symptomAnalyzer.subtitle')}
       customIcon="heartbeat"
       mood="calm"
-      toolId="ai-symptom-analyzer"
+      toolId="wellness-diary"
     >
       <div className="space-y-6">
 
@@ -198,12 +197,9 @@ const AISymptomAnalyzer: React.FC = () => {
               </div>
               
               {selectedSymptoms.map((symptom) => (
-                <div key={symptom.id} className="bg-white rounded-lg p-3 border border-border">
-                  <div className="flex items-center justify-between mb-1.5 gap-2">
+              <div key={symptom.id} className="bg-white rounded-lg p-3 border border-border">
+                  <div className="flex items-center mb-1.5 gap-2">
                     <h3 className="font-medium text-xs truncate">{t(`toolsInternal.symptomAnalyzer.symptoms.${symptom.id}`)}</h3>
-                    <Badge variant="secondary" className="text-[10px] uppercase shrink-0">
-                      {symptomDatabase.find(d => d.id === symptom.id)?.category || 'general'}
-                    </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     {analysisResult[symptom.id] || t('toolsInternal.symptomAnalyzer.insights.defaultFallback')}

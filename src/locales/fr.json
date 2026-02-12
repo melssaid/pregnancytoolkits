@@ -70,9 +70,9 @@
       "title": "Guide de grossesse IA",
       "description": "Posez n'importe quelle question sur la grossesse et obtenez des réponses instantanées."
     },
-    "symptomAnalyzer": {
-      "title": "Analyse des symptômes IA",
-      "description": "Analysez vos symptômes avec des informations intelligentes."
+    "wellnessDiary": {
+      "title": "Journal de bien-être grossesse",
+      "description": "Notez et réfléchissez à votre ressenti tout au long de votre grossesse."
     },
     "aiMealSuggestion": {
       "title": "Planificateur de repas IA",
@@ -1332,18 +1332,18 @@
       "analyzing": "Analyse en cours..."
     },
     "symptomAnalyzer": {
-      "title": "Analyseur de symptômes IA",
-      "subtitle": "Informations éducatives sur les symptômes",
-      "disclaimer": "Cet outil fournit uniquement des informations éducatives. Consultez toujours votre médecin.",
-      "selectSymptoms": "Sélectionnez vos symptômes",
-      "analyze": "Analyser",
-      "analyzing": "Analyse...",
-      "analyzeCount": "Analyser {{count}} symptôme",
-      "analyzeCountPlural": "Analyser {{count}} symptômes",
-      "results": "Résultats de l'analyse",
+      "title": "Journal de bien-être grossesse",
+      "subtitle": "Notez et réfléchissez à votre bien-être quotidien",
+      "disclaimer": "Cet outil est destiné uniquement à la tenue d'un journal et à des fins éducatives. Consultez toujours votre médecin.",
+      "selectSymptoms": "Comment vous sentez-vous aujourd'hui ?",
+      "analyze": "Enregistrer",
+      "analyzing": "Enregistrement...",
+      "analyzeCount": "Enregistrer {{count}} ressenti",
+      "analyzeCountPlural": "Enregistrer {{count}} ressentis",
+      "results": "Vos notes de bien-être",
       "week": "Semaine {{week}}",
-      "discussWithProvider": "Discutez avec votre médecin pour des conseils personnalisés",
-      "remember": "Rappel : Chaque grossesse est unique. Ces informations sont à titre éducatif uniquement.",
+      "discussWithProvider": "Partagez votre journal avec votre médecin lors de votre prochaine visite",
+      "remember": "Chaque grossesse est unique. Ce journal vous aide à réfléchir à votre parcours et à partager vos notes avec votre consultant.",
       "symptoms": {
         "nausea": "Nausée",
         "fatigue": "Fatigue",
@@ -1358,40 +1358,40 @@
       },
       "insights": {
         "nausea": {
-          "early": "Très fréquent au premier trimestre. Essayez de petits repas fréquents et du gingembre.",
-          "late": "Moins fréquent à ce stade. Si sévère ou accompagné d'autres symptômes, consultez votre médecin."
+          "early": "Très fréquent au premier trimestre. Beaucoup de femmes trouvent les petits repas fréquents et le gingembre utiles.",
+          "late": "Moins fréquent à ce stade. Si cela persiste, mentionnez-le à votre consultant lors de votre prochaine visite."
         },
         "fatigue": {
-          "early": "Normal à ce stade. Votre corps travaille dur ! Priorisez le repos.",
-          "mid": "Vous êtes peut-être dans la 'phase de lune de miel', mais écoutez votre corps si vous avez besoin de repos."
+          "early": "Votre corps fait un travail incroyable en ce moment. Priorisez le repos quand vous le pouvez.",
+          "mid": "Beaucoup de femmes se sentent plus énergiques au deuxième trimestre — mais écoutez votre corps."
         },
         "headache": {
-          "general": "Les changements hormonaux et l'augmentation du volume sanguin peuvent causer des maux de tête. Restez hydratée et reposez-vous dans une pièce sombre."
+          "general": "Rester hydratée et se reposer dans un environnement calme peut aider. Notez la fréquence pour votre consultant."
         },
         "backpain": {
-          "early": "Surveillez attentivement. Si accompagné de crampes, contactez votre médecin.",
-          "late": "Fréquent à mesure que bébé grandit et que le centre de gravité se déplace. Des étirements doux et une bonne posture aident."
+          "early": "Notez quand cela se produit. Des étirements doux peuvent apporter du confort.",
+          "late": "Fréquent lorsque votre corps s'adapte. Une bonne posture et des mouvements doux peuvent aider."
         },
         "cramps": {
-          "general": "De légères crampes peuvent être normales car votre utérus s'étend. Les crampes sévères ou persistantes doivent être évaluées par votre médecin."
+          "general": "De légères sensations peuvent être normales pendant la grossesse. Notez le moment et l'intensité dans votre journal."
         },
         "swelling": {
-          "general": "Un léger gonflement des pieds et des chevilles est fréquent, surtout en fin de grossesse. Surélevez vos pieds et restez hydratée. Un gonflement soudain ou sévère nécessite une attention médicale immédiate."
+          "general": "Un léger gonflement des pieds et des chevilles est fréquent, surtout en fin de grossesse. Surélever les pieds et rester hydratée peut aider."
         },
         "heartburn": {
-          "general": "Très fréquent pendant la grossesse en raison des changements hormonaux. Mangez de plus petits repas, évitez les aliments épicés et ne vous allongez pas juste après manger."
+          "general": "Très fréquent pendant la grossesse. De plus petits repas et éviter de s'allonger juste après manger peut aider."
         },
         "insomnia": {
-          "general": "Les difficultés de sommeil sont fréquentes. Essayez une routine de coucher régulière, utilisez des oreillers pour le soutien et limitez le temps d'écran avant le coucher."
+          "general": "Les difficultés de sommeil sont fréquentes. Une routine de coucher régulière et un positionnement confortable peuvent aider."
         },
         "moodswings": {
-          "general": "Les fluctuations hormonales rendent les changements d'humeur normaux. Parlez à votre réseau de soutien et envisagez des techniques de relaxation."
+          "general": "Les changements émotionnels sont normaux pendant la grossesse. Se connecter à votre réseau de soutien peut être réconfortant."
         },
         "dizziness": {
-          "general": "Peut être causé par des changements de pression artérielle. Levez-vous lentement, restez hydratée et mangez régulièrement. Si fréquent, informez votre médecin."
+          "general": "Se lever lentement, rester hydratée et manger régulièrement peut aider. Notez la fréquence pour votre consultant."
         },
-        "default": "C'est un symptôme de grossesse connu. Surveillez l'intensité et la fréquence et discutez-en avec votre médecin.",
-        "defaultFallback": "Symptôme noté. Discutez de sa persistance avec votre médecin."
+        "default": "C'est une expérience courante pendant la grossesse. Le noter aide à suivre les tendances au fil du temps.",
+        "defaultFallback": "Noté dans votre journal. Partagez votre journal avec votre consultant lors de votre prochaine visite."
       }
     },
     "appointmentReminder": {
