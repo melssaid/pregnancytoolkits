@@ -55,6 +55,16 @@
     "wellness": "Wellness",
     "preparation": "Preparation"
   },
+  "onboarding": {
+    "title": "Welcome to Your Journey",
+    "subtitle": "Your lifestyle & educational companion",
+    "disclaimer": "This app is for informational and educational purposes only. It is not a medical device and does not provide clinical advice or diagnosis.",
+    "feature1": "Personal journal & diary tools",
+    "feature2": "Educational wellness content",
+    "feature3": "Your data stays on your device",
+    "accept": "I Understand & Continue",
+    "consultNote": "Always consult a qualified healthcare professional for any health concerns."
+  },
   "tools": {
     "pregnancyAssistant": {
       "title": "Smart Pregnancy Guide",
@@ -137,15 +147,15 @@
       "description": "Know what's safe to eat."
     },
     "aiLaborProgress": {
-      "title": "AI Labor Progress Tracker",
-      "description": "Track contractions and monitor labor progress."
+      "title": "Contraction Logger",
+      "description": "Log and journal your contraction patterns."
     },
     "cycleTracker": {
-      "title": "Cycle & Ovulation Tracker",
+      "title": "Cycle Journal",
       "description": "Track your cycle and find your fertile days."
     },
     "dueDateCalculator": {
-      "title": "Due Date Calculator",
+      "title": "Baby Arrival Countdown",
       "description": "Find out when your little one will arrive."
     },
     "fetalGrowth": {
@@ -153,8 +163,8 @@
       "description": "See how big your baby is this week!"
     },
     "kickCounter": {
-      "title": "Kick Counter",
-      "description": "Track your baby's precious movements."
+      "title": "Baby Movement Diary",
+      "description": "Log and journal your baby's precious movements."
     },
     "weightGain": {
       "title": "Weight Gain Analyzer",
@@ -539,8 +549,8 @@
     "subscribeToAccess": "Subscribe to unlock"
   },
   "dueDatePage": {
-    "title": "Due Date Calculator",
-    "subtitle": "Estimate when your baby will arrive",
+    "title": "Baby Arrival Countdown",
+    "subtitle": "Estimate when your little one will arrive",
     "lmpTab": "Last Period",
     "conceptionTab": "Conception Date",
     "lmpLabel": "First Day of Last Menstrual Period",
@@ -557,20 +567,21 @@
     "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your healthcare provider may adjust your due date based on ultrasound measurements."
   },
   "kickCounterPage": {
-    "title": "Kick Counter",
-    "subtitle": "Count 10 kicks to monitor fetal activity",
+    "title": "Baby Movement Diary",
+    "subtitle": "Journal your baby's movements throughout the day",
     "timeElapsed": "Time Elapsed",
-    "startCounting": "Start Counting",
-    "kicks": "kicks",
-    "endSession": "End Session",
-    "goal": "Goal: 10 kicks in 2 hours or less",
-    "moreToGo": "{{count}} more kicks to go",
-    "recentSessions": "Recent Sessions",
-    "info": "Starting at 28 weeks, count fetal movements daily. Contact your healthcare provider if you notice decreased movement or don't reach 10 kicks in 2 hours."
+    "startCounting": "Start Journaling",
+    "kicks": "movements",
+    "endSession": "Save Entry",
+    "goal": "Aim: 10 movements in a 2-hour window",
+    "moreToGo": "{{count}} more movements to note",
+    "recentSessions": "Recent Entries",
+    "info": "Starting at 28 weeks, note fetal movements daily. Share your journal with your healthcare provider if you notice changes in your baby's usual pattern.",
+    "exportPDF": "Share your journal with your consultant"
   },
   "contractionPage": {
-    "title": "Contraction Timer",
-    "subtitle": "Track duration and frequency of contractions",
+    "title": "Contraction Logger",
+    "subtitle": "Log duration and frequency of contractions in your journal",
     "contractionStarted": "Contraction Started",
     "contractionEnded": "Contraction Ended",
     "avgDuration": "Avg Duration",
@@ -578,10 +589,11 @@
     "contractionLog": "Contraction Log",
     "sinceLastContraction": "{{minutes}} min since last",
     "duration": "duration",
-    "callProvider": "Time to Call Your Provider",
-    "callProviderDesc": "Contractions are 5 minutes apart and lasting 45+ seconds. Consider heading to the hospital.",
-    "rule511": "5-1-1 Rule",
-    "rule511Desc": "Call your provider when contractions are 5 minutes apart, lasting 1 minute each, for at least 1 hour."
+    "callProvider": "Consider Contacting Your Provider",
+    "callProviderDesc": "Contractions are 5 minutes apart and lasting 45+ seconds. You may want to share this log with your healthcare provider.",
+    "rule511": "5-1-1 Guideline",
+    "rule511Desc": "Many providers suggest contacting them when contractions are 5 minutes apart, lasting 1 minute each, for at least 1 hour.",
+    "exportPDF": "Share your journal with your consultant"
   },
   "preeclampsiaPage": {
     "title": "Preeclampsia Risk Assessment",
@@ -1131,52 +1143,53 @@
       "videosSubtitle": "Week by week development and preparation guides"
     },
     "kickCounter": {
-      "title": "Smart Kick Counter",
-      "subtitle": "Week {{week}} - AI-Powered Movement Analysis",
-      "movementScore": "Movement Score",
-      "basedOnSessions": "Based on {{count}} sessions • Updated after each session",
+      "title": "Baby Movement Diary",
+      "subtitle": "Week {{week}} - Movement Journal & Insights",
+      "movementScore": "Activity Level",
+      "basedOnSessions": "Based on {{count}} journal entries",
       "elapsedTime": "Elapsed Time",
-      "kicks": "kicks",
+      "kicks": "movements",
       "tapCircle": "Tap the circle for each movement",
-      "startNewSession": "Start New Session",
-      "endAndSave": "End & Save",
+      "startNewSession": "Start New Entry",
+      "endAndSave": "Save Entry",
       "notesPlaceholder": "Notes (baby's position, time of day, after eating, etc.)...",
-      "avgKicks": "Avg Kicks",
-      "sessions": "Sessions",
-      "lastSession": "Last Session",
-      "sessionStarted": "Session Started!",
+      "avgKicks": "Avg Movements",
+      "sessions": "Entries",
+      "lastSession": "Last Entry",
+      "sessionStarted": "Entry Started!",
       "sessionStartedDesc": "Tap the screen each time you feel your baby move",
-      "sessionSaved": "Session Saved!",
+      "sessionSaved": "Entry Saved!",
       "sessionSavedDesc": "You recorded {{kicks}} movements in {{minutes}} minutes",
       "saveError": "Save Error",
       "loading": "Loading...",
       "error": "Error",
-      "aiAnalysis": "AI Analysis",
-      "patternAnalysis": "Pattern Analysis",
-      "healthInsight": "Health Insight",
+      "aiAnalysis": "AI Insights",
+      "patternAnalysis": "Pattern Insights",
+      "healthInsight": "Wellness Insight",
       "tips": "Tips",
-      "analyzePatterns": "Analyze Patterns",
-      "getHealthInsight": "Get Health Insight",
+      "analyzePatterns": "View Patterns",
+      "getHealthInsight": "Get Wellness Insight",
       "getTips": "Get Tips",
       "analyzing": "Analyzing...",
       "avgMin": "Avg Min",
-      "aiDataAnalysis": "AI Data Analysis",
-      "avgPerSession": "Avg/Session",
-      "healthScore": "Health Score",
+      "aiDataAnalysis": "AI Journal Insights",
+      "avgPerSession": "Avg/Entry",
+      "healthScore": "Activity Level",
       "status": "Status",
       "patterns": "Patterns",
-      "health": "Health",
-      "analyzingMovements": "Analyzing your baby's movement patterns...",
-      "tapForInsights": "Tap a button above to get AI-powered insights about your baby's movements",
-      "viewDetailedAnalysis": "View Detailed AI Analysis",
-      "recentSessions": "Recent Sessions",
+      "health": "Wellness",
+      "analyzingMovements": "Reviewing your baby's movement journal...",
+      "tapForInsights": "Tap a button above to get insights about your baby's movements",
+      "viewDetailedAnalysis": "View Detailed Insights",
+      "recentSessions": "Recent Journal Entries",
       "movements": "movements",
       "minWeek": "{{min}} min • Week {{week}}",
-      "whenToCallDoctor": "When to Call Your Doctor",
-      "warningFewer": "Fewer than 10 movements in 2 hours",
-      "warningDecrease": "Significant decrease in baby's usual activity",
+      "whenToCallDoctor": "When to Consult Your Healthcare Provider",
+      "warningFewer": "Fewer than 10 movements noted in 2 hours",
+      "warningDecrease": "Noticeable change in baby's usual activity pattern",
       "warningNoMovements": "No movements felt for several hours",
-      "educationalNote": "Babies are most active between 9 PM and 1 AM. Count kicks at the same time daily for consistent tracking."
+      "educationalNote": "Babies are most active between 9 PM and 1 AM. Journal at the same time daily for consistent entries.",
+      "exportPDF": "Share your journal with your consultant"
     },
     "symptomAnalyzer": {
       "title": "AI Symptom Analyzer",

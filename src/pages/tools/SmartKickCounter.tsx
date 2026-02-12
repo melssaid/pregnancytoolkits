@@ -180,9 +180,9 @@ const SmartKickCounter: React.FC = () => {
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-emerald-500';
-    if (score >= 50) return 'text-amber-500';
-    return 'text-rose-500';
+    if (score >= 80) return 'text-accent';
+    if (score >= 50) return 'text-primary';
+    return 'text-muted-foreground';
   };
 
   // AI Pattern Analysis
@@ -201,37 +201,35 @@ const SmartKickCounter: React.FC = () => {
     const avgKicks = sessions.reduce((sum, s) => sum + s.total_kicks, 0) / sessions.length;
     const avgDuration = sessions.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / sessions.length;
 
-    const prompt = `As a fetal movement specialist, analyze this kick counting data for a pregnancy at week ${currentWeek}:
+    const prompt = `As a pregnancy wellness educator, review this baby movement diary for a pregnancy at week ${currentWeek}. Use supportive, non-clinical language. Do NOT use words like "danger", "high risk", "go to hospital", or provide any medical diagnoses.
 
-**Session Data (Last ${sessions.length} sessions):**
-${sessionData.map(s => `- ${s.date} at ${s.time}: ${s.kicks} kicks in ${s.duration} minutes`).join('\n')}
+**Journal Entries (Last ${sessions.length} entries):**
+${sessionData.map(s => `- ${s.date} at ${s.time}: ${s.kicks} movements in ${s.duration} minutes`).join('\n')}
 
-**Statistics:**
-- Average kicks per session: ${avgKicks.toFixed(1)}
-- Average session duration: ${avgDuration.toFixed(1)} minutes
-- Kicks per hour rate: ${avgDuration > 0 ? ((avgKicks / avgDuration) * 60).toFixed(1) : 'N/A'}
+**Summary:**
+- Average movements per entry: ${avgKicks.toFixed(1)}
+- Average entry duration: ${avgDuration.toFixed(1)} minutes
 
-Provide a comprehensive analysis including:
+Provide a supportive journal review including:
 
-1. **📊 Pattern Assessment**
-   - Daily movement trends
-   - Time-of-day patterns (if visible)
-   - Consistency analysis
+1. **📊 Movement Patterns**
+   - Daily activity trends
+   - Time-of-day observations
+   - Consistency notes
 
-2. **🔬 Clinical Interpretation**
-   - How this compares to normal fetal activity at week ${currentWeek}
-   - Movement score interpretation
-   - Any concerning patterns
+2. **📝 Journal Summary**
+   - How this compares to typical activity at week ${currentWeek}
+   - Observations about the entries
 
-3. **📈 Trend Analysis**
-   - Is activity increasing, stable, or decreasing?
-   - Expected patterns for this gestational age
+3. **📈 Trend Notes**
+   - Is activity increasing, stable, or changing?
+   - Expected patterns for this stage
 
-4. **✅ What This Means**
-   - Clear interpretation for the mother
-   - Reassurance or action items
+4. **✅ Your Takeaway**
+   - Encouraging summary for the mother
+   - Suggestion to share journal with healthcare provider if desired
 
-Keep the tone supportive and informative. Use emojis sparingly for visual appeal.`;
+Keep the tone warm, supportive, and educational. Avoid any clinical or diagnostic language.`;
 
     await streamChat({
       type: 'pregnancy-assistant',
@@ -250,38 +248,32 @@ Keep the tone supportive and informative. Use emojis sparingly for visual appeal
     const avgKicks = getAverageKicks();
     const movementScore = getMovementScore();
 
-    const prompt = `As a prenatal health specialist, provide health-focused insights based on fetal movement data:
+    const prompt = `As a pregnancy wellness educator, provide supportive guidance based on baby movement diary data. Do NOT use clinical or diagnostic language. Avoid words like "danger", "high risk", "warning signs", or "go to hospital".
 
 **Pregnancy Week:** ${currentWeek}
-**Movement Score:** ${movementScore}/100
-**Average Kicks Per Session:** ${avgKicks}
-**Total Sessions Logged:** ${history.length}
+**Activity Level:** ${movementScore}/100
+**Average Movements Per Entry:** ${avgKicks}
+**Total Entries:** ${history.length}
 
-Provide personalized health guidance:
+Provide friendly, educational guidance:
 
-1. **💓 Fetal Well-being Indicators**
-   - What the movement patterns suggest about baby's health
-   - How to interpret quieter vs more active periods
+1. **💓 Baby's Activity**
+   - What these movement patterns generally suggest
+   - Understanding quieter vs more active periods
 
-2. **⚠️ Warning Signs to Watch**
-   - Specific changes that require attention
-   - When to do a kick count vs when to call the doctor
-   - Red flags that need immediate attention
+2. **📋 When to Share Your Journal**
+   - Changes worth noting for your next provider visit
+   - What information to have ready
 
-3. **🏥 When to Contact Your Provider**
-   - Specific criteria for calling your doctor
-   - What information to have ready when you call
+3. **💪 Encouraging Baby's Activity**
+   - Best times to journal movements
+   - Foods and activities that may encourage movement
 
-4. **💪 Optimizing Baby's Activity**
-   - Best times to do kick counts
-   - Foods and activities that may stimulate movement
-   - How to wake a sleepy baby (safely)
+4. **📅 Week ${currentWeek} Notes**
+   - Typical movement patterns for this stage
+   - How patterns may evolve
 
-5. **📅 Week ${currentWeek} Expectations**
-   - Normal movement patterns for this stage
-   - How patterns will change as pregnancy progresses
-
-Be clear, supportive, and actionable. Prioritize safety information.`;
+Be warm, supportive, and educational. Always suggest consulting with a healthcare provider for personalized guidance.`;
 
     await streamChat({
       type: 'pregnancy-assistant',
@@ -297,41 +289,36 @@ Be clear, supportive, and actionable. Prioritize safety information.`;
     setAiActiveTab('tips');
     setAiTips('');
 
-    const prompt = `As a pregnancy wellness coach, provide practical kick counting tips for week ${currentWeek}:
+    const prompt = `As a pregnancy wellness educator, provide practical journaling tips for baby movement at week ${currentWeek}. Use warm, encouraging language. Avoid clinical or diagnostic terminology.
 
-**Current Stats:**
-- Sessions logged: ${history.length}
-- Average kicks: ${getAverageKicks()} per session
-- Movement score: ${getMovementScore()}/100
+**Current Journal:**
+- Entries logged: ${history.length}
+- Average movements: ${getAverageKicks()} per entry
+- Activity level: ${getMovementScore()}/100
 
 Provide a helpful guide:
 
-1. **🕐 Best Times to Count**
-   - Optimal times of day for kick counting
-   - How baby's sleep cycles affect movement
-   - Creating a consistent routine
+1. **🕐 Best Times to Journal**
+   - Optimal times for noting movements
+   - Baby's natural activity cycles
 
-2. **🛋️ Positions for Counting**
+2. **🛋️ Comfortable Positions**
    - Best positions to feel movements
-   - Left side lying vs other positions
-   - Tips for anterior placenta
+   - Tips for different placenta positions
 
-3. **🍎 Movement Stimulation**
-   - Safe foods that may increase activity
-   - Cold drinks and baby response
-   - Music and talking to baby
+3. **🍎 Encouraging Movement**
+   - Snacks that may increase activity
+   - Music, talking, and bonding
 
-4. **📝 Recording Tips**
-   - What to note besides kick counts
-   - Tracking patterns over time
-   - Using notes effectively
+4. **📝 Journaling Tips**
+   - What to note besides movement counts
+   - Making entries meaningful
 
-5. **🧘 Relaxation Techniques**
-   - How stress affects perception of movement
-   - Mindful counting methods
-   - Bonding during kick counting
+5. **🧘 Mindful Moments**
+   - Using journal time for bonding
+   - Relaxation during movement journaling
 
-Keep it practical and easy to follow. Include specific actionable tips.`;
+Keep it practical, warm, and easy to follow.`;
 
     await streamChat({
       type: 'pregnancy-assistant',
@@ -366,7 +353,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
       <div className="space-y-6">
         {/* Movement Score Card */}
         {history.length > 0 && (
-          <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+          <Card className="bg-gradient-to-br from-primary/5 to-secondary border-primary/20">
             <CardContent className="py-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -581,7 +568,7 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
                 </div>
                 <div className="bg-background/60 rounded-lg p-3 text-center">
                   <Shield className="w-5 h-5 mx-auto mb-1 text-primary" />
-                  <div className="text-lg font-bold text-emerald-500">
+                  <div className="text-lg font-bold text-accent">
                     {movementScore >= 70 ? '✓' : movementScore >= 40 ? '!' : '⚠'}
                   </div>
                   <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.status')}</p>
@@ -736,14 +723,14 @@ Keep it practical and easy to follow. Include specific actionable tips.`;
           </Card>
         )}
 
-        {/* Warning Card */}
-        <Card className="border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30">
+        {/* Information Card */}
+        <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-secondary/10">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <Baby className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-semibold text-amber-800 dark:text-amber-300 mb-1">{t('toolsInternal.kickCounter.whenToCallDoctor')}</h3>
-                <ul className="text-sm text-amber-700 dark:text-amber-400 space-y-1">
+                <h3 className="font-semibold text-foreground mb-1">{t('toolsInternal.kickCounter.whenToCallDoctor')}</h3>
+                <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• {t('toolsInternal.kickCounter.warningFewer')}</li>
                   <li>• {t('toolsInternal.kickCounter.warningDecrease')}</li>
                   <li>• {t('toolsInternal.kickCounter.warningNoMovements')}</li>

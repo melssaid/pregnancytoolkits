@@ -135,9 +135,9 @@ export default function AILaborProgressTracker() {
 
   const getLaborPhase = () => {
     const avgInterval = getAverageInterval();
-    if (avgInterval > 10) return { phase: t('toolsInternal.laborTracker.earlyLabor', 'Early Labor'), color: 'text-emerald-600', desc: t('toolsInternal.laborTracker.earlyLaborDesc', 'Stay home, rest, and hydrate') };
-    if (avgInterval > 5) return { phase: t('toolsInternal.laborTracker.activeLabor', 'Active Labor'), color: 'text-amber-600', desc: t('toolsInternal.laborTracker.activeLaborDesc', 'Consider heading to the hospital') };
-    return { phase: t('toolsInternal.laborTracker.transition', 'Transition'), color: 'text-destructive', desc: t('toolsInternal.laborTracker.transitionDesc', 'Go to the hospital now') };
+    if (avgInterval > 10) return { phase: t('toolsInternal.laborTracker.earlyPhase', 'Early Phase'), color: 'text-primary', desc: t('toolsInternal.laborTracker.earlyPhaseDesc', 'Rest, stay comfortable, and keep hydrating') };
+    if (avgInterval > 5) return { phase: t('toolsInternal.laborTracker.activePhase', 'Active Phase'), color: 'text-accent', desc: t('toolsInternal.laborTracker.activePhaseDesc', 'Consider sharing this log with your provider') };
+    return { phase: t('toolsInternal.laborTracker.intensivePhase', 'Intensive Phase'), color: 'text-primary', desc: t('toolsInternal.laborTracker.intensivePhaseDesc', 'Contact your healthcare provider with this journal') };
   };
 
   const formatTimer = (seconds: number) => {
@@ -188,33 +188,33 @@ export default function AILaborProgressTracker() {
 
   return (
     <ToolFrame
-      title={t('toolsInternal.laborTracker.title', 'AI Labor Progress Tracker')}
-      subtitle={t('toolsInternal.laborTracker.subtitle', 'Track contractions and monitor labor progress')}
+      title={t('toolsInternal.laborTracker.title', 'Contraction Logger')}
+      subtitle={t('toolsInternal.laborTracker.subtitle', 'Log and journal your contraction patterns')}
       mood="empowering"
       toolId="labor-progress"
       icon={Activity}
     >
       <div className="space-y-4">
-          {/* Hospital Alert */}
+          {/* Provider Contact Suggestion */}
           {showHospitalAlert && (
-            <Card className="border-destructive bg-destructive/5">
+            <Card className="border-primary/30 bg-primary/5">
               <CardContent className="p-4">
                 <div className="flex items-start gap-3">
-                  <AlertTriangle className="w-5 h-5 text-destructive flex-shrink-0" />
+                  <AlertTriangle className="w-5 h-5 text-primary flex-shrink-0" />
                 <div className="flex-1">
-                    <h3 className="font-bold text-destructive text-sm mb-1.5">
-                      🏥 {t('toolsInternal.laborTracker.hospitalAlert', 'Time to Go to the Hospital!')}
+                    <h3 className="font-bold text-primary text-sm mb-1.5">
+                      📋 {t('toolsInternal.laborTracker.providerAlert', 'Consider Contacting Your Provider')}
                     </h3>
                     <p className="text-sm text-foreground mb-4">
-                      {t('toolsInternal.laborTracker.hospitalAlertDesc', 'Based on the 5-1-1 rule, your contractions are now 5 minutes apart and lasting 1 minute or more. This indicates active labor.')}
+                      {t('toolsInternal.laborTracker.providerAlertDesc', 'Based on the 5-1-1 guideline, your logged contractions are now 5 minutes apart and lasting 1 minute or more. You may want to share this journal with your healthcare provider.')}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Button 
-                        variant="destructive"
+                        variant="default"
                         onClick={() => window.open('tel:911', '_self')}
                       >
                         <Phone className="w-4 h-4 mr-2" />
-                        {t('toolsInternal.laborTracker.callEmergency', 'Call Emergency')}
+                        {t('toolsInternal.laborTracker.callProvider', 'Call Provider')}
                       </Button>
                       <Button 
                         variant="outline"
@@ -268,7 +268,7 @@ export default function AILaborProgressTracker() {
               ) : (
                 <Brain className="w-4 h-4" />
               )}
-              {t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Labor Analysis')}
+              {t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Journal Insights')}
             </Button>
           )}
 
@@ -278,7 +278,7 @@ export default function AILaborProgressTracker() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Labor Analysis')}</h3>
+                  <h3 className="font-semibold">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Journal Insights')}</h3>
                 </div>
                 <MarkdownRenderer content={aiResponse} />
               </CardContent>
@@ -388,9 +388,9 @@ export default function AILaborProgressTracker() {
                           {new Date(c.startTime).toLocaleTimeString()}
                         </span>
                         <span className={`ms-2 text-xs px-2 py-0.5 rounded-full ${
-                          c.intensity === 'very-strong' ? 'bg-destructive/10 text-destructive' :
-                          c.intensity === 'strong' ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300' :
-                          c.intensity === 'moderate' ? 'bg-primary/10 text-primary' :
+                          c.intensity === 'very-strong' ? 'bg-primary/15 text-primary' :
+                          c.intensity === 'strong' ? 'bg-accent/15 text-accent' :
+                          c.intensity === 'moderate' ? 'bg-secondary text-secondary-foreground' :
                           'bg-muted text-muted-foreground'
                         }`}>
                           {t(`toolsInternal.laborTracker.intensity.${c.intensity}`, c.intensity)}
@@ -404,12 +404,12 @@ export default function AILaborProgressTracker() {
             </Card>
           )}
 
-          {/* 5-1-1 Rule Info */}
+          {/* 5-1-1 Guideline Info */}
           <Card>
             <CardContent className="p-4">
-              <h4 className="font-semibold mb-2">📋 {t('toolsInternal.laborTracker.rule511', 'The 5-1-1 Rule')}</h4>
+              <h4 className="font-semibold mb-2">📋 {t('toolsInternal.laborTracker.rule511', 'The 5-1-1 Guideline')}</h4>
               <p className="text-sm text-muted-foreground">
-                {t('toolsInternal.laborTracker.rule511Desc', 'Go to the hospital when contractions are 5 minutes apart, last 1 minute each, and continue for 1 hour.')}
+                {t('toolsInternal.laborTracker.rule511Desc', 'Many healthcare providers suggest contacting them when contractions are 5 minutes apart, last 1 minute each, and continue for 1 hour. Share your log for guidance.')}
               </p>
             </CardContent>
           </Card>

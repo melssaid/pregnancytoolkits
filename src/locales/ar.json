@@ -55,6 +55,16 @@
     "wellness": "العافية",
     "preparation": "التحضير"
   },
+  "onboarding": {
+    "title": "مرحباً بكِ في رحلتك",
+    "subtitle": "رفيقك التعليمي لنمط حياة صحي",
+    "disclaimer": "هذا التطبيق للأغراض المعلوماتية والتعليمية فقط. وهو ليس جهازاً طبياً ولا يقدم نصيحة سريرية أو تشخيصاً.",
+    "feature1": "أدوات يوميات وسجل شخصي",
+    "feature2": "محتوى تعليمي للعافية",
+    "feature3": "بياناتك تبقى على جهازك",
+    "accept": "أفهم وأتابع",
+    "consultNote": "استشيري دائماً متخصصاً مؤهلاً في الرعاية الصحية لأي مخاوف صحية."
+  },
   "tools": {
     "pregnancyAssistant": {"title": "المساعد الذكي للحمل", "description": "اسأل أي سؤال عن الحمل واحصل على إجابة فورية"},
     "symptomAnalyzer": {"title": "تحليل الأعراض الذكي", "description": "حلّل أعراضك بذكاء اصطناعي"},
@@ -76,11 +86,11 @@
     "aiBackPainRelief": {"title": "تخفيف آلام الظهر الذكي", "description": "تمارين مخصصة لآلام ظهر الحمل"},
     "vitaminTracker": {"title": "متتبع الفيتامينات", "description": "لا تنسَ فيتاميناتك"},
     "forbiddenFoods": {"title": "الأطعمة الممنوعة", "description": "اعرف ما هو آمن للأكل"},
-    "aiLaborProgress": {"title": "متتبع تقدم المخاض", "description": "تتبع الانقباضات وراقب تقدم المخاض"},
-    "cycleTracker": {"title": "متتبع الدورة والتبويض", "description": "تتبع الدورة وأيام الخصوبة"},
-    "dueDateCalculator": {"title": "حاسبة موعد الولادة", "description": "اكتشف متى سيصل الطفل"},
+    "aiLaborProgress": {"title": "سجل الانقباضات", "description": "سجّلي أنماط الانقباضات في يومياتك"},
+    "cycleTracker": {"title": "يوميات الدورة", "description": "تتبع الدورة وأيام الخصوبة"},
+    "dueDateCalculator": {"title": "العد التنازلي لوصول الطفل", "description": "اكتشف متى سيصل الطفل"},
     "fetalGrowth": {"title": "متتبع نمو الجنين", "description": "شاهد حجم الطفل هذا الأسبوع!"},
-    "kickCounter": {"title": "عداد حركات الجنين", "description": "تتبع حركات الطفل"},
+    "kickCounter": {"title": "يوميات حركات الطفل", "description": "سجّلي حركات الطفل في يومياتك"},
     "weightGain": {"title": "محلل زيادة الوزن", "description": "تحليل زيادة الوزن أثناء الحمل"},
     "postpartumMentalHealth": {"title": "مدرب الصحة النفسية", "description": "فحص EPDS ودعم الصحة النفسية"},
     "gestationalDiabetes": {"title": "تقييم سكري الحمل", "description": "اعرف عوامل خطر سكري الحمل"},

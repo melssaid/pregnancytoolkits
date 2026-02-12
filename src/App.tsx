@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { SmartScrollRestoration } from "@/components/SmartScrollRestoration";
 import { AnimatedRoutes } from "@/components/AnimatedRoutes";
 import { FirstVisitLanguageSelector } from "@/components/FirstVisitLanguageSelector";
+import { OnboardingDisclaimer } from "@/components/OnboardingDisclaimer";
 import { useEffect } from "react";
 import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
@@ -58,6 +59,7 @@ const App = () => {
           <SmartScrollRestoration />
           <AnimatedRoutes />
           <FirstVisitLanguageSelector />
+          <OnboardingDisclaimer />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
