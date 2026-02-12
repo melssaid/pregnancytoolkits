@@ -417,7 +417,7 @@ export default function AILaborProgressTracker() {
           {/* Disclaimer */}
           <div className="bg-muted/30 rounded-xl p-4 text-center">
             <p className="text-xs text-muted-foreground">
-              ⚠️ {t('toolsInternal.laborTracker.disclaimer', "This tool is for informational purposes only. Always follow your healthcare provider's guidance about when to go to the hospital.")}
+              ⚠️ {t('toolsInternal.laborTracker.disclaimer', "This tool is for informational purposes only. Always follow your healthcare provider's guidance.")}
             </p>
           </div>
       </div>

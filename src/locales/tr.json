@@ -55,6 +55,16 @@
     "wellness": "Sağlık",
     "preparation": "Hazırlık"
   },
+  "onboarding": {
+    "title": "Yolculuğunuza hoş geldiniz",
+    "subtitle": "Yaşam tarzı ve eğitim rehberiniz",
+    "disclaimer": "Bu uygulama yalnızca bilgilendirme ve eğitim amaçlıdır. Tıbbi bir cihaz değildir ve klinik tavsiye veya teşhis sağlamaz.",
+    "feature1": "Kişisel günlük ve ajanda araçları",
+    "feature2": "Eğitici sağlık içeriği",
+    "feature3": "Verileriniz cihazınızda kalır",
+    "accept": "Anlıyorum ve devam et",
+    "consultNote": "Sağlık endişeleriniz için her zaman nitelikli bir sağlık uzmanına danışın."
+  },
   "tools": {
     "pregnancyAssistant": {
       "title": "Akıllı Hamilelik Rehberi",
@@ -137,15 +147,15 @@
       "description": "Neyin yenmesinin güvenli olduğunu bilin."
     },
     "aiLaborProgress": {
-      "title": "AI Doğum İlerleme Takibi",
-      "description": "Kasılmaları takip edin ve doğum ilerlemesini izleyin."
+      "title": "Kasılma Günlüğü",
+      "description": "Kasılma düzenlerinizi kaydedin."
     },
     "cycleTracker": {
-      "title": "Döngü ve Yumurtlama Takibi",
+      "title": "Döngü Günlüğü",
       "description": "Döngünüzü takip edin ve verimli günlerinizi bulun."
     },
     "dueDateCalculator": {
-      "title": "Tahmini Doğum Tarihi Hesaplayıcı",
+      "title": "Bebek Varış Geri Sayımı",
       "description": "Küçüğünüzün ne zaman geleceğini öğrenin."
     },
     "fetalGrowth": {
@@ -153,8 +163,8 @@
       "description": "Bu hafta bebeğinizin ne kadar büyük olduğunu görün!"
     },
     "kickCounter": {
-      "title": "Tekme Sayacı",
-      "description": "Bebeğinizin değerli hareketlerini takip edin."
+      "title": "Bebek Hareket Günlüğü",
+      "description": "Bebeğinizin değerli hareketlerini kaydedin."
     },
     "weightGain": {
       "title": "Kilo Alımı Analizörü",
@@ -222,8 +232,8 @@
       "postpartum": "Doğum Sonrası"
     },
     "trackingTools": {
-      "kickCounter": "Tekme Sayacı",
-      "kickCounterDesc": "Bebek hareketlerini takip et",
+      "kickCounter": "Hareket Günlüğü",
+      "kickCounterDesc": "Bebek hareketlerini kaydet",
       "weightTracker": "Kilo Takibi",
       "weightTrackerDesc": "Kilo alımını izle",
       "vitaminTracker": "Vitamin Takibi",
@@ -531,8 +541,8 @@
     "subscribeToAccess": "Açmak için abone olun"
   },
   "dueDatePage": {
-    "title": "Tahmini Doğum Tarihi Hesaplayıcı",
-    "subtitle": "Bebeğinizin ne zaman geleceğini tahmin edin",
+    "title": "Bebek Varış Geri Sayımı",
+    "subtitle": "Küçüğünüzün ne zaman geleceğini tahmin edin",
     "lmpTab": "Son Adet",
     "conceptionTab": "Gebe Kalma Tarihi",
     "lmpLabel": "Son Adetin İlk Günü",
@@ -549,8 +559,8 @@
     "info": "Bebeklerin sadece yaklaşık %5'i tam doğum tarihinde doğar. Çoğu 2 hafta önce veya sonra doğar. Sağlık uzmanınız ultrason ölçümlerine göre tarihi ayarlayabilir."
   },
   "kickCounterPage": {
-    "title": "Tekme Sayacı",
-    "subtitle": "Fetal aktiviteyi izlemek için 10 tekme sayın",
+    "title": "Bebek Hareket Günlüğü",
+    "subtitle": "Gün boyunca bebeğinizin hareketlerini kaydedin",
     "timeElapsed": "Geçen Süre",
     "startCounting": "Saymaya Başla",
     "kicks": "tekme",
@@ -561,19 +571,19 @@
     "info": "28. haftadan itibaren günlük fetal hareketleri sayın. Azalan hareket fark ederseniz veya 2 saatte 10 tekmeye ulaşamazsanız sağlık uzmanınıza başvurun."
   },
   "contractionPage": {
-    "title": "Kasılma Zamanlayıcı",
-    "subtitle": "Kasılmaların süresini ve sıklığını takip edin",
+    "title": "Kasılma Günlüğü",
+    "subtitle": "Kasılmaların süresini ve sıklığını kaydedin",
     "contractionStarted": "Kasılma Başladı",
     "contractionEnded": "Kasılma Bitti",
     "avgDuration": "Ort. Süre",
     "avgInterval": "Ort. Aralık",
-    "contractionLog": "Kasılma Günlüğü",
+    "contractionLog": "Kasılma Kaydı",
     "sinceLastContraction": "Son kasılmadan {{minutes}} dk",
     "duration": "süre",
-    "callProvider": "Doktorunuzu Aramanın Zamanı",
-    "callProviderDesc": "Kasılmalar 5 dakikada bir ve 45+ saniye sürüyor. Hastaneye gitmeyi düşünün.",
-    "rule511": "5-1-1 Kuralı",
-    "rule511Desc": "Kasılmalar 5 dakikada bir, 1 dakika süreyle ve en az 1 saat boyunca devam ederse doktorunuzu arayın."
+    "callProvider": "Doktorunuzla iletişime geçmeyi düşünün",
+    "callProviderDesc": "Kasılmalar 5 dakikada bir ve 45+ saniye sürüyor. Bu kaydı doktorunuzla paylaşmak isteyebilirsiniz.",
+    "rule511": "5-1-1 Rehberi",
+    "rule511Desc": "Birçok doktor, kasılmalar 5 dakikada bir, 1 dakika süreyle ve en az 1 saat boyunca devam ederse kendileriyle iletişime geçmenizi önerir."
   },
   "preeclampsiaPage": {
     "title": "Preeklampsi Risk Değerlendirmesi",
@@ -1251,8 +1261,8 @@
       "getWeeklyGuide": "Haftalık Rehberi Al"
     },
     "kickCounter": {
-      "title": "Akıllı Tekme Sayacı",
-      "subtitle": "Hafta {{week}} - AI Destekli Hareket Analizi",
+      "title": "Bebek Hareket Günlüğü",
+      "subtitle": "Hafta {{week}} - Hareket Günlüğü & İçgörüler",
       "movementScore": "Hareket Puanı",
       "basedOnSessions": "{{count}} oturuma dayalı • Her oturumdan sonra güncellenir",
       "elapsedTime": "Geçen Süre",
@@ -1971,8 +1981,8 @@
       "optimalNutrition": "Besin Değeri Yüksek"
     },
     "laborTracker": {
-      "title": "AI Doğum İlerleme Takipçisi",
-      "subtitle": "Kasılmaları takip edin ve doğum ilerlemesini izleyin",
+      "title": "Kasılma Günlüğü",
+      "subtitle": "Kasılma düzenlerinizi kaydedin",
       "startContraction": "Kasılmayı Başlat",
       "endContraction": "Kasılmayı Bitir",
       "duration": "Süre",
@@ -1980,24 +1990,29 @@
       "avgDuration": "Ort. Süre",
       "avgInterval": "Ort. Aralık",
       "contractionLog": "Kasılma Kaydı",
-      "laborStage": "Tahmini Doğum Aşaması",
-      "earlyLabor": "Erken Doğum",
-      "earlyLaborDesc": "Evde kalın, dinlenin ve sıvı alın",
-      "activeLabor": "Aktif Doğum",
-      "activeLaborDesc": "Hastaneye gitmeyi düşünün",
-      "transition": "Geçiş Aşaması",
-      "transitionDesc": "Şimdi hastaneye gidin",
-      "timeToGo": "Hastaneye gitme zamanı",
-      "rule511": "5-1-1 Kuralı",
-      "rule511Desc": "Kasılmalar 5 dakika arayla geldiğinde, her biri 1 dakika sürdüğünde ve 1 saat boyunca devam ettiğinde hastaneye gidin.",
-      "hospitalAlert": "Hastaneye Gitme Zamanı!",
-      "hospitalAlertDesc": "5-1-1 kuralına göre kasılmalarınız artık 5 dakika aralıklarla geliyor ve 1 dakika veya daha uzun sürüyor. Bu aktif doğumu gösterir.",
-      "callEmergency": "Acili Ara",
+      "laborStage": "Tahmini Aşama",
+      "earlyLabor": "Erken Aşama",
+      "earlyLaborDesc": "Dinlenin ve sıvı alın",
+      "earlyPhase": "Erken Aşama",
+      "earlyPhaseDesc": "Dinlenin ve sıvı alın",
+      "activeLabor": "Aktif Aşama",
+      "activeLaborDesc": "Bu kaydı doktorunuzla paylaşmayı düşünün",
+      "activePhase": "Aktif Aşama",
+      "activePhaseDesc": "Bu kaydı doktorunuzla paylaşmayı düşünün",
+      "transition": "Yoğun Aşama",
+      "transitionDesc": "Bu günlüğü doktorunuzla paylaşın",
+      "intensivePhase": "Yoğun Aşama",
+      "intensivePhaseDesc": "Bu günlüğü doktorunuzla paylaşın",
+      "providerAlert": "Doktorunuzla iletişime geçmeyi düşünün",
+      "providerAlertDesc": "5-1-1 rehberine göre kasılmalarınız artık 5 dakika aralıklarla geliyor ve 1 dakika veya daha uzun sürüyor. Bu günlüğü doktorunuzla paylaşmak isteyebilirsiniz.",
+      "rule511": "5-1-1 Rehberi",
+      "rule511Desc": "Birçok doktor, kasılmalar 5 dakikada bir geldiğinde, 1 dakika sürdüğünde ve 1 saat boyunca devam ettiğinde kendileriyle iletişime geçmenizi önerir. Kaydınızı paylaşın.",
+      "callProvider": "Doktoru Ara",
       "understand": "Anladım",
       "inProgress": "Kasılma devam ediyor...",
-      "ready": "Takibe hazır",
-      "getAIAnalysis": "AI Doğum Analizi Al",
-      "aiAnalysis": "AI Doğum Analizi",
+      "ready": "Kayda hazır",
+      "getAIAnalysis": "AI Günlük İçgörüleri Al",
+      "aiAnalysis": "AI Günlük İçgörüleri",
       "contractions": "Kasılmalar",
       "contractionPattern": "Kasılma Düzeni",
       "recentContractions": "Son Kasılmalar",
@@ -2008,7 +2023,7 @@
         "strong": "Güçlü",
         "very-strong": "Çok Güçlü"
       },
-      "disclaimer": "Bu araç yalnızca bilgi amaçlıdır. Hastaneye ne zaman gideceğiniz konusunda her zaman sağlık uzmanınızın rehberliğine uyun."
+      "disclaimer": "Bu araç yalnızca bilgi amaçlıdır. Her zaman sağlık uzmanınızın rehberliğine uyun."
     },
     "birthPosition": {
       "title": "AI Doğum Pozisyonları",
@@ -2375,7 +2390,7 @@
       "aiRecommendations": "AI Önerileri Al"
     },
     "cycleTracker": {
-      "title": "Döngü ve Yumurtlama Takibi",
+      "title": "Döngü Günlüğü",
       "subtitle": "Döngünüzü takip edin ve verimli günlerinizi bulun",
       "lastPeriod": "Son Adet Başlangıcı",
       "cycleLength": "Ortalama Döngü Uzunluğu",
