@@ -497,6 +497,47 @@
       "subtitle": "Haben Sie Fragen oder Feedback? Wir freuen uns von Ihnen zu hören.",
       "email": "E-Mail",
       "phone": "Telefon"
+    },
+    "termsOfService": {
+      "title": "Nutzungsbedingungen",
+      "subtitle": "Bitte lesen Sie diese Bedingungen sorgfältig durch, bevor Sie Schwangerschafts-Toolkit verwenden",
+      "lastUpdated": "Zuletzt aktualisiert: Januar 2026",
+      "important": "Wichtig",
+      "footerNote": "Durch die weitere Nutzung von Schwangerschafts-Toolkit bestätigen Sie, dass Sie diese Nutzungsbedingungen gelesen, verstanden haben und ihnen zustimmen.",
+      "sections": {
+        "acceptance": {
+          "title": "Annahme der Bedingungen",
+          "content": "Durch die Nutzung von Schwangerschafts-Toolkit stimmen Sie diesen Bedingungen zu. Wenn Sie mit einem Teil dieser Bedingungen nicht einverstanden sind, verwenden Sie unsere Anwendung bitte nicht."
+        },
+        "medical": {
+          "title": "Bildungs-Haftungsausschluss",
+          "warning": "⚠️ Sehr wichtig: Bitte sorgfältig lesen",
+          "content": "Schwangerschafts-Toolkit ist nur für Informations- und Bildungszwecke gedacht. Diese Anwendung:",
+          "noAdvice": "Gibt KEINE medizinischen Ratschläge, Diagnosen oder Behandlungen",
+          "noReplace": "Ersetzt NICHT die Konsultation eines Arztes oder Gesundheitsdienstleisters",
+          "noEmergency": "Sollte NICHT für medizinische Notfallentscheidungen verwendet werden",
+          "consultDoctor": "Konsultieren Sie immer Ihren Arzt oder qualifizierten Gesundheitsdienstleister bei medizinischen oder gesundheitlichen Fragen."
+        },
+        "usage": {
+          "title": "Nutzung der Anwendung",
+          "content": "Sie stimmen Folgendem zu, wenn Sie unsere Anwendung nutzen:",
+          "personal": "Nutzung der App nur für persönliche, nicht-kommerzielle Zwecke",
+          "notSubstitute": "Sich nicht auf App-Ergebnisse als Ersatz für medizinische Versorgung verlassen",
+          "seekCare": "In Notfallsituationen sofortige medizinische Versorgung suchen"
+        },
+        "accuracy": {
+          "title": "Genauigkeit der Informationen",
+          "content": "Obwohl wir uns bemühen, genaue und aktuelle Informationen bereitzustellen, garantieren wir nicht die Genauigkeit oder Vollständigkeit der Informationen in der App. Berechnungen und Schätzungen sind ungefähr und können von der Realität abweichen. Überprüfen Sie wichtige Informationen immer mit Ihrem Gesundheitsdienstleister."
+        },
+        "liability": {
+          "title": "Haftungsbeschränkung",
+          "content": "Wir haften nicht für Schäden, die aus der Nutzung oder Unfähigkeit zur Nutzung der App entstehen, einschließlich gesundheitlicher Entscheidungen auf Basis der bereitgestellten Informationen. Sie nutzen diese Anwendung auf eigenes Risiko."
+        },
+        "modifications": {
+          "title": "Änderungen der Bedingungen",
+          "content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit ohne vorherige Ankündigung zu ändern. Ihre fortgesetzte Nutzung der App nach Änderungen gilt als Zustimmung zu den geänderten Bedingungen. Wir empfehlen Ihnen, diese Bedingungen regelmäßig zu überprüfen."
+        }
+      }
     }
   },
   "common": {

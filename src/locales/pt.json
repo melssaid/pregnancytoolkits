@@ -497,6 +497,47 @@
       "subtitle": "Tem perguntas ou comentários? Adoraríamos ouvir você.",
       "email": "E-mail",
       "phone": "Telefone"
+    },
+    "termsOfService": {
+      "title": "Termos de Serviço",
+      "subtitle": "Por favor, leia estes termos cuidadosamente antes de usar Ferramentas de Gravidez",
+      "lastUpdated": "Última atualização: janeiro de 2026",
+      "important": "Importante",
+      "footerNote": "Ao continuar usando Ferramentas de Gravidez, você reconhece que leu, compreendeu e concorda em estar vinculado a estes Termos de Serviço.",
+      "sections": {
+        "acceptance": {
+          "title": "Aceitação dos Termos",
+          "content": "Ao usar Ferramentas de Gravidez, você concorda em ficar vinculado a estes termos e condições. Se não concordar com qualquer parte destes termos, por favor não use nosso aplicativo."
+        },
+        "medical": {
+          "title": "Aviso Educacional",
+          "warning": "⚠️ Muito importante: por favor leia com atenção",
+          "content": "Ferramentas de Gravidez é destinado apenas para fins informativos e educacionais. Este aplicativo:",
+          "noAdvice": "NÃO fornece conselhos médicos, diagnósticos ou tratamentos",
+          "noReplace": "NÃO substitui a consulta com um médico ou profissional de saúde",
+          "noEmergency": "NÃO deve ser usado para decisões médicas de emergência",
+          "consultDoctor": "Sempre consulte seu médico ou profissional de saúde qualificado sobre qualquer questão médica ou de saúde."
+        },
+        "usage": {
+          "title": "Uso do Aplicativo",
+          "content": "Você concorda com o seguinte ao usar nosso aplicativo:",
+          "personal": "Usar o app apenas para fins pessoais e não comerciais",
+          "notSubstitute": "Não confiar nos resultados do app como substituto de cuidados médicos",
+          "seekCare": "Procurar atendimento médico imediato em situações de emergência"
+        },
+        "accuracy": {
+          "title": "Precisão das Informações",
+          "content": "Embora nos esforcemos para fornecer informações precisas e atualizadas, não garantimos a precisão ou integridade das informações no app. Cálculos e estimativas são aproximados e podem diferir da realidade. Sempre verifique informações importantes com seu profissional de saúde."
+        },
+        "liability": {
+          "title": "Limitação de Responsabilidade",
+          "content": "Não seremos responsáveis por quaisquer danos resultantes do uso ou da impossibilidade de usar o app, incluindo decisões de saúde tomadas com base nas informações fornecidas. Você usa este aplicativo por sua conta e risco."
+        },
+        "modifications": {
+          "title": "Modificações dos Termos",
+          "content": "Reservamo-nos o direito de modificar estes termos a qualquer momento sem aviso prévio. O uso continuado do app após quaisquer alterações constitui sua aceitação dos termos modificados. Encorajamos você a revisar estes termos periodicamente."
+        }
+      }
     }
   },
   "common": {

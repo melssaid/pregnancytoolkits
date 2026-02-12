@@ -497,6 +497,47 @@
       "subtitle": "¿Tienes preguntas o comentarios? Nos encantaría saber de ti.",
       "email": "Correo electrónico",
       "phone": "Teléfono"
+    },
+    "termsOfService": {
+      "title": "Términos de servicio",
+      "subtitle": "Por favor lee estos términos cuidadosamente antes de usar Herramientas de Embarazo",
+      "lastUpdated": "Última actualización: enero 2026",
+      "important": "Importante",
+      "footerNote": "Al continuar usando Herramientas de Embarazo, reconoces que has leído, comprendido y aceptado estar sujeta a estos Términos de servicio.",
+      "sections": {
+        "acceptance": {
+          "title": "Aceptación de términos",
+          "content": "Al usar Herramientas de Embarazo, aceptas estar sujeta a estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, por favor no uses nuestra aplicación."
+        },
+        "medical": {
+          "title": "Aviso educativo",
+          "warning": "⚠️ Muy importante: por favor lee cuidadosamente",
+          "content": "Herramientas de Embarazo está destinada únicamente con fines informativos y educativos. Esta aplicación:",
+          "noAdvice": "NO proporciona consejos médicos, diagnósticos o tratamientos",
+          "noReplace": "NO reemplaza la consulta con un médico o profesional de salud",
+          "noEmergency": "NO debe usarse para decisiones médicas de emergencia",
+          "consultDoctor": "Siempre consulta a tu médico o profesional de salud calificado sobre cualquier pregunta médica o de salud."
+        },
+        "usage": {
+          "title": "Uso de la aplicación",
+          "content": "Aceptas lo siguiente al usar nuestra aplicación:",
+          "personal": "Usar la app solo para fines personales y no comerciales",
+          "notSubstitute": "No depender de los resultados de la app como sustituto de atención médica",
+          "seekCare": "Buscar atención médica inmediata en situaciones de emergencia"
+        },
+        "accuracy": {
+          "title": "Exactitud de la información",
+          "content": "Aunque nos esforzamos por proporcionar información precisa y actualizada, no garantizamos la exactitud o integridad de la información en la app. Los cálculos y estimaciones son aproximados y pueden diferir de la realidad. Siempre verifica la información importante con tu profesional de salud."
+        },
+        "liability": {
+          "title": "Limitación de responsabilidad",
+          "content": "No seremos responsables de ningún daño resultante del uso o la imposibilidad de usar la app, incluidas las decisiones de salud tomadas con base en la información proporcionada. Usas esta aplicación bajo tu propio riesgo."
+        },
+        "modifications": {
+          "title": "Modificaciones de los términos",
+          "content": "Nos reservamos el derecho de modificar estos términos en cualquier momento sin previo aviso. Tu uso continuado de la app después de cualquier cambio constituye tu aceptación de los términos modificados. Te animamos a revisar estos términos periódicamente."
+        }
+      }
     }
   },
   "common": {

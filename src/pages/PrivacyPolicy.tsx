@@ -53,7 +53,7 @@ const sectionConfigs: SectionConfig[] = [
 
 const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
   const { t } = useTranslation();
-  const s = (key: string) => t(`privacyPolicy.sections.${sectionKey}.${key}`);
+  const s = (key: string) => t(`layout.privacyPolicy.sections.${sectionKey}.${key}`);
 
   switch (sectionKey) {
     case "collection":
@@ -117,7 +117,7 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
       );
 
     case "aiProducts": {
-      const tools = t("privacyPolicy.sections.aiProducts.tools", { returnObjects: true }) as string[];
+      const tools = t("layout.privacyPolicy.sections.aiProducts.tools", { returnObjects: true }) as string[];
       return (
         <div className="space-y-4">
           <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
@@ -246,11 +246,11 @@ export default function PrivacyPolicy() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 text-sm text-muted-foreground">
               <Shield className="w-4 h-4" />
-              <span>{t('privacyPolicy.lastUpdated')}</span>
+              <span>{t('layout.privacyPolicy.lastUpdated')}</span>
             </div>
-            <h1 className="text-2xl font-bold text-foreground">{t('privacyPolicy.title')}</h1>
+            <h1 className="text-2xl font-bold text-foreground">{t('layout.privacyPolicy.title')}</h1>
             <p className="text-muted-foreground text-sm max-w-xl mx-auto">
-              {t('privacyPolicy.subtitle')}
+              {t('layout.privacyPolicy.subtitle')}
             </p>
           </motion.div>
 
@@ -266,15 +266,15 @@ export default function PrivacyPolicy() {
                   <div className="p-2 rounded-lg bg-background/80">
                     <Shield className="w-5 h-5" />
                   </div>
-                  <span className="flex-1 min-w-0">{t('privacyPolicy.privacyFirst.title')}</span>
-                  <span className="text-xs bg-green-500/20 px-2 py-1 rounded-full shrink-0">
-                    {t('privacyPolicy.privacyFirst.badge')}
+                   <span className="flex-1 min-w-0">{t('layout.privacyPolicy.privacyFirst.title')}</span>
+                   <span className="text-xs bg-green-500/20 px-2 py-1 rounded-full shrink-0">
+                     {t('layout.privacyPolicy.privacyFirst.badge')}
                   </span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-4">
                 <p className="text-muted-foreground leading-relaxed text-sm">
-                  {t('privacyPolicy.privacyFirst.content')}
+                  {t('layout.privacyPolicy.privacyFirst.content')}
                 </p>
               </CardContent>
             </Card>
@@ -295,7 +295,7 @@ export default function PrivacyPolicy() {
               >
                 <section.icon className="w-3 h-3" />
                 <span className="truncate max-w-[100px]">
-                  {t(`privacyPolicy.sections.${section.titleKey}.title`)}
+                   {t(`layout.privacyPolicy.sections.${section.titleKey}.title`)}
                 </span>
               </a>
             ))}
@@ -318,11 +318,11 @@ export default function PrivacyPolicy() {
                         <section.icon className="w-5 h-5" />
                       </div>
                       <span className="flex-1 min-w-0 break-words">
-                        {t(`privacyPolicy.sections.${section.titleKey}.title`)}
+                        {t(`layout.privacyPolicy.sections.${section.titleKey}.title`)}
                       </span>
                       {section.important && (
                         <span className="text-xs bg-green-500/20 text-green-700 dark:text-green-400 px-2 py-1 rounded-full shrink-0">
-                          {t('privacyPolicy.keyPoint')}
+                          {t('layout.privacyPolicy.keyPoint')}
                         </span>
                       )}
                     </CardTitle>
@@ -342,8 +342,8 @@ export default function PrivacyPolicy() {
             transition={{ delay: 0.8 }}
             className="text-center pt-6 border-t border-border mt-8"
           >
-            <p className="text-xs text-muted-foreground">
-              {t('privacyPolicy.footerNote')}
+             <p className="text-xs text-muted-foreground">
+               {t('layout.privacyPolicy.footerNote')}
             </p>
           </motion.div>
         </div>
