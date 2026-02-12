@@ -497,6 +497,47 @@
       "subtitle": "Sorularınız veya geri bildirimleriniz mi var? Sizden haber almak isteriz.",
       "email": "E-posta",
       "phone": "Telefon"
+    },
+    "termsOfService": {
+      "title": "Hizmet Şartları",
+      "subtitle": "Hamilelik Araçları'nı kullanmadan önce lütfen bu şartları dikkatlice okuyun",
+      "lastUpdated": "Son güncelleme: Ocak 2026",
+      "important": "Önemli",
+      "footerNote": "Hamilelik Araçları'nı kullanmaya devam ederek, bu Hizmet Şartları'nı okuduğunuzu, anladığınızı ve kabul ettiğinizi onaylarsınız.",
+      "sections": {
+        "acceptance": {
+          "title": "Şartların Kabulü",
+          "content": "Hamilelik Araçları'nı kullanarak bu şart ve koşullarla bağlı olmayı kabul edersiniz. Bu şartların herhangi bir bölümüne katılmıyorsanız, lütfen uygulamamızı kullanmayın."
+        },
+        "medical": {
+          "title": "Eğitim Sorumluluk Reddi",
+          "warning": "⚠️ Çok önemli: Lütfen dikkatlice okuyun",
+          "content": "Hamilelik Araçları yalnızca bilgilendirme ve eğitim amaçlıdır. Bu uygulama:",
+          "noAdvice": "Tıbbi tavsiye, teşhis veya tedavi SAĞLAMAZ",
+          "noReplace": "Bir doktor veya sağlık uzmanına danışmanın YERİNİ ALMAZ",
+          "noEmergency": "Acil tıbbi kararlar için KULLANILMAMALIDIR",
+          "consultDoctor": "Herhangi bir tıbbi veya sağlık sorusu için her zaman doktorunuza veya nitelikli sağlık uzmanınıza danışın."
+        },
+        "usage": {
+          "title": "Uygulama Kullanımı",
+          "content": "Uygulamamızı kullanırken aşağıdakileri kabul edersiniz:",
+          "personal": "Uygulamayı yalnızca kişisel, ticari olmayan amaçlarla kullanmak",
+          "notSubstitute": "Uygulama sonuçlarına tıbbi bakımın yerine güvenmemek",
+          "seekCare": "Acil durumlarda derhal tıbbi yardım aramak"
+        },
+        "accuracy": {
+          "title": "Bilgi Doğruluğu",
+          "content": "Doğru ve güncel bilgi sağlamaya çalışsak da, uygulamadaki bilgilerin doğruluğunu veya eksiksizliğini garanti etmiyoruz. Hesaplamalar ve tahminler yaklaşıktır ve gerçeklikten farklı olabilir. Önemli bilgileri her zaman sağlık uzmanınızla doğrulayın."
+        },
+        "liability": {
+          "title": "Sorumluluk Sınırlaması",
+          "content": "Uygulamanın kullanımından veya kullanılamamasından kaynaklanan zararlardan, sağlanan bilgilere dayalı sağlık kararları dahil, sorumlu olmayacağız. Bu uygulamayı kendi risk ve takdirinizle kullanırsınız."
+        },
+        "modifications": {
+          "title": "Şartlardaki Değişiklikler",
+          "content": "Bu şartları önceden bildirimde bulunmadan istediğimiz zaman değiştirme hakkını saklı tutarız. Herhangi bir değişiklikten sonra uygulamayı kullanmaya devam etmeniz, değiştirilmiş şartları kabul ettiğiniz anlamına gelir. Bu şartları düzenli olarak gözden geçirmenizi öneririz."
+        }
+      }
     }
   },
   "common": {

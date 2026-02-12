@@ -497,6 +497,47 @@
       "subtitle": "Vous avez des questions ou des commentaires ? Nous serions ravis de vous entendre.",
       "email": "E-mail",
       "phone": "Téléphone"
+    },
+    "termsOfService": {
+      "title": "Conditions d'utilisation",
+      "subtitle": "Veuillez lire attentivement ces conditions avant d'utiliser Outils de Grossesse",
+      "lastUpdated": "Dernière mise à jour : janvier 2026",
+      "important": "Important",
+      "footerNote": "En continuant à utiliser Outils de Grossesse, vous reconnaissez avoir lu, compris et accepté d'être lié par ces Conditions d'utilisation.",
+      "sections": {
+        "acceptance": {
+          "title": "Acceptation des conditions",
+          "content": "En utilisant Outils de Grossesse, vous acceptez d'être lié par ces conditions. Si vous n'êtes pas d'accord avec une partie de ces conditions, veuillez ne pas utiliser notre application."
+        },
+        "medical": {
+          "title": "Avis éducatif",
+          "warning": "⚠️ Très important : veuillez lire attentivement",
+          "content": "Outils de Grossesse est destiné uniquement à des fins informatives et éducatives. Cette application :",
+          "noAdvice": "Ne fournit PAS de conseils médicaux, de diagnostics ou de traitements",
+          "noReplace": "Ne remplace PAS la consultation d'un médecin ou d'un professionnel de santé",
+          "noEmergency": "Ne doit PAS être utilisée pour des décisions médicales d'urgence",
+          "consultDoctor": "Consultez toujours votre médecin ou un professionnel de santé qualifié pour toute question médicale ou de santé."
+        },
+        "usage": {
+          "title": "Utilisation de l'application",
+          "content": "Vous acceptez ce qui suit lors de l'utilisation de notre application :",
+          "personal": "Utiliser l'application uniquement à des fins personnelles et non commerciales",
+          "notSubstitute": "Ne pas se fier aux résultats de l'application comme substitut aux soins médicaux",
+          "seekCare": "Rechercher des soins médicaux immédiats en cas d'urgence"
+        },
+        "accuracy": {
+          "title": "Exactitude des informations",
+          "content": "Bien que nous nous efforcions de fournir des informations précises et à jour, nous ne garantissons pas l'exactitude ou l'exhaustivité des informations de l'application. Les calculs et estimations sont approximatifs et peuvent différer de la réalité. Vérifiez toujours les informations importantes avec votre professionnel de santé."
+        },
+        "liability": {
+          "title": "Limitation de responsabilité",
+          "content": "Nous ne serons pas responsables des dommages résultant de l'utilisation ou de l'impossibilité d'utiliser l'application, y compris les décisions de santé prises sur la base des informations fournies. Vous utilisez cette application à vos propres risques."
+        },
+        "modifications": {
+          "title": "Modifications des conditions",
+          "content": "Nous nous réservons le droit de modifier ces conditions à tout moment sans préavis. Votre utilisation continue de l'application après tout changement constitue votre acceptation des conditions modifiées. Nous vous encourageons à revoir ces conditions périodiquement."
+        }
+      }
     }
   },
   "common": {
