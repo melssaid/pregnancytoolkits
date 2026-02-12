@@ -55,6 +55,16 @@
     "wellness": "Wohlbefinden",
     "preparation": "Vorbereitung"
   },
+  "onboarding": {
+    "title": "Willkommen auf Ihrer Reise",
+    "subtitle": "Ihr Lifestyle- & Bildungsbegleiter",
+    "disclaimer": "Diese App dient nur zu Informations- und Bildungszwecken. Sie ist kein Medizinprodukt und bietet keine klinische Beratung oder Diagnose.",
+    "feature1": "Persönliche Journal- & Tagebuch-Tools",
+    "feature2": "Bildungsinhalte zum Wohlbefinden",
+    "feature3": "Ihre Daten bleiben auf Ihrem Gerät",
+    "accept": "Verstanden & Fortfahren",
+    "consultNote": "Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Arzt."
+  },
   "tools": {
     "pregnancyAssistant": {
       "title": "Intelligenter Schwangerschaftsführer",
@@ -137,15 +147,15 @@
       "description": "Wissen Sie, was sicher zu essen ist."
     },
     "aiLaborProgress": {
-      "title": "KI-Wehenfortschritts-Tracker",
-      "description": "Verfolgen Sie Kontraktionen und überwachen Sie den Wehenfortschritt."
+      "title": "Kontraktions-Tagebuch",
+      "description": "Protokollieren Sie Ihre Kontraktionsmuster."
     },
     "cycleTracker": {
-      "title": "Zyklus- & Eisprung-Tracker",
+      "title": "Zyklustagebuch",
       "description": "Verfolgen Sie Ihren Zyklus und finden Sie Ihre fruchtbaren Tage."
     },
     "dueDateCalculator": {
-      "title": "Geburtstermin-Rechner",
+      "title": "Baby-Ankunfts-Countdown",
       "description": "Finden Sie heraus, wann Ihr Kleines ankommt."
     },
     "fetalGrowth": {
@@ -153,8 +163,8 @@
       "description": "Sehen Sie, wie groß Ihr Baby diese Woche ist!"
     },
     "kickCounter": {
-      "title": "Trittzähler",
-      "description": "Verfolgen Sie die wertvollen Bewegungen Ihres Babys."
+      "title": "Baby-Bewegungstagebuch",
+      "description": "Halten Sie die wertvollen Bewegungen Ihres Babys fest."
     },
     "weightGain": {
       "title": "Gewichtszunahme-Analysator",
@@ -222,8 +232,8 @@
       "postpartum": "Nachgeburt"
     },
     "trackingTools": {
-      "kickCounter": "Trittzähler",
-      "kickCounterDesc": "Babybewegungen verfolgen",
+      "kickCounter": "Bewegungstagebuch",
+      "kickCounterDesc": "Babybewegungen festhalten",
       "weightTracker": "Gewichtstracker",
       "weightTrackerDesc": "Gewichtszunahme überwachen",
       "vitaminTracker": "Vitamin-Tracker",
@@ -531,8 +541,8 @@
     "subscribeToAccess": "Abonnieren zum Freischalten"
   },
   "dueDatePage": {
-    "title": "Geburtstermin-Rechner",
-    "subtitle": "Schätzen Sie, wann Ihr Baby ankommt",
+    "title": "Baby-Ankunfts-Countdown",
+    "subtitle": "Schätzen Sie, wann Ihr Kleines ankommt",
     "lmpTab": "Letzte Periode",
     "conceptionTab": "Empfängnisdatum",
     "lmpLabel": "Erster Tag der letzten Menstruation",
@@ -549,8 +559,8 @@
     "info": "Nur etwa 5% der Babys werden am genauen Geburtstermin geboren. Die meisten kommen innerhalb von 2 Wochen davor oder danach. Ihr Arzt kann den Termin basierend auf Ultraschallmessungen anpassen."
   },
   "kickCounterPage": {
-    "title": "Trittzähler",
-    "subtitle": "Zählen Sie 10 Tritte zur Überwachung der fetalen Aktivität",
+    "title": "Baby-Bewegungstagebuch",
+    "subtitle": "Halten Sie die Bewegungen Ihres Babys den ganzen Tag fest",
     "timeElapsed": "Verstrichene Zeit",
     "startCounting": "Zählung starten",
     "kicks": "Tritte",
@@ -561,19 +571,19 @@
     "info": "Ab der 28. Woche, zählen Sie täglich die fetalen Bewegungen. Kontaktieren Sie Ihren Arzt, wenn Sie verminderte Bewegungen bemerken oder 10 Tritte nicht in 2 Stunden erreichen."
   },
   "contractionPage": {
-    "title": "Wehen-Timer",
-    "subtitle": "Verfolgen Sie Dauer und Häufigkeit der Wehen",
-    "contractionStarted": "Wehe begonnen",
-    "contractionEnded": "Wehe beendet",
+    "title": "Kontraktions-Tagebuch",
+    "subtitle": "Protokollieren Sie Dauer und Häufigkeit der Kontraktionen",
+    "contractionStarted": "Kontraktion begonnen",
+    "contractionEnded": "Kontraktion beendet",
     "avgDuration": "Durchschn. Dauer",
     "avgInterval": "Durchschn. Intervall",
-    "contractionLog": "Wehen-Protokoll",
+    "contractionLog": "Kontraktionsprotokoll",
     "sinceLastContraction": "{{minutes}} Min. seit der letzten",
     "duration": "Dauer",
-    "callProvider": "Zeit, Ihren Arzt anzurufen",
-    "callProviderDesc": "Wehen kommen alle 5 Minuten und dauern 45+ Sekunden. Erwägen Sie, ins Krankenhaus zu fahren.",
-    "rule511": "5-1-1 Regel",
-    "rule511Desc": "Rufen Sie Ihren Arzt an, wenn die Wehen alle 5 Minuten kommen, 1 Minute dauern und das seit mindestens 1 Stunde."
+    "callProvider": "Erwägen Sie, Ihren Arzt zu kontaktieren",
+    "callProviderDesc": "Kontraktionen kommen alle 5 Minuten und dauern 45+ Sekunden. Sie möchten vielleicht dieses Protokoll mit Ihrem Arzt teilen.",
+    "rule511": "5-1-1 Richtlinie",
+    "rule511Desc": "Viele Ärzte empfehlen, sie zu kontaktieren, wenn die Kontraktionen alle 5 Minuten kommen, 1 Minute dauern und seit mindestens 1 Stunde anhalten."
   },
   "preeclampsiaPage": {
     "title": "Präeklampsie-Risikobewertung",
@@ -1251,8 +1261,8 @@
       "getWeeklyGuide": "Wöchentlichen Leitfaden erhalten"
     },
     "kickCounter": {
-      "title": "Intelligenter Trittzähler",
-      "subtitle": "Woche {{week}} - KI-Bewegungsanalyse",
+      "title": "Baby-Bewegungstagebuch",
+      "subtitle": "Woche {{week}} - Bewegungsjournal & Einblicke",
       "movementScore": "Bewegungsscore",
       "basedOnSessions": "Basierend auf {{count}} Sitzungen",
       "elapsedTime": "Verstrichene Zeit",
@@ -1801,36 +1811,41 @@
       "optimalNutrition": "Nährstoffreiche Optionen"
     },
     "laborTracker": {
-      "title": "KI-Geburtsfortschritt-Tracker",
-      "subtitle": "Wehen verfolgen und Geburtsfortschritt überwachen",
-      "startContraction": "Wehe starten",
-      "endContraction": "Wehe beenden",
+      "title": "Kontraktions-Tagebuch",
+      "subtitle": "Protokollieren Sie Ihre Kontraktionsmuster",
+      "startContraction": "Kontraktion starten",
+      "endContraction": "Kontraktion beenden",
       "duration": "Dauer",
       "interval": "Intervall",
       "avgDuration": "Durchschn. Dauer",
       "avgInterval": "Durchschn. Intervall",
-      "contractionLog": "Wehenprotokoll",
-      "laborStage": "Geschätzte Geburtsphase",
-      "earlyLabor": "Frühe Wehen",
-      "earlyLaborDesc": "Bleiben Sie zu Hause, ruhen Sie sich aus und trinken Sie viel",
-      "activeLabor": "Aktive Wehen",
-      "activeLaborDesc": "Erwägen Sie, ins Krankenhaus zu fahren",
-      "transition": "Übergangsphase",
-      "transitionDesc": "Fahren Sie jetzt ins Krankenhaus",
-      "timeToGo": "Zeit, ins Krankenhaus zu fahren",
-      "rule511": "Die 5-1-1-Regel",
-      "rule511Desc": "Fahren Sie ins Krankenhaus, wenn die Wehen alle 5 Minuten kommen, jeweils 1 Minute dauern und 1 Stunde anhalten.",
-      "hospitalAlert": "Zeit, ins Krankenhaus zu fahren!",
-      "hospitalAlertDesc": "Basierend auf der 5-1-1-Regel kommen Ihre Wehen jetzt alle 5 Minuten und dauern 1 Minute oder länger. Dies deutet auf aktive Wehen hin.",
-      "callEmergency": "Notfall anrufen",
+      "contractionLog": "Kontraktionsprotokoll",
+      "laborStage": "Geschätzte Phase",
+      "earlyLabor": "Frühe Phase",
+      "earlyLaborDesc": "Ruhen Sie sich aus und trinken Sie viel",
+      "earlyPhase": "Frühe Phase",
+      "earlyPhaseDesc": "Ruhen Sie sich aus und trinken Sie viel",
+      "activeLabor": "Aktive Phase",
+      "activeLaborDesc": "Erwägen Sie, dieses Protokoll mit Ihrem Arzt zu teilen",
+      "activePhase": "Aktive Phase",
+      "activePhaseDesc": "Erwägen Sie, dieses Protokoll mit Ihrem Arzt zu teilen",
+      "transition": "Intensive Phase",
+      "transitionDesc": "Kontaktieren Sie Ihren Arzt mit diesem Journal",
+      "intensivePhase": "Intensive Phase",
+      "intensivePhaseDesc": "Kontaktieren Sie Ihren Arzt mit diesem Journal",
+      "providerAlert": "Erwägen Sie, Ihren Arzt zu kontaktieren",
+      "providerAlertDesc": "Gemäß der 5-1-1 Richtlinie kommen Ihre Kontraktionen jetzt alle 5 Minuten und dauern 1 Minute oder länger. Sie möchten vielleicht dieses Journal mit Ihrem Arzt teilen.",
+      "rule511": "Die 5-1-1 Richtlinie",
+      "rule511Desc": "Viele Ärzte empfehlen, sie zu kontaktieren, wenn die Kontraktionen alle 5 Minuten kommen, 1 Minute dauern und 1 Stunde anhalten. Teilen Sie Ihr Protokoll zur Beratung.",
+      "callProvider": "Arzt anrufen",
       "understand": "Verstanden",
-      "inProgress": "Wehe läuft...",
+      "inProgress": "Kontraktion läuft...",
       "ready": "Bereit zur Aufzeichnung",
-      "getAIAnalysis": "KI-Wehenanalyse erhalten",
-      "aiAnalysis": "KI-Wehenanalyse",
-      "contractions": "Wehen",
-      "contractionPattern": "Wehenmuster",
-      "recentContractions": "Letzte Wehen",
+      "getAIAnalysis": "KI-Journal-Einblicke erhalten",
+      "aiAnalysis": "KI-Journal-Einblicke",
+      "contractions": "Kontraktionen",
+      "contractionPattern": "Kontraktionsmuster",
+      "recentContractions": "Letzte Kontraktionen",
       "durationSec": "Dauer (Sek.)",
       "intensity": {
         "mild": "Leicht",
@@ -1838,10 +1853,10 @@
         "strong": "Stark",
         "very-strong": "Sehr stark"
       },
-      "disclaimer": "Dieses Tool dient nur zu Informationszwecken. Befolgen Sie immer die Anweisungen Ihres Arztes, wann Sie ins Krankenhaus fahren sollten."
+      "disclaimer": "Dieses Tool dient nur zu Informationszwecken. Befolgen Sie immer die Anweisungen Ihres Arztes."
     },
     "cycleTracker": {
-      "title": "Zyklus- & Eisprung-Tracker",
+      "title": "Zyklustagebuch",
       "subtitle": "Verfolgen Sie Ihren Zyklus und finden Sie Ihre fruchtbaren Tage",
       "lastPeriod": "Letzte Periodenstart",
       "cycleLength": "Durchschnittliche Zykluslänge",

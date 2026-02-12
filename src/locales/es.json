@@ -55,6 +55,16 @@
     "wellness": "Bienestar",
     "preparation": "Preparación"
   },
+  "onboarding": {
+    "title": "Bienvenida a tu viaje",
+    "subtitle": "Tu compañero de estilo de vida y educación",
+    "disclaimer": "Esta aplicación es solo para fines informativos y educativos. No es un dispositivo médico y no proporciona consejos clínicos ni diagnósticos.",
+    "feature1": "Herramientas de diario y agenda personal",
+    "feature2": "Contenido educativo sobre bienestar",
+    "feature3": "Tus datos se quedan en tu dispositivo",
+    "accept": "Entiendo y continuar",
+    "consultNote": "Consulta siempre a un profesional de salud cualificado para cualquier preocupación de salud."
+  },
   "tools": {
     "pregnancyAssistant": {
       "title": "Guía de embarazo IA",
@@ -137,15 +147,15 @@
       "description": "Sabe qué es seguro comer."
     },
     "aiLaborProgress": {
-      "title": "Seguimiento del trabajo de parto IA",
-      "description": "Rastrea contracciones y monitorea el progreso."
+      "title": "Diario de contracciones",
+      "description": "Registra tus patrones de contracciones."
     },
     "cycleTracker": {
-      "title": "Seguimiento del ciclo y ovulación",
+      "title": "Diario del ciclo",
       "description": "Rastrea tu ciclo y encuentra tus días fértiles."
     },
     "dueDateCalculator": {
-      "title": "Calculadora de fecha de parto",
+      "title": "Cuenta regresiva del bebé",
       "description": "Descubre cuándo llegará tu bebé."
     },
     "fetalGrowth": {
@@ -153,8 +163,8 @@
       "description": "¡Mira el tamaño de tu bebé esta semana!"
     },
     "kickCounter": {
-      "title": "Contador de patadas",
-      "description": "Rastrea los preciosos movimientos de tu bebé."
+      "title": "Diario de movimientos del bebé",
+      "description": "Registra los preciosos movimientos de tu bebé."
     },
     "weightGain": {
       "title": "Analizador de aumento de peso",
@@ -222,8 +232,8 @@
       "postpartum": "Posparto"
     },
     "trackingTools": {
-      "kickCounter": "Contador de patadas",
-      "kickCounterDesc": "Rastrea movimientos del bebé",
+      "kickCounter": "Diario de movimientos",
+      "kickCounterDesc": "Registra movimientos del bebé",
       "weightTracker": "Seguimiento de peso",
       "weightTrackerDesc": "Monitorea aumento de peso",
       "vitaminTracker": "Seguimiento de vitaminas",
@@ -531,8 +541,8 @@
     "subscribeToAccess": "Suscríbete para desbloquear"
   },
   "dueDatePage": {
-    "title": "Calculadora de fecha de parto",
-    "subtitle": "Estima cuándo llegará tu bebé",
+    "title": "Cuenta regresiva del bebé",
+    "subtitle": "Estima cuándo llegará tu pequeño",
     "lmpTab": "Última menstruación",
     "conceptionTab": "Fecha de concepción",
     "lmpLabel": "Primer día de la última menstruación",
@@ -549,8 +559,8 @@
     "info": "Solo alrededor del 5% de los bebés nacen en la fecha exacta. La mayoría nace dentro de 2 semanas antes o después. Tu médico puede ajustar la fecha según la ecografía."
   },
   "kickCounterPage": {
-    "title": "Contador de patadas",
-    "subtitle": "Cuenta 10 patadas para monitorear la actividad fetal",
+    "title": "Diario de movimientos del bebé",
+    "subtitle": "Registra los movimientos de tu bebé durante el día",
     "timeElapsed": "Tiempo transcurrido",
     "startCounting": "Empezar a contar",
     "kicks": "patadas",
@@ -561,8 +571,8 @@
     "info": "A partir de las 28 semanas, cuenta los movimientos diariamente. Contacta a tu médico si notas disminución o no alcanzas 10 patadas en 2 horas."
   },
   "contractionPage": {
-    "title": "Temporizador de contracciones",
-    "subtitle": "Rastrea la duración y frecuencia de las contracciones",
+    "title": "Diario de contracciones",
+    "subtitle": "Registra la duración y frecuencia de las contracciones",
     "contractionStarted": "Contracción iniciada",
     "contractionEnded": "Contracción terminada",
     "avgDuration": "Duración promedio",
@@ -570,10 +580,10 @@
     "contractionLog": "Registro de contracciones",
     "sinceLastContraction": "{{minutes}} min desde la última",
     "duration": "duración",
-    "callProvider": "Es hora de llamar a tu médico",
-    "callProviderDesc": "Las contracciones están cada 5 minutos y duran 45+ segundos. Considera ir al hospital.",
-    "rule511": "Regla 5-1-1",
-    "rule511Desc": "Llama a tu médico cuando las contracciones estén cada 5 minutos, duren 1 minuto cada una, durante al menos 1 hora."
+    "callProvider": "Considera contactar a tu médico",
+    "callProviderDesc": "Las contracciones están cada 5 minutos y duran 45+ segundos. Podrías compartir este registro con tu médico.",
+    "rule511": "Directriz 5-1-1",
+    "rule511Desc": "Muchos médicos recomiendan contactarlos cuando las contracciones son cada 5 minutos, duran 1 minuto cada una, durante al menos 1 hora."
   },
   "preeclampsiaPage": {
     "title": "Evaluación de riesgo de preeclampsia",
@@ -1251,8 +1261,8 @@
       "getWeeklyGuide": "Obtener Guía Semanal"
     },
     "kickCounter": {
-      "title": "Contador de Patadas Inteligente",
-      "subtitle": "Semana {{week}} - Análisis de Movimiento con IA",
+      "title": "Diario de movimientos del bebé",
+      "subtitle": "Semana {{week}} - Diario de movimientos & perspectivas",
       "movementScore": "Puntuación de Movimiento",
       "basedOnSessions": "Basado en {{count}} sesiones • Se actualiza después de cada sesión",
       "elapsedTime": "Tiempo Transcurrido",
@@ -1971,44 +1981,49 @@
       "optimalNutrition": "Opciones ricas en nutrientes"
     },
     "laborTracker": {
-      "title": "Seguimiento IA del Parto",
-      "subtitle": "Rastrea las contracciones y monitorea el progreso del parto",
-      "startContraction": "Iniciar Contracción",
-      "endContraction": "Finalizar Contracción",
+      "title": "Diario de contracciones",
+      "subtitle": "Registra tus patrones de contracciones",
+      "startContraction": "Iniciar contracción",
+      "endContraction": "Finalizar contracción",
       "duration": "Duración",
       "interval": "Intervalo",
-      "avgDuration": "Duración Prom.",
-      "avgInterval": "Intervalo Prom.",
-      "contractionLog": "Registro de Contracciones",
-      "laborStage": "Fase Estimada del Parto",
-      "earlyLabor": "Parto Temprano",
-      "earlyLaborDesc": "Quédate en casa, descansa e hidrátate",
-      "activeLabor": "Parto Activo",
-      "activeLaborDesc": "Considera ir al hospital",
-      "transition": "Fase de Transición",
-      "transitionDesc": "Ve al hospital ahora",
-      "timeToGo": "Es hora de ir al hospital",
-      "rule511": "La Regla 5-1-1",
-      "rule511Desc": "Ve al hospital cuando las contracciones sean cada 5 minutos, duren 1 minuto cada una y continúen durante 1 hora.",
-      "hospitalAlert": "¡Es hora de ir al hospital!",
-      "hospitalAlertDesc": "Según la regla 5-1-1, tus contracciones ahora son cada 5 minutos y duran 1 minuto o más. Esto indica parto activo.",
-      "callEmergency": "Llamar a Emergencias",
+      "avgDuration": "Duración prom.",
+      "avgInterval": "Intervalo prom.",
+      "contractionLog": "Registro de contracciones",
+      "laborStage": "Fase estimada",
+      "earlyLabor": "Fase temprana",
+      "earlyLaborDesc": "Descansa y mantente hidratada",
+      "earlyPhase": "Fase temprana",
+      "earlyPhaseDesc": "Descansa y mantente hidratada",
+      "activeLabor": "Fase activa",
+      "activeLaborDesc": "Considera compartir este registro con tu médico",
+      "activePhase": "Fase activa",
+      "activePhaseDesc": "Considera compartir este registro con tu médico",
+      "transition": "Fase intensiva",
+      "transitionDesc": "Contacta a tu médico con este diario",
+      "intensivePhase": "Fase intensiva",
+      "intensivePhaseDesc": "Contacta a tu médico con este diario",
+      "providerAlert": "Considera contactar a tu médico",
+      "providerAlertDesc": "Según la directriz 5-1-1, tus contracciones ahora son cada 5 minutos y duran 1 minuto o más. Podrías compartir este diario con tu médico.",
+      "rule511": "La directriz 5-1-1",
+      "rule511Desc": "Muchos médicos recomiendan contactarlos cuando las contracciones son cada 5 minutos, duran 1 minuto cada una y continúan durante 1 hora. Comparte tu registro para orientación.",
+      "callProvider": "Llamar al médico",
       "understand": "Entendido",
       "inProgress": "Contracción en curso...",
-      "ready": "Listo para rastrear",
-      "getAIAnalysis": "Obtener Análisis IA del Parto",
-      "aiAnalysis": "Análisis IA del Parto",
+      "ready": "Listo para registrar",
+      "getAIAnalysis": "Obtener perspectivas IA del diario",
+      "aiAnalysis": "Perspectivas IA del diario",
       "contractions": "Contracciones",
-      "contractionPattern": "Patrón de Contracciones",
-      "recentContractions": "Contracciones Recientes",
+      "contractionPattern": "Patrón de contracciones",
+      "recentContractions": "Contracciones recientes",
       "durationSec": "Duración (seg)",
       "intensity": {
         "mild": "Leve",
         "moderate": "Moderada",
         "strong": "Fuerte",
-        "very-strong": "Muy Fuerte"
+        "very-strong": "Muy fuerte"
       },
-      "disclaimer": "Esta herramienta es solo para fines informativos. Siempre sigue las indicaciones de tu profesional de salud sobre cuándo ir al hospital."
+      "disclaimer": "Esta herramienta es solo para fines informativos. Siempre sigue las indicaciones de tu profesional de salud."
     },
     "birthPosition": {
       "title": "Posiciones de Parto IA",
@@ -2375,7 +2390,7 @@
       "aiRecommendations": "Obtener Recomendaciones IA"
     },
     "cycleTracker": {
-      "title": "Seguimiento de Ciclo y Ovulación",
+      "title": "Diario del ciclo",
       "subtitle": "Rastrea tu ciclo y encuentra tus días fértiles",
       "lastPeriod": "Inicio de Última Menstruación",
       "cycleLength": "Duración Promedio del Ciclo",

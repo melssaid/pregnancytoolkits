@@ -55,6 +55,16 @@
     "wellness": "Bien-être",
     "preparation": "Préparation"
   },
+  "onboarding": {
+    "title": "Bienvenue dans votre parcours",
+    "subtitle": "Votre compagnon lifestyle & éducatif",
+    "disclaimer": "Cette application est à titre informatif et éducatif uniquement. Ce n'est pas un dispositif médical et ne fournit ni conseil clinique ni diagnostic.",
+    "feature1": "Outils de journal personnel & agenda",
+    "feature2": "Contenu éducatif sur le bien-être",
+    "feature3": "Vos données restent sur votre appareil",
+    "accept": "Je comprends & continuer",
+    "consultNote": "Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé."
+  },
   "tools": {
     "pregnancyAssistant": {
       "title": "Guide de grossesse IA",
@@ -137,15 +147,15 @@
       "description": "Sachez ce qui est sûr à manger."
     },
     "aiLaborProgress": {
-      "title": "Suivi du travail IA",
-      "description": "Suivez les contractions et surveillez la progression."
+      "title": "Journal des contractions",
+      "description": "Consignez vos schémas de contractions."
     },
     "cycleTracker": {
-      "title": "Suivi du cycle et ovulation",
+      "title": "Journal du cycle",
       "description": "Suivez votre cycle et trouvez vos jours fertiles."
     },
     "dueDateCalculator": {
-      "title": "Calculateur de date d'accouchement",
+      "title": "Compte à rebours bébé",
       "description": "Découvrez quand votre bébé arrivera."
     },
     "fetalGrowth": {
@@ -153,8 +163,8 @@
       "description": "Voyez la taille de votre bébé cette semaine !"
     },
     "kickCounter": {
-      "title": "Compteur de coups",
-      "description": "Suivez les précieux mouvements de votre bébé."
+      "title": "Journal des mouvements bébé",
+      "description": "Consignez les précieux mouvements de votre bébé."
     },
     "weightGain": {
       "title": "Analyseur de prise de poids",
@@ -222,8 +232,8 @@
       "postpartum": "Post-partum"
     },
     "trackingTools": {
-      "kickCounter": "Compteur de coups",
-      "kickCounterDesc": "Suivre les mouvements du bébé",
+      "kickCounter": "Journal des mouvements",
+      "kickCounterDesc": "Consigner les mouvements bébé",
       "weightTracker": "Suivi du poids",
       "weightTrackerDesc": "Surveiller la prise de poids",
       "vitaminTracker": "Suivi des vitamines",
@@ -531,8 +541,8 @@
     "subscribeToAccess": "Abonnez-vous pour débloquer"
   },
   "dueDatePage": {
-    "title": "Calculateur de date d'accouchement",
-    "subtitle": "Estimez quand votre bébé arrivera",
+    "title": "Compte à rebours bébé",
+    "subtitle": "Estimez quand votre petit arrivera",
     "lmpTab": "Dernières règles",
     "conceptionTab": "Date de conception",
     "lmpLabel": "Premier jour des dernières règles",
@@ -549,8 +559,8 @@
     "info": "Seulement environ 5% des bébés naissent à la date prévue. La plupart naissent dans les 2 semaines avant ou après. Votre médecin peut ajuster la date selon l'échographie."
   },
   "kickCounterPage": {
-    "title": "Compteur de coups",
-    "subtitle": "Comptez 10 coups pour surveiller l'activité fœtale",
+    "title": "Journal des mouvements bébé",
+    "subtitle": "Consignez les mouvements de votre bébé tout au long de la journée",
     "timeElapsed": "Temps écoulé",
     "startCounting": "Commencer à compter",
     "kicks": "coups",
@@ -561,8 +571,8 @@
     "info": "À partir de 28 semaines, comptez les mouvements quotidiennement. Contactez votre médecin si vous remarquez une diminution ou n'atteignez pas 10 coups en 2 heures."
   },
   "contractionPage": {
-    "title": "Minuteur de contractions",
-    "subtitle": "Suivez la durée et la fréquence des contractions",
+    "title": "Journal des contractions",
+    "subtitle": "Consignez la durée et la fréquence des contractions",
     "contractionStarted": "Contraction commencée",
     "contractionEnded": "Contraction terminée",
     "avgDuration": "Durée moyenne",
@@ -570,10 +580,10 @@
     "contractionLog": "Journal des contractions",
     "sinceLastContraction": "{{minutes}} min depuis la dernière",
     "duration": "durée",
-    "callProvider": "Temps d'appeler votre médecin",
-    "callProviderDesc": "Les contractions sont espacées de 5 minutes et durent 45+ secondes. Pensez à aller à l'hôpital.",
-    "rule511": "Règle 5-1-1",
-    "rule511Desc": "Appelez votre médecin quand les contractions sont espacées de 5 minutes, durent 1 minute chacune, depuis au moins 1 heure."
+    "callProvider": "Envisagez de contacter votre médecin",
+    "callProviderDesc": "Les contractions sont espacées de 5 minutes et durent 45+ secondes. Vous pourriez vouloir partager ce journal avec votre médecin.",
+    "rule511": "Directive 5-1-1",
+    "rule511Desc": "De nombreux médecins recommandent de les contacter quand les contractions sont espacées de 5 minutes, durent 1 minute chacune, depuis au moins 1 heure."
   },
   "preeclampsiaPage": {
     "title": "Évaluation du risque de prééclampsie",
@@ -1251,8 +1261,8 @@
       "getWeeklyGuide": "Obtenir le guide hebdomadaire"
     },
     "kickCounter": {
-      "title": "Compteur de coups intelligent",
-      "subtitle": "Semaine {{week}} - Analyse des mouvements par IA",
+      "title": "Journal des mouvements bébé",
+      "subtitle": "Semaine {{week}} - Journal des mouvements & aperçus",
       "movementScore": "Score de mouvement",
       "basedOnSessions": "Basé sur {{count}} sessions",
       "elapsedTime": "Temps écoulé",
@@ -1863,8 +1873,8 @@
       "optimalNutrition": "Options riches en nutriments"
     },
     "laborTracker": {
-      "title": "Suivi IA du Travail",
-      "subtitle": "Suivez les contractions et surveillez la progression du travail",
+      "title": "Journal des contractions",
+      "subtitle": "Consignez vos schémas de contractions",
       "startContraction": "Démarrer la contraction",
       "endContraction": "Terminer la contraction",
       "duration": "Durée",
@@ -1872,24 +1882,29 @@
       "avgDuration": "Durée moy.",
       "avgInterval": "Intervalle moy.",
       "contractionLog": "Journal des contractions",
-      "laborStage": "Phase estimée du travail",
-      "earlyLabor": "Début du travail",
-      "earlyLaborDesc": "Restez à la maison, reposez-vous et hydratez-vous",
-      "activeLabor": "Travail actif",
-      "activeLaborDesc": "Envisagez de vous rendre à l'hôpital",
-      "transition": "Phase de transition",
-      "transitionDesc": "Allez à l'hôpital maintenant",
-      "timeToGo": "Il est temps d'aller à l'hôpital",
-      "rule511": "La règle 5-1-1",
-      "rule511Desc": "Allez à l'hôpital quand les contractions sont espacées de 5 minutes, durent 1 minute chacune et se poursuivent pendant 1 heure.",
-      "hospitalAlert": "Il est temps d'aller à l'hôpital !",
-      "hospitalAlertDesc": "Selon la règle 5-1-1, vos contractions sont maintenant espacées de 5 minutes et durent 1 minute ou plus. Cela indique un travail actif.",
-      "callEmergency": "Appeler les urgences",
+      "laborStage": "Phase estimée",
+      "earlyLabor": "Phase précoce",
+      "earlyLaborDesc": "Reposez-vous et hydratez-vous",
+      "earlyPhase": "Phase précoce",
+      "earlyPhaseDesc": "Reposez-vous et hydratez-vous",
+      "activeLabor": "Phase active",
+      "activeLaborDesc": "Envisagez de partager ce journal avec votre médecin",
+      "activePhase": "Phase active",
+      "activePhaseDesc": "Envisagez de partager ce journal avec votre médecin",
+      "transition": "Phase intensive",
+      "transitionDesc": "Contactez votre médecin avec ce journal",
+      "intensivePhase": "Phase intensive",
+      "intensivePhaseDesc": "Contactez votre médecin avec ce journal",
+      "providerAlert": "Envisagez de contacter votre médecin",
+      "providerAlertDesc": "Selon la directive 5-1-1, vos contractions sont maintenant espacées de 5 minutes et durent 1 minute ou plus. Vous pourriez vouloir partager ce journal avec votre médecin.",
+      "rule511": "La directive 5-1-1",
+      "rule511Desc": "De nombreux médecins recommandent de les contacter quand les contractions sont espacées de 5 minutes, durent 1 minute chacune et continuent pendant 1 heure. Partagez votre journal pour obtenir des conseils.",
+      "callProvider": "Appeler le médecin",
       "understand": "J'ai compris",
       "inProgress": "Contraction en cours...",
-      "ready": "Prêt à suivre",
-      "getAIAnalysis": "Obtenir l'analyse IA du travail",
-      "aiAnalysis": "Analyse IA du travail",
+      "ready": "Prêt à enregistrer",
+      "getAIAnalysis": "Obtenir les aperçus IA du journal",
+      "aiAnalysis": "Aperçus IA du journal",
       "contractions": "Contractions",
       "contractionPattern": "Schéma des contractions",
       "recentContractions": "Contractions récentes",
@@ -1900,10 +1915,10 @@
         "strong": "Forte",
         "very-strong": "Très forte"
       },
-      "disclaimer": "Cet outil est à titre informatif uniquement. Suivez toujours les conseils de votre professionnel de santé concernant le moment d'aller à l'hôpital."
+      "disclaimer": "Cet outil est à titre informatif uniquement. Suivez toujours les conseils de votre professionnel de santé."
     },
     "cycleTracker": {
-      "title": "Suivi du Cycle et Ovulation",
+      "title": "Journal du cycle",
       "subtitle": "Suivez votre cycle et trouvez vos jours fertiles",
       "lastPeriod": "Début des dernières règles",
       "cycleLength": "Durée moyenne du cycle",
