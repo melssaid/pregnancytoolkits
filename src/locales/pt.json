@@ -70,9 +70,9 @@
       "title": "Guia de gravidez IA",
       "description": "Faça qualquer pergunta sobre gravidez e obtenha respostas instantâneas."
     },
-    "symptomAnalyzer": {
-      "title": "Análise de sintomas IA",
-      "description": "Analise seus sintomas com insights inteligentes."
+    "wellnessDiary": {
+      "title": "Diário de bem-estar da gravidez",
+      "description": "Registre e reflita sobre como você se sente durante a gravidez."
     },
     "aiMealSuggestion": {
       "title": "Planejador de refeições IA",
@@ -1332,18 +1332,18 @@
       "analyzing": "Analisando..."
     },
     "symptomAnalyzer": {
-      "title": "Analisador de Sintomas IA",
-      "subtitle": "Informações educativas sobre sintomas da gravidez",
-      "disclaimer": "Esta ferramenta fornece apenas informações educativas. Sempre consulte seu médico para conselhos médicos.",
-      "selectSymptoms": "Selecione Seus Sintomas",
-      "analyze": "Analisar",
-      "analyzing": "Analisando...",
-      "analyzeCount": "Analisar {{count}} Sintoma",
-      "analyzeCountPlural": "Analisar {{count}} Sintomas",
-      "results": "Resultados da Análise",
+      "title": "Diário de bem-estar da gravidez",
+      "subtitle": "Registre e reflita sobre seu bem-estar diário",
+      "disclaimer": "Esta ferramenta é apenas para diário e fins educativos. Sempre consulte seu médico.",
+      "selectSymptoms": "Como você está se sentindo hoje?",
+      "analyze": "Registrar",
+      "analyzing": "Salvando...",
+      "analyzeCount": "Registrar {{count}} sensação",
+      "analyzeCountPlural": "Registrar {{count}} sensações",
+      "results": "Suas notas de bem-estar",
       "week": "Semana {{week}}",
-      "discussWithProvider": "Discuta com seu médico para conselhos personalizados",
-      "remember": "Lembre-se: Cada gravidez é única. Essas informações são apenas educativas e não substituem o conselho médico profissional.",
+      "discussWithProvider": "Compartilhe seu diário com seu médico na próxima visita",
+      "remember": "Cada gravidez é única. Este diário ajuda você a refletir sobre sua jornada e compartilhar notas com seu consultor.",
       "symptoms": {
         "nausea": "Náusea",
         "fatigue": "Fadiga",
@@ -1358,40 +1358,40 @@
       },
       "insights": {
         "nausea": {
-          "early": "Muito comum no primeiro trimestre. Tente refeições pequenas e frequentes e gengibre.",
-          "late": "Menos comum neste estágio. Se severo ou acompanhado de outros sintomas, consulte seu médico."
+          "early": "Muito comum no primeiro trimestre. Muitas mulheres acham refeições pequenas e frequentes e gengibre úteis.",
+          "late": "Menos comum neste estágio. Se persistir, mencione ao seu consultor na próxima visita."
         },
         "fatigue": {
-          "early": "Normal para este estágio. Seu corpo está trabalhando muito! Priorize o descanso.",
-          "mid": "Você pode estar na 'fase de lua de mel', mas ouça seu corpo se precisar descansar."
+          "early": "Seu corpo está fazendo um trabalho incrível agora. Priorize o descanso quando puder.",
+          "mid": "Muitas mulheres se sentem mais energizadas no segundo trimestre — mas ouça seu corpo."
         },
         "headache": {
-          "general": "Mudanças hormonais e aumento do volume sanguíneo podem causar dores de cabeça. Mantenha-se hidratada e descanse em um quarto escuro."
+          "general": "Manter-se hidratada e descansar em um ambiente calmo pode ajudar. Anote a frequência para seu consultor."
         },
         "backpain": {
-          "early": "Monitore de perto. Se acompanhado de cólicas, entre em contato com seu médico.",
-          "late": "Comum à medida que o bebê cresce e o centro de gravidade muda. Alongamentos suaves e boa postura ajudam."
+          "early": "Anote quando acontece. Alongamentos suaves podem proporcionar conforto.",
+          "late": "Comum à medida que seu corpo se adapta. Boa postura e movimento suave podem ajudar."
         },
         "cramps": {
-          "general": "Cólicas leves podem ser normais à medida que o útero se expande. Cólicas severas ou persistentes devem ser avaliadas pelo seu médico."
+          "general": "Sensações leves podem ser normais durante a gravidez. Anote o momento e a intensidade nos seus registros."
         },
         "swelling": {
-          "general": "Inchaço leve nos pés e tornozelos é comum, especialmente no final da gravidez. Eleve os pés e mantenha-se hidratada. Inchaço súbito ou severo requer atenção médica imediata."
+          "general": "Inchaço leve nos pés e tornozelos é comum, especialmente mais tarde. Elevar os pés e manter-se hidratada pode ajudar."
         },
         "heartburn": {
-          "general": "Muito comum durante a gravidez devido a mudanças hormonais. Coma porções menores, evite alimentos picantes e não deite logo após comer."
+          "general": "Muito comum durante a gravidez. Refeições menores e evitar deitar logo após comer pode ajudar."
         },
         "insomnia": {
-          "general": "Dificuldades para dormir são comuns. Tente uma rotina de sono consistente, use travesseiros para apoio e limite o tempo de tela antes de dormir."
+          "general": "Dificuldades para dormir são comuns. Uma rotina de sono consistente e posicionamento confortável podem ajudar."
         },
         "moodswings": {
-          "general": "Flutuações hormonais tornam as mudanças de humor normais. Converse com sua rede de apoio e considere técnicas de relaxamento."
+          "general": "Mudanças emocionais são normais durante a gravidez. Conectar-se com sua rede de apoio pode ser reconfortante."
         },
         "dizziness": {
-          "general": "Pode ser causada por mudanças na pressão arterial. Levante-se devagar, mantenha-se hidratada e coma regularmente. Se frequente, informe seu médico."
+          "general": "Levantar-se devagar, manter-se hidratada e comer regularmente pode ajudar. Anote a frequência para seu consultor."
         },
-        "default": "Este é um sintoma de gravidez conhecido. Monitore a intensidade e frequência e discuta com seu médico.",
-        "defaultFallback": "Sintoma registrado. Discuta a persistência com seu médico."
+        "default": "Esta é uma experiência comum durante a gravidez. Registrar ajuda a acompanhar padrões ao longo do tempo.",
+        "defaultFallback": "Anotado no seu diário. Compartilhe seu diário com seu consultor na próxima visita."
       }
     },
     "vitaminTracker": {

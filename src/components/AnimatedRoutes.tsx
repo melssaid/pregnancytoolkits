@@ -17,7 +17,7 @@ const Contact = lazy(() => import("@/pages/Contact"));
 
 // AI-POWERED CORE TOOLS (8 tools)
 const PregnancyAssistant = lazy(() => import("@/pages/tools/PregnancyAssistant"));
-const AISymptomAnalyzer = lazy(() => import("@/pages/tools/AISymptomAnalyzer"));
+const WellnessDiary = lazy(() => import("@/pages/tools/AISymptomAnalyzer"));
 const AIMealSuggestion = lazy(() => import("@/pages/tools/AIMealSuggestion"));
 const WeeklySummary = lazy(() => import("@/pages/tools/WeeklySummary"));
 const SmartAppointmentReminder = lazy(() => import("@/pages/tools/SmartAppointmentReminder"));
@@ -91,7 +91,7 @@ export function AnimatedRoutes() {
           
           {/* AI-POWERED CORE TOOLS */}
           <Route path="/tools/pregnancy-assistant" element={<PageTransition><PregnancyAssistant /></PageTransition>} />
-          <Route path="/tools/symptom-analyzer" element={<PageTransition><AISymptomAnalyzer /></PageTransition>} />
+          <Route path="/tools/wellness-diary" element={<PageTransition><WellnessDiary /></PageTransition>} />
           <Route path="/tools/ai-meal-suggestion" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
           <Route path="/tools/weekly-summary" element={<PageTransition><WeeklySummary /></PageTransition>} />
           <Route path="/tools/smart-appointment-reminder" element={<PageTransition><SmartAppointmentReminder /></PageTransition>} />

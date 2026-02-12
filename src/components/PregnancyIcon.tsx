@@ -66,7 +66,7 @@ export const PregnancyIcon: React.FC<PregnancyIconProps> = ({
 export const toolIconMapping: Record<string, PregnancyIconName> = {
   // AI Core Tools
   'pregnancy-assistant': 'chat-assistant',
-  'symptom-analyzer': 'heartbeat',
+  'wellness-diary': 'heartbeat',
   'ai-meal-suggestion': 'nutrition',
   'weekly-summary': 'calendar',
   'ai-birth-plan': 'checklist',

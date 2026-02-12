@@ -61,7 +61,7 @@ export const toolsData: Tool[] = [
   // 🤖 AI-POWERED CORE TOOLS (Priority 1-7)
   // ═══════════════════════════════════════════════════════════════
   { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, categoryKey: "categories.ai", href: "/tools/pregnancy-assistant", priority: 1, hasAI: true, isPremium: true },
-  { id: "symptom-analyzer", titleKey: "tools.symptomAnalyzer.title", descriptionKey: "tools.symptomAnalyzer.description", icon: Stethoscope, categoryKey: "categories.ai", href: "/tools/symptom-analyzer", priority: 2, hasAI: true, isPremium: true },
+  { id: "wellness-diary", titleKey: "tools.wellnessDiary.title", descriptionKey: "tools.wellnessDiary.description", icon: Heart, categoryKey: "categories.wellness", href: "/tools/wellness-diary", priority: 2, hasAI: false, isPremium: false },
   { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, categoryKey: "categories.ai", href: "/tools/ai-meal-suggestion", priority: 3, hasAI: true, isPremium: true },
   { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, categoryKey: "categories.ai", href: "/tools/weekly-summary", priority: 4, hasAI: true },
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.ai", href: "/tools/ai-birth-plan", priority: 5, hasAI: true, isPremium: true },
@@ -181,12 +181,12 @@ export const getTotalToolsCount = () => toolsData.length;
 // Logical tool relationships for smart recommendations
 const toolRelationships: Record<string, string[]> = {
   // AI Core Tools
-  "pregnancy-assistant": ["symptom-analyzer", "weekly-summary", "ai-meal-suggestion"],
-  "symptom-analyzer": ["pregnancy-assistant", "ai-sleep-optimizer", "ai-back-pain-relief"],
+  "pregnancy-assistant": ["wellness-diary", "weekly-summary", "ai-meal-suggestion"],
+  "wellness-diary": ["pregnancy-assistant", "ai-sleep-optimizer", "ai-back-pain-relief"],
   "ai-meal-suggestion": ["ai-craving-alternatives", "smart-grocery-list", "forbidden-foods"],
   "weekly-summary": ["pregnancy-assistant", "fetal-growth", "weight-gain"],
   "ai-birth-plan": ["ai-hospital-bag", "ai-birth-position", "ai-partner-guide"],
-  "smart-appointment-reminder": ["pregnancy-assistant", "symptom-analyzer", "weekly-summary"],
+  "smart-appointment-reminder": ["pregnancy-assistant", "wellness-diary", "weekly-summary"],
   "ai-craving-alternatives": ["ai-meal-suggestion", "smart-grocery-list", "forbidden-foods"],
   "smart-grocery-list": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
   
@@ -196,12 +196,12 @@ const toolRelationships: Record<string, string[]> = {
   "ai-partner-guide": ["ai-birth-plan", "ai-hospital-bag", "ai-labor-progress"],
   "ai-birth-position": ["ai-labor-progress", "ai-birth-plan", "ai-back-pain-relief"],
   "ai-pregnancy-skincare": ["ai-meal-suggestion", "vitamin-tracker", "weekly-summary"],
-  "ai-nausea-relief": ["ai-meal-suggestion", "symptom-analyzer", "ai-craving-alternatives"],
+  "ai-nausea-relief": ["ai-meal-suggestion", "wellness-diary", "ai-craving-alternatives"],
   "ai-bump-photos": ["weekly-summary", "fetal-growth", "baby-growth"],
   
   // Wellness
   "ai-fitness-coach": ["ai-back-pain-relief", "vitamin-tracker", "weight-gain"],
-  "ai-back-pain-relief": ["ai-fitness-coach", "ai-sleep-optimizer", "symptom-analyzer"],
+  "ai-back-pain-relief": ["ai-fitness-coach", "ai-sleep-optimizer", "wellness-diary"],
   "vitamin-tracker": ["ai-meal-suggestion", "smart-grocery-list", "forbidden-foods"],
   "forbidden-foods": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
   
@@ -214,15 +214,15 @@ const toolRelationships: Record<string, string[]> = {
   
   // Pregnancy Tracking
   "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
-  "kick-counter": ["fetal-growth", "symptom-analyzer", "ai-labor-progress"],
+  "kick-counter": ["fetal-growth", "wellness-diary", "ai-labor-progress"],
   "weight-gain": ["ai-meal-suggestion", "ai-fitness-coach", "weekly-summary"],
   
   // Mental Health
   "postpartum-mental-health": ["ai-sleep-optimizer", "pregnancy-assistant", "ai-stress-relief"],
   
   // Risk Assessment
-  "gestational-diabetes": ["ai-meal-suggestion", "ai-fitness-coach", "symptom-analyzer"],
-  "preeclampsia-risk": ["symptom-analyzer", "pregnancy-assistant", "gestational-diabetes"],
+  "gestational-diabetes": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
+  "preeclampsia-risk": ["wellness-diary", "pregnancy-assistant", "gestational-diabetes"],
   
   // Preparation
   "baby-gear-recommender": ["ai-hospital-bag", "ai-lactation-prep", "baby-growth"],
