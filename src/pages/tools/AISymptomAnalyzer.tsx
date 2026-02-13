@@ -115,7 +115,7 @@ const AISymptomAnalyzer: React.FC = () => {
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="AI Symptom Analyzer"
+        toolName="Pregnancy Wellness Diary"
         onAccept={() => setShowDisclaimer(false)}
       />
     );

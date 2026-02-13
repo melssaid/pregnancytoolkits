@@ -40,8 +40,8 @@ export default function GestationalDiabetes() {
     if (totalPoints >= 5) {
       return {
         level: "high",
-        title: "Higher Risk",
-        description: "Your risk factors suggest elevated likelihood. Early screening may be recommended.",
+        title: t('toolsInternal.gdm.riskLevels.high.title', 'More Factors Present'),
+        description: t('toolsInternal.gdm.riskLevels.high.description', 'You have selected several factors. Consider discussing screening options with your healthcare provider.'),
         icon: AlertTriangle,
         color: "text-destructive",
         bgColor: "bg-destructive/10",
@@ -50,22 +50,22 @@ export default function GestationalDiabetes() {
     } else if (totalPoints >= 3) {
       return {
         level: "moderate",
-        title: "Moderate Risk",
-        description: "You have some risk factors. Standard screening at 24-28 weeks is recommended.",
+        title: t('toolsInternal.gdm.riskLevels.moderate.title', 'Some Factors Present'),
+        description: t('toolsInternal.gdm.riskLevels.moderate.description', 'You have some factors. Standard screening at 24-28 weeks is commonly recommended.'),
         icon: Shield,
-        color: "text-amber-600",
-        bgColor: "bg-amber-50 dark:bg-amber-950/20",
-        borderColor: "border-amber-200 dark:border-amber-800",
+        color: "text-muted-foreground",
+        bgColor: "bg-muted",
+        borderColor: "border-border",
       };
     } else {
       return {
         level: "low",
-        title: "Lower Risk",
-        description: "You have few risk factors, but routine screening at 24-28 weeks is still recommended.",
+        title: t('toolsInternal.gdm.riskLevels.low.title', 'Fewer Factors'),
+        description: t('toolsInternal.gdm.riskLevels.low.description', 'You have selected few factors. Routine screening at 24-28 weeks is still commonly recommended.'),
         icon: CheckCircle,
-        color: "text-emerald-600",
-        bgColor: "bg-emerald-50 dark:bg-emerald-950/20",
-        borderColor: "border-emerald-200 dark:border-emerald-800",
+        color: "text-primary",
+        bgColor: "bg-primary/5",
+        borderColor: "border-primary/20",
       };
     }
   };

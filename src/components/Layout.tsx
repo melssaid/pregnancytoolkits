@@ -31,7 +31,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </div>
           <div className="flex items-center gap-1">
             <Award className="h-3 w-3" />
-            <span>{t('layout.trustBar.premium', 'Premium Experience')}</span>
+            <span>{t('layout.trustBar.freeAccess', 'Free Access')}</span>
           </div>
         </div>
       </div>
