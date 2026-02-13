@@ -37,10 +37,10 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, is
               </div>
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="text-xs font-semibold text-foreground truncate leading-snug">
+              <h3 className="text-[11px] font-semibold text-foreground truncate leading-snug">
                 {t(titleKey)}
               </h3>
-              <p className="text-[10px] text-muted-foreground truncate mt-0.5">
+              <p className="text-[9px] text-muted-foreground truncate mt-0.5">
                 {t(descriptionKey)}
               </p>
             </div>
@@ -63,12 +63,12 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, is
             <Icon className="w-4 h-4 text-muted-foreground" strokeWidth={1.75} />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-xs font-semibold text-foreground truncate leading-snug">
-              {t(titleKey)}
-            </h3>
-            <p className="text-[10px] text-muted-foreground truncate mt-0.5">
-              {t(descriptionKey)}
-            </p>
+              <h3 className="text-[11px] font-semibold text-foreground truncate leading-snug">
+                {t(titleKey)}
+              </h3>
+              <p className="text-[9px] text-muted-foreground truncate mt-0.5">
+                {t(descriptionKey)}
+              </p>
           </div>
           <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/60 group-hover:text-foreground/60 transition-colors" />
         </div>
