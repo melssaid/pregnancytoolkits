@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, forwardRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, ArrowRight } from "lucide-react";
@@ -12,8 +12,7 @@ interface SearchDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
-  function SearchDialog({ open, onOpenChange }, ref) {
+export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
@@ -58,7 +57,7 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
 
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent ref={ref} className="max-w-lg p-0 gap-0 overflow-hidden bg-card/95 backdrop-blur-xl border-border/50">
+        <DialogContent className="max-w-lg p-0 gap-0 overflow-hidden bg-card/95 backdrop-blur-xl border-border/50">
           {/* Search Input */}
           <div className="flex items-center border-b border-border/50 px-4">
             <Search className="h-4 w-4 text-muted-foreground shrink-0" />
@@ -171,7 +170,6 @@ export const SearchDialog = forwardRef<HTMLDivElement, SearchDialogProps>(
         </DialogContent>
       </Dialog>
     );
-  }
-);
+}
 
 SearchDialog.displayName = "SearchDialog";
