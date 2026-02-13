@@ -50,6 +50,51 @@ export type Database = {
         }
         Relationships: []
       }
+      subscriptions: {
+        Row: {
+          created_at: string
+          google_play_order_id: string | null
+          google_play_token: string | null
+          id: string
+          status: string
+          subscription_end: string | null
+          subscription_start: string | null
+          subscription_type: string
+          trial_end: string
+          trial_start: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          google_play_order_id?: string | null
+          google_play_token?: string | null
+          id?: string
+          status?: string
+          subscription_end?: string | null
+          subscription_start?: string | null
+          subscription_type?: string
+          trial_end?: string
+          trial_start?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          google_play_order_id?: string | null
+          google_play_token?: string | null
+          id?: string
+          status?: string
+          subscription_end?: string | null
+          subscription_start?: string | null
+          subscription_type?: string
+          trial_end?: string
+          trial_start?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       tool_analytics: {
         Row: {
           action_type: string
