@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const INSTALLATION_KEY = "pregnancy_toolkit_install_date";
+const INSTALLATION_KEY = "pregnancy_toolkit_install_date_v2";
 const SUBSCRIPTION_KEY = "pregnancy_toolkit_subscription";
 const TRIAL_DAYS = 7;
 
@@ -26,8 +26,17 @@ export const useSubscription = () => {
     let installDate = localStorage.getItem(INSTALLATION_KEY);
 
     if (!installDate) {
+      // Fresh install — start trial now
       installDate = new Date().toISOString();
       localStorage.setItem(INSTALLATION_KEY, installDate);
+    } else {
+      // Validate stored date — if it's corrupted or too old (> 365 days), reset it
+      const stored = new Date(installDate);
+      const now = new Date();
+      if (isNaN(stored.getTime()) || (now.getTime() - stored.getTime()) > 365 * 24 * 60 * 60 * 1000) {
+        installDate = new Date().toISOString();
+        localStorage.setItem(INSTALLATION_KEY, installDate);
+      }
     }
 
     const install = new Date(installDate);
