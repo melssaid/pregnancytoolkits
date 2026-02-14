@@ -1412,7 +1412,18 @@
       "todayEntries": "{{count}} entradas registradas hoy",
       "diaryHistory": "Historial del diario",
       "showInsight": "Mostrar análisis IA",
-      "hideInsight": "Ocultar análisis IA"
+      "hideInsight": "Ocultar análisis IA",
+      "chartTitle": "Tendencias de bienestar",
+      "chartMoodTab": "Ánimo",
+      "chartSymptomsTab": "Síntomas",
+      "chartMinEntries": "Registra al menos 2 entradas para ver tus tendencias",
+      "chartSymptomCount": "{{count}} síntomas",
+      "chartAverage": "Promedio",
+      "chartImproving": "Mejorando",
+      "chartDeclining": "En declive",
+      "chartStable": "Estable",
+      "chartTimes": "veces",
+      "chartNoSymptoms": "No se registraron síntomas en los últimos 14 días"
     },
     "vitaminTracker": {
       "title": "Seguimiento de Vitaminas",

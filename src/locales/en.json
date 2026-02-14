@@ -1313,7 +1313,18 @@
       "todayEntries": "{{count}} entries logged today",
       "diaryHistory": "Diary History",
       "showInsight": "Show AI insight",
-      "hideInsight": "Hide AI insight"
+      "hideInsight": "Hide AI insight",
+      "chartTitle": "Wellness Trends",
+      "chartMoodTab": "Mood",
+      "chartSymptomsTab": "Symptoms",
+      "chartMinEntries": "Log at least 2 diary entries to see your wellness trends",
+      "chartSymptomCount": "{{count}} symptoms",
+      "chartAverage": "Average",
+      "chartImproving": "Improving",
+      "chartDeclining": "Declining",
+      "chartStable": "Stable",
+      "chartTimes": "times",
+      "chartNoSymptoms": "No symptoms logged in the last 14 days"
     },
     "vitaminTracker": {
       "title": "Vitamin Tracker",
