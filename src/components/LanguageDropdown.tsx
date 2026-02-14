@@ -52,39 +52,16 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className={cn(
-            "relative inline-flex items-center justify-center",
-            "h-11 w-11 rounded-full",
-            "bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20",
-            "border border-primary/30 hover:border-primary/50",
-            "shadow-sm hover:shadow-md hover:shadow-primary/20",
-            "transition-all duration-300",
-            "group overflow-hidden",
+            "inline-flex items-center justify-center",
+            "h-9 w-9 rounded-lg",
+            "bg-muted/60 hover:bg-muted",
+            "border border-border/50 hover:border-border",
+            "transition-all duration-200",
             isChanging && "opacity-70 pointer-events-none",
             className
           )}
         >
-          {/* Animated glow effect */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0"
-            animate={{
-              x: ['-100%', '100%'],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 3,
-            }}
-          />
-          
-          <span className="relative text-sm leading-none z-10">{currentLang.flag}</span>
-          
-          {/* Hover indicator */}
-          <motion.div
-            className="absolute -bottom-0.5 left-1/2 h-0.5 bg-primary rounded-full"
-            initial={{ width: 0, x: '-50%' }}
-            whileHover={{ width: '60%' }}
-            transition={{ duration: 0.2 }}
-          />
+          <span className="text-sm leading-none">{currentLang.flag}</span>
         </MotionButton>
       </PopoverTrigger>
       
