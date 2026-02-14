@@ -1412,7 +1412,18 @@
       "todayEntries": "Bugün {{count}} kayıt girildi",
       "diaryHistory": "Günlük Geçmişi",
       "showInsight": "Yapay zeka analizini göster",
-      "hideInsight": "Yapay zeka analizini gizle"
+      "hideInsight": "Yapay zeka analizini gizle",
+      "chartTitle": "Sağlık Trendleri",
+      "chartMoodTab": "Ruh Hali",
+      "chartSymptomsTab": "Belirtiler",
+      "chartMinEntries": "Trendlerinizi görmek için en az 2 giriş kaydedin",
+      "chartSymptomCount": "{{count}} belirti",
+      "chartAverage": "Ortalama",
+      "chartImproving": "İyileşiyor",
+      "chartDeclining": "Düşüyor",
+      "chartStable": "Sabit",
+      "chartTimes": "kez",
+      "chartNoSymptoms": "Son 14 günde belirti kaydedilmedi"
     },
     "vitaminTracker": {
       "title": "Vitamin Takibi",

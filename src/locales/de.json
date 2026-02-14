@@ -1412,7 +1412,18 @@
       "todayEntries": "{{count}} Einträge heute erfasst",
       "diaryHistory": "Tagebuchverlauf",
       "showInsight": "KI-Einblick anzeigen",
-      "hideInsight": "KI-Einblick ausblenden"
+      "hideInsight": "KI-Einblick ausblenden",
+      "chartTitle": "Wellness-Trends",
+      "chartMoodTab": "Stimmung",
+      "chartSymptomsTab": "Symptome",
+      "chartMinEntries": "Loggen Sie mindestens 2 Einträge, um Ihre Trends zu sehen",
+      "chartSymptomCount": "{{count}} Symptome",
+      "chartAverage": "Durchschnitt",
+      "chartImproving": "Verbessernd",
+      "chartDeclining": "Rückläufig",
+      "chartStable": "Stabil",
+      "chartTimes": "Mal",
+      "chartNoSymptoms": "Keine Symptome in den letzten 14 Tagen protokolliert"
     },
     "appointmentReminder": {
       "title": "Intelligente Terminerinnerung",

@@ -1412,7 +1412,18 @@
       "todayEntries": "{{count}} entrées enregistrées aujourd'hui",
       "diaryHistory": "Historique du journal",
       "showInsight": "Afficher l'analyse IA",
-      "hideInsight": "Masquer l'analyse IA"
+      "hideInsight": "Masquer l'analyse IA",
+      "chartTitle": "Tendances bien-être",
+      "chartMoodTab": "Humeur",
+      "chartSymptomsTab": "Symptômes",
+      "chartMinEntries": "Enregistrez au moins 2 entrées pour voir vos tendances",
+      "chartSymptomCount": "{{count}} symptômes",
+      "chartAverage": "Moyenne",
+      "chartImproving": "En amélioration",
+      "chartDeclining": "En baisse",
+      "chartStable": "Stable",
+      "chartTimes": "fois",
+      "chartNoSymptoms": "Aucun symptôme enregistré ces 14 derniers jours"
     },
     "appointmentReminder": {
       "title": "Rappel de Rendez-vous Intelligent",

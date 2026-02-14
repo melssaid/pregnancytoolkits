@@ -3,6 +3,7 @@ import {
   Brain, Info, Loader2, Sparkles, Calendar, 
   Clock, Trash2, ChevronDown, ChevronUp, Plus, Heart, SmilePlus, NotebookPen
 } from 'lucide-react';
+import { WellnessDiaryChart } from '@/components/charts/WellnessDiaryChart';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -177,6 +178,9 @@ Please provide brief, supportive wellness insights about these feelings during w
           label={t('toolsInternal.weekSlider.currentWeek')}
           showTrimester
         />
+
+        {/* Wellness Chart */}
+        <WellnessDiaryChart entries={entries} />
 
         {/* Mood Selection */}
         <Card className="overflow-hidden">

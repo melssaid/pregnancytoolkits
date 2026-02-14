@@ -1123,7 +1123,18 @@
       "todayEntries": "{{count}} إدخالات مسجلة اليوم",
       "diaryHistory": "سجل اليوميات",
       "showInsight": "عرض رؤية الذكاء الاصطناعي",
-      "hideInsight": "إخفاء رؤية الذكاء الاصطناعي"
+      "hideInsight": "إخفاء رؤية الذكاء الاصطناعي",
+      "chartTitle": "اتجاهات العافية",
+      "chartMoodTab": "المزاج",
+      "chartSymptomsTab": "الأعراض",
+      "chartMinEntries": "سجّلي إدخالين على الأقل لعرض اتجاهات العافية",
+      "chartSymptomCount": "{{count}} أعراض",
+      "chartAverage": "المعدل",
+      "chartImproving": "تحسن",
+      "chartDeclining": "تراجع",
+      "chartStable": "مستقر",
+      "chartTimes": "مرات",
+      "chartNoSymptoms": "لم يتم تسجيل أعراض في آخر 14 يوماً"
     },
     "vitaminTracker": {
       "title": "متتبع الفيتامينات",
