@@ -2064,7 +2064,21 @@
         "strong": "Güçlü",
         "very-strong": "Çok Güçlü"
       },
-      "disclaimer": "Bu araç yalnızca bilgi amaçlıdır. Her zaman sağlık uzmanınızın rehberliğine uyun."
+      "disclaimer": "Bu araç yalnızca bilgi amaçlıdır. Her zaman sağlık uzmanınızın rehberliğine uyun.",
+      "aiAnalysisDesc": "Günlük girişlerinize göre kişiselleştirilmiş nefes teknikleri, rahatlık önlemleri ve cesaretlendirme alın.",
+      "analyzing": "Günlüğünüz analiz ediliyor...",
+      "breathingGuide": "Hızlı Nefes Rehberi",
+      "breathingEarly": "Erken Aşama: Yavaş Nefes",
+      "breathingEarlyDesc": "Burundan nefes alın (4 sayım) → Ağızdan nefes verin (6 sayım)",
+      "breathingActive": "Aktif Aşama: Ritmik Nefes",
+      "breathingActiveDesc": "Hafif nefes: \"Hi-hi-hu\" düzeni, nefes vermeye odaklanın",
+      "breathingIntensive": "Yoğun Aşama: Üfleme Nefesi",
+      "breathingIntensiveDesc": "Kısa nefes alın → Uzun üfleyin, mumu yavaşça söndürür gibi",
+      "comfortTips": "Rahatlık İpuçları",
+      "warmWater": "Sırta sıcak duş",
+      "walkGently": "Aralarında hafifçe yürüyün",
+      "birthBall": "Doğum topunda sallanma",
+      "counterPressure": "Bele karşı basınç uygulama"
     },
     "birthPosition": {
       "title": "AI Doğum Pozisyonları",

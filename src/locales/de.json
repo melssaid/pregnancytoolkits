@@ -1894,7 +1894,21 @@
         "strong": "Stark",
         "very-strong": "Sehr stark"
       },
-      "disclaimer": "Dieses Tool dient nur zu Informationszwecken. Befolgen Sie immer die Anweisungen Ihres Arztes."
+      "disclaimer": "Dieses Tool dient nur zu Informationszwecken. Befolgen Sie immer die Anweisungen Ihres Arztes.",
+      "aiAnalysisDesc": "Erhalten Sie personalisierte Atemtechniken, Komfortmaßnahmen und Ermutigung basierend auf Ihren Tagebucheinträgen.",
+      "analyzing": "Ihr Tagebuch wird analysiert...",
+      "breathingGuide": "Schnelle Atemanleitung",
+      "breathingEarly": "Frühe Phase: Langsames Atmen",
+      "breathingEarlyDesc": "Durch die Nase einatmen (4 Zähler) → Durch den Mund ausatmen (6 Zähler)",
+      "breathingActive": "Aktive Phase: Rhythmisches Atmen",
+      "breathingActiveDesc": "Leichtes Atmen: \"Hi-hi-hu\"-Muster, auf das Ausatmen konzentrieren",
+      "breathingIntensive": "Intensive Phase: Blasatmung",
+      "breathingIntensiveDesc": "Kurz einatmen → Lang ausblasen, wie eine Kerze langsam ausblasen",
+      "comfortTips": "Komforttipps",
+      "warmWater": "Warme Dusche auf den Rücken",
+      "walkGently": "Sanft dazwischen gehen",
+      "birthBall": "Auf dem Geburtsball schaukeln",
+      "counterPressure": "Gegendruck auf den unteren Rücken"
     },
     "cycleTracker": {
       "title": "Zyklustagebuch",
