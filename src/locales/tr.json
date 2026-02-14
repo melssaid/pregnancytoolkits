@@ -2197,9 +2197,9 @@
       "earlyLabor": "Erken Doğum",
       "activeLabor": "Aktif Doğum",
       "transition": "Geçiş",
-      "timeToGo": "Hastaneye gitme zamanı",
-      "rule511": "5-1-1 Kuralı",
-      "rule511Desc": "Kasılmalar 5 dakikada bir, 1 dakika süreyle, 1 saat boyunca"
+      "timeToGo": "Doktorunuzla iletişime geçmeyi düşünün",
+      "rule511": "5-1-1 Rehberi",
+      "rule511Desc": "Birçok doktor, kasılmalar 5 dakikada bir, 1 dakika süreyle, 1 saat boyunca geldiğinde iletişime geçmenizi önerir"
     },
     "mentalHealth": {
       "title": "Ruh Sağlığı Koçu",
