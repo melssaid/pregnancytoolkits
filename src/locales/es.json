@@ -1335,7 +1335,7 @@
       "title": "Diario de bienestar del embarazo",
       "subtitle": "Registra y reflexiona sobre tu bienestar diario",
       "disclaimer": "Esta herramienta es solo para diario y fines educativos. Consulta siempre a tu médico.",
-      "selectSymptoms": "¿Cómo te sientes hoy?",
+      "selectSymptoms": "¿Qué estás experimentando?",
       "analyze": "Registrar",
       "analyzing": "Guardando...",
       "analyzeCount": "Registrar {{count}} sensación",

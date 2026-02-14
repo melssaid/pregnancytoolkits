@@ -1236,7 +1236,7 @@
       "title": "Pregnancy Wellness Diary",
       "subtitle": "Log and reflect on your daily wellness",
       "disclaimer": "This tool is for journaling and educational purposes only. Always consult your healthcare provider for medical advice.",
-      "selectSymptoms": "How Are You Feeling Today?",
+      "selectSymptoms": "What are you experiencing?",
       "analyze": "Log Entry",
       "analyzing": "Saving...",
       "analyzeCount": "Log {{count}} Feeling",
