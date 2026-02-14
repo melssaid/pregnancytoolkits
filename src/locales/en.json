@@ -1293,7 +1293,27 @@
         },
         "default": "This is a common experience during pregnancy. Logging it helps you track patterns over time.",
         "defaultFallback": "Noted in your diary. Share your journal with your consultant at your next visit."
-      }
+      },
+      "howFeeling": "How are you feeling today?",
+      "moods": {
+        "great": "Great",
+        "good": "Good",
+        "okay": "Okay",
+        "tired": "Tired",
+        "tough": "Tough"
+      },
+      "addNotes": "Additional Notes",
+      "notesPlaceholder": "Write anything about your day, how you feel, what you ate...",
+      "getInsights": "Get AI Wellness Insights",
+      "aiWellnessNotes": "AI Wellness Notes",
+      "saveEntry": "Save Diary Entry",
+      "entrySaved": "Entry saved to your diary!",
+      "entryDeleted": "Entry removed",
+      "selectAtLeastOne": "Please select at least one symptom or mood",
+      "todayEntries": "{{count}} entries logged today",
+      "diaryHistory": "Diary History",
+      "showInsight": "Show AI insight",
+      "hideInsight": "Hide AI insight"
     },
     "vitaminTracker": {
       "title": "Vitamin Tracker",

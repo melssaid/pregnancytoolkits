@@ -1392,7 +1392,27 @@
         },
         "default": "Dies ist eine häufige Erfahrung während der Schwangerschaft. Das Dokumentieren hilft Ihnen, Muster zu erkennen.",
         "defaultFallback": "In Ihrem Tagebuch notiert. Teilen Sie Ihr Tagebuch bei Ihrem nächsten Besuch mit Ihrem Berater."
-      }
+      },
+      "howFeeling": "Wie fühlen Sie sich heute?",
+      "moods": {
+        "great": "Großartig",
+        "good": "Gut",
+        "okay": "Okay",
+        "tired": "Müde",
+        "tough": "Schwierig"
+      },
+      "addNotes": "Zusätzliche Notizen",
+      "notesPlaceholder": "Schreiben Sie etwas über Ihren Tag, wie Sie sich fühlen, was Sie gegessen haben...",
+      "getInsights": "KI-Wellness-Einblicke erhalten",
+      "aiWellnessNotes": "KI-Wellness-Notizen",
+      "saveEntry": "Tagebucheintrag speichern",
+      "entrySaved": "Eintrag in Ihrem Tagebuch gespeichert!",
+      "entryDeleted": "Eintrag entfernt",
+      "selectAtLeastOne": "Bitte wählen Sie mindestens ein Symptom oder eine Stimmung",
+      "todayEntries": "{{count}} Einträge heute erfasst",
+      "diaryHistory": "Tagebuchverlauf",
+      "showInsight": "KI-Einblick anzeigen",
+      "hideInsight": "KI-Einblick ausblenden"
     },
     "appointmentReminder": {
       "title": "Intelligente Terminerinnerung",
