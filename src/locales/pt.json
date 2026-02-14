@@ -1335,7 +1335,7 @@
       "title": "Diário de bem-estar da gravidez",
       "subtitle": "Registre e reflita sobre seu bem-estar diário",
       "disclaimer": "Esta ferramenta é apenas para diário e fins educativos. Sempre consulte seu médico.",
-      "selectSymptoms": "Como você está se sentindo hoje?",
+      "selectSymptoms": "O que você está sentindo?",
       "analyze": "Registrar",
       "analyzing": "Salvando...",
       "analyzeCount": "Registrar {{count}} sensação",

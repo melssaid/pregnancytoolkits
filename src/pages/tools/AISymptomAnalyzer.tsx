@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
-  Brain, CheckCircle, Info, Loader2, Sparkles, Calendar, 
-  Clock, Trash2, ChevronDown, ChevronUp, Plus
+  Brain, Info, Loader2, Sparkles, Calendar, 
+  Clock, Trash2, ChevronDown, ChevronUp, Plus, Heart, SmilePlus, NotebookPen
 } from 'lucide-react';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
@@ -23,6 +23,12 @@ const SYMPTOM_IDS = [
   'nausea', 'fatigue', 'headache', 'backpain', 'cramps',
   'swelling', 'heartburn', 'insomnia', 'moodswings', 'dizziness'
 ] as const;
+
+const SYMPTOM_EMOJIS: Record<string, string> = {
+  nausea: '🤢', fatigue: '😴', headache: '🤕', backpain: '💆',
+  cramps: '⚡', swelling: '🦶', heartburn: '🔥', insomnia: '🌙',
+  moodswings: '🎭', dizziness: '💫'
+};
 
 const MOOD_OPTIONS = ['great', 'good', 'okay', 'tired', 'tough'] as const;
 const MOOD_EMOJIS: Record<string, string> = {
@@ -46,14 +52,12 @@ const AISymptomAnalyzer: React.FC = () => {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentWeek, setCurrentWeek] = useState(12);
 
-  // Entry form state
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [notes, setNotes] = useState('');
   const [aiInsight, setAiInsight] = useState('');
   const [isGettingInsight, setIsGettingInsight] = useState(false);
 
-  // History state
   const [entries, setEntries] = useState<DiaryEntry[]>([]);
   const [showHistory, setShowHistory] = useState(false);
   const [expandedEntry, setExpandedEntry] = useState<string | null>(null);
@@ -62,7 +66,6 @@ const AISymptomAnalyzer: React.FC = () => {
     setAiInsight('');
   });
 
-  // Load saved entries
   useEffect(() => {
     const saved = safeParseLocalStorage<DiaryEntry[]>(
       STORAGE_KEY, [],
@@ -79,14 +82,12 @@ const AISymptomAnalyzer: React.FC = () => {
 
   const getAIInsight = useCallback(async () => {
     if (selectedSymptoms.length === 0) return;
-
     setIsGettingInsight(true);
     setAiInsight('');
 
     const symptomNames = selectedSymptoms.map(id =>
       t(`toolsInternal.symptomAnalyzer.symptoms.${id}`)
     ).join(', ');
-
     const moodLabel = selectedMood ? t(`toolsInternal.symptomAnalyzer.moods.${selectedMood}`) : '';
 
     const prompt = `I'm at week ${currentWeek} of pregnancy. Today I'm experiencing: ${symptomNames}.${moodLabel ? ` My mood is: ${moodLabel}.` : ''}${notes ? ` Additional notes: ${notes}` : ''}
@@ -120,11 +121,10 @@ Please provide brief, supportive wellness insights about these feelings during w
       createdAt: new Date().toISOString(),
     };
 
-    const updated = [newEntry, ...entries].slice(0, 100); // Keep last 100 entries
+    const updated = [newEntry, ...entries].slice(0, 100);
     setEntries(updated);
     safeSaveToLocalStorage(STORAGE_KEY, updated);
 
-    // Reset form
     setSelectedSymptoms([]);
     setSelectedMood('');
     setNotes('');
@@ -162,14 +162,12 @@ Please provide brief, supportive wellness insights about these feelings during w
 
         {/* Today's summary */}
         {todayEntries.length > 0 && (
-          <Card className="border-primary/20 bg-primary/5">
-            <CardContent className="p-3">
-              <div className="flex items-center gap-2 text-xs text-primary font-medium">
-                <Calendar className="w-3.5 h-3.5" />
-                {t('toolsInternal.symptomAnalyzer.todayEntries', { count: todayEntries.length })}
-              </div>
-            </CardContent>
-          </Card>
+          <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-primary/10 w-fit">
+            <Calendar className="w-3.5 h-3.5 text-primary" />
+            <span className="text-xs text-primary font-medium">
+              {t('toolsInternal.symptomAnalyzer.todayEntries', { count: todayEntries.length })}
+            </span>
+          </div>
         )}
 
         {/* Week Selector */}
@@ -181,22 +179,25 @@ Please provide brief, supportive wellness insights about these feelings during w
         />
 
         {/* Mood Selection */}
-        <Card>
+        <Card className="overflow-hidden">
           <CardContent className="p-3">
-            <h2 className="text-sm font-semibold mb-2">{t('toolsInternal.symptomAnalyzer.howFeeling')}</h2>
-            <div className="flex gap-2 justify-center">
+            <div className="flex items-center gap-2 mb-3">
+              <SmilePlus className="w-4 h-4 text-primary" />
+              <h2 className="text-sm font-semibold">{t('toolsInternal.symptomAnalyzer.howFeeling')}</h2>
+            </div>
+            <div className="grid grid-cols-5 gap-1.5">
               {MOOD_OPTIONS.map(mood => (
                 <button
                   key={mood}
                   onClick={() => setSelectedMood(prev => prev === mood ? '' : mood)}
-                  className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all min-w-[50px] ${
+                  className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all ${
                     selectedMood === mood
-                      ? 'bg-primary/15 ring-2 ring-primary/50'
-                      : 'bg-muted hover:bg-muted/80'
+                      ? 'bg-primary/15 ring-2 ring-primary/40 shadow-sm'
+                      : 'bg-muted/60 hover:bg-muted'
                   }`}
                 >
-                  <span className="text-xl">{MOOD_EMOJIS[mood]}</span>
-                  <span className="text-[10px] font-medium truncate">
+                  <span className="text-2xl">{MOOD_EMOJIS[mood]}</span>
+                  <span className="text-[10px] font-medium leading-tight text-center">
                     {t(`toolsInternal.symptomAnalyzer.moods.${mood}`)}
                   </span>
                 </button>
@@ -206,23 +207,30 @@ Please provide brief, supportive wellness insights about these feelings during w
         </Card>
 
         {/* Symptom Selection */}
-        <Card>
+        <Card className="overflow-hidden">
           <CardContent className="p-3">
-            <h2 className="text-sm font-semibold mb-2">{t('toolsInternal.symptomAnalyzer.selectSymptoms')}</h2>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex items-center gap-2 mb-3">
+              <Heart className="w-4 h-4 text-primary" />
+              <h2 className="text-sm font-semibold">{t('toolsInternal.symptomAnalyzer.selectSymptoms')}</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-1.5">
               {SYMPTOM_IDS.map(id => {
                 const isSelected = selectedSymptoms.includes(id);
                 return (
-                  <Badge
+                  <button
                     key={id}
-                    variant={isSelected ? "default" : "outline"}
-                    className={`cursor-pointer text-xs py-1 px-2.5 transition-all ${
-                      isSelected ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'
-                    }`}
                     onClick={() => toggleSymptom(id)}
+                    className={`flex items-center gap-2 p-2 rounded-xl text-start transition-all text-xs ${
+                      isSelected
+                        ? 'bg-primary/15 ring-1 ring-primary/40 shadow-sm'
+                        : 'bg-muted/60 hover:bg-muted'
+                    }`}
                   >
-                    {t(`toolsInternal.symptomAnalyzer.symptoms.${id}`)}
-                  </Badge>
+                    <span className="text-base shrink-0">{SYMPTOM_EMOJIS[id]}</span>
+                    <span className="font-medium truncate">
+                      {t(`toolsInternal.symptomAnalyzer.symptoms.${id}`)}
+                    </span>
+                  </button>
                 );
               })}
             </div>
@@ -230,14 +238,17 @@ Please provide brief, supportive wellness insights about these feelings during w
         </Card>
 
         {/* Notes */}
-        <Card>
+        <Card className="overflow-hidden">
           <CardContent className="p-3">
-            <h2 className="text-sm font-semibold mb-2">{t('toolsInternal.symptomAnalyzer.addNotes')}</h2>
+            <div className="flex items-center gap-2 mb-2">
+              <NotebookPen className="w-4 h-4 text-primary" />
+              <h2 className="text-sm font-semibold">{t('toolsInternal.symptomAnalyzer.addNotes')}</h2>
+            </div>
             <Textarea
               placeholder={t('toolsInternal.symptomAnalyzer.notesPlaceholder')}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="text-xs min-h-[60px] resize-none"
+              className="text-xs min-h-[60px] resize-none bg-muted/30 border-muted"
               maxLength={500}
             />
           </CardContent>
@@ -265,13 +276,13 @@ Please provide brief, supportive wellness insights about these feelings during w
 
         {/* AI Response */}
         {aiInsight && (
-          <Card className="border-purple-200 bg-purple-50/50 dark:bg-purple-950/20 dark:border-purple-800/30">
+          <Card className="overflow-hidden border-accent/30 bg-accent/5">
             <CardContent className="p-3">
               <div className="flex items-center gap-2 mb-2">
-                <Brain className="w-4 h-4 text-purple-500" />
+                <Brain className="w-4 h-4 text-accent-foreground" />
                 <span className="text-xs font-semibold">{t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}</span>
               </div>
-              <MarkdownRenderer content={aiInsight} isLoading={isGettingInsight} accentColor="purple-500" />
+              <MarkdownRenderer content={aiInsight} isLoading={isGettingInsight} />
             </CardContent>
           </Card>
         )}
@@ -288,15 +299,18 @@ Please provide brief, supportive wellness insights about these feelings during w
 
         {/* History Section */}
         {entries.length > 0 && (
-          <Card>
+          <Card className="overflow-hidden">
             <CardContent className="p-3">
               <button
                 onClick={() => setShowHistory(!showHistory)}
-                className="w-full flex items-center justify-between text-sm font-semibold"
+                className="w-full flex items-center justify-between"
               >
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-muted-foreground" />
-                  {t('toolsInternal.symptomAnalyzer.diaryHistory')} ({entries.length})
+                  <span className="text-sm font-semibold">
+                    {t('toolsInternal.symptomAnalyzer.diaryHistory')}
+                  </span>
+                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0">{entries.length}</Badge>
                 </div>
                 {showHistory ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </button>
@@ -304,57 +318,57 @@ Please provide brief, supportive wellness insights about these feelings during w
               {showHistory && (
                 <div className="mt-3 space-y-2 max-h-[400px] overflow-y-auto">
                   {entries.slice(0, 30).map(entry => (
-                    <div
-                      key={entry.id}
-                      className="bg-muted/50 rounded-lg p-2.5 border border-border"
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <div className="flex items-center gap-2">
+                    <div key={entry.id} className="bg-muted/40 rounded-xl p-2.5 border border-border/50">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <div className="flex items-center gap-1.5 flex-wrap">
                           <span className="text-[10px] text-muted-foreground">
                             {new Date(entry.createdAt).toLocaleDateString()}
                           </span>
                           <Badge variant="outline" className="text-[9px] px-1.5 py-0">
                             {t('toolsInternal.symptomAnalyzer.week', { week: entry.week })}
                           </Badge>
-                          {entry.mood && <span className="text-sm">{MOOD_EMOJIS[entry.mood]}</span>}
+                          {entry.mood && <span>{MOOD_EMOJIS[entry.mood]}</span>}
                         </div>
                         <button
                           onClick={() => deleteEntry(entry.id)}
-                          className="text-muted-foreground hover:text-destructive transition-colors"
+                          className="text-muted-foreground hover:text-destructive transition-colors p-1"
                         >
-                          <Trash2 className="w-3.5 h-3.5" />
+                          <Trash2 className="w-3 h-3" />
                         </button>
                       </div>
 
-                      <div className="flex flex-wrap gap-1 mb-1">
-                        {entry.symptoms.map(s => (
-                          <Badge key={s} variant="secondary" className="text-[9px] px-1.5 py-0">
-                            {t(`toolsInternal.symptomAnalyzer.symptoms.${s}`)}
-                          </Badge>
-                        ))}
-                      </div>
+                      {entry.symptoms.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-1">
+                          {entry.symptoms.map(s => (
+                            <span key={s} className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full">
+                              {SYMPTOM_EMOJIS[s]} {t(`toolsInternal.symptomAnalyzer.symptoms.${s}`)}
+                            </span>
+                          ))}
+                        </div>
+                      )}
 
                       {entry.notes && (
                         <p className="text-[11px] text-muted-foreground mt-1 line-clamp-2">{entry.notes}</p>
                       )}
 
                       {entry.aiInsight && (
-                        <button
-                          onClick={() => setExpandedEntry(expandedEntry === entry.id ? null : entry.id)}
-                          className="text-[10px] text-primary mt-1 flex items-center gap-1"
-                        >
-                          <Sparkles className="w-3 h-3" />
-                          {expandedEntry === entry.id 
-                            ? t('toolsInternal.symptomAnalyzer.hideInsight')
-                            : t('toolsInternal.symptomAnalyzer.showInsight')
-                          }
-                        </button>
-                      )}
-
-                      {expandedEntry === entry.id && entry.aiInsight && (
-                        <div className="mt-2 p-2 bg-purple-50/50 dark:bg-purple-950/20 rounded text-[11px]">
-                          <MarkdownRenderer content={entry.aiInsight} />
-                        </div>
+                        <>
+                          <button
+                            onClick={() => setExpandedEntry(expandedEntry === entry.id ? null : entry.id)}
+                            className="text-[10px] text-primary mt-1 flex items-center gap-1"
+                          >
+                            <Sparkles className="w-3 h-3" />
+                            {expandedEntry === entry.id 
+                              ? t('toolsInternal.symptomAnalyzer.hideInsight')
+                              : t('toolsInternal.symptomAnalyzer.showInsight')
+                            }
+                          </button>
+                          {expandedEntry === entry.id && (
+                            <div className="mt-2 p-2 bg-accent/5 rounded-lg text-[11px]">
+                              <MarkdownRenderer content={entry.aiInsight} />
+                            </div>
+                          )}
+                        </>
                       )}
                     </div>
                   ))}
@@ -365,7 +379,7 @@ Please provide brief, supportive wellness insights about these feelings during w
         )}
 
         {/* Reminder Card */}
-        <Card className="border-primary/20 bg-primary/5">
+        <Card className="overflow-hidden border-primary/20 bg-primary/5">
           <CardContent className="p-3">
             <div className="flex items-start gap-2 text-xs text-muted-foreground">
               <Info className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
