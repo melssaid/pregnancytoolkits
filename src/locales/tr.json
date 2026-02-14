@@ -1392,7 +1392,27 @@
         },
         "default": "Bu hamilelikte yaygın bir deneyimdir. Kaydetmek zaman içinde kalıpları izlemenize yardımcı olur.",
         "defaultFallback": "Günlüğünüze kaydedildi. Günlüğünüzü bir sonraki ziyaretinizde danışmanınızla paylaşın."
-      }
+      },
+      "howFeeling": "Bugün kendinizi nasıl hissediyorsunuz?",
+      "moods": {
+        "great": "Harika",
+        "good": "İyi",
+        "okay": "İdare eder",
+        "tired": "Yorgun",
+        "tough": "Zor"
+      },
+      "addNotes": "Ek Notlar",
+      "notesPlaceholder": "Gününüz hakkında bir şeyler yazın, nasıl hissediyorsunuz, ne yediniz...",
+      "getInsights": "Yapay Zeka Önerileri Al",
+      "aiWellnessNotes": "Yapay Zeka Sağlık Notları",
+      "saveEntry": "Günlük Kaydını Kaydet",
+      "entrySaved": "Kayıt günlüğünüze eklendi!",
+      "entryDeleted": "Kayıt silindi",
+      "selectAtLeastOne": "Lütfen en az bir belirti veya ruh hali seçin",
+      "todayEntries": "Bugün {{count}} kayıt girildi",
+      "diaryHistory": "Günlük Geçmişi",
+      "showInsight": "Yapay zeka analizini göster",
+      "hideInsight": "Yapay zeka analizini gizle"
     },
     "vitaminTracker": {
       "title": "Vitamin Takibi",

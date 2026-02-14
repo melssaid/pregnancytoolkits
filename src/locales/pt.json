@@ -1392,7 +1392,27 @@
         },
         "default": "Esta é uma experiência comum durante a gravidez. Registrar ajuda a acompanhar padrões ao longo do tempo.",
         "defaultFallback": "Anotado no seu diário. Compartilhe seu diário com seu consultor na próxima visita."
-      }
+      },
+      "howFeeling": "Como você está se sentindo hoje?",
+      "moods": {
+        "great": "Ótimo",
+        "good": "Bem",
+        "okay": "Normal",
+        "tired": "Cansada",
+        "tough": "Difícil"
+      },
+      "addNotes": "Notas adicionais",
+      "notesPlaceholder": "Escreva o que quiser sobre seu dia, como se sente, o que comeu...",
+      "getInsights": "Obter insights de IA",
+      "aiWellnessNotes": "Notas de bem-estar IA",
+      "saveEntry": "Salvar entrada",
+      "entrySaved": "Entrada salva no seu diário!",
+      "entryDeleted": "Entrada removida",
+      "selectAtLeastOne": "Selecione pelo menos um sintoma ou humor",
+      "todayEntries": "{{count}} entradas registradas hoje",
+      "diaryHistory": "Histórico do diário",
+      "showInsight": "Mostrar análise IA",
+      "hideInsight": "Ocultar análise IA"
     },
     "vitaminTracker": {
       "title": "Rastreador de Vitaminas",

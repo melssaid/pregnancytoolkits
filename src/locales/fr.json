@@ -1392,7 +1392,27 @@
         },
         "default": "C'est une expérience courante pendant la grossesse. Le noter aide à suivre les tendances au fil du temps.",
         "defaultFallback": "Noté dans votre journal. Partagez votre journal avec votre consultant lors de votre prochaine visite."
-      }
+      },
+      "howFeeling": "Comment vous sentez-vous aujourd'hui ?",
+      "moods": {
+        "great": "Très bien",
+        "good": "Bien",
+        "okay": "Correct",
+        "tired": "Fatiguée",
+        "tough": "Difficile"
+      },
+      "addNotes": "Notes supplémentaires",
+      "notesPlaceholder": "Écrivez ce que vous voulez sur votre journée, comment vous vous sentez...",
+      "getInsights": "Obtenir des conseils IA",
+      "aiWellnessNotes": "Notes de bien-être IA",
+      "saveEntry": "Enregistrer l'entrée",
+      "entrySaved": "Entrée enregistrée dans votre journal !",
+      "entryDeleted": "Entrée supprimée",
+      "selectAtLeastOne": "Veuillez sélectionner au moins un symptôme ou une humeur",
+      "todayEntries": "{{count}} entrées enregistrées aujourd'hui",
+      "diaryHistory": "Historique du journal",
+      "showInsight": "Afficher l'analyse IA",
+      "hideInsight": "Masquer l'analyse IA"
     },
     "appointmentReminder": {
       "title": "Rappel de Rendez-vous Intelligent",
