@@ -2174,7 +2174,21 @@
         "strong": "Strong",
         "very-strong": "Very Strong"
       },
-      "disclaimer": "This tool is for informational purposes only. Always follow your healthcare provider's guidance."
+      "disclaimer": "This tool is for informational purposes only. Always follow your healthcare provider's guidance.",
+      "aiAnalysisDesc": "Get personalized breathing techniques, comfort measures, and encouragement based on your journal entries.",
+      "analyzing": "Analyzing your journal...",
+      "breathingGuide": "Quick Breathing Guide",
+      "breathingEarly": "Early Phase: Slow Breathing",
+      "breathingEarlyDesc": "Inhale through nose (4 counts) → Exhale through mouth (6 counts)",
+      "breathingActive": "Active Phase: Patterned Breathing",
+      "breathingActiveDesc": "Light breathing: \"Hee-hee-hoo\" pattern, focus on exhale",
+      "breathingIntensive": "Intensive Phase: Blow Breathing",
+      "breathingIntensiveDesc": "Short inhale → Long blow out, like blowing a candle slowly",
+      "comfortTips": "Comfort Tips",
+      "warmWater": "Warm shower on back",
+      "walkGently": "Walk gently between",
+      "birthBall": "Sway on birth ball",
+      "counterPressure": "Counter-pressure on lower back"
     },
     "birthStory": {
       "title": "AI Birth Story Generator",

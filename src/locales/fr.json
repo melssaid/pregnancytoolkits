@@ -1956,7 +1956,21 @@
         "strong": "Forte",
         "very-strong": "Très forte"
       },
-      "disclaimer": "Cet outil est à titre informatif uniquement. Suivez toujours les conseils de votre professionnel de santé."
+      "disclaimer": "Cet outil est à titre informatif uniquement. Suivez toujours les conseils de votre professionnel de santé.",
+      "aiAnalysisDesc": "Obtenez des techniques de respiration personnalisées, des mesures de confort et des encouragements basés sur vos entrées de journal.",
+      "analyzing": "Analyse de votre journal...",
+      "breathingGuide": "Guide de respiration rapide",
+      "breathingEarly": "Phase précoce : Respiration lente",
+      "breathingEarlyDesc": "Inspirez par le nez (4 temps) → Expirez par la bouche (6 temps)",
+      "breathingActive": "Phase active : Respiration rythmée",
+      "breathingActiveDesc": "Respiration légère : motif \"Hi-hi-hou\", concentrez-vous sur l'expiration",
+      "breathingIntensive": "Phase intensive : Respiration soufflée",
+      "breathingIntensiveDesc": "Courte inspiration → Long souffle, comme souffler doucement une bougie",
+      "comfortTips": "Conseils de confort",
+      "warmWater": "Douche chaude sur le dos",
+      "walkGently": "Marcher doucement entre les contractions",
+      "birthBall": "Se balancer sur le ballon de naissance",
+      "counterPressure": "Contre-pression sur le bas du dos"
     },
     "cycleTracker": {
       "title": "Journal du cycle",

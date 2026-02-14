@@ -2064,7 +2064,21 @@
         "strong": "Fuerte",
         "very-strong": "Muy fuerte"
       },
-      "disclaimer": "Esta herramienta es solo para fines informativos. Siempre sigue las indicaciones de tu profesional de salud."
+      "disclaimer": "Esta herramienta es solo para fines informativos. Siempre sigue las indicaciones de tu profesional de salud.",
+      "aiAnalysisDesc": "Obtén técnicas de respiración personalizadas, medidas de confort y motivación basadas en tus entradas del diario.",
+      "analyzing": "Analizando tu diario...",
+      "breathingGuide": "Guía rápida de respiración",
+      "breathingEarly": "Fase temprana: Respiración lenta",
+      "breathingEarlyDesc": "Inhala por la nariz (4 tiempos) → Exhala por la boca (6 tiempos)",
+      "breathingActive": "Fase activa: Respiración rítmica",
+      "breathingActiveDesc": "Respiración ligera: patrón \"Ji-ji-jo\", concéntrate en exhalar",
+      "breathingIntensive": "Fase intensiva: Respiración soplada",
+      "breathingIntensiveDesc": "Inhalación corta → Soplo largo, como soplar una vela lentamente",
+      "comfortTips": "Consejos de confort",
+      "warmWater": "Ducha caliente en la espalda",
+      "walkGently": "Caminar suavemente entre contracciones",
+      "birthBall": "Mecerse en la pelota de parto",
+      "counterPressure": "Contrapresión en la espalda baja"
     },
     "birthPosition": {
       "title": "Posiciones de Parto IA",
