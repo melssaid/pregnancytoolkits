@@ -3,7 +3,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Activity, Clock, AlertTriangle, Phone, TrendingUp, Timer, Baby, Brain, Loader2 } from 'lucide-react';
+import { Activity, Clock, AlertTriangle, Phone, TrendingUp, Timer, Baby, Brain, Loader2, Wind, Heart } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -163,12 +163,24 @@ export default function AILaborProgressTracker() {
       time: new Date(c.startTime).toLocaleTimeString()
     }));
 
+    const avgInterval = getAverageInterval();
+    const avgDuration = getAverageDuration();
+    const phase = getLaborPhase().phase;
+
     await streamChat({
       type: 'labor-tracker' as any,
       messages: [
         {
           role: 'user',
-          content: `I'm tracking my labor contractions. Here's my recent data: ${JSON.stringify(recentContractions)}. Average interval: ${getAverageInterval()} minutes. Average duration: ${getAverageDuration()} seconds. Total contractions: ${contractions.length}. Please analyze my labor progress and give me personalized guidance.`
+          content: `Here is my contraction journal data:
+- Recent entries: ${JSON.stringify(recentContractions)}
+- Average interval between contractions: ${avgInterval} minutes
+- Average contraction duration: ${avgDuration} seconds
+- Total contractions logged: ${contractions.length}
+- Current estimated phase: ${phase}
+- Time since first entry: ${contractions.length > 0 ? Math.round((Date.now() - new Date(contractions[contractions.length - 1].startTime).getTime()) / 60000) : 0} minutes
+
+Please provide a comprehensive wellness analysis with breathing techniques, comfort measures, and encouragement based on my current phase.`
         }
       ],
       context: { contractionData: recentContractions },
@@ -257,19 +269,31 @@ export default function AILaborProgressTracker() {
 
           {/* AI Analysis Button */}
           {contractions.length >= 3 && (
-            <Button 
-              onClick={getAILaborAnalysis} 
-              disabled={isLoading}
-              className="w-full gap-2"
-              variant="outline"
-            >
-              {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <Brain className="w-4 h-4" />
-              )}
-              {t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Journal Insights')}
-            </Button>
+            <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Brain className="w-5 h-5 text-primary" />
+                  <h3 className="font-semibold text-sm">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Wellness Insights')}</h3>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  {t('toolsInternal.laborTracker.aiAnalysisDesc', 'Get personalized breathing techniques, comfort measures, and encouragement based on your journal entries.')}
+                </p>
+                <Button 
+                  onClick={getAILaborAnalysis} 
+                  disabled={isLoading}
+                  className="w-full gap-2"
+                >
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Brain className="w-4 h-4" />
+                  )}
+                  {isLoading 
+                    ? t('toolsInternal.laborTracker.analyzing', 'Analyzing your journal...') 
+                    : t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Wellness Insights')}
+                </Button>
+              </CardContent>
+            </Card>
           )}
 
           {/* AI Response */}
@@ -404,6 +428,39 @@ export default function AILaborProgressTracker() {
             </Card>
           )}
 
+          {/* Quick Breathing Guide */}
+          <Card className="border-primary/10">
+            <CardContent className="p-4">
+              <h4 className="font-semibold mb-3 flex items-center gap-2">
+                <Wind className="w-4 h-4 text-primary" />
+                {t('toolsInternal.laborTracker.breathingGuide', 'Quick Breathing Guide')}
+              </h4>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2 p-2 bg-muted/30 rounded-lg">
+                  <span className="text-primary font-bold text-xs mt-0.5">1</span>
+                  <div>
+                    <p className="text-xs font-medium">{t('toolsInternal.laborTracker.breathingEarly', 'Early Phase: Slow Breathing')}</p>
+                    <p className="text-[11px] text-muted-foreground">{t('toolsInternal.laborTracker.breathingEarlyDesc', 'Inhale through nose (4 counts) → Exhale through mouth (6 counts)')}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2 p-2 bg-muted/30 rounded-lg">
+                  <span className="text-primary font-bold text-xs mt-0.5">2</span>
+                  <div>
+                    <p className="text-xs font-medium">{t('toolsInternal.laborTracker.breathingActive', 'Active Phase: Patterned Breathing')}</p>
+                    <p className="text-[11px] text-muted-foreground">{t('toolsInternal.laborTracker.breathingActiveDesc', 'Light breathing: "Hee-hee-hoo" pattern, focus on exhale')}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2 p-2 bg-muted/30 rounded-lg">
+                  <span className="text-primary font-bold text-xs mt-0.5">3</span>
+                  <div>
+                    <p className="text-xs font-medium">{t('toolsInternal.laborTracker.breathingIntensive', 'Intensive Phase: Blow Breathing')}</p>
+                    <p className="text-[11px] text-muted-foreground">{t('toolsInternal.laborTracker.breathingIntensiveDesc', 'Short inhale → Long blow out, like blowing a candle slowly')}</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* 5-1-1 Guideline Info */}
           <Card>
             <CardContent className="p-4">
@@ -411,6 +468,34 @@ export default function AILaborProgressTracker() {
               <p className="text-sm text-muted-foreground">
                 {t('toolsInternal.laborTracker.rule511Desc', 'Many healthcare providers suggest contacting them when contractions are 5 minutes apart, last 1 minute each, and continue for 1 hour. Share your log for guidance.')}
               </p>
+            </CardContent>
+          </Card>
+
+          {/* Comfort Tips */}
+          <Card className="border-accent/10">
+            <CardContent className="p-4">
+              <h4 className="font-semibold mb-3 flex items-center gap-2">
+                <Heart className="w-4 h-4 text-accent" />
+                {t('toolsInternal.laborTracker.comfortTips', 'Comfort Tips')}
+              </h4>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="text-center p-2 bg-muted/30 rounded-lg">
+                  <span className="text-lg">🚿</span>
+                  <p className="text-[11px] text-muted-foreground mt-1">{t('toolsInternal.laborTracker.warmWater', 'Warm shower on back')}</p>
+                </div>
+                <div className="text-center p-2 bg-muted/30 rounded-lg">
+                  <span className="text-lg">🏃‍♀️</span>
+                  <p className="text-[11px] text-muted-foreground mt-1">{t('toolsInternal.laborTracker.walkGently', 'Walk gently between')}</p>
+                </div>
+                <div className="text-center p-2 bg-muted/30 rounded-lg">
+                  <span className="text-lg">⚽</span>
+                  <p className="text-[11px] text-muted-foreground mt-1">{t('toolsInternal.laborTracker.birthBall', 'Sway on birth ball')}</p>
+                </div>
+                <div className="text-center p-2 bg-muted/30 rounded-lg">
+                  <span className="text-lg">💆</span>
+                  <p className="text-[11px] text-muted-foreground mt-1">{t('toolsInternal.laborTracker.counterPressure', 'Counter-pressure on lower back')}</p>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
