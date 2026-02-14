@@ -72,7 +72,7 @@ export function ToolFrame({
   const hasCustomIcon = toolId && hasToolIcon(toolId);
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${styles.gradient} overflow-x-hidden`}>
+    <div className={`min-h-screen bg-gradient-to-br ${styles.gradient} overflow-x-hidden overflow-y-auto`}>
       {/* Ambient Background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className={`absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gradient-to-br ${styles.glow} to-transparent rounded-full blur-3xl opacity-60`} />
@@ -88,7 +88,7 @@ export function ToolFrame({
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border/40 shadow-sm"
         >
-          <div className="px-3 py-2 flex items-center justify-between">
+          <div className="px-4 sm:px-6 py-2 flex items-center justify-between">
             <div className="flex items-center gap-2 min-w-0 flex-1">
               <BackButton />
               <Link to="/" className="flex items-center gap-2 min-w-0">
@@ -117,7 +117,7 @@ export function ToolFrame({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-          className="px-4 py-4"
+          className="px-4 sm:px-6 py-4"
         >
           <div className="flex-1 min-w-0">
             <motion.h1 
@@ -142,7 +142,7 @@ export function ToolFrame({
         </motion.section>
 
         {/* Main Content Card - Compact */}
-        <section className="px-3 pb-4">
+        <section className="px-4 sm:px-6 pb-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -172,7 +172,7 @@ export function ToolFrame({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
-          className="px-4 pb-8"
+          className="px-4 sm:px-6 pb-8"
         >
           <div className="flex items-center justify-center gap-1.5 opacity-40">
             <Shield className="h-2.5 w-2.5 text-muted-foreground shrink-0" />
