@@ -1,14 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, Heart, Shield, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Shield, Check, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cn } from '@/lib/utils';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
+const FIRST_VISIT_KEY = 'language_selected_first_visit';
+
+const languages = [
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'pt', name: 'Português', flag: '🇵🇹' },
+];
 
 export const OnboardingDisclaimer: React.FC = () => {
   const [show, setShow] = useState(false);
   const { t, i18n } = useTranslation();
+  const { currentLanguage, changeLanguage } = useLanguage();
+  const [selectedLang, setSelectedLang] = useState(currentLanguage);
   const isRtl = i18n.dir() === 'rtl';
 
   useEffect(() => {
@@ -19,7 +33,9 @@ export const OnboardingDisclaimer: React.FC = () => {
   }, []);
 
   const handleAccept = () => {
+    changeLanguage(selectedLang);
     localStorage.setItem(ONBOARDING_KEY, 'true');
+    localStorage.setItem(FIRST_VISIT_KEY, 'true');
     setShow(false);
   };
 
@@ -39,70 +55,85 @@ export const OnboardingDisclaimer: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="w-full max-w-sm rounded-3xl bg-card border border-border/50 shadow-2xl overflow-hidden"
+            className="w-full max-w-[300px] rounded-2xl bg-card border border-border/50 shadow-2xl overflow-hidden"
             dir={isRtl ? 'rtl' : 'ltr'}
           >
-            {/* Warm gradient header */}
-            <div className="bg-gradient-to-br from-primary/20 via-accent/10 to-secondary px-6 py-8 text-center">
+            {/* Gradient top bar */}
+            <div className="h-1 w-full bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
+
+            {/* Compact header */}
+            <div className="px-4 pt-4 pb-2 text-center">
               <motion.div
-                animate={{ y: [0, -4, 0] }}
+                animate={{ y: [0, -3, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-card/80 backdrop-blur flex items-center justify-center shadow-lg"
+                className="w-11 h-11 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center"
               >
-                <BookOpen className="w-8 h-8 text-primary" />
+                <Shield className="w-5 h-5 text-primary" />
               </motion.div>
-              <h1 className="text-xl font-bold text-foreground mb-1">
+              <h1 className="text-sm font-bold text-foreground">
                 {t('onboarding.title', 'Welcome to Your Journey')}
               </h1>
-              <p className="text-sm text-muted-foreground">
-                {t('onboarding.subtitle', 'Your lifestyle & educational companion')}
+            </div>
+
+            {/* Disclaimer - compact */}
+            <div className="px-4 pb-2">
+              <p className="text-[11px] text-muted-foreground text-center leading-relaxed">
+                {t('onboarding.disclaimer', 'This app is for informational and educational purposes only. It is not a medical device and does not provide clinical advice or diagnosis.')}
               </p>
             </div>
 
-            {/* Disclaimer content */}
-            <div className="px-6 py-5 space-y-4">
-              {/* Main disclaimer */}
-              <div className="bg-secondary/50 rounded-2xl p-4 border border-border/30">
-                <div className="flex items-start gap-3">
-                  <Shield className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-foreground leading-relaxed">
-                    {t('onboarding.disclaimer', 'This app is for informational and educational purposes only. It is not a medical device and does not provide clinical advice or diagnosis.')}
-                  </p>
-                </div>
+            {/* Language selector */}
+            <div className="px-3 pb-2">
+              <div className="flex items-center gap-1.5 px-1 mb-1.5">
+                <Globe className="w-3 h-3 text-muted-foreground" />
+                <span className="text-[10px] font-medium text-muted-foreground">
+                  {t('onboarding.chooseLang', 'Choose Language')}
+                </span>
               </div>
-
-              {/* Features */}
-              <div className="space-y-2.5">
-                {[
-                  { icon: BookOpen, text: t('onboarding.feature1', 'Personal journal & diary tools') },
-                  { icon: Heart, text: t('onboarding.feature2', 'Educational wellness content') },
-                  { icon: Shield, text: t('onboarding.feature3', 'Your data stays on your device') },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: isRtl ? 10 : -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + i * 0.1 }}
-                    className="flex items-center gap-3"
+              <div className="grid grid-cols-2 gap-1">
+                {languages.map((lang, i) => (
+                  <motion.button
+                    key={lang.code}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.03 * i, duration: 0.15 }}
+                    onClick={() => {
+                      setSelectedLang(lang.code);
+                      changeLanguage(lang.code);
+                    }}
+                    className={cn(
+                      "flex items-center gap-1.5 px-2 py-1.5 rounded-lg border transition-all duration-200 text-start",
+                      selectedLang === lang.code
+                        ? "bg-primary/10 border-primary/40"
+                        : "bg-background/60 border-transparent hover:bg-muted/80"
+                    )}
                   >
-                    <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-4 h-4 text-primary" />
-                    </div>
-                    <span className="text-sm text-foreground">{item.text}</span>
-                  </motion.div>
+                    <span className="text-sm leading-none">{lang.flag}</span>
+                    <span className={cn(
+                      "text-[11px] font-medium truncate",
+                      selectedLang === lang.code ? "text-primary" : "text-foreground"
+                    )}>
+                      {lang.name}
+                    </span>
+                    {selectedLang === lang.code && (
+                      <Check className="w-2.5 h-2.5 text-primary ms-auto" />
+                    )}
+                  </motion.button>
                 ))}
               </div>
+            </div>
 
-              {/* Accept button */}
-              <Button
+            {/* Accept button */}
+            <div className="px-3 pb-3 pt-1">
+              <motion.button
+                whileTap={{ scale: 0.97 }}
                 onClick={handleAccept}
-                className="w-full h-12 rounded-2xl text-sm font-semibold gap-2 shadow-lg shadow-primary/20"
+                className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs transition-all hover:opacity-90 shadow-md shadow-primary/20 flex items-center justify-center gap-1.5"
               >
-                <Check className="w-4 h-4" />
+                <Check className="w-3.5 h-3.5" />
                 {t('onboarding.accept', 'I Understand & Continue')}
-              </Button>
-
-              <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
+              </motion.button>
+              <p className="text-[9px] text-muted-foreground/60 text-center mt-1.5">
                 {t('onboarding.consultNote', 'Always consult a qualified healthcare professional for any health concerns.')}
               </p>
             </div>
