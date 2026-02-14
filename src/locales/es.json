@@ -2197,9 +2197,9 @@
       "earlyLabor": "Parto Temprano",
       "activeLabor": "Parto Activo",
       "transition": "Transición",
-      "timeToGo": "Hora de ir al hospital",
-      "rule511": "Regla 5-1-1",
-      "rule511Desc": "Contracciones cada 5 minutos, de 1 minuto, durante 1 hora"
+      "timeToGo": "Considera contactar a tu médico",
+      "rule511": "Guía 5-1-1",
+      "rule511Desc": "Muchos médicos sugieren contactarlos cuando las contracciones son cada 5 minutos, de 1 minuto, durante 1 hora"
     },
     "mentalHealth": {
       "title": "Coach de Salud Mental",
