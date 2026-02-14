@@ -995,23 +995,63 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
         break;
     }
 
-    console.log(`Processing ${type} request, language: ${requestedLanguage}`);
+    // Determine which provider to use based on tool type
+    // Perplexity: tools that benefit from up-to-date medical sources with citations
+    // Gemini: general advice, recipes, exercises, and conversational tools
+    const PERPLEXITY_TYPES = [
+      "symptom-analysis",
+      "weekly-summary", 
+      "vitamin-advice",
+      "postpartum-recovery",
+      "labor-tracker",
+    ];
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...(messages || []),
-        ],
-        stream: true,
-      }),
-    });
+    const usePerplexity = PERPLEXITY_TYPES.includes(type);
+    const PERPLEXITY_API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
+
+    // Fall back to Gemini if Perplexity key is not available
+    const provider = usePerplexity && PERPLEXITY_API_KEY ? "perplexity" : "gemini";
+
+    console.log(`Processing ${type} request, language: ${requestedLanguage}, provider: ${provider}`);
+
+    let response: Response;
+
+    if (provider === "perplexity") {
+      // Use Perplexity sonar-pro for medical tools — provides citations & up-to-date sources
+      response = await fetch("https://api.perplexity.ai/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "sonar-pro",
+          messages: [
+            { role: "system", content: systemPrompt },
+            ...(messages || []),
+          ],
+          stream: true,
+          search_recency_filter: "year",
+        }),
+      });
+    } else {
+      // Use Gemini via Lovable AI Gateway for general tools
+      response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${LOVABLE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "google/gemini-3-flash-preview",
+          messages: [
+            { role: "system", content: systemPrompt },
+            ...(messages || []),
+          ],
+          stream: true,
+        }),
+      });
+    }
 
     if (!response.ok) {
       if (response.status === 429) {
@@ -1027,7 +1067,7 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
         );
       }
       const errorText = await response.text();
-      console.error("AI gateway error:", response.status, errorText);
+      console.error(`${provider} error:`, response.status, errorText);
       return new Response(
         JSON.stringify({ error: "AI service error" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
