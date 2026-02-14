@@ -73,6 +73,7 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 
 // VIDEO LIBRARY
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
+const Splash = lazy(() => import("@/pages/Splash"));
 
 export function AnimatedRoutes() {
   const location = useLocation();
@@ -147,6 +148,9 @@ export function AnimatedRoutes() {
 
           {/* VIDEO LIBRARY */}
           <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />
+
+          {/* SPLASH SCREEN */}
+          <Route path="/splash" element={<Splash />} />
 
           {/* 404 */}
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
