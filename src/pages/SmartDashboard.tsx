@@ -97,9 +97,9 @@ const nutritionKeys = [
 
 const exerciseKeys = [
   { key: "walking", href: "/tools/smart-walking-coach" },
-  { key: "swimming", href: "/tools/exercise-guide" },
+  { key: "swimming", href: "/tools/ai-fitness-coach" },
   { key: "yoga", href: "/tools/smart-stretch-reminder" },
-  { key: "kegel", href: "/tools/exercise-guide" },
+  { key: "kegel", href: "/tools/ai-fitness-coach" },
 ];
 
 const videoItems = [
@@ -814,7 +814,7 @@ const SmartDashboard = () => {
                   ))}
                 </div>
 
-                <Link to="/tools/exercise-guide">
+                <Link to="/tools/ai-fitness-coach">
                   <Button className="w-full mt-4" variant="outline">
                     {t('dashboard.exercise.moreExercises')}
                     <ChevronRight className="w-4 h-4 ms-2" />
