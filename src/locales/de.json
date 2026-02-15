@@ -58,7 +58,7 @@
   "onboarding": {
     "title": "Willkommen auf Ihrer Reise",
     "subtitle": "Ihr Lifestyle- & Bildungsbegleiter",
-    "disclaimer": "Diese App dient nur zu Informations- und Bildungszwecken. Sie ist kein Medizinprodukt und bietet keine klinische Beratung oder Diagnose.",
+    "disclaimer": "Diese App dient nur zu Informations- und Bildungszwecken und ist kein Ersatz für professionelle Gesundheitsberatung.",
     "feature1": "Persönliche Journal- & Tagebuch-Tools",
     "feature2": "Bildungsinhalte zum Wohlbefinden",
     "feature3": "Ihre Daten bleiben auf Ihrem Gerät",
@@ -402,8 +402,8 @@
       "privacy": "Datenschutz",
       "terms": "AGB",
       "contact": "Kontakt",
-      "disclaimerTitle": "Medizinischer Haftungsausschluss",
-      "disclaimerText": "Diese App dient nur zu Bildungs- und Informationszwecken und bietet keine medizinische Beratung, Diagnose oder Behandlung. Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Gesundheitsdienstleister."
+      "disclaimerTitle": "Wichtiger Hinweis",
+      "disclaimerText": "Diese App dient nur zu Bildungs- und Informationszwecken und ist kein Ersatz für professionelle Gesundheitsberatung. Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Gesundheitsdienstleister."
     },
     "privacyPolicy": {
       "title": "Datenschutzrichtlinie",
@@ -516,9 +516,9 @@
           "title": "Bildungs-Haftungsausschluss",
           "warning": "⚠️ Sehr wichtig: Bitte sorgfältig lesen",
           "content": "Schwangerschafts-Toolkit ist nur für Informations- und Bildungszwecke gedacht. Diese Anwendung:",
-          "noAdvice": "Gibt KEINE medizinischen Ratschläge, Diagnosen oder Behandlungen",
+          "noAdvice": "Gibt KEINE professionelle Gesundheitsberatung oder Behandlungen",
           "noReplace": "Ersetzt NICHT die Konsultation eines Arztes oder Gesundheitsdienstleisters",
-          "noEmergency": "Sollte NICHT für medizinische Notfallentscheidungen verwendet werden",
+          "noEmergency": "Sollte NICHT für dringende Gesundheitsentscheidungen verwendet werden",
           "consultDoctor": "Konsultieren Sie immer Ihren Arzt oder qualifizierten Gesundheitsdienstleister bei medizinischen oder gesundheitlichen Fragen."
         },
         "usage": {
@@ -3492,10 +3492,10 @@
     "pushEnabledSuccess": "Push-Benachrichtigungen aktiviert! Du wirst benachrichtigt, auch wenn die App im Hintergrund ist.",
     "welcome": "👋 Willkommen!",
     "welcomeDesc": "Genieße 40+ intelligente Tools für deine Schwangerschaft.",
-    "disclaimer": "⚕️ Medizinischer Haftungsausschluss",
-    "disclaimerDesc": "Diese App dient nur zu Informationszwecken und ersetzt keine ärztliche Beratung.",
-    "disclaimerTitle": "Medizinischer Haftungsausschluss",
-    "disclaimerBody": "Diese App dient nur zu Bildungs- und Informationszwecken und bietet keine medizinische Beratung, Diagnose oder Behandlung.",
+    "disclaimer": "📋 Wichtiger Hinweis",
+    "disclaimerDesc": "Diese App dient nur zu Informationszwecken und ist kein Ersatz für professionelle Gesundheitsberatung.",
+    "disclaimerTitle": "Wichtiger Hinweis",
+    "disclaimerBody": "Diese App dient nur zu Bildungs- und Informationszwecken und ist kein Ersatz für professionelle Gesundheitsberatung.",
     "pleaseNote": "Bitte beachten:",
     "consultDoctor": "Konsultiere immer deinen Arzt, bevor du gesundheitliche Entscheidungen triffst.",
     "aiGeneral": "KI-Tool-Ergebnisse dienen nur der allgemeinen Information.",

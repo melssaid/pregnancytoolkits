@@ -402,8 +402,8 @@
       "privacy": "Gizlilik",
       "terms": "Şartlar",
       "contact": "İletişim",
-      "disclaimerTitle": "Tıbbi Sorumluluk Reddi",
-      "disclaimerText": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve tıbbi tavsiye, teşhis veya tedavi sağlamaz. Herhangi bir sağlık endişesi için her zaman nitelikli bir sağlık hizmeti sağlayıcısına danışın."
+      "disclaimerTitle": "Önemli Bilgilendirme",
+      "disclaimerText": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve profesyonel sağlık rehberliğinin yerini almaz. Herhangi bir sağlık endişesi için her zaman nitelikli bir sağlık hizmeti sağlayıcısına danışın."
     },
     "privacyPolicy": {
       "title": "Gizlilik Politikası",
@@ -3716,10 +3716,10 @@
     "pushEnabledSuccess": "Anlık bildirimler etkinleştirildi! Uygulama arka planda olsa bile bilgilendirileceksiniz.",
     "welcome": "👋 Hoş geldiniz!",
     "welcomeDesc": "Hamileliğinizi kolayca ve güvenle takip etmek için 40+ akıllı aracın keyfini çıkarın.",
-    "disclaimer": "⚕️ Tıbbi Sorumluluk Reddi",
-    "disclaimerDesc": "Bu uygulama yalnızca bilgi amaçlıdır ve profesyonel tıbbi tavsiyenin yerini almaz.",
-    "disclaimerTitle": "Tıbbi Sorumluluk Reddi",
-    "disclaimerBody": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır; tıbbi tavsiye, teşhis veya tedavi sağlamaz.",
+    "disclaimer": "📋 Önemli Bilgilendirme",
+    "disclaimerDesc": "Bu uygulama yalnızca bilgi amaçlıdır ve profesyonel sağlık rehberliğinin yerini almaz.",
+    "disclaimerTitle": "Önemli Bilgilendirme",
+    "disclaimerBody": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve profesyonel sağlık rehberliğinin yerini almaz.",
     "pleaseNote": "Lütfen dikkat:",
     "consultDoctor": "Sağlık kararları almadan önce her zaman doktorunuza danışın.",
     "aiGeneral": "Yapay zeka araç sonuçları yalnızca genel bilgi içindir.",

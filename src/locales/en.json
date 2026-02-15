@@ -58,7 +58,7 @@
   "onboarding": {
     "title": "Welcome to Your Journey",
     "subtitle": "Your lifestyle & educational companion",
-    "disclaimer": "This app is for informational and educational purposes only. It is not a medical device and does not provide clinical advice or diagnosis.",
+    "disclaimer": "This app is for informational and educational purposes only and is not a substitute for professional health guidance.",
     "feature1": "Personal journal & diary tools",
     "feature2": "Educational wellness content",
     "feature3": "Your data stays on your device",
@@ -402,8 +402,8 @@
       "privacy": "Privacy",
       "terms": "Terms",
       "contact": "Contact",
-      "disclaimerTitle": "Medical Disclaimer",
-      "disclaimerText": "This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns."
+      "disclaimerTitle": "Important Notice",
+      "disclaimerText": "This app is for educational and informational purposes only. It is not a substitute for professional health guidance. Always consult a qualified healthcare provider for any health concerns."
     },
     "privacyPolicy": {
       "title": "Privacy Policy",
@@ -516,17 +516,17 @@
           "title": "Educational Disclaimer",
           "warning": "⚠️ Very Important: Please Read Carefully",
           "content": "Pregnancy Toolkits is intended for informational and educational purposes only. This application:",
-          "noAdvice": "Does NOT provide medical advice, diagnoses, or treatments",
+          "noAdvice": "Does NOT provide professional health guidance or treatments",
           "noReplace": "Does NOT replace consultation with a doctor or healthcare provider",
-          "noEmergency": "Should NOT be used for emergency medical decisions",
+          "noEmergency": "Should NOT be used for emergency health decisions",
           "consultDoctor": "Always consult your doctor or qualified healthcare provider regarding any medical or health questions."
         },
         "usage": {
           "title": "Use of Application",
           "content": "You agree to the following when using our application:",
           "personal": "Use the app for personal, non-commercial purposes only",
-          "notSubstitute": "Not rely on app results as a substitute for medical care",
-          "seekCare": "Seek immediate medical care in emergency situations"
+          "notSubstitute": "Not rely on app results as a substitute for professional care",
+          "seekCare": "Contact your healthcare provider promptly in urgent situations"
         },
         "accuracy": {
           "title": "Accuracy of Information",
@@ -790,7 +790,7 @@
     "aboutApp": "About the App",
     "appTagline": "Pregnancy Toolkits - Your journey companion",
     "version": "Version",
-    "medicalNote": "This app is for educational purposes only and does not replace medical advice",
+    "medicalNote": "This app is for educational purposes only and is not a substitute for professional health guidance",
     "encryption": {
       "title": "Data Encryption",
       "description": "Protect your health data with AES-256 encryption",
@@ -2846,8 +2846,8 @@
       }
     },
     "healthMonitor": {
-      "title": "Health Monitoring System",
-      "subtitle": "Comprehensive dashboard with predictive analytics",
+      "title": "Wellness Tracking",
+      "subtitle": "Comprehensive wellness overview with insights",
       "weight": "Weight",
       "bloodPressure": "Blood Pressure",
       "risks": "Risks",
@@ -3225,8 +3225,8 @@
     "subtitle": "Your complete pregnancy companion",
     "feature1": "40+ AI-powered pregnancy tools",
     "feature2": "Personalized health tracking",
-    "disclaimerTitle": "Medical Disclaimer",
-    "disclaimerText": "This app provides general information only and is not a substitute for professional medical advice. Always consult your healthcare provider for any health concerns.",
+      "disclaimerTitle": "Important Notice",
+      "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your healthcare provider for any health concerns.",
     "getStarted": "Get Started",
     "agreement": "By continuing, you agree to our Terms of Service"
   },
@@ -4356,14 +4356,14 @@
     "pushEnabledSuccess": "Push notifications enabled! You'll be notified even when the app is in the background.",
     "welcome": "👋 Welcome!",
     "welcomeDesc": "Enjoy 40+ smart tools to track your pregnancy easily and safely.",
-    "disclaimer": "⚕️ Medical Disclaimer",
-    "disclaimerDesc": "This app is for informational purposes only and does not replace professional medical advice.",
-    "disclaimerTitle": "Medical Disclaimer",
-    "disclaimerBody": "This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment.",
+    "disclaimer": "📋 Important Notice",
+    "disclaimerDesc": "This app is for informational purposes only and is not a substitute for professional health guidance.",
+    "disclaimerTitle": "Important Notice",
+    "disclaimerBody": "This app is for educational and informational purposes only. It does not provide professional health guidance or treatment recommendations.",
     "pleaseNote": "Please note:",
     "consultDoctor": "Always consult your healthcare provider before making any health decisions.",
-    "aiGeneral": "AI tool results are for general information only.",
-    "emergency": "In emergencies, call emergency services or go to the nearest hospital.",
+    "aiGeneral": "AI tool results are for general wellness information only.",
+    "emergency": "In urgent situations, contact your healthcare provider or call emergency services.",
     "dataLocal": "Your data is stored locally on your device only.",
     "understood": "I Understand",
     "backupEnabled": "Backup Reminders Enabled",
