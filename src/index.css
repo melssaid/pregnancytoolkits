@@ -141,24 +141,24 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
     background: linear-gradient(
-      90deg,
-      hsl(30 15% 87%) 0%,
-      hsl(30 18% 90%) 10%,
-      hsl(36 22% 93%) 25%,
-      hsl(var(--background)) 55%,
-      hsl(var(--background)) 100%
+      180deg,
+      hsl(340 30% 95%) 0%,
+      hsl(340 25% 96%) 15%,
+      hsl(var(--background)) 40%,
+      hsl(var(--background)) 85%,
+      hsl(340 20% 93%) 100%
     );
   }
 
   html[dir="rtl"] body {
     font-family: 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     background: linear-gradient(
-      -90deg,
-      hsl(30 15% 87%) 0%,
-      hsl(30 18% 90%) 10%,
-      hsl(36 22% 93%) 25%,
-      hsl(var(--background)) 55%,
-      hsl(var(--background)) 100%
+      180deg,
+      hsl(340 30% 95%) 0%,
+      hsl(340 25% 96%) 15%,
+      hsl(var(--background)) 40%,
+      hsl(var(--background)) 85%,
+      hsl(340 20% 93%) 100%
     );
   }
 
