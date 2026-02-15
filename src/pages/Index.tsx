@@ -110,10 +110,7 @@ function CategoryCard({ config, index }: { config: CategoryConfig; index: number
         {/* Compact Header */}
         <div className="flex items-center gap-2.5 px-3.5 pt-3.5 pb-2">
           <div className="w-1.5 h-5 rounded-full bg-rose-800 dark:bg-rose-600" />
-          <div className="flex-1 min-w-0">
-            <h2 className="text-sm font-extrabold text-foreground tracking-tight truncate">{t(config.key)}</h2>
-            <p className="text-[9px] text-muted-foreground mt-0.5">{tools.length} {t('common.tools', 'tools')}</p>
-          </div>
+          <h2 className="text-sm font-extrabold text-foreground tracking-tight truncate">{t(config.key)}</h2>
         </div>
 
         {/* Tools */}
