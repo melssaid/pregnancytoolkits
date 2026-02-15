@@ -20,24 +20,31 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index }: 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 4 }}
+      initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.15, delay: Math.min(index * 0.015, 0.08) }}
+      transition={{ duration: 0.2, delay: Math.min(index * 0.02, 0.1) }}
     >
       <Link to={href} className="block">
-        <div className="group flex items-center gap-2.5 p-2.5 rounded-xl bg-white dark:bg-card border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
-          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
-            <Icon className="w-4 h-4 text-muted-foreground" strokeWidth={1.75} />
+        <div className="group flex items-center gap-3.5 p-3.5 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300">
+          {/* Large Icon Container */}
+          <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-300">
+            <Icon className="w-5.5 h-5.5 text-primary/70 group-hover:text-primary transition-colors duration-300" strokeWidth={1.75} />
           </div>
+          
+          {/* Text Content */}
           <div className="flex-1 min-w-0">
-              <h3 className="text-[11px] font-semibold text-foreground truncate leading-snug">
-                {t(titleKey)}
-              </h3>
-              <p className="text-[9px] text-muted-foreground truncate mt-0.5">
-                {t(descriptionKey)}
-              </p>
+            <h3 className="text-sm font-semibold text-foreground truncate leading-snug">
+              {t(titleKey)}
+            </h3>
+            <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5 leading-relaxed">
+              {t(descriptionKey)}
+            </p>
           </div>
-          <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/60 group-hover:text-foreground/60 transition-colors" />
+          
+          {/* Arrow */}
+          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted/50 flex items-center justify-center group-hover:bg-primary/10 transition-all duration-300">
+            <ChevronIcon className="w-4 h-4 text-muted-foreground/60 group-hover:text-primary transition-colors duration-300" />
+          </div>
         </div>
       </Link>
     </motion.div>
