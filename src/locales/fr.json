@@ -334,6 +334,9 @@
       },
       "saveAnalyze": "Enregistrer et analyser",
       "smartAnalysis": "Analyse intelligente",
+      "aiAnalysisLabel": "Analyse IA",
+      "aiPrompt": "Analyser la santé de grossesse : Semaine {{week}}, Poids : {{weight}}kg, TA : {{bp}}, Humeur : {{mood}}, Symptômes : {{symptoms}}. Donner des conseils personnalisés brefs.",
+      "noSymptoms": "Aucun",
       "analysis": {
         "expectedGain": "Prise de poids attendue jusqu'ici : ~{{kg}} kg",
         "bpHigh": "Tension artérielle élevée - consultez votre médecin",

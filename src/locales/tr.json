@@ -334,6 +334,9 @@
       },
       "saveAnalyze": "Kaydet ve Analiz Et",
       "smartAnalysis": "Akıllı Analiz",
+      "aiAnalysisLabel": "Yapay Zeka Analizi",
+      "aiPrompt": "Hamilelik sağlığını analiz et: Hafta {{week}}, Kilo: {{weight}}kg, Tansiyon: {{bp}}, Ruh hali: {{mood}}, Belirtiler: {{symptoms}}. Kısa kişiselleştirilmiş ipuçları ver.",
+      "noSymptoms": "Yok",
       "analysis": {
         "expectedGain": "Şu ana kadar beklenen kilo alımı: ~{{kg}} kg",
         "bpHigh": "Tansiyon yüksek - doktorunuza danışın",
