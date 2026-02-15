@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Package, Check, Star, Baby, ShoppingBag, Home, Car, Heart, Utensils, Moon, Shirt, Thermometer, RotateCcw } from 'lucide-react';
 import { getUserId } from '@/hooks/useSupabase';
 
@@ -188,26 +189,25 @@ export default function BabyGearRecommender() {
             ))}
           </div>
 
-          {/* Type Filter */}
-          <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-hide">
-            {typeFilters.map(type => {
-              const TypeIcon = type === 'all' ? Package : typeIcons[type];
-              return (
-                <button
-                  key={type}
-                  onClick={() => setSelectedType(type)}
-                  className={`flex items-center gap-1 px-2 py-1 rounded-full text-[10px] whitespace-nowrap transition-all ${
-                    selectedType === type
-                      ? 'bg-primary/15 text-primary font-medium'
-                      : 'bg-muted/50 text-muted-foreground hover:bg-muted'
-                  }`}
-                >
-                  <TypeIcon className="w-2.5 h-2.5" />
-                  {t(`babyGear.types.${type === 'all' ? 'all' : type}`)}
-                </button>
-              );
-            })}
-          </div>
+          {/* Type Filter Dropdown */}
+          <Select value={selectedType} onValueChange={(val) => setSelectedType(val as typeof selectedType)}>
+            <SelectTrigger className="h-8 text-[11px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-popover z-50">
+              {typeFilters.map(type => {
+                const TypeIcon = type === 'all' ? Package : typeIcons[type];
+                return (
+                  <SelectItem key={type} value={type} className="text-[11px]">
+                    <span className="flex items-center gap-1.5">
+                      <TypeIcon className="w-3 h-3" />
+                      {t(`babyGear.types.${type === 'all' ? 'all' : type}`)}
+                    </span>
+                  </SelectItem>
+                );
+              })}
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Gear List */}
