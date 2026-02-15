@@ -211,20 +211,21 @@ const SmartDashboard = () => {
       {/* Navigation Tabs with Notification Button */}
       <nav className="bg-background border-b border-border/50">
         <div className="container px-3">
-          <div className="flex items-center justify-between py-2">
-            <div className="flex gap-1 overflow-x-auto scrollbar-hide flex-1 -mx-1 px-1">
+          <div className="flex items-center gap-2 py-2">
+            <div className="flex gap-1.5 overflow-x-auto scrollbar-hide flex-1 pb-0.5">
               {tabs.map(tab => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap transition-all flex-shrink-0 ${
                     activeTab === tab.id
                       ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-sm"
                       : "bg-muted/40 text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   <tab.icon className="w-3 h-3" />
-                  {tab.label}
+                  <span className="hidden sm:inline">{tab.label}</span>
+                  <span className="sm:hidden">{tab.label}</span>
                 </button>
               ))}
             </div>
