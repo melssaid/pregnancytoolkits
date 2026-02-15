@@ -23,6 +23,7 @@ const WeeklySummary = lazy(() => import("@/pages/tools/WeeklySummary"));
 const SmartAppointmentReminder = lazy(() => import("@/pages/tools/SmartAppointmentReminder"));
 const AICravingAlternatives = lazy(() => import("@/pages/tools/AICravingAlternatives"));
 const SmartGroceryList = lazy(() => import("@/pages/tools/SmartGroceryList"));
+const SmartPregnancyPlan = lazy(() => import("@/pages/tools/SmartPregnancyPlan"));
 
 // AI 2026 TOOLS (8 tools)
 const AISleepOptimizer = lazy(() => import("@/pages/tools/AISleepOptimizer"));
@@ -98,6 +99,7 @@ export function AnimatedRoutes() {
           <Route path="/tools/smart-appointment-reminder" element={<PageTransition><SmartAppointmentReminder /></PageTransition>} />
           <Route path="/tools/ai-craving-alternatives" element={<PageTransition><AICravingAlternatives /></PageTransition>} />
           <Route path="/tools/smart-grocery-list" element={<PageTransition><SmartGroceryList /></PageTransition>} />
+          <Route path="/tools/smart-plan" element={<PageTransition><SmartPregnancyPlan /></PageTransition>} />
 
           {/* AI 2026 TOOLS */}
           <Route path="/tools/ai-sleep-optimizer" element={<PageTransition><AISleepOptimizer /></PageTransition>} />
