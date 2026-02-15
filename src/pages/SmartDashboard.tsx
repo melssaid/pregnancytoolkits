@@ -11,6 +11,8 @@ import {
   Database, Clock, Calendar, Briefcase, ShoppingCart, CheckCircle2, BellRing
 } from "lucide-react";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { generalVideosByLang } from "@/data/videoData";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -102,11 +104,7 @@ const exerciseKeys = [
   { key: "kegel", href: "/tools/ai-fitness-coach" },
 ];
 
-const videoItems = [
-  { id: 1, youtubeId: "j5qY8c7BKmg", titleKey: "yoga" },
-  { id: 2, youtubeId: "ixPsILYT0Yc", titleKey: "recipes" },
-  { id: 3, youtubeId: "UCDkZ_NUEBI", titleKey: "tips" },
-];
+// Videos now use VideoLibrary component with generalVideosByLang
 
 const symptomKeys = ["nausea", "headache", "fatigue", "backPain", "swelling", "heartburn", "insomnia"] as const;
 
@@ -136,7 +134,6 @@ const SmartDashboard = () => {
     symptoms: [],
     weekOfPregnancy: 20
   });
-  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
   const [healthSaved, setHealthSaved] = useState(false);
   const [aiHealthInsight, setAiHealthInsight] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -830,61 +827,20 @@ const SmartDashboard = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
+            className="space-y-4"
           >
-            <Card>
-              <CardContent className="p-4">
-                <h2 className="text-base font-bold mb-4 flex items-center gap-2">
-                  <Play className="w-5 h-5 text-primary" />
-                  {t('dashboard.videos.title')}
-                </h2>
+            <VideoLibrary
+              videosByLang={generalVideosByLang}
+              title={t('dashboard.videos.title')}
+              subtitle={t('dashboard.videos.subtitle', 'Curated educational content')}
+            />
 
-                <div className="space-y-4">
-                  {videoItems.map((video) => (
-                    <div key={video.id} className="rounded-xl overflow-hidden bg-muted/30">
-                      {playingVideo === video.youtubeId ? (
-                        <AspectRatio ratio={16 / 9}>
-                          <iframe
-                            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
-                            title={t(`dashboard.videos.videoTitles.${video.titleKey}`)}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full h-full rounded-xl"
-                          />
-                        </AspectRatio>
-                      ) : (
-                        <button
-                          onClick={() => setPlayingVideo(video.youtubeId)}
-                          className="w-full relative group"
-                        >
-                          <AspectRatio ratio={16 / 9}>
-                            <img
-                              src={`https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`}
-                              alt={t(`dashboard.videos.videoTitles.${video.titleKey}`)}
-                              className="w-full h-full object-cover rounded-xl"
-                            />
-                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors rounded-xl">
-                              <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <Play className="w-8 h-8 text-primary-foreground fill-primary-foreground" />
-                              </div>
-                            </div>
-                            <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent rounded-b-xl">
-                              <p className="text-primary-foreground text-sm font-medium">{t(`dashboard.videos.videoTitles.${video.titleKey}`)}</p>
-                            </div>
-                          </AspectRatio>
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                </div>
-
-                <Link to="/videos">
-                  <Button className="w-full mt-4" variant="outline">
-                    {t('dashboard.videos.fullLibrary')}
-                    <ChevronRight className="w-4 h-4 ms-2" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+            <Link to="/videos">
+              <Button className="w-full" variant="outline">
+                {t('dashboard.videos.fullLibrary')}
+                <ChevronRight className="w-4 h-4 ms-2" />
+              </Button>
+            </Link>
           </motion.div>
         )}
       </main>
