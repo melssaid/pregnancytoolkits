@@ -108,10 +108,8 @@ function CategoryCard({ config, index }: { config: CategoryConfig; index: number
     >
       <div className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm`}>
         {/* Compact Header */}
-        <div className="flex items-center gap-2.5 px-3.5 pt-3 pb-1.5">
-          <div className={`w-8 h-8 rounded-xl ${config.iconBg} flex items-center justify-center`}>
-            <Icon className={`w-4 h-4 ${config.iconText}`} />
-          </div>
+        <div className="flex items-center gap-2 px-3.5 pt-3 pb-1.5">
+          <div className="w-1 h-4 rounded-full bg-primary/50" />
           <div className="flex-1 min-w-0">
             <h2 className="text-xs font-bold text-foreground tracking-tight truncate">{t(config.key)}</h2>
             <p className="text-[9px] text-muted-foreground">{tools.length} {t('common.tools', 'tools')}</p>
