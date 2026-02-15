@@ -30,11 +30,10 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
 
     return (
       <>
-        {/* Notifications Panel - Slides up from bottom */}
+        {/* Notifications Panel */}
         <AnimatePresence>
           {notificationsOpen && (
             <>
-              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -42,13 +41,12 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 onClick={() => setNotificationsOpen(false)}
                 className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
               />
-              {/* Panel */}
               <motion.div
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 exit={{ y: "100%" }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="fixed bottom-14 left-0 right-0 z-50 max-h-[70vh] overflow-auto rounded-t-2xl bg-card border-t border-border shadow-2xl md:hidden safe-area-bottom"
+                className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[70vh] overflow-auto rounded-2xl bg-card border border-border/40 shadow-2xl md:hidden"
               >
                 <div className="p-3">
                   <div className="w-10 h-1 bg-muted rounded-full mx-auto mb-3" />
@@ -59,107 +57,116 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
           )}
         </AnimatePresence>
 
-        {/* Spacer to prevent content from being hidden behind nav */}
-        <div className="h-14 md:h-0" />
+        {/* Spacer */}
+        <div className="h-[4.5rem] md:h-0" />
         
-        {/* Bottom Navigation - Mobile only */}
-        <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-          {/* Glass effect background */}
-          <div className="absolute inset-0 bg-card/95 backdrop-blur-lg border-t border-border/40 shadow-[0_-4px_12px_-2px_rgba(0,0,0,0.08)]" />
-          
-          <div className="relative flex items-center justify-around px-1 py-1.5 safe-area-bottom">
-            {NAV_ITEM_IDS.map((item) => {
-              const active = isActive(item.href);
-              const Icon = item.icon;
+        {/* Bottom Navigation */}
+        <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden px-3 pb-1 safe-area-bottom">
+          {/* Decorative frame */}
+          <div className="relative rounded-2xl overflow-hidden">
+            {/* Top glow line */}
+            <div className="absolute top-0 left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent z-10" />
+            
+            {/* Glass background */}
+            <div className="absolute inset-0 bg-card/90 backdrop-blur-xl border border-border/30 rounded-2xl shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.1)]" />
+            
+            <div className="relative flex items-center justify-around px-2 py-2">
+              {NAV_ITEM_IDS.map((item) => {
+                const active = isActive(item.href);
+                const Icon = item.icon;
 
-              // Notifications button
-              if (item.id === "notifications") {
+                if (item.id === "notifications") {
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setNotificationsOpen(!notificationsOpen);
+                        setSearchOpen(false);
+                      }}
+                      className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all relative"
+                    >
+                      <motion.div
+                        className={`p-2 rounded-xl transition-all ${
+                          notificationsOpen 
+                            ? "bg-primary text-primary-foreground shadow-md shadow-primary/20" 
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Icon className="w-[18px] h-[18px]" />
+                        {unreadCount > 0 && !notificationsOpen && (
+                          <span className="absolute -top-0.5 right-1 w-4 h-4 bg-destructive text-destructive-foreground text-[8px] font-bold rounded-full flex items-center justify-center ring-2 ring-card">
+                            {unreadCount > 9 ? '9+' : unreadCount}
+                          </span>
+                        )}
+                      </motion.div>
+                      <span className={`text-[9px] font-medium ${
+                        notificationsOpen ? "text-primary" : "text-muted-foreground"
+                      }`}>
+                        {t(item.labelKey)}
+                      </span>
+                    </button>
+                  );
+                }
+
+                if (item.id === "search") {
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setSearchOpen(true);
+                        setNotificationsOpen(false);
+                      }}
+                      className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all"
+                    >
+                      <motion.div
+                        className={`p-2 rounded-xl transition-all ${
+                          searchOpen 
+                            ? "bg-primary text-primary-foreground shadow-md shadow-primary/20" 
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Icon className="w-[18px] h-[18px]" />
+                      </motion.div>
+                      <span className={`text-[9px] font-medium ${
+                        searchOpen ? "text-primary" : "text-muted-foreground"
+                      }`}>
+                        {t(item.labelKey)}
+                      </span>
+                    </button>
+                  );
+                }
+
                 return (
-                  <button
+                  <Link
                     key={item.id}
-                    onClick={() => {
-                      setNotificationsOpen(!notificationsOpen);
-                      setSearchOpen(false);
-                    }}
-                    className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors relative"
+                    to={item.href!}
+                    onClick={() => setNotificationsOpen(false)}
+                    className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all"
                   >
-                    <div className={`p-1.5 rounded-lg transition-all ${
-                      notificationsOpen 
-                        ? "bg-primary text-primary-foreground" 
-                        : "text-muted-foreground"
-                    }`}>
-                      <Icon className="w-4 h-4" />
-                      {unreadCount > 0 && !notificationsOpen && (
-                        <span className="absolute top-0 right-1 w-4 h-4 bg-destructive text-destructive-foreground text-[8px] font-bold rounded-full flex items-center justify-center">
-                          {unreadCount > 9 ? '9+' : unreadCount}
-                        </span>
-                      )}
-                    </div>
+                    <motion.div 
+                      className={`p-2 rounded-xl transition-all ${
+                        active 
+                          ? "bg-primary text-primary-foreground shadow-md shadow-primary/20" 
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <Icon className="w-[18px] h-[18px]" />
+                    </motion.div>
                     <span className={`text-[9px] font-medium ${
-                      notificationsOpen ? "text-primary" : "text-muted-foreground"
+                      active ? "text-primary" : "text-muted-foreground"
                     }`}>
                       {t(item.labelKey)}
                     </span>
-                  </button>
+                  </Link>
                 );
-              }
-
-              // Search button
-              if (item.id === "search") {
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setSearchOpen(true);
-                      setNotificationsOpen(false);
-                    }}
-                    className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors"
-                  >
-                    <div className={`p-1.5 rounded-lg transition-all ${
-                      searchOpen 
-                        ? "bg-primary text-primary-foreground" 
-                        : "text-muted-foreground"
-                    }`}>
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <span className={`text-[9px] font-medium ${
-                      searchOpen ? "text-primary" : "text-muted-foreground"
-                    }`}>
-                      {t(item.labelKey)}
-                    </span>
-                  </button>
-                );
-              }
-
-              return (
-                <Link
-                  key={item.id}
-                  to={item.href!}
-                  onClick={() => setNotificationsOpen(false)}
-                  className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors"
-                >
-                  <motion.div 
-                    className={`p-1.5 rounded-lg transition-all ${
-                      active 
-                        ? "bg-primary text-primary-foreground" 
-                        : "text-muted-foreground"
-                    }`}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </motion.div>
-                  <span className={`text-[9px] font-medium ${
-                    active ? "text-primary" : "text-muted-foreground"
-                  }`}>
-                    {t(item.labelKey)}
-                  </span>
-                </Link>
-              );
-            })}
+              })}
+            </div>
           </div>
         </nav>
 
-        {/* Search Dialog */}
         <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
       </>
     );
