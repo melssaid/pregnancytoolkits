@@ -77,11 +77,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 const isLast = idx === NAV_ITEM_IDS.length - 1;
 
                 const separator = !isLast ? (
-                  <div key={`sep-${idx}`} className="flex flex-col items-center justify-center gap-[3px] self-stretch py-2">
-                    <span className="w-[3px] h-[3px] rounded-full bg-primary/20" />
-                    <span className="w-[2px] h-3 rounded-full bg-gradient-to-b from-primary/15 to-transparent" />
-                    <span className="w-[3px] h-[3px] rounded-full bg-primary/10" />
-                  </div>
+                  <div key={`sep-${idx}`} className="w-[1.5px] h-8 rounded-full bg-border self-center mx-0.5" />
                 ) : null;
 
                 let navElement: React.ReactNode;
