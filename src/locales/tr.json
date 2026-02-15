@@ -3810,5 +3810,71 @@
     "summary": "Özet",
     "summaryText": "Kişiselleştirilmiş planınızı takip etmeye devam edin ve herhangi bir endişe için doktorunuza danışın.",
     "doctorNotes": "Doktor Notları"
+  },
+  "toolsInternal.walkingCoach": {
+    "title": "Akıllı Yürüyüş Koçu",
+    "subtitle": "Sağlıklı bir gebelik için kişiselleştirilmiş yürüyüş programı",
+    "yourTrimester": "Trimesteriniz",
+    "trimester": "Trimester",
+    "readyToWalk": "Yürümeye hazır mısınız?",
+    "goal": "Hedef (dakika)",
+    "startWalking": "Yürüyüşe başla",
+    "endWalk": "Yürüyüşü bitir",
+    "keepUp": "Harika gidiyorsun! 🚶‍♀️",
+    "minutesToday": "Bugünkü dakikalar",
+    "minutesThisWeek": "Bu haftaki dakikalar",
+    "recentWalks": "Son yürüyüşler",
+    "goalMet": "Hedef tamamlandı!",
+    "getAIAdvice": "AI koç tavsiyesi al",
+    "aiCoachTitle": "AI Yürüyüş Koçu",
+    "walkingTipsTitle": "Yürüyüş ipuçları",
+    "walkingTips": {
+      "tip1": "Düz ve pürüzsüz yüzeylerde yürüyün",
+      "tip2": "Destekleyici ayakkabılar giyin",
+      "tip3": "Su içmeyi unutmayın",
+      "tip4": "Günün serin saatlerinde yürüyün",
+      "tip5": "Gerektiğinde mola verin"
+    },
+    "warningMessage": "Baş dönmesi, nefes darlığı, göğüs ağrısı, kasılmalar veya olağandışı belirtiler yaşarsanız yürümeyi bırakın. Her zaman doktorunuza danışın.",
+    "trimesterNotes": {
+      "1": "Yavaş başlayın, vücudunuzu dinleyin",
+      "2": "Aktif yürüyüş için en iyi zaman",
+      "3": "Daha kısa yürüyüşler, daha sık molalar"
+    },
+    "minutes": "dakika"
+  },
+  "stretchReminder": {
+    "title": "Akıllı Esneme Hatırlatıcısı",
+    "subtitle": "Konforunuz için kişiselleştirilmiş esneme hatırlatmaları",
+    "yourTrimester": "Trimesteriniz",
+    "trimester": "Trimester",
+    "todaysProgress": "Bugünün ilerlemesi",
+    "stretchesDone": "{{done}}/{{total}} esneme tamamlandı",
+    "noStretchesYet": "Henüz esneme yapılmadı",
+    "hoursAgo": "{{hours}}s {{minutes}}dk önce",
+    "minutesAgo": "{{minutes}}dk önce",
+    "startRoutine": "Rutine başla",
+    "aiStretchCoach": "AI Esneme Koçu",
+    "close": "Kapat",
+    "secondsRemaining": "saniye kaldı",
+    "skip": "Atla",
+    "allStretches": "Tüm esnemeler",
+    "stretchReminders": "Esneme hatırlatmaları",
+    "tips": {
+      "tip1": "Otururken her 1-2 saatte bir esneme yapın",
+      "tip2": "Esnemeyi zorlamayın - nazik olun",
+      "tip3": "Her esneme sırasında derin nefes alın",
+      "tip4": "Esnek kaslar için su içmeye devam edin"
+    },
+    "stretches": {
+      "neckRolls": { "name": "Boyun döndürme", "desc": "Başınızı nazikçe daireler çizerek döndürün", "bodyPart": "Boyun" },
+      "shoulderShrugs": { "name": "Omuz kaldırma", "desc": "Omuzları kulaklara doğru kaldırın, bırakın", "bodyPart": "Omuzlar" },
+      "wristCircles": { "name": "Bilek çevreleri", "desc": "Bilekleri her iki yönde çevirin", "bodyPart": "Bilekler" },
+      "sideStretch": { "name": "Yan esneme", "desc": "Kolunuzu başınızın üstünden uzatıp yana eğilin", "bodyPart": "Sırt" },
+      "catCow": { "name": "Kedi-İnek", "desc": "Sırtı kambur ve çukur yapma arasında geçiş yapın", "bodyPart": "Omurga" },
+      "hipCircles": { "name": "Kalça çevreleri", "desc": "Ayakta durup kalçalarınızı daire çizerek döndürün", "bodyPart": "Kalçalar" },
+      "calfRaises": { "name": "Baldır kaldırma", "desc": "Parmak uçlarına yükselin, sonra indirin", "bodyPart": "Bacaklar" },
+      "deepBreathing": { "name": "Derin nefes", "desc": "Ellerinizi karnınızda tutarak yavaş, derin nefesler", "bodyPart": "Rahatlama" }
+    }
   }
 }

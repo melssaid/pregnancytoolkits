@@ -3810,5 +3810,71 @@
     "summary": "Resumen",
     "summaryText": "Sigue tu plan personalizado y consulta a tu médico ante cualquier inquietud.",
     "doctorNotes": "Notas del Médico"
+  },
+  "toolsInternal.walkingCoach": {
+    "title": "Coach de Caminata Inteligente",
+    "subtitle": "Programa de caminata personalizado para un embarazo saludable",
+    "yourTrimester": "Tu trimestre",
+    "trimester": "Trimestre",
+    "readyToWalk": "¿Lista para caminar?",
+    "goal": "Meta (minutos)",
+    "startWalking": "Comenzar caminata",
+    "endWalk": "Terminar caminata",
+    "keepUp": "¡Sigue así! 🚶‍♀️",
+    "minutesToday": "Minutos hoy",
+    "minutesThisWeek": "Minutos esta semana",
+    "recentWalks": "Caminatas recientes",
+    "goalMet": "¡Meta cumplida!",
+    "getAIAdvice": "Consejo del coach IA",
+    "aiCoachTitle": "Coach de caminata IA",
+    "walkingTipsTitle": "Consejos de caminata",
+    "walkingTips": {
+      "tip1": "Camina en superficies planas y parejas",
+      "tip2": "Usa zapatos con soporte",
+      "tip3": "Mantente hidratada",
+      "tip4": "Camina en las horas más frescas",
+      "tip5": "Toma descansos cuando sea necesario"
+    },
+    "warningMessage": "Deja de caminar si sientes mareos, falta de aire, dolor en el pecho, contracciones o cualquier síntoma inusual. Consulta siempre a tu médico.",
+    "trimesterNotes": {
+      "1": "Comienza despacio, escucha a tu cuerpo",
+      "2": "Mejor momento para caminata activa",
+      "3": "Caminatas más cortas, descansos más frecuentes"
+    },
+    "minutes": "minutos"
+  },
+  "stretchReminder": {
+    "title": "Recordatorio de Estiramiento Inteligente",
+    "subtitle": "Recordatorios de estiramiento personalizados para tu comodidad",
+    "yourTrimester": "Tu trimestre",
+    "trimester": "Trimestre",
+    "todaysProgress": "Progreso de hoy",
+    "stretchesDone": "{{done}}/{{total}} estiramientos realizados",
+    "noStretchesYet": "Sin estiramientos hoy aún",
+    "hoursAgo": "hace {{hours}}h {{minutes}}min",
+    "minutesAgo": "hace {{minutes}}min",
+    "startRoutine": "Iniciar rutina",
+    "aiStretchCoach": "Coach de estiramiento IA",
+    "close": "Cerrar",
+    "secondsRemaining": "segundos restantes",
+    "skip": "Saltar",
+    "allStretches": "Todos los estiramientos",
+    "stretchReminders": "Recordatorios de estiramiento",
+    "tips": {
+      "tip1": "Estírate cada 1-2 horas cuando estés sentada",
+      "tip2": "Nunca fuerces un estiramiento - sé suave",
+      "tip3": "Respira profundo durante cada estiramiento",
+      "tip4": "Mantente hidratada para músculos flexibles"
+    },
+    "stretches": {
+      "neckRolls": { "name": "Giros de cuello", "desc": "Gira suavemente la cabeza en círculos", "bodyPart": "Cuello" },
+      "shoulderShrugs": { "name": "Encogimiento de hombros", "desc": "Sube los hombros hacia las orejas y suelta", "bodyPart": "Hombros" },
+      "wristCircles": { "name": "Círculos de muñeca", "desc": "Gira las muñecas en ambas direcciones", "bodyPart": "Muñecas" },
+      "sideStretch": { "name": "Estiramiento lateral", "desc": "Estira el brazo sobre la cabeza e inclínate", "bodyPart": "Espalda" },
+      "catCow": { "name": "Gato-Vaca", "desc": "Alterna entre arquear y redondear la espalda", "bodyPart": "Columna" },
+      "hipCircles": { "name": "Círculos de cadera", "desc": "De pie, gira las caderas en círculos", "bodyPart": "Caderas" },
+      "calfRaises": { "name": "Elevación de pantorrillas", "desc": "Sube de puntillas y baja", "bodyPart": "Piernas" },
+      "deepBreathing": { "name": "Respiración profunda", "desc": "Respiraciones lentas y profundas con manos en el vientre", "bodyPart": "Relajación" }
+    }
   }
 }

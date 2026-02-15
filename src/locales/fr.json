@@ -3611,5 +3611,71 @@
     "summary": "Résumé",
     "summaryText": "Continuez à suivre votre plan personnalisé et consultez votre médecin pour toute préoccupation.",
     "doctorNotes": "Notes du Médecin"
+  },
+  "toolsInternal.walkingCoach": {
+    "title": "Coach de Marche Intelligent",
+    "subtitle": "Programme de marche personnalisé pour une grossesse saine",
+    "yourTrimester": "Votre trimestre",
+    "trimester": "Trimestre",
+    "readyToWalk": "Prête à marcher ?",
+    "goal": "Objectif (minutes)",
+    "startWalking": "Commencer la marche",
+    "endWalk": "Terminer la marche",
+    "keepUp": "Continuez comme ça ! 🚶‍♀️",
+    "minutesToday": "Minutes aujourd'hui",
+    "minutesThisWeek": "Minutes cette semaine",
+    "recentWalks": "Marches récentes",
+    "goalMet": "Objectif atteint !",
+    "getAIAdvice": "Conseil du coach IA",
+    "aiCoachTitle": "Coach de marche IA",
+    "walkingTipsTitle": "Conseils de marche",
+    "walkingTips": {
+      "tip1": "Marchez sur des surfaces planes et régulières",
+      "tip2": "Portez des chaussures de soutien",
+      "tip3": "Restez hydratée",
+      "tip4": "Marchez aux heures les plus fraîches",
+      "tip5": "Faites des pauses quand nécessaire"
+    },
+    "warningMessage": "Arrêtez de marcher si vous ressentez des vertiges, un essoufflement, une douleur thoracique, des contractions ou tout symptôme inhabituel. Consultez toujours votre médecin.",
+    "trimesterNotes": {
+      "1": "Commencez doucement, écoutez votre corps",
+      "2": "Meilleur moment pour la marche active",
+      "3": "Marches plus courtes, pauses plus fréquentes"
+    },
+    "minutes": "minutes"
+  },
+  "stretchReminder": {
+    "title": "Rappel d'Étirement Intelligent",
+    "subtitle": "Rappels d'étirement personnalisés pour votre confort",
+    "yourTrimester": "Votre trimestre",
+    "trimester": "Trimestre",
+    "todaysProgress": "Progrès du jour",
+    "stretchesDone": "{{done}}/{{total}} étirements effectués",
+    "noStretchesYet": "Pas encore d'étirements aujourd'hui",
+    "hoursAgo": "il y a {{hours}}h {{minutes}}min",
+    "minutesAgo": "il y a {{minutes}}min",
+    "startRoutine": "Commencer la routine",
+    "aiStretchCoach": "Coach d'étirement IA",
+    "close": "Fermer",
+    "secondsRemaining": "secondes restantes",
+    "skip": "Passer",
+    "allStretches": "Tous les étirements",
+    "stretchReminders": "Rappels d'étirement",
+    "tips": {
+      "tip1": "Étirez-vous toutes les 1-2 heures en position assise",
+      "tip2": "Ne forcez jamais un étirement - soyez douce",
+      "tip3": "Respirez profondément pendant chaque étirement",
+      "tip4": "Restez hydratée pour des muscles souples"
+    },
+    "stretches": {
+      "neckRolls": { "name": "Rotations du cou", "desc": "Faites rouler doucement la tête en cercles", "bodyPart": "Cou" },
+      "shoulderShrugs": { "name": "Haussements d'épaules", "desc": "Levez les épaules vers les oreilles, puis relâchez", "bodyPart": "Épaules" },
+      "wristCircles": { "name": "Cercles des poignets", "desc": "Faites tourner les poignets dans les deux sens", "bodyPart": "Poignets" },
+      "sideStretch": { "name": "Étirement latéral", "desc": "Tendez le bras au-dessus de la tête et penchez-vous", "bodyPart": "Dos" },
+      "catCow": { "name": "Chat-Vache", "desc": "Alternez entre arrondir et creuser le dos", "bodyPart": "Colonne" },
+      "hipCircles": { "name": "Cercles de hanches", "desc": "Debout, faites des cercles avec les hanches", "bodyPart": "Hanches" },
+      "calfRaises": { "name": "Élévations des mollets", "desc": "Montez sur la pointe des pieds, puis redescendez", "bodyPart": "Jambes" },
+      "deepBreathing": { "name": "Respiration profonde", "desc": "Respirations lentes et profondes, mains sur le ventre", "bodyPart": "Relaxation" }
+    }
   }
 }
