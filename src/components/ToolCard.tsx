@@ -25,7 +25,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index }: 
       transition={{ duration: 0.15, delay: Math.min(index * 0.015, 0.08) }}
     >
       <Link to={href} className="block">
-        <div className="group flex items-center gap-2.5 p-2.5 rounded-xl bg-card border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
+        <div className="group flex items-center gap-2.5 p-2.5 rounded-xl bg-white dark:bg-card border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
           <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
             <Icon className="w-4 h-4 text-muted-foreground" strokeWidth={1.75} />
           </div>
