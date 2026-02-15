@@ -270,7 +270,7 @@ const SmartDashboard = () => {
             className="space-y-6"
           >
             {/* Progress Ring Section */}
-            <Card className="overflow-hidden bg-gradient-to-br from-card to-muted/20">
+            <Card className="overflow-hidden bg-gradient-to-br from-card to-muted/20 card-pink-top">
               <CardContent className="p-6 flex flex-col items-center">
                 <ProgressRing 
                   currentWeek={healthData.weekOfPregnancy} 
@@ -290,7 +290,7 @@ const SmartDashboard = () => {
             />
 
             {/* Quick Actions */}
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden card-pink-top">
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-primary" />
@@ -337,7 +337,7 @@ const SmartDashboard = () => {
             </Card>
 
             {/* Data Tracking Tools - Advanced Section */}
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden card-pink-top">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-semibold flex items-center gap-2">

@@ -199,6 +199,24 @@
 }
 
 @layer utilities {
+  /* Dashboard card top accent border */
+  .card-pink-top {
+    position: relative;
+    border-top: none;
+  }
+  
+  .card-pink-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, hsl(340 65% 65%), hsl(320 50% 72%), hsl(300 40% 65%));
+    border-radius: var(--radius) var(--radius) 0 0;
+    z-index: 1;
+  }
+
   .gradient-primary {
     background: var(--gradient-primary);
   }
