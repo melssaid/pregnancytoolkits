@@ -79,31 +79,31 @@ const trackingTools = [
   },
 ];
 
-const quickQuestions = [
-  { icon: Baby, text: "First trimester symptoms?", color: "from-primary to-pink-500" },
-  { icon: Pill, text: "Is coffee safe?", color: "from-amber-500 to-orange-500" },
-  { icon: Stethoscope, text: "Labor preparation?", color: "from-blue-500 to-indigo-500" },
-  { icon: Salad, text: "Important vitamins?", color: "from-emerald-500 to-green-500" },
+const quickQuestionKeys = [
+  { icon: Baby, key: "firstTrimester", color: "from-primary to-pink-500" },
+  { icon: Pill, key: "coffee", color: "from-amber-500 to-orange-500" },
+  { icon: Stethoscope, key: "labor", color: "from-blue-500 to-indigo-500" },
+  { icon: Salad, key: "vitamins", color: "from-emerald-500 to-green-500" },
 ];
 
-const nutritionPlan = [
-  { meal: "Breakfast", suggestion: "Boiled eggs + whole wheat bread + fresh orange juice", calories: 350 },
-  { meal: "Lunch", suggestion: "Grilled chicken + rice + green salad", calories: 550 },
-  { meal: "Dinner", suggestion: "Grilled fish + sautéed vegetables + yogurt", calories: 400 },
-  { meal: "Snacks", suggestion: "Fruits + nuts + milk", calories: 200 },
+const nutritionKeys = [
+  { key: "breakfast", calories: 350 },
+  { key: "lunch", calories: 550 },
+  { key: "dinner", calories: 400 },
+  { key: "snacks", calories: 200 },
 ];
 
-const exercises = [
-  { name: "Walking", duration: "30 min", benefit: "Improves circulation", href: "/tools/smart-walking-coach" },
-  { name: "Swimming", duration: "20 min", benefit: "Relieves back pain", href: "/tools/exercise-guide" },
-  { name: "Prenatal Yoga", duration: "25 min", benefit: "Reduces stress", href: "/tools/smart-stretch-reminder" },
-  { name: "Kegel Exercises", duration: "10 min", benefit: "Strengthens pelvic floor", href: "/tools/exercise-guide" },
+const exerciseKeys = [
+  { key: "walking", href: "/tools/smart-walking-coach" },
+  { key: "swimming", href: "/tools/exercise-guide" },
+  { key: "yoga", href: "/tools/smart-stretch-reminder" },
+  { key: "kegel", href: "/tools/exercise-guide" },
 ];
 
-const videos = [
-  { id: 1, youtubeId: "j5qY8c7BKmg", title: "Prenatal Yoga Exercises" },
-  { id: 2, youtubeId: "ixPsILYT0Yc", title: "Healthy Pregnancy Recipes" },
-  { id: 3, youtubeId: "UCDkZ_NUEBI", title: "Pregnancy Health Tips" },
+const videoItems = [
+  { id: 1, youtubeId: "j5qY8c7BKmg", titleKey: "yoga" },
+  { id: 2, youtubeId: "ixPsILYT0Yc", titleKey: "recipes" },
+  { id: 3, youtubeId: "UCDkZ_NUEBI", titleKey: "tips" },
 ];
 
 const symptomKeys = ["nausea", "headache", "fatigue", "backPain", "swelling", "heartburn", "insomnia"] as const;
@@ -128,6 +128,8 @@ const SmartDashboard = () => {
     weekOfPregnancy: 20
   });
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+  const [healthSaved, setHealthSaved] = useState(false);
+  const [aiHealthInsight, setAiHealthInsight] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -466,16 +468,16 @@ const SmartDashboard = () => {
                   <div className="p-4 space-y-3">
                     {messages.length === 1 && (
                       <div className="grid grid-cols-2 gap-2 mb-4">
-                        {quickQuestions.map((q, i) => (
+                        {quickQuestionKeys.map((q, i) => (
                           <button
                             key={i}
-                            onClick={() => sendMessage(q.text)}
+                            onClick={() => sendMessage(t(`dashboard.chat.quickQuestions.${q.key}`))}
                             className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/50 hover:bg-muted transition-colors text-left"
                           >
                             <div className={`p-1.5 rounded-md bg-gradient-to-br ${q.color}`}>
                               <q.icon className="w-3 h-3 text-primary-foreground" />
                             </div>
-                            <span className="text-xs font-medium">{q.text}</span>
+                            <span className="text-xs font-medium">{t(`dashboard.chat.quickQuestions.${q.key}`)}</span>
                           </button>
                         ))}
                       </div>
@@ -660,7 +662,20 @@ const SmartDashboard = () => {
                   </div>
                 </div>
 
-                <Button className="w-full" onClick={() => {}}>
+                <Button className="w-full" onClick={() => {
+                  setHealthSaved(true);
+                  // Generate AI health insight
+                  setAiHealthInsight('');
+                  const symptomsList = healthData.symptoms.map(s => t(`dashboard.health.symptoms.${s}`)).join(', ');
+                  const prompt = `Analyze pregnancy health: Week ${healthData.weekOfPregnancy}, Weight: ${healthData.weight || 'N/A'}kg, BP: ${healthData.bloodPressure || 'N/A'}, Mood: ${healthData.mood}, Symptoms: ${symptomsList || 'None'}. Give brief personalized tips.`;
+                  streamChat({
+                    type: 'pregnancy-assistant',
+                    messages: [{ role: 'user', content: prompt }],
+                    context: { week: healthData.weekOfPregnancy },
+                    onDelta: (text) => setAiHealthInsight(prev => prev + text),
+                    onDone: () => {},
+                  });
+                }}>
                   <Scale className="w-4 h-4 me-2" />
                   {t('dashboard.health.saveAnalyze')}
                 </Button>
@@ -681,6 +696,25 @@ const SmartDashboard = () => {
                     </div>
                   ))}
                 </div>
+                {/* AI Generated Insight */}
+                {(aiHealthInsight || (isLoading && healthSaved)) && (
+                  <div className="mt-3 p-3 bg-background rounded-lg border border-primary/20">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="w-3.5 h-3.5 text-primary" />
+                      <span className="text-xs font-semibold text-primary">AI Analysis</span>
+                    </div>
+                    {isLoading && !aiHealthInsight ? (
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span className="text-xs">{t('toolsInternal.aiInsights.analyzing')}</span>
+                      </div>
+                    ) : (
+                      <div className="text-sm">
+                        <MarkdownRenderer content={aiHealthInsight} />
+                      </div>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </motion.div>
@@ -703,14 +737,14 @@ const SmartDashboard = () => {
                 </p>
 
                 <div className="space-y-3">
-                  {nutritionPlan.map((meal, i) => (
+                  {nutritionKeys.map((meal, i) => (
                     <div key={i} className="flex items-center gap-3 p-3 bg-primary/5 rounded-xl">
                       <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                         <Salad className="w-5 h-5 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-sm font-semibold text-foreground">{meal.meal}</h3>
-                        <p className="text-xs text-muted-foreground truncate">{meal.suggestion}</p>
+                        <h3 className="text-sm font-semibold text-foreground">{t(`dashboard.nutrition.meals.${meal.key}`)}</h3>
+                        <p className="text-xs text-muted-foreground truncate">{t(`dashboard.nutrition.meals.${meal.key}Suggestion`)}</p>
                       </div>
                       <div className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-bold shrink-0">
                         {meal.calories} cal
@@ -721,7 +755,7 @@ const SmartDashboard = () => {
 
                 <div className="mt-4 p-3 bg-primary/10 rounded-xl text-center">
                   <p className="text-sm font-semibold text-foreground">
-                    {t('dashboard.nutrition.totalCalories', { calories: nutritionPlan.reduce((a, b) => a + b.calories, 0) })}
+                    {t('dashboard.nutrition.totalCalories', { calories: nutritionKeys.reduce((a, b) => a + b.calories, 0) })}
                   </p>
                 </div>
 
@@ -750,15 +784,15 @@ const SmartDashboard = () => {
                 </h2>
 
                 <div className="grid grid-cols-2 gap-3">
-                  {exercises.map((ex, i) => (
+                  {exerciseKeys.map((ex, i) => (
                     <Link key={i} to={ex.href}>
                       <div className="bg-primary/5 hover:bg-primary/10 p-4 rounded-xl text-center transition-all">
                         <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center">
                           <Activity className="w-5 h-5 text-primary" />
                         </div>
-                        <h3 className="text-sm font-semibold text-foreground">{ex.name}</h3>
-                        <p className="text-xs text-muted-foreground mt-1">{ex.duration}</p>
-                        <p className="text-[10px] text-primary mt-1">{ex.benefit}</p>
+                        <h3 className="text-sm font-semibold text-foreground">{t(`dashboard.exercise.exercises.${ex.key}`)}</h3>
+                        <p className="text-xs text-muted-foreground mt-1">{t(`dashboard.exercise.exercises.${ex.key}Duration`)}</p>
+                        <p className="text-[10px] text-primary mt-1">{t(`dashboard.exercise.exercises.${ex.key}Benefit`)}</p>
                       </div>
                     </Link>
                   ))}
@@ -789,13 +823,13 @@ const SmartDashboard = () => {
                 </h2>
 
                 <div className="space-y-4">
-                  {videos.map((video) => (
+                  {videoItems.map((video) => (
                     <div key={video.id} className="rounded-xl overflow-hidden bg-muted/30">
                       {playingVideo === video.youtubeId ? (
                         <AspectRatio ratio={16 / 9}>
                           <iframe
                             src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
-                            title={video.title}
+                            title={t(`dashboard.videos.videoTitles.${video.titleKey}`)}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             className="w-full h-full rounded-xl"
@@ -809,7 +843,7 @@ const SmartDashboard = () => {
                           <AspectRatio ratio={16 / 9}>
                             <img
                               src={`https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`}
-                              alt={video.title}
+                              alt={t(`dashboard.videos.videoTitles.${video.titleKey}`)}
                               className="w-full h-full object-cover rounded-xl"
                             />
                             <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors rounded-xl">
@@ -818,7 +852,7 @@ const SmartDashboard = () => {
                               </div>
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent rounded-b-xl">
-                              <p className="text-primary-foreground text-sm font-medium">{video.title}</p>
+                              <p className="text-primary-foreground text-sm font-medium">{t(`dashboard.videos.videoTitles.${video.titleKey}`)}</p>
                             </div>
                           </AspectRatio>
                         </button>
