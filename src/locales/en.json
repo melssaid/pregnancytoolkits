@@ -3947,7 +3947,10 @@
     "title": "Baby Gear Recommender",
     "subtitle": "Essential items checklist for your new arrival",
     "essentialsProgress": "Essentials Progress",
+    "totalProgress": "Total Progress",
     "itemsChecked": "{{checked}} of {{total}} items checked",
+    "reset": "Reset",
+    "noItemsFound": "No items match your filters",
     "filters": {
       "all": "All Items",
       "essential": "Essential",
@@ -3963,6 +3966,7 @@
       "niceToHave": "Nice to Have"
     },
     "types": {
+      "all": "All Types",
       "feeding": "Feeding",
       "sleeping": "Sleeping",
       "travel": "Travel",
@@ -3982,7 +3986,13 @@
       "swing": "Baby Swing",
       "diaperBag": "Diaper Bag",
       "bathtub": "Baby Bathtub",
-      "swaddles": "Swaddle Blankets"
+      "swaddles": "Swaddle Blankets",
+      "thermometer": "Baby Thermometer",
+      "burpCloths": "Burp Cloths",
+      "changingPad": "Changing Pad",
+      "nightLight": "Night Light",
+      "bouncer": "Baby Bouncer",
+      "playMat": "Activity Play Mat"
     },
     "descriptions": {
       "carSeat": "Required for bringing baby home from hospital",
@@ -3996,7 +4006,13 @@
       "swing": "Soothing motion for fussy babies",
       "diaperBag": "For outings with baby",
       "bathtub": "Makes bathing easier and safer",
-      "swaddles": "Helps newborns feel secure"
+      "swaddles": "Helps newborns feel secure",
+      "thermometer": "Essential for monitoring baby's temperature",
+      "burpCloths": "Protects clothing during and after feeding",
+      "changingPad": "Comfortable surface for diaper changes",
+      "nightLight": "Soft light for nighttime feeding and changes",
+      "bouncer": "A safe seat that gently bounces with baby's movement",
+      "playMat": "Stimulates development with colors and textures"
     },
     "tips": {
       "carSeat": "Look for one that clicks into a stroller. Check expiration dates.",
@@ -4010,7 +4026,13 @@
       "swing": "Some babies love them, others don't. Consider borrowing first.",
       "diaperBag": "Look for one with changing pad and multiple compartments.",
       "bathtub": "The sink works fine too for newborns.",
-      "swaddles": "Muslin ones are breathable and versatile."
+      "swaddles": "Muslin ones are breathable and versatile.",
+      "thermometer": "Digital rectal thermometers are most accurate for infants.",
+      "burpCloths": "Get at least 10-12. Muslin or terry cloth work best.",
+      "changingPad": "Waterproof ones with raised edges are safest.",
+      "nightLight": "Choose warm-tone light to avoid disrupting sleep cycles.",
+      "bouncer": "Never place on elevated surfaces. Always supervise.",
+      "playMat": "Look for one with detachable toys and washable fabric."
     },
     "whenNeeded": {
       "beforeBirth": "Before birth",
