@@ -267,9 +267,9 @@ const SmartDashboard = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-6"
+            className="space-y-5"
           >
-            {/* Progress Ring Section */}
+            {/* 1. Progress Ring - Pregnancy Week Status */}
             <Card className="overflow-hidden bg-gradient-to-br from-card to-muted/20 card-pink-top">
               <CardContent className="p-6 flex flex-col items-center">
                 <ProgressRing 
@@ -279,8 +279,7 @@ const SmartDashboard = () => {
               </CardContent>
             </Card>
 
-
-            {/* Quick Stats */}
+            {/* 2. Quick Stats - Daily Health Overview */}
             <QuickStats
               weight={parseFloat(healthData.weight) || 0}
               kicks={0}
@@ -289,54 +288,27 @@ const SmartDashboard = () => {
               nextAppointment={t('dashboard.checkAppointments')}
             />
 
-            {/* Quick Actions */}
-            <Card className="overflow-hidden card-pink-top">
-              <CardContent className="p-4">
-                <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-primary" />
-                  {t('dashboard.quickActions')}
-                </h3>
-                <div className="grid grid-cols-2 gap-2">
-                  <motion.button
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    onClick={() => navigate("/tools/smart-plan")}
-                    className="col-span-2 flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 hover:from-primary/20 hover:to-purple-500/20 transition-all group border border-primary/20"
-                  >
-                    <div className="p-2 rounded-lg bg-primary/20 group-hover:bg-primary/30 transition-colors">
-                      <CalendarCheck className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="text-start">
-                      <span className="text-sm font-bold text-foreground block">{t('dashboard.smartPlan')}</span>
-                      <span className="text-xs text-muted-foreground">{t('dashboard.smartPlanDesc')}</span>
-                    </div>
-                  </motion.button>
-
-                  {[
-                    { icon: Bot, title: t('dashboard.tabs.chat'), tab: "chat" as TabType },
-                    { icon: Activity, title: t('dashboard.tabs.health'), tab: "health" as TabType },
-                    { icon: Utensils, title: t('dashboard.tabs.nutrition'), tab: "nutrition" as TabType },
-                    { icon: Dumbbell, title: t('dashboard.tabs.exercise'), tab: "exercise" as TabType },
-                  ].map((feature, i) => (
-                    <motion.button
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.1 * i }}
-                      onClick={() => setActiveTab(feature.tab)}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 hover:bg-primary/10 transition-all group"
-                    >
-                      <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <feature.icon className="w-4 h-4 text-primary" />
-                      </div>
-                      <span className="text-sm font-medium text-foreground">{feature.title}</span>
-                    </motion.button>
-                  ))}
+            {/* 3. Smart Pregnancy Plan - Prominent CTA */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
+              <Link
+                to="/tools/smart-plan"
+                className="flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 hover:border-primary/40 hover:shadow-md transition-all group card-pink-top"
+              >
+                <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg">
+                  <CalendarCheck className="w-5 h-5 text-primary-foreground" />
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex-1 min-w-0">
+                  <span className="text-sm font-bold text-foreground block">{t('dashboard.smartPlan')}</span>
+                  <span className="text-xs text-muted-foreground">{t('dashboard.smartPlanDesc')}</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+              </Link>
+            </motion.div>
 
-            {/* Data Tracking Tools - Advanced Section */}
+            {/* 4. Data Tracking Tools - Organized by Category */}
             <Card className="overflow-hidden card-pink-top">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
@@ -351,7 +323,6 @@ const SmartDashboard = () => {
                 
                 <div className="space-y-4">
                   {trackingTools.map((category, catIndex) => {
-                    // Get category summary based on category key
                     const getCategorySummary = () => {
                       let hasDataFlag = false;
                       switch (category.categoryKey) {
@@ -444,8 +415,8 @@ const SmartDashboard = () => {
               </CardContent>
             </Card>
 
-            {/* AI Tools Links */}
-            <Card>
+            {/* 5. AI Tools - Smart Links */}
+            <Card className="overflow-hidden card-pink-top">
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                   <Brain className="w-4 h-4 text-primary" />
@@ -453,10 +424,10 @@ const SmartDashboard = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { title: t('dashboard.aiToolsList.smartPlan'), icon: CalendarCheck, href: "/tools/smart-plan" },
                     { title: t('dashboard.aiToolsList.aiAssistant'), icon: Bot, href: "/tools/pregnancy-assistant" },
                     { title: t('dashboard.aiToolsList.symptoms'), icon: Stethoscope, href: "/tools/symptom-analyzer" },
                     { title: t('dashboard.aiToolsList.weekly'), icon: Sparkles, href: "/tools/weekly-summary" },
+                    { title: t('dashboard.tabs.nutrition'), icon: Utensils, href: "/tools/meal-suggestion" },
                   ].map((link, i) => (
                     <Link
                       key={i}
