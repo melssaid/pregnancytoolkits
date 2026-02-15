@@ -2958,7 +2958,10 @@
     "title": "Baby-Ausstattung Empfehlung",
     "subtitle": "Checkliste für Ihren Neuankömmling",
     "essentialsProgress": "Fortschritt bei Essentials",
+    "totalProgress": "Gesamtfortschritt",
     "itemsChecked": "{{checked}} von {{total}} Artikeln abgehakt",
+    "reset": "Zurücksetzen",
+    "noItemsFound": "Keine Artikel entsprechen Ihren Filtern",
     "filters": {
       "all": "Alle Artikel",
       "essential": "Essentiell",
@@ -2974,6 +2977,7 @@
       "niceToHave": "Nice to Have"
     },
     "types": {
+      "all": "Alle Typen",
       "feeding": "Fütterung",
       "sleeping": "Schlafen",
       "travel": "Unterwegs",
@@ -2993,7 +2997,13 @@
       "swing": "Babyschaukel",
       "diaperBag": "Wickeltasche",
       "bathtub": "Babybadewanne",
-      "swaddles": "Pucktücher"
+      "swaddles": "Pucktücher",
+      "thermometer": "Babythermometer",
+      "burpCloths": "Spucktücher",
+      "changingPad": "Wickelunterlage",
+      "nightLight": "Nachtlicht",
+      "bouncer": "Babywippe",
+      "playMat": "Spielmatte"
     },
     "descriptions": {
       "carSeat": "Erforderlich, um das Baby aus dem Krankenhaus zu bringen",
@@ -3007,7 +3017,13 @@
       "swing": "Beruhigende Bewegung für unruhige Babys",
       "diaperBag": "Für Ausflüge mit dem Baby",
       "bathtub": "Macht das Baden einfacher und sicherer",
-      "swaddles": "Hilft Neugeborenen sich sicher zu fühlen"
+      "swaddles": "Hilft Neugeborenen sich sicher zu fühlen",
+      "thermometer": "Unverzichtbar zur Überwachung der Babytemperatur",
+      "burpCloths": "Schützt Kleidung während und nach dem Füttern",
+      "changingPad": "Bequeme Unterlage zum Wickeln",
+      "nightLight": "Sanftes Licht für nächtliches Füttern und Wickeln",
+      "bouncer": "Sicherer Sitz, der sanft mit Babys Bewegung wippt",
+      "playMat": "Fördert die Entwicklung mit Farben und Texturen"
     },
     "tips": {
       "carSeat": "Suchen Sie einen, der in den Kinderwagen klickt. Prüfen Sie das Verfallsdatum.",
@@ -3021,7 +3037,13 @@
       "swing": "Manche Babys lieben sie, andere nicht. Erwägen Sie, zunächst zu leihen.",
       "diaperBag": "Suchen Sie eine mit Wickelunterlage und mehreren Fächern.",
       "bathtub": "Das Waschbecken funktioniert auch für Neugeborene.",
-      "swaddles": "Musselin-Tücher sind atmungsaktiv und vielseitig."
+      "swaddles": "Musselin-Tücher sind atmungsaktiv und vielseitig.",
+      "thermometer": "Digitale Rektalthermometer sind am genauesten für Säuglinge.",
+      "burpCloths": "Holen Sie mindestens 10-12. Musselin oder Frottee funktionieren am besten.",
+      "changingPad": "Wasserdichte mit erhöhten Rändern sind am sichersten.",
+      "nightLight": "Wählen Sie warmtoniges Licht, um den Schlafzyklus nicht zu stören.",
+      "bouncer": "Nie auf erhöhte Flächen stellen. Immer beaufsichtigen.",
+      "playMat": "Suchen Sie eine mit abnehmbaren Spielzeugen und waschbarem Stoff."
     },
     "whenNeeded": {
       "beforeBirth": "Vor der Geburt",

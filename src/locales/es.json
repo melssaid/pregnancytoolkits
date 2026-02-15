@@ -3217,7 +3217,10 @@
     "title": "Recomendador de Artículos de Bebé",
     "subtitle": "Checklist de esenciales para tu nuevo bebé",
     "essentialsProgress": "Progreso de esenciales",
+    "totalProgress": "Progreso total",
     "itemsChecked": "{{checked}} de {{total}} artículos marcados",
+    "reset": "Restablecer",
+    "noItemsFound": "No hay artículos que coincidan con tus filtros",
     "filters": {
       "all": "Todos los artículos",
       "essential": "Esencial",
@@ -3233,6 +3236,7 @@
       "niceToHave": "Bueno tener"
     },
     "types": {
+      "all": "Todos los tipos",
       "feeding": "Alimentación",
       "sleeping": "Sueño",
       "travel": "Viaje",
@@ -3252,7 +3256,13 @@
       "swing": "Columpio de bebé",
       "diaperBag": "Bolsa de pañales",
       "bathtub": "Bañera de bebé",
-      "swaddles": "Mantas de arrullo"
+      "swaddles": "Mantas de arrullo",
+      "thermometer": "Termómetro de bebé",
+      "burpCloths": "Paños de eructo",
+      "changingPad": "Cambiador",
+      "nightLight": "Luz nocturna",
+      "bouncer": "Hamaca de bebé",
+      "playMat": "Alfombra de actividades"
     },
     "descriptions": {
       "carSeat": "Necesaria para llevar al bebé del hospital a casa",
@@ -3266,7 +3276,13 @@
       "swing": "Movimiento relajante para bebés inquietos",
       "diaperBag": "Para salidas con el bebé",
       "bathtub": "Hace el baño más fácil y seguro",
-      "swaddles": "Ayuda a los recién nacidos a sentirse seguros"
+      "swaddles": "Ayuda a los recién nacidos a sentirse seguros",
+      "thermometer": "Esencial para monitorear la temperatura del bebé",
+      "burpCloths": "Protege la ropa durante y después de alimentar",
+      "changingPad": "Superficie cómoda para cambiar pañales",
+      "nightLight": "Luz suave para alimentar y cambiar de noche",
+      "bouncer": "Asiento seguro que rebota suavemente con el movimiento del bebé",
+      "playMat": "Estimula el desarrollo con colores y texturas"
     },
     "tips": {
       "carSeat": "Busca una que se enganche al cochecito. Revisa la fecha de expiración.",
@@ -3280,7 +3296,13 @@
       "swing": "A algunos bebés les encanta, a otros no. Considera pedir prestado primero.",
       "diaperBag": "Busca una con cambiador y múltiples compartimentos.",
       "bathtub": "El lavabo también funciona bien para recién nacidos.",
-      "swaddles": "Las de muselina son transpirables y versátiles."
+      "swaddles": "Las de muselina son transpirables y versátiles.",
+      "thermometer": "Los termómetros rectales digitales son más precisos para bebés.",
+      "burpCloths": "Consigue al menos 10-12. Muselina o rizo funcionan mejor.",
+      "changingPad": "Los impermeables con bordes elevados son más seguros.",
+      "nightLight": "Elige luz de tono cálido para no alterar el ciclo de sueño.",
+      "bouncer": "Nunca coloques en superficies elevadas. Siempre supervisa.",
+      "playMat": "Busca una con juguetes desmontables y tela lavable."
     },
     "whenNeeded": {
       "beforeBirth": "Antes del parto",

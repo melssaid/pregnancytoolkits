@@ -2983,7 +2983,10 @@
     "title": "Recommandeur d'Équipement Bébé",
     "subtitle": "Checklist des essentiels pour votre nouveau-né",
     "essentialsProgress": "Progrès des essentiels",
+    "totalProgress": "Progrès total",
     "itemsChecked": "{{checked}} sur {{total}} articles cochés",
+    "reset": "Réinitialiser",
+    "noItemsFound": "Aucun article ne correspond à vos filtres",
     "filters": {
       "all": "Tous les articles",
       "essential": "Essentiel",
@@ -2999,6 +3002,7 @@
       "niceToHave": "Bien à avoir"
     },
     "types": {
+      "all": "Tous les types",
       "feeding": "Alimentation",
       "sleeping": "Sommeil",
       "travel": "Déplacement",
@@ -3018,7 +3022,13 @@
       "swing": "Balancelle bébé",
       "diaperBag": "Sac à langer",
       "bathtub": "Baignoire bébé",
-      "swaddles": "Couvertures d'emmaillotage"
+      "swaddles": "Couvertures d'emmaillotage",
+      "thermometer": "Thermomètre bébé",
+      "burpCloths": "Bavoirs de rot",
+      "changingPad": "Matelas à langer",
+      "nightLight": "Veilleuse",
+      "bouncer": "Transat bébé",
+      "playMat": "Tapis d'éveil"
     },
     "descriptions": {
       "carSeat": "Obligatoire pour ramener bébé de l'hôpital",
@@ -3032,7 +3042,13 @@
       "swing": "Mouvement apaisant pour les bébés agités",
       "diaperBag": "Pour les sorties avec bébé",
       "bathtub": "Rend le bain plus facile et plus sûr",
-      "swaddles": "Aide les nouveau-nés à se sentir en sécurité"
+      "swaddles": "Aide les nouveau-nés à se sentir en sécurité",
+      "thermometer": "Essentiel pour surveiller la température de bébé",
+      "burpCloths": "Protège les vêtements pendant et après le repas",
+      "changingPad": "Surface confortable pour changer les couches",
+      "nightLight": "Lumière douce pour les tétées et changes nocturnes",
+      "bouncer": "Siège sûr qui rebondit doucement avec les mouvements de bébé",
+      "playMat": "Stimule le développement avec couleurs et textures"
     },
     "tips": {
       "carSeat": "Cherchez-en un qui se clipse dans la poussette. Vérifiez la date d'expiration.",
@@ -3046,7 +3062,13 @@
       "swing": "Certains bébés les adorent, d'autres non. Envisagez d'emprunter d'abord.",
       "diaperBag": "Cherchez-en un avec tapis de change et plusieurs compartiments.",
       "bathtub": "L'évier fonctionne aussi bien pour les nouveau-nés.",
-      "swaddles": "Les mousselines sont respirantes et polyvalentes."
+      "swaddles": "Les mousselines sont respirantes et polyvalentes.",
+      "thermometer": "Les thermomètres rectaux numériques sont les plus précis pour les nourrissons.",
+      "burpCloths": "Procurez-vous au moins 10-12. La mousseline ou l'éponge conviennent le mieux.",
+      "changingPad": "Les imperméables avec bords surélevés sont les plus sûrs.",
+      "nightLight": "Choisissez une lumière chaude pour ne pas perturber le cycle de sommeil.",
+      "bouncer": "Ne jamais placer sur des surfaces surélevées. Toujours surveiller.",
+      "playMat": "Cherchez-en un avec jouets détachables et tissu lavable."
     },
     "whenNeeded": {
       "beforeBirth": "Avant la naissance",

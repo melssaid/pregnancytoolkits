@@ -3217,7 +3217,10 @@
     "title": "Bebek Eşyası Önerici",
     "subtitle": "Yeni bebeğiniz için temel öğeler listesi",
     "essentialsProgress": "Temel Öğeler İlerlemesi",
+    "totalProgress": "Toplam İlerleme",
     "itemsChecked": "{{total}} öğeden {{checked}} tanesi işaretlendi",
+    "reset": "Sıfırla",
+    "noItemsFound": "Filtrelerinize uyan öğe bulunamadı",
     "filters": {
       "all": "Tüm Öğeler",
       "essential": "Temel",
@@ -3233,6 +3236,7 @@
       "niceToHave": "Olması İyi"
     },
     "types": {
+      "all": "Tüm Türler",
       "feeding": "Beslenme",
       "sleeping": "Uyku",
       "travel": "Seyahat",
@@ -3252,7 +3256,13 @@
       "swing": "Bebek Salıncağı",
       "diaperBag": "Bez Çantası",
       "bathtub": "Bebek Küveti",
-      "swaddles": "Kundak Battaniyeleri"
+      "swaddles": "Kundak Battaniyeleri",
+      "thermometer": "Bebek Termometresi",
+      "burpCloths": "Kusma Bezleri",
+      "changingPad": "Alt Değiştirme Pedi",
+      "nightLight": "Gece Lambası",
+      "bouncer": "Bebek Sallanan Koltuk",
+      "playMat": "Aktivite Oyun Halısı"
     },
     "descriptions": {
       "carSeat": "Bebeği hastaneden eve getirmek için gerekli",
@@ -3266,7 +3276,13 @@
       "swing": "Huzursuz bebekler için rahatlatıcı hareket",
       "diaperBag": "Bebekle dışarı çıkmak için",
       "bathtub": "Banyo yapmayı daha kolay ve güvenli hale getirir",
-      "swaddles": "Yenidoğanların güvende hissetmesine yardımcı olur"
+      "swaddles": "Yenidoğanların güvende hissetmesine yardımcı olur",
+      "thermometer": "Bebeğin ateşini izlemek için gerekli",
+      "burpCloths": "Beslenme sırasında ve sonrasında giysileri korur",
+      "changingPad": "Bez değiştirmek için rahat yüzey",
+      "nightLight": "Gece besleme ve değiştirme için yumuşak ışık",
+      "bouncer": "Bebeğin hareketiyle nazikçe sallanan güvenli koltuk",
+      "playMat": "Renkler ve dokularla gelişimi teşvik eder"
     },
     "tips": {
       "carSeat": "Bebek arabasına takılabilecek birini arayın. Son kullanma tarihini kontrol edin.",
@@ -3280,7 +3296,13 @@
       "swing": "Bazı bebekler sever, bazıları sevmez. Önce ödünç almayı düşünün.",
       "diaperBag": "Alt değiştirme pedi ve birden fazla bölmeli birini arayın.",
       "bathtub": "Lavabo da yenidoğanlar için iyi çalışır.",
-      "swaddles": "Muslin olanlar nefes alabilir ve çok yönlüdür."
+      "swaddles": "Muslin olanlar nefes alabilir ve çok yönlüdür.",
+      "thermometer": "Dijital rektal termometreler bebekler için en doğru sonuçları verir.",
+      "burpCloths": "En az 10-12 tane alın. Muslin veya havlu kumaş en iyisidir.",
+      "changingPad": "Yükseltilmiş kenarlı su geçirmez olanlar en güvenlidir.",
+      "nightLight": "Uyku döngüsünü bozmamak için sıcak tonlu ışık seçin.",
+      "bouncer": "Asla yüksek yüzeylere koymayın. Her zaman gözetim altında tutun.",
+      "playMat": "Çıkarılabilir oyuncaklı ve yıkanabilir kumaşlı birini arayın."
     },
     "whenNeeded": {
       "beforeBirth": "Doğumdan önce",
