@@ -1,28 +1,94 @@
-import { useMemo, memo } from "react";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, ChevronLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { getSortedTools, getToolsByCategory } from "@/lib/tools-data";
+import { getToolsByCategory } from "@/lib/tools-data";
 import { Link } from "react-router-dom";
 
 interface CategoryConfig {
   key: string;
   icon: React.ComponentType<{ className?: string }>;
-  gradient: string;
-  iconColor: string;
+  bg: string;
+  border: string;
+  iconBg: string;
+  iconText: string;
+  toolHover: string;
 }
 
 const categoryConfig: CategoryConfig[] = [
-  { key: "categories.ai", icon: Brain, gradient: "from-violet-500/15 to-purple-500/5", iconColor: "text-violet-600 dark:text-violet-400" },
-  { key: "categories.pregnancy", icon: Baby, gradient: "from-pink-500/15 to-rose-500/5", iconColor: "text-pink-600 dark:text-pink-400" },
-  { key: "categories.labor", icon: Clock, gradient: "from-amber-500/15 to-orange-500/5", iconColor: "text-amber-600 dark:text-amber-400" },
-  { key: "categories.wellness", icon: Dumbbell, gradient: "from-emerald-500/15 to-green-500/5", iconColor: "text-emerald-600 dark:text-emerald-400" },
-  { key: "categories.mentalHealth", icon: Heart, gradient: "from-rose-500/15 to-red-500/5", iconColor: "text-rose-600 dark:text-rose-400" },
-  { key: "categories.fertility", icon: Activity, gradient: "from-cyan-500/15 to-teal-500/5", iconColor: "text-cyan-600 dark:text-cyan-400" },
-  { key: "categories.preparation", icon: CheckCircle, gradient: "from-blue-500/15 to-indigo-500/5", iconColor: "text-blue-600 dark:text-blue-400" },
-  { key: "categories.riskAssessment", icon: AlertTriangle, gradient: "from-orange-500/15 to-amber-500/5", iconColor: "text-orange-600 dark:text-orange-400" },
-  { key: "categories.postpartum", icon: Flower2, gradient: "from-fuchsia-500/15 to-pink-500/5", iconColor: "text-fuchsia-600 dark:text-fuchsia-400" },
+  {
+    key: "categories.ai", icon: Brain,
+    bg: "from-rose-400/12 via-pink-300/8 to-rose-200/5",
+    border: "border-rose-300/25",
+    iconBg: "bg-rose-500/15",
+    iconText: "text-rose-600 dark:text-rose-400",
+    toolHover: "hover:bg-rose-50/60 dark:hover:bg-rose-900/20",
+  },
+  {
+    key: "categories.pregnancy", icon: Baby,
+    bg: "from-pink-400/12 via-pink-300/8 to-pink-200/5",
+    border: "border-pink-300/25",
+    iconBg: "bg-pink-500/15",
+    iconText: "text-pink-600 dark:text-pink-400",
+    toolHover: "hover:bg-pink-50/60 dark:hover:bg-pink-900/20",
+  },
+  {
+    key: "categories.labor", icon: Clock,
+    bg: "from-fuchsia-400/12 via-fuchsia-300/8 to-fuchsia-200/5",
+    border: "border-fuchsia-300/25",
+    iconBg: "bg-fuchsia-500/15",
+    iconText: "text-fuchsia-600 dark:text-fuchsia-400",
+    toolHover: "hover:bg-fuchsia-50/60 dark:hover:bg-fuchsia-900/20",
+  },
+  {
+    key: "categories.wellness", icon: Dumbbell,
+    bg: "from-rose-300/12 via-rose-200/8 to-rose-100/5",
+    border: "border-rose-200/25",
+    iconBg: "bg-rose-400/15",
+    iconText: "text-rose-500 dark:text-rose-400",
+    toolHover: "hover:bg-rose-50/60 dark:hover:bg-rose-900/20",
+  },
+  {
+    key: "categories.mentalHealth", icon: Heart,
+    bg: "from-pink-500/12 via-pink-400/8 to-pink-300/5",
+    border: "border-pink-400/25",
+    iconBg: "bg-pink-600/15",
+    iconText: "text-pink-700 dark:text-pink-300",
+    toolHover: "hover:bg-pink-50/60 dark:hover:bg-pink-900/20",
+  },
+  {
+    key: "categories.fertility", icon: Activity,
+    bg: "from-rose-400/10 via-pink-300/8 to-rose-200/5",
+    border: "border-rose-300/20",
+    iconBg: "bg-rose-500/12",
+    iconText: "text-rose-500 dark:text-rose-400",
+    toolHover: "hover:bg-rose-50/50 dark:hover:bg-rose-900/15",
+  },
+  {
+    key: "categories.preparation", icon: CheckCircle,
+    bg: "from-pink-300/12 via-rose-200/8 to-pink-100/5",
+    border: "border-pink-200/25",
+    iconBg: "bg-pink-400/15",
+    iconText: "text-pink-500 dark:text-pink-400",
+    toolHover: "hover:bg-pink-50/50 dark:hover:bg-pink-900/15",
+  },
+  {
+    key: "categories.riskAssessment", icon: AlertTriangle,
+    bg: "from-fuchsia-300/12 via-rose-300/8 to-fuchsia-200/5",
+    border: "border-fuchsia-200/25",
+    iconBg: "bg-fuchsia-400/15",
+    iconText: "text-fuchsia-500 dark:text-fuchsia-400",
+    toolHover: "hover:bg-fuchsia-50/50 dark:hover:bg-fuchsia-900/15",
+  },
+  {
+    key: "categories.postpartum", icon: Flower2,
+    bg: "from-pink-400/10 via-fuchsia-300/8 to-pink-200/5",
+    border: "border-pink-300/20",
+    iconBg: "bg-pink-500/12",
+    iconText: "text-pink-600 dark:text-pink-400",
+    toolHover: "hover:bg-pink-50/50 dark:hover:bg-pink-900/15",
+  },
 ];
 
 function CategoryCard({ config, index }: { config: CategoryConfig; index: number }) {
@@ -36,38 +102,37 @@ function CategoryCard({ config, index }: { config: CategoryConfig; index: number
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.04 }}
+      transition={{ duration: 0.25, delay: index * 0.04 }}
     >
-      {/* Category Hero Card */}
-      <div className={`rounded-3xl bg-gradient-to-br ${config.gradient} border border-border/30 overflow-hidden`}>
-        {/* Header */}
-        <div className="flex items-center gap-3 p-4 pb-2">
-          <div className="w-11 h-11 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/40 flex items-center justify-center shadow-sm">
-            <Icon className={`w-5 h-5 ${config.iconColor}`} />
+      <div className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm`}>
+        {/* Compact Header */}
+        <div className="flex items-center gap-2.5 px-3.5 pt-3 pb-1.5">
+          <div className={`w-8 h-8 rounded-xl ${config.iconBg} flex items-center justify-center`}>
+            <Icon className={`w-4 h-4 ${config.iconText}`} />
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-[15px] font-bold text-foreground tracking-tight truncate">{t(config.key)}</h2>
-            <p className="text-[10px] text-muted-foreground font-medium">{tools.length} {t('common.tools', 'tools')}</p>
+            <h2 className="text-xs font-bold text-foreground tracking-tight truncate">{t(config.key)}</h2>
+            <p className="text-[9px] text-muted-foreground">{tools.length} {t('common.tools', 'tools')}</p>
           </div>
         </div>
 
-        {/* Tools List */}
-        <div className="px-3 pb-3 space-y-1">
+        {/* Tools */}
+        <div className="px-2 pb-2 pt-1 space-y-0.5">
           {tools.map((tool) => {
             const ToolIcon = tool.icon;
             return (
               <Link key={tool.id} to={tool.href} className="block">
-                <div className="group flex items-center gap-3 p-2.5 rounded-xl bg-card/70 backdrop-blur-sm border border-border/20 hover:bg-card hover:border-border/50 hover:shadow-sm transition-all duration-200">
-                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-muted/60 flex items-center justify-center group-hover:bg-muted transition-colors">
-                    <ToolIcon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" strokeWidth={1.75} />
+                <div className={`group flex items-center gap-2.5 p-2 rounded-xl bg-card/50 backdrop-blur-sm ${config.toolHover} transition-all duration-200`}>
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-card/80 border border-border/20 flex items-center justify-center">
+                    <ToolIcon className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" strokeWidth={1.75} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-xs font-semibold text-foreground truncate">{t(tool.titleKey)}</h3>
-                    <p className="text-[10px] text-muted-foreground truncate mt-0.5">{t(tool.descriptionKey)}</p>
+                    <h3 className="text-[11px] font-semibold text-foreground truncate leading-snug">{t(tool.titleKey)}</h3>
+                    <p className="text-[9px] text-muted-foreground truncate mt-0.5">{t(tool.descriptionKey)}</p>
                   </div>
-                  <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-muted-foreground transition-colors" />
+                  <ChevronIcon className="flex-shrink-0 w-3 h-3 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors" />
                 </div>
               </Link>
             );
@@ -81,11 +146,11 @@ function CategoryCard({ config, index }: { config: CategoryConfig; index: number
 const Index = () => {
   return (
     <Layout>
-      {/* Aesthetic gradient overlay */}
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[35vh] bg-gradient-to-t from-primary/15 via-primary/8 to-transparent z-30" />
+      {/* Subtle gradient overlay */}
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-primary/10 via-primary/5 to-transparent z-30" />
 
-      <section className="py-4 relative z-10">
-        <div className="container space-y-4">
+      <section className="py-3 relative z-10">
+        <div className="container space-y-3">
           {categoryConfig.map((cat, index) => (
             <CategoryCard key={cat.key} config={cat} index={index} />
           ))}
