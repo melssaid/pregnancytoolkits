@@ -402,8 +402,8 @@
       "privacy": "Confidentialité",
       "terms": "Conditions",
       "contact": "Contact",
-      "disclaimerTitle": "Avis Médical",
-      "disclaimerText": "Cette application est uniquement à des fins éducatives et informatives et ne fournit pas de conseils médicaux, de diagnostic ou de traitement. Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé."
+      "disclaimerTitle": "Avis Important",
+      "disclaimerText": "Cette application est uniquement à des fins éducatives et informatives et ne remplace pas les conseils de santé professionnels. Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé."
     },
     "privacyPolicy": {
       "title": "Politique de Confidentialité",
@@ -3517,10 +3517,10 @@
     "pushEnabledSuccess": "Notifications push activées ! Vous serez notifiée même quand l'app est en arrière-plan.",
     "welcome": "👋 Bienvenue !",
     "welcomeDesc": "Profitez de 40+ outils intelligents pour suivre votre grossesse facilement et en toute sécurité.",
-    "disclaimer": "⚕️ Avertissement médical",
-    "disclaimerDesc": "Cette application est à titre informatif uniquement et ne remplace pas un avis médical professionnel.",
-    "disclaimerTitle": "Avertissement médical",
-    "disclaimerBody": "Cette application est à des fins éducatives et informatives uniquement et ne fournit pas de conseils médicaux, de diagnostic ou de traitement.",
+    "disclaimer": "📋 Avis important",
+    "disclaimerDesc": "Cette application est à titre informatif uniquement et ne remplace pas les conseils de santé professionnels.",
+    "disclaimerTitle": "Avis important",
+    "disclaimerBody": "Cette application est à des fins éducatives et informatives uniquement et ne remplace pas les conseils de santé professionnels.",
     "pleaseNote": "Veuillez noter :",
     "consultDoctor": "Consultez toujours votre médecin avant de prendre des décisions de santé.",
     "aiGeneral": "Les résultats des outils IA sont à titre informatif uniquement.",

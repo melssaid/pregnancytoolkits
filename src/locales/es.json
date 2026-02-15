@@ -402,8 +402,8 @@
       "privacy": "Privacidad",
       "terms": "Términos",
       "contact": "Contacto",
-      "disclaimerTitle": "Aviso Médico",
-      "disclaimerText": "Esta aplicación es solo para fines educativos e informativos y no proporciona consejo médico, diagnóstico o tratamiento. Siempre consulte a un proveedor de atención médica calificado para cualquier preocupación de salud."
+      "disclaimerTitle": "Aviso Importante",
+      "disclaimerText": "Esta aplicación es solo para fines educativos e informativos y no sustituye la orientación profesional de salud. Siempre consulte a un proveedor de atención médica calificado para cualquier preocupación de salud."
     },
     "privacyPolicy": {
       "title": "Política de Privacidad",
@@ -3716,10 +3716,10 @@
     "pushEnabledSuccess": "¡Notificaciones push activadas! Serás notificada incluso con la app en segundo plano.",
     "welcome": "👋 ¡Bienvenida!",
     "welcomeDesc": "Disfruta de 40+ herramientas inteligentes para seguir tu embarazo fácilmente y con seguridad.",
-    "disclaimer": "⚕️ Aviso médico",
-    "disclaimerDesc": "Esta aplicación es solo informativa y no reemplaza el consejo médico profesional.",
-    "disclaimerTitle": "Aviso médico",
-    "disclaimerBody": "Esta aplicación es solo para fines educativos e informativos y no proporciona consejos médicos, diagnóstico o tratamiento.",
+    "disclaimer": "📋 Aviso importante",
+    "disclaimerDesc": "Esta aplicación es solo informativa y no sustituye la orientación profesional de salud.",
+    "disclaimerTitle": "Aviso importante",
+    "disclaimerBody": "Esta aplicación es solo para fines educativos e informativos y no sustituye la orientación profesional de salud.",
     "pleaseNote": "Por favor nota:",
     "consultDoctor": "Consulta siempre a tu médico antes de tomar decisiones de salud.",
     "aiGeneral": "Los resultados de las herramientas de IA son solo informativos.",
