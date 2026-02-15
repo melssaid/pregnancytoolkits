@@ -87,12 +87,12 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         return;
       }
 
-      const lang = i18n.language === 'ar' ? 'ar' : 'en';
+      const lang = i18n.language || 'en';
       await exportDataBackupPDF({
-        title: lang === 'ar' ? 'نسخة احتياطية للبيانات' : 'Data Backup Report',
-        subtitle: lang === 'ar' ? `${dataCount} عنصر محفوظ` : `${dataCount} items saved`,
+        title: t('settings.backup.pdfTitle', 'Data Backup Report'),
+        subtitle: t('settings.backup.pdfSubtitle', { count: dataCount, defaultValue: `${dataCount} items saved` }),
         data,
-        language: lang
+        language: lang as any,
       });
 
       const now = new Date().toISOString();

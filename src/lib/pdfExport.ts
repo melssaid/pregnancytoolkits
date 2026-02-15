@@ -14,7 +14,7 @@ interface DataBackupPDFOptions {
   title: string;
   subtitle?: string;
   data: Record<string, any>;
-  language?: 'en' | 'ar';
+  language?: 'en' | 'ar' | 'de' | 'fr' | 'es' | 'pt' | 'tr';
 }
 
 interface GenericPDFOptions {
@@ -339,16 +339,108 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   const logoData = await loadLogoImage();
   const isRTL = language === 'ar';
   const fontFamily = getFontFamily(language);
-  const textAlign = isRTL ? 'justify' : 'left';
 
-  // Categorize data
-  const categoryMeta: Record<string, { label: Record<string, string>; color: typeof COLORS.primary }> = {
-    profile: { label: { en: 'Profile & Settings', ar: 'الملف الشخصي والإعدادات' }, color: COLORS.info },
-    health: { label: { en: 'Health Tracking', ar: 'تتبع الصحة' }, color: COLORS.primary },
-    appointments: { label: { en: 'Appointments', ar: 'المواعيد' }, color: COLORS.secondary },
-    nutrition: { label: { en: 'Nutrition', ar: 'التغذية' }, color: COLORS.success },
-    planning: { label: { en: 'Birth Planning', ar: 'تخطيط الولادة' }, color: COLORS.accent },
-    other: { label: { en: 'Other Data', ar: 'بيانات أخرى' }, color: COLORS.muted }
+  // Multilingual labels for all 7 languages
+  const i18nLabels: Record<string, Record<string, string>> = {
+    en: { totalItems: 'Total Items', healthData: 'Health Data', planning: 'Planning', profile: 'Profile & Settings', health: 'Health Tracking', appointments: 'Appointments & Reminders', nutrition: 'Nutrition & Meals', birthPlanning: 'Birth Planning & Preparation', other: 'Other Data', items: 'items', noData: 'No data', disclaimer: 'This report was generated automatically from saved data. Always consult your healthcare provider.' },
+    ar: { totalItems: 'إجمالي البيانات', healthData: 'بيانات صحية', planning: 'التخطيط', profile: 'الملف الشخصي والإعدادات', health: 'تتبع الصحة', appointments: 'المواعيد والتذكيرات', nutrition: 'التغذية والوجبات', birthPlanning: 'تخطيط الولادة والتحضير', other: 'بيانات أخرى', items: 'عنصر', noData: 'لا بيانات', disclaimer: 'تم إنشاء هذا التقرير تلقائياً من البيانات المحفوظة. استشيري طبيبتك دائماً.' },
+    de: { totalItems: 'Gesamtelemente', healthData: 'Gesundheitsdaten', planning: 'Planung', profile: 'Profil & Einstellungen', health: 'Gesundheitstracking', appointments: 'Termine & Erinnerungen', nutrition: 'Ernährung & Mahlzeiten', birthPlanning: 'Geburtsplanung & Vorbereitung', other: 'Sonstige Daten', items: 'Elemente', noData: 'Keine Daten', disclaimer: 'Dieser Bericht wurde automatisch erstellt. Konsultieren Sie immer Ihren Arzt.' },
+    fr: { totalItems: 'Total éléments', healthData: 'Données santé', planning: 'Planification', profile: 'Profil & Paramètres', health: 'Suivi santé', appointments: 'Rendez-vous & Rappels', nutrition: 'Nutrition & Repas', birthPlanning: 'Plan de naissance & Préparation', other: 'Autres données', items: 'éléments', noData: 'Aucune donnée', disclaimer: 'Ce rapport a été généré automatiquement. Consultez toujours votre médecin.' },
+    es: { totalItems: 'Total elementos', healthData: 'Datos de salud', planning: 'Planificación', profile: 'Perfil y Configuración', health: 'Seguimiento de salud', appointments: 'Citas y Recordatorios', nutrition: 'Nutrición y Comidas', birthPlanning: 'Plan de parto y Preparación', other: 'Otros datos', items: 'elementos', noData: 'Sin datos', disclaimer: 'Este informe fue generado automáticamente. Consulte siempre a su médico.' },
+    pt: { totalItems: 'Total de itens', healthData: 'Dados de saúde', planning: 'Planejamento', profile: 'Perfil e Configurações', health: 'Acompanhamento de saúde', appointments: 'Consultas e Lembretes', nutrition: 'Nutrição e Refeições', birthPlanning: 'Plano de parto e Preparação', other: 'Outros dados', items: 'itens', noData: 'Sem dados', disclaimer: 'Este relatório foi gerado automaticamente. Consulte sempre o seu médico.' },
+    tr: { totalItems: 'Toplam öğe', healthData: 'Sağlık verileri', planning: 'Planlama', profile: 'Profil ve Ayarlar', health: 'Sağlık Takibi', appointments: 'Randevular ve Hatırlatıcılar', nutrition: 'Beslenme ve Yemekler', birthPlanning: 'Doğum Planı ve Hazırlık', other: 'Diğer veriler', items: 'öğe', noData: 'Veri yok', disclaimer: 'Bu rapor otomatik olarak oluşturulmuştur. Her zaman doktorunuza danışın.' },
+  };
+  const L = i18nLabels[language] || i18nLabels.en;
+
+  // Human-readable key labels
+  const keyLabels: Record<string, Record<string, string>> = {
+    pregnancy_profile: { en: 'Pregnancy Profile', ar: 'ملف الحمل', de: 'Schwangerschaftsprofil', fr: 'Profil de grossesse', es: 'Perfil de embarazo', pt: 'Perfil de gravidez', tr: 'Gebelik Profili' },
+    user_settings: { en: 'User Settings', ar: 'إعدادات المستخدم', de: 'Benutzereinstellungen', fr: 'Paramètres', es: 'Configuración', pt: 'Configurações', tr: 'Ayarlar' },
+    pregnancy_week: { en: 'Pregnancy Week', ar: 'أسبوع الحمل', de: 'Schwangerschaftswoche', fr: 'Semaine de grossesse', es: 'Semana de embarazo', pt: 'Semana de gravidez', tr: 'Gebelik Haftası' },
+    due_date: { en: 'Due Date', ar: 'تاريخ الولادة المتوقع', de: 'Geburtstermin', fr: 'Date prévue', es: 'Fecha de parto', pt: 'Data prevista', tr: 'Beklenen Doğum' },
+    last_period_date: { en: 'Last Period Date', ar: 'تاريخ آخر دورة', de: 'Letzte Periode', fr: 'Dernières règles', es: 'Última regla', pt: 'Última menstruação', tr: 'Son Adet Tarihi' },
+    kick_sessions: { en: 'Kick Sessions', ar: 'جلسات الركلات', de: 'Tritte-Sitzungen', fr: 'Sessions de coups', es: 'Sesiones de patadas', pt: 'Sessões de chutes', tr: 'Tekme Oturumları' },
+    kick_history: { en: 'Kick History', ar: 'سجل الركلات', de: 'Tritte-Verlauf', fr: 'Historique des coups', es: 'Historial de patadas', pt: 'Histórico de chutes', tr: 'Tekme Geçmişi' },
+    water_intake: { en: 'Water Intake', ar: 'شرب الماء', de: 'Wasseraufnahme', fr: "Consommation d'eau", es: 'Ingesta de agua', pt: 'Consumo de água', tr: 'Su Tüketimi' },
+    weight_records: { en: 'Weight Records', ar: 'سجل الوزن', de: 'Gewichtsaufzeichnungen', fr: 'Enregistrements de poids', es: 'Registros de peso', pt: 'Registros de peso', tr: 'Kilo Kayıtları' },
+    vitamin_tracker: { en: 'Vitamin Tracker', ar: 'متتبع الفيتامينات', de: 'Vitamin-Tracker', fr: 'Suivi vitamines', es: 'Seguimiento vitaminas', pt: 'Rastreador de vitaminas', tr: 'Vitamin Takibi' },
+    vitamin_records: { en: 'Vitamin Records', ar: 'سجل الفيتامينات', de: 'Vitamin-Aufzeichnungen', fr: 'Enregistrements vitamines', es: 'Registros de vitaminas', pt: 'Registros de vitaminas', tr: 'Vitamin Kayıtları' },
+    sleep_records: { en: 'Sleep Records', ar: 'سجل النوم', de: 'Schlafaufzeichnungen', fr: 'Enregistrements de sommeil', es: 'Registros de sueño', pt: 'Registros de sono', tr: 'Uyku Kayıtları' },
+    contraction_records: { en: 'Contraction Records', ar: 'سجل الانقباضات', de: 'Wehenaufzeichnungen', fr: 'Enregistrements contractions', es: 'Registros de contracciones', pt: 'Registros de contrações', tr: 'Kasılma Kayıtları' },
+    appointments: { en: 'Appointments', ar: 'المواعيد', de: 'Termine', fr: 'Rendez-vous', es: 'Citas', pt: 'Consultas', tr: 'Randevular' },
+    reminders: { en: 'Reminders', ar: 'التذكيرات', de: 'Erinnerungen', fr: 'Rappels', es: 'Recordatorios', pt: 'Lembretes', tr: 'Hatırlatıcılar' },
+    meal_history: { en: 'Meal History', ar: 'سجل الوجبات', de: 'Mahlzeiten-Verlauf', fr: 'Historique repas', es: 'Historial de comidas', pt: 'Histórico de refeições', tr: 'Yemek Geçmişi' },
+    grocery_lists: { en: 'Grocery Lists', ar: 'قوائم التسوق', de: 'Einkaufslisten', fr: 'Listes de courses', es: 'Listas de compras', pt: 'Listas de compras', tr: 'Alışveriş Listeleri' },
+    birth_plans: { en: 'Birth Plans', ar: 'خطط الولادة', de: 'Geburtspläne', fr: 'Plans de naissance', es: 'Planes de parto', pt: 'Planos de parto', tr: 'Doğum Planları' },
+    hospital_bag: { en: 'Hospital Bag', ar: 'حقيبة المستشفى', de: 'Kliniktasche', fr: 'Valise maternité', es: 'Bolsa hospital', pt: 'Mala maternidade', tr: 'Hastane Çantası' },
+    baby_names: { en: 'Baby Names', ar: 'أسماء الأطفال', de: 'Babynamen', fr: 'Prénoms', es: 'Nombres de bebé', pt: 'Nomes de bebê', tr: 'Bebek İsimleri' },
+    bump_photos_local: { en: 'Bump Photos', ar: 'صور البطن', de: 'Bauchfotos', fr: 'Photos du ventre', es: 'Fotos del vientre', pt: 'Fotos da barriga', tr: 'Karın Fotoğrafları' },
+    cycle_data: { en: 'Cycle Data', ar: 'بيانات الدورة', de: 'Zyklusdaten', fr: 'Données du cycle', es: 'Datos del ciclo', pt: 'Dados do ciclo', tr: 'Döngü Verileri' },
+    journal_entries: { en: 'Journal Entries', ar: 'إدخالات اليوميات', de: 'Tagebucheinträge', fr: 'Entrées du journal', es: 'Entradas del diario', pt: 'Entradas do diário', tr: 'Günlük Girdileri' },
+    doctor_questions: { en: 'Doctor Questions', ar: 'أسئلة الطبيب', de: 'Arztfragen', fr: 'Questions médecin', es: 'Preguntas médico', pt: 'Perguntas médico', tr: 'Doktor Soruları' },
+  };
+
+  const getKeyLabel = (key: string): string => {
+    const labels = keyLabels[key];
+    if (labels) return labels[language] || labels.en;
+    return key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').replace(/^\w/, c => c.toUpperCase()).trim();
+  };
+
+  // Smart value formatter
+  const formatValue = (key: string, value: any): string => {
+    if (value === null || value === undefined) return L.noData;
+    if (typeof value === 'string') {
+      if (/^\d{4}-\d{2}-\d{2}/.test(value)) {
+        try { return formatDateForPDF(new Date(value), language); } catch { return value; }
+      }
+      return value;
+    }
+    if (typeof value === 'number') return String(value);
+    if (typeof value === 'boolean') return value ? '✓' : '✗';
+    if (Array.isArray(value)) {
+      if (value.length === 0) return L.noData;
+      if (key.includes('appointment') || key.includes('reminder')) {
+        return value.slice(0, 5).map((item: any) => {
+          if (typeof item === 'object' && item !== null) {
+            const name = item.title || item.name || item.type || '';
+            const date = item.date || item.time || '';
+            return `${stripEmojis(name)}${date ? ` (${date})` : ''}`;
+          }
+          return String(item);
+        }).join(' | ') + (value.length > 5 ? ` +${value.length - 5}` : '');
+      }
+      if (value.length > 0 && typeof value[0] === 'object' && value[0]?.date) {
+        const dates = value.map((v: any) => v.date).filter(Boolean).sort();
+        const first = dates[0];
+        const last = dates[dates.length - 1];
+        return `${value.length} ${L.items}${first && last && first !== last ? ` (${first} → ${last})` : ''}`;
+      }
+      if (value.length <= 3 && value.every((v: any) => typeof v === 'string')) {
+        return value.join(', ');
+      }
+      return `${value.length} ${L.items}`;
+    }
+    if (typeof value === 'object') {
+      const keys = Object.keys(value);
+      if (keys.length === 0) return L.noData;
+      const summary = keys.slice(0, 4).map(k => {
+        const v = value[k];
+        if (typeof v === 'string' || typeof v === 'number') return `${k}: ${v}`;
+        if (Array.isArray(v)) return `${k}: ${v.length} ${L.items}`;
+        return null;
+      }).filter(Boolean).join(' • ');
+      return summary || `${keys.length} ${L.items}`;
+    }
+    return String(value);
+  };
+
+  const categoryMeta: Record<string, { label: string; color: typeof COLORS.primary }> = {
+    profile: { label: L.profile, color: COLORS.info },
+    health: { label: L.health, color: COLORS.primary },
+    appointments: { label: L.appointments, color: COLORS.secondary },
+    nutrition: { label: L.nutrition, color: COLORS.success },
+    planning: { label: L.birthPlanning, color: COLORS.accent },
+    other: { label: L.other, color: COLORS.muted }
   };
 
   const categories: Record<string, { label: string; value: string }[]> = {
@@ -356,13 +448,13 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   };
 
   Object.entries(data).forEach(([key, value]) => {
-    const displayValue = typeof value === 'object'
-      ? (Array.isArray(value) ? `${value.length} ${isRTL ? 'عنصر' : 'items'}` : JSON.stringify(value).substring(0, 80))
-      : String(value);
+    if (key.includes('disclaimer') || key.includes('onboarding') || key.includes('backup') || key === 'user_selected_language') return;
+    
+    const displayLabel = getKeyLabel(key);
+    const displayValue = formatValue(key, value);
+    const item = { label: displayLabel, value: displayValue };
 
-    const item = { label: key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim(), value: displayValue };
-
-    if (key.includes('profile') || key.includes('settings') || key.includes('week') || key.includes('date') || key.includes('language')) {
+    if (key.includes('profile') || key.includes('settings') || key.includes('week') || (key.includes('date') && !key.includes('update'))) {
       categories.profile.push(item);
     } else if (key.includes('kick') || key.includes('weight') || key.includes('vitamin') || key.includes('sleep') || key.includes('contraction') || key.includes('water') || key.includes('mood')) {
       categories.health.push(item);
@@ -384,17 +476,17 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   // Summary stats
   html += `
     <div style="display:flex;gap:10px;margin:16px 40px;">
-      <div style="flex:1;background:${rgbaStr(COLORS.primary, 0.08)};border-radius:8px;padding:12px;text-align:center;border-left:3px solid ${rgbStr(COLORS.primary)};">
+      <div style="flex:1;background:${rgbaStr(COLORS.primary, 0.08)};border-radius:8px;padding:12px;text-align:center;border-${isRTL ? 'right' : 'left'}:3px solid ${rgbStr(COLORS.primary)};">
         <div style="font-size:20px;font-weight:700;color:${rgbStr(COLORS.primary)};font-family:${fontFamily};">${totalItems}</div>
-        <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${isRTL ? 'إجمالي البيانات' : 'Total Items'}</div>
+        <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${L.totalItems}</div>
       </div>
-      <div style="flex:1;background:${rgbaStr(COLORS.success, 0.08)};border-radius:8px;padding:12px;text-align:center;border-left:3px solid ${rgbStr(COLORS.success)};">
+      <div style="flex:1;background:${rgbaStr(COLORS.success, 0.08)};border-radius:8px;padding:12px;text-align:center;border-${isRTL ? 'right' : 'left'}:3px solid ${rgbStr(COLORS.success)};">
         <div style="font-size:20px;font-weight:700;color:${rgbStr(COLORS.success)};font-family:${fontFamily};">${categories.health.length}</div>
-        <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${isRTL ? 'بيانات صحية' : 'Health Data'}</div>
+        <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${L.healthData}</div>
       </div>
-      <div style="flex:1;background:${rgbaStr(COLORS.secondary, 0.08)};border-radius:8px;padding:12px;text-align:center;border-left:3px solid ${rgbStr(COLORS.secondary)};">
+      <div style="flex:1;background:${rgbaStr(COLORS.secondary, 0.08)};border-radius:8px;padding:12px;text-align:center;border-${isRTL ? 'right' : 'left'}:3px solid ${rgbStr(COLORS.secondary)};">
         <div style="font-size:20px;font-weight:700;color:${rgbStr(COLORS.secondary)};font-family:${fontFamily};">${categories.planning.length}</div>
-        <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${isRTL ? 'التخطيط' : 'Planning'}</div>
+        <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${L.planning}</div>
       </div>
     </div>
   `;
@@ -405,13 +497,18 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   Object.entries(categories).forEach(([cat, items]) => {
     if (items.length === 0) return;
     const meta = categoryMeta[cat];
-    const catLabel = meta.label[language] || meta.label.en;
-
-    html += buildSectionHTML(`${catLabel} (${items.length})`, meta.color, language);
+    html += buildSectionHTML(`${meta.label} (${items.length})`, meta.color, language);
     items.forEach((item) => {
       html += buildLabelValueHTML(item.label, item.value, meta.color, language);
     });
   });
+
+  // Disclaimer
+  html += `
+    <div style="margin:16px 40px;padding:10px 14px;background:${rgbaStr(COLORS.primary, 0.06)};border-radius:6px;font-size:9px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.5;">
+      ${L.disclaimer}
+    </div>
+  `;
 
   html += buildFooterHTML(language, COLORS.primary);
 
