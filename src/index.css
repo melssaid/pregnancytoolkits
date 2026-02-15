@@ -17,8 +17,8 @@
     --secondary: 300 25% 95%;
     --secondary-foreground: 340 50% 40%;
     
-    /* Background - Warm vanilla cream */
-    --background: 36 40% 97%;
+    /* Background - Soft pink cream */
+    --background: 340 30% 97%;
     --foreground: 25 20% 18%;
     
     /* Cards - Soft white with warmth */
@@ -142,11 +142,11 @@
     overflow-x: hidden;
     background: linear-gradient(
       180deg,
-      hsl(340 30% 95%) 0%,
-      hsl(340 25% 96%) 15%,
-      hsl(var(--background)) 40%,
-      hsl(var(--background)) 85%,
-      hsl(340 20% 93%) 100%
+      hsl(340 35% 94%) 0%,
+      hsl(340 30% 95%) 20%,
+      hsl(340 28% 96%) 45%,
+      hsl(var(--background)) 70%,
+      hsl(340 25% 94%) 100%
     );
   }
 
