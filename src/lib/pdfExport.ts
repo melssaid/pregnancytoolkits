@@ -79,7 +79,10 @@ function stripEmojis(text: string): string {
 
 // Format date for display
 function formatDateForPDF(date: Date, language: string): string {
-  const locale = language === 'ar' ? 'ar-SA' : 'en-US';
+  const localeMap: Record<string, string> = {
+    ar: 'ar-SA', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', pt: 'pt-BR', tr: 'tr-TR', en: 'en-US'
+  };
+  const locale = localeMap[language] || 'en-US';
   return date.toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
@@ -215,19 +218,29 @@ function buildHeaderHTML(
       ${logoData ? `<img src="${logoData}" style="width:36px;height:36px;margin:0 auto 8px;display:block;border-radius:8px;" />` : ''}
       <div style="font-size:24px;font-weight:700;color:#1e293b;margin-bottom:4px;font-family:${fontFamily};">${stripEmojis(title)}</div>
       ${subtitle ? `<div style="font-size:12px;color:#94a3b8;margin-bottom:4px;font-family:${fontFamily};">${stripEmojis(subtitle)}</div>` : ''}
-      <div style="font-size:10px;color:${rgbStr(accentColor)};font-weight:500;font-family:${fontFamily};">Pregnancy Toolkits</div>
+      <div style="font-size:10px;color:${rgbStr(accentColor)};font-weight:500;font-family:${fontFamily};">${getBrandName(language)}</div>
     </div>
   `;
 }
 
 // Build PDF footer HTML
+function getBrandName(language: string): string {
+  const brands: Record<string, string> = {
+    ar: 'أدوات الحمل الذكية', de: 'Schwangerschafts-Toolkit', fr: 'Outils de Grossesse',
+    es: 'Herramientas de Embarazo', pt: 'Ferramentas de Gravidez', tr: 'Gebelik Araçları',
+  };
+  return brands[language] || 'Pregnancy Toolkits';
+}
+
 function buildFooterHTML(language: string, accentColor: { r: number; g: number; b: number }): string {
   const fontFamily = getFontFamily(language);
-  const isRTL = language === 'ar';
   const dateStr = formatDateForPDF(new Date(), language);
-  const text = isRTL
-    ? `تم التصدير بتاريخ ${dateStr} • Pregnancy Toolkits`
-    : `Exported on ${dateStr} • Pregnancy Toolkits`;
+  const exportLabels: Record<string, string> = {
+    ar: 'تم التصدير بتاريخ', de: 'Exportiert am', fr: 'Exporté le',
+    es: 'Exportado el', pt: 'Exportado em', tr: 'Dışa aktarma tarihi',
+  };
+  const exportLabel = exportLabels[language] || 'Exported on';
+  const text = `${exportLabel} ${dateStr} • ${getBrandName(language)}`;
   return `
     <div style="margin:16px 40px 20px;padding-top:12px;border-top:1px solid ${rgbaStr(accentColor, 0.3)};text-align:center;">
       <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${text}</div>
