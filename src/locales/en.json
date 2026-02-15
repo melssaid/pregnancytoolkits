@@ -334,6 +334,9 @@
       },
       "saveAnalyze": "Save & Analyze",
       "smartAnalysis": "Smart Analysis",
+      "aiAnalysisLabel": "AI Analysis",
+      "aiPrompt": "Analyze pregnancy health: Week {{week}}, Weight: {{weight}}kg, BP: {{bp}}, Mood: {{mood}}, Symptoms: {{symptoms}}. Give brief personalized tips.",
+      "noSymptoms": "None",
       "analysis": {
         "expectedGain": "Expected weight gain so far: ~{{kg}} kg",
         "bpHigh": "Blood pressure is high - consult your doctor",

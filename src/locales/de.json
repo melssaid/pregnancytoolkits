@@ -334,6 +334,9 @@
       },
       "saveAnalyze": "Speichern & Analysieren",
       "smartAnalysis": "Smart-Analyse",
+      "aiAnalysisLabel": "KI-Analyse",
+      "aiPrompt": "Schwangerschaftsgesundheit analysieren: Woche {{week}}, Gewicht: {{weight}}kg, Blutdruck: {{bp}}, Stimmung: {{mood}}, Symptome: {{symptoms}}. Kurze personalisierte Tipps geben.",
+      "noSymptoms": "Keine",
       "analysis": {
         "expectedGain": "Erwartete Gewichtszunahme bisher: ~{{kg}} kg",
         "bpHigh": "Blutdruck ist hoch - konsultieren Sie Ihren Arzt",

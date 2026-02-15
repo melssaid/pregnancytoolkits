@@ -334,6 +334,9 @@
       },
       "saveAnalyze": "Guardar y analizar",
       "smartAnalysis": "Análisis inteligente",
+      "aiAnalysisLabel": "Análisis IA",
+      "aiPrompt": "Analizar salud del embarazo: Semana {{week}}, Peso: {{weight}}kg, PA: {{bp}}, Estado de ánimo: {{mood}}, Síntomas: {{symptoms}}. Dar consejos personalizados breves.",
+      "noSymptoms": "Ninguno",
       "analysis": {
         "expectedGain": "Aumento de peso esperado hasta ahora: ~{{kg}} kg",
         "bpHigh": "Presión arterial alta - consulta a tu médico",

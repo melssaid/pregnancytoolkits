@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { 
   Send, Bot, User, Home, MessageCircle, Heart, Utensils, Dumbbell, 
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
@@ -110,9 +112,16 @@ const symptomKeys = ["nausea", "headache", "fatigue", "backPain", "swelling", "h
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, loading: statsLoading } = useTrackingStats();
   const { unreadCount } = useNotifications();
+
+  useResetOnLanguageChange(() => {
+    setMessages([{ role: "assistant", content: t('dashboard.chat.welcomeMessage') }]);
+    setAiHealthInsight('');
+    setHealthSaved(false);
+  });
   
   const [activeTab, setActiveTab] = useState<TabType>("home");
   const [showNotifications, setShowNotifications] = useState(false);
@@ -151,6 +160,7 @@ const SmartDashboard = () => {
     await streamChat({
       type: "pregnancy-assistant",
       messages: [...messages, userMessage],
+      context: { language: currentLanguage },
       onDelta: (chunk) => {
         assistantContent += chunk;
         setMessages(prev => {
@@ -667,11 +677,17 @@ const SmartDashboard = () => {
                   // Generate AI health insight
                   setAiHealthInsight('');
                   const symptomsList = healthData.symptoms.map(s => t(`dashboard.health.symptoms.${s}`)).join(', ');
-                  const prompt = `Analyze pregnancy health: Week ${healthData.weekOfPregnancy}, Weight: ${healthData.weight || 'N/A'}kg, BP: ${healthData.bloodPressure || 'N/A'}, Mood: ${healthData.mood}, Symptoms: ${symptomsList || 'None'}. Give brief personalized tips.`;
+                  const prompt = t('dashboard.health.aiPrompt', {
+                    week: healthData.weekOfPregnancy,
+                    weight: healthData.weight || 'N/A',
+                    bp: healthData.bloodPressure || 'N/A',
+                    mood: t(`dashboard.health.moods.${healthData.mood.toLowerCase()}`),
+                    symptoms: symptomsList || t('dashboard.health.noSymptoms')
+                  });
                   streamChat({
                     type: 'pregnancy-assistant',
                     messages: [{ role: 'user', content: prompt }],
-                    context: { week: healthData.weekOfPregnancy },
+                    context: { week: healthData.weekOfPregnancy, language: currentLanguage },
                     onDelta: (text) => setAiHealthInsight(prev => prev + text),
                     onDone: () => {},
                   });
@@ -701,7 +717,7 @@ const SmartDashboard = () => {
                   <div className="mt-3 p-3 bg-background rounded-lg border border-primary/20">
                     <div className="flex items-center gap-2 mb-2">
                       <Sparkles className="w-3.5 h-3.5 text-primary" />
-                      <span className="text-xs font-semibold text-primary">AI Analysis</span>
+                      <span className="text-xs font-semibold text-primary">{t('dashboard.health.aiAnalysisLabel')}</span>
                     </div>
                     {isLoading && !aiHealthInsight ? (
                       <div className="flex items-center gap-2 text-muted-foreground">
