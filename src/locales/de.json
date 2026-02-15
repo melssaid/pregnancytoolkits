@@ -3586,5 +3586,71 @@
     "summary": "Zusammenfassung",
     "summaryText": "Folge weiterhin deinem personalisierten Plan und konsultiere deinen Arzt bei Bedenken.",
     "doctorNotes": "Arztnotizen"
+  },
+  "toolsInternal.walkingCoach": {
+    "title": "Smarter Geh-Coach",
+    "subtitle": "Personalisiertes Gehprogramm für eine gesunde Schwangerschaft",
+    "yourTrimester": "Dein Trimester",
+    "trimester": "Trimester",
+    "readyToWalk": "Bereit zum Gehen?",
+    "goal": "Ziel (Minuten)",
+    "startWalking": "Spaziergang starten",
+    "endWalk": "Spaziergang beenden",
+    "keepUp": "Weiter so! 🚶‍♀️",
+    "minutesToday": "Minuten heute",
+    "minutesThisWeek": "Minuten diese Woche",
+    "recentWalks": "Letzte Spaziergänge",
+    "goalMet": "Ziel erreicht!",
+    "getAIAdvice": "KI-Gehcoach-Rat",
+    "aiCoachTitle": "KI-Gehcoach",
+    "walkingTipsTitle": "Gehtipps",
+    "walkingTips": {
+      "tip1": "Geh auf flachen, ebenen Oberflächen",
+      "tip2": "Trage stützende Schuhe",
+      "tip3": "Bleib hydriert",
+      "tip4": "Geh in den kühleren Tageszeiten",
+      "tip5": "Mach Pausen, wenn nötig"
+    },
+    "warningMessage": "Höre auf zu gehen, wenn du Schwindel, Atemnot, Brustschmerzen, Wehen oder ungewöhnliche Symptome erlebst. Konsultiere immer deinen Arzt.",
+    "trimesterNotes": {
+      "1": "Beginne langsam, höre auf deinen Körper",
+      "2": "Beste Zeit für aktives Gehen",
+      "3": "Kürzere Spaziergänge, häufigere Pausen"
+    },
+    "minutes": "Minuten"
+  },
+  "stretchReminder": {
+    "title": "Smarte Dehn-Erinnerung",
+    "subtitle": "Personalisierte Dehnübungen für dein Wohlbefinden",
+    "yourTrimester": "Dein Trimester",
+    "trimester": "Trimester",
+    "todaysProgress": "Heutiger Fortschritt",
+    "stretchesDone": "{{done}}/{{total}} Übungen erledigt",
+    "noStretchesYet": "Noch keine Übungen heute",
+    "hoursAgo": "vor {{hours}}h {{minutes}}min",
+    "minutesAgo": "vor {{minutes}}min",
+    "startRoutine": "Routine starten",
+    "aiStretchCoach": "KI-Dehncoach",
+    "close": "Schließen",
+    "secondsRemaining": "Sekunden verbleibend",
+    "skip": "Überspringen",
+    "allStretches": "Alle Übungen",
+    "stretchReminders": "Dehn-Erinnerungen",
+    "tips": {
+      "tip1": "Dehne dich alle 1-2 Stunden beim Sitzen",
+      "tip2": "Erzwinge keine Dehnung - sei sanft",
+      "tip3": "Atme tief während jeder Übung",
+      "tip4": "Bleib hydriert für flexible Muskeln"
+    },
+    "stretches": {
+      "neckRolls": { "name": "Nackenrollen", "desc": "Rolle den Kopf sanft im Kreis", "bodyPart": "Nacken" },
+      "shoulderShrugs": { "name": "Schulterheben", "desc": "Schultern zu den Ohren heben, dann loslassen", "bodyPart": "Schultern" },
+      "wristCircles": { "name": "Handgelenkkreise", "desc": "Handgelenke in beide Richtungen drehen", "bodyPart": "Handgelenke" },
+      "sideStretch": { "name": "Seitliche Dehnung", "desc": "Arm über den Kopf strecken und zur Seite neigen", "bodyPart": "Rücken" },
+      "catCow": { "name": "Katze-Kuh", "desc": "Wechsle zwischen Rundrücken und Hohlkreuz", "bodyPart": "Wirbelsäule" },
+      "hipCircles": { "name": "Hüftkreise", "desc": "Stehe und kreise die Hüften", "bodyPart": "Hüften" },
+      "calfRaises": { "name": "Wadenheben", "desc": "Auf die Zehenspitzen heben, dann senken", "bodyPart": "Beine" },
+      "deepBreathing": { "name": "Tiefes Atmen", "desc": "Langsame, tiefe Atemzüge mit Händen auf dem Bauch", "bodyPart": "Entspannung" }
+    }
   }
 }

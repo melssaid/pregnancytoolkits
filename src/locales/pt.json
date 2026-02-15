@@ -3810,5 +3810,71 @@
     "summary": "Resumo",
     "summaryText": "Continue seguindo seu plano personalizado e consulte seu médico para quaisquer preocupações.",
     "doctorNotes": "Anotações do Médico"
+  },
+  "toolsInternal.walkingCoach": {
+    "title": "Coach de Caminhada Inteligente",
+    "subtitle": "Programa de caminhada personalizado para uma gravidez saudável",
+    "yourTrimester": "Seu trimestre",
+    "trimester": "Trimestre",
+    "readyToWalk": "Pronta para caminhar?",
+    "goal": "Meta (minutos)",
+    "startWalking": "Começar caminhada",
+    "endWalk": "Encerrar caminhada",
+    "keepUp": "Continue assim! 🚶‍♀️",
+    "minutesToday": "Minutos hoje",
+    "minutesThisWeek": "Minutos esta semana",
+    "recentWalks": "Caminhadas recentes",
+    "goalMet": "Meta atingida!",
+    "getAIAdvice": "Conselho do coach IA",
+    "aiCoachTitle": "Coach de caminhada IA",
+    "walkingTipsTitle": "Dicas de caminhada",
+    "walkingTips": {
+      "tip1": "Caminhe em superfícies planas e niveladas",
+      "tip2": "Use sapatos com suporte",
+      "tip3": "Mantenha-se hidratada",
+      "tip4": "Caminhe nos horários mais frescos",
+      "tip5": "Faça pausas quando necessário"
+    },
+    "warningMessage": "Pare de caminhar se sentir tontura, falta de ar, dor no peito, contrações ou qualquer sintoma incomum. Consulte sempre seu médico.",
+    "trimesterNotes": {
+      "1": "Comece devagar, ouça seu corpo",
+      "2": "Melhor momento para caminhada ativa",
+      "3": "Caminhadas mais curtas, pausas mais frequentes"
+    },
+    "minutes": "minutos"
+  },
+  "stretchReminder": {
+    "title": "Lembrete de Alongamento Inteligente",
+    "subtitle": "Lembretes de alongamento personalizados para seu conforto",
+    "yourTrimester": "Seu trimestre",
+    "trimester": "Trimestre",
+    "todaysProgress": "Progresso de hoje",
+    "stretchesDone": "{{done}}/{{total}} alongamentos feitos",
+    "noStretchesYet": "Nenhum alongamento hoje ainda",
+    "hoursAgo": "há {{hours}}h {{minutes}}min",
+    "minutesAgo": "há {{minutes}}min",
+    "startRoutine": "Iniciar rotina",
+    "aiStretchCoach": "Coach de alongamento IA",
+    "close": "Fechar",
+    "secondsRemaining": "segundos restantes",
+    "skip": "Pular",
+    "allStretches": "Todos os alongamentos",
+    "stretchReminders": "Lembretes de alongamento",
+    "tips": {
+      "tip1": "Alongue-se a cada 1-2 horas quando sentada",
+      "tip2": "Nunca force um alongamento - seja suave",
+      "tip3": "Respire profundamente durante cada alongamento",
+      "tip4": "Mantenha-se hidratada para músculos flexíveis"
+    },
+    "stretches": {
+      "neckRolls": { "name": "Rotação do pescoço", "desc": "Gire suavemente a cabeça em círculos", "bodyPart": "Pescoço" },
+      "shoulderShrugs": { "name": "Elevação dos ombros", "desc": "Levante os ombros até as orelhas e solte", "bodyPart": "Ombros" },
+      "wristCircles": { "name": "Círculos de pulso", "desc": "Gire os pulsos em ambas as direções", "bodyPart": "Pulsos" },
+      "sideStretch": { "name": "Alongamento lateral", "desc": "Estenda o braço sobre a cabeça e incline-se", "bodyPart": "Costas" },
+      "catCow": { "name": "Gato-Vaca", "desc": "Alterne entre arquear e arredondar as costas", "bodyPart": "Coluna" },
+      "hipCircles": { "name": "Círculos de quadril", "desc": "Em pé, gire os quadris em círculos", "bodyPart": "Quadris" },
+      "calfRaises": { "name": "Elevação de panturrilha", "desc": "Suba na ponta dos pés e desça", "bodyPart": "Pernas" },
+      "deepBreathing": { "name": "Respiração profunda", "desc": "Respirações lentas e profundas com mãos na barriga", "bodyPart": "Relaxamento" }
+    }
   }
 }
