@@ -70,20 +70,31 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
             {/* Glass background */}
             <div className="absolute inset-0 bg-card/90 backdrop-blur-xl border border-border/30 rounded-2xl shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.1)]" />
             
-            <div className="relative flex items-center justify-around px-2 py-2">
-              {NAV_ITEM_IDS.map((item) => {
+            <div className="relative flex items-center justify-evenly px-1 py-2.5">
+              {NAV_ITEM_IDS.map((item, idx) => {
                 const active = isActive(item.href);
                 const Icon = item.icon;
+                const isLast = idx === NAV_ITEM_IDS.length - 1;
+
+                const separator = !isLast ? (
+                  <div key={`sep-${idx}`} className="flex flex-col items-center justify-center gap-[3px] self-stretch py-2">
+                    <span className="w-[3px] h-[3px] rounded-full bg-primary/20" />
+                    <span className="w-[2px] h-3 rounded-full bg-gradient-to-b from-primary/15 to-transparent" />
+                    <span className="w-[3px] h-[3px] rounded-full bg-primary/10" />
+                  </div>
+                ) : null;
+
+                let navElement: React.ReactNode;
 
                 if (item.id === "notifications") {
-                  return (
+                  navElement = (
                     <button
                       key={item.id}
                       onClick={() => {
                         setNotificationsOpen(!notificationsOpen);
                         setSearchOpen(false);
                       }}
-                      className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all relative"
+                      className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl transition-all relative"
                     >
                       <motion.div
                         className={`p-2 rounded-xl transition-all ${
@@ -95,7 +106,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                       >
                         <Icon className="w-[18px] h-[18px]" />
                         {unreadCount > 0 && !notificationsOpen && (
-                          <span className="absolute -top-0.5 right-1 w-4 h-4 bg-destructive text-destructive-foreground text-[8px] font-bold rounded-full flex items-center justify-center ring-2 ring-card">
+                          <span className="absolute -top-0.5 right-0 w-4 h-4 bg-destructive text-destructive-foreground text-[8px] font-bold rounded-full flex items-center justify-center ring-2 ring-card">
                             {unreadCount > 9 ? '9+' : unreadCount}
                           </span>
                         )}
@@ -107,17 +118,15 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                       </span>
                     </button>
                   );
-                }
-
-                if (item.id === "search") {
-                  return (
+                } else if (item.id === "search") {
+                  navElement = (
                     <button
                       key={item.id}
                       onClick={() => {
                         setSearchOpen(true);
                         setNotificationsOpen(false);
                       }}
-                      className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all"
+                      className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl transition-all"
                     >
                       <motion.div
                         className={`p-2 rounded-xl transition-all ${
@@ -136,31 +145,35 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                       </span>
                     </button>
                   );
+                } else {
+                  navElement = (
+                    <Link
+                      key={item.id}
+                      to={item.href!}
+                      onClick={() => setNotificationsOpen(false)}
+                      className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl transition-all"
+                    >
+                      <motion.div 
+                        className={`p-2 rounded-xl transition-all ${
+                          active 
+                            ? "bg-primary text-primary-foreground shadow-md shadow-primary/20" 
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Icon className="w-[18px] h-[18px]" />
+                      </motion.div>
+                      <span className={`text-[9px] font-medium ${
+                        active ? "text-primary" : "text-muted-foreground"
+                      }`}>
+                        {t(item.labelKey)}
+                      </span>
+                    </Link>
+                  );
                 }
 
                 return (
-                  <Link
-                    key={item.id}
-                    to={item.href!}
-                    onClick={() => setNotificationsOpen(false)}
-                    className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all"
-                  >
-                    <motion.div 
-                      className={`p-2 rounded-xl transition-all ${
-                        active 
-                          ? "bg-primary text-primary-foreground shadow-md shadow-primary/20" 
-                          : "text-muted-foreground hover:text-foreground"
-                      }`}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Icon className="w-[18px] h-[18px]" />
-                    </motion.div>
-                    <span className={`text-[9px] font-medium ${
-                      active ? "text-primary" : "text-muted-foreground"
-                    }`}>
-                      {t(item.labelKey)}
-                    </span>
-                  </Link>
+                  <>{navElement}{separator}</>
                 );
               })}
             </div>
