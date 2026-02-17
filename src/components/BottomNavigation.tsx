@@ -85,9 +85,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 const iconContent = (
                   <motion.div
                     className="relative p-2.5 rounded-xl transition-all duration-200"
-                    whileTap={{ scale: 0.88 }}
-                    animate={isItemActive ? { y: -2 } : { y: 0 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    whileTap={{ scale: 0.92 }}
                   >
                     {/* Active glow background */}
                     <AnimatePresence>
