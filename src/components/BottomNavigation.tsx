@@ -80,35 +80,58 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                   <div key={`sep-${idx}`} className="w-px h-6 bg-border/50 self-center" />
                 ) : null;
 
+                const isItemActive = item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active;
+
                 const iconContent = (
                   <motion.div
-                    className={`relative p-2 rounded-lg transition-all duration-200 ${
-                      (item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active)
-                        ? "text-primary" 
-                        : "text-foreground/50 hover:text-foreground/70"
-                    }`}
-                    whileTap={{ scale: 0.92 }}
+                    className="relative p-2.5 rounded-xl transition-all duration-200"
+                    whileTap={{ scale: 0.88 }}
+                    animate={isItemActive ? { y: -2 } : { y: 0 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   >
-                    <Icon className="w-5 h-5" strokeWidth={active || (item.id === "notifications" && notificationsOpen) || (item.id === "search" && searchOpen) ? 2.2 : 1.8} />
+                    {/* Active glow background */}
+                    <AnimatePresence>
+                      {isItemActive && (
+                        <motion.div
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0, opacity: 0 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                          className="absolute inset-0 bg-primary/10 rounded-xl"
+                        />
+                      )}
+                    </AnimatePresence>
+                    
+                    <Icon 
+                      className={`w-5 h-5 relative z-10 transition-colors duration-200 ${
+                        isItemActive ? "text-primary" : "text-foreground/50"
+                      }`} 
+                      strokeWidth={isItemActive ? 2.2 : 1.8} 
+                    />
+                    
                     {item.id === "notifications" && unreadCount > 0 && !notificationsOpen && (
-                      <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-destructive text-destructive-foreground text-[7px] font-bold rounded-full flex items-center justify-center ring-1.5 ring-card">
+                      <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-destructive text-destructive-foreground text-[7px] font-bold rounded-full flex items-center justify-center ring-1.5 ring-card z-20">
                         {unreadCount > 9 ? '9+' : unreadCount}
                       </span>
                     )}
-                    {(item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active) && (
-                      <motion.div 
-                        layoutId="nav-indicator"
-                        className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-primary rounded-full"
-                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                      />
-                    )}
+
+                    {/* Active dot indicator */}
+                    <AnimatePresence>
+                      {isItemActive && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                          className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
+                        />
+                      )}
+                    </AnimatePresence>
                   </motion.div>
                 );
 
-                const labelClass = `text-[9px] font-medium tracking-wide ${
-                  (item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active)
-                    ? "text-primary" 
-                    : "text-foreground/50"
+                const labelClass = `text-[9px] font-medium tracking-wide transition-colors duration-200 ${
+                  isItemActive ? "text-primary" : "text-foreground/50"
                 }`;
 
                 let navElement: React.ReactNode;
