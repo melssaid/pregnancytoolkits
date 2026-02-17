@@ -59,7 +59,7 @@
   "onboarding": {
     "title": "Yolculuğunuza hoş geldiniz",
     "subtitle": "Yaşam tarzı ve eğitim rehberiniz",
-    "disclaimer": "Bu uygulama yalnızca bilgilendirme ve eğitim amaçlıdır. Tıbbi bir cihaz değildir ve klinik tavsiye veya teşhis sağlamaz.",
+    "disclaimer": "Bu uygulama yalnızca bilgilendirme ve eğitim amaçlıdır. Genel sağlık bilgileri sunar ve profesyonel sağlık rehberliğinin yerini almaz.",
     "feature1": "Kişisel günlük ve ajanda araçları",
     "feature2": "Eğitici sağlık içeriği",
     "feature3": "Verileriniz cihazınızda kalır",
@@ -173,7 +173,7 @@
     },
     "postpartumMentalHealth": {
       "title": "Ruh Sağlığı Koçu",
-      "description": "EPDS taraması ve ruh sağlığı desteği."
+      "description": "EPDS anketi ve ruh sağlığı desteği."
     },
     "gestationalDiabetes": {
       "title": "Gestasyonel Diyabet Riski",
@@ -517,7 +517,7 @@
           "title": "Eğitim Sorumluluk Reddi",
           "warning": "⚠️ Çok önemli: Lütfen dikkatlice okuyun",
           "content": "Hamilelik Araçları yalnızca bilgilendirme ve eğitim amaçlıdır. Bu uygulama:",
-          "noAdvice": "Tıbbi tavsiye, teşhis veya tedavi SAĞLAMAZ",
+          "noAdvice": "Profesyonel sağlık rehberliği veya tedavi SAĞLAMAZ",
           "noReplace": "Bir doktor veya sağlık uzmanına danışmanın YERİNİ ALMAZ",
           "noEmergency": "Acil tıbbi kararlar için KULLANILMAMALIDIR",
           "consultDoctor": "Herhangi bir tıbbi veya sağlık sorusu için her zaman doktorunuza veya nitelikli sağlık uzmanınıza danışın."
@@ -631,7 +631,7 @@
     "rule511Desc": "Birçok doktor, kasılmalar 5 dakikada bir, 1 dakika süreyle ve en az 1 saat boyunca devam ederse kendileriyle iletişime geçmenizi önerir."
   },
   "preeclampsiaPage": {
-    "title": "Preeklampsi Risk Değerlendirmesi",
+    "title": "Preeklampsi Farkındalık Kontrolü",
     "subtitle": "Preeklampsi risk faktörlerinizi kontrol edin",
     "highRisk": "Yüksek Risk Faktörleri",
     "moderateRisk": "Orta Risk Faktörleri",
@@ -973,7 +973,7 @@
   "toolsInternal": {
     "mentalHealthCoach": {
       "title": "Doğum Sonrası Ruh Sağlığı Koçu",
-      "subtitle": "Edinburgh Doğum Sonrası Depresyon Ölçeği taraması",
+      "subtitle": "Edinburgh Doğum Sonrası Depresyon Ölçeği anketi",
       "youreNotAlone": "Yalnız değilsin",
       "emergencyMessage": "Yanıtlarınıza göre, yardımcı olabilecek biriyle konuşmanız önemli. Doğum sonrası depresyon yaygın ve tedavi edilebilir.",
       "postpartumSupport": "Doğum sonrası destek",
@@ -2430,7 +2430,7 @@
       }
     },
     "gestationalDiabetes": {
-      "title": "GDM Risk Değerlendirmesi",
+      "title": "GDM Kendi Kendine Kontrol",
       "subtitle": "Gestasyonel diyabet risk faktörlerinizi bilin",
       "riskFactors": "Risk Faktörleri",
       "age35Plus": "35 yaş veya üzeri",
@@ -2678,7 +2678,7 @@
     "yourRiskFactors": "Risk Faktörleriniz:",
     "warningSignsTitle": "Dikkat Edilmesi Gereken Uyarı İşaretleri",
     "warningNote": "Bu belirtilerden herhangi birini yaşarsanız, hemen doktorunuzla iletişime geçin.",
-    "disclaimer": "Bu araç risk faktörlerini tanımlar ancak preeklampsiyı tahmin edemez veya teşhis edemez.",
+    "disclaimer": "Bu araç risk faktörlerini tanımlar ancak preeklampsiyı tahmin edemez veya profesyonel değerlendirme sağlayamaz.",
     "aiCoachTitle": "Yapay Zeka Preeklampsi Önleme Koçu",
     "getPreventionPlan": "Önleme Planı Al",
     "riskFactors": {
@@ -2811,19 +2811,19 @@
     }
   },
   "toolsInternal.gdm": {
-    "title": "Gestasyonel Diyabet Risk Değerlendirmesi",
+    "title": "Gestasyonel Diyabet Kendi Kendine Kontrol",
     "subtitle": "Gestasyonel diyabet risk faktörlerinizi değerlendirin",
-    "disclaimer": "Bu yalnızca eğitim amaçlı bir tarama aracıdır. Gestasyonel diyabeti teşhis etmez. Uygun test ve teşhis için her zaman doktorunuza danışın.",
+    "disclaimer": "Bu yalnızca eğitim amaçlı bir farkındalık aracıdır. Profesyonel değerlendirme sağlamaz. Uygun test için her zaman doktorunuza danışın.",
     "checkRiskFactors": "Risk Faktörlerinizi Kontrol Edin",
     "riskFactorsSelected": "Seçilen Risk Faktörleri",
     "aiCoachTitle": "Yapay Zeka Diyabet Önleme Koçu",
     "getPreventionPlan": "Kişiselleştirilmiş Önleme Planı Al",
     "preventionTipsTitle": "Önleme İpuçları",
-    "infoNote": "Gestasyonel diyabet taraması genellikle 24-28. haftalarda yapılır. Birden fazla risk faktörünüz varsa doktorunuz erken tarama önerebilir.",
+    "infoNote": "Gestasyonel diyabet testi genellikle 24-28. haftalarda yapılır. Birden fazla risk faktörünüz varsa doktorunuz erken test önerebilir.",
     "riskLevels": {
-      "high": { "title": "Yüksek Risk", "description": "Risk faktörleriniz yüksek olasılık gösteriyor. Erken tarama önerilebilir." },
-      "moderate": { "title": "Orta Risk", "description": "Bazı risk faktörleriniz var. 24-28. haftalarda standart tarama önerilir." },
-      "low": { "title": "Düşük Risk", "description": "Az risk faktörünüz var, ancak 24-28. haftalarda rutin tarama hâlâ önerilir." }
+      "high": { "title": "Yüksek Risk", "description": "Risk faktörleriniz yüksek olasılık gösteriyor. Erken test önerilebilir." },
+      "moderate": { "title": "Orta Risk", "description": "Bazı risk faktörleriniz var. 24-28. haftalarda standart test önerilir." },
+      "low": { "title": "Düşük Risk", "description": "Az risk faktörünüz var, ancak 24-28. haftalarda rutin test hâlâ önerilir." }
     },
     "riskFactors": {
       "age": "35 yaş veya üzeri",
@@ -3317,7 +3317,7 @@
   },
   "mentalHealthCoach": {
     "title": "Doğum Sonrası Ruh Sağlığı Koçu",
-    "subtitle": "Edinburgh Doğum Sonrası Depresyon Ölçeği taraması",
+    "subtitle": "Edinburgh Doğum Sonrası Depresyon Ölçeği anketi",
     "youreNotAlone": "Yalnız değilsin",
     "emergencyMessage": "Yanıtlarınıza göre, yardımcı olabilecek biriyle konuşmanız önemli. Doğum sonrası depresyon yaygın ve tedavi edilebilir.",
     "postpartumSupport": "Doğum sonrası destek",

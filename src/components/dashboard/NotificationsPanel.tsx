@@ -567,7 +567,7 @@ export function NotificationsPanel() {
         )}
       </CardContent>
 
-      {/* Medical Disclaimer Dialog */}
+      {/* Important Notice Dialog */}
       <Dialog open={showDisclaimerDialog} onOpenChange={setShowDisclaimerDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>

@@ -59,7 +59,7 @@
   "onboarding": {
     "title": "Bem-vinda à sua jornada",
     "subtitle": "Seu companheiro de estilo de vida & educação",
-    "disclaimer": "Este aplicativo é apenas para fins informativos e educativos. Não é um dispositivo médico e não fornece aconselhamento clínico ou diagnóstico.",
+    "disclaimer": "Este aplicativo é apenas para fins informativos e educativos. Fornece informações gerais de bem-estar e não substitui orientação profissional de saúde.",
     "feature1": "Ferramentas de diário pessoal & agenda",
     "feature2": "Conteúdo educativo sobre bem-estar",
     "feature3": "Seus dados ficam no seu dispositivo",
@@ -173,7 +173,7 @@
     },
     "postpartumMentalHealth": {
       "title": "Coach de saúde mental",
-      "description": "Triagem EPDS e suporte de saúde mental."
+      "description": "Questionário EPDS e suporte de saúde mental."
     },
     "gestationalDiabetes": {
       "title": "Risco de diabetes gestacional",
@@ -631,7 +631,7 @@
     "rule511Desc": "Muitos médicos recomendam contatá-los quando as contrações estiverem a cada 5 minutos, durando 1 minuto cada, por pelo menos 1 hora."
   },
   "preeclampsiaPage": {
-    "title": "Avaliação de risco de pré-eclâmpsia",
+    "title": "Verificação de conscientização sobre pré-eclâmpsia",
     "subtitle": "Verifique seus fatores de risco",
     "highRisk": "Fatores de alto risco",
     "moderateRisk": "Fatores de risco moderado",
@@ -2678,7 +2678,7 @@
     "yourRiskFactors": "Seus Fatores de Risco:",
     "warningSignsTitle": "Sinais de Alerta para Observar",
     "warningNote": "Se você experimentar qualquer um desses sintomas, contate imediatamente seu médico.",
-    "disclaimer": "Esta ferramenta identifica fatores de risco mas não pode prever ou diagnosticar pré-eclâmpsia.",
+    "disclaimer": "Esta ferramenta identifica fatores de risco mas não pode prever pré-eclâmpsia. Não substitui avaliação profissional.",
     "aiCoachTitle": "Coach IA de Prevenção de Pré-eclâmpsia",
     "getPreventionPlan": "Obter Plano de Prevenção",
     "riskFactors": {
@@ -2811,19 +2811,19 @@
     }
   },
   "toolsInternal.gdm": {
-    "title": "Avaliação de Risco de Diabetes Gestacional",
+    "title": "Autoavaliação de Diabetes Gestacional",
     "subtitle": "Avalie seus fatores de risco para diabetes gestacional",
-    "disclaimer": "Esta é apenas uma ferramenta educacional de triagem. Não diagnostica diabetes gestacional. Consulte sempre seu médico.",
+    "disclaimer": "Esta é apenas uma ferramenta educacional de conscientização. Não substitui avaliação profissional. Consulte sempre seu médico.",
     "checkRiskFactors": "Verifique seus Fatores de Risco",
     "riskFactorsSelected": "Fatores de Risco Selecionados",
     "aiCoachTitle": "Coach IA de Prevenção de Diabetes",
     "getPreventionPlan": "Obter Plano de Prevenção Personalizado",
     "preventionTipsTitle": "Dicas de Prevenção",
-    "infoNote": "A triagem de diabetes gestacional ocorre entre as semanas 24-28. Se você tiver múltiplos fatores de risco, seu médico pode recomendar triagem mais cedo.",
+    "infoNote": "O teste de diabetes gestacional ocorre entre as semanas 24-28. Se você tiver múltiplos fatores de risco, seu médico pode recomendar teste mais cedo.",
     "riskLevels": {
-      "high": { "title": "Risco Alto", "description": "Seus fatores de risco sugerem maior probabilidade. Triagem precoce pode ser recomendada." },
-      "moderate": { "title": "Risco Moderado", "description": "Você tem alguns fatores de risco. Triagem padrão nas semanas 24-28 é recomendada." },
-      "low": { "title": "Risco Baixo", "description": "Você tem poucos fatores de risco, mas a triagem rotineira nas semanas 24-28 ainda é recomendada." }
+      "high": { "title": "Risco Alto", "description": "Seus fatores de risco sugerem maior probabilidade. Teste precoce pode ser recomendado." },
+      "moderate": { "title": "Risco Moderado", "description": "Você tem alguns fatores de risco. Teste padrão nas semanas 24-28 é recomendado." },
+      "low": { "title": "Risco Baixo", "description": "Você tem poucos fatores de risco, mas o teste rotineiro nas semanas 24-28 ainda é recomendado." }
     },
     "riskFactors": {
       "age": "35 anos ou mais",
