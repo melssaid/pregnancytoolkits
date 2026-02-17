@@ -74,7 +74,7 @@ const categoryConfig: CategoryConfig[] = [
     toolHover: "hover:bg-pink-50/50 dark:hover:bg-pink-900/15",
   },
   {
-    key: "categories.riskAssessment", icon: AlertTriangle,
+    key: "categories.selfCheck", icon: AlertTriangle,
     bg: "from-fuchsia-300/12 via-rose-300/8 to-fuchsia-200/5",
     border: "border-fuchsia-200/25",
     iconBg: "bg-fuchsia-400/15",

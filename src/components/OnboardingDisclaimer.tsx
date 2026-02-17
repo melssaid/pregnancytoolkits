@@ -78,7 +78,7 @@ export const OnboardingDisclaimer: React.FC = () => {
             {/* Disclaimer - compact */}
             <div className="px-4 pb-2">
               <p className="text-[11px] text-muted-foreground text-center leading-relaxed">
-                {t('onboarding.disclaimer', 'This app is for informational and educational purposes only. It is not a medical device and does not provide clinical advice or diagnosis.')}
+                {t('onboarding.disclaimer', 'This app is for informational and educational purposes only. It provides general wellness information and does not replace professional health guidance.')}
               </p>
             </div>
 

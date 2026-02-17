@@ -124,10 +124,10 @@ ${sessionData}
 
 ## Required Analysis Sections
 
-### 1. 📊 Pattern Assessment
-Evaluate the consistency and quality of movement patterns. Compare to clinical benchmarks (10 kicks in 2 hours is the standard expectation).
+### 1. 📊 Pattern Review
+Evaluate the consistency and quality of movement patterns. Compare to general guidelines (10 kicks in 2 hours is a commonly referenced expectation).
 
-### 2. 🎯 Clinical Interpretation
+### 2. 🎯 Pattern Interpretation
 Based on week ${currentWeek} of pregnancy:
 - Is the movement pattern within normal range?
 - Any concerning patterns that need attention?
@@ -147,7 +147,7 @@ Clear, non-alarming guidance on:
 ### 5. 💡 Quick Tips
 2-3 practical tips specific to week ${currentWeek}
 
-Use markdown formatting with headers, bullet points, and **bold** for emphasis. Be supportive and reassuring while being clinically accurate. Avoid medical jargon where possible.`
+Use markdown formatting with headers, bullet points, and **bold** for emphasis. Be supportive and reassuring while being accurate. Avoid medical jargon where possible.`
       }],
       context: { week: currentWeek, language: currentLanguage },
       onDelta: (text) => {

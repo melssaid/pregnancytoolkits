@@ -50,7 +50,8 @@
     "pregnancy": "Pregnancy",
     "labor": "Labor",
     "postpartum": "Baby Care",
-    "riskAssessment": "Risk Assessment",
+    "selfCheck": "Self-Check",
+    "riskAssessment": "Self-Check",
     "mentalHealth": "Mental Health",
     "wellness": "Wellness",
     "preparation": "Preparation"
@@ -172,10 +173,10 @@
     },
     "postpartumMentalHealth": {
       "title": "Mental Health Coach",
-      "description": "EPDS screening and mental health support."
+      "description": "EPDS questionnaire and mental health support."
     },
     "gestationalDiabetes": {
-      "title": "GDM Risk Assessment",
+      "title": "GDM Self-Check",
       "description": "Know your gestational diabetes risk factors."
     },
     "preeclampsiaRisk": {
@@ -640,7 +641,7 @@
     "exportPDF": "Share your journal with your consultant"
   },
   "preeclampsiaPage": {
-    "title": "Preeclampsia Risk Assessment",
+    "title": "Preeclampsia Awareness Check",
     "subtitle": "Check your preeclampsia risk factors",
     "highRisk": "High Risk Factors",
     "moderateRisk": "Moderate Risk Factors",
@@ -2347,8 +2348,8 @@
     },
     "mentalHealth": {
       "title": "Mental Health Coach",
-      "subtitle": "EPDS screening and mental health support",
-      "takeScreening": "Take EPDS Screening",
+      "subtitle": "EPDS questionnaire and mental health support",
+      "takeScreening": "Take EPDS Questionnaire",
       "screeningDesc": "Edinburgh Postnatal Depression Scale",
       "yourScore": "Your Score",
       "lowRisk": "Low Risk",
@@ -2525,7 +2526,7 @@
       }
     },
     "gestationalDiabetes": {
-      "title": "GDM Risk Assessment",
+      "title": "GDM Self-Check",
       "subtitle": "Know your gestational diabetes risk factors",
       "riskFactors": "Risk Factors",
       "age35Plus": "Age 35 or older",
@@ -2804,13 +2805,13 @@
     "gdm": {
       "title": "Gestational Diabetes Risk",
       "subtitle": "Assess your risk factors for gestational diabetes",
-      "disclaimer": "This is an educational screening tool only. It does not diagnose gestational diabetes. Always consult your healthcare provider for proper testing and diagnosis.",
+      "disclaimer": "This is an educational awareness tool only. It does not provide a professional evaluation for gestational diabetes. Always consult your healthcare provider for proper testing.",
       "checkRiskFactors": "Check Your Risk Factors",
       "riskFactorsSelected": "Risk Factors Selected",
       "aiCoachTitle": "AI Diabetes Prevention Coach",
       "getPreventionPlan": "Get Personalized Prevention Plan",
       "preventionTipsTitle": "Prevention Tips",
-      "infoNote": "Gestational diabetes screening typically occurs between weeks 24-28. If you have multiple risk factors, your doctor may recommend earlier screening. This tool is for educational purposes only and does not replace medical advice.",
+      "infoNote": "Gestational diabetes testing typically occurs between weeks 24-28. If you have multiple risk factors, your doctor may recommend earlier testing. This tool is for educational purposes only and does not replace professional health guidance.",
       "riskLevels": {
         "high": {
           "title": "Higher Risk",
@@ -3007,7 +3008,7 @@
     },
     "mentalHealthCoach": {
       "title": "Postpartum Mental Health Coach",
-      "subtitle": "Edinburgh Postnatal Depression Scale screening",
+      "subtitle": "Edinburgh Postnatal Depression Scale questionnaire",
       "youreNotAlone": "You're Not Alone",
       "emergencyMessage": "Based on your responses, it's important to talk to someone who can help. Postpartum depression is common and treatable.",
       "postpartumSupport": "Postpartum Support Intl.",
@@ -3015,7 +3016,7 @@
       "question": "Question",
       "of": "of",
       "score": "Score",
-      "takeScreeningAgain": "Take Screening Again",
+      "takeScreeningAgain": "Take Questionnaire Again",
       "aiPersonalizedPlan": "AI Personalized Coping Plan",
       "generateMyPlan": "Generate My Personalized Plan",
       "creatingPlan": "Creating your personalized plan...",
@@ -3025,7 +3026,7 @@
       "psiNumber": "1-800-944-4773",
       "crisisLinelineName": "988 Suicide & Crisis Lifeline",
       "crisisLinelineDesc": "Call or text 988",
-      "screeningDisclaimer": "⚠️ This is a screening tool based on the Edinburgh Postnatal Depression Scale (EPDS). It does not provide a diagnosis. Always consult with a healthcare professional for proper evaluation.",
+      "screeningDisclaimer": "⚠️ This is a wellness questionnaire based on the Edinburgh Postnatal Depression Scale (EPDS). It does not provide a professional evaluation. Always consult with a healthcare professional for proper assessment.",
       "mentalWellnessVideos": "Mental Wellness Videos",
       "videosSubtitle": "Support and self-care resources",
       "videos": {

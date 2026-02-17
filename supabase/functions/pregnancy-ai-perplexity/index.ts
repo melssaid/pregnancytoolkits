@@ -249,7 +249,7 @@ Explain the medical science behind these symptoms:
 - The difference between normal pregnancy symptoms and concerning ones
 - What your body is trying to accomplish that leads to these symptoms
 
-## ✅ Clinical Assessment
+## ✅ Wellness Assessment
 - **Severity Level**: State whether these symptoms are:
   - ✅ **Normal and Expected** - Common part of pregnancy
   - ⚡ **Mild Concern** - Worth monitoring but not urgent

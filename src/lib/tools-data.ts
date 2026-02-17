@@ -112,10 +112,10 @@ export const toolsData: Tool[] = [
   { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, categoryKey: "categories.mentalHealth", href: "/tools/mental-health-coach", priority: 27, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // ⚠️ RISK ASSESSMENT (Priority 28-29)
+  // ⚠️ SELF-CHECK (Priority 28-29)
   // ═══════════════════════════════════════════════════════════════
-  { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.riskAssessment", href: "/tools/gestational-diabetes", priority: 28 },
-  { id: "preeclampsia-risk", titleKey: "tools.preeclampsiaRisk.title", descriptionKey: "tools.preeclampsiaRisk.description", icon: AlertTriangle, categoryKey: "categories.riskAssessment", href: "/tools/preeclampsia-risk", priority: 29 },
+  { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.selfCheck", href: "/tools/gestational-diabetes", priority: 28 },
+  { id: "preeclampsia-risk", titleKey: "tools.preeclampsiaRisk.title", descriptionKey: "tools.preeclampsiaRisk.description", icon: AlertTriangle, categoryKey: "categories.selfCheck", href: "/tools/preeclampsia-risk", priority: 29 },
 
   // ═══════════════════════════════════════════════════════════════
   // 🎯 PREPARATION (Priority 30)

@@ -50,7 +50,8 @@
     "pregnancy": "Grossesse",
     "labor": "Accouchement",
     "postpartum": "Soins bébé",
-    "riskAssessment": "Évaluation des risques",
+    "selfCheck": "Auto-vérification",
+    "riskAssessment": "Auto-vérification",
     "mentalHealth": "Santé mentale",
     "wellness": "Bien-être",
     "preparation": "Préparation"
@@ -972,7 +973,7 @@
   "toolsInternal": {
     "mentalHealthCoach": {
       "title": "Coach de santé mentale post-partum",
-      "subtitle": "Dépistage de l'échelle de dépression postnatale d'Édimbourg",
+      "subtitle": "Questionnaire de l'échelle de dépression postnatale d'Édimbourg",
       "youreNotAlone": "Vous n'êtes pas seule",
       "emergencyMessage": "D'après vos réponses, il est important de parler à quelqu'un qui peut vous aider. La dépression post-partum est courante et traitable.",
       "postpartumSupport": "Support post-partum",
@@ -980,7 +981,7 @@
       "question": "Question",
       "of": "sur",
       "score": "Score",
-      "takeScreeningAgain": "Refaire le dépistage",
+      "takeScreeningAgain": "Refaire le questionnaire",
       "aiPersonalizedPlan": "Plan de gestion personnalisé IA",
       "generateMyPlan": "Générer mon plan personnalisé",
       "creatingPlan": "Création de votre plan personnalisé...",
@@ -990,7 +991,7 @@
       "psiNumber": "1-800-944-4773",
       "crisisLinelineName": "988 Ligne de crise et suicide",
       "crisisLinelineDesc": "Appelez ou envoyez un SMS au 988",
-      "screeningDisclaimer": "⚠️ Ceci est un outil de dépistage basé sur l'échelle de dépression postnatale d'Édimbourg (EPDS). Il ne fournit pas de diagnostic. Consultez toujours un professionnel pour une évaluation appropriée.",
+      "screeningDisclaimer": "⚠️ Ceci est un questionnaire de bien-être basé sur l'échelle de dépression postnatale d'Édimbourg (EPDS). Il ne fournit pas une évaluation professionnelle. Consultez toujours un professionnel pour une évaluation appropriée.",
       "mentalWellnessVideos": "Vidéos de bien-être mental",
       "videosSubtitle": "Ressources de soutien et d'auto-soins",
       "videos": {
@@ -1809,8 +1810,8 @@
     },
     "mentalHealth": {
       "title": "Coach santé mentale",
-      "subtitle": "Dépistage EPDS et soutien",
-      "takeScreening": "Faire le dépistage EPDS",
+      "subtitle": "Questionnaire EPDS et soutien",
+      "takeScreening": "Remplir le questionnaire EPDS",
       "screeningDesc": "Échelle de dépression postnatale d'Édimbourg",
       "yourScore": "Votre score",
       "lowRisk": "Risque faible",
@@ -3090,7 +3091,7 @@
     "question": "Question",
     "of": "sur",
     "score": "Score",
-    "takeScreeningAgain": "Refaire le dépistage",
+    "takeScreeningAgain": "Refaire le questionnaire",
     "aiPersonalizedPlan": "Plan de gestion personnalisé IA",
     "generateMyPlan": "Générer mon plan personnalisé",
     "creatingPlan": "Création de votre plan personnalisé...",
@@ -3100,7 +3101,7 @@
     "psiNumber": "1-800-944-4773",
     "crisisLinelineName": "988 Ligne de crise et suicide",
     "crisisLinelineDesc": "Appelez ou envoyez un SMS au 988",
-    "screeningDisclaimer": "⚠️ Ceci est un outil de dépistage basé sur l'échelle de dépression postnatale d'Édimbourg (EPDS). Il ne fournit pas de diagnostic. Consultez toujours un professionnel pour une évaluation appropriée.",
+    "screeningDisclaimer": "⚠️ Ceci est un questionnaire de bien-être basé sur l'échelle de dépression postnatale d'Édimbourg (EPDS). Il ne fournit pas une évaluation professionnelle. Consultez toujours un professionnel pour une évaluation appropriée.",
     "mentalWellnessVideos": "Vidéos de bien-être mental",
     "videosSubtitle": "Ressources de soutien et d'auto-soins",
     "videos": {

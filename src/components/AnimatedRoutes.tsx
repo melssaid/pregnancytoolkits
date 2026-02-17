@@ -59,7 +59,7 @@ const SmartWeightGainAnalyzer = lazy(() => import("@/pages/tools/SmartWeightGain
 // MENTAL HEALTH (1 tool)
 const PostpartumMentalHealthCoach = lazy(() => import("@/pages/tools/PostpartumMentalHealthCoach"));
 
-// RISK ASSESSMENT (2 tools)
+// SELF-CHECK (2 tools)
 const GestationalDiabetes = lazy(() => import("@/pages/tools/GestationalDiabetes"));
 const PreeclampsiaRisk = lazy(() => import("@/pages/tools/PreeclampsiaRisk"));
 
@@ -137,7 +137,7 @@ export function AnimatedRoutes() {
           {/* MENTAL HEALTH */}
           <Route path="/tools/mental-health-coach" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
 
-          {/* RISK ASSESSMENT */}
+          {/* SELF-CHECK */}
           <Route path="/tools/gestational-diabetes" element={<PageTransition><GestationalDiabetes /></PageTransition>} />
           <Route path="/tools/preeclampsia-risk" element={<PageTransition><PreeclampsiaRisk /></PageTransition>} />
 
