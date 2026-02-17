@@ -50,7 +50,8 @@
     "pregnancy": "Schwangerschaft",
     "labor": "Geburt",
     "postpartum": "Babypflege",
-    "riskAssessment": "Risikobewertung",
+    "selfCheck": "Selbst-Check",
+    "riskAssessment": "Selbst-Check",
     "mentalHealth": "Psychische Gesundheit",
     "wellness": "Wohlbefinden",
     "preparation": "Vorbereitung"
@@ -972,7 +973,7 @@
   "toolsInternal": {
     "mentalHealthCoach": {
       "title": "Postpartum-Gesundheitscoach",
-      "subtitle": "Edinburgh Postpartum-Depressionsskala-Screening",
+      "subtitle": "Edinburgh Postpartum-Depressionsskala-Fragebogen",
       "youreNotAlone": "Du bist nicht allein",
       "emergencyMessage": "Basierend auf deinen Antworten ist es wichtig, mit jemandem zu sprechen, der helfen kann. Postpartale Depression ist häufig und behandelbar.",
       "postpartumSupport": "Postpartum-Unterstützung",
@@ -980,7 +981,7 @@
       "question": "Frage",
       "of": "von",
       "score": "Punktzahl",
-      "takeScreeningAgain": "Screening wiederholen",
+      "takeScreeningAgain": "Fragebogen wiederholen",
       "aiPersonalizedPlan": "KI-personalisierter Bewältigungsplan",
       "generateMyPlan": "Meinen persönlichen Plan erstellen",
       "creatingPlan": "Erstelle deinen persönlichen Plan...",
@@ -990,7 +991,7 @@
       "psiNumber": "1-800-944-4773",
       "crisisLinelineName": "988 Suizid- & Krisenhotline",
       "crisisLinelineDesc": "Anrufen oder SMS an 988",
-      "screeningDisclaimer": "⚠️ Dies ist ein Screening-Tool basierend auf der Edinburgh Postnatal Depression Scale (EPDS). Es stellt keine Diagnose. Konsultiere immer einen Fachmann für eine ordnungsgemäße Bewertung.",
+      "screeningDisclaimer": "⚠️ Dies ist ein Wellness-Fragebogen basierend auf der Edinburgh Postnatal Depression Scale (EPDS). Er stellt keine professionelle Bewertung dar. Konsultiere immer einen Fachmann für eine ordnungsgemäße Bewertung.",
       "mentalWellnessVideos": "Mentale Wellness-Videos",
       "videosSubtitle": "Unterstützung und Selbstpflege-Ressourcen",
       "videos": {
@@ -1747,8 +1748,8 @@
     },
     "mentalHealth": {
       "title": "Mental-Health-Coach",
-      "subtitle": "EPDS-Screening und Unterstützung",
-      "takeScreening": "EPDS-Screening durchführen",
+      "subtitle": "EPDS-Fragebogen und Unterstützung",
+      "takeScreening": "EPDS-Fragebogen ausfüllen",
       "screeningDesc": "Edinburgh-Postnatal-Depressions-Skala",
       "yourScore": "Ihr Ergebnis",
       "lowRisk": "Niedriges Risiko",
@@ -3057,7 +3058,7 @@
   },
   "mentalHealthCoach": {
     "title": "Postpartum-Gesundheitscoach",
-    "subtitle": "Edinburgh Postpartum-Depressionsskala-Screening",
+    "subtitle": "Edinburgh Postpartum-Depressionsskala-Fragebogen",
     "youreNotAlone": "Du bist nicht allein",
     "emergencyMessage": "Basierend auf deinen Antworten ist es wichtig, mit jemandem zu sprechen, der helfen kann. Postpartale Depression ist häufig und behandelbar.",
     "postpartumSupport": "Postpartum-Unterstützung",
@@ -3065,7 +3066,7 @@
     "question": "Frage",
     "of": "von",
     "score": "Punktzahl",
-    "takeScreeningAgain": "Screening wiederholen",
+    "takeScreeningAgain": "Fragebogen wiederholen",
     "aiPersonalizedPlan": "KI-personalisierter Bewältigungsplan",
     "generateMyPlan": "Meinen persönlichen Plan erstellen",
     "creatingPlan": "Erstelle deinen persönlichen Plan...",
@@ -3075,7 +3076,7 @@
     "psiNumber": "1-800-944-4773",
     "crisisLinelineName": "988 Suizid- & Krisenhotline",
     "crisisLinelineDesc": "Anrufen oder SMS an 988",
-    "screeningDisclaimer": "⚠️ Dies ist ein Screening-Tool basierend auf der Edinburgh Postnatal Depression Scale (EPDS). Es stellt keine Diagnose. Konsultiere immer einen Fachmann für eine ordnungsgemäße Bewertung.",
+    "screeningDisclaimer": "⚠️ Dies ist ein Wellness-Fragebogen basierend auf der Edinburgh Postnatal Depression Scale (EPDS). Er stellt keine professionelle Bewertung dar. Konsultiere immer einen Fachmann für eine ordnungsgemäße Bewertung.",
     "mentalWellnessVideos": "Mentale Wellness-Videos",
     "videosSubtitle": "Unterstützung und Selbstpflege-Ressourcen",
     "videos": {

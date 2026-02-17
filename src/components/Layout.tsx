@@ -144,10 +144,10 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             {t('app.footer')}
           </p>
           
-          {/* Medical Disclaimer */}
+          {/* Important Notice */}
           <div className="mt-6 pt-4 border-t border-border/50">
             <p className="text-[10px] text-muted-foreground/70 text-center leading-relaxed max-w-3xl mx-auto">
-              <span className="font-medium">{t('layout.footer.disclaimerTitle', 'Medical Disclaimer')}:</span> {t('layout.footer.disclaimerText', 'This app is for educational and informational purposes only and does not provide medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider for any health concerns.')}
+              <span className="font-medium">{t('layout.footer.disclaimerTitle', 'Important Notice')}:</span> {t('layout.footer.disclaimerText', 'This app is for educational and informational purposes only. It is not a substitute for professional health guidance. Always consult a qualified healthcare provider for any health concerns.')}
             </p>
           </div>
         </div>
