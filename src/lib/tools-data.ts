@@ -51,7 +51,7 @@ export interface Tool {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PROFESSIONAL PREGNANCY TOOLS - 35 CURATED AI-POWERED TOOLS (Consolidated)
+// PREGNANCY TOOLKITS - 35 CURATED AI-POWERED TOOLS (Consolidated)
 // Merged duplicates for streamlined experience
 // ═══════════════════════════════════════════════════════════════════════════
 
