@@ -59,7 +59,7 @@
   "onboarding": {
     "title": "Bienvenida a tu viaje",
     "subtitle": "Tu compañero de estilo de vida y educación",
-    "disclaimer": "Esta aplicación es solo para fines informativos y educativos. No es un dispositivo médico y no proporciona consejos clínicos ni diagnósticos.",
+    "disclaimer": "Esta aplicación es solo para fines informativos y educativos. Proporciona información general de bienestar y no reemplaza la orientación profesional de salud.",
     "feature1": "Herramientas de diario y agenda personal",
     "feature2": "Contenido educativo sobre bienestar",
     "feature3": "Tus datos se quedan en tu dispositivo",
@@ -173,7 +173,7 @@
     },
     "postpartumMentalHealth": {
       "title": "Coach de salud mental",
-      "description": "Evaluación EPDS y apoyo de salud mental."
+      "description": "Cuestionario EPDS y apoyo de salud mental."
     },
     "gestationalDiabetes": {
       "title": "Riesgo de diabetes gestacional",
@@ -631,7 +631,7 @@
     "rule511Desc": "Muchos médicos recomiendan contactarlos cuando las contracciones son cada 5 minutos, duran 1 minuto cada una, durante al menos 1 hora."
   },
   "preeclampsiaPage": {
-    "title": "Evaluación de riesgo de preeclampsia",
+    "title": "Verificación de concienciación sobre preeclampsia",
     "subtitle": "Verifica tus factores de riesgo",
     "highRisk": "Factores de alto riesgo",
     "moderateRisk": "Factores de riesgo moderado",
@@ -2678,7 +2678,7 @@
     "yourRiskFactors": "Tus factores de riesgo:",
     "warningSignsTitle": "Señales de advertencia a vigilar",
     "warningNote": "Si experimentas cualquiera de estos síntomas, contacta inmediatamente a tu médico.",
-    "disclaimer": "Esta herramienta identifica factores de riesgo pero no puede predecir o diagnosticar preeclampsia.",
+    "disclaimer": "Esta herramienta identifica factores de riesgo pero no puede predecir preeclampsia. No reemplaza la evaluación profesional.",
     "aiCoachTitle": "Coach IA de prevención de preeclampsia",
     "getPreventionPlan": "Obtener plan de prevención",
     "riskFactors": {
@@ -2811,19 +2811,19 @@
     }
   },
   "toolsInternal.gdm": {
-    "title": "Evaluación de Riesgo de Diabetes Gestacional",
+    "title": "Autocomprobación de Diabetes Gestacional",
     "subtitle": "Evalúa tus factores de riesgo de diabetes gestacional",
-    "disclaimer": "Esta es solo una herramienta educativa de detección. No diagnostica diabetes gestacional. Consulta siempre a tu médico.",
+    "disclaimer": "Esta es solo una herramienta educativa de concienciación. No reemplaza la evaluación profesional. Consulta siempre a tu médico.",
     "checkRiskFactors": "Verifica tus Factores de Riesgo",
     "riskFactorsSelected": "Factores de Riesgo Seleccionados",
     "aiCoachTitle": "Coach IA de Prevención de Diabetes",
     "getPreventionPlan": "Obtener Plan de Prevención Personalizado",
     "preventionTipsTitle": "Consejos de Prevención",
-    "infoNote": "La detección de diabetes gestacional se realiza entre las semanas 24-28. Si tienes múltiples factores de riesgo, tu médico puede recomendar una detección más temprana.",
+    "infoNote": "La prueba de diabetes gestacional se realiza entre las semanas 24-28. Si tienes múltiples factores de riesgo, tu médico puede recomendar una prueba más temprana.",
     "riskLevels": {
-      "high": { "title": "Riesgo Alto", "description": "Tus factores de riesgo sugieren una mayor probabilidad. Se puede recomendar una detección temprana." },
-      "moderate": { "title": "Riesgo Moderado", "description": "Tienes algunos factores de riesgo. Se recomienda la detección estándar en las semanas 24-28." },
-      "low": { "title": "Riesgo Bajo", "description": "Tienes pocos factores de riesgo, pero la detección rutinaria en las semanas 24-28 sigue siendo recomendada." }
+      "high": { "title": "Riesgo Alto", "description": "Tus factores de riesgo sugieren una mayor probabilidad. Se puede recomendar una prueba temprana." },
+      "moderate": { "title": "Riesgo Moderado", "description": "Tienes algunos factores de riesgo. Se recomienda la prueba estándar en las semanas 24-28." },
+      "low": { "title": "Riesgo Bajo", "description": "Tienes pocos factores de riesgo, pero la prueba rutinaria en las semanas 24-28 sigue siendo recomendada." }
     },
     "riskFactors": {
       "age": "35 años o más",

@@ -214,7 +214,7 @@ const toolRelationships: Record<string, string[]> = {
   // Mental Health
   "postpartum-mental-health": ["ai-sleep-optimizer", "pregnancy-assistant", "ai-stress-relief"],
   
-  // Risk Assessment
+  // Self-Check
   "gestational-diabetes": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
   "preeclampsia-risk": ["wellness-diary", "pregnancy-assistant", "gestational-diabetes"],
   

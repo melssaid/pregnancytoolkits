@@ -173,7 +173,7 @@
     },
     "postpartumMentalHealth": {
       "title": "Mental-Health-Coach",
-      "description": "EPDS-Screening und psychische Gesundheitsunterstützung."
+      "description": "EPDS-Fragebogen und psychische Gesundheitsunterstützung."
     },
     "gestationalDiabetes": {
       "title": "Gestationsdiabetes-Risiko",
@@ -631,7 +631,7 @@
     "rule511Desc": "Viele Ärzte empfehlen, sie zu kontaktieren, wenn die Kontraktionen alle 5 Minuten kommen, 1 Minute dauern und seit mindestens 1 Stunde anhalten."
   },
   "preeclampsiaPage": {
-    "title": "Präeklampsie-Risikobewertung",
+    "title": "Präeklampsie-Bewusstseinsprüfung",
     "subtitle": "Überprüfen Sie Ihre Präeklampsie-Risikofaktoren",
     "highRisk": "Hohe Risikofaktoren",
     "moderateRisk": "Mittlere Risikofaktoren",
@@ -2383,7 +2383,7 @@
     "yourRiskFactors": "Ihre Risikofaktoren:",
     "warningSignsTitle": "Warnzeichen, auf die Sie achten sollten",
     "warningNote": "Wenn Sie eines dieser Symptome bemerken, kontaktieren Sie sofort Ihren Arzt.",
-    "disclaimer": "Dieses Tool identifiziert Risikofaktoren, kann aber Präeklampsie nicht vorhersagen oder diagnostizieren.",
+    "disclaimer": "Dieses Tool identifiziert Risikofaktoren, kann aber Präeklampsie nicht vorhersagen. Es ersetzt keine professionelle Bewertung.",
     "aiCoachTitle": "KI-Präeklampsie-Präventionscoach",
     "getPreventionPlan": "Präventionsplan erhalten",
     "riskFactors": {
@@ -3232,19 +3232,19 @@
   "toolsInternal.mealSuggestion.prepTimeLabel": "Zubereitungszeit",
   "toolsInternal.mealSuggestion.prepTimes": { "quick": "Schnell (< 15 Min)", "medium": "Mittel (15-30 Min)", "elaborate": "Aufwändig (30+ Min)" },
   "toolsInternal.gdm": {
-    "title": "Gestationsdiabetes-Risikobewertung",
+    "title": "Gestationsdiabetes Selbst-Check",
     "subtitle": "Bewerten Sie Ihre Risikofaktoren für Gestationsdiabetes",
-    "disclaimer": "Dies ist nur ein Bildungs-Screening-Tool. Es diagnostiziert keinen Gestationsdiabetes. Konsultieren Sie immer Ihren Arzt.",
+    "disclaimer": "Dies ist nur ein Bildungs-Bewusstseinstool. Es ersetzt keine professionelle Bewertung. Konsultieren Sie immer Ihren Arzt.",
     "checkRiskFactors": "Überprüfen Sie Ihre Risikofaktoren",
     "riskFactorsSelected": "Ausgewählte Risikofaktoren",
     "aiCoachTitle": "KI-Diabetes-Präventionscoach",
     "getPreventionPlan": "Personalisierten Präventionsplan erhalten",
     "preventionTipsTitle": "Präventionstipps",
-    "infoNote": "Das Gestationsdiabetes-Screening erfolgt in der Regel zwischen der 24. und 28. Woche. Bei mehreren Risikofaktoren kann Ihr Arzt ein früheres Screening empfehlen.",
+    "infoNote": "Der Gestationsdiabetes-Test erfolgt in der Regel zwischen der 24. und 28. Woche. Bei mehreren Risikofaktoren kann Ihr Arzt einen früheren Test empfehlen.",
     "riskLevels": {
-      "high": { "title": "Höheres Risiko", "description": "Ihre Risikofaktoren deuten auf eine erhöhte Wahrscheinlichkeit hin. Frühzeitiges Screening kann empfohlen werden." },
-      "moderate": { "title": "Mäßiges Risiko", "description": "Sie haben einige Risikofaktoren. Standard-Screening in den Wochen 24-28 wird empfohlen." },
-      "low": { "title": "Niedriges Risiko", "description": "Sie haben wenige Risikofaktoren, aber Routine-Screening in den Wochen 24-28 wird dennoch empfohlen." }
+      "high": { "title": "Höheres Risiko", "description": "Ihre Risikofaktoren deuten auf eine erhöhte Wahrscheinlichkeit hin. Ein frühzeitiger Test kann empfohlen werden." },
+      "moderate": { "title": "Mäßiges Risiko", "description": "Sie haben einige Risikofaktoren. Standard-Test in den Wochen 24-28 wird empfohlen." },
+      "low": { "title": "Niedriges Risiko", "description": "Sie haben wenige Risikofaktoren, aber Routine-Test in den Wochen 24-28 wird dennoch empfohlen." }
     },
     "riskFactors": {
       "age": "Alter 35 oder älter",

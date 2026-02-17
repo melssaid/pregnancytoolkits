@@ -234,7 +234,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
           </DialogHeader>
 
           <div className="px-4 pb-4">
-            {/* Medical Disclaimer Alert */}
+            {/* Important Notice Alert */}
             <div className="mb-3 p-3 bg-muted/50 border border-border rounded-lg flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5" />
               <p className="text-xs text-muted-foreground">
@@ -295,7 +295,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
             <DialogTitle className="text-base pr-6">{selectedVideo?.title}</DialogTitle>
           </DialogHeader>
           <div className="px-4 pb-4">
-            {/* Medical Disclaimer Alert */}
+            {/* Important Notice Alert */}
             <div className="mb-3 p-3 bg-muted/50 border border-border rounded-lg flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 text-muted-foreground mt-0.5" />
               <p className="text-xs text-muted-foreground">

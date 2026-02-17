@@ -59,7 +59,7 @@
   "onboarding": {
     "title": "Bienvenue dans votre parcours",
     "subtitle": "Votre compagnon lifestyle & éducatif",
-    "disclaimer": "Cette application est à titre informatif et éducatif uniquement. Ce n'est pas un dispositif médical et ne fournit ni conseil clinique ni diagnostic.",
+    "disclaimer": "Cette application est à titre informatif et éducatif uniquement. Elle fournit des informations générales sur le bien-être et ne remplace pas les conseils de professionnels de santé.",
     "feature1": "Outils de journal personnel & agenda",
     "feature2": "Contenu éducatif sur le bien-être",
     "feature3": "Vos données restent sur votre appareil",
@@ -173,7 +173,7 @@
     },
     "postpartumMentalHealth": {
       "title": "Coach santé mentale",
-      "description": "Dépistage EPDS et soutien santé mentale."
+      "description": "Questionnaire EPDS et soutien santé mentale."
     },
     "gestationalDiabetes": {
       "title": "Risque de diabète gestationnel",
@@ -631,7 +631,7 @@
     "rule511Desc": "De nombreux médecins recommandent de les contacter quand les contractions sont espacées de 5 minutes, durent 1 minute chacune, depuis au moins 1 heure."
   },
   "preeclampsiaPage": {
-    "title": "Évaluation du risque de prééclampsie",
+    "title": "Vérification de sensibilisation à la prééclampsie",
     "subtitle": "Vérifiez vos facteurs de risque",
     "highRisk": "Facteurs de risque élevé",
     "moderateRisk": "Facteurs de risque modéré",
@@ -2383,7 +2383,7 @@
     "yourRiskFactors": "Vos facteurs de risque:",
     "warningSignsTitle": "Signes d'alerte à surveiller",
     "warningNote": "Si vous ressentez l'un de ces symptômes, contactez immédiatement votre médecin.",
-    "disclaimer": "Cet outil identifie les facteurs de risque mais ne peut pas prédire ou diagnostiquer la prééclampsie.",
+    "disclaimer": "Cet outil identifie les facteurs de risque mais ne peut pas prédire la prééclampsie. Il ne remplace pas une évaluation professionnelle.",
     "aiCoachTitle": "Coach IA de prévention de la prééclampsie",
     "getPreventionPlan": "Obtenir un plan de prévention",
     "riskFactors": {
@@ -3257,19 +3257,19 @@
   "toolsInternal.mealSuggestion.prepTimeLabel": "Temps de préparation",
   "toolsInternal.mealSuggestion.prepTimes": { "quick": "Rapide (< 15 min)", "medium": "Moyen (15-30 min)", "elaborate": "Élaboré (30+ min)" },
   "toolsInternal.gdm": {
-    "title": "Évaluation du risque de diabète gestationnel",
+    "title": "Auto-vérification du diabète gestationnel",
     "subtitle": "Évaluez vos facteurs de risque de diabète gestationnel",
-    "disclaimer": "Ceci est un outil de dépistage éducatif uniquement. Il ne diagnostique pas le diabète gestationnel. Consultez toujours votre médecin.",
+    "disclaimer": "Ceci est un outil de sensibilisation éducatif uniquement. Il ne remplace pas une évaluation professionnelle. Consultez toujours votre médecin.",
     "checkRiskFactors": "Vérifiez vos facteurs de risque",
     "riskFactorsSelected": "Facteurs de risque sélectionnés",
     "aiCoachTitle": "Coach IA de prévention du diabète",
     "getPreventionPlan": "Obtenir un plan de prévention personnalisé",
     "preventionTipsTitle": "Conseils de prévention",
-    "infoNote": "Le dépistage du diabète gestationnel a lieu entre les semaines 24-28. Si vous avez plusieurs facteurs de risque, votre médecin peut recommander un dépistage plus précoce.",
+    "infoNote": "Le test du diabète gestationnel a lieu entre les semaines 24-28. Si vous avez plusieurs facteurs de risque, votre médecin peut recommander un test plus précoce.",
     "riskLevels": {
-      "high": { "title": "Risque élevé", "description": "Vos facteurs de risque suggèrent une probabilité accrue. Un dépistage précoce peut être recommandé." },
-      "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque. Le dépistage standard aux semaines 24-28 est recommandé." },
-      "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque, mais le dépistage de routine aux semaines 24-28 est toujours recommandé." }
+      "high": { "title": "Risque élevé", "description": "Vos facteurs de risque suggèrent une probabilité accrue. Un test précoce peut être recommandé." },
+      "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque. Le test standard aux semaines 24-28 est recommandé." },
+      "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque, mais le test de routine aux semaines 24-28 est toujours recommandé." }
     },
     "riskFactors": {
       "age": "35 ans ou plus",
