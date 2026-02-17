@@ -61,14 +61,14 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
         <div className="h-[4.5rem] md:h-0" />
         
         {/* Bottom Navigation */}
-        <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden px-3 pb-1 safe-area-bottom">
-          {/* Decorative frame */}
-        <div className="relative rounded-2xl overflow-hidden">
+        <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden safe-area-bottom">
+          {/* Full-width clean bar */}
+        <div className="relative">
             {/* Top accent line */}
-            <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent z-10" />
+            <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent z-10" />
             
-            {/* Clean background */}
-            <div className="absolute inset-0 bg-card/95 backdrop-blur-xl border border-border/20 rounded-2xl shadow-[0_-4px_30px_0px_hsl(340_65%_65%/0.35),0_-1px_10px_0px_hsl(340_65%_65%/0.2)]" />
+            {/* Clean background - no border, edge-to-edge */}
+            <div className="absolute inset-0 bg-card/95 backdrop-blur-xl shadow-[0_-4px_30px_0px_hsl(340_65%_65%/0.3)]" />
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
               {NAV_ITEM_IDS.map((item, idx) => {
@@ -85,7 +85,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                     className={`relative p-2 rounded-lg transition-all duration-200 ${
                       (item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active)
                         ? "text-primary" 
-                        : "text-primary/40 hover:text-primary/60"
+                        : "text-foreground/50 hover:text-foreground/70"
                     }`}
                     whileTap={{ scale: 0.92 }}
                   >
@@ -108,7 +108,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 const labelClass = `text-[9px] font-medium tracking-wide ${
                   (item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active)
                     ? "text-primary" 
-                    : "text-primary/40"
+                    : "text-foreground/50"
                 }`;
 
                 let navElement: React.ReactNode;
