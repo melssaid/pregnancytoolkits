@@ -110,15 +110,6 @@ export function SEOContent() {
           })}
         </div>
 
-        <div className="sr-only" aria-hidden="false">
-          <h3>{t('seo.searchKeywords')}</h3>
-          <ul>
-            {currentKeywords.map((keyword, index) => (
-              <li key={index}>{keyword}</li>
-            ))}
-          </ul>
-        </div>
-
         <div className="flex flex-wrap justify-center gap-2">
           {currentKeywords.slice(0, 12).map((keyword, index) => (
             <span 
