@@ -68,7 +68,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
             <div className="absolute top-0 left-4 right-4 h-[3px] bg-gradient-to-r from-transparent via-primary/60 to-transparent z-10" />
             
             {/* Glass background */}
-            <div className="absolute inset-0 bg-card/90 backdrop-blur-xl border border-border/30 rounded-2xl shadow-[0_-8px_30px_-5px_hsl(340_65%_65%/0.25)]" />
+            <div className="absolute inset-0 bg-card/90 backdrop-blur-xl border border-border/30 rounded-2xl shadow-[0_-6px_40px_0px_hsl(340_65%_65%/0.45),0_-2px_15px_0px_hsl(340_65%_65%/0.3)]" />
             
             <div className="relative flex items-center justify-evenly px-1 py-2.5">
               {NAV_ITEM_IDS.map((item, idx) => {
