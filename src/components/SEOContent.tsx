@@ -6,60 +6,60 @@ export function SEOContent() {
 
   const seoKeywords: Record<string, string[]> = {
     ar: [
-      "حاسبة الحمل", "حاسبة موعد الولادة", "عداد حركة الجنين", "متابعة الحمل",
+      "دليل الحمل", "موعد الولادة المتوقع", "يوميات حركة الجنين", "متابعة الحمل",
       "نمو الجنين", "أعراض الحمل", "تغذية الحامل", "تمارين الحامل",
       "نصائح الحمل", "مراحل الحمل", "الحمل أسبوع بأسبوع", "حقيبة الولادة",
       "علامات الولادة", "الطلق", "الرضاعة الطبيعية", "ما بعد الولادة",
-      "التبويض", "الخصوبة", "حاسبة التبويض", "الدورة الشهرية",
-      "صحة الحامل", "فحوصات الحمل", "سكري الحمل", "ضغط الحمل"
+      "التبويض", "الخصوبة", "متابعة التبويض", "الدورة الشهرية",
+      "صحة الحامل", "متابعة صحة الحمل", "توعية سكري الحمل", "توعية ضغط الحمل"
     ],
     en: [
-      "pregnancy calculator", "due date calculator", "kick counter", "pregnancy tracker",
+      "pregnancy guide", "due date estimator", "baby movement diary", "pregnancy tracker",
       "baby growth", "pregnancy symptoms", "prenatal nutrition", "pregnancy exercises",
       "pregnancy tips", "pregnancy stages", "week by week pregnancy", "hospital bag",
       "labor signs", "contractions", "breastfeeding", "postpartum care",
-      "ovulation", "fertility", "ovulation calculator", "menstrual cycle",
-      "maternal health", "prenatal tests", "gestational diabetes", "preeclampsia"
+      "ovulation", "fertility", "ovulation tracker", "menstrual cycle",
+      "maternal wellness", "prenatal wellness", "gestational diabetes awareness", "preeclampsia awareness"
     ],
     de: [
-      "Schwangerschaftsrechner", "Geburtsterminrechner", "Kindsbewegungen zählen", "Schwangerschafts-Tracker",
+      "Schwangerschaftsratgeber", "Geburtstermin-Schätzer", "Baby-Bewegungstagebuch", "Schwangerschafts-Tracker",
       "Babywachstum", "Schwangerschaftssymptome", "Ernährung in der Schwangerschaft", "Schwangerschaftsübungen",
       "Schwangerschaftstipps", "Schwangerschaftsphasen", "Schwangerschaft Woche für Woche", "Kliniktasche",
       "Wehenzeichen", "Wehen", "Stillen", "Wochenbett",
-      "Eisprung", "Fruchtbarkeit", "Eisprungrechner", "Menstruationszyklus",
-      "Muttergesundheit", "Vorsorgeuntersuchungen", "Schwangerschaftsdiabetes", "Präeklampsie"
+      "Eisprung", "Fruchtbarkeit", "Eisprung-Tracker", "Menstruationszyklus",
+      "Muttergesundheit", "Schwangerschafts-Wellness", "Schwangerschaftsdiabetes Bewusstsein", "Präeklampsie Bewusstsein"
     ],
     fr: [
-      "calculatrice de grossesse", "calculateur de date d'accouchement", "compteur de coups de pied", "suivi de grossesse",
+      "guide de grossesse", "estimation de date d'accouchement", "journal des mouvements bébé", "suivi de grossesse",
       "croissance du bébé", "symptômes de grossesse", "nutrition prénatale", "exercices de grossesse",
       "conseils de grossesse", "étapes de la grossesse", "grossesse semaine par semaine", "valise de maternité",
       "signes du travail", "contractions", "allaitement", "soins post-partum",
-      "ovulation", "fertilité", "calculateur d'ovulation", "cycle menstruel",
-      "santé maternelle", "examens prénataux", "diabète gestationnel", "prééclampsie"
+      "ovulation", "fertilité", "suivi d'ovulation", "cycle menstruel",
+      "bien-être maternel", "bien-être prénatal", "sensibilisation au diabète gestationnel", "sensibilisation à la prééclampsie"
     ],
     es: [
-      "calculadora de embarazo", "calculadora de fecha de parto", "contador de patadas", "seguimiento de embarazo",
+      "guía de embarazo", "estimador de fecha de parto", "diario de movimientos del bebé", "seguimiento de embarazo",
       "crecimiento del bebé", "síntomas de embarazo", "nutrición prenatal", "ejercicios de embarazo",
       "consejos de embarazo", "etapas del embarazo", "embarazo semana a semana", "bolsa de hospital",
       "señales de parto", "contracciones", "lactancia materna", "cuidado posparto",
-      "ovulación", "fertilidad", "calculadora de ovulación", "ciclo menstrual",
-      "salud materna", "pruebas prenatales", "diabetes gestacional", "preeclampsia"
+      "ovulación", "fertilidad", "seguimiento de ovulación", "ciclo menstrual",
+      "bienestar materno", "bienestar prenatal", "conciencia sobre diabetes gestacional", "conciencia sobre preeclampsia"
     ],
     tr: [
-      "gebelik hesaplayıcı", "doğum tarihi hesaplayıcı", "bebek tekme sayacı", "hamilelik takibi",
+      "hamilelik rehberi", "tahmini doğum tarihi", "bebek hareket günlüğü", "hamilelik takibi",
       "bebek büyümesi", "hamilelik belirtileri", "doğum öncesi beslenme", "hamilelik egzersizleri",
       "hamilelik ipuçları", "hamilelik aşamaları", "hafta hafta hamilelik", "hastane çantası",
       "doğum belirtileri", "kasılmalar", "emzirme", "doğum sonrası bakım",
-      "yumurtlama", "doğurganlık", "yumurtlama hesaplayıcı", "adet döngüsü",
-      "anne sağlığı", "doğum öncesi testler", "gebelik şekeri", "preeklampsi"
+      "yumurtlama", "doğurganlık", "yumurtlama takibi", "adet döngüsü",
+      "anne sağlığı", "hamilelik sağlığı", "gebelik şekeri farkındalığı", "preeklampsi farkındalığı"
     ],
     pt: [
-      "calculadora de gravidez", "calculadora de data de parto", "contador de chutes", "acompanhamento de gravidez",
+      "guia de gravidez", "estimativa de data de parto", "diário de movimentos do bebê", "acompanhamento de gravidez",
       "crescimento do bebê", "sintomas de gravidez", "nutrição pré-natal", "exercícios na gravidez",
       "dicas de gravidez", "fases da gravidez", "gravidez semana a semana", "mala de maternidade",
       "sinais de trabalho de parto", "contrações", "amamentação", "cuidados pós-parto",
-      "ovulação", "fertilidade", "calculadora de ovulação", "ciclo menstrual",
-      "saúde materna", "exames pré-natais", "diabetes gestacional", "pré-eclâmpsia"
+      "ovulação", "fertilidade", "acompanhamento de ovulação", "ciclo menstrual",
+      "bem-estar materno", "bem-estar pré-natal", "conscientização sobre diabetes gestacional", "conscientização sobre pré-eclâmpsia"
     ]
   };
 

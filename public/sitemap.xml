@@ -35,7 +35,7 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytools.lovable.app/dashboard?lang=pt"/>
   </url>
 
-  <!-- Due Date Calculator - حاسبة موعد الولادة -->
+  <!-- Due Date Estimator - موعد الولادة المتوقع -->
   <url>
     <loc>https://pregnancytools.lovable.app/tools/due-date-calculator</loc>
     <lastmod>2026-02-04</lastmod>
@@ -51,7 +51,7 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytools.lovable.app/tools/due-date-calculator?lang=pt"/>
   </url>
 
-  <!-- Kick Counter - عداد حركة الجنين -->
+  <!-- Baby Movement Diary - يوميات حركة الجنين -->
   <url>
     <loc>https://pregnancytools.lovable.app/tools/kick-counter</loc>
     <lastmod>2026-02-04</lastmod>
@@ -83,7 +83,7 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytools.lovable.app/tools/baby-growth?lang=pt"/>
   </url>
 
-  <!-- Ovulation Calculator - حاسبة التبويض -->
+  <!-- Ovulation Tracker - متابعة التبويض -->
   <url>
     <loc>https://pregnancytools.lovable.app/tools/ovulation-calculator</loc>
     <lastmod>2026-02-04</lastmod>
@@ -131,7 +131,7 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytools.lovable.app/tools/pregnancy-assistant?lang=pt"/>
   </url>
 
-  <!-- Symptom Analyzer - تحليل أعراض الحمل -->
+  <!-- Wellness Diary - يوميات العافية -->
   <url>
     <loc>https://pregnancytools.lovable.app/tools/symptom-analyzer</loc>
     <lastmod>2026-02-04</lastmod>
@@ -211,7 +211,7 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytools.lovable.app/tools/fitness-coach?lang=pt"/>
   </url>
 
-  <!-- Gestational Diabetes - سكري الحمل -->
+  <!-- Gestational Diabetes Awareness - توعية سكري الحمل -->
   <url>
     <loc>https://pregnancytools.lovable.app/tools/gestational-diabetes</loc>
     <lastmod>2026-02-04</lastmod>

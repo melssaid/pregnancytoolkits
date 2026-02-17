@@ -32,10 +32,10 @@ Allow: /
 # Sitemap
 Sitemap: https://pregnancytools.lovable.app/sitemap.xml
 
-# High-Priority Pages for Pregnancy Keywords
-# حاسبة الحمل - Pregnancy Calculator
-# حاسبة موعد الولادة - Due Date Calculator  
-# عداد حركة الجنين - Kick Counter
+# High-Priority Pages for Pregnancy Wellness Keywords
+# دليل الحمل - Pregnancy Guide
+# موعد الولادة المتوقع - Due Date Estimator  
+# يوميات حركة الجنين - Baby Movement Diary
 # متابعة نمو الجنين - Baby Growth Tracker
 # أعراض الحمل - Pregnancy Symptoms
 # تغذية الحامل - Pregnancy Nutrition
