@@ -85,7 +85,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                     className={`relative p-2 rounded-lg transition-all duration-200 ${
                       (item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active)
                         ? "text-primary" 
-                        : "text-muted-foreground/70 hover:text-foreground"
+                        : "text-primary/40 hover:text-primary/60"
                     }`}
                     whileTap={{ scale: 0.92 }}
                   >
@@ -108,7 +108,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 const labelClass = `text-[9px] font-medium tracking-wide ${
                   (item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active)
                     ? "text-primary" 
-                    : "text-muted-foreground/60"
+                    : "text-primary/40"
                 }`;
 
                 let navElement: React.ReactNode;
