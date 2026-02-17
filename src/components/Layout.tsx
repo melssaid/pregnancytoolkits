@@ -110,35 +110,19 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             </div>
             
             {/* Styled Links Container */}
-            <motion.div 
-              className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 border border-border/60 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Link to="/privacy" className="group relative text-[10px] text-muted-foreground hover:text-primary transition-all duration-300 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                <span className="relative z-10">{t('layout.footer.privacy', 'Privacy')}</span>
-                <motion.span 
-                  className="absolute inset-0 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  layoutId="footer-hover"
-                />
+            <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 border border-border/60 shadow-sm">
+              <Link to="/privacy" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
+                {t('layout.footer.privacy', 'Privacy')}
               </Link>
               <span className="text-muted-foreground/40">•</span>
-              <Link to="/terms" className="group relative text-[10px] text-muted-foreground hover:text-primary transition-all duration-300 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                <span className="relative z-10">{t('layout.footer.terms', 'Terms')}</span>
-                <motion.span 
-                  className="absolute inset-0 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  layoutId="footer-hover"
-                />
+              <Link to="/terms" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
+                {t('layout.footer.terms', 'Terms')}
               </Link>
               <span className="text-muted-foreground/40">•</span>
-              <Link to="/contact" className="group relative text-[10px] text-muted-foreground hover:text-primary transition-all duration-300 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                <span className="relative z-10">{t('layout.footer.contact', 'Contact')}</span>
-                <motion.span 
-                  className="absolute inset-0 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  layoutId="footer-hover"
-                />
+              <Link to="/contact" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
+                {t('layout.footer.contact', 'Contact')}
               </Link>
-            </motion.div>
+            </div>
           </div>
           <p className="text-xs text-muted-foreground text-center mt-4">
             {t('app.footer')}
