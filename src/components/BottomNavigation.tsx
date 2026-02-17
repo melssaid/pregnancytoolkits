@@ -86,6 +86,8 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                   <motion.div
                     className="relative p-2.5 rounded-xl transition-all duration-200"
                     whileTap={{ scale: 0.92 }}
+                    animate={isItemActive ? { scale: [1, 1.12, 1.05] } : { scale: 1 }}
+                    transition={isItemActive ? { duration: 0.3, ease: "easeOut" } : { duration: 0.15 }}
                   >
                     {/* Active glow background */}
                     <AnimatePresence>
