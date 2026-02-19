@@ -4,7 +4,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, AlertTriangle, Phone, CheckCircle, HelpCircle, Brain, MessageCircle, Sun, Loader2, Sparkles } from 'lucide-react';
+import { Heart, AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles } from 'lucide-react';
 import { VideoLibrary } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -85,7 +85,7 @@ export default function PostpartumMentalHealthCoach() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResults, setShowResults] = useState(false);
-  const [showEmergency, setShowEmergency] = useState(false);
+  
   const [aiCopingPlan, setAiCopingPlan] = useState('');
   const [showAICoping, setShowAICoping] = useState(false);
   
@@ -111,10 +111,7 @@ export default function PostpartumMentalHealthCoach() {
   };
 
   const checkEmergency = () => {
-    const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0);
-    if (totalScore >= 13) {
-      setShowEmergency(true);
-    }
+    // Emergency card removed - no region-specific numbers shown
   };
 
   const getScore = () => {
@@ -154,7 +151,7 @@ export default function PostpartumMentalHealthCoach() {
     setCurrentQuestion(0);
     setAnswers({});
     setShowResults(false);
-    setShowEmergency(false);
+    
     setAiCopingPlan('');
     setShowAICoping(false);
   };
@@ -230,38 +227,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
       toolId="mental-health-coach"
     >
       <div className="space-y-6">
-          {showEmergency && (
-            <Card className="border-destructive bg-destructive/5">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <AlertTriangle className="w-8 h-8 text-destructive flex-shrink-0" />
-                  <div className="flex-1">
-                    <h3 className="font-bold text-destructive text-lg mb-2">
-                      💙 {t('toolsInternal.mentalHealthCoach.youreNotAlone')}
-                    </h3>
-                    <p className="text-sm text-foreground mb-4">
-                      {t('toolsInternal.mentalHealthCoach.emergencyMessage')}
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <Button 
-                        variant="destructive"
-                        onClick={() => window.open('tel:1-800-944-4773', '_self')}
-                      >
-                        <Phone className="w-4 h-4 mr-2" />
-                        {t('toolsInternal.mentalHealthCoach.postpartumSupport')}
-                      </Button>
-                      <Button 
-                        variant="outline"
-                        onClick={() => window.open('tel:988', '_self')}
-                      >
-                        {t('toolsInternal.mentalHealthCoach.crisisHotline')}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+
 
           {!showResults ? (
             <Card>
@@ -377,37 +343,6 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                         <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2">{t(strategy.descKey)}</p>
                       </div>
                     ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                    <MessageCircle className="w-5 h-5 text-primary" />
-                    {t('toolsInternal.mentalHealthCoach.supportResources')}
-                  </h3>
-                  <div className="space-y-3">
-                    <a 
-                      href="tel:1-800-944-4773"
-                      className="flex items-center gap-3 p-4 bg-muted/50 rounded-xl hover:bg-muted transition-colors"
-                    >
-                      <Phone className="w-5 h-5 text-primary" />
-                      <div>
-                        <div className="font-medium">{t('toolsInternal.mentalHealthCoach.psiName')}</div>
-                        <div className="text-sm text-muted-foreground">{t('toolsInternal.mentalHealthCoach.psiNumber')}</div>
-                      </div>
-                    </a>
-                    <a 
-                      href="tel:988"
-                      className="flex items-center gap-3 p-4 bg-muted/50 rounded-xl hover:bg-muted transition-colors"
-                    >
-                      <Phone className="w-5 h-5 text-primary" />
-                      <div>
-                        <div className="font-medium">{t('toolsInternal.mentalHealthCoach.crisisLinelineName')}</div>
-                        <div className="text-sm text-muted-foreground">{t('toolsInternal.mentalHealthCoach.crisisLinelineDesc')}</div>
-                      </div>
-                    </a>
                   </div>
                 </CardContent>
               </Card>
