@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Loader2, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react';
+import { Sparkles, Loader2, ChevronDown, ChevronUp, RefreshCw, Brain } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
@@ -76,18 +76,18 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     return (
       <div className="space-y-3">
         {!hasGenerated && (
-          <Button
+          <motion.button
             onClick={generateInsight}
             disabled={isLoading}
-            className="w-full gap-2 h-10 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm shadow-primary/20 hover:shadow-primary/30 hover:opacity-90 transition-all text-[13px]"
+            whileTap={{ scale: 0.92 }}
+            className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {isLoading ? (
-              <Loader2 className="h-4 w-4 animate-spin shrink-0" />
-            ) : (
-              icon || <Sparkles className="h-4 w-4 shrink-0" />
-            )}
-            <span className="truncate">{displayButtonText}</span>
-          </Button>
+            <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+              {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : (icon || <Sparkles className="h-4 w-4 shrink-0" />)}
+              <span className="truncate">{displayButtonText}</span>
+            </div>
+            <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+          </motion.button>
         )}
 
         <AnimatePresence>
@@ -133,19 +133,18 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                 </p>
               </div>
             </div>
-            <Button
+            <motion.button
               onClick={generateInsight}
               disabled={isLoading}
-              size="sm"
-              className="shrink-0 gap-1.5 h-9 rounded-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm hover:opacity-90 transition-all text-[13px]"
+              whileTap={{ scale: 0.92 }}
+              className="relative shrink-0 overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {isLoading ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-              ) : (
-                <Sparkles className="h-3.5 w-3.5" />
-              )}
-              {t('toolsInternal.aiInsights.analyze')}
-            </Button>
+              <div className="flex items-center gap-1.5 px-3.5 py-2 font-semibold text-white text-[13px] rounded-xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.45)' }}>
+                {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" /> : <Brain className="h-3.5 w-3.5 shrink-0" />}
+                <span className="truncate">{t('toolsInternal.aiInsights.analyze')}</span>
+              </div>
+              <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+            </motion.button>
           </div>
 
           <AnimatePresence>
@@ -190,19 +189,18 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
           </div>
 
           {!hasGenerated ? (
-            <Button
+            <motion.button
               onClick={(e) => { e.stopPropagation(); generateInsight(); }}
               disabled={isLoading}
-              size="sm"
-              className="shrink-0 gap-1.5 h-9 rounded-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm hover:opacity-90 transition-all text-[13px]"
+              whileTap={{ scale: 0.92 }}
+              className="relative shrink-0 overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {isLoading ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-              ) : (
-                <Sparkles className="h-3.5 w-3.5" />
-              )}
-              {t('toolsInternal.aiInsights.analyze')}
-            </Button>
+              <div className="flex items-center gap-1.5 px-3.5 py-2 font-semibold text-white text-[13px] rounded-xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.45)' }}>
+                {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" /> : <Brain className="h-3.5 w-3.5 shrink-0" />}
+                <span className="truncate">{t('toolsInternal.aiInsights.analyze')}</span>
+              </div>
+              <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+            </motion.button>
           ) : (
             <Button variant="ghost" size="sm" className="shrink-0 h-8 w-8 p-0 rounded-lg">
               {isExpanded

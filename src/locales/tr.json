@@ -3139,7 +3139,7 @@
       "chickenBreast": "Yağsız protein"
     }
   },
-  "snackPlanner": {
+  "toolsInternal.snackPlanner": {
     "title": "Akıllı Atıştırmalık Planlayıcısı",
     "subtitle": "Her istek için sağlıklı hamilelik atıştırmalıkları",
     "feelingHungry": "Acıktınız mı?",
@@ -3214,6 +3214,24 @@
       "potassium": "Potasyum",
       "bvitamins": "B Vitaminleri"
     }
+  },
+  "toolsInternal.recipeModifier": {
+    "title": "Yapay Zeka Tarif Düzenleyici",
+    "subtitle": "Herhangi bir tarifi hamilelik için güvenli hale getirin",
+    "pasteRecipe": "Tarifinizi yapıştırın",
+    "placeholder": "Tüm malzemeler ve talimatlarla tarifinizi buraya yapıştırın...",
+    "analyzing": "Analiz ediliyor...",
+    "analyzeRecipe": "Tarifi güvenlik için analiz et",
+    "exampleTitle": "Kontrol ettiğimiz malzemeler:",
+    "ingredientsToModify": "Değiştirilecek malzemeler ({{count}})",
+    "recipeSafe": "Tarif güvenli görünüyor!",
+    "noUnsafeFound": "Belirgin tehlikeli malzeme tespit edilmedi",
+    "safeFound": "Güvenli malzemeler bulundu",
+    "modifiedRecipe": "Düzenlenmiş tarif",
+    "safetyTips": "Güvenlik ipuçları",
+    "analyzeAnother": "Başka bir tarif analiz et",
+    "disclaimer": "⚠️ Bu araç genel rehberlik sağlar. Hamileliğiniz süresince spesifik diyet kısıtlamaları için her zaman sağlık uzmanınıza danışın.",
+    "selectPreference": "Lütfen en az bir tercih seçin"
   },
   "vitaminTracker": {
     "subtitle": "Günlük prenatal vitaminlerinizi takip edin",

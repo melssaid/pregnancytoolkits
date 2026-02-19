@@ -2879,6 +2879,24 @@
       "bvitamins": "Vitamines B"
     }
   },
+  "toolsInternal.recipeModifier": {
+    "title": "Modificateur de Recettes IA",
+    "subtitle": "Rendre toute recette sûre pour la grossesse",
+    "pasteRecipe": "Collez votre recette",
+    "placeholder": "Collez votre recette ici avec tous les ingrédients et instructions...",
+    "analyzing": "Analyse en cours...",
+    "analyzeRecipe": "Analyser la recette pour la sécurité",
+    "exampleTitle": "Ingrédients que nous vérifions:",
+    "ingredientsToModify": "Ingrédients à modifier ({{count}})",
+    "recipeSafe": "La recette semble sûre!",
+    "noUnsafeFound": "Aucun ingrédient dangereux évident détecté",
+    "safeFound": "Ingrédients sûrs trouvés",
+    "modifiedRecipe": "Recette modifiée",
+    "safetyTips": "Conseils de sécurité",
+    "analyzeAnother": "Analyser une autre recette",
+    "disclaimer": "⚠️ Cet outil fournit des conseils généraux. Consultez toujours votre professionnel de santé pour des restrictions alimentaires spécifiques pendant la grossesse.",
+    "selectPreference": "Veuillez sélectionner au moins une préférence"
+  },
   "toolsInternal.groceryList2": {
     "title": "Liste de Courses Intelligente",
     "subtitle": "Liste de courses IA pour la nutrition de grossesse",

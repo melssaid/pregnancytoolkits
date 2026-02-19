@@ -2956,6 +2956,24 @@
       "bvitamins": "B-Vitamine"
     }
   },
+  "toolsInternal.recipeModifier": {
+    "title": "KI-Rezeptmodifikator",
+    "subtitle": "Machen Sie jedes Rezept schwangerschaftssicher",
+    "pasteRecipe": "Fügen Sie Ihr Rezept ein",
+    "placeholder": "Fügen Sie Ihr Rezept mit allen Zutaten und Anweisungen ein...",
+    "analyzing": "Analysiere...",
+    "analyzeRecipe": "Rezept auf Sicherheit prüfen",
+    "exampleTitle": "Zutaten, die wir prüfen:",
+    "ingredientsToModify": "Zutaten zum Ändern ({{count}})",
+    "recipeSafe": "Rezept sieht sicher aus!",
+    "noUnsafeFound": "Keine offensichtlich unsicheren Zutaten gefunden",
+    "safeFound": "Sichere Zutaten gefunden",
+    "modifiedRecipe": "Modifiziertes Rezept",
+    "safetyTips": "Sicherheitstipps",
+    "analyzeAnother": "Ein weiteres Rezept analysieren",
+    "disclaimer": "⚠️ Dieses Tool bietet allgemeine Hinweise. Konsultieren Sie immer Ihren Arzt zu spezifischen Ernährungseinschränkungen während der Schwangerschaft.",
+    "selectPreference": "Bitte wählen Sie mindestens eine Präferenz"
+  },
   "toolsInternal.vitaminTracker": {
     "subtitle": "Verfolgen Sie Ihre täglichen Schwangerschaftsvitamine",
     "pregnancyWeek": "Schwangerschaftswoche",
