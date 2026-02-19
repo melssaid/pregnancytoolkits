@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { format } from 'date-fns';
 import { CalendarIcon, Save, Baby, Scale, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,6 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useUserProfile, computeWeekFromLMP } from '@/hooks/useUserProfile';
+import { formatLocalized } from '@/lib/dateLocale';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 
@@ -17,6 +18,7 @@ interface ProfileEditorProps {
 
 export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false }) => {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { profile, updateProfile, setLastPeriodDate } = useUserProfile();
 
   const [weekInput, setWeekInput] = useState(String(profile.pregnancyWeek));
@@ -103,7 +105,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
             >
               <CalendarIcon className="mr-2 h-4 w-4 shrink-0" />
               {selectedLMP
-                ? format(selectedLMP, 'PPP')
+                ? formatLocalized(selectedLMP, 'PPP', currentLanguage)
                 : t('onboarding.selectDate', 'Select date')}
             </Button>
           </PopoverTrigger>
@@ -153,7 +155,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
             {t('onboarding.dueDateLabel', 'Expected Due Date')}
           </p>
           <p className="text-sm font-semibold text-primary mt-0.5">
-            {format(new Date(profile.dueDate), 'PPP')}
+            {formatLocalized(new Date(profile.dueDate), 'PPP', currentLanguage)}
           </p>
         </div>
       )}
