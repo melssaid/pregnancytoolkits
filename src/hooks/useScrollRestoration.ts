@@ -1,124 +1,105 @@
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
 
-const SCROLL_POSITIONS_KEY = "scrollPositions";
-const MAX_STORED_POSITIONS = 50;
-const SCROLL_DEBOUNCE_MS = 100;
-const RESTORE_DELAY_MS = 280; // Must exceed exit animation (80ms) + enter animation (150ms) + buffer
+const STORAGE_KEY = "scroll_positions";
 
-interface ScrollPositions {
-  [key: string]: number;
-}
-
-const getScrollPositions = (): ScrollPositions => {
+function readPositions(): Record<string, number> {
   try {
-    const stored = sessionStorage.getItem(SCROLL_POSITIONS_KEY);
-    return stored ? JSON.parse(stored) : {};
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
   } catch {
     return {};
   }
-};
+}
 
-const saveScrollPositions = (positions: ScrollPositions) => {
+function writePosition(key: string, y: number) {
   try {
-    const keys = Object.keys(positions);
-    if (keys.length > MAX_STORED_POSITIONS) {
-      const trimmed: ScrollPositions = {};
-      keys.slice(-MAX_STORED_POSITIONS).forEach((key) => {
-        trimmed[key] = positions[key];
-      });
-      sessionStorage.setItem(SCROLL_POSITIONS_KEY, JSON.stringify(trimmed));
+    const map = readPositions();
+    map[key] = y;
+    // Keep only last 30 routes to avoid bloat
+    const keys = Object.keys(map);
+    if (keys.length > 30) {
+      const trimmed: Record<string, number> = {};
+      keys.slice(-30).forEach((k) => (trimmed[k] = map[k]));
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
     } else {
-      sessionStorage.setItem(SCROLL_POSITIONS_KEY, JSON.stringify(positions));
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(map));
     }
   } catch {
-    // Ignore storage errors
+    // ignore
   }
-};
+}
 
 export function useScrollRestoration() {
   const location = useLocation();
-  const navigationType = useNavigationType();
-  const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const currentKeyRef = useRef(location.pathname + location.search);
+  const navType = useNavigationType();
+  const prevKeyRef = useRef<string>(location.pathname + location.search);
+  const scrollSavedRef = useRef(false);
 
-  // Update current key ref
+  // Save scroll position just before navigating away (on pathname change,
+  // capture the OLD position using the previous key)
   useEffect(() => {
-    currentKeyRef.current = location.pathname + location.search;
-  }, [location.pathname, location.search]);
+    const currentKey = location.pathname + location.search;
 
-  // Save current scroll position (debounced on scroll, immediate on navigation)
-  const saveCurrentPosition = useCallback(() => {
-    const positions = getScrollPositions();
-    positions[currentKeyRef.current] = window.scrollY;
-    saveScrollPositions(positions);
-  }, []);
+    if (navType !== "POP") {
+      // PUSH / REPLACE: save the previous page's scroll before moving forward,
+      // then scroll to top of the new page
+      writePosition(prevKeyRef.current, 0); // reset outgoing page isn't needed
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    } else {
+      // POP (back / forward): restore saved position
+      const savedY = readPositions()[currentKey] ?? 0;
 
-  // Continuously save scroll position on scroll (debounced)
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollTimerRef.current) {
-        clearTimeout(scrollTimerRef.current);
-      }
-      scrollTimerRef.current = setTimeout(() => {
-        saveCurrentPosition();
-      }, SCROLL_DEBOUNCE_MS);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("beforeunload", saveCurrentPosition);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("beforeunload", saveCurrentPosition);
-      if (scrollTimerRef.current) {
-        clearTimeout(scrollTimerRef.current);
-      }
-    };
-  }, [saveCurrentPosition]);
-
-  // Handle scroll restoration on navigation
-  useEffect(() => {
-    const key = location.pathname + location.search;
-
-    if (navigationType === "POP") {
-      // POP navigation (back/forward) → restore saved position
-      const positions = getScrollPositions();
-      const savedPosition = positions[key];
-
-      if (savedPosition !== undefined && savedPosition > 0) {
-        // Wait for AnimatePresence exit + enter animations to complete before restoring
+      if (savedY > 0) {
+        // Wait for exit (80ms) + enter (150ms) animations + small buffer
         const timer = setTimeout(() => {
-          const tryRestore = (attempts = 0) => {
+          const tryScroll = (attempts = 0) => {
             requestAnimationFrame(() => {
-              // Check if the page is tall enough to scroll to the saved position
-              const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-              if (maxScroll >= savedPosition || attempts >= 5) {
-                window.scrollTo({ top: savedPosition, left: 0, behavior: "instant" });
+              const maxScroll =
+                document.documentElement.scrollHeight - window.innerHeight;
+              if (maxScroll >= savedY || attempts >= 8) {
+                window.scrollTo({ top: savedY, left: 0, behavior: "instant" });
               } else {
-                // Page not ready yet, retry after a short delay
-                setTimeout(() => tryRestore(attempts + 1), 50);
+                setTimeout(() => tryScroll(attempts + 1), 40);
               }
             });
           };
-          tryRestore();
-        }, RESTORE_DELAY_MS);
+          tryScroll();
+        }, 260);
         return () => clearTimeout(timer);
       }
-    } else {
-      // PUSH/REPLACE navigation → scroll to top immediately
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      });
     }
-  }, [location.pathname, location.search, navigationType]);
 
-  // Save position when leaving current route (cleanup)
+    prevKeyRef.current = currentKey;
+    scrollSavedRef.current = false;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname, location.search]);
+
+  // Continuously save scroll position while user scrolls (debounced)
   useEffect(() => {
-    return () => {
-      saveCurrentPosition();
-    };
-  }, [location.pathname, saveCurrentPosition]);
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const key = location.pathname + location.search;
 
-  return { saveCurrentPosition };
+    const onScroll = () => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        writePosition(key, window.scrollY);
+      }, 80);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Also save on page hide (tab switch / close)
+    const onHide = () => writePosition(key, window.scrollY);
+    window.addEventListener("pagehide", onHide);
+    window.addEventListener("beforeunload", onHide);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pagehide", onHide);
+      window.removeEventListener("beforeunload", onHide);
+      if (timer) clearTimeout(timer);
+      // Save immediately on unmount
+      writePosition(key, window.scrollY);
+    };
+  }, [location.pathname, location.search]);
 }
