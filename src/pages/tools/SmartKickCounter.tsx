@@ -586,48 +586,27 @@ Keep it practical, warm, and easy to follow.`;
                   >
                     {/* AI Tab Buttons */}
                     <div className="grid grid-cols-3 gap-2 mb-4">
-                      <Button
-                        variant={aiActiveTab === 'pattern' ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => analyzePatterns(history)}
-                        disabled={aiLoading}
-                        className="gap-1"
-                      >
-                        {aiLoading && aiActiveTab === 'pattern' ? (
-                          <Loader2 className="w-3 h-3 animate-spin" />
-                        ) : (
-                          <BarChart3 className="w-3 h-3" />
-                        )}
-                        <span className="text-xs">{t('toolsInternal.kickCounter.patterns')}</span>
-                      </Button>
-                      <Button
-                        variant={aiActiveTab === 'health' ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={getHealthInsight}
-                        disabled={aiLoading}
-                        className="gap-1"
-                      >
-                        {aiLoading && aiActiveTab === 'health' ? (
-                          <Loader2 className="w-3 h-3 animate-spin" />
-                        ) : (
-                          <Activity className="w-3 h-3" />
-                        )}
-                        <span className="text-xs">{t('toolsInternal.kickCounter.health')}</span>
-                      </Button>
-                      <Button
-                        variant={aiActiveTab === 'tips' ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={getAITips}
-                        disabled={aiLoading}
-                        className="gap-1"
-                      >
-                        {aiLoading && aiActiveTab === 'tips' ? (
-                          <Loader2 className="w-3 h-3 animate-spin" />
-                        ) : (
-                          <Brain className="w-3 h-3" />
-                        )}
-                        <span className="text-xs">{t('toolsInternal.kickCounter.tips')}</span>
-                      </Button>
+                      {[
+                        { tab: 'pattern', onClick: () => analyzePatterns(history), icon: BarChart3, label: t('toolsInternal.kickCounter.patterns') },
+                        { tab: 'health',  onClick: getHealthInsight,               icon: Activity,  label: t('toolsInternal.kickCounter.health') },
+                        { tab: 'tips',    onClick: getAITips,                      icon: Brain,     label: t('toolsInternal.kickCounter.tips') },
+                      ].map(({ tab, onClick, icon: Icon, label }) => (
+                        <motion.button
+                          key={tab}
+                          onClick={onClick}
+                          disabled={aiLoading}
+                          whileTap={{ scale: 0.92 }}
+                          className="relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                        >
+                          <div
+                            className={`flex items-center justify-center gap-1 py-2 px-2 text-xs rounded-xl font-medium transition-all ${aiActiveTab === tab ? 'text-white' : 'text-foreground bg-muted/60 hover:bg-muted'}`}
+                            style={aiActiveTab === tab ? { background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' } : {}}
+                          >
+                            {aiLoading && aiActiveTab === tab ? <Loader2 className="w-3 h-3 animate-spin" /> : <Icon className="w-3 h-3" />}
+                            <span>{label}</span>
+                          </div>
+                        </motion.button>
+                      ))}
                     </div>
 
                     {/* AI Content */}

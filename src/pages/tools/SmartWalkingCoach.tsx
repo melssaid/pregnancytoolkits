@@ -4,10 +4,11 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Footprints, Play, Pause, Clock, TrendingUp, MapPin, AlertCircle, Brain, Loader2 } from 'lucide-react';
+import { Footprints, Play, Pause, Clock, TrendingUp, MapPin, AlertCircle, Brain, Loader2, Sparkles } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { motion } from 'framer-motion';
 
 interface WalkSession {
   id: string;
@@ -217,19 +218,17 @@ export default function SmartWalkingCoach() {
           </CardContent>
         </Card>
 
-        <Button 
-          onClick={getAIWalkingAdvice} 
+        <motion.button
+          onClick={getAIWalkingAdvice}
           disabled={isLoading}
-          className="w-full gap-2"
-          variant="outline"
+          whileTap={{ scale: 0.92 }}
+          className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {isLoading ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : (
-            <Brain className="w-4 h-4" />
-          )}
-          {t('toolsInternal.walkingCoach.getAIAdvice')}
-        </Button>
+          <div className="w-full flex items-center justify-center gap-3 px-5 py-3.5 font-semibold text-white text-sm rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+            {isLoading ? <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.walkingCoach.analyzing')}</span></> : <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.walkingCoach.getAIAdvice')}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>}
+            <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+          </div>
+        </motion.button>
 
         {showAICoach && aiResponse && (
           <Card className="border-primary/30 bg-primary/5">
