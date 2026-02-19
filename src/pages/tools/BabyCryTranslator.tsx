@@ -243,19 +243,20 @@ Please analyze what the baby might be communicating and provide soothing strateg
             </Card>
 
             {/* Analyze Button */}
-            <Button
+            <motion.button
+              whileTap={{ scale: 0.92 }}
               onClick={analyzesCry}
               disabled={isLoading || selectedPatterns.length === 0}
-              className="w-full gap-2 rounded-xl h-12"
-              size="lg"
+              className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
+              style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
             >
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
               {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t("toolsInternal.babyCryTranslator.analyzing", "Analyzing...")}</span></>
               ) : (
-                <Sparkles className="w-4 h-4" />
+                <><Baby className="w-4 h-4 shrink-0" /><span>{t("toolsInternal.babyCryTranslator.analyzeButton")}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>
               )}
-              {t("toolsInternal.babyCryTranslator.analyzeButton")}
-            </Button>
+            </motion.button>
           </>
         ) : (
           <>

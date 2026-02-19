@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
@@ -212,18 +213,21 @@ export default function PregnancySmoothieAI() {
                 className="w-full p-2 mb-3 rounded-lg border border-border bg-background text-sm"
               />
               <div className="flex gap-2">
-                <Button onClick={getRandomSmoothie} variant="outline" className="flex-1">
-                  <RefreshCw className="w-4 h-4 mr-2" />
+                <Button onClick={getRandomSmoothie} variant="outline" className="flex-1 text-xs h-9">
+                  <RefreshCw className="w-3.5 h-3.5 me-1.5 shrink-0" />
                   {t('smoothieAI.randomRecipe')}
                 </Button>
-                <Button onClick={generateAISmoothie} disabled={isLoading} className="flex-1">
-                  {isLoading ? (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  ) : (
-                    <Brain className="w-4 h-4 mr-2" />
-                  )}
+                <motion.button
+                  whileTap={{ scale: 0.92 }}
+                  onClick={generateAISmoothie}
+                  disabled={isLoading}
+                  className="relative flex-1 overflow-hidden rounded-md h-9 flex items-center justify-center gap-1.5 text-white text-xs font-semibold shadow-md disabled:opacity-60 disabled:pointer-events-none"
+                  style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
+                  {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" /> : <Brain className="w-3.5 h-3.5 shrink-0" />}
                   {t('smoothieAI.aiGenerate')}
-                </Button>
+                </motion.button>
               </div>
             </CardContent>
           </Card>

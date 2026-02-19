@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Sparkles, Heart, Utensils, Wind, AlertCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { Brain, Loader2, Sparkles, Heart, Utensils, Wind, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -203,14 +204,20 @@ Be compassionate - morning sickness is exhausting!`;
         )}
 
         {/* Get Relief Plan */}
-        <Button
+        <motion.button
+          whileTap={{ scale: 0.92 }}
           onClick={getReliefPlan}
           disabled={isLoading}
-          className="w-full text-xs h-9 gap-1.5"
+          className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
+          style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
         >
-          <Sparkles className="w-3.5 h-3.5" />
-          {isLoading ? t('toolsInternal.nauseaRelief.creatingPlan') : t('toolsInternal.nauseaRelief.getReliefPlan')}
-        </Button>
+          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
+          {isLoading ? (
+            <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.nauseaRelief.creatingPlan')}</span></>
+          ) : (
+            <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.nauseaRelief.getReliefPlan')}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>
+          )}
+        </motion.button>
 
         {/* AI Response */}
         {response && (

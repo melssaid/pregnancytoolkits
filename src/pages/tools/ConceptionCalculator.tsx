@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Baby, ArrowRight, Sparkles, Loader2 } from "lucide-react";
+import { Calendar, Baby, ArrowRight, Sparkles, Loader2, Brain } from "lucide-react";
 import { motion } from "framer-motion";
 import { format, addDays, subDays, addWeeks, differenceInDays } from "date-fns";
 import { formatLocalized } from "@/lib/dateLocale";
@@ -222,35 +222,37 @@ Encouragement and realistic expectations`
 
                   {/* AI Advice Button */}
                   {!showAiAdvice ? (
-                    <Button
+                    <motion.button
+                      whileTap={{ scale: 0.92 }}
                       onClick={getAIConceptionAdvice}
                       disabled={aiLoading}
-                      className="w-full mt-4 gap-2 bg-gradient-to-r from-violet-500 to-purple-500 text-sm h-10"
+                      className="relative w-full mt-4 overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
+                      style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
                     >
+                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
                       {aiLoading ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <><Loader2 className="h-4 w-4 animate-spin shrink-0" /><span>{t('conceptionPage.gettingAdvice')}</span></>
                       ) : (
-                        <Sparkles className="h-4 w-4" />
+                        <><Brain className="h-4 w-4 shrink-0" /><span>{t('conceptionPage.getAIAdvice')}</span><Sparkles className="h-3.5 w-3.5 shrink-0 opacity-80" /></>
                       )}
-                      {t('conceptionPage.getAIAdvice')}
-                    </Button>
+                    </motion.button>
                   ) : (
-                    <Card className="mt-4 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+                    <Card className="mt-4 border-primary/20 bg-primary/5">
                       <CardContent className="pt-4">
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2">
-                            <Sparkles className="h-5 w-5 text-violet-500" />
-                            <h3 className="font-semibold">{t('conceptionPage.aiConceptionGuide')}</h3>
+                            <Brain className="h-4 w-4 text-primary" />
+                            <h3 className="font-semibold text-sm">{t('conceptionPage.aiConceptionGuide')}</h3>
                           </div>
                           <button 
                             onClick={() => setShowAiAdvice(false)}
-                            className="text-muted-foreground hover:text-foreground"
+                            className="text-muted-foreground hover:text-foreground text-xs"
                           >
                             ✕
                           </button>
                         </div>
                         {aiLoading && !aiAdvice && (
-                          <div className="flex items-center gap-2 text-violet-600">
+                          <div className="flex items-center gap-2 text-primary">
                             <Loader2 className="h-4 w-4 animate-spin" />
                             <span className="text-sm">{t('conceptionPage.gettingAdvice')}</span>
                           </div>
