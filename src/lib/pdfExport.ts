@@ -100,14 +100,14 @@ function getFontFamily(language: string): string {
     : "'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 }
 
-// Unified html2canvas-to-PDF renderer 
+// Unified section-based html2canvas-to-PDF renderer
+// Each [data-pdf-section] is rendered separately to avoid mid-content page cuts
 async function renderHTMLToPDF(htmlContent: string, fileName: string, language: string = 'en'): Promise<void> {
   const isRTL = language === 'ar';
   const fontFamily = getFontFamily(language);
-  const textAlign = isRTL ? 'justify' : 'left';
 
-  const container = document.createElement('div');
-  container.style.cssText = `
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = `
     position: absolute;
     left: -9999px;
     top: 0;
@@ -116,95 +116,157 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     font-family: ${fontFamily};
     color: #1e293b;
     direction: ${isRTL ? 'rtl' : 'ltr'};
-    text-align: ${textAlign};
     padding: 0;
     line-height: 1.6;
     z-index: -1;
-    letter-spacing: normal;
-    word-spacing: normal;
   `;
 
-  container.innerHTML = `
+  wrapper.innerHTML = `
     <style>
-      * { 
-        font-family: ${fontFamily} !important; 
-        text-rendering: optimizeLegibility;
-        letter-spacing: normal !important;
-        word-spacing: normal !important;
-      }
-      h1, h2, h3, h4, h5, h6, p, div, span, strong, em, li, ul, ol {
+      * { font-family: ${fontFamily} !important; box-sizing: border-box; }
+      h1,h2,h3,h4,h5,h6,p,div,span,strong,em,li {
         font-family: ${fontFamily} !important;
         direction: ${isRTL ? 'rtl' : 'ltr'};
-        text-align: ${textAlign} !important;
       }
     </style>
     ${htmlContent}
   `;
 
-  document.body.appendChild(container);
+  document.body.appendChild(wrapper);
 
   try {
     await document.fonts.ready;
   } catch { /* fallback */ }
   await new Promise(resolve => setTimeout(resolve, 400));
 
-  try {
-    const canvas = await html2canvas(container, {
-      scale: 2,
-      useCORS: true,
-      logging: false,
-      backgroundColor: '#ffffff',
-      width: 794,
-      windowWidth: 794,
-      removeContainer: false,
-    });
+  const A4_WIDTH_MM = 210;
+  const A4_HEIGHT_MM = 297;
+  const MARGIN_MM = 0;
+  const CONTENT_WIDTH_MM = A4_WIDTH_MM - MARGIN_MM * 2;
+  const SECTION_GAP_MM = 3;
+  const MAX_SECTION_HEIGHT_MM = A4_HEIGHT_MM - 20; // safety cap per section
 
-    if (canvas.width === 0 || canvas.height === 0) {
-      throw new Error('Canvas rendered with 0 dimensions');
-    }
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
-    const A4_WIDTH_MM = 210;
-    const A4_HEIGHT_MM = 297;
-    const pixelsPerMM = canvas.width / A4_WIDTH_MM;
-    const pageHeightPx = A4_HEIGHT_MM * pixelsPerMM;
+  // Find all sections
+  const sections = Array.from(wrapper.querySelectorAll('[data-pdf-section]')) as HTMLElement[];
 
-    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-
-    let remainingHeight = canvas.height;
-    let srcYPx = 0;
-    let pageIndex = 0;
-
-    while (remainingHeight > 0) {
-      if (pageIndex > 0) doc.addPage();
-
-      const sliceHeightPx = Math.min(remainingHeight, pageHeightPx);
-      const pageCanvas = document.createElement('canvas');
-      pageCanvas.width = canvas.width;
-      pageCanvas.height = sliceHeightPx;
-      const ctx = pageCanvas.getContext('2d');
-
-      if (ctx) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
-        ctx.drawImage(canvas, 0, srcYPx, canvas.width, sliceHeightPx, 0, 0, pageCanvas.width, sliceHeightPx);
+  // If no sections found, fall back to rendering the entire wrapper as one image
+  if (sections.length === 0) {
+    try {
+      const canvas = await html2canvas(wrapper, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#ffffff',
+        width: 794,
+        windowWidth: 794,
+      });
+      const pixelsPerMM = canvas.width / A4_WIDTH_MM;
+      const pageHeightPx = A4_HEIGHT_MM * pixelsPerMM;
+      let remaining = canvas.height;
+      let srcY = 0;
+      let pageIdx = 0;
+      while (remaining > 0) {
+        if (pageIdx > 0) doc.addPage();
+        const sliceH = Math.min(remaining, pageHeightPx);
+        const pc = document.createElement('canvas');
+        pc.width = canvas.width; pc.height = sliceH;
+        const ctx = pc.getContext('2d');
+        if (ctx) {
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, pc.width, pc.height);
+          ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
+        }
+        doc.addImage(pc.toDataURL('image/png'), 'PNG', MARGIN_MM, 0, A4_WIDTH_MM, sliceH / pixelsPerMM);
+        srcY += sliceH; remaining -= sliceH; pageIdx++;
       }
+    } finally {
+      document.body.removeChild(wrapper);
+    }
+    doc.save(fileName);
+    return;
+  }
 
-      const pageImgData = pageCanvas.toDataURL('image/png');
-      const sliceHeightMM = sliceHeightPx / pixelsPerMM;
-      doc.addImage(pageImgData, 'PNG', 0, 0, A4_WIDTH_MM, sliceHeightMM);
+  // Section-based rendering
+  let currentY = 0;
+  let isFirstPage = true;
 
-      srcYPx += sliceHeightPx;
-      remainingHeight -= sliceHeightPx;
-      pageIndex++;
+  for (const section of sections) {
+    let canvas: HTMLCanvasElement;
+    try {
+      canvas = await html2canvas(section, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#ffffff',
+        width: 794,
+        windowWidth: 794,
+      });
+    } catch {
+      continue;
     }
 
-    doc.save(fileName);
-  } finally {
-    document.body.removeChild(container);
+    if (canvas.width === 0 || canvas.height === 0) continue;
+
+    const pixelsPerMM = canvas.width / A4_WIDTH_MM;
+    let sectionHeightMM = canvas.height / pixelsPerMM;
+
+    // If a single section is taller than a full page, split it across pages
+    if (sectionHeightMM > A4_HEIGHT_MM - 2) {
+      const pageHeightPx = A4_HEIGHT_MM * pixelsPerMM;
+      let remaining = canvas.height;
+      let srcY = 0;
+      while (remaining > 0) {
+        if (!isFirstPage || currentY > 0) {
+          // Need new page if no space left
+          if (currentY + Math.min(remaining / pixelsPerMM, A4_HEIGHT_MM) > A4_HEIGHT_MM) {
+            doc.addPage();
+            currentY = 0;
+          }
+        }
+        const sliceH = Math.min(remaining, pageHeightPx - currentY * pixelsPerMM);
+        const sliceHMM = sliceH / pixelsPerMM;
+        const pc = document.createElement('canvas');
+        pc.width = canvas.width; pc.height = sliceH;
+        const ctx = pc.getContext('2d');
+        if (ctx) {
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, pc.width, pc.height);
+          ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
+        }
+        doc.addImage(pc.toDataURL('image/png'), 'PNG', MARGIN_MM, currentY, CONTENT_WIDTH_MM, sliceHMM);
+        currentY += sliceHMM;
+        srcY += sliceH; remaining -= sliceH;
+        if (remaining > 0) { doc.addPage(); currentY = 0; isFirstPage = false; }
+      }
+      currentY += SECTION_GAP_MM;
+      isFirstPage = false;
+      continue;
+    }
+
+    // Check if section fits on current page
+    const spaceLeft = A4_HEIGHT_MM - currentY;
+    if (!isFirstPage && sectionHeightMM > spaceLeft) {
+      doc.addPage();
+      currentY = 0;
+    }
+
+    const imgData = canvas.toDataURL('image/png');
+    doc.addImage(imgData, 'PNG', MARGIN_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
+    currentY += sectionHeightMM + SECTION_GAP_MM;
+    isFirstPage = false;
   }
+
+  document.body.removeChild(wrapper);
+  doc.save(fileName);
 }
 
+
 // Build PDF header HTML
+// =============================================
+// HTML SECTION BUILDERS (each wrapped in data-pdf-section)
+// =============================================
 function buildHeaderHTML(
   title: string, 
   subtitle: string | undefined, 
@@ -214,7 +276,7 @@ function buildHeaderHTML(
 ): string {
   const fontFamily = getFontFamily(language);
   return `
-    <div style="background:#fcfcfd;border-bottom:2px solid ${rgbStr(accentColor)};padding:24px 40px 20px;text-align:center;">
+    <div data-pdf-section style="background:#fcfcfd;border-bottom:2px solid ${rgbStr(accentColor)};padding:24px 40px 20px;text-align:center;">
       ${logoData ? `<img src="${logoData}" style="width:36px;height:36px;margin:0 auto 8px;display:block;border-radius:8px;" />` : ''}
       <div style="font-size:24px;font-weight:700;color:#1e293b;margin-bottom:4px;font-family:${fontFamily};">${stripEmojis(title)}</div>
       ${subtitle ? `<div style="font-size:12px;color:#94a3b8;margin-bottom:4px;font-family:${fontFamily};">${stripEmojis(subtitle)}</div>` : ''}
@@ -242,23 +304,45 @@ function buildFooterHTML(language: string, accentColor: { r: number; g: number; 
   const exportLabel = exportLabels[language] || 'Exported on';
   const text = `${exportLabel} ${dateStr} • ${getBrandName(language)}`;
   return `
-    <div style="margin:16px 40px 20px;padding-top:12px;border-top:1px solid ${rgbaStr(accentColor, 0.3)};text-align:center;">
+    <div data-pdf-section style="padding:12px 40px 20px;border-top:1px solid ${rgbaStr(accentColor, 0.3)};text-align:center;background:#fcfcfd;">
       <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${text}</div>
     </div>
   `;
 }
 
-// Build section header HTML
+// Build section HTML — header + all its items are grouped inside ONE data-pdf-section
+// so they never get split across pages unexpectedly.
+// Usage: openSectionHTML(...) + items + closeSectionHTML()
+function openSectionHTML(sectionTitle: string, accentColor: { r: number; g: number; b: number }, language: string): string {
+  const fontFamily = getFontFamily(language);
+  const isRTL = language === 'ar';
+  const borderSide = isRTL ? 'right' : 'left';
+  return `
+    <div data-pdf-section style="margin:12px 40px 0;padding-bottom:4px;">
+      <div style="padding:8px 14px;background:${rgbaStr(accentColor, 0.08)};border-radius:6px 6px 0 0;border-${borderSide}:4px solid ${rgbStr(accentColor)};font-size:14px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};">
+        ${stripEmojis(sectionTitle)}
+      </div>
+  `;
+}
+
+function closeSectionHTML(): string {
+  return `</div>`;
+}
+
+/** @deprecated use openSectionHTML + closeSectionHTML for grouped rendering */
 function buildSectionHTML(sectionTitle: string, accentColor: { r: number; g: number; b: number }, language: string): string {
   const fontFamily = getFontFamily(language);
   const isRTL = language === 'ar';
   const borderSide = isRTL ? 'right' : 'left';
   return `
-    <div style="margin:16px 40px 8px;padding:8px 14px;background:${rgbaStr(accentColor, 0.08)};border-radius:6px;border-${borderSide}:4px solid ${rgbStr(accentColor)};font-size:15px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};">
-      ${stripEmojis(sectionTitle)}
+    <div data-pdf-section style="margin:12px 40px 0;">
+      <div style="padding:8px 14px;background:${rgbaStr(accentColor, 0.08)};border-radius:6px;border-${borderSide}:4px solid ${rgbStr(accentColor)};font-size:14px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};">
+        ${stripEmojis(sectionTitle)}
+      </div>
     </div>
   `;
 }
+
 
 // Build a bullet item HTML
 function buildBulletItemHTML(text: string, accentColor: { r: number; g: number; b: number }, language: string): string {
@@ -486,9 +570,9 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
 
   let html = buildHeaderHTML(title, subtitle || formatDateForPDF(new Date(), language), COLORS.primary, logoData, language);
 
-  // Summary stats
+  // Summary stats — own section so it stays together
   html += `
-    <div style="display:flex;gap:10px;margin:16px 40px;">
+    <div data-pdf-section style="display:flex;gap:10px;margin:16px 40px 8px;">
       <div style="flex:1;background:${rgbaStr(COLORS.primary, 0.08)};border-radius:8px;padding:12px;text-align:center;border-${isRTL ? 'right' : 'left'}:3px solid ${rgbStr(COLORS.primary)};">
         <div style="font-size:20px;font-weight:700;color:${rgbStr(COLORS.primary)};font-family:${fontFamily};">${totalItems}</div>
         <div style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${L.totalItems}</div>
@@ -504,21 +588,34 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     </div>
   `;
 
-  html += `<div style="margin:12px 40px;height:1px;background:${rgbaStr(COLORS.primary, 0.2)};"></div>`;
-
-  // Render each category
+  // Render each category — header + all items together in one data-pdf-section
+  // so they never get split mid-category across pages
   Object.entries(categories).forEach(([cat, items]) => {
     if (items.length === 0) return;
     const meta = categoryMeta[cat];
-    html += buildSectionHTML(`${meta.label} (${items.length})`, meta.color, language);
+    const borderSide = isRTL ? 'right' : 'left';
+
+    // Open grouped section
+    html += `<div data-pdf-section style="margin:10px 40px 0;padding-bottom:6px;border-bottom:1px solid ${rgbaStr(meta.color, 0.15)};">`;
+    html += `
+      <div style="padding:7px 12px;background:${rgbaStr(meta.color, 0.08)};border-radius:6px 6px 0 0;border-${borderSide}:4px solid ${rgbStr(meta.color)};font-size:13px;font-weight:700;color:${rgbStr(meta.color)};font-family:${fontFamily};">
+        ${stripEmojis(meta.label)} (${items.length})
+      </div>
+    `;
     items.forEach((item) => {
-      html += buildLabelValueHTML(item.label, item.value, meta.color, language);
+      html += `
+        <div style="display:flex;gap:6px;padding:4px 10px 4px ${borderSide === 'left' ? '16px' : '10px'};font-size:11.5px;font-family:${fontFamily};color:#1e293b;border-${borderSide}:2px solid ${rgbaStr(meta.color, 0.2)};">
+          <span style="font-weight:600;color:#475569;min-width:0;flex-shrink:0;">${stripEmojis(item.label)}:</span>
+          <span style="color:#64748b;word-break:break-word;">${stripEmojis(item.value)}</span>
+        </div>
+      `;
     });
+    html += `</div>`;
   });
 
-  // Disclaimer
+  // Disclaimer — own section
   html += `
-    <div style="margin:16px 40px;padding:10px 14px;background:${rgbaStr(COLORS.primary, 0.06)};border-radius:6px;font-size:9px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.5;">
+    <div data-pdf-section style="margin:12px 40px 4px;padding:10px 14px;background:${rgbaStr(COLORS.primary, 0.06)};border-radius:6px;font-size:9px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.5;">
       ${L.disclaimer}
     </div>
   `;
@@ -528,6 +625,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   const fileName = `pregnancy-data-backup-${new Date().toISOString().split('T')[0]}.pdf`;
   await renderHTMLToPDF(html, fileName, language);
 }
+
 
 // Birth plan PDF export
 export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
@@ -555,27 +653,24 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     : markdownToHTMLWithLang(content, fontFamily, isRTL);
 
   let html = `
-    <div style="background:#fcfcfd;border-bottom:2px solid #ec4899;padding:24px 40px 20px;text-align:center;">
+    <div data-pdf-section style="background:#fcfcfd;border-bottom:2px solid #ec4899;padding:24px 40px 20px;text-align:center;">
       ${logoData ? `<img src="${logoData}" style="width:40px;height:40px;margin:0 auto 8px;display:block;border-radius:8px;" />` : ''}
       <div style="font-size:28px;font-weight:700;color:#1e293b;margin-bottom:6px;font-family:${fontFamily};">${l.title}</div>
       <div style="font-size:13px;color:#94a3b8;margin-bottom:4px;font-family:${fontFamily};">${date}</div>
       <div style="font-size:11px;color:#ec4899;font-weight:500;font-family:${fontFamily};">${l.brand}</div>
+      ${prefCount > 0 ? `
+        <div style="margin:12px 0 0;padding:10px 16px;background:#fdf2f8;border-radius:8px;border-${isRTL ? 'right' : 'left'}:4px solid #ec4899;text-align:${textAlign};">
+          <div style="font-size:14px;font-weight:600;color:#ec4899;font-family:${fontFamily};">${l.prefSummary}</div>
+          <div style="font-size:12px;color:#94a3b8;margin-top:2px;font-family:${fontFamily};">${prefCount} ${l.prefCount}</div>
+        </div>
+      ` : ''}
     </div>
     
-    ${prefCount > 0 ? `
-    <div style="margin:20px 40px 0;padding:12px 16px;background:#fdf2f8;border-radius:8px;border-${isRTL ? 'right' : 'left'}:4px solid #ec4899;text-align:${textAlign};">
-      <div style="font-size:14px;font-weight:600;color:#ec4899;font-family:${fontFamily};text-align:${textAlign};">${l.prefSummary}</div>
-      <div style="font-size:12px;color:#94a3b8;margin-top:2px;font-family:${fontFamily};text-align:${textAlign};">${prefCount} ${l.prefCount}</div>
-    </div>
-    ` : ''}
-    
-    <div style="margin:16px 40px;height:1px;background:#ec4899;"></div>
-    
-    <div style="padding:0 40px 20px;font-size:13px;line-height:1.8;color:#1e293b;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
+    <div data-pdf-section style="padding:16px 40px 20px;font-size:13px;line-height:1.8;color:#1e293b;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
       ${mainContent}
     </div>
     
-    <div style="margin:10px 40px 20px;padding-top:10px;border-top:1px solid #ec4899;text-align:center;">
+    <div data-pdf-section style="margin:4px 40px 12px;padding-top:10px;border-top:1px solid #ec4899;text-align:center;">
       <div style="font-size:9px;color:#94a3b8;line-height:1.5;font-family:${fontFamily};">${l.footer}</div>
     </div>
   `;
