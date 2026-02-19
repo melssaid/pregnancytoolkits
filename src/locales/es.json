@@ -168,20 +168,20 @@
       "description": "Registra los preciosos movimientos de tu bebé."
     },
     "weightGain": {
-      "title": "Analizador de aumento de peso",
-      "description": "Monitorea un aumento de peso saludable."
+      "title": "Diario de aumento de peso",
+      "description": "Registra los cambios de peso durante el embarazo."
     },
     "postpartumMentalHealth": {
       "title": "Coach de salud mental",
       "description": "Cuestionario EPDS y apoyo de salud mental."
     },
     "gestationalDiabetes": {
-      "title": "Riesgo de diabetes gestacional",
-      "description": "Conoce tus factores de riesgo."
+      "title": "Conciencia sobre DG",
+      "description": "Conoce los factores comunes de la diabetes gestacional."
     },
     "preeclampsiaRisk": {
-      "title": "Riesgo de preeclampsia",
-      "description": "Verifica tus factores de riesgo de preeclampsia."
+      "title": "Conciencia sobre preeclampsia",
+      "description": "Conoce los factores comunes de la preeclampsia."
     },
     "babyGearRecommender": {
       "title": "Recomendador de artículos de bebé",
@@ -201,7 +201,7 @@
     },
     "diaperTracker": {
       "title": "Seguimiento de pañales",
-      "description": "Registra cambios, monitorea la salud."
+      "description": "Registra los cambios diarios."
     },
     "babyCryTranslator": {
       "title": "Traductor de llanto del bebé",

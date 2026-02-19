@@ -144,7 +144,7 @@ export const categoryKeys = [
   "categories.pregnancy",
   "categories.wellness",
   "categories.mentalHealth",
-  "categories.riskAssessment",
+  "categories.selfCheck",
   "categories.labor",
   "categories.preparation",
   "categories.postpartum",

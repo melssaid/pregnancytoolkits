@@ -168,20 +168,20 @@
       "description": "Halten Sie die wertvollen Bewegungen Ihres Babys fest."
     },
     "weightGain": {
-      "title": "Gewichtszunahme-Analysator",
-      "description": "Überwachen Sie gesunde Schwangerschaftsgewichtszunahme."
+      "title": "Gewichtstagebuch",
+      "description": "Begleiten Sie Ihre Gewichtsentwicklung in der Schwangerschaft."
     },
     "postpartumMentalHealth": {
       "title": "Mental-Health-Coach",
       "description": "EPDS-Fragebogen und psychische Gesundheitsunterstützung."
     },
     "gestationalDiabetes": {
-      "title": "Gestationsdiabetes-Risiko",
-      "description": "Kennen Sie Ihre Risikofaktoren für Gestationsdiabetes."
+      "title": "GDM Bewusstsein",
+      "description": "Erfahren Sie mehr über häufige Faktoren bei Gestationsdiabetes."
     },
     "preeclampsiaRisk": {
-      "title": "Präeklampsie-Risiko",
-      "description": "Überprüfen Sie Ihre Präeklampsie-Risikofaktoren."
+      "title": "Präeklampsie Bewusstsein",
+      "description": "Erfahren Sie mehr über häufige Präeklampsie-Faktoren."
     },
     "babyGearRecommender": {
       "title": "Baby-Ausstattungs-Empfehler",
@@ -201,7 +201,7 @@
     },
     "diaperTracker": {
       "title": "Windel-Tracker",
-      "description": "Protokollieren Sie Wechsel, überwachen Sie die Gesundheit."
+      "description": "Tägliche Windelwechsel protokollieren."
     },
     "babyCryTranslator": {
       "title": "Baby-Wein-Übersetzer",
