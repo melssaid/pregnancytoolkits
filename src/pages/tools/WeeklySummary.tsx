@@ -4,10 +4,9 @@ import {
   Baby, 
   Sparkles, 
   Loader2, 
-  TrendingUp,
-  Heart,
-  CheckCircle,
-  RefreshCw
+  RefreshCw,
+  History,
+  ChevronRight
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -71,7 +70,6 @@ export default function WeeklySummary() {
         setSummary((prev) => prev + chunk);
       },
       onDone: () => {
-        // Fix: use ref instead of stale closure — summary state is empty at this point
         const newSummary: WeeklySummaryData = {
           week,
           content: accumulatedRef.current,
@@ -118,7 +116,7 @@ export default function WeeklySummary() {
           <span className="text-xs text-muted-foreground">{t("toolsInternal.weeklySummary.daysToGo", { days: daysRemaining })}</span>
         </div>
 
-        {/* Week Selector - Using WeekSlider */}
+        {/* Week Selector */}
         <WeekSlider
           week={week}
           onChange={handleWeekChange}
@@ -141,8 +139,6 @@ export default function WeeklySummary() {
               </div>
               <span className="text-sm font-bold text-primary">{Math.round(progress)}%</span>
             </div>
-
-            {/* Progress */}
             <div className="space-y-2">
               <Progress value={progress} className="h-2" />
               <p className="text-xs text-center text-muted-foreground">
@@ -169,38 +165,67 @@ export default function WeeklySummary() {
               {t("toolsInternal.weeklySummary.showSummary", { week })}
             </Button>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-2">
-              <Card>
-                <CardContent className="p-3 text-center">
-                  <TrendingUp className="w-5 h-5 mx-auto text-green-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">{t("toolsInternal.weeklySummary.babyGrowth")}</p>
-                  <p className="text-sm font-medium">{t("toolsInternal.weeklySummary.normal")}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-3 text-center">
-                  <Heart className="w-5 h-5 mx-auto text-red-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">{t("toolsInternal.weeklySummary.momsHealth")}</p>
-                  <p className="text-sm font-medium">{t("toolsInternal.weeklySummary.good")}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-3 text-center">
-                  <CheckCircle className="w-5 h-5 mx-auto text-blue-500 mb-1" />
-                  <p className="text-xs text-muted-foreground">{t("toolsInternal.weeklySummary.checkups")}</p>
-                  <p className="text-sm font-medium">{t("toolsInternal.weeklySummary.complete")}</p>
-                </CardContent>
-              </Card>
-            </div>
+            {/* Real Previous Summaries — replaces fake static cards */}
+            {savedSummaries.length > 0 ? (
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 px-1">
+                  <History className="w-3.5 h-3.5 text-muted-foreground" />
+                  <p className="text-xs font-medium text-muted-foreground">
+                    {t("toolsInternal.weeklySummary.previousSummaries", "Previous Summaries")}
+                  </p>
+                </div>
+                {savedSummaries.slice(0, 4).map((s) => {
+                  const tri = getTrimester(s.week);
+                  return (
+                    <button
+                      key={s.generatedAt}
+                      onClick={() => { setWeek(s.week); setSummary(s.content); }}
+                      className="w-full text-start p-3 rounded-xl bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 transition-all group"
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <div className="flex items-center gap-2">
+                          <Baby className="w-3.5 h-3.5 text-primary" />
+                          <span className="text-sm font-semibold text-foreground">
+                            {t("toolsInternal.weeklySummary.week", { week: s.week })}
+                          </span>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full text-white ${tri.color}`}>
+                            {tri.label}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1 text-muted-foreground group-hover:text-primary transition-colors">
+                          <span className="text-[10px]">
+                            {new Date(s.generatedAt).toLocaleDateString()}
+                          </span>
+                          <ChevronRight className="w-3 h-3" />
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground line-clamp-2 group-hover:text-foreground transition-colors">
+                        {s.content.replace(/[#*`]/g, '').slice(0, 130)}…
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              /* Empty state — only shown if no summaries exist yet */
+              <div className="text-center py-8 text-muted-foreground">
+                <Baby className="w-12 h-12 mx-auto mb-3 opacity-20" />
+                <p className="text-sm font-medium">
+                  {t("toolsInternal.weeklySummary.noSummariesYet", "No summaries yet")}
+                </p>
+                <p className="text-xs mt-1 opacity-70">
+                  {t("toolsInternal.weeklySummary.generateFirstHint", "Tap the button above to generate your first weekly summary")}
+                </p>
+              </div>
+            )}
           </>
         ) : (
           <>
             {/* Summary Result */}
-            <Card className="border-purple-200 bg-purple-50/50">
+            <Card className="border-primary/20 bg-primary/5">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Baby className="w-5 h-5 text-purple-600" />
+                  <Baby className="w-5 h-5 text-primary" />
                   {t("toolsInternal.weeklySummary.weekSummary", { week })}
                 </CardTitle>
               </CardHeader>
@@ -208,7 +233,6 @@ export default function WeeklySummary() {
                 <MarkdownRenderer 
                   content={summary} 
                   isLoading={isLoading} 
-                  accentColor="purple-500" 
                 />
               </CardContent>
             </Card>
