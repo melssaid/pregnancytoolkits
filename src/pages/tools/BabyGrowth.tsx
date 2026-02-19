@@ -9,7 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Baby, TrendingUp, Plus, Trash2, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
-import { format } from "date-fns";
+import { formatLocalized } from "@/lib/dateLocale";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { BabyGrowthChart } from "@/components/charts/BabyGrowthChart";
 
 interface GrowthEntry {
@@ -47,6 +48,7 @@ const WHO_WEIGHT_GIRLS = [
 
 const BabyGrowth = () => {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const [entries, setEntries] = useState<GrowthEntry[]>([]);
   const [gender, setGender] = useState<"boy" | "girl">("boy");
   const [ageMonths, setAgeMonths] = useState("");
@@ -333,7 +335,7 @@ const BabyGrowth = () => {
                                   {t('toolsInternal.babyGrowth.month', { month: entry.ageMonths })}
                                 </p>
                                 <p className="text-sm text-muted-foreground">
-                                  {format(new Date(entry.date), "d MMM yyyy")}
+                                  {formatLocalized(new Date(entry.date), "d MMM yyyy", currentLanguage)}
                                 </p>
                               </div>
                             </div>

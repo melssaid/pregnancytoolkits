@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { format, addDays, differenceInDays } from "date-fns";
+import { formatLocalized } from "@/lib/dateLocale";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
@@ -40,6 +42,7 @@ const isValidCycles = (data: unknown): data is CycleEntry[] => {
 
 export default function CycleTracker() {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { toast } = useToast();
   const [cycles, setCycles] = useState<CycleEntry[]>([]);
   const [startDate, setStartDate] = useState("");
@@ -146,7 +149,7 @@ export default function CycleTracker() {
     const text = `${t('toolsInternal.cycleTracker.yourStatistics')}
 
 ${t('toolsInternal.cycleTracker.avgCycleLength')}: ${stats.avgCycleLength} ${t('toolsInternal.cycleTracker.days')}
-${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: ${stats.avgPeriodLength} ${t('toolsInternal.cycleTracker.days')}\n` : ''}${t('toolsInternal.cycleTracker.nextPeriod')}: ${format(stats.nextPeriod, "MMMM d, yyyy")}
+${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: ${stats.avgPeriodLength} ${t('toolsInternal.cycleTracker.days')}\n` : ''}${t('toolsInternal.cycleTracker.nextPeriod')}: ${formatLocalized(stats.nextPeriod, "MMMM d, yyyy", currentLanguage)}
 
 — via Pregnancy Toolkits`;
 
@@ -206,7 +209,7 @@ ${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: $
                     <CardContent className="pt-4 text-center">
                       <Calendar className="h-4 w-4 text-primary mx-auto mb-1.5" />
                       <p className="text-base font-bold text-primary">
-                        {format(stats.nextPeriod, "MMM d")}
+                        {formatLocalized(stats.nextPeriod, "MMM d", currentLanguage)}
                       </p>
                       <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.nextPeriod')}</p>
                     </CardContent>
@@ -218,7 +221,7 @@ ${stats.avgPeriodLength ? `${t('toolsInternal.cycleTracker.avgPeriodLength')}: $
                   prompt={`Analyze my menstrual cycle patterns:
 - Average cycle length: ${stats.avgCycleLength} days
 - Average period length: ${stats.avgPeriodLength || 'Not tracked'} days
-- Next predicted period: ${format(stats.nextPeriod, "MMMM d, yyyy")}
+- Next predicted period: ${formatLocalized(stats.nextPeriod, "MMMM d, yyyy", currentLanguage)}
 - Total cycles tracked: ${cycles.length}
 
 Recent cycle data:
@@ -226,7 +229,7 @@ ${cycles.slice(0, 5).map((c, i) => {
   const length = i < cycles.length - 1 
     ? differenceInDays(new Date(c.startDate), new Date(cycles[i + 1].startDate))
     : null;
-  return `- ${format(new Date(c.startDate), "MMM d")}: ${c.flowIntensity} flow${c.symptoms?.length ? `, symptoms: ${c.symptoms.map(s => getSymptomLabel(s)).join(', ')}` : ''}${length ? `, ${length} day cycle` : ''}`;
+  return `- ${formatLocalized(new Date(c.startDate), "MMM d", currentLanguage)}: ${c.flowIntensity} flow${c.symptoms?.length ? `, symptoms: ${c.symptoms.map(s => getSymptomLabel(s)).join(', ')}` : ''}${length ? `, ${length} day cycle` : ''}`;
 }).join('\n')}
 
 Please provide:
@@ -346,10 +349,10 @@ Any patterns that might be worth discussing with a doctor`}
                             <div className={`h-3 w-3 rounded-full mt-1.5 ${getFlowColor(cycle.flowIntensity)}`} />
                             <div>
                               <p className="font-medium text-sm text-foreground">
-                                {format(new Date(cycle.startDate), "MMM d, yyyy")}
+                                {formatLocalized(new Date(cycle.startDate), "MMM d, yyyy", currentLanguage)}
                                 {cycle.endDate && (
                                   <span className="text-muted-foreground">
-                                    {" "}– {format(new Date(cycle.endDate), "MMM d")}
+                                    {" "}– {formatLocalized(new Date(cycle.endDate), "MMM d", currentLanguage)}
                                   </span>
                                 )}
                               </p>
