@@ -7,10 +7,12 @@ import {
   Leaf,
   Apple,
   Clock,
-  Flame,
   AlertTriangle,
   Heart,
+  Brain,
+  RefreshCw,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -43,6 +45,7 @@ export default function AIMealSuggestion() {
   useResetOnLanguageChange(() => {
     setSuggestion('');
   });
+
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [trimester, setTrimester] = useState<string>("2");
   const [mealType, setMealType] = useState<string>("lunch");
@@ -104,7 +107,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
-        toolName="AI Meal Suggestion"
+        toolName={t("tools.aiMealSuggestion.title")}
         onAccept={() => setShowDisclaimer(false)}
       />
     );
@@ -114,70 +117,65 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
     <ToolFrame
       title={t("tools.aiMealSuggestion.title")}
       subtitle={t("toolsInternal.mealSuggestion.subtitle")}
-      customIcon="nutrition"
       mood="joyful"
       toolId="ai-meal-suggestion"
     >
-      <div className="space-y-4">
+      <div className="space-y-3">
         {!suggestion ? (
           <>
             {/* Trimester & Meal Type */}
             <div className="grid grid-cols-2 gap-2">
-              <Card className="border-border/50">
-                <CardContent className="p-3 space-y-2">
-                  <label className="text-xs font-medium text-muted-foreground">
-                    {t("toolsInternal.mealSuggestion.pregnancyStage")}
-                  </label>
-                  <Select value={trimester} onValueChange={setTrimester}>
-                    <SelectTrigger className="rounded-xl">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">{t("toolsInternal.mealSuggestion.trimesters.first")}</SelectItem>
-                      <SelectItem value="2">{t("toolsInternal.mealSuggestion.trimesters.second")}</SelectItem>
-                      <SelectItem value="3">{t("toolsInternal.mealSuggestion.trimesters.third")}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </CardContent>
-              </Card>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">
+                  {t("toolsInternal.mealSuggestion.pregnancyStage")}
+                </label>
+                <Select value={trimester} onValueChange={setTrimester}>
+                  <SelectTrigger className="h-9 text-xs rounded-lg">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1">{t("toolsInternal.mealSuggestion.trimesters.first")}</SelectItem>
+                    <SelectItem value="2">{t("toolsInternal.mealSuggestion.trimesters.second")}</SelectItem>
+                    <SelectItem value="3">{t("toolsInternal.mealSuggestion.trimesters.third")}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
-              <Card className="border-border/50">
-                <CardContent className="p-3 space-y-2">
-                  <label className="text-xs font-medium text-muted-foreground">
-                    {t("toolsInternal.mealSuggestion.mealType")}
-                  </label>
-                  <Select value={mealType} onValueChange={setMealType}>
-                    <SelectTrigger className="rounded-xl">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {MEAL_TYPE_IDS.map((m) => (
-                        <SelectItem key={m} value={m}>
-                          {t(`toolsInternal.mealSuggestion.mealTypes.${m}`)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </CardContent>
-              </Card>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">
+                  {t("toolsInternal.mealSuggestion.mealType")}
+                </label>
+                <Select value={mealType} onValueChange={setMealType}>
+                  <SelectTrigger className="h-9 text-xs rounded-lg">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {MEAL_TYPE_IDS.map((m) => (
+                      <SelectItem key={m} value={m}>
+                        {t(`toolsInternal.mealSuggestion.mealTypes.${m}`)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             {/* Prep Time */}
-            <Card className="border-border/50">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Clock className="w-3.5 h-3.5 text-primary" />
+            <Card className="border-border/50 shadow-none">
+              <CardHeader className="p-3 pb-2">
+                <CardTitle className="text-xs flex items-center gap-1.5 text-foreground">
+                  <Clock className="w-3.5 h-3.5 text-primary shrink-0" />
                   {t("toolsInternal.mealSuggestion.prepTimeLabel")}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
+              <CardContent className="p-3 pt-0">
+                <div className="flex flex-wrap gap-1.5">
                   {PREP_TIME_IDS.map((p) => (
                     <Button
                       key={p}
                       variant={prepTime === p ? "default" : "outline"}
                       size="sm"
-                      className="rounded-full text-xs"
+                      className="rounded-full text-[11px] h-7 px-3"
                       onClick={() => setPrepTime(p)}
                     >
                       {t(`toolsInternal.mealSuggestion.prepTimes.${p}`)}
@@ -188,24 +186,22 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             </Card>
 
             {/* Cravings */}
-            <Card className="border-border/50">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Heart className="w-3.5 h-3.5 text-primary" />
+            <Card className="border-border/50 shadow-none">
+              <CardHeader className="p-3 pb-2">
+                <CardTitle className="text-xs flex items-center gap-1.5 text-foreground">
+                  <Heart className="w-3.5 h-3.5 text-primary shrink-0" />
                   {t("toolsInternal.mealSuggestion.whatCraving")}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
+              <CardContent className="p-3 pt-0">
+                <div className="flex flex-wrap gap-1.5">
                   {CRAVING_IDS.map((c) => (
                     <Button
                       key={c}
                       variant={selectedCraving === c ? "default" : "outline"}
                       size="sm"
-                      className="rounded-full text-xs"
-                      onClick={() =>
-                        setSelectedCraving(selectedCraving === c ? "" : c)
-                      }
+                      className="rounded-full text-[11px] h-7 px-3"
+                      onClick={() => setSelectedCraving(selectedCraving === c ? "" : c)}
                     >
                       {t(`toolsInternal.mealSuggestion.cravings.${c}`)}
                     </Button>
@@ -215,25 +211,26 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             </Card>
 
             {/* Dietary Preferences */}
-            <Card className="border-border/50">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <Leaf className="w-3.5 h-3.5 text-primary" />
+            <Card className="border-border/50 shadow-none">
+              <CardHeader className="p-3 pb-2">
+                <CardTitle className="text-xs flex items-center gap-1.5 text-foreground">
+                  <Leaf className="w-3.5 h-3.5 text-primary shrink-0" />
                   {t("toolsInternal.mealSuggestion.dietaryPreferences")}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-2">
+              <CardContent className="p-3 pt-0">
+                <div className="grid grid-cols-2 gap-1.5">
                   {DIETARY_PREF_IDS.map((pref) => (
                     <label
                       key={pref}
-                      className="flex items-center gap-2 p-2 rounded-xl hover:bg-muted/50 cursor-pointer border border-transparent hover:border-border/50 transition-all"
+                      className="flex items-center gap-2 p-2 rounded-lg hover:bg-muted/50 cursor-pointer border border-transparent hover:border-border/40 transition-all"
                     >
                       <Checkbox
                         checked={preferences.includes(pref)}
                         onCheckedChange={() => togglePreference(pref)}
+                        className="w-3.5 h-3.5"
                       />
-                      <span className="text-xs font-medium">
+                      <span className="text-[11px] font-medium leading-tight">
                         {t(`toolsInternal.mealSuggestion.preferences.${pref}`)}
                       </span>
                     </label>
@@ -243,21 +240,21 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             </Card>
 
             {/* Allergies */}
-            <Card className="border-border/50">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2">
-                  <AlertTriangle className="w-3.5 h-3.5 text-destructive" />
+            <Card className="border-border/50 shadow-none">
+              <CardHeader className="p-3 pb-2">
+                <CardTitle className="text-xs flex items-center gap-1.5 text-foreground">
+                  <AlertTriangle className="w-3.5 h-3.5 text-destructive shrink-0" />
                   {t("toolsInternal.mealSuggestion.allergiesLabel")}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
+              <CardContent className="p-3 pt-0">
+                <div className="flex flex-wrap gap-1.5">
                   {ALLERGY_IDS.map((a) => (
                     <Button
                       key={a}
                       variant={allergies.includes(a) ? "destructive" : "outline"}
                       size="sm"
-                      className="rounded-full text-xs"
+                      className="rounded-full text-[11px] h-7 px-3"
                       onClick={() => toggleAllergy(a)}
                     >
                       {t(`toolsInternal.mealSuggestion.allergies.${a}`)}
@@ -267,39 +264,45 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
               </CardContent>
             </Card>
 
-            {/* Get Suggestion Button */}
-            <Button
+            {/* AI Suggest Button */}
+            <motion.button
+              whileTap={{ scale: 0.92 }}
               onClick={getSuggestion}
               disabled={isLoading}
-              className="w-full gap-2 rounded-xl h-10 text-xs"
-              size="sm"
+              className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
+              style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
             >
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
               {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin shrink-0" />
+                  <span>{t("toolsInternal.common.analyzing") || "..."}</span>
+                </>
               ) : (
-                <Sparkles className="w-4 h-4" />
+                <>
+                  <Brain className="w-4 h-4 shrink-0" />
+                  <span>{t("toolsInternal.mealSuggestion.suggestMeal")}</span>
+                  <Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" />
+                </>
               )}
-              {t("toolsInternal.mealSuggestion.suggestMeal")}
-            </Button>
+            </motion.button>
           </>
         ) : (
           <>
             {/* Suggestion Result */}
-            <Card className="border-primary/20 bg-primary/5">
-              <CardHeader className="pb-2">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm flex items-center gap-2">
-                    <Utensils className="w-4 h-4 text-primary" />
+            <Card className="border-primary/20 bg-primary/5 shadow-none">
+              <CardHeader className="p-3 pb-2">
+                <div className="flex items-center justify-between gap-2">
+                  <CardTitle className="text-xs flex items-center gap-1.5 text-primary">
+                    <Utensils className="w-3.5 h-3.5 shrink-0" />
                     {t("toolsInternal.mealSuggestion.mealSuggestion")}
                   </CardTitle>
-                  <div className="flex gap-1">
-                    <Badge variant="secondary" className="text-[10px]">
-                      {t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
-                    </Badge>
-                  </div>
+                  <Badge variant="secondary" className="text-[10px] shrink-0">
+                    {t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
+                  </Badge>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-3 pt-0">
                 <MarkdownRenderer
                   content={suggestion}
                   isLoading={isLoading}
@@ -313,45 +316,45 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
               <Button
                 onClick={() => setSuggestion("")}
                 variant="outline"
-                className="flex-1 rounded-xl text-xs h-9"
+                className="flex-1 rounded-xl text-xs h-9 gap-1.5"
               >
+                <RefreshCw className="w-3.5 h-3.5 shrink-0" />
                 {t("toolsInternal.mealSuggestion.differentSuggestion")}
               </Button>
-              <Button
+              <motion.button
+                whileTap={{ scale: 0.92 }}
                 onClick={getSuggestion}
                 disabled={isLoading}
-                className="flex-1 gap-2 rounded-xl text-xs h-9"
+                className="relative flex-1 overflow-hidden rounded-xl h-9 flex items-center justify-center gap-1.5 text-white text-xs font-semibold shadow-md disabled:opacity-60 disabled:pointer-events-none"
+                style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
               >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Sparkles className="w-4 h-4" />
-                )}
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
+                {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
                 {t("toolsInternal.mealSuggestion.refresh")}
-              </Button>
+              </motion.button>
             </div>
           </>
         )}
 
         {/* Error */}
         {error && (
-          <Card className="border-destructive/50 bg-destructive/10">
-            <CardContent className="p-4">
-              <p className="text-sm text-destructive text-center">{error}</p>
+          <Card className="border-destructive/50 bg-destructive/10 shadow-none">
+            <CardContent className="p-3">
+              <p className="text-xs text-destructive text-center">{error}</p>
             </CardContent>
           </Card>
         )}
 
         {/* Tips */}
-        <Card className="border-border/50">
+        <Card className="border-border/50 shadow-none">
           <CardContent className="p-3">
-            <div className="flex items-start gap-3">
-              <Apple className="w-4 h-4 text-primary shrink-0" />
-              <div className="text-[10px] text-muted-foreground space-y-1">
-                <p className="font-medium text-foreground">
-                  {t("toolsInternal.mealSuggestion.quickTips")}:
+            <div className="flex items-start gap-2">
+              <Apple className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+              <div className="text-[10px] text-muted-foreground space-y-1 min-w-0">
+                <p className="font-semibold text-foreground text-xs">
+                  {t("toolsInternal.mealSuggestion.quickTips")}
                 </p>
-                <ul className="list-disc list-inside space-y-1">
+                <ul className="list-disc list-inside space-y-0.5">
                   <li>{t("toolsInternal.mealSuggestion.tips.smallMeals")}</li>
                   <li>{t("toolsInternal.mealSuggestion.tips.drinkWater")}</li>
                   <li>{t("toolsInternal.mealSuggestion.tips.avoidRaw")}</li>
