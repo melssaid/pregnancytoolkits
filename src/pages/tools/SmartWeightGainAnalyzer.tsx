@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useUserProfile } from '@/hooks/useUserProfile';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -41,28 +42,49 @@ const BMI_WEIGHT_GAIN: Record<string, WeightRange> = {
 
 export default function SmartWeightGainAnalyzer() {
   const { t } = useTranslation();
-  const [prePregnancyWeight, setPrePregnancyWeight] = useState<string>('');
-  const [height, setHeight] = useState<string>('');
+  const { profile: userProfile, updateProfile: updateUserProfile } = useUserProfile();
+  const [prePregnancyWeight, setPrePregnancyWeightState] = useState<string>('');
+  const [height, setHeightState] = useState<string>('');
   const [currentWeight, setCurrentWeight] = useState<string>('');
   const [currentWeek, setCurrentWeek] = useState<string>('');
   const [entries, setEntries] = useState<WeightEntry[]>([]);
   const [bmiCategory, setBmiCategory] = useState<string>('normal');
 
+  // Load from central profile + legacy entries
   useEffect(() => {
     const saved = localStorage.getItem('weightGainEntries');
     if (saved) setEntries(JSON.parse(saved));
-    
-    const savedProfile = localStorage.getItem('weightGainProfile');
-    if (savedProfile) {
-      const profile = JSON.parse(savedProfile);
-      setPrePregnancyWeight(profile.prePregnancyWeight || '');
-      setHeight(profile.height || '');
+
+    if (userProfile.prePregnancyWeight) {
+      setPrePregnancyWeightState(String(userProfile.prePregnancyWeight));
     }
+    if (userProfile.height) {
+      setHeightState(String(userProfile.height));
+    }
+    if (userProfile.pregnancyWeek) {
+      setCurrentWeek(String(userProfile.pregnancyWeek));
+    }
+    if (userProfile.weight) {
+      setCurrentWeight(String(userProfile.weight));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     localStorage.setItem('weightGainEntries', JSON.stringify(entries));
   }, [entries]);
+
+  const setPrePregnancyWeight = (val: string) => {
+    setPrePregnancyWeightState(val);
+    const kg = parseFloat(val);
+    if (!isNaN(kg)) updateUserProfile({ prePregnancyWeight: kg });
+  };
+
+  const setHeight = (val: string) => {
+    setHeightState(val);
+    const cm = parseFloat(val);
+    if (!isNaN(cm)) updateUserProfile({ height: cm });
+  };
 
   useEffect(() => {
     if (prePregnancyWeight && height) {
@@ -74,11 +96,6 @@ export default function SmartWeightGainAnalyzer() {
       else if (bmi < 25) setBmiCategory('normal');
       else if (bmi < 30) setBmiCategory('overweight');
       else setBmiCategory('obese');
-      
-      localStorage.setItem('weightGainProfile', JSON.stringify({
-        prePregnancyWeight,
-        height,
-      }));
     }
   }, [prePregnancyWeight, height]);
 
@@ -92,6 +109,10 @@ export default function SmartWeightGainAnalyzer() {
       week: parseInt(currentWeek),
     };
     
+    // Save current weight to central profile
+    const kg = parseFloat(currentWeight);
+    if (!isNaN(kg)) updateUserProfile({ weight: kg, pregnancyWeek: parseInt(currentWeek) });
+
     setEntries([...entries, entry].sort((a, b) => a.week - b.week));
     setCurrentWeight('');
   };

@@ -19,6 +19,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { WeekSlider } from "@/components/WeekSlider";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 const STORAGE_KEY = "weekly-summary-data";
 
@@ -31,8 +32,10 @@ interface WeeklySummaryData {
 export default function WeeklySummary() {
   const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
+  const { profile: userProfile } = useUserProfile();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
-  const [week, setWeek] = useState<number>(20);
+  // Initialize week from central profile
+  const [week, setWeek] = useState<number>(userProfile.pregnancyWeek ?? 20);
   const [summary, setSummary] = useState<string>("");
 
   useResetOnLanguageChange(() => {
@@ -47,6 +50,9 @@ export default function WeeklySummary() {
       (data): data is WeeklySummaryData[] => Array.isArray(data)
     );
     setSavedSummaries(saved);
+    // Sync week from central profile on mount
+    if (userProfile.pregnancyWeek) setWeek(userProfile.pregnancyWeek);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleWeekChange = useCallback((newWeek: number) => {

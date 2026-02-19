@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Baby, Info, Calendar, Save, Bell, Trash2, Share2 } from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -35,6 +36,7 @@ export default function DueDateCalculator() {
   const { t } = useTranslation();
   const { toast } = useToast();
   const { addNotification } = useNotifications();
+  const { profile: userProfile, setLastPeriodDate: saveProfileLMP } = useUserProfile();
   const [lmpDate, setLmpDate] = useState("");
   const [conceptionDate, setConceptionDate] = useState("");
   const [savedDates, setSavedDates] = useState<SavedDueDate[]>([]);
@@ -52,7 +54,12 @@ export default function DueDateCalculator() {
   useEffect(() => {
     const saved = safeParseLocalStorage<SavedDueDate[]>('savedDueDates', [], isValidSaved);
     setSavedDates(saved);
+    // Pre-fill LMP from central profile if available
+    if (userProfile.lastPeriodDate) {
+      setLmpDate(userProfile.lastPeriodDate);
+    }
     isInitialized.current = true;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -63,6 +70,8 @@ export default function DueDateCalculator() {
   const calculateFromLMP = () => {
     if (!lmpDate) return;
     const lmp = new Date(lmpDate);
+    // Save to central profile
+    saveProfileLMP(lmpDate);
     calculate(lmp, addWeeks(lmp, 2));
   };
 

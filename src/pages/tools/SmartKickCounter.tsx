@@ -7,12 +7,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { KickService, UserProfileService } from '@/services/localStorageServices';
+import { KickService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { useUserProfile } from '@/hooks/useUserProfile';
 
 const SmartKickCounter: React.FC = () => {
   const { t } = useTranslation();
@@ -21,7 +22,8 @@ const SmartKickCounter: React.FC = () => {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [currentWeek, setCurrentWeek] = useState(28);
+  const { profile: userProfile } = useUserProfile();
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 28);
   const [history, setHistory] = useState<any[]>([]);
   const [notes, setNotes] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +46,11 @@ const SmartKickCounter: React.FC = () => {
   });
 
   useEffect(() => {
+    // Sync week from central profile
+    setCurrentWeek(userProfile.pregnancyWeek ?? 28);
+  }, [userProfile.pregnancyWeek]);
+
+  useEffect(() => {
     loadData();
   }, []);
 
@@ -61,11 +68,6 @@ const SmartKickCounter: React.FC = () => {
   const loadData = async () => {
     try {
       setIsLoading(true);
-      
-      const profile = await UserProfileService.get();
-      if (profile?.pregnancy_week) {
-        setCurrentWeek(profile.pregnancy_week);
-      }
       
       const activeSession = await KickService.getActiveSession();
       if (activeSession) {
