@@ -1,9 +1,10 @@
 import React from 'react';
-import { Database, Shield, Info, Heart, Lock, Globe, ChevronRight } from 'lucide-react';
+import { Database, Shield, Info, Heart, Lock, Globe, User } from 'lucide-react';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { DataClearManager } from '@/components/settings/DataClearManager';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
 import { LanguageSelector } from '@/components/settings/LanguageSelector';
+import { ProfileEditor } from '@/components/settings/ProfileEditor';
 import { Layout } from '@/components/Layout';
 import { useTranslation } from 'react-i18next';
 import {
@@ -27,8 +28,23 @@ const Settings: React.FC = () => {
         </div>
 
         {/* Accordion-based Settings */}
-        <Accordion type="multiple" defaultValue={["language"]} className="space-y-2">
-          
+        <Accordion type="multiple" defaultValue={["profile"]} className="space-y-2">
+
+          {/* My Profile */}
+          <AccordionItem value="profile" className="border rounded-xl bg-card overflow-hidden">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <User className="w-4 h-4 text-primary" />
+                </div>
+                <span className="font-medium text-sm">{t('settings.profile.title', 'My Profile')}</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-4">
+              <ProfileEditor compact />
+            </AccordionContent>
+          </AccordionItem>
+
           {/* Language */}
           <AccordionItem value="language" className="border rounded-xl bg-card overflow-hidden">
             <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
@@ -48,8 +64,8 @@ const Settings: React.FC = () => {
           <AccordionItem value="security" className="border rounded-xl bg-card overflow-hidden">
             <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                  <Lock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                <div className="w-8 h-8 rounded-lg bg-warning/15 flex items-center justify-center">
+                  <Lock className="w-4 h-4 text-warning" />
                 </div>
                 <span className="font-medium text-sm">{t('settings.securityPrivacy')}</span>
               </div>
@@ -63,8 +79,8 @@ const Settings: React.FC = () => {
           <AccordionItem value="data" className="border rounded-xl bg-card overflow-hidden">
             <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                  <Database className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <div className="w-8 h-8 rounded-lg bg-accent/15 flex items-center justify-center">
+                  <Database className="w-4 h-4 text-accent" />
                 </div>
                 <span className="font-medium text-sm">{t('settings.dataManagement')}</span>
               </div>
