@@ -2929,7 +2929,7 @@
     },
     "snackPlanner": {
       "title": "Smart Snack Planner",
-      "subtitle": "Healthy pregnancy snack ideas",
+      "subtitle": "Healthy pregnancy snacks for every craving",
       "feelingHungry": "Feeling Hungry?",
       "letAIPick": "Let AI pick a perfect snack for you",
       "surpriseMe": "Surprise Me!",
@@ -2937,12 +2937,12 @@
       "prepTime": "prep time",
       "ingredients": "Ingredients",
       "howToMake": "How to make",
-      "snackingTipsTitle": "Snacking Tips",
+      "snackingTipsTitle": "Smart Snacking Tips",
       "snackingTips": {
-        "tip1": "Eat every 2-3 hours to maintain energy",
-        "tip2": "Keep snacks by your bedside for morning sickness",
-        "tip3": "Stay hydrated between snacks",
-        "tip4": "Listen to your cravings but balance with nutrition"
+        "tip1": "Aim for snacks combining protein + carbs for sustained energy",
+        "tip2": "Keep portable snacks in your bag for unexpected hunger",
+        "tip3": "Eat every 2-3 hours to maintain stable blood sugar",
+        "tip4": "Stay hydrated - sometimes thirst feels like hunger"
       },
       "categories": {
         "all": "All",
@@ -3002,6 +3002,24 @@
         "potassium": "Potassium",
         "bvitamins": "B Vitamins"
       }
+    },
+    "recipeModifier": {
+      "title": "AI Recipe Modifier",
+      "subtitle": "Make any recipe pregnancy-safe",
+      "pasteRecipe": "Paste Your Recipe",
+      "placeholder": "Paste your recipe here including all ingredients and instructions...",
+      "analyzing": "Analyzing...",
+      "analyzeRecipe": "Analyze Recipe for Safety",
+      "exampleTitle": "Example ingredients we check:",
+      "ingredientsToModify": "Ingredients to Modify ({{count}})",
+      "recipeSafe": "Recipe Looks Safe!",
+      "noUnsafeFound": "No obvious unsafe ingredients detected",
+      "safeFound": "Safe Ingredients Found",
+      "modifiedRecipe": "Modified Recipe",
+      "safetyTips": "Safety Tips",
+      "analyzeAnother": "Analyze Another Recipe",
+      "disclaimer": "⚠️ This tool provides general guidance. Always consult your healthcare provider about specific dietary restrictions during your pregnancy.",
+      "selectPreference": "Please select at least one preference"
     },
     "workoutPlanner": {
       "title": "Personalized Workout Planner",
