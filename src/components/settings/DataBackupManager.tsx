@@ -191,7 +191,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
           <Button 
             disabled={isExporting} 
             size="sm" 
-            className="gap-1.5 h-9 text-xs bg-green-600 hover:bg-green-700"
+            className="gap-1.5 h-9 text-xs"
             onClick={handleExportPDF}
           >
             {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
@@ -262,7 +262,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         </div>
       )}
 
-      <div className="flex items-start gap-2 p-2 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-xs text-amber-700 dark:text-amber-300 mb-3">
+      <div className="flex items-start gap-2 p-2 rounded-lg bg-warning/10 text-xs text-warning mb-3">
         <AlertTriangle className="w-3 h-3 mt-0.5 shrink-0" />
         <span><strong>{t('settings.backup.important')}</strong> {t('settings.backup.importantText')}</span>
       </div>
@@ -271,7 +271,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         {/* Export as PDF */}
         <Button 
           disabled={isExporting} 
-          className="gap-2 bg-green-600 hover:bg-green-700"
+          className="gap-2"
           onClick={handleExportPDF}
         >
           {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
