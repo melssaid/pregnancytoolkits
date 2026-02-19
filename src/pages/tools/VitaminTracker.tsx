@@ -3,13 +3,14 @@ import { Pill, Check, Clock, Calendar, TrendingUp, Loader2, Sparkles, Brain, Ref
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { VitaminService, UserProfileService } from '@/services/localStorageServices';
+import { VitaminService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { WeekSlider } from '@/components/WeekSlider';
 import { useTranslation } from 'react-i18next';
+import { useUserProfile } from '@/hooks/useUserProfile';
 
 interface Vitamin {
   id: string;
@@ -31,9 +32,10 @@ const VITAMIN_IDS = [
 
 const VitaminTracker: React.FC = () => {
   const { t } = useTranslation();
+  const { profile: userProfile } = useUserProfile();
   const [todayLogs, setTodayLogs] = useState<any[]>([]);
   const [weekHistory, setWeekHistory] = useState<any[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(20);
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 20);
   const [isLoading, setIsLoading] = useState(true);
   const [savingId, setSavingId] = useState<string | null>(null);
   const [aiAnalysis, setAiAnalysis] = useState('');
@@ -45,6 +47,11 @@ const VitaminTracker: React.FC = () => {
     setAiAnalysis('');
     setShowAiAnalysis(false);
   });
+
+  // Sync week from central profile
+  useEffect(() => {
+    if (userProfile.pregnancyWeek) setCurrentWeek(userProfile.pregnancyWeek);
+  }, [userProfile.pregnancyWeek]);
 
   const VITAMINS: Vitamin[] = useMemo(() => VITAMIN_IDS.map(v => ({
     id: v.id,
@@ -62,27 +69,15 @@ const VitaminTracker: React.FC = () => {
   const loadData = async () => {
     try {
       setIsLoading(true);
-      
-      const profile = await UserProfileService.get();
-      if (profile?.pregnancy_week) {
-        setCurrentWeek(profile.pregnancy_week);
-      }
-      
       const [today, history] = await Promise.all([
         VitaminService.getTodayLogs(),
         VitaminService.getHistory(7)
       ]);
-      
       setTodayLogs(today);
       setWeekHistory(history);
-      
     } catch (error: any) {
       console.error('Error loading vitamins:', error);
-      toast({
-        title: t('common.error'),
-        description: error.message,
-        variant: 'destructive'
-      });
+      toast({ title: t('common.error'), description: error.message, variant: 'destructive' });
     } finally {
       setIsLoading(false);
     }

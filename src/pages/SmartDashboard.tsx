@@ -307,7 +307,7 @@ const SmartDashboard = () => {
               weight={parseFloat(healthData.weight) || (stats.dailyTracking.lastWeight ? parseFloat(stats.dailyTracking.lastWeight) : 0)}
               kicks={stats.dailyTracking.todayKicks}
               mood={healthData.mood}
-              waterGlasses={stats.dailyTracking.vitaminsTaken}
+              waterGlasses={stats.dailyTracking.waterGlasses}
               nextAppointment={stats.planning.upcomingAppointments > 0 ? t('dashboard.checkAppointments') : undefined}
             />
 
@@ -398,10 +398,10 @@ const SmartDashboard = () => {
                           </span>
                         </div>
                         <div className="flex items-center gap-1">
-                          {hasData && <CheckCircle2 className="w-2.5 h-2.5 text-green-500" />}
+                          {hasData && <CheckCircle2 className="w-2.5 h-2.5 text-accent" />}
                           <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${
                             hasData 
-                              ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                              ? 'bg-accent/10 text-accent' 
                               : 'bg-muted text-muted-foreground'
                           }`}>
                             {summary}

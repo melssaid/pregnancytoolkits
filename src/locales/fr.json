@@ -64,7 +64,16 @@
     "feature2": "Contenu éducatif sur le bien-être",
     "feature3": "Vos données restent sur votre appareil",
     "accept": "Je comprends & continuer",
-    "consultNote": "Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé."
+    "consultNote": "Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé.",
+    "chooseLang": "Choisir la langue",
+    "next": "Continuer",
+    "back": "Retour",
+    "profileTitle": "Infos de votre grossesse",
+    "profileSubtitle": "Permet à tous les outils de fonctionner instantanément",
+    "pregnancyWeek": "Semaine de grossesse actuelle",
+    "lastPeriod": "Date des dernières règles",
+    "optional": "optionnel",
+    "dueDateWillCompute": "La date d'accouchement sera calculée automatiquement"
   },
   "tools": {
     "pregnancyAssistant": {

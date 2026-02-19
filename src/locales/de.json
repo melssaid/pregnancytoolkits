@@ -64,7 +64,16 @@
     "feature2": "Bildungsinhalte zum Wohlbefinden",
     "feature3": "Ihre Daten bleiben auf Ihrem Gerät",
     "accept": "Verstanden & Fortfahren",
-    "consultNote": "Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Arzt."
+    "consultNote": "Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Arzt.",
+    "chooseLang": "Sprache wählen",
+    "next": "Weiter",
+    "back": "Zurück",
+    "profileTitle": "Ihre Schwangerschaftsinfos",
+    "profileSubtitle": "Hilft allen Tools, sofort für Sie zu arbeiten",
+    "pregnancyWeek": "Aktuelle Schwangerschaftswoche",
+    "lastPeriod": "Datum der letzten Periode",
+    "optional": "optional",
+    "dueDateWillCompute": "Geburtstermin wird automatisch berechnet"
   },
   "tools": {
     "pregnancyAssistant": {

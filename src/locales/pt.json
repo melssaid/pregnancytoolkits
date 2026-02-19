@@ -64,7 +64,16 @@
     "feature2": "Conteúdo educativo sobre bem-estar",
     "feature3": "Seus dados ficam no seu dispositivo",
     "accept": "Entendo & continuar",
-    "consultNote": "Consulte sempre um profissional de saúde qualificado para qualquer preocupação de saúde."
+    "consultNote": "Consulte sempre um profissional de saúde qualificado para qualquer preocupação de saúde.",
+    "chooseLang": "Escolher idioma",
+    "next": "Continuar",
+    "back": "Voltar",
+    "profileTitle": "Infos da sua gravidez",
+    "profileSubtitle": "Ajuda todas as ferramentas a funcionar instantaneamente",
+    "pregnancyWeek": "Semana de gravidez atual",
+    "lastPeriod": "Data do último período",
+    "optional": "opcional",
+    "dueDateWillCompute": "A data do parto será calculada automaticamente"
   },
   "tools": {
     "pregnancyAssistant": {

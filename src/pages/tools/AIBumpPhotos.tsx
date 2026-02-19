@@ -12,7 +12,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { BumpPhotoService, UserProfileService } from '@/services/localStorageServices';
+import { BumpPhotoService } from '@/services/localStorageServices';
+import { useUserProfile } from '@/hooks/useUserProfile';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -32,8 +33,9 @@ interface BumpPhoto {
 
 const AIBumpPhotos: React.FC = () => {
   const { t } = useTranslation();
+  const { profile: userProfile } = useUserProfile();
   const [photos, setPhotos] = useState<BumpPhoto[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(12);
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 12);
   const [isUploading, setIsUploading] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<BumpPhoto | null>(null);
@@ -51,39 +53,28 @@ const AIBumpPhotos: React.FC = () => {
   const { toast } = useToast();
   const { streamChat } = usePregnancyAI();
 
-  useResetOnLanguageChange(() => {
-    setAiAnalysis('');
-  });
+  useResetOnLanguageChange(() => { setAiAnalysis(''); });
+
+  // Sync week from central profile
+  useEffect(() => {
+    if (userProfile.pregnancyWeek) setCurrentWeek(userProfile.pregnancyWeek);
+  }, [userProfile.pregnancyWeek]);
 
   // Calculate storage usage
   const storageInfo = useMemo(() => {
     const totalBytes = photos.reduce((sum, p) => sum + estimateDataUrlSize(p.public_url), 0);
-    const maxStorage = 5 * 1024 * 1024; // 5MB recommended limit
+    const maxStorage = 5 * 1024 * 1024;
     const percentage = Math.min(100, (totalBytes / maxStorage) * 100);
-    return {
-      used: formatBytes(totalBytes),
-      percentage,
-      isWarning: percentage > 70,
-      isCritical: percentage > 90
-    };
+    return { used: formatBytes(totalBytes), percentage, isWarning: percentage > 70, isCritical: percentage > 90 };
   }, [photos]);
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  useEffect(() => { loadData(); }, []);
 
   const loadData = async () => {
     try {
       setIsLoading(true);
-      
-      const profile = await UserProfileService.get();
-      if (profile?.pregnancy_week) {
-        setCurrentWeek(profile.pregnancy_week);
-      }
-      
       const loadedPhotos = await BumpPhotoService.getAll();
       setPhotos(loadedPhotos);
-      
     } catch (error: any) {
       console.error('Error loading data:', error);
       toast({
