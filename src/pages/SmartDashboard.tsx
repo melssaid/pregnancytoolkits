@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
-import { UserProfileService } from "@/services/localStorageServices";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { 
   Send, Bot, User, Home, MessageCircle, Heart, Utensils, Dumbbell, 
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
@@ -115,6 +115,7 @@ const SmartDashboard = () => {
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, loading: statsLoading } = useTrackingStats();
   const { unreadCount } = useNotifications();
+  const { profile: userProfile, updateProfile: updateUserProfile } = useUserProfile();
 
   useResetOnLanguageChange(() => {
     setMessages([{ role: "assistant", content: t('dashboard.chat.welcomeMessage') }]);
@@ -128,31 +129,28 @@ const SmartDashboard = () => {
     { role: "assistant", content: t('dashboard.chat.welcomeMessage') }
   ]);
   const [userInput, setUserInput] = useState("");
+  // Sync healthData from central profile
   const [healthData, setHealthData] = useState<HealthData>({
-    weight: "",
+    weight: userProfile.weight ? String(userProfile.weight) : "",
     bloodPressure: "",
-    mood: "Good",
+    mood: userProfile.mood ?? "Good",
     symptoms: [],
-    weekOfPregnancy: 20
+    weekOfPregnancy: userProfile.pregnancyWeek ?? 20
   });
   const [healthSaved, setHealthSaved] = useState(false);
   const [aiHealthInsight, setAiHealthInsight] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // Load saved profile data (week + weight) on mount
+  // Sync healthData when central profile loads/changes
   useEffect(() => {
-    UserProfileService.get().then(profile => {
-      if (profile) {
-        setHealthData(prev => ({
-          ...prev,
-          weekOfPregnancy: profile.pregnancy_week ?? prev.weekOfPregnancy,
-          weight: profile.weight ? String(profile.weight) : prev.weight,
-          mood: profile.mood ?? prev.mood,
-        }));
-      }
-    });
-  }, []);
+    setHealthData(prev => ({
+      ...prev,
+      weekOfPregnancy: userProfile.pregnancyWeek ?? prev.weekOfPregnancy,
+      weight: userProfile.weight ? String(userProfile.weight) : prev.weight,
+      mood: userProfile.mood ?? prev.mood,
+    }));
+  }, [userProfile.pregnancyWeek, userProfile.weight, userProfile.mood]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -686,10 +684,10 @@ const SmartDashboard = () => {
 
                 <Button className="w-full" onClick={() => {
                   setHealthSaved(true);
-                  // Persist to shared user profile so other tools read it
-                  UserProfileService.upsert({
-                    pregnancy_week: healthData.weekOfPregnancy,
-                    weight: parseFloat(healthData.weight) || undefined,
+                  // Persist to central user profile so all tools read it
+                  updateUserProfile({
+                    pregnancyWeek: healthData.weekOfPregnancy,
+                    weight: parseFloat(healthData.weight) || null,
                     mood: healthData.mood,
                   });
                   // Generate AI health insight
