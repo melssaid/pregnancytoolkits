@@ -3147,6 +3147,8 @@
       "quickTips": "Quick Tips",
       "nutritionVideos": "Pregnancy Nutrition Videos",
       "nutritionVideosSubtitle": "Expert guidance on healthy eating",
+      "allergiesLabel": "Allergies & Intolerances",
+      "prepTimeLabel": "Preparation Time",
       "trimesters": {
         "first": "First Trimester",
         "second": "Second Trimester",
@@ -3172,6 +3174,19 @@
         "low-sodium": "Low Sodium",
         "iron-rich": "Iron Rich",
         "calcium-rich": "Calcium Rich"
+      },
+      "allergies": {
+        "gluten": "Gluten",
+        "dairy": "Dairy",
+        "nuts": "Nuts",
+        "eggs": "Eggs",
+        "soy": "Soy",
+        "seafood": "Seafood"
+      },
+      "prepTimes": {
+        "quick": "Quick (< 15 min)",
+        "medium": "Medium (15-30 min)",
+        "elaborate": "Elaborate (30+ min)"
       },
       "tips": {
         "smallMeals": "Eat 5-6 small meals daily",
@@ -4195,21 +4210,6 @@
       "longTermPlan": { "title": "Long-term Plan", "desc": "Discuss contraception and future plans" },
       "selfCare": { "title": "Self-Care Routine", "desc": "Establish ongoing self-care practices" }
     }
-  },
-  "toolsInternal.mealSuggestion.allergiesLabel": "Allergies & Intolerances",
-  "toolsInternal.mealSuggestion.allergies": {
-    "gluten": "Gluten",
-    "dairy": "Dairy",
-    "nuts": "Nuts",
-    "eggs": "Eggs",
-    "soy": "Soy",
-    "seafood": "Seafood"
-  },
-  "toolsInternal.mealSuggestion.prepTimeLabel": "Preparation Time",
-  "toolsInternal.mealSuggestion.prepTimes": {
-    "quick": "Quick (< 15 min)",
-    "medium": "Medium (15-30 min)",
-    "elaborate": "Elaborate (30+ min)"
   },
   "toolsInternal.recipeModifier": {
     "title": "AI Recipe Modifier",
