@@ -44,68 +44,68 @@ interface HealthData {
   weekOfPregnancy: number;
 }
 
-// أدوات التتبع والتخزين - مرتبة منطقياً
+// أدوات التتبع والتخزين - مرتبة منطقياً بدون تكرار
 const trackingTools = [
   { 
     categoryKey: "dailyTracking",
     icon: Clock,
     tools: [
-      { id: "kick-counter", titleKey: "kickCounter", icon: Hand, href: "/tools/kick-counter", descKey: "kickCounterDesc" },
-      { id: "weight-gain", titleKey: "weightTracker", icon: Scale, href: "/tools/weight-gain", descKey: "weightTrackerDesc" },
-      { id: "vitamin-tracker", titleKey: "vitaminTracker", icon: Pill, href: "/tools/vitamin-tracker", descKey: "vitaminTrackerDesc" },
+      { id: "kick-counter",    titleKey: "kickCounter",    icon: Hand,   href: "/tools/kick-counter",    descKey: "kickCounterDesc" },
+      { id: "weight-gain",     titleKey: "weightTracker",  icon: Scale,  href: "/tools/weight-gain",     descKey: "weightTrackerDesc" },
+      { id: "vitamin-tracker", titleKey: "vitaminTracker", icon: Pill,   href: "/tools/vitamin-tracker", descKey: "vitaminTrackerDesc" },
     ]
   },
   { 
     categoryKey: "planning",
     icon: Calendar,
     tools: [
-      { id: "smart-appointment", titleKey: "appointments", icon: Bell, href: "/tools/smart-appointment-reminder", descKey: "appointmentsDesc" },
-      { id: "birth-plan", titleKey: "birthPlan", icon: FileText, href: "/tools/ai-birth-plan", descKey: "birthPlanDesc" },
-      { id: "hospital-bag", titleKey: "hospitalBag", icon: Briefcase, href: "/tools/ai-hospital-bag", descKey: "hospitalBagDesc" },
+      { id: "smart-appointment", titleKey: "appointments", icon: Bell,     href: "/tools/smart-appointment-reminder", descKey: "appointmentsDesc" },
+      { id: "birth-plan",        titleKey: "birthPlan",    icon: FileText, href: "/tools/ai-birth-plan",              descKey: "birthPlanDesc" },
+      { id: "hospital-bag",      titleKey: "hospitalBag",  icon: Briefcase,href: "/tools/ai-hospital-bag",            descKey: "hospitalBagDesc" },
     ]
   },
   { 
     categoryKey: "growth",
     icon: TrendingUp,
     tools: [
-      { id: "fetal-growth", titleKey: "fetalGrowth", icon: TrendingUp, href: "/tools/fetal-growth", descKey: "fetalGrowthDesc" },
-      { id: "baby-growth", titleKey: "babyGrowth", icon: Ruler, href: "/tools/baby-growth", descKey: "babyGrowthDesc" },
-      { id: "bump-photos", titleKey: "bumpPhotos", icon: Camera, href: "/tools/ai-bump-photos", descKey: "bumpPhotosDesc" },
+      { id: "fetal-growth", titleKey: "fetalGrowth", icon: TrendingUp, href: "/tools/fetal-growth",    descKey: "fetalGrowthDesc" },
+      { id: "baby-growth",  titleKey: "babyGrowth",  icon: Ruler,      href: "/tools/baby-growth",     descKey: "babyGrowthDesc" },
+      { id: "bump-photos",  titleKey: "bumpPhotos",  icon: Camera,     href: "/tools/ai-bump-photos",  descKey: "bumpPhotosDesc" },
     ]
   },
   { 
     categoryKey: "postpartum",
     icon: Baby,
     tools: [
-      { id: "baby-sleep", titleKey: "babySleep", icon: Moon, href: "/tools/baby-sleep-tracker", descKey: "babySleepDesc" },
-      { id: "diaper-tracker", titleKey: "diaperTracker", icon: Baby, href: "/tools/diaper-tracker", descKey: "diaperTrackerDesc" },
-      { id: "grocery-list", titleKey: "groceryList", icon: ShoppingCart, href: "/tools/smart-grocery-list", descKey: "groceryListDesc" },
+      { id: "baby-sleep",     titleKey: "babySleep",     icon: Moon,  href: "/tools/baby-sleep-tracker", descKey: "babySleepDesc" },
+      { id: "diaper-tracker", titleKey: "diaperTracker", icon: Baby,  href: "/tools/diaper-tracker",     descKey: "diaperTrackerDesc" },
+      { id: "baby-cry",       titleKey: "babyCry",       icon: Brain, href: "/tools/baby-cry-translator",descKey: "babyCryDesc" },
     ]
   },
 ];
 
 const quickQuestionKeys = [
-  { icon: Baby, key: "firstTrimester", color: "from-primary to-pink-500" },
-  { icon: Pill, key: "coffee", color: "from-amber-500 to-orange-500" },
-  { icon: Stethoscope, key: "labor", color: "from-blue-500 to-indigo-500" },
-  { icon: Salad, key: "vitamins", color: "from-emerald-500 to-green-500" },
+  { icon: Baby,       key: "firstTrimester", color: "from-primary to-pink-500" },
+  { icon: Pill,       key: "coffee",         color: "from-amber-500 to-orange-500" },
+  { icon: Stethoscope,key: "labor",          color: "from-blue-500 to-indigo-500" },
+  { icon: Salad,      key: "vitamins",       color: "from-emerald-500 to-green-500" },
 ];
 
 const nutritionKeys = [
   { key: "breakfast", calories: 350 },
-  { key: "lunch", calories: 550 },
-  { key: "dinner", calories: 400 },
-  { key: "snacks", calories: 200 },
+  { key: "lunch",     calories: 550 },
+  { key: "dinner",    calories: 400 },
+  { key: "snacks",    calories: 200 },
 ];
 
+// Exercise links - distinct tools, no overlaps
 const exerciseKeys = [
-  { key: "walking", href: "/tools/smart-walking-coach" },
+  { key: "walking",  href: "/tools/smart-walking-coach" },
   { key: "swimming", href: "/tools/ai-fitness-coach" },
-  { key: "yoga", href: "/tools/smart-stretch-reminder" },
-  { key: "kegel", href: "/tools/ai-fitness-coach" },
+  { key: "yoga",     href: "/tools/smart-stretch-reminder" },
+  { key: "kegel",    href: "/tools/personalized-workout-planner" },
 ];
 
-// Videos now use VideoLibrary component with generalVideosByLang
 
 const symptomKeys = ["nausea", "headache", "fatigue", "backPain", "swelling", "heartburn", "insomnia"] as const;
 
@@ -447,10 +447,10 @@ const SmartDashboard = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { title: t('dashboard.aiToolsList.aiAssistant'), icon: Bot, href: "/tools/pregnancy-assistant" },
-                    { title: t('dashboard.aiToolsList.symptoms'), icon: Stethoscope, href: "/tools/symptom-analyzer" },
-                    { title: t('dashboard.aiToolsList.weekly'), icon: Sparkles, href: "/tools/weekly-summary" },
-                    { title: t('dashboard.tabs.nutrition'), icon: Utensils, href: "/tools/meal-suggestion" },
+                    { title: t('dashboard.aiToolsList.aiAssistant'), icon: Bot,         href: "/tools/pregnancy-assistant" },
+                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/symptom-analyzer" },
+                    { title: t('dashboard.aiToolsList.weekly'),      icon: Sparkles,     href: "/tools/weekly-summary" },
+                    { title: t('dashboard.aiToolsList.smartPlan'),   icon: CalendarCheck,href: "/tools/smart-plan" },
                   ].map((link, i) => (
                     <Link
                       key={i}
@@ -596,13 +596,31 @@ const SmartDashboard = () => {
           </motion.div>
         )}
 
-        {/* Health Tab */}
+        {/* Health Tab - Daily check-in only (week/weight managed in Settings > Profile) */}
         {activeTab === "health" && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
+            {/* Read-only profile summary from central profile */}
+            <div className="flex items-center justify-between px-1">
+              <div className="flex gap-3">
+                <div className="flex flex-col items-center bg-primary/8 rounded-xl px-4 py-2 border border-primary/15">
+                  <span className="text-lg font-bold text-primary">{healthData.weekOfPregnancy}</span>
+                  <span className="text-[10px] text-muted-foreground">{t('dashboard.health.weekOfPregnancy')}</span>
+                </div>
+                <div className="flex flex-col items-center bg-accent/8 rounded-xl px-4 py-2 border border-accent/15">
+                  <span className="text-lg font-bold text-accent">{healthData.weight || '—'} <span className="text-xs font-normal">kg</span></span>
+                  <span className="text-[10px] text-muted-foreground">{t('dashboard.health.weightKg')}</span>
+                </div>
+              </div>
+              <Link to="/settings" className="text-[10px] text-primary flex items-center gap-1 underline underline-offset-2">
+                <ChevronRight className="w-3 h-3" />
+                {t('settings.profile.title', 'Edit Profile')}
+              </Link>
+            </div>
+
             <Card>
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
@@ -611,27 +629,6 @@ const SmartDashboard = () => {
                 </h2>
 
                 <div className="grid grid-cols-2 gap-3 mb-4">
-                  <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.weekOfPregnancy')}</label>
-                    <Input
-                      type="number"
-                      min="1"
-                      max="42"
-                      value={healthData.weekOfPregnancy}
-                      onChange={(e) => setHealthData({ ...healthData, weekOfPregnancy: parseInt(e.target.value) || 1 })}
-                      className="text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.weightKg')}</label>
-                    <Input
-                      type="number"
-                      placeholder="65"
-                      value={healthData.weight}
-                      onChange={(e) => setHealthData({ ...healthData, weight: e.target.value })}
-                      className="text-sm"
-                    />
-                  </div>
                   <div>
                     <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.bloodPressure')}</label>
                     <Input
@@ -684,12 +681,8 @@ const SmartDashboard = () => {
 
                 <Button className="w-full" onClick={() => {
                   setHealthSaved(true);
-                  // Persist to central user profile so all tools read it
-                  updateUserProfile({
-                    pregnancyWeek: healthData.weekOfPregnancy,
-                    weight: parseFloat(healthData.weight) || null,
-                    mood: healthData.mood,
-                  });
+                  // Save only mood to central profile (week/weight managed in Settings)
+                  updateUserProfile({ mood: healthData.mood });
                   // Generate AI health insight
                   setAiHealthInsight('');
                   const symptomsList = healthData.symptoms.map(s => t(`dashboard.health.symptoms.${s}`)).join(', ');
