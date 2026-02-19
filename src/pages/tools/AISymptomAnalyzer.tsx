@@ -2,7 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Brain, Info, Loader2, Sparkles, Calendar, 
-  Clock, Trash2, ChevronDown, ChevronUp, Plus, Heart, SmilePlus, NotebookPen
+  Clock, Trash2, ChevronDown, ChevronUp, Plus, Heart, SmilePlus, NotebookPen,
+  Waves, BatteryLow, Zap, AlignCenterVertical, Wind, Footprints, Flame,
+  Moon, TrendingUp, Compass, Smile, Meh, Frown, Coffee, CloudRain,
+  type LucideIcon
 } from 'lucide-react';
 import { WellnessDiaryChart } from '@/components/charts/WellnessDiaryChart';
 import { ToolFrame } from '@/components/ToolFrame';
@@ -26,15 +29,27 @@ const SYMPTOM_IDS = [
   'swelling', 'heartburn', 'insomnia', 'moodswings', 'dizziness'
 ] as const;
 
-const SYMPTOM_EMOJIS: Record<string, string> = {
-  nausea: '🤢', fatigue: '😴', headache: '🤕', backpain: '💆',
-  cramps: '⚡', swelling: '🦶', heartburn: '🔥', insomnia: '🌙',
-  moodswings: '🎭', dizziness: '💫'
+const SYMPTOM_ICONS: Record<string, LucideIcon> = {
+  nausea:     Waves,
+  fatigue:    BatteryLow,
+  headache:   Zap,
+  backpain:   AlignCenterVertical,
+  cramps:     Wind,
+  swelling:   Footprints,
+  heartburn:  Flame,
+  insomnia:   Moon,
+  moodswings: TrendingUp,
+  dizziness:  Compass,
 };
 
 const MOOD_OPTIONS = ['great', 'good', 'okay', 'tired', 'tough'] as const;
-const MOOD_EMOJIS: Record<string, string> = {
-  great: '😊', good: '🙂', okay: '😐', tired: '😴', tough: '😟'
+
+const MOOD_ICONS: Record<string, LucideIcon> = {
+  great: Smile,
+  good:  SmilePlus,
+  okay:  Meh,
+  tired: Coffee,
+  tough: CloudRain,
 };
 
 interface DiaryEntry {
@@ -191,22 +206,25 @@ Please provide brief, supportive wellness insights about these feelings during w
               <h2 className="text-sm font-semibold">{t('toolsInternal.symptomAnalyzer.howFeeling')}</h2>
             </div>
             <div className="grid grid-cols-5 gap-1.5">
-              {MOOD_OPTIONS.map(mood => (
-                <button
-                  key={mood}
-                  onClick={() => setSelectedMood(prev => prev === mood ? '' : mood)}
-                  className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all ${
-                    selectedMood === mood
-                      ? 'bg-primary/15 ring-2 ring-primary/40 shadow-sm'
-                      : 'bg-muted/60 hover:bg-muted'
-                  }`}
-                >
-                  <span className="text-2xl">{MOOD_EMOJIS[mood]}</span>
-                  <span className="text-[10px] font-medium leading-tight text-center">
-                    {t(`toolsInternal.symptomAnalyzer.moods.${mood}`)}
-                  </span>
-                </button>
-              ))}
+              {MOOD_OPTIONS.map(mood => {
+                const MoodIcon = MOOD_ICONS[mood];
+                return (
+                  <button
+                    key={mood}
+                    onClick={() => setSelectedMood(prev => prev === mood ? '' : mood)}
+                    className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all ${
+                      selectedMood === mood
+                        ? 'bg-primary/15 ring-2 ring-primary/40 shadow-sm'
+                        : 'bg-muted/60 hover:bg-muted'
+                    }`}
+                  >
+                    <MoodIcon className={`w-5 h-5 ${selectedMood === mood ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <span className="text-[10px] font-medium leading-tight text-center">
+                      {t(`toolsInternal.symptomAnalyzer.moods.${mood}`)}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </CardContent>
         </Card>
@@ -221,17 +239,18 @@ Please provide brief, supportive wellness insights about these feelings during w
             <div className="grid grid-cols-2 gap-1.5">
               {SYMPTOM_IDS.map(id => {
                 const isSelected = selectedSymptoms.includes(id);
+                const SymptomIcon = SYMPTOM_ICONS[id];
                 return (
                   <button
                     key={id}
                     onClick={() => toggleSymptom(id)}
-                    className={`flex items-center gap-2 p-2 rounded-xl text-start transition-all text-xs ${
+                    className={`flex items-center gap-2 p-2.5 rounded-xl text-start transition-all text-xs ${
                       isSelected
                         ? 'bg-primary/15 ring-1 ring-primary/40 shadow-sm'
                         : 'bg-muted/60 hover:bg-muted'
                     }`}
                   >
-                    <span className="text-base shrink-0">{SYMPTOM_EMOJIS[id]}</span>
+                    <SymptomIcon className={`w-4 h-4 shrink-0 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`} />
                     <span className="font-medium truncate">
                       {t(`toolsInternal.symptomAnalyzer.symptoms.${id}`)}
                     </span>
@@ -337,61 +356,70 @@ Please provide brief, supportive wellness insights about these feelings during w
 
               {showHistory && (
                 <div className="mt-3 space-y-2 max-h-[400px] overflow-y-auto">
-                  {entries.slice(0, 30).map(entry => (
-                    <div key={entry.id} className="bg-muted/40 rounded-xl p-2.5 border border-border/50">
-                      <div className="flex items-center justify-between mb-1.5">
-                        <div className="flex items-center gap-1.5 flex-wrap">
-                          <span className="text-[10px] text-muted-foreground">
-                            {new Date(entry.createdAt).toLocaleDateString()}
-                          </span>
-                          <Badge variant="outline" className="text-[9px] px-1.5 py-0">
-                            {t('toolsInternal.symptomAnalyzer.week', { week: entry.week })}
-                          </Badge>
-                          {entry.mood && <span>{MOOD_EMOJIS[entry.mood]}</span>}
-                        </div>
-                        <button
-                          onClick={() => deleteEntry(entry.id)}
-                          className="text-muted-foreground hover:text-destructive transition-colors p-1"
-                        >
-                          <Trash2 className="w-3 h-3" />
-                        </button>
-                      </div>
-
-                      {entry.symptoms.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mb-1">
-                          {entry.symptoms.map(s => (
-                            <span key={s} className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full">
-                              {SYMPTOM_EMOJIS[s]} {t(`toolsInternal.symptomAnalyzer.symptoms.${s}`)}
+                  {entries.slice(0, 30).map(entry => {
+                    const EntryMoodIcon = entry.mood ? MOOD_ICONS[entry.mood] : null;
+                    return (
+                      <div key={entry.id} className="bg-muted/40 rounded-xl p-2.5 border border-border/50">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="text-[10px] text-muted-foreground">
+                              {new Date(entry.createdAt).toLocaleDateString()}
                             </span>
-                          ))}
-                        </div>
-                      )}
-
-                      {entry.notes && (
-                        <p className="text-[11px] text-muted-foreground mt-1 line-clamp-2">{entry.notes}</p>
-                      )}
-
-                      {entry.aiInsight && (
-                        <>
+                            <Badge variant="outline" className="text-[9px] px-1.5 py-0">
+                              {t('toolsInternal.symptomAnalyzer.week', { week: entry.week })}
+                            </Badge>
+                            {EntryMoodIcon && (
+                              <EntryMoodIcon className="w-3.5 h-3.5 text-primary" />
+                            )}
+                          </div>
                           <button
-                            onClick={() => setExpandedEntry(expandedEntry === entry.id ? null : entry.id)}
-                            className="text-[10px] text-primary mt-1 flex items-center gap-1"
+                            onClick={() => deleteEntry(entry.id)}
+                            className="text-muted-foreground hover:text-destructive transition-colors p-1"
                           >
-                            <Sparkles className="w-3 h-3" />
-                            {expandedEntry === entry.id 
-                              ? t('toolsInternal.symptomAnalyzer.hideInsight')
-                              : t('toolsInternal.symptomAnalyzer.showInsight')
-                            }
+                            <Trash2 className="w-3 h-3" />
                           </button>
-                          {expandedEntry === entry.id && (
-                            <div className="mt-2 p-2 bg-accent/5 rounded-lg text-[11px]">
-                              <MarkdownRenderer content={entry.aiInsight} />
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  ))}
+                        </div>
+
+                        {entry.symptoms.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mb-1">
+                            {entry.symptoms.map(s => {
+                              const SIcon = SYMPTOM_ICONS[s];
+                              return (
+                                <span key={s} className="inline-flex items-center gap-1 text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full">
+                                  {SIcon && <SIcon className="w-2.5 h-2.5" />}
+                                  {t(`toolsInternal.symptomAnalyzer.symptoms.${s}`)}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        {entry.notes && (
+                          <p className="text-[11px] text-muted-foreground mt-1 line-clamp-2">{entry.notes}</p>
+                        )}
+
+                        {entry.aiInsight && (
+                          <>
+                            <button
+                              onClick={() => setExpandedEntry(expandedEntry === entry.id ? null : entry.id)}
+                              className="text-[10px] text-primary mt-1 flex items-center gap-1"
+                            >
+                              <Sparkles className="w-3 h-3" />
+                              {expandedEntry === entry.id 
+                                ? t('toolsInternal.symptomAnalyzer.hideInsight')
+                                : t('toolsInternal.symptomAnalyzer.showInsight')
+                              }
+                            </button>
+                            {expandedEntry === entry.id && (
+                              <div className="mt-2 p-2 bg-accent/5 rounded-lg text-[11px]">
+                                <MarkdownRenderer content={entry.aiInsight} />
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </CardContent>
