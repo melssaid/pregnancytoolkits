@@ -309,15 +309,19 @@ Please provide detailed recovery advice for this phase including:
                 <Button
                   onClick={() => getAIAdvice(phase)}
                   disabled={isLoading}
-                  className="w-full gap-2 rounded-xl"
-                  variant={aiAdvice ? "outline" : "default"}
+                  className={`w-full gap-2 h-10 rounded-xl text-[13px] transition-all ${
+                    aiAdvice
+                      ? "border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10"
+                      : "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm shadow-primary/20 hover:opacity-90"
+                  }`}
+                  variant="ghost"
                 >
                   {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin shrink-0" />
                   ) : (
-                    <Sparkles className="w-4 h-4" />
+                    <Sparkles className="w-4 h-4 shrink-0" />
                   )}
-                  {t("toolsInternal.postpartumRecovery.getAIAdvice")}
+                  <span className="truncate">{t("toolsInternal.postpartumRecovery.getAIAdvice")}</span>
                 </Button>
               </CardContent>
             </Card>
