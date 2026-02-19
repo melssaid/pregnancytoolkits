@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Clock, Trash2, TrendingUp, BarChart3, Sparkles, Loader2, AlertTriangle, ChevronRight } from "lucide-react";
+import { Moon, Sun, Clock, Trash2, TrendingUp, BarChart3, Sparkles, Loader2, AlertTriangle, ChevronRight, Brain } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, differenceInMinutes, startOfDay, subDays, eachDayOfInterval } from "date-fns";
 import { formatLocalized } from "@/lib/dateLocale";
