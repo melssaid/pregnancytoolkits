@@ -3717,4 +3717,16 @@
       "deepBreathing": { "name": "Respiration profonde", "desc": "Respirations lentes et profondes, mains sur le ventre", "bodyPart": "Relaxation" }
     }
   }
+  ,"aiErrors": {
+    "rateLimitTitle": "Trop de requêtes",
+    "rateLimitMsg": "Vous avez envoyé trop de requêtes. Veuillez attendre un moment et réessayer.",
+    "paymentTitle": "Service indisponible",
+    "paymentMsg": "Les crédits IA sont épuisés. Veuillez ajouter des crédits pour continuer.",
+    "networkTitle": "Erreur de connexion",
+    "networkMsg": "Impossible de se connecter au service IA. Vérifiez votre connexion et réessayez.",
+    "unknownTitle": "Une erreur s'est produite",
+    "unknownMsg": "L'assistant IA a rencontré une erreur inattendue. Veuillez réessayer.",
+    "retry": "Réessayer",
+    "dismiss": "Fermer"
+  }
 }

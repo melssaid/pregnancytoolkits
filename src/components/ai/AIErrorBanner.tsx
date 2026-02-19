@@ -1,0 +1,129 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion';
+import { WifiOff, Clock, CreditCard, AlertCircle, RefreshCw, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import type { AIErrorType } from '@/hooks/usePregnancyAI';
+
+interface AIErrorBannerProps {
+  errorType: AIErrorType | null;
+  message: string | null;
+  onRetry?: () => void;
+  onDismiss?: () => void;
+}
+
+const iconMap: Record<AIErrorType, React.ElementType> = {
+  rate_limit: Clock,
+  payment: CreditCard,
+  network: WifiOff,
+  unknown: AlertCircle,
+};
+
+const colorMap: Record<AIErrorType, { bg: string; border: string; icon: string; badge: string }> = {
+  rate_limit: {
+    bg: 'bg-amber-50 dark:bg-amber-950/20',
+    border: 'border-amber-200/60 dark:border-amber-800/40',
+    icon: 'text-amber-600 dark:text-amber-400',
+    badge: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300',
+  },
+  payment: {
+    bg: 'bg-rose-50 dark:bg-rose-950/20',
+    border: 'border-rose-200/60 dark:border-rose-800/40',
+    icon: 'text-rose-600 dark:text-rose-400',
+    badge: 'bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300',
+  },
+  network: {
+    bg: 'bg-blue-50 dark:bg-blue-950/20',
+    border: 'border-blue-200/60 dark:border-blue-800/40',
+    icon: 'text-blue-600 dark:text-blue-400',
+    badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300',
+  },
+  unknown: {
+    bg: 'bg-muted/40',
+    border: 'border-border/60',
+    icon: 'text-muted-foreground',
+    badge: 'bg-muted text-muted-foreground',
+  },
+};
+
+const titleKeyMap: Record<AIErrorType, string> = {
+  rate_limit: 'aiErrors.rateLimitTitle',
+  payment: 'aiErrors.paymentTitle',
+  network: 'aiErrors.networkTitle',
+  unknown: 'aiErrors.unknownTitle',
+};
+
+export const AIErrorBanner: React.FC<AIErrorBannerProps> = ({
+  errorType,
+  message,
+  onRetry,
+  onDismiss,
+}) => {
+  const { t } = useTranslation();
+
+  const visible = !!(errorType && message);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: -8, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -8, scale: 0.97 }}
+          transition={{ duration: 0.25 }}
+          className={`rounded-2xl border p-3.5 ${colorMap[errorType!].bg} ${colorMap[errorType!].border}`}
+        >
+          <div className="flex items-start gap-3">
+            <div className={`p-1.5 rounded-lg ${colorMap[errorType!].badge} shrink-0`}>
+              {React.createElement(iconMap[errorType!], { className: `w-4 h-4 ${colorMap[errorType!].icon}` })}
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <p className={`text-xs font-semibold mb-0.5 ${colorMap[errorType!].icon}`}>
+                {t(titleKeyMap[errorType!])}
+              </p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{message}</p>
+
+              {(onRetry || onDismiss) && (
+                <div className="flex gap-2 mt-2.5">
+                  {onRetry && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={onRetry}
+                      className={`h-7 text-[11px] gap-1.5 border ${colorMap[errorType!].border} ${colorMap[errorType!].icon} hover:opacity-80`}
+                    >
+                      <RefreshCw className="w-3 h-3" />
+                      {t('aiErrors.retry')}
+                    </Button>
+                  )}
+                  {onDismiss && (
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={onDismiss}
+                      className="h-7 text-[11px] text-muted-foreground hover:text-foreground"
+                    >
+                      {t('aiErrors.dismiss')}
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {onDismiss && (
+              <button
+                onClick={onDismiss}
+                className="shrink-0 p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default AIErrorBanner;
