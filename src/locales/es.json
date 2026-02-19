@@ -3916,4 +3916,16 @@
       "deepBreathing": { "name": "Respiración profunda", "desc": "Respiraciones lentas y profundas con manos en el vientre", "bodyPart": "Relajación" }
     }
   }
+  ,"aiErrors": {
+    "rateLimitTitle": "Demasiadas solicitudes",
+    "rateLimitMsg": "Has enviado demasiadas solicitudes. Espera un momento e inténtalo de nuevo.",
+    "paymentTitle": "Servicio no disponible",
+    "paymentMsg": "Los créditos de IA se han agotado. Por favor añade créditos para continuar.",
+    "networkTitle": "Error de conexión",
+    "networkMsg": "No se pudo conectar al servicio de IA. Verifica tu conexión e inténtalo de nuevo.",
+    "unknownTitle": "Algo salió mal",
+    "unknownMsg": "El asistente de IA encontró un error inesperado. Por favor inténtalo de nuevo.",
+    "retry": "Reintentar",
+    "dismiss": "Cerrar"
+  }
 }

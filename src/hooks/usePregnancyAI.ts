@@ -1,8 +1,9 @@
 import { useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-
 type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery";
+
+export type AIErrorType = "rate_limit" | "payment" | "network" | "unknown";
 
 interface Message {
   role: "user" | "assistant";
@@ -23,11 +24,20 @@ interface AIContext {
 export function usePregnancyAI() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { i18n } = useTranslation();
+  const [errorType, setErrorType] = useState<AIErrorType | null>(null);
+  const { i18n, t } = useTranslation();
 
-  // Use a ref so streamChat always reads the latest language without needing to be in the dep array
   const languageRef = useRef(i18n.language);
   languageRef.current = i18n.language;
+
+  const resolveError = useCallback((status?: number, rawMsg?: string): { msg: string; type: AIErrorType } => {
+    if (status === 429) return { msg: t('aiErrors.rateLimitMsg'), type: 'rate_limit' };
+    if (status === 402) return { msg: t('aiErrors.paymentMsg'), type: 'payment' };
+    if (rawMsg?.toLowerCase().includes('fetch') || rawMsg?.toLowerCase().includes('network') || rawMsg?.toLowerCase().includes('connect')) {
+      return { msg: t('aiErrors.networkMsg'), type: 'network' };
+    }
+    return { msg: t('aiErrors.unknownMsg'), type: 'unknown' };
+  }, [t]);
 
   const streamChat = useCallback(
     async ({
@@ -45,11 +55,9 @@ export function usePregnancyAI() {
     }) => {
       setIsLoading(true);
       setError(null);
+      setErrorType(null);
 
-      // Always read the LATEST language from the ref at call time
       const currentLang = languageRef.current?.split('-')[0] || 'en';
-
-      // Add language to context
       const contextWithLanguage = {
         ...context,
         language: context?.language || currentLang,
@@ -69,18 +77,19 @@ export function usePregnancyAI() {
         );
 
         if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          if (response.status === 429) {
-            throw new Error("تم تجاوز حد الطلبات، يرجى المحاولة لاحقاً");
-          }
-          if (response.status === 402) {
-            throw new Error("الخدمة غير متاحة حالياً");
-          }
-          throw new Error(errorData.error || "فشل في الاتصال بالمساعد الذكي");
+          const { msg, type: errType } = resolveError(response.status);
+          setError(msg);
+          setErrorType(errType);
+          onDone();
+          return;
         }
 
         if (!response.body) {
-          throw new Error("لا يوجد استجابة");
+          const { msg, type: errType } = resolveError(undefined, 'network');
+          setError(msg);
+          setErrorType(errType);
+          onDone();
+          return;
         }
 
         const reader = response.body.getReader();
@@ -118,21 +127,23 @@ export function usePregnancyAI() {
 
         onDone();
       } catch (err) {
-        const message = err instanceof Error ? err.message : "خطأ غير معروف";
-        setError(message);
+        const raw = err instanceof Error ? err.message : "";
+        const { msg, type: errType } = resolveError(undefined, raw);
+        setError(msg);
+        setErrorType(errType);
         onDone();
       } finally {
         setIsLoading(false);
       }
     },
-    []
+    [resolveError]
   );
 
-  // Simple non-streaming content generation
   const generateContent = useCallback(
     async (prompt: string): Promise<string | null> => {
       setIsLoading(true);
       setError(null);
+      setErrorType(null);
       let result = "";
 
       try {
@@ -140,24 +151,26 @@ export function usePregnancyAI() {
           streamChat({
             type: "pregnancy-assistant",
             messages: [{ role: "user", content: prompt }],
-            onDelta: (text) => {
-              result += text;
-            },
-            onDone: () => {
-              resolve();
-            },
+            onDelta: (text) => { result += text; },
+            onDone: resolve,
           });
         });
-
         return result || null;
       } catch (err) {
-        const message = err instanceof Error ? err.message : "خطأ غير معروف";
-        setError(message);
+        const raw = err instanceof Error ? err.message : "";
+        const { msg, type: errType } = resolveError(undefined, raw);
+        setError(msg);
+        setErrorType(errType);
         return null;
       }
     },
-    [streamChat]
+    [streamChat, resolveError]
   );
 
-  return { streamChat, generateContent, isLoading, error };
+  const clearError = useCallback(() => {
+    setError(null);
+    setErrorType(null);
+  }, []);
+
+  return { streamChat, generateContent, isLoading, error, errorType, clearError };
 }

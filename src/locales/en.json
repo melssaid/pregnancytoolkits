@@ -4490,4 +4490,16 @@
     "summaryText": "Continue following your personalized plan and consult your doctor for any concerns.",
     "doctorNotes": "Doctor's Notes"
   }
+  ,"aiErrors": {
+    "rateLimitTitle": "Too Many Requests",
+    "rateLimitMsg": "You've sent too many requests. Please wait a moment and try again.",
+    "paymentTitle": "Service Unavailable",
+    "paymentMsg": "AI credits have been used up. Please add credits to continue.",
+    "networkTitle": "Connection Error",
+    "networkMsg": "Could not connect to the AI service. Please check your connection and try again.",
+    "unknownTitle": "Something Went Wrong",
+    "unknownMsg": "The AI assistant encountered an unexpected error. Please try again.",
+    "retry": "Try Again",
+    "dismiss": "Dismiss"
+  }
 }

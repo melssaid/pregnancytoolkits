@@ -3916,4 +3916,16 @@
       "deepBreathing": { "name": "Derin nefes", "desc": "Ellerinizi karnınızda tutarak yavaş, derin nefesler", "bodyPart": "Rahatlama" }
     }
   }
+  ,"aiErrors": {
+    "rateLimitTitle": "Çok fazla istek",
+    "rateLimitMsg": "Çok fazla istek gönderdiniz. Lütfen bir süre bekleyip tekrar deneyin.",
+    "paymentTitle": "Hizmet kullanılamıyor",
+    "paymentMsg": "Yapay zeka kredileri tükendi. Devam etmek için lütfen kredi ekleyin.",
+    "networkTitle": "Bağlantı hatası",
+    "networkMsg": "Yapay zeka hizmetine bağlanılamadı. Bağlantınızı kontrol edip tekrar deneyin.",
+    "unknownTitle": "Bir şeyler ters gitti",
+    "unknownMsg": "Yapay zeka asistanı beklenmeyen bir hatayla karşılaştı. Lütfen tekrar deneyin.",
+    "retry": "Tekrar dene",
+    "dismiss": "Kapat"
+  }
 }

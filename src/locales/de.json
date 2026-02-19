@@ -3692,4 +3692,16 @@
       "deepBreathing": { "name": "Tiefes Atmen", "desc": "Langsame, tiefe Atemzüge mit Händen auf dem Bauch", "bodyPart": "Entspannung" }
     }
   }
+  ,"aiErrors": {
+    "rateLimitTitle": "Zu viele Anfragen",
+    "rateLimitMsg": "Sie haben zu viele Anfragen gesendet. Bitte warten Sie einen Moment und versuchen Sie es erneut.",
+    "paymentTitle": "Dienst nicht verfügbar",
+    "paymentMsg": "Das KI-Guthaben ist aufgebraucht. Bitte fügen Sie Guthaben hinzu, um fortzufahren.",
+    "networkTitle": "Verbindungsfehler",
+    "networkMsg": "Verbindung zum KI-Dienst fehlgeschlagen. Bitte überprüfen Sie Ihre Verbindung.",
+    "unknownTitle": "Etwas ist schiefgelaufen",
+    "unknownMsg": "Der KI-Assistent hat einen unerwarteten Fehler gefunden. Bitte versuchen Sie es erneut.",
+    "retry": "Erneut versuchen",
+    "dismiss": "Schließen"
+  }
 }
