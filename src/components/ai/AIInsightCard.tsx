@@ -6,7 +6,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 
 interface AIInsightCardProps {
@@ -22,8 +21,8 @@ interface AIInsightCardProps {
 export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false,
 }) => {
-  const { t } = useTranslation();
-  const { currentLanguage } = useLanguage();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language?.split('-')[0] || 'en';
   const { streamChat, isLoading, error, errorType, clearError } = usePregnancyAI();
   const [insight, setInsight] = useState('');
   const [isExpanded, setIsExpanded] = useState(autoExpand);
