@@ -8,12 +8,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { addDays, addWeeks, differenceInDays, format } from "date-fns";
+import { addDays, addWeeks, differenceInDays } from "date-fns";
+import { formatLocalized } from "@/lib/dateLocale";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useNotifications } from "@/hooks/useNotifications";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { dueDateVideosByLang } from "@/data/videoData";
 
@@ -34,6 +36,7 @@ const isValidSaved = (data: unknown): data is SavedDueDate[] => {
 
 export default function DueDateCalculator() {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { toast } = useToast();
   const { addNotification } = useNotifications();
   const { profile: userProfile, setLastPeriodDate: saveProfileLMP } = useUserProfile();
@@ -122,7 +125,7 @@ export default function DueDateCalculator() {
 
   const setReminder = (saved: SavedDueDate) => {
     const dueDate = new Date(saved.dueDate);
-    const formattedDate = format(dueDate, "MMMM d, yyyy");
+    const formattedDate = formatLocalized(dueDate, "MMMM d, yyyy", currentLanguage);
     
     addNotification({
       type: 'appointment',
@@ -166,7 +169,7 @@ export default function DueDateCalculator() {
 
   const shareResult = async () => {
     if (!result) return;
-    const text = `${t('toolsInternal.dueDate.estimatedDueDate')}: ${format(result.dueDate, "MMMM d, yyyy")}\n${t('toolsInternal.dueDate.currentlyAt')}: ${t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}\n${t('toolsInternal.dueDate.trimester', { number: result.trimester })}`;
+    const text = `${t('toolsInternal.dueDate.estimatedDueDate')}: ${formatLocalized(result.dueDate, "MMMM d, yyyy", currentLanguage)}\n${t('toolsInternal.dueDate.currentlyAt')}: ${t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}\n${t('toolsInternal.dueDate.trimester', { number: result.trimester })}`;
     
     if (navigator.share) {
       try {
@@ -270,7 +273,7 @@ export default function DueDateCalculator() {
                     <div className="rounded-lg bg-primary p-4 text-center">
                       <p className="text-xs text-primary-foreground/80 mb-1">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
                       <p className="text-sm font-bold text-primary-foreground">
-                        {format(result.dueDate, "MMMM d, yyyy")}
+                        {formatLocalized(result.dueDate, "MMMM d, yyyy", currentLanguage)}
                       </p>
                     </div>
 
@@ -290,19 +293,19 @@ export default function DueDateCalculator() {
                       <div className="rounded-lg bg-card p-3 shadow-card">
                         <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.conception')}</p>
                         <p className="font-medium text-foreground">
-                          {format(result.conception, "MMM d")}
+                          {formatLocalized(result.conception, "MMM d", currentLanguage)}
                         </p>
                       </div>
                       <div className="rounded-lg bg-card p-3 shadow-card">
                         <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.secondTrimester')}</p>
                         <p className="font-medium text-foreground">
-                          {format(result.firstTrimesterEnd, "MMM d")}
+                          {formatLocalized(result.firstTrimesterEnd, "MMM d", currentLanguage)}
                         </p>
                       </div>
                       <div className="rounded-lg bg-card p-3 shadow-card">
                         <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.thirdTrimester')}</p>
                         <p className="font-medium text-foreground">
-                          {format(result.secondTrimesterEnd, "MMM d")}
+                          {formatLocalized(result.secondTrimesterEnd, "MMM d", currentLanguage)}
                         </p>
                       </div>
                     </div>
@@ -323,7 +326,7 @@ export default function DueDateCalculator() {
                 {/* AI Weekly Insights */}
                 <AIInsightCard
                   title={t('toolsInternal.dueDate.aiGuideTitle')}
-                  prompt={`I am currently ${result.currentWeeks} weeks and ${result.currentDays} days pregnant (Trimester ${result.trimester}). My due date is ${format(result.dueDate, "MMMM d, yyyy")}.
+                  prompt={`I am currently ${result.currentWeeks} weeks and ${result.currentDays} days pregnant (Trimester ${result.trimester}). My due date is ${formatLocalized(result.dueDate, "MMMM d, yyyy", currentLanguage)}.
 
 Please provide a comprehensive weekly guide:
 
@@ -365,10 +368,10 @@ A supportive message for this stage of pregnancy`}
                       >
                         <div className="min-w-0 flex-1">
                           <p className="font-medium text-foreground text-sm break-words">
-                            {t('toolsInternal.dueDate.due')}: {format(new Date(saved.dueDate), "MMMM d, yyyy")}
+                            {t('toolsInternal.dueDate.due')}: {formatLocalized(new Date(saved.dueDate), "MMMM d, yyyy", currentLanguage)}
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            {t('toolsInternal.dueDate.calculated')}: {format(new Date(saved.calculatedAt), "MMM d, yyyy")}
+                            {t('toolsInternal.dueDate.calculated')}: {formatLocalized(new Date(saved.calculatedAt), "MMM d, yyyy", currentLanguage)}
                           </p>
                         </div>
                         <div className="flex gap-2 flex-shrink-0">
