@@ -59,7 +59,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
       updateProfile({ height: null });
     }
 
-    updateProfile({ bloodType: bloodType || null });
+    updateProfile({ bloodType: (bloodType && bloodType !== 'unknown') ? bloodType : null });
 
     if (selectedLMP) {
       const lmpStr = selectedLMP.toISOString().split('T')[0];
