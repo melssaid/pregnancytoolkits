@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { 
   Brain, Info, Loader2, Sparkles, Calendar, 
   Clock, Trash2, ChevronDown, ChevronUp, Plus, Heart, SmilePlus, NotebookPen
@@ -260,22 +261,37 @@ Please provide brief, supportive wellness insights about these feelings during w
 
         {/* AI Insight Button */}
         {selectedSymptoms.length > 0 && (
-          <Button
+          <motion.button
             onClick={getAIInsight}
             disabled={aiLoading || isGettingInsight}
-            variant="outline"
-            className="w-full gap-1.5 text-xs h-9"
+            whileTap={{ scale: 0.92 }}
+            className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {isGettingInsight ? (
-              <Loader2 className="w-3.5 h-3.5 animate-spin" />
-            ) : (
-              <Sparkles className="w-3.5 h-3.5" />
-            )}
-            {isGettingInsight 
-              ? t('toolsInternal.symptomAnalyzer.analyzing')
-              : t('toolsInternal.symptomAnalyzer.getInsights')
-            }
-          </Button>
+            <div
+              className="w-full flex items-center justify-center gap-3 px-5 py-4 font-semibold text-white text-sm rounded-2xl"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)',
+              }}
+            >
+              {isGettingInsight ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin shrink-0" />
+                  <span>{t('toolsInternal.symptomAnalyzer.analyzing')}</span>
+                </>
+              ) : (
+                <>
+                  <Brain className="w-4 h-4 shrink-0" />
+                  <span>{t('toolsInternal.symptomAnalyzer.getInsights')}</span>
+                  <Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" />
+                </>
+              )}
+              <span
+                className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none"
+                aria-hidden
+              />
+            </div>
+          </motion.button>
         )}
 
         {/* AI Response */}
