@@ -6,8 +6,10 @@ import {
   Loader2, 
   RefreshCw,
   History,
-  ChevronRight
+  ChevronRight,
+  Brain
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -157,19 +159,20 @@ export default function WeeklySummary() {
         {!summary ? (
           <>
             {/* Generate Button */}
-            <Button
+            <motion.button
+              whileTap={{ scale: 0.92 }}
               onClick={getSummary}
               disabled={isLoading}
-              className="w-full gap-2"
-              size="lg"
+              className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
+              style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
             >
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
               {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t("toolsInternal.weeklySummary.generating", "Generating...")}</span></>
               ) : (
-                <Sparkles className="w-4 h-4" />
+                <><Brain className="w-4 h-4 shrink-0" /><span>{t("toolsInternal.weeklySummary.showSummary", { week })}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>
               )}
-              {t("toolsInternal.weeklySummary.showSummary", { week })}
-            </Button>
+            </motion.button>
 
             {/* Real Previous Summaries — replaces fake static cards */}
             {savedSummaries.length > 0 ? (
@@ -245,13 +248,19 @@ export default function WeeklySummary() {
 
             {/* Actions */}
             <div className="flex gap-2">
-              <Button onClick={() => setSummary("")} variant="outline" className="flex-1">
+              <Button onClick={() => setSummary("")} variant="outline" className="flex-1 text-xs h-9">
                 {t("toolsInternal.weeklySummary.differentWeek")}
               </Button>
-              <Button onClick={getSummary} disabled={isLoading} className="flex-1 gap-2">
-                <RefreshCw className="w-4 h-4" />
+              <motion.button
+                whileTap={{ scale: 0.92 }}
+                onClick={getSummary}
+                disabled={isLoading}
+                className="relative flex-1 overflow-hidden rounded-md h-9 flex items-center justify-center gap-1.5 text-white text-xs font-semibold disabled:opacity-60 disabled:pointer-events-none"
+                style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
+              >
+                {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
                 {t("toolsInternal.weeklySummary.refresh")}
-              </Button>
+              </motion.button>
             </div>
           </>
         )}
