@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
+import { UserProfileService } from "@/services/localStorageServices";
 import { 
   Send, Bot, User, Home, MessageCircle, Heart, Utensils, Dumbbell, 
   Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
@@ -138,6 +139,20 @@ const SmartDashboard = () => {
   const [aiHealthInsight, setAiHealthInsight] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  // Load saved profile data (week + weight) on mount
+  useEffect(() => {
+    UserProfileService.get().then(profile => {
+      if (profile) {
+        setHealthData(prev => ({
+          ...prev,
+          weekOfPregnancy: profile.pregnancy_week ?? prev.weekOfPregnancy,
+          weight: profile.weight ? String(profile.weight) : prev.weight,
+          mood: profile.mood ?? prev.mood,
+        }));
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -291,11 +306,11 @@ const SmartDashboard = () => {
 
             {/* 2. Quick Stats - Daily Health Overview */}
             <QuickStats
-              weight={parseFloat(healthData.weight) || 0}
-              kicks={0}
+              weight={parseFloat(healthData.weight) || (stats.dailyTracking.lastWeight ? parseFloat(stats.dailyTracking.lastWeight) : 0)}
+              kicks={stats.dailyTracking.todayKicks}
               mood={healthData.mood}
-              waterGlasses={0}
-              nextAppointment={t('dashboard.checkAppointments')}
+              waterGlasses={stats.dailyTracking.vitaminsTaken}
+              nextAppointment={stats.planning.upcomingAppointments > 0 ? t('dashboard.checkAppointments') : undefined}
             />
 
             {/* 3. Smart Pregnancy Plan - Prominent CTA */}
@@ -671,6 +686,12 @@ const SmartDashboard = () => {
 
                 <Button className="w-full" onClick={() => {
                   setHealthSaved(true);
+                  // Persist to shared user profile so other tools read it
+                  UserProfileService.upsert({
+                    pregnancy_week: healthData.weekOfPregnancy,
+                    weight: parseFloat(healthData.weight) || undefined,
+                    mood: healthData.mood,
+                  });
                   // Generate AI health insight
                   setAiHealthInsight('');
                   const symptomsList = healthData.symptoms.map(s => t(`dashboard.health.symptoms.${s}`)).join(', ');
