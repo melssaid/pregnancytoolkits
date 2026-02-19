@@ -29,11 +29,11 @@ interface Appointment {
 }
 
 const APPOINTMENT_TYPES = [
-  { key: 'checkup', icon: Stethoscope, color: 'bg-primary/10 text-primary' },
-  { key: 'ultrasound', icon: Baby, color: 'bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400' },
-  { key: 'bloodTest', icon: TestTube, color: 'bg-rose-100 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400' },
-  { key: 'glucoseTest', icon: Activity, color: 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400' },
-  { key: 'other', icon: Calendar, color: 'bg-muted text-muted-foreground' },
+  { key: 'checkup',     icon: Stethoscope, color: 'bg-primary/10 text-primary' },
+  { key: 'ultrasound',  icon: Baby,        color: 'bg-accent/20 text-accent-foreground' },
+  { key: 'bloodTest',   icon: TestTube,    color: 'bg-destructive/10 text-destructive' },
+  { key: 'glucoseTest', icon: Activity,    color: 'bg-secondary text-secondary-foreground' },
+  { key: 'other',       icon: Calendar,    color: 'bg-muted text-muted-foreground' },
 ];
 
 const SmartAppointmentReminder: React.FC = () => {
@@ -357,10 +357,10 @@ Respond in the same language the user is using. Format as a numbered list (1-5),
               <p className="text-[10px] text-muted-foreground">{t('toolsInternal.appointmentReminder.upcoming')}</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-violet-100/50 to-violet-50/30 dark:from-violet-900/20 dark:to-violet-800/10 border-violet-200/50">
+          <Card className="bg-gradient-to-br from-accent/10 to-accent/5 border-accent/20">
             <CardContent className="p-3 text-center">
-              <Bell className="w-4 h-4 mx-auto mb-1 text-violet-500" />
-              <p className="text-lg font-bold text-violet-600 dark:text-violet-400">{currentWeek}</p>
+              <Bell className="w-4 h-4 mx-auto mb-1 text-accent-foreground" />
+              <p className="text-lg font-bold text-foreground">{currentWeek}</p>
               <p className="text-[10px] text-muted-foreground">{t('common.week')}</p>
             </CardContent>
           </Card>
@@ -498,7 +498,7 @@ Respond in the same language the user is using. Format as a numbered list (1-5),
                       {isGeneratingQuestions ? (
                         <Loader2 className="w-3 h-3 animate-spin" />
                       ) : (
-                        <Sparkles className="w-3 h-3 text-violet-500" />
+                        <Sparkles className="w-3 h-3 text-primary" />
                       )}
                       {t('toolsInternal.appointmentReminder.aiSuggestions')}
                     </Button>
@@ -527,8 +527,8 @@ Respond in the same language the user is using. Format as a numbered list (1-5),
 
                   {/* Suggested Questions */}
                   {suggestedQuestions.length > 0 && (
-                    <div className="space-y-2 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 p-4 rounded-xl border border-violet-200/50">
-                      <p className="text-sm text-violet-600 dark:text-violet-400 font-semibold flex items-center gap-1.5 mb-3">
+                    <div className="space-y-2 bg-gradient-to-br from-primary/5 to-accent/5 p-4 rounded-xl border border-primary/20">
+                      <p className="text-sm text-primary font-semibold flex items-center gap-1.5 mb-3">
                         <Sparkles className="w-4 h-4" />
                         {t('toolsInternal.appointmentReminder.aiSuggestionsLabel')}
                       </p>
@@ -544,11 +544,11 @@ Respond in the same language the user is using. Format as a numbered list (1-5),
                               className={`flex items-start gap-3 w-full text-start p-3 rounded-lg border transition-all duration-200 ${
                                 isAdded
                                   ? 'bg-primary/10 border-primary/30 opacity-70'
-                                  : 'bg-white dark:bg-card border-violet-200/50 hover:border-primary/40 hover:shadow-sm active:scale-[0.98]'
+                                  : 'bg-card border-border hover:border-primary/40 hover:shadow-sm active:scale-[0.98]'
                               }`}
                             >
                               <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                                isAdded ? 'bg-primary text-primary-foreground' : 'bg-violet-100 dark:bg-violet-900/50 text-violet-500'
+                                isAdded ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
                               }`}>
                                 {isAdded ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
                               </div>

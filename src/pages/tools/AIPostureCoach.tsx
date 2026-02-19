@@ -304,14 +304,14 @@ export default function AIPostureCoach() {
                   <div
                     key={exercise.id}
                     className={`p-3 rounded-lg transition-all ${
-                      isCompleted ? 'bg-green-500/10 border border-green-500/20' : 'bg-muted/50'
+                      isCompleted ? 'bg-accent/10 border border-accent/20' : 'bg-muted/50'
                     }`}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
                           {isCompleted ? (
-                            <CheckCircle className="w-5 h-5 text-green-600" />
+                            <CheckCircle className="w-5 h-5 text-accent-foreground" />
                           ) : (
                             <div className="w-5 h-5 rounded-full border-2 border-muted-foreground/30" />
                           )}
