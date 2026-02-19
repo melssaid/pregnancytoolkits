@@ -1036,46 +1036,70 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
         }),
       });
     } else {
-      // Use Gemini via Lovable AI Gateway for general tools
-      response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${LOVABLE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
-          messages: [
-            { role: "system", content: systemPrompt },
-            ...(messages || []),
-          ],
-          stream: true,
-        }),
-      });
+      // Use Gemini via Lovable AI Gateway — try flash first, fallback to pro
+      const geminiModels = ["google/gemini-2.5-flash", "google/gemini-2.5-pro"];
+      let lastError = "";
+
+      for (const model of geminiModels) {
+        response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${LOVABLE_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model,
+            messages: [
+              { role: "system", content: systemPrompt },
+              ...(messages || []),
+            ],
+            stream: true,
+          }),
+        });
+
+        if (response.ok) break;
+
+        if (response.status === 429) {
+          return new Response(
+            JSON.stringify({ error: "Rate limit exceeded, please try again later" }),
+            { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+        if (response.status === 402) {
+          return new Response(
+            JSON.stringify({ error: "Please add credit to Lovable AI account" }),
+            { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+
+        const errorText = await response.text();
+        lastError = errorText;
+        console.error(`gemini model ${model} error:`, response.status, errorText);
+      }
     }
 
-    if (!response.ok) {
-      if (response.status === 429) {
+    if (!response!.ok) {
+      if (response!.status === 429) {
         return new Response(
           JSON.stringify({ error: "Rate limit exceeded, please try again later" }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
-      if (response.status === 402) {
+      if (response!.status === 402) {
         return new Response(
           JSON.stringify({ error: "Please add credit to Lovable AI account" }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
-      const errorText = await response.text();
-      console.error(`${provider} error:`, response.status, errorText);
+      const errorText = await response!.text();
+      console.error(`${provider} final error:`, response!.status, errorText);
       return new Response(
         JSON.stringify({ error: "AI service error" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    return new Response(response.body, {
+    return new Response(response!.body, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (error) {
