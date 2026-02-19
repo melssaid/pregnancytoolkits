@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { 
   Baby, 
@@ -54,8 +54,11 @@ export default function WeeklySummary() {
     setWeek(newWeek);
   }, []);
 
+  const accumulatedRef = useRef("");
+
   const getSummary = async () => {
     setSummary("");
+    accumulatedRef.current = "";
 
     const prompt = `Please provide a comprehensive summary for week ${week} of pregnancy.`;
 
@@ -63,12 +66,15 @@ export default function WeeklySummary() {
       type: "weekly-summary",
       messages: [{ role: "user", content: prompt }],
       context: { week },
-      onDelta: (chunk) => setSummary((prev) => prev + chunk),
+      onDelta: (chunk) => {
+        accumulatedRef.current += chunk;
+        setSummary((prev) => prev + chunk);
+      },
       onDone: () => {
-        // Save to history
+        // Fix: use ref instead of stale closure — summary state is empty at this point
         const newSummary: WeeklySummaryData = {
           week,
-          content: summary,
+          content: accumulatedRef.current,
           generatedAt: new Date().toISOString(),
         };
         const updated = [newSummary, ...savedSummaries.filter(s => s.week !== week)].slice(0, 10);
