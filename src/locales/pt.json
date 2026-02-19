@@ -3139,7 +3139,7 @@
       "chickenBreast": "Proteína magra"
     }
   },
-  "snackPlanner": {
+  "toolsInternal.snackPlanner": {
     "title": "Planejador de Lanches Inteligente",
     "subtitle": "Lanches saudáveis de gravidez para cada desejo",
     "feelingHungry": "Está com fome?",
@@ -3214,6 +3214,24 @@
       "potassium": "Potássio",
       "bvitamins": "Vitaminas B"
     }
+  },
+  "toolsInternal.recipeModifier": {
+    "title": "Modificador de Receitas IA",
+    "subtitle": "Tornar qualquer receita segura para a gravidez",
+    "pasteRecipe": "Cole sua receita",
+    "placeholder": "Cole sua receita aqui com todos os ingredientes e instruções...",
+    "analyzing": "Analisando...",
+    "analyzeRecipe": "Analisar receita para segurança",
+    "exampleTitle": "Ingredientes que verificamos:",
+    "ingredientsToModify": "Ingredientes a modificar ({{count}})",
+    "recipeSafe": "A receita parece segura!",
+    "noUnsafeFound": "Nenhum ingrediente perigoso óbvio detectado",
+    "safeFound": "Ingredientes seguros encontrados",
+    "modifiedRecipe": "Receita modificada",
+    "safetyTips": "Dicas de segurança",
+    "analyzeAnother": "Analisar outra receita",
+    "disclaimer": "⚠️ Esta ferramenta fornece orientação geral. Consulte sempre seu profissional de saúde sobre restrições alimentares específicas durante a gravidez.",
+    "selectPreference": "Por favor selecione pelo menos uma preferência"
   },
   "vitaminTracker": {
     "subtitle": "Acompanhe suas vitaminas pré-natais diárias",

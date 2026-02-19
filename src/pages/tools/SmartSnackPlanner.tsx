@@ -260,7 +260,7 @@ export default function SmartSnackPlanner() {
 
         <Card>
           <CardContent className="p-4">
-            <h4 className="font-medium mb-2">💡 {t('toolsInternal.snackPlanner.snackingTipsTitle')}</h4>
+            <h4 className="font-medium mb-2 flex items-center gap-2"><Brain className="w-4 h-4 text-primary" />{t('toolsInternal.snackPlanner.snackingTipsTitle')}</h4>
             <ul className="text-sm text-muted-foreground space-y-1">
               <li>• {t('toolsInternal.snackPlanner.snackingTips.tip1')}</li>
               <li>• {t('toolsInternal.snackPlanner.snackingTips.tip2')}</li>
