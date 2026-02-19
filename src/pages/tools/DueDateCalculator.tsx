@@ -1,14 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Baby, Info, Calendar, Save, Bell, Trash2, Share2 } from "lucide-react";
+import { Baby, Info, Calendar, Save, Bell, Trash2, Share2, CalendarIcon } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { addDays, addWeeks, differenceInDays } from "date-fns";
+import { addDays, addWeeks, differenceInDays, format } from "date-fns";
 import { formatLocalized } from "@/lib/dateLocale";
 import { useToast } from "@/components/ui/use-toast";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
@@ -18,6 +17,9 @@ import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { dueDateVideosByLang } from "@/data/videoData";
+import { Calendar as CalendarUI } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 interface SavedDueDate {
   id: string;
@@ -40,8 +42,10 @@ export default function DueDateCalculator() {
   const { toast } = useToast();
   const { addNotification } = useNotifications();
   const { profile: userProfile, setLastPeriodDate: saveProfileLMP } = useUserProfile();
-  const [lmpDate, setLmpDate] = useState("");
-  const [conceptionDate, setConceptionDate] = useState("");
+  const [lmpDate, setLmpDate] = useState<Date | undefined>(
+    userProfile.lastPeriodDate ? new Date(userProfile.lastPeriodDate) : undefined
+  );
+  const [conceptionDate, setConceptionDate] = useState<Date | undefined>();
   const [savedDates, setSavedDates] = useState<SavedDueDate[]>([]);
   const [result, setResult] = useState<{
     dueDate: Date;
@@ -57,10 +61,6 @@ export default function DueDateCalculator() {
   useEffect(() => {
     const saved = safeParseLocalStorage<SavedDueDate[]>('savedDueDates', [], isValidSaved);
     setSavedDates(saved);
-    // Pre-fill LMP from central profile if available
-    if (userProfile.lastPeriodDate) {
-      setLmpDate(userProfile.lastPeriodDate);
-    }
     isInitialized.current = true;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -72,31 +72,26 @@ export default function DueDateCalculator() {
 
   const calculateFromLMP = () => {
     if (!lmpDate) return;
-    const lmp = new Date(lmpDate);
-    // Save to central profile
-    saveProfileLMP(lmpDate);
-    calculate(lmp, addWeeks(lmp, 2));
+    const lmpStr = format(lmpDate, 'yyyy-MM-dd');
+    saveProfileLMP(lmpStr);
+    calculate(lmpDate, addWeeks(lmpDate, 2));
   };
 
   const calculateFromConception = () => {
     if (!conceptionDate) return;
-    const conception = new Date(conceptionDate);
-    const lmp = addWeeks(conception, -2);
-    calculate(lmp, conception);
+    const lmp = addWeeks(conceptionDate, -2);
+    calculate(lmp, conceptionDate);
   };
 
   const calculate = (lmp: Date, conception: Date) => {
     const dueDate = addDays(lmp, 280);
     const today = new Date();
-    
     const totalDaysPregnant = differenceInDays(today, lmp);
     const currentWeeks = Math.floor(totalDaysPregnant / 7);
     const currentDays = totalDaysPregnant % 7;
-    
     let trimester = 1;
     if (currentWeeks >= 28) trimester = 3;
     else if (currentWeeks >= 14) trimester = 2;
-
     setResult({
       dueDate,
       currentWeeks: Math.max(0, currentWeeks),
@@ -110,15 +105,13 @@ export default function DueDateCalculator() {
 
   const saveResult = () => {
     if (!result || !lmpDate) return;
-
     const newSaved: SavedDueDate = {
       id: Date.now().toString(),
-      lmpDate,
+      lmpDate: format(lmpDate, 'yyyy-MM-dd'),
       dueDate: result.dueDate.toISOString(),
       calculatedAt: new Date().toISOString(),
       reminderSet: false,
     };
-
     setSavedDates(prev => [newSaved, ...prev].slice(0, 5));
     toast({ title: t('toolsInternal.dueDate.saved'), description: t('toolsInternal.dueDate.savedDesc') });
   };
@@ -226,13 +219,28 @@ export default function DueDateCalculator() {
 
                   <TabsContent value="lmp" className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="lmp">{t('toolsInternal.dueDate.lmpLabel')}</Label>
-                      <Input
-                        id="lmp"
-                        type="date"
-                        value={lmpDate}
-                        onChange={(e) => setLmpDate(e.target.value)}
-                      />
+                      <Label>{t('toolsInternal.dueDate.lmpLabel')}</Label>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !lmpDate && "text-muted-foreground")}>
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {lmpDate ? format(lmpDate, "PPP") : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <CalendarUI
+                            mode="single"
+                            selected={lmpDate}
+                            onSelect={setLmpDate}
+                            disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
+                            initialFocus
+                            className={cn("p-3 pointer-events-auto")}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      {lmpDate && userProfile.lastPeriodDate && format(lmpDate, 'yyyy-MM-dd') === userProfile.lastPeriodDate && (
+                        <p className="text-xs text-primary flex items-center gap-1">✓ {t('toolsInternal.dueDate.fromProfile', 'Pre-filled from your profile')}</p>
+                      )}
                     </div>
                     <Button onClick={calculateFromLMP} className="w-full">
                       {t('toolsInternal.dueDate.calculateBtn')}
@@ -241,13 +249,25 @@ export default function DueDateCalculator() {
 
                   <TabsContent value="conception" className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="conception">{t('toolsInternal.dueDate.conceptionLabel')}</Label>
-                      <Input
-                        id="conception"
-                        type="date"
-                        value={conceptionDate}
-                        onChange={(e) => setConceptionDate(e.target.value)}
-                      />
+                      <Label>{t('toolsInternal.dueDate.conceptionLabel')}</Label>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !conceptionDate && "text-muted-foreground")}>
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {conceptionDate ? format(conceptionDate, "PPP") : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <CalendarUI
+                            mode="single"
+                            selected={conceptionDate}
+                            onSelect={setConceptionDate}
+                            disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
+                            initialFocus
+                            className={cn("p-3 pointer-events-auto")}
+                          />
+                        </PopoverContent>
+                      </Popover>
                     </div>
                     <Button onClick={calculateFromConception} className="w-full">
                       {t('toolsInternal.dueDate.calculateBtn')}
