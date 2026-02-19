@@ -161,9 +161,9 @@ export default function AIRecipeModifier() {
             <>
               {/* Analysis Results */}
               {analysis.unsafeIngredients.length > 0 ? (
-                <Card className="border-amber-200 bg-amber-50/50">
+                <Card className="border-destructive/20 bg-destructive/5">
                   <CardContent className="p-4">
-                    <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-amber-700">
+                    <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-destructive">
                       <AlertTriangle className="w-4 h-4" />
                       {t('toolsInternal.recipeModifier.ingredientsToModify', { count: analysis.unsafeIngredients.length })}
                     </h3>
@@ -182,13 +182,13 @@ export default function AIRecipeModifier() {
                   </CardContent>
                 </Card>
               ) : (
-                <Card className="border-emerald-200 bg-emerald-50/50">
+                <Card className="border-accent/30 bg-accent/5">
                   <CardContent className="p-4">
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-600" />
+                      <CheckCircle className="w-5 h-5 text-accent-foreground" />
                       <div>
-                        <h3 className="text-sm font-semibold text-emerald-700">{t('toolsInternal.recipeModifier.recipeSafe')}</h3>
-                        <p className="text-sm text-emerald-600">
+                        <h3 className="text-sm font-semibold text-foreground">{t('toolsInternal.recipeModifier.recipeSafe')}</h3>
+                        <p className="text-sm text-muted-foreground">
                           {t('toolsInternal.recipeModifier.noUnsafeFound')}
                         </p>
                       </div>
@@ -202,12 +202,12 @@ export default function AIRecipeModifier() {
                 <Card>
                   <CardContent className="p-4">
                     <h4 className="font-medium mb-3 flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-emerald-600" />
+                      <CheckCircle className="w-4 h-4 text-accent-foreground" />
                       {t('toolsInternal.recipeModifier.safeFound')}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {analysis.safeIngredients.map(ing => (
-                        <Badge key={ing} className="bg-emerald-100 text-emerald-700 capitalize">
+                        <Badge key={ing} className="bg-accent/20 text-accent-foreground capitalize">
                           {ing}
                         </Badge>
                       ))}

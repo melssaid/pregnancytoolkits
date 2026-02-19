@@ -267,15 +267,15 @@ export default function PregnancyAssistant() {
         {/* Trust Indicators - Compact */}
         <div className="flex flex-wrap justify-center gap-3 text-[10px] sm:text-xs text-muted-foreground">
           <div className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+            <div className="w-1.5 h-1.5 rounded-full bg-accent" />
             <span>{t("pregnancyAssistant.trustIndicators.available")}</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
             <span>{t("pregnancyAssistant.trustIndicators.medical")}</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+            <div className="w-1.5 h-1.5 rounded-full bg-foreground/40" />
             <span>{t("pregnancyAssistant.trustIndicators.secure")}</span>
           </div>
         </div>

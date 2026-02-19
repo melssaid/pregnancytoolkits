@@ -22,12 +22,12 @@ interface Vitamin {
 }
 
 const VITAMIN_IDS = [
-  { id: 'folic-acid', nameKey: 'folicAcid', icon: '🧬', color: 'bg-green-100 border-green-400' },
-  { id: 'iron', nameKey: 'iron', icon: '💪', color: 'bg-red-100 border-red-400' },
-  { id: 'calcium', nameKey: 'calcium', icon: '🦴', color: 'bg-blue-100 border-blue-400' },
-  { id: 'vitamin-d', nameKey: 'vitaminD', icon: '☀️', color: 'bg-yellow-100 border-yellow-400' },
-  { id: 'omega-3', nameKey: 'omega3', icon: '🐟', color: 'bg-cyan-100 border-cyan-400' },
-  { id: 'prenatal', nameKey: 'prenatal', icon: '💊', color: 'bg-purple-100 border-purple-400' },
+  { id: 'folic-acid', nameKey: 'folicAcid', icon: '🧬', color: 'bg-primary/10 border-primary/30' },
+  { id: 'iron',       nameKey: 'iron',       icon: '💪', color: 'bg-destructive/10 border-destructive/30' },
+  { id: 'calcium',    nameKey: 'calcium',    icon: '🦴', color: 'bg-secondary border-border' },
+  { id: 'vitamin-d',  nameKey: 'vitaminD',  icon: '☀️', color: 'bg-accent/20 border-accent/30' },
+  { id: 'omega-3',    nameKey: 'omega3',    icon: '🐟', color: 'bg-muted border-border' },
+  { id: 'prenatal',   nameKey: 'prenatal',  icon: '💊', color: 'bg-primary/8 border-primary/20' },
 ];
 
 const VitaminTracker: React.FC = () => {
@@ -237,7 +237,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
           <CardContent>
             <div className="w-full bg-muted rounded-full h-3 mb-2 overflow-hidden">
               <div
-                className="bg-gradient-to-r from-primary to-pink-500 h-3 rounded-full transition-all duration-700 ease-out"
+                className="bg-gradient-to-r from-primary to-accent h-3 rounded-full transition-all duration-700 ease-out"
                 style={{ width: `${todayProgress}%` }}
               />
             </div>
@@ -248,11 +248,11 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
         </Card>
 
         {/* AI Analysis Card */}
-        <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+        <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center justify-between text-sm">
               <span className="flex items-center gap-2">
-                <Brain className="w-5 h-5 text-violet-500" />
+                <Brain className="w-5 h-5 text-primary" />
                 {t('toolsInternal.vitaminTracker.aiAnalysisTitle')}
               </span>
               {showAiAnalysis && (
@@ -272,7 +272,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
               <Button
                 onClick={getAIAnalysis}
                 disabled={aiLoading}
-                className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600"
+                className="w-full"
               >
                 {aiLoading ? (
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -282,7 +282,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                 {t('toolsInternal.vitaminTracker.analyzeRoutine')}
               </Button>
             ) : (
-              <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[400px] overflow-y-auto">
+              <div className="bg-muted/30 rounded-xl p-4 max-h-[400px] overflow-y-auto">
                 {aiAnalysis ? (
                   <MarkdownRenderer content={aiAnalysis} isLoading={aiLoading} />
                 ) : (
@@ -307,9 +307,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
               <Card
                 key={vitamin.id}
                 className={`border-2 transition-all duration-300 hover:shadow-lg ${
-                  taken
-                    ? 'bg-green-50 border-green-400 shadow-green-100'
-                    : vitamin.color
+                  taken ? 'bg-accent/10 border-accent/40' : vitamin.color
                 }`}
               >
                 <CardContent className="p-4">
@@ -317,29 +315,28 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
                     <div className="flex items-center gap-3">
                       <span className="text-xl">{vitamin.icon}</span>
                       <div>
-                        <h3 className="font-bold text-gray-800 text-sm">{vitamin.name}</h3>
-                        <p className="text-sm text-gray-600">{vitamin.dosage}</p>
-                        <p className="text-xs text-gray-500 mt-1">{vitamin.importance}</p>
+                        <h3 className="font-bold text-foreground text-sm">{vitamin.name}</h3>
+                        <p className="text-sm text-muted-foreground">{vitamin.dosage}</p>
+                        <p className="text-xs text-muted-foreground/70 mt-1">{vitamin.importance}</p>
                       </div>
                     </div>
-                    
                     <div className="flex flex-col items-center gap-2">
-                        <Button
-                          variant={taken ? 'default' : 'outline'}
-                          size="sm"
-                          className={taken ? 'bg-green-500 hover:bg-green-600' : 'hover:bg-purple-100'}
-                          onClick={() => handleTakeVitamin(vitamin)}
-                          disabled={taken || isSaving}
-                        >
-                          {isSaving ? (
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                          ) : taken ? (
-                            <><Check className="w-4 h-4 mr-1" /> {t('toolsInternal.vitaminTracker.done')}</>
-                          ) : (
-                            t('toolsInternal.vitaminTracker.take')
-                          )}
+                      <Button
+                        variant={taken ? 'default' : 'outline'}
+                        size="sm"
+                        className={taken ? '' : 'hover:bg-primary/10'}
+                        onClick={() => handleTakeVitamin(vitamin)}
+                        disabled={taken || isSaving}
+                      >
+                        {isSaving ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : taken ? (
+                          <><Check className="w-4 h-4 mr-1" /> {t('toolsInternal.vitaminTracker.done')}</>
+                        ) : (
+                          t('toolsInternal.vitaminTracker.take')
+                        )}
                       </Button>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-muted-foreground">
                         {weekCount}/7 {t('toolsInternal.vitaminTracker.thisWeek')}
                       </span>
                     </div>
@@ -351,10 +348,10 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
         </div>
 
         {/* Weekly Stats */}
-        <Card className="shadow-lg">
+        <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-purple-500" />
+              <TrendingUp className="w-5 h-5 text-primary" />
               {t('toolsInternal.vitaminTracker.weeklyStats')}
             </CardTitle>
           </CardHeader>
@@ -363,18 +360,17 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
               {VITAMINS.map(vitamin => {
                 const count = weeklyStats[vitamin.name] || 0;
                 const percentage = Math.round((count / 7) * 100);
-                
                 return (
-                  <div key={vitamin.id} className="text-center p-3 bg-gray-50 rounded-lg">
+                  <div key={vitamin.id} className="text-center p-3 bg-muted/40 rounded-lg">
                     <span className="text-base">{vitamin.icon}</span>
                     <p className="text-sm font-medium mt-1">{vitamin.name}</p>
-                    <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                    <div className="w-full bg-muted rounded-full h-2 mt-2">
                       <div
-                        className="bg-purple-500 h-2 rounded-full transition-all duration-500"
+                        className="bg-primary h-2 rounded-full transition-all duration-500"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">{count}/7 {t('toolsInternal.vitaminTracker.days')}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{count}/7 {t('toolsInternal.vitaminTracker.days')}</p>
                   </div>
                 );
               })}
@@ -384,22 +380,22 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
 
         {/* Recent History */}
         {weekHistory.length > 0 && (
-          <Card className="shadow-lg">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Clock className="w-5 h-5 text-purple-500" />
+                <Clock className="w-5 h-5 text-primary" />
                 {t('toolsInternal.vitaminTracker.recentHistory')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {weekHistory.slice(0, 10).map((log, index) => (
-                  <div key={log.id || index} className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                  <div key={log.id || index} className="flex items-center justify-between p-2 bg-muted/40 rounded-lg">
                     <div className="flex items-center gap-2">
                       <span>{VITAMINS.find(v => v.name === log.vitamin_name)?.icon || '💊'}</span>
                       <span className="font-medium">{log.vitamin_name}</span>
                     </div>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-muted-foreground">
                       {new Date(log.taken_at).toLocaleDateString('en-US', {
                         weekday: 'short',
                         hour: '2-digit',
@@ -414,10 +410,13 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
         )}
 
         {/* Tips */}
-        <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200">
+        <Card className="bg-muted/30 border-border">
           <CardContent className="p-4">
-            <h3 className="font-bold text-amber-800 mb-2">💡 {t('toolsInternal.vitaminTracker.tipTitle')}</h3>
-            <p className="text-amber-700 text-sm">
+            <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
+              {t('toolsInternal.vitaminTracker.tipTitle')}
+            </h3>
+            <p className="text-muted-foreground text-sm">
               {t('toolsInternal.vitaminTracker.tipContent')}
             </p>
           </CardContent>

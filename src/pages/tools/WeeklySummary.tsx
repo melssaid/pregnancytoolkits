@@ -89,9 +89,9 @@ export default function WeeklySummary() {
   };
 
   const getTrimester = (w: number) => {
-    if (w <= 12) return { label: t("toolsInternal.weeklySummary.trimester.first"), color: "bg-emerald-500" };
-    if (w <= 27) return { label: t("toolsInternal.weeklySummary.trimester.second"), color: "bg-blue-500" };
-    return { label: t("toolsInternal.weeklySummary.trimester.third"), color: "bg-purple-500" };
+    if (w <= 12) return { label: t("toolsInternal.weeklySummary.trimester.first"), color: "bg-accent" };
+    if (w <= 27) return { label: t("toolsInternal.weeklySummary.trimester.second"), color: "bg-primary" };
+    return { label: t("toolsInternal.weeklySummary.trimester.third"), color: "bg-secondary-foreground" };
   };
 
   const trimesterInfo = getTrimester(week);

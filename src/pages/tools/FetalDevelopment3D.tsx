@@ -89,9 +89,9 @@ const FetalDevelopment3D: React.FC = () => {
   };
 
   const getTrimester = (week: number) => {
-    if (week <= 12) return { nameKey: 'trimesters.first', color: 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-400' };
-    if (week <= 27) return { nameKey: 'trimesters.second', color: 'bg-amber-500/20 text-amber-700 dark:text-amber-400' };
-    return { nameKey: 'trimesters.third', color: 'bg-rose-500/20 text-rose-700 dark:text-rose-400' };
+    if (week <= 12) return { nameKey: 'trimesters.first', color: 'bg-accent/20 text-accent-foreground' };
+    if (week <= 27) return { nameKey: 'trimesters.second', color: 'bg-primary/15 text-primary' };
+    return { nameKey: 'trimesters.third', color: 'bg-secondary text-secondary-foreground' };
   };
 
   const trimester = getTrimester(currentData.week);
@@ -242,7 +242,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="bg-gradient-to-br from-primary/10 via-accent/5 to-pink-100/30 dark:to-pink-900/10 border-primary/20 overflow-hidden">
+            <Card className="bg-gradient-to-br from-primary/10 via-accent/5 to-accent/10 border-primary/20 overflow-hidden">
               <CardContent className="py-8 relative">
                 <div className="absolute top-3 end-3">
                   <Button variant="ghost" size="sm" onClick={saveCurrentWeek} className="text-xs">
@@ -292,24 +292,24 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
 
         {/* Stats Cards */}
         <div className="grid grid-cols-2 gap-2">
-          <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border-blue-200/50">
+          <Card className="bg-gradient-to-br from-primary/8 to-accent/8 border-primary/20">
             <CardContent className="py-3 text-center">
-              <Ruler className="w-4 h-4 mx-auto mb-1 text-blue-600 dark:text-blue-400 shrink-0" />
+              <Ruler className="w-4 h-4 mx-auto mb-1 text-primary shrink-0" />
               <p className="text-[10px] sm:text-xs text-muted-foreground truncate">
                 {t('toolsInternal.fetalDevelopment.length')}
               </p>
-              <p className="text-lg sm:text-xl font-bold text-blue-700 dark:text-blue-300 truncate">
+              <p className="text-lg sm:text-xl font-bold text-primary truncate">
                 {currentData.length}
               </p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/30 dark:to-pink-950/30 border-purple-200/50">
+          <Card className="bg-gradient-to-br from-accent/8 to-primary/8 border-accent/20">
             <CardContent className="py-3 text-center">
-              <Scale className="w-4 h-4 mx-auto mb-1 text-purple-600 dark:text-purple-400 shrink-0" />
+              <Scale className="w-4 h-4 mx-auto mb-1 text-accent-foreground shrink-0" />
               <p className="text-[10px] sm:text-xs text-muted-foreground truncate">
                 {t('toolsInternal.fetalDevelopment.weight')}
               </p>
-              <p className="text-lg sm:text-xl font-bold text-purple-700 dark:text-purple-300 truncate">
+              <p className="text-lg sm:text-xl font-bold text-foreground truncate">
                 {currentData.weight}
               </p>
             </CardContent>
@@ -336,10 +336,10 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
         </Card>
 
         {/* AI Insights Section */}
-        <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
+        <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
           <CardContent className="py-3">
             <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2 text-sm">
-              <Sparkles className="w-4 h-4 text-violet-500" />
+              <Sparkles className="w-4 h-4 text-primary" />
               {t('toolsInternal.fetalDevelopment.aiWeeklyInsights')}
             </h3>
             
@@ -396,7 +396,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-3 p-3 bg-white/50 dark:bg-black/20 rounded-lg max-h-[300px] overflow-y-auto"
+                  className="mt-3 p-3 bg-muted/30 rounded-lg max-h-[300px] overflow-y-auto"
                 >
                   <MarkdownRenderer content={aiInsight} isLoading={aiLoading} />
                 </motion.div>
@@ -406,10 +406,10 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
         </Card>
 
         {/* Week Tip */}
-        <Card className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 border-amber-200/50">
+        <Card className="bg-muted/30 border-border">
           <CardContent className="py-3">
-            <p className="text-sm text-center text-amber-800 dark:text-amber-200">
-              💡 {t(`toolsInternal.fetalDevelopment.tips.${currentData.tipKey}`)}
+            <p className="text-sm text-center text-muted-foreground">
+              {t(`toolsInternal.fetalDevelopment.tips.${currentData.tipKey}`)}
             </p>
           </CardContent>
         </Card>
