@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info, Sparkles, Loader2 } from 'lucide-react';
+import { Ban, CheckCircle, Search, AlertCircle, HelpCircle, Info, Sparkles, Loader2, Brain } from 'lucide-react';
 import MedicalDisclaimer from '../../components/compliance/MedicalDisclaimer';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -8,6 +8,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ToolFrame } from '@/components/ToolFrame';
+import { motion } from 'framer-motion';
 
 interface FoodItem {
   id: string;
@@ -163,19 +164,12 @@ If it can be made safe, explain how`
             <div className="text-center py-10">
               <p className="text-muted-foreground">{t("toolsInternal.forbiddenFoods.noResults", { term: searchTerm })}</p>
               {searchTerm && (
-                <Button 
-                  onClick={() => askAIAboutFood(searchTerm)}
-                  disabled={isLoading}
-                  className="mt-4 gap-2"
-                  variant="outline"
-                >
-                  {isLoading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Sparkles className="h-4 w-4 text-violet-500" />
-                  )}
-                  {t("toolsInternal.forbiddenFoods.askAI", { term: searchTerm })}
-                </Button>
+                <motion.button onClick={() => askAIAboutFood(searchTerm)} disabled={isLoading} whileTap={{ scale: 0.92 }} className="mt-4 relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed">
+                  <div className="flex items-center justify-center gap-2 px-5 py-3 font-semibold text-white text-sm rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+                    {isLoading ? <><Loader2 className="h-4 w-4 animate-spin shrink-0" /><span>{t("toolsInternal.forbiddenFoods.analyzing")}</span></> : <><Brain className="h-4 w-4 shrink-0" /><span>{t("toolsInternal.forbiddenFoods.askAI", { term: searchTerm })}</span><Sparkles className="h-3.5 w-3.5 shrink-0 opacity-80" /></>}
+                    <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+                  </div>
+                </motion.button>
               )}
             </div>
           )}

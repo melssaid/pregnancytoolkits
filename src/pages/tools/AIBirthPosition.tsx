@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Baby, Sparkles, Clock } from "lucide-react";
+import { Baby, Sparkles, Clock, Brain, Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -197,14 +198,12 @@ Include safety considerations and when to change positions.`;
         </div>
 
         {/* Get Recommendations */}
-        <Button
-          onClick={getRecommendations}
-          disabled={isLoading}
-          className="w-full text-xs h-9"
-        >
-          <Sparkles className="w-3.5 h-3.5 me-1.5" />
-          {isLoading ? t('toolsInternal.birthPosition.analyzing') : t('toolsInternal.birthPosition.getPositions')}
-        </Button>
+        <motion.button onClick={getRecommendations} disabled={isLoading} whileTap={{ scale: 0.92 }} className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed">
+          <div className="w-full flex items-center justify-center gap-3 px-5 py-3.5 font-semibold text-white text-sm rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+            {isLoading ? <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.birthPosition.analyzing')}</span></> : <><Baby className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.birthPosition.getPositions')}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>}
+            <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+          </div>
+        </motion.button>
 
         {/* AI Response */}
         {response && (

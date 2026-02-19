@@ -5,6 +5,7 @@ import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { VideoLibrary } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';

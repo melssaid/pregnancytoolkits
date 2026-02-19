@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Moon, Clock, ThermometerSun, Brain, Loader2, Bed, Wind } from "lucide-react";
+import { Moon, Clock, ThermometerSun, Brain, Loader2, Bed, Wind, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
@@ -244,45 +245,27 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
 
         {/* AI Action Buttons */}
         <div className="grid grid-cols-3 gap-1.5">
-          <Button
-            onClick={analyzeSleep}
-            disabled={isLoading}
-            variant={activeTab === 'analysis' ? 'default' : 'outline'}
-            className="flex-col h-auto py-2 gap-0.5"
-          >
-            {isLoading && activeTab === 'analysis' ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <Brain className="w-4 h-4" />
-            )}
-            <span className="text-[10px]">{t('toolsInternal.sleepOptimizer.sleepPlan')}</span>
-          </Button>
-          <Button
-            onClick={generateMeditation}
-            disabled={isLoading}
-            variant={activeTab === 'meditation' ? 'default' : 'outline'}
-            className="flex-col h-auto py-2 gap-0.5"
-          >
-            {isLoading && activeTab === 'meditation' ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <Wind className="w-4 h-4" />
-            )}
-            <span className="text-[10px]">{t('toolsInternal.sleepOptimizer.meditation')}</span>
-          </Button>
-          <Button
-            onClick={generateRoutine}
-            disabled={isLoading}
-            variant={activeTab === 'routine' ? 'default' : 'outline'}
-            className="flex-col h-auto py-2 gap-0.5"
-          >
-            {isLoading && activeTab === 'routine' ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <Bed className="w-4 h-4" />
-            )}
-            <span className="text-[10px]">{t('toolsInternal.sleepOptimizer.routine')}</span>
-          </Button>
+          {[
+            { onClick: analyzeSleep, tab: 'analysis', icon: Brain, label: t('toolsInternal.sleepOptimizer.sleepPlan') },
+            { onClick: generateMeditation, tab: 'meditation', icon: Wind, label: t('toolsInternal.sleepOptimizer.meditation') },
+            { onClick: generateRoutine, tab: 'routine', icon: Bed, label: t('toolsInternal.sleepOptimizer.routine') },
+          ].map(({ onClick, tab, icon: Icon, label }) => (
+            <motion.button
+              key={tab}
+              onClick={onClick}
+              disabled={isLoading}
+              whileTap={{ scale: 0.92 }}
+              className="relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <div
+                className={`flex flex-col items-center gap-0.5 py-2 px-1 text-sm rounded-xl font-medium transition-all ${activeTab === tab ? 'text-white' : 'text-foreground bg-muted/60 hover:bg-muted'}`}
+                style={activeTab === tab ? { background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' } : {}}
+              >
+                {isLoading && activeTab === tab ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
+                <span className="text-[10px]">{label}</span>
+              </div>
+            </motion.button>
+          ))}
         </div>
 
         {/* AI Response - Tabbed Content */}

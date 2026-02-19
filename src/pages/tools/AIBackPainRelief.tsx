@@ -4,7 +4,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Loader2 } from 'lucide-react';
+import { Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Loader2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -224,19 +224,17 @@ export default function AIBackPainRelief() {
                 {Math.round((completedExercises.length / backPainExercises.length) * 100)}%
               </div>
             </div>
-            <Button 
-              onClick={getAIReliefAdvice} 
+            <motion.button
+              onClick={getAIReliefAdvice}
               disabled={isLoading}
-              className="w-full gap-2"
-              variant="outline"
+              whileTap={{ scale: 0.92 }}
+              className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <Brain className="w-4 h-4" />
-              )}
-              {t('toolsInternal.backPainRelief.getAIAdvice')}
-            </Button>
+              <div className="w-full flex items-center justify-center gap-3 px-5 py-3.5 font-semibold text-white text-sm rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+                {isLoading ? <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.backPainRelief.analyzing')}</span></> : <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.backPainRelief.getAIAdvice')}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>}
+                <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+              </div>
+            </motion.button>
           </CardContent>
         </Card>
 

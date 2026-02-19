@@ -5,6 +5,7 @@ import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Sparkles, Clock, Play, CheckCircle, Bell, Brain, Loader2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { ExerciseIcon } from '@/components/ExerciseIcon';
@@ -208,13 +209,23 @@ export default function SmartStretchReminder() {
             <Play className="w-5 h-5 shrink-0" />
             <span className="truncate">{t('stretchReminder.startRoutine')}</span>
           </Button>
-          <Button onClick={getAIStretchAdvice} variant="outline" className="h-10" disabled={isLoading}>
-            {isLoading ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
-            ) : (
-              <Brain className="w-5 h-5" />
-            )}
-          </Button>
+          <motion.button
+            onClick={getAIStretchAdvice}
+            disabled={isLoading}
+            whileTap={{ scale: 0.92 }}
+            className="relative overflow-hidden rounded-xl h-10 px-3 disabled:opacity-60 disabled:cursor-not-allowed shrink-0"
+          >
+            <div
+              className="flex items-center justify-center gap-2 h-full px-3 font-semibold text-white text-sm rounded-xl"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)',
+              }}
+            >
+              {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Brain className="w-4 h-4" /><Sparkles className="w-3 h-3 opacity-80" /></>}
+              <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+            </div>
+          </motion.button>
         </div>
 
         {/* AI Response */}
