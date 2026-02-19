@@ -996,110 +996,58 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
         break;
     }
 
-    // Determine which provider to use based on tool type
-    // Perplexity: tools that benefit from up-to-date medical sources with citations
-    // Gemini: general advice, recipes, exercises, and conversational tools
-    const PERPLEXITY_TYPES = [
-      "symptom-analysis",
-      "weekly-summary", 
-      "vitamin-advice",
-      "postpartum-recovery",
-      "labor-tracker",
-    ];
-
-    const usePerplexity = PERPLEXITY_TYPES.includes(type);
     const PERPLEXITY_API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
 
-    // Fall back to Gemini if Perplexity key is not available
-    const provider = usePerplexity && PERPLEXITY_API_KEY ? "perplexity" : "gemini";
-
-    console.log(`Processing ${type} request, language: ${requestedLanguage}, provider: ${provider}`);
-
-    let response: Response;
-
-    if (provider === "perplexity") {
-      // Use Perplexity sonar-pro for medical tools — provides citations & up-to-date sources
-      response = await fetch("https://api.perplexity.ai/chat/completions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "sonar-pro",
-          messages: [
-            { role: "system", content: systemPrompt },
-            ...(messages || []),
-          ],
-          stream: true,
-          search_recency_filter: "year",
-        }),
-      });
-    } else {
-      // Use Gemini via Lovable AI Gateway — try flash first, fallback to pro
-      const geminiModels = ["google/gemini-2.5-flash", "google/gemini-2.5-pro"];
-      let lastError = "";
-
-      for (const model of geminiModels) {
-        response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${LOVABLE_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model,
-            messages: [
-              { role: "system", content: systemPrompt },
-              ...(messages || []),
-            ],
-            stream: true,
-          }),
-        });
-
-        if (response.ok) break;
-
-        if (response.status === 429) {
-          return new Response(
-            JSON.stringify({ error: "Rate limit exceeded, please try again later" }),
-            { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-          );
-        }
-        if (response.status === 402) {
-          return new Response(
-            JSON.stringify({ error: "Please add credit to Lovable AI account" }),
-            { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-          );
-        }
-
-        const errorText = await response.text();
-        lastError = errorText;
-        console.error(`gemini model ${model} error:`, response.status, errorText);
-      }
+    if (!PERPLEXITY_API_KEY) {
+      console.error("PERPLEXITY_API_KEY is not configured");
+      return new Response(
+        JSON.stringify({ error: "AI service is not properly configured" }),
+        { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    if (!response!.ok) {
-      if (response!.status === 429) {
+    console.log(`Processing ${type} request, language: ${requestedLanguage}, provider: perplexity`);
+
+    // Use Perplexity sonar-pro for all tools — provides citations & up-to-date medical sources
+    const response = await fetch("https://api.perplexity.ai/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "sonar-pro",
+        messages: [
+          { role: "system", content: systemPrompt },
+          ...(messages || []),
+        ],
+        stream: true,
+        search_recency_filter: "year",
+      }),
+    });
+
+    if (!response.ok) {
+      if (response.status === 429) {
         return new Response(
           JSON.stringify({ error: "Rate limit exceeded, please try again later" }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
-      if (response!.status === 402) {
+      if (response.status === 402) {
         return new Response(
           JSON.stringify({ error: "Please add credit to Lovable AI account" }),
           { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
-      const errorText = await response!.text();
-      console.error(`${provider} final error:`, response!.status, errorText);
+      const errorText = await response.text();
+      console.error(`perplexity error:`, response.status, errorText);
       return new Response(
         JSON.stringify({ error: "AI service error" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    return new Response(response!.body, {
+    return new Response(response.body, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (error) {
