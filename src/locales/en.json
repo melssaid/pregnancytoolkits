@@ -168,20 +168,20 @@
       "description": "Log and journal your baby's precious movements."
     },
     "weightGain": {
-      "title": "Weight Gain Analyzer",
-      "description": "Monitor healthy pregnancy weight."
+      "title": "Weight Gain Journal",
+      "description": "Track healthy pregnancy weight changes."
     },
     "postpartumMentalHealth": {
       "title": "Mental Health Coach",
       "description": "EPDS questionnaire and mental health support."
     },
     "gestationalDiabetes": {
-      "title": "GDM Self-Check",
-      "description": "Know your gestational diabetes risk factors."
+      "title": "GDM Awareness Check",
+      "description": "Learn about common gestational diabetes factors."
     },
     "preeclampsiaRisk": {
-      "title": "Preeclampsia Risk",
-      "description": "Check your preeclampsia risk factors."
+      "title": "Preeclampsia Awareness",
+      "description": "Learn about common preeclampsia factors."
     },
     "babyGearRecommender": {
       "title": "Baby Gear Recommender",
@@ -201,7 +201,7 @@
     },
     "diaperTracker": {
       "title": "Diaper Tracker",
-      "description": "Log changes, monitor health."
+      "description": "Log daily diaper changes."
     },
     "babyCryTranslator": {
       "title": "Baby Cry Translator",

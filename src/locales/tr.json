@@ -168,20 +168,20 @@
       "description": "Bebeğinizin değerli hareketlerini kaydedin."
     },
     "weightGain": {
-      "title": "Kilo Alımı Analizörü",
-      "description": "Sağlıklı hamilelik kilosunu izleyin."
+      "title": "Kilo Günlüğü",
+      "description": "Hamilelik sürecinde kilo değişimlerinizi takip edin."
     },
     "postpartumMentalHealth": {
       "title": "Ruh Sağlığı Koçu",
       "description": "EPDS anketi ve ruh sağlığı desteği."
     },
     "gestationalDiabetes": {
-      "title": "Gestasyonel Diyabet Riski",
-      "description": "Gestasyonel diyabet risk faktörlerinizi bilin."
+      "title": "Gestasyonel Diyabet Farkındalığı",
+      "description": "Gestasyonel diyabetle ilgili yaygın faktörleri öğrenin."
     },
     "preeclampsiaRisk": {
-      "title": "Preeklampsi Riski",
-      "description": "Preeklampsi risk faktörlerinizi kontrol edin."
+      "title": "Preeklampsi Farkındalığı",
+      "description": "Preeklampsiyle ilgili yaygın faktörleri öğrenin."
     },
     "babyGearRecommender": {
       "title": "Bebek Ekipman Önerici",
@@ -201,7 +201,7 @@
     },
     "diaperTracker": {
       "title": "Bez Takibi",
-      "description": "Değişiklikleri kaydedin, sağlığı izleyin."
+      "description": "Günlük bez değişimlerini kaydedin."
     },
     "babyCryTranslator": {
       "title": "Bebek Ağlama Çevirici",
