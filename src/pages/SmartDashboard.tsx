@@ -6,10 +6,10 @@ import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { 
   Send, Bot, User, Home, MessageCircle, Heart, Utensils, Dumbbell, 
-  Play, Loader2, AlertTriangle, Activity, Scale, Brain, Sparkles,
+  Play, Loader2, Activity, Scale, Brain, Sparkles,
   Baby, Pill, Stethoscope, Salad, ChevronRight, CalendarCheck,
   Hand, TrendingUp, Camera, Bell, Moon, Ruler, FileText,
-  Database, Clock, Calendar, Briefcase, ShoppingCart, CheckCircle2, BellRing
+  Database, Clock, Calendar, Briefcase, CheckCircle2, BellRing
 } from "lucide-react";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { VideoLibrary } from "@/components/VideoLibrary";
@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 import { NotificationsPanel } from "@/components/dashboard/NotificationsPanel";
@@ -140,7 +140,6 @@ const SmartDashboard = () => {
   const [healthSaved, setHealthSaved] = useState(false);
   const [aiHealthInsight, setAiHealthInsight] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   // Sync healthData when central profile loads/changes
   useEffect(() => {
