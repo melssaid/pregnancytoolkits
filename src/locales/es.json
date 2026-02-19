@@ -775,6 +775,17 @@
   "settings": {
     "title": "Configuración",
     "subtitle": "Administra tus preferencias",
+    "profile": {
+      "title": "Mi perfil",
+      "save": "Guardar perfil",
+      "saved": "Perfil actualizado correctamente",
+      "heightLabel": "Altura",
+      "heightPlaceholder": "ej. 165",
+      "heightUnit": "cm",
+      "bloodTypeLabel": "Tipo de sangre",
+      "bloodTypePlaceholder": "Seleccionar tipo de sangre",
+      "bloodTypeUnknown": "Desconocido / No analizado"
+    },
     "securityPrivacy": "Seguridad y privacidad",
     "dataManagement": "Gestión de datos",
     "language": {

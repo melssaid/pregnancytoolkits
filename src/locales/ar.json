@@ -508,6 +508,17 @@
   "settings": {
     "title": "الإعدادات",
     "subtitle": "إدارة تفضيلاتك",
+    "profile": {
+      "title": "ملفي الشخصي",
+      "save": "حفظ الملف الشخصي",
+      "saved": "تم تحديث الملف الشخصي بنجاح",
+      "heightLabel": "الطول",
+      "heightPlaceholder": "مثال: 165",
+      "heightUnit": "سم",
+      "bloodTypeLabel": "فصيلة الدم",
+      "bloodTypePlaceholder": "اختر فصيلة الدم",
+      "bloodTypeUnknown": "غير معروف / لم يُفحص"
+    },
     "securityPrivacy": "الأمان والخصوصية",
     "dataManagement": "إدارة البيانات",
     "language": {
