@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Brain, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Sparkles, Loader2, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
@@ -38,7 +38,6 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   const [hasGenerated, setHasGenerated] = useState(false);
   const prevLangRef = useRef(currentLanguage);
 
-  // Reset generated content when language changes
   useEffect(() => {
     if (prevLangRef.current !== currentLanguage) {
       prevLangRef.current = currentLanguage;
@@ -50,7 +49,6 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     }
   }, [currentLanguage, hasGenerated]);
 
-  // Always include current language in context for AI responses
   const contextWithLanguage = useMemo(() => ({
     ...context,
     language: currentLanguage,
@@ -61,11 +59,9 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
 
   const generateInsight = async () => {
     if (isLoading) return;
-    
     setInsight('');
     setIsExpanded(true);
     setHasGenerated(true);
-
     await streamChat({
       type: 'pregnancy-assistant',
       messages: [{ role: 'user', content: prompt }],
@@ -75,6 +71,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     });
   };
 
+  /* ── COMPACT ── */
   if (variant === 'compact') {
     return (
       <div className="space-y-3">
@@ -82,15 +79,14 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
           <Button
             onClick={generateInsight}
             disabled={isLoading}
-            variant="outline"
-            className="w-full gap-2 bg-gradient-to-r from-violet-500/10 to-purple-500/10 border-violet-200/50 hover:border-violet-300"
+            className="w-full gap-2 h-10 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm shadow-primary/20 hover:shadow-primary/30 hover:opacity-90 transition-all text-[13px]"
           >
             {isLoading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin shrink-0" />
             ) : (
-              icon || <Sparkles className="h-4 w-4 text-violet-500" />
+              icon || <Sparkles className="h-4 w-4 shrink-0" />
             )}
-            {displayButtonText}
+            <span className="truncate">{displayButtonText}</span>
           </Button>
         )}
 
@@ -101,18 +97,16 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
-                <CardContent className="pt-4">
+              <Card className="border-primary/20 bg-primary/5">
+                <CardContent className="pt-4 pb-4">
                   {isLoading && !insight && (
-                    <div className="flex items-center gap-2 text-violet-600">
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                    <div className="flex items-center gap-2 text-primary">
+                      <Loader2 className="h-4 w-4 animate-spin shrink-0" />
                       <span className="text-sm">{t('toolsInternal.aiInsights.analyzing')}</span>
                     </div>
                   )}
                   {insight && <MarkdownRenderer content={insight} />}
-                  {error && (
-                    <p className="text-sm text-destructive">{error}</p>
-                  )}
+                  {error && <p className="text-sm text-destructive">{error}</p>}
                 </CardContent>
               </Card>
             </motion.div>
@@ -122,37 +116,35 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     );
   }
 
+  /* ── BANNER ── */
   if (variant === 'banner') {
     return (
-      <Card className="bg-gradient-to-br from-violet-500 to-purple-600 border-0 text-white overflow-hidden">
-        <CardContent className="pt-5 pb-5">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <motion.div 
-                animate={{ 
-                  boxShadow: ['0 0 0 0 rgba(255,255,255,0.4)', '0 0 0 15px rgba(255,255,255,0)']
-                }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="p-3 rounded-2xl bg-white/20 backdrop-blur-sm"
-              >
-                {icon || <Brain className="w-6 h-6" />}
-              </motion.div>
-              <div>
-                <h3 className="font-semibold text-lg">{displayTitle}</h3>
-                <p className="text-white/80 text-sm">{t('toolsInternal.aiInsights.personalizedRec')}</p>
+      <Card className="border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-background overflow-hidden">
+        <CardContent className="pt-4 pb-4">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="p-2.5 rounded-xl bg-gradient-to-br from-primary to-primary/70 shadow-sm shadow-primary/20 shrink-0">
+                {icon || <Sparkles className="w-5 h-5 text-primary-foreground" />}
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-semibold text-base text-foreground truncate">{displayTitle}</h3>
+                <p className="text-xs text-muted-foreground">
+                  {t('toolsInternal.aiInsights.personalizedRec')}
+                </p>
               </div>
             </div>
             <Button
               onClick={generateInsight}
               disabled={isLoading}
-              variant="secondary"
-              className="bg-white text-violet-600 hover:bg-white/90"
+              size="sm"
+              className="shrink-0 gap-1.5 h-9 rounded-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm hover:opacity-90 transition-all text-[13px]"
             >
               {isLoading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
               ) : (
-                t('toolsInternal.aiInsights.analyze')
+                <Sparkles className="h-3.5 w-3.5" />
               )}
+              {t('toolsInternal.aiInsights.analyze')}
             </Button>
           </div>
 
@@ -161,11 +153,9 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="mt-4 pt-4 border-t border-white/20"
+                className="mt-4 pt-4 border-t border-primary/15"
               >
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 [&_h1]:text-white [&_h2]:text-white [&_h3]:text-white [&_p]:text-white/90 [&_li]:text-white/90 [&_strong]:text-white">
-                  <MarkdownRenderer content={insight} />
-                </div>
+                <MarkdownRenderer content={insight} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -174,81 +164,80 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     );
   }
 
-  // Default variant
+  /* ── DEFAULT ── */
   return (
-    <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50">
-      <CardContent className="pt-4">
-        <div 
-          className="flex items-center justify-between cursor-pointer"
+    <Card className="border-primary/20 bg-primary/5">
+      <CardContent className="pt-4 pb-4">
+        {/* Header row */}
+        <div
+          className="flex items-center justify-between gap-3 cursor-pointer"
           onClick={() => hasGenerated && setIsExpanded(!isExpanded)}
         >
-          <div className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-gradient-to-r from-violet-500 to-purple-500">
-              {icon || <Sparkles className="w-4 h-4 text-white" />}
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/70 shadow-sm shadow-primary/20 shrink-0">
+              {icon || <Sparkles className="w-4 h-4 text-primary-foreground" />}
             </div>
-            <div>
-              <h3 className="font-semibold text-foreground">{displayTitle}</h3>
+            <div className="min-w-0">
+              <h3 className="font-semibold text-sm text-foreground truncate">{displayTitle}</h3>
               {hasGenerated && (
-                <p className="text-xs text-muted-foreground">
-                  {isExpanded ? t('toolsInternal.aiInsights.clickToCollapse') : t('toolsInternal.aiInsights.clickToExpand')}
+                <p className="text-[11px] text-muted-foreground">
+                  {isExpanded
+                    ? t('toolsInternal.aiInsights.clickToCollapse')
+                    : t('toolsInternal.aiInsights.clickToExpand')}
                 </p>
               )}
             </div>
           </div>
-          
+
           {!hasGenerated ? (
             <Button
-              onClick={(e) => {
-                e.stopPropagation();
-                generateInsight();
-              }}
+              onClick={(e) => { e.stopPropagation(); generateInsight(); }}
               disabled={isLoading}
               size="sm"
-              className="gap-1 bg-gradient-to-r from-violet-500 to-purple-500"
+              className="shrink-0 gap-1.5 h-9 rounded-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm hover:opacity-90 transition-all text-[13px]"
             >
               {isLoading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
               ) : (
-                <>
-                  <Sparkles className="h-3 w-3" />
-                  {t('toolsInternal.aiInsights.analyze')}
-                </>
+                <Sparkles className="h-3.5 w-3.5" />
               )}
+              {t('toolsInternal.aiInsights.analyze')}
             </Button>
           ) : (
-            <Button variant="ghost" size="sm">
-              {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            <Button variant="ghost" size="sm" className="shrink-0 h-8 w-8 p-0 rounded-lg">
+              {isExpanded
+                ? <ChevronUp className="h-4 w-4" />
+                : <ChevronDown className="h-4 w-4" />}
             </Button>
           )}
         </div>
 
+        {/* Expandable content */}
         <AnimatePresence>
           {isExpanded && (insight || isLoading) && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="mt-4 pt-4 border-t border-violet-200/50"
+              className="mt-4 pt-4 border-t border-primary/15 overflow-hidden"
             >
               {isLoading && !insight && (
-                <div className="flex items-center gap-2 text-violet-600">
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                <div className="flex items-center gap-2 text-primary">
+                  <Loader2 className="h-4 w-4 animate-spin shrink-0" />
                   <span className="text-sm">{t('toolsInternal.aiInsights.generatingInsights')}</span>
                 </div>
               )}
               {insight && <MarkdownRenderer content={insight} />}
-              {error && (
-                <p className="text-sm text-destructive">{error}</p>
-              )}
-              
+              {error && <p className="text-sm text-destructive">{error}</p>}
+
               {hasGenerated && !isLoading && (
                 <Button
                   onClick={generateInsight}
                   variant="ghost"
                   size="sm"
-                  className="mt-3 text-violet-600"
+                  className="mt-3 gap-1.5 text-[13px] text-primary hover:text-primary/80 hover:bg-primary/10 rounded-lg"
                 >
-                  <Sparkles className="h-3 w-3 mr-1" />
+                  <RefreshCw className="h-3.5 w-3.5" />
                   {t('toolsInternal.aiInsights.regenerate')}
                 </Button>
               )}
