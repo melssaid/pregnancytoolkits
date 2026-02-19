@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun, Clock, Trash2, TrendingUp, BarChart3, Sparkles, Loader2, AlertTriangle, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format, differenceInMinutes, startOfDay, subDays, eachDayOfInterval } from "date-fns";
+import { formatLocalized } from "@/lib/dateLocale";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -23,6 +25,7 @@ const STORAGE_KEY = "baby-sleep-tracker-data";
 
 const BabySleepTracker = () => {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { trackAction } = useAnalytics("baby-sleep-tracker");
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
 
@@ -284,7 +287,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                     {formatDuration(elapsedTime)}
                   </div>
                   <p className="text-[11px] text-muted-foreground mb-4">
-                    {t('toolsInternal.babySleep.startedAt', 'Started at')} {format(new Date(activeSleep.startTime), "HH:mm")}
+                    {t('toolsInternal.babySleep.startedAt', 'Started at')} {formatLocalized(new Date(activeSleep.startTime), "HH:mm", currentLanguage)}
                   </p>
                   <Button onClick={endSleep} size="lg" className="w-full">
                     {t('toolsInternal.babySleep.endSleep')}
@@ -459,13 +462,13 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                       )}
                       <div className="min-w-0 flex-1">
                         <p className="text-xs font-medium truncate">
-                          {format(new Date(session.startTime), "MMM d")}
+                          {formatLocalized(new Date(session.startTime), "MMM d", currentLanguage)}
                           <span className="text-muted-foreground mx-1">·</span>
-                          {format(new Date(session.startTime), "HH:mm")}
+                          {formatLocalized(new Date(session.startTime), "HH:mm", currentLanguage)}
                           {session.endTime && (
                             <>
                               <ChevronRight className="inline h-3 w-3 text-muted-foreground mx-0.5" />
-                              {format(new Date(session.endTime), "HH:mm")}
+                              {formatLocalized(new Date(session.endTime), "HH:mm", currentLanguage)}
                             </>
                           )}
                         </p>

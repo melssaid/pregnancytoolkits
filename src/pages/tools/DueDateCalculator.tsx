@@ -224,7 +224,7 @@ export default function DueDateCalculator() {
                         <PopoverTrigger asChild>
                           <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !lmpDate && "text-muted-foreground")}>
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            {lmpDate ? format(lmpDate, "PPP") : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                            {lmpDate ? formatLocalized(lmpDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
@@ -254,7 +254,7 @@ export default function DueDateCalculator() {
                         <PopoverTrigger asChild>
                           <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !conceptionDate && "text-muted-foreground")}>
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            {conceptionDate ? format(conceptionDate, "PPP") : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                            {conceptionDate ? formatLocalized(conceptionDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">

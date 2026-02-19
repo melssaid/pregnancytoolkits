@@ -8,7 +8,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { MessageCircle, Plus, Trash2, Check, Stethoscope, Calendar, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { format } from "date-fns";
+import { formatLocalized } from "@/lib/dateLocale";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Question {
   id: string;
@@ -50,6 +51,7 @@ const priorityColors = {
 
 const DoctorQuestions = () => {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { trackAction } = useAnalytics("doctor-questions");
   
   const [visits, setVisits] = useState<Visit[]>([]);
@@ -196,7 +198,7 @@ const DoctorQuestions = () => {
                         <div>
                           <p className="font-medium">{t('toolsInternal.doctorQuestions.week')} {visit.week}</p>
                           <p className="text-sm text-muted-foreground">
-                            {format(new Date(visit.date), 'MMM d, yyyy')}
+                            {formatLocalized(new Date(visit.date), 'MMM d, yyyy', currentLanguage)}
                           </p>
                         </div>
                         <span className="text-sm text-primary">

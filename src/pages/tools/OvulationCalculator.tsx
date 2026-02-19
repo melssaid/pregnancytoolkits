@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { addDays, format, subDays, differenceInDays } from "date-fns";
+import { formatLocalized } from "@/lib/dateLocale";
+import { useLanguage } from "@/contexts/LanguageContext";
 import ToolFrame from "@/components/ToolFrame";
 import MotivationalQuote from "@/components/MotivationalQuote";
 import useAnalytics from "@/hooks/useAnalytics";
@@ -35,6 +37,7 @@ const isValidResults = (data: unknown): data is OvulationResult[] => {
 
 export default function OvulationCalculator() {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { trackAction } = useAnalytics("ovulation-calculator");
   const { toast } = useToast();
   const [lastPeriod, setLastPeriod] = useState("");
@@ -215,7 +218,7 @@ export default function OvulationCalculator() {
                   <p className="text-xs font-medium text-muted-foreground">{t("toolsInternal.ovulation.ovulationDay")}</p>
                 </div>
                 <p className="text-sm font-bold text-primary">
-                  {format(result.ovulationDate, "MMM d")}
+                  {formatLocalized(result.ovulationDate, "MMM d", currentLanguage)}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
                   {t("toolsInternal.ovulation.peakFertility")}
@@ -233,7 +236,7 @@ export default function OvulationCalculator() {
                   <p className="text-xs font-medium text-muted-foreground">{t("toolsInternal.ovulation.nextPeriod")}</p>
                 </div>
                 <p className="text-sm font-bold text-foreground">
-                  {format(result.nextPeriod, "MMM d")}
+                  {formatLocalized(result.nextPeriod, "MMM d", currentLanguage)}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
                   {t("toolsInternal.ovulation.expectedStart")}
@@ -260,7 +263,7 @@ export default function OvulationCalculator() {
               <div className="flex items-center justify-center gap-4 py-4">
                 <div className="text-center">
                   <p className="text-xs text-muted-foreground">{t("toolsInternal.ovulation.start")}</p>
-                  <p className="text-lg font-bold text-foreground">{format(result.fertileStart, "MMM d")}</p>
+                  <p className="text-lg font-bold text-foreground">{formatLocalized(result.fertileStart, "MMM d", currentLanguage)}</p>
                 </div>
                 <div className="flex items-center gap-1 text-primary/60">
                   <span>→</span>
@@ -269,7 +272,7 @@ export default function OvulationCalculator() {
                 </div>
                 <div className="text-center">
                   <p className="text-xs text-muted-foreground">{t("toolsInternal.ovulation.end")}</p>
-                  <p className="text-lg font-bold text-foreground">{format(result.fertileEnd, "MMM d")}</p>
+                  <p className="text-lg font-bold text-foreground">{formatLocalized(result.fertileEnd, "MMM d", currentLanguage)}</p>
                 </div>
               </div>
               
@@ -281,7 +284,7 @@ export default function OvulationCalculator() {
             {/* AI Insights */}
             <AIInsightCard
               title={t("toolsInternal.ovulation.aiFertilityInsights")}
-              prompt={`I'm tracking my fertility. My cycle length is ${cycleLength} days. My last period started on ${lastPeriod}. My ovulation is predicted for ${format(result.ovulationDate, "MMMM d, yyyy")} and my fertile window is ${format(result.fertileStart, "MMM d")} to ${format(result.fertileEnd, "MMM d")}.
+              prompt={`I'm tracking my fertility. My cycle length is ${cycleLength} days. My last period started on ${lastPeriod}. My ovulation is predicted for ${formatLocalized(result.ovulationDate, "MMMM d, yyyy", currentLanguage)} and my fertile window is ${formatLocalized(result.fertileStart, "MMM d", currentLanguage)} to ${formatLocalized(result.fertileEnd, "MMM d", currentLanguage)}.
 
 Please provide personalized advice in this format:
 ## 🌸 Your Fertile Window Analysis
@@ -327,13 +330,13 @@ Any important reminders about fertility tracking`}
                   >
                     <div>
                       <p className="font-medium text-foreground">
-                        {t("toolsInternal.ovulation.ovulation")}: {format(new Date(saved.ovulationDate), "MMM d, yyyy")}
+                        {t("toolsInternal.ovulation.ovulation")}: {formatLocalized(new Date(saved.ovulationDate), "MMM d, yyyy", currentLanguage)}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {t("toolsInternal.ovulation.cycle")}: {saved.cycleLength} {t("toolsInternal.ovulation.days")} • LMP: {format(new Date(saved.lastPeriod), "MMM d")}
+                        {t("toolsInternal.ovulation.cycle")}: {saved.cycleLength} {t("toolsInternal.ovulation.days")} • LMP: {formatLocalized(new Date(saved.lastPeriod), "MMM d", currentLanguage)}
                       </p>
                       <p className="text-[10px] text-primary mt-1">
-                        {t("toolsInternal.ovulation.fertile")}: {format(new Date(saved.fertileStart), "MMM d")} - {format(new Date(saved.fertileEnd), "MMM d")}
+                        {t("toolsInternal.ovulation.fertile")}: {formatLocalized(new Date(saved.fertileStart), "MMM d", currentLanguage)} - {formatLocalized(new Date(saved.fertileEnd), "MMM d", currentLanguage)}
                       </p>
                     </div>
                     <button

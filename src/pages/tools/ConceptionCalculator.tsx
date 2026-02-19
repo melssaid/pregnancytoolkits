@@ -9,12 +9,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, Baby, ArrowRight, Sparkles, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { format, addDays, subDays, addWeeks, differenceInDays } from "date-fns";
+import { formatLocalized } from "@/lib/dateLocale";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 const ConceptionCalculator = () => {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
 
   useResetOnLanguageChange(() => {
@@ -42,8 +45,8 @@ const ConceptionCalculator = () => {
       messages: [{
         role: 'user',
         content: `I'm trying to conceive. Based on my data:
-- Estimated conception window: ${format(result.fertileWindowStart, "MMMM d")} to ${format(result.fertileWindowEnd, "MMMM d")}
-- Peak fertility (ovulation): ${format(result.conceptionDate, "MMMM d")}
+- Estimated conception window: ${formatLocalized(result.fertileWindowStart, "MMMM d", currentLanguage)} to ${formatLocalized(result.fertileWindowEnd, "MMMM d", currentLanguage)}
+- Peak fertility (ovulation): ${formatLocalized(result.conceptionDate, "MMMM d", currentLanguage)}
 - My cycle length: ${cycleLength} days
 
 Please provide:
@@ -194,7 +197,7 @@ Encouragement and realistic expectations`
                       {t('conceptionPage.estimatedConception')}
                     </p>
                     <p className="text-sm font-bold text-primary">
-                      {format(result.conceptionDate, "MMMM d, yyyy")}
+                      {formatLocalized(result.conceptionDate, "MMMM d, yyyy", currentLanguage)}
                     </p>
                   </div>
 
@@ -204,11 +207,11 @@ Encouragement and realistic expectations`
                     </p>
                     <div className="flex items-center justify-center gap-2">
                       <span className="font-medium">
-                        {format(result.fertileWindowStart, "MMM d")}
+                        {formatLocalized(result.fertileWindowStart, "MMM d", currentLanguage)}
                       </span>
                       <ArrowRight className="h-4 w-4 text-muted-foreground" />
                       <span className="font-medium">
-                        {format(result.fertileWindowEnd, "MMM d")}
+                        {formatLocalized(result.fertileWindowEnd, "MMM d", currentLanguage)}
                       </span>
                     </div>
                   </div>
