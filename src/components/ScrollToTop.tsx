@@ -1,15 +1,6 @@
-import { useEffect } from "react";
-import { useLocation, useNavigationType } from "react-router-dom";
-
+// This component is intentionally a no-op.
+// All scroll management is handled by SmartScrollRestoration → useScrollRestoration.
+// Kept as a stub to avoid breaking any imports that may reference it.
 export function ScrollToTop() {
-  const { pathname } = useLocation();
-  const navType = useNavigationType();
-
-  useEffect(() => {
-    if (navType !== "POP") {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }
-  }, [pathname, navType]);
-
   return null;
 }
