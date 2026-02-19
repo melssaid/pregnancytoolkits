@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CalendarIcon, Save, Baby, Scale, Calendar } from 'lucide-react';
+import { CalendarIcon, Save, Baby, Scale, Calendar, Ruler, Droplets } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useUserProfile, computeWeekFromLMP } from '@/hooks/useUserProfile';
 import { formatLocalized } from '@/lib/dateLocale';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+
+const BLOOD_TYPES = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
 interface ProfileEditorProps {
   compact?: boolean;
@@ -23,6 +32,8 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
 
   const [weekInput, setWeekInput] = useState(String(profile.pregnancyWeek));
   const [weightInput, setWeightInput] = useState(profile.weight !== null ? String(profile.weight) : '');
+  const [heightInput, setHeightInput] = useState(profile.height !== null ? String(profile.height) : '');
+  const [bloodType, setBloodType] = useState<string>(profile.bloodType ?? '');
   const [selectedLMP, setSelectedLMP] = useState<Date | undefined>(
     profile.lastPeriodDate ? new Date(profile.lastPeriodDate) : undefined
   );
@@ -41,10 +52,18 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
       updateProfile({ weight: null });
     }
 
+    const height = parseFloat(heightInput);
+    if (!isNaN(height) && height > 0) {
+      updateProfile({ height });
+    } else if (heightInput === '') {
+      updateProfile({ height: null });
+    }
+
+    updateProfile({ bloodType: bloodType || null });
+
     if (selectedLMP) {
       const lmpStr = selectedLMP.toISOString().split('T')[0];
       setLastPeriodDate(lmpStr);
-      // auto-update week from LMP
       const computed = computeWeekFromLMP(lmpStr);
       setWeekInput(String(computed));
     } else if (!selectedLMP && profile.lastPeriodDate) {
@@ -127,25 +146,71 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
         )}
       </div>
 
-      {/* Weight */}
+      {/* Weight + Height - side by side */}
+      <div className="grid grid-cols-2 gap-3">
+        {/* Weight */}
+        <div className="space-y-1.5">
+          <Label className="flex items-center gap-1.5 text-xs font-medium">
+            <Scale className="w-3.5 h-3.5 text-primary" />
+            {t('onboarding.weightLabel', 'Current Weight')}
+          </Label>
+          <div className="flex items-center gap-1.5">
+            <Input
+              type="number"
+              min={30}
+              max={200}
+              step={0.1}
+              value={weightInput}
+              onChange={e => setWeightInput(e.target.value)}
+              className="h-9 text-sm"
+              placeholder="65"
+            />
+            <span className="text-xs text-muted-foreground shrink-0">kg</span>
+          </div>
+        </div>
+
+        {/* Height */}
+        <div className="space-y-1.5">
+          <Label className="flex items-center gap-1.5 text-xs font-medium">
+            <Ruler className="w-3.5 h-3.5 text-primary" />
+            {t('settings.profile.heightLabel', 'Height')}
+          </Label>
+          <div className="flex items-center gap-1.5">
+            <Input
+              type="number"
+              min={100}
+              max={220}
+              value={heightInput}
+              onChange={e => setHeightInput(e.target.value)}
+              className="h-9 text-sm"
+              placeholder={t('settings.profile.heightPlaceholder', '165')}
+            />
+            <span className="text-xs text-muted-foreground shrink-0">
+              {t('settings.profile.heightUnit', 'cm')}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Blood Type */}
       <div className="space-y-1.5">
         <Label className="flex items-center gap-1.5 text-xs font-medium">
-          <Scale className="w-3.5 h-3.5 text-primary" />
-          {t('onboarding.weightLabel', 'Current Weight')}
+          <Droplets className="w-3.5 h-3.5 text-primary" />
+          {t('settings.profile.bloodTypeLabel', 'Blood Type')}
         </Label>
-        <div className="flex items-center gap-2">
-          <Input
-            type="number"
-            min={30}
-            max={200}
-            step={0.1}
-            value={weightInput}
-            onChange={e => setWeightInput(e.target.value)}
-            className="h-9 text-sm"
-            placeholder="e.g. 65"
-          />
-          <span className="text-xs text-muted-foreground shrink-0">kg</span>
-        </div>
+        <Select value={bloodType} onValueChange={setBloodType}>
+          <SelectTrigger className="h-9 text-sm">
+            <SelectValue placeholder={t('settings.profile.bloodTypePlaceholder', 'Select blood type')} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="unknown">
+              {t('settings.profile.bloodTypeUnknown', 'Unknown / Not tested')}
+            </SelectItem>
+            {BLOOD_TYPES.map(bt => (
+              <SelectItem key={bt} value={bt}>{bt}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Due date display */}

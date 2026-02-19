@@ -775,6 +775,17 @@
   "settings": {
     "title": "Ayarlar",
     "subtitle": "Tercihlerinizi yönetin",
+    "profile": {
+      "title": "Profilim",
+      "save": "Profili kaydet",
+      "saved": "Profil başarıyla güncellendi",
+      "heightLabel": "Boy",
+      "heightPlaceholder": "ör. 165",
+      "heightUnit": "cm",
+      "bloodTypeLabel": "Kan grubu",
+      "bloodTypePlaceholder": "Kan grubu seçin",
+      "bloodTypeUnknown": "Bilinmiyor / Test edilmedi"
+    },
     "securityPrivacy": "Güvenlik ve Gizlilik",
     "dataManagement": "Veri Yönetimi",
     "language": {

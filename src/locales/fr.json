@@ -775,6 +775,17 @@
   "settings": {
     "title": "Paramètres",
     "subtitle": "Gérez vos préférences",
+    "profile": {
+      "title": "Mon profil",
+      "save": "Enregistrer le profil",
+      "saved": "Profil mis à jour avec succès",
+      "heightLabel": "Taille",
+      "heightPlaceholder": "ex. 165",
+      "heightUnit": "cm",
+      "bloodTypeLabel": "Groupe sanguin",
+      "bloodTypePlaceholder": "Sélectionner le groupe sanguin",
+      "bloodTypeUnknown": "Inconnu / Non testé"
+    },
     "securityPrivacy": "Sécurité et confidentialité",
     "dataManagement": "Gestion des données",
     "language": {
