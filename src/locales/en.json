@@ -64,7 +64,16 @@
     "feature2": "Educational wellness content",
     "feature3": "Your data stays on your device",
     "accept": "I Understand & Continue",
-    "consultNote": "Always consult a qualified healthcare professional for any health concerns."
+    "consultNote": "Always consult a qualified healthcare professional for any health concerns.",
+    "chooseLang": "Choose Language",
+    "next": "Continue",
+    "back": "Back",
+    "profileTitle": "Your Pregnancy Info",
+    "profileSubtitle": "Helps all tools work instantly for you",
+    "pregnancyWeek": "Current Pregnancy Week",
+    "lastPeriod": "Last Period Date",
+    "optional": "optional",
+    "dueDateWillCompute": "Due date will be computed automatically"
   },
   "tools": {
     "pregnancyAssistant": {

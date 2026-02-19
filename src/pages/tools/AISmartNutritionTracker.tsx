@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { NutritionService, UserProfileService } from '@/services/supabaseServices';
+import { NutritionService } from '@/services/supabaseServices';
+import { useUserProfile } from '@/hooks/useUserProfile';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -25,6 +26,7 @@ const AISmartNutritionTracker: React.FC = () => {
   const isRTL = i18n.language === 'ar';
   const { streamChat } = usePregnancyAI();
   const abortRef = useRef(false);
+  const { profile: userProfile } = useUserProfile();
   
   const MEAL_TYPES = [
     { id: 'breakfast', name: t('nutrition.breakfast', 'Breakfast'), icon: Coffee, color: 'from-yellow-400 to-orange-400' },
@@ -34,7 +36,7 @@ const AISmartNutritionTracker: React.FC = () => {
   ];
 
   const [todayMeals, setTodayMeals] = useState<MealLog[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(20);
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 20);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -45,6 +47,11 @@ const AISmartNutritionTracker: React.FC = () => {
   const [dailyAnalysis, setDailyAnalysis] = useState('');
   const { toast } = useToast();
 
+  // Sync week from central profile
+  useEffect(() => {
+    if (userProfile.pregnancyWeek) setCurrentWeek(userProfile.pregnancyWeek);
+  }, [userProfile.pregnancyWeek]);
+
   useEffect(() => {
     loadData();
   }, []);
@@ -52,12 +59,6 @@ const AISmartNutritionTracker: React.FC = () => {
   const loadData = async () => {
     try {
       setIsLoading(true);
-      
-      const profile = await UserProfileService.get();
-      if (profile?.pregnancy_week) {
-        setCurrentWeek(profile.pregnancy_week);
-      }
-      
       const meals = await NutritionService.getTodayMeals();
       setTodayMeals(meals);
       

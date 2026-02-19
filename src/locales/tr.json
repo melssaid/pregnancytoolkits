@@ -64,7 +64,16 @@
     "feature2": "Eğitici sağlık içeriği",
     "feature3": "Verileriniz cihazınızda kalır",
     "accept": "Anlıyorum ve devam et",
-    "consultNote": "Sağlık endişeleriniz için her zaman nitelikli bir sağlık uzmanına danışın."
+    "consultNote": "Sağlık endişeleriniz için her zaman nitelikli bir sağlık uzmanına danışın.",
+    "chooseLang": "Dil seç",
+    "next": "Devam et",
+    "back": "Geri",
+    "profileTitle": "Hamilelik bilgileriniz",
+    "profileSubtitle": "Tüm araçların anında çalışmasına yardımcı olur",
+    "pregnancyWeek": "Mevcut hamilelik haftası",
+    "lastPeriod": "Son adet tarihi",
+    "optional": "isteğe bağlı",
+    "dueDateWillCompute": "Doğum tarihi otomatik hesaplanacak"
   },
   "tools": {
     "pregnancyAssistant": {

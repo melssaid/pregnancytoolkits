@@ -7,7 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { AppointmentService, UserProfileService } from '@/services/supabaseServices';
+import { AppointmentService } from '@/services/supabaseServices';
+import { useUserProfile } from '@/hooks/useUserProfile';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { TimePicker } from '@/components/ui/time-picker';
@@ -37,6 +38,7 @@ const APPOINTMENT_TYPES = [
 
 const SmartAppointmentReminder: React.FC = () => {
   const { t } = useTranslation();
+  const { profile: userProfile } = useUserProfile();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,16 +46,19 @@ const SmartAppointmentReminder: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [showAllPast, setShowAllPast] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [currentWeek, setCurrentWeek] = useState(20);
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 20);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
   const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
   const { streamChat, error: aiError } = usePregnancyAI();
 
-  useResetOnLanguageChange(() => {
-    setSuggestedQuestions([]);
-  });
+  useResetOnLanguageChange(() => { setSuggestedQuestions([]); });
   const abortRef = useRef(false);
-  
+
+  // Sync week from central profile
+  useEffect(() => {
+    if (userProfile.pregnancyWeek) setCurrentWeek(userProfile.pregnancyWeek);
+  }, [userProfile.pregnancyWeek]);
+
   const [formData, setFormData] = useState({
     title: '',
     doctor_name: '',
@@ -73,15 +78,8 @@ const SmartAppointmentReminder: React.FC = () => {
   const loadData = async () => {
     try {
       setIsLoading(true);
-      
-      const profile = await UserProfileService.get();
-      if (profile?.pregnancy_week) {
-        setCurrentWeek(profile.pregnancy_week);
-      }
-      
       const data = await AppointmentService.getAll();
       setAppointments(data);
-      
     } catch (error: any) {
       console.error('Error loading appointments:', error);
     } finally {

@@ -6,6 +6,7 @@ interface CategoryStats {
     todayKicks: number;
     lastWeight: string;
     vitaminsTaken: number;
+    waterGlasses: number;
   };
   planning: {
     upcomingAppointments: number;
@@ -25,7 +26,7 @@ interface CategoryStats {
 
 export const useTrackingStats = () => {
   const [stats, setStats] = useState<CategoryStats>({
-    dailyTracking: { todayKicks: 0, lastWeight: '', vitaminsTaken: 0 },
+    dailyTracking: { todayKicks: 0, lastWeight: '', vitaminsTaken: 0, waterGlasses: 0 },
     planning: { upcomingAppointments: 0, birthPlanProgress: 0, bagItemsChecked: 0 },
     growth: { photosCount: 0, lastMeasurement: '' },
     postpartum: { sleepHoursToday: 0, diapersToday: 0, groceryItems: 0 },
@@ -50,6 +51,11 @@ export const useTrackingStats = () => {
       const vitaminLogs = JSON.parse(localStorage.getItem(`vitamin_logs_${userId}`) || '[]');
       const todayVitamins = vitaminLogs.filter((l: any) => l.taken_at?.startsWith(today));
       const vitaminsTaken = todayVitamins.length;
+
+      // Water intake (glasses today)
+      const waterLogs = JSON.parse(localStorage.getItem(`water_logs_${userId}`) || '[]');
+      const todayWater = waterLogs.filter((l: any) => l.date?.startsWith(today));
+      const waterGlasses = todayWater.reduce((sum: number, l: any) => sum + (l.glasses || 1), 0);
 
       // Planning Stats
       const appointments = JSON.parse(localStorage.getItem(`appointments_${userId}`) || '[]');
@@ -85,7 +91,7 @@ export const useTrackingStats = () => {
       const groceryItems = groceryList.length;
 
       setStats({
-        dailyTracking: { todayKicks, lastWeight, vitaminsTaken },
+        dailyTracking: { todayKicks, lastWeight, vitaminsTaken, waterGlasses },
         planning: { upcomingAppointments, birthPlanProgress, bagItemsChecked },
         growth: { photosCount, lastMeasurement },
         postpartum: { sleepHoursToday: Math.round(sleepHoursToday * 10) / 10, diapersToday, groceryItems },

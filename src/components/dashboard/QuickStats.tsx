@@ -11,7 +11,7 @@ interface StatCard {
   subtextKey?: string;
   subtextParams?: Record<string, unknown>;
   href: string;
-  color: string;
+  colorClass: string;
 }
 
 interface QuickStatsProps {
@@ -39,7 +39,7 @@ export function QuickStats({
       value: weight > 0 ? `${weight} kg` : "—",
       subtextKey: "dashboard.quickStats.lastRecorded",
       href: "/tools/weight-gain",
-      color: "from-blue-500 to-indigo-500"
+      colorClass: "bg-primary/15 text-primary"
     },
     {
       id: "kicks",
@@ -49,7 +49,7 @@ export function QuickStats({
       subtextKey: kicks >= 10 ? "dashboard.quickStats.goalReached" : "dashboard.quickStats.goal",
       subtextParams: { goal: 10 },
       href: "/tools/kick-counter",
-      color: "from-green-500 to-emerald-500"
+      colorClass: "bg-accent/15 text-accent"
     },
     {
       id: "mood",
@@ -58,16 +58,16 @@ export function QuickStats({
       value: mood ? t(`dashboard.quickStats.moods.${mood.toLowerCase()}`, mood) : "—",
       subtextKey: "dashboard.quickStats.howYouFeel",
       href: "/tools/mental-health-coach",
-      color: "from-pink-500 to-rose-500"
+      colorClass: "bg-destructive/10 text-destructive"
     },
     {
       id: "water",
       icon: Droplets,
       labelKey: "dashboard.quickStats.water",
-      value: `${waterGlasses}/10`,
+      value: `${waterGlasses}/8`,
       subtextKey: "dashboard.quickStats.glassesToday",
       href: "/tools/vitamin-tracker",
-      color: "from-cyan-500 to-blue-500"
+      colorClass: "bg-secondary text-secondary-foreground"
     },
   ];
 
@@ -87,8 +87,8 @@ export function QuickStats({
               className="block p-4 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group"
             >
               <div className="flex items-start justify-between mb-3">
-                <div className={`p-2 rounded-xl bg-gradient-to-br ${stat.color} shadow-lg`}>
-                  <Icon className="w-4 h-4 text-white" />
+                <div className={`p-2 rounded-xl ${stat.colorClass}`}>
+                  <Icon className="w-4 h-4" />
                 </div>
               </div>
               <div>
@@ -117,10 +117,10 @@ export function QuickStats({
         >
           <Link
             to="/tools/smart-appointment-reminder"
-            className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 hover:border-primary/40 transition-all group"
+            className="flex items-center gap-4 p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all group"
           >
-            <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg">
-              <Calendar className="w-5 h-5 text-primary-foreground" />
+            <div className="p-3 rounded-xl bg-primary/10">
+              <Calendar className="w-5 h-5 text-primary" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
