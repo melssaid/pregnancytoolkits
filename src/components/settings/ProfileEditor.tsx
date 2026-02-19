@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CalendarIcon, Save, Baby, Scale, Calendar, Ruler, Droplets } from 'lucide-react';
+import { CalendarIcon, Save, Baby, Scale, Calendar, Ruler, Droplets, TrendingDown, TrendingUp, Minus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -25,6 +25,21 @@ interface ProfileEditorProps {
   compact?: boolean;
 }
 
+/** حساب BMI ووصفه للحامل */
+function calcBMI(weightKg: number, heightCm: number) {
+  if (!weightKg || !heightCm || heightCm < 100) return null;
+  const hm = heightCm / 100;
+  const bmi = weightKg / (hm * hm);
+  return Math.round(bmi * 10) / 10;
+}
+
+function getBMICategory(bmi: number) {
+  if (bmi < 18.5) return { key: 'underweight', variant: 'warn' as const };
+  if (bmi < 25)   return { key: 'normal',      variant: 'good' as const };
+  if (bmi < 30)   return { key: 'overweight',  variant: 'warn' as const };
+  return           { key: 'obese',             variant: 'bad'  as const };
+}
+
 export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false }) => {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
@@ -38,6 +53,9 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
     profile.lastPeriodDate ? new Date(profile.lastPeriodDate) : undefined
   );
   const [lmpOpen, setLmpOpen] = useState(false);
+
+  const bmi = calcBMI(parseFloat(weightInput), parseFloat(heightInput));
+  const bmiCategory = bmi ? getBMICategory(bmi) : null;
 
   const handleSave = () => {
     const week = parseInt(weekInput);
@@ -191,6 +209,46 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
           </div>
         </div>
       </div>
+
+      {/* BMI Card - live calculation */}
+      {bmi !== null && bmiCategory && (
+        <div className={`rounded-xl border px-4 py-3 flex items-center justify-between ${
+          bmiCategory.variant === 'good'
+            ? 'bg-accent/10 border-accent/30'
+            : bmiCategory.variant === 'warn'
+            ? 'bg-primary/8 border-primary/20'
+            : 'bg-destructive/8 border-destructive/20'
+        }`}>
+          <div className="flex items-center gap-2">
+            <Ruler className="w-4 h-4 text-muted-foreground" />
+            <div>
+              <p className="text-[11px] text-muted-foreground">
+                {t('settings.profile.bmiLabel', 'Body Mass Index (BMI)')}
+              </p>
+              <p className="text-[10px] text-muted-foreground/70 mt-0.5">
+                {t(`settings.profile.bmi.${bmiCategory.key}`, bmiCategory.key)}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {bmiCategory.variant === 'good'
+              ? <Minus className="w-3.5 h-3.5 text-accent-foreground" />
+              : bmiCategory.variant === 'warn' && bmi < 18.5
+              ? <TrendingDown className="w-3.5 h-3.5 text-primary" />
+              : <TrendingUp className="w-3.5 h-3.5 text-destructive" />
+            }
+            <span className={`text-xl font-bold ${
+              bmiCategory.variant === 'good'
+                ? 'text-accent-foreground'
+                : bmiCategory.variant === 'warn'
+                ? 'text-primary'
+                : 'text-destructive'
+            }`}>
+              {bmi}
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Blood Type */}
       <div className="space-y-1.5">

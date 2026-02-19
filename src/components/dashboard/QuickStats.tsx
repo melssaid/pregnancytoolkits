@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Scale, Activity, Heart, Droplets, Calendar } from "lucide-react";
+import { Scale, Activity, Heart, Droplets, Calendar, Ruler } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -16,20 +16,29 @@ interface StatCard {
 
 interface QuickStatsProps {
   weight?: number;
+  height?: number;
   kicks?: number;
   mood?: string;
   waterGlasses?: number;
   nextAppointment?: string;
 }
 
+function calcBMI(weight: number, heightCm: number) {
+  if (!weight || !heightCm || heightCm < 100) return null;
+  const hm = heightCm / 100;
+  return Math.round((weight / (hm * hm)) * 10) / 10;
+}
+
 export function QuickStats({ 
   weight = 0, 
+  height = 0,
   kicks = 0, 
   mood = "",
   waterGlasses = 0,
   nextAppointment
 }: QuickStatsProps) {
   const { t } = useTranslation();
+  const bmi = calcBMI(weight, height);
   
   const stats: StatCard[] = [
     {
@@ -106,6 +115,46 @@ export function QuickStats({
           </motion.div>
         );
       })}
+
+      {/* BMI Card - عرض فقط إذا توفر الوزن والطول */}
+      {bmi !== null && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 }}
+          className="col-span-2"
+        >
+          <Link
+            to="/settings"
+            className="flex items-center gap-4 p-4 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all group"
+          >
+            <div className="p-2.5 rounded-xl bg-accent/15">
+              <Ruler className="w-4 h-4 text-accent-foreground" />
+            </div>
+            <div className="flex-1">
+              <p className="text-xs text-muted-foreground">{t("dashboard.quickStats.bmi", "BMI")}</p>
+              <p className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{bmi}</p>
+              <p className="text-[10px] text-muted-foreground/70">
+                {bmi < 18.5
+                  ? t("settings.profile.bmi.underweight", "Underweight")
+                  : bmi < 25
+                  ? t("settings.profile.bmi.normal", "Normal")
+                  : bmi < 30
+                  ? t("settings.profile.bmi.overweight", "Overweight")
+                  : t("settings.profile.bmi.obese", "Obese")}
+              </p>
+            </div>
+            <div className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+              bmi < 18.5 ? 'bg-primary/10 text-primary'
+              : bmi < 25  ? 'bg-accent/20 text-accent-foreground'
+              : bmi < 30  ? 'bg-primary/10 text-primary'
+              :             'bg-destructive/10 text-destructive'
+            }`}>
+              {bmi < 18.5 ? '↓' : bmi < 25 ? '✓' : '↑'}
+            </div>
+          </Link>
+        </motion.div>
+      )}
 
       {/* Next Appointment Card - Full width */}
       {nextAppointment && (

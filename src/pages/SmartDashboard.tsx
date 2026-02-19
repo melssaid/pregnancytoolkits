@@ -304,6 +304,7 @@ const SmartDashboard = () => {
             {/* 2. Quick Stats - Daily Health Overview */}
             <QuickStats
               weight={parseFloat(healthData.weight) || (stats.dailyTracking.lastWeight ? parseFloat(stats.dailyTracking.lastWeight) : 0)}
+              height={userProfile.height ?? 0}
               kicks={stats.dailyTracking.todayKicks}
               mood={healthData.mood}
               waterGlasses={stats.dailyTracking.waterGlasses}
