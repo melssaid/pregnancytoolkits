@@ -89,24 +89,24 @@ export const toolsData: Tool[] = [
   { id: "ai-birth-position", titleKey: "tools.aiBirthPosition.title", descriptionKey: "tools.aiBirthPosition.description", icon: PersonStanding, categoryKey: "categories.labor", href: "/tools/ai-birth-position", priority: 15, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // 💪 WELLNESS & FITNESS (8 tools)
+  // 💪 WELLNESS & FITNESS (11 tools)
   // ═══════════════════════════════════════════════════════════════
   { id: "wellness-diary", titleKey: "tools.wellnessDiary.title", descriptionKey: "tools.wellnessDiary.description", icon: Heart, categoryKey: "categories.wellness", href: "/tools/wellness-diary", priority: 16, hasAI: false },
   { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 17, hasAI: true },
   { id: "ai-back-pain-relief", titleKey: "tools.aiBackPainRelief.title", descriptionKey: "tools.aiBackPainRelief.description", icon: HeartPulse, categoryKey: "categories.wellness", href: "/tools/ai-back-pain-relief", priority: 18, hasAI: true },
   { id: "ai-sleep-optimizer", titleKey: "tools.aiSleepOptimizer.title", descriptionKey: "tools.aiSleepOptimizer.description", icon: Bed, categoryKey: "categories.wellness", href: "/tools/ai-sleep-optimizer", priority: 19, hasAI: true },
   { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.wellness", href: "/tools/ai-nausea-relief", priority: 20, hasAI: true },
-  { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.wellness", href: "/tools/vitamin-tracker", priority: 21, hasAI: true },
-  { id: "forbidden-foods", titleKey: "tools.forbiddenFoods.title", descriptionKey: "tools.forbiddenFoods.description", icon: Utensils, categoryKey: "categories.wellness", href: "/tools/forbidden-foods", priority: 22, hasAI: true },
-  { id: "smart-walking-coach", titleKey: "tools.smartWalkingCoach.title", descriptionKey: "tools.smartWalkingCoach.description", icon: Footprints, categoryKey: "categories.wellness", href: "/tools/smart-walking-coach", priority: 23, hasAI: true },
-  { id: "smart-stretch-reminder", titleKey: "tools.smartStretchReminder.title", descriptionKey: "tools.smartStretchReminder.description", icon: Sparkles, categoryKey: "categories.wellness", href: "/tools/smart-stretch-reminder", priority: 24, hasAI: true },
-  { id: "smart-snack-planner", titleKey: "tools.smartSnackPlanner.title", descriptionKey: "tools.smartSnackPlanner.description", icon: Utensils, categoryKey: "categories.wellness", href: "/tools/smart-snack-planner", priority: 25, hasAI: true },
+  { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
+  { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.wellness", href: "/tools/vitamin-tracker", priority: 22, hasAI: true },
+  { id: "forbidden-foods", titleKey: "tools.forbiddenFoods.title", descriptionKey: "tools.forbiddenFoods.description", icon: Utensils, categoryKey: "categories.wellness", href: "/tools/forbidden-foods", priority: 23, hasAI: true },
+  { id: "smart-walking-coach", titleKey: "tools.smartWalkingCoach.title", descriptionKey: "tools.smartWalkingCoach.description", icon: Footprints, categoryKey: "categories.wellness", href: "/tools/smart-walking-coach", priority: 24, hasAI: true },
+  { id: "smart-stretch-reminder", titleKey: "tools.smartStretchReminder.title", descriptionKey: "tools.smartStretchReminder.description", icon: Sparkles, categoryKey: "categories.wellness", href: "/tools/smart-stretch-reminder", priority: 25, hasAI: true },
+  { id: "smart-snack-planner", titleKey: "tools.smartSnackPlanner.title", descriptionKey: "tools.smartSnackPlanner.description", icon: Utensils, categoryKey: "categories.wellness", href: "/tools/smart-snack-planner", priority: 26, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // 🧠 MENTAL HEALTH (2 tools)
+  // 🧠 MENTAL HEALTH (1 tool)
   // ═══════════════════════════════════════════════════════════════
-  { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, categoryKey: "categories.mentalHealth", href: "/tools/mental-health-coach", priority: 26, hasAI: true },
-  { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.mentalHealth", href: "/tools/ai-skincare", priority: 27, hasAI: true },
+  { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, categoryKey: "categories.mentalHealth", href: "/tools/mental-health-coach", priority: 27, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // ⚠️ SELF-CHECK (2 tools)
