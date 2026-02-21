@@ -3229,7 +3229,9 @@
       "vitamind": "Vitamina D",
       "potassium": "Potasio",
       "bvitamins": "Vitaminas B"
-    }
+    },
+    "getAIAdvice": "Obtener consejo IA de snacks",
+    "aiAdviceTitle": "Asesor nutricional IA"
   },
   "toolsInternal.recipeModifier": {
     "title": "Modificador de Recetas IA",
@@ -3864,7 +3866,9 @@
     "pain": "Nivel de Dolor",
     "summary": "Resumen",
     "summaryText": "Sigue tu plan personalizado y consulta a tu médico ante cualquier inquietud.",
-    "doctorNotes": "Notas del Médico"
+    "doctorNotes": "Notas del Médico",
+    "getAIPlan": "Obtener plan IA personalizado",
+    "aiPlanTitle": "Plan personalizado con IA"
   },
   "toolsInternal.walkingCoach": {
     "title": "Coach de Caminata Inteligente",

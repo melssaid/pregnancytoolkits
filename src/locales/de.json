@@ -2970,7 +2970,9 @@
       "vitamind": "Vitamin D",
       "potassium": "Kalium",
       "bvitamins": "B-Vitamine"
-    }
+    },
+    "getAIAdvice": "KI-Snack-Beratung erhalten",
+    "aiAdviceTitle": "KI-Ernährungsberater"
   },
   "toolsInternal.recipeModifier": {
     "title": "KI-Rezeptmodifikator",
@@ -3640,7 +3642,9 @@
     "pain": "Schmerzniveau",
     "summary": "Zusammenfassung",
     "summaryText": "Folge weiterhin deinem personalisierten Plan und konsultiere deinen Arzt bei Bedenken.",
-    "doctorNotes": "Arztnotizen"
+    "doctorNotes": "Arztnotizen",
+    "getAIPlan": "KI-personalisierten Plan erhalten",
+    "aiPlanTitle": "KI-personalisierter Plan"
   },
   "toolsInternal.walkingCoach": {
     "title": "Smarter Geh-Coach",
