@@ -3229,7 +3229,9 @@
       "vitamind": "D Vitamini",
       "potassium": "Potasyum",
       "bvitamins": "B Vitaminleri"
-    }
+    },
+    "getAIAdvice": "Yapay Zeka atıştırmalık önerisi al",
+    "aiAdviceTitle": "Yapay Zeka Beslenme Danışmanı"
   },
   "toolsInternal.recipeModifier": {
     "title": "Yapay Zeka Tarif Düzenleyici",
@@ -3864,7 +3866,9 @@
     "pain": "Ağrı Seviyesi",
     "summary": "Özet",
     "summaryText": "Kişiselleştirilmiş planınızı takip etmeye devam edin ve herhangi bir endişe için doktorunuza danışın.",
-    "doctorNotes": "Doktor Notları"
+    "doctorNotes": "Doktor Notları",
+    "getAIPlan": "Yapay Zeka kişisel plan al",
+    "aiPlanTitle": "Yapay Zeka Kişisel Plan"
   },
   "toolsInternal.walkingCoach": {
     "title": "Akıllı Yürüyüş Koçu",
