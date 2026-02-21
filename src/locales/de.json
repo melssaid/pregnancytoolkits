@@ -156,6 +156,22 @@
       "title": "Verbotene Lebensmittel",
       "description": "Wissen Sie, was sicher zu essen ist."
     },
+    "smartPregnancyPlan": {
+      "title": "Intelligenter Schwangerschaftsplan",
+      "description": "Dein personalisierter Tagesplan mit Übungen und Mahlzeiten."
+    },
+    "smartWalkingCoach": {
+      "title": "Geh-Coach",
+      "description": "Sichere Gehprogramme für dein Trimester."
+    },
+    "smartSnackPlanner": {
+      "title": "Snack-Planer",
+      "description": "Gesunde Schwangerschaftssnacks für jeden Heißhunger."
+    },
+    "smartStretchReminder": {
+      "title": "Dehn-Erinnerung",
+      "description": "Personalisierte Dehnübungen für dein Wohlbefinden."
+    },
     "aiLaborProgress": {
       "title": "Kontraktions-Tagebuch",
       "description": "Protokollieren Sie Ihre Kontraktionsmuster."

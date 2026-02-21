@@ -156,6 +156,22 @@
       "title": "Alimentos a evitar",
       "description": "Sabe qué es seguro comer."
     },
+    "smartPregnancyPlan": {
+      "title": "Plan de embarazo inteligente",
+      "description": "Tu plan diario personalizado de ejercicios y comidas."
+    },
+    "smartWalkingCoach": {
+      "title": "Coach de caminata",
+      "description": "Rutinas de caminata seguras para tu trimestre."
+    },
+    "smartSnackPlanner": {
+      "title": "Planificador de snacks",
+      "description": "Snacks saludables para cada antojo del embarazo."
+    },
+    "smartStretchReminder": {
+      "title": "Recordatorio de estiramiento",
+      "description": "Estiramientos personalizados para tu comodidad."
+    },
     "aiLaborProgress": {
       "title": "Diario de contracciones",
       "description": "Registra tus patrones de contracciones."

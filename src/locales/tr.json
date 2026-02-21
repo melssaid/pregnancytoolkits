@@ -156,6 +156,22 @@
       "title": "Yasak Yiyecekler",
       "description": "Neyin yenmesinin güvenli olduğunu bilin."
     },
+    "smartPregnancyPlan": {
+      "title": "Akıllı Hamilelik Planı",
+      "description": "Egzersiz ve öğünlerle kişiselleştirilmiş günlük planınız."
+    },
+    "smartWalkingCoach": {
+      "title": "Yürüyüş Koçu",
+      "description": "Trimesterinize uygun güvenli yürüyüş programları."
+    },
+    "smartSnackPlanner": {
+      "title": "Atıştırmalık Planlayıcısı",
+      "description": "Her istek için sağlıklı hamilelik atıştırmalıkları."
+    },
+    "smartStretchReminder": {
+      "title": "Esneme Hatırlatıcısı",
+      "description": "Konforunuz için kişiselleştirilmiş esneme rutinleri."
+    },
     "aiLaborProgress": {
       "title": "Kasılma Günlüğü",
       "description": "Kasılma düzenlerinizi kaydedin."

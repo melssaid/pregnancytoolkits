@@ -16,6 +16,7 @@ interface AIContext {
   symptoms?: string[];
   preferences?: string[];
   walkMinutes?: number;
+  weight?: number;
   contractionData?: any;
   sleepData?: any;
   language?: string;
