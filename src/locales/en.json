@@ -185,8 +185,8 @@
       "description": "EPDS questionnaire and mental health support."
     },
     "gestationalDiabetes": {
-      "title": "GDM Awareness Check",
-      "description": "Learn about common gestational diabetes factors."
+      "title": "Gestational Diabetes Awareness (General Info)",
+      "description": "Simple information about gestational diabetes and common factors."
     },
     "preeclampsiaRisk": {
       "title": "Preeclampsia Awareness",
@@ -2546,8 +2546,8 @@
       }
     },
     "gestationalDiabetes": {
-      "title": "GDM Self-Check",
-      "subtitle": "Know your gestational diabetes risk factors",
+      "title": "Gestational Diabetes Awareness (General Info)",
+      "subtitle": "This tool provides simple information about gestational diabetes: common factors, related lifestyle patterns, and useful questions to discuss with your doctor. It does not measure blood sugar, provide a diagnosis, or replace prenatal care with your healthcare team.",
       "riskFactors": "Risk Factors",
       "age35Plus": "Age 35 or older",
       "overweight": "Overweight before pregnancy",
@@ -2823,8 +2823,8 @@
       }
     },
     "gdm": {
-      "title": "Gestational Diabetes Risk",
-      "subtitle": "Assess your risk factors for gestational diabetes",
+      "title": "Gestational Diabetes Awareness (General Info)",
+      "subtitle": "This tool provides simple information about gestational diabetes: common factors, related lifestyle patterns, and useful questions to discuss with your doctor. It does not measure blood sugar, provide a diagnosis, or replace prenatal care with your healthcare team.",
       "disclaimer": "This is an educational awareness tool only. It does not provide a professional evaluation for gestational diabetes. Always consult your healthcare provider for proper testing.",
       "checkRiskFactors": "Check Your Risk Factors",
       "riskFactorsSelected": "Risk Factors Selected",
