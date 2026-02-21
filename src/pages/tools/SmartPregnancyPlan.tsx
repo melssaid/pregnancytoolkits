@@ -33,7 +33,7 @@ const SmartPregnancyPlan = () => {
     setShowAIPlan(true);
     setAiResponse('');
     await streamChat({
-      type: 'pregnancy-plan' as any,
+      type: 'pregnancy-assistant',
       messages: [{
         role: 'user',
         content: `I'm at week ${week} of pregnancy, weighing ${weight}kg, with back pain level ${painLevel}/10. Create a personalized daily plan including safe exercises, meal suggestions, and wellness tips tailored to my current state.`

@@ -141,7 +141,7 @@ export default function SmartSnackPlanner() {
     setShowAIAdvice(true);
     setAiResponse('');
     await streamChat({
-      type: 'snack-advisor' as any,
+      type: 'meal-suggestion',
       messages: [{
         role: 'user',
         content: `I'm pregnant and looking for healthy snack suggestions. My current preference is "${selectedCategory}" snacks. Give me personalized snack recommendations with nutritional benefits for pregnancy, preparation tips, and any foods to avoid.`
