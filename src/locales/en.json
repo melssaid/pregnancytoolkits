@@ -156,6 +156,14 @@
       "title": "Foods to Avoid",
       "description": "Know what's safe to eat."
     },
+    "smartPregnancyPlan": {
+      "title": "Smart Pregnancy Plan",
+      "description": "Your personalized daily plan with exercises and meals."
+    },
+    "smartWalkingCoach": {
+      "title": "Walking Coach",
+      "description": "Safe walking routines tailored to your trimester."
+    },
     "aiLaborProgress": {
       "title": "Contraction Logger",
       "description": "Log and journal your contraction patterns."

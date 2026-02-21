@@ -111,7 +111,9 @@
     "babyGrowth": {"title": "نمو الطفل", "description": "تتبع النمو بمخططات WHO"},
     "diaperTracker": {"title": "متتبع الحفاضات", "description": "سجّلي تغييرات الحفاضات اليومية"},
     "babyCryTranslator": {"title": "مترجم بكاء الطفل", "description": "تحليل ذكي لأنماط بكاء طفلك"},
-    "postpartumRecovery": {"title": "دليل التعافي بعد الولادة", "description": "خطة تعافي لمدة 6 أسابيع بعد الولادة"}
+    "postpartumRecovery": {"title": "دليل التعافي بعد الولادة", "description": "خطة تعافي لمدة 6 أسابيع بعد الولادة"},
+    "smartPregnancyPlan": {"title": "خطة الحمل الذكية", "description": "خطتك اليومية المخصصة مع التمارين والوجبات"},
+    "smartWalkingCoach": {"title": "مدرب المشي", "description": "برامج مشي آمنة حسب مرحلة الحمل"}
   },
   "dashboard": {
     "tabs": {
