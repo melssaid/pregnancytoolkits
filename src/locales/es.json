@@ -185,8 +185,8 @@
       "description": "Cuestionario EPDS y apoyo de salud mental."
     },
     "gestationalDiabetes": {
-      "title": "Conciencia sobre DG",
-      "description": "Conoce los factores comunes de la diabetes gestacional."
+      "title": "Concienciación sobre diabetes gestacional (Info general)",
+      "description": "Información sencilla sobre la diabetes gestacional y los factores comunes."
     },
     "preeclampsiaRisk": {
       "title": "Conciencia sobre preeclampsia",
@@ -2450,8 +2450,8 @@
       }
     },
     "gestationalDiabetes": {
-      "title": "Evaluación de Riesgo de GDM",
-      "subtitle": "Conoce tus factores de riesgo de diabetes gestacional",
+      "title": "Concienciación sobre diabetes gestacional (Info general)",
+      "subtitle": "Esta herramienta ofrece información sencilla sobre la diabetes gestacional: factores comunes, hábitos de vida relacionados y preguntas útiles para comentar con tu médico.",
       "riskFactors": "Factores de Riesgo",
       "age35Plus": "35 años o más",
       "overweight": "Sobrepeso antes del embarazo",
@@ -2831,8 +2831,8 @@
     }
   },
   "toolsInternal.gdm": {
-    "title": "Autocomprobación de Diabetes Gestacional",
-    "subtitle": "Evalúa tus factores de riesgo de diabetes gestacional",
+    "title": "Concienciación sobre diabetes gestacional (Info general)",
+    "subtitle": "Esta herramienta ofrece información sencilla sobre la diabetes gestacional: factores comunes, hábitos de vida relacionados y preguntas útiles para comentar con tu médico. No mide el azúcar en sangre, no proporciona un diagnóstico ni un plan de tratamiento, y no sustituye el seguimiento prenatal con tu equipo de salud.",
     "disclaimer": "Esta es solo una herramienta educativa de concienciación. No reemplaza la evaluación profesional. Consulta siempre a tu médico.",
     "checkRiskFactors": "Verifica tus Factores de Riesgo",
     "riskFactorsSelected": "Factores de Riesgo Seleccionados",

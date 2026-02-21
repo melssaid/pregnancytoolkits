@@ -185,8 +185,8 @@
       "description": "EPDS-Fragebogen und psychische Gesundheitsunterstützung."
     },
     "gestationalDiabetes": {
-      "title": "GDM Bewusstsein",
-      "description": "Erfahren Sie mehr über häufige Faktoren bei Gestationsdiabetes."
+      "title": "Gestationsdiabetes-Aufklärung (Allgemeine Infos)",
+      "description": "Einfache Informationen über Gestationsdiabetes und häufige Faktoren."
     },
     "preeclampsiaRisk": {
       "title": "Präeklampsie Bewusstsein",
@@ -3270,8 +3270,8 @@
   "toolsInternal.mealSuggestion.prepTimeLabel": "Zubereitungszeit",
   "toolsInternal.mealSuggestion.prepTimes": { "quick": "Schnell (< 15 Min)", "medium": "Mittel (15-30 Min)", "elaborate": "Aufwändig (30+ Min)" },
   "toolsInternal.gdm": {
-    "title": "Gestationsdiabetes Selbst-Check",
-    "subtitle": "Bewerten Sie Ihre Risikofaktoren für Gestationsdiabetes",
+    "title": "Gestationsdiabetes-Aufklärung (Allgemeine Infos)",
+    "subtitle": "Dieses Tool bietet einfache Informationen über Gestationsdiabetes: häufige Faktoren, damit verbundene Lebensgewohnheiten und nützliche Fragen für das Gespräch mit Ihrem Arzt. Es misst keinen Blutzucker, stellt keine Diagnose und ersetzt nicht die Schwangerschaftsvorsorge durch Ihr medizinisches Team.",
     "disclaimer": "Dies ist nur ein Bildungs-Bewusstseinstool. Es ersetzt keine professionelle Bewertung. Konsultieren Sie immer Ihren Arzt.",
     "checkRiskFactors": "Überprüfen Sie Ihre Risikofaktoren",
     "riskFactorsSelected": "Ausgewählte Risikofaktoren",

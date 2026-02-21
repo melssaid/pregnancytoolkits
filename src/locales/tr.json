@@ -185,8 +185,8 @@
       "description": "EPDS anketi ve ruh sağlığı desteği."
     },
     "gestationalDiabetes": {
-      "title": "Gestasyonel Diyabet Farkındalığı",
-      "description": "Gestasyonel diyabetle ilgili yaygın faktörleri öğrenin."
+      "title": "Gestasyonel Diyabet Farkındalığı (Genel Bilgi)",
+      "description": "Gestasyonel diyabet ve yaygın faktörler hakkında basit bilgiler."
     },
     "preeclampsiaRisk": {
       "title": "Preeklampsi Farkındalığı",
@@ -2450,8 +2450,8 @@
       }
     },
     "gestationalDiabetes": {
-      "title": "GDM Kendi Kendine Kontrol",
-      "subtitle": "Gestasyonel diyabet risk faktörlerinizi bilin",
+      "title": "Gestasyonel Diyabet Farkındalığı (Genel Bilgi)",
+      "subtitle": "Bu araç, gestasyonel diyabet hakkında basit bilgiler sunar: yaygın faktörler ve doktorunuzla tartışmanız için faydalı sorular.",
       "riskFactors": "Risk Faktörleri",
       "age35Plus": "35 yaş veya üzeri",
       "overweight": "Hamilelik öncesi fazla kilolu",
@@ -2831,8 +2831,8 @@
     }
   },
   "toolsInternal.gdm": {
-    "title": "Gestasyonel Diyabet Kendi Kendine Kontrol",
-    "subtitle": "Gestasyonel diyabet risk faktörlerinizi değerlendirin",
+    "title": "Gestasyonel Diyabet Farkındalığı (Genel Bilgi)",
+    "subtitle": "Bu araç, gestasyonel diyabet hakkında basit bilgiler sunar: yaygın faktörler, ilgili yaşam tarzı kalıpları ve doktorunuzla tartışmanız için faydalı sorular. Kan şekerini ölçmez, teşhis veya tedavi planı sunmaz ve sağlık ekibinizle doğum öncesi takibin yerini almaz.",
     "disclaimer": "Bu yalnızca eğitim amaçlı bir farkındalık aracıdır. Profesyonel değerlendirme sağlamaz. Uygun test için her zaman doktorunuza danışın.",
     "checkRiskFactors": "Risk Faktörlerinizi Kontrol Edin",
     "riskFactorsSelected": "Seçilen Risk Faktörleri",

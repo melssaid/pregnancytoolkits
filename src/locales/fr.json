@@ -185,8 +185,8 @@
       "description": "Questionnaire EPDS et soutien santé mentale."
     },
     "gestationalDiabetes": {
-      "title": "Sensibilisation au DG",
-      "description": "Découvrez les facteurs courants du diabète gestationnel."
+      "title": "Sensibilisation au diabète gestationnel (Infos générales)",
+      "description": "Informations simples sur le diabète gestationnel et les facteurs courants."
     },
     "preeclampsiaRisk": {
       "title": "Sensibilisation à la prééclampsie",
@@ -3295,8 +3295,8 @@
   "toolsInternal.mealSuggestion.prepTimeLabel": "Temps de préparation",
   "toolsInternal.mealSuggestion.prepTimes": { "quick": "Rapide (< 15 min)", "medium": "Moyen (15-30 min)", "elaborate": "Élaboré (30+ min)" },
   "toolsInternal.gdm": {
-    "title": "Auto-vérification du diabète gestationnel",
-    "subtitle": "Évaluez vos facteurs de risque de diabète gestationnel",
+    "title": "Sensibilisation au diabète gestationnel (Infos générales)",
+    "subtitle": "Cet outil fournit des informations simples sur le diabète gestationnel : facteurs courants, habitudes de vie associées et questions utiles à discuter avec votre médecin. Il ne mesure pas la glycémie, ne fournit pas de diagnostic ni de plan de traitement, et ne remplace pas le suivi prénatal avec votre équipe de soins.",
     "disclaimer": "Ceci est un outil de sensibilisation éducatif uniquement. Il ne remplace pas une évaluation professionnelle. Consultez toujours votre médecin.",
     "checkRiskFactors": "Vérifiez vos facteurs de risque",
     "riskFactorsSelected": "Facteurs de risque sélectionnés",
