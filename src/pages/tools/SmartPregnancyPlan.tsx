@@ -6,16 +6,43 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
-import { Activity, Utensils, FileText, Printer } from "lucide-react";
+import { Activity, Utensils, FileText, Printer, Brain, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { WeekSlider } from "@/components/WeekSlider";
 import { ToolFrame } from "@/components/ToolFrame";
+import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
+import { motion } from "framer-motion";
 
 const SmartPregnancyPlan = () => {
   const { t } = useTranslation();
   const [week, setWeek] = useState<number>(24);
   const [weight, setWeight] = useState<number>(65);
   const [painLevel, setPainLevel] = useState<number>(5);
+  const [showAIPlan, setShowAIPlan] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAIPlan(false);
+  });
+
+  const getAIPlan = async () => {
+    setShowAIPlan(true);
+    setAiResponse('');
+    await streamChat({
+      type: 'pregnancy-plan' as any,
+      messages: [{
+        role: 'user',
+        content: `I'm at week ${week} of pregnancy, weighing ${weight}kg, with back pain level ${painLevel}/10. Create a personalized daily plan including safe exercises, meal suggestions, and wellness tips tailored to my current state.`
+      }],
+      context: { week, weight },
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
+  };
 
   const handlePrint = () => {
     window.print();
@@ -170,6 +197,42 @@ const SmartPregnancyPlan = () => {
             </Card>
           </TabsContent>
         </Tabs>
+
+        {/* AI Personalized Plan */}
+        <motion.button
+          onClick={getAIPlan}
+          disabled={isLoading}
+          whileTap={{ scale: 0.92 }}
+          className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+            {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : <Brain className="h-4 w-4 shrink-0" />}
+            <span className="truncate">{t('smartPlan.getAIPlan', 'Get AI-Personalized Plan')}</span>
+            {!isLoading && <Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" />}
+          </div>
+          <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+        </motion.button>
+
+        {showAIPlan && aiResponse && (
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <Brain className="h-4 w-4 text-primary" />
+                  <h3 className="font-semibold text-sm">{t('smartPlan.aiPlanTitle', 'AI Personalized Plan')}</h3>
+                </div>
+                <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => setShowAIPlan(false)}>✕</Button>
+              </div>
+              <MarkdownRenderer content={aiResponse} />
+            </CardContent>
+          </Card>
+        )}
+
+        {error && (
+          <Card className="border-destructive/30 bg-destructive/5">
+            <CardContent className="p-4 text-destructive text-xs">{error}</CardContent>
+          </Card>
+        )}
       </div>
 
       {/* Hidden Print Section */}

@@ -5,7 +5,11 @@ import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Cookie, Clock, Zap, Heart, Brain, Apple, RefreshCw } from 'lucide-react';
+import { Cookie, Clock, Zap, Heart, Brain, Apple, RefreshCw, Loader2, Sparkles } from 'lucide-react';
+import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { motion } from 'framer-motion';
 
 interface Snack {
   id: string;
@@ -124,6 +128,28 @@ export default function SmartSnackPlanner() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'energy' | 'protein' | 'comfort' | 'quick'>('all');
   const [randomSnack, setRandomSnack] = useState<Snack | null>(null);
+  const [showAIAdvice, setShowAIAdvice] = useState(false);
+  const [aiResponse, setAiResponse] = useState('');
+  const { streamChat, isLoading, error } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiResponse('');
+    setShowAIAdvice(false);
+  });
+
+  const getAISnackAdvice = async () => {
+    setShowAIAdvice(true);
+    setAiResponse('');
+    await streamChat({
+      type: 'snack-advisor' as any,
+      messages: [{
+        role: 'user',
+        content: `I'm pregnant and looking for healthy snack suggestions. My current preference is "${selectedCategory}" snacks. Give me personalized snack recommendations with nutritional benefits for pregnancy, preparation tips, and any foods to avoid.`
+      }],
+      onDelta: (text) => setAiResponse(prev => prev + text),
+      onDone: () => {}
+    });
+  };
 
   const getRandomSnack = () => {
     const filtered = selectedCategory === 'all' ? snacks : snacks.filter(s => s.category === selectedCategory);
@@ -257,6 +283,42 @@ export default function SmartSnackPlanner() {
               );
             })}
           </div>
+
+          {/* AI Snack Advisor */}
+          <motion.button
+            onClick={getAISnackAdvice}
+            disabled={isLoading}
+            whileTap={{ scale: 0.92 }}
+            className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+              {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : <Brain className="h-4 w-4 shrink-0" />}
+              <span className="truncate">{t('toolsInternal.snackPlanner.getAIAdvice', 'Get AI Snack Advice')}</span>
+              {!isLoading && <Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" />}
+            </div>
+            <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+          </motion.button>
+
+          {showAIAdvice && aiResponse && (
+            <Card className="border-primary/30 bg-primary/5">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <Brain className="h-4 w-4 text-primary" />
+                    <h3 className="font-semibold text-sm">{t('toolsInternal.snackPlanner.aiAdviceTitle', 'AI Nutrition Advisor')}</h3>
+                  </div>
+                  <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => setShowAIAdvice(false)}>✕</Button>
+                </div>
+                <MarkdownRenderer content={aiResponse} />
+              </CardContent>
+            </Card>
+          )}
+
+          {error && (
+            <Card className="border-destructive/30 bg-destructive/5">
+              <CardContent className="p-4 text-destructive text-xs">{error}</CardContent>
+            </Card>
+          )}
 
         <Card>
           <CardContent className="p-4">

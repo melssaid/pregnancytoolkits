@@ -164,6 +164,14 @@
       "title": "Walking Coach",
       "description": "Safe walking routines tailored to your trimester."
     },
+    "smartSnackPlanner": {
+      "title": "Snack Planner",
+      "description": "Healthy pregnancy snacks for every craving."
+    },
+    "smartStretchReminder": {
+      "title": "Stretch Reminder",
+      "description": "Personalized stretching routines for your comfort."
+    },
     "aiLaborProgress": {
       "title": "Contraction Logger",
       "description": "Log and journal your contraction patterns."
@@ -4496,7 +4504,9 @@
     "pain": "Pain Level",
     "summary": "Summary",
     "summaryText": "Continue following your personalized plan and consult your doctor for any concerns.",
-    "doctorNotes": "Doctor's Notes"
+    "doctorNotes": "Doctor's Notes",
+    "getAIPlan": "Get AI-Personalized Plan",
+    "aiPlanTitle": "AI Personalized Plan"
   }
   ,"aiErrors": {
     "rateLimitTitle": "Too Many Requests",
