@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas-pro';
+import DOMPurify from 'dompurify';
 
 interface PDFExportOptions {
   title: string;
@@ -121,6 +122,12 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     z-index: -1;
   `;
 
+  const sanitizedContent = DOMPurify.sanitize(htmlContent, {
+    ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','table','thead','tbody','tr','th','td','img','style'],
+    ALLOWED_ATTR: ['style','class','data-pdf-section','src','alt','dir'],
+    ALLOW_DATA_ATTR: true,
+  });
+
   wrapper.innerHTML = `
     <style>
       * { font-family: ${fontFamily} !important; box-sizing: border-box; }
@@ -129,7 +136,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
         direction: ${isRTL ? 'rtl' : 'ltr'};
       }
     </style>
-    ${htmlContent}
+    ${sanitizedContent}
   `;
 
   document.body.appendChild(wrapper);
@@ -648,9 +655,14 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   const l = labels[language] || labels.en;
   const prefCount = preferences ? Object.keys(preferences).length : 0;
 
-  const mainContent = contentElement
+  const rawContent = contentElement
     ? stripEmojisFromHTML(contentElement.innerHTML, isRTL)
     : markdownToHTMLWithLang(content, fontFamily, isRTL);
+  const mainContent = DOMPurify.sanitize(rawContent, {
+    ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','table','thead','tbody','tr','th','td','img','style'],
+    ALLOWED_ATTR: ['style','class','data-pdf-section','src','alt','dir'],
+    ALLOW_DATA_ATTR: true,
+  });
 
   let html = `
     <div data-pdf-section style="background:#fcfcfd;border-bottom:2px solid #ec4899;padding:24px 40px 20px;text-align:center;">
