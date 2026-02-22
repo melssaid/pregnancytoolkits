@@ -679,10 +679,10 @@
     "age35Plus": "Age 35+",
     "multiplePregnancy": "Multiple pregnancy",
     "familyHistory": "Family history",
-    "calculate": "Calculate Risk",
-    "lowRiskResult": "Low Risk",
-    "moderateRiskResult": "Moderate Risk",
-    "highRiskResult": "High Risk",
+    "calculate": "Review My Factors",
+    "lowRiskResult": "Few Factors Present",
+    "moderateRiskResult": "Some Factors Present",
+    "highRiskResult": "Many Factors Present",
     "disclaimer": "This is a preliminary assessment only. Always consult your healthcare provider."
   },
   "fitnessPage": {
@@ -2571,18 +2571,18 @@
       "previousGDM": "Previous gestational diabetes",
       "previousLargeBaby": "Previous baby over 4kg",
       "pcos": "Polycystic ovary syndrome",
-      "calculateRisk": "Calculate Risk",
-      "lowRisk": "Low Risk",
-      "moderateRisk": "Moderate Risk",
-      "highRisk": "High Risk",
+      "calculateRisk": "Review My Factors",
+      "lowRisk": "Few Factors Present",
+      "moderateRisk": "Some Factors Present",
+      "highRisk": "Many Factors Present",
       "prevention": "Prevention Tips",
       "aiGuidance": "Get AI Guidance"
     },
     "preeclampsia": {
-      "title": "Preeclampsia Risk",
-      "subtitle": "Check your preeclampsia risk factors",
-      "highRiskFactors": "High Risk Factors",
-      "moderateRiskFactors": "Moderate Risk Factors",
+      "title": "Preeclampsia Awareness",
+      "subtitle": "Learn about preeclampsia factors",
+      "highRiskFactors": "Key Factors",
+      "moderateRiskFactors": "Additional Factors",
       "firstPregnancy": "First pregnancy",
       "previousPreeclampsia": "Previous preeclampsia",
       "chronicHypertension": "Chronic high blood pressure",
@@ -2592,7 +2592,7 @@
       "age35Plus": "Age 35+",
       "multiplePregnancy": "Multiple pregnancy (twins, triplets)",
       "familyHistory": "Family history of preeclampsia",
-      "calculateRisk": "Calculate Risk",
+      "calculateRisk": "Review My Factors",
       "warningSigns": "Warning Signs to Watch"
     },
     "babyGear": {
@@ -2695,7 +2695,7 @@
       "stickyAnalyze": "Analyze with AI"
     },
     "weightGain": {
-      "title": "Weight Gain Analyzer",
+      "title": "Weight Gain Guide",
       "subtitle": "Monitor healthy pregnancy weight",
       "currentWeight": "Current Weight",
       "prePregnancyWeight": "Pre-Pregnancy Weight",
@@ -3334,12 +3334,12 @@
     "agreement": "By continuing, you agree to our Terms of Service"
   },
   "preeclampsiaRisk": {
-    "title": "Preeclampsia Risk Calculator",
-    "subtitle": "Evaluate your risk factors for preeclampsia",
-    "riskFactorsTitle": "Risk Factors for Preeclampsia",
-    "riskFactorsDesc": "Check all factors that apply to evaluate your risk level",
-    "calculateRisk": "Calculate Risk",
-    "yourRiskFactors": "Your Risk Factors:",
+    "title": "Preeclampsia Awareness Guide",
+    "subtitle": "Learn about factors related to preeclampsia",
+    "riskFactorsTitle": "Factors Related to Preeclampsia",
+    "riskFactorsDesc": "Check all factors that apply to learn about your profile",
+    "calculateRisk": "Review My Factors",
+    "yourRiskFactors": "Your Factors:",
     "warningSignsTitle": "Warning Signs to Watch For",
     "warningNote": "If you experience any of these symptoms, contact your healthcare provider immediately.",
     "disclaimer": "This tool identifies risk factors but cannot predict preeclampsia. It does not replace professional evaluation. Regular prenatal care with blood pressure monitoring is essential for all pregnancies.",

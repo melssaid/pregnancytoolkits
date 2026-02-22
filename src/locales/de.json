@@ -669,10 +669,10 @@
     "age35Plus": "Alter 35+",
     "multiplePregnancy": "Mehrlingsschwangerschaft",
     "familyHistory": "Familiengeschichte",
-    "calculate": "Risiko berechnen",
-    "lowRiskResult": "Niedriges Risiko",
-    "moderateRiskResult": "Mittleres Risiko",
-    "highRiskResult": "Hohes Risiko",
+    "calculate": "Meine Faktoren prüfen",
+    "lowRiskResult": "Wenige Faktoren",
+    "moderateRiskResult": "Einige Faktoren",
+    "highRiskResult": "Viele Faktoren",
     "disclaimer": "Dies ist nur eine vorläufige Bewertung. Konsultieren Sie immer Ihren Arzt."
   },
   "fitnessPage": {
@@ -2446,10 +2446,10 @@
   "preeclampsiaRisk": {
     "title": "Präeklampsie-Risikokalkulator",
     "subtitle": "Bewerten Sie Ihre Risikofaktoren für Präeklampsie",
-    "riskFactorsTitle": "Risikofaktoren für Präeklampsie",
-    "riskFactorsDesc": "Markieren Sie alle zutreffenden Faktoren, um Ihr Risikoniveau zu bewerten",
-    "calculateRisk": "Risiko berechnen",
-    "yourRiskFactors": "Ihre Risikofaktoren:",
+    "riskFactorsTitle": "Faktoren bei Präeklampsie",
+    "riskFactorsDesc": "Markieren Sie alle zutreffenden Faktoren, um Ihr Profil zu verstehen",
+    "calculateRisk": "Meine Faktoren prüfen",
+    "yourRiskFactors": "Ihre Faktoren:",
     "warningSignsTitle": "Warnzeichen, auf die Sie achten sollten",
     "warningNote": "Wenn Sie eines dieser Symptome bemerken, kontaktieren Sie sofort Ihren Arzt.",
     "disclaimer": "Dieses Tool identifiziert Risikofaktoren, kann aber Präeklampsie nicht vorhersagen. Es ersetzt keine professionelle Bewertung.",
@@ -2477,9 +2477,9 @@
       "demographics": "Demografie"
     },
     "riskLevels": {
-      "high": { "title": "Höheres Risiko", "description": "Sie haben einen oder mehrere bedeutende Risikofaktoren für Präeklampsie. Ihr Arzt kann niedrig dosiertes Aspirin ab der 12. Woche empfehlen.", "recommendation": "Besprechen Sie die Aspirin-Prophylaxe mit Ihrem Arzt" },
-      "moderate": { "title": "Mäßiges Risiko", "description": "Sie haben einige Risikofaktoren. Verstärkte Überwachung und Lebensstiländerungen können empfohlen werden.", "recommendation": "Erwägen Sie, das Risiko mit Ihrem Arzt zu besprechen" },
-      "low": { "title": "Niedriges Risiko", "description": "Sie haben wenige identifizierte Risikofaktoren. Setzen Sie die reguläre Schwangerschaftsvorsorge fort.", "recommendation": "Regelmäßige Vorsorgeuntersuchungen beibehalten" }
+      "high": { "title": "Viele Faktoren", "description": "Sie haben einen oder mehrere bedeutende Faktoren. Ihr Arzt kann niedrig dosiertes Aspirin ab der 12. Woche empfehlen.", "recommendation": "Besprechen Sie die Aspirin-Prophylaxe mit Ihrem Arzt" },
+      "moderate": { "title": "Einige Faktoren", "description": "Sie haben einige Faktoren. Verstärkte Überwachung und Lebensstiländerungen können empfohlen werden.", "recommendation": "Erwägen Sie, dies mit Ihrem Arzt zu besprechen" },
+      "low": { "title": "Wenige Faktoren", "description": "Sie haben wenige identifizierte Faktoren. Setzen Sie die reguläre Schwangerschaftsvorsorge fort.", "recommendation": "Regelmäßige Vorsorgeuntersuchungen beibehalten" }
     },
     "warningSigns": {
       "headaches": "Starke Kopfschmerzen, die nicht nachlassen",
@@ -3331,9 +3331,9 @@
     "preventionTipsTitle": "Präventionstipps",
     "infoNote": "Der Gestationsdiabetes-Test erfolgt in der Regel zwischen der 24. und 28. Woche. Bei mehreren Risikofaktoren kann Ihr Arzt einen früheren Test empfehlen.",
     "riskLevels": {
-      "high": { "title": "Höheres Risiko", "description": "Ihre Risikofaktoren deuten auf eine erhöhte Wahrscheinlichkeit hin. Ein frühzeitiger Test kann empfohlen werden." },
-      "moderate": { "title": "Mäßiges Risiko", "description": "Sie haben einige Risikofaktoren. Standard-Test in den Wochen 24-28 wird empfohlen." },
-      "low": { "title": "Niedriges Risiko", "description": "Sie haben wenige Risikofaktoren, aber Routine-Test in den Wochen 24-28 wird dennoch empfohlen." }
+      "high": { "title": "Viele Faktoren", "description": "Ihre Faktoren deuten auf eine erhöhte Wahrscheinlichkeit hin. Ein frühzeitiger Test kann empfohlen werden." },
+      "moderate": { "title": "Einige Faktoren", "description": "Sie haben einige Faktoren. Standard-Test in den Wochen 24-28 wird empfohlen." },
+      "low": { "title": "Wenige Faktoren", "description": "Sie haben wenige Faktoren, aber Routine-Test in den Wochen 24-28 wird dennoch empfohlen." }
     },
     "riskFactors": {
       "age": "Alter 35 oder älter",

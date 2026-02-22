@@ -669,10 +669,10 @@
     "age35Plus": "Âge 35+",
     "multiplePregnancy": "Grossesse multiple",
     "familyHistory": "Antécédents familiaux",
-    "calculate": "Calculer le risque",
-    "lowRiskResult": "Risque faible",
-    "moderateRiskResult": "Risque modéré",
-    "highRiskResult": "Risque élevé",
+    "calculate": "Revoir mes facteurs",
+    "lowRiskResult": "Peu de facteurs",
+    "moderateRiskResult": "Quelques facteurs",
+    "highRiskResult": "Nombreux facteurs",
     "disclaimer": "Ceci n'est qu'une évaluation préliminaire. Consultez toujours votre médecin."
   },
   "fitnessPage": {
@@ -2446,10 +2446,10 @@
   "preeclampsiaRisk": {
     "title": "Calculateur de risque de prééclampsie",
     "subtitle": "Évaluez vos facteurs de risque de prééclampsie",
-    "riskFactorsTitle": "Facteurs de risque de prééclampsie",
-    "riskFactorsDesc": "Cochez tous les facteurs qui s'appliquent pour évaluer votre niveau de risque",
-    "calculateRisk": "Calculer le risque",
-    "yourRiskFactors": "Vos facteurs de risque:",
+    "riskFactorsTitle": "Facteurs liés à la prééclampsie",
+    "riskFactorsDesc": "Cochez tous les facteurs qui s'appliquent pour comprendre votre profil",
+    "calculateRisk": "Revoir mes facteurs",
+    "yourRiskFactors": "Vos facteurs:",
     "warningSignsTitle": "Signes d'alerte à surveiller",
     "warningNote": "Si vous ressentez l'un de ces symptômes, contactez immédiatement votre médecin.",
     "disclaimer": "Cet outil identifie les facteurs de risque mais ne peut pas prédire la prééclampsie. Il ne remplace pas une évaluation professionnelle.",
@@ -2477,9 +2477,9 @@
       "demographics": "Démographie"
     },
     "riskLevels": {
-      "high": { "title": "Risque élevé", "description": "Vous avez un ou plusieurs facteurs de risque significatifs pour la prééclampsie. Votre médecin peut recommander de l'aspirine à faible dose dès la 12e semaine.", "recommendation": "Discutez de la prophylaxie par aspirine avec votre médecin" },
-      "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque. Un suivi renforcé et des modifications du mode de vie peuvent être recommandés.", "recommendation": "Envisagez de discuter du risque avec votre médecin" },
-      "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque identifiés. Continuez les soins prénataux habituels.", "recommendation": "Maintenez les visites prénatales régulières" }
+      "high": { "title": "Nombreux facteurs", "description": "Vous avez un ou plusieurs facteurs significatifs. Votre médecin peut recommander de l'aspirine à faible dose dès la 12e semaine.", "recommendation": "Discutez de la prophylaxie par aspirine avec votre médecin" },
+      "moderate": { "title": "Quelques facteurs", "description": "Vous avez quelques facteurs. Un suivi renforcé et des modifications du mode de vie peuvent être recommandés.", "recommendation": "Envisagez de discuter de cela avec votre médecin" },
+      "low": { "title": "Peu de facteurs", "description": "Vous avez peu de facteurs identifiés. Continuez les soins prénataux habituels.", "recommendation": "Maintenez les visites prénatales régulières" }
     },
     "warningSigns": {
       "headaches": "Maux de tête sévères qui ne disparaissent pas",
@@ -3356,9 +3356,9 @@
     "preventionTipsTitle": "Conseils de prévention",
     "infoNote": "Le test du diabète gestationnel a lieu entre les semaines 24-28. Si vous avez plusieurs facteurs de risque, votre médecin peut recommander un test plus précoce.",
     "riskLevels": {
-      "high": { "title": "Risque élevé", "description": "Vos facteurs de risque suggèrent une probabilité accrue. Un test précoce peut être recommandé." },
-      "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque. Le test standard aux semaines 24-28 est recommandé." },
-      "low": { "title": "Risque faible", "description": "Vous avez peu de facteurs de risque, mais le test de routine aux semaines 24-28 est toujours recommandé." }
+      "high": { "title": "Nombreux facteurs", "description": "Vos facteurs suggèrent une probabilité accrue. Un test précoce peut être recommandé." },
+      "moderate": { "title": "Quelques facteurs", "description": "Vous avez quelques facteurs. Le test standard aux semaines 24-28 est recommandé." },
+      "low": { "title": "Peu de facteurs", "description": "Vous avez peu de facteurs, mais le test de routine aux semaines 24-28 est toujours recommandé." }
     },
     "riskFactors": {
       "age": "35 ans ou plus",
