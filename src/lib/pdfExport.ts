@@ -107,6 +107,9 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   const isRTL = language === 'ar';
   const fontFamily = getFontFamily(language);
 
+  // Render scale – 1.5 is enough for crisp text while being ~3× faster than 2.5
+  const RENDER_SCALE = 1.5;
+
   // A4 at 96dpi ≈ 794×1123px. We use a fixed wrapper width for consistency.
   const WRAPPER_WIDTH_PX = 794;
 
@@ -148,7 +151,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   try {
     await document.fonts.ready;
   } catch { /* fallback */ }
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise(resolve => setTimeout(resolve, 100));
 
   // PDF constants
   const A4_WIDTH_MM = 210;
@@ -168,22 +171,22 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   if (sections.length === 0) {
     try {
       const canvas = await html2canvas(wrapper, {
-        scale: 2.5,
+        scale: RENDER_SCALE,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
         width: WRAPPER_WIDTH_PX,
         windowWidth: WRAPPER_WIDTH_PX,
       });
-      const scaleFactor = CONTENT_WIDTH_MM / (canvas.width / 2.5);
+      const scaleFactor = CONTENT_WIDTH_MM / (canvas.width / RENDER_SCALE);
       const pageHeightPx = CONTENT_HEIGHT_MM / scaleFactor;
       let remaining = canvas.height;
       let srcY = 0;
       let pageIdx = 0;
       while (remaining > 0) {
         if (pageIdx > 0) doc.addPage();
-        const sliceH = Math.min(remaining, pageHeightPx * 2.5);
-        const sliceHMM = (sliceH / 2.5) * scaleFactor;
+        const sliceH = Math.min(remaining, pageHeightPx * RENDER_SCALE);
+        const sliceHMM = (sliceH / RENDER_SCALE) * scaleFactor;
         const pc = document.createElement('canvas');
         pc.width = canvas.width; pc.height = sliceH;
         const ctx = pc.getContext('2d');
@@ -192,7 +195,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
           ctx.fillRect(0, 0, pc.width, pc.height);
           ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
         }
-        doc.addImage(pc.toDataURL('image/png'), 'PNG', MARGIN_X_MM, MARGIN_Y_MM, CONTENT_WIDTH_MM, sliceHMM);
+        doc.addImage(pc.toDataURL('image/jpeg', 0.85), 'JPEG', MARGIN_X_MM, MARGIN_Y_MM, CONTENT_WIDTH_MM, sliceHMM);
         srcY += sliceH; remaining -= sliceH; pageIdx++;
       }
     } finally {
@@ -209,7 +212,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     let canvas: HTMLCanvasElement;
     try {
       canvas = await html2canvas(section, {
-        scale: 2.5,
+        scale: RENDER_SCALE,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
@@ -222,20 +225,17 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
 
     if (canvas.width === 0 || canvas.height === 0) continue;
 
-    // Calculate the real dimensions
-    const realWidthPx = canvas.width / 2.5;
-    const realHeightPx = canvas.height / 2.5;
+    const realWidthPx = canvas.width / RENDER_SCALE;
+    const realHeightPx = canvas.height / RENDER_SCALE;
     const scaleFactor = CONTENT_WIDTH_MM / realWidthPx;
     const sectionHeightMM = realHeightPx * scaleFactor;
 
-    // If a single section is taller than a full page, split it across pages
     if (sectionHeightMM > CONTENT_HEIGHT_MM) {
-      const pageSliceHeightPx = (CONTENT_HEIGHT_MM / scaleFactor) * 2.5;
       let remaining = canvas.height;
       let srcY = 0;
       while (remaining > 0) {
         const availableHeightMM = (currentY === MARGIN_Y_MM) ? CONTENT_HEIGHT_MM : (A4_HEIGHT_MM - MARGIN_Y_MM - currentY);
-        const availableSlicePx = (availableHeightMM / scaleFactor) * 2.5;
+        const availableSlicePx = (availableHeightMM / scaleFactor) * RENDER_SCALE;
         
         if (availableHeightMM < 20 && currentY > MARGIN_Y_MM) {
           doc.addPage();
@@ -244,7 +244,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
         }
         
         const sliceH = Math.min(remaining, availableSlicePx);
-        const sliceHMM = (sliceH / 2.5) * scaleFactor;
+        const sliceHMM = (sliceH / RENDER_SCALE) * scaleFactor;
         const pc = document.createElement('canvas');
         pc.width = canvas.width; pc.height = sliceH;
         const ctx = pc.getContext('2d');
@@ -253,7 +253,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
           ctx.fillRect(0, 0, pc.width, pc.height);
           ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
         }
-        doc.addImage(pc.toDataURL('image/png'), 'PNG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sliceHMM);
+        doc.addImage(pc.toDataURL('image/jpeg', 0.85), 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sliceHMM);
         currentY += sliceHMM;
         srcY += sliceH; remaining -= sliceH;
         if (remaining > 0) { doc.addPage(); currentY = MARGIN_Y_MM; }
@@ -262,15 +262,14 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
       continue;
     }
 
-    // Check if section fits on current page
     const spaceLeft = A4_HEIGHT_MM - MARGIN_Y_MM - currentY;
     if (sectionHeightMM > spaceLeft && currentY > MARGIN_Y_MM) {
       doc.addPage();
       currentY = MARGIN_Y_MM;
     }
 
-    const imgData = canvas.toDataURL('image/png');
-    doc.addImage(imgData, 'PNG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
+    const imgData = canvas.toDataURL('image/jpeg', 0.85);
+    doc.addImage(imgData, 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
     currentY += sectionHeightMM + SECTION_GAP_MM;
   }
 
