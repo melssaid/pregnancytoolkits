@@ -204,9 +204,10 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
   }, []);
 
   const planContentRef = useRef<HTMLDivElement>(null);
+  const [isExportingPDF, setIsExportingPDF] = useState(false);
   const exportPlanAsPDF = useCallback(async () => {
     if (!generatedPlan) return;
-    
+    setIsExportingPDF(true);
     try {
       await exportBirthPlanToPDF({
         title: t('toolsInternal.birthPlan.title'),
@@ -219,6 +220,8 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
     } catch (error) {
       console.error('PDF export error:', error);
       toast.error(t('toolsInternal.birthPlan.pdfError'));
+    } finally {
+      setIsExportingPDF(false);
     }
   }, [generatedPlan, preferences, t, i18n.language]);
 
@@ -350,9 +353,10 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
                     size="sm" 
                     variant="default" 
                     onClick={exportPlanAsPDF}
+                    disabled={isExportingPDF}
                     className="gap-1 flex-1"
                   >
-                    <FileDown className="w-4 h-4 shrink-0" />
+                    {isExportingPDF ? <Loader2 className="w-4 h-4 shrink-0 animate-spin" /> : <FileDown className="w-4 h-4 shrink-0" />}
                     PDF
                   </Button>
                 </div>

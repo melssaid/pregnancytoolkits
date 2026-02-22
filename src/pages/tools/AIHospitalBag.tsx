@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Briefcase, Brain, Baby, User, Heart, Plus, FileDown, Share2, RotateCcw } from "lucide-react";
+import { Briefcase, Brain, Baby, User, Heart, Plus, FileDown, Share2, RotateCcw, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -265,7 +265,9 @@ const AIHospitalBag = () => {
   };
 
   // Export to PDF
+  const [isExportingPDF, setIsExportingPDF] = useState(false);
   const handleExportPDF = async () => {
+    setIsExportingPDF(true);
     try {
       const pdfItems = items.map(item => ({
         id: item.id,
@@ -299,6 +301,8 @@ const AIHospitalBag = () => {
     } catch (error) {
       console.error('PDF export error:', error);
       toast.error(t('toolsInternal.hospitalBag.exportError'));
+    } finally {
+      setIsExportingPDF(false);
     }
   };
 
@@ -512,10 +516,11 @@ Include seasonal considerations and hospital-specific recommendations.`;
 
           <Button
             onClick={handleExportPDF}
+            disabled={isExportingPDF}
             variant="outline"
             className="border-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30 text-[12px] sm:text-[13px] h-9 px-2"
           >
-            <FileDown className="w-3.5 h-3.5 me-1.5 shrink-0" />
+            {isExportingPDF ? <Loader2 className="w-3.5 h-3.5 me-1.5 shrink-0 animate-spin" /> : <FileDown className="w-3.5 h-3.5 me-1.5 shrink-0" />}
             <span className="truncate">{t('toolsInternal.hospitalBag.exportPDF')}</span>
           </Button>
         </div>
