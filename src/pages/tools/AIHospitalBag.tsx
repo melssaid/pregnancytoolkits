@@ -405,12 +405,12 @@ Include seasonal considerations and hospital-specific recommendations.`;
       mood="empowering"
       toolId="ai-hospital-bag"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Progress Card */}
-        <Card className="p-4 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border-teal-200">
+        <Card className="p-3 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border-teal-200">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-medium">{t('toolsInternal.hospitalBag.progress')}</span>
-            <span className="text-base font-bold text-primary">{progress}%</span>
+            <span className="font-medium text-sm">{t('toolsInternal.hospitalBag.progress')}</span>
+            <span className="text-sm font-bold text-primary">{progress}%</span>
           </div>
           <div className="w-full bg-muted rounded-full h-3">
             <div 
@@ -418,7 +418,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="text-sm text-muted-foreground mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             {t('toolsInternal.hospitalBag.itemsPacked', { packed: packedCount, total: items.length })}
           </p>
         </Card>

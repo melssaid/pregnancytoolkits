@@ -154,7 +154,7 @@ Be warm, practical, and specific. Include real examples.`;
         <Button
           onClick={getAdvice}
           disabled={isLoading || !selectedTopic}
-          className="w-full text-xs h-9"
+          className="w-full text-[13px] h-10"
         >
           <Sparkles className="w-3.5 h-3.5 me-1.5 shrink-0" />
           <span className="truncate">{isLoading ? t('toolsInternal.partnerGuide.gettingAdvice') : t('toolsInternal.partnerGuide.getAdvice')}</span>

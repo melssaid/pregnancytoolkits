@@ -183,11 +183,11 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
       mood="calm"
       toolId="ai-sleep-optimizer"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Sleep Hours */}
         <div className="space-y-3">
-          <Label className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-primary" />
+          <Label className="flex items-center gap-2 text-xs">
+            <Clock className="w-3.5 h-3.5 text-primary" />
             {t('toolsInternal.sleepOptimizer.currentSleep', { hours: sleepHours[0] })}
           </Label>
           <Slider
@@ -202,15 +202,15 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
 
         {/* Bedtime */}
         <div className="space-y-2">
-          <Label className="flex items-center gap-2">
-            <Moon className="w-4 h-4 text-primary" />
+          <Label className="flex items-center gap-2 text-xs">
+            <Moon className="w-3.5 h-3.5 text-primary" />
             {t('toolsInternal.sleepOptimizer.usualBedtime')}
           </Label>
           <input
             type="time"
             value={bedtime}
             onChange={(e) => setBedtime(e.target.value)}
-            className="w-full p-3 rounded-lg border bg-background min-w-[140px]"
+            className="w-full p-2 text-sm rounded-lg border bg-background min-w-[140px]"
           />
         </div>
 
@@ -233,8 +233,8 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <Checkbox checked={selectedIssues.includes(issue.id)} className="shrink-0" />
-                  <span className="text-base shrink-0">{issue.icon}</span>
-                  <span className="text-xs sm:text-sm truncate">
+                  <span className="text-sm shrink-0">{issue.icon}</span>
+                  <span className="text-xs truncate">
                     {t(`toolsInternal.sleepOptimizer.issues.${issue.key}`)}
                   </span>
                 </div>
@@ -258,7 +258,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
               className="relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <div
-                className={`flex flex-col items-center gap-0.5 py-2 px-1 text-sm rounded-xl font-medium transition-all ${activeTab === tab ? 'text-white' : 'text-foreground bg-muted/60 hover:bg-muted'}`}
+                className={`flex flex-col items-center gap-0.5 py-2 px-1 text-xs rounded-xl font-medium transition-all ${activeTab === tab ? 'text-white' : 'text-foreground bg-muted/60 hover:bg-muted'}`}
                 style={activeTab === tab ? { background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' } : {}}
               >
                 {isLoading && activeTab === tab ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
@@ -303,8 +303,8 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         )}
 
         {/* Sleep Tips */}
-        <Card className="p-4 bg-muted/30">
-          <p className="text-sm text-muted-foreground text-center">
+        <Card className="p-3 bg-muted/30">
+          <p className="text-xs text-muted-foreground text-center">
             {t('toolsInternal.sleepOptimizer.leftSideTip')}
           </p>
         </Card>
