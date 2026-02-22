@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { ShieldCheck } from "lucide-react";
 
 interface MarkdownRendererProps {
   content: string;
@@ -7,215 +8,151 @@ interface MarkdownRendererProps {
 }
 
 export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }: MarkdownRendererProps) {
-  const formattedContent = useMemo(() => {
-    if (!content) return null;
+  const { mainContent, disclaimerContent } = useMemo(() => {
+    if (!content) return { mainContent: null, disclaimerContent: null };
 
-    // Parse markdown-like content into structured elements
-    const lines = content.split('\n');
-    const elements: JSX.Element[] = [];
-    let listItems: string[] = [];
-    let listType: 'ul' | 'ol' | null = null;
-    let blockquoteLines: string[] = [];
+    // Split content at the last horizontal rule to extract disclaimer
+    const lastHrIndex = content.lastIndexOf('\n---');
+    let mainText = content;
+    let disclaimerText: string | null = null;
 
-    const flushList = () => {
-      if (listItems.length > 0 && listType) {
-        const ListTag = listType === 'ol' ? 'ol' : 'ul';
-        elements.push(
-          <ListTag 
-            key={`list-${elements.length}`} 
-            className={`my-3 space-y-2 ${listType === 'ol' ? 'list-decimal' : 'list-disc'} list-inside`}
-          >
-            {listItems.map((item, i) => (
-              <li key={i} className="text-xs leading-relaxed text-foreground/90 pl-1">
-                {parseInlineStyles(item)}
-              </li>
-            ))}
-          </ListTag>
-        );
-        listItems = [];
-        listType = null;
-      }
-    };
-
-    const flushBlockquote = () => {
-      if (blockquoteLines.length > 0) {
-        elements.push(
-          <blockquote 
-            key={`quote-${elements.length}`} 
-            className="my-2 pl-3 border-l-3 border-primary/30 bg-primary/5 py-1.5 pr-2 rounded-r-lg italic text-xs text-muted-foreground"
-          >
-            {blockquoteLines.map((line, i) => (
-              <p key={i}>{parseInlineStyles(line)}</p>
-            ))}
-          </blockquote>
-        );
-        blockquoteLines = [];
-      }
-    };
-
-    const parseInlineStyles = (text: string): (string | JSX.Element)[] => {
-      const result: (string | JSX.Element)[] = [];
-      let remaining = text;
-      let keyIndex = 0;
-
-      // Bold: **text** or __text__
-      // Italic: *text* or _text_
-      // Code: `code`
-      const patterns = [
-        { regex: /\*\*(.+?)\*\*/g, render: (m: string) => <strong key={keyIndex++} className="font-semibold text-foreground">{m}</strong> },
-        { regex: /__(.+?)__/g, render: (m: string) => <strong key={keyIndex++} className="font-semibold text-foreground">{m}</strong> },
-        { regex: /\*(.+?)\*/g, render: (m: string) => <em key={keyIndex++} className="italic">{m}</em> },
-        { regex: /_(.+?)_/g, render: (m: string) => <em key={keyIndex++} className="italic">{m}</em> },
-        { regex: /`(.+?)`/g, render: (m: string) => <code key={keyIndex++} className="px-1.5 py-0.5 bg-muted rounded text-xs font-mono">{m}</code> },
+    if (lastHrIndex > 0) {
+      const afterHr = content.slice(lastHrIndex + 4).trim();
+      // Check if the text after the last --- looks like a disclaimer (short, contains common disclaimer patterns)
+      const disclaimerPatterns = [
+        'استشار', 'طبيب', 'معلومات عامة', 'consult', 'doctor', 'healthcare',
+        'disclaimer', 'medical', 'Arzt', 'consulter', 'médecin', 'consulta',
+        'doktor', 'Haftungsausschluss', 'professionnel', 'profesional',
+        'informational', 'bilgilendirme', 'hekim'
       ];
-
-      // Simple approach: process text as-is for now, focusing on structure
-      // For a full implementation, we'd need a proper parser
-      return [text];
-    };
-
-    lines.forEach((line, index) => {
-      const trimmedLine = line.trim();
-
-      // Empty line
-      if (!trimmedLine) {
-        flushList();
-        flushBlockquote();
-        return;
+      const isDisclaimer = disclaimerPatterns.some(p => afterHr.toLowerCase().includes(p.toLowerCase()));
+      if (isDisclaimer && afterHr.length < 500) {
+        mainText = content.slice(0, lastHrIndex).trim();
+        disclaimerText = afterHr;
       }
+    }
 
-      // Blockquote
-      if (trimmedLine.startsWith('>')) {
-        flushList();
-        blockquoteLines.push(trimmedLine.slice(1).trim());
-        return;
-      } else {
-        flushBlockquote();
-      }
+    const parseSection = (text: string) => {
+      const lines = text.split('\n');
+      const elements: JSX.Element[] = [];
+      let listItems: string[] = [];
+      let listType: 'ul' | 'ol' | null = null;
+      let blockquoteLines: string[] = [];
 
-      // Headers
-      const h1Match = trimmedLine.match(/^#\s+(.+)$/);
-      const h2Match = trimmedLine.match(/^##\s+(.+)$/);
-      const h3Match = trimmedLine.match(/^###\s+(.+)$/);
-      const h4Match = trimmedLine.match(/^####\s+(.+)$/);
-
-      if (h4Match) {
-        flushList();
-        elements.push(
-          <h4 key={`h4-${index}`} className="text-xs font-semibold text-foreground mt-3 mb-1.5 flex items-center gap-2">
-            <span className="w-1 h-3.5 bg-primary/60 rounded-full" />
-            {h4Match[1]}
-          </h4>
-        );
-        return;
-      }
-
-      if (h3Match) {
-        flushList();
-        elements.push(
-          <h3 key={`h3-${index}`} className="text-sm font-semibold text-foreground mt-4 mb-1.5 flex items-center gap-2">
-            <span className="w-1 h-4 bg-primary/70 rounded-full" />
-            {h3Match[1]}
-          </h3>
-        );
-        return;
-      }
-
-      if (h2Match) {
-        flushList();
-        elements.push(
-          <h2 key={`h2-${index}`} className="text-sm font-bold text-foreground mt-5 mb-2 flex items-center gap-2 pb-1.5 border-b border-border/50">
-            <span className="w-1.5 h-5 bg-primary rounded-full" />
-            {h2Match[1]}
-          </h2>
-        );
-        return;
-      }
-
-      if (h1Match) {
-        flushList();
-        elements.push(
-          <h1 key={`h1-${index}`} className="text-base font-bold text-foreground mt-5 mb-3 flex items-center gap-2">
-            <span className="w-1.5 h-5 bg-gradient-to-b from-primary to-primary/50 rounded-full" />
-            {h1Match[1]}
-          </h1>
-        );
-        return;
-      }
-
-      // Bullet list
-      const bulletMatch = trimmedLine.match(/^[-•*]\s+(.+)$/);
-      if (bulletMatch) {
-        if (listType !== 'ul') {
-          flushList();
-          listType = 'ul';
+      const flushList = () => {
+        if (listItems.length > 0 && listType) {
+          const ListTag = listType === 'ol' ? 'ol' : 'ul';
+          elements.push(
+            <ListTag 
+              key={`list-${elements.length}`} 
+              className={`my-3 space-y-2 ${listType === 'ol' ? 'list-decimal' : 'list-disc'} list-inside`}
+            >
+              {listItems.map((item, i) => (
+                <li key={i} className="text-xs leading-relaxed text-foreground/90 pl-1">
+                  {[item]}
+                </li>
+              ))}
+            </ListTag>
+          );
+          listItems = [];
+          listType = null;
         }
-        listItems.push(bulletMatch[1]);
-        return;
-      }
+      };
 
-      // Numbered list
-      const numberedMatch = trimmedLine.match(/^\d+[.)]\s+(.+)$/);
-      if (numberedMatch) {
-        if (listType !== 'ol') {
-          flushList();
-          listType = 'ol';
+      const flushBlockquote = () => {
+        if (blockquoteLines.length > 0) {
+          elements.push(
+            <blockquote 
+              key={`quote-${elements.length}`} 
+              className="my-2 pl-3 border-l-3 border-primary/30 bg-primary/5 py-1.5 pr-2 rounded-r-lg italic text-xs text-muted-foreground"
+            >
+              {blockquoteLines.map((line, i) => (
+                <p key={i}>{[line]}</p>
+              ))}
+            </blockquote>
+          );
+          blockquoteLines = [];
         }
-        listItems.push(numberedMatch[1]);
-        return;
-      }
+      };
 
-      // Emoji headers (like 🍼 Baby's size:)
-      const emojiHeaderMatch = trimmedLine.match(/^([\p{Emoji}]+)\s*(.+?):\s*(.*)$/u);
-      if (emojiHeaderMatch) {
-        flushList();
-        elements.push(
-          <div key={`emoji-${index}`} className="my-3 p-3 bg-muted/50 rounded-lg border border-border/30">
-            <div className="flex items-start gap-2">
-              <span className="text-lg">{emojiHeaderMatch[1]}</span>
-              <div>
-                <span className="font-semibold text-foreground text-sm">{emojiHeaderMatch[2]}:</span>
-                {emojiHeaderMatch[3] && (
-                  <span className="text-sm text-muted-foreground ml-1">{emojiHeaderMatch[3]}</span>
-                )}
+      lines.forEach((line, index) => {
+        const trimmedLine = line.trim();
+
+        if (!trimmedLine) { flushList(); flushBlockquote(); return; }
+
+        if (trimmedLine.startsWith('>')) { flushList(); blockquoteLines.push(trimmedLine.slice(1).trim()); return; }
+        else { flushBlockquote(); }
+
+        const h4Match = trimmedLine.match(/^####\s+(.+)$/);
+        const h3Match = trimmedLine.match(/^###\s+(.+)$/);
+        const h2Match = trimmedLine.match(/^##\s+(.+)$/);
+        const h1Match = trimmedLine.match(/^#\s+(.+)$/);
+
+        if (h4Match) { flushList(); elements.push(<h4 key={`h4-${index}`} className="text-xs font-semibold text-foreground mt-3 mb-1.5 flex items-center gap-2"><span className="w-1 h-3.5 bg-primary/60 rounded-full" />{h4Match[1]}</h4>); return; }
+        if (h3Match) { flushList(); elements.push(<h3 key={`h3-${index}`} className="text-sm font-semibold text-foreground mt-4 mb-1.5 flex items-center gap-2"><span className="w-1 h-4 bg-primary/70 rounded-full" />{h3Match[1]}</h3>); return; }
+        if (h2Match) { flushList(); elements.push(<h2 key={`h2-${index}`} className="text-sm font-bold text-foreground mt-5 mb-2 flex items-center gap-2 pb-1.5 border-b border-border/50"><span className="w-1.5 h-5 bg-primary rounded-full" />{h2Match[1]}</h2>); return; }
+        if (h1Match) { flushList(); elements.push(<h1 key={`h1-${index}`} className="text-base font-bold text-foreground mt-5 mb-3 flex items-center gap-2"><span className="w-1.5 h-5 bg-gradient-to-b from-primary to-primary/50 rounded-full" />{h1Match[1]}</h1>); return; }
+
+        const bulletMatch = trimmedLine.match(/^[-•*]\s+(.+)$/);
+        if (bulletMatch) { if (listType !== 'ul') { flushList(); listType = 'ul'; } listItems.push(bulletMatch[1]); return; }
+
+        const numberedMatch = trimmedLine.match(/^\d+[.)]\s+(.+)$/);
+        if (numberedMatch) { if (listType !== 'ol') { flushList(); listType = 'ol'; } listItems.push(numberedMatch[1]); return; }
+
+        const emojiHeaderMatch = trimmedLine.match(/^([\p{Emoji}]+)\s*(.+?):\s*(.*)$/u);
+        if (emojiHeaderMatch) {
+          flushList();
+          elements.push(
+            <div key={`emoji-${index}`} className="my-3 p-3 bg-muted/50 rounded-lg border border-border/30">
+              <div className="flex items-start gap-2">
+                <span className="text-lg">{emojiHeaderMatch[1]}</span>
+                <div>
+                  <span className="font-semibold text-foreground text-sm">{emojiHeaderMatch[2]}:</span>
+                  {emojiHeaderMatch[3] && <span className="text-sm text-muted-foreground ml-1">{emojiHeaderMatch[3]}</span>}
+                </div>
               </div>
             </div>
-          </div>
-        );
-        return;
-      }
+          );
+          return;
+        }
 
-      // Horizontal rule
-      if (/^[-*_]{3,}$/.test(trimmedLine)) {
+        if (/^[-*_]{3,}$/.test(trimmedLine)) { flushList(); elements.push(<hr key={`hr-${index}`} className="my-4 border-border/50" />); return; }
+
         flushList();
-        elements.push(<hr key={`hr-${index}`} className="my-4 border-border/50" />);
-        return;
-      }
+        elements.push(<p key={`p-${index}`} className="text-xs leading-relaxed text-foreground/90 my-1.5">{[trimmedLine]}</p>);
+      });
 
-      // Regular paragraph
       flushList();
-      elements.push(
-        <p key={`p-${index}`} className="text-xs leading-relaxed text-foreground/90 my-1.5">
-          {parseInlineStyles(trimmedLine)}
-        </p>
-      );
-    });
+      flushBlockquote();
+      return elements;
+    };
 
-    // Flush remaining items
-    flushList();
-    flushBlockquote();
-
-    return elements;
+    return {
+      mainContent: parseSection(mainText),
+      disclaimerContent: disclaimerText ? parseSection(disclaimerText) : null,
+    };
   }, [content]);
 
   return (
     <div className="prose prose-sm max-w-none dark:prose-invert overflow-hidden">
       <div className="space-y-1 break-words overflow-wrap-anywhere">
-        {formattedContent}
+        {mainContent}
         {isLoading && (
           <span className="inline-block w-2 h-4 bg-primary/50 animate-pulse ml-1 rounded" />
         )}
       </div>
+      {disclaimerContent && (
+        <div className="mt-4 rounded-xl border border-primary/15 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent p-3.5">
+          <div className="flex items-start gap-2.5">
+            <div className="shrink-0 mt-0.5 p-1.5 rounded-lg bg-primary/10">
+              <ShieldCheck className="w-3.5 h-3.5 text-primary" />
+            </div>
+            <div className="space-y-0.5 text-[10px] leading-relaxed text-muted-foreground min-w-0">
+              {disclaimerContent}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
