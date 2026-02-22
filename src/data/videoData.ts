@@ -558,7 +558,7 @@ export const ovulationVideosByLang: VideosByLang = {
   ar: [
     { id: "1", title: "فهم الإباضة وأيام الخصوبة", description: "شرح طبي لعملية الإباضة وكيفية تتبعها", youtubeId: "mvZhvIwEAyw", duration: "10:00", category: "تعليمي" },
     { id: "2", title: "علامات التبويض الأكيدة", description: "أعراض الإباضة وكيف تعرفينها", youtubeId: "sz5jvatde_M", duration: "8:00", category: "أعراض" },
-    { id: "3", title: "زيادة فرص الحمل", description: "نصائح طبية لتعزيز الخصوبة", youtubeId: "lqV94iTsCHA", duration: "12:00", category: "خصوبة" },
+    { id: "3", title: "نصائح لزيادة فرص الحمل", description: "نصائح طبية لتعزيز الخصوبة وزيادة فرص الإنجاب", youtubeId: "KEbLo7IR31M", duration: "12:00", category: "خصوبة" },
     { id: "4", title: "حاسبة أيام التبويض", description: "كيفية حساب أيام الإباضة بدقة", youtubeId: "DO2Tr49fTQw", duration: "7:00", category: "تعليمي" },
   ],
   tr: [
@@ -642,7 +642,7 @@ export const cycleTrackerVideosByLang: VideosByLang = {
 export const dueDateVideosByLang: VideosByLang = {
   ar: [
     { id: "1", title: "حساب موعد الولادة بدقة", description: "طرق حساب تاريخ الولادة المتوقع", youtubeId: "mvZhvIwEAyw", duration: "8:00", category: "تعليمي" },
-    { id: "2", title: "مراحل الحمل أسبوع بأسبوع", description: "تطور الجنين خلال الأسابيع الأربعين", youtubeId: "lqV94iTsCHA", duration: "15:00", category: "تطور الجنين" },
+    { id: "2", title: "مراحل تكون الجنين أسبوع بأسبوع", description: "تطور الجنين من الأسبوع الأول حتى الولادة", youtubeId: "DSeSmz2kbc4", duration: "15:00", category: "تطور الجنين" },
     { id: "3", title: "التحضير للولادة", description: "رسوم متحركة ثلاثية الأبعاد لمراحل الولادة", youtubeId: "r4R8j8kiCHw", duration: "12:00", category: "تحضير" },
     { id: "4", title: "الثلث الأول من الحمل", description: "ماذا يحدث في الأسابيع الـ 13 الأولى", youtubeId: "68NMhivpmWQ", duration: "10:00", category: "مراحل الحمل" },
   ],
