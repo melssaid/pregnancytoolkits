@@ -201,12 +201,12 @@ export default function DueDateCalculator() {
         className="space-y-4"
       >
             <Card className="mb-4">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Baby className="h-5 w-5 text-primary" />
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-sm">
+                  <Baby className="h-4 w-4 text-primary" />
                   {t('toolsInternal.dueDate.calculateTitle')}
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-xs">
                   {t('toolsInternal.dueDate.calculateDesc')}
                 </CardDescription>
               </CardHeader>
@@ -283,27 +283,27 @@ export default function DueDateCalculator() {
                 animate={{ opacity: 1, y: 0 }}
               >
                 <Card className="border-primary/20 bg-secondary/30 mb-4">
-                  <CardHeader>
-                    <CardTitle className="text-sm flex items-center gap-2">
-                      <Calendar className="h-5 w-5 text-primary" />
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-xs flex items-center gap-2">
+                      <Calendar className="h-4 w-4 text-primary" />
                       {t('toolsInternal.dueDate.timeline')}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="rounded-lg bg-primary p-4 text-center">
-                      <p className="text-xs text-primary-foreground/80 mb-1">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
-                      <p className="text-sm font-bold text-primary-foreground">
+                    <div className="rounded-lg bg-primary p-3 text-center">
+                       <p className="text-[10px] text-primary-foreground/80 mb-1">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
+                       <p className="text-sm font-bold text-primary-foreground">
                         {formatLocalized(result.dueDate, "MMMM d, yyyy", currentLanguage)}
                       </p>
                     </div>
 
                     {result.currentWeeks >= 0 && (
-                      <div className="rounded-lg bg-card p-4 shadow-card text-center">
-                        <p className="text-sm text-muted-foreground mb-1">{t('toolsInternal.dueDate.currentlyAt')}</p>
-                        <p className="text-sm font-semibold text-foreground">
-                          {t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}
-                        </p>
-                        <p className="text-sm text-primary mt-1">
+                      <div className="rounded-lg bg-card p-3 shadow-card text-center">
+                         <p className="text-xs text-muted-foreground mb-1">{t('toolsInternal.dueDate.currentlyAt')}</p>
+                         <p className="text-xs font-semibold text-foreground">
+                           {t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}
+                         </p>
+                         <p className="text-xs text-primary mt-1">
                           {t('toolsInternal.dueDate.trimester', { number: result.trimester })}
                         </p>
                       </div>
@@ -376,15 +376,15 @@ A supportive message for this stage of pregnancy`}
 
             {savedDates.length > 0 && (
               <Card className="mb-4">
-                <CardHeader>
-                  <CardTitle className="text-sm">{t('toolsInternal.dueDate.savedDueDates')}</CardTitle>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-xs">{t('toolsInternal.dueDate.savedDueDates')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     {savedDates.map((saved) => (
                       <div
                         key={saved.id}
-                        className="flex items-center justify-between gap-2 rounded-lg bg-muted p-4"
+                        className="flex items-center justify-between gap-2 rounded-lg bg-muted p-3"
                       >
                         <div className="min-w-0 flex-1">
                           <p className="font-medium text-foreground text-sm break-words">
@@ -431,9 +431,9 @@ A supportive message for this stage of pregnancy`}
               subtitle={t('toolsInternal.dueDate.videosSubtitle')}
             />
 
-            <div className="flex items-start gap-3 rounded-lg bg-muted p-4">
-              <Info className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
-              <p className="text-sm text-muted-foreground">
+            <div className="flex items-start gap-2 rounded-lg bg-muted p-3">
+              <Info className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />
+              <p className="text-xs text-muted-foreground">
                 {t('toolsInternal.dueDate.info')}
               </p>
             </div>

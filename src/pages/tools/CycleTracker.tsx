@@ -328,12 +328,12 @@ Any patterns that might be worth discussing with a doctor` : '';
               <div className="grid grid-cols-2 gap-2.5">
                 <div className="rounded-xl border border-pink-200/40 dark:border-pink-800/30 bg-gradient-to-br from-pink-500/8 to-transparent p-3 text-center">
                   <Target className="w-4 h-4 text-pink-500 mx-auto mb-1" />
-                  <p className="text-lg font-bold text-foreground tabular-nums">{stats.daysToOv}</p>
+                  <p className="text-base font-bold text-foreground tabular-nums">{stats.daysToOv}</p>
                   <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.daysUntilOvulation')}</p>
                 </div>
                 <div className="rounded-xl border border-primary/20 bg-gradient-to-br from-primary/8 to-transparent p-3 text-center">
                   <Droplets className="w-4 h-4 text-primary mx-auto mb-1" />
-                  <p className="text-lg font-bold text-foreground tabular-nums">{stats.daysToPeriod}</p>
+                  <p className="text-base font-bold text-foreground tabular-nums">{stats.daysToPeriod}</p>
                   <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.daysUntilPeriod')}</p>
                 </div>
               </div>
@@ -363,11 +363,11 @@ Any patterns that might be worth discussing with a doctor` : '';
               {/* ── Quick Stats bar ── */}
               <div className="grid grid-cols-4 gap-1.5 pt-1">
                 <div className="rounded-lg bg-muted/40 p-2 text-center">
-                  <p className="text-sm font-bold text-foreground">{stats.avgCycle}</p>
+                  <p className="text-xs font-bold text-foreground">{stats.avgCycle}</p>
                   <p className="text-[8px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
                 </div>
                 <div className="rounded-lg bg-muted/40 p-2 text-center">
-                  <p className="text-sm font-bold text-foreground">{stats.avgPeriod}</p>
+                  <p className="text-xs font-bold text-foreground">{stats.avgPeriod}</p>
                   <p className="text-[8px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
                 </div>
                 <div className="rounded-lg bg-muted/40 p-2 text-center">
@@ -377,7 +377,7 @@ Any patterns that might be worth discussing with a doctor` : '';
                   <p className="text-[8px] text-muted-foreground mt-0.5">{t('toolsInternal.cycleTracker.regularity')}</p>
                 </div>
                 <div className="rounded-lg bg-muted/40 p-2 text-center">
-                  <p className="text-sm font-bold text-foreground">{cycles.length}</p>
+                  <p className="text-xs font-bold text-foreground">{cycles.length}</p>
                   <p className="text-[8px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.cyclesTracked')}</p>
                 </div>
               </div>
@@ -395,11 +395,11 @@ Any patterns that might be worth discussing with a doctor` : '';
         {/* ═══ GENERAL STATUS SUMMARY ═══ */}
         {stats && statusSummary && (
           <Card className="border-primary/15 bg-gradient-to-br from-primary/4 to-transparent">
-            <CardContent className="p-4">
-              <div className="flex items-start gap-2.5">
-                <FileText className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+            <CardContent className="p-3">
+              <div className="flex items-start gap-2">
+                <FileText className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="text-xs font-semibold text-foreground mb-1.5">
+                  <h3 className="text-xs font-semibold text-foreground mb-1">
                     {t('toolsInternal.cycleTracker.generalStatus')}
                   </h3>
                   <p className="text-[11px] leading-relaxed text-muted-foreground">
@@ -535,9 +535,9 @@ Any patterns that might be worth discussing with a doctor` : '';
         {/* ═══ HISTORY ═══ */}
         {cycles.length > 0 && (
           <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-semibold text-foreground">{t('toolsInternal.cycleTracker.cycleHistory')}</h3>
+            <CardContent className="p-3">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-xs font-semibold text-foreground">{t('toolsInternal.cycleTracker.cycleHistory')}</h3>
                 {stats && (
                   <Button variant="ghost" size="sm" onClick={shareStats} className="gap-1 h-7 text-xs">
                     <Share2 className="h-3.5 w-3.5" />

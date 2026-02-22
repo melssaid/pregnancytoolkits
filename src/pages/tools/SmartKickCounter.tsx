@@ -352,17 +352,17 @@ Keep it practical, warm, and easy to follow.`;
       mood="nurturing"
       toolId="smart-kick-counter"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Movement Score Card */}
         {history.length > 0 && (
           <Card className="bg-gradient-to-br from-primary/5 to-secondary border-primary/20">
-            <CardContent className="py-4">
+            <CardContent className="py-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t('toolsInternal.kickCounter.movementScore')}</p>
-                  <div className={`text-xl font-bold ${getScoreColor(movementScore)}`}>
+                  <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.movementScore')}</p>
+                  <div className={`text-lg font-bold ${getScoreColor(movementScore)}`}>
                     {movementScore}
-                    <span className="text-sm text-muted-foreground">/100</span>
+                    <span className="text-xs text-muted-foreground">/100</span>
                   </div>
                 </div>
                 <div className="relative w-20 h-20">
@@ -401,18 +401,18 @@ Keep it practical, warm, and easy to follow.`;
 
         {/* Main Counter */}
         <Card className="shadow-xl">
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             {/* Timer Display */}
-            <div className="text-center mb-6">
-              <div className="text-2xl font-bold text-foreground mb-2">
+            <div className="text-center mb-4">
+              <div className="text-xl font-bold text-foreground mb-1">
                 {formatTime(elapsedTime)}
               </div>
-              <p className="text-muted-foreground">{t('toolsInternal.kickCounter.elapsedTime')}</p>
+              <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.elapsedTime')}</p>
             </div>
 
             {/* Kick Count Display */}
             <motion.div 
-              className={`relative w-44 h-44 mx-auto rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 ${
+              className={`relative w-36 h-36 mx-auto rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 ${
                 isActive 
                   ? 'bg-gradient-to-br from-primary to-primary/80 hover:scale-105 active:scale-95 shadow-2xl' 
                   : 'bg-muted'
@@ -425,7 +425,7 @@ Keep it practical, warm, and easy to follow.`;
                   key={kicks.length}
                   initial={{ scale: 1.2 }}
                   animate={{ scale: 1 }}
-                  className="text-3xl font-bold"
+                  className="text-2xl font-bold"
                 >
                   {kicks.length}
                 </motion.div>
@@ -448,27 +448,26 @@ Keep it practical, warm, and easy to follow.`;
             )}
 
             {/* Control Buttons */}
-            <div className="flex justify-center gap-4 mt-6">
+            <div className="flex justify-center gap-3 mt-4">
               {!isActive ? (
                 <Button
-                  size="lg"
-                  className="px-8"
+                  className="px-6 h-10 text-[13px]"
                   onClick={startSession}
                 >
-                  <Play className="w-5 h-5 mr-2" />
+                  <Play className="w-4 h-4 mr-2" />
                   {t('toolsInternal.kickCounter.startNewSession')}
                 </Button>
               ) : (
                 <Button
-                  size="lg"
                   variant="destructive"
+                  className="h-10 text-[13px]"
                   onClick={endSession}
                   disabled={isSaving}
                 >
                   {isSaving ? (
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   ) : (
-                    <Save className="w-5 h-5 mr-2" />
+                    <Save className="w-4 h-4 mr-2" />
                   )}
                   {t('toolsInternal.kickCounter.endAndSave')}
                 </Button>
@@ -494,24 +493,24 @@ Keep it practical, warm, and easy to follow.`;
         <div className="grid grid-cols-3 gap-3">
           <Card>
             <CardContent className="p-3 text-center">
-              <TrendingUp className="w-6 h-6 text-primary mx-auto mb-1" />
-              <div className="text-xl font-bold">{getAverageKicks()}</div>
+              <TrendingUp className="w-5 h-5 text-primary mx-auto mb-1" />
+              <div className="text-lg font-bold">{getAverageKicks()}</div>
               <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.avgKicks')}</p>
             </CardContent>
           </Card>
           
           <Card>
             <CardContent className="p-3 text-center">
-              <Clock className="w-6 h-6 text-primary mx-auto mb-1" />
-              <div className="text-xl font-bold">{history.length}</div>
+              <Clock className="w-5 h-5 text-primary mx-auto mb-1" />
+              <div className="text-lg font-bold">{history.length}</div>
               <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.sessions')}</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardContent className="p-3 text-center">
-              <Zap className="w-6 h-6 text-primary mx-auto mb-1" />
-              <div className="text-xl font-bold">
+              <Zap className="w-5 h-5 text-primary mx-auto mb-1" />
+              <div className="text-lg font-bold">
                 {history.length > 0 
                   ? Math.round(history.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / history.length)
                   : 0}
@@ -524,10 +523,10 @@ Keep it practical, warm, and easy to follow.`;
         {/* Enhanced AI Analysis Section */}
         {history.length >= 2 && (
           <Card className="bg-gradient-to-br from-primary/5 to-secondary/10 border-primary/20">
-            <CardContent className="py-4">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-primary" />
+            <CardContent className="py-3">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="font-semibold text-sm flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-primary" />
                   {t('toolsInternal.kickCounter.aiDataAnalysis')}
                 </h3>
                 <div className="flex items-center gap-2">
@@ -555,22 +554,22 @@ Keep it practical, warm, and easy to follow.`;
               </div>
 
               {/* Quick AI Summary Stats */}
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                <div className="bg-background/60 rounded-lg p-3 text-center">
-                  <Target className="w-5 h-5 mx-auto mb-1 text-primary" />
-                  <div className="text-lg font-bold">{getAverageKicks()}</div>
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                <div className="bg-background/60 rounded-lg p-2.5 text-center">
+                  <Target className="w-4 h-4 mx-auto mb-1 text-primary" />
+                  <div className="text-sm font-bold">{getAverageKicks()}</div>
                   <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.avgPerSession')}</p>
                 </div>
-                <div className="bg-background/60 rounded-lg p-3 text-center">
-                  <Activity className="w-5 h-5 mx-auto mb-1 text-primary" />
-                  <div className={`text-lg font-bold ${getScoreColor(movementScore)}`}>
+                <div className="bg-background/60 rounded-lg p-2.5 text-center">
+                  <Activity className="w-4 h-4 mx-auto mb-1 text-primary" />
+                  <div className={`text-sm font-bold ${getScoreColor(movementScore)}`}>
                     {movementScore}%
                   </div>
                   <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.healthScore')}</p>
                 </div>
-                <div className="bg-background/60 rounded-lg p-3 text-center">
-                  <Shield className="w-5 h-5 mx-auto mb-1 text-primary" />
-                  <div className="text-lg font-bold text-accent">
+                <div className="bg-background/60 rounded-lg p-2.5 text-center">
+                  <Shield className="w-4 h-4 mx-auto mb-1 text-primary" />
+                  <div className="text-sm font-bold text-accent">
                     {movementScore >= 70 ? '✓' : movementScore >= 40 ? '!' : '⚠'}
                   </div>
                   <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.status')}</p>
@@ -663,8 +662,8 @@ Keep it practical, warm, and easy to follow.`;
         {history.length > 0 && (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Clock className="w-5 h-5 text-primary" />
+            <CardTitle className="flex items-center gap-2 text-sm">
+                <Clock className="w-4 h-4 text-primary" />
                 {t('toolsInternal.kickCounter.recentSessions')}
               </CardTitle>
             </CardHeader>
@@ -706,12 +705,12 @@ Keep it practical, warm, and easy to follow.`;
 
         {/* Information Card */}
         <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-secondary/10">
-          <CardContent className="p-4">
-            <div className="flex items-start gap-3">
-              <Baby className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+          <CardContent className="p-3">
+            <div className="flex items-start gap-2">
+              <Baby className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-semibold text-foreground mb-1">{t('toolsInternal.kickCounter.whenToCallDoctor')}</h3>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <h3 className="font-semibold text-foreground text-xs mb-1">{t('toolsInternal.kickCounter.whenToCallDoctor')}</h3>
+                <ul className="text-xs text-muted-foreground space-y-1">
                   <li>• {t('toolsInternal.kickCounter.warningFewer')}</li>
                   <li>• {t('toolsInternal.kickCounter.warningDecrease')}</li>
                   <li>• {t('toolsInternal.kickCounter.warningNoMovements')}</li>
