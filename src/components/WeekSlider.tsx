@@ -158,11 +158,10 @@ export const WeekSlider = memo(function WeekSlider({
 
           {/* Thumb */}
           <motion.div
-            className="absolute top-1/2 -translate-y-1/2 z-10"
+            className="absolute top-1/2 z-10"
             style={{
-              [isRTL ? 'right' : 'left']: `${progress}%`,
-              transform: 'translate(-50%, -50%)',
-              ...(isRTL ? { transform: 'translate(50%, -50%)' } : {}),
+              translateX: isRTL ? '50%' : '-50%',
+              translateY: '-50%',
             }}
             animate={{
               [isRTL ? 'right' : 'left']: `${progress}%`,
