@@ -16,7 +16,7 @@ import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { motion } from "framer-motion";
 
 const SmartPregnancyPlan = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [week, setWeek] = useState<number>(24);
   const [weight, setWeight] = useState<number>(65);
   const [painLevel, setPainLevel] = useState<number>(5);
@@ -29,16 +29,30 @@ const SmartPregnancyPlan = () => {
     setShowAIPlan(false);
   });
 
+  
+
   const getAIPlan = async () => {
     setShowAIPlan(true);
     setAiResponse('');
+    
+    const lang = i18n.language?.split('-')[0] || 'en';
+    const prompts: Record<string, string> = {
+      ar: `أنا في الأسبوع ${week} من الحمل، وزني ${weight} كجم، ومستوى ألم الظهر ${painLevel}/10. أنشئي خطة يومية مخصصة تشمل تمارين آمنة، واقتراحات وجبات، ونصائح صحية مناسبة لحالتي الحالية. رتبي الخطة بعناوين واضحة وفقرات منظمة.`,
+      de: `Ich bin in Woche ${week} der Schwangerschaft, wiege ${weight}kg, Rückenschmerzen Stufe ${painLevel}/10. Erstelle einen personalisierten Tagesplan mit sicheren Übungen, Mahlzeitenvorschlägen und Wellness-Tipps.`,
+      fr: `Je suis à la semaine ${week} de grossesse, je pèse ${weight}kg, niveau de douleur dorsale ${painLevel}/10. Créez un plan quotidien personnalisé avec des exercices sûrs, des suggestions de repas et des conseils bien-être.`,
+      es: `Estoy en la semana ${week} de embarazo, peso ${weight}kg, nivel de dolor de espalda ${painLevel}/10. Crea un plan diario personalizado con ejercicios seguros, sugerencias de comidas y consejos de bienestar.`,
+      pt: `Estou na semana ${week} da gravidez, peso ${weight}kg, nível de dor nas costas ${painLevel}/10. Crie um plano diário personalizado com exercícios seguros, sugestões de refeições e dicas de bem-estar.`,
+      tr: `Hamileliğimin ${week}. haftasındayım, ${weight}kg ağırlığındayım, bel ağrısı seviyem ${painLevel}/10. Güvenli egzersizler, yemek önerileri ve sağlık ipuçları içeren kişiselleştirilmiş bir günlük plan oluşturun.`,
+      en: `I'm at week ${week} of pregnancy, weighing ${weight}kg, with back pain level ${painLevel}/10. Create a personalized daily plan including safe exercises, meal suggestions, and wellness tips tailored to my current state. Use clear headings and organized paragraphs.`
+    };
+    
     await streamChat({
       type: 'pregnancy-assistant',
       messages: [{
         role: 'user',
-        content: `I'm at week ${week} of pregnancy, weighing ${weight}kg, with back pain level ${painLevel}/10. Create a personalized daily plan including safe exercises, meal suggestions, and wellness tips tailored to my current state.`
+        content: prompts[lang] || prompts.en
       }],
-      context: { week, weight },
+      context: { week, weight, language: lang },
       onDelta: (text) => setAiResponse(prev => prev + text),
       onDone: () => {}
     });
