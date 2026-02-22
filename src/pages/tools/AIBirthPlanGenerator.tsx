@@ -12,6 +12,7 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { exportBirthPlanToPDF, MAX_SAVED_PLANS } from '@/lib/pdfExport';
+import { PDFProgressOverlay } from '@/components/PDFProgressOverlay';
 import { Progress } from '@/components/ui/progress';
 
 interface BirthPlanPreference {
@@ -205,9 +206,11 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
 
   const planContentRef = useRef<HTMLDivElement>(null);
   const [isExportingPDF, setIsExportingPDF] = useState(false);
+  const [pdfProgress, setPdfProgress] = useState(0);
   const exportPlanAsPDF = useCallback(async () => {
     if (!generatedPlan) return;
     setIsExportingPDF(true);
+    setPdfProgress(0);
     try {
       await exportBirthPlanToPDF({
         title: t('toolsInternal.birthPlan.title'),
@@ -215,6 +218,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
         date: format(new Date(), 'MMMM d, yyyy'),
         preferences,
         language: i18n.language?.split('-')[0] || 'en',
+        onProgress: setPdfProgress,
       });
       toast.success(t('toolsInternal.birthPlan.pdfSuccess'));
     } catch (error) {
@@ -222,6 +226,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
       toast.error(t('toolsInternal.birthPlan.pdfError'));
     } finally {
       setIsExportingPDF(false);
+      setPdfProgress(0);
     }
   }, [generatedPlan, preferences, t, i18n.language]);
 
@@ -241,6 +246,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
       mood="nurturing"
       toolId="ai-birth-plan"
     >
+      <PDFProgressOverlay progress={pdfProgress} visible={isExportingPDF} />
       <div className="space-y-4">
 
         {/* Preference Sections */}

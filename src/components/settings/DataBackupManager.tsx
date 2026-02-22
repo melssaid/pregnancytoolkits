@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
 import { exportDataBackupPDF } from '@/lib/pdfExport';
+import { PDFProgressOverlay } from '@/components/PDFProgressOverlay';
 import {
   Dialog,
   DialogContent,
@@ -76,8 +77,10 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
   };
 
   // Export as PDF (primary method)
+  const [pdfProgress, setPdfProgress] = useState(0);
   const handleExportPDF = async () => {
     setIsExporting(true);
+    setPdfProgress(0);
     try {
       const data = collectAllData();
       const dataCount = Object.keys(data).length;
@@ -93,6 +96,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         subtitle: t('settings.backup.pdfSubtitle', { count: dataCount, defaultValue: `${dataCount} items saved` }),
         data,
         language: lang as any,
+        onProgress: setPdfProgress,
       });
 
       const now = new Date().toISOString();
@@ -104,6 +108,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       toast({ title: t('settings.backup.exportError'), description: t('settings.backup.exportErrorDesc'), variant: 'destructive' });
     } finally {
       setIsExporting(false);
+      setPdfProgress(0);
     }
   };
 
@@ -177,6 +182,8 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
 
   if (compact) {
     return (
+      <>
+      <PDFProgressOverlay progress={pdfProgress} visible={isExporting} />
       <div className="space-y-2">
         {/* Last backup */}
         {lastBackupDate && (
@@ -243,11 +250,14 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
           </Dialog>
         </div>
       </div>
+      </>
     );
   }
 
   // Full version
   return (
+    <>
+    <PDFProgressOverlay progress={pdfProgress} visible={isExporting} />
     <div className="border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-4">
       <div className="flex items-center gap-2 mb-3">
         <Download className="w-5 h-5 text-primary" />
@@ -322,6 +332,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         </Dialog>
       </div>
     </div>
+    </>
   );
 };
 
