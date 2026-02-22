@@ -669,10 +669,10 @@
     "age35Plus": "Idade 35+",
     "multiplePregnancy": "Gravidez múltipla",
     "familyHistory": "Histórico familiar",
-    "calculate": "Calcular risco",
-    "lowRiskResult": "Risco baixo",
-    "moderateRiskResult": "Risco moderado",
-    "highRiskResult": "Risco alto",
+    "calculate": "Revisar meus fatores",
+    "lowRiskResult": "Poucos fatores",
+    "moderateRiskResult": "Alguns fatores",
+    "highRiskResult": "Muitos fatores",
     "disclaimer": "Esta é apenas uma avaliação preliminar. Consulte sempre seu médico."
   },
   "fitnessPage": {
@@ -2475,10 +2475,10 @@
       "previousGDM": "Diabetes gestacional anterior",
       "previousLargeBaby": "Bebê anterior com mais de 4kg",
       "pcos": "Síndrome do ovário policístico",
-      "calculateRisk": "Calcular Risco",
-      "lowRisk": "Risco Baixo",
-      "moderateRisk": "Risco Moderado",
-      "highRisk": "Risco Alto",
+      "calculateRisk": "Revisar meus fatores",
+      "lowRisk": "Poucos fatores",
+      "moderateRisk": "Alguns fatores",
+      "highRisk": "Muitos fatores",
       "prevention": "Dicas de Prevenção",
       "aiGuidance": "Obter Orientação IA"
     },
@@ -2496,7 +2496,7 @@
       "age35Plus": "Idade 35+",
       "multiplePregnancy": "Gravidez múltipla (gêmeos, trigêmeos)",
       "familyHistory": "Histórico familiar de pré-eclâmpsia",
-      "calculateRisk": "Calcular Risco",
+      "calculateRisk": "Revisar meus fatores",
       "warningSigns": "Sinais de Alerta a Observar"
     },
     "babyGear": {
@@ -2597,7 +2597,7 @@
       "stickyAnalyze": "Analisar com IA"
     },
     "weightGain": {
-      "title": "Analisador de Ganho de Peso",
+      "title": "Guia de Ganho de Peso",
       "subtitle": "Monitore um ganho de peso saudável na gravidez",
       "currentWeight": "Peso Atual",
       "prePregnancyWeight": "Peso Pré-Gravidez",
@@ -2741,10 +2741,10 @@
   "preeclampsiaRisk": {
     "title": "Calculadora de Risco de Pré-eclâmpsia",
     "subtitle": "Avalie seus fatores de risco para pré-eclâmpsia",
-    "riskFactorsTitle": "Fatores de Risco para Pré-eclâmpsia",
-    "riskFactorsDesc": "Marque todos os fatores que se aplicam para avaliar seu nível de risco",
-    "calculateRisk": "Calcular Risco",
-    "yourRiskFactors": "Seus Fatores de Risco:",
+    "riskFactorsTitle": "Fatores relacionados à pré-eclâmpsia",
+    "riskFactorsDesc": "Marque todos os fatores que se aplicam para entender seu perfil",
+    "calculateRisk": "Revisar meus fatores",
+    "yourRiskFactors": "Seus fatores:",
     "warningSignsTitle": "Sinais de Alerta para Observar",
     "warningNote": "Se você experimentar qualquer um desses sintomas, contate imediatamente seu médico.",
     "disclaimer": "Esta ferramenta identifica fatores de risco mas não pode prever pré-eclâmpsia. Não substitui avaliação profissional.",
@@ -2772,9 +2772,9 @@
       "demographics": "Demografia"
     },
     "riskLevels": {
-      "high": { "title": "Risco Alto", "description": "Você tem um ou mais fatores de risco significativos para pré-eclâmpsia. Seu médico pode recomendar aspirina em dose baixa a partir da 12ª semana.", "recommendation": "Discuta a profilaxia com aspirina com seu médico" },
-      "moderate": { "title": "Risco Moderado", "description": "Você tem alguns fatores de risco. Monitoramento aprimorado e modificações no estilo de vida podem ser recomendados.", "recommendation": "Considere discutir o risco com seu médico" },
-      "low": { "title": "Risco Baixo", "description": "Você tem poucos fatores de risco identificados. Continue com os cuidados pré-natais padrão.", "recommendation": "Mantenha as consultas pré-natais regulares" }
+      "high": { "title": "Muitos fatores", "description": "Você tem um ou mais fatores significativos. Seu médico pode recomendar aspirina em dose baixa a partir da 12ª semana.", "recommendation": "Discuta a profilaxia com aspirina com seu médico" },
+      "moderate": { "title": "Alguns fatores", "description": "Você tem alguns fatores. Monitoramento aprimorado e modificações no estilo de vida podem ser recomendados.", "recommendation": "Considere discutir isso com seu médico" },
+      "low": { "title": "Poucos fatores", "description": "Você tem poucos fatores identificados. Continue com os cuidados pré-natais padrão.", "recommendation": "Mantenha as consultas pré-natais regulares" }
     },
     "warningSigns": {
       "headaches": "Dores de cabeça severas que não passam",
@@ -2890,9 +2890,9 @@
     "preventionTipsTitle": "Dicas de Prevenção",
     "infoNote": "O teste de diabetes gestacional ocorre entre as semanas 24-28. Se você tiver múltiplos fatores de risco, seu médico pode recomendar teste mais cedo.",
     "riskLevels": {
-      "high": { "title": "Risco Alto", "description": "Seus fatores de risco sugerem maior probabilidade. Teste precoce pode ser recomendado." },
-      "moderate": { "title": "Risco Moderado", "description": "Você tem alguns fatores de risco. Teste padrão nas semanas 24-28 é recomendado." },
-      "low": { "title": "Risco Baixo", "description": "Você tem poucos fatores de risco, mas o teste rotineiro nas semanas 24-28 ainda é recomendado." }
+      "high": { "title": "Muitos fatores", "description": "Seus fatores sugerem maior probabilidade. Teste precoce pode ser recomendado." },
+      "moderate": { "title": "Alguns fatores", "description": "Você tem alguns fatores. Teste padrão nas semanas 24-28 é recomendado." },
+      "low": { "title": "Poucos fatores", "description": "Você tem poucos fatores, mas o teste rotineiro nas semanas 24-28 ainda é recomendado." }
     },
     "riskFactors": {
       "age": "35 anos ou mais",

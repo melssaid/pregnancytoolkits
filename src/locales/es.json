@@ -669,10 +669,10 @@
     "age35Plus": "Edad 35+",
     "multiplePregnancy": "Embarazo múltiple",
     "familyHistory": "Antecedentes familiares",
-    "calculate": "Calcular riesgo",
-    "lowRiskResult": "Riesgo bajo",
-    "moderateRiskResult": "Riesgo moderado",
-    "highRiskResult": "Riesgo alto",
+    "calculate": "Revisar mis factores",
+    "lowRiskResult": "Pocos factores",
+    "moderateRiskResult": "Algunos factores",
+    "highRiskResult": "Muchos factores",
     "disclaimer": "Esta es solo una evaluación preliminar. Consulta siempre a tu médico."
   },
   "fitnessPage": {
@@ -2475,10 +2475,10 @@
       "previousGDM": "Diabetes gestacional previa",
       "previousLargeBaby": "Bebé anterior de más de 4kg",
       "pcos": "Síndrome de ovario poliquístico",
-      "calculateRisk": "Calcular Riesgo",
-      "lowRisk": "Riesgo Bajo",
-      "moderateRisk": "Riesgo Moderado",
-      "highRisk": "Riesgo Alto",
+      "calculateRisk": "Revisar mis factores",
+      "lowRisk": "Pocos factores",
+      "moderateRisk": "Algunos factores",
+      "highRisk": "Muchos factores",
       "prevention": "Consejos de Prevención",
       "aiGuidance": "Obtener Orientación IA"
     },
@@ -2496,7 +2496,7 @@
       "age35Plus": "Edad 35+",
       "multiplePregnancy": "Embarazo múltiple (gemelos, trillizos)",
       "familyHistory": "Historial familiar de preeclampsia",
-      "calculateRisk": "Calcular Riesgo",
+      "calculateRisk": "Revisar mis factores",
       "warningSigns": "Señales de Advertencia a Observar"
     },
     "babyGear": {
@@ -2597,7 +2597,7 @@
       "stickyAnalyze": "Analizar con IA"
     },
     "weightGain": {
-      "title": "Analizador de Aumento de Peso",
+      "title": "Guía de Aumento de Peso",
       "subtitle": "Monitorea un aumento de peso saludable del embarazo",
       "currentWeight": "Peso Actual",
       "prePregnancyWeight": "Peso Pre-Embarazo",
@@ -2741,10 +2741,10 @@
   "preeclampsiaRisk": {
     "title": "Calculadora de riesgo de preeclampsia",
     "subtitle": "Evalúa tus factores de riesgo de preeclampsia",
-    "riskFactorsTitle": "Factores de riesgo de preeclampsia",
-    "riskFactorsDesc": "Marca todos los factores que apliquen para evaluar tu nivel de riesgo",
-    "calculateRisk": "Calcular riesgo",
-    "yourRiskFactors": "Tus factores de riesgo:",
+    "riskFactorsTitle": "Factores relacionados con preeclampsia",
+    "riskFactorsDesc": "Marca todos los factores que apliquen para conocer tu perfil",
+    "calculateRisk": "Revisar mis factores",
+    "yourRiskFactors": "Tus factores:",
     "warningSignsTitle": "Señales de advertencia a vigilar",
     "warningNote": "Si experimentas cualquiera de estos síntomas, contacta inmediatamente a tu médico.",
     "disclaimer": "Esta herramienta identifica factores de riesgo pero no puede predecir preeclampsia. No reemplaza la evaluación profesional.",
@@ -2772,9 +2772,9 @@
       "demographics": "Demografía"
     },
     "riskLevels": {
-      "high": { "title": "Riesgo alto", "description": "Tienes uno o más factores de riesgo significativos para preeclampsia. Tu médico puede recomendar aspirina en dosis baja a partir de la semana 12.", "recommendation": "Discute la profilaxis con aspirina con tu médico" },
-      "moderate": { "title": "Riesgo moderado", "description": "Tienes algunos factores de riesgo. Se puede recomendar monitoreo mejorado y modificaciones en el estilo de vida.", "recommendation": "Considera discutir el riesgo con tu médico" },
-      "low": { "title": "Riesgo bajo", "description": "Tienes pocos factores de riesgo identificados. Continúa con la atención prenatal estándar.", "recommendation": "Mantén las visitas prenatales regulares" }
+      "high": { "title": "Muchos factores", "description": "Tienes uno o más factores significativos. Tu médico puede recomendar aspirina en dosis baja a partir de la semana 12.", "recommendation": "Discute la profilaxis con aspirina con tu médico" },
+      "moderate": { "title": "Algunos factores", "description": "Tienes algunos factores. Se puede recomendar monitoreo mejorado y modificaciones en el estilo de vida.", "recommendation": "Considera discutir esto con tu médico" },
+      "low": { "title": "Pocos factores", "description": "Tienes pocos factores identificados. Continúa con la atención prenatal estándar.", "recommendation": "Mantén las visitas prenatales regulares" }
     },
     "warningSigns": {
       "headaches": "Dolores de cabeza severos que no desaparecen",
@@ -2890,9 +2890,9 @@
     "preventionTipsTitle": "Consejos de Prevención",
     "infoNote": "La prueba de diabetes gestacional se realiza entre las semanas 24-28. Si tienes múltiples factores de riesgo, tu médico puede recomendar una prueba más temprana.",
     "riskLevels": {
-      "high": { "title": "Riesgo Alto", "description": "Tus factores de riesgo sugieren una mayor probabilidad. Se puede recomendar una prueba temprana." },
-      "moderate": { "title": "Riesgo Moderado", "description": "Tienes algunos factores de riesgo. Se recomienda la prueba estándar en las semanas 24-28." },
-      "low": { "title": "Riesgo Bajo", "description": "Tienes pocos factores de riesgo, pero la prueba rutinaria en las semanas 24-28 sigue siendo recomendada." }
+      "high": { "title": "Muchos factores", "description": "Tus factores sugieren una mayor probabilidad. Se puede recomendar una prueba temprana." },
+      "moderate": { "title": "Algunos factores", "description": "Tienes algunos factores. Se recomienda la prueba estándar en las semanas 24-28." },
+      "low": { "title": "Pocos factores", "description": "Tienes pocos factores, pero la prueba rutinaria en las semanas 24-28 sigue siendo recomendada." }
     },
     "riskFactors": {
       "age": "35 años o más",

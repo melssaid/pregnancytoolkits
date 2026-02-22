@@ -669,10 +669,10 @@
     "age35Plus": "35 yaş üstü",
     "multiplePregnancy": "Çoğul gebelik",
     "familyHistory": "Aile öyküsü",
-    "calculate": "Riski Hesapla",
-    "lowRiskResult": "Düşük Risk",
-    "moderateRiskResult": "Orta Risk",
-    "highRiskResult": "Yüksek Risk",
+    "calculate": "Faktörlerimi Gözden Geçir",
+    "lowRiskResult": "Az Faktör",
+    "moderateRiskResult": "Bazı Faktörler",
+    "highRiskResult": "Çok Faktör",
     "disclaimer": "Bu yalnızca ön bir değerlendirmedir. Her zaman sağlık uzmanınıza danışın."
   },
   "fitnessPage": {
@@ -2475,10 +2475,10 @@
       "previousGDM": "Önceki gestasyonel diyabet",
       "previousLargeBaby": "Önceki bebek 4kg üzerinde",
       "pcos": "Polikistik over sendromu",
-      "calculateRisk": "Riski Hesapla",
-      "lowRisk": "Düşük Risk",
-      "moderateRisk": "Orta Risk",
-      "highRisk": "Yüksek Risk",
+      "calculateRisk": "Faktörlerimi Gözden Geçir",
+      "lowRisk": "Az Faktör",
+      "moderateRisk": "Bazı Faktörler",
+      "highRisk": "Çok Faktör",
       "prevention": "Önleme İpuçları",
       "aiGuidance": "AI Rehberliği Al"
     },
@@ -2496,7 +2496,7 @@
       "age35Plus": "35 yaş üstü",
       "multiplePregnancy": "Çoğul gebelik (ikiz, üçüz)",
       "familyHistory": "Preeklampsi aile öyküsü",
-      "calculateRisk": "Riski Hesapla",
+      "calculateRisk": "Faktörlerimi Gözden Geçir",
       "warningSigns": "İzlenmesi Gereken Uyarı İşaretleri"
     },
     "babyGear": {
@@ -2597,7 +2597,7 @@
       "stickyAnalyze": "AI ile Analiz Et"
     },
     "weightGain": {
-      "title": "Kilo Alımı Analizörü",
+      "title": "Kilo Alımı Rehberi",
       "subtitle": "Sağlıklı hamilelik kilosunu izleyin",
       "currentWeight": "Mevcut Kilo",
       "prePregnancyWeight": "Hamilelik Öncesi Kilo",
@@ -2741,10 +2741,10 @@
   "preeclampsiaRisk": {
     "title": "Preeklampsi Risk Hesaplayıcı",
     "subtitle": "Preeklampsi risk faktörlerinizi değerlendirin",
-    "riskFactorsTitle": "Preeklampsi Risk Faktörleri",
-    "riskFactorsDesc": "Risk seviyenizi değerlendirmek için geçerli olan tüm faktörleri işaretleyin",
-    "calculateRisk": "Riski Hesapla",
-    "yourRiskFactors": "Risk Faktörleriniz:",
+    "riskFactorsTitle": "Preeklampsi ile İlgili Faktörler",
+    "riskFactorsDesc": "Profilinizi anlamak için geçerli olan tüm faktörleri işaretleyin",
+    "calculateRisk": "Faktörlerimi Gözden Geçir",
+    "yourRiskFactors": "Faktörleriniz:",
     "warningSignsTitle": "Dikkat Edilmesi Gereken Uyarı İşaretleri",
     "warningNote": "Bu belirtilerden herhangi birini yaşarsanız, hemen doktorunuzla iletişime geçin.",
     "disclaimer": "Bu araç risk faktörlerini tanımlar ancak preeklampsiyı tahmin edemez veya profesyonel değerlendirme sağlayamaz.",
@@ -2772,9 +2772,9 @@
       "demographics": "Demografi"
     },
     "riskLevels": {
-      "high": { "title": "Yüksek Risk", "description": "Bir veya daha fazla önemli preeklampsi risk faktörünüz var. Doktorunuz 12. haftadan itibaren düşük doz aspirin önerebilir.", "recommendation": "Doktorunuzla aspirin profilaksisini tartışın" },
-      "moderate": { "title": "Orta Risk", "description": "Bazı risk faktörleriniz var. Geliştirilmiş izleme ve yaşam tarzı değişiklikleri önerilebilir.", "recommendation": "Doktorunuzla riski tartışmayı düşünün" },
-      "low": { "title": "Düşük Risk", "description": "Çok az tanımlanmış risk faktörünüz var. Standart doğum öncesi bakıma devam edin.", "recommendation": "Düzenli doğum öncesi ziyaretleri sürdürün" }
+      "high": { "title": "Çok Faktör", "description": "Bir veya daha fazla önemli faktörünüz var. Doktorunuz 12. haftadan itibaren düşük doz aspirin önerebilir.", "recommendation": "Doktorunuzla aspirin profilaksisini tartışın" },
+      "moderate": { "title": "Bazı Faktörler", "description": "Bazı faktörleriniz var. Geliştirilmiş izleme ve yaşam tarzı değişiklikleri önerilebilir.", "recommendation": "Doktorunuzla durumu tartışmayı düşünün" },
+      "low": { "title": "Az Faktör", "description": "Çok az tanımlanmış faktörünüz var. Standart doğum öncesi bakıma devam edin.", "recommendation": "Düzenli doğum öncesi ziyaretleri sürdürün" }
     },
     "warningSigns": {
       "headaches": "Geçmeyen şiddetli baş ağrıları",
@@ -2890,9 +2890,9 @@
     "preventionTipsTitle": "Önleme İpuçları",
     "infoNote": "Gestasyonel diyabet testi genellikle 24-28. haftalarda yapılır. Birden fazla risk faktörünüz varsa doktorunuz erken test önerebilir.",
     "riskLevels": {
-      "high": { "title": "Yüksek Risk", "description": "Risk faktörleriniz yüksek olasılık gösteriyor. Erken test önerilebilir." },
-      "moderate": { "title": "Orta Risk", "description": "Bazı risk faktörleriniz var. 24-28. haftalarda standart test önerilir." },
-      "low": { "title": "Düşük Risk", "description": "Az risk faktörünüz var, ancak 24-28. haftalarda rutin test hâlâ önerilir." }
+      "high": { "title": "Çok Faktör", "description": "Faktörleriniz yüksek olasılık gösteriyor. Erken test önerilebilir." },
+      "moderate": { "title": "Bazı Faktörler", "description": "Bazı faktörleriniz var. 24-28. haftalarda standart test önerilir." },
+      "low": { "title": "Az Faktör", "description": "Az faktörünüz var, ancak 24-28. haftalarda rutin test hâlâ önerilir." }
     },
     "riskFactors": {
       "age": "35 yaş veya üzeri",
