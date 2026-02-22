@@ -819,6 +819,9 @@
       "refresh": "تحديث",
       "trackTip": "تتبعي أسبوعك للحصول على معلومات مخصصة عن نمو طفلك وتغيرات جسمك",
       "approximatelyRemaining": "حوالي {{days}} يوم متبقي",
+      "noSummariesYet": "لا توجد ملخصات بعد",
+      "generateFirstHint": "اضغطي على الزر أعلاه لإنشاء أول ملخص أسبوعي",
+      "previousSummaries": "الملخصات السابقة",
       "trimester": {
         "first": "الثلث الأول",
         "second": "الثلث الثاني",
