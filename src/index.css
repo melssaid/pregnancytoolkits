@@ -212,9 +212,9 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, hsl(340 65% 65%), hsl(320 50% 72%), hsl(300 40% 65%));
-    border-radius: var(--radius) var(--radius) 0 0;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
     z-index: 1;
   }
 
