@@ -280,6 +280,8 @@
       "babySleepDesc": "Uyku düzeni",
       "diaperTracker": "Bez Takibi",
       "diaperTrackerDesc": "Günlük değişimler",
+      "babyCry": "Ağlama Çevirmeni",
+      "babyCryDesc": "Ağlama kalıplarını analiz et",
       "groceryList": "Alışveriş Listesi",
       "groceryListDesc": "Alışveriş planlayıcı"
     },

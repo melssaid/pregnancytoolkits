@@ -160,6 +160,8 @@
       "babySleepDesc": "أنماط النوم",
       "diaperTracker": "متتبع الحفاضات",
       "diaperTrackerDesc": "التغييرات اليومية",
+      "babyCry": "مترجم بكاء الطفل",
+      "babyCryDesc": "تحليل أنماط البكاء",
       "groceryList": "قائمة التسوق",
       "groceryListDesc": "مخطط التسوق"
     },
