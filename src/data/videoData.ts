@@ -75,7 +75,7 @@ export const sleepVideosByLang: VideosByLang = {
   ar: [
     { id: "1", title: "تأمل استرخاء للحامل", description: "تأمل مهدئ لنوم أفضل أثناء الحمل", youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: "تأمل" },
     { id: "2", title: "نصائح لنوم أفضل أثناء الحمل", description: "كيف تحصلين على نوم مريح في الحمل", youtubeId: "FdeqyQTavzI", duration: "25:00", category: "تأمل" },
-    { id: "3", title: "يوغا استرخاء للحامل", description: "يوغا استرخاء عميق للنوم", youtubeId: "pHzsNfr2NCQ", duration: "15:00", category: "يوغا" },
+    { id: "3", title: "تمارين إطالة آمنة للحامل", description: "تمارين إطالة للورك والظهر للحامل", youtubeId: "uWRwBBMFXys", duration: "12:00", category: "تمارين" },
     { id: "4", title: "أوضاع النوم الصحيحة للحامل", description: "أفضل وضعيات النوم أثناء الحمل", youtubeId: "qa7RY4V6ihM", duration: "10:00", category: "نصائح" },
   ],
   tr: [
@@ -123,8 +123,8 @@ export const birthPositionVideosByLang: VideosByLang = {
   ar: [
     { id: "1", title: "أوضاع الولادة الطبيعية", description: "رسوم متحركة ثلاثية الأبعاد لمراحل الولادة", youtubeId: "r4R8j8kiCHw", duration: "8:00", category: "ولادة" },
     { id: "2", title: "تحضير الجسم للولادة", description: "تمارين تحضيرية للولادة الطبيعية", youtubeId: "Vy6jonW1lFg", duration: "12:00", category: "تحضير" },
-    { id: "3", title: "تمارين تسهيل الولادة", description: "تمارين لفتح الحوض وتسهيل المخاض", youtubeId: "oBY_25mR2WU", duration: "15:00", category: "تمارين" },
-    { id: "4", title: "نصائح للولادة الطبيعية", description: "إرشادات مهمة للولادة بدون ألم", youtubeId: "pHzsNfr2NCQ", duration: "15:00", category: "نصائح" },
+    { id: "3", title: "تمارين تسهيل الولادة", description: "تمارين رياضية تساعد على الولادة الطبيعية", youtubeId: "Ajx6Sum6uPU", duration: "15:00", category: "تمارين" },
+    { id: "4", title: "تمارين إطالة للحامل", description: "تمارين إطالة آمنة للورك والظهر أثناء الحمل", youtubeId: "uWRwBBMFXys", duration: "12:00", category: "تمارين" },
   ],
   tr: [
     { id: "1", title: "Doğumda En İyi Pozisyonlar", description: "3D animasyonla doğum pozisyonları", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Doğum" },
@@ -463,7 +463,7 @@ export const generalVideosByLang: VideosByLang = {
     { id: "2", youtubeId: "1xVgisdrTUY", title: "الأكل الممنوع للحامل", description: "الأطعمة التي يجب تجنبها", category: "تغذية", duration: "10:00" },
     { id: "3", youtubeId: "UqYAbM8Drl4", title: "نظام غذائي لسكري الحمل", description: "نصائح من أخصائية تغذية", category: "تغذية", duration: "15:00" },
     { id: "4", youtubeId: "pCSjhbVOdYQ", title: "تأمل استرخاء الحمل", description: "تأمل مهدئ للأمهات الحوامل", category: "صحة نفسية", duration: "60:00" },
-    { id: "5", youtubeId: "pHzsNfr2NCQ", title: "يوغا ما قبل الولادة", description: "يوغا استرخاء للحامل", category: "صحة نفسية", duration: "15:00" },
+    { id: "5", youtubeId: "uWRwBBMFXys", title: "تمارين إطالة للحامل", description: "تمارين إطالة آمنة للورك والظهر", category: "تمارين", duration: "12:00" },
     { id: "6", youtubeId: "qa7RY4V6ihM", title: "تمرين كامل للحامل", description: "تمرين لطيف لكامل الجسم", category: "تمارين", duration: "10:00" },
     { id: "7", youtubeId: "Vy6jonW1lFg", title: "تمارين تقوية للحامل", description: "تمارين تقوية آمنة أثناء الحمل", category: "تمارين", duration: "12:00" },
     { id: "8", youtubeId: "r4R8j8kiCHw", title: "تحضير للولادة", description: "رسوم متحركة ثلاثية الأبعاد للولادة الطبيعية", category: "ولادة", duration: "8:00" },

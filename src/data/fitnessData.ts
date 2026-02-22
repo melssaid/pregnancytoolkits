@@ -44,11 +44,11 @@ export const exerciseDatabase: Exercise[] = [
 // Language-specific video sets for cultural relevance
 export const fitnessVideosByLang: Record<string, { youtubeId: string; duration: string; categoryKey: string }[]> = {
   ar: [
-    { youtubeId: "pHzsNfr2NCQ", duration: "15:00", categoryKey: "yoga" },
+    { youtubeId: "uWRwBBMFXys", duration: "12:00", categoryKey: "yoga" },
     { youtubeId: "qa7RY4V6ihM", duration: "10:00", categoryKey: "fullBody" },
     { youtubeId: "Vy6jonW1lFg", duration: "12:00", categoryKey: "strength" },
     { youtubeId: "r4R8j8kiCHw", duration: "8:00", categoryKey: "birthPrep" },
-    { youtubeId: "oBY_25mR2WU", duration: "15:00", categoryKey: "stretching" },
+    { youtubeId: "Ajx6Sum6uPU", duration: "15:00", categoryKey: "stretching" },
     { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
   ],
   tr: [
