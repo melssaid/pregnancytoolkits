@@ -184,15 +184,14 @@ export default function CycleTracker() {
 
   /* ── Computed stats ── */
   const stats = useMemo(() => {
-    if (cycles.length < 2) return null;
+    if (cycles.length < 1) return null;
     const cycleLengths: number[] = [];
     for (let i = 0; i < cycles.length - 1; i++) {
       const len = differenceInDays(new Date(cycles[i].startDate), new Date(cycles[i + 1].startDate));
       if (len > 0 && len < 60) cycleLengths.push(len);
     }
-    if (!cycleLengths.length) return null;
 
-    const avg = Math.round(cycleLengths.reduce((a, b) => a + b, 0) / cycleLengths.length);
+    const avg = cycleLengths.length ? Math.round(cycleLengths.reduce((a, b) => a + b, 0) / cycleLengths.length) : 28;
     const periodLengths = cycles.filter(c => c.endDate).map(c => differenceInDays(new Date(c.endDate!), new Date(c.startDate)) + 1);
     const avgPeriod = periodLengths.length ? Math.round(periodLengths.reduce((a, b) => a + b, 0) / periodLengths.length) : 5;
 
