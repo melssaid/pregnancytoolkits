@@ -127,8 +127,8 @@ function CategoryCard({ config, index }: { config: CategoryConfig; index: number
                     <div className="flex items-center gap-1.5">
                       <h3 className="text-[11px] font-semibold text-foreground truncate leading-snug">{t(tool.titleKey)}</h3>
                       {tool.hasAI && (
-                        <span className="flex-shrink-0 inline-flex items-center px-1.5 py-[1px] rounded-md bg-destructive/10 border border-destructive/20">
-                          <span className="text-[8px] font-bold text-destructive tracking-wider leading-none">AI</span>
+                        <span className="flex-shrink-0 inline-flex items-center px-1.5 py-[2px] rounded bg-destructive">
+                          <span className="text-[8px] font-extrabold text-white tracking-wider leading-none">AI</span>
                         </span>
                       )}
                     </div>
