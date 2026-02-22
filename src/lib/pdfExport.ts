@@ -2,6 +2,8 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas-pro';
 import DOMPurify from 'dompurify';
 
+export type PDFProgressCallback = (percent: number) => void;
+
 interface PDFExportOptions {
   title: string;
   content: string;
@@ -9,6 +11,7 @@ interface PDFExportOptions {
   preferences?: Record<string, string>;
   language?: string;
   contentElement?: HTMLElement;
+  onProgress?: PDFProgressCallback;
 }
 
 interface DataBackupPDFOptions {
@@ -16,6 +19,7 @@ interface DataBackupPDFOptions {
   subtitle?: string;
   data: Record<string, any>;
   language?: 'en' | 'ar' | 'de' | 'fr' | 'es' | 'pt' | 'tr';
+  onProgress?: PDFProgressCallback;
 }
 
 interface GenericPDFOptions {
@@ -27,6 +31,7 @@ interface GenericPDFOptions {
   }[];
   language?: 'en' | 'ar';
   accentColor?: { r: number; g: number; b: number };
+  onProgress?: PDFProgressCallback;
 }
 
 // Cache for logo image data
@@ -103,7 +108,7 @@ function getFontFamily(language: string): string {
 
 // Unified section-based html2canvas-to-PDF renderer
 // Each [data-pdf-section] is rendered separately to avoid mid-content page cuts
-async function renderHTMLToPDF(htmlContent: string, fileName: string, language: string = 'en'): Promise<void> {
+async function renderHTMLToPDF(htmlContent: string, fileName: string, language: string = 'en', onProgress?: PDFProgressCallback): Promise<void> {
   const isRTL = language === 'ar';
   const fontFamily = getFontFamily(language);
 
@@ -207,8 +212,13 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
 
   // Section-based rendering with proper margins
   let currentY = MARGIN_Y_MM;
+  const totalSections = sections.length;
 
-  for (const section of sections) {
+  // Report initial progress (10% for HTML prep done)
+  onProgress?.(10);
+
+  for (let sIdx = 0; sIdx < sections.length; sIdx++) {
+    const section = sections[sIdx];
     let canvas: HTMLCanvasElement;
     try {
       canvas = await html2canvas(section, {
@@ -271,9 +281,13 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     const imgData = canvas.toDataURL('image/jpeg', 0.85);
     doc.addImage(imgData, 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
     currentY += sectionHeightMM + SECTION_GAP_MM;
+
+    // Report progress: 10% initial + 85% for sections + 5% for save
+    onProgress?.(10 + Math.round(((sIdx + 1) / totalSections) * 85));
   }
 
   document.body.removeChild(wrapper);
+  onProgress?.(100);
   doc.save(fileName);
 }
 
@@ -464,7 +478,7 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
   html += buildFooterHTML(language, accentColor);
 
   const fileName = `${title.toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language);
+  await renderHTMLToPDF(html, fileName, language, options.onProgress);
 }
 
 // Data backup PDF export
@@ -661,7 +675,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   html += buildFooterHTML(language, COLORS.primary);
 
   const fileName = `pregnancy-data-backup-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language);
+  await renderHTMLToPDF(html, fileName, language, options.onProgress);
 }
 
 
@@ -763,7 +777,7 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   `;
 
   const fileName = `birth-plan-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language);
+  await renderHTMLToPDF(html, fileName, language, options.onProgress);
 }
 
 export const MAX_SAVED_PLANS = 9;
@@ -782,6 +796,7 @@ interface HospitalBagPDFOptions {
   subtitle?: string;
   items: HospitalBagItem[];
   language?: 'en' | 'ar' | 'de' | 'fr' | 'es' | 'pt' | 'tr';
+  onProgress?: PDFProgressCallback;
   labels: {
     mom: string;
     baby: string;
@@ -913,7 +928,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   html += buildFooterHTML(language, accentColor);
 
   const fileName = `hospital-bag-checklist-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language);
+  await renderHTMLToPDF(html, fileName, language, options.onProgress);
 }
 
 // Generate WhatsApp share text for hospital bag

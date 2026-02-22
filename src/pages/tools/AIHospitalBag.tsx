@@ -15,6 +15,7 @@ import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { exportHospitalBagPDF, generateHospitalBagShareText } from "@/lib/pdfExport";
+import { PDFProgressOverlay } from '@/components/PDFProgressOverlay';
 import { toast } from "sonner";
 import { hospitalBagVideosByLang } from "@/data/videoData";
 
@@ -266,8 +267,10 @@ const AIHospitalBag = () => {
 
   // Export to PDF
   const [isExportingPDF, setIsExportingPDF] = useState(false);
+  const [pdfProgress, setPdfProgress] = useState(0);
   const handleExportPDF = async () => {
     setIsExportingPDF(true);
+    setPdfProgress(0);
     try {
       const pdfItems = items.map(item => ({
         id: item.id,
@@ -282,6 +285,7 @@ const AIHospitalBag = () => {
         subtitle: t('toolsInternal.hospitalBag.subtitle'),
         items: pdfItems,
         language: i18n.language as any,
+        onProgress: setPdfProgress,
         labels: {
           mom: t('toolsInternal.hospitalBag.mom'),
           baby: t('toolsInternal.hospitalBag.baby'),
@@ -303,6 +307,7 @@ const AIHospitalBag = () => {
       toast.error(t('toolsInternal.hospitalBag.exportError'));
     } finally {
       setIsExportingPDF(false);
+      setPdfProgress(0);
     }
   };
 
@@ -409,6 +414,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
       mood="empowering"
       toolId="ai-hospital-bag"
     >
+      <PDFProgressOverlay progress={pdfProgress} visible={isExportingPDF} />
       <div className="space-y-4">
         {/* Progress Card */}
         <Card className="p-3 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border-teal-200">
