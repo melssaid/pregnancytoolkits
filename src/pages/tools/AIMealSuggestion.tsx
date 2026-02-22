@@ -276,7 +276,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
               {isLoading ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin shrink-0" />
-                  <span>{t("toolsInternal.common.analyzing") || "..."}</span>
+                  <span>{t("toolsInternal.common.analyzing", { defaultValue: "..." })}</span>
                 </>
               ) : (
                 <>
