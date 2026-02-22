@@ -97,7 +97,7 @@
       "description": "Créez votre plan de naissance personnalisé avec l'aide de l'IA."
     },
     "smartAppointmentReminder": {
-      "title": "Rappel de rendez-vous intelligent",
+      "title": "Rappel automatique de rendez-vous",
       "description": "Ne manquez jamais un rendez-vous prénatal."
     },
     "aiCravingAlternatives": {
@@ -105,16 +105,16 @@
       "description": "Alternatives saines pour vos envies de grossesse."
     },
     "smartGroceryList": {
-      "title": "Liste de courses intelligente",
+      "title": "Liste de courses Pro",
       "description": "Liste de courses IA pour la nutrition de grossesse."
     },
     "aiSleepOptimizer": {
-      "title": "Optimiseur de sommeil IA",
+      "title": "Optimiseur de sommeil avancé",
       "description": "Conseils de sommeil personnalisés pour la grossesse."
     },
     "aiHospitalBag": {
-      "title": "Sac d'hôpital IA",
-      "description": "Liste de préparation intelligente pour le jour J."
+      "title": "Valise maternité complète",
+      "description": "Liste de préparation intégrale pour le jour J."
     },
     "aiPartnerGuide": {
       "title": "Guide du partenaire IA",

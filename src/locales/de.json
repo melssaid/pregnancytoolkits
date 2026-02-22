@@ -97,7 +97,7 @@
       "description": "Erstellen Sie Ihren personalisierten Geburtsplan mit KI-Anleitung."
     },
     "smartAppointmentReminder": {
-      "title": "Intelligente Terminerinnerung",
+      "title": "Automatische Terminerinnerung",
       "description": "Verpassen Sie nie einen Vorsorgetermin."
     },
     "aiCravingAlternatives": {
@@ -105,16 +105,16 @@
       "description": "Gesunde Alternativen für Schwangerschaftsgelüste."
     },
     "smartGroceryList": {
-      "title": "Intelligente Einkaufsliste",
+      "title": "Profi-Einkaufsliste",
       "description": "KI-gestützte Einkaufsliste für Schwangerschaftsernährung."
     },
     "aiSleepOptimizer": {
-      "title": "KI-Schlafoptimierer",
+      "title": "Erweiterter Schlafoptimierer",
       "description": "Personalisierte Schlafberatung für die Schwangerschaft."
     },
     "aiHospitalBag": {
-      "title": "KI-Krankenhaustasche",
-      "description": "Intelligente Packliste für den Entbindungstag."
+      "title": "Komplette Kliniktasche",
+      "description": "Umfassende Packliste für den Entbindungstag."
     },
     "aiPartnerGuide": {
       "title": "KI-Partnerführer",

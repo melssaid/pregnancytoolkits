@@ -97,7 +97,7 @@
       "description": "Create your personalized birth plan with AI guidance."
     },
     "smartAppointmentReminder": {
-      "title": "Smart Appointment Reminder",
+      "title": "Auto Appointment Reminder",
       "description": "Never miss a prenatal appointment."
     },
     "aiCravingAlternatives": {
@@ -105,16 +105,16 @@
       "description": "Healthy swaps for pregnancy cravings."
     },
     "smartGroceryList": {
-      "title": "Smart Grocery List",
+      "title": "Pro Grocery List",
       "description": "AI-powered shopping list for pregnancy nutrition."
     },
     "aiSleepOptimizer": {
-      "title": "AI Sleep Optimizer",
+      "title": "Advanced Sleep Optimizer",
       "description": "Personalized sleep guidance for pregnancy."
     },
     "aiHospitalBag": {
-      "title": "AI Hospital Bag",
-      "description": "Smart packing list for delivery day."
+      "title": "Ultimate Hospital Bag",
+      "description": "Complete packing list for delivery day."
     },
     "aiPartnerGuide": {
       "title": "AI Partner Guide",
