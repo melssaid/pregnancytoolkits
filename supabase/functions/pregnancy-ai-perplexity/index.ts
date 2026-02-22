@@ -198,10 +198,10 @@ Target language: ${languageName}
 ${nativeInstruction}
 • EVERY word, heading, table header, bullet point, emoji label, and sentence MUST be written in ${languageName}.
 • Do NOT write any content in English or Arabic unless the target language IS English or Arabic.
-• Translate ALL markdown headers (e.g., "## Overview" → translate to ${languageName}).
-• Translate ALL table headers and cell contents to ${languageName}.
-• Translate ALL medical terms to their ${languageName} equivalents.
-• This is NON-NEGOTIABLE. Mixing languages will be considered a failure.
+• The structure/template headers below (like "## Symptom Overview", "## Ingredients", "## Quick Answer") are in English ONLY as internal instructions. You MUST translate ALL of them into ${languageName} in your actual response.
+• NEVER copy English template headers verbatim. Always write your own headers in ${languageName}.
+• Translate ALL markdown headers, table headers, cell contents, bold labels, and medical terms to ${languageName}.
+• This is NON-NEGOTIABLE. Any English word in a non-English response is a critical failure.
 `;
 
     // Persona prefix - no self-identification allowed
