@@ -2500,9 +2500,22 @@
       "setAsMyWeek": "حددي كأسبوعي",
       "yourCurrentWeek": "أسبوعك الحالي",
       "sizeOf": "بحجم {{size}}",
-      "developing": "قيد التطور:",
+      "developing": "قيد التطور",
       "length": "الطول",
       "weight": "الوزن",
+      "units": {
+        "cm": "سم",
+        "g": "غم",
+        "kg": "كغم"
+      },
+      "organs": {
+        "heart": "القلب",
+        "brain": "الدماغ",
+        "ears": "الأذنان",
+        "eyes": "العينان",
+        "hands": "اليدان",
+        "feet": "القدمان"
+      },
       "thisWeeksDevelopment": "تطور هذا الأسبوع",
       "aiWeeklyInsights": "رؤى الذكاء الاصطناعي الأسبوعية",
       "development": "التطور",

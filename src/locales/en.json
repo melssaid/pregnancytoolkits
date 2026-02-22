@@ -2798,9 +2798,22 @@
       "setAsMyWeek": "Set as my week",
       "yourCurrentWeek": "Your current week",
       "sizeOf": "Size of a {{size}}",
-      "developing": "Developing:",
+      "developing": "Developing",
       "length": "Length",
       "weight": "Weight",
+      "units": {
+        "cm": "cm",
+        "g": "g",
+        "kg": "kg"
+      },
+      "organs": {
+        "heart": "Heart",
+        "brain": "Brain",
+        "ears": "Ears",
+        "eyes": "Eyes",
+        "hands": "Hands",
+        "feet": "Feet"
+      },
       "thisWeeksDevelopment": "This Week's Development",
       "aiWeeklyInsights": "AI Weekly Insights",
       "development": "Development",
