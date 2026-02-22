@@ -24,6 +24,11 @@ interface CategoryStats {
   };
 }
 
+// Per-tool result summaries for dashboard display
+export interface ToolResultSummaries {
+  [toolId: string]: string;
+}
+
 export const useTrackingStats = () => {
   const [stats, setStats] = useState<CategoryStats>({
     dailyTracking: { todayKicks: 0, lastWeight: '', vitaminsTaken: 0, waterGlasses: 0 },
@@ -31,6 +36,7 @@ export const useTrackingStats = () => {
     growth: { photosCount: 0, lastMeasurement: '' },
     postpartum: { sleepHoursToday: 0, diapersToday: 0, groceryItems: 0 },
   });
+  const [toolSummaries, setToolSummaries] = useState<ToolResultSummaries>({});
   const [loading, setLoading] = useState(true);
 
   const loadStats = useCallback(() => {
@@ -96,6 +102,61 @@ export const useTrackingStats = () => {
         growth: { photosCount, lastMeasurement },
         postpartum: { sleepHoursToday: Math.round(sleepHoursToday * 10) / 10, diapersToday, groceryItems },
       });
+
+      // === Per-tool result summaries ===
+      const summaries: ToolResultSummaries = {};
+
+      // Kick counter
+      if (todayKicks > 0) summaries['kick-counter'] = `${todayKicks}`;
+      else if (kickSessions.length > 0) summaries['kick-counter'] = `${kickSessions.length}`;
+
+      // Weight
+      if (lastWeight) summaries['weight-gain'] = lastWeight;
+
+      // Vitamins
+      if (vitaminsTaken > 0) summaries['vitamin-tracker'] = `${vitaminsTaken}`;
+      else if (vitaminLogs.length > 0) summaries['vitamin-tracker'] = `${vitaminLogs.length}`;
+
+      // Appointments
+      if (upcomingAppointments > 0) summaries['smart-appointment'] = `${upcomingAppointments}`;
+
+      // Birth plan
+      const birthPlans = JSON.parse(localStorage.getItem('birthPlans') || '[]');
+      if (birthPlans.length > 0) summaries['birth-plan'] = `${birthPlans.length}`;
+      else if (birthPlanProgress > 0) summaries['birth-plan'] = `${birthPlanProgress}%`;
+
+      // Hospital bag
+      const bagItems = JSON.parse(localStorage.getItem('hospital-bag-items') || '[]');
+      if (bagItems.length > 0) {
+        const packed = bagItems.filter((i: any) => i.packed).length;
+        summaries['hospital-bag'] = `${packed}/${bagItems.length}`;
+      }
+
+      // Fetal growth
+      if (lastMeasurement) summaries['fetal-growth'] = lastMeasurement;
+
+      // Baby growth
+      const babyGrowth = JSON.parse(localStorage.getItem(`baby_growth_${userId}`) || '[]');
+      if (babyGrowth.length > 0) summaries['baby-growth'] = `${babyGrowth.length}`;
+
+      // Bump photos
+      if (photosCount > 0) summaries['bump-photos'] = `${photosCount}`;
+
+      // Baby sleep
+      if (sleepHoursToday > 0) summaries['baby-sleep'] = `${Math.round(sleepHoursToday * 10) / 10}h`;
+      else if (sleepLogs.length > 0) summaries['baby-sleep'] = `${sleepLogs.length}`;
+
+      // Diaper tracker
+      if (diapersToday > 0) summaries['diaper-tracker'] = `${diapersToday}`;
+      else {
+        const diaperAll = JSON.parse(localStorage.getItem('diaperEntries') || '[]');
+        if (diaperAll.length > 0) summaries['diaper-tracker'] = `${diaperAll.length}`;
+      }
+
+      // Grocery list
+      if (groceryItems > 0) summaries['grocery-list'] = `${groceryItems}`;
+
+      setToolSummaries(summaries);
     } catch (error) {
       console.error('Error loading tracking stats:', error);
     } finally {
@@ -112,5 +173,5 @@ export const useTrackingStats = () => {
     return () => window.removeEventListener('storage', handleStorage);
   }, [loadStats]);
 
-  return { stats, loading, refresh: loadStats };
+  return { stats, toolSummaries, loading, refresh: loadStats };
 };

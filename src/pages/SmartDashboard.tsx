@@ -113,7 +113,7 @@ const SmartDashboard = () => {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
   const { streamChat, isLoading, error } = usePregnancyAI();
-  const { stats, loading: statsLoading } = useTrackingStats();
+  const { stats, toolSummaries, loading: statsLoading } = useTrackingStats();
   const { unreadCount } = useNotifications();
   const { profile: userProfile, updateProfile: updateUserProfile } = useUserProfile();
 
@@ -427,6 +427,11 @@ const SmartDashboard = () => {
                               <span className="text-[10px] font-medium text-foreground text-center leading-tight">
                                 {t(`dashboard.trackingTools.${tool.titleKey}`)}
                               </span>
+                              {toolSummaries[tool.id] && (
+                                <span className="text-[9px] font-semibold text-primary mt-0.5 bg-primary/10 px-1.5 py-0.5 rounded-full leading-none">
+                                  {toolSummaries[tool.id]}
+                                </span>
+                              )}
                             </motion.div>
                           </Link>
                         ))}
