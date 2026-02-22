@@ -222,7 +222,7 @@ export default function SmartStretchReminder() {
                 boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)',
               }}
             >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Brain className="w-4 h-4" /><Sparkles className="w-3 h-3 opacity-80" /></>}
+              {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
               <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
             </div>
           </motion.button>

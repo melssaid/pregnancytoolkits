@@ -198,7 +198,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
           {isLoading ? (
             <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span className="truncate">{t('toolsInternal.skincare.creatingRoutine')}</span></>
           ) : (
-            <><Brain className="w-4 h-4 shrink-0" /><span className="truncate">{t('toolsInternal.skincare.getRoutine')}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>
+            <><Brain className="w-4 h-4 shrink-0" /><span className="truncate">{t('toolsInternal.skincare.getRoutine')}</span></>
           )}
         </motion.button>
 

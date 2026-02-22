@@ -282,7 +282,6 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                 <>
                   <Brain className="w-4 h-4 shrink-0" />
                   <span>{t("toolsInternal.mealSuggestion.suggestMeal")}</span>
-                  <Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" />
                 </>
               )}
             </motion.button>

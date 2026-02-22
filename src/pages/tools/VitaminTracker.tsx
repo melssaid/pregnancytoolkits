@@ -272,7 +272,7 @@ Keep advice practical and specific to pregnancy week ${currentWeek}.`;
             {!showAiAnalysis ? (
               <motion.button onClick={getAIAnalysis} disabled={aiLoading} whileTap={{ scale: 0.92 }} className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed">
                 <div className="w-full flex items-center justify-center gap-3 px-5 py-3.5 font-semibold text-white text-sm rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-                  {aiLoading ? <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.vitaminTracker.analyzing')}</span></> : <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.vitaminTracker.analyzeRoutine')}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>}
+                  {aiLoading ? <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.vitaminTracker.analyzing')}</span></> : <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.vitaminTracker.analyzeRoutine')}</span></>}
                   <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
                 </div>
               </motion.button>

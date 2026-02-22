@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { 
   Zap, Battery, BatteryLow, Flame, 
   StretchHorizontal, Wind, Dumbbell, 
-  Clock, Sparkles, RotateCcw
+  Clock, Brain, RotateCcw
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
@@ -96,7 +96,7 @@ export const SmartWorkoutGenerator: React.FC<SmartWorkoutGeneratorProps> = ({
             onClick={handleStart}
             className="flex-1 gap-2 text-xs h-10"
           >
-            <Sparkles className="w-4 h-4" />
+            <Brain className="w-4 h-4" />
             {t('toolsInternal.fitnessCoach.smartGen.title')}
           </Button>
           <Button

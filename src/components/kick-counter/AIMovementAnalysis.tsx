@@ -311,7 +311,7 @@ Use markdown formatting with headers, bullet points, and **bold** for emphasis. 
                   size="sm"
                   className="text-violet-600"
                 >
-                  <Sparkles className="w-4 h-4 mr-1" />
+                  <Brain className="w-4 h-4 mr-1" />
                   Re-analyze
                 </Button>
               </div>

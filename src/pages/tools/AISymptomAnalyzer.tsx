@@ -302,7 +302,6 @@ Please provide brief, supportive wellness insights about these feelings during w
                 <>
                   <Brain className="w-4 h-4 shrink-0" />
                   <span>{t('toolsInternal.symptomAnalyzer.getInsights')}</span>
-                  <Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" />
                 </>
               )}
               <span
