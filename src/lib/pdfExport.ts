@@ -980,3 +980,87 @@ export function generateHospitalBagShareText(
 
   return text;
 }
+
+// AI Result PDF export (generic markdown-based AI output)
+interface AIResultPDFOptions {
+  title: string;
+  subtitle?: string;
+  content: string;
+  score?: { value: number; max: number; label: string };
+  language?: string;
+  onProgress?: PDFProgressCallback;
+}
+
+export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<void> {
+  const { title, subtitle, content, score, language = 'en' } = options;
+  const isRTL = language === 'ar';
+  const logoData = await loadLogoImage();
+  const fontFamily = getFontFamily(language);
+  const textAlign = isRTL ? 'justify' : 'left';
+  const accentColor = { r: 139, g: 92, b: 246 }; // Violet
+
+  const disclaimerLabels: Record<string, string> = {
+    en: 'This report is for informational purposes only and does not replace professional medical or psychological advice.',
+    ar: 'هذا التقرير لأغراض تعليمية فقط ولا يُغني عن الاستشارة الطبية أو النفسية المتخصصة.',
+    de: 'Dieser Bericht dient nur zu Informationszwecken und ersetzt keine professionelle medizinische oder psychologische Beratung.',
+    fr: 'Ce rapport est fourni à titre informatif uniquement et ne remplace pas un avis médical ou psychologique professionnel.',
+    es: 'Este informe es solo informativo y no sustituye el consejo médico o psicológico profesional.',
+    pt: 'Este relatório é apenas informativo e não substitui aconselhamento médico ou psicológico profissional.',
+    tr: 'Bu rapor yalnızca bilgilendirme amaçlıdır ve profesyonel tıbbi veya psikolojik danışmanlığın yerini almaz.',
+  };
+  const disclaimer = disclaimerLabels[language] || disclaimerLabels.en;
+
+  let html = buildHeaderHTML(title, subtitle, accentColor, logoData, language);
+
+  // Score card if provided
+  if (score) {
+    html += `
+      <div data-pdf-section style="margin:8px 40px;padding:10px 16px;background:${rgbaStr(accentColor, 0.06)};border-radius:8px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};">${score.value} / ${score.max}</div>
+        <div style="font-size:10px;color:#94a3b8;font-family:${fontFamily};margin-top:2px;">${stripEmojis(score.label)}</div>
+      </div>
+    `;
+  }
+
+  // Split content by H2 headings for proper page breaking
+  const lines = content.split('\n');
+  const sections: string[] = [];
+  let current: string[] = [];
+  for (const line of lines) {
+    if (/^## /.test(line) && current.length > 0) {
+      sections.push(current.join('\n'));
+      current = [line];
+    } else {
+      current.push(line);
+    }
+  }
+  if (current.length > 0) sections.push(current.join('\n'));
+
+  for (const section of sections) {
+    const sectionHTML = DOMPurify.sanitize(
+      markdownToHTMLWithLang(section, fontFamily, isRTL),
+      {
+        ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','style'],
+        ALLOWED_ATTR: ['style','class','data-pdf-section','dir'],
+        ALLOW_DATA_ATTR: true,
+      }
+    );
+    html += `
+      <div data-pdf-section style="padding:2px 40px;font-size:10.5px;line-height:1.35;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
+        ${sectionHTML}
+      </div>
+    `;
+  }
+
+  // Disclaimer
+  html += `
+    <div data-pdf-section style="margin:6px 40px 2px;padding:6px 12px;background:${rgbaStr(accentColor, 0.06)};border-radius:5px;font-size:8px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.3;">
+      ${disclaimer}
+    </div>
+  `;
+
+  html += buildFooterHTML(language, accentColor);
+
+  const fileName = `${title.toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
+  await renderHTMLToPDF(html, fileName, language, options.onProgress);
+}

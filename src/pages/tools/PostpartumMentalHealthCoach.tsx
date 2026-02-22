@@ -4,13 +4,16 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Heart, AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles } from 'lucide-react';
+import { Heart, AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles, FileDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { VideoLibrary } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { mentalHealthVideosByLang } from '@/data/videoData';
+import { exportAIResultPDF } from '@/lib/pdfExport';
+import { PDFProgressOverlay } from '@/components/PDFProgressOverlay';
+import { toast } from 'sonner';
 
 interface ScreeningQuestion {
   id: string;
@@ -81,7 +84,7 @@ const copingStrategyKeys = [
 ];
 
 export default function PostpartumMentalHealthCoach() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -89,6 +92,8 @@ export default function PostpartumMentalHealthCoach() {
   
   const [aiCopingPlan, setAiCopingPlan] = useState('');
   const [showAICoping, setShowAICoping] = useState(false);
+  const [isExportingPDF, setIsExportingPDF] = useState(false);
+  const [pdfProgress, setPdfProgress] = useState(0);
   
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
 
@@ -152,9 +157,37 @@ export default function PostpartumMentalHealthCoach() {
     setCurrentQuestion(0);
     setAnswers({});
     setShowResults(false);
-    
     setAiCopingPlan('');
     setShowAICoping(false);
+    setIsExportingPDF(false);
+    setPdfProgress(0);
+  };
+
+  const handleExportPDF = async () => {
+    if (!aiCopingPlan) return;
+    setIsExportingPDF(true);
+    setPdfProgress(0);
+    try {
+      const lang = (i18n.language || 'en') as string;
+      const score = getScore();
+      const interpretation = getScoreInterpretation();
+      const scoreLabel = t(`toolsInternal.mentalHealthCoach.riskLevels.${interpretation.level === 'Low Risk' ? 'low' : interpretation.level === 'Moderate' ? 'moderate' : 'high'}.title`);
+      
+      await exportAIResultPDF({
+        title: t('toolsInternal.mentalHealthCoach.title'),
+        subtitle: t('toolsInternal.mentalHealthCoach.subtitle'),
+        content: aiCopingPlan,
+        score: { value: score, max: epdsQuestions.length * 3, label: scoreLabel },
+        language: lang,
+        onProgress: setPdfProgress,
+      });
+      toast.success(t('common.exportComplete', 'Export complete!'));
+    } catch (err) {
+      console.error('PDF export failed:', err);
+      toast.error(t('common.exportFailed', 'Export failed'));
+    } finally {
+      setIsExportingPDF(false);
+    }
   };
 
   const getAICopingPlan = async () => {
@@ -228,7 +261,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
       toolId="mental-health-coach"
     >
       <div className="space-y-6">
-
+        <PDFProgressOverlay progress={pdfProgress} visible={isExportingPDF} />
 
           {!showResults ? (
             <Card>
@@ -318,7 +351,24 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                   ) : (
                     <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[500px] overflow-y-auto">
                       {aiCopingPlan ? (
-                        <MarkdownRenderer content={aiCopingPlan} />
+                        <>
+                          <MarkdownRenderer content={aiCopingPlan} />
+                          {!aiLoading && (
+                            <Button
+                              onClick={handleExportPDF}
+                              disabled={isExportingPDF}
+                              variant="outline"
+                              className="w-full mt-4"
+                            >
+                              {isExportingPDF ? (
+                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              ) : (
+                                <FileDown className="w-4 h-4 mr-2" />
+                              )}
+                              {t('common.downloadPDF', 'Download PDF')}
+                            </Button>
+                          )}
+                        </>
                       ) : (
                         <div className="flex items-center justify-center py-8 text-muted-foreground">
                           <Loader2 className="w-5 h-5 animate-spin mr-2" />
