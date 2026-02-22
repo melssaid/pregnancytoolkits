@@ -5,9 +5,10 @@ import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Cookie, Clock, Zap, Heart, Brain, Apple, RefreshCw, Loader2, Sparkles } from 'lucide-react';
+import { Cookie, Clock, Zap, Heart, Brain, Apple, RefreshCw, Sparkles } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { motion } from 'framer-motion';
 
@@ -292,7 +293,7 @@ export default function SmartSnackPlanner() {
             className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-              {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : <Brain className="h-4 w-4 shrink-0" />}
+              {isLoading ? <AILoadingDots size="sm" /> : <Brain className="h-4 w-4 shrink-0" />}
               <span className="truncate">{t('toolsInternal.snackPlanner.getAIAdvice', 'Get AI Snack Advice')}</span>
               
             </div>
