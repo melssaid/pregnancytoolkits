@@ -47,7 +47,7 @@ export const fitnessVideosByLang: Record<string, { youtubeId: string; duration: 
     { youtubeId: "pHzsNfr2NCQ", duration: "15:00", categoryKey: "yoga" },
     { youtubeId: "qa7RY4V6ihM", duration: "10:00", categoryKey: "fullBody" },
     { youtubeId: "Vy6jonW1lFg", duration: "12:00", categoryKey: "strength" },
-    { youtubeId: "jvY_KDCy7E4", duration: "8:00", categoryKey: "birthPrep" },
+    { youtubeId: "r4R8j8kiCHw", duration: "8:00", categoryKey: "birthPrep" },
     { youtubeId: "oBY_25mR2WU", duration: "15:00", categoryKey: "stretching" },
     { youtubeId: "pCSjhbVOdYQ", duration: "60:00", categoryKey: "relaxation" },
   ],
