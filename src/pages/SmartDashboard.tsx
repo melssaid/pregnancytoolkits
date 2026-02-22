@@ -103,7 +103,7 @@ const exerciseKeys = [
   { key: "walking",  href: "/tools/smart-walking-coach" },
   { key: "swimming", href: "/tools/ai-fitness-coach" },
   { key: "yoga",     href: "/tools/smart-stretch-reminder" },
-  { key: "kegel",    href: "/tools/personalized-workout-planner" },
+  { key: "kegel",    href: "/tools/ai-fitness-coach" },
 ];
 
 
@@ -448,7 +448,7 @@ const SmartDashboard = () => {
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
                     { title: t('dashboard.aiToolsList.aiAssistant'), icon: Bot,         href: "/tools/pregnancy-assistant" },
-                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/symptom-analyzer" },
+                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/wellness-diary" },
                     { title: t('dashboard.aiToolsList.weekly'),      icon: Sparkles,     href: "/tools/weekly-summary" },
                     { title: t('dashboard.aiToolsList.smartPlan'),   icon: CalendarCheck,href: "/tools/smart-plan" },
                   ].map((link, i) => (
