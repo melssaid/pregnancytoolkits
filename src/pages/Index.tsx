@@ -1,5 +1,4 @@
-import { useMemo } from "react";
-import { motion } from "framer-motion";
+import { useMemo, memo } from "react";
 import { Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, ChevronLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
@@ -91,7 +90,7 @@ const categoryConfig: CategoryConfig[] = [
   },
 ];
 
-function CategoryCard({ config, index }: { config: CategoryConfig; index: number }) {
+const CategoryCard = memo(function CategoryCard({ config, index }: { config: CategoryConfig; index: number }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const tools = useMemo(() => getToolsByCategory(config.key), [config.key]);
@@ -101,44 +100,41 @@ function CategoryCard({ config, index }: { config: CategoryConfig; index: number
   if (tools.length === 0) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25, delay: index * 0.04 }}
+    <div
+      className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm animate-fade-in`}
+      style={{ animationDelay: `${index * 40}ms` }}
     >
-      <div className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm`}>
-        {/* Compact Header */}
-        <div className="flex items-center gap-2.5 px-3.5 pt-3.5 pb-2">
-          <div className="w-1.5 h-5 rounded-full bg-rose-800 dark:bg-rose-600" />
-          <h2 className="text-sm font-extrabold text-foreground tracking-tight truncate">{t(config.key)}</h2>
-        </div>
-
-        {/* Tools */}
-        <div className="px-2 pb-2 pt-1 space-y-0.5">
-          {tools.map((tool) => {
-            const ToolIcon = tool.icon;
-            return (
-              <Link key={tool.id} to={tool.href} className="block">
-                <div className={`group flex items-center gap-2.5 p-2 rounded-xl bg-card/50 backdrop-blur-sm ${config.toolHover} transition-all duration-200`}>
-                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-card/80 border border-border/20 flex items-center justify-center">
-                    <ToolIcon className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" strokeWidth={1.75} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <h3 className="text-[11px] font-semibold text-foreground truncate leading-snug">{t(tool.titleKey)}</h3>
-                    </div>
-                    <p className="text-[9px] text-muted-foreground truncate mt-0.5">{t(tool.descriptionKey)}</p>
-                  </div>
-                  <ChevronIcon className="flex-shrink-0 w-3 h-3 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors" />
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+      {/* Compact Header */}
+      <div className="flex items-center gap-2.5 px-3.5 pt-3.5 pb-2">
+        <div className="w-1.5 h-5 rounded-full bg-rose-800 dark:bg-rose-600" />
+        <h2 className="text-sm font-extrabold text-foreground tracking-tight truncate">{t(config.key)}</h2>
       </div>
-    </motion.div>
+
+      {/* Tools */}
+      <div className="px-2 pb-2 pt-1 space-y-0.5">
+        {tools.map((tool) => {
+          const ToolIcon = tool.icon;
+          return (
+            <Link key={tool.id} to={tool.href} className="block">
+              <div className={`group flex items-center gap-2.5 p-2 rounded-xl bg-card/50 backdrop-blur-sm ${config.toolHover} transition-all duration-200`}>
+                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-card/80 border border-border/20 flex items-center justify-center">
+                  <ToolIcon className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" strokeWidth={1.75} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="text-[11px] font-semibold text-foreground truncate leading-snug">{t(tool.titleKey)}</h3>
+                  </div>
+                  <p className="text-[9px] text-muted-foreground truncate mt-0.5">{t(tool.descriptionKey)}</p>
+                </div>
+                <ChevronIcon className="flex-shrink-0 w-3 h-3 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors" />
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
   );
-}
+});
 
 const Index = () => {
   return (

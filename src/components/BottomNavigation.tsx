@@ -1,7 +1,6 @@
 import { forwardRef, useState, memo } from "react";
 import { LayoutDashboard, Search, Settings, Bell } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { SearchDialog } from "./SearchDialog";
 import { NotificationsPanel } from "./dashboard/NotificationsPanel";
@@ -31,43 +30,31 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
     return (
       <>
         {/* Notifications Panel */}
-        <AnimatePresence>
-          {notificationsOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setNotificationsOpen(false)}
-                className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
-              />
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[70vh] overflow-auto rounded-2xl bg-card border border-border/40 shadow-2xl md:hidden"
-              >
-                <div className="p-3">
-                  <div className="w-10 h-1 bg-muted rounded-full mx-auto mb-3" />
-                  <NotificationsPanel />
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+        {notificationsOpen && (
+          <>
+            <div
+              onClick={() => setNotificationsOpen(false)}
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden animate-fade-in"
+            />
+            <div className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[70vh] overflow-auto rounded-2xl bg-card border border-border/40 shadow-2xl md:hidden animate-scale-in">
+              <div className="p-3">
+                <div className="w-10 h-1 bg-muted rounded-full mx-auto mb-3" />
+                <NotificationsPanel />
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Spacer */}
         <div className="h-[4.5rem] md:h-0" />
         
         {/* Bottom Navigation */}
         <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden safe-area-bottom">
-          {/* Full-width clean bar */}
-        <div className="relative">
+          <div className="relative">
             {/* Top accent line */}
             <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent z-10" />
             
-            {/* Clean background - no border, edge-to-edge */}
+            {/* Clean background */}
             <div className="absolute inset-0 bg-card/95 backdrop-blur-xl shadow-[0_-4px_30px_0px_hsl(340_65%_65%/0.3)]" />
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
@@ -83,25 +70,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 const isItemActive = item.id === "notifications" ? notificationsOpen : item.id === "search" ? searchOpen : active;
 
                 const iconContent = (
-                  <motion.div
-                    className="relative p-2.5 rounded-xl transition-all duration-200"
-                    whileTap={{ scale: 0.92 }}
-                    animate={isItemActive ? { scale: [1, 1.12, 1.05] } : { scale: 1 }}
-                    transition={isItemActive ? { duration: 0.3, ease: "easeOut" } : { duration: 0.15 }}
-                  >
-                    {/* Active glow background */}
-                    <AnimatePresence>
-                      {isItemActive && (
-                        <motion.div
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0, opacity: 0 }}
-                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                          className="absolute inset-0 bg-primary/10 rounded-xl"
-                        />
-                      )}
-                    </AnimatePresence>
-                    
+                  <div className={`relative p-2.5 rounded-xl transition-all duration-200 active:scale-92 ${isItemActive ? 'bg-primary/10' : ''}`}>
                     <Icon 
                       className={`w-5 h-5 relative z-10 transition-colors duration-200 ${
                         isItemActive ? "text-primary" : "text-foreground/50"
@@ -116,18 +85,10 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                     )}
 
                     {/* Active dot indicator */}
-                    <AnimatePresence>
-                      {isItemActive && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                          transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                          className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
-                        />
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
+                    {isItemActive && (
+                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full" />
+                    )}
+                  </div>
                 );
 
                 const labelClass = `text-[9px] font-medium tracking-wide transition-colors duration-200 ${
