@@ -198,7 +198,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                   {isLoading ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                      {t('toolsInternal.common.analyzing')}...
+                      {t('toolsInternal.common.analyzing', { defaultValue: '...' })}
                     </>
                   ) : (
                     <>
