@@ -495,7 +495,7 @@ export const generalVideosByLang: VideosByLang = {
   ],
   fr: [
     { id: "1", youtubeId: "EswSlduwhDg", title: "Alimentation pendant la grossesse", description: "Guide nutritionnel pour femmes enceintes", category: "Nutrition", duration: "14:00" },
-    { id: "2", youtubeId: "9zxp0DtuasU", title: "Aliments à éviter enceinte", description: "Ce qu'il ne faut pas manger enceinte", category: "Nutrition", duration: "10:00" },
+    { id: "2", youtubeId: "by5cM4dXfbs", title: "Aliments à éviter enceinte", description: "Ce qu'il ne faut pas manger pendant la grossesse", category: "Nutrition", duration: "10:00" },
     { id: "3", youtubeId: "pCSjhbVOdYQ", title: "Méditation de grossesse", description: "Méditation apaisante pour futures mamans", category: "Santé mentale", duration: "60:00" },
     { id: "4", youtubeId: "ZhtzgI1cmTA", title: "Pilates prénatal", description: "Renforcement du transverse - 1er trimestre", category: "Exercices", duration: "15:00" },
     { id: "5", youtubeId: "CWa-cAZuVyE", title: "Cuisses et fessiers grossesse", description: "Renforcement bas du corps pour enceintes", category: "Exercices", duration: "20:00" },
