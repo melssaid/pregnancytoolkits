@@ -49,7 +49,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
             >
               {listItems.map((item, i) => (
                 <li key={i} className="text-xs leading-relaxed text-foreground/90 pl-1">
-                  {[item]}
+                  {formatInline(item)}
                 </li>
               ))}
             </ListTag>
@@ -67,12 +67,31 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
               className="my-2 pl-3 border-l-3 border-primary/30 bg-primary/5 py-1.5 pr-2 rounded-r-lg italic text-xs text-muted-foreground"
             >
               {blockquoteLines.map((line, i) => (
-                <p key={i}>{[line]}</p>
+                <p key={i}>{formatInline(line)}</p>
               ))}
             </blockquote>
           );
           blockquoteLines = [];
         }
+      };
+
+      const formatInline = (text: string): (string | JSX.Element)[] => {
+        // Strip citation references like [1], [2], [1][2]
+        text = text.replace(/\[\d+\]/g, '');
+        const parts: (string | JSX.Element)[] = [];
+        // Match **bold** and *italic*
+        const regex = /\*\*(.+?)\*\*|\*(.+?)\*/g;
+        let lastIndex = 0;
+        let match;
+        let keyIdx = 0;
+        while ((match = regex.exec(text)) !== null) {
+          if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
+          if (match[1]) parts.push(<strong key={`b-${keyIdx++}`} className="font-semibold text-foreground">{match[1]}</strong>);
+          else if (match[2]) parts.push(<em key={`i-${keyIdx++}`}>{match[2]}</em>);
+          lastIndex = regex.lastIndex;
+        }
+        if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+        return parts;
       };
 
       lines.forEach((line, index) => {
@@ -88,10 +107,10 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
         const h2Match = trimmedLine.match(/^##\s+(.+)$/);
         const h1Match = trimmedLine.match(/^#\s+(.+)$/);
 
-        if (h4Match) { flushList(); elements.push(<h4 key={`h4-${index}`} className="text-xs font-semibold text-foreground mt-3 mb-1.5 flex items-center gap-2"><span className="w-1 h-3.5 bg-primary/60 rounded-full" />{h4Match[1]}</h4>); return; }
-        if (h3Match) { flushList(); elements.push(<h3 key={`h3-${index}`} className="text-sm font-semibold text-foreground mt-4 mb-1.5 flex items-center gap-2"><span className="w-1 h-4 bg-primary/70 rounded-full" />{h3Match[1]}</h3>); return; }
-        if (h2Match) { flushList(); elements.push(<h2 key={`h2-${index}`} className="text-sm font-bold text-foreground mt-5 mb-2 flex items-center gap-2 pb-1.5 border-b border-border/50"><span className="w-1.5 h-5 bg-primary rounded-full" />{h2Match[1]}</h2>); return; }
-        if (h1Match) { flushList(); elements.push(<h1 key={`h1-${index}`} className="text-base font-bold text-foreground mt-5 mb-3 flex items-center gap-2"><span className="w-1.5 h-5 bg-gradient-to-b from-primary to-primary/50 rounded-full" />{h1Match[1]}</h1>); return; }
+        if (h4Match) { flushList(); elements.push(<h4 key={`h4-${index}`} className="text-xs font-semibold text-foreground mt-3 mb-1.5 flex items-center gap-2"><span className="w-1 h-3.5 bg-primary/60 rounded-full" />{formatInline(h4Match[1])}</h4>); return; }
+        if (h3Match) { flushList(); elements.push(<h3 key={`h3-${index}`} className="text-sm font-semibold text-foreground mt-4 mb-1.5 flex items-center gap-2"><span className="w-1 h-4 bg-primary/70 rounded-full" />{formatInline(h3Match[1])}</h3>); return; }
+        if (h2Match) { flushList(); elements.push(<h2 key={`h2-${index}`} className="text-sm font-bold text-foreground mt-5 mb-2 flex items-center gap-2 pb-1.5 border-b border-border/50"><span className="w-1.5 h-5 bg-primary rounded-full" />{formatInline(h2Match[1])}</h2>); return; }
+        if (h1Match) { flushList(); elements.push(<h1 key={`h1-${index}`} className="text-base font-bold text-foreground mt-5 mb-3 flex items-center gap-2"><span className="w-1.5 h-5 bg-gradient-to-b from-primary to-primary/50 rounded-full" />{formatInline(h1Match[1])}</h1>); return; }
 
         const bulletMatch = trimmedLine.match(/^[-•*]\s+(.+)$/);
         if (bulletMatch) { if (listType !== 'ul') { flushList(); listType = 'ul'; } listItems.push(bulletMatch[1]); return; }
@@ -108,7 +127,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
                 <span className="text-lg">{emojiHeaderMatch[1]}</span>
                 <div>
                   <span className="font-semibold text-foreground text-sm">{emojiHeaderMatch[2]}:</span>
-                  {emojiHeaderMatch[3] && <span className="text-sm text-muted-foreground ml-1">{emojiHeaderMatch[3]}</span>}
+                  {emojiHeaderMatch[3] && <span className="text-sm text-muted-foreground ml-1">{formatInline(emojiHeaderMatch[3])}</span>}
                 </div>
               </div>
             </div>
@@ -119,7 +138,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
         if (/^[-*_]{3,}$/.test(trimmedLine)) { flushList(); elements.push(<hr key={`hr-${index}`} className="my-4 border-border/50" />); return; }
 
         flushList();
-        elements.push(<p key={`p-${index}`} className="text-xs leading-relaxed text-foreground/90 my-1.5">{[trimmedLine]}</p>);
+        elements.push(<p key={`p-${index}`} className="text-xs leading-relaxed text-foreground/90 my-1.5">{formatInline(trimmedLine)}</p>);
       });
 
       flushList();
