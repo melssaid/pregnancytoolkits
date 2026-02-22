@@ -286,8 +286,8 @@ Please provide brief, supportive wellness insights about these feelings during w
             whileTap={{ scale: 0.92 }}
             className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <div
-              className="w-full flex items-center justify-center gap-3 px-5 py-4 font-semibold text-white text-sm rounded-2xl"
+          <div
+              className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-2xl"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
                 boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)',

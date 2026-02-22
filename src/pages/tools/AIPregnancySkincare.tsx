@@ -191,7 +191,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
           whileTap={{ scale: 0.92 }}
           onClick={getSkincareRoutine}
           disabled={isLoading}
-          className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
+          className="relative w-full overflow-hidden rounded-xl h-10 flex items-center justify-center gap-2 text-white text-[13px] font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
           style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
         >
           <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />

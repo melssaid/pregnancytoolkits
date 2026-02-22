@@ -246,7 +246,7 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
           <Card>
             <CardContent className="p-4 text-center">
               <div className="mb-4">
-                <div className={`text-xl font-bold ${isTracking ? 'text-destructive' : 'text-primary'}`}>
+                <div className={`text-lg font-bold ${isTracking ? 'text-destructive' : 'text-primary'}`}>
                   {formatTimer(timer)}
                 </div>
                 <p className="text-muted-foreground mt-2">
@@ -271,19 +271,19 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
           {/* AI Analysis Button */}
           {contractions.length >= 3 && (
             <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
-              <CardContent className="p-4">
+              <CardContent className="p-3">
                 <div className="flex items-center gap-2 mb-2">
-                  <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold text-sm">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Wellness Insights')}</h3>
+                  <Brain className="w-4 h-4 text-primary" />
+                  <h3 className="font-semibold text-xs">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Wellness Insights')}</h3>
                 </div>
-                <p className="text-xs text-muted-foreground mb-3">
+                <p className="text-[10px] text-muted-foreground mb-2">
                   {t('toolsInternal.laborTracker.aiAnalysisDesc', 'Get personalized breathing techniques, comfort measures, and encouragement based on your journal entries.')}
                 </p>
                 <motion.button
                   whileTap={{ scale: 0.92 }}
                   onClick={getAILaborAnalysis}
                   disabled={isLoading}
-                  className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
+                  className="relative w-full overflow-hidden rounded-xl h-10 flex items-center justify-center gap-2 text-white text-[13px] font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
                   style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
@@ -300,10 +300,10 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
           {/* AI Response */}
           {showAIAnalysis && aiResponse && (
             <Card className="border-primary/30 bg-primary/5">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <Brain className="w-5 h-5 text-primary" />
-                  <h3 className="font-semibold">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Journal Insights')}</h3>
+              <CardContent className="p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <Brain className="w-4 h-4 text-primary" />
+                  <h3 className="font-semibold text-sm">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Journal Insights')}</h3>
                 </div>
                 <MarkdownRenderer content={aiResponse} />
               </CardContent>
@@ -312,7 +312,7 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
 
           {error && (
             <Card className="border-destructive/30 bg-destructive/5">
-              <CardContent className="p-4 text-destructive text-sm">
+              <CardContent className="p-3 text-destructive text-xs">
                 {error}
               </CardContent>
             </Card>
@@ -323,19 +323,19 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
             <div className="grid grid-cols-3 gap-2">
               <Card>
                 <CardContent className="p-4 text-center">
-                  <div className="text-base font-bold text-primary">{contractions.length}</div>
+                  <div className="text-sm font-bold text-primary">{contractions.length}</div>
                   <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.contractions', 'Contractions')}</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4 text-center">
-                  <div className="text-base font-bold text-primary">{getAverageInterval()} {t('common.min', 'min')}</div>
+                  <div className="text-sm font-bold text-primary">{getAverageInterval()} {t('common.min', 'min')}</div>
                   <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.avgInterval', 'Avg Interval')}</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4 text-center">
-                  <div className="text-base font-bold text-primary">{getAverageDuration()} {t('common.sec', 'sec')}</div>
+                  <div className="text-sm font-bold text-primary">{getAverageDuration()} {t('common.sec', 'sec')}</div>
                   <div className="text-xs text-muted-foreground">{t('toolsInternal.laborTracker.avgDuration', 'Avg Duration')}</div>
                 </CardContent>
               </Card>
@@ -347,12 +347,12 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <Baby className="w-6 h-6 text-primary" />
+                  <Baby className="w-5 h-5 text-primary" />
                   <div>
                     <h3 className={`text-sm font-bold ${getLaborPhase().color}`}>
                       {getLaborPhase().phase}
                     </h3>
-                    <p className="text-sm text-muted-foreground">{getLaborPhase().desc}</p>
+                    <p className="text-xs text-muted-foreground">{getLaborPhase().desc}</p>
                   </div>
                 </div>
               </CardContent>

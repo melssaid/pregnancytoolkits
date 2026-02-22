@@ -112,7 +112,7 @@ Be compassionate - morning sickness is exhausting!`;
     >
       <div className="space-y-4">
         {/* Quick Relief Card */}
-        <Card className="p-4 bg-muted/30 border-primary/20">
+        <Card className="p-3 bg-muted/30 border-primary/20">
           <h3 className="text-sm font-semibold flex items-center gap-2 mb-2">
             <Wind className="w-4 h-4 text-primary" />
             {t('toolsInternal.nauseaRelief.quickRemediesTitle')}
@@ -129,7 +129,7 @@ Be compassionate - morning sickness is exhausting!`;
 
         {/* Severity Slider */}
         <div className="space-y-3">
-          <Label className="flex items-center justify-between">
+          <Label className="flex items-center justify-between text-xs">
             <span>{t('toolsInternal.nauseaRelief.severity')}</span>
             <span className={`font-bold ${
               severity[0] <= 3 ? "text-primary" : 
@@ -159,7 +159,7 @@ Be compassionate - morning sickness is exhausting!`;
             checked={vomiting} 
             onCheckedChange={(checked) => setVomiting(checked as boolean)} 
           />
-          <Label htmlFor="vomiting" className="cursor-pointer">
+          <Label htmlFor="vomiting" className="cursor-pointer text-xs">
             {t('toolsInternal.nauseaRelief.vomitingLabel')}
           </Label>
         </div>
@@ -175,7 +175,7 @@ Be compassionate - morning sickness is exhausting!`;
               <div
                 key={trigger.id}
                 onClick={() => toggleTrigger(trigger.id)}
-                className={`p-2.5 rounded-lg border cursor-pointer transition-all flex items-center gap-2 text-xs sm:text-sm min-w-0 ${
+                className={`p-2.5 rounded-lg border cursor-pointer transition-all flex items-center gap-2 text-xs min-w-0 ${
                   triggers.includes(trigger.id)
                     ? "bg-primary/10 border-primary"
                     : "bg-card hover:bg-muted"
@@ -190,12 +190,12 @@ Be compassionate - morning sickness is exhausting!`;
 
         {/* Warning for severe cases */}
         {severity[0] >= 8 && (
-          <Card className="p-4 bg-destructive/10 border-destructive/30">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
+          <Card className="p-3 bg-destructive/10 border-destructive/30">
+            <div className="flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-medium text-destructive">{t('toolsInternal.nauseaRelief.severeWarningTitle')}</h4>
-                <p className="text-sm text-muted-foreground mt-1">
+                <h4 className="font-medium text-destructive text-xs">{t('toolsInternal.nauseaRelief.severeWarningTitle')}</h4>
+                <p className="text-xs text-muted-foreground mt-1">
                   {t('toolsInternal.nauseaRelief.severeWarningDesc')}
                 </p>
               </div>

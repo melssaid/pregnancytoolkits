@@ -240,7 +240,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
       mood="nurturing"
       toolId="ai-birth-plan"
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
 
         {/* Preference Sections */}
         {birthPlanCategories.map((category) => (
@@ -248,7 +248,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
             <CardContent className="p-0">
               <button
                 onClick={() => toggleSection(category.titleKey)}
-                className="w-full p-4 flex items-center justify-between text-left"
+                className="w-full p-3 flex items-center justify-between text-left"
               >
                 <h3 className="font-semibold text-sm">{t(category.titleKey)}</h3>
                 {expandedSections.has(category.titleKey) ? (
@@ -259,7 +259,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
               </button>
               
               {expandedSections.has(category.titleKey) && (
-                <div className="px-4 pb-4 space-y-4">
+                <div className="px-3 pb-3 space-y-3">
                   {category.preferences.map((pref) => (
                     <div key={pref.id}>
                       <label className="text-xs font-medium text-muted-foreground mb-2 block">
@@ -293,8 +293,8 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
 
         {/* Additional Notes */}
         <Card>
-          <CardContent className="p-4">
-            <label className="text-sm font-medium mb-2 block">{t('toolsInternal.birthPlan.additionalNotes')}</label>
+          <CardContent className="p-3">
+            <label className="text-xs font-medium mb-2 block">{t('toolsInternal.birthPlan.additionalNotes')}</label>
             <Textarea
               placeholder={t('toolsInternal.birthPlan.notesPlaceholder')}
               value={additionalNotes}
@@ -308,7 +308,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
         <Button
           onClick={generatePlan}
           disabled={isLoading}
-          className="w-full gap-2"
+          className="w-full gap-2 text-[13px] h-10"
         >
           {isLoading ? (
             <>
@@ -325,16 +325,16 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
 
         {error && (
           <Card className="border-destructive/30 bg-destructive/5">
-            <CardContent className="p-4 text-destructive text-sm">{error}</CardContent>
+            <CardContent className="p-3 text-destructive text-xs">{error}</CardContent>
           </Card>
         )}
 
         {/* Generated Plan */}
         {generatedPlan && (
           <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-4">
-              <div className="flex flex-col gap-2 mb-4">
-                <h3 className="font-semibold flex items-center gap-2 text-sm">
+            <CardContent className="p-3">
+              <div className="flex flex-col gap-2 mb-3">
+                <h3 className="font-semibold flex items-center gap-2 text-xs">
                   <FileText className="w-4 h-4 text-primary shrink-0" />
                   {t('toolsInternal.birthPlan.yourBirthPlan')}
                 </h3>
@@ -368,14 +368,14 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
 
         {/* Archive Section */}
         <Card>
-          <CardContent className="p-4">
+          <CardContent className="p-3">
             <button
               onClick={() => setShowArchive(!showArchive)}
               className="w-full flex items-center justify-between"
             >
               <div className="flex items-center gap-2">
                 <Archive className="w-4 h-4 text-muted-foreground" />
-                <h3 className="font-semibold">
+                <h3 className="font-semibold text-sm">
                   {t('toolsInternal.birthPlan.savedPlans', { count: savedPlans.length, max: MAX_SAVED_PLANS })}
                 </h3>
               </div>

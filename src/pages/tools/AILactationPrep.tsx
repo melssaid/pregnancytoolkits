@@ -201,8 +201,8 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         </div>
 
         {/* Essential Supplies */}
-        <Card className="p-4 bg-muted/30">
-          <h4 className="font-medium mb-3 flex items-center gap-2 text-sm">
+        <Card className="p-3 bg-muted/30">
+          <h4 className="font-medium mb-2 flex items-center gap-2 text-xs">
             <ShoppingBag className="w-3.5 h-3.5 text-primary" />
             {t('toolsInternal.lactationPrep.suppliesChecklist')}
           </h4>
@@ -242,9 +242,9 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         )}
 
         {/* Support Note */}
-        <Card className="p-4 bg-muted/30 border-primary/20">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="w-4 h-4 text-primary flex-shrink-0" />
+        <Card className="p-3 bg-muted/30 border-primary/20">
+          <div className="flex items-start gap-2">
+            <AlertCircle className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="font-medium text-xs">{t('toolsInternal.lactationPrep.needSupport')}</h4>
               <p className="text-[10px] text-muted-foreground mt-1">
