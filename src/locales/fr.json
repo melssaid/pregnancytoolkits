@@ -280,6 +280,8 @@
       "babySleepDesc": "Habitudes de sommeil",
       "diaperTracker": "Suivi des couches",
       "diaperTrackerDesc": "Changements quotidiens",
+      "babyCry": "Traducteur de pleurs",
+      "babyCryDesc": "Analyser les pleurs",
       "groceryList": "Liste de courses",
       "groceryListDesc": "Planificateur d'achats"
     },

@@ -280,6 +280,8 @@
       "babySleepDesc": "Schlafmuster",
       "diaperTracker": "Windel-Tracker",
       "diaperTrackerDesc": "Tägliche Wechsel",
+      "babyCry": "Wein-Übersetzer",
+      "babyCryDesc": "Weinmuster analysieren",
       "groceryList": "Einkaufsliste",
       "groceryListDesc": "Einkaufsplaner"
     },
