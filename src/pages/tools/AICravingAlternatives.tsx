@@ -153,24 +153,24 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
 
           {/* Craving Input */}
           <Card className="shadow-lg border-border bg-card">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Heart className="w-5 h-5 text-primary" />
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Heart className="w-4 h-4 text-primary" />
                 {t('toolsInternal.cravingAlternatives.whatCraving')}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3">
               <Input
                 placeholder={t('toolsInternal.cravingAlternatives.inputPlaceholder')}
                 value={craving}
                 onChange={(e) => setCraving(e.target.value)}
-                className="text-lg py-6"
+                className="text-sm py-4"
               />
               
               {/* Quick Select */}
               <div>
-                <p className="text-sm text-muted-foreground mb-3">{t('toolsInternal.cravingAlternatives.orQuickSelect')}</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="text-xs text-muted-foreground mb-2">{t('toolsInternal.cravingAlternatives.orQuickSelect')}</p>
+                <div className="flex flex-wrap gap-1.5">
                   {COMMON_CRAVINGS.map((c) => {
                     const translatedName = t(`toolsInternal.cravingAlternatives.cravings.${c.key}`);
                     return (
@@ -179,7 +179,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                         variant={craving === translatedName ? 'default' : 'outline'}
                         size="sm"
                         onClick={() => handleCravingSelect(translatedName)}
-                        className="transition-all hover:scale-105"
+                        className="transition-all hover:scale-105 text-xs h-8 px-2.5"
                       >
                         <span className="mr-1">{c.emoji}</span>
                         {translatedName}
@@ -190,19 +190,17 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-2 pt-3">
                 <Button
                   onClick={analyzeAndSuggest}
                   disabled={!craving.trim() || isLoading}
-                  className="flex-1 py-6 text-lg"
+                  className="flex-1 h-10 text-[13px]"
                 >
                   {isLoading ? (
-                    <>
-                      <AILoadingDots text={t('toolsInternal.common.analyzing', { defaultValue: '...' })} />
-                    </>
+                    <AILoadingDots text={t('toolsInternal.common.analyzing', { defaultValue: '...' })} />
                   ) : (
                     <>
-                      <Sparkles className="w-5 h-5 mr-2" />
+                      <Sparkles className="w-4 h-4 mr-1.5" />
                       {t('toolsInternal.cravingAlternatives.findAlternatives')}
                     </>
                   )}
@@ -211,9 +209,9 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                   <Button
                     variant="outline"
                     onClick={handleReset}
-                    className="py-6"
+                    className="h-10 w-10 p-0"
                   >
-                    <RefreshCw className="w-5 h-5" />
+                    <RefreshCw className="w-4 h-4" />
                   </Button>
                 )}
               </div>
@@ -235,9 +233,9 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
           {/* Results */}
           {(result || isLoading) && (
             <Card ref={resultRef} className="shadow-xl border-border bg-card overflow-hidden">
-              <CardHeader className="bg-primary/5 border-b border-border">
-                <CardTitle className="flex items-center gap-2 text-primary">
-                  <Salad className="w-6 h-6" />
+              <CardHeader className="bg-primary/5 border-b border-border pb-3">
+                <CardTitle className="flex items-center gap-2 text-sm text-primary">
+                  <Salad className="w-4 h-4" />
                   {t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}
                 </CardTitle>
               </CardHeader>
@@ -265,8 +263,8 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
           {!result && !isLoading && (
             <Card className="bg-accent/50 border-accent">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-primary" />
+                <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2 text-sm">
+                  <Sparkles className="w-4 h-4 text-primary" />
                   {t('toolsInternal.cravingAlternatives.whyCravingsHappen')}
                 </h3>
                 <ul className="space-y-2 text-muted-foreground text-sm">
