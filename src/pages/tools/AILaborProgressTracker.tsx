@@ -290,7 +290,7 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
                   {isLoading ? (
                     <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.laborTracker.analyzing', 'Analyzing...')}</span></>
                   ) : (
-                    <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Wellness Insights')}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>
+                    <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Wellness Insights')}</span></>
                   )}
                 </motion.button>
               </CardContent>

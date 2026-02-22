@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Loader2, ChevronDown, ChevronUp, RefreshCw, Brain } from 'lucide-react';
+import { Loader2, ChevronDown, ChevronUp, RefreshCw, Brain } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
@@ -76,7 +76,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
             className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-              {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : (icon || <Sparkles className="h-4 w-4 shrink-0" />)}
+              {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : (icon || <Brain className="h-4 w-4 shrink-0" />)}
               <span className="truncate">{displayButtonText}</span>
             </div>
             <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
@@ -119,7 +119,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="p-2.5 rounded-xl bg-gradient-to-br from-primary to-primary/70 shadow-sm shadow-primary/20 shrink-0">
-                  {icon || <Sparkles className="w-5 h-5 text-primary-foreground" />}
+                  {icon || <Brain className="w-5 h-5 text-primary-foreground" />}
                 </div>
                 <div className="min-w-0">
                   <h3 className="font-semibold text-base text-foreground truncate">{displayTitle}</h3>
@@ -169,7 +169,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
         >
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/70 shadow-sm shadow-primary/20 shrink-0">
-              {icon || <Sparkles className="w-4 h-4 text-primary-foreground" />}
+              {icon || <Brain className="w-4 h-4 text-primary-foreground" />}
             </div>
             <div className="min-w-0">
               <h3 className="font-semibold text-sm text-foreground truncate">{displayTitle}</h3>

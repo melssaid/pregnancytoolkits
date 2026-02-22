@@ -254,7 +254,7 @@ Please analyze what the baby might be communicating and provide soothing strateg
               {isLoading ? (
                 <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t("toolsInternal.babyCryTranslator.analyzing", "Analyzing...")}</span></>
               ) : (
-                <><Baby className="w-4 h-4 shrink-0" /><span>{t("toolsInternal.babyCryTranslator.analyzeButton")}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>
+                <><Baby className="w-4 h-4 shrink-0" /><span>{t("toolsInternal.babyCryTranslator.analyzeButton")}</span></>
               )}
             </motion.button>
           </>

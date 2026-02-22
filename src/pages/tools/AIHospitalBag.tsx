@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Briefcase, Sparkles, Baby, User, Heart, Plus, FileDown, Share2, RotateCcw } from "lucide-react";
+import { Briefcase, Brain, Baby, User, Heart, Plus, FileDown, Share2, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -506,7 +506,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             disabled={isLoading}
             className="bg-gradient-to-r from-teal-500 to-cyan-600 text-[12px] sm:text-[13px] h-9 px-2"
           >
-            <Sparkles className="w-3.5 h-3.5 me-1.5 shrink-0" />
+            <Brain className="w-3.5 h-3.5 me-1.5 shrink-0" />
             <span className="truncate">{isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}</span>
           </Button>
 

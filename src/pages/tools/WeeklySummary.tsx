@@ -170,7 +170,7 @@ export default function WeeklySummary() {
               {isLoading ? (
                 <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t("toolsInternal.weeklySummary.generating", "Generating...")}</span></>
               ) : (
-                <><Brain className="w-4 h-4 shrink-0" /><span>{t("toolsInternal.weeklySummary.showSummary", { week })}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>
+                <><Brain className="w-4 h-4 shrink-0" /><span>{t("toolsInternal.weeklySummary.showSummary", { week })}</span></>
               )}
             </motion.button>
 

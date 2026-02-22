@@ -376,7 +376,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
         {/* AI Advice Button */}
         <motion.button onClick={getAIAdvice} disabled={aiLoading} whileTap={{ scale: 0.92 }} className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed">
           <div className="w-full flex items-center justify-center gap-3 px-5 py-3.5 font-semibold text-white text-sm rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-            {aiLoading ? <><Loader2 className="h-4 w-4 animate-spin shrink-0" /><span>{t('toolsInternal.babySleep.analyzing')}</span></> : <><Brain className="h-4 w-4 shrink-0" /><span>{t('toolsInternal.babySleep.getAISleepAdvice')}</span><Sparkles className="h-3.5 w-3.5 shrink-0 opacity-80" /></>}
+            {aiLoading ? <><Loader2 className="h-4 w-4 animate-spin shrink-0" /><span>{t('toolsInternal.babySleep.analyzing')}</span></> : <><Brain className="h-4 w-4 shrink-0" /><span>{t('toolsInternal.babySleep.getAISleepAdvice')}</span></>}
             <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
           </div>
         </motion.button>

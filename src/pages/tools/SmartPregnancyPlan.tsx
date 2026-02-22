@@ -208,7 +208,7 @@ const SmartPregnancyPlan = () => {
           <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
             {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : <Brain className="h-4 w-4 shrink-0" />}
             <span className="truncate">{t('smartPlan.getAIPlan', 'Get AI-Personalized Plan')}</span>
-            {!isLoading && <Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" />}
+            
           </div>
           <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
         </motion.button>

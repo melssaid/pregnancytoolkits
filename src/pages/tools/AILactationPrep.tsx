@@ -230,7 +230,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
           {isLoading ? (
             <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.lactationPrep.creatingGuide')}</span></>
           ) : (
-            <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.lactationPrep.getAIGuide')}</span><Sparkles className="w-3.5 h-3.5 shrink-0 opacity-80" /></>
+            <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.lactationPrep.getAIGuide')}</span></>
           )}
         </motion.button>
 
