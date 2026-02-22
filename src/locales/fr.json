@@ -1075,6 +1075,9 @@
       "refresh": "Actualiser",
       "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
       "approximatelyRemaining": "Environ {{days}} jours restants",
+      "noSummariesYet": "Aucun résumé pour le moment",
+      "generateFirstHint": "Appuyez sur le bouton ci-dessus pour générer votre premier résumé hebdomadaire",
+      "previousSummaries": "Résumés précédents",
       "trimester": {
         "first": "Premier trimestre",
         "second": "Deuxième trimestre",

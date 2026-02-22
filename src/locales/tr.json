@@ -1075,6 +1075,9 @@
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
       "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
+      "noSummariesYet": "Henüz özet yok",
+      "generateFirstHint": "İlk haftalık özetinizi oluşturmak için yukarıdaki düğmeye dokunun",
+      "previousSummaries": "Önceki Özetler",
       "trimester": {
         "first": "Birinci Trimester",
         "second": "İkinci Trimester",

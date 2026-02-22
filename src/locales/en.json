@@ -1000,6 +1000,9 @@
       "refresh": "Refresh",
       "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
       "approximatelyRemaining": "Approximately {{days}} days remaining",
+      "noSummariesYet": "No summaries yet",
+      "generateFirstHint": "Tap the button above to generate your first weekly summary",
+      "previousSummaries": "Previous Summaries",
       "trimester": {
         "first": "First Trimester",
         "second": "Second Trimester",
