@@ -688,15 +688,26 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   const l = labels[language] || labels.en;
   const prefCount = preferences ? Object.keys(preferences).length : 0;
 
-  // Always use markdown-to-HTML conversion for clean, consistent styling
-  const mainContent = DOMPurify.sanitize(
-    markdownToHTMLWithLang(content, fontFamily, isRTL),
-    {
-      ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','table','thead','tbody','tr','th','td','style'],
-      ALLOWED_ATTR: ['style','class','data-pdf-section','dir'],
-      ALLOW_DATA_ATTR: true,
+  // Split content by H2 headings so each becomes its own data-pdf-section
+  // This prevents the "empty first page" problem where one massive section pushes to page 2
+  const splitContentIntoSections = (md: string): string[] => {
+    const lines = md.split('\n');
+    const sections: string[] = [];
+    let current: string[] = [];
+    
+    for (const line of lines) {
+      if (/^## /.test(line) && current.length > 0) {
+        sections.push(current.join('\n'));
+        current = [line];
+      } else {
+        current.push(line);
+      }
     }
-  );
+    if (current.length > 0) sections.push(current.join('\n'));
+    return sections;
+  };
+
+  const contentSections = splitContentIntoSections(content);
 
   // Build preferences list if available
   let prefsHTML = '';
@@ -727,11 +738,26 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
         </div>
       ` : ''}
     </div>
-    
-    <div data-pdf-section style="padding:20px 40px 24px;font-size:12px;line-height:1.8;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
-      ${mainContent}
-    </div>
-    
+  `;
+
+  // Each markdown section becomes its own data-pdf-section for proper page breaking
+  for (const section of contentSections) {
+    const sectionHTML = DOMPurify.sanitize(
+      markdownToHTMLWithLang(section, fontFamily, isRTL),
+      {
+        ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','table','thead','tbody','tr','th','td','style'],
+        ALLOWED_ATTR: ['style','class','data-pdf-section','dir'],
+        ALLOW_DATA_ATTR: true,
+      }
+    );
+    html += `
+      <div data-pdf-section style="padding:8px 40px;font-size:12px;line-height:1.8;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
+        ${sectionHTML}
+      </div>
+    `;
+  }
+
+  html += `
     <div data-pdf-section style="margin:4px 40px 16px;padding:12px 16px;text-align:center;background:#fdf2f8;border-radius:0 0 8px 8px;">
       <div style="height:2px;background:rgba(236,72,153,0.3);margin-bottom:10px;border-radius:1px;"></div>
       <div style="font-size:9px;color:#94a3b8;line-height:1.6;font-family:${fontFamily};">${l.footer}</div>
