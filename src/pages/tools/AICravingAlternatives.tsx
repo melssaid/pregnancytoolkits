@@ -1,12 +1,13 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Sparkles, Loader2, Heart, AlertTriangle, Salad, RefreshCw, ShieldCheck, Zap } from 'lucide-react';
+import { Sparkles, Heart, AlertTriangle, Salad, RefreshCw, ShieldCheck, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { RelatedTools } from '@/components/RelatedTools';
 import { Layout } from '@/components/Layout';
@@ -197,8 +198,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                      {t('toolsInternal.common.analyzing', { defaultValue: '...' })}
+                      <AILoadingDots text={t('toolsInternal.common.analyzing', { defaultValue: '...' })} />
                     </>
                   ) : (
                     <>
@@ -245,8 +245,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                 {isLoading && !result && (
                   <div className="flex items-center justify-center py-12">
                     <div className="text-center">
-                      <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-                      <p className="text-muted-foreground">{t('toolsInternal.cravingAlternatives.analyzingCraving')}</p>
+                      <AILoadingDots text={t('toolsInternal.cravingAlternatives.analyzingCraving')} size="md" />
                     </div>
                   </div>
                 )}

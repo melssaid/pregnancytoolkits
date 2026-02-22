@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, Brain } from "lucide-react";
+import { Brain } from "lucide-react";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
+import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { motion } from "framer-motion";
 import { differenceInHours } from "date-fns";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
@@ -100,7 +101,7 @@ Helpful tips for diaper changes and tracking`
               className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-                {aiLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : <Brain className="h-4 w-4 shrink-0" />}
+                {aiLoading ? <AILoadingDots size="sm" /> : <Brain className="h-4 w-4 shrink-0" />}
                 <span className="truncate">{t('diaperPage.analyzeWithAI')}</span>
               </div>
               <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
@@ -122,10 +123,7 @@ Helpful tips for diaper changes and tracking`
                 </Button>
               </div>
               {aiLoading && !aiInsight && (
-                <div className="flex items-center gap-2 text-primary">
-                  <Loader2 className="h-4 w-4 animate-spin shrink-0" />
-                  <span className="text-xs sm:text-sm">{t('diaperPage.analyzingPatterns')}</span>
-                </div>
+                <AILoadingDots text={t('diaperPage.analyzingPatterns')} />
               )}
               {aiInsight && (
                 <div className="overflow-x-auto">

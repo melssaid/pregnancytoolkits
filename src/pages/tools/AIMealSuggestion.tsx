@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import {
   Utensils,
   Sparkles,
-  Loader2,
   Leaf,
   Apple,
   Clock,
@@ -29,6 +28,7 @@ import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nutritionVideosByLang } from "@/data/videoData";
 
@@ -274,10 +274,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             >
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
               {isLoading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin shrink-0" />
-                  <span>{t("toolsInternal.common.analyzing", { defaultValue: "..." })}</span>
-                </>
+                <AILoadingDots text={t("toolsInternal.common.analyzing", { defaultValue: "..." })} />
               ) : (
                 <>
                   <Brain className="w-4 h-4 shrink-0" />
@@ -328,7 +325,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                 style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
-                {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
+                {isLoading ? <AILoadingDots size="sm" /> : <Sparkles className="w-3.5 h-3.5" />}
                 {t("toolsInternal.mealSuggestion.refresh")}
               </motion.button>
             </div>

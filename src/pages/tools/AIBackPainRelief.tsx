@@ -4,11 +4,12 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Loader2, Sparkles } from 'lucide-react';
+import { Play, Pause, CheckCircle, Clock, AlertCircle, Brain, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { ExerciseIcon } from '@/components/ExerciseIcon';
 
 interface Exercise {
@@ -231,7 +232,7 @@ export default function AIBackPainRelief() {
               className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <div className="w-full flex items-center justify-center gap-3 px-5 py-3.5 font-semibold text-white text-sm rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-                {isLoading ? <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.backPainRelief.analyzing')}</span></> : <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.backPainRelief.getAIAdvice')}</span></>}
+                {isLoading ? <AILoadingDots text={t('toolsInternal.backPainRelief.analyzing')} /> : <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.backPainRelief.getAIAdvice')}</span></>}
                 <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
               </div>
             </motion.button>
