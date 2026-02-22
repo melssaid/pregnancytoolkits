@@ -319,6 +319,21 @@
         "tired": "Fatigué"
       }
     },
+    "recentResults": {
+      "title": "Mes derniers résultats",
+      "weeklySummary": "Résumé hebdomadaire",
+      "birthPlan": "Plan de naissance",
+      "wellnessDiary": "Journal de bien-être",
+      "laborProgress": "Progression du travail",
+      "babyGrowth": "Croissance du bébé",
+      "week": "Semaine",
+      "month": "Mois",
+      "contractions": "contractions",
+      "justNow": "à l'instant",
+      "minAgo": "min",
+      "hrsAgo": "h",
+      "daysAgo": "j"
+    },
     "aiTools": "Outils alimentés par l'IA",
     "aiToolsList": {
       "smartPlan": "Plan intelligent",

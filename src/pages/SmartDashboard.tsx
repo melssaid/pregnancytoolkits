@@ -26,6 +26,7 @@ import { Link } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 import { NotificationsPanel } from "@/components/dashboard/NotificationsPanel";
+import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
 import { useNotifications } from "@/hooks/useNotifications";
 
 
@@ -331,7 +332,10 @@ const SmartDashboard = () => {
               </Link>
             </motion.div>
 
-            {/* 4. Data Tracking Tools - Organized by Category */}
+            {/* 4. Recent AI Results */}
+            <RecentAIResults />
+
+            {/* 5. Data Tracking Tools - Organized by Category */}
             <Card className="overflow-hidden card-pink-top">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">

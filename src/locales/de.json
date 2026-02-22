@@ -319,6 +319,21 @@
         "tired": "Müde"
       }
     },
+    "recentResults": {
+      "title": "Meine letzten Ergebnisse",
+      "weeklySummary": "Wochenzusammenfassung",
+      "birthPlan": "Geburtsplan",
+      "wellnessDiary": "Wellness-Tagebuch",
+      "laborProgress": "Wehenfortschritt",
+      "babyGrowth": "Babywachstum",
+      "week": "Woche",
+      "month": "Monat",
+      "contractions": "Wehen",
+      "justNow": "gerade",
+      "minAgo": "m",
+      "hrsAgo": "h",
+      "daysAgo": "T"
+    },
     "aiTools": "KI-gestützte Tools",
     "aiToolsList": {
       "smartPlan": "Smart-Plan",
