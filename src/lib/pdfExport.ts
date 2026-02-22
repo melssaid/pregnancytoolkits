@@ -112,11 +112,11 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   const isRTL = language === 'ar';
   const fontFamily = getFontFamily(language);
 
-  // Render scale – 1.5 is enough for crisp text while being ~3× faster than 2.5
-  const RENDER_SCALE = 1.5;
+  // Render scale – 2 for crisp text
+  const RENDER_SCALE = 2;
 
-  // A4 at 96dpi ≈ 794×1123px. We use a fixed wrapper width for consistency.
-  const WRAPPER_WIDTH_PX = 794;
+  // Use a narrower wrapper to reduce white space – content fills more of the page
+  const WRAPPER_WIDTH_PX = 680;
 
   const wrapper = document.createElement('div');
   wrapper.style.cssText = `
@@ -156,16 +156,16 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   try {
     await document.fonts.ready;
   } catch { /* fallback */ }
-  await new Promise(resolve => setTimeout(resolve, 100));
+  await new Promise(resolve => setTimeout(resolve, 80));
 
-  // PDF constants
+  // PDF constants – tight margins for maximum content area
   const A4_WIDTH_MM = 210;
   const A4_HEIGHT_MM = 297;
-  const MARGIN_X_MM = 10;
-  const MARGIN_Y_MM = 8;
+  const MARGIN_X_MM = 8;
+  const MARGIN_Y_MM = 6;
   const CONTENT_WIDTH_MM = A4_WIDTH_MM - MARGIN_X_MM * 2;
   const CONTENT_HEIGHT_MM = A4_HEIGHT_MM - MARGIN_Y_MM * 2;
-  const SECTION_GAP_MM = 1;
+  const SECTION_GAP_MM = 0.5;
 
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
@@ -200,7 +200,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
           ctx.fillRect(0, 0, pc.width, pc.height);
           ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
         }
-        doc.addImage(pc.toDataURL('image/jpeg', 0.85), 'JPEG', MARGIN_X_MM, MARGIN_Y_MM, CONTENT_WIDTH_MM, sliceHMM);
+        doc.addImage(pc.toDataURL('image/jpeg', 0.9), 'JPEG', MARGIN_X_MM, MARGIN_Y_MM, CONTENT_WIDTH_MM, sliceHMM);
         srcY += sliceH; remaining -= sliceH; pageIdx++;
       }
     } finally {
@@ -210,11 +210,10 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     return;
   }
 
-  // Section-based rendering with proper margins
+  // Section-based rendering
   let currentY = MARGIN_Y_MM;
   const totalSections = sections.length;
 
-  // Report initial progress (10% for HTML prep done)
   onProgress?.(10);
 
   for (let sIdx = 0; sIdx < sections.length; sIdx++) {
@@ -235,19 +234,22 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
 
     if (canvas.width === 0 || canvas.height === 0) continue;
 
-    const realWidthPx = canvas.width / RENDER_SCALE;
-    const realHeightPx = canvas.height / RENDER_SCALE;
+    // Crop canvas: trim right-side whitespace by finding actual content width
+    const croppedCanvas = cropCanvasWhitespace(canvas);
+
+    const realWidthPx = croppedCanvas.width / RENDER_SCALE;
+    const realHeightPx = croppedCanvas.height / RENDER_SCALE;
     const scaleFactor = CONTENT_WIDTH_MM / realWidthPx;
     const sectionHeightMM = realHeightPx * scaleFactor;
 
     if (sectionHeightMM > CONTENT_HEIGHT_MM) {
-      let remaining = canvas.height;
+      let remaining = croppedCanvas.height;
       let srcY = 0;
       while (remaining > 0) {
         const availableHeightMM = (currentY === MARGIN_Y_MM) ? CONTENT_HEIGHT_MM : (A4_HEIGHT_MM - MARGIN_Y_MM - currentY);
         const availableSlicePx = (availableHeightMM / scaleFactor) * RENDER_SCALE;
         
-        if (availableHeightMM < 20 && currentY > MARGIN_Y_MM) {
+        if (availableHeightMM < 15 && currentY > MARGIN_Y_MM) {
           doc.addPage();
           currentY = MARGIN_Y_MM;
           continue;
@@ -256,14 +258,14 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
         const sliceH = Math.min(remaining, availableSlicePx);
         const sliceHMM = (sliceH / RENDER_SCALE) * scaleFactor;
         const pc = document.createElement('canvas');
-        pc.width = canvas.width; pc.height = sliceH;
+        pc.width = croppedCanvas.width; pc.height = sliceH;
         const ctx = pc.getContext('2d');
         if (ctx) {
           ctx.fillStyle = '#ffffff';
           ctx.fillRect(0, 0, pc.width, pc.height);
-          ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
+          ctx.drawImage(croppedCanvas, 0, srcY, croppedCanvas.width, sliceH, 0, 0, pc.width, sliceH);
         }
-        doc.addImage(pc.toDataURL('image/jpeg', 0.85), 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sliceHMM);
+        doc.addImage(pc.toDataURL('image/jpeg', 0.9), 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sliceHMM);
         currentY += sliceHMM;
         srcY += sliceH; remaining -= sliceH;
         if (remaining > 0) { doc.addPage(); currentY = MARGIN_Y_MM; }
@@ -278,17 +280,61 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
       currentY = MARGIN_Y_MM;
     }
 
-    const imgData = canvas.toDataURL('image/jpeg', 0.92);
+    const imgData = croppedCanvas.toDataURL('image/jpeg', 0.9);
     doc.addImage(imgData, 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
     currentY += sectionHeightMM + SECTION_GAP_MM;
 
-    // Report progress: 10% initial + 85% for sections + 5% for save
     onProgress?.(10 + Math.round(((sIdx + 1) / totalSections) * 85));
   }
 
   document.body.removeChild(wrapper);
   onProgress?.(100);
   doc.save(fileName);
+}
+
+// Crop right-side and bottom whitespace from a canvas
+function cropCanvasWhitespace(canvas: HTMLCanvasElement): HTMLCanvasElement {
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return canvas;
+  
+  const { width, height } = canvas;
+  const imageData = ctx.getImageData(0, 0, width, height);
+  const data = imageData.data;
+  
+  // Find rightmost non-white pixel
+  let maxX = 0;
+  let maxY = 0;
+  
+  for (let y = 0; y < height; y++) {
+    for (let x = width - 1; x >= maxX; x--) {
+      const i = (y * width + x) * 4;
+      // Check if pixel is not white (with tolerance)
+      if (data[i] < 250 || data[i + 1] < 250 || data[i + 2] < 250) {
+        if (x > maxX) maxX = x;
+        if (y > maxY) maxY = y;
+        break;
+      }
+    }
+  }
+  
+  // Add small padding
+  const PAD = 4;
+  const cropW = Math.min(width, maxX + PAD);
+  const cropH = Math.min(height, maxY + PAD);
+  
+  // Only crop if significant savings (>5%)
+  if (cropW >= width * 0.95 && cropH >= height * 0.95) return canvas;
+  
+  const cropped = document.createElement('canvas');
+  cropped.width = cropW;
+  cropped.height = cropH;
+  const cCtx = cropped.getContext('2d');
+  if (cCtx) {
+    cCtx.fillStyle = '#ffffff';
+    cCtx.fillRect(0, 0, cropW, cropH);
+    cCtx.drawImage(canvas, 0, 0, cropW, cropH, 0, 0, cropW, cropH);
+  }
+  return cropped;
 }
 
 
@@ -305,7 +351,7 @@ function buildHeaderHTML(
 ): string {
   const fontFamily = getFontFamily(language);
   return `
-    <div data-pdf-section style="background:#fcfcfd;padding:16px 40px 12px;text-align:center;">
+    <div data-pdf-section style="background:#fcfcfd;padding:14px 16px 10px;text-align:center;">
       ${logoData ? `<img src="${logoData}" style="width:30px;height:30px;margin:0 auto 4px;display:block;border-radius:6px;" />` : ''}
       <div style="font-size:20px;font-weight:700;color:#1e293b;margin-bottom:2px;font-family:${fontFamily};">${stripEmojis(title)}</div>
       ${subtitle ? `<div style="font-size:10px;color:#94a3b8;margin-bottom:2px;font-family:${fontFamily};">${stripEmojis(subtitle)}</div>` : ''}
@@ -334,7 +380,7 @@ function buildFooterHTML(language: string, accentColor: { r: number; g: number; 
   const exportLabel = exportLabels[language] || 'Exported on';
   const text = `${exportLabel} ${dateStr} • ${getBrandName(language)}`;
   return `
-    <div data-pdf-section style="padding:6px 40px 10px;text-align:center;background:#fcfcfd;">
+    <div data-pdf-section style="padding:6px 16px 8px;text-align:center;background:#fcfcfd;">
       <div style="height:1px;background:${rgbaStr(accentColor, 0.3)};margin-bottom:6px;"></div>
       <div style="font-size:8px;color:#94a3b8;font-family:${fontFamily};">${text}</div>
     </div>
@@ -348,7 +394,7 @@ function openSectionHTML(sectionTitle: string, accentColor: { r: number; g: numb
   const fontFamily = getFontFamily(language);
   const isRTL = language === 'ar';
   return `
-    <div data-pdf-section style="margin:6px 40px 0;padding-bottom:2px;">
+    <div data-pdf-section style="margin:4px 16px 0;padding-bottom:2px;">
       <div style="display:flex;align-items:stretch;border-radius:5px 5px 0 0;overflow:hidden;background:${rgbaStr(accentColor, 0.08)};">
         <div style="width:3px;min-width:3px;background:${rgbStr(accentColor)};${isRTL ? 'order:1;' : ''}"></div>
         <div style="padding:5px 12px;font-size:12px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};flex:1;">
@@ -367,7 +413,7 @@ function buildSectionHTML(sectionTitle: string, accentColor: { r: number; g: num
   const fontFamily = getFontFamily(language);
   const isRTL = language === 'ar';
   return `
-    <div data-pdf-section style="margin:6px 40px 0;">
+    <div data-pdf-section style="margin:4px 16px 0;">
       <div style="display:flex;align-items:stretch;border-radius:5px;overflow:hidden;background:${rgbaStr(accentColor, 0.08)};">
         <div style="width:3px;min-width:3px;background:${rgbStr(accentColor)};${isRTL ? 'order:1;' : ''}"></div>
         <div style="padding:5px 12px;font-size:12px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};flex:1;">
@@ -385,7 +431,7 @@ function buildBulletItemHTML(text: string, accentColor: { r: number; g: number; 
   const isRTL = language === 'ar';
   const dir = isRTL ? 'rtl' : 'ltr';
   return `
-    <div style="display:flex;align-items:flex-start;gap:6px;padding:1px 40px;font-size:11px;color:#1e293b;font-family:${fontFamily};line-height:1.4;direction:${dir};">
+    <div style="display:flex;align-items:flex-start;gap:6px;padding:1px 16px;font-size:11px;color:#1e293b;font-family:${fontFamily};line-height:1.4;direction:${dir};">
       <span style="width:4px;height:4px;min-width:4px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:6px;flex-shrink:0;"></span>
       <span style="flex:1;">${stripEmojis(text)}</span>
     </div>
@@ -398,7 +444,7 @@ function buildLabelValueHTML(label: string, value: string, accentColor: { r: num
   const isRTL = language === 'ar';
   const dir = isRTL ? 'rtl' : 'ltr';
   return `
-    <div style="display:flex;align-items:flex-start;gap:6px;padding:1px 40px;font-size:11px;color:#1e293b;font-family:${fontFamily};line-height:1.4;direction:${dir};">
+    <div style="display:flex;align-items:flex-start;gap:6px;padding:1px 16px;font-size:11px;color:#1e293b;font-family:${fontFamily};line-height:1.4;direction:${dir};">
       <span style="width:4px;height:4px;min-width:4px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:6px;flex-shrink:0;"></span>
       <span style="flex:1;"><strong>${stripEmojis(label)}:</strong> <span style="color:#64748b;">${stripEmojis(value)}</span></span>
     </div>
@@ -462,7 +508,7 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
   const logoData = await loadLogoImage();
 
   let html = buildHeaderHTML(title, subtitle, accentColor, logoData, language);
-  html += `<div style="margin:12px 40px;height:1px;background:${rgbaStr(accentColor, 0.3)};"></div>`;
+  html += `<div style="margin:10px 16px;height:1px;background:${rgbaStr(accentColor, 0.3)};"></div>`;
 
   sections.forEach((section) => {
     html += buildSectionHTML(section.title, accentColor, language);
@@ -632,7 +678,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     </div>
   `;
   html += `
-    <div data-pdf-section style="display:flex;gap:8px;margin:8px 40px 4px;">
+    <div data-pdf-section style="display:flex;gap:8px;margin:8px 16px 4px;">
       ${statCard(COLORS.primary, totalItems, L.totalItems)}
       ${statCard(COLORS.success, categories.health.length, L.healthData)}
       ${statCard(COLORS.secondary, categories.planning.length, L.planning)}
@@ -645,7 +691,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     const meta = categoryMeta[cat];
     const borderSide = isRTL ? 'right' : 'left';
 
-    html += `<div data-pdf-section style="margin:4px 40px 0;padding-bottom:3px;border-bottom:1px solid ${rgbaStr(meta.color, 0.15)};">`;
+    html += `<div data-pdf-section style="margin:4px 16px 0;padding-bottom:3px;border-bottom:1px solid ${rgbaStr(meta.color, 0.15)};">`;
     html += `
       <div style="display:flex;align-items:stretch;border-radius:5px 5px 0 0;overflow:hidden;background:${rgbaStr(meta.color, 0.08)};">
         <div style="width:3px;min-width:3px;background:${rgbStr(meta.color)};${isRTL ? 'order:1;' : ''}"></div>
@@ -667,7 +713,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
 
   // Disclaimer — own section
   html += `
-    <div data-pdf-section style="margin:6px 40px 2px;padding:6px 12px;background:${rgbaStr(COLORS.primary, 0.06)};border-radius:5px;font-size:8px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.3;">
+    <div data-pdf-section style="margin:6px 16px 2px;padding:6px 12px;background:${rgbaStr(COLORS.primary, 0.06)};border-radius:5px;font-size:8px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.3;">
       ${L.disclaimer}
     </div>
   `;
@@ -753,7 +799,7 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   }
 
   let html = `
-    <div data-pdf-section style="background:#fcfcfd;padding:16px 40px 12px;text-align:center;">
+    <div data-pdf-section style="background:#fcfcfd;padding:14px 16px 10px;text-align:center;">
       ${logoData ? `<img src="${logoData}" style="width:30px;height:30px;margin:0 auto 4px;display:block;border-radius:8px;" />` : ''}
       <div style="font-size:20px;font-weight:700;color:#1e293b;margin-bottom:3px;font-family:${fontFamily};">${l.title}</div>
       <div style="font-size:10px;color:#94a3b8;margin-bottom:2px;font-family:${fontFamily};">${date}</div>
@@ -785,14 +831,14 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       }
     );
     html += `
-      <div data-pdf-section style="padding:2px 40px;font-size:10.5px;line-height:1.35;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
+      <div data-pdf-section style="padding:2px 16px;font-size:10.5px;line-height:1.35;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
         ${sectionHTML}
       </div>
     `;
   }
 
   html += `
-    <div data-pdf-section style="margin:2px 40px 8px;padding:6px 14px;text-align:center;background:#fdf2f8;border-radius:0 0 6px 6px;">
+    <div data-pdf-section style="margin:2px 16px 8px;padding:6px 14px;text-align:center;background:#fdf2f8;border-radius:0 0 6px 6px;">
       <div style="height:1px;background:rgba(236,72,153,0.3);margin-bottom:4px;border-radius:1px;"></div>
       <div style="font-size:8px;color:#94a3b8;line-height:1.4;font-family:${fontFamily};">${l.footer}</div>
     </div>
@@ -872,7 +918,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   // Progress bar - wrapped in data-pdf-section
   const progressBarFill = `${progress}%`;
   html += `
-    <div data-pdf-section style="margin:8px 40px;padding:8px 14px;background:${rgbaStr(accentColor, 0.06)};border-radius:6px;">
+    <div data-pdf-section style="margin:8px 16px;padding:8px 14px;background:${rgbaStr(accentColor, 0.06)};border-radius:6px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
         <span style="font-size:11px;font-weight:600;color:#1e293b;font-family:${fontFamily};">${stripEmojis(labels.progress)}: ${progress}%</span>
         <span style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}</span>
@@ -884,7 +930,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   `;
 
   // Category summary cards - wrapped in data-pdf-section
-  html += `<div data-pdf-section style="display:flex;gap:6px;margin:6px 40px 8px;">`;
+  html += `<div data-pdf-section style="display:flex;gap:6px;margin:6px 16px 8px;">`;
   Object.entries(categoryStats).forEach(([cat, catItems]) => {
     const color = categoryColors[cat];
     const label = categoryLabels[cat];
@@ -898,7 +944,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   });
   html += `</div>`;
 
-  html += `<div data-pdf-section style="margin:0 40px 12px;height:1px;background:${rgbaStr(accentColor, 0.2)};"></div>`;
+  html += `<div data-pdf-section style="margin:0 16px 12px;height:1px;background:${rgbaStr(accentColor, 0.2)};"></div>`;
 
   // Items by category - each category is a data-pdf-section
   Object.entries(categoryStats).forEach(([cat, catItems]) => {
@@ -908,7 +954,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
     const catPacked = catItems.filter(i => i.packed).length;
     const borderSide = isRTL ? 'right' : 'left';
 
-    html += `<div data-pdf-section style="margin:4px 40px 4px;">`;
+    html += `<div data-pdf-section style="margin:4px 16px 4px;">`;
     html += `
       <div style="padding:5px 12px;background:${rgbaStr(color, 0.08)};border-radius:5px;display:flex;justify-content:space-between;align-items:center;">
         <div style="display:flex;align-items:center;gap:0;">
@@ -1037,7 +1083,7 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
   // Score card if provided
   if (score) {
     html += `
-      <div data-pdf-section style="margin:8px 40px;padding:10px 16px;background:${rgbaStr(accentColor, 0.06)};border-radius:8px;text-align:center;">
+      <div data-pdf-section style="margin:8px 16px;padding:10px 16px;background:${rgbaStr(accentColor, 0.06)};border-radius:8px;text-align:center;">
         <div style="font-size:22px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};">${score.value} / ${score.max}</div>
         <div style="font-size:10px;color:#94a3b8;font-family:${fontFamily};margin-top:2px;">${stripEmojis(score.label)}</div>
       </div>
@@ -1068,7 +1114,7 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
       }
     );
     html += `
-      <div data-pdf-section style="padding:2px 40px;font-size:10.5px;line-height:1.35;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
+      <div data-pdf-section style="padding:2px 16px;font-size:10.5px;line-height:1.35;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
         ${sectionHTML}
       </div>
     `;
@@ -1076,7 +1122,7 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
 
   // Disclaimer
   html += `
-    <div data-pdf-section style="margin:6px 40px 2px;padding:6px 12px;background:${rgbaStr(accentColor, 0.06)};border-radius:5px;font-size:8px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.3;">
+    <div data-pdf-section style="margin:6px 16px 2px;padding:6px 12px;background:${rgbaStr(accentColor, 0.06)};border-radius:5px;font-size:8px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.3;">
       ${disclaimer}
     </div>
   `;
