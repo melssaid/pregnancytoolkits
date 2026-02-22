@@ -9,6 +9,7 @@ interface PDFExportOptions {
   content: string;
   date: string;
   preferences?: Record<string, string>;
+  additionalNotes?: string;
   language?: string;
   contentElement?: HTMLElement;
   onProgress?: PDFProgressCallback;
@@ -727,20 +728,20 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
 
 // Birth plan PDF export
 export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
-  const { title, content, date, preferences, language = 'en' } = options;
+  const { title, content, date, preferences, additionalNotes, language = 'en' } = options;
   const isRTL = language === 'ar';
   const logoData = await loadLogoImage();
   const fontFamily = getFontFamily(language);
   const textAlign = isRTL ? 'justify' : 'left';
 
   const labels: Record<string, Record<string, string>> = {
-    en: { title: 'Birth Plan', prefSummary: 'Preferences Summary', prefCount: 'preferences selected', footer: 'This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', brand: 'Pregnancy Toolkits' },
-    ar: { title: 'خطة الولادة', prefSummary: 'ملخص التفضيلات', prefCount: 'تفضيلات محددة', footer: 'خطة الولادة هذه هي دليل لفريقك الطبي. قد تكون المرونة مطلوبة بناءً على الظروف الطبية.', brand: 'Pregnancy Toolkits' },
-    de: { title: 'Geburtsplan', prefSummary: 'Präferenzen Zusammenfassung', prefCount: 'Präferenzen ausgewählt', footer: 'Dieser Geburtsplan ist ein Leitfaden für Ihr medizinisches Team.', brand: 'Pregnancy Toolkits' },
-    tr: { title: 'Doğum Planı', prefSummary: 'Tercihler Özeti', prefCount: 'tercih seçildi', footer: 'Bu doğum planı sağlık ekibiniz için bir rehberdir.', brand: 'Pregnancy Toolkits' },
-    fr: { title: 'Plan de naissance', prefSummary: 'Résumé des préférences', prefCount: 'préférences sélectionnées', footer: 'Ce plan de naissance est un guide pour votre équipe soignante.', brand: 'Pregnancy Toolkits' },
-    es: { title: 'Plan de parto', prefSummary: 'Resumen de preferencias', prefCount: 'preferencias seleccionadas', footer: 'Este plan de parto es una guía para su equipo médico.', brand: 'Pregnancy Toolkits' },
-    pt: { title: 'Plano de parto', prefSummary: 'Resumo das preferências', prefCount: 'preferências selecionadas', footer: 'Este plano de parto é um guia para a sua equipa médica.', brand: 'Pregnancy Toolkits' },
+    en: { title: 'Birth Plan', prefSummary: 'Preferences Summary', prefCount: 'preferences selected', notesTitle: 'Additional Notes', footer: 'This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', brand: 'Pregnancy Toolkits' },
+    ar: { title: 'خطة الولادة', prefSummary: 'ملخص التفضيلات', prefCount: 'تفضيلات محددة', notesTitle: 'ملاحظات إضافية', footer: 'خطة الولادة هذه هي دليل لفريقك الطبي. قد تكون المرونة مطلوبة بناءً على الظروف الطبية.', brand: 'Pregnancy Toolkits' },
+    de: { title: 'Geburtsplan', prefSummary: 'Präferenzen Zusammenfassung', prefCount: 'Präferenzen ausgewählt', notesTitle: 'Zusätzliche Hinweise', footer: 'Dieser Geburtsplan ist ein Leitfaden für Ihr medizinisches Team.', brand: 'Pregnancy Toolkits' },
+    tr: { title: 'Doğum Planı', prefSummary: 'Tercihler Özeti', prefCount: 'tercih seçildi', notesTitle: 'Ek Notlar', footer: 'Bu doğum planı sağlık ekibiniz için bir rehberdir.', brand: 'Pregnancy Toolkits' },
+    fr: { title: 'Plan de naissance', prefSummary: 'Résumé des préférences', prefCount: 'préférences sélectionnées', notesTitle: 'Notes supplémentaires', footer: 'Ce plan de naissance est un guide pour votre équipe soignante.', brand: 'Pregnancy Toolkits' },
+    es: { title: 'Plan de parto', prefSummary: 'Resumen de preferencias', prefCount: 'preferencias seleccionadas', notesTitle: 'Notas adicionales', footer: 'Este plan de parto es una guía para su equipo médico.', brand: 'Pregnancy Toolkits' },
+    pt: { title: 'Plano de parto', prefSummary: 'Resumo das preferências', prefCount: 'preferências selecionadas', notesTitle: 'Notas adicionais', footer: 'Este plano de parto é um guia para a sua equipa médica.', brand: 'Pregnancy Toolkits' },
   };
 
   const l = labels[language] || labels.en;
@@ -819,6 +820,21 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       ` : ''}
     </div>
   `;
+
+  // Additional notes section if provided
+  if (additionalNotes && additionalNotes.trim()) {
+    html += `
+      <div data-pdf-section style="margin:6px 16px 4px;padding:0;background:#fdf2f8;border-radius:8px;overflow:hidden;">
+        <div style="display:flex;align-items:stretch;">
+          <div style="width:4px;min-width:4px;background:#ec4899;${isRTL ? 'order:1;' : ''}"></div>
+          <div style="padding:10px 14px;flex:1;">
+            <div style="font-size:12px;font-weight:600;color:#ec4899;font-family:${fontFamily};margin-bottom:6px;">${l.notesTitle}</div>
+            <div style="font-size:10.5px;color:#334155;font-family:${fontFamily};line-height:1.5;text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};white-space:pre-wrap;">${stripEmojis(additionalNotes.trim())}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
 
   // Each markdown section becomes its own data-pdf-section for proper page breaking
   for (const section of contentSections) {
