@@ -319,6 +319,21 @@
         "tired": "Cansada"
       }
     },
+    "recentResults": {
+      "title": "Meus resultados recentes",
+      "weeklySummary": "Resumo semanal",
+      "birthPlan": "Plano de parto",
+      "wellnessDiary": "Diário de bem-estar",
+      "laborProgress": "Progresso do trabalho",
+      "babyGrowth": "Crescimento do bebê",
+      "week": "Semana",
+      "month": "Mês",
+      "contractions": "contrações",
+      "justNow": "agora",
+      "minAgo": "min",
+      "hrsAgo": "h",
+      "daysAgo": "d"
+    },
     "aiTools": "Ferramentas com IA",
     "aiToolsList": {
       "smartPlan": "Plano inteligente",

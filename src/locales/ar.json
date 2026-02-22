@@ -199,6 +199,21 @@
         "tired": "متعبة"
       }
     },
+    "recentResults": {
+      "title": "نتائجي الأخيرة",
+      "weeklySummary": "ملخص الأسبوع",
+      "birthPlan": "خطة الولادة",
+      "wellnessDiary": "يوميات العافية",
+      "laborProgress": "تقدم المخاض",
+      "babyGrowth": "نمو الطفل",
+      "week": "الأسبوع",
+      "month": "الشهر",
+      "contractions": "انقباضات",
+      "justNow": "الآن",
+      "minAgo": "د",
+      "hrsAgo": "س",
+      "daysAgo": "ي"
+    },
     "aiTools": "أدوات الذكاء الاصطناعي",
     "aiToolsList": {
       "smartPlan": "الخطة الذكية",

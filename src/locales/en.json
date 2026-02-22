@@ -319,6 +319,21 @@
         "tired": "Tired"
       }
     },
+    "recentResults": {
+      "title": "My Recent Results",
+      "weeklySummary": "Weekly Summary",
+      "birthPlan": "Birth Plan",
+      "wellnessDiary": "Wellness Diary",
+      "laborProgress": "Labor Progress",
+      "babyGrowth": "Baby Growth",
+      "week": "Week",
+      "month": "Month",
+      "contractions": "contractions",
+      "justNow": "just now",
+      "minAgo": "m ago",
+      "hrsAgo": "h ago",
+      "daysAgo": "d ago"
+    },
     "aiTools": "AI-Powered Tools",
     "aiToolsList": {
       "smartPlan": "Smart Plan",

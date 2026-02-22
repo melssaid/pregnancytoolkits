@@ -319,6 +319,21 @@
         "tired": "Yorgun"
       }
     },
+    "recentResults": {
+      "title": "Son Sonuçlarım",
+      "weeklySummary": "Haftalık Özet",
+      "birthPlan": "Doğum Planı",
+      "wellnessDiary": "Sağlık Günlüğü",
+      "laborProgress": "Doğum İlerlemesi",
+      "babyGrowth": "Bebek Büyümesi",
+      "week": "Hafta",
+      "month": "Ay",
+      "contractions": "kasılma",
+      "justNow": "şimdi",
+      "minAgo": "dk",
+      "hrsAgo": "sa",
+      "daysAgo": "g"
+    },
     "aiTools": "AI Destekli Araçlar",
     "aiToolsList": {
       "smartPlan": "Akıllı Plan",
