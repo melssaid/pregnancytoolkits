@@ -1,5 +1,3 @@
-import { Progress } from '@/components/ui/progress';
-import { FileDown, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface PDFProgressOverlayProps {
@@ -13,56 +11,41 @@ export function PDFProgressOverlay({ progress, visible }: PDFProgressOverlayProp
   if (!visible) return null;
 
   const isComplete = progress >= 100;
-  const label = !isComplete
-    ? t('common.exportingPDF', 'Preparing your report...')
-    : t('common.exportComplete', 'Export complete');
-
-  const steps = [
-    { key: 'collect', label: t('common.pdfStepCollect', 'Collecting data'), threshold: 20 },
-    { key: 'render', label: t('common.pdfStepRender', 'Rendering pages'), threshold: 50 },
-    { key: 'generate', label: t('common.pdfStepGenerate', 'Generating PDF'), threshold: 80 },
-    { key: 'finalize', label: t('common.pdfStepFinalize', 'Finalizing'), threshold: 100 },
-  ];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/60 backdrop-blur-md animate-fade-in">
-      <div className="bg-card rounded-2xl shadow-xl p-8 mx-4 w-full max-w-sm border border-border/30 space-y-6">
-        {/* Header */}
-        <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-300 ${isComplete ? 'bg-green-500/10' : 'bg-primary/10'}`}>
-            {isComplete 
-              ? <Check className="w-5 h-5 text-green-600" />
-              : <FileDown className="w-5 h-5 text-primary animate-pulse" />
-            }
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-foreground">{label}</p>
-            <p className="text-xs text-muted-foreground mt-0.5">{Math.round(progress)}%</p>
-          </div>
+    <div className="fixed inset-0 z-[100] flex items-end justify-center pb-12 pointer-events-none animate-fade-in">
+      <div className="pointer-events-auto bg-card/95 backdrop-blur-sm rounded-full shadow-lg px-6 py-3 flex items-center gap-4 border border-border/40 min-w-[260px]">
+        {/* Circular progress */}
+        <div className="relative w-8 h-8 shrink-0">
+          <svg className="w-8 h-8 -rotate-90" viewBox="0 0 32 32">
+            <circle
+              cx="16" cy="16" r="13"
+              fill="none"
+              stroke="hsl(var(--border))"
+              strokeWidth="3"
+            />
+            <circle
+              cx="16" cy="16" r="13"
+              fill="none"
+              stroke={isComplete ? 'hsl(var(--success))' : 'hsl(var(--primary))'}
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeDasharray={`${2 * Math.PI * 13}`}
+              strokeDashoffset={`${2 * Math.PI * 13 * (1 - progress / 100)}`}
+              className="transition-all duration-300"
+            />
+          </svg>
+          <span className="absolute inset-0 flex items-center justify-center text-[9px] font-semibold text-foreground">
+            {Math.round(progress)}
+          </span>
         </div>
 
-        {/* Progress bar */}
-        <Progress value={progress} className="h-1.5" />
-
-        {/* Steps */}
-        <div className="space-y-2">
-          {steps.map((step) => {
-            const done = progress >= step.threshold;
-            const active = !done && progress >= step.threshold - 30;
-            return (
-              <div key={step.key} className="flex items-center gap-2.5">
-                <div className={`w-1.5 h-1.5 rounded-full shrink-0 transition-colors duration-300 ${
-                  done ? 'bg-green-500' : active ? 'bg-primary animate-pulse' : 'bg-border'
-                }`} />
-                <span className={`text-xs transition-colors duration-300 ${
-                  done ? 'text-muted-foreground line-through' : active ? 'text-foreground font-medium' : 'text-muted-foreground/60'
-                }`}>
-                  {step.label}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+        {/* Label */}
+        <span className="text-sm font-medium text-foreground">
+          {isComplete
+            ? t('common.exportComplete', 'Done')
+            : t('common.exportingPDF', 'Exporting…')}
+        </span>
       </div>
     </div>
   );
