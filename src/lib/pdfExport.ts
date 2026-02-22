@@ -119,9 +119,10 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   // Use a narrower wrapper to reduce white space – content fills more of the page
   const WRAPPER_WIDTH_PX = 680;
 
+  // Prevent page layout shift by using a fixed-position offscreen container
   const wrapper = document.createElement('div');
   wrapper.style.cssText = `
-    position: absolute;
+    position: fixed;
     left: -9999px;
     top: 0;
     width: ${WRAPPER_WIDTH_PX}px;
@@ -132,6 +133,8 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     padding: 0;
     line-height: 1.45;
     z-index: -1;
+    visibility: visible;
+    pointer-events: none;
     -webkit-font-smoothing: antialiased;
   `;
 
@@ -157,7 +160,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   try {
     await document.fonts.ready;
   } catch { /* fallback */ }
-  await new Promise(resolve => setTimeout(resolve, 80));
+  await new Promise(resolve => setTimeout(resolve, 60));
 
   // PDF constants – tight margins for maximum content area
   const A4_WIDTH_MM = 210;
@@ -235,7 +238,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
 
     if (canvas.width === 0 || canvas.height === 0) continue;
 
-    // Crop canvas: trim right-side whitespace by finding actual content width
+    // Crop canvas: trim bottom whitespace
     const croppedCanvas = cropCanvasWhitespace(canvas);
 
     const realWidthPx = croppedCanvas.width / RENDER_SCALE;
@@ -301,47 +304,45 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   doc.save(fileName);
 }
 
-// Crop right-side and bottom whitespace from a canvas
+// Lightweight canvas crop — only trims bottom whitespace to avoid oversized gaps
+// Skips expensive full-pixel scan; samples a few columns instead
 function cropCanvasWhitespace(canvas: HTMLCanvasElement): HTMLCanvasElement {
   const ctx = canvas.getContext('2d');
   if (!ctx) return canvas;
   
   const { width, height } = canvas;
-  const imageData = ctx.getImageData(0, 0, width, height);
-  const data = imageData.data;
+  if (width === 0 || height === 0) return canvas;
   
-  // Find rightmost non-white pixel
-  let maxX = 0;
+  // Sample 5 columns to find the lowest non-white row
+  const sampleCols = [Math.floor(width * 0.1), Math.floor(width * 0.3), Math.floor(width * 0.5), Math.floor(width * 0.7), Math.floor(width * 0.9)];
   let maxY = 0;
   
-  for (let y = 0; y < height; y++) {
-    for (let x = width - 1; x >= maxX; x--) {
-      const i = (y * width + x) * 4;
-      // Check if pixel is not white (with tolerance)
-      if (data[i] < 250 || data[i + 1] < 250 || data[i + 2] < 250) {
-        if (x > maxX) maxX = x;
+  for (const x of sampleCols) {
+    // Read a single column
+    const colData = ctx.getImageData(x, 0, 1, height).data;
+    for (let y = height - 1; y >= maxY; y--) {
+      const i = y * 4;
+      if (colData[i] < 250 || colData[i + 1] < 250 || colData[i + 2] < 250) {
         if (y > maxY) maxY = y;
         break;
       }
     }
   }
   
-  // Add small padding
-  const PAD = 4;
-  const cropW = Math.min(width, maxX + PAD);
+  const PAD = 8;
   const cropH = Math.min(height, maxY + PAD);
   
-  // Only crop if significant savings (>5%)
-  if (cropW >= width * 0.95 && cropH >= height * 0.95) return canvas;
+  // Only crop if we save >10% height
+  if (cropH >= height * 0.9) return canvas;
   
   const cropped = document.createElement('canvas');
-  cropped.width = cropW;
+  cropped.width = width;
   cropped.height = cropH;
   const cCtx = cropped.getContext('2d');
   if (cCtx) {
     cCtx.fillStyle = '#ffffff';
-    cCtx.fillRect(0, 0, cropW, cropH);
-    cCtx.drawImage(canvas, 0, 0, cropW, cropH, 0, 0, cropW, cropH);
+    cCtx.fillRect(0, 0, width, cropH);
+    cCtx.drawImage(canvas, 0, 0, width, cropH, 0, 0, width, cropH);
   }
   return cropped;
 }
