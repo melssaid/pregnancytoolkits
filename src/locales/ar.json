@@ -1238,7 +1238,8 @@
       "minutes": "دقائق",
       "hours": "ساعات",
       "days": "أيام",
-      "weeks": "أسابيع"
+      "weeks": "أسابيع",
+      "analyzing": "جاري التحليل..."
     },
     "weekSlider": {
       "currentWeek": "أسبوع الحمل الحالي",

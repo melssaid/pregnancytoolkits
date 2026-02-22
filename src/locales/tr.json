@@ -1539,7 +1539,8 @@
       "minutes": "dakika",
       "hours": "saat",
       "days": "gün",
-      "weeks": "hafta"
+      "weeks": "hafta",
+      "analyzing": "Analiz ediliyor..."
     },
     "weekSlider": {
       "currentWeek": "Mevcut Hamilelik Haftası",

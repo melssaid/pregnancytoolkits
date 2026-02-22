@@ -1539,7 +1539,8 @@
       "minutes": "minutos",
       "hours": "horas",
       "days": "dias",
-      "weeks": "semanas"
+      "weeks": "semanas",
+      "analyzing": "Analisando..."
     },
     "weekSlider": {
       "currentWeek": "Semana Atual de Gravidez",

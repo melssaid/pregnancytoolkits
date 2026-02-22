@@ -1674,7 +1674,8 @@
       "minutes": "Minuten",
       "hours": "Stunden",
       "days": "Tage",
-      "weeks": "Wochen"
+      "weeks": "Wochen",
+      "analyzing": "Wird analysiert..."
     },
     "weekSlider": {
       "currentWeek": "Aktuelle Schwangerschaftswoche",
