@@ -12,7 +12,7 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { exportBirthPlanToPDF, MAX_SAVED_PLANS } from '@/lib/pdfExport';
-import { PDFProgressOverlay } from '@/components/PDFProgressOverlay';
+
 import { Progress } from '@/components/ui/progress';
 
 interface BirthPlanPreference {
@@ -247,7 +247,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
       mood="nurturing"
       toolId="ai-birth-plan"
     >
-      <PDFProgressOverlay progress={pdfProgress} visible={isExportingPDF} />
+      
       <div className="space-y-4">
 
         {/* Preference Sections */}

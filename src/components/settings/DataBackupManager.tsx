@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
 import { exportDataBackupPDF } from '@/lib/pdfExport';
-import { PDFProgressOverlay } from '@/components/PDFProgressOverlay';
 import {
   Dialog,
   DialogContent,
@@ -182,8 +181,6 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
 
   if (compact) {
     return (
-      <>
-      <PDFProgressOverlay progress={pdfProgress} visible={isExporting} />
       <div className="space-y-2">
         {/* Last backup */}
         {lastBackupDate && (
@@ -250,14 +247,11 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
           </Dialog>
         </div>
       </div>
-      </>
     );
   }
 
   // Full version
   return (
-    <>
-    <PDFProgressOverlay progress={pdfProgress} visible={isExporting} />
     <div className="border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-4">
       <div className="flex items-center gap-2 mb-3">
         <Download className="w-5 h-5 text-primary" />
@@ -332,7 +326,6 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         </Dialog>
       </div>
     </div>
-    </>
   );
 };
 
