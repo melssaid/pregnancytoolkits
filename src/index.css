@@ -209,10 +209,10 @@
   .card-pink-top::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
+    top: -4px;
+    left: 5%;
+    right: 5%;
+    height: 8px;
     background: linear-gradient(90deg, hsl(340 65% 65%), hsl(320 50% 72%), hsl(300 40% 65%));
     border-radius: 0 0 50% 50% / 0 0 100% 100%;
     z-index: 1;
