@@ -2370,7 +2370,13 @@
       "regularity": "الانتظام",
       "regular": "منتظمة",
       "irregular": "غير منتظمة",
-      "cyclesTracked": "الدورات المتتبعة"
+      "cyclesTracked": "الدورات المتتبعة",
+      "statusSummary": "أنتِ حالياً في اليوم {{day}} من دورتك، في مرحلة {{phase}}. متوسط دورتك {{avgCycle}} يوماً، والدورة القادمة متوقعة حوالي {{nextDate}}. {{fertileNote}}",
+      "fertileNoteActive": "أنتِ في نافذة الخصوبة أو بالقرب منها — التبويض متوقع حوالي {{ovDate}}.",
+      "fertileNoteUpcoming": "نافذة خصوبتك تبدأ حوالي {{fertileDate}}، بعد حوالي {{days}} أيام.",
+      "fertileNotePassed": "نافذة الخصوبة قد انتهت لهذه الدورة.",
+      "generalStatus": "الوضع العام",
+      "stickyAnalyze": "تحليل بالذكاء الاصطناعي"
     },
     "weightGain": {
       "title": "محلل زيادة الوزن",

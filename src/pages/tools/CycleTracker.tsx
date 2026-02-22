@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Activity, Plus, Calendar as CalendarIcon, TrendingUp, Info, Share2, Trash2,
-  Droplets, Heart, Zap, Moon, Sun, Target, ChevronDown, ChevronUp, Brain,
+  Droplets, Heart, Moon, Sun, Target, ChevronDown, ChevronUp, Brain,
+  FileText,
 } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
@@ -53,7 +54,6 @@ function getCurrentPhase(lastStart: Date, avgCycle: number, avgPeriod: number): 
   const today = new Date();
   const day = differenceInDays(today, lastStart) + 1;
   const ovDay = Math.round(avgCycle - 14);
-
   if (day <= avgPeriod) return { phase: "menstrual", day };
   if (day < ovDay - 2) return { phase: "follicular", day };
   if (day <= ovDay + 1) return { phase: "ovulation", day };
@@ -81,14 +81,12 @@ function PhaseRing({ phase, day, avgCycle }: { phase: CyclePhase; day: number; a
   const circ = 2 * Math.PI * r;
   const progress = Math.min(day / avgCycle, 1);
   const PhaseIcon = phaseConfig[phase].icon;
-
   const phases: CyclePhase[] = ["menstrual", "follicular", "ovulation", "luteal"];
 
   return (
-    <div className="relative w-44 h-44 mx-auto">
+    <div className="relative w-36 h-36 mx-auto">
       <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
-        {/* Background segments */}
-        {phases.map((p, i) => {
+        {phases.map((p) => {
           const [startAngle, endAngle] = phaseAngles[p];
           const segAngle = endAngle - startAngle;
           const segLength = (segAngle / 360) * circ;
@@ -96,64 +94,34 @@ function PhaseRing({ phase, day, avgCycle }: { phase: CyclePhase; day: number; a
           const isActive = p === phase;
           return (
             <circle
-              key={p}
-              cx="60" cy="60" r={r}
-              fill="none"
-              strokeWidth={isActive ? 7 : 5}
-              stroke="currentColor"
-              className={cn(
-                "transition-all duration-500",
-                isActive ? phaseConfig[p].ring : "text-muted/20"
-              )}
+              key={p} cx="60" cy="60" r={r} fill="none"
+              strokeWidth={isActive ? 7 : 5} stroke="currentColor"
+              className={cn("transition-all duration-500", isActive ? phaseConfig[p].ring : "text-muted/20")}
               strokeDasharray={`${segLength - 3} ${circ - segLength + 3}`}
-              strokeDashoffset={offset}
-              strokeLinecap="round"
+              strokeDashoffset={offset} strokeLinecap="round"
               opacity={isActive ? 1 : 0.4}
             />
           );
         })}
-
-        {/* Progress arc */}
         <motion.circle
-          cx="60" cy="60" r={r - 10}
-          fill="none"
-          strokeWidth="3"
-          stroke="currentColor"
-          className={phaseConfig[phase].ring}
-          strokeDasharray={circ * 0.72} // inner ring
-          strokeLinecap="round"
+          cx="60" cy="60" r={r - 10} fill="none" strokeWidth="3"
+          stroke="currentColor" className={phaseConfig[phase].ring}
+          strokeDasharray={circ * 0.72} strokeLinecap="round"
           initial={{ strokeDashoffset: circ * 0.72 }}
           animate={{ strokeDashoffset: circ * 0.72 * (1 - progress) }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          opacity={0.3}
+          transition={{ duration: 1.2, ease: "easeOut" }} opacity={0.3}
         />
       </svg>
-
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+          initial={{ scale: 0 }} animate={{ scale: 1 }}
           transition={{ type: "spring", delay: 0.2 }}
-          className={cn("w-11 h-11 rounded-full flex items-center justify-center bg-gradient-to-br", phaseConfig[phase].gradient)}
+          className={cn("w-9 h-9 rounded-full flex items-center justify-center bg-gradient-to-br", phaseConfig[phase].gradient)}
         >
-          <PhaseIcon className={cn("w-5 h-5", phaseConfig[phase].ring)} />
+          <PhaseIcon className={cn("w-4 h-4", phaseConfig[phase].ring)} />
         </motion.div>
-        <motion.p
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-xs font-bold text-foreground mt-1.5"
-        >
-          {t(`toolsInternal.cycleTracker.${phase}`)}
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-[10px] text-muted-foreground"
-        >
-          {t('toolsInternal.cycleTracker.cycleDay', { day })}
-        </motion.p>
+        <p className="text-[11px] font-bold text-foreground mt-1">{t(`toolsInternal.cycleTracker.${phase}`)}</p>
+        <p className="text-[9px] text-muted-foreground">{t('toolsInternal.cycleTracker.cycleDay', { day })}</p>
       </div>
     </div>
   );
@@ -172,6 +140,7 @@ export default function CycleTracker() {
   const [showForm, setShowForm] = useState(false);
   const [startOpen, setStartOpen] = useState(false);
   const [endOpen, setEndOpen] = useState(false);
+  const aiSectionRef = useRef<HTMLDivElement>(null);
   const isInitialized = useRef(false);
 
   useEffect(() => {
@@ -234,20 +203,46 @@ export default function CycleTracker() {
     const fertileEnd = addDays(ovulationDay, 1);
     const daysToOv = Math.max(0, differenceInDays(ovulationDay, new Date()));
     const daysToPeriod = Math.max(0, differenceInDays(nextPeriod, new Date()));
+    const daysToFertile = Math.max(0, differenceInDays(fertileStart, new Date()));
 
     const stdDev = cycleLengths.length > 1
       ? Math.sqrt(cycleLengths.reduce((s, v) => s + (v - avg) ** 2, 0) / cycleLengths.length)
       : 0;
     const isRegular = stdDev <= 3;
-
     const phaseInfo = getCurrentPhase(lastStart, avg, avgPeriod);
 
     return {
       avgCycle: avg, avgPeriod, nextPeriod, ovulationDay,
-      fertileStart, fertileEnd, daysToOv, daysToPeriod,
+      fertileStart, fertileEnd, daysToOv, daysToPeriod, daysToFertile,
       isRegular, phase: phaseInfo.phase, cycleDay: phaseInfo.day,
     };
   }, [cycles]);
+
+  /* ── Status Summary text ── */
+  const statusSummary = useMemo(() => {
+    if (!stats) return null;
+    const phaseLabel = t(`toolsInternal.cycleTracker.${stats.phase}`);
+    const nextDate = formatLocalized(stats.nextPeriod, "MMM d", currentLanguage);
+    const ovDate = formatLocalized(stats.ovulationDay, "MMM d", currentLanguage);
+    const fertileDate = formatLocalized(stats.fertileStart, "MMM d", currentLanguage);
+
+    let fertileNote = '';
+    if (stats.phase === 'ovulation' || (stats.daysToOv <= 2 && stats.daysToOv >= 0)) {
+      fertileNote = t('toolsInternal.cycleTracker.fertileNoteActive', { ovDate });
+    } else if (stats.daysToFertile > 0) {
+      fertileNote = t('toolsInternal.cycleTracker.fertileNoteUpcoming', { fertileDate, days: stats.daysToFertile });
+    } else {
+      fertileNote = t('toolsInternal.cycleTracker.fertileNotePassed');
+    }
+
+    return t('toolsInternal.cycleTracker.statusSummary', {
+      day: stats.cycleDay,
+      phase: phaseLabel,
+      avgCycle: stats.avgCycle,
+      nextDate,
+      fertileNote,
+    });
+  }, [stats, t, currentLanguage]);
 
   const getFlowColor = (i: string) =>
     i === "light" ? "bg-primary/30" : i === "medium" ? "bg-primary/60" : "bg-primary";
@@ -263,114 +258,13 @@ export default function CycleTracker() {
     }
   };
 
+  const scrollToAI = () => {
+    aiSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
   const locale = getDateLocale(currentLanguage);
 
-  return (
-    <ToolFrame
-      title={t('toolsInternal.cycleTracker.title')}
-      subtitle={t('toolsInternal.cycleTracker.subtitle')}
-      customIcon="calendar"
-      mood="nurturing"
-      toolId="cycle-tracker"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="space-y-5"
-      >
-        {/* ═══ SECTION 1: Phase Ring + Quick Stats ═══ */}
-        {stats ? (
-          <Card className="overflow-hidden border-border">
-            <CardContent className="pt-5 pb-4 space-y-5">
-              {/* Phase Ring */}
-              <PhaseRing phase={stats.phase} day={stats.cycleDay} avgCycle={stats.avgCycle} />
-
-              {/* Phase description */}
-              <motion.p
-                key={stats.phase}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-xs text-center text-muted-foreground max-w-xs mx-auto leading-relaxed"
-              >
-                {t(`toolsInternal.cycleTracker.phaseDescription.${stats.phase}`)}
-              </motion.p>
-
-              {/* Countdown cards */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-pink-200/40 dark:border-pink-800/30 bg-gradient-to-br from-pink-500/8 to-transparent p-3 text-center">
-                  <Target className="w-4 h-4 text-pink-500 mx-auto mb-1" />
-                  <p className="text-lg font-bold text-foreground tabular-nums">{stats.daysToOv}</p>
-                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.daysUntilOvulation')}</p>
-                </div>
-                <div className="rounded-xl border border-primary/20 bg-gradient-to-br from-primary/8 to-transparent p-3 text-center">
-                  <Droplets className="w-4 h-4 text-primary mx-auto mb-1" />
-                  <p className="text-lg font-bold text-foreground tabular-nums">{stats.daysToPeriod}</p>
-                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.daysUntilPeriod')}</p>
-                </div>
-              </div>
-
-              {/* Key dates row */}
-              <div className="grid grid-cols-3 gap-2">
-                <div className="text-center p-2 rounded-lg bg-muted/50">
-                  <p className="text-[10px] text-muted-foreground mb-0.5">{t('toolsInternal.cycleTracker.fertileWindowDates')}</p>
-                  <p className="text-xs font-semibold text-foreground">
-                    {formatLocalized(stats.fertileStart, "MMM d", currentLanguage)} – {formatLocalized(stats.fertileEnd, "d", currentLanguage)}
-                  </p>
-                </div>
-                <div className="text-center p-2 rounded-lg bg-pink-500/8">
-                  <p className="text-[10px] text-muted-foreground mb-0.5">{t('toolsInternal.cycleTracker.ovulationDate')}</p>
-                  <p className="text-xs font-semibold text-pink-600 dark:text-pink-400">
-                    {formatLocalized(stats.ovulationDay, "MMM d", currentLanguage)}
-                  </p>
-                </div>
-                <div className="text-center p-2 rounded-lg bg-primary/8">
-                  <p className="text-[10px] text-muted-foreground mb-0.5">{t('toolsInternal.cycleTracker.nextPeriodDate')}</p>
-                  <p className="text-xs font-semibold text-primary">
-                    {formatLocalized(stats.nextPeriod, "MMM d", currentLanguage)}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ) : (
-          <Card className="border-dashed border-2 border-muted-foreground/20">
-            <CardContent className="py-8 text-center">
-              <CalendarIcon className="w-8 h-8 text-muted-foreground/40 mx-auto mb-3" />
-              <p className="text-sm text-muted-foreground">{t('toolsInternal.cycleTracker.noDataYet')}</p>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* ═══ SECTION 2: Statistics summary ═══ */}
-        {stats && (
-          <div className="grid grid-cols-4 gap-2">
-            <div className="rounded-xl bg-muted/50 p-2.5 text-center">
-              <p className="text-sm font-bold text-foreground">{stats.avgCycle}</p>
-              <p className="text-[9px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
-            </div>
-            <div className="rounded-xl bg-muted/50 p-2.5 text-center">
-              <p className="text-sm font-bold text-foreground">{stats.avgPeriod}</p>
-              <p className="text-[9px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
-            </div>
-            <div className="rounded-xl bg-muted/50 p-2.5 text-center">
-              <Badge variant="outline" className={cn("text-[9px] px-1.5", stats.isRegular ? "border-emerald-300 text-emerald-600" : "border-amber-300 text-amber-600")}>
-                {stats.isRegular ? t('toolsInternal.cycleTracker.regular') : t('toolsInternal.cycleTracker.irregular')}
-              </Badge>
-              <p className="text-[9px] text-muted-foreground mt-1">{t('toolsInternal.cycleTracker.regularity')}</p>
-            </div>
-            <div className="rounded-xl bg-muted/50 p-2.5 text-center">
-              <p className="text-sm font-bold text-foreground">{cycles.length}</p>
-              <p className="text-[9px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.cyclesTracked')}</p>
-            </div>
-          </div>
-        )}
-
-        {/* ═══ SECTION 3: AI Analysis ═══ */}
-        {stats && (
-          <AIInsightCard
-            title={t('toolsInternal.cycleTracker.cycleInsights')}
-            prompt={`Analyze my menstrual cycle patterns:
+  const aiPrompt = stats ? `Analyze my menstrual cycle patterns:
 - Average cycle length: ${stats.avgCycle} days
 - Average period length: ${stats.avgPeriod} days
 - Cycle regularity: ${stats.isRegular ? 'Regular' : 'Irregular'}
@@ -398,13 +292,139 @@ Insights about my upcoming cycles
 Personalized tips based on my cycle patterns and symptoms
 
 ## Things to Watch
-Any patterns that might be worth discussing with a doctor`}
-            variant="compact"
-            buttonText={t('toolsInternal.cycleTracker.analyzePatterns')}
-          />
+Any patterns that might be worth discussing with a doctor` : '';
+
+  return (
+    <ToolFrame
+      title={t('toolsInternal.cycleTracker.title')}
+      subtitle={t('toolsInternal.cycleTracker.subtitle')}
+      customIcon="calendar"
+      mood="nurturing"
+      toolId="cycle-tracker"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-5 pb-16"
+      >
+        {/* ═══ UNIFIED DASHBOARD CARD ═══ */}
+        {stats ? (
+          <Card className="overflow-hidden border-border">
+            <CardContent className="pt-5 pb-4 space-y-4">
+              {/* Phase Ring */}
+              <PhaseRing phase={stats.phase} day={stats.cycleDay} avgCycle={stats.avgCycle} />
+
+              {/* Phase description */}
+              <motion.p
+                key={stats.phase}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-[11px] text-center text-muted-foreground max-w-xs mx-auto leading-relaxed"
+              >
+                {t(`toolsInternal.cycleTracker.phaseDescription.${stats.phase}`)}
+              </motion.p>
+
+              {/* ── Countdown cards ── */}
+              <div className="grid grid-cols-2 gap-2.5">
+                <div className="rounded-xl border border-pink-200/40 dark:border-pink-800/30 bg-gradient-to-br from-pink-500/8 to-transparent p-3 text-center">
+                  <Target className="w-4 h-4 text-pink-500 mx-auto mb-1" />
+                  <p className="text-lg font-bold text-foreground tabular-nums">{stats.daysToOv}</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.daysUntilOvulation')}</p>
+                </div>
+                <div className="rounded-xl border border-primary/20 bg-gradient-to-br from-primary/8 to-transparent p-3 text-center">
+                  <Droplets className="w-4 h-4 text-primary mx-auto mb-1" />
+                  <p className="text-lg font-bold text-foreground tabular-nums">{stats.daysToPeriod}</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.daysUntilPeriod')}</p>
+                </div>
+              </div>
+
+              {/* ── Key dates ── */}
+              <div className="grid grid-cols-3 gap-2">
+                <div className="text-center p-2 rounded-lg bg-muted/50">
+                  <p className="text-[9px] text-muted-foreground mb-0.5">{t('toolsInternal.cycleTracker.fertileWindowDates')}</p>
+                  <p className="text-[11px] font-semibold text-foreground">
+                    {formatLocalized(stats.fertileStart, "MMM d", currentLanguage)} – {formatLocalized(stats.fertileEnd, "d", currentLanguage)}
+                  </p>
+                </div>
+                <div className="text-center p-2 rounded-lg bg-pink-500/8">
+                  <p className="text-[9px] text-muted-foreground mb-0.5">{t('toolsInternal.cycleTracker.ovulationDate')}</p>
+                  <p className="text-[11px] font-semibold text-pink-600 dark:text-pink-400">
+                    {formatLocalized(stats.ovulationDay, "MMM d", currentLanguage)}
+                  </p>
+                </div>
+                <div className="text-center p-2 rounded-lg bg-primary/8">
+                  <p className="text-[9px] text-muted-foreground mb-0.5">{t('toolsInternal.cycleTracker.nextPeriodDate')}</p>
+                  <p className="text-[11px] font-semibold text-primary">
+                    {formatLocalized(stats.nextPeriod, "MMM d", currentLanguage)}
+                  </p>
+                </div>
+              </div>
+
+              {/* ── Quick Stats bar ── */}
+              <div className="grid grid-cols-4 gap-1.5 pt-1">
+                <div className="rounded-lg bg-muted/40 p-2 text-center">
+                  <p className="text-sm font-bold text-foreground">{stats.avgCycle}</p>
+                  <p className="text-[8px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
+                </div>
+                <div className="rounded-lg bg-muted/40 p-2 text-center">
+                  <p className="text-sm font-bold text-foreground">{stats.avgPeriod}</p>
+                  <p className="text-[8px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
+                </div>
+                <div className="rounded-lg bg-muted/40 p-2 text-center">
+                  <Badge variant="outline" className={cn("text-[8px] px-1", stats.isRegular ? "border-emerald-300 text-emerald-600" : "border-amber-300 text-amber-600")}>
+                    {stats.isRegular ? t('toolsInternal.cycleTracker.regular') : t('toolsInternal.cycleTracker.irregular')}
+                  </Badge>
+                  <p className="text-[8px] text-muted-foreground mt-0.5">{t('toolsInternal.cycleTracker.regularity')}</p>
+                </div>
+                <div className="rounded-lg bg-muted/40 p-2 text-center">
+                  <p className="text-sm font-bold text-foreground">{cycles.length}</p>
+                  <p className="text-[8px] text-muted-foreground leading-tight">{t('toolsInternal.cycleTracker.cyclesTracked')}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card className="border-dashed border-2 border-muted-foreground/20">
+            <CardContent className="py-8 text-center">
+              <CalendarIcon className="w-8 h-8 text-muted-foreground/40 mx-auto mb-3" />
+              <p className="text-sm text-muted-foreground">{t('toolsInternal.cycleTracker.noDataYet')}</p>
+            </CardContent>
+          </Card>
         )}
 
-        {/* ═══ SECTION 4: Add Entry ═══ */}
+        {/* ═══ GENERAL STATUS SUMMARY ═══ */}
+        {stats && statusSummary && (
+          <Card className="border-primary/15 bg-gradient-to-br from-primary/4 to-transparent">
+            <CardContent className="p-4">
+              <div className="flex items-start gap-2.5">
+                <FileText className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-xs font-semibold text-foreground mb-1.5">
+                    {t('toolsInternal.cycleTracker.generalStatus')}
+                  </h3>
+                  <p className="text-[11px] leading-relaxed text-muted-foreground">
+                    {statusSummary}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* ═══ AI ANALYSIS (scrollable target) ═══ */}
+        {stats && (
+          <div ref={aiSectionRef}>
+            <AIInsightCard
+              title={t('toolsInternal.cycleTracker.cycleInsights')}
+              prompt={aiPrompt}
+              variant="compact"
+              buttonText={t('toolsInternal.cycleTracker.analyzePatterns')}
+            />
+          </div>
+        )}
+
+        {/* ═══ ADD ENTRY ═══ */}
         <Card>
           <CardContent className="p-0">
             <button
@@ -428,7 +448,6 @@ Any patterns that might be worth discussing with a doctor`}
                   className="overflow-hidden"
                 >
                   <div className="px-4 pb-4 space-y-3 border-t border-border pt-3">
-                    {/* Date pickers */}
                     <div className="grid gap-3 sm:grid-cols-2">
                       <div className="space-y-1.5">
                         <Label className="text-xs">{t('toolsInternal.cycleTracker.startDate')}</Label>
@@ -441,12 +460,10 @@ Any patterns that might be worth discussing with a doctor`}
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
-                              mode="single"
-                              selected={startPickerDate}
+                              mode="single" selected={startPickerDate}
                               onSelect={(d) => { setStartPickerDate(d); setStartOpen(false); }}
                               disabled={date => date > new Date()}
-                              locale={locale}
-                              initialFocus
+                              locale={locale} initialFocus
                               className="p-3 pointer-events-auto"
                             />
                           </PopoverContent>
@@ -463,12 +480,10 @@ Any patterns that might be worth discussing with a doctor`}
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
-                              mode="single"
-                              selected={endPickerDate}
+                              mode="single" selected={endPickerDate}
                               onSelect={(d) => { setEndPickerDate(d); setEndOpen(false); }}
                               disabled={date => date > new Date() || (startPickerDate ? date < startPickerDate : false)}
-                              locale={locale}
-                              initialFocus
+                              locale={locale} initialFocus
                               className="p-3 pointer-events-auto"
                             />
                           </PopoverContent>
@@ -476,13 +491,10 @@ Any patterns that might be worth discussing with a doctor`}
                       </div>
                     </div>
 
-                    {/* Flow */}
                     <div className="space-y-1.5">
                       <Label className="text-xs">{t('toolsInternal.cycleTracker.flowIntensity')}</Label>
                       <Select value={flowIntensity} onValueChange={(v) => setFlowIntensity(v as "light" | "medium" | "heavy")}>
-                        <SelectTrigger className="h-9">
-                          <SelectValue />
-                        </SelectTrigger>
+                        <SelectTrigger className="h-9"><SelectValue /></SelectTrigger>
                         <SelectContent>
                           <SelectItem value="light">{t('toolsInternal.cycleTracker.flowLevels.light')}</SelectItem>
                           <SelectItem value="medium">{t('toolsInternal.cycleTracker.flowLevels.medium')}</SelectItem>
@@ -491,15 +503,12 @@ Any patterns that might be worth discussing with a doctor`}
                       </Select>
                     </div>
 
-                    {/* Symptoms */}
                     <div className="space-y-1.5">
                       <Label className="text-xs">{t('toolsInternal.cycleTracker.symptoms')}</Label>
                       <div className="flex flex-wrap gap-1.5">
                         {symptomKeys.map((key) => (
                           <button
-                            key={key}
-                            type="button"
-                            onClick={() => toggleSymptom(key)}
+                            key={key} type="button" onClick={() => toggleSymptom(key)}
                             className={cn(
                               "rounded-full px-2.5 py-1 text-[11px] transition-all border",
                               selectedSymptoms.includes(key)
@@ -524,7 +533,7 @@ Any patterns that might be worth discussing with a doctor`}
           </CardContent>
         </Card>
 
-        {/* ═══ SECTION 5: History ═══ */}
+        {/* ═══ HISTORY ═══ */}
         {cycles.length > 0 && (
           <Card>
             <CardContent className="p-4">
@@ -581,10 +590,7 @@ Any patterns that might be worth discussing with a doctor`}
                           )}
                         </div>
                       </div>
-                      <button
-                        onClick={() => deleteCycle(cycle.id)}
-                        className="text-muted-foreground/50 hover:text-destructive transition-colors p-1.5 shrink-0"
-                      >
+                      <button onClick={() => deleteCycle(cycle.id)} className="text-muted-foreground/50 hover:text-destructive transition-colors p-1.5 shrink-0">
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>
                     </motion.div>
@@ -595,7 +601,7 @@ Any patterns that might be worth discussing with a doctor`}
           </Card>
         )}
 
-        {/* ═══ SECTION 6: Videos ═══ */}
+        {/* ═══ Videos ═══ */}
         <VideoLibrary
           videosByLang={cycleTrackerVideosByLang}
           title={t('toolsInternal.cycleTracker.videosTitle')}
@@ -610,6 +616,27 @@ Any patterns that might be worth discussing with a doctor`}
           </p>
         </div>
       </motion.div>
+
+      {/* ═══ STICKY AI BUTTON ═══ */}
+      {stats && (
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
+          className="fixed bottom-20 left-1/2 -translate-x-1/2 z-40"
+        >
+          <Button
+            onClick={scrollToAI}
+            className="h-10 px-5 rounded-full shadow-lg shadow-primary/25 gap-2 text-sm"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+            }}
+          >
+            <Brain className="w-4 h-4" />
+            {t('toolsInternal.cycleTracker.stickyAnalyze')}
+          </Button>
+        </motion.div>
+      )}
     </ToolFrame>
   );
 }

@@ -2686,7 +2686,13 @@
       "regularity": "Regularity",
       "regular": "Regular",
       "irregular": "Irregular",
-      "cyclesTracked": "Cycles Tracked"
+      "cyclesTracked": "Cycles Tracked",
+      "statusSummary": "You are currently on day {{day}} of your cycle, in the {{phase}} phase. Your average cycle is {{avgCycle}} days, and your next period is expected around {{nextDate}}. {{fertileNote}}",
+      "fertileNoteActive": "You are in or near your fertile window — ovulation is expected around {{ovDate}}.",
+      "fertileNoteUpcoming": "Your fertile window starts around {{fertileDate}}, about {{days}} days from now.",
+      "fertileNotePassed": "Your fertile window has passed for this cycle.",
+      "generalStatus": "General Status",
+      "stickyAnalyze": "Analyze with AI"
     },
     "weightGain": {
       "title": "Weight Gain Analyzer",
