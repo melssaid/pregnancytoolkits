@@ -97,7 +97,7 @@
       "description": "Crie seu plano de parto personalizado com orientação de IA."
     },
     "smartAppointmentReminder": {
-      "title": "Lembrete de consultas inteligente",
+      "title": "Lembrete automático de consultas",
       "description": "Nunca perca uma consulta pré-natal."
     },
     "aiCravingAlternatives": {
@@ -105,16 +105,16 @@
       "description": "Alternativas saudáveis para seus desejos de gravidez."
     },
     "smartGroceryList": {
-      "title": "Lista de compras inteligente",
+      "title": "Lista de compras Pro",
       "description": "Lista de compras IA para nutrição na gravidez."
     },
     "aiSleepOptimizer": {
-      "title": "Otimizador de sono IA",
+      "title": "Otimizador de sono avançado",
       "description": "Orientação de sono personalizada para a gravidez."
     },
     "aiHospitalBag": {
-      "title": "Mala de maternidade IA",
-      "description": "Lista de preparação inteligente para o dia do parto."
+      "title": "Mala de maternidade completa",
+      "description": "Lista de preparação integral para o dia do parto."
     },
     "aiPartnerGuide": {
       "title": "Guia do parceiro IA",

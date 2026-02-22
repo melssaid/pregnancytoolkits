@@ -97,7 +97,7 @@
       "description": "AI rehberliğiyle kişiselleştirilmiş doğum planınızı oluşturun."
     },
     "smartAppointmentReminder": {
-      "title": "Akıllı Randevu Hatırlatıcı",
+      "title": "Otomatik Randevu Hatırlatıcı",
       "description": "Asla bir doğum öncesi randevuyu kaçırmayın."
     },
     "aiCravingAlternatives": {
@@ -105,16 +105,16 @@
       "description": "Hamilelik istekleri için sağlıklı alternatifler."
     },
     "smartGroceryList": {
-      "title": "Akıllı Alışveriş Listesi",
+      "title": "Pro Alışveriş Listesi",
       "description": "Hamilelik beslenmesi için AI destekli alışveriş listesi."
     },
     "aiSleepOptimizer": {
-      "title": "AI Uyku Optimizatörü",
+      "title": "Gelişmiş Uyku Optimizatörü",
       "description": "Hamilelik için kişiselleştirilmiş uyku rehberliği."
     },
     "aiHospitalBag": {
-      "title": "AI Hastane Çantası",
-      "description": "Doğum günü için akıllı paketleme listesi."
+      "title": "Eksiksiz Hastane Çantası",
+      "description": "Doğum günü için kapsamlı paketleme listesi."
     },
     "aiPartnerGuide": {
       "title": "AI Partner Rehberi",
