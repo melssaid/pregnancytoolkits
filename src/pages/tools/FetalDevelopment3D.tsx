@@ -351,55 +351,53 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
         {/* AI Insights Section */}
         <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
           <CardContent className="py-3">
-            <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2 text-sm">
-              <Sparkles className="w-4 h-4 text-primary" />
+            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2 text-sm">
+              <div className="p-1.5 rounded-lg" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}>
+                <Brain className="w-3.5 h-3.5 text-white" />
+              </div>
               {t('toolsInternal.fetalDevelopment.aiWeeklyInsights')}
             </h3>
             
             {/* AI Tab Buttons */}
-            <div className="grid grid-cols-3 gap-1.5 mb-3">
-              <Button
-                variant={activeAITab === 'development' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => getAIInsight('development')}
-                disabled={aiLoading}
-                className="gap-0.5 h-8 px-2"
-              >
-                {aiLoading && activeAITab === 'development' ? (
-                  <Loader2 className="w-3 h-3 animate-spin" />
-                ) : (
-                  <Stethoscope className="w-3 h-3" />
-                )}
-                <span className="text-[10px]">{t('toolsInternal.fetalDevelopment.development')}</span>
-              </Button>
-              <Button
-                variant={activeAITab === 'nutrition' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => getAIInsight('nutrition')}
-                disabled={aiLoading}
-                className="gap-0.5 h-8 px-2"
-              >
-                {aiLoading && activeAITab === 'nutrition' ? (
-                  <Loader2 className="w-3 h-3 animate-spin" />
-                ) : (
-                  <Apple className="w-3 h-3" />
-                )}
-                <span className="text-[10px]">{t('toolsInternal.fetalDevelopment.nutrition')}</span>
-              </Button>
-              <Button
-                variant={activeAITab === 'exercise' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => getAIInsight('exercise')}
-                disabled={aiLoading}
-                className="gap-0.5 h-8 px-2"
-              >
-                {aiLoading && activeAITab === 'exercise' ? (
-                  <Loader2 className="w-3 h-3 animate-spin" />
-                ) : (
-                  <Dumbbell className="w-3 h-3" />
-                )}
-                <span className="text-[10px]">{t('toolsInternal.fetalDevelopment.exercise')}</span>
-              </Button>
+            <div className="grid grid-cols-3 gap-2 mb-3">
+              {([
+                { key: 'development' as const, icon: Stethoscope, labelKey: 'toolsInternal.fetalDevelopment.development' },
+                { key: 'nutrition' as const, icon: Apple, labelKey: 'toolsInternal.fetalDevelopment.nutrition' },
+                { key: 'exercise' as const, icon: Dumbbell, labelKey: 'toolsInternal.fetalDevelopment.exercise' },
+              ]).map(({ key, icon: TabIcon, labelKey }) => {
+                const isActive = activeAITab === key;
+                return (
+                  <motion.button
+                    key={key}
+                    onClick={() => getAIInsight(key)}
+                    disabled={aiLoading}
+                    whileTap={{ scale: 0.92 }}
+                    className="relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    <div
+                      className={`flex flex-col items-center gap-1 px-2 py-2.5 rounded-xl transition-all duration-200 ${
+                        isActive
+                          ? 'text-white font-semibold'
+                          : 'bg-card border border-primary/20 text-foreground hover:border-primary/40'
+                      }`}
+                      style={isActive ? {
+                        background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                        boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.45)',
+                      } : undefined}
+                    >
+                      {aiLoading && isActive ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <TabIcon className={`w-4 h-4 ${isActive ? '' : 'text-primary'}`} />
+                      )}
+                      <span className="text-[10px] font-medium leading-tight">{t(labelKey)}</span>
+                    </div>
+                    {!isActive && (
+                      <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/10 to-transparent pointer-events-none" aria-hidden />
+                    )}
+                  </motion.button>
+                );
+              })}
             </div>
 
             {/* AI Response */}
