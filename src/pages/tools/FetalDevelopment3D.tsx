@@ -13,47 +13,59 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 interface WeekData {
   week: number;
   sizeKey: string;
-  length: string;
-  weight: string;
+  lengthValue: number;
+  lengthUnit: string;
+  weightValue: string;
+  weightUnit: string;
   developmentKey: string;
   organs: string[];
   tipKey: string;
 }
 
 const weeklyData: WeekData[] = [
-  { week: 4, sizeKey: 'poppySeed', length: '0.1 cm', weight: '<1 g', developmentKey: 'week4', organs: ['brain', 'heart'], tipKey: 'week4' },
-  { week: 6, sizeKey: 'sweetPea', length: '0.6 cm', weight: '<1 g', developmentKey: 'week6', organs: ['heart', 'brain'], tipKey: 'week6' },
-  { week: 8, sizeKey: 'raspberry', length: '1.6 cm', weight: '1 g', developmentKey: 'week8', organs: ['heart', 'hands'], tipKey: 'week8' },
-  { week: 10, sizeKey: 'prune', length: '3.1 cm', weight: '4 g', developmentKey: 'week10', organs: ['brain', 'heart'], tipKey: 'week10' },
-  { week: 12, sizeKey: 'lime', length: '5.4 cm', weight: '14 g', developmentKey: 'week12', organs: ['hands', 'brain'], tipKey: 'week12' },
-  { week: 14, sizeKey: 'lemon', length: '8.7 cm', weight: '43 g', developmentKey: 'week14', organs: ['brain', 'eyes'], tipKey: 'week14' },
-  { week: 16, sizeKey: 'avocado', length: '11.6 cm', weight: '100 g', developmentKey: 'week16', organs: ['heart', 'ears'], tipKey: 'week16' },
-  { week: 18, sizeKey: 'bellPepper', length: '14.2 cm', weight: '190 g', developmentKey: 'week18', organs: ['ears', 'feet'], tipKey: 'week18' },
-  { week: 20, sizeKey: 'banana', length: '16.4 cm', weight: '300 g', developmentKey: 'week20', organs: ['ears', 'brain'], tipKey: 'week20' },
-  { week: 22, sizeKey: 'papaya', length: '27.8 cm', weight: '430 g', developmentKey: 'week22', organs: ['eyes', 'brain'], tipKey: 'week22' },
-  { week: 24, sizeKey: 'corn', length: '30 cm', weight: '600 g', developmentKey: 'week24', organs: ['ears', 'eyes'], tipKey: 'week24' },
-  { week: 26, sizeKey: 'lettuce', length: '35.6 cm', weight: '760 g', developmentKey: 'week26', organs: ['eyes', 'brain'], tipKey: 'week26' },
-  { week: 28, sizeKey: 'eggplant', length: '37.6 cm', weight: '1 kg', developmentKey: 'week28', organs: ['eyes', 'brain'], tipKey: 'week28' },
-  { week: 30, sizeKey: 'cabbage', length: '39.9 cm', weight: '1.3 kg', developmentKey: 'week30', organs: ['brain', 'heart'], tipKey: 'week30' },
-  { week: 32, sizeKey: 'squash', length: '42.4 cm', weight: '1.7 kg', developmentKey: 'week32', organs: ['heart', 'feet'], tipKey: 'week32' },
-  { week: 34, sizeKey: 'cantaloupe', length: '45 cm', weight: '2.1 kg', developmentKey: 'week34', organs: ['hands', 'brain'], tipKey: 'week34' },
-  { week: 36, sizeKey: 'honeydew', length: '47.4 cm', weight: '2.6 kg', developmentKey: 'week36', organs: ['brain', 'heart'], tipKey: 'week36' },
-  { week: 38, sizeKey: 'pumpkin', length: '49.8 cm', weight: '3 kg', developmentKey: 'week38', organs: ['heart', 'brain'], tipKey: 'week38' },
-  { week: 40, sizeKey: 'watermelon', length: '51.2 cm', weight: '3.4 kg', developmentKey: 'week40', organs: ['heart', 'brain', 'eyes', 'ears', 'hands', 'feet'], tipKey: 'week40' },
+  { week: 4, sizeKey: 'poppySeed', lengthValue: 0.1, lengthUnit: 'cm', weightValue: '<1', weightUnit: 'g', developmentKey: 'week4', organs: ['brain', 'heart'], tipKey: 'week4' },
+  { week: 6, sizeKey: 'sweetPea', lengthValue: 0.6, lengthUnit: 'cm', weightValue: '<1', weightUnit: 'g', developmentKey: 'week6', organs: ['heart', 'brain'], tipKey: 'week6' },
+  { week: 8, sizeKey: 'raspberry', lengthValue: 1.6, lengthUnit: 'cm', weightValue: '1', weightUnit: 'g', developmentKey: 'week8', organs: ['heart', 'hands'], tipKey: 'week8' },
+  { week: 10, sizeKey: 'prune', lengthValue: 3.1, lengthUnit: 'cm', weightValue: '4', weightUnit: 'g', developmentKey: 'week10', organs: ['brain', 'heart'], tipKey: 'week10' },
+  { week: 12, sizeKey: 'lime', lengthValue: 5.4, lengthUnit: 'cm', weightValue: '14', weightUnit: 'g', developmentKey: 'week12', organs: ['hands', 'brain'], tipKey: 'week12' },
+  { week: 14, sizeKey: 'lemon', lengthValue: 8.7, lengthUnit: 'cm', weightValue: '43', weightUnit: 'g', developmentKey: 'week14', organs: ['brain', 'eyes'], tipKey: 'week14' },
+  { week: 16, sizeKey: 'avocado', lengthValue: 11.6, lengthUnit: 'cm', weightValue: '100', weightUnit: 'g', developmentKey: 'week16', organs: ['heart', 'ears'], tipKey: 'week16' },
+  { week: 18, sizeKey: 'bellPepper', lengthValue: 14.2, lengthUnit: 'cm', weightValue: '190', weightUnit: 'g', developmentKey: 'week18', organs: ['ears', 'feet'], tipKey: 'week18' },
+  { week: 20, sizeKey: 'banana', lengthValue: 16.4, lengthUnit: 'cm', weightValue: '300', weightUnit: 'g', developmentKey: 'week20', organs: ['ears', 'brain'], tipKey: 'week20' },
+  { week: 22, sizeKey: 'papaya', lengthValue: 27.8, lengthUnit: 'cm', weightValue: '430', weightUnit: 'g', developmentKey: 'week22', organs: ['eyes', 'brain'], tipKey: 'week22' },
+  { week: 24, sizeKey: 'corn', lengthValue: 30, lengthUnit: 'cm', weightValue: '600', weightUnit: 'g', developmentKey: 'week24', organs: ['ears', 'eyes'], tipKey: 'week24' },
+  { week: 26, sizeKey: 'lettuce', lengthValue: 35.6, lengthUnit: 'cm', weightValue: '760', weightUnit: 'g', developmentKey: 'week26', organs: ['eyes', 'brain'], tipKey: 'week26' },
+  { week: 28, sizeKey: 'eggplant', lengthValue: 37.6, lengthUnit: 'cm', weightValue: '1', weightUnit: 'kg', developmentKey: 'week28', organs: ['eyes', 'brain'], tipKey: 'week28' },
+  { week: 30, sizeKey: 'cabbage', lengthValue: 39.9, lengthUnit: 'cm', weightValue: '1.3', weightUnit: 'kg', developmentKey: 'week30', organs: ['brain', 'heart'], tipKey: 'week30' },
+  { week: 32, sizeKey: 'squash', lengthValue: 42.4, lengthUnit: 'cm', weightValue: '1.7', weightUnit: 'kg', developmentKey: 'week32', organs: ['heart', 'feet'], tipKey: 'week32' },
+  { week: 34, sizeKey: 'cantaloupe', lengthValue: 45, lengthUnit: 'cm', weightValue: '2.1', weightUnit: 'kg', developmentKey: 'week34', organs: ['hands', 'brain'], tipKey: 'week34' },
+  { week: 36, sizeKey: 'honeydew', lengthValue: 47.4, lengthUnit: 'cm', weightValue: '2.6', weightUnit: 'kg', developmentKey: 'week36', organs: ['brain', 'heart'], tipKey: 'week36' },
+  { week: 38, sizeKey: 'pumpkin', lengthValue: 49.8, lengthUnit: 'cm', weightValue: '3', weightUnit: 'kg', developmentKey: 'week38', organs: ['heart', 'brain'], tipKey: 'week38' },
+  { week: 40, sizeKey: 'watermelon', lengthValue: 51.2, lengthUnit: 'cm', weightValue: '3.4', weightUnit: 'kg', developmentKey: 'week40', organs: ['heart', 'brain', 'eyes', 'ears', 'hands', 'feet'], tipKey: 'week40' },
 ];
 
 const organIcons: Record<string, React.ReactNode> = {
-  heart: <Heart className="w-4 h-4" />,
-  brain: <Brain className="w-4 h-4" />,
-  ears: <Ear className="w-4 h-4" />,
-  eyes: <Eye className="w-4 h-4" />,
-  hands: <Hand className="w-4 h-4" />,
-  feet: <Footprints className="w-4 h-4" />,
+  heart: <Heart className="w-3.5 h-3.5" />,
+  brain: <Brain className="w-3.5 h-3.5" />,
+  ears: <Ear className="w-3.5 h-3.5" />,
+  eyes: <Eye className="w-3.5 h-3.5" />,
+  hands: <Hand className="w-3.5 h-3.5" />,
+  feet: <Footprints className="w-3.5 h-3.5" />,
+};
+
+const organLabelKeys: Record<string, string> = {
+  heart: 'toolsInternal.fetalDevelopment.organs.heart',
+  brain: 'toolsInternal.fetalDevelopment.organs.brain',
+  ears: 'toolsInternal.fetalDevelopment.organs.ears',
+  eyes: 'toolsInternal.fetalDevelopment.organs.eyes',
+  hands: 'toolsInternal.fetalDevelopment.organs.hands',
+  feet: 'toolsInternal.fetalDevelopment.organs.feet',
 };
 
 const FetalDevelopment3D: React.FC = () => {
-  const { t } = useTranslation();
-  const [currentIndex, setCurrentIndex] = useState(4); // Start at week 12
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
+  const [currentIndex, setCurrentIndex] = useState(4);
   const [userWeek, setUserWeek] = useState<number | null>(null);
   const [aiInsight, setAiInsight] = useState('');
   const [activeAITab, setActiveAITab] = useState<'development' | 'nutrition' | 'exercise' | null>(null);
@@ -78,7 +90,7 @@ const FetalDevelopment3D: React.FC = () => {
   }, []);
 
   const currentData = weeklyData[currentIndex];
-  const progressPercent = ((currentData.week - 4) / 36) * 100;
+  const progressPercent = ((currentData?.week ?? 4) - 4) / 36 * 100;
 
   const goToPrevious = () => {
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
@@ -94,11 +106,17 @@ const FetalDevelopment3D: React.FC = () => {
     return { nameKey: 'trimesters.third', color: 'bg-secondary text-secondary-foreground' };
   };
 
+  if (!currentData) return null;
+
   const trimester = getTrimester(currentData.week);
 
   const saveCurrentWeek = () => {
     localStorage.setItem('pregnancy-current-week', currentData.week.toString());
     setUserWeek(currentData.week);
+  };
+
+  const formatMeasurement = (value: string | number, unit: string) => {
+    return `${value} ${t(`toolsInternal.fetalDevelopment.units.${unit}`, { defaultValue: unit })}`;
   };
 
   const getAIInsight = async (type: 'development' | 'nutrition' | 'exercise') => {
@@ -113,7 +131,7 @@ const FetalDevelopment3D: React.FC = () => {
     const prompts = {
       development: `As a prenatal development specialist, provide detailed insights for pregnancy week ${currentData.week}:
 
-**Baby's Current Size:** ${babySize} (${currentData.length}, ${currentData.weight})
+**Baby's Current Size:** ${babySize} (${currentData.lengthValue} ${currentData.lengthUnit}, ${currentData.weightValue} ${currentData.weightUnit})
 **Key Development:** ${development}
 **Developing Organs:** ${currentData.organs.join(', ')}
 
@@ -128,7 +146,7 @@ Make it personal and exciting! Use emojis and keep the tone warm and encouraging
       
       nutrition: `As a prenatal nutritionist, provide week ${currentData.week} nutrition guidance:
 
-**Baby's Size:** ${babySize} (${currentData.weight})
+**Baby's Size:** ${babySize} (${currentData.weightValue} ${currentData.weightUnit})
 **Key Development Focus:** ${currentData.organs.join(', ')}
 
 Provide:
@@ -165,6 +183,9 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
       onDone: () => {},
     });
   };
+
+  const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
+  const NextIcon = isRTL ? ChevronLeft : ChevronRight;
 
   return (
     <ToolFrame
@@ -203,7 +224,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 disabled={currentIndex === 0}
                 className="rounded-full h-12 w-12"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <PrevIcon className="w-6 h-6" />
               </Button>
               
               <div className="text-center">
@@ -227,23 +248,23 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 disabled={currentIndex === weeklyData.length - 1}
                 className="rounded-full h-12 w-12"
               >
-                <ChevronRight className="w-6 h-6" />
+                <NextIcon className="w-6 h-6" />
               </Button>
             </div>
           </CardContent>
         </Card>
 
-        {/* Baby Visualization */}
+        {/* Baby Visualization Card */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentData.week}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3 }}
           >
             <Card className="bg-gradient-to-br from-primary/10 via-accent/5 to-accent/10 border-primary/20 overflow-hidden">
-              <CardContent className="py-8 relative">
+              <CardContent className="py-6 relative">
                 <div className="absolute top-3 end-3">
                   <Button variant="ghost" size="sm" onClick={saveCurrentWeek} className="text-xs">
                     <Calendar className="w-3.5 h-3.5 me-1" />
@@ -253,36 +274,54 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 
                 <div className="text-center">
                   <motion.div 
-                    className="w-24 h-24 mx-auto mb-3 rounded-full bg-primary/20 flex items-center justify-center"
+                    className="w-20 h-20 mx-auto mb-3 rounded-full bg-primary/20 flex items-center justify-center"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <Baby className="w-12 h-12 text-primary" />
+                    <Baby className="w-10 h-10 text-primary" />
                   </motion.div>
-                  <p className="text-lg font-bold text-foreground">
+                  <p className="text-base font-bold text-foreground">
                     {t('toolsInternal.fetalDevelopment.sizeOf', { 
                       size: t(`toolsInternal.fetalDevelopment.sizes.${currentData.sizeKey}`) 
                     })}
                   </p>
                   
-                  {/* Developing Organs */}
-                  <div className="flex items-center justify-center gap-2 mt-4">
-                    <span className="text-xs text-muted-foreground">
-                      {t('toolsInternal.fetalDevelopment.developing')}
-                    </span>
-                    <div className="flex gap-1.5">
-                      {currentData.organs.map((organ, i) => (
-                        <motion.div
-                          key={organ}
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ delay: i * 0.1 }}
-                          className="p-1.5 rounded-full bg-primary/20 text-primary"
-                        >
-                          {organIcons[organ]}
-                        </motion.div>
-                      ))}
+                  {/* Stats inline */}
+                  <div className="flex items-center justify-center gap-4 mt-3">
+                    <div className="flex items-center gap-1.5 text-sm">
+                      <Ruler className="w-3.5 h-3.5 text-primary" />
+                      <span className="font-semibold text-primary" dir="ltr">
+                        {formatMeasurement(currentData.lengthValue, currentData.lengthUnit)}
+                      </span>
                     </div>
+                    <div className="w-px h-4 bg-border" />
+                    <div className="flex items-center gap-1.5 text-sm">
+                      <Scale className="w-3.5 h-3.5 text-muted-foreground" />
+                      <span className="font-semibold text-foreground" dir="ltr">
+                        {formatMeasurement(currentData.weightValue, currentData.weightUnit)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Developing Organs */}
+                  <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+                    <span className="text-xs text-muted-foreground">
+                      {t('toolsInternal.fetalDevelopment.developing')}:
+                    </span>
+                    {currentData.organs.map((organ, i) => (
+                      <motion.div
+                        key={organ}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: i * 0.1 }}
+                        className="flex items-center gap-1 px-2 py-1 rounded-full bg-primary/15 text-primary text-xs"
+                      >
+                        {organIcons[organ]}
+                        <span className="font-medium">
+                          {t(organLabelKeys[organ] ?? '', { defaultValue: organ })}
+                        </span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </CardContent>
@@ -290,40 +329,14 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
           </motion.div>
         </AnimatePresence>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-2 gap-2">
-          <Card className="bg-gradient-to-br from-primary/8 to-accent/8 border-primary/20">
-            <CardContent className="py-3 text-center">
-              <Ruler className="w-4 h-4 mx-auto mb-1 text-primary shrink-0" />
-              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">
-                {t('toolsInternal.fetalDevelopment.length')}
-              </p>
-              <p className="text-lg sm:text-xl font-bold text-primary truncate">
-                {currentData.length}
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="bg-gradient-to-br from-accent/8 to-primary/8 border-accent/20">
-            <CardContent className="py-3 text-center">
-              <Scale className="w-4 h-4 mx-auto mb-1 text-accent-foreground shrink-0" />
-              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">
-                {t('toolsInternal.fetalDevelopment.weight')}
-              </p>
-              <p className="text-lg sm:text-xl font-bold text-foreground truncate">
-                {currentData.weight}
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
         {/* Development Info */}
         <Card>
           <CardContent className="py-4">
             <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-primary/10">
+              <div className="p-2.5 rounded-xl bg-primary/10 shrink-0">
                 <Baby className="w-4 h-4 text-primary" />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-sm text-foreground">
                   {t('toolsInternal.fetalDevelopment.thisWeeksDevelopment')}
                 </h3>
