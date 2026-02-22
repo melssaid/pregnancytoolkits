@@ -107,12 +107,15 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   const isRTL = language === 'ar';
   const fontFamily = getFontFamily(language);
 
+  // A4 at 96dpi ≈ 794×1123px. We use a fixed wrapper width for consistency.
+  const WRAPPER_WIDTH_PX = 794;
+
   const wrapper = document.createElement('div');
   wrapper.style.cssText = `
     position: absolute;
     left: -9999px;
     top: 0;
-    width: 794px;
+    width: ${WRAPPER_WIDTH_PX}px;
     background: #ffffff;
     font-family: ${fontFamily};
     color: #1e293b;
@@ -120,6 +123,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     padding: 0;
     line-height: 1.6;
     z-index: -1;
+    -webkit-font-smoothing: antialiased;
   `;
 
   const sanitizedContent = DOMPurify.sanitize(htmlContent, {
@@ -130,7 +134,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
 
   wrapper.innerHTML = `
     <style>
-      * { font-family: ${fontFamily} !important; box-sizing: border-box; }
+      * { font-family: ${fontFamily} !important; box-sizing: border-box; margin: 0; padding: 0; }
       h1,h2,h3,h4,h5,h6,p,div,span,strong,em,li {
         font-family: ${fontFamily} !important;
         direction: ${isRTL ? 'rtl' : 'ltr'};
@@ -144,14 +148,16 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   try {
     await document.fonts.ready;
   } catch { /* fallback */ }
-  await new Promise(resolve => setTimeout(resolve, 400));
+  await new Promise(resolve => setTimeout(resolve, 500));
 
+  // PDF constants
   const A4_WIDTH_MM = 210;
   const A4_HEIGHT_MM = 297;
-  const MARGIN_MM = 0;
-  const CONTENT_WIDTH_MM = A4_WIDTH_MM - MARGIN_MM * 2;
-  const SECTION_GAP_MM = 3;
-  const MAX_SECTION_HEIGHT_MM = A4_HEIGHT_MM - 20; // safety cap per section
+  const MARGIN_X_MM = 10;
+  const MARGIN_Y_MM = 8;
+  const CONTENT_WIDTH_MM = A4_WIDTH_MM - MARGIN_X_MM * 2;
+  const CONTENT_HEIGHT_MM = A4_HEIGHT_MM - MARGIN_Y_MM * 2;
+  const SECTION_GAP_MM = 2;
 
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
@@ -162,21 +168,22 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   if (sections.length === 0) {
     try {
       const canvas = await html2canvas(wrapper, {
-        scale: 2,
+        scale: 2.5,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
-        width: 794,
-        windowWidth: 794,
+        width: WRAPPER_WIDTH_PX,
+        windowWidth: WRAPPER_WIDTH_PX,
       });
-      const pixelsPerMM = canvas.width / A4_WIDTH_MM;
-      const pageHeightPx = A4_HEIGHT_MM * pixelsPerMM;
+      const scaleFactor = CONTENT_WIDTH_MM / (canvas.width / 2.5);
+      const pageHeightPx = CONTENT_HEIGHT_MM / scaleFactor;
       let remaining = canvas.height;
       let srcY = 0;
       let pageIdx = 0;
       while (remaining > 0) {
         if (pageIdx > 0) doc.addPage();
-        const sliceH = Math.min(remaining, pageHeightPx);
+        const sliceH = Math.min(remaining, pageHeightPx * 2.5);
+        const sliceHMM = (sliceH / 2.5) * scaleFactor;
         const pc = document.createElement('canvas');
         pc.width = canvas.width; pc.height = sliceH;
         const ctx = pc.getContext('2d');
@@ -185,7 +192,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
           ctx.fillRect(0, 0, pc.width, pc.height);
           ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
         }
-        doc.addImage(pc.toDataURL('image/png'), 'PNG', MARGIN_MM, 0, A4_WIDTH_MM, sliceH / pixelsPerMM);
+        doc.addImage(pc.toDataURL('image/png'), 'PNG', MARGIN_X_MM, MARGIN_Y_MM, CONTENT_WIDTH_MM, sliceHMM);
         srcY += sliceH; remaining -= sliceH; pageIdx++;
       }
     } finally {
@@ -195,20 +202,19 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     return;
   }
 
-  // Section-based rendering
-  let currentY = 0;
-  let isFirstPage = true;
+  // Section-based rendering with proper margins
+  let currentY = MARGIN_Y_MM;
 
   for (const section of sections) {
     let canvas: HTMLCanvasElement;
     try {
       canvas = await html2canvas(section, {
-        scale: 2,
+        scale: 2.5,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
-        width: 794,
-        windowWidth: 794,
+        width: WRAPPER_WIDTH_PX,
+        windowWidth: WRAPPER_WIDTH_PX,
       });
     } catch {
       continue;
@@ -216,24 +222,29 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
 
     if (canvas.width === 0 || canvas.height === 0) continue;
 
-    const pixelsPerMM = canvas.width / A4_WIDTH_MM;
-    let sectionHeightMM = canvas.height / pixelsPerMM;
+    // Calculate the real dimensions
+    const realWidthPx = canvas.width / 2.5;
+    const realHeightPx = canvas.height / 2.5;
+    const scaleFactor = CONTENT_WIDTH_MM / realWidthPx;
+    const sectionHeightMM = realHeightPx * scaleFactor;
 
     // If a single section is taller than a full page, split it across pages
-    if (sectionHeightMM > A4_HEIGHT_MM - 2) {
-      const pageHeightPx = A4_HEIGHT_MM * pixelsPerMM;
+    if (sectionHeightMM > CONTENT_HEIGHT_MM) {
+      const pageSliceHeightPx = (CONTENT_HEIGHT_MM / scaleFactor) * 2.5;
       let remaining = canvas.height;
       let srcY = 0;
       while (remaining > 0) {
-        if (!isFirstPage || currentY > 0) {
-          // Need new page if no space left
-          if (currentY + Math.min(remaining / pixelsPerMM, A4_HEIGHT_MM) > A4_HEIGHT_MM) {
-            doc.addPage();
-            currentY = 0;
-          }
+        const availableHeightMM = (currentY === MARGIN_Y_MM) ? CONTENT_HEIGHT_MM : (A4_HEIGHT_MM - MARGIN_Y_MM - currentY);
+        const availableSlicePx = (availableHeightMM / scaleFactor) * 2.5;
+        
+        if (availableHeightMM < 20 && currentY > MARGIN_Y_MM) {
+          doc.addPage();
+          currentY = MARGIN_Y_MM;
+          continue;
         }
-        const sliceH = Math.min(remaining, pageHeightPx - currentY * pixelsPerMM);
-        const sliceHMM = sliceH / pixelsPerMM;
+        
+        const sliceH = Math.min(remaining, availableSlicePx);
+        const sliceHMM = (sliceH / 2.5) * scaleFactor;
         const pc = document.createElement('canvas');
         pc.width = canvas.width; pc.height = sliceH;
         const ctx = pc.getContext('2d');
@@ -242,27 +253,25 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
           ctx.fillRect(0, 0, pc.width, pc.height);
           ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
         }
-        doc.addImage(pc.toDataURL('image/png'), 'PNG', MARGIN_MM, currentY, CONTENT_WIDTH_MM, sliceHMM);
+        doc.addImage(pc.toDataURL('image/png'), 'PNG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sliceHMM);
         currentY += sliceHMM;
         srcY += sliceH; remaining -= sliceH;
-        if (remaining > 0) { doc.addPage(); currentY = 0; isFirstPage = false; }
+        if (remaining > 0) { doc.addPage(); currentY = MARGIN_Y_MM; }
       }
       currentY += SECTION_GAP_MM;
-      isFirstPage = false;
       continue;
     }
 
     // Check if section fits on current page
-    const spaceLeft = A4_HEIGHT_MM - currentY;
-    if (!isFirstPage && sectionHeightMM > spaceLeft) {
+    const spaceLeft = A4_HEIGHT_MM - MARGIN_Y_MM - currentY;
+    if (sectionHeightMM > spaceLeft && currentY > MARGIN_Y_MM) {
       doc.addPage();
-      currentY = 0;
+      currentY = MARGIN_Y_MM;
     }
 
     const imgData = canvas.toDataURL('image/png');
-    doc.addImage(imgData, 'PNG', MARGIN_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
+    doc.addImage(imgData, 'PNG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
     currentY += sectionHeightMM + SECTION_GAP_MM;
-    isFirstPage = false;
   }
 
   document.body.removeChild(wrapper);
@@ -357,30 +366,28 @@ function buildSectionHTML(sectionTitle: string, accentColor: { r: number; g: num
 }
 
 
-// Build a bullet item HTML
+// Build a bullet item HTML - uses flexbox instead of position:absolute for html2canvas compatibility
 function buildBulletItemHTML(text: string, accentColor: { r: number; g: number; b: number }, language: string): string {
   const fontFamily = getFontFamily(language);
   const isRTL = language === 'ar';
-  const paddingSide = isRTL ? 'right' : 'left';
-  const dotSide = isRTL ? 'right' : 'left';
+  const dir = isRTL ? 'rtl' : 'ltr';
   return `
-    <div style="padding:3px 40px 3px 56px;padding-${paddingSide}:56px;position:relative;font-size:12px;color:#1e293b;font-family:${fontFamily};line-height:1.7;">
-      <span style="position:absolute;${dotSide}:42px;top:10px;width:5px;height:5px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;"></span>
-      ${stripEmojis(text)}
+    <div style="display:flex;align-items:flex-start;gap:8px;padding:3px 40px;font-size:12px;color:#1e293b;font-family:${fontFamily};line-height:1.7;direction:${dir};">
+      <span style="width:5px;height:5px;min-width:5px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:8px;flex-shrink:0;"></span>
+      <span style="flex:1;">${stripEmojis(text)}</span>
     </div>
   `;
 }
 
-// Build a label:value item HTML
+// Build a label:value item HTML - uses flexbox instead of position:absolute
 function buildLabelValueHTML(label: string, value: string, accentColor: { r: number; g: number; b: number }, language: string): string {
   const fontFamily = getFontFamily(language);
   const isRTL = language === 'ar';
-  const paddingSide = isRTL ? 'right' : 'left';
-  const dotSide = isRTL ? 'right' : 'left';
+  const dir = isRTL ? 'rtl' : 'ltr';
   return `
-    <div style="padding:3px 40px 3px 56px;padding-${paddingSide}:56px;position:relative;font-size:12px;color:#1e293b;font-family:${fontFamily};line-height:1.7;">
-      <span style="position:absolute;${dotSide}:42px;top:10px;width:5px;height:5px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;"></span>
-      <strong>${stripEmojis(label)}:</strong> <span style="color:#64748b;">${stripEmojis(value)}</span>
+    <div style="display:flex;align-items:flex-start;gap:8px;padding:3px 40px;font-size:12px;color:#1e293b;font-family:${fontFamily};line-height:1.7;direction:${dir};">
+      <span style="width:5px;height:5px;min-width:5px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:8px;flex-shrink:0;"></span>
+      <span style="flex:1;"><strong>${stripEmojis(label)}:</strong> <span style="color:#64748b;">${stripEmojis(value)}</span></span>
     </div>
   `;
 }
