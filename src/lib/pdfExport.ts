@@ -278,7 +278,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
       currentY = MARGIN_Y_MM;
     }
 
-    const imgData = canvas.toDataURL('image/jpeg', 0.85);
+    const imgData = canvas.toDataURL('image/jpeg', 0.92);
     doc.addImage(imgData, 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
     currentY += sectionHeightMM + SECTION_GAP_MM;
 
@@ -700,15 +700,16 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   const l = labels[language] || labels.en;
   const prefCount = preferences ? Object.keys(preferences).length : 0;
 
-  // Split content by H2 headings so each becomes its own data-pdf-section
-  // This prevents the "empty first page" problem where one massive section pushes to page 2
+  // Split content by headings (H1, H2, H3) so each becomes its own data-pdf-section
+  // This prevents truncation by keeping each section small enough for html2canvas
   const splitContentIntoSections = (md: string): string[] => {
     const lines = md.split('\n');
     const sections: string[] = [];
     let current: string[] = [];
     
     for (const line of lines) {
-      if (/^## /.test(line) && current.length > 0) {
+      // Split on any heading level (H1, H2, H3) to keep sections small
+      if (/^#{1,3} /.test(line) && current.length > 0) {
         sections.push(current.join('\n'));
         current = [line];
       } else {
@@ -716,7 +717,28 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       }
     }
     if (current.length > 0) sections.push(current.join('\n'));
-    return sections;
+    
+    // Further split any section that has too many lines (>30) to prevent canvas overflow
+    const MAX_LINES = 30;
+    const finalSections: string[] = [];
+    for (const section of sections) {
+      const sLines = section.split('\n');
+      if (sLines.length <= MAX_LINES) {
+        finalSections.push(section);
+      } else {
+        // Split at blank lines or bullet boundaries
+        let chunk: string[] = [];
+        for (const line of sLines) {
+          chunk.push(line);
+          if (chunk.length >= MAX_LINES && (line.trim() === '' || /^[-*+] /.test(line))) {
+            finalSections.push(chunk.join('\n'));
+            chunk = [];
+          }
+        }
+        if (chunk.length > 0) finalSections.push(chunk.join('\n'));
+      }
+    }
+    return finalSections;
   };
 
   const contentSections = splitContentIntoSections(content);
