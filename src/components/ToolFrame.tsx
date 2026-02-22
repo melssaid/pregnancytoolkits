@@ -86,8 +86,13 @@ export function ToolFrame({
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border/40 shadow-sm"
+          className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border/40 shadow-sm overflow-hidden"
         >
+          {/* Pink glow behind header */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-[70%] h-16 bg-primary/15 rounded-full blur-2xl" />
+            <div className="absolute -top-4 right-0 w-32 h-12 bg-primary/10 rounded-full blur-xl" />
+          </div>
           <div className="px-4 sm:px-6 py-2 flex items-center justify-between">
             <div className="flex items-center gap-2 min-w-0 flex-1">
               <BackButton />
