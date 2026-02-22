@@ -72,6 +72,9 @@ const SplashScreen = ({ onComplete }: { onComplete?: () => void }) => {
           src={logo}
           alt="Pregnancy Toolkits"
           className="w-28 h-28 rounded-3xl shadow-2xl relative z-10"
+          fetchPriority="high"
+          decoding="sync"
+          loading="eager"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
