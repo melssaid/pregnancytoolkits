@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, ChevronLeft, Sparkles } from "lucide-react";
+import { Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, ChevronLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { getToolsByCategory } from "@/lib/tools-data";
@@ -127,9 +127,8 @@ function CategoryCard({ config, index }: { config: CategoryConfig; index: number
                     <div className="flex items-center gap-1.5">
                       <h3 className="text-[11px] font-semibold text-foreground truncate leading-snug">{t(tool.titleKey)}</h3>
                       {tool.hasAI && (
-                        <span className="flex-shrink-0 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-primary/10 border border-primary/20">
-                          <Sparkles className="w-2 h-2 text-primary" />
-                          <span className="text-[8px] font-bold text-primary leading-none">AI</span>
+                        <span className="flex-shrink-0 inline-flex items-center px-1.5 py-[1px] rounded-md bg-destructive/10 border border-destructive/20">
+                          <span className="text-[8px] font-bold text-destructive tracking-wider leading-none">AI</span>
                         </span>
                       )}
                     </div>
