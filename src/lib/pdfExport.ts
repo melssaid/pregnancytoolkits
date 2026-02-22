@@ -69,6 +69,7 @@ const COLORS = {
   dark: { r: 30, g: 41, b: 59 },
   light: { r: 248, g: 250, b: 252 },
   muted: { r: 148, g: 163, b: 184 },
+  headerBg: { r: 253, g: 242, b: 248 },
 };
 
 function rgbStr(c: { r: number; g: number; b: number }) {
@@ -162,14 +163,14 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   } catch { /* fallback */ }
   await new Promise(resolve => setTimeout(resolve, 60));
 
-  // PDF constants – tight margins for maximum content area
+  // PDF constants – balanced margins for professional look
   const A4_WIDTH_MM = 210;
   const A4_HEIGHT_MM = 297;
-  const MARGIN_X_MM = 8;
-  const MARGIN_Y_MM = 6;
+  const MARGIN_X_MM = 12;
+  const MARGIN_Y_MM = 10;
   const CONTENT_WIDTH_MM = A4_WIDTH_MM - MARGIN_X_MM * 2;
   const CONTENT_HEIGHT_MM = A4_HEIGHT_MM - MARGIN_Y_MM * 2;
-  const SECTION_GAP_MM = 1.5;
+  const SECTION_GAP_MM = 2;
 
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
@@ -361,12 +362,12 @@ function buildHeaderHTML(
 ): string {
   const fontFamily = getFontFamily(language);
   return `
-    <div data-pdf-section style="background:#fcfcfd;padding:14px 16px 10px;text-align:center;">
-      ${logoData ? `<img src="${logoData}" style="width:30px;height:30px;margin:0 auto 4px;display:block;border-radius:6px;" />` : ''}
-      <div style="font-size:20px;font-weight:700;color:#1e293b;margin-bottom:2px;font-family:${fontFamily};">${stripEmojis(title)}</div>
-      ${subtitle ? `<div style="font-size:10px;color:#94a3b8;margin-bottom:2px;font-family:${fontFamily};">${stripEmojis(subtitle)}</div>` : ''}
-      <div style="font-size:9px;color:${rgbStr(accentColor)};font-weight:500;font-family:${fontFamily};">${getBrandName(language)}</div>
-      <div style="height:2px;background:${rgbStr(accentColor)};border-radius:1px;margin:8px auto 0;max-width:160px;"></div>
+    <div data-pdf-section style="background:linear-gradient(180deg, ${rgbaStr(accentColor, 0.06)} 0%, #ffffff 100%);padding:20px 24px 14px;text-align:center;">
+      ${logoData ? `<img src="${logoData}" style="width:36px;height:36px;margin:0 auto 8px;display:block;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);" />` : ''}
+      <div style="font-size:22px;font-weight:800;color:#1e293b;margin-bottom:4px;font-family:${fontFamily};letter-spacing:-0.3px;">${stripEmojis(title)}</div>
+      ${subtitle ? `<div style="font-size:11px;color:#64748b;margin-bottom:4px;font-family:${fontFamily};">${stripEmojis(subtitle)}</div>` : ''}
+      <div style="font-size:9px;color:${rgbStr(accentColor)};font-weight:600;font-family:${fontFamily};letter-spacing:0.5px;text-transform:uppercase;">${getBrandName(language)}</div>
+      <div style="height:2.5px;background:linear-gradient(90deg, transparent, ${rgbStr(accentColor)}, transparent);border-radius:2px;margin:12px auto 0;max-width:200px;"></div>
     </div>
   `;
 }
@@ -388,11 +389,12 @@ function buildFooterHTML(language: string, accentColor: { r: number; g: number; 
     es: 'Exportado el', pt: 'Exportado em', tr: 'Dışa aktarma tarihi',
   };
   const exportLabel = exportLabels[language] || 'Exported on';
-  const text = `${exportLabel} ${dateStr} • ${getBrandName(language)}`;
+  const text = `${exportLabel} ${dateStr}`;
   return `
-    <div data-pdf-section style="padding:6px 16px 8px;text-align:center;background:#fcfcfd;">
-      <div style="height:1px;background:${rgbaStr(accentColor, 0.3)};margin-bottom:6px;"></div>
-      <div style="font-size:8px;color:#94a3b8;font-family:${fontFamily};">${text}</div>
+    <div data-pdf-section style="padding:10px 24px 14px;text-align:center;background:linear-gradient(180deg, #ffffff 0%, ${rgbaStr(accentColor, 0.04)} 100%);">
+      <div style="height:1.5px;background:linear-gradient(90deg, transparent, ${rgbaStr(accentColor, 0.3)}, transparent);margin-bottom:10px;"></div>
+      <div style="font-size:8.5px;color:#94a3b8;font-family:${fontFamily};line-height:1.5;">${text}</div>
+      <div style="font-size:8px;color:${rgbaStr(accentColor, 0.6)};font-family:${fontFamily};font-weight:600;margin-top:2px;">${getBrandName(language)}</div>
     </div>
   `;
 }
@@ -404,10 +406,10 @@ function openSectionHTML(sectionTitle: string, accentColor: { r: number; g: numb
   const fontFamily = getFontFamily(language);
   const isRTL = language === 'ar';
   return `
-    <div data-pdf-section style="margin:4px 16px 0;padding-bottom:2px;">
-      <div style="display:flex;align-items:stretch;border-radius:5px 5px 0 0;overflow:hidden;background:${rgbaStr(accentColor, 0.08)};">
-        <div style="width:3px;min-width:3px;background:${rgbStr(accentColor)};${isRTL ? 'order:1;' : ''}"></div>
-        <div style="padding:5px 12px;font-size:12px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};flex:1;">
+    <div data-pdf-section style="margin:6px 20px 2px;padding-bottom:4px;">
+      <div style="display:flex;align-items:stretch;border-radius:6px 6px 0 0;overflow:hidden;background:${rgbaStr(accentColor, 0.07)};">
+        <div style="width:4px;min-width:4px;background:${rgbStr(accentColor)};${isRTL ? 'order:1;' : ''}"></div>
+        <div style="padding:7px 14px;font-size:12.5px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};flex:1;letter-spacing:-0.1px;">
           ${stripEmojis(sectionTitle)}
         </div>
       </div>
@@ -423,10 +425,10 @@ function buildSectionHTML(sectionTitle: string, accentColor: { r: number; g: num
   const fontFamily = getFontFamily(language);
   const isRTL = language === 'ar';
   return `
-    <div data-pdf-section style="margin:4px 16px 0;">
-      <div style="display:flex;align-items:stretch;border-radius:5px;overflow:hidden;background:${rgbaStr(accentColor, 0.08)};">
-        <div style="width:3px;min-width:3px;background:${rgbStr(accentColor)};${isRTL ? 'order:1;' : ''}"></div>
-        <div style="padding:5px 12px;font-size:12px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};flex:1;">
+    <div data-pdf-section style="margin:6px 20px 2px;">
+      <div style="display:flex;align-items:stretch;border-radius:6px;overflow:hidden;background:${rgbaStr(accentColor, 0.07)};">
+        <div style="width:4px;min-width:4px;background:${rgbStr(accentColor)};${isRTL ? 'order:1;' : ''}"></div>
+        <div style="padding:7px 14px;font-size:12.5px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};flex:1;letter-spacing:-0.1px;">
           ${stripEmojis(sectionTitle)}
         </div>
       </div>
@@ -441,8 +443,8 @@ function buildBulletItemHTML(text: string, accentColor: { r: number; g: number; 
   const isRTL = language === 'ar';
   const dir = isRTL ? 'rtl' : 'ltr';
   return `
-    <div style="display:flex;align-items:flex-start;gap:6px;padding:1px 16px;font-size:11px;color:#1e293b;font-family:${fontFamily};line-height:1.4;direction:${dir};">
-      <span style="width:4px;height:4px;min-width:4px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:6px;flex-shrink:0;"></span>
+    <div style="display:flex;align-items:flex-start;gap:8px;padding:3px 20px;font-size:11px;color:#334155;font-family:${fontFamily};line-height:1.5;direction:${dir};">
+      <span style="width:5px;height:5px;min-width:5px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:6px;flex-shrink:0;"></span>
       <span style="flex:1;">${stripEmojis(text)}</span>
     </div>
   `;
@@ -454,16 +456,15 @@ function buildLabelValueHTML(label: string, value: string, accentColor: { r: num
   const isRTL = language === 'ar';
   const dir = isRTL ? 'rtl' : 'ltr';
   return `
-    <div style="display:flex;align-items:flex-start;gap:6px;padding:1px 16px;font-size:11px;color:#1e293b;font-family:${fontFamily};line-height:1.4;direction:${dir};">
-      <span style="width:4px;height:4px;min-width:4px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:6px;flex-shrink:0;"></span>
-      <span style="flex:1;"><strong>${stripEmojis(label)}:</strong> <span style="color:#64748b;">${stripEmojis(value)}</span></span>
+    <div style="display:flex;align-items:flex-start;gap:8px;padding:3px 20px;font-size:11px;color:#334155;font-family:${fontFamily};line-height:1.5;direction:${dir};">
+      <span style="width:5px;height:5px;min-width:5px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:6px;flex-shrink:0;"></span>
+      <span style="flex:1;"><strong style="color:#1e293b;">${stripEmojis(label)}:</strong> <span style="color:#64748b;">${stripEmojis(value)}</span></span>
     </div>
   `;
 }
 
 // Convert markdown to HTML
 function markdownToHTMLWithLang(markdown: string, fontFamily: string, isRTL: boolean): string {
-  const borderSide = isRTL ? 'right' : 'left';
   const paddingSide = isRTL ? 'right' : 'left';
   const textAlign = isRTL ? 'justify' : 'left';
   const dir = isRTL ? 'rtl' : 'ltr';
@@ -471,16 +472,16 @@ function markdownToHTMLWithLang(markdown: string, fontFamily: string, isRTL: boo
 
   // Use background-color for the accent bar instead of border (html2canvas renders borders as dashed)
   const makeHeading = (level: number, text: string) => {
-    const sizes = [15, 13, 12, 11];
-    const weights = [700, 700, 600, 600];
-    const paddings = ['5px 10px 5px 14px', '4px 10px 4px 12px', '3px 8px 3px 10px', '3px 8px 3px 10px'];
-    const margins = ['10px 0 4px', '8px 0 3px', '6px 0 2px', '5px 0 2px'];
-    const barWidths = [3, 3, 2, 2];
+    const sizes = [16, 14, 12.5, 11.5];
+    const weights = [800, 700, 700, 600];
+    const paddings = ['7px 14px 7px 16px', '6px 12px 6px 14px', '5px 10px 5px 12px', '4px 10px 4px 12px'];
+    const margins = ['14px 0 6px', '10px 0 5px', '8px 0 4px', '6px 0 3px'];
+    const barWidths = [4, 3, 3, 2];
     const idx = level - 1;
     const headingColor = level <= 2 ? '#1e293b' : '#be185d';
-    return `<div style="display:flex;align-items:stretch;margin:${margins[idx]};border-radius:6px;overflow:hidden;background:rgba(236,72,153,0.07);direction:${dir};">` +
+    return `<div style="display:flex;align-items:stretch;margin:${margins[idx]};border-radius:6px;overflow:hidden;background:rgba(236,72,153,0.06);direction:${dir};">` +
       `<div style="width:${barWidths[idx]}px;min-width:${barWidths[idx]}px;background:#ec4899;flex-shrink:0;${isRTL ? 'order:1;' : ''}"></div>` +
-      `<div style="padding:${paddings[idx]};font-size:${sizes[idx]}px;font-weight:${weights[idx]};color:${headingColor};font-family:${fontFamily};text-align:${textAlign};flex:1;">${text}</div>` +
+      `<div style="padding:${paddings[idx]};font-size:${sizes[idx]}px;font-weight:${weights[idx]};color:${headingColor};font-family:${fontFamily};text-align:${textAlign};flex:1;letter-spacing:-0.1px;">${text}</div>` +
       `</div>`;
   };
 
@@ -489,12 +490,12 @@ function markdownToHTMLWithLang(markdown: string, fontFamily: string, isRTL: boo
     .replace(/^### (.*$)/gm, (_, p1) => makeHeading(3, p1))
     .replace(/^## (.*$)/gm, (_, p1) => makeHeading(2, p1))
     .replace(/^# (.*$)/gm, (_, p1) => makeHeading(1, p1))
-    .replace(/\*\*(.*?)\*\*/g, '<strong style="font-weight:600;color:#1e293b;">$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/^[-*+] (.*$)/gm, `<div style="display:flex;align-items:flex-start;gap:5px;padding:1px 0;font-family:${fontFamily};direction:${dir};text-align:${textAlign};font-size:10.5px;line-height:1.4;color:#334155;"><span style="width:4px;height:4px;min-width:4px;background:#ec4899;border-radius:50%;display:inline-block;margin-top:5px;"></span><span style="flex:1;">$1</span></div>`)
-    .replace(/^\d+\.\s+(.*$)/gm, `<div style="padding:1px 0 1px 14px;padding-${paddingSide}:14px;font-family:${fontFamily};direction:${dir};text-align:${textAlign};font-size:10.5px;line-height:1.4;color:#334155;">$1</div>`)
-    .replace(/^[-*_]{3,}$/gm, `<div style="height:1px;background:rgba(236,72,153,0.2);margin:6px 0;"></div>`)
-    .replace(/\n{2,}/g, '<div style="height:3px;"></div>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong style="font-weight:700;color:#1e293b;">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em style="color:#475569;">$1</em>')
+    .replace(/^[-*+] (.*$)/gm, `<div style="display:flex;align-items:flex-start;gap:7px;padding:2px 0;font-family:${fontFamily};direction:${dir};text-align:${textAlign};font-size:11px;line-height:1.5;color:#334155;"><span style="width:5px;height:5px;min-width:5px;background:#ec4899;border-radius:50%;display:inline-block;margin-top:6px;"></span><span style="flex:1;">$1</span></div>`)
+    .replace(/^\d+\.\s+(.*$)/gm, `<div style="padding:2px 0 2px 16px;padding-${paddingSide}:16px;font-family:${fontFamily};direction:${dir};text-align:${textAlign};font-size:11px;line-height:1.5;color:#334155;">$1</div>`)
+    .replace(/^[-*_]{3,}$/gm, `<div style="height:1.5px;background:linear-gradient(90deg, transparent, rgba(236,72,153,0.25), transparent);margin:8px 0;"></div>`)
+    .replace(/\n{2,}/g, '<div style="height:6px;"></div>')
     .replace(/\n/g, '<br/>')
     .trim();
 }
@@ -688,7 +689,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     </div>
   `;
   html += `
-    <div data-pdf-section style="display:flex;gap:8px;margin:8px 16px 4px;">
+    <div data-pdf-section style="display:flex;gap:10px;margin:10px 20px 6px;">
       ${statCard(COLORS.primary, totalItems, L.totalItems)}
       ${statCard(COLORS.success, categories.health.length, L.healthData)}
       ${statCard(COLORS.secondary, categories.planning.length, L.planning)}
@@ -699,20 +700,19 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   Object.entries(categories).forEach(([cat, items]) => {
     if (items.length === 0) return;
     const meta = categoryMeta[cat];
-    const borderSide = isRTL ? 'right' : 'left';
 
-    html += `<div data-pdf-section style="margin:4px 16px 0;padding-bottom:3px;border-bottom:1px solid ${rgbaStr(meta.color, 0.15)};">`;
+    html += `<div data-pdf-section style="margin:6px 20px 2px;padding-bottom:4px;">`;
     html += `
-      <div style="display:flex;align-items:stretch;border-radius:5px 5px 0 0;overflow:hidden;background:${rgbaStr(meta.color, 0.08)};">
-        <div style="width:3px;min-width:3px;background:${rgbStr(meta.color)};${isRTL ? 'order:1;' : ''}"></div>
-        <div style="padding:4px 10px;font-size:11px;font-weight:700;color:${rgbStr(meta.color)};font-family:${fontFamily};flex:1;">
+      <div style="display:flex;align-items:stretch;border-radius:6px 6px 0 0;overflow:hidden;background:${rgbaStr(meta.color, 0.07)};">
+        <div style="width:4px;min-width:4px;background:${rgbStr(meta.color)};${isRTL ? 'order:1;' : ''}"></div>
+        <div style="padding:6px 14px;font-size:12px;font-weight:700;color:${rgbStr(meta.color)};font-family:${fontFamily};flex:1;">
           ${stripEmojis(meta.label)} (${items.length})
         </div>
       </div>
     `;
     items.forEach((item) => {
       html += `
-        <div style="display:flex;gap:5px;padding:2px 8px 2px 14px;font-size:10px;font-family:${fontFamily};color:#1e293b;">
+        <div style="display:flex;gap:6px;padding:3px 10px 3px 18px;font-size:10.5px;font-family:${fontFamily};color:#334155;line-height:1.45;">
           <span style="font-weight:600;color:#475569;min-width:0;flex-shrink:0;">${stripEmojis(item.label)}:</span>
           <span style="color:#64748b;word-break:break-word;">${stripEmojis(item.value)}</span>
         </div>
@@ -723,7 +723,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
 
   // Disclaimer — own section
   html += `
-    <div data-pdf-section style="margin:6px 16px 2px;padding:6px 12px;background:${rgbaStr(COLORS.primary, 0.06)};border-radius:5px;font-size:8px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.3;">
+    <div data-pdf-section style="margin:8px 20px 4px;padding:8px 14px;background:${rgbaStr(COLORS.primary, 0.05)};border-radius:6px;font-size:8.5px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.4;">
       ${L.disclaimer}
     </div>
   `;
@@ -856,16 +856,16 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
       }
     );
     html += `
-      <div data-pdf-section style="padding:2px 16px;font-size:10.5px;line-height:1.35;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
+      <div data-pdf-section style="padding:4px 24px;font-size:11px;line-height:1.5;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
         ${sectionHTML}
       </div>
     `;
   }
 
   html += `
-    <div data-pdf-section style="margin:2px 16px 8px;padding:6px 14px;text-align:center;background:#fdf2f8;border-radius:0 0 6px 6px;">
-      <div style="height:1px;background:rgba(236,72,153,0.3);margin-bottom:4px;border-radius:1px;"></div>
-      <div style="font-size:8px;color:#94a3b8;line-height:1.4;font-family:${fontFamily};">${l.footer}</div>
+    <div data-pdf-section style="margin:4px 20px 10px;padding:8px 16px;text-align:center;background:rgba(236,72,153,0.04);border-radius:6px;">
+      <div style="height:1.5px;background:linear-gradient(90deg, transparent, rgba(236,72,153,0.25), transparent);margin-bottom:6px;"></div>
+      <div style="font-size:8.5px;color:#94a3b8;line-height:1.5;font-family:${fontFamily};">${l.footer}</div>
     </div>
   `;
 
@@ -943,33 +943,33 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   // Progress bar - wrapped in data-pdf-section
   const progressBarFill = `${progress}%`;
   html += `
-    <div data-pdf-section style="margin:8px 16px;padding:8px 14px;background:${rgbaStr(accentColor, 0.06)};border-radius:6px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-        <span style="font-size:11px;font-weight:600;color:#1e293b;font-family:${fontFamily};">${stripEmojis(labels.progress)}: ${progress}%</span>
-        <span style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}</span>
+    <div data-pdf-section style="margin:10px 20px;padding:10px 16px;background:${rgbaStr(accentColor, 0.05)};border-radius:8px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-size:12px;font-weight:700;color:#1e293b;font-family:${fontFamily};">${stripEmojis(labels.progress)}: ${progress}%</span>
+        <span style="font-size:10px;color:#64748b;font-family:${fontFamily};">${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}</span>
       </div>
-      <div style="height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;">
-        <div style="height:100%;width:${progressBarFill};background:${rgbStr(accentColor)};border-radius:3px;"></div>
+      <div style="height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;">
+        <div style="height:100%;width:${progressBarFill};background:linear-gradient(90deg, ${rgbStr(accentColor)}, ${rgbaStr(accentColor, 0.7)});border-radius:4px;"></div>
       </div>
     </div>
   `;
 
   // Category summary cards - wrapped in data-pdf-section
-  html += `<div data-pdf-section style="display:flex;gap:6px;margin:6px 16px 8px;">`;
+  html += `<div data-pdf-section style="display:flex;gap:8px;margin:8px 20px 10px;">`;
   Object.entries(categoryStats).forEach(([cat, catItems]) => {
     const color = categoryColors[cat];
     const label = categoryLabels[cat];
     const catPacked = catItems.filter(i => i.packed).length;
     html += `
-      <div style="flex:1;background:${rgbaStr(color, 0.08)};border-radius:6px;padding:6px 6px;text-align:center;">
-        <div style="font-size:13px;font-weight:700;color:${rgbStr(color)};font-family:${fontFamily};">${catPacked}/${catItems.length}</div>
-        <div style="font-size:7px;color:#94a3b8;font-family:${fontFamily};margin-top:1px;">${stripEmojis(label)}</div>
+      <div style="flex:1;background:${rgbaStr(color, 0.06)};border-radius:8px;padding:8px 6px;text-align:center;">
+        <div style="font-size:14px;font-weight:800;color:${rgbStr(color)};font-family:${fontFamily};">${catPacked}/${catItems.length}</div>
+        <div style="font-size:8px;color:#94a3b8;font-family:${fontFamily};margin-top:2px;">${stripEmojis(label)}</div>
       </div>
     `;
   });
   html += `</div>`;
 
-  html += `<div data-pdf-section style="margin:0 16px 12px;height:1px;background:${rgbaStr(accentColor, 0.2)};"></div>`;
+  html += `<div data-pdf-section style="margin:0 20px 10px;height:1.5px;background:linear-gradient(90deg, transparent, ${rgbaStr(accentColor, 0.2)}, transparent);"></div>`;
 
   // Items by category - each category is a data-pdf-section
   Object.entries(categoryStats).forEach(([cat, catItems]) => {
@@ -977,23 +977,22 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
     const color = categoryColors[cat];
     const label = categoryLabels[cat];
     const catPacked = catItems.filter(i => i.packed).length;
-    const borderSide = isRTL ? 'right' : 'left';
 
-    html += `<div data-pdf-section style="margin:4px 16px 4px;">`;
+    html += `<div data-pdf-section style="margin:6px 20px 6px;">`;
     html += `
-      <div style="padding:5px 12px;background:${rgbaStr(color, 0.08)};border-radius:5px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="padding:7px 14px;background:${rgbaStr(color, 0.07)};border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
         <div style="display:flex;align-items:center;gap:0;">
-          <div style="width:3px;min-width:3px;height:16px;background:${rgbStr(color)};border-radius:2px;margin-${isRTL ? 'left' : 'right'}:8px;"></div>
-          <span style="font-size:12px;font-weight:700;color:${rgbStr(color)};font-family:${fontFamily};">${stripEmojis(label)}</span>
+          <div style="width:4px;min-width:4px;height:18px;background:${rgbStr(color)};border-radius:2px;margin-${isRTL ? 'left' : 'right'}:10px;"></div>
+          <span style="font-size:12.5px;font-weight:700;color:${rgbStr(color)};font-family:${fontFamily};">${stripEmojis(label)}</span>
         </div>
-        <span style="font-size:9px;color:#94a3b8;font-family:${fontFamily};">${catPacked}/${catItems.length}</span>
+        <span style="font-size:10px;color:#94a3b8;font-family:${fontFamily};">${catPacked}/${catItems.length}</span>
       </div>
     `;
 
     catItems.forEach(item => {
       const checkColor = item.packed ? rgbStr(COLORS.success) : '#cbd5e1';
-      const checkBg = item.packed ? rgbaStr(COLORS.success, 0.15) : 'transparent';
-      const textColor = item.packed ? '#94a3b8' : '#1e293b';
+      const checkBg = item.packed ? rgbaStr(COLORS.success, 0.12) : 'transparent';
+      const textColor = item.packed ? '#94a3b8' : '#334155';
       const textDecoration = item.packed ? 'line-through' : 'none';
 
       const statusColor = item.packed ? COLORS.success : { r: 239, g: 68, b: 68 };
@@ -1001,17 +1000,17 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
 
       let priorityBadge = '';
       if (item.priority === 'essential' && !item.packed) {
-        priorityBadge = `<span style="font-size:9px;color:rgb(239,68,68);background:rgba(239,68,68,0.1);padding:1px 6px;border-radius:3px;font-family:${fontFamily};margin-${isRTL ? 'left' : 'right'}:6px;">${stripEmojis(labels.essential)}</span>`;
+        priorityBadge = `<span style="font-size:9px;color:rgb(239,68,68);background:rgba(239,68,68,0.08);padding:2px 8px;border-radius:4px;font-family:${fontFamily};margin-${isRTL ? 'left' : 'right'}:6px;">${stripEmojis(labels.essential)}</span>`;
       }
 
       html += `
-        <div style="padding:2px 12px;display:flex;align-items:center;gap:6px;font-family:${fontFamily};">
-          <div style="width:12px;height:12px;border-radius:2px;border:1.5px solid ${checkColor};background:${checkBg};flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            ${item.packed ? `<span style="color:${rgbStr(COLORS.success)};font-size:8px;font-weight:700;">✓</span>` : ''}
+        <div style="padding:4px 14px;display:flex;align-items:center;gap:8px;font-family:${fontFamily};">
+          <div style="width:14px;height:14px;border-radius:3px;border:1.5px solid ${checkColor};background:${checkBg};flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            ${item.packed ? `<span style="color:${rgbStr(COLORS.success)};font-size:9px;font-weight:700;">✓</span>` : ''}
           </div>
-          <span style="flex:1;font-size:10px;color:${textColor};text-decoration:${textDecoration};">${stripEmojis(item.name)}</span>
+          <span style="flex:1;font-size:11px;color:${textColor};text-decoration:${textDecoration};line-height:1.4;">${stripEmojis(item.name)}</span>
           ${priorityBadge}
-          <span style="font-size:8px;color:${rgbStr(statusColor)};background:${rgbaStr(statusColor, 0.1)};padding:1px 5px;border-radius:3px;">${stripEmojis(statusText)}</span>
+          <span style="font-size:8.5px;color:${rgbStr(statusColor)};background:${rgbaStr(statusColor, 0.08)};padding:2px 7px;border-radius:4px;font-weight:500;">${stripEmojis(statusText)}</span>
         </div>
       `;
     });
@@ -1139,7 +1138,7 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
       }
     );
     html += `
-      <div data-pdf-section style="padding:2px 16px;font-size:10.5px;line-height:1.35;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
+      <div data-pdf-section style="padding:4px 24px;font-size:11px;line-height:1.5;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
         ${sectionHTML}
       </div>
     `;
@@ -1147,7 +1146,7 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
 
   // Disclaimer
   html += `
-    <div data-pdf-section style="margin:6px 16px 2px;padding:6px 12px;background:${rgbaStr(accentColor, 0.06)};border-radius:5px;font-size:8px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.3;">
+    <div data-pdf-section style="margin:8px 20px 4px;padding:8px 14px;background:${rgbaStr(accentColor, 0.05)};border-radius:6px;font-size:8.5px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.4;">
       ${disclaimer}
     </div>
   `;
