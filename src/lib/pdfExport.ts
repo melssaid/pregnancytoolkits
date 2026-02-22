@@ -130,7 +130,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     color: #1e293b;
     direction: ${isRTL ? 'rtl' : 'ltr'};
     padding: 0;
-    line-height: 1.3;
+    line-height: 1.45;
     z-index: -1;
     -webkit-font-smoothing: antialiased;
   `;
@@ -166,7 +166,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   const MARGIN_Y_MM = 6;
   const CONTENT_WIDTH_MM = A4_WIDTH_MM - MARGIN_X_MM * 2;
   const CONTENT_HEIGHT_MM = A4_HEIGHT_MM - MARGIN_Y_MM * 2;
-  const SECTION_GAP_MM = 0.5;
+  const SECTION_GAP_MM = 1.5;
 
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
@@ -244,11 +244,15 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     const sectionHeightMM = realHeightPx * scaleFactor;
 
     if (sectionHeightMM > CONTENT_HEIGHT_MM) {
+      // Line-snap constant: approximate rendered line height in scaled pixels
+      // font-size ~11px, line-height 1.4 → ~15.4px per line → ~31px at RENDER_SCALE=2
+      const LINE_SNAP_PX = Math.round(15.4 * RENDER_SCALE);
+
       let remaining = croppedCanvas.height;
       let srcY = 0;
       while (remaining > 0) {
         const availableHeightMM = (currentY === MARGIN_Y_MM) ? CONTENT_HEIGHT_MM : (A4_HEIGHT_MM - MARGIN_Y_MM - currentY);
-        const availableSlicePx = (availableHeightMM / scaleFactor) * RENDER_SCALE;
+        let availableSlicePx = (availableHeightMM / scaleFactor) * RENDER_SCALE;
         
         if (availableHeightMM < 15 && currentY > MARGIN_Y_MM) {
           doc.addPage();
@@ -256,7 +260,11 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
           continue;
         }
         
-        const sliceH = Math.min(remaining, availableSlicePx);
+        let sliceH = Math.min(remaining, availableSlicePx);
+        // Snap slice height DOWN to the nearest line boundary to avoid cutting text
+        if (sliceH < remaining && LINE_SNAP_PX > 0) {
+          sliceH = Math.max(LINE_SNAP_PX, Math.floor(sliceH / LINE_SNAP_PX) * LINE_SNAP_PX);
+        }
         const sliceHMM = (sliceH / RENDER_SCALE) * scaleFactor;
         const pc = document.createElement('canvas');
         pc.width = croppedCanvas.width; pc.height = sliceH;
