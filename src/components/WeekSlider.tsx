@@ -177,7 +177,7 @@ export const WeekSlider = memo(function WeekSlider({
 
         {/* Labels */}
         <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span>{t('common.week')} {isRTL ? max : min}</span>
+          <span>{t('common.week')} {min}</span>
           <motion.div
             className="flex flex-col items-center"
             key={week}
@@ -189,7 +189,7 @@ export const WeekSlider = memo(function WeekSlider({
               {t('common.week')} {week}
             </span>
           </motion.div>
-          <span>{t('common.week')} {isRTL ? min : max}</span>
+          <span>{t('common.week')} {max}</span>
         </div>
       </div>
     </div>
