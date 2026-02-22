@@ -217,6 +217,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
         content: generatedPlan,
         date: format(new Date(), 'MMMM d, yyyy'),
         preferences,
+        additionalNotes,
         language: i18n.language?.split('-')[0] || 'en',
         onProgress: setPdfProgress,
       });
@@ -444,6 +445,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
                               content: plan.generatedPlan,
                               date: format(new Date(plan.date), 'MMMM d, yyyy'),
                               preferences: plan.preferences,
+                              additionalNotes: plan.notes,
                               language: i18n.language?.split('-')[0] || 'en',
                             });
                           }}
