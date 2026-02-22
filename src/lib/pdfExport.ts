@@ -387,14 +387,16 @@ function markdownToHTMLWithLang(markdown: string, fontFamily: string, isRTL: boo
   const cleaned = stripEmojis(markdown);
 
   return cleaned
-    .replace(/^### (.*$)/gm, `<h3 style="font-size:15px;font-weight:600;color:#ec4899;margin:16px 0 8px;padding:6px 12px;background:rgba(236,72,153,0.08);border-radius:6px;border-${borderSide}:3px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h3>`)
-    .replace(/^## (.*$)/gm, `<h2 style="font-size:17px;font-weight:700;color:#ec4899;margin:20px 0 10px;padding:8px 14px;background:rgba(236,72,153,0.08);border-radius:8px;border-${borderSide}:4px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h2>`)
-    .replace(/^# (.*$)/gm, `<h1 style="font-size:20px;font-weight:700;color:#1e293b;margin:20px 0 12px;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h1>`)
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/^#### (.*$)/gm, `<h4 style="font-size:13px;font-weight:600;color:#ec4899;margin:12px 0 6px;padding:5px 10px;background:rgba(236,72,153,0.06);border-radius:5px;border-${borderSide}:3px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h4>`)
+    .replace(/^### (.*$)/gm, `<h3 style="font-size:14px;font-weight:600;color:#ec4899;margin:14px 0 8px;padding:6px 12px;background:rgba(236,72,153,0.07);border-radius:6px;border-${borderSide}:3px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h3>`)
+    .replace(/^## (.*$)/gm, `<h2 style="font-size:16px;font-weight:700;color:#1e293b;margin:18px 0 10px;padding:8px 14px;background:rgba(236,72,153,0.08);border-radius:8px;border-${borderSide}:4px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h2>`)
+    .replace(/^# (.*$)/gm, `<h1 style="font-size:18px;font-weight:700;color:#1e293b;margin:20px 0 12px;padding:10px 14px;background:rgba(236,72,153,0.06);border-radius:8px;border-${borderSide}:4px solid #ec4899;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</h1>`)
+    .replace(/\*\*(.*?)\*\*/g, '<strong style="font-weight:600;color:#1e293b;">$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/^[-*+] (.*$)/gm, `<div style="padding:3px 0 3px 16px;padding-${paddingSide}:16px;position:relative;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};"><span style="position:absolute;${paddingSide}:0;top:8px;width:6px;height:6px;background:#ec4899;border-radius:50%;display:inline-block;"></span>$1</div>`)
-    .replace(/^\d+\. (.*$)/gm, `<div style="padding:3px 0 3px 8px;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};">$1</div>`)
-    .replace(/\n{2,}/g, '<div style="height:10px;"></div>')
+    .replace(/^[-*+] (.*$)/gm, `<div style="padding:4px 0 4px 18px;padding-${paddingSide}:18px;position:relative;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};font-size:12px;line-height:1.7;color:#334155;"><span style="position:absolute;${paddingSide}:4px;top:11px;width:6px;height:6px;background:#ec4899;border-radius:50%;display:inline-block;"></span>$1</div>`)
+    .replace(/^\d+\.\s+(.*$)/gm, `<div style="padding:4px 0 4px 18px;padding-${paddingSide}:18px;font-family:${fontFamily};direction:${isRTL ? 'rtl' : 'ltr'};text-align:${textAlign};font-size:12px;line-height:1.7;color:#334155;">$1</div>`)
+    .replace(/^[-*_]{3,}$/gm, `<div style="height:1px;background:rgba(236,72,153,0.2);margin:14px 0;"></div>`)
+    .replace(/\n{2,}/g, '<div style="height:8px;"></div>')
     .replace(/\n/g, '<br/>')
     .trim();
 }
@@ -636,7 +638,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
 
 // Birth plan PDF export
 export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
-  const { title, content, date, preferences, language = 'en', contentElement } = options;
+  const { title, content, date, preferences, language = 'en' } = options;
   const isRTL = language === 'ar';
   const logoData = await loadLogoImage();
   const fontFamily = getFontFamily(language);
@@ -655,35 +657,46 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   const l = labels[language] || labels.en;
   const prefCount = preferences ? Object.keys(preferences).length : 0;
 
-  const rawContent = contentElement
-    ? stripEmojisFromHTML(contentElement.innerHTML, isRTL)
-    : markdownToHTMLWithLang(content, fontFamily, isRTL);
-  const mainContent = DOMPurify.sanitize(rawContent, {
-    ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','table','thead','tbody','tr','th','td','img','style'],
-    ALLOWED_ATTR: ['style','class','data-pdf-section','src','alt','dir'],
-    ALLOW_DATA_ATTR: true,
-  });
+  // Always use markdown-to-HTML conversion for clean, consistent styling
+  const mainContent = DOMPurify.sanitize(
+    markdownToHTMLWithLang(content, fontFamily, isRTL),
+    {
+      ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','table','thead','tbody','tr','th','td','style'],
+      ALLOWED_ATTR: ['style','class','data-pdf-section','dir'],
+      ALLOW_DATA_ATTR: true,
+    }
+  );
+
+  // Build preferences list if available
+  let prefsHTML = '';
+  if (preferences && prefCount > 0) {
+    const prefEntries = Object.entries(preferences).filter(([_, v]) => v);
+    prefsHTML = prefEntries.map(([_, value]) => 
+      `<div style="display:inline-block;padding:3px 10px;margin:2px 4px;background:rgba(236,72,153,0.08);border-radius:12px;font-size:10px;color:#ec4899;font-weight:500;font-family:${fontFamily};">${stripEmojis(value)}</div>`
+    ).join('');
+  }
 
   let html = `
-    <div data-pdf-section style="background:#fcfcfd;border-bottom:2px solid #ec4899;padding:24px 40px 20px;text-align:center;">
-      ${logoData ? `<img src="${logoData}" style="width:40px;height:40px;margin:0 auto 8px;display:block;border-radius:8px;" />` : ''}
-      <div style="font-size:28px;font-weight:700;color:#1e293b;margin-bottom:6px;font-family:${fontFamily};">${l.title}</div>
-      <div style="font-size:13px;color:#94a3b8;margin-bottom:4px;font-family:${fontFamily};">${date}</div>
-      <div style="font-size:11px;color:#ec4899;font-weight:500;font-family:${fontFamily};">${l.brand}</div>
+    <div data-pdf-section style="background:#fcfcfd;border-bottom:3px solid #ec4899;padding:28px 40px 22px;text-align:center;">
+      ${logoData ? `<img src="${logoData}" style="width:44px;height:44px;margin:0 auto 10px;display:block;border-radius:10px;" />` : ''}
+      <div style="font-size:26px;font-weight:700;color:#1e293b;margin-bottom:6px;font-family:${fontFamily};">${l.title}</div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:4px;font-family:${fontFamily};">${date}</div>
+      <div style="font-size:10px;color:#ec4899;font-weight:500;font-family:${fontFamily};">${l.brand}</div>
       ${prefCount > 0 ? `
-        <div style="margin:12px 0 0;padding:10px 16px;background:#fdf2f8;border-radius:8px;border-${isRTL ? 'right' : 'left'}:4px solid #ec4899;text-align:${textAlign};">
-          <div style="font-size:14px;font-weight:600;color:#ec4899;font-family:${fontFamily};">${l.prefSummary}</div>
-          <div style="font-size:12px;color:#94a3b8;margin-top:2px;font-family:${fontFamily};">${prefCount} ${l.prefCount}</div>
+        <div style="margin:14px auto 0;max-width:500px;padding:12px 16px;background:#fdf2f8;border-radius:10px;border-${isRTL ? 'right' : 'left'}:4px solid #ec4899;text-align:${textAlign};">
+          <div style="font-size:13px;font-weight:600;color:#ec4899;font-family:${fontFamily};margin-bottom:6px;">${l.prefSummary}</div>
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;font-family:${fontFamily};">${prefCount} ${l.prefCount}</div>
+          <div style="text-align:center;">${prefsHTML}</div>
         </div>
       ` : ''}
     </div>
     
-    <div data-pdf-section style="padding:16px 40px 20px;font-size:13px;line-height:1.8;color:#1e293b;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
+    <div data-pdf-section style="padding:20px 40px 24px;font-size:12px;line-height:1.8;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
       ${mainContent}
     </div>
     
-    <div data-pdf-section style="margin:4px 40px 12px;padding-top:10px;border-top:1px solid #ec4899;text-align:center;">
-      <div style="font-size:9px;color:#94a3b8;line-height:1.5;font-family:${fontFamily};">${l.footer}</div>
+    <div data-pdf-section style="margin:4px 40px 16px;padding:12px 16px;border-top:2px solid rgba(236,72,153,0.3);text-align:center;background:#fdf2f8;border-radius:0 0 8px 8px;">
+      <div style="font-size:9px;color:#94a3b8;line-height:1.6;font-family:${fontFamily};">${l.footer}</div>
     </div>
   `;
 

@@ -204,9 +204,8 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
   }, []);
 
   const planContentRef = useRef<HTMLDivElement>(null);
-
   const exportPlanAsPDF = useCallback(async () => {
-    if (!generatedPlan || !planContentRef.current) return;
+    if (!generatedPlan) return;
     
     try {
       await exportBirthPlanToPDF({
@@ -215,7 +214,6 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
         date: format(new Date(), 'MMMM d, yyyy'),
         preferences,
         language: i18n.language?.split('-')[0] || 'en',
-        contentElement: planContentRef.current,
       });
       toast.success(t('toolsInternal.birthPlan.pdfSuccess'));
     } catch (error) {
