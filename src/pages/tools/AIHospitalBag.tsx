@@ -15,7 +15,7 @@ import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { exportHospitalBagPDF, generateHospitalBagShareText } from "@/lib/pdfExport";
-import { PDFProgressOverlay } from '@/components/PDFProgressOverlay';
+
 import { toast } from "sonner";
 import { hospitalBagVideosByLang } from "@/data/videoData";
 
@@ -414,7 +414,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
       mood="empowering"
       toolId="ai-hospital-bag"
     >
-      <PDFProgressOverlay progress={pdfProgress} visible={isExportingPDF} />
+      
       <div className="space-y-4">
         {/* Progress Card */}
         <Card className="p-3 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border-teal-200">

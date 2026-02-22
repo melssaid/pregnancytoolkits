@@ -12,7 +12,7 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { mentalHealthVideosByLang } from '@/data/videoData';
 import { exportAIResultPDF } from '@/lib/pdfExport';
-import { PDFProgressOverlay } from '@/components/PDFProgressOverlay';
+
 import { toast } from 'sonner';
 
 interface ScreeningQuestion {
@@ -261,7 +261,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
       toolId="mental-health-coach"
     >
       <div className="space-y-6">
-        <PDFProgressOverlay progress={pdfProgress} visible={isExportingPDF} />
+        
 
           {!showResults ? (
             <Card>
