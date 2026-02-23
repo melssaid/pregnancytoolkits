@@ -46,14 +46,16 @@
   "categories": {
     "all": "Tümü",
     "ai": "Akıllı Araçlar",
+    "smartAssistant": "Akıllı Asistan",
     "fertility": "Doğurganlık",
     "pregnancy": "Hamilelik",
-    "labor": "Doğum",
+    "nutrition": "Beslenme ve Diyet",
+    "labor": "Doğum ve Travay",
     "postpartum": "Bebek Bakımı",
     "selfCheck": "Kendi Kendine Kontrol",
     "riskAssessment": "Kendi Kendine Kontrol",
     "mentalHealth": "Ruh Sağlığı",
-    "wellness": "Sağlık",
+    "wellness": "Sağlık ve Fitness",
     "preparation": "Hazırlık"
   },
   "onboarding": {
