@@ -50,6 +50,60 @@ async function loadLogoImage(): Promise<string | null> {
   } catch { return null; }
 }
 
+// =============================================
+// Unicode font support for Arabic/Turkish/etc.
+// =============================================
+let unicodeFontCache: string | null = null;
+let unicodeFontLoading: Promise<string | null> | null = null;
+
+// Noto Sans Arabic — covers Arabic + Latin + Turkish + European
+const FONT_URL = 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/notosansarabic/NotoSansArabic%5Bwght%5D.ttf';
+// Fallback: Amiri
+const FONT_URL_FALLBACK = 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/amiri/Amiri-Regular.ttf';
+
+async function loadUnicodeFont(): Promise<string | null> {
+  if (unicodeFontCache) return unicodeFontCache;
+  if (unicodeFontLoading) return unicodeFontLoading;
+  
+  unicodeFontLoading = (async () => {
+    for (const url of [FONT_URL, FONT_URL_FALLBACK]) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) continue;
+        const arrayBuffer = await response.arrayBuffer();
+        // Convert to base64 for jsPDF
+        const bytes = new Uint8Array(arrayBuffer);
+        let binary = '';
+        for (let i = 0; i < bytes.length; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        unicodeFontCache = btoa(binary);
+        return unicodeFontCache;
+      } catch { continue; }
+    }
+    return null;
+  })();
+  
+  return unicodeFontLoading;
+}
+
+function setupUnicodeFont(doc: jsPDF, fontData: string | null) {
+  if (!fontData) return;
+  try {
+    doc.addFileToVFS('NotoSansArabic.ttf', fontData);
+    doc.addFont('NotoSansArabic.ttf', 'NotoSansArabic', 'normal');
+    doc.setFont('NotoSansArabic');
+  } catch { /* font already added */ }
+}
+
+// Create a pre-configured PDF document with Unicode font support
+async function createPDFDoc(language: string): Promise<{ doc: jsPDF; fontData: string | null }> {
+  const fontData = await loadUnicodeFont();
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  setupUnicodeFont(doc, fontData);
+  return { doc, fontData };
+}
+
 // Premium color palette
 const COLORS = {
   primary: { r: 236, g: 72, b: 153 },
@@ -275,7 +329,8 @@ function renderMarkdownToPDF(s: PDFState, markdown: string, accentColor: RGB) {
 export async function exportGenericPDF(options: GenericPDFOptions): Promise<void> {
   const { title, subtitle, sections, language = 'en', accentColor = COLORS.primary } = options;
   const logoData = await loadLogoImage();
-  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
+  const { doc } = await createPDFDoc(language);
+  const s: PDFState = { doc, y: MARGIN_Y };
 
   options.onProgress?.(10);
   drawLogo(s, logoData);
@@ -310,7 +365,8 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
 export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promise<void> {
   const { title, subtitle, data, language = 'en' } = options;
   const logoData = await loadLogoImage();
-  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
+  const { doc } = await createPDFDoc(language);
+  const s: PDFState = { doc, y: MARGIN_Y };
 
   options.onProgress?.(10);
 
@@ -476,6 +532,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
 export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
   const { title, content, date, preferences, additionalNotes, language = 'en' } = options;
   const logoData = await loadLogoImage();
+  const { doc } = await createPDFDoc(language);
   const accentColor = COLORS.primary;
 
   const labels: Record<string, Record<string, string>> = {
@@ -577,7 +634,8 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   const { title, subtitle, items, language = 'en', labels } = options;
   const logoData = await loadLogoImage();
   const accentColor = { r: 20, g: 184, b: 166 };
-  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
+  const { doc } = await createPDFDoc(language);
+  const s: PDFState = { doc, y: MARGIN_Y };
 
   options.onProgress?.(10);
   drawLogo(s, logoData);
@@ -737,7 +795,8 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
   };
   const disclaimer = disclaimerLabels[language] || disclaimerLabels.en;
 
-  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
+  const { doc } = await createPDFDoc(language);
+  const s: PDFState = { doc, y: MARGIN_Y };
 
   options.onProgress?.(10);
   drawLogo(s, logoData);
