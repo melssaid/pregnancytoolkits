@@ -220,8 +220,8 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                         idx === currentIndex
                           ? 'bg-primary text-primary-foreground shadow-sm'
                           : userWeek === wd.week
-                            ? 'bg-primary/15 text-primary'
-                            : 'text-muted-foreground hover:bg-muted/60'
+                            ? 'bg-primary/15 text-primary font-bold'
+                            : 'text-foreground/70 hover:bg-muted/60'
                       }`}
                     >
                       {wd.week}
