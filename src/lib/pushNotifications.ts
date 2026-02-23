@@ -25,7 +25,7 @@ export const getPermissionStatus = (): NotificationPermission | 'unsupported' =>
  */
 export const registerServiceWorker = async (): Promise<ServiceWorkerRegistration | null> => {
   if (!isPushSupported()) {
-    console.warn('[Push] Service Worker not supported');
+    // Service Worker not supported
     return null;
   }
 
@@ -34,7 +34,7 @@ export const registerServiceWorker = async (): Promise<ServiceWorkerRegistration
       scope: '/',
     });
     swRegistration = registration;
-    console.log('[Push] Service Worker registered successfully');
+    // SW registered
     return registration;
   } catch (error) {
     console.error('[Push] Service Worker registration failed:', error);
@@ -50,7 +50,7 @@ export const requestPermission = async (): Promise<NotificationPermission> => {
 
   try {
     const permission = await Notification.requestPermission();
-    console.log('[Push] Permission result:', permission);
+    // Permission granted
     return permission;
   } catch (error) {
     console.error('[Push] Permission request failed:', error);
@@ -138,7 +138,7 @@ export const scheduleRemindersInSW = async (
     payload: { reminders },
   });
 
-  console.log('[Push] Sent', reminders.length, 'reminders to SW for scheduling');
+  // Reminders sent to SW
   return true;
 };
 

@@ -159,6 +159,6 @@ export async function sendDailyScheduleToSW(): Promise<void> {
 
   if (reminders.length > 0) {
     await scheduleRemindersInSW(reminders);
-    console.log('[Schedule] Sent', reminders.length, 'scheduled reminders to SW');
+    // Reminders scheduled
   }
 }
