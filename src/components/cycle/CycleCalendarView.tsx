@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronLeft, ChevronRight, Pencil } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameMonth, isSameDay, isAfter } from "date-fns";
 import { getDateLocale, formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -15,10 +15,9 @@ interface Props {
     ovulationDay: string;
   };
   onDayTap: (dateStr: string) => void;
-  onDayLongPress: (dateStr: string) => void;
 }
 
-export function CycleCalendarView({ dayLogs, predictedDates, onDayTap, onDayLongPress }: Props) {
+export function CycleCalendarView({ dayLogs, predictedDates, onDayTap }: Props) {
   const { t } = useTranslation();
   const { currentLanguage, isRTL } = useLanguage();
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -112,20 +111,17 @@ export function CycleCalendarView({ dayLogs, predictedDates, onDayTap, onDayLong
               const isCurrentMonth = isSameMonth(day, currentMonth);
               const isToday = isSameDay(day, today);
               const hasMood = !!log?.mood;
-              const hasNotes = !!log?.notes;
 
               return (
                 <button
                   key={dateStr}
-                  onClick={() => onDayTap(dateStr)}
-                  onDoubleClick={() => onDayLongPress(dateStr)}
-                  onContextMenu={(e) => { e.preventDefault(); onDayLongPress(dateStr); }}
+                  onClick={() => !isFuture && onDayTap(dateStr)}
                   disabled={isFuture}
                   className={cn(
-                    "relative aspect-square flex flex-col items-center justify-center rounded-lg m-0.5 text-xs transition-all",
+                    "relative aspect-square flex flex-col items-center justify-center rounded-lg m-0.5 text-xs transition-all active:scale-95",
                     !isCurrentMonth && "opacity-30",
                     isFuture && "opacity-40 cursor-default",
-                    isToday && "ring-1 ring-primary/50",
+                    isToday && "ring-1.5 ring-primary/60",
                     isLogged && "bg-red-500/15 text-red-700 dark:text-red-300 font-semibold",
                     isPredictedPeriod && !isLogged && "bg-red-500/5 border border-dashed border-red-300/40",
                     isFertile && !isLogged && !isPredictedPeriod && "bg-pink-500/8 border border-dashed border-pink-300/40",
@@ -133,11 +129,6 @@ export function CycleCalendarView({ dayLogs, predictedDates, onDayTap, onDayLong
                     !isLogged && !isPredictedPeriod && !isFertile && !isOvulation && "hover:bg-muted/50",
                   )}
                 >
-                  {/* Edit indicator for logged days */}
-                  {isLogged && isCurrentMonth && (
-                    <Pencil className="absolute top-0.5 end-0.5 w-2 h-2 text-red-400/60" />
-                  )}
-
                   <span className="text-[11px] leading-none">{format(day, "d")}</span>
                   
                   {/* Indicators row */}
