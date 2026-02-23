@@ -1,10 +1,10 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Brain, CalendarIcon, Info, Droplets } from "lucide-react";
+import { CalendarIcon, Info, Droplets } from "lucide-react";
 import { format } from "date-fns";
 import { ToolFrame } from "@/components/ToolFrame";
-import { Button } from "@/components/ui/button";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
 import { VideoLibrary } from "@/components/VideoLibrary";
@@ -21,7 +21,7 @@ export default function CycleTracker() {
   const { toast } = useToast();
   const { dayLogs, stats, predictedDates, updateDay, deleteDay } = useCycleData();
   const [editingDate, setEditingDate] = useState<string | null>(null);
-  const aiSectionRef = useRef<HTMLDivElement>(null);
+  
 
   // Every tap opens the day sheet - simple and consistent
   const handleDayTap = (dateStr: string) => {
@@ -38,9 +38,8 @@ export default function CycleTracker() {
     toast({ title: t('toolsInternal.cycleTracker.deleted'), duration: 1500 });
   };
 
-  const scrollToAI = () => {
-    aiSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  };
+
+
 
   const getSymptomLabel = (key: string) => t(`toolsInternal.cycleTracker.symptomOptions.${key}`, key);
 
@@ -131,7 +130,7 @@ Any patterns that might be worth discussing with a doctor`;
 
         {/* AI Analysis */}
         {stats && (
-          <div ref={aiSectionRef}>
+          <div>
             <AIInsightCard
               title={t('toolsInternal.cycleTracker.cycleInsights')}
               prompt={aiPrompt}
@@ -167,26 +166,6 @@ Any patterns that might be worth discussing with a doctor`;
         onClose={() => setEditingDate(null)}
       />
 
-      {/* Sticky AI Button */}
-      {stats && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-          className="fixed bottom-20 left-1/2 -translate-x-1/2 z-40"
-        >
-          <Button
-            onClick={scrollToAI}
-            className="h-10 px-5 rounded-full shadow-lg shadow-primary/25 gap-2 text-sm"
-            style={{
-              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
-            }}
-          >
-            <Brain className="w-4 h-4" />
-            {t('toolsInternal.cycleTracker.stickyAnalyze')}
-          </Button>
-        </motion.div>
-      )}
     </ToolFrame>
   );
 }
