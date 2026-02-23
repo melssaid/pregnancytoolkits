@@ -313,10 +313,10 @@ export const hospitalBagVideosByLang = (t: (key: string) => string): VideosByLan
 // ════════════════════════════════════════════════════════════
 export const skincareVideosByLang = (t: (key: string) => string): VideosByLang => ({
   ar: [
-    { id: "1", title: "العناية بالبشرة أثناء الحمل", description: "روتين بشرة آمن للحامل", youtubeId: "CK9K2TmLG3c", duration: "15:30", category: "عناية بالبشرة" },
-    { id: "2", title: "منتجات آمنة للحامل", description: "ما يمكن استخدامه وما يجب تجنبه", youtubeId: "OeEQy4PO8Jg", duration: "12:00", category: "عناية بالبشرة" },
-    { id: "3", title: "دليل طبيب الجلدية للعناية بالبشرة", description: "مكونات آمنة وبدائل للعناية بالبشرة أثناء الحمل", youtubeId: "9NvKchuLIUw", duration: "14:00", category: "عناية بالبشرة" },
-    { id: "4", title: "الوقاية من علامات التمدد", description: "نصائح وعلاجات لتقليل علامات التمدد أثناء الحمل", youtubeId: "Zmepuxvn9ck", duration: "10:00", category: "وقاية" },
+    { id: "1", title: "العناية بالبشرة أثناء الحمل", description: "التصبغات وكلف الحمل وطرق العلاج", youtubeId: "Axp5Vbj8-2A", duration: "15:00", category: "عناية بالبشرة" },
+    { id: "2", title: "منتجات العناية بالبشرة للحامل", description: "ما يمكن استخدامه وما يجب تجنبه أثناء الحمل", youtubeId: "oYcOkhOdFa8", duration: "12:00", category: "عناية بالبشرة" },
+    { id: "3", title: "وصفات طبيعية للبشرة أثناء الحمل", description: "وصفات آمنة للعناية بالبشرة والشعر للحامل", youtubeId: "-TLBQ1jN6Xg", duration: "14:00", category: "عناية بالبشرة" },
+    { id: "4", title: "علامات التمدد وعلاجها", description: "أسباب ظهور علامات التمدد وكيفية علاجها", youtubeId: "xHqUqtL7wmQ", duration: "10:00", category: "وقاية" },
   ],
   tr: [
     { id: "1", title: "Hamilelikte Cilt Bakımı", description: "Güvenli cilt bakım rutini hamileler için", youtubeId: "izPwiih-Qcw", duration: "12:00", category: "Cilt Bakımı" },
