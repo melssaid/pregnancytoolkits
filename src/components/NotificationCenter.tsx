@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Bell, X, Check, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, Sparkles, ChevronRight, HardDrive } from 'lucide-react';
+import React from 'react';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import { Bell, X, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, Sparkles, ChevronRight, HardDrive, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Switch } from '@/components/ui/switch';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
 import { Link } from 'react-router-dom';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Switch } from '@/components/ui/switch';
 import { useTranslation } from 'react-i18next';
 
 const typeIcons: Record<string, any> = {
@@ -47,45 +46,53 @@ function NotificationItem({ notification, onRead, onClear }: {
     return t('notificationCenter.justNow');
   };
 
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    if (Math.abs(info.offset.x) > 100) {
+      onClear();
+    }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 20 }}
-      className={`p-3 rounded-xl border transition-colors ${
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, height: 0, marginBottom: 0, overflow: 'hidden' }}
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.4}
+      onDragEnd={handleDragEnd}
+      className={`px-2.5 py-2 rounded-lg border transition-colors touch-pan-y ${
         notification.read 
-          ? 'bg-muted/30 border-border/50' 
-          : 'bg-card border-primary/20 shadow-sm'
+          ? 'bg-muted/20 border-transparent' 
+          : 'bg-card border-border/40'
       }`}
     >
-      <div className="flex items-start gap-3">
-        <div className={`w-8 h-8 rounded-lg ${colorClass} flex items-center justify-center text-white flex-shrink-0`}>
-          <Icon className="w-4 h-4" />
+      <div className="flex items-center gap-2">
+        <div className={`w-6 h-6 rounded-md ${colorClass} flex items-center justify-center text-white flex-shrink-0`}>
+          <Icon className="w-3 h-3" />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <h4 className={`text-sm font-medium ${notification.read ? 'text-muted-foreground' : 'text-foreground'}`}>
+          <div className="flex items-center justify-between gap-1">
+            <h4 className={`text-[11px] font-semibold truncate ${notification.read ? 'text-muted-foreground' : 'text-foreground'}`}>
               {notification.title}
             </h4>
-            <button onClick={onClear} className="text-muted-foreground hover:text-foreground">
-              <X className="w-3 h-3" />
-            </button>
+            <span className="text-[9px] text-muted-foreground shrink-0">{timeAgo()}</span>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">{notification.message}</p>
-          <div className="flex items-center justify-between mt-2">
-            <span className="text-[10px] text-muted-foreground">{timeAgo()}</span>
-            {notification.actionUrl && (
-              <Link 
-                to={notification.actionUrl} 
-                onClick={onRead}
-                className="text-xs text-primary font-medium flex items-center gap-1 hover:underline"
-              >
-                {t('notificationCenter.open')} <ChevronRight className="w-3 h-3" />
-              </Link>
-            )}
-          </div>
+          <p className="text-[10px] text-muted-foreground truncate">{notification.message}</p>
         </div>
+        <button onClick={onClear} className="p-1 rounded-md hover:bg-muted/60 transition-colors shrink-0">
+          <X className="w-3 h-3 text-muted-foreground" />
+        </button>
       </div>
+      {notification.actionUrl && !notification.read && (
+        <Link 
+          to={notification.actionUrl} 
+          onClick={onRead}
+          className="mt-1 ms-8 text-[10px] font-medium text-primary flex items-center gap-0.5"
+        >
+          {t('notificationCenter.open')} <ChevronRight className="w-2.5 h-2.5" />
+        </Link>
+      )}
     </motion.div>
   );
 }
@@ -96,7 +103,6 @@ export function NotificationCenter() {
     notifications, 
     unreadCount, 
     settings, 
-    addNotification,
     markAsRead, 
     markAllAsRead, 
     clearNotification, 
@@ -104,7 +110,7 @@ export function NotificationCenter() {
     updateSettings 
   } = useNotifications();
   
-  const [showSettings, setShowSettings] = useState(false);
+  const [showSettings, setShowSettings] = React.useState(false);
 
   return (
     <Sheet>
@@ -118,121 +124,72 @@ export function NotificationCenter() {
           )}
         </button>
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-md p-0">
-        <SheetHeader className="p-4 border-b border-border">
+      <SheetContent className="w-full sm:max-w-sm p-0">
+        <SheetHeader className="px-3 py-2 border-b border-border">
           <div className="flex items-center justify-between">
-            <SheetTitle className="text-lg">{t('notificationCenter.title')}</SheetTitle>
-            <div className="flex items-center gap-2">
+            <SheetTitle className="text-sm">{t('notificationCenter.title')}</SheetTitle>
+            <div className="flex items-center gap-1">
               <button 
                 onClick={() => setShowSettings(!showSettings)}
-                className="p-2 rounded-lg hover:bg-muted transition-colors"
+                className="p-1.5 rounded-lg hover:bg-muted transition-colors"
               >
-                <Settings className="w-4 h-4 text-muted-foreground" />
+                <Settings className="w-3.5 h-3.5 text-muted-foreground" />
               </button>
               {unreadCount > 0 && (
-                <button 
-                  onClick={markAllAsRead}
-                  className="p-2 rounded-lg hover:bg-muted transition-colors"
-                  title={t('notificationCenter.markAllRead')}
-                >
-                  <CheckCheck className="w-4 h-4 text-muted-foreground" />
+                <button onClick={markAllAsRead} className="p-1.5 rounded-lg hover:bg-muted transition-colors">
+                  <CheckCheck className="w-3.5 h-3.5 text-muted-foreground" />
+                </button>
+              )}
+              {notifications.length > 0 && (
+                <button onClick={clearAll} className="p-1.5 rounded-lg hover:bg-muted transition-colors">
+                  <Trash2 className="w-3.5 h-3.5 text-muted-foreground" />
                 </button>
               )}
             </div>
           </div>
         </SheetHeader>
 
-        <div className="p-4 max-h-[calc(100vh-120px)] overflow-y-auto">
+        <div className="p-3 max-h-[calc(100vh-80px)] overflow-y-auto">
           <AnimatePresence>
             {showSettings && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                className="mb-4"
+                className="mb-3 p-3 rounded-lg bg-muted/30 border border-border/50 space-y-2"
               >
-                <Card>
-                  <CardContent className="p-4 space-y-3">
-                    <h4 className="font-semibold text-sm">{t('notificationCenter.reminderSettings')}</h4>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-blue-500" />
-                        <span className="text-sm">{t('notificationCenter.appointments')}</span>
-                      </div>
-                      <Switch checked={settings.appointmentReminders} onCheckedChange={(v) => updateSettings({ appointmentReminders: v })} />
+                <h4 className="font-semibold text-[11px]">{t('notificationCenter.reminderSettings')}</h4>
+                {[
+                  { key: 'appointmentReminders', icon: Calendar, label: t('notificationCenter.appointments'), color: 'text-blue-500' },
+                  { key: 'vitaminReminders', icon: Pill, label: t('notificationCenter.vitamins'), color: 'text-amber-500' },
+                  { key: 'exerciseReminders', icon: Dumbbell, label: t('notificationCenter.exercise'), color: 'text-emerald-500' },
+                  { key: 'waterReminders', icon: Droplet, label: t('notificationCenter.water'), color: 'text-sky-500' },
+                  { key: 'stretchReminders', icon: Sparkles, label: t('notificationCenter.stretching'), color: 'text-violet-500' },
+                ].map(({ key, icon: ItemIcon, label, color }) => (
+                  <div key={key} className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <ItemIcon className={`w-3.5 h-3.5 ${color}`} />
+                      <span className="text-[11px]">{label}</span>
                     </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Pill className="w-4 h-4 text-amber-500" />
-                        <span className="text-sm">{t('notificationCenter.vitamins')}</span>
-                      </div>
-                      <Switch checked={settings.vitaminReminders} onCheckedChange={(v) => updateSettings({ vitaminReminders: v })} />
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Dumbbell className="w-4 h-4 text-emerald-500" />
-                        <span className="text-sm">{t('notificationCenter.exercise')}</span>
-                      </div>
-                      <Switch checked={settings.exerciseReminders} onCheckedChange={(v) => updateSettings({ exerciseReminders: v })} />
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Droplet className="w-4 h-4 text-sky-500" />
-                        <span className="text-sm">{t('notificationCenter.water')}</span>
-                      </div>
-                      <Switch checked={settings.waterReminders} onCheckedChange={(v) => updateSettings({ waterReminders: v })} />
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-violet-500" />
-                        <span className="text-sm">{t('notificationCenter.stretching')}</span>
-                      </div>
-                      <Switch checked={settings.stretchReminders} onCheckedChange={(v) => updateSettings({ stretchReminders: v })} />
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <HardDrive className="w-4 h-4 text-rose-500" />
-                        <span className="text-sm">{t('notificationCenter.backupWeekly')}</span>
-                      </div>
-                      <Switch
-                        checked={settings.backupReminders ?? true}
-                        onCheckedChange={(v) => {
-                          updateSettings({ backupReminders: v });
-                          if (v && !localStorage.getItem('backup_reminder_first_enabled')) {
-                            localStorage.setItem('backup_reminder_first_enabled', 'true');
-                            addNotification({
-                              type: 'backup',
-                              title: t('notificationCenter.backupEnabled'),
-                              message: t('notificationCenter.backupEnabledDesc'),
-                              actionUrl: '/settings',
-                            });
-                          }
-                        }}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
+                    <Switch 
+                      checked={(settings as any)[key]} 
+                      onCheckedChange={(v) => updateSettings({ [key]: v })} 
+                    />
+                  </div>
+                ))}
               </motion.div>
             )}
           </AnimatePresence>
 
           {notifications.length === 0 ? (
-            <div className="text-center py-12">
-              <Bell className="w-12 h-12 mx-auto text-muted-foreground/50 mb-3" />
-              <h3 className="font-medium text-muted-foreground">{t('notificationCenter.noNotifications')}</h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                {t('notificationCenter.remindYou')}
-              </p>
+            <div className="text-center py-10">
+              <Bell className="w-8 h-8 mx-auto text-muted-foreground/30 mb-2" />
+              <p className="text-[11px] font-medium text-muted-foreground">{t('notificationCenter.noNotifications')}</p>
+              <p className="text-[9px] text-muted-foreground mt-0.5">{t('notificationCenter.remindYou')}</p>
             </div>
           ) : (
-            <div className="space-y-2">
-              <AnimatePresence>
+            <div className="space-y-1">
+              <AnimatePresence mode="popLayout">
                 {notifications.map((notification) => (
                   <NotificationItem
                     key={notification.id}
@@ -242,17 +199,6 @@ export function NotificationCenter() {
                   />
                 ))}
               </AnimatePresence>
-              
-              {notifications.length > 0 && (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={clearAll}
-                  className="w-full text-xs text-muted-foreground mt-4"
-                >
-                  {t('notificationCenter.clearAll')}
-                </Button>
-              )}
             </div>
           )}
         </div>

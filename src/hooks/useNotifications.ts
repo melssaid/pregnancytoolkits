@@ -132,6 +132,21 @@ export function useNotifications() {
     safeSaveToLocalStorage('notificationSettings', settings);
   }, [settings]);
 
+  // Auto-clean old read notifications (older than 12 hours)
+  useEffect(() => {
+    if (!isInitialized.current) return;
+    const TWELVE_HOURS = 12 * 60 * 60 * 1000;
+    const now = Date.now();
+    const cleaned = notifications.filter(n => {
+      if (n.isPinned) return true;
+      if (!n.read) return true;
+      return (now - new Date(n.time).getTime()) < TWELVE_HOURS;
+    });
+    if (cleaned.length !== notifications.length) {
+      setNotifications(cleaned);
+    }
+  }, [notifications]);
+
   // Generate smart reminders
   useEffect(() => {
     if (!isInitialized.current) return;
@@ -193,7 +208,7 @@ export function useNotifications() {
       if (settings.waterReminders) {
         const recentWaterReminder = notifications.find(
           n => n.type === 'water' && 
-          (now.getTime() - new Date(n.time).getTime()) < 4 * 60 * 60 * 1000
+          (now.getTime() - new Date(n.time).getTime()) < 6 * 60 * 60 * 1000
         );
         if (!recentWaterReminder) {
           newNotifications.push({
@@ -358,7 +373,7 @@ export function useNotifications() {
       }
 
       if (newNotifications.length > 0) {
-        setNotifications(prev => [...newNotifications, ...prev].slice(0, 50));
+        setNotifications(prev => [...newNotifications, ...prev].slice(0, 25));
         
         // Play sound for appointment reminders
         const hasAppointmentReminder = newNotifications.some(n => n.type === 'appointment');
@@ -394,7 +409,7 @@ export function useNotifications() {
       time: new Date().toISOString(),
       read: false,
     };
-    setNotifications(prev => [newNotification, ...prev].slice(0, 50));
+    setNotifications(prev => [newNotification, ...prev].slice(0, 25));
     
     // Play notification sound based on type
     const soundType = notification.type === 'appointment' ? 'reminder' : 'gentle';
