@@ -1,5 +1,5 @@
 import { useMemo, memo } from "react";
-import { Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, Clock, CheckCircle, Flower2, ChevronRight, ChevronLeft, Calendar, Sparkles, Shield } from "lucide-react";
+import { Brain, Baby, Heart, Activity, Dumbbell, AlertTriangle, CheckCircle, Flower2, ChevronRight, ChevronLeft, Calendar, Sparkles, Shield, UtensilsCrossed, MessageSquare } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { getToolsByCategory } from "@/lib/tools-data";
@@ -9,7 +9,6 @@ import { ShareAppButton } from "@/components/ShareAppButton";
 interface CategoryConfig {
   key: string;
   icon: React.ComponentType<{ className?: string }>;
-  emoji: string;
   bg: string;
   border: string;
   accentBar: string;
@@ -17,10 +16,18 @@ interface CategoryConfig {
   iconColor: string;
 }
 
-// Ordered by user journey: Planning → Pregnancy → Wellness → Mental → Risk → Labor → Prep → Postpartum → AI
+// Ordered by user journey: Assistant → Fertility → Pregnancy → Nutrition → Wellness → Mental → Self-Check → Labor → Preparation → Postpartum
 const categoryConfig: CategoryConfig[] = [
   {
-    key: "categories.fertility", icon: Calendar, emoji: "🌸",
+    key: "categories.smartAssistant", icon: MessageSquare,
+    bg: "from-indigo-500/12 via-violet-400/8 to-indigo-200/4",
+    border: "border-indigo-300/40",
+    accentBar: "bg-gradient-to-r from-indigo-500 to-violet-500",
+    iconColor: "text-indigo-500 dark:text-indigo-400",
+    toolHover: "hover:bg-indigo-50/70 dark:hover:bg-indigo-900/20",
+  },
+  {
+    key: "categories.fertility", icon: Calendar,
     bg: "from-violet-500/10 via-purple-400/6 to-violet-200/4",
     border: "border-violet-300/30",
     accentBar: "bg-violet-500",
@@ -28,7 +35,7 @@ const categoryConfig: CategoryConfig[] = [
     toolHover: "hover:bg-violet-50/70 dark:hover:bg-violet-900/20",
   },
   {
-    key: "categories.pregnancy", icon: Baby, emoji: "🤰",
+    key: "categories.pregnancy", icon: Baby,
     bg: "from-pink-500/10 via-pink-300/6 to-pink-200/4",
     border: "border-pink-300/30",
     accentBar: "bg-pink-500",
@@ -36,7 +43,15 @@ const categoryConfig: CategoryConfig[] = [
     toolHover: "hover:bg-pink-50/70 dark:hover:bg-pink-900/20",
   },
   {
-    key: "categories.wellness", icon: Dumbbell, emoji: "💪",
+    key: "categories.nutrition", icon: UtensilsCrossed,
+    bg: "from-orange-500/10 via-amber-400/6 to-orange-200/4",
+    border: "border-orange-300/30",
+    accentBar: "bg-gradient-to-r from-orange-500 to-amber-500",
+    iconColor: "text-orange-500 dark:text-orange-400",
+    toolHover: "hover:bg-orange-50/70 dark:hover:bg-orange-900/20",
+  },
+  {
+    key: "categories.wellness", icon: Dumbbell,
     bg: "from-emerald-500/10 via-green-400/6 to-emerald-200/4",
     border: "border-emerald-300/30",
     accentBar: "bg-emerald-500",
@@ -44,7 +59,7 @@ const categoryConfig: CategoryConfig[] = [
     toolHover: "hover:bg-emerald-50/70 dark:hover:bg-emerald-900/20",
   },
   {
-    key: "categories.mentalHealth", icon: Heart, emoji: "🧠",
+    key: "categories.mentalHealth", icon: Heart,
     bg: "from-sky-500/10 via-blue-400/6 to-sky-200/4",
     border: "border-sky-300/30",
     accentBar: "bg-sky-500",
@@ -52,15 +67,15 @@ const categoryConfig: CategoryConfig[] = [
     toolHover: "hover:bg-sky-50/70 dark:hover:bg-sky-900/20",
   },
   {
-    key: "categories.selfCheck", icon: Shield, emoji: "⚠️",
-    bg: "from-amber-500/10 via-orange-400/6 to-amber-200/4",
+    key: "categories.selfCheck", icon: Shield,
+    bg: "from-amber-500/10 via-yellow-400/6 to-amber-200/4",
     border: "border-amber-300/30",
     accentBar: "bg-amber-500",
     iconColor: "text-amber-500 dark:text-amber-400",
     toolHover: "hover:bg-amber-50/70 dark:hover:bg-amber-900/20",
   },
   {
-    key: "categories.labor", icon: Activity, emoji: "🏥",
+    key: "categories.labor", icon: Activity,
     bg: "from-rose-500/10 via-red-400/6 to-rose-200/4",
     border: "border-rose-300/30",
     accentBar: "bg-rose-500",
@@ -68,7 +83,7 @@ const categoryConfig: CategoryConfig[] = [
     toolHover: "hover:bg-rose-50/70 dark:hover:bg-rose-900/20",
   },
   {
-    key: "categories.preparation", icon: CheckCircle, emoji: "📋",
+    key: "categories.preparation", icon: CheckCircle,
     bg: "from-teal-500/10 via-cyan-400/6 to-teal-200/4",
     border: "border-teal-300/30",
     accentBar: "bg-teal-500",
@@ -76,20 +91,12 @@ const categoryConfig: CategoryConfig[] = [
     toolHover: "hover:bg-teal-50/70 dark:hover:bg-teal-900/20",
   },
   {
-    key: "categories.postpartum", icon: Flower2, emoji: "👶",
+    key: "categories.postpartum", icon: Flower2,
     bg: "from-fuchsia-500/10 via-purple-400/6 to-fuchsia-200/4",
     border: "border-fuchsia-300/30",
     accentBar: "bg-fuchsia-500",
     iconColor: "text-fuchsia-500 dark:text-fuchsia-400",
     toolHover: "hover:bg-fuchsia-50/70 dark:hover:bg-fuchsia-900/20",
-  },
-  {
-    key: "categories.ai", icon: Sparkles, emoji: "✨",
-    bg: "from-indigo-500/10 via-blue-400/6 to-indigo-200/4",
-    border: "border-indigo-300/30",
-    accentBar: "bg-gradient-to-r from-indigo-500 to-purple-500",
-    iconColor: "text-indigo-500 dark:text-indigo-400",
-    toolHover: "hover:bg-indigo-50/70 dark:hover:bg-indigo-900/20",
   },
 ];
 

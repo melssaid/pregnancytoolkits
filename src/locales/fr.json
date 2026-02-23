@@ -46,14 +46,16 @@
   "categories": {
     "all": "Tout",
     "ai": "Outils IA",
+    "smartAssistant": "Assistant Intelligent",
     "fertility": "Fertilité",
     "pregnancy": "Grossesse",
-    "labor": "Accouchement",
+    "nutrition": "Nutrition & Régime",
+    "labor": "Accouchement & Travail",
     "postpartum": "Soins bébé",
     "selfCheck": "Auto-vérification",
     "riskAssessment": "Auto-vérification",
     "mentalHealth": "Santé mentale",
-    "wellness": "Bien-être",
+    "wellness": "Bien-être & Fitness",
     "preparation": "Préparation"
   },
   "onboarding": {

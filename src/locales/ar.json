@@ -46,14 +46,16 @@
   "categories": {
     "all": "الكل",
     "ai": "أدوات ذكية",
+    "smartAssistant": "المساعد الذكي",
     "fertility": "الخصوبة",
     "pregnancy": "الحمل",
-    "labor": "الولادة",
+    "nutrition": "التغذية والنظام الغذائي",
+    "labor": "الولادة والمخاض",
     "postpartum": "رعاية الطفل",
     "selfCheck": "فحص ذاتي",
     "riskAssessment": "فحص ذاتي",
     "mentalHealth": "الصحة النفسية",
-    "wellness": "العافية",
+    "wellness": "العافية واللياقة",
     "preparation": "التحضير"
   },
   "onboarding": {

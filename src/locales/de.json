@@ -46,14 +46,16 @@
   "categories": {
     "all": "Alle",
     "ai": "Smart Tools",
+    "smartAssistant": "Smart Assistent",
     "fertility": "Fruchtbarkeit",
     "pregnancy": "Schwangerschaft",
-    "labor": "Geburt",
+    "nutrition": "Ernährung & Diät",
+    "labor": "Geburt & Wehen",
     "postpartum": "Babypflege",
     "selfCheck": "Selbst-Check",
     "riskAssessment": "Selbst-Check",
     "mentalHealth": "Psychische Gesundheit",
-    "wellness": "Wohlbefinden",
+    "wellness": "Wohlbefinden & Fitness",
     "preparation": "Vorbereitung"
   },
   "onboarding": {
