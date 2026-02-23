@@ -41,9 +41,9 @@ interface NotificationSettings {
 
 const DEFAULT_SETTINGS: NotificationSettings = {
   appointmentReminders: true,
-  vitaminReminders: false,
+  vitaminReminders: true,
   exerciseReminders: false,
-  waterReminders: false,
+  waterReminders: true,
   stretchReminders: false,
   backupReminders: false,
 };
