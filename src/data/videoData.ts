@@ -169,10 +169,10 @@ export const birthPositionVideosByLang: VideosByLang = {
 // ════════════════════════════════════════════════════════════
 export const lactationVideosByLang: VideosByLang = {
   ar: [
-    { id: "1", title: "الرضاعة الطبيعية للمبتدئات", description: "رسوم متحركة ثلاثية الأبعاد عن الرضاعة الطبيعية", youtubeId: "bYBil33k27I", duration: "20:00", category: "بداية" },
-    { id: "2", title: "رعاية المولود الجديد", description: "كل ما تحتاجين معرفته عن رعاية المولود", youtubeId: "hpgjwK_oQe0", duration: "18:00", category: "رعاية المولود" },
-    { id: "3", title: "تغذية المولود والرضاعة", description: "نصائح عملية للرضاعة والتغذية", youtubeId: "-CWJYxIvoFQ", duration: "15:00", category: "رعاية المولود" },
-    { id: "4", title: "دليل رعاية الطفل الرضيع", description: "التعامل مع الرضيع والتغذية والنوم", youtubeId: "CXWzqbe1i9c", duration: "6:00", category: "بداية" },
+    { id: "1", title: "دليل الأم للرضاعة الطبيعية", description: "كورس تأهيلي شامل عن أساسيات الرضاعة الطبيعية", youtubeId: "XzPHm2Z_aZ4", duration: "15:00", category: "رضاعة" },
+    { id: "2", title: "التعامل مع الرضيع من الألف للياء", description: "دليل شامل للتعامل مع المولود الجديد", youtubeId: "917-9qGEx0E", duration: "20:00", category: "رعاية المولود" },
+    { id: "3", title: "زيادة حليب الأم وإعادة الإرضاع", description: "كيفية زيادة كمية حليب الأم بشكل طبيعي", youtubeId: "MNKs1q1v5aU", duration: "12:00", category: "رضاعة" },
+    { id: "4", title: "الأكل بعد الولادة ونزول اللبن", description: "متى يبدأ الأكل بعد الولادة وكيف يسرع التعافي", youtubeId: "lyFyFCOR4Ms", duration: "14:00", category: "تغذية" },
   ],
   tr: [
     { id: "1", title: "Doğru Emzirme Teknikleri", description: "Uzman ebe doğru emzirme pozisyonlarını anlatıyor", youtubeId: "YR_FuffPERY", duration: "8:00", category: "Emzirme" },
@@ -217,10 +217,10 @@ export const lactationVideosByLang: VideosByLang = {
 // ════════════════════════════════════════════════════════════
 export const nauseaVideosByLang: VideosByLang = {
   ar: [
-    { id: "1", title: "علاج غثيان الحمل", description: "نصائح طبية لتخفيف الغثيان أثناء الحمل", youtubeId: "qTEDyHPUeYQ", duration: "8:30", category: "نصائح" },
-    { id: "2", title: "التعامل مع غثيان الصباح", description: "استراتيجيات عملية للتغلب على الغثيان", youtubeId: "C5TTWuV2Ztw", duration: "5:15", category: "نصائح" },
-    { id: "3", title: "أعراض الحمل الأولى", description: "نصائح طبية للتعامل مع أعراض الثلث الأول", youtubeId: "KPA3DRZeH4A", duration: "12:00", category: "الثلث الأول" },
-    { id: "4", title: "مشروبات تخفف الغثيان", description: "مشروبات طبيعية لتهدئة المعدة أثناء الحمل", youtubeId: "nAQUFef_0nU", duration: "3:45", category: "علاجات" },
+    { id: "1", title: "10 حلول للغثيان والقيء أثناء الحمل", description: "حلول عملية للتغلب على الغثيان في الحمل", youtubeId: "zj7P3wG_jFM", duration: "10:00", category: "حلول" },
+    { id: "2", title: "علاج الغثيان والقيء للحامل", description: "الحل لعلاج مشكلة الغثيان في الشهور الأولى", youtubeId: "lBsnYP47U_M", duration: "8:00", category: "علاج" },
+    { id: "3", title: "أدوية الغثيان الآمنة في الحمل", description: "هل أدوية علاج القيء آمنة على الجنين؟", youtubeId: "SL9FGr4zOSA", duration: "12:00", category: "نصائح طبية" },
+    { id: "4", title: "أعراض الحمل الأولى ونصائح", description: "نصائح طبية للتعامل مع أعراض الثلث الأول", youtubeId: "KPA3DRZeH4A", duration: "12:00", category: "الثلث الأول" },
   ],
   tr: [
     { id: "1", title: "Hamilelikte Bulantı Çözümleri", description: "Mide rahatsızlıkları ve bulantı için uzman önerileri", youtubeId: "H42j-n29Vck", duration: "12:00", category: "Çözümler" },
@@ -265,10 +265,10 @@ export const nauseaVideosByLang: VideosByLang = {
 // ════════════════════════════════════════════════════════════
 export const hospitalBagVideosByLang = (t: (key: string) => string): VideosByLang => ({
   ar: [
-    { id: "1", title: "تحضير حقيبة المستشفى", description: "قائمة كاملة بمحتويات حقيبة الولادة", youtubeId: "NTulfAOzbp8", duration: "8:00", category: "تحضير" },
-    { id: "2", title: "أغراض أساسية للمستشفى", description: "كل ما تحتاجينه يوم الولادة", youtubeId: "oUxVPhwFuMM", duration: "12:30", category: "تحضير" },
-    { id: "3", title: "نصائح تحضير حقيبة الولادة", description: "تجارب أمهات في تجهيز حقيبة المستشفى", youtubeId: "6YdwII4BO0g", duration: "10:00", category: "نصائح" },
-    { id: "4", title: "رعاية المولود - الأسبوع الأول", description: "دليل شامل لرعاية الطفل بعد الولادة", youtubeId: "hpgjwK_oQe0", duration: "18:00", category: "رعاية المولود" },
+    { id: "1", title: "تجهيز شنطة الولادة خطوة بخطوة", description: "قائمة شاملة بكل ما تحتاجينه في حقيبة المستشفى", youtubeId: "NBYRLg8btZw", duration: "12:00", category: "تحضير" },
+    { id: "2", title: "تجهيزات حقيبة الولادة", description: "تجربة أم في تحضير شنطة الولادة بالتفصيل", youtubeId: "WYaLWsdnXC4", duration: "15:00", category: "تحضير" },
+    { id: "3", title: "كيفية إعداد حقيبة ما قبل الولادة", description: "نصائح متخصصة لتجهيز الحقيبة", youtubeId: "N1vJXHrV8XI", duration: "10:00", category: "نصائح" },
+    { id: "4", title: "الأكل بعد الولادة والتعافي", description: "دليل التغذية بعد الولادة لتسريع التعافي", youtubeId: "lyFyFCOR4Ms", duration: "14:00", category: "ما بعد الولادة" },
   ],
   tr: [
     { id: "1", title: "Hastane Çantası Hazırlığı", description: "Doğum çantasında bulunması gerekenler", youtubeId: "1SF5QoRZh-M", duration: "10:00", category: "Hazırlık" },
