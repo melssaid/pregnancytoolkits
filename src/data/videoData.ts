@@ -79,10 +79,10 @@ export const sleepVideosByLang: VideosByLang = {
     { id: "4", title: "تمارين إطالة آمنة للحامل", description: "تمارين إطالة للورك والظهر تساعد على الاسترخاء", youtubeId: "uWRwBBMFXys", duration: "12:00", category: "تمارين" },
   ],
   tr: [
-    { id: "1", title: "Hamilelikte Uyku Pozisyonları", description: "En iyi uyku pozisyonları ve rahat uyku ipuçları", youtubeId: "H42j-n29Vck", duration: "12:00", category: "İpuçları" },
-    { id: "2", title: "Hamilelikte Rahat Uyku İpuçları", description: "Gebelikte daha iyi uyumak için öneriler", youtubeId: "SE2crV20cYU", duration: "10:00", category: "İpuçları" },
-    { id: "3", title: "Prenatal Yoga ve Rahatlama", description: "Uyku öncesi derin rahatlama yogası", youtubeId: "nsdTimn8d1A", duration: "15:00", category: "Yoga" },
-    { id: "4", title: "Gebelikte Uyku Düzeni", description: "Hamilelikte uyku kalitesini artırma yöntemleri", youtubeId: "16KzBg_cUII", duration: "18:00", category: "Hazırlık" },
+    { id: "1", title: "En İdeal Uyku Pozisyonu", description: "Hamilelikte en güvenli ve rahat uyku pozisyonları", youtubeId: "o9HckKtrEgQ", duration: "10:00", category: "İpuçları" },
+    { id: "2", title: "Gebelikte Rahat Uyku Rehberi", description: "Son aylarda rahat uyumak için pratik öneriler", youtubeId: "V63tlQewJtA", duration: "12:00", category: "İpuçları" },
+    { id: "3", title: "Hamilelikte Rahatlama Egzersizleri", description: "Uyku öncesi gevşeme ve nefes egzersizleri", youtubeId: "hmJbDNahUuA", duration: "12:00", category: "Rahatlama" },
+    { id: "4", title: "Hamilelikte Germe ve Esneme", description: "Uyku kalitesini artıran esneme egzersizleri", youtubeId: "VI5GZDFK228", duration: "15:00", category: "Egzersiz" },
   ],
   de: [
     { id: "1", title: "Schlafpositionen in der Schwangerschaft", description: "Welche Schlafposition ist die sicherste für Schwangere?", youtubeId: "Eq0uJPWpQuQ", duration: "12:00", category: "Tipps" },
@@ -250,7 +250,7 @@ export const nauseaVideosByLang: VideosByLang = {
     { id: "1", title: "Enjoo na gravidez - Soluções", description: "Como aliviar os enjoos na gestação", youtubeId: "NCqlxrtxm-c", duration: "10:00", category: "Soluções" },
     { id: "2", title: "Remédios naturais para enjoo", description: "Dicas práticas contra os enjoos matinais", youtubeId: "ilvONKYF_Cs", duration: "8:00", category: "Remédios" },
     { id: "3", title: "Chás seguros na gravidez", description: "Quais chás a grávida pode tomar", youtubeId: "NR9gUpO7eao", duration: "12:00", category: "Naturais" },
-    { id: "4", title: "Primeiro mês de gravidez", description: "Tudo sobre o primeiro mês e como lidar com enjoos", youtubeId: "US4QH-781Kc", duration: "15:00", category: "Primeiro trimestre" },
+    { id: "4", title: "Dor nas costas e enjoo na gravidez", description: "Como lidar com desconfortos comuns do primeiro trimestre", youtubeId: "7cgf5lmR5Vo", duration: "10:00", category: "Primeiro trimestre" },
   ],
   default: [
     { id: "1", title: "Top Tips for Nausea in Pregnancy", description: "Expert advice from Dr. Lora Shahine on morning sickness", youtubeId: "qTEDyHPUeYQ", duration: "8:30", category: "Relief Tips" },
@@ -322,7 +322,7 @@ export const skincareVideosByLang = (t: (key: string) => string): VideosByLang =
     { id: "1", title: "Hamilelikte Cilt Bakımı", description: "Güvenli cilt bakım rutini hamileler için", youtubeId: "izPwiih-Qcw", duration: "12:00", category: "Cilt Bakımı" },
     { id: "2", title: "Hamilelikte Çatlak Önleme", description: "Gebelikte çatlak oluşumunu azaltma yöntemleri", youtubeId: "9PTAHFoHoYk", duration: "15:00", category: "Çatlak Önleme" },
     { id: "3", title: "Gebelikte Cilt Değişimleri", description: "Hamilelikte ciltte meydana gelen değişiklikler", youtubeId: "J-Fa159A02Y", duration: "10:00", category: "Cilt Bakımı" },
-    { id: "4", title: "Hamilelikte Cilt Lekesi ve Kloazma", description: "Gebelikte cilt lekelerinin oluşumu ve önlenmesi", youtubeId: "9PTAHFoHoYk", duration: "15:00", category: "Cilt Sorunları" },
+    { id: "4", title: "Hamilelikte Cilt Lekesi Tedavisi", description: "Gebelik maskesi ve cilt lekelerinin tedavi yöntemleri", youtubeId: "91AZucnIgag", duration: "12:00", category: "Cilt Sorunları" },
   ],
   de: [
     { id: "1", title: "Hautpflege in der Schwangerschaft", description: "Dermatologin erklärt sichere Hautpflege", youtubeId: "LbQ1QSSRKqo", duration: "15:00", category: "Hautpflege" },
@@ -368,7 +368,7 @@ export const partnerVideosByLang = (t: (key: string) => string): VideosByLang =>
   ],
   tr: [
     { id: "1", title: "Hamilelikte Baba Rolü", description: "Eşinizi hamilelikte nasıl desteklersiniz", youtubeId: "6DI2CRy0tXo", duration: "12:00", category: "Destek" },
-    { id: "2", title: "Doğuma Hazırlık Sürecinde Baba", description: "Doğum öncesi eğitim ve baba adaylarına tavsiyeler", youtubeId: "0_z0oqZyHq8", duration: "15:00", category: "Hazırlık" },
+    { id: "2", title: "Babalık Sanatı ve Rolü", description: "Aile olmada babanın önemi ve iyi bir baba olma rehberi", youtubeId: "hBdwSia-0mk", duration: "15:00", category: "Babalık" },
     { id: "3", title: "Yenidoğan Bakımı - Babalar İçin", description: "Yeni babalar için bebek bakım temelleri", youtubeId: "rvjf34yF5bY", duration: "10:00", category: "Bebek Bakımı" },
     { id: "4", title: "3D Animasyonla Doğum Sürecini Anlama", description: "Doğum aşamalarını birlikte öğrenin", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Eğitim" },
   ],
@@ -649,7 +649,7 @@ export const dueDateVideosByLang: VideosByLang = {
   tr: [
     { id: "1", title: "Hamileliğin İlk Haftaları", description: "1 ve 2 haftalık gebelik döneminde neler oluyor?", youtubeId: "rrwH5PSWWoc", duration: "8:00", category: "Eğitim" },
     { id: "2", title: "Hamilelikte Son Ay", description: "Doğuma yaklaşırken neler beklenmeli", youtubeId: "RTFFwC6nvpo", duration: "12:00", category: "Hazırlık" },
-    { id: "3", title: "Hamilelik Haftası Hesaplama", description: "Doğum tarihini doğru hesaplama yöntemleri", youtubeId: "rrwH5PSWWoc", duration: "8:00", category: "Hesaplama" },
+    { id: "3", title: "Gebelikte 25. Hafta Takibi", description: "Ultrason ölçümleri ve bebeğin gelişim takibi", youtubeId: "qFPQNibqcaw", duration: "10:00", category: "Takip" },
   ],
   de: [
     { id: "1", title: "Vorsorge in der Schwangerschaft", description: "Untersuchungen und Termine in der Schwangerschaft", youtubeId: "apspJxV3ZNg", duration: "10:00", category: "Bildung" },
@@ -691,8 +691,8 @@ export const walkingVideosByLang: VideosByLang = {
   tr: [
     { id: "1", title: "Gebelikte Egzersiz - 5. Ay", description: "Hamilelikte güvenli egzersiz programı", youtubeId: "VI5GZDFK228", duration: "15:00", category: "Egzersiz" },
     { id: "2", title: "Hamilelikte Aktif Yürüyüş", description: "Hamileler için güvenli yürüyüş ve hareket programı", youtubeId: "PYCYH6M8BzU", duration: "12:00", category: "Yürüyüş" },
-    { id: "3", title: "Prenatal Yoga ve Rahatlama", description: "Hafif yoga egzersizleri hamileler için", youtubeId: "nsdTimn8d1A", duration: "15:00", category: "Yoga" },
-    { id: "4", title: "Hamilelikte Aktif Kalma", description: "Düşük yoğunluklu egzersizlerle aktif kalma ipuçları", youtubeId: "SE2crV20cYU", duration: "10:00", category: "İpuçları" },
+    { id: "3", title: "Hamilelikte Güvenli Yürüyüş", description: "Gebelikte yürüyüş ve hafif aerobik programı", youtubeId: "1b6ORuVDCJY", duration: "12:00", category: "Yürüyüş" },
+    { id: "4", title: "Hamilelikte Aktif Kalma", description: "Düşük yoğunluklu egzersizlerle aktif kalma ipuçları", youtubeId: "RTFFwC6nvpo", duration: "12:00", category: "İpuçları" },
   ],
   de: [
     { id: "1", title: "Schwangerschaft Stretching - 10 Min", description: "Sanfte Dehnübungen für alle Trimester", youtubeId: "AzuIPejeHXA", duration: "10:00", category: "Dehnen" },
