@@ -57,9 +57,10 @@ let unicodeFontCache: { regular: string; bold: string } | null = null;
 let unicodeFontLoading: Promise<typeof unicodeFontCache> | null = null;
 
 // Amiri — static TTF, excellent Arabic + Latin coverage, works with jsPDF
+// Loaded from local public/fonts/ directory for reliability
 const FONT_URLS = {
-  regular: 'https://raw.githubusercontent.com/google/fonts/main/ofl/amiri/Amiri-Regular.ttf',
-  bold: 'https://raw.githubusercontent.com/google/fonts/main/ofl/amiri/Amiri-Bold.ttf',
+  regular: '/fonts/Amiri-Regular.ttf',
+  bold: '/fonts/Amiri-Bold.ttf',
 };
 
 async function fetchFontAsBase64(url: string): Promise<string | null> {
