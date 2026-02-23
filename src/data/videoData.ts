@@ -135,7 +135,7 @@ export const birthPositionVideosByLang: VideosByLang = {
   de: [
     { id: "1", title: "Beste Geburtspositionen", description: "3D-Animation der Geburtspositionen", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Geburt" },
     { id: "2", title: "Geburtspositionen mit Hebamme", description: "Hebamme zeigt die besten Positionen für die Geburt", youtubeId: "mqBCpcqhZd4", duration: "12:00", category: "Geburt" },
-    { id: "3", title: "Normale vaginale Geburt - 3D", description: "3D-Animation einer normalen vaginalen Geburt", youtubeId: "Ib1M3eDR8rs", duration: "14:00", category: "Geburt" },
+    { id: "3", title: "Geburt: Der Weg durch dein Becken", description: "Hebamme erklärt den Geburtskanal und Geburtspositionen", youtubeId: "PB90jLX50pI", duration: "14:00", category: "Geburt" },
     { id: "4", title: "Baby in Geburtsposition bringen", description: "Übungen damit das Baby tiefer ins Becken rutscht", youtubeId: "JabamlKbpKc", duration: "12:00", category: "Vorbereitung" },
   ],
   fr: [
@@ -621,7 +621,7 @@ export const cycleTrackerVideosByLang: VideosByLang = {
   es: [
     { id: "1", title: "Entender el ciclo menstrual", description: "Explicación médica del ciclo menstrual", youtubeId: "4ZjIVIGyDd4", duration: "12:00", category: "Educación" },
     { id: "2", title: "Cómo hacer seguimiento del ciclo", description: "Métodos para rastrear tu ciclo", youtubeId: "H5Jq8pzNro8", duration: "10:00", category: "Seguimiento" },
-    { id: "3", title: "Ciclos irregulares", description: "Causas y cuándo consultar al médico", youtubeId: "fHV8cv_mRB8", duration: "9:00", category: "Salud" },
+    { id: "3", title: "Ciclo menstrual y días fértiles", description: "Conoce tu ciclo menstrual y días fértiles", youtubeId: "3jN8omNTKzk", duration: "9:00", category: "Salud" },
   ],
   pt: [
     { id: "1", title: "Entendendo o ciclo menstrual", description: "Explicação médica do ciclo menstrual", youtubeId: "b5bvIgRDC3k", duration: "12:00", category: "Educação" },
@@ -691,14 +691,14 @@ export const walkingVideosByLang: VideosByLang = {
   tr: [
     { id: "1", title: "Gebelikte Egzersiz - 5. Ay", description: "Hamilelikte güvenli egzersiz programı", youtubeId: "VI5GZDFK228", duration: "15:00", category: "Egzersiz" },
     { id: "2", title: "Hamilelikte Aktif Yürüyüş", description: "Hamileler için güvenli yürüyüş ve hareket programı", youtubeId: "PYCYH6M8BzU", duration: "12:00", category: "Yürüyüş" },
-    { id: "3", title: "Hamilelikte Güvenli Yürüyüş", description: "Gebelikte yürüyüş ve hafif aerobik programı", youtubeId: "1b6ORuVDCJY", duration: "12:00", category: "Yürüyüş" },
+    { id: "3", title: "Hamilelikte Güvenli Yürüyüş", description: "Gebelikte yürüyüş ve hafif aerobik programı", youtubeId: "hmJbDNahUuA", duration: "12:00", category: "Yürüyüş" },
     { id: "4", title: "Hamilelikte Aktif Kalma", description: "Düşük yoğunluklu egzersizlerle aktif kalma ipuçları", youtubeId: "RTFFwC6nvpo", duration: "12:00", category: "İpuçları" },
   ],
   de: [
     { id: "1", title: "Schwangerschaft Stretching - 10 Min", description: "Sanfte Dehnübungen für alle Trimester", youtubeId: "AzuIPejeHXA", duration: "10:00", category: "Dehnen" },
     { id: "2", title: "Beckenbodentraining für Schwangere", description: "Beckenbodenübungen zur Geburtsvorbereitung", youtubeId: "c1PoK233RNQ", duration: "12:00", category: "Beckenboden" },
     { id: "3", title: "Walking Cardio ohne Springen", description: "Gelenkschonendes Cardio-Training im Stehen", youtubeId: "B8N4cY2kK8k", duration: "20:00", category: "Cardio" },
-    { id: "4", title: "Spaziergang in der Schwangerschaft", description: "Warum tägliches Gehen in der Schwangerschaft so wichtig ist", youtubeId: "bLbfAFmD0-c", duration: "12:00", category: "Tipps" },
+    { id: "4", title: "Schwangerschafts-Stretching", description: "Sanfte Dehnübungen für alle Trimester der Schwangerschaft", youtubeId: "AzuIPejeHXA", duration: "10:00", category: "Dehnen" },
   ],
   fr: [
     { id: "1", title: "Pilates Prénatal - 1er Trimestre", description: "15 min de renforcement du transverse pour enceintes", youtubeId: "ZhtzgI1cmTA", duration: "15:00", category: "Pilates" },
