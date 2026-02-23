@@ -10,6 +10,8 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { motion } from 'framer-motion';
+import { VideoLibrary } from '@/components/VideoLibrary';
+import { walkingVideosByLang } from '@/data/videoData';
 
 interface WalkSession {
   id: string;
@@ -310,6 +312,13 @@ export default function SmartWalkingCoach() {
             </ul>
           </CardContent>
         </Card>
+
+        {/* Walking Videos */}
+        <VideoLibrary
+          videosByLang={walkingVideosByLang}
+          title={t('toolsInternal.walkingCoach.videosTitle', 'Walking & Exercise Videos')}
+          subtitle={t('toolsInternal.walkingCoach.videosSubtitle', 'Curated videos for staying active during pregnancy')}
+        />
 
         <Card className="bg-destructive/5 border-destructive/20">
           <CardContent className="p-4">

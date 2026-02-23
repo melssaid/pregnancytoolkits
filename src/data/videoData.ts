@@ -361,40 +361,40 @@ export const skincareVideosByLang = (t: (key: string) => string): VideosByLang =
 // ════════════════════════════════════════════════════════════
 export const partnerVideosByLang = (t: (key: string) => string): VideosByLang => ({
   ar: [
-    { id: "1", title: "دور الأب أثناء الحمل", description: "كيف يدعم الزوج زوجته الحامل - دليل شامل", youtubeId: "asxKTBCs1vk", duration: "15:00", category: "دعم" },
-    { id: "2", title: "رعاية المولود للآباء", description: "دليل الأب الجديد لرعاية المولود", youtubeId: "-CWJYxIvoFQ", duration: "15:00", category: "رعاية المولود" },
+    { id: "1", title: "دور الزوج أثناء الحمل - دعم نفسي وجسدي", description: "كيف يدعم الزوج زوجته الحامل نفسياً وجسدياً", youtubeId: "5iRsoy9xt60", duration: "15:00", category: "دعم" },
+    { id: "2", title: "المطلوب من الحامل في شغل البيت", description: "نصائح طبية للزوج عن مساعدة الحامل في الأعمال المنزلية", youtubeId: "Zdt88PHD5HY", duration: "12:00", category: "نصائح" },
     { id: "3", title: "التحضير للولادة معاً", description: "رسوم متحركة ثلاثية الأبعاد لمراحل الولادة", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "تحضير" },
-    { id: "4", title: "نصائح عملية لدعم الزوجة الحامل", description: "طرق عملية لدعم شريكتك خلال فترة الحمل", youtubeId: "_7kAW0lUVAk", duration: "12:00", category: "نصائح" },
+    { id: "4", title: "رعاية المولود للآباء", description: "دليل الأب الجديد لرعاية المولود", youtubeId: "-CWJYxIvoFQ", duration: "15:00", category: "رعاية المولود" },
   ],
   tr: [
     { id: "1", title: "Hamilelikte Baba Rolü", description: "Eşinizi hamilelikte nasıl desteklersiniz", youtubeId: "6DI2CRy0tXo", duration: "12:00", category: "Destek" },
-    { id: "2", title: "Yeni Babalar İçin Bebek Bakımı", description: "Yeni baba rehberi - bebek bakım temelleri", youtubeId: "-CWJYxIvoFQ", duration: "15:00", category: "Bebek Bakımı" },
-    { id: "3", title: "Birlikte Doğuma Hazırlık", description: "3D animasyonla doğum sürecini anlama", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Hazırlık" },
-    { id: "4", title: "Yeni Ebeveynler İçin İpuçları", description: "Hamilelikte eşinize pratik destek yolları", youtubeId: "_7kAW0lUVAk", duration: "12:00", category: "İpuçları" },
+    { id: "2", title: "Doğuma Hazırlık Sürecinde Baba", description: "Doğum öncesi eğitim ve baba adaylarına tavsiyeler", youtubeId: "0_z0oqZyHq8", duration: "15:00", category: "Hazırlık" },
+    { id: "3", title: "Yenidoğan Bakımı - Babalar İçin", description: "Yeni babalar için bebek bakım temelleri", youtubeId: "rvjf34yF5bY", duration: "10:00", category: "Bebek Bakımı" },
+    { id: "4", title: "3D Animasyonla Doğum Sürecini Anlama", description: "Doğum aşamalarını birlikte öğrenin", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Eğitim" },
   ],
   de: [
-    { id: "1", title: "Vaterrolle in der Schwangerschaft", description: "Wie Sie Ihre Partnerin unterstützen können", youtubeId: "asxKTBCs1vk", duration: "15:00", category: "Unterstützung" },
-    { id: "2", title: "Babypflege für neue Väter", description: "Ratgeber für werdende Väter", youtubeId: "-CWJYxIvoFQ", duration: "15:00", category: "Babypflege" },
-    { id: "3", title: "Gemeinsam Geburtsvorbereitung", description: "3D-Animation des Geburtsvorgangs verstehen", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Vorbereitung" },
-    { id: "4", title: "Praktische Tipps für werdende Väter", description: "Praktische Wege zur Unterstützung Ihrer Partnerin", youtubeId: "_7kAW0lUVAk", duration: "12:00", category: "Tipps" },
+    { id: "1", title: "Ich werde Papa - Das Babyexperiment", description: "Vaterrolle in der Schwangerschaft verstehen", youtubeId: "vWQlum677sk", duration: "15:00", category: "Unterstützung" },
+    { id: "2", title: "Liebe Väter, wir brauchen euch!", description: "Warum die Unterstützung des Partners so wichtig ist", youtubeId: "sOM0dzL8WuA", duration: "12:00", category: "Unterstützung" },
+    { id: "3", title: "Geburtsvorbereitung - 3D Animation", description: "Den Geburtsvorgang gemeinsam verstehen", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Vorbereitung" },
+    { id: "4", title: "Neugeborenen-Pflege für neue Väter", description: "Grundlagen der Babypflege für werdende Väter", youtubeId: "Wwiokn7UX4w", duration: "8:00", category: "Babypflege" },
   ],
   fr: [
-    { id: "1", title: "Rôle du père pendant la grossesse", description: "Comment soutenir votre partenaire enceinte", youtubeId: "asxKTBCs1vk", duration: "15:00", category: "Soutien" },
-    { id: "2", title: "Soins bébé pour nouveaux papas", description: "Guide du nouveau père pour les soins bébé", youtubeId: "-CWJYxIvoFQ", duration: "15:00", category: "Soins bébé" },
-    { id: "3", title: "Préparer l'accouchement ensemble", description: "Animation 3D pour comprendre l'accouchement", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Préparation" },
-    { id: "4", title: "Conseils pratiques pour futurs papas", description: "Façons pratiques de soutenir votre partenaire", youtubeId: "_7kAW0lUVAk", duration: "12:00", category: "Conseils" },
+    { id: "1", title: "Être père aujourd'hui", description: "Documentaire complet sur la place du père dans le couple parental", youtubeId: "DYUGQ1xTDjM", duration: "60:00", category: "Soutien" },
+    { id: "2", title: "15 infos grossesse - Pour les papas aussi", description: "Suivi de grossesse essentiel pour futurs parents", youtubeId: "NoyKEfe-t2k", duration: "14:00", category: "Éducation" },
+    { id: "3", title: "Préparer l'accouchement ensemble - 3D", description: "Animation 3D pour comprendre l'accouchement", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Préparation" },
+    { id: "4", title: "Premiers soins du nouveau-né", description: "Guide complet des soins bébé pour nouveaux parents", youtubeId: "Mlhv7comF9I", duration: "15:00", category: "Soins bébé" },
   ],
   es: [
-    { id: "1", title: "El rol del padre en el embarazo", description: "Cómo apoyar a tu pareja embarazada", youtubeId: "asxKTBCs1vk", duration: "15:00", category: "Apoyo" },
-    { id: "2", title: "Cuidado del bebé para nuevos papás", description: "Guía del nuevo padre para cuidar al bebé", youtubeId: "-CWJYxIvoFQ", duration: "15:00", category: "Cuidado bebé" },
-    { id: "3", title: "Prepararse juntos para el parto", description: "Animación 3D para entender el parto", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Preparación" },
-    { id: "4", title: "Consejos prácticos para futuros papás", description: "Formas prácticas de apoyar a tu pareja", youtubeId: "_7kAW0lUVAk", duration: "12:00", category: "Consejos" },
+    { id: "1", title: "El papel del padre durante el parto", description: "Guía de matrona sobre cómo ser un papá presente", youtubeId: "gQPFr2AMC3o", duration: "12:00", category: "Apoyo" },
+    { id: "2", title: "Ejercicios para embarazadas - En pareja", description: "Ejercicios seguros para hacer juntos durante el embarazo", youtubeId: "U1OA_yMDah0", duration: "15:00", category: "Ejercicios" },
+    { id: "3", title: "Prepararse juntos para el parto - 3D", description: "Animación 3D para entender el parto", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Preparación" },
+    { id: "4", title: "Cuidados del recién nacido", description: "Guía práctica para nuevos padres", youtubeId: "4Z2JcCt1NZc", duration: "8:00", category: "Cuidado bebé" },
   ],
   pt: [
-    { id: "1", title: "O papel do pai na gravidez", description: "Como apoiar sua parceira grávida", youtubeId: "asxKTBCs1vk", duration: "15:00", category: "Apoio" },
-    { id: "2", title: "Cuidados do bebê para novos pais", description: "Guia do novo pai para cuidar do bebê", youtubeId: "-CWJYxIvoFQ", duration: "15:00", category: "Cuidados bebê" },
-    { id: "3", title: "Preparar-se juntos para o parto", description: "Animação 3D para entender o parto", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Preparação" },
-    { id: "4", title: "Dicas práticas para futuros pais", description: "Formas práticas de apoiar sua parceira", youtubeId: "_7kAW0lUVAk", duration: "12:00", category: "Dicas" },
+    { id: "1", title: "Incluir o pai na rotina da gravidez", description: "A importância do pai na gestação, parto e cuidados com o bebê", youtubeId: "KZqa6G5feOw", duration: "12:00", category: "Apoio" },
+    { id: "2", title: "Por que o pai deve ficar sozinho com o bebê", description: "A importância do vínculo pai-bebê", youtubeId: "NJKuMOx2Lfc", duration: "12:00", category: "Vínculo" },
+    { id: "3", title: "Preparar-se juntos para o parto - 3D", description: "Animação 3D para entender o parto", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Preparação" },
+    { id: "4", title: "Cuidados com recém-nascido para pais", description: "Guia prático para novos pais", youtubeId: "XEwuooYNMTw", duration: "8:00", category: "Cuidados bebê" },
   ],
   default: [
     { id: "1", title: t('toolsInternal.partnerGuide.videos.v1.title'), description: t('toolsInternal.partnerGuide.videos.v1.description'), youtubeId: "asxKTBCs1vk", duration: "15:00", category: t('toolsInternal.partnerGuide.videos.v1.category') },
@@ -675,5 +675,53 @@ export const dueDateVideosByLang: VideosByLang = {
     { id: "1", title: "How to Calculate Your Due Date", description: "Medical methods for calculating expected delivery date", youtubeId: "aiUtc_MyzW8", duration: "8:00", category: "Education" },
     { id: "2", title: "Due Date Calculator from LMP", description: "How to calculate your baby's due date step by step", youtubeId: "W-ikq54sx-o", duration: "15:00", category: "Education" },
     { id: "3", title: "How to Calculate Pregnancy Due Date", description: "Easy methods for estimating your delivery date", youtubeId: "RYH2zpn3kMM", duration: "12:00", category: "Education" },
+  ],
+};
+
+// ════════════════════════════════════════════════════════════
+// WALKING COACH
+// ════════════════════════════════════════════════════════════
+export const walkingVideosByLang: VideosByLang = {
+  ar: [
+    { id: "1", title: "تمارين للحامل - حمل صحي وولادة ميسرة", description: "تمارين رياضية يومية للحامل لحمل أكثر صحة", youtubeId: "jvY_KDCy7E4", duration: "10:00", category: "تمارين" },
+    { id: "2", title: "تمارين رياضية مخصصة للحوامل", description: "تمارين مناسبة لمنتصف فترة الحمل", youtubeId: "qa7RY4V6ihM", duration: "10:00", category: "تمارين" },
+    { id: "3", title: "تمارين رياضية منزلية للحامل", description: "تمارين رياضية تقوية يمكن أداؤها في المنزل", youtubeId: "Vy6jonW1lFg", duration: "12:00", category: "تقوية" },
+    { id: "4", title: "تمارين إطالة آمنة للحامل", description: "تمارين إطالة للورك والظهر أثناء الحمل", youtubeId: "uWRwBBMFXys", duration: "12:00", category: "إطالة" },
+  ],
+  tr: [
+    { id: "1", title: "Gebelikte Egzersiz - 5. Ay", description: "Hamilelikte güvenli egzersiz programı", youtubeId: "VI5GZDFK228", duration: "15:00", category: "Egzersiz" },
+    { id: "2", title: "Hamilelikte Genel Hazırlık", description: "Doğum öncesi beslenme ve egzersiz rehberi", youtubeId: "0_z0oqZyHq8", duration: "15:00", category: "Hazırlık" },
+    { id: "3", title: "Prenatal Yoga ve Rahatlama", description: "Hafif yoga egzersizleri hamileler için", youtubeId: "nsdTimn8d1A", duration: "15:00", category: "Yoga" },
+    { id: "4", title: "Hamilelikte Aktif Kalma", description: "Düşük yoğunluklu egzersizlerle aktif kalma ipuçları", youtubeId: "SE2crV20cYU", duration: "10:00", category: "İpuçları" },
+  ],
+  de: [
+    { id: "1", title: "Schwangerschaft Stretching - 10 Min", description: "Sanfte Dehnübungen für alle Trimester", youtubeId: "AzuIPejeHXA", duration: "10:00", category: "Dehnen" },
+    { id: "2", title: "Beckenbodentraining für Schwangere", description: "Beckenbodenübungen zur Geburtsvorbereitung", youtubeId: "c1PoK233RNQ", duration: "12:00", category: "Beckenboden" },
+    { id: "3", title: "Walking Cardio ohne Springen", description: "Gelenkschonendes Cardio-Training im Stehen", youtubeId: "B8N4cY2kK8k", duration: "20:00", category: "Cardio" },
+    { id: "4", title: "Schwangerschaft - Beste Tipps", description: "Tipps für Bewegung und Wohlbefinden in der Schwangerschaft", youtubeId: "M3dMkgv2JPw", duration: "15:00", category: "Tipps" },
+  ],
+  fr: [
+    { id: "1", title: "Pilates Prénatal - 1er Trimestre", description: "15 min de renforcement du transverse pour enceintes", youtubeId: "ZhtzgI1cmTA", duration: "15:00", category: "Pilates" },
+    { id: "2", title: "Fitness grossesse - Brûle cellulite", description: "13 min cardio sans sauts pour tous trimestres", youtubeId: "bnxpTMcjlnA", duration: "13:00", category: "Cardio" },
+    { id: "3", title: "Cuisses et fessiers grossesse", description: "Renforcement du bas du corps pour enceintes", youtubeId: "CWa-cAZuVyE", duration: "20:00", category: "Renforcement" },
+    { id: "4", title: "Entraînement total body enceinte", description: "15 min de renforcement adapté pour futures mamans", youtubeId: "UOuY3cnUCxU", duration: "15:00", category: "Total Body" },
+  ],
+  es: [
+    { id: "1", title: "Cardio bajo impacto para embarazadas", description: "Rutina de cardio sin saltos para mantenerse activa", youtubeId: "afV6pt-hrAY", duration: "15:00", category: "Cardio" },
+    { id: "2", title: "Ejercicios para embarazadas - Todos los trimestres", description: "Rutina completa y segura para el embarazo", youtubeId: "U1OA_yMDah0", duration: "20:00", category: "Ejercicios" },
+    { id: "3", title: "Ejercicios tercer trimestre", description: "Preparación física para las últimas semanas", youtubeId: "mLVZoZ9KDBM", duration: "15:00", category: "Tercer trimestre" },
+    { id: "4", title: "Yoga prenatal para relajarse", description: "Sesión de yoga suave para embarazadas", youtubeId: "gVwBXO3kqUc", duration: "20:00", category: "Yoga" },
+  ],
+  pt: [
+    { id: "1", title: "Treino Aeróbico para Gestantes", description: "Exercício cardiorrespiratório seguro para grávidas", youtubeId: "NOJQwTw6pAM", duration: "20:00", category: "Aeróbico" },
+    { id: "2", title: "Alongamentos e Mobilidade para Grávidas", description: "Exercícios de flexibilidade para qualquer mês da gestação", youtubeId: "2E52kABbQg0", duration: "15:00", category: "Alongamento" },
+    { id: "3", title: "Exercícios para o parto normal", description: "Preparação do corpo para o trabalho de parto", youtubeId: "-6QpPBWsiAo", duration: "12:00", category: "Preparação" },
+    { id: "4", title: "Exercícios do assoalho pélvico", description: "Fortalecimento do assoalho pélvico para gestantes", youtubeId: "InieW2MYgsA", duration: "10:00", category: "Fortalecimento" },
+  ],
+  default: [
+    { id: "1", title: "30 Min Prenatal Walking Workout", description: "Low impact walking workout for pregnancy", youtubeId: "Mcic8Z-8pxY", duration: "30:00", category: "Walking" },
+    { id: "2", title: "Pregnancy Safe Cardio", description: "Full body low impact cardio for all trimesters", youtubeId: "M4IoSwHGezg", duration: "30:00", category: "Cardio" },
+    { id: "3", title: "Prenatal Stretching Routine", description: "Gentle stretches for pregnancy comfort", youtubeId: "gb8ZF-8i160", duration: "15:00", category: "Stretching" },
+    { id: "4", title: "Pregnancy Yoga for Beginners", description: "Deep relaxation and gentle movement", youtubeId: "vEcZD8Js2Ws", duration: "25:00", category: "Yoga" },
   ],
 };
