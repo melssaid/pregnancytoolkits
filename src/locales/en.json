@@ -79,7 +79,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Smart Pregnancy Guide",
+      "title": "Pro Pregnancy Companion",
       "description": "Ask any pregnancy question and get instant answers."
     },
     "wellnessDiary": {
@@ -3625,7 +3625,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Smart Pregnancy Guide",
+    "title": "Pro Pregnancy Companion",
     "subtitle": "Your 24/7 pregnancy companion",
     "hello": "Hello! I'm Here to Help 👋",
     "askAnything": "Ask anything about pregnancy, nutrition, or baby care",

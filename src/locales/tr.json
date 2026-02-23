@@ -79,7 +79,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Akıllı Hamilelik Rehberi",
+      "title": "Profesyonel Hamilelik Rehberi",
       "description": "Hamilelik hakkında herhangi bir soru sorun ve anında cevap alın."
     },
     "wellnessDiary": {
@@ -2929,7 +2929,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Akıllı Hamilelik Rehberi",
+    "title": "Profesyonel Hamilelik Rehberi",
     "subtitle": "7/24 hamilelik arkadaşınız",
     "hello": "Merhaba! Yardım etmek için buradayım 👋",
     "askAnything": "Hamilelik, beslenme veya bebek bakımı hakkında her şeyi sorun",

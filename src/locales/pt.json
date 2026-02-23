@@ -79,7 +79,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Guia de gravidez IA",
+      "title": "Companheira Pro da Gravidez",
       "description": "Faça qualquer pergunta sobre gravidez e obtenha respostas instantâneas."
     },
     "wellnessDiary": {
@@ -2929,7 +2929,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Guia Inteligente de Gravidez",
+    "title": "Companheira Pro da Gravidez",
     "subtitle": "Seu companheiro de gravidez 24/7",
     "hello": "Olá! Estou aqui para ajudar 👋",
     "askAnything": "Pergunte sobre gravidez, nutrição ou cuidados com o bebê",
