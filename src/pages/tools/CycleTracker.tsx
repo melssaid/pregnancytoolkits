@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Activity, Brain, CalendarIcon, Info } from "lucide-react";
+import { Brain, CalendarIcon, Info, Droplets } from "lucide-react";
 import { format } from "date-fns";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
@@ -19,25 +19,12 @@ import { useToast } from "@/components/ui/use-toast";
 export default function CycleTracker() {
   const { t } = useTranslation();
   const { toast } = useToast();
-  const { dayLogs, stats, predictedDates, toggleDay, updateDay, deleteDay } = useCycleData();
+  const { dayLogs, stats, predictedDates, updateDay, deleteDay } = useCycleData();
   const [editingDate, setEditingDate] = useState<string | null>(null);
   const aiSectionRef = useRef<HTMLDivElement>(null);
 
+  // Every tap opens the day sheet - simple and consistent
   const handleDayTap = (dateStr: string) => {
-    // If day is already logged, open editor for edit/delete
-    if (dayLogs[dateStr]?.flow) {
-      setEditingDate(dateStr);
-      return;
-    }
-    // Otherwise toggle period marking
-    toggleDay(dateStr);
-    toast({
-      title: t('toolsInternal.cycleTracker.dayMarked', 'Period day marked'),
-      duration: 1500,
-    });
-  };
-
-  const handleDayLongPress = (dateStr: string) => {
     setEditingDate(dateStr);
   };
 
@@ -106,16 +93,11 @@ Any patterns that might be worth discussing with a doctor`;
         className="space-y-5 pb-16"
       >
         {/* Instruction hint */}
-        <div className="flex items-start gap-2.5 px-3 py-2.5 rounded-xl bg-primary/8 border border-primary/15">
-          <Activity className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-          <div className="space-y-0.5">
-            <p className="text-xs font-medium text-foreground">
-              {t('toolsInternal.cycleTracker.calendarHintTitle', 'How to use')}
-            </p>
-            <p className="text-[11px] text-muted-foreground leading-relaxed">
-              {t('toolsInternal.cycleTracker.calendarHint', 'Tap a day to mark your period. Tap a marked day to edit or delete it.')}
-            </p>
-          </div>
+        <div className="flex items-start gap-2.5 px-3 py-2 rounded-xl bg-primary/8 border border-primary/15">
+          <Droplets className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+          <p className="text-[11px] text-muted-foreground leading-relaxed">
+            {t('toolsInternal.cycleTracker.calendarHintSimple', 'Tap any day to log your period, mood, and symptoms.')}
+          </p>
         </div>
 
         {/* Calendar */}
@@ -123,17 +105,21 @@ Any patterns that might be worth discussing with a doctor`;
           dayLogs={dayLogs}
           predictedDates={predictedDates}
           onDayTap={handleDayTap}
-          onDayLongPress={handleDayLongPress}
         />
 
-        {/* Dashboard */}
+        {/* Dashboard or Empty State */}
         {stats ? (
           <CycleDashboard stats={stats} />
         ) : (
-          <Card className="border-dashed border-2 border-muted-foreground/20">
-            <CardContent className="py-8 text-center">
-              <CalendarIcon className="w-8 h-8 text-muted-foreground/40 mx-auto mb-3" />
-              <p className="text-sm text-muted-foreground">{t('toolsInternal.cycleTracker.noDataYet')}</p>
+          <Card className="border-dashed border-2 border-primary/20 bg-primary/3">
+            <CardContent className="py-6 text-center space-y-2">
+              <CalendarIcon className="w-8 h-8 text-primary/40 mx-auto" />
+              <p className="text-sm font-medium text-foreground">
+                {t('toolsInternal.cycleTracker.emptyTitle', 'Start tracking your cycle')}
+              </p>
+              <p className="text-xs text-muted-foreground max-w-[250px] mx-auto">
+                {t('toolsInternal.cycleTracker.emptyDesc', 'Tap the days of your last period on the calendar above to get predictions and insights.')}
+              </p>
             </CardContent>
           </Card>
         )}
