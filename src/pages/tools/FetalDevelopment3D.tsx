@@ -341,17 +341,19 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
 
 
         {/* AI Insights Section */}
-        <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
-          <CardContent className="py-3">
-            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2 text-sm">
+        <Card className="border-primary/15 overflow-hidden">
+          <CardContent className="py-4">
+            <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 rounded-lg" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}>
                 <Brain className="w-3.5 h-3.5 text-white" />
               </div>
-              {t('toolsInternal.fetalDevelopment.aiWeeklyInsights')}
-            </h3>
-            
+              <h3 className="font-semibold text-sm text-foreground">
+                {t('toolsInternal.fetalDevelopment.aiWeeklyInsights')}
+              </h3>
+            </div>
+
             {/* AI Tab Buttons */}
-            <div className="grid grid-cols-3 gap-2 mb-3">
+            <div className="grid grid-cols-3 gap-2">
               {([
                 { key: 'development' as const, icon: Stethoscope, labelKey: 'toolsInternal.fetalDevelopment.development' },
                 { key: 'nutrition' as const, icon: Apple, labelKey: 'toolsInternal.fetalDevelopment.nutrition' },
@@ -367,10 +369,10 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                     className="relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <div
-                      className={`flex flex-col items-center gap-1 px-2 py-2.5 rounded-xl transition-all duration-200 ${
+                      className={`flex items-center justify-center gap-1.5 px-2 py-2.5 rounded-xl text-[11px] font-medium transition-all ${
                         isActive
-                          ? 'text-white font-semibold'
-                          : 'bg-card border border-primary/20 text-foreground hover:border-primary/40'
+                          ? 'text-white'
+                          : 'bg-muted/50 text-foreground hover:bg-muted'
                       }`}
                       style={isActive ? {
                         background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
@@ -378,15 +380,12 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                       } : undefined}
                     >
                       {aiLoading && isActive ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
                       ) : (
-                        <TabIcon className={`w-4 h-4 ${isActive ? '' : 'text-primary'}`} />
+                        <TabIcon className={`w-3.5 h-3.5 shrink-0 ${isActive ? '' : 'text-primary'}`} />
                       )}
-                      <span className="text-[10px] font-medium leading-tight">{t(labelKey)}</span>
+                      <span className="truncate">{t(labelKey)}</span>
                     </div>
-                    {!isActive && (
-                      <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/10 to-transparent pointer-events-none" aria-hidden />
-                    )}
                   </motion.button>
                 );
               })}
@@ -399,7 +398,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-3 p-3 bg-muted/30 rounded-lg max-h-[300px] overflow-y-auto"
+                  className="mt-3 pt-3 border-t border-border/50 max-h-[300px] overflow-y-auto"
                 >
                   <MarkdownRenderer content={aiInsight} isLoading={aiLoading} />
                 </motion.div>
