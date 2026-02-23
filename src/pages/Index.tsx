@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { getToolsByCategory } from "@/lib/tools-data";
 import { Link } from "react-router-dom";
-import { ShareAppButton } from "@/components/ShareAppButton";
+
 
 interface CategoryConfig {
   key: string;
@@ -164,11 +164,6 @@ const Index = () => {
           {categoryConfig.map((cat, index) => (
             <CategoryCard key={cat.key} config={cat} index={index} />
           ))}
-
-          {/* Share with friends */}
-          <div className="pt-2 pb-4">
-            <ShareAppButton />
-          </div>
         </div>
       </section>
     </Layout>
