@@ -1,6 +1,6 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pencil } from "lucide-react";
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameMonth, isSameDay, isAfter } from "date-fns";
 import { getDateLocale, formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -133,6 +133,11 @@ export function CycleCalendarView({ dayLogs, predictedDates, onDayTap, onDayLong
                     !isLogged && !isPredictedPeriod && !isFertile && !isOvulation && "hover:bg-muted/50",
                   )}
                 >
+                  {/* Edit indicator for logged days */}
+                  {isLogged && isCurrentMonth && (
+                    <Pencil className="absolute top-0.5 end-0.5 w-2 h-2 text-red-400/60" />
+                  )}
+
                   <span className="text-[11px] leading-none">{format(day, "d")}</span>
                   
                   {/* Indicators row */}

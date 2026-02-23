@@ -2721,7 +2721,8 @@
       "removeDay": "Remove Entry",
       "dayMarked": "Period day marked",
       "dayRemoved": "Day removed",
-      "calendarHint": "Tap a day to mark your period. Double-tap or long-press to add details.",
+      "calendarHint": "Tap a day to mark your period. Tap a marked day to edit or delete it.",
+      "calendarHintTitle": "How to use",
       "predicted": "Predicted",
       "symptomOptions": {
         "cramps": "Cramps",
