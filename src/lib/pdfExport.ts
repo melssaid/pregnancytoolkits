@@ -111,6 +111,7 @@ function setupUnicodeFont(doc: jsPDF, fontData: typeof unicodeFontCache) {
 
 // Helpers to set bold/normal while respecting Unicode font
 let _activeFont: string = 'helvetica';
+let _isRTL: boolean = false;
 
 function setFontBold(doc: jsPDF) {
   doc.setFont(_activeFont, 'bold');
@@ -119,10 +120,31 @@ function setFontNormal(doc: jsPDF) {
   doc.setFont(_activeFont, 'normal');
 }
 
+// RTL-aware text helper: flips alignment and x-position for Arabic
+function rtlText(doc: jsPDF, text: string, x: number, y: number, options?: any) {
+  if (_isRTL) {
+    const opts = { ...options };
+    // Flip alignment
+    if (!opts.align || opts.align === 'left') {
+      opts.align = 'right';
+      // Mirror x from left margin to right margin
+      x = PAGE_W - (x - MARGIN_X) - MARGIN_X;
+    } else if (opts.align === 'right') {
+      opts.align = 'left';
+      x = PAGE_W - (x - MARGIN_X) - MARGIN_X;
+    }
+    // 'center' stays center
+    doc.text(text, x, y, opts);
+  } else {
+    doc.text(text, x, y, options);
+  }
+}
+
 // Create a pre-configured PDF document with Unicode font support
 async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   const fontData = await loadUnicodeFont();
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  _isRTL = language === 'ar';
   if (fontData) {
     setupUnicodeFont(doc, fontData);
     _activeFont = UNICODE_FONT_NAME;
@@ -230,14 +252,27 @@ function drawSectionHeader(s: PDFState, title: string, color: RGB, count?: strin
   s.doc.setFillColor(lightR, lightG, lightB);
   s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, 8, 2, 2, 'F');
   s.doc.setFillColor(color.r, color.g, color.b);
-  s.doc.rect(MARGIN_X, s.y, 2.5, 8, 'F');
+  // Accent bar on the correct side for RTL
+  if (_isRTL) {
+    s.doc.rect(MARGIN_X + CONTENT_W - 2.5, s.y, 2.5, 8, 'F');
+  } else {
+    s.doc.rect(MARGIN_X, s.y, 2.5, 8, 'F');
+  }
   s.doc.setFontSize(10);
   s.doc.setTextColor(color.r, color.g, color.b);
-  s.doc.text(stripEmojis(title), MARGIN_X + 8, s.y + 5.5);
+  if (_isRTL) {
+    s.doc.text(stripEmojis(title), MARGIN_X + CONTENT_W - 8, s.y + 5.5, { align: 'right' });
+  } else {
+    s.doc.text(stripEmojis(title), MARGIN_X + 8, s.y + 5.5);
+  }
   if (count) {
     s.doc.setFontSize(8);
     s.doc.setTextColor(148, 163, 184);
-    s.doc.text(count, MARGIN_X + CONTENT_W - 4, s.y + 5.5, { align: 'right' });
+    if (_isRTL) {
+      s.doc.text(count, MARGIN_X + 4, s.y + 5.5);
+    } else {
+      s.doc.text(count, MARGIN_X + CONTENT_W - 4, s.y + 5.5, { align: 'right' });
+    }
   }
   s.y += 11;
 }
@@ -246,30 +281,52 @@ function drawBulletItem(s: PDFState, text: string, color: RGB) {
   ensureSpace(s, 6);
   // Bullet dot
   s.doc.setFillColor(color.r, color.g, color.b);
-  s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
+  if (_isRTL) {
+    s.doc.circle(MARGIN_X + CONTENT_W - 6, s.y + 2, 1.2, 'F');
+  } else {
+    s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
+  }
   // Text
   s.doc.setFontSize(9);
   s.doc.setTextColor(51, 65, 85);
   const lines = s.doc.splitTextToSize(stripEmojis(text), CONTENT_W - 14);
-  s.doc.text(lines, MARGIN_X + 10, s.y + 3);
+  if (_isRTL) {
+    s.doc.text(lines, MARGIN_X + CONTENT_W - 10, s.y + 3, { align: 'right' });
+  } else {
+    s.doc.text(lines, MARGIN_X + 10, s.y + 3);
+  }
   s.y += lines.length * 4.5 + 1;
 }
 
 function drawLabelValueItem(s: PDFState, label: string, value: string, color: RGB) {
   ensureSpace(s, 6);
   s.doc.setFillColor(color.r, color.g, color.b);
-  s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
+  if (_isRTL) {
+    s.doc.circle(MARGIN_X + CONTENT_W - 6, s.y + 2, 1.2, 'F');
+  } else {
+    s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
+  }
   s.doc.setFontSize(9);
   setFontBold(s.doc);
   s.doc.setTextColor(71, 85, 105);
   const lbl = stripEmojis(label) + ': ';
-  s.doc.text(lbl, MARGIN_X + 10, s.y + 3);
-  const lblW = s.doc.getTextWidth(lbl);
-  setFontNormal(s.doc);
-  s.doc.setTextColor(100, 116, 139);
-  const valLines = s.doc.splitTextToSize(stripEmojis(value), CONTENT_W - 14 - lblW);
-  s.doc.text(valLines, MARGIN_X + 10 + lblW, s.y + 3);
-  s.y += Math.max(valLines.length, 1) * 4.5 + 1;
+  if (_isRTL) {
+    s.doc.text(lbl, MARGIN_X + CONTENT_W - 10, s.y + 3, { align: 'right' });
+    const lblW = s.doc.getTextWidth(lbl);
+    setFontNormal(s.doc);
+    s.doc.setTextColor(100, 116, 139);
+    const valLines = s.doc.splitTextToSize(stripEmojis(value), CONTENT_W - 14 - lblW);
+    s.doc.text(valLines, MARGIN_X + CONTENT_W - 10 - lblW, s.y + 3, { align: 'right' });
+    s.y += Math.max(valLines.length, 1) * 4.5 + 1;
+  } else {
+    s.doc.text(lbl, MARGIN_X + 10, s.y + 3);
+    const lblW = s.doc.getTextWidth(lbl);
+    setFontNormal(s.doc);
+    s.doc.setTextColor(100, 116, 139);
+    const valLines = s.doc.splitTextToSize(stripEmojis(value), CONTENT_W - 14 - lblW);
+    s.doc.text(valLines, MARGIN_X + 10 + lblW, s.y + 3);
+    s.y += Math.max(valLines.length, 1) * 4.5 + 1;
+  }
 }
 
 // Render markdown text line by line into jsPDF
@@ -298,11 +355,19 @@ function renderMarkdownToPDF(s: PDFState, markdown: string, accentColor: RGB) {
       const barH = level <= 2 ? 8 : 7;
       s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, barH, 2, 2, 'F');
       s.doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
-      s.doc.rect(MARGIN_X, s.y, level <= 2 ? 3 : 2, barH, 'F');
+      if (_isRTL) {
+        s.doc.rect(MARGIN_X + CONTENT_W - (level <= 2 ? 3 : 2), s.y, level <= 2 ? 3 : 2, barH, 'F');
+      } else {
+        s.doc.rect(MARGIN_X, s.y, level <= 2 ? 3 : 2, barH, 'F');
+      }
       s.doc.setFontSize(sizes[level - 1]);
       setFontBold(s.doc);
       s.doc.setTextColor(level <= 2 ? 30 : accentColor.r, level <= 2 ? 41 : accentColor.g, level <= 2 ? 59 : accentColor.b);
-      s.doc.text(text, MARGIN_X + 8, s.y + barH - 2.5);
+      if (_isRTL) {
+        s.doc.text(text, MARGIN_X + CONTENT_W - 8, s.y + barH - 2.5, { align: 'right' });
+      } else {
+        s.doc.text(text, MARGIN_X + 8, s.y + barH - 2.5);
+      }
       setFontNormal(s.doc);
       s.y += barH + 3;
       continue;
@@ -341,7 +406,11 @@ function renderMarkdownToPDF(s: PDFState, markdown: string, accentColor: RGB) {
     const wrappedLines = s.doc.splitTextToSize(plainText, CONTENT_W - 8);
     for (const wl of wrappedLines) {
       ensureSpace(s, 4.5);
-      s.doc.text(wl, MARGIN_X + 4, s.y + 3);
+      if (_isRTL) {
+        s.doc.text(wl, MARGIN_X + CONTENT_W - 4, s.y + 3, { align: 'right' });
+      } else {
+        s.doc.text(wl, MARGIN_X + 4, s.y + 3);
+      }
       s.y += 4.5;
     }
     s.y += 1;
@@ -605,7 +674,11 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     const noteLines = s.doc.splitTextToSize(stripEmojis(additionalNotes.trim()), CONTENT_W - 12);
     for (const nl of noteLines) {
       ensureSpace(s, 4.5);
-      s.doc.text(nl, MARGIN_X + 6, s.y + 3);
+      if (_isRTL) {
+        s.doc.text(nl, MARGIN_X + CONTENT_W - 6, s.y + 3, { align: 'right' });
+      } else {
+        s.doc.text(nl, MARGIN_X + 6, s.y + 3);
+      }
       s.y += 4.5;
     }
     s.y += 4;
@@ -682,10 +755,17 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, 14, 3, 3, 'F');
   s.doc.setFontSize(11);
   s.doc.setTextColor(30, 41, 59);
-  s.doc.text(`${stripEmojis(labels.progress)}: ${progress}%`, MARGIN_X + 6, s.y + 6);
-  s.doc.setFontSize(9);
-  s.doc.setTextColor(100, 116, 139);
-  s.doc.text(`${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}`, MARGIN_X + CONTENT_W - 6, s.y + 6, { align: 'right' });
+  if (_isRTL) {
+    s.doc.text(`${stripEmojis(labels.progress)}: ${progress}%`, MARGIN_X + CONTENT_W - 6, s.y + 6, { align: 'right' });
+    s.doc.setFontSize(9);
+    s.doc.setTextColor(100, 116, 139);
+    s.doc.text(`${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}`, MARGIN_X + 6, s.y + 6);
+  } else {
+    s.doc.text(`${stripEmojis(labels.progress)}: ${progress}%`, MARGIN_X + 6, s.y + 6);
+    s.doc.setFontSize(9);
+    s.doc.setTextColor(100, 116, 139);
+    s.doc.text(`${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}`, MARGIN_X + CONTENT_W - 6, s.y + 6, { align: 'right' });
+  }
   const barY = s.y + 9;
   const barW = CONTENT_W - 12;
   s.doc.setFillColor(226, 232, 240);
@@ -730,8 +810,11 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
 
     catItems.forEach(item => {
       ensureSpace(s, 7);
-      const checkX = MARGIN_X + 4;
       const checkY = s.y;
+      
+      // Position checkbox on correct side for RTL
+      const checkX = _isRTL ? MARGIN_X + CONTENT_W - 8 : MARGIN_X + 4;
+      
       if (item.packed) {
         s.doc.setFillColor(34, 197, 94);
         s.doc.roundedRect(checkX, checkY, 4, 4, 0.8, 0.8, 'F');
@@ -747,21 +830,37 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
       const itemName = stripEmojis(item.name);
       const maxTextW = CONTENT_W - 50;
       const truncName = s.doc.getTextWidth(itemName) > maxTextW ? itemName.substring(0, Math.floor(itemName.length * maxTextW / s.doc.getTextWidth(itemName))) + '...' : itemName;
-      s.doc.text(truncName, checkX + 7, checkY + 3.2);
+      
+      if (_isRTL) {
+        s.doc.text(truncName, checkX - 3, checkY + 3.2, { align: 'right' });
+      } else {
+        s.doc.text(truncName, checkX + 7, checkY + 3.2);
+      }
 
       if (item.priority === 'essential' && !item.packed) {
         const badgeText = stripEmojis(labels.essential);
         const badgeW = s.doc.getTextWidth(badgeText) + 4;
-        s.doc.setFillColor(254, 226, 226);
-        s.doc.roundedRect(MARGIN_X + CONTENT_W - badgeW - 18, checkY - 0.5, badgeW, 5, 1, 1, 'F');
-        s.doc.setFontSize(7); s.doc.setTextColor(239, 68, 68);
-        s.doc.text(badgeText, MARGIN_X + CONTENT_W - 17 - badgeW / 2, checkY + 3, { align: 'center' });
+        if (_isRTL) {
+          s.doc.setFillColor(254, 226, 226);
+          s.doc.roundedRect(MARGIN_X + 14, checkY - 0.5, badgeW, 5, 1, 1, 'F');
+          s.doc.setFontSize(7); s.doc.setTextColor(239, 68, 68);
+          s.doc.text(badgeText, MARGIN_X + 14 + badgeW / 2, checkY + 3, { align: 'center' });
+        } else {
+          s.doc.setFillColor(254, 226, 226);
+          s.doc.roundedRect(MARGIN_X + CONTENT_W - badgeW - 18, checkY - 0.5, badgeW, 5, 1, 1, 'F');
+          s.doc.setFontSize(7); s.doc.setTextColor(239, 68, 68);
+          s.doc.text(badgeText, MARGIN_X + CONTENT_W - 17 - badgeW / 2, checkY + 3, { align: 'center' });
+        }
       }
 
       const statusColor = item.packed ? [34, 197, 94] : [239, 68, 68];
       const statusText = stripEmojis(item.packed ? labels.packed : labels.notPacked);
       s.doc.setFontSize(7); s.doc.setTextColor(statusColor[0], statusColor[1], statusColor[2]);
-      s.doc.text(statusText, MARGIN_X + CONTENT_W - 4, checkY + 3.2, { align: 'right' });
+      if (_isRTL) {
+        s.doc.text(statusText, MARGIN_X + 4, checkY + 3.2);
+      } else {
+        s.doc.text(statusText, MARGIN_X + CONTENT_W - 4, checkY + 3.2, { align: 'right' });
+      }
       s.y += 6;
     });
     s.y += 4;
