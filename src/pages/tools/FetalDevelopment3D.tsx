@@ -4,7 +4,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Baby, ChevronLeft, ChevronRight, Heart, Brain, Ear, Eye, Hand, Footprints, Scale, Ruler, Sparkles, Calendar, Loader2, Stethoscope, Apple, Dumbbell } from 'lucide-react';
+import { Baby, ChevronLeft, ChevronRight, Heart, Brain, Ear, Eye, Hand, Footprints, Scale, Ruler, Calendar, Loader2, Stethoscope, Apple, Dumbbell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -196,60 +196,60 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
       toolId="fetal-development"
     >
       <div className="space-y-4">
-        {/* Progress Bar */}
-        <Card className="overflow-hidden">
-          <CardContent className="py-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-medium text-muted-foreground">
-                {t('toolsInternal.fetalDevelopment.pregnancyProgress')}
-              </span>
-              <span className="text-sm font-bold text-primary">{Math.round(progressPercent)}%</span>
-            </div>
-            <Progress value={progressPercent} className="h-2.5" />
-            <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-              <span>{t('toolsInternal.common.week')} 4</span>
-              <span>{t('toolsInternal.common.week')} 40</span>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Week Navigation */}
-        <Card className="bg-gradient-to-r from-primary/5 to-accent/5">
-          <CardContent className="py-5">
-            <div className="flex items-center justify-between">
+        {/* Week selector strip */}
+        <Card className="overflow-hidden border-border">
+          <CardContent className="py-3 px-2">
+            <div className="flex items-center gap-1.5">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="icon"
                 onClick={goToPrevious}
                 disabled={currentIndex === 0}
-                className="rounded-full h-12 w-12"
+                className="rounded-full h-8 w-8 shrink-0"
               >
-                <PrevIcon className="w-6 h-6" />
+                <PrevIcon className="w-4 h-4" />
               </Button>
-              
-              <div className="text-center">
-                <span className={`text-xs px-3 py-1 rounded-full font-medium ${trimester.color}`}>
-                  {t(`toolsInternal.fetalDevelopment.${trimester.nameKey}`)}
-                </span>
-                <p className="text-lg font-bold text-primary mt-1.5">
-                  {t('toolsInternal.common.week')} {currentData.week}
-                </p>
-                {userWeek === currentData.week && (
-                  <span className="text-xs text-muted-foreground flex items-center justify-center gap-1 mt-1">
-                    <Calendar className="w-3 h-3" /> {t('toolsInternal.fetalDevelopment.yourCurrentWeek')}
-                  </span>
-                )}
+
+              <div className="flex-1 overflow-x-auto scrollbar-hide">
+                <div className="flex gap-1" dir={isRTL ? 'rtl' : 'ltr'}>
+                  {weeklyData.map((wd, idx) => (
+                    <button
+                      key={wd.week}
+                      onClick={() => setCurrentIndex(idx)}
+                      className={`shrink-0 px-2.5 py-1.5 rounded-lg text-[10px] font-medium transition-all ${
+                        idx === currentIndex
+                          ? 'bg-primary text-primary-foreground shadow-sm'
+                          : userWeek === wd.week
+                            ? 'bg-primary/15 text-primary'
+                            : 'text-muted-foreground hover:bg-muted/60'
+                      }`}
+                    >
+                      {wd.week}
+                    </button>
+                  ))}
+                </div>
               </div>
-              
+
               <Button
-                variant="outline"
+                variant="ghost"
                 size="icon"
                 onClick={goToNext}
                 disabled={currentIndex === weeklyData.length - 1}
-                className="rounded-full h-12 w-12"
+                className="rounded-full h-8 w-8 shrink-0"
               >
-                <NextIcon className="w-6 h-6" />
+                <NextIcon className="w-4 h-4" />
               </Button>
+            </div>
+
+            {/* Progress + trimester label */}
+            <div className="mt-2.5 px-1">
+              <div className="flex items-center justify-between mb-1">
+                <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${trimester.color}`}>
+                  {t(`toolsInternal.fetalDevelopment.${trimester.nameKey}`)}
+                </span>
+                <span className="text-[10px] text-muted-foreground tabular-nums">{Math.round(progressPercent)}%</span>
+              </div>
+              <Progress value={progressPercent} className="h-1.5" />
             </div>
           </CardContent>
         </Card>
@@ -258,95 +258,87 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
         <AnimatePresence mode="wait">
           <motion.div
             key={currentData.week}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
           >
-            <Card className="bg-gradient-to-br from-primary/10 via-accent/5 to-accent/10 border-primary/20 overflow-hidden">
-              <CardContent className="py-6 relative">
-                <div className="absolute top-3 end-3">
-                  <Button variant="ghost" size="sm" onClick={saveCurrentWeek} className="text-xs">
-                    <Calendar className="w-3.5 h-3.5 me-1" />
-                    {t('toolsInternal.fetalDevelopment.setAsMyWeek')}
+            <Card className="border-primary/15 overflow-hidden">
+              <CardContent className="py-5">
+                {/* Week title + set as my week */}
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-base font-bold text-foreground">
+                    {t('toolsInternal.common.week')} {currentData.week}
+                  </h2>
+                  <Button variant="ghost" size="sm" onClick={saveCurrentWeek} className="text-[10px] h-7 px-2 text-muted-foreground">
+                    <Calendar className="w-3 h-3 me-1" />
+                    {userWeek === currentData.week
+                      ? t('toolsInternal.fetalDevelopment.yourCurrentWeek')
+                      : t('toolsInternal.fetalDevelopment.setAsMyWeek')}
                   </Button>
                 </div>
-                
-                <div className="text-center">
-                  <motion.div 
-                    className="w-20 h-20 mx-auto mb-3 rounded-full bg-primary/20 flex items-center justify-center"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Baby className="w-10 h-10 text-primary" />
-                  </motion.div>
-                  <p className="text-base font-bold text-foreground">
-                    {t('toolsInternal.fetalDevelopment.sizeOf', { 
-                      size: t(`toolsInternal.fetalDevelopment.sizes.${currentData.sizeKey}`) 
-                    })}
-                  </p>
-                  
-                  {/* Stats inline */}
-                  <div className="flex items-center justify-center gap-4 mt-3">
-                    <div className="flex items-center gap-1.5 text-sm">
-                      <Ruler className="w-3.5 h-3.5 text-primary" />
-                      <span className="font-semibold text-primary" dir="ltr">
-                        {formatMeasurement(currentData.lengthValue, currentData.lengthUnit)}
-                      </span>
-                    </div>
-                    <div className="w-px h-4 bg-border" />
-                    <div className="flex items-center gap-1.5 text-sm">
-                      <Scale className="w-3.5 h-3.5 text-muted-foreground" />
-                      <span className="font-semibold text-foreground" dir="ltr">
-                        {formatMeasurement(currentData.weightValue, currentData.weightUnit)}
-                      </span>
-                    </div>
-                  </div>
 
-                  {/* Developing Organs */}
-                  <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
-                    <span className="text-xs text-muted-foreground">
-                      {t('toolsInternal.fetalDevelopment.developing')}:
-                    </span>
-                    {currentData.organs.map((organ, i) => (
-                      <motion.div
-                        key={organ}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: i * 0.1 }}
-                        className="flex items-center gap-1 px-2 py-1 rounded-full bg-primary/15 text-primary text-xs"
-                      >
-                        {organIcons[organ]}
-                        <span className="font-medium">
-                          {t(organLabelKeys[organ] ?? '', { defaultValue: organ })}
+                {/* Size comparison + measurements */}
+                <div className="flex items-center gap-4">
+                  <motion.div
+                    className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0"
+                    animate={{ scale: [1, 1.04, 1] }}
+                    transition={{ duration: 2.5, repeat: Infinity }}
+                  >
+                    <Baby className="w-8 h-8 text-primary" />
+                  </motion.div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-foreground">
+                      {t('toolsInternal.fetalDevelopment.sizeOf', {
+                        size: t(`toolsInternal.fetalDevelopment.sizes.${currentData.sizeKey}`)
+                      })}
+                    </p>
+                    <div className="flex items-center gap-3 mt-1.5">
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                        <Ruler className="w-3 h-3 text-primary" />
+                        <span className="font-medium" dir="ltr">
+                          {formatMeasurement(currentData.lengthValue, currentData.lengthUnit)}
                         </span>
-                      </motion.div>
-                    ))}
+                      </div>
+                      <div className="w-px h-3 bg-border" />
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                        <Scale className="w-3 h-3" />
+                        <span className="font-medium" dir="ltr">
+                          {formatMeasurement(currentData.weightValue, currentData.weightUnit)}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+                {/* Developing Organs */}
+                <div className="flex flex-wrap items-center gap-1.5 mt-4">
+                  {currentData.organs.map((organ, i) => (
+                    <motion.div
+                      key={organ}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: i * 0.08 }}
+                      className="flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-[10px]"
+                    >
+                      {organIcons[organ]}
+                      <span className="font-medium">
+                        {t(organLabelKeys[organ] ?? '', { defaultValue: organ })}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Development description */}
+                <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
+                  {t(`toolsInternal.fetalDevelopment.developments.${currentData.developmentKey}`)}
+                </p>
               </CardContent>
             </Card>
           </motion.div>
         </AnimatePresence>
 
-        {/* Development Info */}
-        <Card>
-          <CardContent className="py-4">
-            <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-primary/10 shrink-0">
-                <Baby className="w-4 h-4 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-sm text-foreground">
-                  {t('toolsInternal.fetalDevelopment.thisWeeksDevelopment')}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                  {t(`toolsInternal.fetalDevelopment.developments.${currentData.developmentKey}`)}
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+
 
         {/* AI Insights Section */}
         <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
