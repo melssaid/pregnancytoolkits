@@ -1,7 +1,8 @@
-import { forwardRef, useState, memo } from "react";
+import { forwardRef, useState, memo, useRef } from "react";
 import { LayoutDashboard, Search, Settings, Bell } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { motion, PanInfo } from "framer-motion";
 import { SearchDialog } from "./SearchDialog";
 import { NotificationsPanel } from "./dashboard/NotificationsPanel";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -36,12 +37,20 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
               onClick={() => setNotificationsOpen(false)}
               className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden animate-fade-in"
             />
-            <div className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[70vh] overflow-auto rounded-2xl bg-card border border-border/40 shadow-2xl md:hidden animate-scale-in">
+            <motion.div
+              drag="y"
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0, bottom: 0.6 }}
+              onDragEnd={(_: any, info: PanInfo) => {
+                if (info.offset.y > 80) setNotificationsOpen(false);
+              }}
+              className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[70vh] overflow-auto rounded-2xl bg-card border border-border/40 shadow-2xl md:hidden animate-scale-in touch-pan-x"
+            >
               <div className="p-3">
-                <div className="w-10 h-1 bg-muted rounded-full mx-auto mb-3" />
+                <div className="w-10 h-1 bg-muted-foreground/30 rounded-full mx-auto mb-3 cursor-grab active:cursor-grabbing" />
                 <NotificationsPanel />
               </div>
-            </div>
+            </motion.div>
           </>
         )}
 
