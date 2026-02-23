@@ -360,7 +360,8 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
                     size="sm" 
                     variant="default" 
                     onClick={exportPlanAsPDF}
-                    className="gap-1 flex-1"
+                    disabled={isExportingPDF}
+                    className="gap-1 flex-1 disabled:opacity-70"
                   >
                     {isExportingPDF ? <Loader2 className="w-4 h-4 shrink-0 animate-spin" /> : <FileDown className="w-4 h-4 shrink-0" />}
                     {isExportingPDF ? t('common.exporting', 'Exporting...') : 'PDF'}

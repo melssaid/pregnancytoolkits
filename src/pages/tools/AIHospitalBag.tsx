@@ -553,7 +553,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             onClick={handleExportPDF}
             variant="outline"
             disabled={isExportingPDF}
-            className="border-teal-300 text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30 text-[12px] sm:text-[13px] h-9 px-2"
+            className="border-teal-300 text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30 disabled:opacity-70 disabled:text-teal-700 text-[12px] sm:text-[13px] h-9 px-2"
           >
             {isExportingPDF ? <Loader2 className="w-3.5 h-3.5 me-1.5 shrink-0 animate-spin" /> : <FileDown className="w-3.5 h-3.5 me-1.5 shrink-0" />}
             <span className="truncate">{isExportingPDF ? t('common.exporting', 'Exporting...') : t('toolsInternal.hospitalBag.exportPDF')}</span>
