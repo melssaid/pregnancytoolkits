@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { ShieldCheck } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface MarkdownRendererProps {
   content: string;
@@ -8,6 +9,9 @@ interface MarkdownRendererProps {
 }
 
 export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }: MarkdownRendererProps) {
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language?.startsWith('ar');
+
   const { mainContent, disclaimerContent } = useMemo(() => {
     if (!content) return { mainContent: null, disclaimerContent: null };
 
@@ -18,7 +22,6 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
 
     if (lastHrIndex > 0) {
       const afterHr = content.slice(lastHrIndex + 4).trim();
-      // Check if the text after the last --- looks like a disclaimer (short, contains common disclaimer patterns)
       const disclaimerPatterns = [
         'استشار', 'طبيب', 'معلومات عامة', 'consult', 'doctor', 'healthcare',
         'disclaimer', 'medical', 'Arzt', 'consulter', 'médecin', 'consulta',
@@ -48,7 +51,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
               className={`my-3 space-y-2 ${listType === 'ol' ? 'list-decimal' : 'list-disc'} list-inside`}
             >
               {listItems.map((item, i) => (
-                <li key={i} className="text-xs leading-relaxed text-foreground/90 pl-1">
+                <li key={i} className="text-xs leading-relaxed text-foreground/90 ps-1">
                   {formatInline(item)}
                 </li>
               ))}
@@ -64,7 +67,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
           elements.push(
             <blockquote 
               key={`quote-${elements.length}`} 
-              className="my-2 pl-3 border-l-3 border-primary/30 bg-primary/5 py-1.5 pr-2 rounded-r-lg italic text-xs text-muted-foreground"
+              className="my-2 ps-3 border-s-[3px] border-primary/30 bg-primary/5 py-1.5 pe-2 rounded-e-lg italic text-xs text-muted-foreground"
             >
               {blockquoteLines.map((line, i) => (
                 <p key={i}>{formatInline(line)}</p>
@@ -76,10 +79,8 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
       };
 
       const formatInline = (text: string): (string | JSX.Element)[] => {
-        // Strip citation references like [1], [2], [1][2]
         text = text.replace(/\[\d+\]/g, '');
         const parts: (string | JSX.Element)[] = [];
-        // Match **bold** and *italic*
         const regex = /\*\*(.+?)\*\*|\*(.+?)\*/g;
         let lastIndex = 0;
         let match;
@@ -127,7 +128,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
                 <span className="text-lg">{emojiHeaderMatch[1]}</span>
                 <div>
                   <span className="font-semibold text-foreground text-sm">{emojiHeaderMatch[2]}:</span>
-                  {emojiHeaderMatch[3] && <span className="text-sm text-muted-foreground ml-1">{formatInline(emojiHeaderMatch[3])}</span>}
+                  {emojiHeaderMatch[3] && <span className="text-sm text-muted-foreground ms-1">{formatInline(emojiHeaderMatch[3])}</span>}
                 </div>
               </div>
             </div>
@@ -153,11 +154,11 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
   }, [content]);
 
   return (
-    <div className="prose prose-sm max-w-none dark:prose-invert overflow-hidden">
+    <div className="prose prose-sm max-w-none dark:prose-invert overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'} style={isRTL ? { textAlign: 'right' } : undefined}>
       <div className="space-y-1 break-words overflow-wrap-anywhere">
         {mainContent}
         {isLoading && (
-          <span className="inline-block w-2 h-4 bg-primary/50 animate-pulse ml-1 rounded" />
+          <span className={`inline-block w-2 h-4 bg-primary/50 animate-pulse ${isRTL ? 'me-1' : 'ms-1'} rounded`} />
         )}
       </div>
       {disclaimerContent && (
