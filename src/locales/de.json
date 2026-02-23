@@ -452,6 +452,14 @@
       "disclaimerTitle": "Wichtiger Hinweis",
       "disclaimerText": "Diese App dient nur zu Bildungs- und Informationszwecken und ist kein Ersatz für professionelle Gesundheitsberatung. Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Gesundheitsdienstleister."
     },
+    "share": {
+      "title": "Schwangerschafts-Tools",
+      "message": "🤰 Entdecke Schwangerschafts-Tools — 42+ kostenlose Wellness-Tools für deine Schwangerschaft!",
+      "copied": "Link kopiert! Teile ihn mit deinen Freundinnen 💕",
+      "failed": "Teilen fehlgeschlagen",
+      "buttonTitle": "Mit Freundinnen teilen",
+      "buttonSubtitle": "Per WhatsApp, SMS und mehr einladen"
+    },
     "privacyPolicy": {
       "title": "Datenschutzrichtlinie",
       "subtitle": "Ihre Privatsphäre ist uns wichtig. Diese Mitteilung erklärt, wie wir mit Ihren Informationen umgehen.",

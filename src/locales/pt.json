@@ -452,6 +452,14 @@
       "disclaimerTitle": "Aviso Importante",
       "disclaimerText": "Este aplicativo é apenas para fins educacionais e informativos e não substitui orientação profissional de saúde. Sempre consulte um profissional de saúde qualificado para qualquer preocupação de saúde."
     },
+    "share": {
+      "title": "Ferramentas de Gravidez",
+      "message": "🤰 Confira Ferramentas de Gravidez — 42+ ferramentas gratuitas para sua jornada de gravidez!",
+      "copied": "Link copiado! Compartilhe com suas amigas 💕",
+      "failed": "Não foi possível compartilhar",
+      "buttonTitle": "Compartilhar com amigas",
+      "buttonSubtitle": "Convide uma amiga via WhatsApp, SMS e mais"
+    },
     "privacyPolicy": {
       "title": "Política de Privacidade",
       "subtitle": "Sua privacidade é importante para nós. Este aviso explica como lidamos com suas informações.",

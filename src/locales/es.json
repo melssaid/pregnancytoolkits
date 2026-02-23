@@ -452,6 +452,14 @@
       "disclaimerTitle": "Aviso Importante",
       "disclaimerText": "Esta aplicación es solo para fines educativos e informativos y no sustituye la orientación profesional de salud. Siempre consulte a un proveedor de atención médica calificado para cualquier preocupación de salud."
     },
+    "share": {
+      "title": "Herramientas de Embarazo",
+      "message": "🤰 ¡Descubre Herramientas de Embarazo — 42+ herramientas gratuitas para tu embarazo!",
+      "copied": "¡Enlace copiado! Compártelo con tus amigas 💕",
+      "failed": "No se pudo compartir",
+      "buttonTitle": "Compartir con amigas",
+      "buttonSubtitle": "Invita a una amiga por WhatsApp, SMS y más"
+    },
     "privacyPolicy": {
       "title": "Política de Privacidad",
       "subtitle": "Tu privacidad es importante para nosotros. Este aviso explica cómo manejamos tu información.",
