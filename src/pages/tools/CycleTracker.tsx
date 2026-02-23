@@ -23,11 +23,15 @@ export default function CycleTracker() {
   const aiSectionRef = useRef<HTMLDivElement>(null);
 
   const handleDayTap = (dateStr: string) => {
+    // If day is already logged, open editor for edit/delete
+    if (dayLogs[dateStr]?.flow) {
+      setEditingDate(dateStr);
+      return;
+    }
+    // Otherwise toggle period marking
     toggleDay(dateStr);
     toast({
-      title: dayLogs[dateStr]?.flow
-        ? t('toolsInternal.cycleTracker.dayRemoved', 'Day removed')
-        : t('toolsInternal.cycleTracker.dayMarked', 'Period day marked'),
+      title: t('toolsInternal.cycleTracker.dayMarked', 'Period day marked'),
       duration: 1500,
     });
   };
@@ -101,11 +105,16 @@ Any patterns that might be worth discussing with a doctor`;
         className="space-y-5 pb-16"
       >
         {/* Instruction hint */}
-        <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/5 border border-primary/10">
-          <Activity className="w-3.5 h-3.5 text-primary shrink-0" />
-          <p className="text-[11px] text-muted-foreground">
-            {t('toolsInternal.cycleTracker.calendarHint', 'Tap a day to mark your period. Double-tap or long-press to add details.')}
-          </p>
+        <div className="flex items-start gap-2.5 px-3 py-2.5 rounded-xl bg-primary/8 border border-primary/15">
+          <Activity className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+          <div className="space-y-0.5">
+            <p className="text-xs font-medium text-foreground">
+              {t('toolsInternal.cycleTracker.calendarHintTitle', 'How to use')}
+            </p>
+            <p className="text-[11px] text-muted-foreground leading-relaxed">
+              {t('toolsInternal.cycleTracker.calendarHint', 'Tap a day to mark your period. Tap a marked day to edit or delete it.')}
+            </p>
+          </div>
         </div>
 
         {/* Calendar */}
