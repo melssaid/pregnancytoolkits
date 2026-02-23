@@ -108,14 +108,22 @@ function getFontFamily(language: string): string {
     : "'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 }
 
+// Timeout wrapper for html2canvas calls
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) => setTimeout(() => reject(new Error('Canvas render timeout')), ms))
+  ]);
+}
+
 // Unified section-based html2canvas-to-PDF renderer
 // Each [data-pdf-section] is rendered separately to avoid mid-content page cuts
 async function renderHTMLToPDF(htmlContent: string, fileName: string, language: string = 'en', onProgress?: PDFProgressCallback): Promise<void> {
   const isRTL = language === 'ar';
   const fontFamily = getFontFamily(language);
 
-  // Render scale – 2 for crisp text
-  const RENDER_SCALE = 2;
+  // Render scale – 1.5 for balance between speed and quality
+  const RENDER_SCALE = 1.5;
 
   // Use a narrower wrapper to reduce white space – content fills more of the page
   const WRAPPER_WIDTH_PX = 680;
@@ -161,7 +169,7 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   try {
     await document.fonts.ready;
   } catch { /* fallback */ }
-  await new Promise(resolve => setTimeout(resolve, 60));
+  await new Promise(resolve => setTimeout(resolve, 30));
 
   // PDF constants – balanced margins for professional look
   const A4_WIDTH_MM = 210;
@@ -180,14 +188,14 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
   // If no sections found, fall back to rendering the entire wrapper as one image
   if (sections.length === 0) {
     try {
-      const canvas = await html2canvas(wrapper, {
+      const canvas = await withTimeout(html2canvas(wrapper, {
         scale: RENDER_SCALE,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
         width: WRAPPER_WIDTH_PX,
         windowWidth: WRAPPER_WIDTH_PX,
-      });
+      }), 30000);
       const scaleFactor = CONTENT_WIDTH_MM / (canvas.width / RENDER_SCALE);
       const pageHeightPx = CONTENT_HEIGHT_MM / scaleFactor;
       let remaining = canvas.height;
@@ -225,14 +233,14 @@ async function renderHTMLToPDF(htmlContent: string, fileName: string, language: 
     const section = sections[sIdx];
     let canvas: HTMLCanvasElement;
     try {
-      canvas = await html2canvas(section, {
+      canvas = await withTimeout(html2canvas(section, {
         scale: RENDER_SCALE,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
         width: WRAPPER_WIDTH_PX,
         windowWidth: WRAPPER_WIDTH_PX,
-      });
+      }), 15000);
     } catch {
       continue;
     }
@@ -907,32 +915,100 @@ interface HospitalBagPDFOptions {
   };
 }
 
-// Hospital Bag PDF export
+// Hospital Bag PDF export — pure jsPDF text rendering (no html2canvas)
 export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Promise<void> {
   const { title, subtitle, items, language = 'en', labels } = options;
   const logoData = await loadLogoImage();
-  const isRTL = language === 'ar';
-  const fontFamily = getFontFamily(language);
-  const accentColor = { r: 20, g: 184, b: 166 }; // Teal
 
+  options.onProgress?.(10);
+
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const pageW = 210;
+  const pageH = 297;
+  const marginX = 16;
+  const marginY = 12;
+  const contentW = pageW - marginX * 2;
+  let y = marginY;
+
+  const ensureSpace = (needed: number) => {
+    if (y + needed > pageH - marginY) {
+      doc.addPage();
+      y = marginY;
+    }
+  };
+
+  // Header with logo
+  if (logoData) {
+    try {
+      doc.addImage(logoData, 'PNG', pageW / 2 - 8, y, 16, 16);
+      y += 20;
+    } catch { y += 4; }
+  }
+
+  // Title
+  doc.setFontSize(18);
+  doc.setTextColor(30, 41, 59);
+  doc.text(stripEmojis(title), pageW / 2, y, { align: 'center' });
+  y += 7;
+
+  if (subtitle) {
+    doc.setFontSize(10);
+    doc.setTextColor(100, 116, 139);
+    doc.text(stripEmojis(subtitle), pageW / 2, y, { align: 'center' });
+    y += 5;
+  }
+
+  // Brand
+  doc.setFontSize(8);
+  doc.setTextColor(236, 72, 153);
+  doc.text(getBrandName(language), pageW / 2, y, { align: 'center' });
+  y += 3;
+
+  // Divider
+  doc.setDrawColor(236, 72, 153);
+  doc.setLineWidth(0.5);
+  doc.line(pageW / 2 - 40, y, pageW / 2 + 40, y);
+  y += 8;
+
+  options.onProgress?.(20);
+
+  // Progress bar
   const packedCount = items.filter(i => i.packed).length;
   const totalCount = items.length;
   const progress = Math.round((packedCount / totalCount) * 100);
 
-  const categoryColors: Record<string, { r: number; g: number; b: number }> = {
-    mom: { r: 236, g: 72, b: 153 },
-    baby: { r: 59, g: 130, b: 246 },
-    partner: { r: 139, g: 92, b: 246 },
-    documents: { r: 245, g: 158, b: 11 },
-  };
+  doc.setFillColor(241, 245, 249);
+  doc.roundedRect(marginX, y, contentW, 14, 3, 3, 'F');
+  doc.setFontSize(11);
+  doc.setTextColor(30, 41, 59);
+  doc.text(`${stripEmojis(labels.progress)}: ${progress}%`, marginX + 6, y + 6);
+  doc.setFontSize(9);
+  doc.setTextColor(100, 116, 139);
+  doc.text(`${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}`, marginX + contentW - 6, y + 6, { align: 'right' });
 
+  // Progress bar fill
+  const barY = y + 9;
+  const barW = contentW - 12;
+  doc.setFillColor(226, 232, 240);
+  doc.roundedRect(marginX + 6, barY, barW, 3, 1.5, 1.5, 'F');
+  if (progress > 0) {
+    doc.setFillColor(20, 184, 166);
+    doc.roundedRect(marginX + 6, barY, barW * (progress / 100), 3, 1.5, 1.5, 'F');
+  }
+  y += 20;
+
+  options.onProgress?.(30);
+
+  // Category colors
+  const categoryColors: Record<string, [number, number, number]> = {
+    mom: [236, 72, 153],
+    baby: [59, 130, 246],
+    partner: [139, 92, 246],
+    documents: [245, 158, 11],
+  };
   const categoryLabels: Record<string, string> = {
-    mom: labels.mom,
-    baby: labels.baby,
-    partner: labels.partner,
-    documents: labels.documents,
+    mom: labels.mom, baby: labels.baby, partner: labels.partner, documents: labels.documents,
   };
-
   const categoryStats: Record<string, HospitalBagItem[]> = {
     mom: items.filter(i => i.category === 'mom'),
     baby: items.filter(i => i.category === 'baby'),
@@ -940,89 +1016,125 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
     documents: items.filter(i => i.category === 'documents'),
   };
 
-  let html = buildHeaderHTML(title, subtitle, accentColor, logoData, language);
-
-  // Progress bar - wrapped in data-pdf-section
-  const progressBarFill = `${progress}%`;
-  html += `
-    <div data-pdf-section style="margin:10px 20px;padding:10px 16px;background:${rgbaStr(accentColor, 0.05)};border-radius:8px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-        <span style="font-size:12px;font-weight:700;color:#1e293b;font-family:${fontFamily};">${stripEmojis(labels.progress)}: ${progress}%</span>
-        <span style="font-size:10px;color:#64748b;font-family:${fontFamily};">${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}</span>
-      </div>
-      <div style="height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;">
-        <div style="height:100%;width:${progressBarFill};background:linear-gradient(90deg, ${rgbStr(accentColor)}, ${rgbaStr(accentColor, 0.7)});border-radius:4px;"></div>
-      </div>
-    </div>
-  `;
-
-  // Category summary cards - wrapped in data-pdf-section
-  html += `<div data-pdf-section style="display:flex;gap:8px;margin:8px 20px 10px;">`;
+  // Category summary cards
+  const cardW = (contentW - 12) / 4;
+  let cardX = marginX;
   Object.entries(categoryStats).forEach(([cat, catItems]) => {
-    const color = categoryColors[cat];
-    const label = categoryLabels[cat];
+    const [r, g, b] = categoryColors[cat];
     const catPacked = catItems.filter(i => i.packed).length;
-    html += `
-      <div style="flex:1;background:${rgbaStr(color, 0.06)};border-radius:8px;padding:8px 6px;text-align:center;">
-        <div style="font-size:14px;font-weight:800;color:${rgbStr(color)};font-family:${fontFamily};">${catPacked}/${catItems.length}</div>
-        <div style="font-size:8px;color:#94a3b8;font-family:${fontFamily};margin-top:2px;">${stripEmojis(label)}</div>
-      </div>
-    `;
+    doc.setFillColor(r, g, b, 0.06 * 255);
+    // Light background
+    doc.setFillColor(Math.min(255, r + 180), Math.min(255, g + 180), Math.min(255, b + 180));
+    doc.roundedRect(cardX, y, cardW, 14, 2, 2, 'F');
+    doc.setFontSize(12);
+    doc.setTextColor(r, g, b);
+    doc.text(`${catPacked}/${catItems.length}`, cardX + cardW / 2, y + 6, { align: 'center' });
+    doc.setFontSize(7);
+    doc.setTextColor(148, 163, 184);
+    doc.text(stripEmojis(categoryLabels[cat]), cardX + cardW / 2, y + 11, { align: 'center' });
+    cardX += cardW + 4;
   });
-  html += `</div>`;
+  y += 20;
 
-  html += `<div data-pdf-section style="margin:0 20px 10px;height:1.5px;background:linear-gradient(90deg, transparent, ${rgbaStr(accentColor, 0.2)}, transparent);"></div>`;
+  options.onProgress?.(40);
 
-  // Items by category - each category is a data-pdf-section
-  Object.entries(categoryStats).forEach(([cat, catItems]) => {
+  // Items by category
+  const catEntries = Object.entries(categoryStats);
+  catEntries.forEach(([cat, catItems], catIdx) => {
     if (catItems.length === 0) return;
-    const color = categoryColors[cat];
-    const label = categoryLabels[cat];
+    const [r, g, b] = categoryColors[cat];
     const catPacked = catItems.filter(i => i.packed).length;
 
-    html += `<div data-pdf-section style="margin:6px 20px 6px;">`;
-    html += `
-      <div style="padding:7px 14px;background:${rgbaStr(color, 0.07)};border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
-        <div style="display:flex;align-items:center;gap:0;">
-          <div style="width:4px;min-width:4px;height:18px;background:${rgbStr(color)};border-radius:2px;margin-${isRTL ? 'left' : 'right'}:10px;"></div>
-          <span style="font-size:12.5px;font-weight:700;color:${rgbStr(color)};font-family:${fontFamily};">${stripEmojis(label)}</span>
-        </div>
-        <span style="font-size:10px;color:#94a3b8;font-family:${fontFamily};">${catPacked}/${catItems.length}</span>
-      </div>
-    `;
+    ensureSpace(12);
 
+    // Category header
+    doc.setFillColor(Math.min(255, r + 200), Math.min(255, g + 200), Math.min(255, b + 200));
+    doc.roundedRect(marginX, y, contentW, 8, 2, 2, 'F');
+    doc.setFillColor(r, g, b);
+    doc.rect(marginX, y, 2.5, 8, 'F');
+    doc.setFontSize(10);
+    doc.setTextColor(r, g, b);
+    doc.text(stripEmojis(categoryLabels[cat]), marginX + 8, y + 5.5);
+    doc.setFontSize(8);
+    doc.setTextColor(148, 163, 184);
+    doc.text(`${catPacked}/${catItems.length}`, marginX + contentW - 4, y + 5.5, { align: 'right' });
+    y += 11;
+
+    // Items
     catItems.forEach(item => {
-      const checkColor = item.packed ? rgbStr(COLORS.success) : '#cbd5e1';
-      const checkBg = item.packed ? rgbaStr(COLORS.success, 0.12) : 'transparent';
-      const textColor = item.packed ? '#94a3b8' : '#334155';
-      const textDecoration = item.packed ? 'line-through' : 'none';
+      ensureSpace(7);
 
-      const statusColor = item.packed ? COLORS.success : { r: 239, g: 68, b: 68 };
-      const statusText = item.packed ? labels.packed : labels.notPacked;
-
-      let priorityBadge = '';
-      if (item.priority === 'essential' && !item.packed) {
-        priorityBadge = `<span style="font-size:9px;color:rgb(239,68,68);background:rgba(239,68,68,0.08);padding:2px 8px;border-radius:4px;font-family:${fontFamily};margin-${isRTL ? 'left' : 'right'}:6px;">${stripEmojis(labels.essential)}</span>`;
+      // Checkbox
+      const checkX = marginX + 4;
+      const checkY = y;
+      if (item.packed) {
+        doc.setFillColor(34, 197, 94);
+        doc.roundedRect(checkX, checkY, 4, 4, 0.8, 0.8, 'F');
+        doc.setFontSize(7);
+        doc.setTextColor(255, 255, 255);
+        doc.text('✓', checkX + 1.2, checkY + 3.2);
+      } else {
+        doc.setDrawColor(203, 213, 225);
+        doc.setLineWidth(0.3);
+        doc.roundedRect(checkX, checkY, 4, 4, 0.8, 0.8, 'S');
       }
 
-      html += `
-        <div style="padding:4px 14px;display:flex;align-items:center;gap:8px;font-family:${fontFamily};">
-          <div style="width:14px;height:14px;border-radius:3px;border:1.5px solid ${checkColor};background:${checkBg};flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            ${item.packed ? `<span style="color:${rgbStr(COLORS.success)};font-size:9px;font-weight:700;">✓</span>` : ''}
-          </div>
-          <span style="flex:1;font-size:11px;color:${textColor};text-decoration:${textDecoration};line-height:1.4;">${stripEmojis(item.name)}</span>
-          ${priorityBadge}
-          <span style="font-size:8.5px;color:${rgbStr(statusColor)};background:${rgbaStr(statusColor, 0.08)};padding:2px 7px;border-radius:4px;font-weight:500;">${stripEmojis(statusText)}</span>
-        </div>
-      `;
+      // Item name
+      const textColor = item.packed ? [148, 163, 184] : [51, 65, 85];
+      doc.setFontSize(9);
+      doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+      const itemName = stripEmojis(item.name);
+      const maxTextW = contentW - 50;
+      const truncName = doc.getTextWidth(itemName) > maxTextW
+        ? itemName.substring(0, Math.floor(itemName.length * maxTextW / doc.getTextWidth(itemName))) + '...'
+        : itemName;
+      doc.text(truncName, checkX + 7, checkY + 3.2);
+
+      // Priority badge (essential only, unpacked)
+      if (item.priority === 'essential' && !item.packed) {
+        const badgeText = stripEmojis(labels.essential);
+        const badgeW = doc.getTextWidth(badgeText) + 4;
+        doc.setFillColor(254, 226, 226);
+        doc.roundedRect(marginX + contentW - badgeW - 18, checkY - 0.5, badgeW, 5, 1, 1, 'F');
+        doc.setFontSize(7);
+        doc.setTextColor(239, 68, 68);
+        doc.text(badgeText, marginX + contentW - 17 - badgeW / 2, checkY + 3, { align: 'center' });
+      }
+
+      // Status
+      const statusColor = item.packed ? [34, 197, 94] : [239, 68, 68];
+      const statusText = stripEmojis(item.packed ? labels.packed : labels.notPacked);
+      doc.setFontSize(7);
+      doc.setTextColor(statusColor[0], statusColor[1], statusColor[2]);
+      doc.text(statusText, marginX + contentW - 4, checkY + 3.2, { align: 'right' });
+
+      y += 6;
     });
-    html += `</div>`;
+
+    y += 4;
+    options.onProgress?.(40 + Math.round(((catIdx + 1) / catEntries.length) * 50));
   });
 
-  html += buildFooterHTML(language, accentColor);
+  // Footer
+  ensureSpace(15);
+  y += 4;
+  doc.setDrawColor(236, 72, 153);
+  doc.setLineWidth(0.2);
+  doc.line(marginX + 30, y, marginX + contentW - 30, y);
+  y += 5;
+  doc.setFontSize(7);
+  doc.setTextColor(148, 163, 184);
+  const dateStr = formatDateForPDF(new Date(), language);
+  doc.text(dateStr, pageW / 2, y, { align: 'center' });
+  y += 4;
+  doc.setFontSize(7);
+  doc.setTextColor(236, 72, 153);
+  doc.text(getBrandName(language), pageW / 2, y, { align: 'center' });
+
+  options.onProgress?.(100);
 
   const fileName = `hospital-bag-checklist-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language, options.onProgress);
+  doc.save(fileName);
 }
 
 // Generate WhatsApp share text for hospital bag
