@@ -452,6 +452,14 @@
       "disclaimerTitle": "Avis Important",
       "disclaimerText": "Cette application est uniquement à des fins éducatives et informatives et ne remplace pas les conseils de santé professionnels. Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé."
     },
+    "share": {
+      "title": "Outils de Grossesse",
+      "message": "🤰 Découvrez Outils de Grossesse — 42+ outils gratuits pour votre parcours de grossesse !",
+      "copied": "Lien copié ! Partagez-le avec vos amies 💕",
+      "failed": "Impossible de partager",
+      "buttonTitle": "Partager avec des amies",
+      "buttonSubtitle": "Invitez une amie via WhatsApp, SMS et plus"
+    },
     "privacyPolicy": {
       "title": "Politique de Confidentialité",
       "subtitle": "Votre vie privée est importante pour nous. Cet avis explique comment nous traitons vos informations.",

@@ -452,6 +452,14 @@
       "disclaimerTitle": "Önemli Bilgilendirme",
       "disclaimerText": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve profesyonel sağlık rehberliğinin yerini almaz. Herhangi bir sağlık endişesi için her zaman nitelikli bir sağlık hizmeti sağlayıcısına danışın."
     },
+    "share": {
+      "title": "Hamilelik Araçları",
+      "message": "🤰 Hamilelik Araçları'na göz atın — hamilelik yolculuğunuz için 42+ ücretsiz sağlık aracı!",
+      "copied": "Bağlantı kopyalandı! Arkadaşlarınızla paylaşın 💕",
+      "failed": "Paylaşılamadı",
+      "buttonTitle": "Arkadaşlarınla Paylaş",
+      "buttonSubtitle": "WhatsApp, SMS ve daha fazlasıyla davet edin"
+    },
     "privacyPolicy": {
       "title": "Gizlilik Politikası",
       "subtitle": "Gizliliğiniz bizim için önemlidir. Bu bildirim, bilgilerinizi nasıl işlediğimizi açıklar.",

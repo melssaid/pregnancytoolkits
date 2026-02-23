@@ -452,6 +452,14 @@
       "disclaimerTitle": "Important Notice",
       "disclaimerText": "This app is for educational and informational purposes only. It is not a substitute for professional health guidance. Always consult a qualified healthcare provider for any health concerns."
     },
+    "share": {
+      "title": "Pregnancy Toolkits",
+      "message": "🤰 Check out Pregnancy Toolkits — 42+ free wellness tools for your pregnancy journey!",
+      "copied": "Link copied! Share it with your friends 💕",
+      "failed": "Could not share",
+      "buttonTitle": "Share with Friends",
+      "buttonSubtitle": "Invite a friend via WhatsApp, SMS & more"
+    },
     "privacyPolicy": {
       "title": "Privacy Policy",
       "subtitle": "Your privacy is important to us. This notice explains how we handle your information.",
