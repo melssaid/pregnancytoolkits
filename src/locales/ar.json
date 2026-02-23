@@ -115,6 +115,7 @@
     "smartPregnancyPlan": {"title": "خطة الحمل الذكية", "description": "خطتك اليومية المخصصة مع التمارين والوجبات"},
     "smartWalkingCoach": {"title": "مدرب المشي", "description": "برامج مشي آمنة حسب مرحلة الحمل"},
     "smartSnackPlanner": {"title": "مخطط الوجبات الخفيفة", "description": "وجبات خفيفة صحية لكل رغبة أثناء الحمل"},
+    "kegelExercise": {"title": "تمارين كيجل", "description": "تمارين قاع الحوض اليومية مع مؤقت وعدّاد تكرارات"},
     "smartStretchReminder": {"title": "تذكير بالتمدد", "description": "تمارين تمدد مخصصة لراحتك"}
   },
   "dashboard": {
@@ -3886,6 +3887,7 @@
     "exercise": "التمارين",
     "water": "الماء",
     "stretching": "التمدد",
+    "kegel": "كيجل",
     "backup": "النسخ الاحتياطي",
     "viewDetails": "عرض التفاصيل",
     "moreNotifications": "+{{count}} إشعارات أخرى",
@@ -3925,6 +3927,8 @@
     "stretchReminderMsg": "خذي استراحة تمدد سريعة للراحة!",
     "waterReminderTitle": "💧 حافظي على الترطيب",
     "waterReminderMsg": "حان وقت شرب كوب من الماء!",
+    "kegelReminderTitle": "💪 وقت تمارين كيجل",
+    "kegelReminderMsg": "قوّي عضلات قاع الحوض — مارسي تمارين كيجل اليومية!",
     "exerciseReminderTitle": "🚶‍♀️ وقت المشي",
     "exerciseReminderMsg": "المشي القصير سيعزز طاقتك ومزاجك!",
     "backupReminderTitle": "💾 تذكير بالنسخ الاحتياطي",
@@ -4036,6 +4040,28 @@
     "minutes": "دقائق",
     "videosTitle": "فيديوهات المشي والتمارين",
     "videosSubtitle": "فيديوهات مختارة للبقاء نشطة أثناء الحمل"
+  },
+  "kegel": {
+    "dailyGoal": "الهدف اليومي",
+    "goalReached": "🎉 تم تحقيق الهدف اليومي! أحسنتِ!",
+    "setComplete": "اكتملت الجولة! {{reps}} تكرارات.",
+    "streak": "أيام متتالية",
+    "todayReps": "تكرارات اليوم",
+    "sets": "جولات",
+    "reps": "تكرارات",
+    "rep": "تكرار",
+    "squeeze": "اضغطي",
+    "release": "استرخي",
+    "start": "ابدأي",
+    "pause": "إيقاف مؤقت",
+    "resume": "متابعة",
+    "finish": "إنهاء الجولة",
+    "resetToday": "إعادة تعيين اليوم",
+    "howTo": "كيف تؤدين تمارين كيجل",
+    "step1": "حددي عضلات قاع الحوض — تخيلي أنك توقفين تدفق البول.",
+    "step2": "اضغطي واستمري لمدة 5 ثوانٍ مع إرخاء البطن والفخذين.",
+    "step3": "استرخي لمدة 5 ثوانٍ واتركي العضلات ترتخي تماماً.",
+    "step4": "كرري 10-15 مرة في كل جولة، 3 جولات يومياً للحصول على أفضل النتائج."
   }
   ,"aiErrors": {
     "rateLimitTitle": "تجاوز حد الطلبات",

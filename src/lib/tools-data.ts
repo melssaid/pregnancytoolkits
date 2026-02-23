@@ -104,11 +104,12 @@ export const toolsData: Tool[] = [
   { id: "smart-walking-coach", titleKey: "tools.smartWalkingCoach.title", descriptionKey: "tools.smartWalkingCoach.description", icon: Footprints, categoryKey: "categories.wellness", href: "/tools/smart-walking-coach", priority: 26, hasAI: true },
   { id: "smart-stretch-reminder", titleKey: "tools.smartStretchReminder.title", descriptionKey: "tools.smartStretchReminder.description", icon: Sparkles, categoryKey: "categories.wellness", href: "/tools/smart-stretch-reminder", priority: 27, hasAI: true },
   { id: "smart-snack-planner", titleKey: "tools.smartSnackPlanner.title", descriptionKey: "tools.smartSnackPlanner.description", icon: Utensils, categoryKey: "categories.wellness", href: "/tools/smart-snack-planner", priority: 28, hasAI: true },
+  { id: "kegel-exercise", titleKey: "tools.kegelExercise.title", descriptionKey: "tools.kegelExercise.description", icon: Heart, categoryKey: "categories.wellness", href: "/tools/kegel-exercise", priority: 29 },
 
   // ═══════════════════════════════════════════════════════════════
   // 🧠 MENTAL HEALTH (1 tool)
   // ═══════════════════════════════════════════════════════════════
-  { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, categoryKey: "categories.mentalHealth", href: "/tools/mental-health-coach", priority: 29, hasAI: true },
+  { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, categoryKey: "categories.mentalHealth", href: "/tools/mental-health-coach", priority: 30, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // ⚠️ SELF-CHECK (2 tools)

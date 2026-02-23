@@ -168,6 +168,10 @@
       "title": "Planejador de lanches",
       "description": "Lanches saudáveis para cada desejo na gravidez."
     },
+    "kegelExercise": {
+      "title": "Exercício de Kegel",
+      "description": "Exercícios diários do assoalho pélvico com cronômetro e contador."
+    },
     "smartStretchReminder": {
       "title": "Lembrete de alongamento",
       "description": "Alongamentos personalizados para seu conforto."
@@ -3879,6 +3883,7 @@
     "exercise": "Exercício",
     "water": "Água",
     "stretching": "Alongamento",
+    "kegel": "Kegel",
     "backup": "Backup",
     "viewDetails": "Ver detalhes",
     "moreNotifications": "+{{count}} notificações a mais",
@@ -3918,6 +3923,8 @@
     "stretchReminderMsg": "Faça uma pausa para alongamento e fique mais confortável!",
     "waterReminderTitle": "💧 Mantenha-se hidratada",
     "waterReminderMsg": "Hora de beber um copo de água!",
+    "kegelReminderTitle": "💪 Hora dos exercícios Kegel",
+    "kegelReminderMsg": "Fortaleça seu assoalho pélvico — faça seus exercícios de Kegel diários!",
     "exerciseReminderTitle": "🚶‍♀️ Hora de caminhar",
     "exerciseReminderMsg": "Uma caminhada curta vai aumentar sua energia e humor!",
     "backupReminderTitle": "💾 Lembrete de backup",
@@ -4063,6 +4070,28 @@
       "calfRaises": { "name": "Elevação de panturrilha", "desc": "Suba na ponta dos pés e desça", "bodyPart": "Pernas" },
       "deepBreathing": { "name": "Respiração profunda", "desc": "Respirações lentas e profundas com mãos na barriga", "bodyPart": "Relaxamento" }
     }
+  },
+  "kegel": {
+    "dailyGoal": "Meta diária",
+    "goalReached": "🎉 Meta diária alcançada! Ótimo trabalho!",
+    "setComplete": "Série completa! {{reps}} repetições.",
+    "streak": "Dias seguidos",
+    "todayReps": "Repetições hoje",
+    "sets": "Séries",
+    "reps": "Repetições",
+    "rep": "Repetição",
+    "squeeze": "APERTE",
+    "release": "RELAXE",
+    "start": "Começar",
+    "pause": "Pausar",
+    "resume": "Continuar",
+    "finish": "Finalizar série",
+    "resetToday": "Reiniciar hoje",
+    "howTo": "Como fazer exercícios de Kegel",
+    "step1": "Encontre os músculos do assoalho pélvico — imagine que está parando o fluxo de urina.",
+    "step2": "Aperte e segure por 5 segundos, mantendo abdômen e coxas relaxados.",
+    "step3": "Relaxe por 5 segundos e deixe os músculos soltarem completamente.",
+    "step4": "Repita 10-15 vezes por série, 3 séries diárias para melhores resultados."
   }
   ,"aiErrors": {
     "rateLimitTitle": "Muitas solicitações",

@@ -168,6 +168,10 @@
       "title": "Snack-Planer",
       "description": "Gesunde Schwangerschaftssnacks für jeden Heißhunger."
     },
+    "kegelExercise": {
+      "title": "Kegel-Übung",
+      "description": "Tägliche Beckenbodenübungen mit Timer und Wiederholungszähler."
+    },
     "smartStretchReminder": {
       "title": "Dehn-Erinnerung",
       "description": "Personalisierte Dehnübungen für dein Wohlbefinden."
@@ -3676,6 +3680,7 @@
     "exercise": "Übungen",
     "water": "Wasser",
     "stretching": "Dehnen",
+    "kegel": "Kegel",
     "backup": "Backup",
     "viewDetails": "Details anzeigen",
     "moreNotifications": "+{{count}} weitere Benachrichtigungen",
@@ -3715,6 +3720,8 @@
     "stretchReminderMsg": "Mach eine kurze Dehnpause für mehr Wohlbefinden!",
     "waterReminderTitle": "💧 Trinken nicht vergessen",
     "waterReminderMsg": "Zeit für ein Glas Wasser!",
+    "kegelReminderTitle": "💪 Kegel-Übungszeit",
+    "kegelReminderMsg": "Stärke deinen Beckenboden — mach deine täglichen Kegel-Übungen!",
     "exerciseReminderTitle": "🚶‍♀️ Zeit für einen Spaziergang",
     "exerciseReminderMsg": "Ein kurzer Spaziergang steigert deine Energie und Stimmung!",
     "backupReminderTitle": "💾 Backup-Erinnerung",
@@ -3860,6 +3867,28 @@
       "calfRaises": { "name": "Wadenheben", "desc": "Auf die Zehenspitzen heben, dann senken", "bodyPart": "Beine" },
       "deepBreathing": { "name": "Tiefes Atmen", "desc": "Langsame, tiefe Atemzüge mit Händen auf dem Bauch", "bodyPart": "Entspannung" }
     }
+  },
+  "kegel": {
+    "dailyGoal": "Tagesziel",
+    "goalReached": "🎉 Tagesziel erreicht! Super gemacht!",
+    "setComplete": "Set abgeschlossen! {{reps}} Wiederholungen.",
+    "streak": "Tage-Serie",
+    "todayReps": "Heutige Wiederholungen",
+    "sets": "Sets",
+    "reps": "Wiederholungen",
+    "rep": "Wiederholung",
+    "squeeze": "ANSPANNEN",
+    "release": "ENTSPANNEN",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Fortsetzen",
+    "finish": "Set beenden",
+    "resetToday": "Heute zurücksetzen",
+    "howTo": "So machst du Kegel-Übungen",
+    "step1": "Finde deine Beckenbodenmuskulatur — stelle dir vor, du stoppst den Urinfluss.",
+    "step2": "Spanne 5 Sekunden an, halte Bauch und Oberschenkel entspannt.",
+    "step3": "Entspanne 5 Sekunden und lass die Muskeln vollständig locker.",
+    "step4": "Wiederhole 10-15 Mal pro Set, 3 Sets täglich für beste Ergebnisse."
   }
   ,"aiErrors": {
     "rateLimitTitle": "Zu viele Anfragen",
