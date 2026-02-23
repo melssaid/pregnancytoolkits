@@ -315,8 +315,8 @@ Please provide a comprehensive pregnancy update:
       
       if (navigator.share && navigator.canShare({ files: [file] })) {
         await navigator.share({
-          title: `Week ${photo.week} Bump Photo`,
-          text: photo.caption || `My pregnancy journey - Week ${photo.week}`,
+          title: `${t('toolsInternal.bumpPhotos.week')} ${photo.week}`,
+          text: photo.caption || `${t('toolsInternal.bumpPhotos.subtitle')} - ${t('toolsInternal.bumpPhotos.week')} ${photo.week}`,
           files: [file]
         });
       } else {
@@ -672,7 +672,7 @@ Please provide a comprehensive pregnancy update:
                           type="text"
                           value={editCaption}
                           onChange={(e) => setEditCaption(e.target.value)}
-                          placeholder="Add caption..."
+                          placeholder={t('toolsInternal.bumpPhotos.addCaption')}
                           className="flex-1 text-xs p-1.5 border border-border rounded bg-background"
                           autoFocus
                           onKeyDown={(e) => {
