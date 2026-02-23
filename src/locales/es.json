@@ -168,6 +168,10 @@
       "title": "Planificador de snacks",
       "description": "Snacks saludables para cada antojo del embarazo."
     },
+    "kegelExercise": {
+      "title": "Ejercicio de Kegel",
+      "description": "Ejercicios diarios del suelo pélvico con temporizador y contador."
+    },
     "smartStretchReminder": {
       "title": "Recordatorio de estiramiento",
       "description": "Estiramientos personalizados para tu comodidad."
@@ -3879,6 +3883,7 @@
     "exercise": "Ejercicio",
     "water": "Agua",
     "stretching": "Estiramientos",
+    "kegel": "Kegel",
     "backup": "Copia de seguridad",
     "viewDetails": "Ver detalles",
     "moreNotifications": "+{{count}} notificaciones más",
@@ -3918,6 +3923,8 @@
     "stretchReminderMsg": "¡Haz una pausa de estiramiento para estar más cómoda!",
     "waterReminderTitle": "💧 Mantente hidratada",
     "waterReminderMsg": "¡Es hora de beber un vaso de agua!",
+    "kegelReminderTitle": "💪 Hora de ejercicios Kegel",
+    "kegelReminderMsg": "¡Fortalece tu suelo pélvico — haz tus ejercicios de Kegel diarios!",
     "exerciseReminderTitle": "🚶‍♀️ Hora de caminar",
     "exerciseReminderMsg": "¡Una caminata corta aumentará tu energía y ánimo!",
     "backupReminderTitle": "💾 Recordatorio de respaldo",
@@ -4063,6 +4070,28 @@
       "calfRaises": { "name": "Elevación de pantorrillas", "desc": "Sube de puntillas y baja", "bodyPart": "Piernas" },
       "deepBreathing": { "name": "Respiración profunda", "desc": "Respiraciones lentas y profundas con manos en el vientre", "bodyPart": "Relajación" }
     }
+  },
+  "kegel": {
+    "dailyGoal": "Objetivo diario",
+    "goalReached": "🎉 ¡Objetivo diario alcanzado! ¡Buen trabajo!",
+    "setComplete": "¡Serie completada! {{reps}} repeticiones.",
+    "streak": "Días seguidos",
+    "todayReps": "Repeticiones hoy",
+    "sets": "Series",
+    "reps": "Repeticiones",
+    "rep": "Repetición",
+    "squeeze": "APRIETA",
+    "release": "RELAJA",
+    "start": "Empezar",
+    "pause": "Pausar",
+    "resume": "Continuar",
+    "finish": "Terminar serie",
+    "resetToday": "Reiniciar hoy",
+    "howTo": "Cómo hacer ejercicios de Kegel",
+    "step1": "Encuentra los músculos del suelo pélvico — imagina que detienes el flujo de orina.",
+    "step2": "Aprieta y mantén durante 5 segundos, con el abdomen y muslos relajados.",
+    "step3": "Relaja durante 5 segundos y deja que los músculos se suelten completamente.",
+    "step4": "Repite 10-15 veces por serie, 3 series diarias para mejores resultados."
   }
   ,"aiErrors": {
     "rateLimitTitle": "Demasiadas solicitudes",

@@ -168,6 +168,10 @@
       "title": "Atıştırmalık Planlayıcısı",
       "description": "Her istek için sağlıklı hamilelik atıştırmalıkları."
     },
+    "kegelExercise": {
+      "title": "Kegel Egzersizi",
+      "description": "Zamanlayıcı ve tekrar sayacı ile günlük pelvik taban egzersizleri."
+    },
     "smartStretchReminder": {
       "title": "Esneme Hatırlatıcısı",
       "description": "Konforunuz için kişiselleştirilmiş esneme rutinleri."
@@ -3879,6 +3883,7 @@
     "exercise": "Egzersiz",
     "water": "Su",
     "stretching": "Esneme",
+    "kegel": "Kegel",
     "backup": "Yedekleme",
     "viewDetails": "Detayları Gör",
     "moreNotifications": "+{{count}} daha fazla bildirim",
@@ -3918,6 +3923,8 @@
     "stretchReminderMsg": "Rahat kalmak için kısa bir esneme molası verin!",
     "waterReminderTitle": "💧 Su İçin",
     "waterReminderMsg": "Bir bardak su zamanı!",
+    "kegelReminderTitle": "💪 Kegel Egzersizi Zamanı",
+    "kegelReminderMsg": "Pelvik taban kaslarınızı güçlendirin — günlük Kegel egzersizlerinizi yapın!",
     "exerciseReminderTitle": "🚶‍♀️ Yürüyüş Zamanı",
     "exerciseReminderMsg": "Kısa bir yürüyüş enerjinizi ve ruh halinizi artıracak!",
     "backupReminderTitle": "💾 Yedekleme Hatırlatması",
@@ -4063,6 +4070,28 @@
       "calfRaises": { "name": "Baldır kaldırma", "desc": "Parmak uçlarına yükselin, sonra indirin", "bodyPart": "Bacaklar" },
       "deepBreathing": { "name": "Derin nefes", "desc": "Ellerinizi karnınızda tutarak yavaş, derin nefesler", "bodyPart": "Rahatlama" }
     }
+  },
+  "kegel": {
+    "dailyGoal": "Günlük Hedef",
+    "goalReached": "🎉 Günlük hedefe ulaştınız! Harika!",
+    "setComplete": "Set tamamlandı! {{reps}} tekrar.",
+    "streak": "Gün Serisi",
+    "todayReps": "Bugünkü Tekrarlar",
+    "sets": "Setler",
+    "reps": "Tekrarlar",
+    "rep": "Tekrar",
+    "squeeze": "SIKIN",
+    "release": "GEVŞETİN",
+    "start": "Başla",
+    "pause": "Duraklat",
+    "resume": "Devam Et",
+    "finish": "Seti Bitir",
+    "resetToday": "Bugünü Sıfırla",
+    "howTo": "Kegel Egzersizi Nasıl Yapılır",
+    "step1": "Pelvik taban kaslarınızı bulun — idrar akışını durduruyor gibi hayal edin.",
+    "step2": "5 saniye sıkın, karın ve bacak kaslarını gevşek tutun.",
+    "step3": "5 saniye gevşetin ve kasların tamamen rahatlamasını sağlayın.",
+    "step4": "Her sette 10-15 kez tekrarlayın, en iyi sonuçlar için günde 3 set yapın."
   }
   ,"aiErrors": {
     "rateLimitTitle": "Çok fazla istek",

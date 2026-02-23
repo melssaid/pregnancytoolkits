@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sendDailyScheduleToSW } from '@/lib/scheduleNotifications';
 import { 
-  Bell, X, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, 
+  Bell, X, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, Heart,
   Sparkles, ChevronRight, HardDrive, BellRing, Volume2, VolumeX,
   Clock, Zap, Shield, Pin, AlertTriangle, Stethoscope, BellPlus, BellOff,
   CheckCircle, ExternalLink, Smartphone
@@ -28,6 +28,7 @@ const typeIcons: Record<string, any> = {
   exercise: Dumbbell,
   water: Droplet,
   stretch: Sparkles,
+  kegel: Heart,
   backup: HardDrive,
   general: Bell,
   welcome: Zap,
@@ -40,6 +41,7 @@ const typeColors: Record<string, string> = {
   exercise: 'from-emerald-500 to-green-500',
   water: 'from-sky-500 to-cyan-500',
   stretch: 'from-violet-500 to-purple-500',
+  kegel: 'from-pink-500 to-fuchsia-500',
   backup: 'from-rose-500 to-pink-500',
   general: 'from-primary to-accent',
   welcome: 'from-pink-500 to-rose-400',
@@ -52,6 +54,7 @@ const typeBgColors: Record<string, string> = {
   exercise: 'bg-emerald-500/10 border-emerald-500/20',
   water: 'bg-sky-500/10 border-sky-500/20',
   stretch: 'bg-violet-500/10 border-violet-500/20',
+  kegel: 'bg-pink-500/10 border-pink-500/20',
   backup: 'bg-rose-500/10 border-rose-500/20',
   general: 'bg-primary/10 border-primary/20',
   welcome: 'bg-pink-500/10 border-pink-500/20',
@@ -396,6 +399,13 @@ export function NotificationsPanel() {
                   color="bg-violet-500"
                   checked={settings.stretchReminders}
                   onChange={(v) => updateSettings({ stretchReminders: v })}
+                />
+                <SettingsItem 
+                  icon={Heart} 
+                  label={t('notificationsPanel.kegel')} 
+                  color="bg-pink-500"
+                  checked={settings.kegelReminders ?? true}
+                  onChange={(v) => updateSettings({ kegelReminders: v })}
                 />
                 <SettingsItem 
                   icon={HardDrive} 

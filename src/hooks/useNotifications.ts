@@ -21,7 +21,7 @@ const formatAppointmentMsg = (apt: any, timeStr: string): string => {
 
 export interface Notification {
   id: string;
-  type: 'appointment' | 'vitamin' | 'exercise' | 'water' | 'stretch' | 'backup' | 'general' | 'welcome' | 'disclaimer';
+  type: 'appointment' | 'vitamin' | 'exercise' | 'water' | 'stretch' | 'backup' | 'kegel' | 'general' | 'welcome' | 'disclaimer';
   title: string;
   message: string;
   time: string; // Store as ISO string for safer serialization
@@ -37,6 +37,7 @@ interface NotificationSettings {
   waterReminders: boolean;
   stretchReminders: boolean;
   backupReminders: boolean;
+  kegelReminders: boolean;
 }
 
 const DEFAULT_SETTINGS: NotificationSettings = {
@@ -46,6 +47,7 @@ const DEFAULT_SETTINGS: NotificationSettings = {
   waterReminders: true,
   stretchReminders: false,
   backupReminders: false,
+  kegelReminders: true,
 };
 
 // Backup reminder interval in days
@@ -88,7 +90,7 @@ const isSettings = (data: unknown): data is NotificationSettings => {
     typeof s.exerciseReminders === 'boolean' &&
     typeof s.waterReminders === 'boolean' &&
     typeof s.stretchReminders === 'boolean'
-    // backupReminders is optional for backward compatibility
+    // backupReminders & kegelReminders optional for backward compat
   );
 };
 
@@ -175,7 +177,19 @@ export function useNotifications() {
         });
       }
 
-      // Water reminders (every 4 hours while app is open)
+      // Kegel reminder (9 AM+ window - once daily)
+      if (settings.kegelReminders && hour >= 9 && !hasTodayReminder('kegel')) {
+        newNotifications.push({
+          id: `kegel-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          type: 'kegel',
+          title: tn('kegelReminderTitle'),
+          message: tn('kegelReminderMsg'),
+          time: nowISO,
+          read: false,
+          actionUrl: '/tools/kegel-exercise',
+        });
+      }
+
       if (settings.waterReminders) {
         const recentWaterReminder = notifications.find(
           n => n.type === 'water' && 

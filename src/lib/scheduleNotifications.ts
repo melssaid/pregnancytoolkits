@@ -92,6 +92,20 @@ export async function sendDailyScheduleToSW(): Promise<void> {
     }
   }
 
+  // Kegel reminder at 9:00 AM
+  if (settings.kegelReminders !== false && !hasTodayReminder('kegel')) {
+    const fireAt = todayAt(9);
+    if (fireAt > now) {
+      reminders.push({
+        title: tn('kegelReminderTitle'),
+        body: tn('kegelReminderMsg'),
+        tag: 'kegel-scheduled-' + todayStr,
+        url: '/tools/kegel-exercise',
+        fireAt,
+      });
+    }
+  }
+
   // Water reminders every 2 hours from 8 AM to 10 PM
   if (settings.waterReminders) {
     for (let hour = 8; hour <= 22; hour += 2) {

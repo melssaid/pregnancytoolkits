@@ -168,6 +168,10 @@
       "title": "Snack Planner",
       "description": "Healthy pregnancy snacks for every craving."
     },
+    "kegelExercise": {
+      "title": "Kegel Exercise",
+      "description": "Daily pelvic floor exercises with guided timer and rep counter."
+    },
     "smartStretchReminder": {
       "title": "Stretch Reminder",
       "description": "Personalized stretching routines for your comfort."
@@ -4488,6 +4492,7 @@
     "exercise": "Exercise",
     "water": "Water",
     "stretching": "Stretching",
+    "kegel": "Kegel",
     "backup": "Backup",
     "viewDetails": "View Details",
     "moreNotifications": "+{{count}} more notifications",
@@ -4527,6 +4532,8 @@
     "stretchReminderMsg": "Take a quick stretch break to stay comfortable!",
     "waterReminderTitle": "💧 Stay Hydrated",
     "waterReminderMsg": "Time for a glass of water!",
+    "kegelReminderTitle": "💪 Kegel Exercise Time",
+    "kegelReminderMsg": "Strengthen your pelvic floor — do your daily Kegel exercises!",
     "exerciseReminderTitle": "🚶‍♀️ Walking Time",
     "exerciseReminderMsg": "A short walk will boost your energy and mood!",
     "backupReminderTitle": "💾 Backup Reminder",
@@ -4604,6 +4611,28 @@
     "doctorNotes": "Doctor's Notes",
     "getAIPlan": "Get AI-Personalized Plan",
     "aiPlanTitle": "AI Personalized Plan"
+  },
+  "kegel": {
+    "dailyGoal": "Daily Goal",
+    "goalReached": "🎉 Daily goal reached! Great job!",
+    "setComplete": "Set complete! {{reps}} reps done.",
+    "streak": "Day Streak",
+    "todayReps": "Today's Reps",
+    "sets": "Sets",
+    "reps": "Reps",
+    "rep": "Rep",
+    "squeeze": "SQUEEZE",
+    "release": "RELEASE",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "finish": "Finish Set",
+    "resetToday": "Reset Today",
+    "howTo": "How to Do Kegel Exercises",
+    "step1": "Find your pelvic floor muscles — imagine stopping urine midstream.",
+    "step2": "Squeeze and hold for 5 seconds, keeping abs and thighs relaxed.",
+    "step3": "Release for 5 seconds and let the muscles fully relax.",
+    "step4": "Repeat 10-15 times per set, 3 sets daily for best results."
   }
   ,"aiErrors": {
     "rateLimitTitle": "Too Many Requests",

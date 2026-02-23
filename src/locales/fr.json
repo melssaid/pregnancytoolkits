@@ -168,6 +168,10 @@
       "title": "Planificateur de collations",
       "description": "Collations saines pour chaque envie de grossesse."
     },
+    "kegelExercise": {
+      "title": "Exercice de Kegel",
+      "description": "Exercices quotidiens du plancher pelvien avec minuterie et compteur."
+    },
     "smartStretchReminder": {
       "title": "Rappel d'étirement",
       "description": "Étirements personnalisés pour votre confort."
@@ -3701,6 +3705,7 @@
     "exercise": "Exercice",
     "water": "Eau",
     "stretching": "Étirements",
+    "kegel": "Kegel",
     "backup": "Sauvegarde",
     "viewDetails": "Voir les détails",
     "moreNotifications": "+{{count}} notifications supplémentaires",
@@ -3740,6 +3745,8 @@
     "stretchReminderMsg": "Faites une pause étirement pour rester à l'aise !",
     "waterReminderTitle": "💧 Restez hydratée",
     "waterReminderMsg": "C'est l'heure de boire un verre d'eau !",
+    "kegelReminderTitle": "💪 Exercice de Kegel",
+    "kegelReminderMsg": "Renforcez votre plancher pelvien — faites vos exercices de Kegel quotidiens !",
     "exerciseReminderTitle": "🚶‍♀️ Temps de marche",
     "exerciseReminderMsg": "Une courte marche boostera votre énergie et votre humeur !",
     "backupReminderTitle": "💾 Rappel de sauvegarde",
@@ -3885,6 +3892,28 @@
       "calfRaises": { "name": "Élévations des mollets", "desc": "Montez sur la pointe des pieds, puis redescendez", "bodyPart": "Jambes" },
       "deepBreathing": { "name": "Respiration profonde", "desc": "Respirations lentes et profondes, mains sur le ventre", "bodyPart": "Relaxation" }
     }
+  },
+  "kegel": {
+    "dailyGoal": "Objectif quotidien",
+    "goalReached": "🎉 Objectif quotidien atteint ! Bravo !",
+    "setComplete": "Série terminée ! {{reps}} répétitions.",
+    "streak": "Jours consécutifs",
+    "todayReps": "Répétitions aujourd'hui",
+    "sets": "Séries",
+    "reps": "Répétitions",
+    "rep": "Répétition",
+    "squeeze": "SERREZ",
+    "release": "RELÂCHEZ",
+    "start": "Commencer",
+    "pause": "Pause",
+    "resume": "Reprendre",
+    "finish": "Terminer la série",
+    "resetToday": "Réinitialiser aujourd'hui",
+    "howTo": "Comment faire les exercices de Kegel",
+    "step1": "Identifiez vos muscles du plancher pelvien — imaginez que vous arrêtez le flux urinaire.",
+    "step2": "Serrez et maintenez pendant 5 secondes, en gardant les abdos et les cuisses détendus.",
+    "step3": "Relâchez pendant 5 secondes et laissez les muscles se détendre complètement.",
+    "step4": "Répétez 10 à 15 fois par série, 3 séries par jour pour de meilleurs résultats."
   }
   ,"aiErrors": {
     "rateLimitTitle": "Trop de requêtes",
