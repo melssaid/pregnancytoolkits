@@ -519,10 +519,11 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
   const logoData = await loadLogoImage();
 
   let html = buildHeaderHTML(title, subtitle, accentColor, logoData, language);
-  html += `<div style="margin:10px 16px;height:1px;background:${rgbaStr(accentColor, 0.3)};"></div>`;
+  html += `<div data-pdf-section style="margin:10px 16px;height:1px;background:${rgbaStr(accentColor, 0.3)};"></div>`;
 
   sections.forEach((section) => {
-    html += buildSectionHTML(section.title, accentColor, language);
+    // Group section header + items together in one data-pdf-section
+    html += openSectionHTML(section.title, accentColor, language);
     section.items.forEach((item) => {
       if (typeof item === 'string') {
         html += buildBulletItemHTML(item, accentColor, language);
@@ -530,6 +531,7 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
         html += buildLabelValueHTML(item.label, item.value, accentColor, language);
       }
     });
+    html += closeSectionHTML();
   });
 
   html += buildFooterHTML(language, accentColor);
@@ -1114,21 +1116,42 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
     `;
   }
 
-  // Split content by H2 headings for proper page breaking
-  const lines = content.split('\n');
-  const sections: string[] = [];
-  let current: string[] = [];
-  for (const line of lines) {
-    if (/^## /.test(line) && current.length > 0) {
-      sections.push(current.join('\n'));
-      current = [line];
-    } else {
-      current.push(line);
+  // Split content by H1/H2/H3 headings for proper page breaking
+  const splitContentSections = (md: string): string[] => {
+    const mdLines = md.split('\n');
+    const result: string[] = [];
+    let cur: string[] = [];
+    for (const line of mdLines) {
+      if (/^#{1,3} /.test(line) && cur.length > 0) {
+        result.push(cur.join('\n'));
+        cur = [line];
+      } else {
+        cur.push(line);
+      }
     }
-  }
-  if (current.length > 0) sections.push(current.join('\n'));
+    if (cur.length > 0) result.push(cur.join('\n'));
+    // Further split large sections (>30 lines)
+    const MAX_LINES = 30;
+    const final: string[] = [];
+    for (const s of result) {
+      const sLines = s.split('\n');
+      if (sLines.length <= MAX_LINES) { final.push(s); continue; }
+      let chunk: string[] = [];
+      for (const line of sLines) {
+        chunk.push(line);
+        if (chunk.length >= MAX_LINES && (line.trim() === '' || /^[-*+] /.test(line))) {
+          final.push(chunk.join('\n'));
+          chunk = [];
+        }
+      }
+      if (chunk.length > 0) final.push(chunk.join('\n'));
+    }
+    return final;
+  };
 
-  for (const section of sections) {
+  const contentSections = splitContentSections(content);
+
+  for (const section of contentSections) {
     const sectionHTML = DOMPurify.sanitize(
       markdownToHTMLWithLang(section, fontFamily, isRTL),
       {

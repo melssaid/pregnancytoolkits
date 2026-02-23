@@ -208,7 +208,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
   const [isExportingPDF, setIsExportingPDF] = useState(false);
   const [pdfProgress, setPdfProgress] = useState(0);
   const exportPlanAsPDF = useCallback(async () => {
-    if (!generatedPlan) return;
+    if (!generatedPlan || isExportingPDF) return;
     setIsExportingPDF(true);
     setPdfProgress(0);
     try {
@@ -360,11 +360,10 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
                     size="sm" 
                     variant="default" 
                     onClick={exportPlanAsPDF}
-                    disabled={isExportingPDF}
                     className="gap-1 flex-1"
                   >
                     {isExportingPDF ? <Loader2 className="w-4 h-4 shrink-0 animate-spin" /> : <FileDown className="w-4 h-4 shrink-0" />}
-                    PDF
+                    {isExportingPDF ? t('common.exporting', 'Exporting...') : 'PDF'}
                   </Button>
                 </div>
               </div>
