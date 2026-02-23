@@ -73,10 +73,10 @@ export const nutritionVideosByLang: VideosByLang = {
 // ════════════════════════════════════════════════════════════
 export const sleepVideosByLang: VideosByLang = {
   ar: [
-    { id: "1", title: "تأمل استرخاء للحامل", description: "تأمل مهدئ لنوم أفضل أثناء الحمل", youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: "تأمل" },
-    { id: "2", title: "نصائح لنوم أفضل أثناء الحمل", description: "كيف تحصلين على نوم مريح في الحمل", youtubeId: "FdeqyQTavzI", duration: "25:00", category: "تأمل" },
-    { id: "3", title: "تمارين إطالة آمنة للحامل", description: "تمارين إطالة للورك والظهر للحامل", youtubeId: "uWRwBBMFXys", duration: "12:00", category: "تمارين" },
-    { id: "4", title: "أوضاع النوم الصحيحة للحامل", description: "أفضل وضعيات النوم أثناء الحمل", youtubeId: "qa7RY4V6ihM", duration: "10:00", category: "نصائح" },
+    { id: "1", title: "وضعيات النوم الآمنة للحامل", description: "أفضل وضعيات النوم خلال فترة الحمل ونصائح مهمة", youtubeId: "UOWU-oCLORo", duration: "8:00", category: "نصائح" },
+    { id: "2", title: "أثر النوم على الظهر والبطن للحامل", description: "مستويات الخطورة حسب شهور الحمل", youtubeId: "j1LWAgOOogU", duration: "10:00", category: "نصائح" },
+    { id: "3", title: "تشنجات الساق وصعوبة النوم للحامل", description: "أسباب تشنجات الساق الليلية وكيفية التعامل معها", youtubeId: "2wDvnE4wZi4", duration: "12:00", category: "حلول" },
+    { id: "4", title: "تمارين إطالة آمنة للحامل", description: "تمارين إطالة للورك والظهر تساعد على الاسترخاء", youtubeId: "uWRwBBMFXys", duration: "12:00", category: "تمارين" },
   ],
   tr: [
     { id: "1", title: "Hamilelikte Uyku Pozisyonları", description: "En iyi uyku pozisyonları ve rahat uyku ipuçları", youtubeId: "H42j-n29Vck", duration: "12:00", category: "İpuçları" },
@@ -109,10 +109,10 @@ export const sleepVideosByLang: VideosByLang = {
     { id: "4", title: "Alongamentos para relaxar", description: "Exercícios de relaxamento noturno para gestantes", youtubeId: "InieW2MYgsA", duration: "10:00", category: "Exercícios" },
   ],
   default: [
-    { id: "1", title: "Pregnancy Relaxation Meditation", description: "Calming meditation for better sleep during pregnancy", youtubeId: "pCSjhbVOdYQ", duration: "60:00", category: "Meditation" },
-    { id: "2", title: "Prenatal Sleep Meditation", description: "Cozy sleep meditation for expecting mothers", youtubeId: "FdeqyQTavzI", duration: "25:00", category: "Meditation" },
-    { id: "3", title: "Prenatal Yoga for Relaxation", description: "Deep relaxation yoga nidra for pregnancy", youtubeId: "vEcZD8Js2Ws", duration: "25:00", category: "Sleep Tips" },
-    { id: "4", title: "Newborn Sleep Preparation", description: "Prepare for baby's sleep schedule", youtubeId: "hpgjwK_oQe0", duration: "18:00", category: "Preparation" },
+    { id: "1", title: "Best Sleep Positions During Pregnancy", description: "Safe and comfortable sleeping positions for each trimester", youtubeId: "vEcZD8Js2Ws", duration: "25:00", category: "Sleep Tips" },
+    { id: "2", title: "Pregnancy Sleep Tips", description: "Expert advice for better sleep during pregnancy", youtubeId: "hpgjwK_oQe0", duration: "18:00", category: "Sleep Tips" },
+    { id: "3", title: "Prenatal Yoga for Better Sleep", description: "Deep relaxation yoga nidra for pregnancy", youtubeId: "UOWU-oCLORo", duration: "8:00", category: "Relaxation" },
+    { id: "4", title: "Newborn Sleep Preparation", description: "Prepare for baby's sleep schedule", youtubeId: "j1LWAgOOogU", duration: "10:00", category: "Preparation" },
   ],
 };
 
