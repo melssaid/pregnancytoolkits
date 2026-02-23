@@ -357,7 +357,8 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                             <Button
                               onClick={handleExportPDF}
                               variant="outline"
-                              className="w-full mt-4"
+                              disabled={isExportingPDF}
+                              className="w-full mt-4 text-foreground"
                             >
                               {isExportingPDF ? (
                                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />

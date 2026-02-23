@@ -53,33 +53,41 @@ async function loadLogoImage(): Promise<string | null> {
 // =============================================
 // Unicode font support for Arabic/Turkish/etc.
 // =============================================
-let unicodeFontCache: string | null = null;
-let unicodeFontLoading: Promise<string | null> | null = null;
+let unicodeFontCache: { regular: string; bold: string } | null = null;
+let unicodeFontLoading: Promise<typeof unicodeFontCache> | null = null;
 
-// Noto Sans Arabic — covers Arabic + Latin + Turkish + European
-const FONT_URL = 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/notosansarabic/NotoSansArabic%5Bwght%5D.ttf';
-// Fallback: Amiri
-const FONT_URL_FALLBACK = 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/amiri/Amiri-Regular.ttf';
+// Amiri — static TTF, excellent Arabic + Latin coverage, works with jsPDF
+const FONT_URLS = {
+  regular: 'https://raw.githubusercontent.com/google/fonts/main/ofl/amiri/Amiri-Regular.ttf',
+  bold: 'https://raw.githubusercontent.com/google/fonts/main/ofl/amiri/Amiri-Bold.ttf',
+};
 
-async function loadUnicodeFont(): Promise<string | null> {
+async function fetchFontAsBase64(url: string): Promise<string | null> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) return null;
+    const arrayBuffer = await response.arrayBuffer();
+    const bytes = new Uint8Array(arrayBuffer);
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+  } catch { return null; }
+}
+
+async function loadUnicodeFont(): Promise<typeof unicodeFontCache> {
   if (unicodeFontCache) return unicodeFontCache;
   if (unicodeFontLoading) return unicodeFontLoading;
   
   unicodeFontLoading = (async () => {
-    for (const url of [FONT_URL, FONT_URL_FALLBACK]) {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) continue;
-        const arrayBuffer = await response.arrayBuffer();
-        // Convert to base64 for jsPDF
-        const bytes = new Uint8Array(arrayBuffer);
-        let binary = '';
-        for (let i = 0; i < bytes.length; i++) {
-          binary += String.fromCharCode(bytes[i]);
-        }
-        unicodeFontCache = btoa(binary);
-        return unicodeFontCache;
-      } catch { continue; }
+    const [regular, bold] = await Promise.all([
+      fetchFontAsBase64(FONT_URLS.regular),
+      fetchFontAsBase64(FONT_URLS.bold),
+    ]);
+    if (regular) {
+      unicodeFontCache = { regular, bold: bold || regular };
+      return unicodeFontCache;
     }
     return null;
   })();
@@ -87,21 +95,40 @@ async function loadUnicodeFont(): Promise<string | null> {
   return unicodeFontLoading;
 }
 
-function setupUnicodeFont(doc: jsPDF, fontData: string | null) {
+const UNICODE_FONT_NAME = 'Amiri';
+
+function setupUnicodeFont(doc: jsPDF, fontData: typeof unicodeFontCache) {
   if (!fontData) return;
   try {
-    doc.addFileToVFS('NotoSansArabic.ttf', fontData);
-    doc.addFont('NotoSansArabic.ttf', 'NotoSansArabic', 'normal');
-    doc.setFont('NotoSansArabic');
+    doc.addFileToVFS('Amiri-Regular.ttf', fontData.regular);
+    doc.addFont('Amiri-Regular.ttf', UNICODE_FONT_NAME, 'normal');
+    doc.addFileToVFS('Amiri-Bold.ttf', fontData.bold);
+    doc.addFont('Amiri-Bold.ttf', UNICODE_FONT_NAME, 'bold');
+    doc.setFont(UNICODE_FONT_NAME, 'normal');
   } catch { /* font already added */ }
 }
 
+// Helpers to set bold/normal while respecting Unicode font
+let _activeFont: string = 'helvetica';
+
+function setFontBold(doc: jsPDF) {
+  doc.setFont(_activeFont, 'bold');
+}
+function setFontNormal(doc: jsPDF) {
+  doc.setFont(_activeFont, 'normal');
+}
+
 // Create a pre-configured PDF document with Unicode font support
-async function createPDFDoc(language: string): Promise<{ doc: jsPDF; fontData: string | null }> {
+async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   const fontData = await loadUnicodeFont();
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-  setupUnicodeFont(doc, fontData);
-  return { doc, fontData };
+  if (fontData) {
+    setupUnicodeFont(doc, fontData);
+    _activeFont = UNICODE_FONT_NAME;
+  } else {
+    _activeFont = 'helvetica';
+  }
+  return { doc };
 }
 
 // Premium color palette
@@ -232,12 +259,12 @@ function drawLabelValueItem(s: PDFState, label: string, value: string, color: RG
   s.doc.setFillColor(color.r, color.g, color.b);
   s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
   s.doc.setFontSize(9);
-  s.doc.setFont('helvetica', 'bold');
+  setFontBold(s.doc);
   s.doc.setTextColor(71, 85, 105);
   const lbl = stripEmojis(label) + ': ';
   s.doc.text(lbl, MARGIN_X + 10, s.y + 3);
   const lblW = s.doc.getTextWidth(lbl);
-  s.doc.setFont('helvetica', 'normal');
+  setFontNormal(s.doc);
   s.doc.setTextColor(100, 116, 139);
   const valLines = s.doc.splitTextToSize(stripEmojis(value), CONTENT_W - 14 - lblW);
   s.doc.text(valLines, MARGIN_X + 10 + lblW, s.y + 3);
@@ -272,10 +299,10 @@ function renderMarkdownToPDF(s: PDFState, markdown: string, accentColor: RGB) {
       s.doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
       s.doc.rect(MARGIN_X, s.y, level <= 2 ? 3 : 2, barH, 'F');
       s.doc.setFontSize(sizes[level - 1]);
-      s.doc.setFont('helvetica', 'bold');
+      setFontBold(s.doc);
       s.doc.setTextColor(level <= 2 ? 30 : accentColor.r, level <= 2 ? 41 : accentColor.g, level <= 2 ? 59 : accentColor.b);
       s.doc.text(text, MARGIN_X + 8, s.y + barH - 2.5);
-      s.doc.setFont('helvetica', 'normal');
+      setFontNormal(s.doc);
       s.y += barH + 3;
       continue;
     }
@@ -546,7 +573,7 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   };
   const l = labels[language] || labels.en;
 
-  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
+  const s: PDFState = { doc, y: MARGIN_Y };
 
   options.onProgress?.(10);
 
