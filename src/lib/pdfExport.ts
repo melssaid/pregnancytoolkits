@@ -1,6 +1,4 @@
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas-pro';
-import DOMPurify from 'dompurify';
 
 export type PDFProgressCallback = (percent: number) => void;
 
@@ -38,25 +36,18 @@ interface GenericPDFOptions {
 // Cache for logo image data
 let logoImageCache: string | null = null;
 
-// Load logo image as base64
 async function loadLogoImage(): Promise<string | null> {
   if (logoImageCache) return logoImageCache;
-  
   try {
     const response = await fetch('/logo.png');
     const blob = await response.blob();
     return new Promise((resolve) => {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        logoImageCache = reader.result as string;
-        resolve(logoImageCache);
-      };
+      reader.onloadend = () => { logoImageCache = reader.result as string; resolve(logoImageCache); };
       reader.onerror = () => resolve(null);
       reader.readAsDataURL(blob);
     });
-  } catch {
-    return null;
-  }
+  } catch { return null; }
 }
 
 // Premium color palette
@@ -67,495 +58,262 @@ const COLORS = {
   success: { r: 34, g: 197, b: 94 },
   info: { r: 59, g: 130, b: 246 },
   dark: { r: 30, g: 41, b: 59 },
-  light: { r: 248, g: 250, b: 252 },
   muted: { r: 148, g: 163, b: 184 },
-  headerBg: { r: 253, g: 242, b: 248 },
 };
 
-function rgbStr(c: { r: number; g: number; b: number }) {
-  return `rgb(${c.r},${c.g},${c.b})`;
-}
+type RGB = { r: number; g: number; b: number };
 
-function rgbaStr(c: { r: number; g: number; b: number }, a: number) {
-  return `rgba(${c.r},${c.g},${c.b},${a})`;
-}
-
-// Strip emoji characters from text to prevent Arabic text shaping issues
 function stripEmojis(text: string): string {
   return text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '').replace(/\s{2,}/g, ' ').trim();
 }
 
-// Format date for display
 function formatDateForPDF(date: Date, language: string): string {
-  const localeMap: Record<string, string> = {
-    ar: 'ar-SA', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', pt: 'pt-BR', tr: 'tr-TR', en: 'en-US'
-  };
-  const locale = localeMap[language] || 'en-US';
-  return date.toLocaleDateString(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
+  const localeMap: Record<string, string> = { ar: 'ar-SA', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', pt: 'pt-BR', tr: 'tr-TR', en: 'en-US' };
+  return date.toLocaleDateString(localeMap[language] || 'en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 
-// Get font family based on language
-function getFontFamily(language: string): string {
-  const isRTL = language === 'ar';
-  return isRTL
-    ? "'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
-    : "'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-}
-
-// Timeout wrapper for html2canvas calls
-function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
-  return Promise.race([
-    promise,
-    new Promise<T>((_, reject) => setTimeout(() => reject(new Error('Canvas render timeout')), ms))
-  ]);
-}
-
-// Unified section-based html2canvas-to-PDF renderer
-// Each [data-pdf-section] is rendered separately to avoid mid-content page cuts
-async function renderHTMLToPDF(htmlContent: string, fileName: string, language: string = 'en', onProgress?: PDFProgressCallback): Promise<void> {
-  const isRTL = language === 'ar';
-  const fontFamily = getFontFamily(language);
-
-  // Render scale – 1.5 for balance between speed and quality
-  const RENDER_SCALE = 1.5;
-
-  // Use a narrower wrapper to reduce white space – content fills more of the page
-  const WRAPPER_WIDTH_PX = 680;
-
-  // Prevent page layout shift by using a fixed-position offscreen container
-  const wrapper = document.createElement('div');
-  wrapper.style.cssText = `
-    position: fixed;
-    left: -9999px;
-    top: 0;
-    width: ${WRAPPER_WIDTH_PX}px;
-    background: #ffffff;
-    font-family: ${fontFamily};
-    color: #1e293b;
-    direction: ${isRTL ? 'rtl' : 'ltr'};
-    padding: 0;
-    line-height: 1.45;
-    z-index: -1;
-    visibility: visible;
-    pointer-events: none;
-    -webkit-font-smoothing: antialiased;
-  `;
-
-  const sanitizedContent = DOMPurify.sanitize(htmlContent, {
-    ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','table','thead','tbody','tr','th','td','img','style'],
-    ALLOWED_ATTR: ['style','class','data-pdf-section','src','alt','dir'],
-    ALLOW_DATA_ATTR: true,
-  });
-
-  wrapper.innerHTML = `
-    <style>
-      * { font-family: ${fontFamily} !important; box-sizing: border-box; margin: 0; padding: 0; }
-      h1,h2,h3,h4,h5,h6,p,div,span,strong,em,li {
-        font-family: ${fontFamily} !important;
-        direction: ${isRTL ? 'rtl' : 'ltr'};
-      }
-    </style>
-    ${sanitizedContent}
-  `;
-
-  document.body.appendChild(wrapper);
-
-  try {
-    await document.fonts.ready;
-  } catch { /* fallback */ }
-  await new Promise(resolve => setTimeout(resolve, 30));
-
-  // PDF constants – balanced margins for professional look
-  const A4_WIDTH_MM = 210;
-  const A4_HEIGHT_MM = 297;
-  const MARGIN_X_MM = 12;
-  const MARGIN_Y_MM = 10;
-  const CONTENT_WIDTH_MM = A4_WIDTH_MM - MARGIN_X_MM * 2;
-  const CONTENT_HEIGHT_MM = A4_HEIGHT_MM - MARGIN_Y_MM * 2;
-  const SECTION_GAP_MM = 2;
-
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-
-  // Find all sections
-  const sections = Array.from(wrapper.querySelectorAll('[data-pdf-section]')) as HTMLElement[];
-
-  // If no sections found, fall back to rendering the entire wrapper as one image
-  if (sections.length === 0) {
-    try {
-      const canvas = await withTimeout(html2canvas(wrapper, {
-        scale: RENDER_SCALE,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff',
-        width: WRAPPER_WIDTH_PX,
-        windowWidth: WRAPPER_WIDTH_PX,
-      }), 30000);
-      const scaleFactor = CONTENT_WIDTH_MM / (canvas.width / RENDER_SCALE);
-      const pageHeightPx = CONTENT_HEIGHT_MM / scaleFactor;
-      let remaining = canvas.height;
-      let srcY = 0;
-      let pageIdx = 0;
-      while (remaining > 0) {
-        if (pageIdx > 0) doc.addPage();
-        const sliceH = Math.min(remaining, pageHeightPx * RENDER_SCALE);
-        const sliceHMM = (sliceH / RENDER_SCALE) * scaleFactor;
-        const pc = document.createElement('canvas');
-        pc.width = canvas.width; pc.height = sliceH;
-        const ctx = pc.getContext('2d');
-        if (ctx) {
-          ctx.fillStyle = '#ffffff';
-          ctx.fillRect(0, 0, pc.width, pc.height);
-          ctx.drawImage(canvas, 0, srcY, canvas.width, sliceH, 0, 0, pc.width, sliceH);
-        }
-        doc.addImage(pc.toDataURL('image/jpeg', 0.9), 'JPEG', MARGIN_X_MM, MARGIN_Y_MM, CONTENT_WIDTH_MM, sliceHMM);
-        srcY += sliceH; remaining -= sliceH; pageIdx++;
-      }
-    } finally {
-      document.body.removeChild(wrapper);
-    }
-    doc.save(fileName);
-    return;
-  }
-
-  // Section-based rendering
-  let currentY = MARGIN_Y_MM;
-  const totalSections = sections.length;
-
-  onProgress?.(10);
-
-  for (let sIdx = 0; sIdx < sections.length; sIdx++) {
-    const section = sections[sIdx];
-    let canvas: HTMLCanvasElement;
-    try {
-      canvas = await withTimeout(html2canvas(section, {
-        scale: RENDER_SCALE,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff',
-        width: WRAPPER_WIDTH_PX,
-        windowWidth: WRAPPER_WIDTH_PX,
-      }), 15000);
-    } catch {
-      continue;
-    }
-
-    if (canvas.width === 0 || canvas.height === 0) continue;
-
-    // Crop canvas: trim bottom whitespace
-    const croppedCanvas = cropCanvasWhitespace(canvas);
-
-    const realWidthPx = croppedCanvas.width / RENDER_SCALE;
-    const realHeightPx = croppedCanvas.height / RENDER_SCALE;
-    const scaleFactor = CONTENT_WIDTH_MM / realWidthPx;
-    const sectionHeightMM = realHeightPx * scaleFactor;
-
-    if (sectionHeightMM > CONTENT_HEIGHT_MM) {
-      // Line-snap constant: approximate rendered line height in scaled pixels
-      // font-size ~11px, line-height 1.4 → ~15.4px per line → ~31px at RENDER_SCALE=2
-      const LINE_SNAP_PX = Math.round(15.4 * RENDER_SCALE);
-
-      let remaining = croppedCanvas.height;
-      let srcY = 0;
-      while (remaining > 0) {
-        const availableHeightMM = (currentY === MARGIN_Y_MM) ? CONTENT_HEIGHT_MM : (A4_HEIGHT_MM - MARGIN_Y_MM - currentY);
-        let availableSlicePx = (availableHeightMM / scaleFactor) * RENDER_SCALE;
-        
-        if (availableHeightMM < 15 && currentY > MARGIN_Y_MM) {
-          doc.addPage();
-          currentY = MARGIN_Y_MM;
-          continue;
-        }
-        
-        let sliceH = Math.min(remaining, availableSlicePx);
-        // Snap slice height DOWN to the nearest line boundary to avoid cutting text
-        if (sliceH < remaining && LINE_SNAP_PX > 0) {
-          sliceH = Math.max(LINE_SNAP_PX, Math.floor(sliceH / LINE_SNAP_PX) * LINE_SNAP_PX);
-        }
-        const sliceHMM = (sliceH / RENDER_SCALE) * scaleFactor;
-        const pc = document.createElement('canvas');
-        pc.width = croppedCanvas.width; pc.height = sliceH;
-        const ctx = pc.getContext('2d');
-        if (ctx) {
-          ctx.fillStyle = '#ffffff';
-          ctx.fillRect(0, 0, pc.width, pc.height);
-          ctx.drawImage(croppedCanvas, 0, srcY, croppedCanvas.width, sliceH, 0, 0, pc.width, sliceH);
-        }
-        doc.addImage(pc.toDataURL('image/jpeg', 0.9), 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sliceHMM);
-        currentY += sliceHMM;
-        srcY += sliceH; remaining -= sliceH;
-        if (remaining > 0) { doc.addPage(); currentY = MARGIN_Y_MM; }
-      }
-      currentY += SECTION_GAP_MM;
-      continue;
-    }
-
-    const spaceLeft = A4_HEIGHT_MM - MARGIN_Y_MM - currentY;
-    if (sectionHeightMM > spaceLeft && currentY > MARGIN_Y_MM) {
-      doc.addPage();
-      currentY = MARGIN_Y_MM;
-    }
-
-    const imgData = croppedCanvas.toDataURL('image/jpeg', 0.9);
-    doc.addImage(imgData, 'JPEG', MARGIN_X_MM, currentY, CONTENT_WIDTH_MM, sectionHeightMM);
-    currentY += sectionHeightMM + SECTION_GAP_MM;
-
-    onProgress?.(10 + Math.round(((sIdx + 1) / totalSections) * 85));
-  }
-
-  document.body.removeChild(wrapper);
-  onProgress?.(100);
-  doc.save(fileName);
-}
-
-// Lightweight canvas crop — only trims bottom whitespace to avoid oversized gaps
-// Skips expensive full-pixel scan; samples a few columns instead
-function cropCanvasWhitespace(canvas: HTMLCanvasElement): HTMLCanvasElement {
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return canvas;
-  
-  const { width, height } = canvas;
-  if (width === 0 || height === 0) return canvas;
-  
-  // Sample 5 columns to find the lowest non-white row
-  const sampleCols = [Math.floor(width * 0.1), Math.floor(width * 0.3), Math.floor(width * 0.5), Math.floor(width * 0.7), Math.floor(width * 0.9)];
-  let maxY = 0;
-  
-  for (const x of sampleCols) {
-    // Read a single column
-    const colData = ctx.getImageData(x, 0, 1, height).data;
-    for (let y = height - 1; y >= maxY; y--) {
-      const i = y * 4;
-      if (colData[i] < 250 || colData[i + 1] < 250 || colData[i + 2] < 250) {
-        if (y > maxY) maxY = y;
-        break;
-      }
-    }
-  }
-  
-  const PAD = 8;
-  const cropH = Math.min(height, maxY + PAD);
-  
-  // Only crop if we save >10% height
-  if (cropH >= height * 0.9) return canvas;
-  
-  const cropped = document.createElement('canvas');
-  cropped.width = width;
-  cropped.height = cropH;
-  const cCtx = cropped.getContext('2d');
-  if (cCtx) {
-    cCtx.fillStyle = '#ffffff';
-    cCtx.fillRect(0, 0, width, cropH);
-    cCtx.drawImage(canvas, 0, 0, width, cropH, 0, 0, width, cropH);
-  }
-  return cropped;
-}
-
-
-// Build PDF header HTML
-// =============================================
-// HTML SECTION BUILDERS (each wrapped in data-pdf-section)
-// =============================================
-function buildHeaderHTML(
-  title: string, 
-  subtitle: string | undefined, 
-  accentColor: { r: number; g: number; b: number }, 
-  logoData: string | null, 
-  language: string
-): string {
-  const fontFamily = getFontFamily(language);
-  return `
-    <div data-pdf-section style="background:linear-gradient(180deg, ${rgbaStr(accentColor, 0.06)} 0%, #ffffff 100%);padding:20px 24px 14px;text-align:center;">
-      ${logoData ? `<img src="${logoData}" style="width:36px;height:36px;margin:0 auto 8px;display:block;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);" />` : ''}
-      <div style="font-size:22px;font-weight:800;color:#1e293b;margin-bottom:4px;font-family:${fontFamily};letter-spacing:-0.3px;">${stripEmojis(title)}</div>
-      ${subtitle ? `<div style="font-size:11px;color:#64748b;margin-bottom:4px;font-family:${fontFamily};">${stripEmojis(subtitle)}</div>` : ''}
-      <div style="font-size:9px;color:${rgbStr(accentColor)};font-weight:600;font-family:${fontFamily};letter-spacing:0.5px;text-transform:uppercase;">${getBrandName(language)}</div>
-      <div style="height:2.5px;background:linear-gradient(90deg, transparent, ${rgbStr(accentColor)}, transparent);border-radius:2px;margin:12px auto 0;max-width:200px;"></div>
-    </div>
-  `;
-}
-
-// Build PDF footer HTML
 function getBrandName(language: string): string {
-  const brands: Record<string, string> = {
-    ar: 'أدوات الحمل الذكية', de: 'Schwangerschafts-Toolkit', fr: 'Outils de Grossesse',
-    es: 'Herramientas de Embarazo', pt: 'Ferramentas de Gravidez', tr: 'Gebelik Araçları',
-  };
+  const brands: Record<string, string> = { ar: 'أدوات الحمل الذكية', de: 'Schwangerschafts-Toolkit', fr: 'Outils de Grossesse', es: 'Herramientas de Embarazo', pt: 'Ferramentas de Gravidez', tr: 'Gebelik Araçları' };
   return brands[language] || 'Pregnancy Toolkits';
 }
 
-function buildFooterHTML(language: string, accentColor: { r: number; g: number; b: number }): string {
-  const fontFamily = getFontFamily(language);
-  const dateStr = formatDateForPDF(new Date(), language);
-  const exportLabels: Record<string, string> = {
-    ar: 'تم التصدير بتاريخ', de: 'Exportiert am', fr: 'Exporté le',
-    es: 'Exportado el', pt: 'Exportado em', tr: 'Dışa aktarma tarihi',
-  };
-  const exportLabel = exportLabels[language] || 'Exported on';
-  const text = `${exportLabel} ${dateStr}`;
-  return `
-    <div data-pdf-section style="padding:10px 24px 14px;text-align:center;background:linear-gradient(180deg, #ffffff 0%, ${rgbaStr(accentColor, 0.04)} 100%);">
-      <div style="height:1.5px;background:linear-gradient(90deg, transparent, ${rgbaStr(accentColor, 0.3)}, transparent);margin-bottom:10px;"></div>
-      <div style="font-size:8.5px;color:#94a3b8;font-family:${fontFamily};line-height:1.5;">${text}</div>
-      <div style="font-size:8px;color:${rgbaStr(accentColor, 0.6)};font-family:${fontFamily};font-weight:600;margin-top:2px;">${getBrandName(language)}</div>
-    </div>
-  `;
+// =============================================
+// Shared jsPDF helpers
+// =============================================
+
+const PAGE_W = 210;
+const PAGE_H = 297;
+const MARGIN_X = 16;
+const MARGIN_Y = 12;
+const CONTENT_W = PAGE_W - MARGIN_X * 2;
+
+interface PDFState { doc: jsPDF; y: number; }
+
+function ensureSpace(s: PDFState, needed: number) {
+  if (s.y + needed > PAGE_H - MARGIN_Y) { s.doc.addPage(); s.y = MARGIN_Y; }
 }
 
-// Build section HTML — header + all its items are grouped inside ONE data-pdf-section
-// so they never get split across pages unexpectedly.
-// Usage: openSectionHTML(...) + items + closeSectionHTML()
-function openSectionHTML(sectionTitle: string, accentColor: { r: number; g: number; b: number }, language: string): string {
-  const fontFamily = getFontFamily(language);
-  const isRTL = language === 'ar';
-  return `
-    <div data-pdf-section style="margin:6px 20px 2px;padding-bottom:4px;">
-      <div style="display:flex;align-items:stretch;border-radius:6px 6px 0 0;overflow:hidden;background:${rgbaStr(accentColor, 0.07)};">
-        <div style="width:4px;min-width:4px;background:${rgbStr(accentColor)};${isRTL ? 'order:1;' : ''}"></div>
-        <div style="padding:7px 14px;font-size:12.5px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};flex:1;letter-spacing:-0.1px;">
-          ${stripEmojis(sectionTitle)}
-        </div>
-      </div>
-  `;
-}
-
-function closeSectionHTML(): string {
-  return `</div>`;
-}
-
-/** @deprecated use openSectionHTML + closeSectionHTML for grouped rendering */
-function buildSectionHTML(sectionTitle: string, accentColor: { r: number; g: number; b: number }, language: string): string {
-  const fontFamily = getFontFamily(language);
-  const isRTL = language === 'ar';
-  return `
-    <div data-pdf-section style="margin:6px 20px 2px;">
-      <div style="display:flex;align-items:stretch;border-radius:6px;overflow:hidden;background:${rgbaStr(accentColor, 0.07)};">
-        <div style="width:4px;min-width:4px;background:${rgbStr(accentColor)};${isRTL ? 'order:1;' : ''}"></div>
-        <div style="padding:7px 14px;font-size:12.5px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};flex:1;letter-spacing:-0.1px;">
-          ${stripEmojis(sectionTitle)}
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-
-// Build a bullet item HTML - uses flexbox instead of position:absolute for html2canvas compatibility
-function buildBulletItemHTML(text: string, accentColor: { r: number; g: number; b: number }, language: string): string {
-  const fontFamily = getFontFamily(language);
-  const isRTL = language === 'ar';
-  const dir = isRTL ? 'rtl' : 'ltr';
-  return `
-    <div style="display:flex;align-items:flex-start;gap:8px;padding:3px 20px;font-size:11px;color:#334155;font-family:${fontFamily};line-height:1.5;direction:${dir};">
-      <span style="width:5px;height:5px;min-width:5px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:6px;flex-shrink:0;"></span>
-      <span style="flex:1;">${stripEmojis(text)}</span>
-    </div>
-  `;
-}
-
-// Build a label:value item HTML - uses flexbox instead of position:absolute
-function buildLabelValueHTML(label: string, value: string, accentColor: { r: number; g: number; b: number }, language: string): string {
-  const fontFamily = getFontFamily(language);
-  const isRTL = language === 'ar';
-  const dir = isRTL ? 'rtl' : 'ltr';
-  return `
-    <div style="display:flex;align-items:flex-start;gap:8px;padding:3px 20px;font-size:11px;color:#334155;font-family:${fontFamily};line-height:1.5;direction:${dir};">
-      <span style="width:5px;height:5px;min-width:5px;background:${rgbStr(accentColor)};border-radius:50%;display:inline-block;margin-top:6px;flex-shrink:0;"></span>
-      <span style="flex:1;"><strong style="color:#1e293b;">${stripEmojis(label)}:</strong> <span style="color:#64748b;">${stripEmojis(value)}</span></span>
-    </div>
-  `;
-}
-
-// Convert markdown to HTML
-function markdownToHTMLWithLang(markdown: string, fontFamily: string, isRTL: boolean): string {
-  const paddingSide = isRTL ? 'right' : 'left';
-  const textAlign = isRTL ? 'justify' : 'left';
-  const dir = isRTL ? 'rtl' : 'ltr';
-  const cleaned = stripEmojis(markdown);
-
-  // Use background-color for the accent bar instead of border (html2canvas renders borders as dashed)
-  const makeHeading = (level: number, text: string) => {
-    const sizes = [16, 14, 12.5, 11.5];
-    const weights = [800, 700, 700, 600];
-    const paddings = ['7px 14px 7px 16px', '6px 12px 6px 14px', '5px 10px 5px 12px', '4px 10px 4px 12px'];
-    const margins = ['14px 0 6px', '10px 0 5px', '8px 0 4px', '6px 0 3px'];
-    const barWidths = [4, 3, 3, 2];
-    const idx = level - 1;
-    const headingColor = level <= 2 ? '#1e293b' : '#be185d';
-    return `<div style="display:flex;align-items:stretch;margin:${margins[idx]};border-radius:6px;overflow:hidden;background:rgba(236,72,153,0.06);direction:${dir};">` +
-      `<div style="width:${barWidths[idx]}px;min-width:${barWidths[idx]}px;background:#ec4899;flex-shrink:0;${isRTL ? 'order:1;' : ''}"></div>` +
-      `<div style="padding:${paddings[idx]};font-size:${sizes[idx]}px;font-weight:${weights[idx]};color:${headingColor};font-family:${fontFamily};text-align:${textAlign};flex:1;letter-spacing:-0.1px;">${text}</div>` +
-      `</div>`;
-  };
-
-  return cleaned
-    .replace(/^#### (.*$)/gm, (_, p1) => makeHeading(4, p1))
-    .replace(/^### (.*$)/gm, (_, p1) => makeHeading(3, p1))
-    .replace(/^## (.*$)/gm, (_, p1) => makeHeading(2, p1))
-    .replace(/^# (.*$)/gm, (_, p1) => makeHeading(1, p1))
-    .replace(/\*\*(.*?)\*\*/g, '<strong style="font-weight:700;color:#1e293b;">$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em style="color:#475569;">$1</em>')
-    .replace(/^[-*+] (.*$)/gm, `<div style="display:flex;align-items:flex-start;gap:7px;padding:2px 0;font-family:${fontFamily};direction:${dir};text-align:${textAlign};font-size:11px;line-height:1.5;color:#334155;"><span style="width:5px;height:5px;min-width:5px;background:#ec4899;border-radius:50%;display:inline-block;margin-top:6px;"></span><span style="flex:1;">$1</span></div>`)
-    .replace(/^\d+\.\s+(.*$)/gm, `<div style="padding:2px 0 2px 16px;padding-${paddingSide}:16px;font-family:${fontFamily};direction:${dir};text-align:${textAlign};font-size:11px;line-height:1.5;color:#334155;">$1</div>`)
-    .replace(/^[-*_]{3,}$/gm, `<div style="height:1.5px;background:linear-gradient(90deg, transparent, rgba(236,72,153,0.25), transparent);margin:8px 0;"></div>`)
-    .replace(/\n{2,}/g, '<div style="height:6px;"></div>')
-    .replace(/\n/g, '<br/>')
-    .trim();
-}
-
-// Strip emojis from HTML content and fix text-align for html2canvas compatibility
-function stripEmojisFromHTML(html: string, isRTL: boolean = false): string {
-  let cleaned = html.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '');
-  if (isRTL) {
-    cleaned = cleaned.replace(/text-align:\s*right/gi, 'text-align: justify');
+function drawLogo(s: PDFState, logoData: string | null) {
+  if (logoData) {
+    try { s.doc.addImage(logoData, 'PNG', PAGE_W / 2 - 8, s.y, 16, 16); s.y += 20; } catch { s.y += 4; }
   }
-  return cleaned;
 }
 
+function drawTitle(s: PDFState, title: string, subtitle?: string) {
+  s.doc.setFontSize(18);
+  s.doc.setTextColor(30, 41, 59);
+  s.doc.text(stripEmojis(title), PAGE_W / 2, s.y, { align: 'center' });
+  s.y += 7;
+  if (subtitle) {
+    s.doc.setFontSize(10);
+    s.doc.setTextColor(100, 116, 139);
+    s.doc.text(stripEmojis(subtitle), PAGE_W / 2, s.y, { align: 'center' });
+    s.y += 5;
+  }
+}
+
+function drawBrand(s: PDFState, language: string, color: RGB) {
+  s.doc.setFontSize(8);
+  s.doc.setTextColor(color.r, color.g, color.b);
+  s.doc.text(getBrandName(language), PAGE_W / 2, s.y, { align: 'center' });
+  s.y += 3;
+}
+
+function drawDivider(s: PDFState, color: RGB) {
+  s.doc.setDrawColor(color.r, color.g, color.b);
+  s.doc.setLineWidth(0.5);
+  s.doc.line(PAGE_W / 2 - 40, s.y, PAGE_W / 2 + 40, s.y);
+  s.y += 6;
+}
+
+function drawFooter(s: PDFState, language: string, color: RGB) {
+  ensureSpace(s, 15);
+  s.y += 4;
+  s.doc.setDrawColor(color.r, color.g, color.b);
+  s.doc.setLineWidth(0.2);
+  s.doc.line(MARGIN_X + 30, s.y, MARGIN_X + CONTENT_W - 30, s.y);
+  s.y += 5;
+  s.doc.setFontSize(7);
+  s.doc.setTextColor(148, 163, 184);
+  s.doc.text(formatDateForPDF(new Date(), language), PAGE_W / 2, s.y, { align: 'center' });
+  s.y += 4;
+  s.doc.setFontSize(7);
+  s.doc.setTextColor(color.r, color.g, color.b);
+  s.doc.text(getBrandName(language), PAGE_W / 2, s.y, { align: 'center' });
+}
+
+function drawSectionHeader(s: PDFState, title: string, color: RGB, count?: string) {
+  ensureSpace(s, 12);
+  const lightR = Math.min(255, color.r + 200), lightG = Math.min(255, color.g + 200), lightB = Math.min(255, color.b + 200);
+  s.doc.setFillColor(lightR, lightG, lightB);
+  s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, 8, 2, 2, 'F');
+  s.doc.setFillColor(color.r, color.g, color.b);
+  s.doc.rect(MARGIN_X, s.y, 2.5, 8, 'F');
+  s.doc.setFontSize(10);
+  s.doc.setTextColor(color.r, color.g, color.b);
+  s.doc.text(stripEmojis(title), MARGIN_X + 8, s.y + 5.5);
+  if (count) {
+    s.doc.setFontSize(8);
+    s.doc.setTextColor(148, 163, 184);
+    s.doc.text(count, MARGIN_X + CONTENT_W - 4, s.y + 5.5, { align: 'right' });
+  }
+  s.y += 11;
+}
+
+function drawBulletItem(s: PDFState, text: string, color: RGB) {
+  ensureSpace(s, 6);
+  // Bullet dot
+  s.doc.setFillColor(color.r, color.g, color.b);
+  s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
+  // Text
+  s.doc.setFontSize(9);
+  s.doc.setTextColor(51, 65, 85);
+  const lines = s.doc.splitTextToSize(stripEmojis(text), CONTENT_W - 14);
+  s.doc.text(lines, MARGIN_X + 10, s.y + 3);
+  s.y += lines.length * 4.5 + 1;
+}
+
+function drawLabelValueItem(s: PDFState, label: string, value: string, color: RGB) {
+  ensureSpace(s, 6);
+  s.doc.setFillColor(color.r, color.g, color.b);
+  s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
+  s.doc.setFontSize(9);
+  s.doc.setFont('helvetica', 'bold');
+  s.doc.setTextColor(71, 85, 105);
+  const lbl = stripEmojis(label) + ': ';
+  s.doc.text(lbl, MARGIN_X + 10, s.y + 3);
+  const lblW = s.doc.getTextWidth(lbl);
+  s.doc.setFont('helvetica', 'normal');
+  s.doc.setTextColor(100, 116, 139);
+  const valLines = s.doc.splitTextToSize(stripEmojis(value), CONTENT_W - 14 - lblW);
+  s.doc.text(valLines, MARGIN_X + 10 + lblW, s.y + 3);
+  s.y += Math.max(valLines.length, 1) * 4.5 + 1;
+}
+
+// Render markdown text line by line into jsPDF
+function renderMarkdownToPDF(s: PDFState, markdown: string, accentColor: RGB) {
+  const cleaned = stripEmojis(markdown);
+  const lines = cleaned.split('\n');
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) { s.y += 2; continue; }
+
+    // Headings
+    const h1 = trimmed.match(/^# (.+)$/);
+    const h2 = trimmed.match(/^## (.+)$/);
+    const h3 = trimmed.match(/^### (.+)$/);
+    const h4 = trimmed.match(/^#### (.+)$/);
+
+    if (h1 || h2 || h3 || h4) {
+      const level = h1 ? 1 : h2 ? 2 : h3 ? 3 : 4;
+      const text = (h1 || h2 || h3 || h4)![1].replace(/\*\*/g, '');
+      const sizes = [14, 12, 11, 10];
+      ensureSpace(s, 12);
+      // Section header bar
+      const lightR = Math.min(255, accentColor.r + 200), lightG = Math.min(255, accentColor.g + 200), lightB = Math.min(255, accentColor.b + 200);
+      s.doc.setFillColor(lightR, lightG, lightB);
+      const barH = level <= 2 ? 8 : 7;
+      s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, barH, 2, 2, 'F');
+      s.doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
+      s.doc.rect(MARGIN_X, s.y, level <= 2 ? 3 : 2, barH, 'F');
+      s.doc.setFontSize(sizes[level - 1]);
+      s.doc.setFont('helvetica', 'bold');
+      s.doc.setTextColor(level <= 2 ? 30 : accentColor.r, level <= 2 ? 41 : accentColor.g, level <= 2 ? 59 : accentColor.b);
+      s.doc.text(text, MARGIN_X + 8, s.y + barH - 2.5);
+      s.doc.setFont('helvetica', 'normal');
+      s.y += barH + 3;
+      continue;
+    }
+
+    // Horizontal rules
+    if (/^[-*_]{3,}$/.test(trimmed)) {
+      s.y += 2;
+      s.doc.setDrawColor(accentColor.r, accentColor.g, accentColor.b);
+      s.doc.setLineWidth(0.2);
+      s.doc.line(MARGIN_X + 20, s.y, MARGIN_X + CONTENT_W - 20, s.y);
+      s.y += 4;
+      continue;
+    }
+
+    // Bullet items
+    const bullet = trimmed.match(/^[-*+] (.+)$/);
+    if (bullet) {
+      drawBulletItem(s, bullet[1].replace(/\*\*/g, ''), accentColor);
+      continue;
+    }
+
+    // Numbered items
+    const numbered = trimmed.match(/^\d+\.\s+(.+)$/);
+    if (numbered) {
+      drawBulletItem(s, numbered[1].replace(/\*\*/g, ''), accentColor);
+      continue;
+    }
+
+    // Regular paragraph
+    ensureSpace(s, 5);
+    s.doc.setFontSize(9);
+    s.doc.setTextColor(51, 65, 85);
+    // Handle bold within text
+    const plainText = trimmed.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1');
+    const wrappedLines = s.doc.splitTextToSize(plainText, CONTENT_W - 8);
+    for (const wl of wrappedLines) {
+      ensureSpace(s, 4.5);
+      s.doc.text(wl, MARGIN_X + 4, s.y + 3);
+      s.y += 4.5;
+    }
+    s.y += 1;
+  }
+}
+
+
 // =============================================
-// EXPORT FUNCTIONS
+// EXPORT FUNCTIONS — all pure jsPDF, no html2canvas
 // =============================================
 
-// Generic PDF export function (sections-based)
+// Generic PDF export
 export async function exportGenericPDF(options: GenericPDFOptions): Promise<void> {
   const { title, subtitle, sections, language = 'en', accentColor = COLORS.primary } = options;
   const logoData = await loadLogoImage();
+  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
 
-  let html = buildHeaderHTML(title, subtitle, accentColor, logoData, language);
-  html += `<div data-pdf-section style="margin:10px 16px;height:1px;background:${rgbaStr(accentColor, 0.3)};"></div>`;
+  options.onProgress?.(10);
+  drawLogo(s, logoData);
+  drawTitle(s, title, subtitle);
+  drawBrand(s, language, accentColor);
+  drawDivider(s, accentColor);
 
-  sections.forEach((section) => {
-    // Group section header + items together in one data-pdf-section
-    html += openSectionHTML(section.title, accentColor, language);
+  options.onProgress?.(20);
+
+  sections.forEach((section, idx) => {
+    drawSectionHeader(s, section.title, accentColor);
     section.items.forEach((item) => {
       if (typeof item === 'string') {
-        html += buildBulletItemHTML(item, accentColor, language);
+        drawBulletItem(s, item, accentColor);
       } else {
-        html += buildLabelValueHTML(item.label, item.value, accentColor, language);
+        drawLabelValueItem(s, item.label, item.value, accentColor);
       }
     });
-    html += closeSectionHTML();
+    s.y += 3;
+    options.onProgress?.(20 + Math.round(((idx + 1) / sections.length) * 70));
   });
 
-  html += buildFooterHTML(language, accentColor);
+  drawFooter(s, language, accentColor);
+  options.onProgress?.(100);
 
   const fileName = `${title.toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language, options.onProgress);
+  s.doc.save(fileName);
 }
+
 
 // Data backup PDF export
 export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promise<void> {
   const { title, subtitle, data, language = 'en' } = options;
   const logoData = await loadLogoImage();
-  const isRTL = language === 'ar';
-  const fontFamily = getFontFamily(language);
+  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
 
-  // Multilingual labels for all 7 languages
+  options.onProgress?.(10);
+
   const i18nLabels: Record<string, Record<string, string>> = {
     en: { totalItems: 'Total Items', healthData: 'Health Data', planning: 'Planning', profile: 'Profile & Settings', health: 'Health Tracking', appointments: 'Appointments & Reminders', nutrition: 'Nutrition & Meals', birthPlanning: 'Birth Planning & Preparation', other: 'Other Data', items: 'items', noData: 'No data', disclaimer: 'This report was generated automatically from saved data. Always consult your healthcare provider.' },
     ar: { totalItems: 'إجمالي البيانات', healthData: 'بيانات صحية', planning: 'التخطيط', profile: 'الملف الشخصي والإعدادات', health: 'تتبع الصحة', appointments: 'المواعيد والتذكيرات', nutrition: 'التغذية والوجبات', birthPlanning: 'تخطيط الولادة والتحضير', other: 'بيانات أخرى', items: 'عنصر', noData: 'لا بيانات', disclaimer: 'تم إنشاء هذا التقرير تلقائياً من البيانات المحفوظة. استشيري طبيبتك دائماً.' },
@@ -567,7 +325,6 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   };
   const L = i18nLabels[language] || i18nLabels.en;
 
-  // Human-readable key labels
   const keyLabels: Record<string, Record<string, string>> = {
     pregnancy_profile: { en: 'Pregnancy Profile', ar: 'ملف الحمل', de: 'Schwangerschaftsprofil', fr: 'Profil de grossesse', es: 'Perfil de embarazo', pt: 'Perfil de gravidez', tr: 'Gebelik Profili' },
     user_settings: { en: 'User Settings', ar: 'إعدادات المستخدم', de: 'Benutzereinstellungen', fr: 'Paramètres', es: 'Configuración', pt: 'Configurações', tr: 'Ayarlar' },
@@ -601,13 +358,10 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     return key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').replace(/^\w/, c => c.toUpperCase()).trim();
   };
 
-  // Smart value formatter
   const formatValue = (key: string, value: any): string => {
     if (value === null || value === undefined) return L.noData;
     if (typeof value === 'string') {
-      if (/^\d{4}-\d{2}-\d{2}/.test(value)) {
-        try { return formatDateForPDF(new Date(value), language); } catch { return value; }
-      }
+      if (/^\d{4}-\d{2}-\d{2}/.test(value)) { try { return formatDateForPDF(new Date(value), language); } catch { return value; } }
       return value;
     }
     if (typeof value === 'number') return String(value);
@@ -616,40 +370,27 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
       if (value.length === 0) return L.noData;
       if (key.includes('appointment') || key.includes('reminder')) {
         return value.slice(0, 5).map((item: any) => {
-          if (typeof item === 'object' && item !== null) {
-            const name = item.title || item.name || item.type || '';
-            const date = item.date || item.time || '';
-            return `${stripEmojis(name)}${date ? ` (${date})` : ''}`;
-          }
+          if (typeof item === 'object' && item !== null) { const name = item.title || item.name || item.type || ''; const date = item.date || item.time || ''; return `${stripEmojis(name)}${date ? ` (${date})` : ''}`; }
           return String(item);
         }).join(' | ') + (value.length > 5 ? ` +${value.length - 5}` : '');
       }
       if (value.length > 0 && typeof value[0] === 'object' && value[0]?.date) {
         const dates = value.map((v: any) => v.date).filter(Boolean).sort();
-        const first = dates[0];
-        const last = dates[dates.length - 1];
-        return `${value.length} ${L.items}${first && last && first !== last ? ` (${first} → ${last})` : ''}`;
+        return `${value.length} ${L.items}${dates.length >= 2 ? ` (${dates[0]} → ${dates[dates.length - 1]})` : ''}`;
       }
-      if (value.length <= 3 && value.every((v: any) => typeof v === 'string')) {
-        return value.join(', ');
-      }
+      if (value.length <= 3 && value.every((v: any) => typeof v === 'string')) return value.join(', ');
       return `${value.length} ${L.items}`;
     }
     if (typeof value === 'object') {
       const keys = Object.keys(value);
       if (keys.length === 0) return L.noData;
-      const summary = keys.slice(0, 4).map(k => {
-        const v = value[k];
-        if (typeof v === 'string' || typeof v === 'number') return `${k}: ${v}`;
-        if (Array.isArray(v)) return `${k}: ${v.length} ${L.items}`;
-        return null;
-      }).filter(Boolean).join(' • ');
+      const summary = keys.slice(0, 4).map(k => { const v = value[k]; if (typeof v === 'string' || typeof v === 'number') return `${k}: ${v}`; if (Array.isArray(v)) return `${k}: ${v.length} ${L.items}`; return null; }).filter(Boolean).join(' • ');
       return summary || `${keys.length} ${L.items}`;
     }
     return String(value);
   };
 
-  const categoryMeta: Record<string, { label: string; color: typeof COLORS.primary }> = {
+  const categoryMeta: Record<string, { label: string; color: RGB }> = {
     profile: { label: L.profile, color: COLORS.info },
     health: { label: L.health, color: COLORS.primary },
     appointments: { label: L.appointments, color: COLORS.secondary },
@@ -658,100 +399,84 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     other: { label: L.other, color: COLORS.muted }
   };
 
-  const categories: Record<string, { label: string; value: string }[]> = {
-    profile: [], health: [], appointments: [], nutrition: [], planning: [], other: []
-  };
+  const categories: Record<string, { label: string; value: string }[]> = { profile: [], health: [], appointments: [], nutrition: [], planning: [], other: [] };
 
   Object.entries(data).forEach(([key, value]) => {
     if (key.includes('disclaimer') || key.includes('onboarding') || key.includes('backup') || key === 'user_selected_language') return;
-    
     const displayLabel = getKeyLabel(key);
     const displayValue = formatValue(key, value);
     const item = { label: displayLabel, value: displayValue };
-
-    if (key.includes('profile') || key.includes('settings') || key.includes('week') || (key.includes('date') && !key.includes('update'))) {
-      categories.profile.push(item);
-    } else if (key.includes('kick') || key.includes('weight') || key.includes('vitamin') || key.includes('sleep') || key.includes('contraction') || key.includes('water') || key.includes('mood')) {
-      categories.health.push(item);
-    } else if (key.includes('appointment') || key.includes('reminder')) {
-      categories.appointments.push(item);
-    } else if (key.includes('meal') || key.includes('food') || key.includes('nutrition') || key.includes('grocery') || key.includes('smoothie')) {
-      categories.nutrition.push(item);
-    } else if (key.includes('birth') || key.includes('hospital') || key.includes('baby_name') || key.includes('bag')) {
-      categories.planning.push(item);
-    } else {
-      categories.other.push(item);
-    }
+    if (key.includes('profile') || key.includes('settings') || key.includes('week') || (key.includes('date') && !key.includes('update'))) categories.profile.push(item);
+    else if (key.includes('kick') || key.includes('weight') || key.includes('vitamin') || key.includes('sleep') || key.includes('contraction') || key.includes('water') || key.includes('mood')) categories.health.push(item);
+    else if (key.includes('appointment') || key.includes('reminder')) categories.appointments.push(item);
+    else if (key.includes('meal') || key.includes('food') || key.includes('nutrition') || key.includes('grocery') || key.includes('smoothie')) categories.nutrition.push(item);
+    else if (key.includes('birth') || key.includes('hospital') || key.includes('baby_name') || key.includes('bag')) categories.planning.push(item);
+    else categories.other.push(item);
   });
 
   const totalItems = Object.values(categories).reduce((sum, cat) => sum + cat.length, 0);
 
-  let html = buildHeaderHTML(title, subtitle || formatDateForPDF(new Date(), language), COLORS.primary, logoData, language);
+  drawLogo(s, logoData);
+  drawTitle(s, title, subtitle || formatDateForPDF(new Date(), language));
+  drawBrand(s, language, COLORS.primary);
+  drawDivider(s, COLORS.primary);
 
-  // Summary stats — own section so it stays together (use nested divs for accent bars instead of borders)
-  const statCard = (color: typeof COLORS.primary, value: number | string, label: string) => `
-    <div style="flex:1;background:${rgbaStr(color, 0.08)};border-radius:6px;overflow:hidden;display:flex;align-items:stretch;">
-      <div style="width:2px;min-width:2px;background:${rgbStr(color)};${isRTL ? 'order:1;' : ''}"></div>
-      <div style="padding:6px;text-align:center;flex:1;">
-        <div style="font-size:16px;font-weight:700;color:${rgbStr(color)};font-family:${fontFamily};">${value}</div>
-        <div style="font-size:8px;color:#94a3b8;font-family:${fontFamily};">${label}</div>
-      </div>
-    </div>
-  `;
-  html += `
-    <div data-pdf-section style="display:flex;gap:10px;margin:10px 20px 6px;">
-      ${statCard(COLORS.primary, totalItems, L.totalItems)}
-      ${statCard(COLORS.success, categories.health.length, L.healthData)}
-      ${statCard(COLORS.secondary, categories.planning.length, L.planning)}
-    </div>
-  `;
+  options.onProgress?.(20);
 
-  // Render each category — header + all items together in one data-pdf-section
-  Object.entries(categories).forEach(([cat, items]) => {
-    if (items.length === 0) return;
+  // Summary stats
+  ensureSpace(s, 16);
+  const statW = (CONTENT_W - 8) / 3;
+  const stats = [
+    { value: totalItems, label: L.totalItems, color: COLORS.primary },
+    { value: categories.health.length, label: L.healthData, color: COLORS.success },
+    { value: categories.planning.length, label: L.planning, color: COLORS.secondary },
+  ];
+  stats.forEach((st, i) => {
+    const x = MARGIN_X + i * (statW + 4);
+    const lightR = Math.min(255, st.color.r + 200), lightG = Math.min(255, st.color.g + 200), lightB = Math.min(255, st.color.b + 200);
+    s.doc.setFillColor(lightR, lightG, lightB);
+    s.doc.roundedRect(x, s.y, statW, 12, 2, 2, 'F');
+    s.doc.setFontSize(14);
+    s.doc.setTextColor(st.color.r, st.color.g, st.color.b);
+    s.doc.text(String(st.value), x + statW / 2, s.y + 5.5, { align: 'center' });
+    s.doc.setFontSize(7);
+    s.doc.setTextColor(148, 163, 184);
+    s.doc.text(st.label, x + statW / 2, s.y + 10, { align: 'center' });
+  });
+  s.y += 16;
+
+  options.onProgress?.(30);
+
+  // Categories
+  const catEntries = Object.entries(categories).filter(([, items]) => items.length > 0);
+  catEntries.forEach(([cat, items], idx) => {
     const meta = categoryMeta[cat];
-
-    html += `<div data-pdf-section style="margin:6px 20px 2px;padding-bottom:4px;">`;
-    html += `
-      <div style="display:flex;align-items:stretch;border-radius:6px 6px 0 0;overflow:hidden;background:${rgbaStr(meta.color, 0.07)};">
-        <div style="width:4px;min-width:4px;background:${rgbStr(meta.color)};${isRTL ? 'order:1;' : ''}"></div>
-        <div style="padding:6px 14px;font-size:12px;font-weight:700;color:${rgbStr(meta.color)};font-family:${fontFamily};flex:1;">
-          ${stripEmojis(meta.label)} (${items.length})
-        </div>
-      </div>
-    `;
-    items.forEach((item) => {
-      html += `
-        <div style="display:flex;gap:6px;padding:3px 10px 3px 18px;font-size:10.5px;font-family:${fontFamily};color:#334155;line-height:1.45;">
-          <span style="font-weight:600;color:#475569;min-width:0;flex-shrink:0;">${stripEmojis(item.label)}:</span>
-          <span style="color:#64748b;word-break:break-word;">${stripEmojis(item.value)}</span>
-        </div>
-      `;
-    });
-    html += `</div>`;
+    drawSectionHeader(s, `${stripEmojis(meta.label)} (${items.length})`, meta.color);
+    items.forEach(item => drawLabelValueItem(s, item.label, item.value, meta.color));
+    s.y += 3;
+    options.onProgress?.(30 + Math.round(((idx + 1) / catEntries.length) * 60));
   });
 
-  // Disclaimer — own section
-  html += `
-    <div data-pdf-section style="margin:8px 20px 4px;padding:8px 14px;background:${rgbaStr(COLORS.primary, 0.05)};border-radius:6px;font-size:8.5px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.4;">
-      ${L.disclaimer}
-    </div>
-  `;
+  // Disclaimer
+  ensureSpace(s, 10);
+  s.doc.setFontSize(7);
+  s.doc.setTextColor(148, 163, 184);
+  const disclaimerLines = s.doc.splitTextToSize(L.disclaimer, CONTENT_W - 20);
+  s.doc.text(disclaimerLines, PAGE_W / 2, s.y, { align: 'center' });
+  s.y += disclaimerLines.length * 3.5 + 3;
 
-  html += buildFooterHTML(language, COLORS.primary);
+  drawFooter(s, language, COLORS.primary);
+  options.onProgress?.(100);
 
-  const fileName = `pregnancy-data-backup-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language, options.onProgress);
+  s.doc.save(`pregnancy-data-backup-${new Date().toISOString().split('T')[0]}.pdf`);
 }
 
 
 // Birth plan PDF export
 export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<void> {
   const { title, content, date, preferences, additionalNotes, language = 'en' } = options;
-  const isRTL = language === 'ar';
   const logoData = await loadLogoImage();
-  const fontFamily = getFontFamily(language);
-  const textAlign = isRTL ? 'justify' : 'left';
+  const accentColor = COLORS.primary;
 
   const labels: Record<string, Record<string, string>> = {
     en: { title: 'Birth Plan', prefSummary: 'Preferences Summary', prefCount: 'preferences selected', notesTitle: 'Additional Notes', footer: 'This birth plan is a guide for your healthcare team. Flexibility may be needed based on medical circumstances.', brand: 'Pregnancy Toolkits' },
@@ -762,128 +487,68 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     es: { title: 'Plan de parto', prefSummary: 'Resumen de preferencias', prefCount: 'preferencias seleccionadas', notesTitle: 'Notas adicionales', footer: 'Este plan de parto es una guía para su equipo médico.', brand: 'Pregnancy Toolkits' },
     pt: { title: 'Plano de parto', prefSummary: 'Resumo das preferências', prefCount: 'preferências selecionadas', notesTitle: 'Notas adicionais', footer: 'Este plano de parto é um guia para a sua equipa médica.', brand: 'Pregnancy Toolkits' },
   };
-
   const l = labels[language] || labels.en;
-  const prefCount = preferences ? Object.keys(preferences).length : 0;
 
-  // Split content by headings (H1, H2, H3) so each becomes its own data-pdf-section
-  // This prevents truncation by keeping each section small enough for html2canvas
-  const splitContentIntoSections = (md: string): string[] => {
-    const lines = md.split('\n');
-    const sections: string[] = [];
-    let current: string[] = [];
-    
-    for (const line of lines) {
-      // Split on any heading level (H1, H2, H3) to keep sections small
-      if (/^#{1,3} /.test(line) && current.length > 0) {
-        sections.push(current.join('\n'));
-        current = [line];
-      } else {
-        current.push(line);
-      }
-    }
-    if (current.length > 0) sections.push(current.join('\n'));
-    
-    // Further split any section that has too many lines (>30) to prevent canvas overflow
-    const MAX_LINES = 30;
-    const finalSections: string[] = [];
-    for (const section of sections) {
-      const sLines = section.split('\n');
-      if (sLines.length <= MAX_LINES) {
-        finalSections.push(section);
-      } else {
-        // Split at blank lines or bullet boundaries
-        let chunk: string[] = [];
-        for (const line of sLines) {
-          chunk.push(line);
-          if (chunk.length >= MAX_LINES && (line.trim() === '' || /^[-*+] /.test(line))) {
-            finalSections.push(chunk.join('\n'));
-            chunk = [];
-          }
-        }
-        if (chunk.length > 0) finalSections.push(chunk.join('\n'));
-      }
-    }
-    return finalSections;
-  };
+  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
 
-  const contentSections = splitContentIntoSections(content);
+  options.onProgress?.(10);
 
-  // Build preferences list if available
-  let prefsHTML = '';
-  if (preferences && prefCount > 0) {
-    const prefEntries = Object.entries(preferences).filter(([_, v]) => v);
-    prefsHTML = prefEntries.map(([_, value]) => 
-      `<div style="display:inline-block;padding:3px 10px;margin:2px 4px;background:rgba(236,72,153,0.08);border-radius:12px;font-size:10px;color:#ec4899;font-weight:500;font-family:${fontFamily};">${stripEmojis(value)}</div>`
-    ).join('');
+  drawLogo(s, logoData);
+  drawTitle(s, l.title, date);
+  drawBrand(s, language, accentColor);
+  drawDivider(s, accentColor);
+
+  // Preferences summary
+  const prefCount = preferences ? Object.entries(preferences).filter(([, v]) => v).length : 0;
+  if (prefCount > 0) {
+    ensureSpace(s, 14);
+    drawSectionHeader(s, `${l.prefSummary} (${prefCount} ${l.prefCount})`, accentColor);
+    Object.entries(preferences!).filter(([, v]) => v).forEach(([, value]) => {
+      drawBulletItem(s, value, accentColor);
+    });
+    s.y += 3;
   }
 
-  let html = `
-    <div data-pdf-section style="background:#fcfcfd;padding:14px 16px 10px;text-align:center;">
-      ${logoData ? `<img src="${logoData}" style="width:30px;height:30px;margin:0 auto 4px;display:block;border-radius:8px;" />` : ''}
-      <div style="font-size:20px;font-weight:700;color:#1e293b;margin-bottom:3px;font-family:${fontFamily};">${l.title}</div>
-      <div style="font-size:10px;color:#94a3b8;margin-bottom:2px;font-family:${fontFamily};">${date}</div>
-      <div style="font-size:9px;color:#ec4899;font-weight:500;font-family:${fontFamily};">${l.brand}</div>
-      <div style="height:2px;background:#ec4899;border-radius:1px;margin:8px auto 0;max-width:160px;"></div>
-      ${prefCount > 0 ? `
-        <div style="margin:14px auto 0;max-width:500px;padding:0;background:#fdf2f8;border-radius:10px;text-align:${textAlign};overflow:hidden;">
-          <div style="display:flex;align-items:stretch;">
-            <div style="width:4px;min-width:4px;background:#ec4899;${isRTL ? 'order:1;' : ''}"></div>
-            <div style="padding:12px 16px;flex:1;">
-              <div style="font-size:13px;font-weight:600;color:#ec4899;font-family:${fontFamily};margin-bottom:6px;">${l.prefSummary}</div>
-              <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;font-family:${fontFamily};">${prefCount} ${l.prefCount}</div>
-              <div style="text-align:center;">${prefsHTML}</div>
-            </div>
-          </div>
-        </div>
-      ` : ''}
-    </div>
-  `;
+  options.onProgress?.(25);
 
-  // Additional notes section if provided
+  // Additional notes
   if (additionalNotes && additionalNotes.trim()) {
-    html += `
-      <div data-pdf-section style="margin:6px 16px 4px;padding:0;background:#fdf2f8;border-radius:8px;overflow:hidden;">
-        <div style="display:flex;align-items:stretch;">
-          <div style="width:4px;min-width:4px;background:#ec4899;${isRTL ? 'order:1;' : ''}"></div>
-          <div style="padding:10px 14px;flex:1;">
-            <div style="font-size:12px;font-weight:600;color:#ec4899;font-family:${fontFamily};margin-bottom:6px;">${l.notesTitle}</div>
-            <div style="font-size:10.5px;color:#334155;font-family:${fontFamily};line-height:1.5;text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};white-space:pre-wrap;">${stripEmojis(additionalNotes.trim())}</div>
-          </div>
-        </div>
-      </div>
-    `;
+    drawSectionHeader(s, l.notesTitle, accentColor);
+    ensureSpace(s, 6);
+    s.doc.setFontSize(9);
+    s.doc.setTextColor(51, 65, 85);
+    const noteLines = s.doc.splitTextToSize(stripEmojis(additionalNotes.trim()), CONTENT_W - 12);
+    for (const nl of noteLines) {
+      ensureSpace(s, 4.5);
+      s.doc.text(nl, MARGIN_X + 6, s.y + 3);
+      s.y += 4.5;
+    }
+    s.y += 4;
   }
 
-  // Each markdown section becomes its own data-pdf-section for proper page breaking
-  for (const section of contentSections) {
-    const sectionHTML = DOMPurify.sanitize(
-      markdownToHTMLWithLang(section, fontFamily, isRTL),
-      {
-        ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','table','thead','tbody','tr','th','td','style'],
-        ALLOWED_ATTR: ['style','class','data-pdf-section','dir'],
-        ALLOW_DATA_ATTR: true,
-      }
-    );
-    html += `
-      <div data-pdf-section style="padding:4px 24px;font-size:11px;line-height:1.5;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
-        ${sectionHTML}
-      </div>
-    `;
-  }
+  options.onProgress?.(35);
 
-  html += `
-    <div data-pdf-section style="margin:4px 20px 10px;padding:8px 16px;text-align:center;background:rgba(236,72,153,0.04);border-radius:6px;">
-      <div style="height:1.5px;background:linear-gradient(90deg, transparent, rgba(236,72,153,0.25), transparent);margin-bottom:6px;"></div>
-      <div style="font-size:8.5px;color:#94a3b8;line-height:1.5;font-family:${fontFamily};">${l.footer}</div>
-    </div>
-  `;
+  // Main content (markdown)
+  renderMarkdownToPDF(s, content, accentColor);
 
-  const fileName = `birth-plan-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language, options.onProgress);
+  options.onProgress?.(90);
+
+  // Disclaimer footer
+  ensureSpace(s, 10);
+  s.doc.setFontSize(7);
+  s.doc.setTextColor(148, 163, 184);
+  const footerLines = s.doc.splitTextToSize(l.footer, CONTENT_W - 20);
+  s.doc.text(footerLines, PAGE_W / 2, s.y, { align: 'center' });
+  s.y += footerLines.length * 3.5 + 3;
+
+  drawFooter(s, language, accentColor);
+  options.onProgress?.(100);
+
+  s.doc.save(`birth-plan-${new Date().toISOString().split('T')[0]}.pdf`);
 }
 
 export const MAX_SAVED_PLANS = 9;
+
 
 // Hospital Bag Checklist Types
 interface HospitalBagItem {
@@ -901,140 +566,71 @@ interface HospitalBagPDFOptions {
   language?: 'en' | 'ar' | 'de' | 'fr' | 'es' | 'pt' | 'tr';
   onProgress?: PDFProgressCallback;
   labels: {
-    mom: string;
-    baby: string;
-    partner: string;
-    documents: string;
-    packed: string;
-    notPacked: string;
-    essential: string;
-    recommended: string;
-    optional: string;
-    progress: string;
-    totalItems: string;
+    mom: string; baby: string; partner: string; documents: string;
+    packed: string; notPacked: string; essential: string; recommended: string; optional: string;
+    progress: string; totalItems: string;
   };
 }
 
-// Hospital Bag PDF export — pure jsPDF text rendering (no html2canvas)
+// Hospital Bag PDF export — pure jsPDF
 export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Promise<void> {
   const { title, subtitle, items, language = 'en', labels } = options;
   const logoData = await loadLogoImage();
+  const accentColor = { r: 20, g: 184, b: 166 };
+  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
 
   options.onProgress?.(10);
-
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-  const pageW = 210;
-  const pageH = 297;
-  const marginX = 16;
-  const marginY = 12;
-  const contentW = pageW - marginX * 2;
-  let y = marginY;
-
-  const ensureSpace = (needed: number) => {
-    if (y + needed > pageH - marginY) {
-      doc.addPage();
-      y = marginY;
-    }
-  };
-
-  // Header with logo
-  if (logoData) {
-    try {
-      doc.addImage(logoData, 'PNG', pageW / 2 - 8, y, 16, 16);
-      y += 20;
-    } catch { y += 4; }
-  }
-
-  // Title
-  doc.setFontSize(18);
-  doc.setTextColor(30, 41, 59);
-  doc.text(stripEmojis(title), pageW / 2, y, { align: 'center' });
-  y += 7;
-
-  if (subtitle) {
-    doc.setFontSize(10);
-    doc.setTextColor(100, 116, 139);
-    doc.text(stripEmojis(subtitle), pageW / 2, y, { align: 'center' });
-    y += 5;
-  }
-
-  // Brand
-  doc.setFontSize(8);
-  doc.setTextColor(236, 72, 153);
-  doc.text(getBrandName(language), pageW / 2, y, { align: 'center' });
-  y += 3;
-
-  // Divider
-  doc.setDrawColor(236, 72, 153);
-  doc.setLineWidth(0.5);
-  doc.line(pageW / 2 - 40, y, pageW / 2 + 40, y);
-  y += 8;
+  drawLogo(s, logoData);
+  drawTitle(s, title, subtitle);
+  drawBrand(s, language, accentColor);
+  drawDivider(s, accentColor);
 
   options.onProgress?.(20);
 
-  // Progress bar
   const packedCount = items.filter(i => i.packed).length;
   const totalCount = items.length;
   const progress = Math.round((packedCount / totalCount) * 100);
 
-  doc.setFillColor(241, 245, 249);
-  doc.roundedRect(marginX, y, contentW, 14, 3, 3, 'F');
-  doc.setFontSize(11);
-  doc.setTextColor(30, 41, 59);
-  doc.text(`${stripEmojis(labels.progress)}: ${progress}%`, marginX + 6, y + 6);
-  doc.setFontSize(9);
-  doc.setTextColor(100, 116, 139);
-  doc.text(`${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}`, marginX + contentW - 6, y + 6, { align: 'right' });
-
-  // Progress bar fill
-  const barY = y + 9;
-  const barW = contentW - 12;
-  doc.setFillColor(226, 232, 240);
-  doc.roundedRect(marginX + 6, barY, barW, 3, 1.5, 1.5, 'F');
-  if (progress > 0) {
-    doc.setFillColor(20, 184, 166);
-    doc.roundedRect(marginX + 6, barY, barW * (progress / 100), 3, 1.5, 1.5, 'F');
-  }
-  y += 20;
+  // Progress bar
+  s.doc.setFillColor(241, 245, 249);
+  s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, 14, 3, 3, 'F');
+  s.doc.setFontSize(11);
+  s.doc.setTextColor(30, 41, 59);
+  s.doc.text(`${stripEmojis(labels.progress)}: ${progress}%`, MARGIN_X + 6, s.y + 6);
+  s.doc.setFontSize(9);
+  s.doc.setTextColor(100, 116, 139);
+  s.doc.text(`${packedCount} / ${totalCount} ${stripEmojis(labels.totalItems)}`, MARGIN_X + CONTENT_W - 6, s.y + 6, { align: 'right' });
+  const barY = s.y + 9;
+  const barW = CONTENT_W - 12;
+  s.doc.setFillColor(226, 232, 240);
+  s.doc.roundedRect(MARGIN_X + 6, barY, barW, 3, 1.5, 1.5, 'F');
+  if (progress > 0) { s.doc.setFillColor(20, 184, 166); s.doc.roundedRect(MARGIN_X + 6, barY, barW * (progress / 100), 3, 1.5, 1.5, 'F'); }
+  s.y += 20;
 
   options.onProgress?.(30);
 
-  // Category colors
-  const categoryColors: Record<string, [number, number, number]> = {
-    mom: [236, 72, 153],
-    baby: [59, 130, 246],
-    partner: [139, 92, 246],
-    documents: [245, 158, 11],
-  };
-  const categoryLabels: Record<string, string> = {
-    mom: labels.mom, baby: labels.baby, partner: labels.partner, documents: labels.documents,
-  };
+  const categoryColors: Record<string, [number, number, number]> = { mom: [236, 72, 153], baby: [59, 130, 246], partner: [139, 92, 246], documents: [245, 158, 11] };
+  const categoryLabels: Record<string, string> = { mom: labels.mom, baby: labels.baby, partner: labels.partner, documents: labels.documents };
   const categoryStats: Record<string, HospitalBagItem[]> = {
-    mom: items.filter(i => i.category === 'mom'),
-    baby: items.filter(i => i.category === 'baby'),
-    partner: items.filter(i => i.category === 'partner'),
-    documents: items.filter(i => i.category === 'documents'),
+    mom: items.filter(i => i.category === 'mom'), baby: items.filter(i => i.category === 'baby'),
+    partner: items.filter(i => i.category === 'partner'), documents: items.filter(i => i.category === 'documents'),
   };
 
   // Category summary cards
-  const cardW = (contentW - 12) / 4;
-  let cardX = marginX;
+  const cardW = (CONTENT_W - 12) / 4;
+  let cardX = MARGIN_X;
   Object.entries(categoryStats).forEach(([cat, catItems]) => {
     const [r, g, b] = categoryColors[cat];
     const catPacked = catItems.filter(i => i.packed).length;
-    doc.setFillColor(r, g, b, 0.06 * 255);
-    // Light background
-    doc.setFillColor(Math.min(255, r + 180), Math.min(255, g + 180), Math.min(255, b + 180));
-    doc.roundedRect(cardX, y, cardW, 14, 2, 2, 'F');
-    doc.setFontSize(12);
-    doc.setTextColor(r, g, b);
-    doc.text(`${catPacked}/${catItems.length}`, cardX + cardW / 2, y + 6, { align: 'center' });
-    doc.setFontSize(7);
-    doc.setTextColor(148, 163, 184);
-    doc.text(stripEmojis(categoryLabels[cat]), cardX + cardW / 2, y + 11, { align: 'center' });
+    s.doc.setFillColor(Math.min(255, r + 180), Math.min(255, g + 180), Math.min(255, b + 180));
+    s.doc.roundedRect(cardX, s.y, cardW, 14, 2, 2, 'F');
+    s.doc.setFontSize(12); s.doc.setTextColor(r, g, b);
+    s.doc.text(`${catPacked}/${catItems.length}`, cardX + cardW / 2, s.y + 6, { align: 'center' });
+    s.doc.setFontSize(7); s.doc.setTextColor(148, 163, 184);
+    s.doc.text(stripEmojis(categoryLabels[cat]), cardX + cardW / 2, s.y + 11, { align: 'center' });
     cardX += cardW + 4;
   });
-  y += 20;
+  s.y += 20;
 
   options.onProgress?.(40);
 
@@ -1044,150 +640,78 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
     if (catItems.length === 0) return;
     const [r, g, b] = categoryColors[cat];
     const catPacked = catItems.filter(i => i.packed).length;
+    drawSectionHeader(s, categoryLabels[cat], { r, g, b }, `${catPacked}/${catItems.length}`);
 
-    ensureSpace(12);
-
-    // Category header
-    doc.setFillColor(Math.min(255, r + 200), Math.min(255, g + 200), Math.min(255, b + 200));
-    doc.roundedRect(marginX, y, contentW, 8, 2, 2, 'F');
-    doc.setFillColor(r, g, b);
-    doc.rect(marginX, y, 2.5, 8, 'F');
-    doc.setFontSize(10);
-    doc.setTextColor(r, g, b);
-    doc.text(stripEmojis(categoryLabels[cat]), marginX + 8, y + 5.5);
-    doc.setFontSize(8);
-    doc.setTextColor(148, 163, 184);
-    doc.text(`${catPacked}/${catItems.length}`, marginX + contentW - 4, y + 5.5, { align: 'right' });
-    y += 11;
-
-    // Items
     catItems.forEach(item => {
-      ensureSpace(7);
-
-      // Checkbox
-      const checkX = marginX + 4;
-      const checkY = y;
+      ensureSpace(s, 7);
+      const checkX = MARGIN_X + 4;
+      const checkY = s.y;
       if (item.packed) {
-        doc.setFillColor(34, 197, 94);
-        doc.roundedRect(checkX, checkY, 4, 4, 0.8, 0.8, 'F');
-        doc.setFontSize(7);
-        doc.setTextColor(255, 255, 255);
-        doc.text('✓', checkX + 1.2, checkY + 3.2);
+        s.doc.setFillColor(34, 197, 94);
+        s.doc.roundedRect(checkX, checkY, 4, 4, 0.8, 0.8, 'F');
+        s.doc.setFontSize(7); s.doc.setTextColor(255, 255, 255);
+        s.doc.text('✓', checkX + 1.2, checkY + 3.2);
       } else {
-        doc.setDrawColor(203, 213, 225);
-        doc.setLineWidth(0.3);
-        doc.roundedRect(checkX, checkY, 4, 4, 0.8, 0.8, 'S');
+        s.doc.setDrawColor(203, 213, 225); s.doc.setLineWidth(0.3);
+        s.doc.roundedRect(checkX, checkY, 4, 4, 0.8, 0.8, 'S');
       }
 
-      // Item name
       const textColor = item.packed ? [148, 163, 184] : [51, 65, 85];
-      doc.setFontSize(9);
-      doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+      s.doc.setFontSize(9); s.doc.setTextColor(textColor[0], textColor[1], textColor[2]);
       const itemName = stripEmojis(item.name);
-      const maxTextW = contentW - 50;
-      const truncName = doc.getTextWidth(itemName) > maxTextW
-        ? itemName.substring(0, Math.floor(itemName.length * maxTextW / doc.getTextWidth(itemName))) + '...'
-        : itemName;
-      doc.text(truncName, checkX + 7, checkY + 3.2);
+      const maxTextW = CONTENT_W - 50;
+      const truncName = s.doc.getTextWidth(itemName) > maxTextW ? itemName.substring(0, Math.floor(itemName.length * maxTextW / s.doc.getTextWidth(itemName))) + '...' : itemName;
+      s.doc.text(truncName, checkX + 7, checkY + 3.2);
 
-      // Priority badge (essential only, unpacked)
       if (item.priority === 'essential' && !item.packed) {
         const badgeText = stripEmojis(labels.essential);
-        const badgeW = doc.getTextWidth(badgeText) + 4;
-        doc.setFillColor(254, 226, 226);
-        doc.roundedRect(marginX + contentW - badgeW - 18, checkY - 0.5, badgeW, 5, 1, 1, 'F');
-        doc.setFontSize(7);
-        doc.setTextColor(239, 68, 68);
-        doc.text(badgeText, marginX + contentW - 17 - badgeW / 2, checkY + 3, { align: 'center' });
+        const badgeW = s.doc.getTextWidth(badgeText) + 4;
+        s.doc.setFillColor(254, 226, 226);
+        s.doc.roundedRect(MARGIN_X + CONTENT_W - badgeW - 18, checkY - 0.5, badgeW, 5, 1, 1, 'F');
+        s.doc.setFontSize(7); s.doc.setTextColor(239, 68, 68);
+        s.doc.text(badgeText, MARGIN_X + CONTENT_W - 17 - badgeW / 2, checkY + 3, { align: 'center' });
       }
 
-      // Status
       const statusColor = item.packed ? [34, 197, 94] : [239, 68, 68];
       const statusText = stripEmojis(item.packed ? labels.packed : labels.notPacked);
-      doc.setFontSize(7);
-      doc.setTextColor(statusColor[0], statusColor[1], statusColor[2]);
-      doc.text(statusText, marginX + contentW - 4, checkY + 3.2, { align: 'right' });
-
-      y += 6;
+      s.doc.setFontSize(7); s.doc.setTextColor(statusColor[0], statusColor[1], statusColor[2]);
+      s.doc.text(statusText, MARGIN_X + CONTENT_W - 4, checkY + 3.2, { align: 'right' });
+      s.y += 6;
     });
-
-    y += 4;
+    s.y += 4;
     options.onProgress?.(40 + Math.round(((catIdx + 1) / catEntries.length) * 50));
   });
 
-  // Footer
-  ensureSpace(15);
-  y += 4;
-  doc.setDrawColor(236, 72, 153);
-  doc.setLineWidth(0.2);
-  doc.line(marginX + 30, y, marginX + contentW - 30, y);
-  y += 5;
-  doc.setFontSize(7);
-  doc.setTextColor(148, 163, 184);
-  const dateStr = formatDateForPDF(new Date(), language);
-  doc.text(dateStr, pageW / 2, y, { align: 'center' });
-  y += 4;
-  doc.setFontSize(7);
-  doc.setTextColor(236, 72, 153);
-  doc.text(getBrandName(language), pageW / 2, y, { align: 'center' });
-
+  drawFooter(s, language, accentColor);
   options.onProgress?.(100);
-
-  const fileName = `hospital-bag-checklist-${new Date().toISOString().split('T')[0]}.pdf`;
-  doc.save(fileName);
+  s.doc.save(`hospital-bag-checklist-${new Date().toISOString().split('T')[0]}.pdf`);
 }
+
 
 // Generate WhatsApp share text for hospital bag
 export function generateHospitalBagShareText(
   items: HospitalBagItem[],
-  labels: {
-    title: string;
-    mom: string;
-    baby: string;
-    partner: string;
-    documents: string;
-    packed: string;
-    notPacked: string;
-    progress: string;
-  }
+  labels: { title: string; mom: string; baby: string; partner: string; documents: string; packed: string; notPacked: string; progress: string; }
 ): string {
   const packedCount = items.filter(i => i.packed).length;
   const totalCount = items.length;
   const progress = Math.round((packedCount / totalCount) * 100);
-
-  const categoryLabels = {
-    mom: labels.mom,
-    baby: labels.baby,
-    partner: labels.partner,
-    documents: labels.documents,
-  };
-
-  let text = `*${labels.title}*\n`;
-  text += `${labels.progress}: ${progress}% (${packedCount}/${totalCount})\n\n`;
-
-  const categories = ['documents', 'mom', 'baby', 'partner'] as const;
-
-  categories.forEach(cat => {
+  const categoryLabels = { mom: labels.mom, baby: labels.baby, partner: labels.partner, documents: labels.documents };
+  let text = `*${labels.title}*\n${labels.progress}: ${progress}% (${packedCount}/${totalCount})\n\n`;
+  (['documents', 'mom', 'baby', 'partner'] as const).forEach(cat => {
     const catItems = items.filter(i => i.category === cat);
     if (catItems.length === 0) return;
-
     const catPacked = catItems.filter(i => i.packed).length;
     text += `*${categoryLabels[cat]}* (${catPacked}/${catItems.length})\n`;
-
-    catItems.forEach(item => {
-      const icon = item.packed ? '✅' : '⬜';
-      text += `${icon} ${item.name}\n`;
-    });
-
+    catItems.forEach(item => { text += `${item.packed ? '✅' : '⬜'} ${item.name}\n`; });
     text += '\n';
   });
-
   text += `_Pregnancy Toolkits_`;
-
   return text;
 }
 
-// AI Result PDF export (generic markdown-based AI output)
+
+// AI Result PDF export
 interface AIResultPDFOptions {
   title: string;
   subtitle?: string;
@@ -1199,11 +723,8 @@ interface AIResultPDFOptions {
 
 export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<void> {
   const { title, subtitle, content, score, language = 'en' } = options;
-  const isRTL = language === 'ar';
   const logoData = await loadLogoImage();
-  const fontFamily = getFontFamily(language);
-  const textAlign = isRTL ? 'justify' : 'left';
-  const accentColor = { r: 139, g: 92, b: 246 }; // Violet
+  const accentColor = COLORS.secondary; // Violet
 
   const disclaimerLabels: Record<string, string> = {
     en: 'This report is for informational purposes only and does not replace professional medical or psychological advice.',
@@ -1216,78 +737,44 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
   };
   const disclaimer = disclaimerLabels[language] || disclaimerLabels.en;
 
-  let html = buildHeaderHTML(title, subtitle, accentColor, logoData, language);
+  const s: PDFState = { doc: new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }), y: MARGIN_Y };
 
-  // Score card if provided
+  options.onProgress?.(10);
+  drawLogo(s, logoData);
+  drawTitle(s, title, subtitle);
+  drawBrand(s, language, accentColor);
+  drawDivider(s, accentColor);
+
+  // Score card
   if (score) {
-    html += `
-      <div data-pdf-section style="margin:8px 16px;padding:10px 16px;background:${rgbaStr(accentColor, 0.06)};border-radius:8px;text-align:center;">
-        <div style="font-size:22px;font-weight:700;color:${rgbStr(accentColor)};font-family:${fontFamily};">${score.value} / ${score.max}</div>
-        <div style="font-size:10px;color:#94a3b8;font-family:${fontFamily};margin-top:2px;">${stripEmojis(score.label)}</div>
-      </div>
-    `;
+    ensureSpace(s, 16);
+    const lightR = Math.min(255, accentColor.r + 200), lightG = Math.min(255, accentColor.g + 200), lightB = Math.min(255, accentColor.b + 200);
+    s.doc.setFillColor(lightR, lightG, lightB);
+    s.doc.roundedRect(MARGIN_X + 20, s.y, CONTENT_W - 40, 14, 3, 3, 'F');
+    s.doc.setFontSize(16); s.doc.setTextColor(accentColor.r, accentColor.g, accentColor.b);
+    s.doc.text(`${score.value} / ${score.max}`, PAGE_W / 2, s.y + 6, { align: 'center' });
+    s.doc.setFontSize(8); s.doc.setTextColor(148, 163, 184);
+    s.doc.text(stripEmojis(score.label), PAGE_W / 2, s.y + 11, { align: 'center' });
+    s.y += 18;
   }
 
-  // Split content by H1/H2/H3 headings for proper page breaking
-  const splitContentSections = (md: string): string[] => {
-    const mdLines = md.split('\n');
-    const result: string[] = [];
-    let cur: string[] = [];
-    for (const line of mdLines) {
-      if (/^#{1,3} /.test(line) && cur.length > 0) {
-        result.push(cur.join('\n'));
-        cur = [line];
-      } else {
-        cur.push(line);
-      }
-    }
-    if (cur.length > 0) result.push(cur.join('\n'));
-    // Further split large sections (>30 lines)
-    const MAX_LINES = 30;
-    const final: string[] = [];
-    for (const s of result) {
-      const sLines = s.split('\n');
-      if (sLines.length <= MAX_LINES) { final.push(s); continue; }
-      let chunk: string[] = [];
-      for (const line of sLines) {
-        chunk.push(line);
-        if (chunk.length >= MAX_LINES && (line.trim() === '' || /^[-*+] /.test(line))) {
-          final.push(chunk.join('\n'));
-          chunk = [];
-        }
-      }
-      if (chunk.length > 0) final.push(chunk.join('\n'));
-    }
-    return final;
-  };
+  options.onProgress?.(25);
 
-  const contentSections = splitContentSections(content);
+  // Main content
+  renderMarkdownToPDF(s, content, accentColor);
 
-  for (const section of contentSections) {
-    const sectionHTML = DOMPurify.sanitize(
-      markdownToHTMLWithLang(section, fontFamily, isRTL),
-      {
-        ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','div','span','strong','em','b','i','br','ul','ol','li','style'],
-        ALLOWED_ATTR: ['style','class','data-pdf-section','dir'],
-        ALLOW_DATA_ATTR: true,
-      }
-    );
-    html += `
-      <div data-pdf-section style="padding:4px 24px;font-size:11px;line-height:1.5;color:#334155;font-family:${fontFamily};text-align:${textAlign};direction:${isRTL ? 'rtl' : 'ltr'};">
-        ${sectionHTML}
-      </div>
-    `;
-  }
+  options.onProgress?.(90);
 
   // Disclaimer
-  html += `
-    <div data-pdf-section style="margin:8px 20px 4px;padding:8px 14px;background:${rgbaStr(accentColor, 0.05)};border-radius:6px;font-size:8.5px;color:#94a3b8;font-family:${fontFamily};text-align:center;line-height:1.4;">
-      ${disclaimer}
-    </div>
-  `;
+  ensureSpace(s, 10);
+  s.doc.setFontSize(7);
+  s.doc.setTextColor(148, 163, 184);
+  const dLines = s.doc.splitTextToSize(disclaimer, CONTENT_W - 20);
+  s.doc.text(dLines, PAGE_W / 2, s.y, { align: 'center' });
+  s.y += dLines.length * 3.5 + 3;
 
-  html += buildFooterHTML(language, accentColor);
+  drawFooter(s, language, accentColor);
+  options.onProgress?.(100);
 
-  const fileName = `${title.toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
-  await renderHTMLToPDF(html, fileName, language, options.onProgress);
+  s.doc.save(`${title.toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`);
 }
