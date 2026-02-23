@@ -85,16 +85,16 @@ export const sleepVideosByLang: VideosByLang = {
     { id: "4", title: "Gebelikte Uyku Düzeni", description: "Hamilelikte uyku kalitesini artırma yöntemleri", youtubeId: "16KzBg_cUII", duration: "18:00", category: "Hazırlık" },
   ],
   de: [
-    { id: "1", title: "Besser schlafen in der Schwangerschaft", description: "Hebamme erklärt die besten Schlaftipps", youtubeId: "M3dMkgv2JPw", duration: "15:00", category: "Tipps" },
-    { id: "2", title: "Entspannung vor dem Schlafen", description: "Yoga-Übungen für besseren Schlaf", youtubeId: "AzuIPejeHXA", duration: "10:00", category: "Yoga" },
-    { id: "3", title: "Schwangerschaft Schlafpositionen", description: "Welche Schlafposition ist die beste?", youtubeId: "4JfuBEJLbDc", duration: "12:00", category: "Tipps" },
+    { id: "1", title: "Schlafpositionen in der Schwangerschaft", description: "Welche Schlafposition ist die sicherste für Schwangere?", youtubeId: "Eq0uJPWpQuQ", duration: "12:00", category: "Tipps" },
+    { id: "2", title: "Entspannung vor dem Schlafen", description: "Yoga-Übungen für besseren Schlaf in der Schwangerschaft", youtubeId: "AzuIPejeHXA", duration: "10:00", category: "Yoga" },
+    { id: "3", title: "Besser schlafen in der Schwangerschaft", description: "Tipps gegen Schlafprobleme für Schwangere", youtubeId: "W-dn0EdwOkE", duration: "12:00", category: "Tipps" },
     { id: "4", title: "Dehnübungen für die Nacht", description: "Stretching vor dem Schlafengehen für Schwangere", youtubeId: "c1PoK233RNQ", duration: "12:00", category: "Übungen" },
   ],
   fr: [
-    { id: "1", title: "Mieux dormir pendant la grossesse", description: "Conseils de sage-femme pour un sommeil réparateur", youtubeId: "NoyKEfe-t2k", duration: "14:00", category: "Conseils" },
+    { id: "1", title: "Mieux dormir pendant la grossesse", description: "Positions et conseils pour un sommeil réparateur", youtubeId: "jDeR6pJoJ1M", duration: "12:00", category: "Conseils" },
     { id: "2", title: "Yoga prénatal pour le sommeil", description: "Relaxation profonde avant le coucher", youtubeId: "ZhtzgI1cmTA", duration: "15:00", category: "Yoga" },
-    { id: "3", title: "Positions de sommeil enceinte", description: "Les meilleures positions pour dormir enceinte", youtubeId: "EswSlduwhDg", duration: "12:00", category: "Conseils" },
-    { id: "4", title: "Exercices de relaxation", description: "Renforcement et relaxation pour futures mamans", youtubeId: "CWa-cAZuVyE", duration: "20:00", category: "Exercices" },
+    { id: "3", title: "Positions de sommeil enceinte", description: "Les meilleures positions pour dormir enceinte", youtubeId: "ewuObczERVY", duration: "12:00", category: "Conseils" },
+    { id: "4", title: "Exercices de relaxation nocturne", description: "Étirements doux avant le coucher pour futures mamans", youtubeId: "CWa-cAZuVyE", duration: "20:00", category: "Exercices" },
   ],
   es: [
     { id: "1", title: "Dormir mejor en el embarazo", description: "Consejos de matrona para un mejor descanso", youtubeId: "eeaIpg5jMnw", duration: "10:00", category: "Consejos" },
@@ -128,21 +128,21 @@ export const birthPositionVideosByLang: VideosByLang = {
   ],
   tr: [
     { id: "1", title: "Doğumda En İyi Pozisyonlar", description: "3D animasyonla doğum pozisyonları", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Doğum" },
-    { id: "2", title: "Doğuma Hazırlık Egzersizleri", description: "Doğumu kolaylaştıran egzersizler", youtubeId: "0_z0oqZyHq8", duration: "15:00", category: "Hazırlık" },
+    { id: "2", title: "Doğuma Hazırlık Egzersizleri", description: "Doğumu kolaylaştıran egzersizler ve hazırlık", youtubeId: "hmJbDNahUuA", duration: "12:00", category: "Hazırlık" },
     { id: "3", title: "Normal Doğum İçin İpuçları", description: "Ağrısız doğum için önemli bilgiler", youtubeId: "RTFFwC6nvpo", duration: "12:00", category: "İpuçları" },
     { id: "4", title: "Pelvik Taban Egzersizleri", description: "Doğum öncesi pelvik taban güçlendirme egzersizleri", youtubeId: "PYCYH6M8BzU", duration: "12:00", category: "Egzersiz" },
   ],
   de: [
     { id: "1", title: "Beste Geburtspositionen", description: "3D-Animation der Geburtspositionen", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Geburt" },
-    { id: "2", title: "Geburtsvorbereitung Übungen", description: "Übungen zur Geburtsvorbereitung", youtubeId: "AzuIPejeHXA", duration: "10:00", category: "Vorbereitung" },
-    { id: "3", title: "Tipps für natürliche Geburt", description: "Wichtige Tipps für eine leichtere Geburt", youtubeId: "M3dMkgv2JPw", duration: "15:00", category: "Tipps" },
-    { id: "4", title: "Beckenboden Training", description: "Beckenbodenübungen vor der Geburt", youtubeId: "c1PoK233RNQ", duration: "12:00", category: "Übungen" },
+    { id: "2", title: "Geburtspositionen mit Hebamme", description: "Hebamme zeigt die besten Positionen für die Geburt", youtubeId: "mqBCpcqhZd4", duration: "12:00", category: "Geburt" },
+    { id: "3", title: "Normale vaginale Geburt - 3D", description: "3D-Animation einer normalen vaginalen Geburt", youtubeId: "Ib1M3eDR8rs", duration: "14:00", category: "Geburt" },
+    { id: "4", title: "Baby in Geburtsposition bringen", description: "Übungen damit das Baby tiefer ins Becken rutscht", youtubeId: "JabamlKbpKc", duration: "12:00", category: "Vorbereitung" },
   ],
   fr: [
     { id: "1", title: "Meilleures positions d'accouchement", description: "Animation 3D des positions d'accouchement", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Accouchement" },
-    { id: "2", title: "Préparation à l'accouchement", description: "Exercices pour faciliter l'accouchement", youtubeId: "ZhtzgI1cmTA", duration: "15:00", category: "Préparation" },
-    { id: "3", title: "Exercices du périnée", description: "Renforcement du plancher pelvien", youtubeId: "CWa-cAZuVyE", duration: "12:00", category: "Exercices" },
-    { id: "4", title: "Accouchement naturel - Conseils", description: "Conseils pour un accouchement sans douleur", youtubeId: "qE99koyxv_w", duration: "14:00", category: "Conseils" },
+    { id: "2", title: "Mouvements pour préparer l'accouchement", description: "Kinésithérapeute montre des mouvements pour faciliter le travail", youtubeId: "UAnC5Xklvsg", duration: "12:00", category: "Préparation" },
+    { id: "3", title: "Comment se passe un accouchement", description: "Un docteur explique le déroulement de l'accouchement", youtubeId: "ZAv2diKYJYQ", duration: "14:00", category: "Accouchement" },
+    { id: "4", title: "Accouchement sur simulateur", description: "Simulation réaliste du processus d'accouchement", youtubeId: "K-AyOw0TPcU", duration: "15:00", category: "Accouchement" },
   ],
   es: [
     { id: "1", title: "Mejores posiciones de parto", description: "Animación 3D de posiciones de parto", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Parto" },
@@ -178,7 +178,7 @@ export const lactationVideosByLang: VideosByLang = {
     { id: "1", title: "Doğru Emzirme Teknikleri", description: "Uzman ebe doğru emzirme pozisyonlarını anlatıyor", youtubeId: "YR_FuffPERY", duration: "8:00", category: "Emzirme" },
     { id: "2", title: "Emzirme Pozisyonları", description: "En iyi emzirme pozisyonları ve doğru kavrama", youtubeId: "tGq17_MJptU", duration: "12:00", category: "Emzirme" },
     { id: "3", title: "Yenidoğan Beslenmesi", description: "Bebek besleme ve emzirme programı rehberi", youtubeId: "rvjf34yF5bY", duration: "10:00", category: "Beslenme" },
-    { id: "4", title: "Bebek Bakım Temelleri", description: "Yeni doğan bakımında temel bilgiler", youtubeId: "0_z0oqZyHq8", duration: "15:00", category: "Bakım" },
+    { id: "4", title: "Yenidoğan Emzirme Programı", description: "Bebeğin emzirme düzeni ve sıklığı hakkında bilgiler", youtubeId: "aksACVltV58", duration: "12:00", category: "Emzirme" },
   ],
   de: [
     { id: "1", title: "Richtig Stillen lernen", description: "Stilltechniken und Anlegetipps für Anfängerinnen", youtubeId: "2wM6smicIh8", duration: "12:00", category: "Stillen" },
@@ -223,16 +223,16 @@ export const nauseaVideosByLang: VideosByLang = {
     { id: "4", title: "أعراض الحمل الأولى ونصائح", description: "نصائح طبية للتعامل مع أعراض الثلث الأول", youtubeId: "KPA3DRZeH4A", duration: "12:00", category: "الثلث الأول" },
   ],
   tr: [
-    { id: "1", title: "Hamilelikte Bulantı Çözümleri", description: "Mide rahatsızlıkları ve bulantı için uzman önerileri", youtubeId: "H42j-n29Vck", duration: "12:00", category: "Çözümler" },
-    { id: "2", title: "Sabah Bulantısıyla Başa Çıkma", description: "Hamilelikte bulantıyı azaltma yolları", youtubeId: "SE2crV20cYU", duration: "8:00", category: "İpuçları" },
-    { id: "3", title: "İlk Trimester Belirtileri", description: "Erken gebelik belirtilerini yönetme ipuçları", youtubeId: "nsdTimn8d1A", duration: "12:00", category: "İlk Trimester" },
-    { id: "4", title: "Hamilelikte Mide Rahatlatma", description: "Gebelikte mideyi rahatlatacak doğal yöntemler", youtubeId: "16KzBg_cUII", duration: "10:00", category: "Doğal Çözümler" },
+    { id: "1", title: "Hamilelikte Mide Rahatsızlıkları ve Çözümleri", description: "Reflü, gastrit ve bulantı için uzman önerileri", youtubeId: "H42j-n29Vck", duration: "12:00", category: "Çözümler" },
+    { id: "2", title: "Hamilelik Bulantısı Nasıl Geçer", description: "Hamilelikte bulantıyı azaltma yolları ve pratik çözümler", youtubeId: "SE2crV20cYU", duration: "8:00", category: "İpuçları" },
+    { id: "3", title: "Hamileliğin İlk Haftalarında Bulantı", description: "İlk trimesterde bulantı ve mide sorunlarıyla başa çıkma", youtubeId: "R4Jm-xNqw2k", duration: "10:00", category: "İlk Trimester" },
+    { id: "4", title: "Gebelikte 6. Hafta ve Bulantı Yönetimi", description: "Erken gebelikte bulantı belirtileri ve uzman tavsiyeleri", youtubeId: "HKp_ShC-jIY", duration: "10:00", category: "Erken Gebelik" },
   ],
   de: [
     { id: "1", title: "Übelkeit in der Schwangerschaft", description: "Hausmittel und Tipps gegen Schwangerschaftsübelkeit", youtubeId: "ZkZd3xjSzXs", duration: "8:00", category: "Tipps" },
-    { id: "2", title: "Morgenübelkeit bewältigen", description: "Hebamme gibt Tipps gegen Morgenübelkeit", youtubeId: "M3dMkgv2JPw", duration: "15:00", category: "Tipps" },
-    { id: "3", title: "Erstes Trimester überstehen", description: "Die besten Strategien für das erste Trimester", youtubeId: "4JfuBEJLbDc", duration: "12:00", category: "Erstes Trimester" },
-    { id: "4", title: "Natürliche Mittel gegen Übelkeit", description: "Hausmittel und natürliche Hilfe bei Übelkeit", youtubeId: "VxFhaplv7dc", duration: "10:00", category: "Hausmittel" },
+    { id: "2", title: "Morgenübelkeit bewältigen", description: "Praktische Tipps gegen Morgenübelkeit in der Schwangerschaft", youtubeId: "qIPAwjCk3N4", duration: "12:00", category: "Tipps" },
+    { id: "3", title: "Erstes Trimester - Übelkeit lindern", description: "Strategien gegen Übelkeit im ersten Trimester", youtubeId: "PUjUEHtQMgw", duration: "10:00", category: "Erstes Trimester" },
+    { id: "4", title: "Natürliche Mittel gegen Übelkeit", description: "Hausmittel und natürliche Hilfe bei Schwangerschaftsübelkeit", youtubeId: "-dzXS-qCuXg", duration: "10:00", category: "Hausmittel" },
   ],
   fr: [
     { id: "1", title: "Nausées de grossesse - Solutions", description: "Premier trimestre : guide complet des symptômes", youtubeId: "ONOfE08L8gI", duration: "15:00", category: "Premier trimestre" },
@@ -272,14 +272,14 @@ export const hospitalBagVideosByLang = (t: (key: string) => string): VideosByLan
   ],
   tr: [
     { id: "1", title: "Hastane Çantası Hazırlığı", description: "Doğum çantasında bulunması gerekenler", youtubeId: "1SF5QoRZh-M", duration: "10:00", category: "Hazırlık" },
-    { id: "2", title: "Doğuma Hazırlık Süreci", description: "Doğuma hazırlık rehberi ve gerekli eşyalar", youtubeId: "0_z0oqZyHq8", duration: "15:00", category: "Hazırlık" },
+    { id: "2", title: "Doğum Çantası Hazırlığı", description: "Doğum çantasında olması gereken eşyalar listesi", youtubeId: "dmZbNaCJlqM", duration: "12:00", category: "Hazırlık" },
     { id: "3", title: "Doğum Yöntemleri", description: "Doğum sancıları ve doğum yöntemleri hakkında bilgiler", youtubeId: "gq_aKsKzftw", duration: "12:00", category: "Doğum" },
     { id: "4", title: "Doğum Günü Hazırlıkları", description: "Son trimester hazırlık rehberi", youtubeId: "RTFFwC6nvpo", duration: "15:00", category: "Hazırlık" },
   ],
   de: [
-    { id: "1", title: "Kliniktasche packen", description: "Was gehört in die Kliniktasche? Hebamme erklärt", youtubeId: "M3dMkgv2JPw", duration: "15:00", category: "Vorbereitung" },
+    { id: "1", title: "Kliniktasche packen", description: "Was gehört in die Kliniktasche? Checkliste für die Geburt", youtubeId: "aGQmgx_Br_o", duration: "12:00", category: "Vorbereitung" },
     { id: "2", title: "Wochenbett nach Kaiserschnitt", description: "Tipps und Tricks für das Wochenbett", youtubeId: "bu1egIWJRRA", duration: "12:00", category: "Wochenbett" },
-    { id: "3", title: "Geburtsvorbereitung", description: "Schwangerschaft, Geburt und Mamasein - beste Tipps", youtubeId: "4JfuBEJLbDc", duration: "12:00", category: "Vorbereitung" },
+    { id: "3", title: "Geburtsvorbereitung - Kreißsaal", description: "Was erwartet mich im Kreißsaal?", youtubeId: "2wvAkSvQT_E", duration: "10:00", category: "Vorbereitung" },
     { id: "4", title: "Baby Pucken und Pflege", description: "Anleitung zur Neugeborenen-Pflege", youtubeId: "UQjFyQBkefE", duration: "8:00", category: "Babypflege" },
   ],
   fr: [
@@ -322,7 +322,7 @@ export const skincareVideosByLang = (t: (key: string) => string): VideosByLang =
     { id: "1", title: "Hamilelikte Cilt Bakımı", description: "Güvenli cilt bakım rutini hamileler için", youtubeId: "izPwiih-Qcw", duration: "12:00", category: "Cilt Bakımı" },
     { id: "2", title: "Hamilelikte Çatlak Önleme", description: "Gebelikte çatlak oluşumunu azaltma yöntemleri", youtubeId: "9PTAHFoHoYk", duration: "15:00", category: "Çatlak Önleme" },
     { id: "3", title: "Gebelikte Cilt Değişimleri", description: "Hamilelikte ciltte meydana gelen değişiklikler", youtubeId: "J-Fa159A02Y", duration: "10:00", category: "Cilt Bakımı" },
-    { id: "4", title: "Rahat Bir Gebelik İçin Bakım", description: "Cilt bakımı ve genel sağlık ipuçları", youtubeId: "ohLIZdyOKFs", duration: "12:00", category: "Genel Bakım" },
+    { id: "4", title: "Hamilelikte Cilt Lekesi ve Kloazma", description: "Gebelikte cilt lekelerinin oluşumu ve önlenmesi", youtubeId: "9PTAHFoHoYk", duration: "15:00", category: "Cilt Sorunları" },
   ],
   de: [
     { id: "1", title: "Hautpflege in der Schwangerschaft", description: "Dermatologin erklärt sichere Hautpflege", youtubeId: "LbQ1QSSRKqo", duration: "15:00", category: "Hautpflege" },
@@ -649,7 +649,7 @@ export const dueDateVideosByLang: VideosByLang = {
   tr: [
     { id: "1", title: "Hamileliğin İlk Haftaları", description: "1 ve 2 haftalık gebelik döneminde neler oluyor?", youtubeId: "rrwH5PSWWoc", duration: "8:00", category: "Eğitim" },
     { id: "2", title: "Hamilelikte Son Ay", description: "Doğuma yaklaşırken neler beklenmeli", youtubeId: "RTFFwC6nvpo", duration: "12:00", category: "Hazırlık" },
-    { id: "3", title: "Doğuma Hazırlık Egzersizleri", description: "Doğum için pelvik taban güçlendirme", youtubeId: "c1PoK233RNQ", duration: "15:00", category: "Hazırlık" },
+    { id: "3", title: "Hamilelik Haftası Hesaplama", description: "Doğum tarihini doğru hesaplama yöntemleri", youtubeId: "rrwH5PSWWoc", duration: "8:00", category: "Hesaplama" },
   ],
   de: [
     { id: "1", title: "Vorsorge in der Schwangerschaft", description: "Untersuchungen und Termine in der Schwangerschaft", youtubeId: "apspJxV3ZNg", duration: "10:00", category: "Bildung" },
@@ -690,7 +690,7 @@ export const walkingVideosByLang: VideosByLang = {
   ],
   tr: [
     { id: "1", title: "Gebelikte Egzersiz - 5. Ay", description: "Hamilelikte güvenli egzersiz programı", youtubeId: "VI5GZDFK228", duration: "15:00", category: "Egzersiz" },
-    { id: "2", title: "Hamilelikte Genel Hazırlık", description: "Doğum öncesi beslenme ve egzersiz rehberi", youtubeId: "0_z0oqZyHq8", duration: "15:00", category: "Hazırlık" },
+    { id: "2", title: "Hamilelikte Aktif Yürüyüş", description: "Hamileler için güvenli yürüyüş ve hareket programı", youtubeId: "PYCYH6M8BzU", duration: "12:00", category: "Yürüyüş" },
     { id: "3", title: "Prenatal Yoga ve Rahatlama", description: "Hafif yoga egzersizleri hamileler için", youtubeId: "nsdTimn8d1A", duration: "15:00", category: "Yoga" },
     { id: "4", title: "Hamilelikte Aktif Kalma", description: "Düşük yoğunluklu egzersizlerle aktif kalma ipuçları", youtubeId: "SE2crV20cYU", duration: "10:00", category: "İpuçları" },
   ],
@@ -698,7 +698,7 @@ export const walkingVideosByLang: VideosByLang = {
     { id: "1", title: "Schwangerschaft Stretching - 10 Min", description: "Sanfte Dehnübungen für alle Trimester", youtubeId: "AzuIPejeHXA", duration: "10:00", category: "Dehnen" },
     { id: "2", title: "Beckenbodentraining für Schwangere", description: "Beckenbodenübungen zur Geburtsvorbereitung", youtubeId: "c1PoK233RNQ", duration: "12:00", category: "Beckenboden" },
     { id: "3", title: "Walking Cardio ohne Springen", description: "Gelenkschonendes Cardio-Training im Stehen", youtubeId: "B8N4cY2kK8k", duration: "20:00", category: "Cardio" },
-    { id: "4", title: "Schwangerschaft - Beste Tipps", description: "Tipps für Bewegung und Wohlbefinden in der Schwangerschaft", youtubeId: "M3dMkgv2JPw", duration: "15:00", category: "Tipps" },
+    { id: "4", title: "Spaziergang in der Schwangerschaft", description: "Warum tägliches Gehen in der Schwangerschaft so wichtig ist", youtubeId: "bLbfAFmD0-c", duration: "12:00", category: "Tipps" },
   ],
   fr: [
     { id: "1", title: "Pilates Prénatal - 1er Trimestre", description: "15 min de renforcement du transverse pour enceintes", youtubeId: "ZhtzgI1cmTA", duration: "15:00", category: "Pilates" },
