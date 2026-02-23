@@ -164,7 +164,7 @@ export default function PostpartumMentalHealthCoach() {
   };
 
   const handleExportPDF = async () => {
-    if (!aiCopingPlan) return;
+    if (!aiCopingPlan || isExportingPDF) return;
     setIsExportingPDF(true);
     setPdfProgress(0);
     try {
@@ -356,7 +356,6 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                           {!aiLoading && (
                             <Button
                               onClick={handleExportPDF}
-                              disabled={isExportingPDF}
                               variant="outline"
                               className="w-full mt-4"
                             >
@@ -365,7 +364,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                               ) : (
                                 <FileDown className="w-4 h-4 mr-2" />
                               )}
-                              {t('common.downloadPDF', 'Download PDF')}
+                              {isExportingPDF ? t('common.exporting', 'Exporting...') : t('common.downloadPDF', 'Download PDF')}
                             </Button>
                           )}
                         </>
