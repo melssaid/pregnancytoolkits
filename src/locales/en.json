@@ -2702,10 +2702,27 @@
       "videosTitle": "Menstrual Cycle Videos",
       "videosSubtitle": "Learn about cycle tracking and reproductive health",
       "flowLevels": {
+        "spotting": "Spotting",
         "light": "Light",
         "medium": "Medium",
         "heavy": "Heavy"
       },
+      "mood": "Mood",
+      "moods": {
+        "great": "Great",
+        "good": "Good",
+        "okay": "Okay",
+        "bad": "Bad",
+        "awful": "Awful"
+      },
+      "notes": "Notes",
+      "notesPlaceholder": "Add notes about your day...",
+      "saveDay": "Save",
+      "removeDay": "Remove Entry",
+      "dayMarked": "Period day marked",
+      "dayRemoved": "Day removed",
+      "calendarHint": "Tap a day to mark your period. Double-tap or long-press to add details.",
+      "predicted": "Predicted",
       "symptomOptions": {
         "cramps": "Cramps",
         "headache": "Headache",
