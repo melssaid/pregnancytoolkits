@@ -3848,7 +3848,9 @@
       "2": "Meilleur moment pour la marche active",
       "3": "Marches plus courtes, pauses plus fréquentes"
     },
-    "minutes": "minutes"
+    "minutes": "minutes",
+    "videosTitle": "Vidéos de marche et d'exercice",
+    "videosSubtitle": "Vidéos sélectionnées pour rester active pendant la grossesse"
   },
   "stretchReminder": {
     "title": "Rappel d'Étirement Intelligent",

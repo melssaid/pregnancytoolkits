@@ -3823,7 +3823,9 @@
       "2": "Beste Zeit für aktives Gehen",
       "3": "Kürzere Spaziergänge, häufigere Pausen"
     },
-    "minutes": "Minuten"
+    "minutes": "Minuten",
+    "videosTitle": "Geh- und Übungsvideos",
+    "videosSubtitle": "Ausgewählte Videos für aktives Bleiben in der Schwangerschaft"
   },
   "stretchReminder": {
     "title": "Smarte Dehn-Erinnerung",

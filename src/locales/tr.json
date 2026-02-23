@@ -4026,7 +4026,9 @@
       "2": "Aktif yürüyüş için en iyi zaman",
       "3": "Daha kısa yürüyüşler, daha sık molalar"
     },
-    "minutes": "dakika"
+    "minutes": "dakika",
+    "videosTitle": "Yürüyüş ve Egzersiz Videoları",
+    "videosSubtitle": "Hamilelikte aktif kalmak için seçilmiş videolar"
   },
   "stretchReminder": {
     "title": "Akıllı Esneme Hatırlatıcısı",

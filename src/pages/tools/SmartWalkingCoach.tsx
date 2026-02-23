@@ -316,8 +316,8 @@ export default function SmartWalkingCoach() {
         {/* Walking Videos */}
         <VideoLibrary
           videosByLang={walkingVideosByLang}
-          title={t('toolsInternal.walkingCoach.videosTitle', 'Walking & Exercise Videos')}
-          subtitle={t('toolsInternal.walkingCoach.videosSubtitle', 'Curated videos for staying active during pregnancy')}
+          title={t('toolsInternal.walkingCoach.videosTitle')}
+          subtitle={t('toolsInternal.walkingCoach.videosSubtitle')}
         />
 
         <Card className="bg-destructive/5 border-destructive/20">

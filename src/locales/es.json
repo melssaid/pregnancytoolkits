@@ -4026,7 +4026,9 @@
       "2": "Mejor momento para caminata activa",
       "3": "Caminatas más cortas, descansos más frecuentes"
     },
-    "minutes": "minutos"
+    "minutes": "minutos",
+    "videosTitle": "Videos de caminata y ejercicio",
+    "videosSubtitle": "Videos seleccionados para mantenerte activa durante el embarazo"
   },
   "stretchReminder": {
     "title": "Recordatorio de Estiramiento Inteligente",

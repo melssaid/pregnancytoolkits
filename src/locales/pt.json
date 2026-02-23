@@ -4026,7 +4026,9 @@
       "2": "Melhor momento para caminhada ativa",
       "3": "Caminhadas mais curtas, pausas mais frequentes"
     },
-    "minutes": "minutos"
+    "minutes": "minutos",
+    "videosTitle": "Vídeos de caminhada e exercício",
+    "videosSubtitle": "Vídeos selecionados para se manter ativa durante a gravidez"
   },
   "stretchReminder": {
     "title": "Lembrete de Alongamento Inteligente",
