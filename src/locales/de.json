@@ -79,7 +79,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Intelligenter Schwangerschaftsführer",
+      "title": "Profi-Schwangerschaftsbegleiter",
       "description": "Stellen Sie jede Frage zur Schwangerschaft und erhalten Sie sofortige Antworten."
     },
     "wellnessDiary": {
@@ -2590,7 +2590,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Intelligenter Schwangerschaftsführer",
+    "title": "Profi-Schwangerschaftsbegleiter",
     "subtitle": "Ihr 24/7-Schwangerschaftsbegleiter",
     "hello": "Hallo! Ich bin hier, um zu helfen 👋",
     "askAnything": "Fragen Sie alles über Schwangerschaft, Ernährung oder Babypflege",

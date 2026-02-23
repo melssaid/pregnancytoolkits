@@ -79,7 +79,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Guide de grossesse IA",
+      "title": "Compagnon Pro de Grossesse",
       "description": "Posez n'importe quelle question sur la grossesse et obtenez des réponses instantanées."
     },
     "wellnessDiary": {
@@ -2590,7 +2590,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Guide de grossesse intelligent",
+    "title": "Compagnon Pro de Grossesse",
     "subtitle": "Votre compagnon de grossesse 24/7",
     "hello": "Bonjour! Je suis là pour vous aider 👋",
     "askAnything": "Posez des questions sur la grossesse, la nutrition ou les soins du bébé",
