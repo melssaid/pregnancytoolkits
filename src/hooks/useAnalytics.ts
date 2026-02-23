@@ -81,7 +81,7 @@ export function useAnalytics(toolId: string) {
   useEffect(() => {
     // Validate tool ID before tracking
     if (!isValidToolId(toolId)) {
-      console.warn('Invalid tool ID format, skipping analytics');
+      // Invalid tool ID format
       return;
     }
 
@@ -99,7 +99,7 @@ export function useAnalytics(toolId: string) {
         });
       } catch (error) {
         // Silently fail - analytics shouldn't break the app
-        console.debug('Analytics tracking failed:', error);
+        // Analytics silently failed
       }
     };
 
@@ -111,7 +111,7 @@ export function useAnalytics(toolId: string) {
     async (actionType: string, metadata: Record<string, unknown> = {}) => {
       // Validate inputs
       if (!isValidToolId(toolId) || !isValidActionType(actionType)) {
-        console.warn('Invalid tool ID or action type, skipping analytics');
+        // Invalid input
         return;
       }
 
@@ -143,7 +143,7 @@ export function useAnalytics(toolId: string) {
           metadata: sanitizedMetadata as Json,
         });
       } catch (error) {
-        console.debug('Analytics tracking failed:', error);
+        // Analytics silently failed
       }
     },
     [toolId, sessionId]
