@@ -51,6 +51,21 @@ const defaultItems: BagItem[] = [
   { id: "17", nameKey: "toolsInternal.hospitalBag.items.changeOfClothes", category: "partner", packed: false, priority: "recommended" },
   { id: "18", nameKey: "toolsInternal.hospitalBag.items.snacksDrinks", category: "partner", packed: false, priority: "recommended" },
   { id: "19", nameKey: "toolsInternal.hospitalBag.items.cameraCharger", category: "partner", packed: false, priority: "optional" },
+  // New essential items
+  { id: "20", nameKey: "toolsInternal.hospitalBag.items.babyWipes", category: "baby", packed: false, priority: "essential" },
+  { id: "21", nameKey: "toolsInternal.hospitalBag.items.babyOil", category: "baby", packed: false, priority: "recommended" },
+  { id: "22", nameKey: "toolsInternal.hospitalBag.items.nursingPads", category: "mom", packed: false, priority: "essential" },
+  { id: "23", nameKey: "toolsInternal.hospitalBag.items.maternityPads", category: "mom", packed: false, priority: "essential" },
+  { id: "24", nameKey: "toolsInternal.hospitalBag.items.waterBottle", category: "mom", packed: false, priority: "recommended" },
+  { id: "25", nameKey: "toolsInternal.hospitalBag.items.babyMittens", category: "baby", packed: false, priority: "recommended" },
+  { id: "26", nameKey: "toolsInternal.hospitalBag.items.underwear", category: "mom", packed: false, priority: "essential" },
+  { id: "27", nameKey: "toolsInternal.hospitalBag.items.towel", category: "mom", packed: false, priority: "recommended" },
+  { id: "28", nameKey: "toolsInternal.hospitalBag.items.handSanitizer", category: "mom", packed: false, priority: "recommended" },
+  { id: "29", nameKey: "toolsInternal.hospitalBag.items.babyBottles", category: "baby", packed: false, priority: "recommended" },
+  { id: "30", nameKey: "toolsInternal.hospitalBag.items.pacifier", category: "baby", packed: false, priority: "optional" },
+  { id: "31", nameKey: "toolsInternal.hospitalBag.items.extraBlanket", category: "baby", packed: false, priority: "recommended" },
+  { id: "32", nameKey: "toolsInternal.hospitalBag.items.snacksMom", category: "mom", packed: false, priority: "recommended" },
+  { id: "33", nameKey: "toolsInternal.hospitalBag.items.diaperCream", category: "baby", packed: false, priority: "recommended" },
 ];
 
 const AIHospitalBag = () => {
@@ -92,6 +107,20 @@ const AIHospitalBag = () => {
       "Change of clothes": "toolsInternal.hospitalBag.items.changeOfClothes",
       "Snacks & drinks": "toolsInternal.hospitalBag.items.snacksDrinks",
       "Camera/phone charger": "toolsInternal.hospitalBag.items.cameraCharger",
+      "Baby wipes": "toolsInternal.hospitalBag.items.babyWipes",
+      "Baby oil/lotion": "toolsInternal.hospitalBag.items.babyOil",
+      "Nursing pads": "toolsInternal.hospitalBag.items.nursingPads",
+      "Maternity pads": "toolsInternal.hospitalBag.items.maternityPads",
+      "Water bottle": "toolsInternal.hospitalBag.items.waterBottle",
+      "Baby mittens & socks": "toolsInternal.hospitalBag.items.babyMittens",
+      "Underwear (disposable)": "toolsInternal.hospitalBag.items.underwear",
+      "Towel": "toolsInternal.hospitalBag.items.towel",
+      "Hand sanitizer": "toolsInternal.hospitalBag.items.handSanitizer",
+      "Baby bottles": "toolsInternal.hospitalBag.items.babyBottles",
+      "Pacifier": "toolsInternal.hospitalBag.items.pacifier",
+      "Extra blanket": "toolsInternal.hospitalBag.items.extraBlanket",
+      "Snacks for mom": "toolsInternal.hospitalBag.items.snacksMom",
+      "Diaper cream": "toolsInternal.hospitalBag.items.diaperCream",
     };
 
     const normalizeLegacyLabel = (value: string) =>
