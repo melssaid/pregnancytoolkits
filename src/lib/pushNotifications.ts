@@ -88,7 +88,6 @@ export const showPushNotification = async (options: {
   const registration = await getRegistration();
 
   if (registration?.active) {
-    // Use Service Worker to show notification (works in background)
     registration.active.postMessage({
       type: 'SHOW_NOTIFICATION',
       payload: {
@@ -102,7 +101,6 @@ export const showPushNotification = async (options: {
     });
     return true;
   } else {
-    // Fallback: use Notification API directly (only works when tab is active)
     try {
       new Notification(options.title, {
         body: options.body,
@@ -115,6 +113,33 @@ export const showPushNotification = async (options: {
       return false;
     }
   }
+};
+
+/**
+ * Schedule reminders in the Service Worker so they fire even when the app is closed.
+ * Each reminder: { title, body, tag, url, fireAt (ms timestamp) }
+ */
+export const scheduleRemindersInSW = async (
+  reminders: Array<{
+    title: string;
+    body: string;
+    tag: string;
+    url: string;
+    fireAt: number;
+  }>
+): Promise<boolean> => {
+  if (Notification.permission !== 'granted') return false;
+
+  const registration = await getRegistration();
+  if (!registration?.active) return false;
+
+  registration.active.postMessage({
+    type: 'SCHEDULE_REMINDERS',
+    payload: { reminders },
+  });
+
+  console.log('[Push] Sent', reminders.length, 'reminders to SW for scheduling');
+  return true;
 };
 
 /**

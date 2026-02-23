@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { sendDailyScheduleToSW } from '@/lib/scheduleNotifications';
 import { 
   Bell, X, CheckCheck, Settings, Pill, Droplet, Dumbbell, Calendar, 
   Sparkles, ChevronRight, HardDrive, BellRing, Volume2, VolumeX,
@@ -476,6 +477,8 @@ export function NotificationsPanel() {
                           const success = await enablePush();
                           if (success) {
                             toast.success(t('notificationsPanel.pushEnabledSuccess'));
+                            // Send today's schedule to SW immediately
+                            sendDailyScheduleToSW();
                           }
                         } else {
                           disablePush();
