@@ -13,6 +13,7 @@ import { useCycleData } from "@/hooks/useCycleData";
 import { CycleCalendarView } from "@/components/cycle/CycleCalendarView";
 import { CycleDaySheet } from "@/components/cycle/CycleDaySheet";
 import { CycleDashboard } from "@/components/cycle/CycleDashboard";
+import { CycleHistoryChart } from "@/components/cycle/CycleHistoryChart";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function CycleTracker() {
@@ -135,6 +136,11 @@ Any patterns that might be worth discussing with a doctor`;
               <p className="text-sm text-muted-foreground">{t('toolsInternal.cycleTracker.noDataYet')}</p>
             </CardContent>
           </Card>
+        )}
+
+        {/* Cycle History Chart */}
+        {stats && stats.detectedCycles.length >= 2 && (
+          <CycleHistoryChart cycles={stats.detectedCycles} avgCycle={stats.avgCycle} />
         )}
 
         {/* AI Analysis */}
