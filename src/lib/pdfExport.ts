@@ -28,7 +28,7 @@ interface GenericPDFOptions {
     title: string;
     items: string[] | { label: string; value: string }[];
   }[];
-  language?: 'en' | 'ar';
+  language?: 'en' | 'ar' | 'de' | 'fr' | 'es' | 'pt' | 'tr';
   accentColor?: { r: number; g: number; b: number };
   onProgress?: PDFProgressCallback;
 }
@@ -487,6 +487,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     kick_sessions: { en: 'Kick Sessions', ar: 'جلسات الركلات', de: 'Tritte-Sitzungen', fr: 'Sessions de coups', es: 'Sesiones de patadas', pt: 'Sessões de chutes', tr: 'Tekme Oturumları' },
     kick_history: { en: 'Kick History', ar: 'سجل الركلات', de: 'Tritte-Verlauf', fr: 'Historique des coups', es: 'Historial de patadas', pt: 'Histórico de chutes', tr: 'Tekme Geçmişi' },
     water_intake: { en: 'Water Intake', ar: 'شرب الماء', de: 'Wasseraufnahme', fr: "Consommation d'eau", es: 'Ingesta de agua', pt: 'Consumo de água', tr: 'Su Tüketimi' },
+    water_history: { en: 'Water History', ar: 'سجل شرب الماء', de: 'Wasserverlauf', fr: "Historique d'eau", es: 'Historial de agua', pt: 'Histórico de água', tr: 'Su Geçmişi' },
     weight_records: { en: 'Weight Records', ar: 'سجل الوزن', de: 'Gewichtsaufzeichnungen', fr: 'Enregistrements de poids', es: 'Registros de peso', pt: 'Registros de peso', tr: 'Kilo Kayıtları' },
     vitamin_tracker: { en: 'Vitamin Tracker', ar: 'متتبع الفيتامينات', de: 'Vitamin-Tracker', fr: 'Suivi vitamines', es: 'Seguimiento vitaminas', pt: 'Rastreador de vitaminas', tr: 'Vitamin Takibi' },
     vitamin_records: { en: 'Vitamin Records', ar: 'سجل الفيتامينات', de: 'Vitamin-Aufzeichnungen', fr: 'Enregistrements vitamines', es: 'Registros de vitaminas', pt: 'Registros de vitaminas', tr: 'Vitamin Kayıtları' },
@@ -494,15 +495,24 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     contraction_records: { en: 'Contraction Records', ar: 'سجل الانقباضات', de: 'Wehenaufzeichnungen', fr: 'Enregistrements contractions', es: 'Registros de contracciones', pt: 'Registros de contrações', tr: 'Kasılma Kayıtları' },
     appointments: { en: 'Appointments', ar: 'المواعيد', de: 'Termine', fr: 'Rendez-vous', es: 'Citas', pt: 'Consultas', tr: 'Randevular' },
     reminders: { en: 'Reminders', ar: 'التذكيرات', de: 'Erinnerungen', fr: 'Rappels', es: 'Recordatorios', pt: 'Lembretes', tr: 'Hatırlatıcılar' },
+    stretch_reminders: { en: 'Stretch Reminders', ar: 'تذكيرات التمدد', de: 'Dehnungserinnerungen', fr: 'Rappels étirements', es: 'Recordatorios de estiramientos', pt: 'Lembretes de alongamento', tr: 'Esneme Hatırlatıcıları' },
     meal_history: { en: 'Meal History', ar: 'سجل الوجبات', de: 'Mahlzeiten-Verlauf', fr: 'Historique repas', es: 'Historial de comidas', pt: 'Histórico de refeições', tr: 'Yemek Geçmişi' },
     grocery_lists: { en: 'Grocery Lists', ar: 'قوائم التسوق', de: 'Einkaufslisten', fr: 'Listes de courses', es: 'Listas de compras', pt: 'Listas de compras', tr: 'Alışveriş Listeleri' },
+    food_diary: { en: 'Food Diary', ar: 'يوميات الطعام', de: 'Ernährungstagebuch', fr: 'Journal alimentaire', es: 'Diario alimenticio', pt: 'Diário alimentar', tr: 'Yemek Günlüğü' },
+    nutrition_log: { en: 'Nutrition Log', ar: 'سجل التغذية', de: 'Ernährungsprotokoll', fr: 'Journal nutritionnel', es: 'Registro nutricional', pt: 'Registro nutricional', tr: 'Beslenme Kaydı' },
     birth_plans: { en: 'Birth Plans', ar: 'خطط الولادة', de: 'Geburtspläne', fr: 'Plans de naissance', es: 'Planes de parto', pt: 'Planos de parto', tr: 'Doğum Planları' },
     hospital_bag: { en: 'Hospital Bag', ar: 'حقيبة المستشفى', de: 'Kliniktasche', fr: 'Valise maternité', es: 'Bolsa hospital', pt: 'Mala maternidade', tr: 'Hastane Çantası' },
     baby_names: { en: 'Baby Names', ar: 'أسماء الأطفال', de: 'Babynamen', fr: 'Prénoms', es: 'Nombres de bebé', pt: 'Nomes de bebê', tr: 'Bebek İsimleri' },
     bump_photos_local: { en: 'Bump Photos', ar: 'صور البطن', de: 'Bauchfotos', fr: 'Photos du ventre', es: 'Fotos del vientre', pt: 'Fotos da barriga', tr: 'Karın Fotoğrafları' },
+    milestones: { en: 'Milestones', ar: 'المعالم المهمة', de: 'Meilensteine', fr: 'Jalons', es: 'Hitos', pt: 'Marcos', tr: 'Kilometre Taşları' },
     cycle_data: { en: 'Cycle Data', ar: 'بيانات الدورة', de: 'Zyklusdaten', fr: 'Données du cycle', es: 'Datos del ciclo', pt: 'Dados do ciclo', tr: 'Döngü Verileri' },
+    ovulation_data: { en: 'Ovulation Data', ar: 'بيانات التبويض', de: 'Eisprungdaten', fr: "Données d'ovulation", es: 'Datos de ovulación', pt: 'Dados de ovulação', tr: 'Yumurtlama Verileri' },
+    period_history: { en: 'Period History', ar: 'سجل الدورة الشهرية', de: 'Periodenverlauf', fr: 'Historique des règles', es: 'Historial menstrual', pt: 'Histórico menstrual', tr: 'Adet Geçmişi' },
     journal_entries: { en: 'Journal Entries', ar: 'إدخالات اليوميات', de: 'Tagebucheinträge', fr: 'Entrées du journal', es: 'Entradas del diario', pt: 'Entradas do diário', tr: 'Günlük Girdileri' },
+    pregnancy_notes: { en: 'Pregnancy Notes', ar: 'ملاحظات الحمل', de: 'Schwangerschaftsnotizen', fr: 'Notes de grossesse', es: 'Notas de embarazo', pt: 'Notas de gravidez', tr: 'Gebelik Notları' },
     doctor_questions: { en: 'Doctor Questions', ar: 'أسئلة الطبيب', de: 'Arztfragen', fr: 'Questions médecin', es: 'Preguntas médico', pt: 'Perguntas médico', tr: 'Doktor Soruları' },
+    weekly_summaries: { en: 'Weekly Summaries', ar: 'الملخصات الأسبوعية', de: 'Wöchentliche Zusammenfassungen', fr: 'Résumés hebdomadaires', es: 'Resúmenes semanales', pt: 'Resumos semanais', tr: 'Haftalık Özetler' },
+    ai_insights: { en: 'AI Insights', ar: 'تحليلات الذكاء الاصطناعي', de: 'KI-Einblicke', fr: 'Analyses IA', es: 'Análisis IA', pt: 'Análises IA', tr: 'Yapay Zeka Analizleri' },
   };
 
   const getKeyLabel = (key: string): string => {
