@@ -188,7 +188,7 @@ export function useNotifications() {
           message: tn('stretchReminderMsg'),
           time: nowISO,
           read: false,
-          actionUrl: '/tools/smart-stretch-reminder',
+          actionUrl: '/tools/ai-fitness-coach',
         });
       }
 
@@ -222,7 +222,7 @@ export function useNotifications() {
           message: tn('exerciseReminderMsg'),
           time: nowISO,
           read: false,
-          actionUrl: '/tools/smart-walking-coach',
+          actionUrl: '/tools/ai-fitness-coach',
         });
       }
 

@@ -37,7 +37,7 @@ import {
   Milk,
   Volume2,
   Flower2,
-  Footprints,
+  
   ClipboardList,
 } from "lucide-react";
 
@@ -96,8 +96,6 @@ export const toolsData: Tool[] = [
   { id: "ai-sleep-optimizer", titleKey: "tools.aiSleepOptimizer.title", descriptionKey: "tools.aiSleepOptimizer.description", icon: Bed, categoryKey: "categories.wellness", href: "/tools/ai-sleep-optimizer", priority: 19, hasAI: true },
   { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.wellness", href: "/tools/ai-nausea-relief", priority: 20, hasAI: true },
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
-  { id: "smart-walking-coach", titleKey: "tools.smartWalkingCoach.title", descriptionKey: "tools.smartWalkingCoach.description", icon: Footprints, categoryKey: "categories.wellness", href: "/tools/smart-walking-coach", priority: 22, hasAI: true },
-  { id: "smart-stretch-reminder", titleKey: "tools.smartStretchReminder.title", descriptionKey: "tools.smartStretchReminder.description", icon: Sparkles, categoryKey: "categories.wellness", href: "/tools/smart-stretch-reminder", priority: 23, hasAI: true },
   
 
   // ═══════════════════════════════════════════════════════════════
@@ -209,8 +207,6 @@ const toolRelationships: Record<string, string[]> = {
   "ai-sleep-optimizer": ["ai-back-pain-relief", "wellness-diary", "postpartum-mental-health"],
   "ai-nausea-relief": ["ai-meal-suggestion", "wellness-diary", "ai-craving-alternatives"],
   "vitamin-tracker": ["ai-meal-suggestion", "smart-grocery-list", "ai-craving-alternatives"],
-  "smart-walking-coach": ["ai-fitness-coach", "ai-back-pain-relief", "wellness-diary"],
-  "smart-stretch-reminder": ["ai-fitness-coach", "ai-back-pain-relief", "smart-walking-coach"],
 
   // Mental Health
   "postpartum-mental-health": ["ai-sleep-optimizer", "pregnancy-assistant", "wellness-diary"],

@@ -23,8 +23,6 @@ const SmartAppointmentReminder = lazy(() => import("@/pages/tools/SmartAppointme
 const AICravingAlternatives = lazy(() => import("@/pages/tools/AICravingAlternatives"));
 const SmartGroceryList = lazy(() => import("@/pages/tools/SmartGroceryList"));
 const SmartPregnancyPlan = lazy(() => import("@/pages/tools/SmartPregnancyPlan"));
-const SmartWalkingCoach = lazy(() => import("@/pages/tools/SmartWalkingCoach"));
-const SmartStretchReminder = lazy(() => import("@/pages/tools/SmartStretchReminder"));
 
 
 
@@ -99,8 +97,6 @@ export function AnimatedRoutes() {
         <Route path="/tools/ai-craving-alternatives" element={<PageTransition><AICravingAlternatives /></PageTransition>} />
         <Route path="/tools/smart-grocery-list" element={<PageTransition><SmartGroceryList /></PageTransition>} />
         <Route path="/tools/smart-plan" element={<PageTransition><SmartPregnancyPlan /></PageTransition>} />
-        <Route path="/tools/smart-walking-coach" element={<PageTransition><SmartWalkingCoach /></PageTransition>} />
-        <Route path="/tools/smart-stretch-reminder" element={<PageTransition><SmartStretchReminder /></PageTransition>} />
         
         
 
