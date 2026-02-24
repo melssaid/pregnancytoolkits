@@ -99,10 +99,9 @@ const nutritionKeys = [
 
 // Exercise links - distinct tools, no overlaps
 const exerciseKeys = [
-  { key: "walking",  href: "/tools/smart-walking-coach" },
+  { key: "walking",  href: "/tools/ai-fitness-coach" },
   { key: "swimming", href: "/tools/ai-fitness-coach" },
-  { key: "yoga",     href: "/tools/smart-stretch-reminder" },
-  { key: "kegel",    href: "/tools/ai-fitness-coach" },
+  { key: "yoga",     href: "/tools/ai-fitness-coach" },
 ];
 
 
