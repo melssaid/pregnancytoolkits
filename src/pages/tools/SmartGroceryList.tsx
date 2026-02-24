@@ -360,7 +360,7 @@ export default function SmartGroceryList() {
             </div>
 
             {/* Category Filter */}
-            <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
+            <div className="grid grid-cols-3 gap-2">
               {(['all', 'produce', 'dairy', 'protein', 'grains', 'other'] as const).map(cat => {
                 const count = cat === 'all' ? items.length : items.filter(i => i.category === cat).length;
                 const isActive = selectedCategory === cat;
@@ -368,14 +368,14 @@ export default function SmartGroceryList() {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`whitespace-nowrap h-8 px-3 rounded-full text-xs font-medium transition-all ${
+                    className={`h-9 rounded-lg text-xs font-medium transition-all text-center ${
                       isActive 
                         ? 'bg-primary text-primary-foreground shadow-sm' 
-                        : 'bg-muted/60 text-muted-foreground hover:bg-muted'
+                        : 'bg-muted/60 text-muted-foreground hover:bg-muted border border-border/40'
                     }`}
                   >
                     {t(`groceryList.categories.${cat}`)}
-                    <span className={`ml-1 ${isActive ? 'opacity-80' : 'opacity-50'}`}>
+                    <span className={`ms-1 text-[10px] ${isActive ? 'opacity-80' : 'opacity-50'}`}>
                       {count}
                     </span>
                   </button>
