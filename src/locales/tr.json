@@ -1,6 +1,9 @@
 {
   "nav": {
+    "home": "Ana Sayfa",
     "dashboard": "Panel",
+    "aiTools": "AI Araçları",
+    "more": "Daha Fazla",
     "alerts": "Bildirimler",
     "search": "Ara",
     "settings": "Ayarlar"

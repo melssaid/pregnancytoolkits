@@ -1,6 +1,9 @@
 {
   "nav": {
+    "home": "Accueil",
     "dashboard": "Tableau de bord",
+    "aiTools": "Outils IA",
+    "more": "Plus",
     "alerts": "Alertes",
     "search": "Rechercher",
     "settings": "Paramètres"

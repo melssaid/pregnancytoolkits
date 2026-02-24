@@ -1,9 +1,12 @@
 {
   "nav": {
+    "home": "Inicio",
     "dashboard": "Panel",
+    "aiTools": "Herramientas IA",
+    "more": "Más",
     "alerts": "Alertas",
     "search": "Buscar",
-    "settings": "Configuración"
+    "settings": "Ajustes"
   },
   "relatedTools": {
     "title": "Continúa tu viaje"
