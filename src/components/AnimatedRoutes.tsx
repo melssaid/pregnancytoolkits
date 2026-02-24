@@ -25,7 +25,7 @@ const SmartGroceryList = lazy(() => import("@/pages/tools/SmartGroceryList"));
 const SmartPregnancyPlan = lazy(() => import("@/pages/tools/SmartPregnancyPlan"));
 const SmartWalkingCoach = lazy(() => import("@/pages/tools/SmartWalkingCoach"));
 const SmartStretchReminder = lazy(() => import("@/pages/tools/SmartStretchReminder"));
-const SmartSnackPlanner = lazy(() => import("@/pages/tools/SmartSnackPlanner"));
+
 const KegelExercise = lazy(() => import("@/pages/tools/KegelExercise"));
 
 // AI 2026 TOOLS
@@ -41,7 +41,7 @@ const AIBumpPhotos = lazy(() => import("@/pages/tools/AIBumpPhotos"));
 const AIFitnessCoach = lazy(() => import("@/pages/tools/AIFitnessCoach"));
 const AIBackPainRelief = lazy(() => import("@/pages/tools/AIBackPainRelief"));
 const VitaminTracker = lazy(() => import("@/pages/tools/VitaminTracker"));
-const ForbiddenFoods = lazy(() => import("@/pages/tools/ForbiddenFoods"));
+
 
 // AI LABOR
 const AILaborProgressTracker = lazy(() => import("@/pages/tools/AILaborProgressTracker"));
@@ -101,7 +101,7 @@ export function AnimatedRoutes() {
         <Route path="/tools/smart-plan" element={<PageTransition><SmartPregnancyPlan /></PageTransition>} />
         <Route path="/tools/smart-walking-coach" element={<PageTransition><SmartWalkingCoach /></PageTransition>} />
         <Route path="/tools/smart-stretch-reminder" element={<PageTransition><SmartStretchReminder /></PageTransition>} />
-        <Route path="/tools/smart-snack-planner" element={<PageTransition><SmartSnackPlanner /></PageTransition>} />
+        
         <Route path="/tools/kegel-exercise" element={<PageTransition><KegelExercise /></PageTransition>} />
 
         {/* AI 2026 TOOLS */}
@@ -117,7 +117,7 @@ export function AnimatedRoutes() {
         <Route path="/tools/ai-fitness-coach" element={<PageTransition><AIFitnessCoach /></PageTransition>} />
         <Route path="/tools/ai-back-pain-relief" element={<PageTransition><AIBackPainRelief /></PageTransition>} />
         <Route path="/tools/vitamin-tracker" element={<PageTransition><VitaminTracker /></PageTransition>} />
-        <Route path="/tools/forbidden-foods" element={<PageTransition><ForbiddenFoods /></PageTransition>} />
+        
 
         {/* AI LABOR */}
         <Route path="/tools/labor-progress" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />

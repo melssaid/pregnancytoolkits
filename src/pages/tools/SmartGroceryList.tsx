@@ -117,7 +117,7 @@ export default function SmartGroceryList() {
   const saveItems = useCallback((newItems: GroceryItem[]) => {
     const success = safeSaveToLocalStorage('pregnancyGroceryList', newItems);
     if (!success) {
-      toast.error('Failed to save list. Storage may be full.');
+      toast.error(t('groceryList.saveFailed', 'Failed to save list'));
     }
   }, []);
 
@@ -139,7 +139,7 @@ export default function SmartGroceryList() {
     
     setItems([...items, item]);
     setNewItem('');
-    toast.success('Item added to your list');
+    toast.success(t('groceryList.itemAdded', 'Item added'));
   };
 
   const toggleItem = (id: string) => {
@@ -163,7 +163,7 @@ export default function SmartGroceryList() {
   const clearChecked = () => {
     const count = items.filter(item => item.isChecked).length;
     setItems(items.filter(item => !item.isChecked));
-    toast.success(`${count} items cleared`);
+    toast.success(t('groceryList.itemsCleared', { count }));
   };
 
   const filteredItems = selectedCategory === 'all' 
@@ -433,7 +433,7 @@ export default function SmartGroceryList() {
               <div className="space-y-2">
                 <p className="text-[11px] font-medium text-muted-foreground flex items-center gap-1">
                   <Leaf className="w-3 h-3 text-primary" />
-                  {t('groceryList.recommendedSuperfoods', 'Recommended Superfoods')}
+                  {t('groceryList.recommendedSuperfoods')}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {suggestedItems.filter(s => !items.find(i => (i.nameKey ? t(i.nameKey) : i.name) === (s.nameKey ? t(s.nameKey) : s.name))).slice(0, 6).map(item => (
