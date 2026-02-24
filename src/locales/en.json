@@ -1,6 +1,9 @@
 {
   "nav": {
+    "home": "Home",
     "dashboard": "Dashboard",
+    "aiTools": "AI Tools",
+    "more": "More",
     "alerts": "Alerts",
     "search": "Search",
     "settings": "Settings"

@@ -1,6 +1,9 @@
 {
   "nav": {
+    "home": "الرئيسية",
     "dashboard": "لوحة التحكم",
+    "aiTools": "أدوات AI",
+    "more": "المزيد",
     "alerts": "التنبيهات",
     "search": "بحث",
     "settings": "الإعدادات"

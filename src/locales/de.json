@@ -1,6 +1,9 @@
 {
   "nav": {
+    "home": "Start",
     "dashboard": "Dashboard",
+    "aiTools": "KI-Tools",
+    "more": "Mehr",
     "alerts": "Benachrichtigungen",
     "search": "Suche",
     "settings": "Einstellungen"
