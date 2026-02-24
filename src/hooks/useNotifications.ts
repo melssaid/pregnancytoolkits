@@ -192,18 +192,8 @@ export function useNotifications() {
         });
       }
 
-      // Kegel reminder (9 AM+ window - once daily)
-      if (settings.kegelReminders && hour >= 9 && !hasTodayReminder('kegel')) {
-        newNotifications.push({
-          id: `kegel-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          type: 'kegel',
-          title: tn('kegelReminderTitle'),
-          message: tn('kegelReminderMsg'),
-          time: nowISO,
-          read: false,
-          actionUrl: '/tools/kegel-exercise',
-        });
-      }
+
+
 
       if (settings.waterReminders) {
         const recentWaterReminder = notifications.find(

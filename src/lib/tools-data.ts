@@ -98,7 +98,7 @@ export const toolsData: Tool[] = [
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
   { id: "smart-walking-coach", titleKey: "tools.smartWalkingCoach.title", descriptionKey: "tools.smartWalkingCoach.description", icon: Footprints, categoryKey: "categories.wellness", href: "/tools/smart-walking-coach", priority: 22, hasAI: true },
   { id: "smart-stretch-reminder", titleKey: "tools.smartStretchReminder.title", descriptionKey: "tools.smartStretchReminder.description", icon: Sparkles, categoryKey: "categories.wellness", href: "/tools/smart-stretch-reminder", priority: 23, hasAI: true },
-  { id: "kegel-exercise", titleKey: "tools.kegelExercise.title", descriptionKey: "tools.kegelExercise.description", icon: Heart, categoryKey: "categories.wellness", href: "/tools/kegel-exercise", priority: 24 },
+  
 
   // ═══════════════════════════════════════════════════════════════
   // MENTAL HEALTH
