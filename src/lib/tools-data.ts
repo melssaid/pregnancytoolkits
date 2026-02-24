@@ -84,9 +84,8 @@ export const toolsData: Tool[] = [
   { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, categoryKey: "categories.nutrition", href: "/tools/ai-meal-suggestion", priority: 10, hasAI: true },
   { id: "ai-craving-alternatives", titleKey: "tools.aiCravingAlternatives.title", descriptionKey: "tools.aiCravingAlternatives.description", icon: Utensils, categoryKey: "categories.nutrition", href: "/tools/ai-craving-alternatives", priority: 11, hasAI: true },
   { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: ShoppingCart, categoryKey: "categories.nutrition", href: "/tools/smart-grocery-list", priority: 12, hasAI: true },
-  { id: "forbidden-foods", titleKey: "tools.forbiddenFoods.title", descriptionKey: "tools.forbiddenFoods.description", icon: Utensils, categoryKey: "categories.nutrition", href: "/tools/forbidden-foods", priority: 13, hasAI: true },
-  { id: "smart-snack-planner", titleKey: "tools.smartSnackPlanner.title", descriptionKey: "tools.smartSnackPlanner.description", icon: Utensils, categoryKey: "categories.nutrition", href: "/tools/smart-snack-planner", priority: 14, hasAI: true },
-  { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 15, hasAI: true },
+  { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 13, hasAI: true },
+  
 
   // ═══════════════════════════════════════════════════════════════
   // WELLNESS & FITNESS
@@ -183,8 +182,8 @@ const toolRelationships: Record<string, string[]> = {
   // AI Core
   "pregnancy-assistant": ["wellness-diary", "weekly-summary", "ai-meal-suggestion"],
   "weekly-summary": ["pregnancy-assistant", "fetal-growth", "weight-gain"],
-  "ai-meal-suggestion": ["ai-craving-alternatives", "smart-grocery-list", "forbidden-foods"],
-  "ai-craving-alternatives": ["ai-meal-suggestion", "smart-grocery-list", "forbidden-foods"],
+  "ai-meal-suggestion": ["ai-craving-alternatives", "smart-grocery-list", "vitamin-tracker"],
+  "ai-craving-alternatives": ["ai-meal-suggestion", "smart-grocery-list", "vitamin-tracker"],
   "smart-grocery-list": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
 
   // Fertility
@@ -209,11 +208,9 @@ const toolRelationships: Record<string, string[]> = {
   "ai-back-pain-relief": ["ai-fitness-coach", "ai-sleep-optimizer", "wellness-diary"],
   "ai-sleep-optimizer": ["ai-back-pain-relief", "wellness-diary", "postpartum-mental-health"],
   "ai-nausea-relief": ["ai-meal-suggestion", "wellness-diary", "ai-craving-alternatives"],
-  "vitamin-tracker": ["ai-meal-suggestion", "smart-grocery-list", "forbidden-foods"],
-  "forbidden-foods": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
+  "vitamin-tracker": ["ai-meal-suggestion", "smart-grocery-list", "ai-craving-alternatives"],
   "smart-walking-coach": ["ai-fitness-coach", "ai-back-pain-relief", "wellness-diary"],
   "smart-stretch-reminder": ["ai-fitness-coach", "ai-back-pain-relief", "smart-walking-coach"],
-  "smart-snack-planner": ["ai-meal-suggestion", "ai-craving-alternatives", "forbidden-foods"],
 
   // Mental Health
   "postpartum-mental-health": ["ai-sleep-optimizer", "pregnancy-assistant", "wellness-diary"],

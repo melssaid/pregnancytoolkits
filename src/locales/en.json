@@ -2944,7 +2944,7 @@
         "week40": "Fully developed and ready for birth! Welcome to the world!"
       },
       "tips": {
-        "week4": "Start taking prenatal vitamins!",
+        "week4": "Schedule your first prenatal appointment.",
         "week6": "Stay hydrated and rest well.",
         "week8": "First prenatal visit recommended.",
         "week10": "Morning sickness may peak now.",
@@ -3990,6 +3990,9 @@
     "reset": "Reset",
     "superfoodsAdded": "{{count}} superfoods added to your list",
     "allSuperfoodsInList": "All superfoods are already in your list",
+    "itemAdded": "Item added",
+    "itemsCleared": "{{count}} items cleared",
+    "saveFailed": "Failed to save list",
     "nutrients": {
       "protein": "Protein",
       "iron": "Iron",
