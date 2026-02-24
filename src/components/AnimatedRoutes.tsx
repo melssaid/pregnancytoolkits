@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { PageTransition } from "./PageTransition";
 import { Suspense, lazy } from "react";
 import { PageSkeleton } from "./PageSkeleton";
@@ -151,6 +151,13 @@ export function AnimatedRoutes() {
 
         {/* SPLASH SCREEN */}
         <Route path="/splash" element={<Splash />} />
+
+        {/* LEGACY REDIRECTS — deleted tools */}
+        <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
+        <Route path="/tools/smart-stretch-reminder" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
+        <Route path="/tools/kegel-exercise" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
+        <Route path="/tools/smart-snack-planner" element={<Navigate to="/tools/ai-meal-suggestion" replace />} />
+        <Route path="/tools/forbidden-foods" element={<Navigate to="/tools/ai-meal-suggestion" replace />} />
 
         {/* 404 */}
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
