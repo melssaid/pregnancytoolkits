@@ -9,7 +9,7 @@ import {
   Play, Loader2, Activity, Scale, Brain, Sparkles,
   Baby, Pill, Stethoscope, Salad, ChevronRight, CalendarCheck,
   Hand, TrendingUp, Camera, Bell, Moon, Ruler, FileText,
-  Database, Clock, Calendar, Briefcase, CheckCircle2, BellRing
+  Database, Clock, Calendar, Briefcase, CheckCircle2
 } from "lucide-react";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { VideoLibrary } from "@/components/VideoLibrary";
@@ -25,9 +25,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { Link } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
-import { NotificationsPanel } from "@/components/dashboard/NotificationsPanel";
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
-import { useNotifications } from "@/hooks/useNotifications";
 
 
 type TabType = "home" | "chat" | "health" | "nutrition" | "exercise" | "videos";
@@ -115,7 +113,7 @@ const SmartDashboard = () => {
   const { currentLanguage } = useLanguage();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, toolSummaries, loading: statsLoading } = useTrackingStats();
-  const { unreadCount } = useNotifications();
+  
   const { profile: userProfile, updateProfile: updateUserProfile } = useUserProfile();
 
   useResetOnLanguageChange(() => {
@@ -125,7 +123,6 @@ const SmartDashboard = () => {
   });
   
   const [activeTab, setActiveTab] = useState<TabType>("home");
-  const [showNotifications, setShowNotifications] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: t('dashboard.chat.welcomeMessage') }
   ]);
@@ -233,56 +230,24 @@ const SmartDashboard = () => {
       {/* Navigation Tabs with Notification Button */}
       <nav className="bg-background border-b border-border/50">
         <div className="container px-3">
-          <div className="flex items-center gap-2 py-2">
-            <div className="flex gap-1.5 overflow-x-auto scrollbar-hide flex-1 pb-0.5">
-              {tabs.map(tab => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap transition-all flex-shrink-0 ${
-                    activeTab === tab.id
-                      ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-sm"
-                      : "bg-muted/40 text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  <tab.icon className="w-3 h-3" />
-                  <span className="hidden sm:inline">{tab.label}</span>
-                  <span className="sm:hidden">{tab.label}</span>
-                </button>
-              ))}
-            </div>
-            
-            {/* Notification Button */}
-            <button
-              onClick={() => setShowNotifications(!showNotifications)}
-              className="relative ms-2 p-2 rounded-full bg-muted/50 hover:bg-muted transition-colors flex-shrink-0"
-            >
-              <BellRing className={`w-4 h-4 ${showNotifications ? 'text-primary' : 'text-muted-foreground'}`} />
-              {unreadCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-destructive text-destructive-foreground text-[9px] font-bold rounded-full flex items-center justify-center">
-                  {unreadCount > 9 ? '9+' : unreadCount}
-                </span>
-              )}
-            </button>
+          <div className="flex gap-1.5 overflow-x-auto scrollbar-hide py-2 pb-2.5">
+            {tabs.map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap transition-all flex-shrink-0 ${
+                  activeTab === tab.id
+                    ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-sm"
+                    : "bg-muted/40 text-muted-foreground hover:bg-muted"
+                }`}
+              >
+                <tab.icon className="w-3 h-3" />
+                <span>{tab.label}</span>
+              </button>
+            ))}
           </div>
         </div>
       </nav>
-
-      {/* Notifications Panel - Collapsible */}
-      <AnimatePresence>
-        {showNotifications && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-b border-border/30"
-          >
-            <div className="container px-3 py-3">
-              <NotificationsPanel />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <main className="container py-4 space-y-4">
         {/* Home Tab - Enhanced with Progress Ring */}
@@ -447,7 +412,7 @@ const SmartDashboard = () => {
               </CardContent>
             </Card>
 
-            {/* 5. AI Tools - Smart Links */}
+            {/* 5. AI Tools - Smart Links (no duplicates with other tabs/CTAs) */}
             <Card className="overflow-hidden card-pink-top">
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
@@ -456,10 +421,10 @@ const SmartDashboard = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { title: t('dashboard.aiToolsList.aiAssistant'), icon: Bot,         href: "/tools/pregnancy-assistant" },
-                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/wellness-diary" },
+                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/ai-symptom-analyzer" },
                     { title: t('dashboard.aiToolsList.weekly'),      icon: Sparkles,     href: "/tools/weekly-summary" },
-                    { title: t('dashboard.aiToolsList.smartPlan'),   icon: CalendarCheck,href: "/tools/smart-plan" },
+                    { title: t('dashboard.aiToolsList.mealPlan'),    icon: Salad,        href: "/tools/ai-meal-suggestion" },
+                    { title: t('dashboard.aiToolsList.fitness'),     icon: Dumbbell,     href: "/tools/ai-fitness-coach" },
                   ].map((link, i) => (
                     <Link
                       key={i}

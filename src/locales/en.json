@@ -345,10 +345,10 @@
     },
     "aiTools": "AI-Powered Tools",
     "aiToolsList": {
-      "smartPlan": "Smart Plan",
-      "aiAssistant": "AI Assistant",
-      "symptoms": "Symptoms",
-      "weekly": "Weekly"
+      "symptoms": "Symptom Analyzer",
+      "weekly": "Weekly Summary",
+      "mealPlan": "Meal Plan",
+      "fitness": "Fitness Coach"
     },
     "chat": {
       "title": "AI Pregnancy Assistant",
