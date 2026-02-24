@@ -545,7 +545,7 @@
     "subtitle": "إدارة تفضيلاتك",
     "profile": {
       "title": "ملفي الشخصي",
-      "save": "حفظ الملف الشخصي",
+      "desc": "الوزن والطول وأسبوع الحمل",
       "saved": "تم تحديث الملف الشخصي بنجاح",
       "heightLabel": "الطول",
       "heightPlaceholder": "مثال: 165",
@@ -555,9 +555,12 @@
       "bloodTypeUnknown": "غير معروف / لم يُفحص"
     },
     "securityPrivacy": "الأمان والخصوصية",
+    "securityDesc": "تشفير البيانات وحمايتها",
     "dataManagement": "إدارة البيانات",
+    "dataManagementDesc": "النسخ الاحتياطي وحذف البيانات",
     "language": {
       "sectionTitle": "اللغة",
+      "desc": "اختيار لغة واجهة التطبيق",
       "resetToAuto": "استخدام لغة المتصفح",
       "manualNote": "لقد اخترت لغة يدوياً.",
       "autoDetectNote": "يتم استخدام لغة المتصفح تلقائياً."

@@ -827,6 +827,7 @@
     "subtitle": "Administra tus preferencias",
     "profile": {
       "title": "Mi perfil",
+      "desc": "Peso, altura y semana de embarazo",
       "save": "Guardar perfil",
       "saved": "Perfil actualizado correctamente",
       "heightLabel": "Altura",
@@ -837,9 +838,13 @@
       "bloodTypeUnknown": "Desconocido / No analizado"
     },
     "securityPrivacy": "Seguridad y privacidad",
+    "securityDesc": "Cifrado y protección de datos",
     "dataManagement": "Gestión de datos",
+    "dataManagementDesc": "Copia de seguridad y eliminación de datos",
+    "dataPrivacy": "Privacidad de datos",
     "language": {
       "sectionTitle": "Idioma",
+      "desc": "Elegir el idioma de la aplicación",
       "resetToAuto": "Usar idioma del navegador",
       "manualNote": "Has seleccionado un idioma manualmente.",
       "autoDetectNote": "Se usa automáticamente el idioma de tu navegador."

@@ -827,6 +827,7 @@
     "subtitle": "Verwalten Sie Ihre Einstellungen",
     "profile": {
       "title": "Mein Profil",
+      "desc": "Gewicht, Größe und Schwangerschaftswoche",
       "save": "Profil speichern",
       "saved": "Profil erfolgreich aktualisiert",
       "heightLabel": "Körpergröße",
@@ -837,9 +838,13 @@
       "bloodTypeUnknown": "Unbekannt / Nicht getestet"
     },
     "securityPrivacy": "Sicherheit & Datenschutz",
+    "securityDesc": "Datenverschlüsselung und Schutz",
     "dataManagement": "Datenverwaltung",
+    "dataManagementDesc": "Sicherung und Löschung der Daten",
+    "dataPrivacy": "Datenschutz",
     "language": {
       "sectionTitle": "Sprache",
+      "desc": "App-Sprache auswählen",
       "resetToAuto": "Browsersprache verwenden",
       "manualNote": "Sie haben manuell eine Sprache ausgewählt.",
       "autoDetectNote": "Ihre Browsersprache wird automatisch verwendet."
