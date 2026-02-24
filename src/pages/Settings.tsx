@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, Shield, Info, Heart, Lock, Globe, User } from 'lucide-react';
+import { Database, Shield, Info, Heart, Lock, Globe, User, CheckCircle, Stethoscope } from 'lucide-react';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { DataClearManager } from '@/components/settings/DataClearManager';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
@@ -21,10 +21,10 @@ const Settings: React.FC = () => {
     <Layout showBack>
       <div className="container py-4 space-y-3 pb-24 max-w-lg mx-auto">
         
-        {/* Quick Settings Header */}
+        {/* Header */}
         <div className="text-center mb-4">
-          <h1 className="text-xl font-bold text-foreground">{t('settings.title', 'Settings')}</h1>
-          <p className="text-xs text-muted-foreground mt-1">{t('settings.subtitle', 'Manage your preferences')}</p>
+          <h1 className="text-xl font-bold text-foreground">{t('settings.title')}</h1>
+          <p className="text-xs text-muted-foreground mt-1">{t('settings.subtitle')}</p>
         </div>
 
         {/* Accordion-based Settings */}
@@ -37,7 +37,10 @@ const Settings: React.FC = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
                   <User className="w-4 h-4 text-primary" />
                 </div>
-                <span className="font-medium text-sm">{t('settings.profile.title', 'My Profile')}</span>
+                <div className="text-start">
+                  <span className="font-medium text-sm block">{t('settings.profile.title')}</span>
+                  <span className="text-[10px] text-muted-foreground">{t('settings.profile.desc')}</span>
+                </div>
               </div>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
@@ -52,7 +55,10 @@ const Settings: React.FC = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
                   <Globe className="w-4 h-4 text-primary" />
                 </div>
-                <span className="font-medium text-sm">{t('settings.language.sectionTitle', 'Language')}</span>
+                <div className="text-start">
+                  <span className="font-medium text-sm block">{t('settings.language.sectionTitle')}</span>
+                  <span className="text-[10px] text-muted-foreground">{t('settings.language.desc')}</span>
+                </div>
               </div>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
@@ -64,10 +70,13 @@ const Settings: React.FC = () => {
           <AccordionItem value="security" className="border rounded-xl bg-card overflow-hidden">
             <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-warning/15 flex items-center justify-center">
-                  <Lock className="w-4 h-4 text-warning" />
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                  <Lock className="w-4 h-4 text-amber-500" />
                 </div>
-                <span className="font-medium text-sm">{t('settings.securityPrivacy')}</span>
+                <div className="text-start">
+                  <span className="font-medium text-sm block">{t('settings.securityPrivacy')}</span>
+                  <span className="text-[10px] text-muted-foreground">{t('settings.securityDesc')}</span>
+                </div>
               </div>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
@@ -82,7 +91,10 @@ const Settings: React.FC = () => {
                 <div className="w-8 h-8 rounded-lg bg-accent/15 flex items-center justify-center">
                   <Database className="w-4 h-4 text-accent" />
                 </div>
-                <span className="font-medium text-sm">{t('settings.dataManagement')}</span>
+                <div className="text-start">
+                  <span className="font-medium text-sm block">{t('settings.dataManagement')}</span>
+                  <span className="text-[10px] text-muted-foreground">{t('settings.dataManagementDesc')}</span>
+                </div>
               </div>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4 space-y-3">
@@ -93,24 +105,33 @@ const Settings: React.FC = () => {
 
         </Accordion>
 
-        {/* Privacy & About - Compact Cards */}
-        <div className="grid grid-cols-1 gap-2 mt-4">
+        {/* Privacy & About */}
+        <div className="space-y-2 mt-4">
           
           {/* Privacy Info */}
-          <div className="p-3 rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20">
-            <div className="flex items-center gap-2 mb-2">
+          <div className="p-3.5 rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20">
+            <div className="flex items-center gap-2 mb-2.5">
               <Shield className="w-4 h-4 text-primary" />
               <span className="font-medium text-sm">{t('settings.dataPrivacy')}</span>
             </div>
-            <div className="text-xs text-muted-foreground space-y-1">
-              <p>✓ {t('settings.privacyPoint1')}</p>
-              <p>✓ {t('settings.privacyPoint2')}</p>
-              <p>✓ {t('settings.privacyPoint3')}</p>
+            <div className="text-xs text-muted-foreground space-y-1.5">
+              <p className="flex items-center gap-2">
+                <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
+                {t('settings.privacyPoint1')}
+              </p>
+              <p className="flex items-center gap-2">
+                <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
+                {t('settings.privacyPoint2')}
+              </p>
+              <p className="flex items-center gap-2">
+                <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
+                {t('settings.privacyPoint3')}
+              </p>
             </div>
           </div>
 
           {/* App Info */}
-          <div className="p-3 rounded-xl bg-muted/30 border">
+          <div className="p-3.5 rounded-xl bg-muted/30 border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Info className="w-4 h-4 text-muted-foreground" />
@@ -118,13 +139,16 @@ const Settings: React.FC = () => {
               </div>
               <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">v1.0.0</span>
             </div>
-            <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1">
-              <Heart className="w-3 h-3 text-primary" />
+            <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1.5">
+              <Heart className="w-3 h-3 text-primary flex-shrink-0" />
               {t('settings.appTagline')}
             </p>
-            <p className="text-[10px] text-muted-foreground/70 mt-2 pt-2 border-t border-border/50">
-              ⚕️ {t('settings.medicalNote')}
-            </p>
+            <div className="mt-2.5 pt-2.5 border-t border-border/50 flex items-start gap-1.5">
+              <Stethoscope className="w-3 h-3 text-muted-foreground/70 flex-shrink-0 mt-0.5" />
+              <p className="text-[10px] text-muted-foreground/70 leading-relaxed">
+                {t('settings.medicalNote')}
+              </p>
+            </div>
           </div>
         </div>
 

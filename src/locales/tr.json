@@ -827,6 +827,7 @@
     "subtitle": "Tercihlerinizi yönetin",
     "profile": {
       "title": "Profilim",
+      "desc": "Kilo, boy ve hamilelik haftası",
       "save": "Profili kaydet",
       "saved": "Profil başarıyla güncellendi",
       "heightLabel": "Boy",
@@ -837,9 +838,13 @@
       "bloodTypeUnknown": "Bilinmiyor / Test edilmedi"
     },
     "securityPrivacy": "Güvenlik ve Gizlilik",
+    "securityDesc": "Veri şifreleme ve koruma",
     "dataManagement": "Veri Yönetimi",
+    "dataManagementDesc": "Yedekleme ve veri silme",
+    "dataPrivacy": "Veri Gizliliği",
     "language": {
       "sectionTitle": "Dil",
+      "desc": "Uygulama arayüz dilini seçin",
       "resetToAuto": "Tarayıcı dilini kullan",
       "manualNote": "Manuel olarak bir dil seçtiniz.",
       "autoDetectNote": "Tarayıcı diliniz otomatik olarak kullanılıyor."

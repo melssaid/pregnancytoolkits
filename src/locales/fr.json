@@ -827,6 +827,7 @@
     "subtitle": "Gérez vos préférences",
     "profile": {
       "title": "Mon profil",
+      "desc": "Poids, taille et semaine de grossesse",
       "save": "Enregistrer le profil",
       "saved": "Profil mis à jour avec succès",
       "heightLabel": "Taille",
@@ -837,9 +838,13 @@
       "bloodTypeUnknown": "Inconnu / Non testé"
     },
     "securityPrivacy": "Sécurité et confidentialité",
+    "securityDesc": "Chiffrement et protection des données",
     "dataManagement": "Gestion des données",
+    "dataManagementDesc": "Sauvegarde et suppression des données",
+    "dataPrivacy": "Confidentialité des données",
     "language": {
       "sectionTitle": "Langue",
+      "desc": "Choisir la langue de l'application",
       "resetToAuto": "Utiliser la langue du navigateur",
       "manualNote": "Vous avez sélectionné manuellement une langue.",
       "autoDetectNote": "Utilisation automatique de la langue de votre navigateur."
