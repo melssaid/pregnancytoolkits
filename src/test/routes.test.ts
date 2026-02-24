@@ -14,7 +14,7 @@ const definedRoutes = [
   "/tools/cycle-tracker", "/tools/due-date-calculator", "/tools/fetal-growth",
   "/tools/kick-counter", "/tools/weight-gain", "/tools/mental-health-coach",
   "/tools/gestational-diabetes", "/tools/preeclampsia-risk", "/tools/baby-gear-recommender",
-  "/tools/ai-lactation-prep", "/tools/postpartum-recovery", "/tools/baby-cry-translator", "/tools/kegel-exercise",
+  "/tools/ai-lactation-prep", "/tools/postpartum-recovery", "/tools/baby-cry-translator",
   "/tools/baby-sleep-tracker", "/tools/baby-growth", "/tools/diaper-tracker",
   "/videos", "/splash",
 ];
