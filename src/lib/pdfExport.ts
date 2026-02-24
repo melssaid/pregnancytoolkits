@@ -495,7 +495,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     contraction_records: { en: 'Contraction Records', ar: 'سجل الانقباضات', de: 'Wehenaufzeichnungen', fr: 'Enregistrements contractions', es: 'Registros de contracciones', pt: 'Registros de contrações', tr: 'Kasılma Kayıtları' },
     appointments: { en: 'Appointments', ar: 'المواعيد', de: 'Termine', fr: 'Rendez-vous', es: 'Citas', pt: 'Consultas', tr: 'Randevular' },
     reminders: { en: 'Reminders', ar: 'التذكيرات', de: 'Erinnerungen', fr: 'Rappels', es: 'Recordatorios', pt: 'Lembretes', tr: 'Hatırlatıcılar' },
-    stretch_reminders: { en: 'Stretch Reminders', ar: 'تذكيرات التمدد', de: 'Dehnungserinnerungen', fr: 'Rappels étirements', es: 'Recordatorios de estiramientos', pt: 'Lembretes de alongamento', tr: 'Esneme Hatırlatıcıları' },
+    stretch_reminders: { en: 'Stretch Reminders', ar: 'تذكيرات التمدد', de: 'Dehnungserinnerungen', fr: 'Rappels étirements', es: 'Recordatorios estiramientos', pt: 'Lembretes de alongamento', tr: 'Esneme Hatırlatıcıları' },
     meal_history: { en: 'Meal History', ar: 'سجل الوجبات', de: 'Mahlzeiten-Verlauf', fr: 'Historique repas', es: 'Historial de comidas', pt: 'Histórico de refeições', tr: 'Yemek Geçmişi' },
     grocery_lists: { en: 'Grocery Lists', ar: 'قوائم التسوق', de: 'Einkaufslisten', fr: 'Listes de courses', es: 'Listas de compras', pt: 'Listas de compras', tr: 'Alışveriş Listeleri' },
     food_diary: { en: 'Food Diary', ar: 'يوميات الطعام', de: 'Ernährungstagebuch', fr: 'Journal alimentaire', es: 'Diario alimenticio', pt: 'Diário alimentar', tr: 'Yemek Günlüğü' },
@@ -512,26 +512,64 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     pregnancy_notes: { en: 'Pregnancy Notes', ar: 'ملاحظات الحمل', de: 'Schwangerschaftsnotizen', fr: 'Notes de grossesse', es: 'Notas de embarazo', pt: 'Notas de gravidez', tr: 'Gebelik Notları' },
     doctor_questions: { en: 'Doctor Questions', ar: 'أسئلة الطبيب', de: 'Arztfragen', fr: 'Questions médecin', es: 'Preguntas médico', pt: 'Perguntas médico', tr: 'Doktor Soruları' },
     weekly_summaries: { en: 'Weekly Summaries', ar: 'الملخصات الأسبوعية', de: 'Wöchentliche Zusammenfassungen', fr: 'Résumés hebdomadaires', es: 'Resúmenes semanales', pt: 'Resumos semanais', tr: 'Haftalık Özetler' },
-    ai_insights: { en: 'AI Insights', ar: 'تحليلات الذكاء الاصطناعي', de: 'KI-Einblicke', fr: 'Analyses IA', es: 'Análisis IA', pt: 'Análises IA', tr: 'Yapay Zeka Analizleri' },
+    ai_insights: { en: 'AI Insights', ar: 'تحليلات ذكية', de: 'KI-Einblicke', fr: 'Analyses IA', es: 'Análisis IA', pt: 'Análises IA', tr: 'Yapay Zeka Analizleri' },
+    // Dynamic keys that may appear from localStorage
+    'Pregnancy Grocery List': { en: 'Grocery List', ar: 'قائمة التسوق', de: 'Einkaufsliste', fr: 'Liste de courses', es: 'Lista de compras', pt: 'Lista de compras', tr: 'Alışveriş Listesi' },
+    'Pregnancy Notifications': { en: 'Notifications', ar: 'الإشعارات', de: 'Benachrichtigungen', fr: 'Notifications', es: 'Notificaciones', pt: 'Notificações', tr: 'Bildirimler' },
+    'Pregnancy Appointments': { en: 'Appointments', ar: 'المواعيد', de: 'Termine', fr: 'Rendez-vous', es: 'Citas', pt: 'Consultas', tr: 'Randevular' },
+    'Baby Name Favorites': { en: 'Favorite Names', ar: 'الأسماء المفضلة', de: 'Lieblingsnamen', fr: 'Prénoms favoris', es: 'Nombres favoritos', pt: 'Nomes favoritos', tr: 'Favori İsimler' },
+    'Pregnancy-milestones-completed': { en: 'Completed Milestones', ar: 'المعالم المكتملة', de: 'Erreichte Meilensteine', fr: 'Jalons atteints', es: 'Hitos completados', pt: 'Marcos alcançados', tr: 'Tamamlanan Kilometre Taşları' },
+  };
+
+  // Keys to skip entirely from the PDF (system/internal data)
+  const SKIP_KEYS = [
+    'disclaimer_accepted', 'onboarding_completed', 'user_selected_language', 'last_backup_date',
+  ];
+  const SKIP_PATTERNS = [
+    'session_id', 'session_expiry', 'user_id', 'install_date', 'expanded_categories',
+    'encrypted', 'checked_user', 'cookie', 'cache', 'token', 'auth_', '_v2', '_version',
+    'sb-', 'supabase', 'Baby gear checked', 'Cycle-tracker-v2', 'Cycle-tracker-data',
+    'Vitamin-tracker-data',
+  ];
+
+  const shouldSkipKey = (key: string): boolean => {
+    if (SKIP_KEYS.includes(key)) return true;
+    const lowerKey = key.toLowerCase();
+    return SKIP_PATTERNS.some(p => lowerKey.includes(p.toLowerCase()));
   };
 
   const getKeyLabel = (key: string): string => {
     const labels = keyLabels[key];
     if (labels) return labels[language] || labels.en;
-    return key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').replace(/^\w/, c => c.toUpperCase()).trim();
+    // Clean up dynamic keys for display
+    return key
+      .replace(/^Pregnancy[\s-]?/i, '')
+      .replace(/_/g, ' ')
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^\w/, c => c.toUpperCase())
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+  };
+
+  const isEncryptedOrRawData = (value: any): boolean => {
+    if (typeof value === 'string' && value.length > 200 && /^[A-Za-z0-9+/=]+$/.test(value.replace(/\s/g, ''))) return true;
+    return false;
   };
 
   const formatValue = (key: string, value: any): string => {
     if (value === null || value === undefined) return L.noData;
+    if (isEncryptedOrRawData(value)) return `[${L.items}]`;
     if (typeof value === 'string') {
       if (/^\d{4}-\d{2}-\d{2}/.test(value)) { try { return formatDateForPDF(new Date(value), language); } catch { return value; } }
+      // Skip displaying UUIDs or long hashes
+      if (/^[a-f0-9-]{36}$/i.test(value) || /^[a-f0-9]{20,}$/i.test(value)) return `[${L.items}]`;
       return value;
     }
     if (typeof value === 'number') return String(value);
     if (typeof value === 'boolean') return value ? '✓' : '✗';
     if (Array.isArray(value)) {
       if (value.length === 0) return L.noData;
-      if (key.includes('appointment') || key.includes('reminder')) {
+      if (key.includes('appointment') || key.includes('reminder') || key.includes('Appointment')) {
         return value.slice(0, 5).map((item: any) => {
           if (typeof item === 'object' && item !== null) { const name = item.title || item.name || item.type || ''; const date = item.date || item.time || ''; return `${stripEmojis(name)}${date ? ` (${date})` : ''}`; }
           return String(item);
@@ -547,7 +585,9 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     if (typeof value === 'object') {
       const keys = Object.keys(value);
       if (keys.length === 0) return L.noData;
-      const summary = keys.slice(0, 4).map(k => { const v = value[k]; if (typeof v === 'string' || typeof v === 'number') return `${k}: ${v}`; if (Array.isArray(v)) return `${k}: ${v.length} ${L.items}`; return null; }).filter(Boolean).join(' • ');
+      // Filter out internal properties
+      const displayKeys = keys.filter(k => !['id', 'userId', 'user_id', 'createdAt', 'updatedAt'].includes(k));
+      const summary = displayKeys.slice(0, 4).map(k => { const v = value[k]; if (typeof v === 'string' || typeof v === 'number') return `${v}`; if (Array.isArray(v)) return `${v.length} ${L.items}`; return null; }).filter(Boolean).join(' • ');
       return summary || `${keys.length} ${L.items}`;
     }
     return String(value);
@@ -565,15 +605,18 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   const categories: Record<string, { label: string; value: string }[]> = { profile: [], health: [], appointments: [], nutrition: [], planning: [], other: [] };
 
   Object.entries(data).forEach(([key, value]) => {
-    if (key.includes('disclaimer') || key.includes('onboarding') || key.includes('backup') || key === 'user_selected_language') return;
+    if (shouldSkipKey(key)) return;
     const displayLabel = getKeyLabel(key);
     const displayValue = formatValue(key, value);
+    // Skip items with empty/placeholder values
+    if (displayValue === `[${L.items}]` && !Array.isArray(value)) return;
     const item = { label: displayLabel, value: displayValue };
-    if (key.includes('profile') || key.includes('settings') || key.includes('week') || (key.includes('date') && !key.includes('update'))) categories.profile.push(item);
-    else if (key.includes('kick') || key.includes('weight') || key.includes('vitamin') || key.includes('sleep') || key.includes('contraction') || key.includes('water') || key.includes('mood')) categories.health.push(item);
-    else if (key.includes('appointment') || key.includes('reminder')) categories.appointments.push(item);
-    else if (key.includes('meal') || key.includes('food') || key.includes('nutrition') || key.includes('grocery') || key.includes('smoothie')) categories.nutrition.push(item);
-    else if (key.includes('birth') || key.includes('hospital') || key.includes('baby_name') || key.includes('bag')) categories.planning.push(item);
+    const lowerKey = key.toLowerCase();
+    if (lowerKey.includes('profile') || lowerKey.includes('settings') || lowerKey.includes('week') || (lowerKey.includes('date') && !lowerKey.includes('update'))) categories.profile.push(item);
+    else if (lowerKey.includes('kick') || lowerKey.includes('weight') || lowerKey.includes('vitamin') || lowerKey.includes('sleep') || lowerKey.includes('contraction') || lowerKey.includes('water') || lowerKey.includes('mood') || lowerKey.includes('milestone')) categories.health.push(item);
+    else if (lowerKey.includes('appointment') || lowerKey.includes('reminder') || lowerKey.includes('notification')) categories.appointments.push(item);
+    else if (lowerKey.includes('meal') || lowerKey.includes('food') || lowerKey.includes('nutrition') || lowerKey.includes('grocery') || lowerKey.includes('smoothie')) categories.nutrition.push(item);
+    else if (lowerKey.includes('birth') || lowerKey.includes('hospital') || lowerKey.includes('baby_name') || lowerKey.includes('baby name') || lowerKey.includes('bag')) categories.planning.push(item);
     else categories.other.push(item);
   });
 

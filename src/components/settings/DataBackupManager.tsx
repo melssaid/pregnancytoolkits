@@ -26,6 +26,13 @@ const BACKUP_KEYS = [
   'disclaimer_accepted', 'onboarding_completed',
 ];
 
+// Keys to EXCLUDE from backup (system/internal keys)
+const EXCLUDED_KEY_PATTERNS = [
+  'session_id', 'session_expiry', 'user_id', 'install_date', 'expanded_categories',
+  'encrypted', 'checked_user', 'cookie', 'cache', 'token', 'auth', '_v2', '_version',
+  'selected_language', 'backup_date', 'last_visit', 'theme', 'sb-', 'supabase',
+];
+
 interface BackupData {
   version: string;
   createdAt: string;
@@ -51,6 +58,11 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
     setLastBackupDate(lastBackup);
   }, []);
 
+  const isExcludedKey = (key: string): boolean => {
+    const lowerKey = key.toLowerCase();
+    return EXCLUDED_KEY_PATTERNS.some(pattern => lowerKey.includes(pattern));
+  };
+
   const collectAllData = (): Record<string, any> => {
     const data: Record<string, any> = {};
     BACKUP_KEYS.forEach(key => {
@@ -61,12 +73,14 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
     });
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key && !data[key]) {
+      if (key && !data[key] && !isExcludedKey(key)) {
         if (key.includes('pregnancy') || key.includes('baby') || key.includes('health') ||
             key.includes('tracker') || key.includes('records') || key.includes('history') ||
             key.includes('_data') || key.includes('_list') || key.includes('_entries')) {
           const value = localStorage.getItem(key);
           if (value) {
+            // Skip values that look like encrypted data or session tokens
+            if (value.length > 500 && !value.startsWith('{') && !value.startsWith('[')) continue;
             try { data[key] = JSON.parse(value); } catch { data[key] = value; }
           }
         }
