@@ -56,11 +56,11 @@ async function loadLogoImage(): Promise<string | null> {
 let unicodeFontCache: { regular: string; bold: string } | null = null;
 let unicodeFontLoading: Promise<typeof unicodeFontCache> | null = null;
 
-// Amiri — static TTF, excellent Arabic + Latin coverage, works with jsPDF
+// Tajawal — modern sans-serif Arabic + Latin font, clean and professional
 // Loaded from local public/fonts/ directory for reliability
 const FONT_URLS = {
-  regular: '/fonts/Amiri-Regular.ttf',
-  bold: '/fonts/Amiri-Bold.ttf',
+  regular: '/fonts/Tajawal-Regular.ttf',
+  bold: '/fonts/Tajawal-Bold.ttf',
 };
 
 async function fetchFontAsBase64(url: string): Promise<string | null> {
@@ -96,15 +96,15 @@ async function loadUnicodeFont(): Promise<typeof unicodeFontCache> {
   return unicodeFontLoading;
 }
 
-const UNICODE_FONT_NAME = 'Amiri';
+const UNICODE_FONT_NAME = 'Tajawal';
 
 function setupUnicodeFont(doc: jsPDF, fontData: typeof unicodeFontCache) {
   if (!fontData) return;
   try {
-    doc.addFileToVFS('Amiri-Regular.ttf', fontData.regular);
-    doc.addFont('Amiri-Regular.ttf', UNICODE_FONT_NAME, 'normal');
-    doc.addFileToVFS('Amiri-Bold.ttf', fontData.bold);
-    doc.addFont('Amiri-Bold.ttf', UNICODE_FONT_NAME, 'bold');
+    doc.addFileToVFS('Tajawal-Regular.ttf', fontData.regular);
+    doc.addFont('Tajawal-Regular.ttf', UNICODE_FONT_NAME, 'normal');
+    doc.addFileToVFS('Tajawal-Bold.ttf', fontData.bold);
+    doc.addFont('Tajawal-Bold.ttf', UNICODE_FONT_NAME, 'bold');
     doc.setFont(UNICODE_FONT_NAME, 'normal');
   } catch { /* font already added */ }
 }
