@@ -1080,10 +1080,6 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
       JSON.stringify({ error: "AI service temporarily unavailable. Please try again in a moment." }),
       { status: lastStatus >= 500 ? 503 : lastStatus, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
-
-    return new Response(response.body, {
-      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
-    });
   } catch (error) {
     console.error("pregnancy-ai-gateway error:", error);
     return new Response(
