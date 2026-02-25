@@ -15,6 +15,7 @@ import { exportBirthPlanToPDF, MAX_SAVED_PLANS } from '@/lib/pdfExport';
 
 import { Progress } from '@/components/ui/progress';
 import { RelatedToolLinks } from '@/components/RelatedToolLinks';
+import { ToolHubNav, BIRTH_HUB_TABS } from '@/components/ToolHubNav';
 
 interface BirthPlanPreference {
   id: string;
@@ -249,6 +250,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
       toolId="ai-birth-plan"
     >
       
+      <ToolHubNav tabs={BIRTH_HUB_TABS} />
       <div className="space-y-4">
 
         {/* Preference Sections */}

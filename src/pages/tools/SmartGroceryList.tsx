@@ -20,6 +20,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, 
 import { WeekSlider } from '@/components/WeekSlider';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
 import { RelatedToolLinks } from '@/components/RelatedToolLinks';
+import { ToolHubNav, NUTRITION_HUB_TABS } from '@/components/ToolHubNav';
 
 interface GroceryItem {
   id: string;
@@ -272,6 +273,7 @@ export default function SmartGroceryList() {
       mood="joyful"
       toolId="grocery-list"
     >
+      <ToolHubNav tabs={NUTRITION_HUB_TABS} />
       <div className="space-y-4">
         {/* Header */}
         <div className="rounded-xl bg-gradient-to-br from-primary/8 via-primary/4 to-transparent border border-primary/15 p-3">

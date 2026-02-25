@@ -17,6 +17,7 @@ import { WarmupCooldownSection } from '@/components/fitness/WarmupCooldownSectio
 import { SmartWorkoutGenerator } from '@/components/fitness/SmartWorkoutGenerator';
 import { exerciseDatabase, getVideosByLanguage } from '@/data/fitnessData';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ToolHubNav, FITNESS_HUB_TABS } from '@/components/ToolHubNav';
 
 const REST_DURATION = 15;
 type CategoryFilter = 'all' | 'warmup' | 'strength' | 'cardio' | 'flexibility' | 'cooldown';
@@ -166,6 +167,7 @@ const AIFitnessCoach: React.FC = () => {
       mood="empowering"
       toolId="ai-fitness-coach"
     >
+      <ToolHubNav tabs={FITNESS_HUB_TABS} />
       <div className="space-y-5">
 
         {/* ── Setup: Week + Level + Smart Generator ── */}
