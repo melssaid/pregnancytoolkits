@@ -4150,20 +4150,20 @@
     }
   },
   "settings.deleteAccount": {
-    "title": "Konto & Daten löschen",
-    "description": "Konto und alle Daten dauerhaft aus der App und dem Server löschen",
-    "button": "Konto endgültig löschen",
-    "confirmTitle": "Kontolöschung bestätigen",
-    "confirmDesc": "Ihr Konto und alle gespeicherten Daten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "title": "Alle Daten löschen",
+    "description": "Alle auf diesem Gerät gespeicherten Daten dauerhaft löschen",
+    "button": "Alle Daten löschen",
+    "confirmTitle": "Datenlöschung bestätigen",
+    "confirmDesc": "Alle auf diesem Gerät gespeicherten Daten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
     "confirmWarning": "Diese Aktion ist endgültig und kann nicht rückgängig gemacht werden!",
     "confirmWord": "LÖSCHEN",
-    "confirmButton": "Kontolöschung bestätigen",
+    "confirmButton": "Löschung bestätigen",
     "confirmError": "Bestätigungsfehler",
     "confirmErrorDesc": "Bitte geben Sie \"{{word}}\" zur Bestätigung ein",
-    "success": "Konto gelöscht ✅",
+    "success": "Daten gelöscht ✅",
     "successDesc": "Alle Ihre Daten wurden erfolgreich gelöscht",
     "error": "Löschfehler",
-    "errorDesc": "Beim Löschen des Kontos ist ein Fehler aufgetreten"
+    "errorDesc": "Beim Löschen der Daten ist ein Fehler aufgetreten"
   },
   "insightTabs": {
     "dailyTip": "Tipp des Tages",

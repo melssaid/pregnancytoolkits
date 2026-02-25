@@ -4353,20 +4353,20 @@
     }
   },
   "settings.deleteAccount": {
-    "title": "Eliminar cuenta y datos",
-    "description": "Eliminar permanentemente tu cuenta y todos tus datos de la app y el servidor",
-    "button": "Eliminar cuenta permanentemente",
-    "confirmTitle": "Confirmar eliminación de cuenta",
-    "confirmDesc": "Tu cuenta y todos los datos almacenados se eliminarán permanentemente. Esta acción no se puede deshacer.",
+    "title": "Eliminar todos los datos",
+    "description": "Eliminar permanentemente todos tus datos almacenados en este dispositivo",
+    "button": "Eliminar todos los datos",
+    "confirmTitle": "Confirmar eliminación de datos",
+    "confirmDesc": "Todos los datos almacenados en este dispositivo se eliminarán permanentemente. Esta acción no se puede deshacer.",
     "confirmWarning": "¡Esta acción es permanente e irreversible!",
     "confirmWord": "ELIMINAR",
     "confirmButton": "Confirmar eliminación",
     "confirmError": "Error de confirmación",
     "confirmErrorDesc": "Por favor escribe \"{{word}}\" para confirmar",
-    "success": "Cuenta eliminada ✅",
+    "success": "Datos eliminados ✅",
     "successDesc": "Todos tus datos han sido eliminados exitosamente",
     "error": "Error de eliminación",
-    "errorDesc": "Ocurrió un error al eliminar la cuenta"
+    "errorDesc": "Ocurrió un error al eliminar los datos"
   },
   "insightTabs": {
     "dailyTip": "Consejo del día",

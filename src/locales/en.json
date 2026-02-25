@@ -4727,20 +4727,20 @@
     "dismiss": "Dismiss"
   },
   "settings.deleteAccount": {
-    "title": "Delete Account & Data",
-    "description": "Permanently delete your account and all data from the app and server",
-    "button": "Delete Account Permanently",
-    "confirmTitle": "Confirm Account Deletion",
-    "confirmDesc": "Your account and all stored data will be permanently deleted. This action cannot be undone.",
+    "title": "Delete All Data",
+    "description": "Permanently delete all your data stored on this device",
+    "button": "Delete All Data",
+    "confirmTitle": "Confirm Data Deletion",
+    "confirmDesc": "All your data stored on this device will be permanently deleted. This action cannot be undone.",
     "confirmWarning": "This action is permanent and cannot be undone!",
     "confirmWord": "DELETE",
-    "confirmButton": "Confirm Delete Account",
+    "confirmButton": "Confirm Delete",
     "confirmError": "Confirmation Error",
     "confirmErrorDesc": "Please type \"{{word}}\" to confirm",
-    "success": "Account Deleted ✅",
+    "success": "Data Deleted ✅",
     "successDesc": "All your data has been successfully deleted",
     "error": "Deletion Error",
-    "errorDesc": "An error occurred while deleting the account"
+    "errorDesc": "An error occurred while deleting data"
   },
   "insightTabs": {
     "dailyTip": "Today's Tip",

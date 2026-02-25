@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { UserX, AlertTriangle, Loader2, Trash2 } from 'lucide-react';
+import { Trash2, AlertTriangle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
-import { supabase } from '@/integrations/supabase/client';
+
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -42,7 +42,7 @@ export const AccountDeletion: React.FC<AccountDeletionProps> = ({ compact = true
     setIsDeleting(true);
 
     try {
-      // 1. Clear all localStorage
+      // Clear all localStorage except essential settings
       const keysToKeep = ['cookie_consent', 'theme', 'i18nextLng'];
       const allKeys: string[] = [];
       for (let i = 0; i < localStorage.length; i++) {
@@ -50,11 +50,6 @@ export const AccountDeletion: React.FC<AccountDeletionProps> = ({ compact = true
         if (key && !keysToKeep.includes(key)) allKeys.push(key);
       }
       allKeys.forEach(k => localStorage.removeItem(k));
-
-      // 2. Try to sign out from auth (clears anonymous session)
-      try {
-        await supabase.auth.signOut();
-      } catch { /* ignore if no session */ }
 
       toast({
         title: t('settings.deleteAccount.success'),
@@ -66,7 +61,7 @@ export const AccountDeletion: React.FC<AccountDeletionProps> = ({ compact = true
 
       setTimeout(() => window.location.reload(), 1500);
     } catch (error) {
-      console.error('Account deletion error:', error);
+      console.error('Data deletion error:', error);
       toast({
         title: t('settings.deleteAccount.error'),
         description: t('settings.deleteAccount.errorDesc'),
@@ -80,7 +75,7 @@ export const AccountDeletion: React.FC<AccountDeletionProps> = ({ compact = true
   return (
     <div className="p-3 rounded-lg border border-destructive/30 bg-destructive/5">
       <div className="flex items-center gap-2 mb-2">
-        <UserX className="w-4 h-4 text-destructive" />
+        <Trash2 className="w-4 h-4 text-destructive" />
         <span className="text-sm font-medium text-destructive">{t('settings.deleteAccount.title')}</span>
       </div>
       <p className="text-[10px] text-muted-foreground mb-2">

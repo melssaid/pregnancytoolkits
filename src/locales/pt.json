@@ -4353,20 +4353,20 @@
     }
   },
   "settings.deleteAccount": {
-    "title": "Excluir conta e dados",
-    "description": "Excluir permanentemente sua conta e todos os dados do app e do servidor",
-    "button": "Excluir conta permanentemente",
-    "confirmTitle": "Confirmar exclusão da conta",
-    "confirmDesc": "Sua conta e todos os dados armazenados serão excluídos permanentemente. Esta ação não pode ser desfeita.",
+    "title": "Excluir todos os dados",
+    "description": "Excluir permanentemente todos os dados armazenados neste dispositivo",
+    "button": "Excluir todos os dados",
+    "confirmTitle": "Confirmar exclusão de dados",
+    "confirmDesc": "Todos os dados armazenados neste dispositivo serão excluídos permanentemente. Esta ação não pode ser desfeita.",
     "confirmWarning": "Esta ação é permanente e irreversível!",
     "confirmWord": "EXCLUIR",
     "confirmButton": "Confirmar exclusão",
     "confirmError": "Erro de confirmação",
     "confirmErrorDesc": "Por favor digite \"{{word}}\" para confirmar",
-    "success": "Conta excluída ✅",
+    "success": "Dados excluídos ✅",
     "successDesc": "Todos os seus dados foram excluídos com sucesso",
     "error": "Erro de exclusão",
-    "errorDesc": "Ocorreu um erro ao excluir a conta"
+    "errorDesc": "Ocorreu um erro ao excluir os dados"
   },
   "insightTabs": {
     "dailyTip": "Dica do dia",
