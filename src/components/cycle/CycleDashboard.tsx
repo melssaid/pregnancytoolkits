@@ -31,51 +31,51 @@ export function CycleDashboard({ stats }: Props) {
 
   return (
     <Card className="overflow-hidden border-border">
-      <CardContent className="pt-5 pb-4 space-y-4">
+      <CardContent className="pt-5 pb-4 space-y-5">
         {/* Phase Ring */}
         <CyclePhaseRing phase={stats.phase} day={stats.cycleDay} avgCycle={stats.avgCycle} />
 
         <motion.p
           key={stats.phase}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          className="text-[11px] text-center text-muted-foreground max-w-xs mx-auto leading-relaxed"
+          className="text-xs text-center text-foreground/70 max-w-xs mx-auto leading-relaxed"
         >
           {t(`toolsInternal.cycleTracker.phaseDescription.${stats.phase}`)}
         </motion.p>
 
         {/* Two main countdowns */}
-        <div className="grid grid-cols-2 gap-2.5">
-          <div className="rounded-xl border border-pink-200/40 dark:border-pink-800/30 bg-pink-500/5 p-3 text-center">
-            <Target className="w-4 h-4 text-pink-500 mx-auto mb-1" />
-            <p className="text-lg font-bold text-foreground tabular-nums">{stats.daysToOv}</p>
-            <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.daysUntilOvulation')}</p>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-xl border border-pink-200/50 dark:border-pink-800/30 bg-pink-500/5 p-3.5 text-center">
+            <Target className="w-5 h-5 text-pink-500 mx-auto mb-1.5" />
+            <p className="text-2xl font-bold text-foreground tabular-nums">{stats.daysToOv}</p>
+            <p className="text-xs text-foreground/60 mt-0.5">{t('toolsInternal.cycleTracker.daysUntilOvulation')}</p>
           </div>
-          <div className="rounded-xl border border-primary/20 bg-primary/5 p-3 text-center">
-            <Droplets className="w-4 h-4 text-primary mx-auto mb-1" />
-            <p className="text-lg font-bold text-foreground tabular-nums">{stats.daysToPeriod}</p>
-            <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.daysUntilPeriod')}</p>
+          <div className="rounded-xl border border-primary/25 bg-primary/5 p-3.5 text-center">
+            <Droplets className="w-5 h-5 text-primary mx-auto mb-1.5" />
+            <p className="text-2xl font-bold text-foreground tabular-nums">{stats.daysToPeriod}</p>
+            <p className="text-xs text-foreground/60 mt-0.5">{t('toolsInternal.cycleTracker.daysUntilPeriod')}</p>
           </div>
         </div>
 
         {/* Key dates row */}
-        <div className="flex items-center justify-between px-1 py-2 border-t border-b border-border/50">
+        <div className="flex items-center justify-between px-1 py-3 border-t border-b border-border/50">
           <div className="text-center flex-1">
-            <p className="text-[9px] text-muted-foreground">{t('toolsInternal.cycleTracker.fertileWindowDates')}</p>
-            <p className="text-[11px] font-semibold text-foreground mt-0.5">
+            <p className="text-[10px] text-foreground/50 font-medium">{t('toolsInternal.cycleTracker.fertileWindowDates')}</p>
+            <p className="text-xs font-bold text-foreground mt-1">
               {formatLocalized(stats.fertileStart, "MMM d", currentLanguage)} – {formatLocalized(stats.fertileEnd, "d", currentLanguage)}
             </p>
           </div>
-          <div className="w-px h-6 bg-border/50" />
+          <div className="w-px h-8 bg-border/50" />
           <div className="text-center flex-1">
-            <p className="text-[9px] text-muted-foreground">{t('toolsInternal.cycleTracker.ovulationDate')}</p>
-            <p className="text-[11px] font-semibold text-pink-600 dark:text-pink-400 mt-0.5">
+            <p className="text-[10px] text-foreground/50 font-medium">{t('toolsInternal.cycleTracker.ovulationDate')}</p>
+            <p className="text-xs font-bold text-pink-600 dark:text-pink-400 mt-1">
               {formatLocalized(stats.ovulationDay, "MMM d", currentLanguage)}
             </p>
           </div>
-          <div className="w-px h-6 bg-border/50" />
+          <div className="w-px h-8 bg-border/50" />
           <div className="text-center flex-1">
-            <p className="text-[9px] text-muted-foreground">{t('toolsInternal.cycleTracker.nextPeriodDate')}</p>
-            <p className="text-[11px] font-semibold text-primary mt-0.5">
+            <p className="text-[10px] text-foreground/50 font-medium">{t('toolsInternal.cycleTracker.nextPeriodDate')}</p>
+            <p className="text-xs font-bold text-primary mt-1">
               {formatLocalized(stats.nextPeriod, "MMM d", currentLanguage)}
             </p>
           </div>
@@ -84,21 +84,21 @@ export function CycleDashboard({ stats }: Props) {
         {/* Compact stats + share */}
         <div className="flex items-center justify-between text-center">
           <div className="flex-1">
-            <p className="text-sm font-bold text-foreground">{stats.avgCycle}</p>
-            <p className="text-[8px] text-muted-foreground">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
+            <p className="text-base font-bold text-foreground">{stats.avgCycle}</p>
+            <p className="text-[10px] text-foreground/50 font-medium">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
           </div>
           <div className="flex-1">
-            <p className="text-sm font-bold text-foreground">{stats.avgPeriod}</p>
-            <p className="text-[8px] text-muted-foreground">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
+            <p className="text-base font-bold text-foreground">{stats.avgPeriod}</p>
+            <p className="text-[10px] text-foreground/50 font-medium">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
           </div>
           <div className="flex-1">
-            <p className={cn("text-[10px] font-semibold", stats.isRegular ? "text-emerald-600" : "text-amber-600")}>
+            <p className={cn("text-xs font-bold", stats.isRegular ? "text-emerald-600" : "text-amber-600")}>
               {stats.isRegular ? t('toolsInternal.cycleTracker.regular') : t('toolsInternal.cycleTracker.irregular')}
             </p>
-            <p className="text-[8px] text-muted-foreground">{t('toolsInternal.cycleTracker.regularity')}</p>
+            <p className="text-[10px] text-foreground/50 font-medium">{t('toolsInternal.cycleTracker.regularity')}</p>
           </div>
-          <Button variant="ghost" size="icon" onClick={shareStats} className="h-8 w-8 text-muted-foreground shrink-0">
-            <Share2 className="h-3.5 w-3.5" />
+          <Button variant="ghost" size="icon" onClick={shareStats} className="h-9 w-9 text-muted-foreground shrink-0">
+            <Share2 className="h-4 w-4" />
           </Button>
         </div>
       </CardContent>

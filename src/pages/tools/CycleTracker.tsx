@@ -93,9 +93,9 @@ Any patterns that might be worth discussing with a doctor`;
         className="space-y-5 pb-16"
       >
         {/* Instruction hint */}
-        <div className="flex items-start gap-2.5 px-3 py-2 rounded-xl bg-primary/8 border border-primary/15">
+        <div className="flex items-start gap-2.5 px-3 py-2.5 rounded-xl bg-primary/8 border border-primary/15">
           <Droplets className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-          <p className="text-[11px] text-muted-foreground leading-relaxed">
+          <p className="text-xs text-foreground/70 leading-relaxed">
             {t('toolsInternal.cycleTracker.calendarHintSimple', 'Tap any day to log your period, mood, and symptoms.')}
           </p>
         </div>
@@ -153,9 +153,9 @@ Any patterns that might be worth discussing with a doctor`;
         ]} />
 
         {/* Tip */}
-        <div className="flex items-start gap-2.5 rounded-xl bg-muted/50 p-3">
+        <div className="flex items-start gap-2.5 rounded-xl bg-muted/50 p-3.5">
           <Info className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
-          <p className="text-[11px] text-muted-foreground leading-relaxed">
+          <p className="text-xs text-foreground/60 leading-relaxed">
             {t('toolsInternal.cycleTracker.trackTip')}
           </p>
         </div>
