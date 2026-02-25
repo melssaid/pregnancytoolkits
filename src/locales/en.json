@@ -4741,7 +4741,20 @@
     "trimester2": "Second Trimester",
     "trimester3": "Third Trimester",
     "bmi": "BMI",
-    "calories": "Calories"
+    "calories": "Calories",
+    "yourHealthData": "Your Health Data",
+    "healthDataDesc": "Enter your data for a personalized report",
+    "height": "Height",
+    "age": "Age",
+    "bloodType": "Blood Type",
+    "moreHealthData": "More Health Data",
+    "showLess": "Show Less",
+    "bloodPressure": "Blood Pressure",
+    "sleepHours": "Sleep Hours",
+    "activityLevel": "Activity Level",
+    "mood": "Mood",
+    "healthConditions": "Health Conditions",
+    "bp": "BP"
   },
   "kegel": {
     "dailyGoal": "Daily Goal",

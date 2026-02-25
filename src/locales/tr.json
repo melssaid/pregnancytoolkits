@@ -4082,7 +4082,20 @@
     "trimester2": "İkinci Trimester",
     "trimester3": "Üçüncü Trimester",
     "bmi": "VKİ",
-    "calories": "Kalori"
+    "calories": "Kalori",
+    "yourHealthData": "Sağlık Verileriniz",
+    "healthDataDesc": "Kişiselleştirilmiş rapor için verilerinizi girin",
+    "height": "Boy",
+    "age": "Yaş",
+    "bloodType": "Kan Grubu",
+    "moreHealthData": "Daha Fazla Sağlık Verisi",
+    "showLess": "Daha Az Göster",
+    "bloodPressure": "Tansiyon",
+    "sleepHours": "Uyku Saatleri",
+    "activityLevel": "Aktivite Düzeyi",
+    "mood": "Ruh Hali",
+    "healthConditions": "Sağlık Durumları",
+    "bp": "Tansiyon"
   },
   "toolsInternal.walkingCoach": {
     "title": "Akıllı Yürüyüş Koçu",
