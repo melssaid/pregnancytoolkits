@@ -26,8 +26,8 @@ export function FertilityDailyTip() {
       transition={{ delay: 0.15, duration: 0.4 }}
       className="mb-4"
     >
-      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-background to-pink-50/30 dark:to-primary/5 relative">
-        <div className="absolute -top-3 ltr:-right-3 rtl:-left-3 opacity-[0.06] overflow-hidden">
+      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-background to-pink-50/30 dark:to-primary/5 relative overflow-visible">
+        <div className="absolute -top-3 ltr:-right-3 rtl:-left-3 opacity-[0.06] pointer-events-none">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
@@ -41,14 +41,14 @@ export function FertilityDailyTip() {
             <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
               <Stethoscope className="w-3.5 h-3.5 text-primary" />
             </div>
-            <span className="text-xs font-bold text-primary">
+            <span className="text-sm font-bold text-primary">
               {t("fertilityTip.title")}
             </span>
           </div>
-          <p className="text-xs leading-relaxed text-foreground/85 font-medium">
+          <p className="text-sm leading-relaxed text-foreground/90 font-medium whitespace-pre-wrap break-words">
             {t(`fertilityTip.tips.tip${tipIndex}`)}
           </p>
-          <p className="text-[9px] text-muted-foreground/50 mt-2">
+          <p className="text-[10px] text-muted-foreground/60 mt-3">
             {t("fertilityTip.disclaimer")}
           </p>
         </CardContent>
