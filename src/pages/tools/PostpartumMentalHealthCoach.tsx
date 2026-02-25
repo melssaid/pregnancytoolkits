@@ -322,12 +322,6 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
   const progressPercent = ((currentQuestion + (showResults ? 1 : 0)) / epdsQuestions.length) * 100;
   const scorePercent = (score / maxScore) * 100;
 
-  // SVG ring parameters
-  const ringSize = 120;
-  const ringStroke = 8;
-  const ringRadius = (ringSize - ringStroke) / 2;
-  const ringCircumference = 2 * Math.PI * ringRadius;
-  const ringOffset = ringCircumference - (scorePercent / 100) * ringCircumference;
 
   return (
     <ToolFrame
@@ -410,59 +404,42 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
             transition={{ duration: 0.4 }}
             className="space-y-5"
           >
-            {/* Score card with ring */}
+            {/* Score Overview */}
             <Card className={`bg-gradient-to-br ${config.bg} ${config.border} overflow-hidden`}>
-              <CardContent className="p-5">
-                <div className="flex items-center gap-5">
-                  {/* Score ring */}
-                  <div className="relative flex-shrink-0">
-                    <svg width={ringSize} height={ringSize} className="-rotate-90">
-                      <circle
-                        cx={ringSize / 2}
-                        cy={ringSize / 2}
-                        r={ringRadius}
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={ringStroke}
-                        className="text-muted/20"
-                      />
+              <CardContent className="p-4">
+                {/* Top: Score ring centered with level badge */}
+                <div className="flex flex-col items-center text-center mb-4">
+                  <div className="relative w-24 h-24 mb-2">
+                    <svg width={96} height={96} className="-rotate-90" viewBox="0 0 96 96">
+                      <circle cx="48" cy="48" r="40" fill="none" stroke="currentColor" strokeWidth="7" className="text-muted/20" />
                       <motion.circle
-                        cx={ringSize / 2}
-                        cy={ringSize / 2}
-                        r={ringRadius}
-                        fill="none"
-                        strokeWidth={ringStroke}
-                        strokeLinecap="round"
+                        cx="48" cy="48" r="40" fill="none" strokeWidth="7" strokeLinecap="round"
                         className={config.ringColor}
-                        strokeDasharray={ringCircumference}
-                        initial={{ strokeDashoffset: ringCircumference }}
-                        animate={{ strokeDashoffset: ringOffset }}
+                        strokeDasharray={2 * Math.PI * 40}
+                        initial={{ strokeDashoffset: 2 * Math.PI * 40 }}
+                        animate={{ strokeDashoffset: (2 * Math.PI * 40) - (scorePercent / 100) * (2 * Math.PI * 40) }}
                         transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
                       />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className={`text-2xl font-bold ${config.color}`}>{score}</span>
-                      <span className="text-[10px] text-muted-foreground">/ {maxScore}</span>
+                      <span className={`text-xl font-bold ${config.color}`}>{score}</span>
+                      <span className="text-[9px] text-muted-foreground font-medium">/ {maxScore}</span>
                     </div>
                   </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span className="text-lg">{config.emoji}</span>
-                      <h3 className={`text-lg font-bold ${config.color}`}>
-                        {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.title`)}
-                      </h3>
-                    </div>
-                    <p className="text-sm text-foreground/80 leading-relaxed">
-                      {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.message`)}
-                    </p>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-base">{config.emoji}</span>
+                    <span className={`text-sm font-bold ${config.color}`}>
+                      {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.title`)}
+                    </span>
                   </div>
+                  <p className="text-xs text-foreground/70 leading-relaxed mt-1.5 max-w-[280px]">
+                    {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.message`)}
+                  </p>
                 </div>
 
-                {/* Score breakdown bars */}
-                <div className="mt-4 pt-4 border-t border-border/30">
-                  <p className="text-xs font-medium text-muted-foreground mb-2.5">
+                {/* Response breakdown */}
+                <div className="pt-3 border-t border-border/30">
+                  <p className="text-[10px] font-medium text-muted-foreground mb-2 uppercase tracking-wider">
                     {t('toolsInternal.mentalHealthCoach.responseBreakdown')}
                   </p>
                   <div className="grid grid-cols-10 gap-1">
@@ -471,7 +448,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                       const barColors = ['bg-emerald-400', 'bg-amber-400', 'bg-orange-400', 'bg-rose-400'];
                       return (
                         <div key={i} className="flex flex-col items-center gap-0.5">
-                          <div className="w-full h-8 bg-muted/30 rounded-sm relative overflow-hidden">
+                          <div className="w-full h-7 bg-muted/30 rounded-sm relative overflow-hidden">
                             <motion.div
                               className={`absolute bottom-0 w-full rounded-sm ${barColors[val]}`}
                               initial={{ height: 0 }}
@@ -479,7 +456,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                               transition={{ duration: 0.5, delay: 0.5 + i * 0.05 }}
                             />
                           </div>
-                          <span className="text-[8px] text-muted-foreground">{i + 1}</span>
+                          <span className="text-[7px] text-muted-foreground">{i + 1}</span>
                         </div>
                       );
                     })}
