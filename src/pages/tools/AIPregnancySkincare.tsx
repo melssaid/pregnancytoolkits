@@ -118,13 +118,13 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         <Card className="p-3 bg-destructive/5 border-destructive/20">
           <h3 className="font-semibold flex items-center gap-2 text-destructive mb-2 text-xs">
             <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">{t('toolsInternal.skincare.ingredientsToAvoid')}</span>
+            <span className="leading-snug">{t('toolsInternal.skincare.ingredientsToAvoid')}</span>
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
             {UNSAFE_INGREDIENT_KEYS.map((key) => (
               <div key={key} className="flex items-center gap-2 text-[10px] sm:text-xs min-w-0">
                 <span className="shrink-0">{t(`toolsInternal.skincare.unsafeIngredients.${key}.icon`)}</span>
-                <span className="truncate">{t(`toolsInternal.skincare.unsafeIngredients.${key}.name`)}</span>
+                <span className="leading-snug">{t(`toolsInternal.skincare.unsafeIngredients.${key}.name`)}</span>
               </div>
             ))}
           </div>
@@ -179,7 +179,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
                 <div className="flex items-center gap-2 min-w-0">
                   <Checkbox checked={concerns.includes(concernKey)} className="shrink-0" />
                   <span className="text-sm shrink-0">{t(`toolsInternal.skincare.concerns.${concernKey}.icon`)}</span>
-                  <span className="text-xs truncate">{t(`toolsInternal.skincare.concerns.${concernKey}.label`)}</span>
+                  <span className="text-xs leading-snug">{t(`toolsInternal.skincare.concerns.${concernKey}.label`)}</span>
                 </div>
               </div>
             ))}

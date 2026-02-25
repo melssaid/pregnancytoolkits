@@ -525,7 +525,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                   <Sun className="w-4 h-4 text-primary shrink-0" />
-                  <span className="truncate">{t('toolsInternal.mentalHealthCoach.dailyCopingStrategies')}</span>
+                  <span className="leading-snug">{t('toolsInternal.mentalHealthCoach.dailyCopingStrategies')}</span>
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {copingStrategyKeys.map((strategy, index) => (

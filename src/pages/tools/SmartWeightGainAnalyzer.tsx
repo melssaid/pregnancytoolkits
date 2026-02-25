@@ -210,7 +210,7 @@ export default function SmartWeightGainAnalyzer() {
           <CardContent className="p-4 space-y-3">
             <h3 className="text-base font-semibold flex items-center gap-2">
               <Target className="w-4 h-4 text-primary shrink-0" />
-              <span className="truncate">{t('toolsInternal.weightGain.yourProfile')}</span>
+              <span className="leading-snug">{t('toolsInternal.weightGain.yourProfile')}</span>
             </h3>
             
             <div className="space-y-3">

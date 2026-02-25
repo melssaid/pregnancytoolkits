@@ -143,8 +143,8 @@ Be warm, practical, and specific. Include real examples.`;
                 }`}
               >
                 <div className="text-xl mb-1">{t(`toolsInternal.partnerGuide.topics.${topicKey}.icon`)}</div>
-                <div className="font-medium text-xs truncate">{t(`toolsInternal.partnerGuide.topics.${topicKey}.label`)}</div>
-                <div className="text-[10px] text-muted-foreground truncate">{t(`toolsInternal.partnerGuide.topics.${topicKey}.desc`)}</div>
+                <div className="font-medium text-xs leading-snug">{t(`toolsInternal.partnerGuide.topics.${topicKey}.label`)}</div>
+                <div className="text-[10px] text-muted-foreground leading-snug">{t(`toolsInternal.partnerGuide.topics.${topicKey}.desc`)}</div>
               </div>
             ))}
           </div>

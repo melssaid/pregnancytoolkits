@@ -473,7 +473,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             <Card key={label} className={`p-2.5 bg-gradient-to-br ${color} border-border/30 text-center overflow-hidden`}>
               <Icon className="w-4 h-4 mx-auto mb-1 text-muted-foreground" />
               <p className="text-base font-bold">{count}</p>
-              <p className="text-[10px] text-muted-foreground truncate leading-tight">{label}</p>
+              <p className="text-[10px] text-muted-foreground leading-tight">{label}</p>
             </Card>
           ))}
         </div>
