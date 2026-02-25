@@ -4851,7 +4851,7 @@
     "reassurance": "Reassurance",
     "loading": "Preparing your personalized insight..."
   },
-  "fertileWindow": {
+  "toolsInternal.fertileWindow": {
     "lastPeriod": "First day of your last period",
     "cycleLength": "Average cycle length (days)",
     "calculate": "Find My Fertile Window",
@@ -4861,7 +4861,7 @@
     "estimatedOvulation": "Estimated ovulation day",
     "disclaimer": "This is an estimate based on average cycle data. Actual ovulation may vary. Consult your healthcare provider for personalized guidance."
   },
-  "fertilityAcademy": {
+  "toolsInternal.fertilityAcademy": {
     "lessonsCount": "{{count}} lessons available",
     "lessons": {
       "menstrualCycle": {
@@ -4914,7 +4914,7 @@
       }
     }
   },
-  "fertilitySigns": {
+  "toolsInternal.fertilitySigns": {
     "signsCount": "{{count}} signs to know",
     "signs": {
       "cervicalMucus": {
@@ -4969,7 +4969,7 @@
       }
     }
   },
-  "preconceptionNutrition": {
+  "toolsInternal.preconceptionNutrition": {
     "categoriesCount": "{{count}} nutrition categories",
     "categories": {
       "folateRich": {
@@ -5024,7 +5024,7 @@
       }
     }
   },
-  "prenatalVitamins": {
+  "toolsInternal.prenatalVitamins": {
     "supplementsCount": "{{count}} supplements to review",
     "vitamins": {
       "folicAcid": {
@@ -5089,7 +5089,7 @@
       }
     }
   },
-  "twwCompanion": {
+  "toolsInternal.twwCompanion": {
     "subtitle": "Your daily guide through the two-week wait",
     "days": {
       "day1": {
@@ -5164,7 +5164,7 @@
       }
     }
   },
-  "stressFertility": {
+  "toolsInternal.stressFertility": {
     "topicsCount": "{{count}} topics to explore",
     "topics": {
       "stressHormones": {
@@ -5219,7 +5219,7 @@
       }
     }
   },
-  "preconceptionCheckup": {
+  "toolsInternal.preconceptionCheckup": {
     "checks": {
       "generalCheckup": {
         "title": "General Health Checkup",
