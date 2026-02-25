@@ -186,51 +186,10 @@ function stripEmojis(text: string): string {
  * 2. Apply visual bidi: reverse the overall string but keep LTR runs (numbers, Latin) intact
  */
 function reshapeArabicForPDF(text: string): string {
-  // Step 1: Reshape Arabic characters to connected forms
-  const reshaped = ArabicReshaper.convertArabic(text);
-  
-  // Step 2: Visual bidi - split into runs of Arabic vs non-Arabic
-  // Then reverse the order of runs (RTL base direction) while keeping LTR runs internal order
-  const runs: { text: string; isRTL: boolean }[] = [];
-  let current = '';
-  let currentIsRTL = false;
-  
-  for (let i = 0; i < reshaped.length; i++) {
-    const ch = reshaped[i];
-    const isArabicChar = /[\u0600-\u06FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(ch);
-    const isNeutral = /[\s\.,;:!?\-\(\)\[\]\/\\'"،؛؟٪]/.test(ch);
-    
-    if (i === 0) {
-      currentIsRTL = isArabicChar || isNeutral;
-      current = ch;
-      continue;
-    }
-    
-    if (isNeutral) {
-      current += ch;
-      continue;
-    }
-    
-    if (isArabicChar !== currentIsRTL) {
-      if (current) runs.push({ text: current, isRTL: currentIsRTL });
-      current = ch;
-      currentIsRTL = isArabicChar;
-    } else {
-      current += ch;
-    }
-  }
-  if (current) runs.push({ text: current, isRTL: currentIsRTL });
-  
-  // Step 3: Reverse the order of runs (RTL paragraph direction)
-  // and reverse Arabic runs internally (since jsPDF writes LTR)
-  const visualRuns = runs.reverse().map(run => {
-    if (run.isRTL) {
-      return run.text.split('').reverse().join('');
-    }
-    return run.text;
-  });
-  
-  return visualRuns.join('');
+  // Only reshape Arabic characters to connected Presentation Forms.
+  // jsPDF with { align: 'right' } handles RTL text direction natively,
+  // so we do NOT apply manual visual bidi reversal.
+  return ArabicReshaper.convertArabic(text);
 }
 
 function formatDateForPDF(date: Date, language: string): string {
@@ -584,6 +543,11 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     'Pregnancy Appointments': { en: 'Appointments', ar: 'المواعيد', de: 'Termine', fr: 'Rendez-vous', es: 'Citas', pt: 'Consultas', tr: 'Randevular' },
     'Baby Name Favorites': { en: 'Favorite Names', ar: 'الأسماء المفضلة', de: 'Lieblingsnamen', fr: 'Prénoms favoris', es: 'Nombres favoritos', pt: 'Nomes favoritos', tr: 'Favori İsimler' },
     'Pregnancy-milestones-completed': { en: 'Completed Milestones', ar: 'المعالم المكتملة', de: 'Erreichte Meilensteine', fr: 'Jalons atteints', es: 'Hitos completados', pt: 'Marcos alcançados', tr: 'Tamamlanan Kilometre Taşları' },
+    'Milestones-completed': { en: 'Completed Milestones', ar: 'المعالم المكتملة', de: 'Erreichte Meilensteine', fr: 'Jalons atteints', es: 'Hitos completados', pt: 'Marcos alcançados', tr: 'Tamamlanan Kilometre Taşları' },
+    'Vitamin-tracker-data': { en: 'Vitamin Tracker', ar: 'متتبع الفيتامينات', de: 'Vitamin-Tracker', fr: 'Suivi vitamines', es: 'Seguimiento vitaminas', pt: 'Rastreador de vitaminas', tr: 'Vitamin Takibi' },
+    'Notifications': { en: 'Notifications', ar: 'الإشعارات', de: 'Benachrichtigungen', fr: 'Notifications', es: 'Notificaciones', pt: 'Notificações', tr: 'Bildirimler' },
+    'diaper_tracker_data': { en: 'Diaper Tracker', ar: 'متتبع الحفاضات', de: 'Windel-Tracker', fr: 'Suivi couches', es: 'Seguimiento pañales', pt: 'Rastreador de fraldas', tr: 'Bebek Bezi Takibi' },
+    'baby_sleep_data': { en: 'Baby Sleep Data', ar: 'بيانات نوم الطفل', de: 'Baby-Schlafdaten', fr: 'Données sommeil bébé', es: 'Datos sueño bebé', pt: 'Dados sono bebê', tr: 'Bebek Uyku Verileri' },
   };
 
   // Keys to skip entirely from the PDF (system/internal data)
@@ -594,7 +558,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     'session_id', 'session_expiry', 'user_id', 'install_date', 'expanded_categories',
     'encrypted', 'checked_user', 'cookie', 'cache', 'token', 'auth_', '_v2', '_version',
     'sb-', 'supabase', 'Baby gear checked', 'Cycle-tracker-v2', 'Cycle-tracker-data',
-    'Vitamin-tracker-data',
+    'Insight active', 'insight_', 'ai_result_', 'ai-result-', 'AI_', 'ai_insight',
   ];
 
   const shouldSkipKey = (key: string): boolean => {
@@ -604,12 +568,27 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   };
 
   const getKeyLabel = (key: string): string => {
+    // Exact match
     const labels = keyLabels[key];
     if (labels) return labels[language] || labels.en;
-    // Clean up dynamic keys for display
+    // Case-insensitive fuzzy match
+    const normalizedKey = key.toLowerCase().replace(/[-_\s]/g, '');
+    for (const [k, kLabels] of Object.entries(keyLabels)) {
+      if (k.toLowerCase().replace(/[-_\s]/g, '') === normalizedKey) {
+        return kLabels[language] || kLabels.en;
+      }
+    }
+    // Partial match: check if key contains a known label key
+    for (const [k, kLabels] of Object.entries(keyLabels)) {
+      if (normalizedKey.includes(k.toLowerCase().replace(/[-_\s]/g, ''))) {
+        return kLabels[language] || kLabels.en;
+      }
+    }
+    // Fallback: clean up dynamic keys for display
     return key
       .replace(/^Pregnancy[\s-]?/i, '')
       .replace(/_/g, ' ')
+      .replace(/[-]/g, ' ')
       .replace(/([A-Z])/g, ' $1')
       .replace(/^\w/, c => c.toUpperCase())
       .replace(/\s{2,}/g, ' ')
@@ -628,6 +607,11 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
       if (/^\d{4}-\d{2}-\d{2}/.test(value)) { try { return formatDateForPDF(new Date(value), language); } catch { return value; } }
       // Skip displaying UUIDs or long hashes
       if (/^[a-f0-9-]{36}$/i.test(value) || /^[a-f0-9]{20,}$/i.test(value)) return `[${L.items}]`;
+      // Truncate long AI-generated content (contains markdown headers or is very long)
+      if (value.length > 200) {
+        if (/##|###|\*\*/.test(value)) return `[${L.items}]`;
+        return value.substring(0, 200) + '...';
+      }
       return value;
     }
     if (typeof value === 'number') return String(value);

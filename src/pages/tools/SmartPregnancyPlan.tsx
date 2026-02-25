@@ -387,7 +387,7 @@ Ayrıntılı bölümler:
             ) : (
               <div className="space-y-3">
                 {/* Report Content */}
-                <div id="smart-plan-report" ref={reportRef} className="bg-background rounded-xl">
+                <div id="smart-plan-report" ref={reportRef} className="bg-background rounded-xl" dir={isRTL ? 'rtl' : 'ltr'} lang={lang}>
                   {/* Report Header */}
                   <Card className="border-primary/20">
                     <CardContent className="p-4 space-y-3">
