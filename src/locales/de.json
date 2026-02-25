@@ -4165,6 +4165,11 @@
     "error": "Löschfehler",
     "errorDesc": "Beim Löschen des Kontos ist ein Fehler aufgetreten"
   },
+  "insightTabs": {
+    "dailyTip": "Tipp des Tages",
+    "reassurance": "Beruhigung",
+    "loading": "Ihr persönlicher Tipp wird vorbereitet..."
+  },
   "toolBenefits": {
     "heading": "Was bringt mir dieses Tool?",
     "pregnancy-assistant": "Stellen Sie Fragen zur Schwangerschaft und erhalten Sie sofortige Antworten. Ergebnisse dienen als allgemeine Orientierung. Bei ungewöhnlichen Symptomen oder Bedenken wenden Sie sich sofort an Ihren Arzt.",

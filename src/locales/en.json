@@ -4742,6 +4742,11 @@
     "error": "Deletion Error",
     "errorDesc": "An error occurred while deleting the account"
   },
+  "insightTabs": {
+    "dailyTip": "Today's Tip",
+    "reassurance": "Reassurance",
+    "loading": "Preparing your personalized insight..."
+  },
   "toolBenefits": {
     "heading": "What do I benefit from this tool?",
     "pregnancy-assistant": "Use this tool to ask any pregnancy question and get an instant answer. Read results as general wellness guidance. If you experience unusual symptoms or concerns, stop and consult your healthcare provider immediately.",

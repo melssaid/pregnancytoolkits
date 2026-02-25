@@ -4368,6 +4368,11 @@
     "error": "Erro de exclusão",
     "errorDesc": "Ocorreu um erro ao excluir a conta"
   },
+  "insightTabs": {
+    "dailyTip": "Dica do dia",
+    "reassurance": "Tranquilidade",
+    "loading": "Preparando sua dica personalizada..."
+  },
   "toolBenefits": {
     "heading": "O que ganho com esta ferramenta?",
     "pregnancy-assistant": "Faça perguntas sobre gravidez e receba respostas instantâneas. Os resultados são orientação geral. Em caso de sintomas incomuns, consulte seu médico imediatamente.",
