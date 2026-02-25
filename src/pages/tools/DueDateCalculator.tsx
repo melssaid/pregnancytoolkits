@@ -344,17 +344,11 @@ export default function DueDateCalculator() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex gap-2 pt-1">
-                      <motion.div whileTap={{ scale: 0.95 }} className="flex-1">
+                    <div className="pt-1">
+                      <motion.div whileTap={{ scale: 0.95 }}>
                         <Button onClick={saveResult} variant="outline" className="w-full gap-1.5 text-[11px] h-9">
                           <Save className="h-3.5 w-3.5 shrink-0" />
                           {t('toolsInternal.dueDate.save')}
-                        </Button>
-                      </motion.div>
-                      <motion.div whileTap={{ scale: 0.95 }} className="flex-1">
-                        <Button onClick={shareResult} variant="outline" className="w-full gap-1.5 text-[11px] h-9">
-                          <Share2 className="h-3.5 w-3.5 shrink-0" />
-                          {t('toolsInternal.dueDate.share')}
                         </Button>
                       </motion.div>
                     </div>
