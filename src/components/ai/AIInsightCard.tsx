@@ -122,7 +122,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                   {icon || <Brain className="w-5 h-5 text-primary-foreground" />}
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-semibold text-base text-foreground truncate">{displayTitle}</h3>
+                  <h3 className="font-semibold text-sm text-foreground leading-snug">{displayTitle}</h3>
                   <p className="text-xs text-muted-foreground">{t('toolsInternal.aiInsights.personalizedRec')}</p>
                 </div>
               </div>
@@ -172,7 +172,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               {icon || <Brain className="w-4 h-4 text-primary-foreground" />}
             </div>
             <div className="min-w-0">
-              <h3 className="font-semibold text-sm text-foreground truncate">{displayTitle}</h3>
+              <h3 className="font-semibold text-sm text-foreground leading-snug">{displayTitle}</h3>
               {hasGenerated && !error && (
                 <p className="text-[11px] text-muted-foreground">
                   {isExpanded ? t('toolsInternal.aiInsights.clickToCollapse') : t('toolsInternal.aiInsights.clickToExpand')}
