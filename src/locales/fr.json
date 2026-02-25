@@ -1417,6 +1417,8 @@
       "share": "Partager",
       "save": "Enregistrer",
       "info": "Seulement environ 5% des bébés naissent à la date prévue. La plupart naissent dans les 2 semaines avant ou après.",
+      "cycleTrackerLink": "Suivi du cycle menstruel",
+      "cycleTrackerLinkDesc": "Suivez votre cycle menstruel et obtenez des prédictions précises",
       "aiGuideTitle": "Guide IA Grossesse",
       "getWeeklyGuide": "Obtenir le guide hebdomadaire"
     },
@@ -2162,6 +2164,8 @@
       "dayCycle": "jours de cycle",
       "flow": "flux",
       "trackTip": "Suivez au moins 3 à 6 cycles pour des prédictions plus précises. La durée du cycle peut varier en raison du stress, de la maladie ou d'autres facteurs.",
+      "dueDateLink": "Calculateur de date d'accouchement",
+      "dueDateLinkDesc": "Calculez votre date d'accouchement prévue selon vos dernières règles",
       "flowLevels": {
         "light": "Léger",
         "medium": "Moyen",

@@ -1417,6 +1417,8 @@
       "share": "Paylaş",
       "save": "Kaydet",
       "info": "Bebeklerin sadece yaklaşık %5'i tam doğum tarihinde doğar. Çoğu 2 hafta önce veya sonra doğar. Sağlık uzmanınız ultrason ölçümlerine göre tarihi ayarlayabilir.",
+      "cycleTrackerLink": "Adet Döngüsü Takibi",
+      "cycleTrackerLinkDesc": "Adet döngünüzü takip edin ve doğru tahminler alın",
       "aiGuideTitle": "AI Hamilelik Rehberi",
       "getWeeklyGuide": "Haftalık Rehberi Al"
     },
@@ -2678,6 +2680,8 @@
       "dayCycle": "günlük döngü",
       "flow": "akış",
       "trackTip": "Daha doğru tahminler için en az 3-6 döngü takip edin. Döngü uzunluğu stres, hastalık veya diğer faktörler nedeniyle değişebilir.",
+      "dueDateLink": "Doğum Tarihi Hesaplayıcı",
+      "dueDateLinkDesc": "Son adet tarihinize göre tahmini doğum tarihinizi hesaplayın",
       "flowLevels": {
         "light": "Hafif",
         "medium": "Orta",
