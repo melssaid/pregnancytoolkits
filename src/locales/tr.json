@@ -199,8 +199,8 @@
       "description": "Hamilelik aşamanıza göre güvenli egzersizler."
     },
     "aiBackPainRelief": {
-      "title": "AI Sırt Ağrısı Rahatlatma",
-      "description": "Hamilelik sırt ağrısı için kişiselleştirilmiş egzersizler."
+      "title": "Sırt Konfor Rehberi",
+      "description": "Hamilelikte sırt konforu için kişiselleştirilmiş egzersizler."
     },
     "vitaminTracker": {
       "title": "Vitamin Takibi",
@@ -2175,8 +2175,8 @@
       "photoDownloadedDesc": "Artık manuel olarak paylaşabilirsiniz"
     },
     "backPainRelief": {
-      "title": "AI Sırt Ağrısı Rahatlatma",
-      "subtitle": "Hamilelik sırt ağrısı için kişiselleştirilmiş egzersizler",
+      "title": "Sırt Konfor Rehberi",
+      "subtitle": "Hamilelikte sırt konforu için kişiselleştirilmiş egzersizler",
       "currentWeek": "Mevcut Hafta",
       "painLocation": "Ağrı Bölgesi",
       "lowerBack": "Bel",

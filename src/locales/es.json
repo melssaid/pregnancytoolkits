@@ -199,8 +199,8 @@
       "description": "Ejercicios seguros personalizados para tu etapa de embarazo."
     },
     "aiBackPainRelief": {
-      "title": "Alivio del dolor de espalda IA",
-      "description": "Ejercicios personalizados para el dolor de espalda del embarazo."
+      "title": "Guía de confort para la espalda",
+      "description": "Ejercicios personalizados para el confort de la espalda en el embarazo."
     },
     "vitaminTracker": {
       "title": "Seguimiento de vitaminas",
@@ -2175,8 +2175,8 @@
       "photoDownloadedDesc": "Ahora puedes compartirla manualmente"
     },
     "backPainRelief": {
-      "title": "Alivio del Dolor de Espalda IA",
-      "subtitle": "Ejercicios personalizados para el dolor de espalda del embarazo",
+      "title": "Guía de Confort para la Espalda",
+      "subtitle": "Ejercicios personalizados para el confort de la espalda en el embarazo",
       "currentWeek": "Semana Actual",
       "painLocation": "Ubicación del Dolor",
       "lowerBack": "Espalda Baja",

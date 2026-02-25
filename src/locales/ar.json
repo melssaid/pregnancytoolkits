@@ -147,7 +147,7 @@
     "aiBudgetPlanner": {"title": "مخطط الميزانية الذكي", "description": "خطط نفقات الطفل بذكاء"},
     "aiBumpPhotos": {"title": "لقطات أسبوعية", "description": "خط زمني لصور الحمل مع تحليلات AI"},
     "aiFitnessCoach": {"title": "دليل اللياقة المحترف", "description": "تمارين آمنة مخصصة لمرحلة الحمل"},
-    "aiBackPainRelief": {"title": "تخفيف آلام الظهر المتخصص", "description": "تمارين مخصصة لآلام ظهر الحمل"},
+    "aiBackPainRelief": {"title": "دليل راحة الظهر", "description": "تمارين مخصصة لراحة الظهر أثناء الحمل"},
     "vitaminTracker": {"title": "متتبع الفيتامينات", "description": "لا تنسَ فيتاميناتك"},
     "forbiddenFoods": {"title": "الأطعمة الممنوعة", "description": "اعرف ما هو آمن للأكل"},
     "aiLaborProgress": {"title": "سجل الانقباضات", "description": "سجّلي أنماط الانقباضات في يومياتك"},
@@ -1882,8 +1882,8 @@
       "photoDownloadedDesc": "يمكنك الآن مشاركتها يدوياً"
     },
     "backPainRelief": {
-      "title": "تخفيف آلام الظهر الذكي",
-      "subtitle": "تمارين مخصصة لآلام ظهر الحمل",
+      "title": "دليل راحة الظهر",
+      "subtitle": "تمارين مخصصة لراحة الظهر أثناء الحمل",
       "whereHurts": "أين يؤلمك؟",
       "lowerBack": "أسفل الظهر",
       "upperBack": "أعلى الظهر",

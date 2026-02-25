@@ -199,8 +199,8 @@
       "description": "Exercices sûrs personnalisés pour votre stade de grossesse."
     },
     "aiBackPainRelief": {
-      "title": "Soulagement du mal de dos IA",
-      "description": "Exercices personnalisés pour les douleurs de grossesse."
+      "title": "Guide confort du dos",
+      "description": "Exercices personnalisés pour le confort du dos pendant la grossesse."
     },
     "vitaminTracker": {
       "title": "Suivi des vitamines",
@@ -2819,8 +2819,8 @@
     "photoDownloadedDesc": "Vous pouvez maintenant la partager manuellement"
   },
   "toolsInternal.backPainRelief": {
-    "title": "Soulagement IA des douleurs dorsales",
-    "subtitle": "Exercices sûrs pour la grossesse contre les douleurs dorsales",
+    "title": "Guide confort du dos",
+    "subtitle": "Exercices sûrs pour le confort du dos pendant la grossesse",
     "whereHurts": "Où avez-vous mal?",
     "getAdvice": "Obtenir des conseils IA",
     "exercisesTitle": "Exercices contre les douleurs dorsales"
