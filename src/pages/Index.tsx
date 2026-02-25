@@ -1,8 +1,8 @@
 import { useMemo, memo } from "react";
-import { Baby, Heart, Activity, Dumbbell, AlertTriangle, CheckCircle, Flower2, ChevronRight, ChevronLeft, Calendar, Shield, UtensilsCrossed, MessageSquare, HeartPulse } from "lucide-react";
+import { Baby, Heart, Activity, Dumbbell, AlertTriangle, CheckCircle, Flower2, ChevronRight, ChevronLeft, Calendar, Shield, UtensilsCrossed, MessageSquare, HeartPulse, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { getToolsByJourney, getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/lib/tools-data";
+import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/lib/tools-data";
 import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 
@@ -20,40 +20,50 @@ const categoryStyles: Record<string, { iconColor: string; toolHover: string }> =
   "categories.postpartum":    { iconColor: "text-fuchsia-500 dark:text-fuchsia-400", toolHover: "hover:bg-fuchsia-50/70 dark:hover:bg-fuchsia-900/20" },
 };
 
-// ── Journey card theming ─────────────────────────────────────────────────
+// ── Journey card theming with psychological color impact ─────────────────
 interface JourneyConfig {
   key: JourneyKey;
   icon: LucideIcon;
+  // Header gradient — the emotional anchor
+  headerGradient: string;
+  headerText: string;
+  // Card body
   bg: string;
   border: string;
-  accentBar: string;
-  headerIcon: string;
+  // Icon container in header
+  iconBg: string;
 }
 
 const journeyConfigs: JourneyConfig[] = [
   {
+    // أحلم بطفل — Hope & Aspiration: warm rose → amber gold
     key: "planning",
-    icon: Calendar,
-    bg: "from-rose-500/12 via-pink-400/8 to-rose-200/4",
-    border: "border-rose-300/40",
-    accentBar: "bg-gradient-to-r from-rose-500 to-pink-500",
-    headerIcon: "text-rose-500 dark:text-rose-400",
+    icon: Sparkles,
+    headerGradient: "bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300 dark:from-rose-500 dark:via-pink-500 dark:to-amber-400",
+    headerText: "text-white",
+    iconBg: "bg-white/25",
+    bg: "from-rose-50/80 via-pink-50/40 to-amber-50/30 dark:from-rose-950/30 dark:via-pink-950/20 dark:to-amber-950/10",
+    border: "border-rose-200/50 dark:border-rose-800/30",
   },
   {
+    // حملي — Nurturing & Vitality: rich pink → soft coral
     key: "pregnant",
     icon: HeartPulse,
-    bg: "from-pink-500/12 via-rose-400/8 to-pink-200/4",
-    border: "border-pink-300/40",
-    accentBar: "bg-gradient-to-r from-pink-500 to-rose-500",
-    headerIcon: "text-pink-500 dark:text-pink-400",
+    headerGradient: "bg-gradient-to-r from-pink-500 via-rose-400 to-pink-400 dark:from-pink-600 dark:via-rose-500 dark:to-pink-500",
+    headerText: "text-white",
+    iconBg: "bg-white/25",
+    bg: "from-pink-50/80 via-rose-50/40 to-pink-50/30 dark:from-pink-950/30 dark:via-rose-950/20 dark:to-pink-950/10",
+    border: "border-pink-200/50 dark:border-pink-800/30",
   },
   {
+    // طفلي — Tenderness & New Life: fuchsia → soft lavender
     key: "postpartum",
     icon: Baby,
-    bg: "from-fuchsia-500/12 via-purple-400/8 to-fuchsia-200/4",
-    border: "border-fuchsia-300/40",
-    accentBar: "bg-gradient-to-r from-fuchsia-500 to-purple-500",
-    headerIcon: "text-fuchsia-500 dark:text-fuchsia-400",
+    headerGradient: "bg-gradient-to-r from-fuchsia-400 via-purple-400 to-violet-300 dark:from-fuchsia-500 dark:via-purple-500 dark:to-violet-400",
+    headerText: "text-white",
+    iconBg: "bg-white/25",
+    bg: "from-fuchsia-50/80 via-purple-50/40 to-violet-50/30 dark:from-fuchsia-950/30 dark:via-purple-950/20 dark:to-violet-950/10",
+    border: "border-fuchsia-200/50 dark:border-fuchsia-800/30",
   },
 ];
 
@@ -80,7 +90,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
   );
 });
 
-// ── Sub-category header inside a journey card ───────────────────────────
+// ── Sub-category divider ────────────────────────────────────────────────
 const SubCategoryHeader = memo(function SubCategoryHeader({ categoryKey, iconColor }: { categoryKey: string; iconColor: string }) {
   const { t } = useTranslation();
   return (
@@ -94,7 +104,7 @@ const SubCategoryHeader = memo(function SubCategoryHeader({ categoryKey, iconCol
   );
 });
 
-// ── Journey card component ──────────────────────────────────────────────
+// ── Journey card ────────────────────────────────────────────────────────
 const JourneyCard = memo(function JourneyCard({ config, index }: { config: JourneyConfig; index: number }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
@@ -118,26 +128,32 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
       className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm animate-fade-in`}
       style={{ animationDelay: `${index * 80}ms` }}
     >
-      {/* Header */}
-      <div className="relative">
-        <div className={`absolute top-0 inset-x-0 h-1.5 ${config.accentBar} rounded-t-2xl`} />
-        <div className="flex items-center gap-3 px-4 pt-5 pb-2">
-          <div className="w-9 h-9 rounded-xl bg-white/80 dark:bg-white/10 flex items-center justify-center shadow-sm">
-            <Icon className={`w-5 h-5 ${config.headerIcon}`} />
+      {/* Gradient Header — the emotional anchor */}
+      <div className={`${config.headerGradient} px-4 py-4 relative overflow-hidden`}>
+        {/* Subtle decorative glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
+        <div className="absolute -top-6 -end-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
+        
+        <div className="relative flex items-center gap-3">
+          <div className={`w-11 h-11 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
+            <Icon className={`w-5.5 h-5.5 ${config.headerText}`} strokeWidth={2} />
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-base font-extrabold text-foreground tracking-tight truncate">
+            <h2 className={`text-lg font-extrabold ${config.headerText} tracking-tight truncate`}>
               {t(`journeys.${config.key}`)}
             </h2>
-            <p className="text-[10px] text-muted-foreground mt-0.5">
-              {t(`journeys.${config.key}Desc`)} · {totalTools} {t('searchDialog.toolsCount', { count: totalTools }).replace(/\d+\s*/, '')}
+            <p className={`text-[11px] ${config.headerText} opacity-80 mt-0.5`}>
+              {t(`journeys.${config.key}Desc`)}
             </p>
+          </div>
+          <div className={`text-[10px] font-bold ${config.headerText} opacity-70 bg-white/15 px-2.5 py-1 rounded-full backdrop-blur-sm`}>
+            {totalTools}
           </div>
         </div>
       </div>
 
-      {/* Tools grouped by sub-category */}
-      <div className="px-2 pb-3 pt-0.5">
+      {/* Tools */}
+      <div className="px-2 pb-3 pt-1">
         {toolsByCategory.map(({ catKey, tools }) => (
           <div key={catKey}>
             {showSubHeaders && (
