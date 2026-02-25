@@ -257,7 +257,7 @@ const SmartDashboard = () => {
             className="space-y-5"
           >
             {/* 1. Progress Ring - Pregnancy Week Status */}
-            <Card className="overflow-hidden bg-gradient-to-br from-card to-muted/20 card-pink-top">
+            <Card className="overflow-hidden rounded-3xl bg-gradient-to-br from-card to-muted/20 card-pink-top">
               <CardContent className="p-6 flex flex-col items-center">
                 <ProgressRing 
                   currentWeek={healthData.weekOfPregnancy} 
@@ -300,7 +300,7 @@ const SmartDashboard = () => {
             <RecentAIResults />
 
             {/* 5. Data Tracking Tools - Organized by Category */}
-            <Card className="overflow-hidden card-pink-top">
+            <Card className="overflow-hidden rounded-3xl card-pink-top">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-semibold flex items-center gap-2">
@@ -412,7 +412,7 @@ const SmartDashboard = () => {
             </Card>
 
             {/* 5. AI Tools - Smart Links (no duplicates with other tabs/CTAs) */}
-            <Card className="overflow-hidden card-pink-top">
+            <Card className="overflow-hidden rounded-3xl card-pink-top">
               <CardContent className="p-4">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                   <Brain className="w-4 h-4 text-primary" />
@@ -448,7 +448,7 @@ const SmartDashboard = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden rounded-3xl">
               <CardContent className="p-0">
                 <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-4 border-b border-border">
                   <h2 className="text-base font-bold flex items-center gap-2">
@@ -594,7 +594,7 @@ const SmartDashboard = () => {
               </Link>
             </div>
 
-            <Card>
+            <Card className="rounded-3xl">
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
                   <Heart className="w-5 h-5 text-primary" />
@@ -681,7 +681,7 @@ const SmartDashboard = () => {
             </Card>
 
             {/* AI Analysis */}
-            <Card className="bg-gradient-to-br from-primary/5 to-accent/5">
+            <Card className="rounded-3xl bg-gradient-to-br from-primary/5 to-accent/5">
               <CardContent className="p-4">
                 <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
                   <Brain className="w-4 h-4 text-primary" />
@@ -724,7 +724,7 @@ const SmartDashboard = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Card>
+            <Card className="rounded-3xl">
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-1 flex items-center gap-2">
                   <Utensils className="w-5 h-5 text-primary" />
@@ -774,7 +774,7 @@ const SmartDashboard = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Card>
+            <Card className="rounded-3xl">
               <CardContent className="p-4">
                 <h2 className="text-base font-bold mb-4 flex items-center gap-2">
                   <Dumbbell className="w-5 h-5 text-primary" />
