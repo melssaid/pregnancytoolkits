@@ -49,17 +49,17 @@
   "categories": {
     "all": "Tout",
     "ai": "Outils IA",
-    "smartAssistant": "Assistant Intelligent",
-    "fertility": "Fertilité",
-    "pregnancy": "Grossesse",
-    "nutrition": "Nutrition & Régime",
-    "labor": "Accouchement & Travail",
-    "postpartum": "Soins bébé",
-    "selfCheck": "Auto-vérification",
-    "riskAssessment": "Auto-vérification",
-    "mentalHealth": "Santé mentale",
-    "wellness": "Bien-être & Fitness",
-    "preparation": "Préparation"
+    "smartAssistant": "Guide Personnel",
+    "fertility": "Fertilité & Ovulation",
+    "pregnancy": "Suivi Hebdomadaire",
+    "nutrition": "Nutrition",
+    "labor": "Préparation à l'Accouchement",
+    "postpartum": "Soins du Nouveau-né",
+    "selfCheck": "Auto-évaluation",
+    "riskAssessment": "Auto-évaluation",
+    "mentalHealth": "Bien-être Émotionnel",
+    "wellness": "Soins du Corps",
+    "preparation": "Essentiels"
   },
   "journeys": {
     "planning": "Mon Rêve",
