@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CheckSquare, CheckCircle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 
 const CHECK_KEYS = [
@@ -64,6 +65,7 @@ export default function PreconceptionCheckup() {
           })}
         </div>
       </div>
+      <FertilityDailyTip />
     </ToolFrame>
   );
 }
