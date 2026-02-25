@@ -1008,44 +1008,78 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
 
     console.log(`Processing ${type} request, language: ${requestedLanguage}, provider: perplexity`);
 
-    // Use Perplexity sonar-pro for all tools — provides citations & up-to-date medical sources
-    const response = await fetch("https://api.perplexity.ai/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "sonar-pro",
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...(messages || []),
-        ],
-        stream: true,
-        search_recency_filter: "year",
-      }),
-    });
+    // Use Perplexity sonar-pro with automatic retry on transient errors
+    const MAX_RETRIES = 2;
+    let lastError = "";
+    let lastStatus = 500;
 
-    if (!response.ok) {
-      if (response.status === 429) {
-        return new Response(
-          JSON.stringify({ error: "Rate limit exceeded, please try again later" }),
-          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
+    for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+      try {
+        const response = await fetch("https://api.perplexity.ai/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "sonar-pro",
+            messages: [
+              { role: "system", content: systemPrompt },
+              ...(messages || []),
+            ],
+            stream: true,
+            search_recency_filter: "year",
+          }),
+        });
+
+        if (response.ok) {
+          return new Response(response.body, {
+            headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+          });
+        }
+
+        lastStatus = response.status;
+
+        if (response.status === 429) {
+          return new Response(
+            JSON.stringify({ error: "Rate limit exceeded, please try again later" }),
+            { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+        if (response.status === 402) {
+          return new Response(
+            JSON.stringify({ error: "Please add credit to Lovable AI account" }),
+            { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+
+        lastError = await response.text();
+
+        // Retry on 502/503/504 (transient server errors)
+        if ([502, 503, 504].includes(response.status) && attempt < MAX_RETRIES) {
+          console.log(`Perplexity returned ${response.status}, retrying (attempt ${attempt + 1}/${MAX_RETRIES})...`);
+          await new Promise(r => setTimeout(r, 1000 * (attempt + 1))); // backoff
+          continue;
+        }
+
+        console.error(`perplexity error:`, response.status, lastError.substring(0, 200));
+        break;
+      } catch (fetchError) {
+        lastError = String(fetchError);
+        if (attempt < MAX_RETRIES) {
+          console.log(`Fetch error, retrying (attempt ${attempt + 1}/${MAX_RETRIES})...`);
+          await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
+          continue;
+        }
+        console.error("Fetch failed after retries:", lastError.substring(0, 200));
+        break;
       }
-      if (response.status === 402) {
-        return new Response(
-          JSON.stringify({ error: "Please add credit to Lovable AI account" }),
-          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      const errorText = await response.text();
-      console.error(`perplexity error:`, response.status, errorText);
-      return new Response(
-        JSON.stringify({ error: "AI service error" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
     }
+
+    return new Response(
+      JSON.stringify({ error: "AI service temporarily unavailable. Please try again in a moment." }),
+      { status: lastStatus >= 500 ? 503 : lastStatus, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
 
     return new Response(response.body, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
