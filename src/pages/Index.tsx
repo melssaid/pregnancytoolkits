@@ -96,13 +96,36 @@ const SubCategoryDivider = memo(function SubCategoryDivider({ iconColor }: { ico
 });
 
 // ── Journey card ────────────────────────────────────────────────────────
+const JOURNEY_STATE_KEY = "journey-card-states";
+
 const JourneyCard = memo(function JourneyCard({ config, index }: { config: JourneyConfig; index: number }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
-  const [isOpen, setIsOpen] = useState(index === 0);
 
-  const toggle = useCallback(() => setIsOpen(prev => !prev), []);
+  const [isOpen, setIsOpen] = useState(() => {
+    try {
+      const saved = localStorage.getItem(JOURNEY_STATE_KEY);
+      if (saved) {
+        const states = JSON.parse(saved);
+        if (typeof states[config.key] === "boolean") return states[config.key];
+      }
+    } catch {}
+    return false;
+  });
+
+  const toggle = useCallback(() => {
+    setIsOpen(prev => {
+      const next = !prev;
+      try {
+        const saved = localStorage.getItem(JOURNEY_STATE_KEY);
+        const states = saved ? JSON.parse(saved) : {};
+        states[config.key] = next;
+        localStorage.setItem(JOURNEY_STATE_KEY, JSON.stringify(states));
+      } catch {}
+      return next;
+    });
+  }, [config.key]);
 
   const categories = useMemo(() => getJourneyCategories(config.key), [config.key]);
   const toolsByCategory = useMemo(() => {
