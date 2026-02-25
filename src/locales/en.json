@@ -265,27 +265,20 @@
     },
     "fertilityAcademy": {
       "title": "Fertility Academy",
-      "description": "Interactive lessons on fertility and conception."
+      "description": "Comprehensive fertility education: lessons, body signs, and stress management.",
+      "lessonsTab": "Lessons",
+      "signsTab": "Body Signs",
+      "stressTab": "Stress & Calm"
     },
-    "fertilitySigns": {
-      "title": "Fertility Signs Guide",
-      "description": "Learn to read your body's fertility signals."
-    },
-    "preconceptionNutrition": {
-      "title": "Preconception Nutrition",
-      "description": "Optimize your diet for conception."
-    },
-    "prenatalVitamins": {
-      "title": "Prenatal Vitamins Guide",
-      "description": "Essential supplements before pregnancy."
+    "nutritionSupplements": {
+      "title": "Nutrition & Supplements Guide",
+      "description": "Complete nutrition and prenatal supplements guide for conception.",
+      "nutritionTab": "Nutrition",
+      "supplementsTab": "Supplements"
     },
     "twwCompanion": {
       "title": "Two-Week Wait Companion",
       "description": "Daily support during the wait after ovulation."
-    },
-    "stressFertility": {
-      "title": "Stress & Fertility",
-      "description": "Relaxation tools to support your fertility journey."
     },
     "preconceptionCheckup": {
       "title": "Preconception Checkup Guide",

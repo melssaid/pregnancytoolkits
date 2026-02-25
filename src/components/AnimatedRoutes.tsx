@@ -50,11 +50,8 @@ const CycleTracker = lazy(() => import("@/pages/tools/CycleTracker"));
 const DueDateCalculator = lazy(() => import("@/pages/tools/DueDateCalculator"));
 
 const FertilityAcademy = lazy(() => import("@/pages/tools/FertilityAcademy"));
-const FertilitySigns = lazy(() => import("@/pages/tools/FertilitySigns"));
-const PreconceptionNutrition = lazy(() => import("@/pages/tools/PreconceptionNutrition"));
-const PrenatalVitamins = lazy(() => import("@/pages/tools/PrenatalVitamins"));
+const NutritionSupplementsGuide = lazy(() => import("@/pages/tools/NutritionSupplementsGuide"));
 const TWWCompanion = lazy(() => import("@/pages/tools/TWWCompanion"));
-const StressFertility = lazy(() => import("@/pages/tools/StressFertility"));
 const PreconceptionCheckup = lazy(() => import("@/pages/tools/PreconceptionCheckup"));
 
 // PREGNANCY TRACKING
@@ -132,12 +129,15 @@ export function AnimatedRoutes() {
         <Route path="/tools/due-date-calculator" element={<PageTransition><DueDateCalculator /></PageTransition>} />
         
         <Route path="/tools/fertility-academy" element={<PageTransition><FertilityAcademy /></PageTransition>} />
-        <Route path="/tools/fertility-signs" element={<PageTransition><FertilitySigns /></PageTransition>} />
-        <Route path="/tools/preconception-nutrition" element={<PageTransition><PreconceptionNutrition /></PageTransition>} />
-        <Route path="/tools/prenatal-vitamins" element={<PageTransition><PrenatalVitamins /></PageTransition>} />
+        <Route path="/tools/nutrition-supplements" element={<PageTransition><NutritionSupplementsGuide /></PageTransition>} />
         <Route path="/tools/tww-companion" element={<PageTransition><TWWCompanion /></PageTransition>} />
-        <Route path="/tools/stress-fertility" element={<PageTransition><StressFertility /></PageTransition>} />
         <Route path="/tools/preconception-checkup" element={<PageTransition><PreconceptionCheckup /></PageTransition>} />
+
+        {/* LEGACY REDIRECTS — merged fertility tools */}
+        <Route path="/tools/fertility-signs" element={<Navigate to="/tools/fertility-academy" replace />} />
+        <Route path="/tools/stress-fertility" element={<Navigate to="/tools/fertility-academy" replace />} />
+        <Route path="/tools/preconception-nutrition" element={<Navigate to="/tools/nutrition-supplements" replace />} />
+        <Route path="/tools/prenatal-vitamins" element={<Navigate to="/tools/nutrition-supplements" replace />} />
 
         {/* PREGNANCY TRACKING */}
         <Route path="/tools/fetal-growth" element={<PageTransition><FetalDevelopment3D /></PageTransition>} />
