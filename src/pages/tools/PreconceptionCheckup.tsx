@@ -33,9 +33,9 @@ export default function PreconceptionCheckup() {
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-2">
             <CheckSquare className="w-4 h-4 shrink-0 text-warning" />
-            <span className="text-xs font-bold text-foreground">{completed.length}/{CHECK_KEYS.length}</span>
+            <span className="text-sm font-bold text-foreground">{completed.length}/{CHECK_KEYS.length}</span>
           </div>
-          <span className="text-[10px] font-medium text-primary">{progress}%</span>
+          <span className="text-xs font-semibold text-primary">{progress}%</span>
         </div>
         <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
           <motion.div className="h-full bg-primary rounded-full" initial={{ width: 0 }} animate={{ width: `${progress}%` }} />
@@ -50,13 +50,13 @@ export default function PreconceptionCheckup() {
                   className={`border-border/60 transition-all duration-300 cursor-pointer ${isDone ? 'border-primary/30 bg-primary/5' : 'hover:border-warning/25'}`}
                   onClick={() => toggle(key)}
                 >
-                  <CardContent className="p-3 flex items-center gap-3">
-                    <CheckCircle className={`w-4 h-4 shrink-0 transition-colors ${isDone ? 'text-primary' : 'text-muted-foreground/25'}`} />
+                  <CardContent className="p-3.5 flex items-center gap-3">
+                    <CheckCircle className={`w-5 h-5 shrink-0 transition-colors ${isDone ? 'text-primary' : 'text-muted-foreground/25'}`} />
                     <div className="flex-1 min-w-0">
-                      <p className={`text-xs font-semibold ${isDone ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
+                      <p className={`text-sm font-bold ${isDone ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
                         {t(`toolsInternal.preconceptionCheckup.checks.${key}.title`)}
                       </p>
-                      <p className="text-[10px] text-muted-foreground mt-0.5">{t(`toolsInternal.preconceptionCheckup.checks.${key}.description`)}</p>
+                      <p className="text-xs text-foreground/60 mt-0.5">{t(`toolsInternal.preconceptionCheckup.checks.${key}.description`)}</p>
                     </div>
                   </CardContent>
                 </Card>

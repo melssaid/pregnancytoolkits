@@ -20,7 +20,7 @@ export default function TWWCompanion() {
       <div className="space-y-2" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
         <div className="flex items-center gap-2 mb-3">
           <Heart className="w-4 h-4 shrink-0 text-destructive" />
-          <span className="text-xs font-bold text-foreground">{t('toolsInternal.twwCompanion.subtitle')}</span>
+          <span className="text-sm font-bold text-foreground">{t('toolsInternal.twwCompanion.subtitle')}</span>
         </div>
         {DAY_KEYS.map((key, i) => {
           const isOpen = expandedDay === key;
@@ -32,7 +32,7 @@ export default function TWWCompanion() {
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2.5">
                         <div className="w-7 h-7 shrink-0 rounded-full bg-destructive/10 flex items-center justify-center text-[10px] font-bold text-destructive">{i + 1}</div>
-                        <span className="text-xs font-semibold text-foreground">{t(`toolsInternal.twwCompanion.days.${key}.title`)}</span>
+                        <span className="text-sm font-bold text-foreground">{t(`toolsInternal.twwCompanion.days.${key}.title`)}</span>
                       </div>
                       <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted/70">
                         <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
@@ -44,9 +44,9 @@ export default function TWWCompanion() {
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.22, ease: "easeOut" }} className="overflow-hidden">
                         <div className="mx-3 mb-3 space-y-2">
                           <div className="rounded-lg border border-border/50 bg-background/70 p-3">
-                            <p className="whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground">{t(`toolsInternal.twwCompanion.days.${key}.body`)}</p>
+                            <p className="whitespace-pre-line text-xs leading-relaxed text-foreground/80">{t(`toolsInternal.twwCompanion.days.${key}.body`)}</p>
                           </div>
-                          <div className="p-2 rounded-lg bg-destructive/5 text-[10px] text-destructive font-medium flex items-center gap-1.5">
+                          <div className="p-2 rounded-lg bg-destructive/5 text-xs text-destructive font-semibold flex items-center gap-1.5">
                             <Smile className="w-3 h-3 shrink-0" />
                             {t(`toolsInternal.twwCompanion.days.${key}.tip`)}
                           </div>
