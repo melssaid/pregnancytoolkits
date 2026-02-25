@@ -12,6 +12,54 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
   const { i18n } = useTranslation();
   const isRTL = i18n.language?.startsWith('ar');
 
+  // Common emoji shortcode to emoji map for AI model outputs
+  const EMOJI_MAP: Record<string, string> = {
+    'swollen_face': '😮', 'nauseated_face': '🤢', 'face_with_thermometer': '🤒',
+    'pregnant_woman': '🤰', 'baby': '👶', 'woman_health_worker': '👩‍⚕️',
+    'pill': '💊', 'syringe': '💉', 'stethoscope': '🩺', 'hospital': '🏥',
+    'heart': '❤️', 'broken_heart': '💔', 'sparkling_heart': '💖',
+    'warning': '⚠️', 'check': '✅', 'x': '❌', 'star': '⭐',
+    'droplet': '💧', 'fire': '🔥', 'muscle': '💪', 'brain': '🧠',
+    'eyes': '👀', 'ear': '👂', 'nose': '👃', 'tongue': '👅',
+    'bone': '🦴', 'tooth': '🦷', 'leg': '🦵', 'foot': '🦶',
+    'hand': '✋', 'thumbsup': '👍', 'thumbs_up': '👍', 'thumbsdown': '👎',
+    'clap': '👏', 'pray': '🙏', 'thinking': '🤔', 'sleeping': '😴',
+    'cry': '😢', 'sob': '😭', 'angry': '😠', 'smile': '😊',
+    'grin': '😁', 'wink': '😉', 'kiss': '😘', 'hug': '🤗',
+    'shrug': '🤷', 'facepalm': '🤦', 'raised_hands': '🙌',
+    'apple': '🍎', 'green_apple': '🍏', 'banana': '🍌', 'grapes': '🍇',
+    'watermelon': '🍉', 'avocado': '🥑', 'broccoli': '🥦', 'carrot': '🥕',
+    'milk': '🥛', 'egg': '🥚', 'bread': '🍞', 'meat': '🥩', 'fish': '🐟',
+    'salad': '🥗', 'rice': '🍚', 'soup': '🍲', 'pizza': '🍕',
+    'sun': '☀️', 'moon': '🌙', 'cloud': '☁️', 'rain': '🌧️',
+    'thermometer': '🌡️', 'clock': '⏰', 'calendar': '📅',
+    'notebook': '📓', 'book': '📖', 'pen': '🖊️', 'phone': '📞',
+    'bulb': '💡', 'light_bulb': '💡', 'key': '🔑', 'lock': '🔒',
+    'shield': '🛡️', 'bell': '🔔', 'megaphone': '📣',
+    'running': '🏃', 'walking': '🚶', 'yoga': '🧘', 'swimming': '🏊',
+    'bath': '🛁', 'bed': '🛏️', 'house': '🏠',
+    'point_right': '👉', 'point_left': '👈', 'point_up': '👆', 'point_down': '👇',
+    'heavy_check_mark': '✔️', 'heavy_exclamation_mark': '❗',
+    'red_circle': '🔴', 'green_circle': '🟢', 'yellow_circle': '🟡',
+    'white_check_mark': '✅', 'negative_squared_cross_mark': '❎',
+    'face_vomiting': '🤮', 'dizzy_face': '😵', 'hot_face': '🥵',
+    'cold_face': '🥶', 'exploding_head': '🤯', 'partying_face': '🥳',
+    'relieved': '😌', 'pensive': '😔', 'worried': '😟', 'confused': '😕',
+    'slightly_smiling_face': '🙂', 'upside_down_face': '🙃',
+    'face_with_rolling_eyes': '🙄', 'grimacing': '😬',
+    'no_entry': '⛔', 'stop_sign': '🛑', 'construction': '🚧',
+    'pushpin': '📌', 'round_pushpin': '📍', 'paperclip': '📎',
+    'scissors': '✂️', 'triangular_ruler': '📐',
+  };
+
+  const replaceEmojiShortcodes = (text: string): string => {
+    // Match :emoji_name: patterns and standalone emoji names like "swollen_face"
+    return text.replace(/(?::(\w+):|\b(swollen_face|nauseated_face|face_with_thermometer|face_vomiting|dizzy_face|hot_face|cold_face|exploding_head)\b)/g, (match, colonName, standaloneName) => {
+      const name = colonName || standaloneName;
+      return EMOJI_MAP[name] || match;
+    });
+  };
+
   const { mainContent, disclaimerContent } = useMemo(() => {
     if (!content) return { mainContent: null, disclaimerContent: null };
 
@@ -80,6 +128,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
 
       const formatInline = (text: string): (string | JSX.Element)[] => {
         text = text.replace(/\[\d+\]/g, '');
+        text = replaceEmojiShortcodes(text);
         const parts: (string | JSX.Element)[] = [];
         const regex = /\*\*(.+?)\*\*|\*(.+?)\*/g;
         let lastIndex = 0;
