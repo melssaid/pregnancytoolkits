@@ -54,16 +54,6 @@ async function loadLogoImage(): Promise<string | null> {
 // =============================================
 // Unicode font support for Arabic/Turkish/etc.
 // =============================================
-let unicodeFontCache: { regular: string; bold: string } | null = null;
-let unicodeFontLoading: Promise<typeof unicodeFontCache> | null = null;
-
-// Tajawal — modern sans-serif Arabic + Latin font, clean and professional
-// Loaded from local public/fonts/ directory for reliability
-const FONT_URLS = {
-  regular: '/fonts/Tajawal-Regular.ttf',
-  bold: '/fonts/Tajawal-Bold.ttf',
-};
-
 async function fetchFontAsBase64(url: string): Promise<string | null> {
   try {
     const response = await fetch(url);
@@ -78,36 +68,54 @@ async function fetchFontAsBase64(url: string): Promise<string | null> {
   } catch { return null; }
 }
 
-async function loadUnicodeFont(): Promise<typeof unicodeFontCache> {
-  if (unicodeFontCache) return unicodeFontCache;
-  if (unicodeFontLoading) return unicodeFontLoading;
+let tajawalFontCache: { regular: string; bold: string } | null = null;
+let amiriFontCache: { regular: string; bold: string } | null = null;
+let fontLoading: Promise<void> | null = null;
+
+const FONT_URLS = {
+  tajawalRegular: '/fonts/Tajawal-Regular.ttf',
+  tajawalBold: '/fonts/Tajawal-Bold.ttf',
+  amiriRegular: '/fonts/Amiri-Regular.ttf',
+  amiriBold: '/fonts/Amiri-Bold.ttf',
+};
+
+async function loadAllFonts(): Promise<void> {
+  if (tajawalFontCache && amiriFontCache) return;
+  if (fontLoading) return fontLoading;
   
-  unicodeFontLoading = (async () => {
-    const [regular, bold] = await Promise.all([
-      fetchFontAsBase64(FONT_URLS.regular),
-      fetchFontAsBase64(FONT_URLS.bold),
+  fontLoading = (async () => {
+    const [tajawalReg, tajawalBold, amiriReg, amiriBold] = await Promise.all([
+      fetchFontAsBase64(FONT_URLS.tajawalRegular),
+      fetchFontAsBase64(FONT_URLS.tajawalBold),
+      fetchFontAsBase64(FONT_URLS.amiriRegular),
+      fetchFontAsBase64(FONT_URLS.amiriBold),
     ]);
-    if (regular) {
-      unicodeFontCache = { regular, bold: bold || regular };
-      return unicodeFontCache;
+    if (tajawalReg) {
+      tajawalFontCache = { regular: tajawalReg, bold: tajawalBold || tajawalReg };
     }
-    return null;
+    if (amiriReg) {
+      amiriFontCache = { regular: amiriReg, bold: amiriBold || amiriReg };
+    }
   })();
   
-  return unicodeFontLoading;
+  return fontLoading;
 }
 
-const UNICODE_FONT_NAME = 'Tajawal';
-
-function setupUnicodeFont(doc: jsPDF, fontData: typeof unicodeFontCache) {
-  if (!fontData) return;
+function setupFonts(doc: jsPDF) {
   try {
-    doc.addFileToVFS('Tajawal-Regular.ttf', fontData.regular);
-    doc.addFont('Tajawal-Regular.ttf', UNICODE_FONT_NAME, 'normal');
-    doc.addFileToVFS('Tajawal-Bold.ttf', fontData.bold);
-    doc.addFont('Tajawal-Bold.ttf', UNICODE_FONT_NAME, 'bold');
-    doc.setFont(UNICODE_FONT_NAME, 'normal');
-  } catch { /* font already added */ }
+    if (tajawalFontCache) {
+      doc.addFileToVFS('Tajawal-Regular.ttf', tajawalFontCache.regular);
+      doc.addFont('Tajawal-Regular.ttf', 'Tajawal', 'normal');
+      doc.addFileToVFS('Tajawal-Bold.ttf', tajawalFontCache.bold);
+      doc.addFont('Tajawal-Bold.ttf', 'Tajawal', 'bold');
+    }
+    if (amiriFontCache) {
+      doc.addFileToVFS('Amiri-Regular.ttf', amiriFontCache.regular);
+      doc.addFont('Amiri-Regular.ttf', 'Amiri', 'normal');
+      doc.addFileToVFS('Amiri-Bold.ttf', amiriFontCache.bold);
+      doc.addFont('Amiri-Bold.ttf', 'Amiri', 'bold');
+    }
+  } catch { /* fonts already added */ }
 }
 
 // Helpers to set bold/normal while respecting Unicode font
@@ -143,15 +151,20 @@ function rtlText(doc: jsPDF, text: string, x: number, y: number, options?: any) 
 
 // Create a pre-configured PDF document with Unicode font support
 async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
-  const fontData = await loadUnicodeFont();
+  await loadAllFonts();
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   _isRTL = language === 'ar';
-  if (fontData) {
-    setupUnicodeFont(doc, fontData);
-    _activeFont = UNICODE_FONT_NAME;
+  setupFonts(doc);
+  
+  // Use Amiri for Arabic (has Presentation Forms glyphs), Tajawal for others
+  if (_isRTL && amiriFontCache) {
+    _activeFont = 'Amiri';
+  } else if (tajawalFontCache) {
+    _activeFont = 'Tajawal';
   } else {
     _activeFont = 'helvetica';
   }
+  doc.setFont(_activeFont, 'normal');
   return { doc };
 }
 
