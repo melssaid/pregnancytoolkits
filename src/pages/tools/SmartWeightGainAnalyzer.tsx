@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Scale, TrendingUp, AlertCircle, CheckCircle, Target } from 'lucide-react';
+import { RelatedToolLinks } from '@/components/RelatedToolLinks';
 import { WeekSlider } from '@/components/WeekSlider';
 import {
   LineChart,
@@ -409,6 +410,13 @@ export default function SmartWeightGainAnalyzer() {
             </CardContent>
           </Card>
         )}
+
+        {/* Related Tools */}
+        <RelatedToolLinks links={[
+          { to: "/tools/fetal-growth", titleKey: "toolsInternal.weightGain.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.weightGain.fetalDevLinkDesc", descFallback: "Track your baby's growth week by week", icon: "ruler" },
+          { to: "/tools/kick-counter", titleKey: "toolsInternal.weightGain.kickCounterLink", titleFallback: "Kick Counter", descKey: "toolsInternal.weightGain.kickCounterLinkDesc", descFallback: "Track your baby's movements", icon: "activity" },
+          { to: "/tools/ai-meal-suggestion", titleKey: "toolsInternal.weightGain.mealSuggestionLink", titleFallback: "Meal Suggestions", descKey: "toolsInternal.weightGain.mealSuggestionLinkDesc", descFallback: "Get healthy meal ideas", icon: "utensils" },
+        ]} />
       </div>
     </ToolFrame>
   );

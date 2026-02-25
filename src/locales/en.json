@@ -1404,6 +1404,8 @@
       "fetalDevLinkDesc": "Track your baby's growth and development week by week",
       "weeklySummaryLink": "Weekly Summary",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy insights",
+      "weightGainLink": "Weight Gain Analyzer",
+      "weightGainLinkDesc": "Monitor your healthy weight gain",
       "exportPDF": "Share your journal with your consultant"
     },
     "symptomAnalyzer": {
@@ -2908,7 +2910,13 @@
       "maxRecommended": "Max Recommended",
       "yourWeight": "Your Weight",
       "weekAxis": "Week",
-      "weightGainKg": "Weight Gain (kg)"
+      "weightGainKg": "Weight Gain (kg)",
+      "fetalDevLink": "Fetal Development",
+      "fetalDevLinkDesc": "Track your baby's growth week by week",
+      "kickCounterLink": "Kick Counter",
+      "kickCounterLinkDesc": "Track your baby's movements",
+      "mealSuggestionLink": "Meal Suggestions",
+      "mealSuggestionLinkDesc": "Get healthy meal ideas"
     },
     "bloodType": {
       "title": "Blood Type Calculator",
@@ -3055,7 +3063,9 @@
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Track your baby's movements and activity patterns",
       "dueDateLink": "Due Date Calculator",
-      "dueDateLinkDesc": "Calculate your expected delivery date"
+      "dueDateLinkDesc": "Calculate your expected delivery date",
+      "weightGainLink": "Weight Gain Analyzer",
+      "weightGainLinkDesc": "Monitor your healthy weight gain"
     },
     "gdm": {
       "title": "Gestational Diabetes Awareness (General Info)",

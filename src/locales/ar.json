@@ -1185,7 +1185,9 @@
       "fetalDevLink": "تطور الجنين",
       "fetalDevLinkDesc": "تابعي نمو طفلك وتطوره أسبوعاً بأسبوع",
       "weeklySummaryLink": "الملخص الأسبوعي",
-      "weeklySummaryLinkDesc": "احصلي على تحديثات أسبوعية ذكية"
+      "weeklySummaryLinkDesc": "احصلي على تحديثات أسبوعية ذكية",
+      "weightGainLink": "تحليل زيادة الوزن",
+      "weightGainLinkDesc": "تابعي زيادة وزنك الصحية"
     },
     "symptomAnalyzer": {
       "title": "يوميات العافية أثناء الحمل",
@@ -2635,7 +2637,13 @@
       "maxRecommended": "الحد الأعلى الموصى",
       "yourWeight": "وزنك",
       "weekAxis": "الأسبوع",
-      "weightGainKg": "زيادة الوزن (كغ)"
+      "weightGainKg": "زيادة الوزن (كغ)",
+      "fetalDevLink": "تطور الجنين",
+      "fetalDevLinkDesc": "تابعي نمو طفلك وتطوره أسبوعاً بأسبوع",
+      "kickCounterLink": "عداد الركلات",
+      "kickCounterLinkDesc": "تتبعي حركات طفلك وأنماط نشاطه",
+      "mealSuggestionLink": "اقتراحات الوجبات",
+      "mealSuggestionLinkDesc": "احصلي على أفكار وجبات صحية"
     },
     "stressRelief": {
       "title": "مدرب تخفيف التوتر الذكي",
@@ -2800,7 +2808,9 @@
       "kickCounterLink": "عداد الركلات",
       "kickCounterLinkDesc": "تتبعي حركات طفلك وأنماط نشاطه",
       "dueDateLink": "حاسبة موعد الولادة",
-      "dueDateLinkDesc": "احسبي موعد ولادتك المتوقع"
+      "dueDateLinkDesc": "احسبي موعد ولادتك المتوقع",
+      "weightGainLink": "تحليل زيادة الوزن",
+      "weightGainLinkDesc": "تابعي زيادة وزنك الصحية"
     },
     "gdm": {
       "title": "تقييم خطر سكري الحمل",
