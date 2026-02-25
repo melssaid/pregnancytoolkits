@@ -48,7 +48,7 @@ const AIBirthPlanGenerator = lazy(() => import("@/pages/tools/AIBirthPlanGenerat
 // FERTILITY & PLANNING
 const CycleTracker = lazy(() => import("@/pages/tools/CycleTracker"));
 const DueDateCalculator = lazy(() => import("@/pages/tools/DueDateCalculator"));
-const FertileWindow = lazy(() => import("@/pages/tools/FertileWindow"));
+
 const FertilityAcademy = lazy(() => import("@/pages/tools/FertilityAcademy"));
 const FertilitySigns = lazy(() => import("@/pages/tools/FertilitySigns"));
 const PreconceptionNutrition = lazy(() => import("@/pages/tools/PreconceptionNutrition"));
@@ -130,7 +130,7 @@ export function AnimatedRoutes() {
         {/* FERTILITY & PLANNING */}
         <Route path="/tools/cycle-tracker" element={<PageTransition><CycleTracker /></PageTransition>} />
         <Route path="/tools/due-date-calculator" element={<PageTransition><DueDateCalculator /></PageTransition>} />
-        <Route path="/tools/fertile-window" element={<PageTransition><FertileWindow /></PageTransition>} />
+        
         <Route path="/tools/fertility-academy" element={<PageTransition><FertilityAcademy /></PageTransition>} />
         <Route path="/tools/fertility-signs" element={<PageTransition><FertilitySigns /></PageTransition>} />
         <Route path="/tools/preconception-nutrition" element={<PageTransition><PreconceptionNutrition /></PageTransition>} />
