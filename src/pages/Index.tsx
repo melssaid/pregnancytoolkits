@@ -35,16 +35,16 @@ interface JourneyConfig {
 const journeyConfigs: JourneyConfig[] = [
   {
     key: "planning",
-    icon: Sparkles,
-    headerGradient: "bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300 dark:from-rose-500 dark:via-pink-500 dark:to-amber-400",
+    icon: Flower2,
+    headerGradient: "bg-gradient-to-r from-amber-400 via-orange-300 to-rose-300 dark:from-amber-500 dark:via-orange-400 dark:to-rose-400",
     headerText: "text-white",
     iconBg: "bg-white/25",
-    bg: "from-rose-50/80 via-pink-50/40 to-amber-50/30 dark:from-rose-950/30 dark:via-pink-950/20 dark:to-amber-950/10",
-    border: "border-rose-200/50 dark:border-rose-800/30",
+    bg: "from-amber-50/80 via-orange-50/40 to-rose-50/30 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-rose-950/10",
+    border: "border-amber-200/50 dark:border-amber-800/30",
   },
   {
     key: "pregnant",
-    icon: HeartPulse,
+    icon: Heart,
     headerGradient: "bg-gradient-to-r from-pink-500 via-rose-400 to-pink-400 dark:from-pink-600 dark:via-rose-500 dark:to-pink-500",
     headerText: "text-white",
     iconBg: "bg-white/25",
@@ -54,11 +54,11 @@ const journeyConfigs: JourneyConfig[] = [
   {
     key: "postpartum",
     icon: Baby,
-    headerGradient: "bg-gradient-to-r from-fuchsia-400 via-purple-400 to-violet-300 dark:from-fuchsia-500 dark:via-purple-500 dark:to-violet-400",
+    headerGradient: "bg-gradient-to-r from-rose-400 via-pink-300 to-fuchsia-300 dark:from-rose-500 dark:via-pink-400 dark:to-fuchsia-400",
     headerText: "text-white",
     iconBg: "bg-white/25",
-    bg: "from-fuchsia-50/80 via-purple-50/40 to-violet-50/30 dark:from-fuchsia-950/30 dark:via-purple-950/20 dark:to-violet-950/10",
-    border: "border-fuchsia-200/50 dark:border-fuchsia-800/30",
+    bg: "from-rose-50/80 via-pink-50/40 to-fuchsia-50/30 dark:from-rose-950/30 dark:via-pink-950/20 dark:to-fuchsia-950/10",
+    border: "border-rose-200/50 dark:border-rose-800/30",
   },
 ];
 
