@@ -54,17 +54,17 @@ export default function FertilityAcademy() {
       <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
 
         <Tabs defaultValue="lessons" dir={dir}>
-          <TabsList className="grid w-full grid-cols-4 mb-3">
-            <TabsTrigger value="lessons" className="text-[9px] sm:text-xs">
+          <TabsList className="grid w-full grid-cols-4 mb-4 h-11 rounded-xl bg-muted/60 border border-border/40 p-1">
+            <TabsTrigger value="lessons" className="text-[11px] sm:text-xs font-semibold rounded-lg data-[state=active]:shadow-sm">
               {t("tools.fertilityAcademy.lessonsTab")}
             </TabsTrigger>
-            <TabsTrigger value="signs" className="text-[9px] sm:text-xs">
+            <TabsTrigger value="signs" className="text-[11px] sm:text-xs font-semibold rounded-lg data-[state=active]:shadow-sm">
               {t("tools.fertilityAcademy.signsTab")}
             </TabsTrigger>
-            <TabsTrigger value="stress" className="text-[9px] sm:text-xs">
+            <TabsTrigger value="stress" className="text-[11px] sm:text-xs font-semibold rounded-lg data-[state=active]:shadow-sm">
               {t("tools.fertilityAcademy.stressTab")}
             </TabsTrigger>
-            <TabsTrigger value="tww" className="text-[9px] sm:text-xs">
+            <TabsTrigger value="tww" className="text-[11px] sm:text-xs font-semibold rounded-lg data-[state=active]:shadow-sm">
               {t("tools.fertilityAcademy.twwTab")}
             </TabsTrigger>
           </TabsList>
