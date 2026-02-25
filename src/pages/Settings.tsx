@@ -3,6 +3,7 @@ import { Database, Shield, Info, Heart, Lock, Globe, User, CheckCircle, Stethosc
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { DataClearManager } from '@/components/settings/DataClearManager';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
+import { AccountDeletion } from '@/components/settings/AccountDeletion';
 import { LanguageSelector } from '@/components/settings/LanguageSelector';
 import { ProfileEditor } from '@/components/settings/ProfileEditor';
 import { Layout } from '@/components/Layout';
@@ -100,6 +101,7 @@ const Settings: React.FC = () => {
             <AccordionContent className="px-4 pb-4 space-y-3">
               <DataBackupManager compact />
               <DataClearManager compact />
+              <AccountDeletion compact />
             </AccordionContent>
           </AccordionItem>
 
