@@ -1,7 +1,8 @@
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { CalendarIcon, Info, Droplets } from "lucide-react";
+import { CalendarIcon, Info, Droplets, Baby } from "lucide-react";
+import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { ToolFrame } from "@/components/ToolFrame";
 
@@ -146,6 +147,15 @@ Any patterns that might be worth discussing with a doctor`;
           title={t('toolsInternal.cycleTracker.videosTitle')}
           subtitle={t('toolsInternal.cycleTracker.videosSubtitle')}
         />
+
+        <Link to="/tools/due-date-calculator" className="flex items-center gap-2.5 rounded-xl bg-primary/8 border border-primary/15 p-3 hover:bg-primary/12 transition-colors">
+          <Baby className="h-4 w-4 text-primary shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-medium text-foreground">{t('toolsInternal.cycleTracker.dueDateLink', 'حاسبة موعد الولادة')}</p>
+            <p className="text-[10px] text-muted-foreground">{t('toolsInternal.cycleTracker.dueDateLinkDesc', 'احسبي موعد ولادتك المتوقع بناءً على آخر دورة')}</p>
+          </div>
+          <CalendarIcon className="h-3.5 w-3.5 text-muted-foreground" />
+        </Link>
 
         {/* Tip */}
         <div className="flex items-start gap-2.5 rounded-xl bg-muted/50 p-3">
