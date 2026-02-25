@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Leaf, Pill, CheckCircle } from "lucide-react";
+import { ChevronDown, CheckCircle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { FertilityDailyTip } from "@/components/FertilityDailyTip";
@@ -37,22 +37,19 @@ export default function NutritionSupplementsGuide() {
         <FertilityDailyTip />
         <Tabs defaultValue="nutrition" dir={dir}>
           <TabsList className="grid w-full grid-cols-2 mb-3">
-            <TabsTrigger value="nutrition" className="text-xs gap-1.5">
-              <Leaf className="w-3.5 h-3.5" />
+            <TabsTrigger value="nutrition" className="text-xs">
               {t('tools.nutritionSupplements.nutritionTab')}
             </TabsTrigger>
-            <TabsTrigger value="supplements" className="text-xs gap-1.5">
-              <Pill className="w-3.5 h-3.5" />
+            <TabsTrigger value="supplements" className="text-xs">
               {t('tools.nutritionSupplements.supplementsTab')}
             </TabsTrigger>
           </TabsList>
 
           {/* NUTRITION TAB */}
           <TabsContent value="nutrition" className="space-y-2 mt-0">
-            <div className="flex items-center gap-2 mb-3">
-              <Leaf className="w-4 h-4 shrink-0 text-accent" />
-              <span className="text-xs font-bold text-foreground">{t('toolsInternal.preconceptionNutrition.categoriesCount', { count: CATEGORY_KEYS.length })}</span>
-            </div>
+            <p className="text-[10px] text-muted-foreground mb-2">
+              {t('toolsInternal.preconceptionNutrition.categoriesCount', { count: CATEGORY_KEYS.length })}
+            </p>
             {CATEGORY_KEYS.map((key, i) => {
               const isOpen = expandedNutrition === key;
               return (
@@ -90,11 +87,10 @@ export default function NutritionSupplementsGuide() {
 
           {/* SUPPLEMENTS TAB */}
           <TabsContent value="supplements" className="space-y-2 mt-0">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <Pill className="w-4 h-4 shrink-0 text-warning" />
-                <span className="text-xs font-bold text-foreground">{t('toolsInternal.prenatalVitamins.supplementsCount', { count: VITAMIN_KEYS.length })}</span>
-              </div>
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-[10px] text-muted-foreground">
+                {t('toolsInternal.prenatalVitamins.supplementsCount', { count: VITAMIN_KEYS.length })}
+              </p>
               <span className="text-[10px] text-primary font-medium">{checkedVitamins.length}/{VITAMIN_KEYS.length}</span>
             </div>
             {VITAMIN_KEYS.map((key, i) => {

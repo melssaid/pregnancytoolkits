@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
-import { BookOpen, ChevronDown, GraduationCap, Eye, Leaf } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { FertilityDailyTip } from "@/components/FertilityDailyTip";
@@ -47,34 +47,22 @@ export default function FertilityAcademy() {
 
         <Tabs defaultValue="lessons" dir={dir}>
           <TabsList className="grid w-full grid-cols-3 mb-3">
-            <TabsTrigger value="lessons" className="text-[10px] sm:text-xs gap-1">
-              <GraduationCap className="w-3.5 h-3.5 hidden sm:block" />
+            <TabsTrigger value="lessons" className="text-[10px] sm:text-xs">
               {t("tools.fertilityAcademy.lessonsTab")}
             </TabsTrigger>
-            <TabsTrigger value="signs" className="text-[10px] sm:text-xs gap-1">
-              <Eye className="w-3.5 h-3.5 hidden sm:block" />
+            <TabsTrigger value="signs" className="text-[10px] sm:text-xs">
               {t("tools.fertilityAcademy.signsTab")}
             </TabsTrigger>
-            <TabsTrigger value="stress" className="text-[10px] sm:text-xs gap-1">
-              <Leaf className="w-3.5 h-3.5 hidden sm:block" />
+            <TabsTrigger value="stress" className="text-[10px] sm:text-xs">
               {t("tools.fertilityAcademy.stressTab")}
             </TabsTrigger>
           </TabsList>
 
           {/* LESSONS TAB */}
           <TabsContent value="lessons" className="space-y-2 mt-0">
-            <div className="rounded-xl border border-border/60 bg-muted/30 p-3">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                    <BookOpen className="h-4 w-4 text-primary" />
-                  </div>
-                  <p className="text-xs font-bold text-foreground">
-                    {t("toolsInternal.fertilityAcademy.lessonsCount", { count: LESSON_KEYS.length })}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <p className="text-[10px] text-muted-foreground mb-2">
+              {t("toolsInternal.fertilityAcademy.lessonsCount", { count: LESSON_KEYS.length })}
+            </p>
             <div className="space-y-2">
               {lessons.map((lesson, i) => {
                 const isOpen = expandedLesson === lesson.key;
@@ -85,9 +73,9 @@ export default function FertilityAcademy() {
                         <button type="button" className="w-full p-3" dir={dir} onClick={() => setExpandedLesson(isOpen ? null : lesson.key)}>
                           <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center gap-2.5">
-                              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
+                              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
                                 {lesson.order}
-                              </div>
+                              </span>
                               <span className="text-xs font-semibold text-foreground" style={{ textAlign: isRTL ? "right" : "left" }}>
                                 {lesson.title}
                               </span>
@@ -118,10 +106,9 @@ export default function FertilityAcademy() {
 
           {/* FERTILITY SIGNS TAB */}
           <TabsContent value="signs" className="space-y-2 mt-0">
-            <div className="flex items-center gap-2 mb-3">
-              <Eye className="w-4 h-4 shrink-0 text-primary" />
-              <span className="text-xs font-bold text-foreground">{t('toolsInternal.fertilitySigns.signsCount', { count: SIGN_KEYS.length })}</span>
-            </div>
+            <p className="text-[10px] text-muted-foreground mb-2">
+              {t('toolsInternal.fertilitySigns.signsCount', { count: SIGN_KEYS.length })}
+            </p>
             {SIGN_KEYS.map((key, i) => {
               const isOpen = expandedSign === key;
               return (
@@ -159,10 +146,9 @@ export default function FertilityAcademy() {
 
           {/* STRESS & FERTILITY TAB */}
           <TabsContent value="stress" className="space-y-2 mt-0">
-            <div className="flex items-center gap-2 mb-3">
-              <Leaf className="w-4 h-4 shrink-0 text-primary" />
-              <span className="text-xs font-bold text-foreground">{t('toolsInternal.stressFertility.topicsCount', { count: TOPIC_KEYS.length })}</span>
-            </div>
+            <p className="text-[10px] text-muted-foreground mb-2">
+              {t('toolsInternal.stressFertility.topicsCount', { count: TOPIC_KEYS.length })}
+            </p>
             {TOPIC_KEYS.map((key, i) => {
               const isOpen = expandedTopic === key;
               return (
