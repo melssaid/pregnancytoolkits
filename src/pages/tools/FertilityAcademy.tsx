@@ -8,14 +8,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 const LESSON_KEYS = [
-  "menstrualCycle", "ovulationProcess", "fertilizationBasics", "hormonesRole",
-  "ageAndFertility", "lifestyleFactors", "commonMyths", "whenToSeekHelp",
-  "maleFertility", "emotionalWellbeing", "trackingMethods", "optimizingTiming",
-  "implantationWindow", "cervicalHealth", "thyroidFertility", "pcosManagement",
-  "endometriosisAwareness", "nutritionFertility", "sleepHormones", "exerciseBalance",
-  "supplementsGuide", "environmentalToxins", "geneticFactors", "immunologyFertility",
-  "secondaryInfertility", "recurrentLoss", "fertilityPreservation", "assistedReproduction",
-  "epigeneticsFertility", "mindBodyConnection",
+  // أساسيات الخصوبة
+  "menstrualCycle", "ovulationProcess", "hormonesRole", "fertilizationBasics", "implantationWindow",
+  // التتبع والتوقيت
+  "trackingMethods", "optimizingTiming",
+  // صحة الجهاز التناسلي
+  "cervicalHealth", "maleFertility", "ageAndFertility",
+  // الحالات الطبية
+  "thyroidFertility", "pcosManagement", "endometriosisAwareness", "immunologyFertility",
+  // نمط الحياة والتغذية
+  "nutritionFertility", "supplementsGuide", "sleepHormones", "exerciseBalance",
+  "lifestyleFactors", "environmentalToxins",
+  // التحديات والدعم
+  "secondaryInfertility", "recurrentLoss", "geneticFactors", "epigeneticsFertility",
+  "emotionalWellbeing", "commonMyths",
+  // الخيارات المتقدمة
+  "whenToSeekHelp", "fertilityPreservation", "assistedReproduction",
 ] as const;
 
 const SIGN_KEYS = [
@@ -65,7 +73,7 @@ export default function FertilityAcademy() {
 
           {/* LESSONS TAB */}
           <TabsContent value="lessons" className="space-y-2 mt-0">
-            <p className="text-[10px] text-muted-foreground mb-2">
+            <p className="text-xs text-muted-foreground mb-2">
               {t("toolsInternal.fertilityAcademy.lessonsCount", { count: LESSON_KEYS.length })}
             </p>
             <div className="space-y-2">
@@ -81,7 +89,7 @@ export default function FertilityAcademy() {
                               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
                                 {lesson.order}
                               </span>
-                              <span className="text-xs font-semibold text-foreground" style={{ textAlign: isRTL ? "right" : "left" }}>
+                              <span className="text-sm font-bold text-foreground" style={{ textAlign: isRTL ? "right" : "left" }}>
                                 {lesson.title}
                               </span>
                             </div>
@@ -94,7 +102,7 @@ export default function FertilityAcademy() {
                           {isOpen && (
                             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.22, ease: "easeOut" }} className="overflow-hidden">
                               <div className="mx-3 mb-3 rounded-lg border border-border/50 bg-background/70 p-3" dir={dir}>
-                                <p className="whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground" style={{ textAlign: isRTL ? "right" : "left" }}>
+                                <p className="whitespace-pre-line text-xs leading-relaxed text-foreground/80" style={{ textAlign: isRTL ? "right" : "left" }}>
                                   {lesson.content}
                                 </p>
                               </div>
@@ -111,7 +119,7 @@ export default function FertilityAcademy() {
 
           {/* FERTILITY SIGNS TAB */}
           <TabsContent value="signs" className="space-y-2 mt-0">
-            <p className="text-[10px] text-muted-foreground mb-2">
+            <p className="text-xs text-muted-foreground mb-2">
               {t('toolsInternal.fertilitySigns.signsCount', { count: SIGN_KEYS.length })}
             </p>
             {SIGN_KEYS.map((key, i) => {
@@ -122,7 +130,7 @@ export default function FertilityAcademy() {
                     <CardContent className="p-0">
                       <div className="p-3">
                         <div className="flex items-center justify-between gap-2">
-                          <span className="text-xs font-semibold text-foreground">{t(`toolsInternal.fertilitySigns.signs.${key}.title`)}</span>
+                          <span className="text-sm font-bold text-foreground">{t(`toolsInternal.fertilitySigns.signs.${key}.title`)}</span>
                           <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted/70">
                             <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
                           </motion.span>
@@ -133,9 +141,9 @@ export default function FertilityAcademy() {
                           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.22, ease: "easeOut" }} className="overflow-hidden">
                             <div className="mx-3 mb-3 space-y-2">
                               <div className="rounded-lg border border-border/50 bg-background/70 p-3">
-                                <p className="whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground">{t(`toolsInternal.fertilitySigns.signs.${key}.description`)}</p>
+                                <p className="whitespace-pre-line text-xs leading-relaxed text-foreground/80">{t(`toolsInternal.fertilitySigns.signs.${key}.description`)}</p>
                               </div>
-                              <div className="p-2 rounded-lg bg-primary/5 text-[10px] text-primary font-medium">
+                              <div className="p-2 rounded-lg bg-primary/5 text-xs text-primary font-semibold">
                                 {t(`toolsInternal.fertilitySigns.signs.${key}.tip`)}
                               </div>
                             </div>
@@ -151,7 +159,7 @@ export default function FertilityAcademy() {
 
           {/* STRESS & FERTILITY TAB */}
           <TabsContent value="stress" className="space-y-2 mt-0">
-            <p className="text-[10px] text-muted-foreground mb-2">
+            <p className="text-xs text-muted-foreground mb-2">
               {t('toolsInternal.stressFertility.topicsCount', { count: TOPIC_KEYS.length })}
             </p>
             {TOPIC_KEYS.map((key, i) => {
@@ -162,7 +170,7 @@ export default function FertilityAcademy() {
                     <CardContent className="p-0">
                       <div className="p-3">
                         <div className="flex items-center justify-between gap-2">
-                          <span className="text-xs font-semibold text-foreground">{t(`toolsInternal.stressFertility.topics.${key}.title`)}</span>
+                          <span className="text-sm font-bold text-foreground">{t(`toolsInternal.stressFertility.topics.${key}.title`)}</span>
                           <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted/70">
                             <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
                           </motion.span>
@@ -173,9 +181,9 @@ export default function FertilityAcademy() {
                           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.22, ease: "easeOut" }} className="overflow-hidden">
                             <div className="mx-3 mb-3 space-y-2">
                               <div className="rounded-lg border border-border/50 bg-background/70 p-3">
-                                <p className="whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground">{t(`toolsInternal.stressFertility.topics.${key}.content`)}</p>
+                                <p className="whitespace-pre-line text-xs leading-relaxed text-foreground/80">{t(`toolsInternal.stressFertility.topics.${key}.content`)}</p>
                               </div>
-                              <div className="p-2 rounded-lg bg-primary/5 text-[10px] text-primary font-medium">
+                              <div className="p-2 rounded-lg bg-primary/5 text-xs text-primary font-semibold">
                                 {t(`toolsInternal.stressFertility.topics.${key}.practice`)}
                               </div>
                             </div>
