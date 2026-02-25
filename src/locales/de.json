@@ -3879,7 +3879,20 @@
     "trimester2": "Zweites Trimester",
     "trimester3": "Drittes Trimester",
     "bmi": "BMI",
-    "calories": "Kalorien"
+    "calories": "Kalorien",
+    "yourHealthData": "Ihre Gesundheitsdaten",
+    "healthDataDesc": "Geben Sie Ihre Daten für einen personalisierten Bericht ein",
+    "height": "Größe",
+    "age": "Alter",
+    "bloodType": "Blutgruppe",
+    "moreHealthData": "Weitere Gesundheitsdaten",
+    "showLess": "Weniger anzeigen",
+    "bloodPressure": "Blutdruck",
+    "sleepHours": "Schlafstunden",
+    "activityLevel": "Aktivitätsniveau",
+    "mood": "Stimmung",
+    "healthConditions": "Gesundheitszustände",
+    "bp": "Blutdruck"
   },
   "toolsInternal.walkingCoach": {
     "title": "Smarter Geh-Coach",

@@ -4121,7 +4121,20 @@
     "trimester2": "الثلث الثاني",
     "trimester3": "الثلث الثالث",
     "bmi": "مؤشر الكتلة",
-    "calories": "سعرات"
+    "calories": "سعرات",
+    "yourHealthData": "بياناتك الصحية",
+    "healthDataDesc": "أدخلي بياناتك للحصول على تقرير مخصص",
+    "height": "الطول",
+    "age": "العمر",
+    "bloodType": "فصيلة الدم",
+    "moreHealthData": "بيانات صحية إضافية",
+    "showLess": "إخفاء",
+    "bloodPressure": "ضغط الدم",
+    "sleepHours": "ساعات النوم",
+    "activityLevel": "مستوى النشاط",
+    "mood": "الحالة المزاجية",
+    "healthConditions": "الحالات الصحية",
+    "bp": "الضغط"
   },
   "toolsInternal.walkingCoach": {
     "title": "مدرب المشي الذكي",

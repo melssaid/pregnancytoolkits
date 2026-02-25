@@ -4082,7 +4082,20 @@
     "trimester2": "Segundo trimestre",
     "trimester3": "Tercer trimestre",
     "bmi": "IMC",
-    "calories": "Calorías"
+    "calories": "Calorías",
+    "yourHealthData": "Tus datos de salud",
+    "healthDataDesc": "Ingresa tus datos para un informe personalizado",
+    "height": "Altura",
+    "age": "Edad",
+    "bloodType": "Tipo de sangre",
+    "moreHealthData": "Más datos de salud",
+    "showLess": "Ver menos",
+    "bloodPressure": "Presión arterial",
+    "sleepHours": "Horas de sueño",
+    "activityLevel": "Nivel de actividad",
+    "mood": "Estado de ánimo",
+    "healthConditions": "Condiciones de salud",
+    "bp": "Presión"
   },
   "toolsInternal.walkingCoach": {
     "title": "Coach de Caminata Inteligente",
