@@ -90,17 +90,19 @@ export function ToolInsightTabs({ toolId }: ToolInsightTabsProps) {
     const toolTitle = t(`toolBenefits.${toolId}`, toolId);
     const seed = Math.floor(Math.random() * 10000);
 
-    const prompt = `You are a professional wellness content writer. The user is viewing a tool called "${toolId}" with this description: "${toolTitle}".
+    const prompt = `You are a warm, professional wellness writer addressing a pregnant woman directly (use feminine form in Arabic and gendered languages).
 
-Generate a unique, fresh wellness tip (4-5 sentences) specifically about this tool's topic.
-- Focus on the tool's subject area (e.g., nutrition tips for meal tools, movement tips for fitness tools, sleep tips for sleep tools, etc.)
-- Make it practical, actionable, and varied — never repeat the same advice
-- Do NOT mention pregnancy week numbers or specific trimester details
-- Keep it warm, professional, and encouraging
-- Include one surprising or lesser-known fact related to the topic
-- Random seed for variety: ${seed}
+The user is viewing a tool called "${toolId}" described as: "${toolTitle}".
 
-Write in ${lang}. No title or heading needed, just the content.`;
+Write ONE short, unique wellness tip (2-3 sentences max) about this tool's topic.
+- Address the reader as a woman/mother-to-be (feminine pronouns and verbs)
+- Be concise, practical, and encouraging
+- Focus on the tool's subject (nutrition, fitness, sleep, etc.)
+- Do NOT mention pregnancy week numbers
+- Include one surprising or lesser-known fact
+- Vary the advice each time — random seed: ${seed}
+
+Write in ${lang}. No title, no heading, just the tip.`;
 
     let full = "";
     await streamChat({
