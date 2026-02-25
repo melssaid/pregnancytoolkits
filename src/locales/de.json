@@ -8,6 +8,15 @@
     "search": "Suche",
     "settings": "Einstellungen"
   },
+  "hubNav": {
+    "meals": "Mahlzeiten",
+    "cravings": "Alternativen",
+    "shopping": "Einkaufen",
+    "exercises": "Übungen",
+    "backPain": "Rückenschmerzen",
+    "birthPlan": "Geburtsplan",
+    "positions": "Positionen"
+  },
   "relatedTools": {
     "title": "Setze deine Reise fort"
   },
