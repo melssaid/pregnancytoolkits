@@ -1,4 +1,5 @@
 import jsPDF from 'jspdf';
+import ArabicReshaper from 'arabic-reshaper';
 
 export type PDFProgressCallback = (percent: number) => void;
 
@@ -168,7 +169,67 @@ const COLORS = {
 type RGB = { r: number; g: number; b: number };
 
 function stripEmojis(text: string): string {
-  return text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+  let cleaned = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+  // Reshape Arabic text for jsPDF (converts to Presentation Forms so letters connect)
+  if (_isRTL && /[\u0600-\u06FF]/.test(cleaned)) {
+    try {
+      cleaned = reshapeArabicForPDF(cleaned);
+    } catch { /* fallback to raw text */ }
+  }
+  return cleaned;
+}
+
+/**
+ * Reshape Arabic text for jsPDF rendering.
+ * 1. Convert Arabic chars to Presentation Forms (so letters connect)
+ * 2. Apply visual bidi: reverse the overall string but keep LTR runs (numbers, Latin) intact
+ */
+function reshapeArabicForPDF(text: string): string {
+  // Step 1: Reshape Arabic characters to connected forms
+  const reshaped = ArabicReshaper.convertArabic(text);
+  
+  // Step 2: Visual bidi - split into runs of Arabic vs non-Arabic
+  // Then reverse the order of runs (RTL base direction) while keeping LTR runs internal order
+  const runs: { text: string; isRTL: boolean }[] = [];
+  let current = '';
+  let currentIsRTL = false;
+  
+  for (let i = 0; i < reshaped.length; i++) {
+    const ch = reshaped[i];
+    const isArabicChar = /[\u0600-\u06FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(ch);
+    const isNeutral = /[\s\.,;:!?\-\(\)\[\]\/\\'"،؛؟٪]/.test(ch);
+    
+    if (i === 0) {
+      currentIsRTL = isArabicChar || isNeutral;
+      current = ch;
+      continue;
+    }
+    
+    if (isNeutral) {
+      current += ch;
+      continue;
+    }
+    
+    if (isArabicChar !== currentIsRTL) {
+      if (current) runs.push({ text: current, isRTL: currentIsRTL });
+      current = ch;
+      currentIsRTL = isArabicChar;
+    } else {
+      current += ch;
+    }
+  }
+  if (current) runs.push({ text: current, isRTL: currentIsRTL });
+  
+  // Step 3: Reverse the order of runs (RTL paragraph direction)
+  // and reverse Arabic runs internally (since jsPDF writes LTR)
+  const visualRuns = runs.reverse().map(run => {
+    if (run.isRTL) {
+      return run.text.split('').reverse().join('');
+    }
+    return run.text;
+  });
+  
+  return visualRuns.join('');
 }
 
 function formatDateForPDF(date: Date, language: string): string {
@@ -194,7 +255,7 @@ const CONTENT_W = PAGE_W - MARGIN_X * 2;
 interface PDFState { doc: jsPDF; y: number; }
 
 function ensureSpace(s: PDFState, needed: number) {
-  if (s.y + needed > PAGE_H - MARGIN_Y) { s.doc.addPage(); s.y = MARGIN_Y; }
+  if (s.y + needed > PAGE_H - MARGIN_Y - 5) { s.doc.addPage(); s.y = MARGIN_Y; }
 }
 
 function drawLogo(s: PDFState, logoData: string | null) {
@@ -278,7 +339,13 @@ function drawSectionHeader(s: PDFState, title: string, color: RGB, count?: strin
 }
 
 function drawBulletItem(s: PDFState, text: string, color: RGB) {
-  ensureSpace(s, 6);
+  // Pre-calculate lines to know how much space we actually need
+  s.doc.setFontSize(9);
+  const processedText = stripEmojis(text);
+  const lines = s.doc.splitTextToSize(processedText, CONTENT_W - 14);
+  const neededSpace = lines.length * 4.5 + 2;
+  ensureSpace(s, neededSpace);
+  
   // Bullet dot
   s.doc.setFillColor(color.r, color.g, color.b);
   if (_isRTL) {
@@ -287,46 +354,43 @@ function drawBulletItem(s: PDFState, text: string, color: RGB) {
     s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
   }
   // Text
-  s.doc.setFontSize(9);
   s.doc.setTextColor(51, 65, 85);
-  const lines = s.doc.splitTextToSize(stripEmojis(text), CONTENT_W - 14);
   if (_isRTL) {
     s.doc.text(lines, MARGIN_X + CONTENT_W - 10, s.y + 3, { align: 'right' });
   } else {
     s.doc.text(lines, MARGIN_X + 10, s.y + 3);
   }
-  s.y += lines.length * 4.5 + 1;
+  s.y += neededSpace;
 }
 
 function drawLabelValueItem(s: PDFState, label: string, value: string, color: RGB) {
-  ensureSpace(s, 6);
+  s.doc.setFontSize(9);
+  const lbl = stripEmojis(label) + ': ';
+  const lblW = s.doc.getTextWidth(lbl);
+  const valLines = s.doc.splitTextToSize(stripEmojis(value), CONTENT_W - 14 - lblW);
+  const neededSpace = Math.max(valLines.length, 1) * 4.5 + 2;
+  ensureSpace(s, neededSpace);
+  
   s.doc.setFillColor(color.r, color.g, color.b);
   if (_isRTL) {
     s.doc.circle(MARGIN_X + CONTENT_W - 6, s.y + 2, 1.2, 'F');
   } else {
     s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
   }
-  s.doc.setFontSize(9);
   setFontBold(s.doc);
   s.doc.setTextColor(71, 85, 105);
-  const lbl = stripEmojis(label) + ': ';
   if (_isRTL) {
     s.doc.text(lbl, MARGIN_X + CONTENT_W - 10, s.y + 3, { align: 'right' });
-    const lblW = s.doc.getTextWidth(lbl);
     setFontNormal(s.doc);
     s.doc.setTextColor(100, 116, 139);
-    const valLines = s.doc.splitTextToSize(stripEmojis(value), CONTENT_W - 14 - lblW);
     s.doc.text(valLines, MARGIN_X + CONTENT_W - 10 - lblW, s.y + 3, { align: 'right' });
-    s.y += Math.max(valLines.length, 1) * 4.5 + 1;
   } else {
     s.doc.text(lbl, MARGIN_X + 10, s.y + 3);
-    const lblW = s.doc.getTextWidth(lbl);
     setFontNormal(s.doc);
     s.doc.setTextColor(100, 116, 139);
-    const valLines = s.doc.splitTextToSize(stripEmojis(value), CONTENT_W - 14 - lblW);
     s.doc.text(valLines, MARGIN_X + 10 + lblW, s.y + 3);
-    s.y += Math.max(valLines.length, 1) * 4.5 + 1;
   }
+  s.y += neededSpace;
 }
 
 // Render markdown text line by line into jsPDF
