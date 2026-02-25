@@ -4339,7 +4339,43 @@
   "insightTabs": {
     "dailyTip": "Tipp des Tages",
     "reassurance": "Beruhigung",
-    "loading": "Ihr persönlicher Tipp wird vorbereitet..."
+    "loading": "Dein persönlicher Tipp wird vorbereitet..."
+  },
+  "fertilityTip": {
+    "title": "Täglicher Expertentipp zur Fruchtbarkeit",
+    "disclaimer": "Allgemeine Wellness-Hinweise — kein Ersatz für professionelle medizinische Beratung.",
+    "tips": {
+      "tip1": "Das fruchtbare Fenster umfasst nur etwa 6 Tage pro Zyklus — 5 Tage vor dem Eisprung und den Eisprungtag selbst. Die Intimität in diesem Fenster zu planen, erhöht deine Chancen erheblich. Warte nicht auf einen positiven Ovulationstest, um anzufangen.",
+      "tip2": "Folsäure ist nicht nur für die Schwangerschaft wichtig — sie ist auch für die Eizellenqualität essentiell. Beginne 400–800 µg täglich mindestens 3 Monate vor dem Versuch. Dieser einfache Schritt kann einen echten Unterschied machen.",
+      "tip3": "Stress beeinflusst nicht nur deine Stimmung — er kann den Eisprung verzögern oder ganz unterdrücken. Füge ein beruhigendes Ritual zu deiner täglichen Routine hinzu: 5 Minuten Atemübung, ein Spaziergang in der Natur oder Tagebuchschreiben vor dem Schlafengehen.",
+      "tip4": "Dein Zervixschleim erzählt eine Geschichte. Wenn er klar, dehnbar und glitschig wird — wie rohes Eiweiß — signalisiert dein Körper die höchste Fruchtbarkeit. Diese Zeichen lesen zu lernen gibt dir einen natürlichen Vorteil.",
+      "tip5": "Moderate Bewegung unterstützt die Fruchtbarkeit, aber übermäßig intensives Training kann den Eisprung tatsächlich unterdrücken. Ziel: 30 Minuten sanfte Bewegung an 5 Tagen pro Woche — Spazierengehen, Schwimmen oder Yoga sind ideal.",
+      "tip6": "Beide Partner sollten untersucht werden. In etwa 40% der Fälle spielt der männliche Faktor eine Rolle. Ein einfaches Spermiogramm kann früh auf deiner Reise entscheidende Antworten liefern.",
+      "tip7": "Deine Schilddrüse ist ein stiller Fruchtbarkeitsregulator. Selbst leichte Ungleichgewichte können Eisprung und Einnistung beeinflussen. Bitte deine Ärztin um einen TSH-Test, wenn du kürzlich keinen hattest.",
+      "tip8": "Im Schlaf werden deine Reproduktionshormone produziert und reguliert. Ziel: 7–9 Stunden Qualitätsschlaf. Halte dein Schlafzimmer kühl, dunkel und 30 Minuten vor dem Schlafengehen bildschirmfrei.",
+      "tip9": "Vitamin-D-Mangel ist überraschend häufig und mit niedrigeren Fruchtbarkeitsraten verbunden. Lass einen Bluttest machen und erwäge ein Nahrungsergänzungsmittel, wenn dein Spiegel unter 30 ng/ml liegt.",
+      "tip10": "Koffein in Maßen (unter 200 mg/Tag — etwa eine Tasse Kaffee) gilt allgemein als sicher. Aber eine weitere Reduzierung kann die Empfängnis unterstützen, besonders wenn du schon länger versuchst.",
+      "tip11": "Dein Körpergewicht beeinflusst die Fruchtbarkeit — sowohl Unter- als auch Übergewicht können den Eisprung stören. Schon eine 5%ige Veränderung in Richtung eines gesunden BMI kann regelmäßige Zyklen wiederherstellen.",
+      "tip12": "CoQ10 ist ein Antioxidans, das die Mitochondrienfunktion in Eizellen unterstützt. Für Frauen über 35 kann eine tägliche Ergänzung von 200–600 mg die Eizellenqualität verbessern. Konsultiere immer zuerst deine Ärztin.",
+      "tip13": "Verlasse dich nicht allein auf Zyklustracking-Apps — sie sagen den Eisprung basierend auf Durchschnittswerten vorher, nicht auf deinen tatsächlichen Körpersignalen. Kombiniere App-Daten mit Zervixschleimbeobachtung und/oder Ovulationsstreifen.",
+      "tip14": "Nach dem Geschlechtsverkehr musst du nicht mit erhobenen Beinen liegen — das ist ein Mythos. Spermien erreichen den Gebärmutterhals innerhalb von Sekunden. Entspanne dich einfach und gehe natürlich deinem Tag nach.",
+      "tip15": "Omega-3-Fettsäuren (besonders DHA) unterstützen die Hormonproduktion und reduzieren Entzündungen. Iss zweimal pro Woche fettigen Fisch wie Lachs oder nimm ein hochwertiges Fischölpräparat.",
+      "tip16": "Wenn du seit 12 Monaten (oder 6 Monaten, wenn über 35) ohne Erfolg versuchst, suche eine Fachbewertung. Frühzeitige Untersuchung führt zu besseren Ergebnissen — längeres Warten bringt keinen Vorteil.",
+      "tip17": "Gleitmittel können die Spermienbeweglichkeit erheblich reduzieren. Wenn du Gleitmittel brauchst, wähle fruchtbarkeitsfreundliche Optionen, die speziell dafür entwickelt wurden, Spermien nicht zu schädigen.",
+      "tip18": "Zink ist essentiell für die Qualität von Eizellen und Spermien. Integriere zinkreiche Lebensmittel wie Kürbiskerne, Austern und Kichererbsen. Ein Nahrungsergänzungsmittel von 8–15 mg täglich ist ebenfalls vorteilhaft.",
+      "tip19": "Dein emotionales Wohlbefinden zählt. Fruchtbarkeitsreisen können emotional belastend sein. Zögere nicht, Unterstützung zu suchen — bei einer Therapeutin, Selbsthilfegruppe oder vertrauten Freundin.",
+      "tip20": "Alkoholkonsum — selbst moderater — kann die Fruchtbarkeit beider Partner reduzieren. Erwäge, Alkohol während deiner Kinderwunschreise zu reduzieren oder ganz darauf zu verzichten.",
+      "tip21": "Akupunktur hat vielversprechende Ergebnisse bei der Verbesserung der Gebärmutterdurchblutung und der Reduktion von Stresshormonen gezeigt. Viele Frauen empfinden sie als hilfreiche Ergänzung ihres Fruchtbarkeitsplans.",
+      "tip22": "Eisenspeicher sollten vor der Schwangerschaft optimiert werden. Niedriges Ferritin ist bei Frauen häufig und kann den Eisprung beeinflussen. Ein einfacher Bluttest kann deine Werte überprüfen.",
+      "tip23": "Umweltgifte in Plastik (BPA), Pestiziden und bestimmten Reinigungsmitteln können als endokrine Disruptoren wirken. Wechsle zu Glasbehältern, iss wenn möglich bio und verwende natürliche Reinigungsprodukte.",
+      "tip24": "Die Basaltemperatur über 3+ Zyklen zu verfolgen, enthüllt dein einzigartiges Eisprungmuster. Der Temperaturanstieg bestätigt den stattgefundenen Eisprung und hilft dir, zukünftige Zyklen besser zu timen.",
+      "tip25": "Hydratation beeinflusst direkt die Zervixschleimqualität. Trinke täglich 8–10 Gläser Wasser. Gut hydrierte Frauen produzieren mehr fruchtbaren Zervixschleim.",
+      "tip26": "Probiotika unterstützen ein gesundes vaginales Mikrobiom, wichtig für das Überleben der Spermien und die Einnistung. Integriere fermentierte Lebensmittel oder ein Lactobacillus-Probiotikum.",
+      "tip27": "Das Alter beeinflusst die Eizellenqualität mehr als die Menge. Du kannst die Uhr nicht anhalten, aber du kannst die Qualität durch Antioxidantien, gesunden Lebensstil und Reduktion von oxidativem Stress schützen.",
+      "tip28": "Die Spermiengesundheit deines Partners verbessert sich auch durch Lebensstiländerungen — ausgewogene Ernährung, weniger Alkohol, kein Rauchen und lockere Unterwäsche können innerhalb von 3 Monaten messbare Verbesserungen bringen.",
+      "tip29": "Geduld ist Teil des Prozesses. Selbst bei perfektem Timing und Gesundheit hat jeder Zyklus eine Empfängnischance von ca. 20–25%. Die meisten gesunden Paare empfangen innerhalb von 6–12 Monaten.",
+      "tip30": "Du bist auf dieser Reise nicht allein. Eines von sechs Paaren hat irgendwann Schwierigkeiten bei der Empfängnis. Hilfe zu suchen ist ein Zeichen von Stärke, nicht von Versagen."
+    }
   },
   "toolBenefits": {
     "heading": "Was bringt mir dieses Tool?",

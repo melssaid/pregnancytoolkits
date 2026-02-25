@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Leaf } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 const TOPIC_KEYS = [
   "stressHormones", "cortisol", "mindfulness", "breathing",
@@ -20,6 +21,7 @@ export default function StressFertility() {
   return (
     <ToolFrame title={t('tools.stressFertility.title')} subtitle={t('tools.stressFertility.description')} mood="calm" toolId="stress-fertility">
       <div className="space-y-2" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+        <FertilityDailyTip />
         <div className="flex items-center gap-2 mb-3">
           <Leaf className="w-4 h-4 shrink-0 text-primary" />
           <span className="text-xs font-bold text-foreground">{t('toolsInternal.stressFertility.topicsCount', { count: TOPIC_KEYS.length })}</span>

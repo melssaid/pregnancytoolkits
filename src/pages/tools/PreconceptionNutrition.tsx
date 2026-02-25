@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Leaf } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 const CATEGORY_KEYS = [
   "folateRich", "ironSources", "omega3", "antioxidants",
@@ -20,6 +21,7 @@ export default function PreconceptionNutrition() {
   return (
     <ToolFrame title={t('tools.preconceptionNutrition.title')} subtitle={t('tools.preconceptionNutrition.description')} mood="joyful" toolId="preconception-nutrition">
       <div className="space-y-2" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+        <FertilityDailyTip />
         <div className="flex items-center gap-2 mb-3">
           <Leaf className="w-4 h-4 shrink-0 text-accent" />
           <span className="text-xs font-bold text-foreground">{t('toolsInternal.preconceptionNutrition.categoriesCount', { count: CATEGORY_KEYS.length })}</span>

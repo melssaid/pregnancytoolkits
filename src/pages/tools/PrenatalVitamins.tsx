@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Pill, CheckCircle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 const VITAMIN_KEYS = [
   "folicAcid", "iron", "vitaminD", "omega3DHA",
@@ -25,6 +26,7 @@ export default function PrenatalVitamins() {
   return (
     <ToolFrame title={t('tools.prenatalVitamins.title')} subtitle={t('tools.prenatalVitamins.description')} mood="empowering" toolId="prenatal-vitamins">
       <div className="space-y-2" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+        <FertilityDailyTip />
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Pill className="w-4 h-4 shrink-0 text-warning" />
