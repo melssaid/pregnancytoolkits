@@ -13,6 +13,7 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { Progress } from "@/components/ui/progress";
+import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
 interface SleepSession {
   id: string;
@@ -522,6 +523,11 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
             {t('toolsInternal.babySleep.disclaimer')}
           </p>
         </div>
+
+        <RelatedToolLinks links={[
+          { to: "/tools/ai-lactation-prep", titleKey: "postpartumLinks.lactationLink", titleFallback: "Lactation Prep", descKey: "postpartumLinks.lactationLinkDesc", descFallback: "Prepare for breastfeeding with AI guidance", icon: "milk" },
+          { to: "/tools/postpartum-recovery", titleKey: "postpartumLinks.recoveryLink", titleFallback: "Postpartum Recovery", descKey: "postpartumLinks.recoveryLinkDesc", descFallback: "6-week recovery plan after birth", icon: "heart" },
+        ]} />
       </div>
     </ToolFrame>
   );

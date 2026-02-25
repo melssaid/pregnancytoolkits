@@ -29,6 +29,14 @@
     "laborProgressLink": "Suivi du travail",
     "laborProgressLinkDesc": "Suivez les contractions et les étapes du travail"
   },
+  "postpartumLinks": {
+    "lactationLink": "Préparation à l'allaitement",
+    "lactationLinkDesc": "Préparez-vous à l'allaitement avec l'aide de l'IA",
+    "recoveryLink": "Récupération post-partum",
+    "recoveryLinkDesc": "Plan de récupération de 6 semaines après l'accouchement",
+    "babySleepLink": "Suivi du sommeil bébé",
+    "babySleepLinkDesc": "Suivez et optimisez le sommeil de votre bébé"
+  },
   "videoLibrary": {
     "defaultTitle": "Vidéos éducatives",
     "defaultSubtitle": "Apprenez avec des conseils d'experts",

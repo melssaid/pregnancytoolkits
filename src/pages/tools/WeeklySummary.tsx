@@ -277,7 +277,7 @@ export default function WeeklySummary() {
 
         {/* Related Tools */}
         <RelatedToolLinks links={[
-          { to: "/tools/fetal-development", titleKey: "toolsInternal.weeklySummary.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.weeklySummary.fetalDevLinkDesc", descFallback: "See your baby's size and development", icon: "ruler" },
+          { to: "/tools/fetal-growth", titleKey: "toolsInternal.weeklySummary.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.weeklySummary.fetalDevLinkDesc", descFallback: "See your baby's size and development", icon: "ruler" },
           { to: "/tools/kick-counter", titleKey: "toolsInternal.weeklySummary.kickCounterLink", titleFallback: "Kick Counter", descKey: "toolsInternal.weeklySummary.kickCounterLinkDesc", descFallback: "Track your baby's movements", icon: "activity" },
         ]} />
 

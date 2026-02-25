@@ -29,6 +29,14 @@
     "laborProgressLink": "Labor Progress Tracker",
     "laborProgressLinkDesc": "Track contractions and labor stages"
   },
+  "postpartumLinks": {
+    "lactationLink": "Lactation Prep",
+    "lactationLinkDesc": "Prepare for breastfeeding with AI guidance",
+    "recoveryLink": "Postpartum Recovery",
+    "recoveryLinkDesc": "6-week recovery plan after birth",
+    "babySleepLink": "Baby Sleep Tracker",
+    "babySleepLinkDesc": "Track and optimize your baby's sleep"
+  },
   "videoLibrary": {
     "defaultTitle": "Educational Videos",
     "defaultSubtitle": "Learn more with expert guidance",

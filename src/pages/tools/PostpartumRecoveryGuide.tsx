@@ -22,6 +22,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
+import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
 type BirthType = "vaginal" | "cesarean";
 type RecoveryPhase = "week1" | "week2" | "week3_4" | "week5_6";
@@ -369,6 +370,11 @@ Please provide detailed recovery advice for this phase including:
             {t("toolsInternal.postpartumRecovery.changeBirthType")}
           </Button>
         </div>
+
+        <RelatedToolLinks links={[
+          { to: "/tools/ai-lactation-prep", titleKey: "postpartumLinks.lactationLink", titleFallback: "Lactation Prep", descKey: "postpartumLinks.lactationLinkDesc", descFallback: "Prepare for breastfeeding with AI guidance", icon: "milk" },
+          { to: "/tools/baby-sleep-tracker", titleKey: "postpartumLinks.babySleepLink", titleFallback: "Baby Sleep Tracker", descKey: "postpartumLinks.babySleepLinkDesc", descFallback: "Track and optimize your baby's sleep", icon: "moon" },
+        ]} />
       </div>
     </ToolFrame>
   );

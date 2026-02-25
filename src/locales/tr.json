@@ -29,6 +29,14 @@
     "laborProgressLink": "Doğum İlerleme Takibi",
     "laborProgressLinkDesc": "Kasılmaları ve doğum aşamalarını takip edin"
   },
+  "postpartumLinks": {
+    "lactationLink": "Emzirme Hazırlığı",
+    "lactationLinkDesc": "Yapay zeka rehberliğiyle emzirmeye hazırlanın",
+    "recoveryLink": "Doğum Sonrası İyileşme",
+    "recoveryLinkDesc": "Doğum sonrası 6 haftalık iyileşme planı",
+    "babySleepLink": "Bebek Uyku Takibi",
+    "babySleepLinkDesc": "Bebeğinizin uykusunu takip edin ve optimize edin"
+  },
   "videoLibrary": {
     "defaultTitle": "Eğitim Videoları",
     "defaultSubtitle": "Uzman rehberliğiyle daha fazla öğrenin",

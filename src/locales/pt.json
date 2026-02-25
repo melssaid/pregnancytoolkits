@@ -29,6 +29,14 @@
     "laborProgressLink": "Acompanhamento do Trabalho de Parto",
     "laborProgressLinkDesc": "Acompanhe as contrações e fases do parto"
   },
+  "postpartumLinks": {
+    "lactationLink": "Preparação para Amamentação",
+    "lactationLinkDesc": "Prepare-se para amamentar com orientação de IA",
+    "recoveryLink": "Recuperação Pós-parto",
+    "recoveryLinkDesc": "Plano de recuperação de 6 semanas após o parto",
+    "babySleepLink": "Rastreador de Sono do Bebê",
+    "babySleepLinkDesc": "Acompanhe e otimize o sono do seu bebê"
+  },
   "videoLibrary": {
     "defaultTitle": "Vídeos Educativos",
     "defaultSubtitle": "Aprenda mais com orientação especializada",
