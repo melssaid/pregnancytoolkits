@@ -43,9 +43,11 @@ export default function DueDateCalculator() {
   const { addNotification } = useNotifications();
   const { profile: userProfile, setLastPeriodDate: saveProfileLMP } = useUserProfile();
   const [lmpDate, setLmpDate] = useState<Date | undefined>(
-    userProfile.lastPeriodDate ? new Date(userProfile.lastPeriodDate) : undefined
+    userProfile.lastPeriodDate ? new Date(userProfile.lastPeriodDate + "T00:00:00") : undefined
   );
   const [conceptionDate, setConceptionDate] = useState<Date | undefined>();
+  const [lmpPopoverOpen, setLmpPopoverOpen] = useState(false);
+  const [conceptionPopoverOpen, setConceptionPopoverOpen] = useState(false);
   const [savedDates, setSavedDates] = useState<SavedDueDate[]>([]);
   const [result, setResult] = useState<{
     dueDate: Date;
@@ -226,24 +228,31 @@ export default function DueDateCalculator() {
                   <TabsContent value="lmp" className="space-y-4">
                     <div className="space-y-2">
                       <Label className="text-xs">{t('toolsInternal.dueDate.lmpLabel')}</Label>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button variant="outline" className={cn("w-full justify-start text-left font-normal h-11 border-border/60", !lmpDate && "text-muted-foreground")}>
-                            <CalendarIcon className="mr-2 h-4 w-4 text-primary shrink-0" />
-                            {lmpDate ? formatLocalized(lmpDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                      <div className="flex gap-2">
+                        <Popover open={lmpPopoverOpen} onOpenChange={setLmpPopoverOpen}>
+                          <PopoverTrigger asChild>
+                            <Button variant="outline" className={cn("flex-1 justify-start text-left font-normal h-11 border-border/60", !lmpDate && "text-muted-foreground")}>
+                              <CalendarIcon className="mr-2 h-4 w-4 text-primary shrink-0" />
+                              {lmpDate ? formatLocalized(lmpDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <CalendarUI
+                              mode="single"
+                              selected={lmpDate}
+                              onSelect={(date) => { setLmpDate(date); setLmpPopoverOpen(false); }}
+                              disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
+                              initialFocus
+                              className={cn("p-3 pointer-events-auto")}
+                            />
+                          </PopoverContent>
+                        </Popover>
+                        {lmpDate && (
+                          <Button variant="ghost" size="icon" className="h-11 w-11 shrink-0 text-muted-foreground hover:text-destructive" onClick={() => { setLmpDate(undefined); setResult(null); }}>
+                            <Trash2 className="h-4 w-4" />
                           </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <CalendarUI
-                            mode="single"
-                            selected={lmpDate}
-                            onSelect={setLmpDate}
-                            disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
-                            initialFocus
-                            className={cn("p-3 pointer-events-auto")}
-                          />
-                        </PopoverContent>
-                      </Popover>
+                        )}
+                      </div>
                       {lmpDate && userProfile.lastPeriodDate && format(lmpDate, 'yyyy-MM-dd') === userProfile.lastPeriodDate && (
                         <p className="text-xs text-primary flex items-center gap-1">
                           <Info className="h-3 w-3" />
@@ -262,24 +271,31 @@ export default function DueDateCalculator() {
                   <TabsContent value="conception" className="space-y-4">
                     <div className="space-y-2">
                       <Label className="text-xs">{t('toolsInternal.dueDate.conceptionLabel')}</Label>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button variant="outline" className={cn("w-full justify-start text-left font-normal h-11 border-border/60", !conceptionDate && "text-muted-foreground")}>
-                            <CalendarIcon className="mr-2 h-4 w-4 text-primary shrink-0" />
-                            {conceptionDate ? formatLocalized(conceptionDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                      <div className="flex gap-2">
+                        <Popover open={conceptionPopoverOpen} onOpenChange={setConceptionPopoverOpen}>
+                          <PopoverTrigger asChild>
+                            <Button variant="outline" className={cn("flex-1 justify-start text-left font-normal h-11 border-border/60", !conceptionDate && "text-muted-foreground")}>
+                              <CalendarIcon className="mr-2 h-4 w-4 text-primary shrink-0" />
+                              {conceptionDate ? formatLocalized(conceptionDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <CalendarUI
+                              mode="single"
+                              selected={conceptionDate}
+                              onSelect={(date) => { setConceptionDate(date); setConceptionPopoverOpen(false); }}
+                              disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
+                              initialFocus
+                              className={cn("p-3 pointer-events-auto")}
+                            />
+                          </PopoverContent>
+                        </Popover>
+                        {conceptionDate && (
+                          <Button variant="ghost" size="icon" className="h-11 w-11 shrink-0 text-muted-foreground hover:text-destructive" onClick={() => { setConceptionDate(undefined); setResult(null); }}>
+                            <Trash2 className="h-4 w-4" />
                           </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <CalendarUI
-                            mode="single"
-                            selected={conceptionDate}
-                            onSelect={setConceptionDate}
-                            disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
-                            initialFocus
-                            className={cn("p-3 pointer-events-auto")}
-                          />
-                        </PopoverContent>
-                      </Popover>
+                        )}
+                      </div>
                     </div>
                     <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
                       <Button onClick={calculateFromConception} className="w-full h-11 font-medium shadow-sm" disabled={!conceptionDate}>

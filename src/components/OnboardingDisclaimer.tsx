@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Check, Globe, Baby, Calendar, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Dumbbell, Lock, DollarSign, Languages, Eye } from 'lucide-react';
+import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Dumbbell, Lock, DollarSign, Languages, Eye, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
+import { formatLocalized } from '@/lib/dateLocale';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
 import logoImage from '@/assets/logo.png';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
@@ -30,7 +35,10 @@ export const OnboardingDisclaimer: React.FC = () => {
   const { profile, updateProfile, setLastPeriodDate } = useUserProfile();
   const [selectedLang, setSelectedLang] = useState(currentLanguage);
   const [week, setWeek] = useState<string>(String(profile.pregnancyWeek ?? 20));
-  const [lmpDate, setLmpDate] = useState<string>(profile.lastPeriodDate ?? '');
+  const [lmpDate, setLmpDate] = useState<Date | undefined>(
+    profile.lastPeriodDate ? new Date(profile.lastPeriodDate + "T00:00:00") : undefined
+  );
+  const [lmpPopoverOpen, setLmpPopoverOpen] = useState(false);
   const isRtl = i18n.dir() === 'rtl';
 
   useEffect(() => {
@@ -44,7 +52,7 @@ export const OnboardingDisclaimer: React.FC = () => {
       updateProfile({ pregnancyWeek: weekNum });
     }
     if (lmpDate) {
-      setLastPeriodDate(lmpDate);
+      setLastPeriodDate(format(lmpDate, 'yyyy-MM-dd'));
     }
     changeLanguage(selectedLang);
     localStorage.setItem(ONBOARDING_KEY, 'true');
@@ -241,15 +249,40 @@ export const OnboardingDisclaimer: React.FC = () => {
 
                     <div>
                       <label className="text-[11px] font-medium text-muted-foreground block mb-1">
-                        <Calendar className="w-3 h-3 inline me-1" />
+                        <CalendarIcon className="w-3 h-3 inline me-1" />
                         {t('onboarding.lastPeriod', 'Last Period Date')} ({t('onboarding.optional', 'optional')})
                       </label>
-                      <input
-                        type="date"
-                        value={lmpDate}
-                        onChange={e => setLmpDate(e.target.value)}
-                        className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                      />
+                      <div className="flex gap-1.5">
+                        <Popover open={lmpPopoverOpen} onOpenChange={setLmpPopoverOpen}>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant="outline"
+                              className={cn(
+                                "flex-1 justify-start text-left font-normal h-9 text-sm",
+                                !lmpDate && "text-muted-foreground"
+                              )}
+                            >
+                              <CalendarIcon className="mr-2 h-3.5 w-3.5 text-primary shrink-0" />
+                              {lmpDate ? formatLocalized(lmpDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0 z-[400]" align="start">
+                            <Calendar
+                              mode="single"
+                              selected={lmpDate}
+                              onSelect={(date) => { setLmpDate(date); setLmpPopoverOpen(false); }}
+                              disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
+                              initialFocus
+                              className={cn("p-3 pointer-events-auto")}
+                            />
+                          </PopoverContent>
+                        </Popover>
+                        {lmpDate && (
+                          <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive" onClick={() => setLmpDate(undefined)}>
+                            <X className="h-3.5 w-3.5" />
+                          </Button>
+                        )}
+                      </div>
                       {lmpDate && (
                         <p className="text-[10px] text-primary mt-0.5">
                           ✓ {t('onboarding.dueDateWillCompute', 'Due date will be computed automatically')}
