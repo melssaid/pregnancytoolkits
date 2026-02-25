@@ -104,9 +104,9 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       <footer className="border-t border-border bg-card py-8">
         <div className="container">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <div className="flex items-center gap-2">
-              <img src={logoImage} alt="Logo" width={24} height={24} loading="lazy" decoding="async" className="h-6 w-6 rounded-full object-cover" />
-              <span className="text-sm font-bold text-foreground">{t('app.name')}</span>
+            <div className="flex items-center gap-2.5">
+              <img src={logoImage} alt="Logo" width={32} height={32} loading="lazy" decoding="async" className="h-8 w-8 rounded-full object-cover grayscale opacity-60" />
+              <span className="text-sm font-bold text-muted-foreground/50">{t('app.name')}</span>
             </div>
             
             {/* Styled Links Container */}
