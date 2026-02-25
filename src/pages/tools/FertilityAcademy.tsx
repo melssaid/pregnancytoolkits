@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
-import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const LESSON_KEYS = [
@@ -48,7 +47,7 @@ export default function FertilityAcademy() {
   return (
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
       <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
-        <FertilityDailyTip />
+
 
         <Tabs defaultValue="lessons" dir={dir}>
           <TabsList className="grid w-full grid-cols-3 mb-3">
