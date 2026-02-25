@@ -1,7 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Calendar, Info, Sparkles } from "lucide-react";
+import { Info, Sparkles } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export default function FertileWindow() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+  const dir = isRTL ? "rtl" : "ltr";
   const [cycleLength, setCycleLength] = useState(28);
   const [lastPeriod, setLastPeriod] = useState("");
   const [result, setResult] = useState<{ ovulation: string; windowStart: string; windowEnd: string } | null>(null);
@@ -24,23 +26,23 @@ export default function FertileWindow() {
     const end = new Date(ovDay);
     end.setDate(ovDay.getDate() + 1);
     setResult({
-      ovulation: ovDay.toLocaleDateString(),
-      windowStart: start.toLocaleDateString(),
-      windowEnd: end.toLocaleDateString(),
+      ovulation: ovDay.toLocaleDateString(isRTL ? "ar" : undefined),
+      windowStart: start.toLocaleDateString(isRTL ? "ar" : undefined),
+      windowEnd: end.toLocaleDateString(isRTL ? "ar" : undefined),
     });
   };
 
   return (
     <ToolFrame title={t('tools.fertileWindow.title')} subtitle={t('tools.fertileWindow.description')} mood="nurturing" toolId="fertile-window">
-      <div className="space-y-4">
+      <div className="space-y-4" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
         <div className="space-y-3">
           <div>
             <Label className="text-xs font-medium">{t('toolsInternal.fertileWindow.lastPeriod')}</Label>
-            <Input type="date" value={lastPeriod} onChange={e => setLastPeriod(e.target.value)} className="mt-1" />
+            <Input type="date" value={lastPeriod} onChange={e => setLastPeriod(e.target.value)} className="mt-1" dir="ltr" />
           </div>
           <div>
             <Label className="text-xs font-medium">{t('toolsInternal.fertileWindow.cycleLength')}</Label>
-            <Input type="number" min={21} max={40} value={cycleLength} onChange={e => setCycleLength(Number(e.target.value))} className="mt-1" />
+            <Input type="number" min={21} max={40} value={cycleLength} onChange={e => setCycleLength(Number(e.target.value))} className="mt-1" dir="ltr" />
           </div>
           <Button onClick={calculate} className="w-full" disabled={!lastPeriod}>
             {t('toolsInternal.fertileWindow.calculate')}
@@ -52,25 +54,25 @@ export default function FertileWindow() {
             <Card className="border-primary/20 bg-primary/5">
               <CardContent className="p-4 space-y-3">
                 <div className="flex items-center gap-2 text-primary">
-                  <Sparkles className="w-4 h-4" />
+                  <Sparkles className="w-4 h-4 shrink-0" />
                   <span className="text-sm font-bold">{t('toolsInternal.fertileWindow.yourWindow')}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3 text-xs">
-                  <div className="p-2 rounded-lg bg-white/80 dark:bg-white/5">
+                  <div className="p-2 rounded-lg bg-background/80">
                     <p className="text-muted-foreground">{t('toolsInternal.fertileWindow.windowStart')}</p>
                     <p className="font-bold text-foreground">{result.windowStart}</p>
                   </div>
-                  <div className="p-2 rounded-lg bg-white/80 dark:bg-white/5">
+                  <div className="p-2 rounded-lg bg-background/80">
                     <p className="text-muted-foreground">{t('toolsInternal.fertileWindow.windowEnd')}</p>
                     <p className="font-bold text-foreground">{result.windowEnd}</p>
                   </div>
                 </div>
-                <div className="p-2 rounded-lg bg-white/80 dark:bg-white/5 text-xs">
+                <div className="p-2 rounded-lg bg-background/80 text-xs">
                   <p className="text-muted-foreground">{t('toolsInternal.fertileWindow.estimatedOvulation')}</p>
                   <p className="font-bold text-foreground">{result.ovulation}</p>
                 </div>
                 <p className="text-[10px] text-muted-foreground flex items-center gap-1">
-                  <Info className="w-3 h-3 flex-shrink-0" />
+                  <Info className="w-3 h-3 shrink-0" />
                   {t('toolsInternal.fertileWindow.disclaimer')}
                 </p>
               </CardContent>

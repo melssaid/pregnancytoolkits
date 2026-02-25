@@ -3853,6 +3853,113 @@
       "optimizingTiming": { "title": "Otimizar o momento" }
     }
   },
+  "toolsInternal.fertileWindow": {
+    "lastPeriod": "Primeiro dia da sua última menstruação",
+    "cycleLength": "Duração média do ciclo (dias)",
+    "calculate": "Calcular minha janela fértil",
+    "yourWindow": "Sua janela fértil",
+    "windowStart": "Início da janela",
+    "windowEnd": "Fim da janela",
+    "estimatedOvulation": "Dia estimado da ovulação",
+    "disclaimer": "Esta é uma estimativa baseada em dados médios do ciclo. A ovulação real pode variar. Consulte seu médico para orientação personalizada."
+  },
+  "toolsInternal.fertilitySigns": {
+    "signsCount": "{{count}} sinais que você deve conhecer",
+    "signs": {
+      "cervicalMucus": { "title": "Mudanças no muco cervical", "description": "Ao se aproximar da ovulação, o muco se torna mais abundante, claro e elástico — semelhante à clara de ovo crua. Facilita a passagem dos espermatozoides. Após a ovulação, fica mais espesso ou seca.", "tip": "Verifique diariamente antes de urinar. O muco mais fértil se estica entre os dedos sem romper." },
+      "basalTemp": { "title": "Temperatura basal", "description": "Após a ovulação, a progesterona causa aumento de 0,2–0,5°C. Acompanhar por vários ciclos ajuda a identificar seu padrão de ovulação.", "tip": "Meça toda manhã no mesmo horário, antes de levantar. Use um termômetro BBT." },
+      "cervicalPosition": { "title": "Posição do colo do útero", "description": "Durante a janela fértil, o colo sobe, amolece e abre ligeiramente. Após a ovulação, desce, endurece e fecha.", "tip": "Verifique na mesma posição todos os dias. Requer prática — seja paciente consigo mesma." },
+      "ovulationPain": { "title": "Dor de ovulação (Mittelschmerz)", "description": "Algumas mulheres sentem uma leve fisgada no baixo ventre durante a ovulação, causada pela ruptura do folículo. Dura de minutos a horas.", "tip": "Note de qual lado sente a sensação — pode alternar entre os ciclos." },
+      "breastTenderness": { "title": "Sensibilidade mamária", "description": "A progesterona crescente após a ovulação pode causar sensibilidade e sensação de plenitude nos seios. Um dos sintomas mais comuns da fase lútea.", "tip": "Acompanhe quando começa e termina para correlacionar com seu padrão de ovulação." },
+      "libidoChanges": { "title": "Mudanças no desejo", "description": "Muitas mulheres experimentam um aumento natural do desejo ao redor da ovulação, impulsionado pelo aumento de estrogênio e testosterona.", "tip": "Preste atenção nessas mudanças — geralmente coincidem com seus dias mais férteis." },
+      "moodShifts": { "title": "Mudanças de humor e energia", "description": "O aumento do estrogênio frequentemente melhora o humor e a energia. Após a ovulação, a progesterona pode trazer calma ou irritabilidade. Essas flutuações são normais.", "tip": "Manter um diário de humor diário pode revelar padrões correlacionados com as fases do seu ciclo." },
+      "bloating": { "title": "Inchaço leve", "description": "Mudanças hormonais ao redor da ovulação podem causar retenção de líquidos e inchaço leve — sinal da transição para a fase lútea.", "tip": "Manter-se hidratada e reduzir sódio ajuda a controlar o inchaço." },
+      "lightSpotting": { "title": "Sangramento de ovulação", "description": "Um leve sangramento rosado ao redor do dia da ovulação pode ser causado pela queda de estrogênio ou ruptura do folículo. Geralmente muito leve e breve.", "tip": "O sangramento de ovulação é diferente do sangramento de implantação (6–12 dias depois). Acompanhe o timing." },
+      "heightenedSenses": { "title": "Sentidos aguçados", "description": "Algumas mulheres relatam olfato mais aguçado durante a ovulação, possivelmente pelo estrogênio elevado.", "tip": "Se os cheiros parecem mais fortes no meio do ciclo, pode ser um indicador pessoal de ovulação." }
+    }
+  },
+  "toolsInternal.preconceptionNutrition": {
+    "categoriesCount": "{{count}} categorias nutricionais",
+    "categories": {
+      "folateRich": { "title": "Alimentos ricos em folato", "description": "O folato é crucial para prevenir defeitos do tubo neural. Dose recomendada: 400–800 µg/dia. Comece 1–3 meses antes da concepção.", "foods": "Vegetais verde-escuros, lentilhas, grão-de-bico, aspargos, brócolis, abacate, cereais fortificados, cítricos, beterraba" },
+      "ironSources": { "title": "Alimentos ricos em ferro", "description": "O ferro apoia a produção sanguínea e o transporte de oxigênio. Mulheres precisam de ~18 mg/dia. A deficiência pode afetar a ovulação.", "foods": "Carne vermelha, aves, peixe, lentilhas, espinafre, cereais fortificados, sementes de abóbora, tofu, chocolate amargo" },
+      "omega3": { "title": "Ácidos graxos ômega-3", "description": "Apoiam a produção hormonal, reduzem inflamação e são essenciais para o desenvolvimento cerebral e ocular do feto.", "foods": "Salmão, sardinha, cavala, nozes, sementes de chia, linhaça, cânhamo, suplementos DHA de algas" },
+      "antioxidants": { "title": "Alimentos antioxidantes", "description": "Protegem óvulos e espermatozoides do estresse oxidativo. Vitaminas C e E, selênio e CoQ10 são especialmente importantes.", "foods": "Frutas vermelhas, tomates, pimentões, castanhas, sementes, chá verde, folhas verdes, batata-doce" },
+      "zinc": { "title": "Fontes de zinco", "description": "Essencial para equilíbrio hormonal, qualidade do óvulo e divisão celular. Papel crucial na fertilidade masculina.", "foods": "Ostras, carne bovina, sementes de abóbora, castanha de caju, grão-de-bico, lentilhas, iogurte, queijo, grãos integrais" },
+      "vitaminD": { "title": "Fontes de vitamina D", "description": "Seus receptores estão nos ovários e útero. A deficiência está ligada a ciclos irregulares e SOP.", "foods": "Exposição solar (15–20 min/dia), peixes gordurosos, gemas de ovo, leite fortificado, cogumelos" },
+      "calcium": { "title": "Fontes de cálcio", "description": "Vital para a função reprodutiva e desenvolvimento embrionário. Meta: 1000 mg/dia.", "foods": "Laticínios, leites vegetais fortificados, couve, brócolis, amêndoas, sardinha, tofu, figos" },
+      "protein": { "title": "Proteína de qualidade", "description": "Fornece os blocos de construção para hormônios e células. Substituir parte da proteína animal por vegetal pode melhorar resultados.", "foods": "Ovos, aves, peixe, leguminosas, castanhas, sementes, iogurte grego, tofu, quinoa" },
+      "hydration": { "title": "Hidratação", "description": "A água é essencial para produção de muco cervical, transporte de nutrientes e equilíbrio hormonal. Meta: 8–10 copos/dia.", "foods": "Água, chás de ervas, água de coco, frutas ricas em água (melancia, pepino, laranjas)" },
+      "avoidList": { "title": "Alimentos a reduzir", "description": "Certos alimentos podem impactar negativamente a fertilidade. Reduzi-los ao tentar engravidar otimiza a preparação do corpo.", "foods": "Cafeína excessiva (>200 mg/dia), álcool, gorduras trans, alimentos ultraprocessados, peixes com alto mercúrio, açúcar excessivo" }
+    }
+  },
+  "toolsInternal.prenatalVitamins": {
+    "supplementsCount": "{{count}} suplementos para revisar",
+    "vitamins": {
+      "folicAcid": { "title": "Ácido fólico (Vitamina B9)", "description": "O suplemento pré-concepcional mais importante. Reduz significativamente o risco de defeitos do tubo neural. Comece 1–3 meses antes.", "dosage": "400–800 µg/dia. Algumas mulheres precisam de 4–5 mg — consulte seu médico." },
+      "iron": { "title": "Ferro", "description": "As necessidades aumentam de 18 para 27 mg/dia na gravidez. Construir reservas previne anemia.", "dosage": "18 mg/dia. Tomar com vitamina C. Evitar cálcio e chá simultaneamente." },
+      "vitaminD": { "title": "Vitamina D", "description": "Apoia imunidade, absorção de cálcio e saúde reprodutiva. Deficiência está ligada a diabetes gestacional e pré-eclâmpsia.", "dosage": "600–2000 UI/dia. Dose maior se deficiência comprovada." },
+      "omega3DHA": { "title": "Ômega-3 DHA", "description": "Crucial para o desenvolvimento cerebral e retiniano do feto. Começar antes garante reservas suficientes.", "dosage": "200–300 mg DHA/dia. Escolha suplementos testados para mercúrio." },
+      "calcium": { "title": "Cálcio", "description": "Se a ingestão materna for insuficiente, o bebê retirará cálcio dos ossos da mãe. Construir reservas protege a saúde óssea.", "dosage": "1000 mg/dia. Melhor absorvido em doses de 500 mg ou menos." },
+      "iodine": { "title": "Iodo", "description": "Essencial para a tireoide, que afeta diretamente fertilidade e desenvolvimento cerebral do feto.", "dosage": "150 µg antes da gravidez, 220 µg durante. Verifique seu suplemento pré-natal." },
+      "zinc": { "title": "Zinco", "description": "Apoia qualidade do óvulo, equilíbrio hormonal, imunidade e síntese de DNA.", "dosage": "8 mg/dia. A maioria dos pré-natais contém quantidade suficiente." },
+      "vitaminB12": { "title": "Vitamina B12", "description": "Trabalha com folato para síntese de DNA e sistema nervoso. Deficiência mais comum em vegetarianas.", "dosage": "2,4 µg/dia. Veganas devem suplementar." },
+      "vitaminC": { "title": "Vitamina C", "description": "Potente antioxidante que protege óvulos, melhora absorção de ferro e apoia imunidade.", "dosage": "75–90 mg/dia. Presente em cítricos, frutas vermelhas e pimentões." },
+      "vitaminE": { "title": "Vitamina E", "description": "Apoia espessura e qualidade do endométrio e protege membranas celulares.", "dosage": "15 mg/dia. Presente em castanhas, sementes e óleos vegetais." },
+      "coq10": { "title": "CoQ10", "description": "Antioxidante que apoia a função mitocondrial nos óvulos, especialmente para mulheres acima de 35.", "dosage": "100–600 mg/dia. A forma Ubiquinol é melhor absorvida. Consulte seu médico." },
+      "probiotics": { "title": "Probióticos", "description": "Um microbioma saudável apoia a fertilidade e pH vaginal ideal para sobrevivência dos espermatozoides.", "dosage": "Probiótico multi-cepas com Lactobacillus. Alimentos fermentados: iogurte, kefir, chucrute." }
+    }
+  },
+  "toolsInternal.twwCompanion": {
+    "subtitle": "Seu guia diário durante as duas semanas de espera",
+    "days": {
+      "day1": { "title": "Ovulação + 1", "body": "Se a ovulação foi ontem, o óvulo viaja pela trompa de Falópio. A fecundação ocorre em 12–24 horas. Hoje não há o que fazer para influenciar — e está tudo bem.", "tip": "Respire fundo. A jornada começou. Foque em algo que te dá prazer hoje." },
+      "day2": { "title": "Inícios celulares", "body": "Se houve fecundação, a célula começa a se dividir — primeiro em 2, depois 4. Esse grupo viaja em direção ao útero.", "tip": "Mantenha-se hidratada e coma de forma nutritiva. Seu corpo faz um trabalho incrível no nível celular." },
+      "day3": { "title": "Estágio de mórula", "body": "As células formam uma bola sólida chamada mórula (~16 células). A progesterona sobe, preparando o endométrio.", "tip": "Atividade leve é perfeitamente aceitável. Não precisa restringir sua rotina." },
+      "day4": { "title": "Entrada no útero", "body": "A mórula chega ao útero por volta do dia 4, formando uma cavidade e se tornando um blastocisto. O endométrio se espessa.", "tip": "Pratique mindfulness ou alongamentos leves. Gerenciar a expectativa faz parte da jornada." },
+      "day5": { "title": "Formação do blastocisto", "body": "O blastocisto tem dois grupos celulares: massa interna (futuro embrião) e trofoblasto (futura placenta). Flutua livre na cavidade uterina.", "tip": "Bom dia para escrever pensamentos e sentimentos. Autoexpressão é terapêutico." },
+      "day6": { "title": "Implantação pode começar", "body": "O blastocisto procura o local ideal. Células do trofoblasto começam a penetrar no endométrio. Leve sangramento pode ocorrer.", "tip": "Leve sangramento é normal nesta fase. Não entre em pânico — e não teste ainda." },
+      "day7": { "title": "Janela de implantação", "body": "Dias 6–10 são a janela típica. O blastocisto se aprofunda no endométrio. Sinais precoces são trocados entre o embrião e seu corpo.", "tip": "Continue suas atividades normais. Descanse quando precisar. Confie no processo." },
+      "day8": { "title": "hCG começa", "body": "Se a implantação avança, pequenas quantidades de hCG são produzidas. Esse hormônio mantém o corpo lúteo ativo. Os níveis ainda são muito baixos para detectar.", "tip": "Resista à vontade de testar. O hCG precisa de tempo. Paciência é sua maior aliada agora." },
+      "day9": { "title": "Sinais em ascensão", "body": "Os níveis de hCG sobem mas podem estar abaixo do limiar de detecção. A implantação deve estar completa ou quase.", "tip": "Presenteie-se com algo relaxante — banho morno, seu chá favorito ou caminhada na natureza." },
+      "day10": { "title": "Quase lá", "body": "Se houve implantação, o hCG dobra a cada ~48 horas. Alguns testes sensíveis podem detectar gravidez precoce. Negativo hoje não significa que não está grávida.", "tip": "Negativo hoje? Não perca a esperança. Muitas gravidezes bem-sucedidas só mostram positivo no dia 12–14." },
+      "day11": { "title": "Expectativa crescente", "body": "O hCG continua subindo. Você pode notar cólicas leves, sensibilidade mamária ou cansaço. Esses sintomas também podem ser da progesterona.", "tip": "Observar sintomas é natural mas pode aumentar a ansiedade. Tente estar presente na sua vida diária." },
+      "day12": { "title": "Testes mais confiáveis", "body": "A maioria dos testes caseiros fica confiável a partir de hoje. Use a primeira urina da manhã. Uma linha fraca é um resultado positivo.", "tip": "Seja qual for o resultado: um ciclo não define sua jornada. Seja gentil consigo mesma." },
+      "day13": { "title": "A véspera", "body": "Amanhã sua menstruação é esperada (ciclo de 28 dias). Se não vier e o teste mostrar uma linha fraca, parabéns podem estar em ordem.", "tip": "Prepare-se emocionalmente para ambos os resultados. Ambos são válidos." },
+      "day14": { "title": "O dia da resposta", "body": "Hoje sua menstruação é esperada. Sua ausência com teste positivo é forte indicador. Se positivo, entre em contato com seu médico para a primeira consulta (~6–8 semanas).", "tip": "Positivo? Celebre este momento. Negativo? Você é forte e resiliente. Ambos os resultados merecem compaixão." }
+    }
+  },
+  "toolsInternal.stressFertility": {
+    "topicsCount": "{{count}} tópicos para explorar",
+    "topics": {
+      "stressHormones": { "title": "Como o estresse afeta a fertilidade", "content": "O estresse crônico libera cortisol e adrenalina, que podem perturbar o eixo HPG — a via hormonal que controla a ovulação.", "practice": "Identifique seus 3 principais fatores de estresse esta semana. Para cada um, escreva uma pequena ação para reduzir seu impacto." },
+      "cortisol": { "title": "Entendendo o cortisol", "content": "O cortisol é o hormônio do estresse primário. Em pequenas doses é útil, mas cronicamente elevado suprime hormônios reprodutivos e perturba o sono.", "practice": "Técnica 4-7-8: inspire 4 segundos, segure 7, expire 8. Repita 4 vezes." },
+      "mindfulness": { "title": "Mindfulness para fertilidade", "content": "Mindfulness é estar plenamente presente sem julgamento. Estudos mostram que reduz ansiedade e depressão. Mesmo 10 minutos diários reduzem o cortisol.", "practice": "Escaneamento corporal de 5 min: feche os olhos, respire fundo, mova sua atenção dos pés à cabeça." },
+      "breathing": { "title": "Técnicas de respiração", "content": "A respiração controlada ativa o nervo vago, disparando a resposta de relaxamento. Reduz frequência cardíaca, pressão e cortisol.", "practice": "Respiração quadrada: inspire 4 tempos → segure 4 → expire 4 → segure 4. Por 5 minutos." },
+      "journaling": { "title": "Escrita terapêutica", "content": "Escrever sobre emoções reduz o estresse e melhora a imunidade. Objetivo: processar emoções e celebrar pequenas vitórias.", "practice": "Hoje à noite escreva: 1) Gratidão, 2) Preocupação que quero liberar, 3) Algo gentil que fiz por mim." },
+      "sleep": { "title": "Sono e fertilidade", "content": "O sono é quando o corpo repara, produz hormônios e processa emoções. Menos de 6 horas está associado a menor fertilidade.", "practice": "Rotina noturna: sem telas 30 min antes, luzes baixas, lavanda, quarto fresco (18–20°C)." },
+      "exercise": { "title": "Movimento e alívio do estresse", "content": "Exercício moderado regular é um dos melhores aliviadores de estresse. Mas exercício excessivo pode suprimir a ovulação.", "practice": "Esta semana: 30 min de movimento moderado 5 dias: caminhada, yoga, natação ou dança." },
+      "socialSupport": { "title": "Construindo sua rede de apoio", "content": "Isolamento amplifica o estresse. Compartilhar sua jornada com pessoas de confiança reduz significativamente a carga emocional.", "practice": "Identifique uma pessoa de confiança. Compartilhe algo da sua jornada esta semana." },
+      "professionalHelp": { "title": "Quando buscar apoio profissional", "content": "Se a ansiedade afeta sua vida diária, sono ou relacionamentos, o apoio profissional pode ajudar.", "practice": "Procure um terapeuta especializado em psicologia reprodutiva. Muitos oferecem sessões virtuais." },
+      "acceptance": { "title": "Praticando a aceitação", "content": "Aceitar não é desistir — é reconhecer que algumas coisas estão fora do seu controle enquanto se foca no que pode influenciar.", "practice": "Repita: 'Estou fazendo tudo o que posso. Confio no meu corpo e na minha jornada. O resultado não define meu valor.'" }
+    }
+  },
+  "toolsInternal.preconceptionCheckup": {
+    "checks": {
+      "generalCheckup": { "title": "Check-up geral de saúde", "description": "Exame físico completo para avaliar sua saúde, pressão arterial, peso e discutir seus planos de gravidez." },
+      "bloodWork": { "title": "Hemograma completo", "description": "Verifica anemia, infecções e saúde sanguínea. Identifica deficiência de ferro a ser tratada antes da gravidez." },
+      "pap": { "title": "Papanicolau / Citologia cervical", "description": "Rastreia anormalidades cervicais. Melhor realizado antes da gravidez." },
+      "thyroid": { "title": "Teste de tireoide (TSH)", "description": "Distúrbios da tireoide são comuns e podem afetar significativamente a fertilidade e a gravidez." },
+      "rubella": { "title": "Imunidade contra rubéola", "description": "A rubéola na gravidez pode causar defeitos graves. Vacinação recomendada pelo menos 1 mês antes de tentar." },
+      "hepatitis": { "title": "Triagem de hepatite B e C", "description": "A hepatite B pode ser transmitida ao bebê no parto. Conhecer seu status permite medidas preventivas." },
+      "hiv": { "title": "Triagem de HIV e ISTs", "description": "A triagem rotineira protege sua saúde e a do seu futuro bebê. Detecção precoce permite tratamento eficaz." },
+      "dental": { "title": "Consulta odontológica", "description": "Doenças gengivais estão ligadas ao parto prematuro. Mudanças hormonais podem piorar problemas dentários existentes." },
+      "geneticScreening": { "title": "Triagem de portadores genéticos", "description": "Testa se você ou seu parceiro carregam genes para fibrose cística, anemia falciforme ou talassemia." },
+      "mentalHealth": { "title": "Avaliação de saúde mental", "description": "Discuta qualquer histórico de depressão ou ansiedade com seu médico. Condições existentes podem ser gerenciadas proativamente." },
+      "medications": { "title": "Revisão de medicamentos", "description": "Revise todos os medicamentos e suplementos. Alguns não são seguros na gravidez — organize alternativas antecipadamente." },
+      "vaccinations": { "title": "Revisão de vacinas", "description": "Certifique-se de estar em dia com as vacinas recomendadas. Algumas não podem ser dadas durante a gravidez." }
+    }
+  },
 
   "socialProof": {
     "title": "Tudo o que você precisa 💕",

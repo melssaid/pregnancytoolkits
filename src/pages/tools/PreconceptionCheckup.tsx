@@ -12,7 +12,9 @@ const CHECK_KEYS = [
 ];
 
 export default function PreconceptionCheckup() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+  const dir = isRTL ? "rtl" : "ltr";
   const [completed, setCompleted] = useState<string[]>([]);
 
   const toggle = (key: string) => {
@@ -23,11 +25,11 @@ export default function PreconceptionCheckup() {
 
   return (
     <ToolFrame title={t('tools.preconceptionCheckup.title')} subtitle={t('tools.preconceptionCheckup.description')} mood="empowering" toolId="preconception-checkup">
-      <div className="space-y-3">
+      <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
         {/* Progress */}
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-2">
-            <CheckSquare className="w-4 h-4 text-amber-500" />
+            <CheckSquare className="w-4 h-4 shrink-0 text-warning" />
             <span className="text-xs font-bold text-foreground">{completed.length}/{CHECK_KEYS.length}</span>
           </div>
           <span className="text-[10px] font-medium text-primary">{progress}%</span>
@@ -40,13 +42,13 @@ export default function PreconceptionCheckup() {
           {CHECK_KEYS.map((key, i) => {
             const isDone = completed.includes(key);
             return (
-              <motion.div key={key} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}>
+              <motion.div key={key} initial={{ opacity: 0, x: isRTL ? 14 : -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.03, duration: 0.22 }}>
                 <Card
-                  className={`border-border/50 transition-all cursor-pointer ${isDone ? 'border-primary/30 bg-primary/5' : 'hover:border-amber-200/50'}`}
+                  className={`border-border/60 transition-all duration-300 cursor-pointer ${isDone ? 'border-primary/30 bg-primary/5' : 'hover:border-warning/25'}`}
                   onClick={() => toggle(key)}
                 >
                   <CardContent className="p-3 flex items-center gap-3">
-                    <CheckCircle className={`w-4 h-4 flex-shrink-0 transition-colors ${isDone ? 'text-primary' : 'text-muted-foreground/25'}`} />
+                    <CheckCircle className={`w-4 h-4 shrink-0 transition-colors ${isDone ? 'text-primary' : 'text-muted-foreground/25'}`} />
                     <div className="flex-1 min-w-0">
                       <p className={`text-xs font-semibold ${isDone ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
                         {t(`toolsInternal.preconceptionCheckup.checks.${key}.title`)}
