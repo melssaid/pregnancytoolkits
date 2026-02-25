@@ -3631,7 +3631,7 @@
   "toolsInternal.dueDate.videosTitle": "Schwangerschafts-Zeitplan-Videos",
   "toolsInternal.dueDate.videosSubtitle": "Wöchentliche Entwicklung und Vorbereitungsanleitungen",
   "toolsInternal.fertilityAcademy": {
-    "lessonsCount": "{{count}} Lektionen verfügbar",
+    "lessonsCount": "{{count}} Lernmodule",
     "lessons": {
       "menstrualCycle": { "title": "Den Menstruationszyklus verstehen" },
       "ovulationProcess": { "title": "So funktioniert der Eisprung" },
@@ -3644,7 +3644,25 @@
       "maleFertility": { "title": "Männliche Fruchtbarkeit" },
       "emotionalWellbeing": { "title": "Emotionales Wohlbefinden" },
       "trackingMethods": { "title": "Tracking-Methoden" },
-      "optimizingTiming": { "title": "Timing optimieren" }
+      "optimizingTiming": { "title": "Timing optimieren" },
+      "implantationWindow": { "title": "Das Einnistungsfenster" },
+      "cervicalHealth": { "title": "Zervixgesundheit & Fruchtbarkeit" },
+      "thyroidFertility": { "title": "Schilddrüse & Fruchtbarkeit" },
+      "pcosManagement": { "title": "PCOS & Fruchtbarkeit" },
+      "endometriosisAwareness": { "title": "Endometriose & Fruchtbarkeit" },
+      "nutritionFertility": { "title": "Optimale Ernährung für Fruchtbarkeit" },
+      "sleepHormones": { "title": "Schlaf & Fruchtbarkeitshormone" },
+      "exerciseBalance": { "title": "Sport & Fruchtbarkeit ausbalancieren" },
+      "supplementsGuide": { "title": "Smarter Nahrungsergänzungs-Guide" },
+      "environmentalToxins": { "title": "Umweltgifte & Fruchtbarkeit" },
+      "geneticFactors": { "title": "Genetische Faktoren & Fruchtbarkeit" },
+      "immunologyFertility": { "title": "Immunologie & Fruchtbarkeit" },
+      "secondaryInfertility": { "title": "Sekundäre Unfruchtbarkeit" },
+      "recurrentLoss": { "title": "Wiederholte Fehlgeburten verstehen" },
+      "fertilityPreservation": { "title": "Fruchtbarkeitserhaltung" },
+      "assistedReproduction": { "title": "Assistierte Reproduktionstechniken" },
+      "epigeneticsFertility": { "title": "Epigenetik & Generationengesundheit" },
+      "mindBodyConnection": { "title": "Die Geist-Körper-Verbindung" }
     }
   },
   "toolsInternal.fertileWindow": {

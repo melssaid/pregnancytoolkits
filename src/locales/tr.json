@@ -3834,7 +3834,7 @@
   "toolsInternal.dueDate.videosTitle": "Gebelik Zaman Çizelgesi Videoları",
   "toolsInternal.dueDate.videosSubtitle": "Haftalık gelişim ve doğuma hazırlık rehberleri",
   "toolsInternal.fertilityAcademy": {
-    "lessonsCount": "{{count}} ders mevcut",
+    "lessonsCount": "{{count}} eğitim modülü",
     "lessons": {
       "menstrualCycle": { "title": "Adet döngüsünü anlamak" },
       "ovulationProcess": { "title": "Yumurtlama nasıl çalışır?" },
@@ -3847,7 +3847,25 @@
       "maleFertility": { "title": "Erkek doğurganlığı" },
       "emotionalWellbeing": { "title": "Duygusal iyi oluş" },
       "trackingMethods": { "title": "Takip yöntemleri" },
-      "optimizingTiming": { "title": "Zamanlamayı optimize etmek" }
+      "optimizingTiming": { "title": "Zamanlamayı optimize etmek" },
+      "implantationWindow": { "title": "İmplantasyon penceresi" },
+      "cervicalHealth": { "title": "Servikal sağlık ve doğurganlık" },
+      "thyroidFertility": { "title": "Tiroid ve doğurganlık" },
+      "pcosManagement": { "title": "PKOS yönetimi ve doğurganlık" },
+      "endometriosisAwareness": { "title": "Endometriozis ve doğurganlık" },
+      "nutritionFertility": { "title": "Doğurganlık için optimal beslenme" },
+      "sleepHormones": { "title": "Uyku ve doğurganlık hormonları" },
+      "exerciseBalance": { "title": "Egzersiz ve doğurganlık dengesi" },
+      "supplementsGuide": { "title": "Akıllı takviye rehberi" },
+      "environmentalToxins": { "title": "Çevresel toksinler ve doğurganlık" },
+      "geneticFactors": { "title": "Genetik faktörler ve doğurganlık" },
+      "immunologyFertility": { "title": "İmmünoloji ve doğurganlık" },
+      "secondaryInfertility": { "title": "İkincil kısırlık" },
+      "recurrentLoss": { "title": "Tekrarlayan gebelik kaybını anlamak" },
+      "fertilityPreservation": { "title": "Doğurganlık koruma" },
+      "assistedReproduction": { "title": "Yardımcı üreme teknikleri" },
+      "epigeneticsFertility": { "title": "Epigenetik ve nesil sağlığı" },
+      "mindBodyConnection": { "title": "Zihin-beden bağlantısı" }
     }
   },
   "toolsInternal.fertileWindow": {
