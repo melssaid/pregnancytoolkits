@@ -996,39 +996,109 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
         break;
     }
 
-    const PERPLEXITY_API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
+    // Determine which provider to use:
+    // Perplexity ONLY for types that genuinely benefit from live web search with citations
+    // Lovable AI (Gemini) for everything else — it's free/included
+    const SEARCH_GROUNDED_TYPES = ["pregnancy-assistant"]; // Only the assistant benefits from live medical sources
+    const usePerplexity = SEARCH_GROUNDED_TYPES.includes(type);
 
-    if (!PERPLEXITY_API_KEY) {
-      console.error("PERPLEXITY_API_KEY is not configured");
-      return new Response(
-        JSON.stringify({ error: "AI service is not properly configured" }),
-        { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    if (usePerplexity) {
+      // ─── PERPLEXITY PATH (search-grounded, with citations) ───
+      const PERPLEXITY_API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
+
+      if (!PERPLEXITY_API_KEY) {
+        console.warn("PERPLEXITY_API_KEY not configured, falling back to Lovable AI");
+      } else {
+        console.log(`Processing ${type} request, language: ${requestedLanguage}, provider: perplexity`);
+
+        const MAX_RETRIES = 2;
+        let lastError = "";
+        let lastStatus = 500;
+        let perplexitySucceeded = false;
+
+        for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+          try {
+            const response = await fetch("https://api.perplexity.ai/chat/completions", {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                model: "sonar-pro",
+                messages: [
+                  { role: "system", content: systemPrompt },
+                  ...(messages || []),
+                ],
+                stream: true,
+                search_recency_filter: "year",
+              }),
+            });
+
+            if (response.ok) {
+              return new Response(response.body, {
+                headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+              });
+            }
+
+            lastStatus = response.status;
+
+            if (response.status === 429) {
+              console.log("Perplexity rate limited, falling back to Lovable AI");
+              break;
+            }
+            if (response.status === 402) {
+              console.log("Perplexity payment required, falling back to Lovable AI");
+              break;
+            }
+
+            lastError = await response.text();
+
+            if ([502, 503, 504].includes(response.status) && attempt < MAX_RETRIES) {
+              console.log(`Perplexity returned ${response.status}, retrying (attempt ${attempt + 1}/${MAX_RETRIES})...`);
+              await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
+              continue;
+            }
+
+            console.error(`Perplexity error: ${response.status}, falling back to Lovable AI`);
+            break;
+          } catch (fetchError) {
+            lastError = String(fetchError);
+            if (attempt < MAX_RETRIES) {
+              console.log(`Perplexity fetch error, retrying (attempt ${attempt + 1}/${MAX_RETRIES})...`);
+              await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
+              continue;
+            }
+            console.error("Perplexity failed after retries, falling back to Lovable AI");
+            break;
+          }
+        }
+        // If we reach here, Perplexity failed — fall through to Lovable AI below
+      }
     }
 
-    console.log(`Processing ${type} request, language: ${requestedLanguage}, provider: perplexity`);
+    // ─── LOVABLE AI PATH (primary for most types, fallback for Perplexity failures) ───
+    console.log(`Processing ${type} request, language: ${requestedLanguage}, provider: lovable-ai (gemini)`);
 
-    // Use Perplexity sonar-pro with automatic retry on transient errors
-    const MAX_RETRIES = 2;
-    let lastError = "";
-    let lastStatus = 500;
+    const MAX_RETRIES_LOVABLE = 2;
+    let lastErrorLovable = "";
+    let lastStatusLovable = 500;
 
-    for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    for (let attempt = 0; attempt <= MAX_RETRIES_LOVABLE; attempt++) {
       try {
-        const response = await fetch("https://api.perplexity.ai/chat/completions", {
+        const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+            Authorization: `Bearer ${LOVABLE_API_KEY}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: "sonar-pro",
+            model: "google/gemini-2.5-flash",
             messages: [
               { role: "system", content: systemPrompt },
               ...(messages || []),
             ],
             stream: true,
-            search_recency_filter: "year",
           }),
         });
 
@@ -1038,7 +1108,7 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
           });
         }
 
-        lastStatus = response.status;
+        lastStatusLovable = response.status;
 
         if (response.status === 429) {
           return new Response(
@@ -1048,37 +1118,36 @@ Be compassionate, practical, and empowering. New mothers need support and reassu
         }
         if (response.status === 402) {
           return new Response(
-            JSON.stringify({ error: "Please add credit to Lovable AI account" }),
+            JSON.stringify({ error: "AI usage limit reached. Please add credits to continue." }),
             { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
           );
         }
 
-        lastError = await response.text();
+        lastErrorLovable = await response.text();
 
-        // Retry on 502/503/504 (transient server errors)
-        if ([502, 503, 504].includes(response.status) && attempt < MAX_RETRIES) {
-          console.log(`Perplexity returned ${response.status}, retrying (attempt ${attempt + 1}/${MAX_RETRIES})...`);
-          await new Promise(r => setTimeout(r, 1000 * (attempt + 1))); // backoff
-          continue;
-        }
-
-        console.error(`perplexity error:`, response.status, lastError.substring(0, 200));
-        break;
-      } catch (fetchError) {
-        lastError = String(fetchError);
-        if (attempt < MAX_RETRIES) {
-          console.log(`Fetch error, retrying (attempt ${attempt + 1}/${MAX_RETRIES})...`);
+        if ([502, 503, 504].includes(response.status) && attempt < MAX_RETRIES_LOVABLE) {
+          console.log(`Lovable AI returned ${response.status}, retrying (attempt ${attempt + 1}/${MAX_RETRIES_LOVABLE})...`);
           await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
           continue;
         }
-        console.error("Fetch failed after retries:", lastError.substring(0, 200));
+
+        console.error(`Lovable AI error:`, response.status, lastErrorLovable.substring(0, 200));
+        break;
+      } catch (fetchError) {
+        lastErrorLovable = String(fetchError);
+        if (attempt < MAX_RETRIES_LOVABLE) {
+          console.log(`Lovable AI fetch error, retrying (attempt ${attempt + 1}/${MAX_RETRIES_LOVABLE})...`);
+          await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
+          continue;
+        }
+        console.error("Lovable AI failed after retries:", lastErrorLovable.substring(0, 200));
         break;
       }
     }
 
     return new Response(
       JSON.stringify({ error: "AI service temporarily unavailable. Please try again in a moment." }),
-      { status: lastStatus >= 500 ? 503 : lastStatus, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      { status: lastStatusLovable >= 500 ? 503 : lastStatusLovable, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
     console.error("pregnancy-ai-gateway error:", error);
