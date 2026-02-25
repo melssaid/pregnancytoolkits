@@ -303,7 +303,8 @@
       "description": "Comprehensive fertility education: lessons, body signs, and stress management.",
       "lessonsTab": "Lessons",
       "signsTab": "Body Signs",
-      "stressTab": "Stress & Calm"
+      "stressTab": "Stress & Calm",
+      "twwTab": "TWW"
     },
     "nutritionSupplements": {
       "title": "Nutrition & Supplements Guide",

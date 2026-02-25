@@ -1,28 +1,21 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Heart, Smile } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 const LESSON_KEYS = [
-  // أساسيات الخصوبة
   "menstrualCycle", "ovulationProcess", "hormonesRole", "fertilizationBasics", "implantationWindow",
-  // التتبع والتوقيت
   "trackingMethods", "optimizingTiming",
-  // صحة الجهاز التناسلي
   "cervicalHealth", "maleFertility", "ageAndFertility",
-  // الحالات الطبية
   "thyroidFertility", "pcosManagement", "endometriosisAwareness", "immunologyFertility",
-  // نمط الحياة والتغذية
   "nutritionFertility", "supplementsGuide", "sleepHormones", "exerciseBalance",
   "lifestyleFactors", "environmentalToxins",
-  // التحديات والدعم
   "secondaryInfertility", "recurrentLoss", "geneticFactors", "epigeneticsFertility",
   "emotionalWellbeing", "commonMyths",
-  // الخيارات المتقدمة
   "whenToSeekHelp", "fertilityPreservation", "assistedReproduction",
 ] as const;
 
@@ -38,6 +31,8 @@ const TOPIC_KEYS = [
   "professionalHelp", "acceptance",
 ];
 
+const DAY_KEYS = Array.from({ length: 14 }, (_, i) => `day${i + 1}`);
+
 export default function FertilityAcademy() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
@@ -45,6 +40,7 @@ export default function FertilityAcademy() {
   const [expandedLesson, setExpandedLesson] = useState<string | null>(LESSON_KEYS[0]);
   const [expandedSign, setExpandedSign] = useState<string | null>(null);
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
+  const [expandedDay, setExpandedDay] = useState<string | null>(null);
 
   const lessons = LESSON_KEYS.map((key, index) => ({
     key,
@@ -57,17 +53,19 @@ export default function FertilityAcademy() {
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
       <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
 
-
         <Tabs defaultValue="lessons" dir={dir}>
-          <TabsList className="grid w-full grid-cols-3 mb-3">
-            <TabsTrigger value="lessons" className="text-[10px] sm:text-xs">
+          <TabsList className="grid w-full grid-cols-4 mb-3">
+            <TabsTrigger value="lessons" className="text-[9px] sm:text-xs">
               {t("tools.fertilityAcademy.lessonsTab")}
             </TabsTrigger>
-            <TabsTrigger value="signs" className="text-[10px] sm:text-xs">
+            <TabsTrigger value="signs" className="text-[9px] sm:text-xs">
               {t("tools.fertilityAcademy.signsTab")}
             </TabsTrigger>
-            <TabsTrigger value="stress" className="text-[10px] sm:text-xs">
+            <TabsTrigger value="stress" className="text-[9px] sm:text-xs">
               {t("tools.fertilityAcademy.stressTab")}
+            </TabsTrigger>
+            <TabsTrigger value="tww" className="text-[9px] sm:text-xs">
+              {t("tools.fertilityAcademy.twwTab")}
             </TabsTrigger>
           </TabsList>
 
@@ -185,6 +183,51 @@ export default function FertilityAcademy() {
                               </div>
                               <div className="p-2 rounded-lg bg-primary/5 text-xs text-primary font-semibold">
                                 {t(`toolsInternal.stressFertility.topics.${key}.practice`)}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </TabsContent>
+
+          {/* TWW COMPANION TAB */}
+          <TabsContent value="tww" className="space-y-2 mt-0">
+            <div className="flex items-center gap-2 mb-3">
+              <Heart className="w-4 h-4 shrink-0 text-destructive" />
+              <span className="text-sm font-bold text-foreground">{t('toolsInternal.twwCompanion.subtitle')}</span>
+            </div>
+            {DAY_KEYS.map((key, i) => {
+              const isOpen = expandedDay === key;
+              return (
+                <motion.div key={key} initial={{ opacity: 0, x: isRTL ? 14 : -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.02, duration: 0.22 }}>
+                  <Card className={`border-border/60 transition-all duration-300 cursor-pointer ${isOpen ? "border-destructive/30 bg-destructive/5 shadow-card-hover" : "hover:border-destructive/20"}`} onClick={() => setExpandedDay(isOpen ? null : key)}>
+                    <CardContent className="p-0">
+                      <div className="p-3">
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-7 h-7 shrink-0 rounded-full bg-destructive/10 flex items-center justify-center text-[10px] font-bold text-destructive">{i + 1}</div>
+                            <span className="text-sm font-bold text-foreground">{t(`toolsInternal.twwCompanion.days.${key}.title`)}</span>
+                          </div>
+                          <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted/70">
+                            <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+                          </motion.span>
+                        </div>
+                      </div>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.22, ease: "easeOut" }} className="overflow-hidden">
+                            <div className="mx-3 mb-3 space-y-2">
+                              <div className="rounded-lg border border-border/50 bg-background/70 p-3">
+                                <p className="whitespace-pre-line text-xs leading-relaxed text-foreground/80">{t(`toolsInternal.twwCompanion.days.${key}.body`)}</p>
+                              </div>
+                              <div className="p-2 rounded-lg bg-destructive/5 text-xs text-destructive font-semibold flex items-center gap-1.5">
+                                <Smile className="w-3 h-3 shrink-0" />
+                                {t(`toolsInternal.twwCompanion.days.${key}.tip`)}
                               </div>
                             </div>
                           </motion.div>
