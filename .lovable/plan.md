@@ -1,102 +1,47 @@
 
 
-# Plan: Fix PDF Report Titles Translation & Arabic Text Issues
+# Plan: Fix Arabic Text Corruption in PDF Exports
 
-## Problems Identified
+## Root Cause Analysis
 
-1. **Smart Pregnancy Plan uses `exportElementToPDF` (html2pdf.js)** — This captures the DOM as-is via canvas screenshot. The report itself renders correctly in the browser (with proper Arabic, RTL, etc.), so the PDF should mirror that. The issue from the user's screenshot was about the **Data Backup PDF** (jsPDF-based), not the Smart Plan.
+The PDF shows systematic Arabic text corruption:
+- "التقرير الأسبوعي" → "تقرير لاسبوعي" (الف مفقودة)
+- "الحمل الذكية" → "لحمل لذكية" (الف مفقودة)
+- "مستوى الألم" → "مستو لألم" (ى مفقودة)
+- "تقدم الحمل" → "تقد لحمل" (م مفقودة)
+- "يوم متبقي" → "يو متبقي" (م مفقودة)
 
-2. **Data Backup PDF (`exportDataBackupPDF`)** — Uses jsPDF directly with `reshapeArabicForPDF()` which has a broken visual bidi algorithm that garbles Arabic section headers (e.g., `(فحصلا عينة)` instead of correct text).
+**The real problem**: `ArabicReshaper.convertArabic()` converts Arabic text from standard Unicode (U+0600-U+06FF) to **Arabic Presentation Forms** (U+FE70-U+FEFF). But **Tajawal font does NOT have glyphs** for many of these Presentation Form code points. Tajawal is a modern OpenType font designed for browsers where the text engine does shaping — it doesn't need Presentation Forms glyphs.
 
-3. **Arabic reshaping bug in `reshapeArabicForPDF`** — The function applies visual bidi reversal on top of Arabic reshaping. But since jsPDF with right-aligned text (`{ align: 'right' }`) already handles basic RTL character ordering, the manual reversal double-reverses the text, producing garbled output.
+When jsPDF tries to render a Presentation Form character that has no glyph in Tajawal, the character is silently dropped — causing the missing letters.
 
-4. **Missing key labels** — Dynamic localStorage keys like `Vitamin-tracker-data`, `Insight active *` are not in `keyLabels` map, so they show raw English names even in Arabic.
+## Solution
 
-5. **AI insights dumped raw** — Long AI-generated content from localStorage keys like `Insight active mental-health-coach` gets dumped as raw text without truncation.
+**Switch the PDF font from Tajawal to Amiri** for Arabic text. Amiri is a traditional Arabic font with **comprehensive Presentation Forms** (U+FB50-U+FDFF, U+FE70-U+FEFF) glyph coverage. The Amiri font files are already in the project (`public/fonts/Amiri-Regular.ttf`, `public/fonts/Amiri-Bold.ttf`).
 
-6. **Other jsPDF PDF exports affected** — `exportBirthPlanToPDF`, `exportHospitalBagPDF`, `exportAIResultPDF`, and `exportGenericPDF` all call `stripEmojis()` → `reshapeArabicForPDF()`, so they all have the same Arabic garbling issue.
+For non-Arabic languages, continue using Tajawal (which handles Latin, Turkish, German characters well).
 
-## Root Cause
+## Changes
 
-The `reshapeArabicForPDF` function does two things:
-1. `ArabicReshaper.convertArabic(text)` — Converts Arabic to Presentation Forms (correct, needed for letter connection)
-2. Visual bidi reversal — Manually reverses the string for LTR rendering
+### File: `src/lib/pdfExport.ts`
 
-Step 2 conflicts with jsPDF's `{ align: 'right' }` which already handles RTL text ordering. The double-reversal garbles the text.
+1. **Load Amiri font alongside Tajawal** — Add Amiri to `loadUnicodeFont()` so both fonts are cached
+2. **Register both fonts in `setupUnicodeFont()`** — Add Amiri-Regular and Amiri-Bold to jsPDF's VFS
+3. **Select font based on language in `createPDFDoc()`** — When `language === 'ar'`, set `_activeFont = 'Amiri'`; otherwise use Tajawal
+4. **Update font URL constants** to include Amiri paths
 
-## Implementation Plan
-
-### Step 1: Fix `reshapeArabicForPDF` in `src/lib/pdfExport.ts`
-- **Remove the visual bidi step entirely** — Only keep `ArabicReshaper.convertArabic()` for letter connection
-- jsPDF with `{ align: 'right' }` already handles RTL text direction correctly when characters are in Presentation Forms
-- This fixes ALL PDF exports at once (birth plan, hospital bag, data backup, AI result, generic)
-
-### Step 2: Expand `SKIP_PATTERNS` to filter AI insights
-- Add `'Insight active'`, `'insight'` to `SKIP_PATTERNS` in `exportDataBackupPDF`
-- This prevents raw AI-generated content from being dumped into the backup PDF
-
-### Step 3: Add fuzzy key matching in `getKeyLabel`
-- After exact match, try case-insensitive partial matching against `keyLabels`
-- Add more dynamic key entries: `Vitamin-tracker-data`, `Milestones-completed`, `Notifications`, etc.
-
-### Step 4: Truncate long string values in `formatValue`
-- Cap string values at 200 characters with `...` suffix
-- Skip values that look like full AI responses (containing markdown headers)
-
-### Step 5: Ensure Smart Plan report PDF quality
-- The `exportElementToPDF` approach (html2pdf.js) should work correctly since it captures rendered DOM
-- Add `dir="rtl"` and proper font styling to the report container for Arabic to ensure html2canvas captures it correctly
-- Add print-specific CSS to ensure no content clipping during capture
-
-## Files to Modify
-
-1. **`src/lib/pdfExport.ts`** — Main changes:
-   - Simplify `reshapeArabicForPDF` to only do letter reshaping (remove lines 193-233)
-   - Expand `SKIP_PATTERNS` with AI insight keys (line ~593-598)
-   - Add more entries to `keyLabels` map (line ~581-587)
-   - Improve `getKeyLabel` with fuzzy matching (line ~606-617)
-   - Add string truncation in `formatValue` (line ~627-631)
-
-2. **`src/pages/tools/SmartPregnancyPlan.tsx`** — Minor:
-   - Ensure report container has proper `dir` and `lang` attributes for html2canvas
+No other files need changes. The fix is entirely within the PDF font selection logic.
 
 ## Technical Details
 
-### Arabic Reshaping Fix (Critical)
-```typescript
-// BEFORE (broken):
-function reshapeArabicForPDF(text: string): string {
-  const reshaped = ArabicReshaper.convertArabic(text);
-  // ... 40 lines of visual bidi that garbles text
-  return visualRuns.join('');
-}
+```text
+Current flow (broken):
+  Arabic text → ArabicReshaper → Presentation Forms → Tajawal font → missing glyphs → garbled text
 
-// AFTER (fixed):
-function reshapeArabicForPDF(text: string): string {
-  return ArabicReshaper.convertArabic(text);
-}
+Fixed flow:
+  Arabic text → ArabicReshaper → Presentation Forms → Amiri font → complete glyphs → correct text
+  Non-Arabic → no reshaping → Tajawal font → correct text
 ```
 
-All rendering functions already use `{ align: 'right' }` for RTL, so jsPDF handles the text direction. We only need the reshaping for connected Arabic letters.
-
-### Key Label Fuzzy Matching
-```typescript
-const getKeyLabel = (key: string): string => {
-  // Exact match
-  if (keyLabels[key]) return keyLabels[key][language] || keyLabels[key].en;
-  // Case-insensitive match
-  const lowerKey = key.toLowerCase().replace(/[-_\s]/g, '');
-  for (const [k, labels] of Object.entries(keyLabels)) {
-    if (k.toLowerCase().replace(/[-_\s]/g, '') === lowerKey) 
-      return labels[language] || labels.en;
-  }
-  // Fallback: clean up key name
-  return key.replace(/[-_]/g, ' ').replace(/^\w/, c => c.toUpperCase()).trim();
-};
-```
-
-### AI Content Filtering
-Add to `SKIP_PATTERNS`: `'Insight active'`, `'insight_'`, `'ai_result_'`
-
-Add to `formatValue`: truncate strings > 200 chars that contain markdown (`##`, `**`) to just show item count summary.
+The reshaping logic (`reshapeArabicForPDF`) remains unchanged — it correctly converts Arabic to Presentation Forms for jsPDF. Only the font needs to change.
 
