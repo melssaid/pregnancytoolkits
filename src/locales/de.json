@@ -1417,6 +1417,8 @@
       "share": "Teilen",
       "save": "Speichern",
       "info": "Nur etwa 5% der Babys werden am genauen Termin geboren. Die meisten kommen innerhalb von 2 Wochen davor oder danach.",
+      "cycleTrackerLink": "Zyklusverfolgung",
+      "cycleTrackerLinkDesc": "Verfolgen Sie Ihren Menstruationszyklus und erhalten Sie genaue Vorhersagen",
       "aiGuideTitle": "KI-Schwangerschaftsführer",
       "getWeeklyGuide": "Wöchentlichen Leitfaden erhalten"
     },
@@ -2100,6 +2102,8 @@
       "dayCycle": "Tage-Zyklus",
       "flow": "Blutung",
       "trackTip": "Verfolgen Sie mindestens 3-6 Zyklen für genauere Vorhersagen. Die Zykluslänge kann durch Stress, Krankheit oder andere Faktoren variieren.",
+      "dueDateLink": "Geburtsterminrechner",
+      "dueDateLinkDesc": "Berechnen Sie Ihren voraussichtlichen Geburtstermin basierend auf Ihrer letzten Periode",
       "flowLevels": {
         "light": "Leicht",
         "medium": "Mittel",

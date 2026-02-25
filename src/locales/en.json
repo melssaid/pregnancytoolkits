@@ -1312,6 +1312,8 @@
       "share": "Share",
       "save": "Save",
       "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your healthcare provider may adjust your due date based on ultrasound measurements.",
+      "cycleTrackerLink": "Cycle Tracker",
+      "cycleTrackerLinkDesc": "Track your menstrual cycle and get accurate predictions",
       "aiGuideTitle": "AI Pregnancy Guide",
       "getWeeklyGuide": "Get Weekly Guide",
       "videosTitle": "Pregnancy Timeline Videos",
@@ -2745,6 +2747,8 @@
       "dayCycle": "day cycle",
       "flow": "flow",
       "trackTip": "Track at least 3-6 cycles for more accurate predictions. Cycle length can vary due to stress, illness, or other factors.",
+      "dueDateLink": "Due Date Calculator",
+      "dueDateLinkDesc": "Calculate your expected due date based on your last period",
       "videosTitle": "Menstrual Cycle Videos",
       "videosSubtitle": "Learn about cycle tracking and reproductive health",
       "flowLevels": {

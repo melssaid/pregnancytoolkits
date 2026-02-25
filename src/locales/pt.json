@@ -1417,6 +1417,8 @@
       "share": "Compartilhar",
       "save": "Salvar",
       "info": "Apenas cerca de 5% dos bebês nascem na data prevista. A maioria nasce dentro de 2 semanas antes ou depois. Seu médico pode ajustar a data com base no ultrassom.",
+      "cycleTrackerLink": "Acompanhamento do ciclo menstrual",
+      "cycleTrackerLinkDesc": "Acompanhe seu ciclo menstrual e obtenha previsões precisas",
       "aiGuideTitle": "Guia de Gravidez IA",
       "getWeeklyGuide": "Obter Guia Semanal"
     },
@@ -2678,6 +2680,8 @@
       "dayCycle": "dias de ciclo",
       "flow": "fluxo",
       "trackTip": "Acompanhe pelo menos 3-6 ciclos para previsões mais precisas. A duração do ciclo pode variar devido ao estresse, doença ou outros fatores.",
+      "dueDateLink": "Calculadora de data de parto",
+      "dueDateLinkDesc": "Calcule sua data de parto prevista com base na sua última menstruação",
       "flowLevels": {
         "light": "Leve",
         "medium": "Médio",

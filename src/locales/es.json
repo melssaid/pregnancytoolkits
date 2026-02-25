@@ -1417,6 +1417,8 @@
       "share": "Compartir",
       "save": "Guardar",
       "info": "Solo alrededor del 5% de los bebés nacen en la fecha exacta. La mayoría nace dentro de 2 semanas antes o después. Tu médico puede ajustar la fecha según la ecografía.",
+      "cycleTrackerLink": "Seguimiento del ciclo menstrual",
+      "cycleTrackerLinkDesc": "Rastrea tu ciclo menstrual y obtén predicciones precisas",
       "aiGuideTitle": "Guía de Embarazo IA",
       "getWeeklyGuide": "Obtener Guía Semanal"
     },
@@ -2678,6 +2680,8 @@
       "dayCycle": "días de ciclo",
       "flow": "flujo",
       "trackTip": "Registra al menos 3-6 ciclos para predicciones más precisas. La duración del ciclo puede variar debido al estrés, enfermedad u otros factores.",
+      "dueDateLink": "Calculadora de fecha de parto",
+      "dueDateLinkDesc": "Calcula tu fecha de parto esperada según tu último período",
       "flowLevels": {
         "light": "Ligero",
         "medium": "Medio",
