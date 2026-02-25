@@ -14,6 +14,7 @@ import { format } from 'date-fns';
 import { exportBirthPlanToPDF, MAX_SAVED_PLANS } from '@/lib/pdfExport';
 
 import { Progress } from '@/components/ui/progress';
+import { RelatedToolLinks } from '@/components/RelatedToolLinks';
 
 interface BirthPlanPreference {
   id: string;
@@ -463,6 +464,11 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
             )}
           </CardContent>
         </Card>
+
+        <RelatedToolLinks links={[
+          { to: "/tools/ai-birth-position", titleKey: "laborLinks.birthPositionLink", titleFallback: "Birth Positions", descKey: "laborLinks.birthPositionLinkDesc", descFallback: "Explore optimal positions for labor and delivery", icon: "personStanding" },
+          { to: "/tools/labor-progress", titleKey: "laborLinks.laborProgressLink", titleFallback: "Labor Progress Tracker", descKey: "laborLinks.laborProgressLinkDesc", descFallback: "Track contractions and labor stages", icon: "activity" },
+        ]} />
       </div>
     </ToolFrame>
   );

@@ -21,6 +21,14 @@
     "cravingLink": "Alternativas aos Desejos",
     "cravingLinkDesc": "Encontre substituições saudáveis para seus desejos"
   },
+  "laborLinks": {
+    "birthPlanLink": "Gerador de Plano de Parto",
+    "birthPlanLinkDesc": "Crie um plano de parto personalizado",
+    "birthPositionLink": "Posições de Parto",
+    "birthPositionLinkDesc": "Explore as melhores posições para o trabalho de parto",
+    "laborProgressLink": "Acompanhamento do Trabalho de Parto",
+    "laborProgressLinkDesc": "Acompanhe as contrações e fases do parto"
+  },
   "videoLibrary": {
     "defaultTitle": "Vídeos Educativos",
     "defaultSubtitle": "Aprenda mais com orientação especializada",

@@ -21,6 +21,14 @@
     "cravingLink": "Heißhunger-Alternativen",
     "cravingLinkDesc": "Finden Sie gesunde Alternativen für Ihre Gelüste"
   },
+  "laborLinks": {
+    "birthPlanLink": "Geburtsplan-Generator",
+    "birthPlanLinkDesc": "Erstellen Sie einen personalisierten Geburtsplan",
+    "birthPositionLink": "Geburtspositionen",
+    "birthPositionLinkDesc": "Entdecken Sie optimale Positionen für die Geburt",
+    "laborProgressLink": "Wehentracker",
+    "laborProgressLinkDesc": "Verfolgen Sie Wehen und Geburtsphasen"
+  },
   "videoLibrary": {
     "defaultTitle": "Lehrvideos",
     "defaultSubtitle": "Lernen Sie mehr mit Expertenberatung",

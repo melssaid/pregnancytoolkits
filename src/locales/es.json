@@ -21,6 +21,14 @@
     "cravingLink": "Alternativas a antojos",
     "cravingLinkDesc": "Encuentra sustitutos saludables para tus antojos"
   },
+  "laborLinks": {
+    "birthPlanLink": "Generador de plan de parto",
+    "birthPlanLinkDesc": "Crea un plan de parto personalizado",
+    "birthPositionLink": "Posiciones de parto",
+    "birthPositionLinkDesc": "Explora las posiciones óptimas para el trabajo de parto",
+    "laborProgressLink": "Seguimiento del trabajo de parto",
+    "laborProgressLinkDesc": "Rastrea las contracciones y etapas del parto"
+  },
   "videoLibrary": {
     "defaultTitle": "Videos educativos",
     "defaultSubtitle": "Aprende más con guía experta",

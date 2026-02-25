@@ -21,6 +21,14 @@
     "cravingLink": "بدائل الرغبات",
     "cravingLinkDesc": "اكتشفي بدائل صحية لرغباتك الغذائية"
   },
+  "laborLinks": {
+    "birthPlanLink": "مولّد خطة الولادة",
+    "birthPlanLinkDesc": "أنشئي خطة ولادة مخصصة",
+    "birthPositionLink": "وضعيات الولادة",
+    "birthPositionLinkDesc": "استكشفي أفضل الوضعيات للمخاض والولادة",
+    "laborProgressLink": "متتبع تقدم المخاض",
+    "laborProgressLinkDesc": "تتبعي الانقباضات ومراحل المخاض"
+  },
   "videoLibrary": {
     "defaultTitle": "فيديوهات تعليمية",
     "defaultSubtitle": "تعلّم المزيد مع إرشادات الخبراء",
