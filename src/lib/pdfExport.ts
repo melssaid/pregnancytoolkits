@@ -1,6 +1,5 @@
 import jsPDF from 'jspdf';
 import ArabicReshaper from 'arabic-reshaper';
-import html2pdf from 'html2pdf.js';
 
 export type PDFProgressCallback = (percent: number) => void;
 
@@ -1186,81 +1185,4 @@ export async function exportSmartPlanPDF(options: SmartPlanPDFOptions): Promise<
   options.onProgress?.(100);
 
   doc.save(`pregnancy-report-week-${week}-${new Date().toISOString().split('T')[0]}.pdf`);
-}
-
-
-
-interface HTMLToPDFOptions {
-  /** The DOM element ID to capture (e.g. 'report-content') */
-  elementId: string;
-  /** Output filename (without .pdf extension) */
-  filename?: string;
-  /** Margins in mm [top, left, bottom, right] */
-  margin?: [number, number, number, number];
-  /** html2canvas scale factor (default 2 for high quality) */
-  scale?: number;
-  /** Page orientation */
-  orientation?: 'portrait' | 'landscape';
-  /** Callback for errors */
-  onError?: (error: Error) => void;
-  /** Progress callback */
-  onProgress?: PDFProgressCallback;
-}
-
-/**
- * Export any rendered DOM element to PDF using html2pdf.js.
- * This approach captures the element exactly as rendered in the browser,
- * preserving RTL layout, Arabic connected letters, charts, and all CSS styling.
- */
-export async function exportElementToPDF(options: HTMLToPDFOptions): Promise<void> {
-  const {
-    elementId,
-    filename = 'Pregnancy_Report',
-    margin = [10, 10, 10, 10],
-    scale = 2,
-    orientation = 'portrait',
-    onError,
-    onProgress,
-  } = options;
-
-  onProgress?.(10);
-
-  const element = document.getElementById(elementId);
-  if (!element) {
-    const err = new Error(`Element with id "${elementId}" not found`);
-    onError?.(err);
-    console.error('PDF Export Error:', err.message);
-    return;
-  }
-
-  onProgress?.(20);
-
-  const pdfOptions = {
-    margin,
-    filename: `${filename}-${new Date().toISOString().split('T')[0]}.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: {
-      scale,
-      useCORS: true,
-      letterRendering: true,
-      scrollY: 0,
-    },
-    jsPDF: {
-      unit: 'mm' as const,
-      format: 'a4' as const,
-      orientation,
-    },
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
-  };
-
-  onProgress?.(30);
-
-  try {
-    await html2pdf().set(pdfOptions).from(element).save();
-    onProgress?.(100);
-  } catch (err) {
-    const error = err instanceof Error ? err : new Error(String(err));
-    onError?.(error);
-    console.error('PDF Export Error:', error);
-  }
 }
