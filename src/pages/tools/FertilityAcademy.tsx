@@ -14,6 +14,7 @@ const LESSON_KEYS = [
 export default function FertilityAcademy() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
+  const dir = isRTL ? "rtl" : "ltr";
   const [expandedLesson, setExpandedLesson] = useState<string | null>(LESSON_KEYS[0]);
 
   const lessons = LESSON_KEYS.map((key, index) => ({
@@ -25,14 +26,15 @@ export default function FertilityAcademy() {
 
   return (
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
-      <div className={`space-y-3 ${isRTL ? "text-right" : "text-left"}`} dir={isRTL ? "rtl" : "ltr"}>
+      <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+        {/* Header */}
         <div className="rounded-xl border border-border/60 bg-muted/30 p-3">
-          <div className={`flex items-center justify-between gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-            <div className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10">
                 <BookOpen className="h-4 w-4 text-primary" />
               </div>
-              <div className={isRTL ? "text-right" : "text-left"}>
+              <div>
                 <p className="text-xs font-bold text-foreground">
                   {t("toolsInternal.fertilityAcademy.lessonsCount", { count: LESSON_KEYS.length })}
                 </p>
@@ -43,10 +45,11 @@ export default function FertilityAcademy() {
                 </p>
               </div>
             </div>
-            <GraduationCap className="h-4 w-4 text-primary/80" />
+            <GraduationCap className="h-4 w-4 shrink-0 text-primary/80" />
           </div>
         </div>
 
+        {/* Lessons */}
         <div className="space-y-2">
           {lessons.map((lesson, i) => {
             const isOpen = expandedLesson === lesson.key;
@@ -64,21 +67,22 @@ export default function FertilityAcademy() {
                     <button
                       type="button"
                       className="w-full p-3"
+                      dir={dir}
                       onClick={() => setExpandedLesson(isOpen ? null : lesson.key)}
                       aria-expanded={isOpen}
                       aria-controls={panelId}
                       aria-label={
                         isOpen
-                          ? t("toolsInternal.fertilityAcademy.collapseLesson", { defaultValue: "Collapse lesson" })
-                          : t("toolsInternal.fertilityAcademy.expandLesson", { defaultValue: "Expand lesson" })
+                          ? t("toolsInternal.fertilityAcademy.collapseLesson", { defaultValue: "طي الدرس" })
+                          : t("toolsInternal.fertilityAcademy.expandLesson", { defaultValue: "فتح الدرس" })
                       }
                     >
-                      <div className={`flex items-center justify-between gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
-                        <div className={`flex items-center gap-2.5 ${isRTL ? "flex-row-reverse" : ""}`}>
-                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
                             {lesson.order}
                           </div>
-                          <span className={`text-xs font-semibold text-foreground ${isRTL ? "text-right" : "text-left"}`}>
+                          <span className="text-xs font-semibold text-foreground" style={{ textAlign: isRTL ? "right" : "left" }}>
                             {lesson.title}
                           </span>
                         </div>
@@ -86,7 +90,7 @@ export default function FertilityAcademy() {
                         <motion.span
                           animate={{ rotate: isOpen ? 180 : 0 }}
                           transition={{ duration: 0.2 }}
-                          className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-muted/70"
+                          className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted/70"
                         >
                           <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
                         </motion.span>
@@ -103,8 +107,11 @@ export default function FertilityAcademy() {
                           transition={{ duration: 0.22, ease: "easeOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="mx-3 mb-3 rounded-lg border border-border/50 bg-background/70 p-3">
-                            <p className={`whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground ${isRTL ? "text-right" : "text-left"}`}>
+                          <div className="mx-3 mb-3 rounded-lg border border-border/50 bg-background/70 p-3" dir={dir}>
+                            <p
+                              className="whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground"
+                              style={{ textAlign: isRTL ? "right" : "left" }}
+                            >
                               {lesson.content ||
                                 t("toolsInternal.fertilityAcademy.contentFallback", {
                                   defaultValue: "Detailed educational content will appear here.",
