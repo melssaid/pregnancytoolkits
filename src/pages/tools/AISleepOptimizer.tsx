@@ -218,7 +218,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         <div className="space-y-2">
           <Label className="flex items-center gap-2 text-sm">
             <ThermometerSun className="w-4 h-4 text-primary shrink-0" />
-            <span className="truncate">{t('toolsInternal.sleepOptimizer.sleepChallenges')}</span>
+            <span className="leading-snug">{t('toolsInternal.sleepOptimizer.sleepChallenges')}</span>
           </Label>
           <div className="grid grid-cols-1 gap-1.5">
             {sleepIssueKeys.map((issue) => (
@@ -234,7 +234,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
                 <div className="flex items-center gap-2 min-w-0">
                   <Checkbox checked={selectedIssues.includes(issue.id)} className="shrink-0" />
                   <span className="text-sm shrink-0">{issue.icon}</span>
-                  <span className="text-xs truncate">
+                  <span className="text-xs leading-snug">
                     {t(`toolsInternal.sleepOptimizer.issues.${issue.key}`)}
                   </span>
                 </div>

@@ -168,7 +168,7 @@ Be compassionate - morning sickness is exhausting!`;
         <div className="space-y-2">
           <Label className="flex items-center gap-2 text-sm">
             <Utensils className="w-4 h-4 text-primary shrink-0" />
-            <span className="truncate">{t('toolsInternal.nauseaRelief.triggersLabel')}</span>
+            <span className="leading-snug">{t('toolsInternal.nauseaRelief.triggersLabel')}</span>
           </Label>
           <div className="grid grid-cols-1 gap-1.5">
             {nauseaTriggers.map((trigger) => (
@@ -182,7 +182,7 @@ Be compassionate - morning sickness is exhausting!`;
                 }`}
               >
                 <Checkbox checked={triggers.includes(trigger.id)} className="shrink-0" />
-                <span className="truncate">{t(trigger.labelKey)}</span>
+                <span className="leading-snug">{t(trigger.labelKey)}</span>
               </div>
             ))}
           </div>

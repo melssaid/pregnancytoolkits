@@ -552,7 +552,7 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
             <Card key={i} className="p-2 text-center">
               <stat.icon className={`w-4 h-4 mx-auto mb-1 ${stat.color}`} />
               <p className="text-xs font-bold">{stat.value}</p>
-              <p className="text-[9px] text-muted-foreground truncate">{stat.label}</p>
+              <p className="text-[9px] text-muted-foreground leading-tight">{stat.label}</p>
             </Card>
           ))}
         </div>
