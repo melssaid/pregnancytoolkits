@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, ChevronDown, GraduationCap } from "lucide-react";
@@ -16,24 +16,12 @@ export default function FertilityAcademy() {
   const isRTL = i18n.dir() === "rtl";
   const [expandedLesson, setExpandedLesson] = useState<string | null>(LESSON_KEYS[0]);
 
-  const getLocalizedText = (key: string) => {
-    const localized = t(key);
-    if (localized !== key) return localized;
-
-    const englishFallback = t(key, { lng: "en" });
-    return englishFallback !== key ? englishFallback : "";
-  };
-
-  const lessons = useMemo(
-    () =>
-      LESSON_KEYS.map((key, index) => ({
-        key,
-        order: index + 1,
-        title: getLocalizedText(`toolsInternal.fertilityAcademy.lessons.${key}.title`),
-        content: getLocalizedText(`toolsInternal.fertilityAcademy.lessons.${key}.content`),
-      })),
-    [i18n.language, t],
-  );
+  const lessons = LESSON_KEYS.map((key, index) => ({
+    key,
+    order: index + 1,
+    title: t(`toolsInternal.fertilityAcademy.lessons.${key}.title`),
+    content: t(`toolsInternal.fertilityAcademy.lessons.${key}.content`),
+  }));
 
   return (
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
