@@ -4545,7 +4545,7 @@
     "loading": "Kişisel ipucunuz hazırlanıyor..."
   },
   "fertilityTip": {
-    "title": "Günlük Uzman Doğurganlık İpucu",
+    "title": "Uzman Doğurganlık İpucu",
     "disclaimer": "Genel sağlık rehberliği — profesyonel tıbbi tavsiyenin yerini almaz.",
     "tips": {
       "tip1": "Verimli pencere her döngüde sadece yaklaşık 6 gündür — yumurtlamadan 5 gün önce ve yumurtlama günü. Bu pencerede yakınlığı planlamak şansınızı önemli ölçüde artırır.",
@@ -4577,7 +4577,21 @@
       "tip27": "Yaş yumurta kalitesini miktarından daha fazla etkiler. Saati durduramıyorsunuz ama antioksidanlar ve sağlıklı yaşam tarzıyla kaliteyi koruyabilirsiniz.",
       "tip28": "Partnerinizin sperm sağlığı da yaşam tarzı değişiklikleriyle iyileşir — dengeli beslenme, az alkol, sigara bırakma ve gevşek iç çamaşırı 3 ay içinde ölçülebilir fark yaratır.",
       "tip29": "Sabır sürecin parçasıdır. Mükemmel zamanlama ve sağlıkta bile her döngüde yaklaşık %20–25 gebe kalma şansı vardır. Çoğu sağlıklı çift 6–12 ay içinde gebe kalır.",
-      "tip30": "Bu yolculukta yalnız değilsiniz. Altı çiftten biri bir noktada gebe kalmada zorluk yaşar. Yardım istemek güç işaretidir, başarısızlık değil."
+      "tip30": "Bu yolculukta yalnız değilsiniz. Altı çiftten biri gebe kalmada zorluk yaşar. Yardım istemek güç işaretidir.",
+      "tip31": "Selenyum, yumurtaları oksidatif hasardan koruyan bir eser elementtir. Brezilya fıstığı en zengin kaynaktır — günde 1–2 tane yeterlidir.",
+      "tip32": "Luteal faz ideal olarak 12–14 gün sürmeli. Kısa bir faz düşük progesteron anlamına gelebilir.",
+      "tip33": "Endometriozis her 10 kadından 1'ini etkiler ve kısırlığın önde gelen nedenlerinden biridir. Erken tanı sonuçları iyileştirir.",
+      "tip34": "B6 vitamini progesteron üretimini destekler. Zengin gıdalar: nohut, muz, patates ve kümes hayvanları.",
+      "tip35": "Pelvik taban sağlığı doğurganlığı etkiler. Nazik egzersizler üreme organlarına kan akışını iyileştirir.",
+      "tip36": "PCOS, anovulasyonun en yaygın nedenidir. Düzensiz adetler veya aşırı tüylenme varsa doktorunuza danışın.",
+      "tip37": "Magnezyum 300'den fazla enzimatik reaksiyonu destekler. İyi kaynaklar: bitter çikolata, avokado, kuruyemiş ve yeşil yapraklılar.",
+      "tip38": "Sperm kalitesi ısıya maruz kalmadan etkilenir. Jakuzi, sauna ve dizüstü bilgisayarları kucağa koymaktan kaçının.",
+      "tip39": "İnositol, özellikle PCOS'lu kadınlarda yumurta kalitesini iyileştirmede umut verici sonuçlar göstermiştir.",
+      "tip40": "Gebe kalmadan önce düzenli diş kontrolü düşündüğünüzden daha önemlidir. Diş eti hastalıkları uzun gebe kalma süreleriyle ilişkilidir.",
+      "tip41": "L-arjinin, rahim ve yumurtalıklara kan akışını artıran bir amino asittir. Endometrium kalınlığını iyileştirebilir.",
+      "tip42": "Yatmadan önce aşırı ekran süresi melatonin üretimini bozar. Uyumadan 1–2 saat önce dijital gün batımı oluşturun.",
+      "tip43": "Hayıt ağacı meyvesi (Vitex) hormonal denge için kullanılır. Bitkisel takviyeler için her zaman doktorunuza danışın.",
+      "tip44": "Şükran günlüğü kortizol seviyelerini düşürür. Her sabah minnettar olduğunuz üç şey yazın."
     }
   },
   "toolBenefits": {

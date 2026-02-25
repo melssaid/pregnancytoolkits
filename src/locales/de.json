@@ -4342,7 +4342,7 @@
     "loading": "Dein persönlicher Tipp wird vorbereitet..."
   },
   "fertilityTip": {
-    "title": "Täglicher Expertentipp zur Fruchtbarkeit",
+    "title": "Fruchtbarkeits-Expertentipp",
     "disclaimer": "Allgemeine Wellness-Hinweise — kein Ersatz für professionelle medizinische Beratung.",
     "tips": {
       "tip1": "Das fruchtbare Fenster umfasst nur etwa 6 Tage pro Zyklus — 5 Tage vor dem Eisprung und den Eisprungtag selbst. Die Intimität in diesem Fenster zu planen, erhöht deine Chancen erheblich. Warte nicht auf einen positiven Ovulationstest, um anzufangen.",
@@ -4374,7 +4374,21 @@
       "tip27": "Das Alter beeinflusst die Eizellenqualität mehr als die Menge. Du kannst die Uhr nicht anhalten, aber du kannst die Qualität durch Antioxidantien, gesunden Lebensstil und Reduktion von oxidativem Stress schützen.",
       "tip28": "Die Spermiengesundheit deines Partners verbessert sich auch durch Lebensstiländerungen — ausgewogene Ernährung, weniger Alkohol, kein Rauchen und lockere Unterwäsche können innerhalb von 3 Monaten messbare Verbesserungen bringen.",
       "tip29": "Geduld ist Teil des Prozesses. Selbst bei perfektem Timing und Gesundheit hat jeder Zyklus eine Empfängnischance von ca. 20–25%. Die meisten gesunden Paare empfangen innerhalb von 6–12 Monaten.",
-      "tip30": "Du bist auf dieser Reise nicht allein. Eines von sechs Paaren hat irgendwann Schwierigkeiten bei der Empfängnis. Hilfe zu suchen ist ein Zeichen von Stärke, nicht von Versagen."
+      "tip30": "Du bist auf dieser Reise nicht allein. Eines von sechs Paaren hat Schwierigkeiten bei der Empfängnis. Hilfe zu suchen ist ein Zeichen von Stärke.",
+      "tip31": "Selen schützt Eizellen vor oxidativem Schaden und unterstützt die Schilddrüsenfunktion. Paranüsse sind die reichste Quelle — nur 1–2 pro Tag decken deinen Tagesbedarf.",
+      "tip32": "Die Lutealphase sollte idealerweise 12–14 Tage dauern. Eine kurze Phase kann auf niedrigen Progesteronspiegel hinweisen.",
+      "tip33": "Endometriose betrifft 1 von 10 Frauen und ist eine Hauptursache für Unfruchtbarkeit. Früherkennung verbessert die Ergebnisse erheblich.",
+      "tip34": "Vitamin B6 unterstützt die Progesteronproduktion. B6-reiche Lebensmittel sind Kichererbsen, Bananen, Kartoffeln und Geflügel.",
+      "tip35": "Die Beckenboden-Gesundheit beeinflusst Fruchtbarkeit. Sanfte Übungen verbessern die Durchblutung der Fortpflanzungsorgane.",
+      "tip36": "PCOS ist die häufigste Ursache für fehlenden Eisprung. Bei unregelmäßigen Perioden oder übermäßigem Haarwuchs frage deine Ärztin.",
+      "tip37": "Magnesium unterstützt über 300 enzymatische Reaktionen. Gute Quellen sind dunkle Schokolade, Avocados, Nüsse und Blattgemüse.",
+      "tip38": "Die Spermienqualität wird durch Hitzeeinwirkung beeinträchtigt. Vermeidet Whirlpools, Saunen und Laptops direkt auf dem Schoß.",
+      "tip39": "Inositol hat vielversprechende Ergebnisse bei der Verbesserung der Eizellenqualität gezeigt, besonders bei Frauen mit PCOS.",
+      "tip40": "Regelmäßige Zahnarztbesuche vor der Empfängnis sind wichtiger als du denkst. Zahnfleischerkrankungen wurden mit längerer Wartezeit verbunden.",
+      "tip41": "L-Arginin erhöht die Durchblutung von Gebärmutter und Eierstöcken. Sie kann die Endometriumdicke verbessern.",
+      "tip42": "Übermäßige Bildschirmzeit vor dem Schlafengehen stört die Melatoninproduktion. Etabliere einen digitalen Sonnenuntergang 1–2 Stunden vor dem Schlafen.",
+      "tip43": "Mönchspfeffer (Vitex) wird traditionell zur Unterstützung des hormonellen Gleichgewichts verwendet. Konsultiere immer deine Ärztin.",
+      "tip44": "Dankbarkeitstagebuch senkt Cortisolspiegel und verbessert das Wohlbefinden. Schreibe jeden Morgen drei Dinge auf, für die du dankbar bist."
     }
   },
   "toolBenefits": {

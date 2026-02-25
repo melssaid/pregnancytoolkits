@@ -4367,7 +4367,7 @@
     "loading": "Préparation de votre conseil personnalisé..."
   },
   "fertilityTip": {
-    "title": "Conseil fertilité du jour par l'expert",
+    "title": "Conseil d'expert en fertilité",
     "disclaimer": "Conseils de bien-être général — ne remplace pas un avis médical professionnel.",
     "tips": {
       "tip1": "La fenêtre fertile ne dure qu'environ 6 jours par cycle — 5 jours avant l'ovulation et le jour même. Planifier l'intimité dans cette fenêtre augmente considérablement vos chances. N'attendez pas un test d'ovulation positif pour commencer.",
@@ -4399,7 +4399,21 @@
       "tip27": "L'âge affecte la qualité des ovules plus que leur quantité. Vous ne pouvez pas arrêter le temps, mais vous pouvez protéger la qualité par les antioxydants et un mode de vie sain.",
       "tip28": "La santé des spermatozoïdes de votre partenaire s'améliore aussi avec le mode de vie — alimentation équilibrée, moins d'alcool, pas de tabac et sous-vêtements amples font une différence mesurable en 3 mois.",
       "tip29": "La patience fait partie du processus. Même avec un timing et une santé parfaits, chaque cycle a environ 20–25% de chances de conception. La plupart des couples conçoivent en 6–12 mois.",
-      "tip30": "Vous n'êtes pas seule. Un couple sur six rencontre des difficultés de conception. Chercher de l'aide est un signe de force, pas d'échec. Chaque pas vous rapproche."
+      "tip30": "Vous n'êtes pas seule. Un couple sur six rencontre des difficultés. Chercher de l'aide est un signe de force.",
+      "tip31": "Le sélénium protège les ovules des dommages oxydatifs et soutient la thyroïde. Les noix du Brésil sont la source la plus riche — 1–2 par jour suffisent.",
+      "tip32": "La phase lutéale devrait durer 12–14 jours. Une phase courte peut indiquer un faible taux de progestérone.",
+      "tip33": "L'endométriose touche 1 femme sur 10 et est une cause majeure d'infertilité. Le diagnostic précoce améliore les résultats.",
+      "tip34": "La vitamine B6 soutient la production de progestérone. Aliments riches en B6 : pois chiches, bananes, pommes de terre et volaille.",
+      "tip35": "La santé du plancher pelvien impacte la fertilité. Des exercices doux améliorent la circulation sanguine vers les organes reproducteurs.",
+      "tip36": "Le SOPK est la cause la plus courante d'anovulation. Si vous avez des règles irrégulières ou une pilosité excessive, consultez votre médecin.",
+      "tip37": "Le magnésium soutient plus de 300 réactions enzymatiques. Bonnes sources : chocolat noir, avocat, noix et légumes verts.",
+      "tip38": "La qualité des spermatozoïdes est affectée par l'exposition à la chaleur. Évitez jacuzzis, saunas et ordinateurs sur les genoux.",
+      "tip39": "L'inositol a montré des résultats prometteurs pour améliorer la qualité des ovules, particulièrement chez les femmes avec SOPK.",
+      "tip40": "Les contrôles dentaires réguliers avant la conception comptent plus qu'on ne le pense. Les maladies des gencives sont liées à un temps de conception plus long.",
+      "tip41": "La L-arginine augmente le flux sanguin vers l'utérus et les ovaires. Elle peut améliorer l'épaisseur de l'endomètre.",
+      "tip42": "Le temps d'écran excessif avant le coucher perturbe la production de mélatonine. Établissez un coucher numérique 1–2 heures avant de dormir.",
+      "tip43": "Le gattilier (Vitex) est traditionnellement utilisé pour l'équilibre hormonal. Consultez toujours votre médecin avant les suppléments.",
+      "tip44": "Le journal de gratitude réduit les niveaux de cortisol. Écrivez trois choses pour lesquelles vous êtes reconnaissante chaque matin."
     }
   },
   "toolBenefits": {
