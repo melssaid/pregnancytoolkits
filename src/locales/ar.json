@@ -49,17 +49,17 @@
   "categories": {
     "all": "الكل",
     "ai": "أدوات ذكية",
-    "smartAssistant": "المساعد الذكي",
-    "fertility": "الخصوبة",
-    "pregnancy": "الحمل",
-    "nutrition": "التغذية والنظام الغذائي",
-    "labor": "الولادة والمخاض",
-    "postpartum": "رعاية الطفل",
-    "selfCheck": "فحص ذاتي",
-    "riskAssessment": "فحص ذاتي",
-    "mentalHealth": "الصحة النفسية",
-    "wellness": "العافية واللياقة",
-    "preparation": "التحضير"
+    "smartAssistant": "دليلك الشخصي",
+    "fertility": "الخصوبة والتبويض",
+    "pregnancy": "المتابعة الأسبوعية",
+    "nutrition": "التغذية",
+    "labor": "الاستعداد للولادة",
+    "postpartum": "رعاية المولود",
+    "selfCheck": "تقييم ذاتي",
+    "riskAssessment": "تقييم ذاتي",
+    "mentalHealth": "الراحة النفسية",
+    "wellness": "العناية بالجسم",
+    "preparation": "التجهيزات"
   },
   "journeys": {
     "planning": "أحلم بطفل",

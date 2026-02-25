@@ -49,17 +49,17 @@
   "categories": {
     "all": "Tümü",
     "ai": "Akıllı Araçlar",
-    "smartAssistant": "Akıllı Asistan",
-    "fertility": "Doğurganlık",
-    "pregnancy": "Hamilelik",
-    "nutrition": "Beslenme ve Diyet",
-    "labor": "Doğum ve Travay",
-    "postpartum": "Bebek Bakımı",
-    "selfCheck": "Kendi Kendine Kontrol",
-    "riskAssessment": "Kendi Kendine Kontrol",
-    "mentalHealth": "Ruh Sağlığı",
-    "wellness": "Sağlık ve Fitness",
-    "preparation": "Hazırlık"
+    "smartAssistant": "Kişisel Rehber",
+    "fertility": "Doğurganlık ve Yumurtlama",
+    "pregnancy": "Haftalık Takip",
+    "nutrition": "Beslenme",
+    "labor": "Doğuma Hazırlık",
+    "postpartum": "Yenidoğan Bakımı",
+    "selfCheck": "Öz Değerlendirme",
+    "riskAssessment": "Öz Değerlendirme",
+    "mentalHealth": "Duygusal İyi Oluş",
+    "wellness": "Vücut Bakımı",
+    "preparation": "Temel İhtiyaçlar"
   },
   "journeys": {
     "planning": "Hayalim",

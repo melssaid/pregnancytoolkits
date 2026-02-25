@@ -49,17 +49,17 @@
   "categories": {
     "all": "Alle",
     "ai": "Smart Tools",
-    "smartAssistant": "Smart Assistent",
-    "fertility": "Fruchtbarkeit",
-    "pregnancy": "Schwangerschaft",
-    "nutrition": "Ernährung & Diät",
-    "labor": "Geburt & Wehen",
-    "postpartum": "Babypflege",
-    "selfCheck": "Selbst-Check",
-    "riskAssessment": "Selbst-Check",
-    "mentalHealth": "Psychische Gesundheit",
-    "wellness": "Wohlbefinden & Fitness",
-    "preparation": "Vorbereitung"
+    "smartAssistant": "Persönlicher Ratgeber",
+    "fertility": "Fruchtbarkeit & Eisprung",
+    "pregnancy": "Wöchentliche Begleitung",
+    "nutrition": "Ernährung",
+    "labor": "Geburtsvorbereitung",
+    "postpartum": "Neugeborenenpflege",
+    "selfCheck": "Selbsteinschätzung",
+    "riskAssessment": "Selbsteinschätzung",
+    "mentalHealth": "Emotionales Wohlbefinden",
+    "wellness": "Körperpflege",
+    "preparation": "Ausstattung"
   },
   "journeys": {
     "planning": "Mein Traum",

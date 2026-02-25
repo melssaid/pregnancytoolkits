@@ -49,17 +49,17 @@
   "categories": {
     "all": "All",
     "ai": "Smart Tools",
-    "smartAssistant": "Smart Assistant",
-    "fertility": "Fertility",
-    "pregnancy": "Pregnancy",
-    "nutrition": "Nutrition & Diet",
-    "labor": "Labor & Birth",
-    "postpartum": "Baby Care",
-    "selfCheck": "Self-Check",
-    "riskAssessment": "Self-Check",
-    "mentalHealth": "Mental Health",
-    "wellness": "Wellness & Fitness",
-    "preparation": "Preparation"
+    "smartAssistant": "Personal Guide",
+    "fertility": "Fertility & Ovulation",
+    "pregnancy": "Weekly Tracking",
+    "nutrition": "Nutrition",
+    "labor": "Birth Readiness",
+    "postpartum": "Newborn Care",
+    "selfCheck": "Self Assessment",
+    "riskAssessment": "Self Assessment",
+    "mentalHealth": "Emotional Wellbeing",
+    "wellness": "Body Care",
+    "preparation": "Essentials"
   },
   "journeys": {
     "planning": "My Dream",
