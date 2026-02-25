@@ -72,7 +72,7 @@ export default function NutritionSupplementsGuide() {
                               <div className="rounded-lg border border-border/50 bg-background/70 p-3">
                                 <p className="whitespace-pre-line text-xs leading-relaxed text-foreground/80">{t(`toolsInternal.preconceptionNutrition.categories.${key}.description`)}</p>
                               </div>
-                              <div className="p-2 rounded-lg bg-accent/10 text-xs text-accent-foreground dark:text-accent font-semibold">
+                              <div className="p-2.5 rounded-lg bg-primary/8 border border-primary/15 text-xs text-foreground font-semibold leading-relaxed">
                                 {t(`toolsInternal.preconceptionNutrition.categories.${key}.foods`)}
                               </div>
                             </div>
