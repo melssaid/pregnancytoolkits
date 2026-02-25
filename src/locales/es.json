@@ -3836,6 +3836,23 @@
   "toolsInternal.cycleTracker.videosSubtitle": "Aprende sobre seguimiento del ciclo y salud reproductiva",
   "toolsInternal.dueDate.videosTitle": "Videos de Línea de Tiempo del Embarazo",
   "toolsInternal.dueDate.videosSubtitle": "Guías de desarrollo semanal y preparación para el parto",
+  "toolsInternal.fertilityAcademy": {
+    "lessonsCount": "{{count}} lecciones disponibles",
+    "lessons": {
+      "menstrualCycle": { "title": "Comprender el ciclo menstrual" },
+      "ovulationProcess": { "title": "Cómo funciona la ovulación" },
+      "fertilizationBasics": { "title": "Conceptos básicos de la fecundación" },
+      "hormonesRole": { "title": "Papel de las hormonas" },
+      "ageAndFertility": { "title": "Edad y fertilidad" },
+      "lifestyleFactors": { "title": "Factores de estilo de vida" },
+      "commonMyths": { "title": "Mitos comunes" },
+      "whenToSeekHelp": { "title": "Cuándo buscar ayuda" },
+      "maleFertility": { "title": "Fertilidad masculina" },
+      "emotionalWellbeing": { "title": "Bienestar emocional" },
+      "trackingMethods": { "title": "Métodos de seguimiento" },
+      "optimizingTiming": { "title": "Optimizar el momento" }
+    }
+  },
 
   "socialProof": {
     "title": "Todo lo que necesitas 💕",
