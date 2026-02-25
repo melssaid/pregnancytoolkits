@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { toolTopicMap, genericTopics } from "@/data/toolTipTopics";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
 
 interface ToolInsightTabsProps {
@@ -104,24 +105,16 @@ export function ToolInsightTabs({ toolId }: ToolInsightTabsProps) {
       ? `The user has also recently used these tools: ${recentTools.slice(0, 5).join(', ')}.`
       : '';
 
-    const topics = [
-      'a general pregnancy wellness tip',
-      'a self-care or relaxation tip for pregnant women',
-      'a surprising nutritional fact for pregnancy',
-      'an emotional well-being tip for expectant mothers',
-      'a practical daily habit tip for a healthy pregnancy',
-      'a tip about staying active and comfortable during pregnancy',
-      'a bonding tip between the mother and her baby',
-    ];
-    const randomTopic = topics[seed % topics.length];
+    const toolTopics = toolTopicMap[toolId] || genericTopics;
+    const randomTopic = toolTopics[seed % toolTopics.length];
 
     const prompt = `You are a warm, professional wellness writer addressing a pregnant woman directly (use feminine form in Arabic and gendered languages).
 
-The user is currently viewing: "${toolId}" (${toolTitle}).
+The user is currently viewing the tool: "${toolId}" (${toolTitle}).
 ${browsingContext}
 
-Write ONE short tip (2-3 sentences max). Pick the angle: ${randomTopic}.
-- Do NOT just describe the current tool — give a DIVERSE wellness tip that may relate to the tool's broader theme or to general pregnancy well-being
+Write ONE short tip (2-3 sentences max). Focus on: ${randomTopic}.
+- The tip MUST be directly relevant to the tool's specific domain — not generic pregnancy advice
 - Address the reader as a woman/mother-to-be (feminine pronouns and verbs)
 - Be concise, practical, and encouraging
 - Do NOT mention pregnancy week numbers
