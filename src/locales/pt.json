@@ -4545,7 +4545,7 @@
     "loading": "Preparando sua dica personalizada..."
   },
   "fertilityTip": {
-    "title": "Dica diária de fertilidade do especialista",
+    "title": "Dica de especialista em fertilidade",
     "disclaimer": "Orientação geral de bem-estar — não substitui aconselhamento médico profissional.",
     "tips": {
       "tip1": "A janela fértil dura apenas cerca de 6 dias por ciclo — 5 dias antes da ovulação e o dia da ovulação. Planejar a intimidade nessa janela aumenta significativamente suas chances.",
@@ -4577,7 +4577,21 @@
       "tip27": "A idade afeta a qualidade do óvulo mais que a quantidade. Você não pode parar o relógio, mas pode proteger a qualidade com antioxidantes e estilo de vida saudável.",
       "tip28": "A saúde espermática do seu parceiro também melhora com mudanças no estilo de vida — dieta equilibrada, menos álcool, sem fumo e roupas íntimas folgadas fazem diferença mensurável em 3 meses.",
       "tip29": "Paciência faz parte do processo. Mesmo com timing e saúde perfeitos, cada ciclo tem aproximadamente 20–25% de chance de concepção. A maioria concebe em 6–12 meses.",
-      "tip30": "Você não está sozinha nesta jornada. Um em cada seis casais enfrenta dificuldades para conceber. Buscar ajuda é sinal de força, não de fracasso. Cada passo te aproxima mais."
+      "tip30": "Você não está sozinha. Um em cada seis casais enfrenta dificuldades. Buscar ajuda é sinal de força.",
+      "tip31": "O selênio protege os óvulos de danos oxidativos e apoia a tireoide. Castanhas-do-pará são a fonte mais rica — 1–2 por dia bastam.",
+      "tip32": "A fase lútea deve durar idealmente 12–14 dias. Uma fase curta pode indicar progesterona baixa que impede a implantação.",
+      "tip33": "A endometriose afeta 1 em cada 10 mulheres e é causa principal de infertilidade. Diagnóstico precoce melhora muito os resultados.",
+      "tip34": "A vitamina B6 apoia a produção de progesterona. Alimentos ricos: grão-de-bico, bananas, batatas e aves.",
+      "tip35": "A saúde do assoalho pélvico impacta a fertilidade. Exercícios suaves melhoram o fluxo sanguíneo para os órgãos reprodutivos.",
+      "tip36": "A SOP é a causa mais comum de anovulação. Se tem períodos irregulares ou excesso de pelos, consulte seu médico.",
+      "tip37": "O magnésio apoia mais de 300 reações enzimáticas. Boas fontes: chocolate amargo, abacate, nozes e vegetais folhosos.",
+      "tip38": "A qualidade espermática é afetada pela exposição ao calor. Evitem banheiras quentes, saunas e laptops no colo.",
+      "tip39": "O inositol tem mostrado resultados promissores na melhoria da qualidade do óvulo, particularmente em mulheres com SOP.",
+      "tip40": "Consultas dentárias antes da concepção importam mais do que você pensa. Doenças gengivais ligam-se a tempos mais longos de concepção.",
+      "tip41": "A L-arginina aumenta o fluxo sanguíneo para o útero e ovários. Pode melhorar a espessura do endométrio.",
+      "tip42": "Tempo excessivo de tela antes de dormir interrompe a produção de melatonina. Estabeleça um pôr do sol digital 1–2 horas antes de dormir.",
+      "tip43": "A baga de árvore-casta (Vitex) é usada para equilíbrio hormonal. Sempre consulte seu médico antes de suplementos herbais.",
+      "tip44": "Diário de gratidão reduz cortisol e melhora o bem-estar. Escreva três coisas pelas quais é grata a cada manhã."
     }
   },
   "toolBenefits": {

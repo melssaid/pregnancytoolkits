@@ -4852,7 +4852,7 @@
     "loading": "Preparing your personalized insight..."
   },
   "fertilityTip": {
-    "title": "Expert Fertility Tip of the Day",
+    "title": "Expert Fertility Tip",
     "disclaimer": "General wellness guidance — not a substitute for professional medical advice.",
     "tips": {
       "tip1": "The fertile window is only about 6 days per cycle — 5 days before ovulation and the day of ovulation itself. Timing intimacy within this window significantly increases your chances. Don't wait for a positive ovulation test to start trying.",
@@ -4884,7 +4884,21 @@
       "tip27": "Age affects egg quality more than egg quantity. While you can't stop the clock, you can protect egg quality through antioxidants, healthy lifestyle, and reducing oxidative stress.",
       "tip28": "Your partner's sperm health improves with lifestyle changes too — a balanced diet, reduced alcohol, no smoking, and loose-fitting underwear can all make a measurable difference within 3 months.",
       "tip29": "Patience is part of the process. Even with perfect timing and health, each cycle has approximately a 20–25% chance of conception. Most healthy couples conceive within 6–12 months.",
-      "tip30": "You are not alone in this journey. One in six couples experiences difficulty conceiving at some point. Seeking help is a sign of strength, not failure. Every step you take brings you closer."
+      "tip30": "You are not alone in this journey. One in six couples experiences difficulty conceiving at some point. Seeking help is a sign of strength, not failure. Every step you take brings you closer.",
+      "tip31": "Selenium is a trace mineral that protects eggs from oxidative damage and supports thyroid function. Brazil nuts are the richest source — just 1–2 per day provides your daily requirement.",
+      "tip32": "The luteal phase (after ovulation) should ideally be 12–14 days. A short luteal phase may indicate low progesterone, which can prevent implantation.",
+      "tip33": "Endometriosis affects 1 in 10 women and is a leading cause of infertility. Symptoms include painful periods and heavy bleeding. Early diagnosis significantly improves outcomes.",
+      "tip34": "Vitamin B6 supports progesterone production, crucial for maintaining pregnancy. Foods rich in B6 include chickpeas, bananas, potatoes, and poultry.",
+      "tip35": "Pelvic floor health impacts fertility and pregnancy. Gentle pelvic floor exercises improve blood flow to reproductive organs.",
+      "tip36": "PCOS is the most common cause of anovulation. If you have irregular periods, excess hair growth, or acne, ask your doctor about testing.",
+      "tip37": "Magnesium supports over 300 enzymatic reactions including hormone regulation. Good sources include dark chocolate, avocados, nuts, and leafy greens.",
+      "tip38": "Your partner's sperm quality is affected by heat exposure. Avoid hot tubs, saunas, and placing laptops directly on the lap.",
+      "tip39": "Inositol (especially myo-inositol) has shown promising results for improving egg quality, particularly in women with PCOS.",
+      "tip40": "Regular dental checkups before conception matter more than you think. Gum disease has been linked to longer time-to-conception.",
+      "tip41": "L-arginine is an amino acid that increases blood flow to the uterus and ovaries. It may improve endometrial thickness. Found in nuts, seeds, and lean meats.",
+      "tip42": "Excessive screen time before bed disrupts melatonin production, which is also a powerful antioxidant for egg health. Establish a digital sunset 1–2 hours before sleep.",
+      "tip43": "Chaste tree berry (Vitex) has been traditionally used to support hormonal balance. Some studies show it can help with luteal phase defects. Always consult your doctor.",
+      "tip44": "Gratitude journaling reduces cortisol levels and improves overall well-being. Write three things you're grateful for each morning — small mindset shifts support your body's readiness."
     }
   },
   "toolsInternal.fertileWindow": {
