@@ -90,17 +90,43 @@ export function ToolInsightTabs({ toolId }: ToolInsightTabsProps) {
     const toolTitle = t(`toolBenefits.${toolId}`, toolId);
     const seed = Math.floor(Math.random() * 10000);
 
+    // Gather browsing context for variety
+    const recentTools: string[] = [];
+    try {
+      const keys = Object.keys(localStorage).filter(k => k.startsWith('insight_active_'));
+      keys.forEach(k => {
+        const id = k.replace('insight_active_', '');
+        if (id !== toolId) recentTools.push(id);
+      });
+    } catch { /* ignore */ }
+
+    const browsingContext = recentTools.length > 0
+      ? `The user has also recently used these tools: ${recentTools.slice(0, 5).join(', ')}.`
+      : '';
+
+    const topics = [
+      'a general pregnancy wellness tip',
+      'a self-care or relaxation tip for pregnant women',
+      'a surprising nutritional fact for pregnancy',
+      'an emotional well-being tip for expectant mothers',
+      'a practical daily habit tip for a healthy pregnancy',
+      'a tip about staying active and comfortable during pregnancy',
+      'a bonding tip between the mother and her baby',
+    ];
+    const randomTopic = topics[seed % topics.length];
+
     const prompt = `You are a warm, professional wellness writer addressing a pregnant woman directly (use feminine form in Arabic and gendered languages).
 
-The user is viewing a tool called "${toolId}" described as: "${toolTitle}".
+The user is currently viewing: "${toolId}" (${toolTitle}).
+${browsingContext}
 
-Write ONE short, unique wellness tip (2-3 sentences max) about this tool's topic.
+Write ONE short tip (2-3 sentences max). Pick the angle: ${randomTopic}.
+- Do NOT just describe the current tool — give a DIVERSE wellness tip that may relate to the tool's broader theme or to general pregnancy well-being
 - Address the reader as a woman/mother-to-be (feminine pronouns and verbs)
 - Be concise, practical, and encouraging
-- Focus on the tool's subject (nutrition, fitness, sleep, etc.)
 - Do NOT mention pregnancy week numbers
 - Include one surprising or lesser-known fact
-- Vary the advice each time — random seed: ${seed}
+- Random seed: ${seed}
 
 Write in ${lang}. No title, no heading, just the tip.`;
 
