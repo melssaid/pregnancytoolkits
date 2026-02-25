@@ -7,7 +7,7 @@ import { BackButton } from "./BackButton";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
-import { FertilityDailyTip } from "./FertilityDailyTip";
+
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -100,11 +100,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         {/* Bottom Navigation for Mobile */}
         <BottomNavigation />
       </main>
-
-      {/* Fertility Daily Tip */}
-      <div className="container py-6">
-        <FertilityDailyTip />
-      </div>
 
       {/* Footer */}
       <footer className="border-t border-border bg-card py-8">
