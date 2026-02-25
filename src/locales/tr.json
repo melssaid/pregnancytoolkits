@@ -35,7 +35,7 @@
     "birthPlanLinkDesc": "Kişiselleştirilmiş bir doğum planı oluşturun",
     "birthPositionLink": "Doğum Pozisyonları",
     "birthPositionLinkDesc": "Doğum için en uygun pozisyonları keşfedin",
-    "laborProgressLink": "Doğum İlerleme Takibi",
+    "laborProgressLink": "Doğum İlerleme Rehberi",
     "laborProgressLinkDesc": "Kasılmaları ve doğum aşamalarını takip edin"
   },
   "postpartumLinks": {
@@ -163,7 +163,7 @@
       "description": "Hamilelik beslenmesi için AI destekli alışveriş listesi."
     },
     "aiSleepOptimizer": {
-      "title": "Gelişmiş Uyku Optimizatörü",
+      "title": "Gelişmiş Uyku İpuçları",
       "description": "Hamilelik için kişiselleştirilmiş uyku rehberliği."
     },
     "aiHospitalBag": {
@@ -183,7 +183,7 @@
       "description": "Hamilelikte güvenli cilt bakım rutini."
     },
     "aiNauseaRelief": {
-      "title": "AI Mide Bulantısı Rahatlatma",
+      "title": "AI Bulantı Rahatlama İpuçları",
       "description": "Sabah bulantısı için çözümler ve ipuçları."
     },
     "aiBudgetPlanner": {
@@ -195,7 +195,7 @@
       "description": "AI içgörüleriyle akıllı hamilelik fotoğraf zaman çizelgesi."
     },
     "aiFitnessCoach": {
-      "title": "AI Fitness Koçu",
+      "title": "AI Fitness Rehberi",
       "description": "Hamilelik aşamanıza göre güvenli egzersizler."
     },
     "aiBackPainRelief": {
@@ -215,7 +215,7 @@
       "description": "Egzersiz ve öğünlerle kişiselleştirilmiş günlük planınız."
     },
     "smartWalkingCoach": {
-      "title": "Yürüyüş Koçu",
+      "title": "Yürüyüş Rehberi",
       "description": "Trimesterinize uygun güvenli yürüyüş programları."
     },
     "smartSnackPlanner": {
@@ -257,8 +257,8 @@
       "description": "Hamilelik sürecinde kilo değişimlerinizi takip edin."
     },
     "postpartumMentalHealth": {
-      "title": "Ruh Sağlığı Koçu",
-      "description": "EPDS anketi ve ruh sağlığı desteği."
+      "title": "Ruhsal İyilik Rehberi",
+      "description": "EPDS anketi ve ruhsal iyilik desteği."
     },
     "gestationalDiabetes": {
       "title": "Gestasyonel Diyabet Farkındalığı (Genel Bilgi)",
@@ -289,8 +289,8 @@
       "description": "Günlük bez değişimlerini kaydedin."
     },
     "babyCryTranslator": {
-      "title": "Bebek Ağlama Çevirici",
-      "description": "Bebeğinizin ağlama kalıplarının AI analizi."
+      "title": "Bebek Ağlama Rehberi",
+      "description": "Bebeğinizin ağlama kalıpları hakkında AI bilgileri."
     },
     "postpartumRecovery": {
       "title": "Doğum Sonrası İyileşme Rehberi",
@@ -340,7 +340,7 @@
       "babySleepDesc": "Uyku düzeni",
       "diaperTracker": "Bez Takibi",
       "diaperTrackerDesc": "Günlük değişimler",
-      "babyCry": "Ağlama Çevirmeni",
+      "babyCry": "Ağlama Rehberi",
       "babyCryDesc": "Ağlama kalıplarını analiz et",
       "groceryList": "Alışveriş Listesi",
       "groceryListDesc": "Alışveriş planlayıcı"
@@ -384,7 +384,7 @@
       "weeklySummary": "Haftalık Özet",
       "birthPlan": "Doğum Planı",
       "wellnessDiary": "Sağlık Günlüğü",
-      "laborProgress": "Doğum İlerlemesi",
+      "laborProgress": "Doğum Rehberi",
       "babyGrowth": "Bebek Büyümesi",
       "week": "Hafta",
       "month": "Ay",
@@ -557,7 +557,7 @@
         "aiProducts": {
           "title": "Yapay Zeka Destekli Ürünler",
           "desc": "Perplexity AI dahil üçüncü taraf hizmet sağlayıcılar aracılığıyla yapay zeka destekli ürünler sunuyoruz.",
-          "tools": ["AI Gebelik Asistanı", "AI Semptom Analizörü", "AI Yemek Önerisi", "Akıllı Randevu Hatırlatıcı", "AI Fitness Koçları", "Doğum İlerleme Takibi"],
+          "tools": ["AI Gebelik Asistanı", "Sağlık Günlüğü", "AI Yemek Önerisi", "Akıllı Randevu Hatırlatıcı", "AI Fitness Rehberleri", "Doğum İlerleme Rehberi"],
           "dataNote": "AI özelliklerini kullanırken yalnızca spesifik sorgunuz (anonim olarak) işlenir. Saklanan sağlık verileriniz cihazınızda kalır."
         },
         "notifications": {
@@ -761,7 +761,7 @@
     "disclaimer": "Bu yalnızca ön bir değerlendirmedir. Her zaman sağlık uzmanınıza danışın."
   },
   "fitnessPage": {
-    "title": "AI Fitness Koçu",
+    "title": "AI Fitness Rehberi",
     "currentWeek": "Mevcut Hafta",
     "selectTrimester": "Trimester Seçin",
     "exerciseLevel": "Aktivite Seviyesi",
@@ -1098,7 +1098,7 @@
   },
   "toolsInternal": {
     "mentalHealthCoach": {
-      "title": "Doğum Sonrası Ruh Sağlığı Koçu",
+      "title": "Doğum Sonrası Ruhsal İyilik Rehberi",
       "subtitle": "Edinburgh Doğum Sonrası Depresyon Ölçeği anketi",
       "youreNotAlone": "Yalnız değilsin",
       "emergencyMessage": "Yanıtlarınıza göre, yardımcı olabilecek biriyle konuşmanız önemli. Doğum sonrası depresyon yaygın ve tedavi edilebilir.",
@@ -1685,7 +1685,7 @@
       "clickToCollapse": "Daraltmak için tıklayın"
     },
     "fitnessCoach": {
-      "title": "AI Fitness Koçu",
+      "title": "AI Fitness Rehberi",
       "subtitle": "Hamilelik aşamanıza göre güvenli egzersizler",
       "currentWeek": "Mevcut Hafta",
       "activityLevel": "Aktivite Seviyesi",
@@ -1996,7 +1996,7 @@
       }
     },
     "sleepOptimizer": {
-      "title": "AI Uyku Optimizatörü",
+      "title": "AI Uyku İpuçları",
       "subtitle": "Hamilelik için kişiselleştirilmiş uyku rehberliği",
       "currentWeek": "Mevcut Hafta",
       "sleepIssues": "Uyku Sorunları",
@@ -2474,8 +2474,8 @@
       "rule511Desc": "Birçok doktor, kasılmalar 5 dakikada bir, 1 dakika süreyle, 1 saat boyunca geldiğinde iletişime geçmenizi önerir"
     },
     "mentalHealth": {
-      "title": "Ruh Sağlığı Koçu",
-      "subtitle": "EPDS anketi ve ruh sağlığı desteği",
+      "title": "Ruhsal İyilik Rehberi",
+      "subtitle": "EPDS anketi ve ruhsal iyilik desteği",
       "takeScreening": "EPDS Anketini Yap",
       "screeningDesc": "Edinburgh Doğum Sonrası Depresyon Ölçeği",
       "yourScore": "Puanınız",
@@ -2887,7 +2887,7 @@
       "exportError": "Liste dışa aktarılamadı"
     },
     "stressRelief": {
-      "title": "AI Stres Rahatlatma Koçu",
+      "title": "AI Stres Rahatlatma Rehberi",
       "subtitle": "Hamilelik için kişiselleştirilmiş rahatlama teknikleri",
       "howFeeling": "Nasıl hissediyorsunuz?",
       "stressLevel": "Stres seviyesi",
@@ -2910,7 +2910,7 @@
       }
     },
     "mobilityCoach": {
-      "title": "AI Hareketlilik Koçu",
+      "title": "AI Hareketlilik Rehberi",
       "subtitle": "Hamilelik konforu için nazik hareketler",
       "selectArea": "Odak alanınızı seçin",
       "areas": {
@@ -2984,7 +2984,7 @@
     "moreTips": "Trimester için daha fazla ipucu"
   },
   "toolsInternal.nauseaRelief": {
-    "title": "Yapay Zeka Bulantı Rahatlama Koçu",
+    "title": "Yapay Zeka Bulantı Rahatlama Rehberi",
     "subtitle": "Sabah bulantısı için kişiselleştirilmiş stratejiler",
     "quickRemedies": "Hızlı Çözümler",
     "nauseaSeverity": "Bulantı Şiddeti",
@@ -3046,7 +3046,7 @@
     "exercisesTitle": "Sırt Ağrısı Egzersizleri"
   },
   "toolsInternal.sleepOptimizer": {
-    "title": "Yapay Zeka Uyku Optimize Edici",
+    "title": "Yapay Zeka Uyku İpuçları",
     "subtitle": "Hamilelik için kişiselleştirilmiş uyku rehberliği",
     "currentSleep": "Mevcut Uyku: {{hours}} saat/gece",
     "usualBedtime": "Normal Yatma Saati",
@@ -3630,7 +3630,7 @@
     }
   },
   "mentalHealthCoach": {
-    "title": "Doğum Sonrası Ruh Sağlığı Koçu",
+    "title": "Doğum Sonrası Ruhsal İyilik Rehberi",
     "subtitle": "Edinburgh Doğum Sonrası Depresyon Ölçeği anketi",
     "youreNotAlone": "Yalnız değilsin",
     "emergencyMessage": "Yanıtlarınıza göre, yardımcı olabilecek biriyle konuşmanız önemli. Doğum sonrası depresyon yaygın ve tedavi edilebilir.",
@@ -4301,7 +4301,7 @@
     "bp": "Tansiyon"
   },
   "toolsInternal.walkingCoach": {
-    "title": "Akıllı Yürüyüş Koçu",
+    "title": "Akıllı Yürüyüş Rehberi",
     "subtitle": "Sağlıklı bir gebelik için kişiselleştirilmiş yürüyüş programı",
     "yourTrimester": "Trimesteriniz",
     "trimester": "Trimester",
@@ -4314,8 +4314,8 @@
     "minutesThisWeek": "Bu haftaki dakikalar",
     "recentWalks": "Son yürüyüşler",
     "goalMet": "Hedef tamamlandı!",
-    "getAIAdvice": "AI koç tavsiyesi al",
-    "aiCoachTitle": "AI Yürüyüş Koçu",
+    "getAIAdvice": "AI rehber tavsiyesi al",
+    "aiCoachTitle": "AI Yürüyüş Rehberi",
     "walkingTipsTitle": "Yürüyüş ipuçları",
     "walkingTips": {
       "tip1": "Düz ve pürüzsüz yüzeylerde yürüyün",

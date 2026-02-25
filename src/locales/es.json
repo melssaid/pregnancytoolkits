@@ -163,7 +163,7 @@
       "description": "Lista de compras IA para nutrición del embarazo."
     },
     "aiSleepOptimizer": {
-      "title": "Optimizador de sueño avanzado",
+      "title": "Consejos de sueño avanzados",
       "description": "Consejos de sueño personalizados para el embarazo."
     },
     "aiHospitalBag": {
@@ -183,7 +183,7 @@
       "description": "Rutina de cuidado segura para el embarazo."
     },
     "aiNauseaRelief": {
-      "title": "Alivio de náuseas IA",
+      "title": "Consejos confort náuseas IA",
       "description": "Remedios y consejos para las náuseas matutinas."
     },
     "aiBudgetPlanner": {
@@ -195,7 +195,7 @@
       "description": "Línea de tiempo de fotos del embarazo con análisis IA."
     },
     "aiFitnessCoach": {
-      "title": "Entrenador fitness IA",
+      "title": "Guía fitness IA",
       "description": "Ejercicios seguros personalizados para tu etapa de embarazo."
     },
     "aiBackPainRelief": {
@@ -215,7 +215,7 @@
       "description": "Tu plan diario personalizado de ejercicios y comidas."
     },
     "smartWalkingCoach": {
-      "title": "Coach de caminata",
+      "title": "Guía de caminata",
       "description": "Rutinas de caminata seguras para tu trimestre."
     },
     "smartSnackPlanner": {
@@ -257,8 +257,8 @@
       "description": "Registra los cambios de peso durante el embarazo."
     },
     "postpartumMentalHealth": {
-      "title": "Coach de salud mental",
-      "description": "Cuestionario EPDS y apoyo de salud mental."
+      "title": "Guía de bienestar mental",
+      "description": "Cuestionario EPDS y apoyo de bienestar mental."
     },
     "gestationalDiabetes": {
       "title": "Concienciación sobre diabetes gestacional (Info general)",
@@ -289,8 +289,8 @@
       "description": "Registra los cambios diarios."
     },
     "babyCryTranslator": {
-      "title": "Traductor de llanto del bebé",
-      "description": "Análisis IA de los patrones de llanto de tu bebé."
+      "title": "Guía de llanto del bebé",
+      "description": "Perspectivas IA de los patrones de llanto de tu bebé."
     },
     "postpartumRecovery": {
       "title": "Guía de recuperación posparto",
@@ -340,7 +340,7 @@
       "babySleepDesc": "Patrones de sueño",
       "diaperTracker": "Seguimiento de pañales",
       "diaperTrackerDesc": "Cambios diarios",
-      "babyCry": "Traductor de llanto",
+      "babyCry": "Guía de llanto",
       "babyCryDesc": "Analizar patrones de llanto",
       "groceryList": "Lista de compras",
       "groceryListDesc": "Planificador de compras"
@@ -557,7 +557,7 @@
         "aiProducts": {
           "title": "Productos impulsados por IA",
           "desc": "Ofrecemos productos impulsados por inteligencia artificial a través de proveedores de servicios externos incluyendo Perplexity AI.",
-          "tools": ["Asistente de embarazo IA", "Analizador de síntomas IA", "Sugerencia de comidas IA", "Recordatorio inteligente de citas", "Entrenadores fitness IA", "Seguimiento del progreso del parto"],
+          "tools": ["Asistente de embarazo IA", "Diario de bienestar", "Sugerencia de comidas IA", "Recordatorio inteligente de citas", "Guías fitness IA", "Guía del progreso del parto"],
           "dataNote": "Al usar funciones de IA, solo se procesa tu consulta específica (anonimizada). Tus datos de salud almacenados permanecen en tu dispositivo."
         },
         "notifications": {
@@ -761,7 +761,7 @@
     "disclaimer": "Esta es solo una evaluación preliminar. Consulta siempre a tu médico."
   },
   "fitnessPage": {
-    "title": "Entrenador fitness IA",
+    "title": "Guía fitness IA",
     "currentWeek": "Semana actual",
     "selectTrimester": "Seleccionar trimestre",
     "exerciseLevel": "Nivel de actividad",
@@ -1098,7 +1098,7 @@
   },
   "toolsInternal": {
     "mentalHealthCoach": {
-      "title": "Coach de salud mental posparto",
+      "title": "Guía de bienestar mental posparto",
       "subtitle": "Detección de la Escala de Depresión Postnatal de Edimburgo",
       "youreNotAlone": "No estás sola",
       "emergencyMessage": "Según tus respuestas, es importante hablar con alguien que pueda ayudarte. La depresión posparto es común y tratable.",
@@ -1685,7 +1685,7 @@
       "clickToCollapse": "Clic para contraer"
     },
     "fitnessCoach": {
-      "title": "Entrenador Fitness IA",
+      "title": "Guía Fitness IA",
       "subtitle": "Ejercicios seguros personalizados para tu etapa de embarazo",
       "currentWeek": "Semana Actual",
       "activityLevel": "Nivel de Actividad",
@@ -1996,7 +1996,7 @@
       }
     },
     "sleepOptimizer": {
-      "title": "Optimizador de Sueño IA",
+      "title": "Consejos de Sueño IA",
       "subtitle": "Guía de sueño personalizada para el embarazo",
       "currentWeek": "Semana Actual",
       "sleepIssues": "Problemas de Sueño",
@@ -2012,7 +2012,7 @@
       "environmentTips": "Consejos del Ambiente de Sueño"
     },
     "nauseaRelief": {
-      "title": "Alivio de Náuseas IA",
+      "title": "Consejos Confort Náuseas IA",
       "subtitle": "Remedios y consejos para las náuseas matutinas",
       "currentWeek": "Semana Actual",
       "severity": "Severidad de las Náuseas",
@@ -2474,8 +2474,8 @@
       "rule511Desc": "Muchos médicos sugieren contactarlos cuando las contracciones son cada 5 minutos, de 1 minuto, durante 1 hora"
     },
     "mentalHealth": {
-      "title": "Coach de Salud Mental",
-      "subtitle": "Cuestionario EPDS y apoyo de salud mental",
+      "title": "Guía de Bienestar Mental",
+      "subtitle": "Cuestionario EPDS y apoyo de bienestar mental",
       "takeScreening": "Hacer Cuestionario EPDS",
       "screeningDesc": "Escala de Depresión Postnatal de Edimburgo",
       "yourScore": "Tu Puntuación",
@@ -2887,7 +2887,7 @@
       "exportError": "Error al exportar la lista"
     },
     "stressRelief": {
-      "title": "Coach de Alivio del Estrés IA",
+      "title": "Guía de Alivio del Estrés IA",
       "subtitle": "Técnicas de relajación personalizadas para el embarazo",
       "howFeeling": "¿Cómo te sientes?",
       "stressLevel": "Nivel de estrés",
@@ -2910,7 +2910,7 @@
       }
     },
     "mobilityCoach": {
-      "title": "Coach de Movilidad IA",
+      "title": "Guía de Movilidad IA",
       "subtitle": "Movimientos suaves para la comodidad del embarazo",
       "selectArea": "Selecciona tu área de enfoque",
       "areas": {
@@ -2984,7 +2984,7 @@
     "moreTips": "Más consejos para el trimestre"
   },
   "toolsInternal.nauseaRelief": {
-    "title": "Coach IA para náuseas",
+    "title": "Guía IA para náuseas",
     "subtitle": "Estrategias personalizadas contra las náuseas matutinas",
     "quickRemedies": "Remedios rápidos",
     "nauseaSeverity": "Severidad de las náuseas",
@@ -3046,7 +3046,7 @@
     "exercisesTitle": "Ejercicios para dolor de espalda"
   },
   "toolsInternal.sleepOptimizer": {
-    "title": "Optimizador IA de sueño",
+    "title": "Consejos IA de sueño",
     "subtitle": "Guía personalizada de sueño para el embarazo",
     "currentSleep": "Sueño actual: {{hours}} horas/noche",
     "usualBedtime": "Hora habitual de dormir",
@@ -3630,7 +3630,7 @@
     }
   },
   "mentalHealthCoach": {
-    "title": "Coach de salud mental posparto",
+    "title": "Guía de bienestar mental posparto",
     "subtitle": "Detección de la Escala de Depresión Postnatal de Edimburgo",
     "youreNotAlone": "No estás sola",
     "emergencyMessage": "Según tus respuestas, es importante hablar con alguien que pueda ayudarte. La depresión posparto es común y tratable.",
@@ -4301,7 +4301,7 @@
     "bp": "Presión"
   },
   "toolsInternal.walkingCoach": {
-    "title": "Coach de Caminata Inteligente",
+    "title": "Guía de Caminata Inteligente",
     "subtitle": "Programa de caminata personalizado para un embarazo saludable",
     "yourTrimester": "Tu trimestre",
     "trimester": "Trimestre",
@@ -4314,8 +4314,8 @@
     "minutesThisWeek": "Minutos esta semana",
     "recentWalks": "Caminatas recientes",
     "goalMet": "¡Meta cumplida!",
-    "getAIAdvice": "Consejo del coach IA",
-    "aiCoachTitle": "Coach de caminata IA",
+    "getAIAdvice": "Consejo del guía IA",
+    "aiCoachTitle": "Guía de caminata IA",
     "walkingTipsTitle": "Consejos de caminata",
     "walkingTips": {
       "tip1": "Camina en superficies planas y parejas",
@@ -4345,7 +4345,7 @@
     "hoursAgo": "hace {{hours}}h {{minutes}}min",
     "minutesAgo": "hace {{minutes}}min",
     "startRoutine": "Iniciar rutina",
-    "aiStretchCoach": "Coach de estiramiento IA",
+    "aiStretchCoach": "Guía de estiramiento IA",
     "close": "Cerrar",
     "secondsRemaining": "segundos restantes",
     "skip": "Saltar",

@@ -163,7 +163,7 @@
       "description": "Liste de courses IA pour la nutrition de grossesse."
     },
     "aiSleepOptimizer": {
-      "title": "Optimiseur de sommeil avancé",
+      "title": "Conseils sommeil avancés",
       "description": "Conseils de sommeil personnalisés pour la grossesse."
     },
     "aiHospitalBag": {
@@ -183,7 +183,7 @@
       "description": "Routine de soins sûre pour la grossesse."
     },
     "aiNauseaRelief": {
-      "title": "Soulagement des nausées IA",
+      "title": "Conseils confort nausées IA",
       "description": "Remèdes et conseils contre les nausées matinales."
     },
     "aiBudgetPlanner": {
@@ -195,7 +195,7 @@
       "description": "Chronologie photo de grossesse avec analyses IA."
     },
     "aiFitnessCoach": {
-      "title": "Coach fitness IA",
+      "title": "Guide fitness IA",
       "description": "Exercices sûrs personnalisés pour votre stade de grossesse."
     },
     "aiBackPainRelief": {
@@ -215,7 +215,7 @@
       "description": "Votre plan quotidien personnalisé d'exercices et de repas."
     },
     "smartWalkingCoach": {
-      "title": "Coach de marche",
+      "title": "Guide de marche",
       "description": "Programmes de marche adaptés à votre trimestre."
     },
     "smartSnackPlanner": {
@@ -257,8 +257,8 @@
       "description": "Suivez l'évolution de votre poids pendant la grossesse."
     },
     "postpartumMentalHealth": {
-      "title": "Coach santé mentale",
-      "description": "Questionnaire EPDS et soutien santé mentale."
+      "title": "Guide bien-être mental",
+      "description": "Questionnaire EPDS et soutien bien-être mental."
     },
     "gestationalDiabetes": {
       "title": "Sensibilisation au diabète gestationnel (Infos générales)",
@@ -289,8 +289,8 @@
       "description": "Enregistrez les changements quotidiens."
     },
     "babyCryTranslator": {
-      "title": "Traducteur de pleurs de bébé",
-      "description": "Analyse IA des pleurs de votre bébé."
+      "title": "Guide des pleurs de bébé",
+      "description": "Aperçus IA des pleurs de votre bébé."
     },
     "postpartumRecovery": {
       "title": "Guide de récupération post-partum",
@@ -340,7 +340,7 @@
       "babySleepDesc": "Habitudes de sommeil",
       "diaperTracker": "Suivi des couches",
       "diaperTrackerDesc": "Changements quotidiens",
-      "babyCry": "Traducteur de pleurs",
+      "babyCry": "Guide des pleurs",
       "babyCryDesc": "Analyser les pleurs",
       "groceryList": "Liste de courses",
       "groceryListDesc": "Planificateur d'achats"
@@ -557,7 +557,7 @@
         "aiProducts": {
           "title": "Produits alimentés par l'IA",
           "desc": "Nous proposons des produits alimentés par l'intelligence artificielle via des fournisseurs tiers dont Perplexity AI.",
-          "tools": ["Assistant de grossesse IA", "Analyseur de symptômes IA", "Suggestion de repas IA", "Rappel de rendez-vous intelligent", "Coaches fitness IA", "Suivi du travail"],
+          "tools": ["Assistant de grossesse IA", "Journal de bien-être", "Suggestion de repas IA", "Rappel de rendez-vous intelligent", "Guides fitness IA", "Guide du travail"],
           "dataNote": "Lors de l'utilisation des fonctionnalités IA, seule votre requête spécifique (anonymisée) est traitée. Vos données de santé restent sur votre appareil."
         },
         "notifications": {
@@ -761,7 +761,7 @@
     "disclaimer": "Ceci n'est qu'une évaluation préliminaire. Consultez toujours votre médecin."
   },
   "fitnessPage": {
-    "title": "Coach fitness IA",
+    "title": "Guide fitness IA",
     "currentWeek": "Semaine actuelle",
     "selectTrimester": "Sélectionner le trimestre",
     "exerciseLevel": "Niveau d'activité",
@@ -1098,7 +1098,7 @@
   },
   "toolsInternal": {
     "mentalHealthCoach": {
-      "title": "Coach de santé mentale post-partum",
+      "title": "Guide bien-être mental post-partum",
       "subtitle": "Questionnaire de l'échelle de dépression postnatale d'Édimbourg",
       "youreNotAlone": "Vous n'êtes pas seule",
       "emergencyMessage": "D'après vos réponses, il est important de parler à quelqu'un qui peut vous aider. La dépression post-partum est courante et traitable.",
@@ -1951,7 +1951,7 @@
       }
     },
     "nauseaRelief": {
-      "title": "Soulagement des nausées IA",
+      "title": "Conseils confort nausées IA",
       "subtitle": "Remèdes pour les nausées matinales",
       "currentWeek": "Semaine actuelle",
       "severity": "Sévérité des nausées",
@@ -1988,7 +1988,7 @@
       }
     },
     "mentalHealth": {
-      "title": "Coach santé mentale",
+      "title": "Guide bien-être mental",
       "subtitle": "Questionnaire EPDS et soutien",
       "takeScreening": "Remplir le questionnaire EPDS",
       "screeningDesc": "Échelle de dépression postnatale d'Édimbourg",
@@ -2368,7 +2368,7 @@
       "exportError": "Échec de l'exportation de la checklist"
     },
     "stressRelief": {
-      "title": "Coach Anti-Stress IA",
+      "title": "Guide Anti-Stress IA",
       "subtitle": "Techniques de relaxation personnalisées pour la grossesse",
       "howFeeling": "Comment vous sentez-vous ?",
       "stressLevel": "Niveau de stress",
@@ -2391,7 +2391,7 @@
       }
     },
     "mobilityCoach": {
-      "title": "Coach de Mobilité IA",
+      "title": "Guide de Mobilité IA",
       "subtitle": "Mouvements doux pour le confort de grossesse",
       "selectArea": "Sélectionnez votre zone de focus",
       "areas": {
@@ -2408,7 +2408,7 @@
       "safetyText": "Arrêtez si vous ressentez des étourdissements, de la douleur ou de l'inconfort"
     },
     "fitnessCoach": {
-      "title": "Coach Fitness IA",
+      "title": "Guide Fitness IA",
       "subtitle": "Exercices sûrs pour votre stade de grossesse",
       "currentWeek": "Semaine actuelle",
       "activityLevel": "Niveau d'activité",
@@ -2645,7 +2645,7 @@
     "moreTips": "Plus de conseils pour le trimestre"
   },
   "toolsInternal.nauseaRelief": {
-    "title": "Coach IA anti-nausées",
+    "title": "Guide IA anti-nausées",
     "subtitle": "Stratégies personnalisées contre les nausées matinales",
     "quickRemedies": "Remèdes rapides",
     "nauseaSeverity": "Intensité des nausées",
@@ -2826,7 +2826,7 @@
     "exercisesTitle": "Exercices contre les douleurs dorsales"
   },
   "toolsInternal.sleepOptimizer": {
-    "title": "Optimiseur IA de sommeil",
+    "title": "Conseils IA de sommeil",
     "subtitle": "Conseils de sommeil personnalisés pour la grossesse",
     "currentSleep": "Sommeil actuel: {{hours}} heures/nuit",
     "usualBedtime": "Heure de coucher habituelle",
@@ -3417,7 +3417,7 @@
     }
   },
   "mentalHealthCoach": {
-    "title": "Coach de santé mentale post-partum",
+    "title": "Guide bien-être mental post-partum",
     "subtitle": "Dépistage de l'échelle de dépression postnatale d'Édimbourg",
     "youreNotAlone": "Vous n'êtes pas seule",
     "emergencyMessage": "D'après vos réponses, il est important de parler à quelqu'un qui peut vous aider. La dépression post-partum est courante et traitable.",
@@ -4123,7 +4123,7 @@
     "bp": "Tension"
   },
   "toolsInternal.walkingCoach": {
-    "title": "Coach de Marche Intelligent",
+    "title": "Guide de Marche Intelligent",
     "subtitle": "Programme de marche personnalisé pour une grossesse saine",
     "yourTrimester": "Votre trimestre",
     "trimester": "Trimestre",
@@ -4136,8 +4136,8 @@
     "minutesThisWeek": "Minutes cette semaine",
     "recentWalks": "Marches récentes",
     "goalMet": "Objectif atteint !",
-    "getAIAdvice": "Conseil du coach IA",
-    "aiCoachTitle": "Coach de marche IA",
+    "getAIAdvice": "Conseil du guide IA",
+    "aiCoachTitle": "Guide de marche IA",
     "walkingTipsTitle": "Conseils de marche",
     "walkingTips": {
       "tip1": "Marchez sur des surfaces planes et régulières",
