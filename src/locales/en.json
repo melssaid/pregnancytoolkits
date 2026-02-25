@@ -62,9 +62,9 @@
     "preparation": "Preparation"
   },
   "journeys": {
-    "planning": "Planning",
-    "pregnant": "Pregnant",
-    "postpartum": "Postpartum",
+    "planning": "My Dream",
+    "pregnant": "My Pregnancy",
+    "postpartum": "My Baby",
     "planningDesc": "Fertility tracking & conception tools",
     "pregnantDesc": "Your complete pregnancy companion",
     "postpartumDesc": "Baby care & recovery support"
