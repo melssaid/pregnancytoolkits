@@ -1069,8 +1069,126 @@ export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<vo
 
 
 // =============================================
-// HTML-to-PDF Export (html2pdf.js) — captures rendered DOM
+// Smart Pregnancy Plan PDF — pure jsPDF (fixes html2canvas Arabic bug)
 // =============================================
+
+interface SmartPlanPDFOptions {
+  week: number;
+  weight: number;
+  bmi: string;
+  calories: number;
+  painLevel: number;
+  trimester: { num: number; label: string };
+  progress: number;
+  daysRemaining: number;
+  reportContent: string;
+  language?: string;
+  onProgress?: PDFProgressCallback;
+}
+
+export async function exportSmartPlanPDF(options: SmartPlanPDFOptions): Promise<void> {
+  const {
+    week, weight, bmi, calories, painLevel,
+    trimester, progress, daysRemaining,
+    reportContent, language = 'en',
+  } = options;
+
+  const logoData = await loadLogoImage();
+  const { doc } = await createPDFDoc(language);
+  const accentColor = COLORS.primary;
+  const s: PDFState = { doc, y: MARGIN_Y };
+
+  const i18nLabels: Record<string, Record<string, string>> = {
+    en: { title: 'Weekly Report', weekLabel: 'Week', bmiLabel: 'BMI', caloriesLabel: 'Calories', painLabel: 'Pain Level', progressLabel: 'Pregnancy Progress', daysLabel: 'days remaining', disclaimer: 'This report was generated using AI. Always consult your healthcare provider for medical advice.' },
+    ar: { title: 'التقرير الأسبوعي', weekLabel: 'الأسبوع الحالي', bmiLabel: 'مؤشر الكتلة', caloriesLabel: 'سعرات', painLabel: 'مستوى الألم', progressLabel: 'تقدم الحمل', daysLabel: 'يوم متبقي', disclaimer: 'تم إنشاء هذا التقرير باستخدام الذكاء الاصطناعي. استشيري طبيبتك دائماً للحصول على المشورة الطبية.' },
+    de: { title: 'Wochenbericht', weekLabel: 'Woche', bmiLabel: 'BMI', caloriesLabel: 'Kalorien', painLabel: 'Schmerz', progressLabel: 'Schwangerschaftsfortschritt', daysLabel: 'Tage verbleibend', disclaimer: 'Dieser Bericht wurde mit KI erstellt. Konsultieren Sie immer Ihren Arzt.' },
+    fr: { title: 'Rapport hebdomadaire', weekLabel: 'Semaine', bmiLabel: 'IMC', caloriesLabel: 'Calories', painLabel: 'Douleur', progressLabel: 'Progression de la grossesse', daysLabel: 'jours restants', disclaimer: 'Ce rapport a été généré par IA. Consultez toujours votre médecin.' },
+    es: { title: 'Informe semanal', weekLabel: 'Semana', bmiLabel: 'IMC', caloriesLabel: 'Calorías', painLabel: 'Dolor', progressLabel: 'Progreso del embarazo', daysLabel: 'días restantes', disclaimer: 'Este informe fue generado con IA. Consulte siempre a su médico.' },
+    pt: { title: 'Relatório semanal', weekLabel: 'Semana', bmiLabel: 'IMC', caloriesLabel: 'Calorias', painLabel: 'Dor', progressLabel: 'Progresso da gravidez', daysLabel: 'dias restantes', disclaimer: 'Este relatório foi gerado por IA. Consulte sempre o seu médico.' },
+    tr: { title: 'Haftalık Rapor', weekLabel: 'Hafta', bmiLabel: 'VKİ', caloriesLabel: 'Kalori', painLabel: 'Ağrı', progressLabel: 'Gebelik İlerlemesi', daysLabel: 'gün kaldı', disclaimer: 'Bu rapor yapay zeka ile oluşturulmuştur. Her zaman doktorunuza danışın.' },
+  };
+  const L = i18nLabels[language] || i18nLabels.en;
+
+  options.onProgress?.(10);
+
+  // Header
+  drawLogo(s, logoData);
+  drawTitle(s, `${L.title} — ${L.weekLabel} ${week}`, formatDateForPDF(new Date(), language));
+  drawBrand(s, language, accentColor);
+  s.y += 2;
+
+  // Trimester badge
+  doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
+  const trimLabel = stripEmojis(trimester.label);
+  const badgeW = doc.getTextWidth(trimLabel) + 10;
+  doc.roundedRect(PAGE_W / 2 - badgeW / 2, s.y, badgeW, 6, 3, 3, 'F');
+  doc.setFontSize(8);
+  doc.setTextColor(255, 255, 255);
+  doc.text(trimLabel, PAGE_W / 2, s.y + 4.2, { align: 'center' });
+  s.y += 10;
+
+  // Progress bar
+  doc.setFontSize(9);
+  doc.setTextColor(100, 116, 139);
+  doc.text(`${stripEmojis(L.progressLabel)}: ${progress}%`, PAGE_W / 2, s.y, { align: 'center' });
+  s.y += 4;
+  doc.setFillColor(226, 232, 240);
+  doc.roundedRect(MARGIN_X + 20, s.y, CONTENT_W - 40, 3, 1.5, 1.5, 'F');
+  if (progress > 0) {
+    doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
+    doc.roundedRect(MARGIN_X + 20, s.y, (CONTENT_W - 40) * (progress / 100), 3, 1.5, 1.5, 'F');
+  }
+  s.y += 5;
+  doc.setFontSize(8);
+  doc.setTextColor(148, 163, 184);
+  doc.text(`${daysRemaining} ${L.daysLabel}`, PAGE_W / 2, s.y, { align: 'center' });
+  s.y += 6;
+
+  // Stats grid (4 boxes)
+  const statsData = [
+    { label: L.weekLabel, value: `${week}/40` },
+    { label: L.bmiLabel, value: bmi },
+    { label: L.caloriesLabel, value: `${calories}` },
+    { label: L.painLabel, value: `${painLevel}/10` },
+  ];
+  const boxW = (CONTENT_W - 12) / 4;
+  statsData.forEach((stat, i) => {
+    const x = MARGIN_X + i * (boxW + 4);
+    doc.setFillColor(248, 250, 252);
+    doc.roundedRect(x, s.y, boxW, 14, 2, 2, 'F');
+    doc.setFontSize(12);
+    doc.setTextColor(30, 41, 59);
+    doc.text(stat.value, x + boxW / 2, s.y + 6, { align: 'center' });
+    doc.setFontSize(7);
+    doc.setTextColor(148, 163, 184);
+    doc.text(stripEmojis(stat.label), x + boxW / 2, s.y + 11, { align: 'center' });
+  });
+  s.y += 18;
+
+  drawDivider(s, accentColor);
+
+  options.onProgress?.(30);
+
+  // Render AI report markdown
+  renderMarkdownToPDF(s, reportContent, accentColor);
+
+  options.onProgress?.(90);
+
+  // Disclaimer
+  ensureSpace(s, 10);
+  doc.setFontSize(7);
+  doc.setTextColor(148, 163, 184);
+  const dLines = doc.splitTextToSize(stripEmojis(L.disclaimer), CONTENT_W - 20);
+  doc.text(dLines, PAGE_W / 2, s.y, { align: 'center' });
+  s.y += dLines.length * 3.5 + 3;
+
+  drawFooter(s, language, accentColor);
+  options.onProgress?.(100);
+
+  doc.save(`pregnancy-report-week-${week}-${new Date().toISOString().split('T')[0]}.pdf`);
+}
+
+
 
 interface HTMLToPDFOptions {
   /** The DOM element ID to capture (e.g. 'report-content') */

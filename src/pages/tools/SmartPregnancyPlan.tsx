@@ -20,7 +20,7 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { motion } from "framer-motion";
-import { exportElementToPDF } from "@/lib/pdfExport";
+import { exportSmartPlanPDF } from "@/lib/pdfExport";
 
 const SmartPregnancyPlan = () => {
   const { t, i18n } = useTranslation();
@@ -236,13 +236,18 @@ Ayrıntılı bölümler:
     if (isExportingPDF) return;
     setIsExportingPDF(true);
     try {
-      await exportElementToPDF({
-        elementId: 'smart-plan-report',
-        filename: `pregnancy-report-week-${week}`,
+      await exportSmartPlanPDF({
+        week,
+        weight,
+        bmi: getBMI(),
+        calories: getCalories(),
+        painLevel,
+        trimester: { num: trimester.num, label: trimester.label },
+        progress,
+        daysRemaining,
+        reportContent,
+        language: lang,
         onProgress: () => {},
-        onError: (err) => {
-          toast.error(err.message);
-        },
       });
       toast.success(t("smartPlan.pdfExported", "Report exported successfully"));
     } catch {
