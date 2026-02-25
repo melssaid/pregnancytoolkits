@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CheckSquare, CheckCircle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 const CHECK_KEYS = [
   "generalCheckup", "bloodWork", "pap", "thyroid",
@@ -26,6 +27,7 @@ export default function PreconceptionCheckup() {
   return (
     <ToolFrame title={t('tools.preconceptionCheckup.title')} subtitle={t('tools.preconceptionCheckup.description')} mood="empowering" toolId="preconception-checkup">
       <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+        <FertilityDailyTip />
         {/* Progress */}
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-2">

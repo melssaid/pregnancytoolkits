@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Info, Sparkles } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,6 +36,7 @@ export default function FertileWindow() {
   return (
     <ToolFrame title={t('tools.fertileWindow.title')} subtitle={t('tools.fertileWindow.description')} mood="nurturing" toolId="fertile-window">
       <div className="space-y-4" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+        <FertilityDailyTip />
         <div className="space-y-3">
           <div>
             <Label className="text-xs font-medium">{t('toolsInternal.fertileWindow.lastPeriod')}</Label>

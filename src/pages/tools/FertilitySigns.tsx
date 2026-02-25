@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Eye } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 const SIGN_KEYS = [
   "cervicalMucus", "basalTemp", "cervicalPosition", "ovulationPain",
@@ -20,6 +21,7 @@ export default function FertilitySigns() {
   return (
     <ToolFrame title={t('tools.fertilitySigns.title')} subtitle={t('tools.fertilitySigns.description')} mood="nurturing" toolId="fertility-signs">
       <div className="space-y-2" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+        <FertilityDailyTip />
         <div className="flex items-center gap-2 mb-3">
           <Eye className="w-4 h-4 shrink-0 text-primary" />
           <span className="text-xs font-bold text-foreground">{t('toolsInternal.fertilitySigns.signsCount', { count: SIGN_KEYS.length })}</span>

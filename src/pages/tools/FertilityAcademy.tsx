@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, ChevronDown, GraduationCap } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { FertilityDailyTip } from "@/components/FertilityDailyTip";
 
 const LESSON_KEYS = [
   "menstrualCycle", "ovulationProcess", "fertilizationBasics", "hormonesRole",
@@ -27,6 +28,7 @@ export default function FertilityAcademy() {
   return (
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
       <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+        <FertilityDailyTip />
         {/* Header */}
         <div className="rounded-xl border border-border/60 bg-muted/30 p-3">
           <div className="flex items-center justify-between gap-3">
