@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,10 +8,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { 
   Activity, Utensils, FileText, Brain, Loader2, 
   Download, RefreshCw, Baby, Heart, Scale, Flame,
-  Clock, CheckCircle2, AlertTriangle
+  Ruler, Droplets, Moon, Smile, ChevronDown, ChevronUp,
+  Stethoscope, AlertTriangle
 } from "lucide-react";
 import { toast } from "sonner";
 import { WeekSlider } from "@/components/WeekSlider";
@@ -22,17 +25,49 @@ import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { motion } from "framer-motion";
 import { exportSmartPlanPDF } from "@/lib/pdfExport";
 
+const STORAGE_KEY = 'smart-plan-health-data';
+
+interface HealthData {
+  week: number;
+  weight: number;
+  height: number;
+  age: number;
+  painLevel: number;
+  bloodType: string;
+  bloodPressureSys: number;
+  bloodPressureDia: number;
+  sleepHours: number;
+  activityLevel: string;
+  mood: string;
+  conditions: string[];
+}
+
+const DEFAULT_HEALTH: HealthData = {
+  week: 24, weight: 65, height: 165, age: 28,
+  painLevel: 3, bloodType: '', bloodPressureSys: 120, bloodPressureDia: 80,
+  sleepHours: 7, activityLevel: 'moderate', mood: 'good', conditions: [],
+};
+
 const SmartPregnancyPlan = () => {
   const { t, i18n } = useTranslation();
-  const [week, setWeek] = useState<number>(24);
-  const [weight, setWeight] = useState<number>(65);
-  const [painLevel, setPainLevel] = useState<number>(5);
+  const [health, setHealth] = useState<HealthData>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? { ...DEFAULT_HEALTH, ...JSON.parse(saved) } : DEFAULT_HEALTH;
+    } catch { return DEFAULT_HEALTH; }
+  });
+  const [showMore, setShowMore] = useState(false);
   const [activeTab, setActiveTab] = useState("exercises");
   const [aiResponse, setAiResponse] = useState('');
   const [reportContent, setReportContent] = useState('');
   const [isExportingPDF, setIsExportingPDF] = useState(false);
   const { streamChat, isLoading, error } = usePregnancyAI();
   const reportRef = useRef<HTMLDivElement>(null);
+
+  // Save health data on change
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(health));
+  }, [health]);
 
   useResetOnLanguageChange(() => {
     setAiResponse('');
@@ -42,24 +77,104 @@ const SmartPregnancyPlan = () => {
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
 
+  const update = (field: keyof HealthData, value: any) => {
+    setHealth(prev => ({ ...prev, [field]: value }));
+  };
+
+  const toggleCondition = (condition: string) => {
+    setHealth(prev => ({
+      ...prev,
+      conditions: prev.conditions.includes(condition)
+        ? prev.conditions.filter(c => c !== condition)
+        : [...prev.conditions, condition],
+    }));
+  };
+
   const getTrimester = (w: number) => {
     if (w <= 12) return { num: 1, label: t("smartPlan.trimester1", "First Trimester"), color: "bg-emerald-500" };
     if (w <= 27) return { num: 2, label: t("smartPlan.trimester2", "Second Trimester"), color: "bg-primary" };
     return { num: 3, label: t("smartPlan.trimester3", "Third Trimester"), color: "bg-amber-500" };
   };
 
-  const trimester = getTrimester(week);
-  const progress = Math.round((week / 40) * 100);
-  const daysRemaining = (40 - week) * 7;
+  const trimester = getTrimester(health.week);
+  const progress = Math.round((health.week / 40) * 100);
+  const daysRemaining = (40 - health.week) * 7;
 
-  const getCalories = () => {
-    return Math.round(10 * weight + 6.25 * 165 - 5 * 30 - 161 + (week > 13 ? 300 : 0));
+  const getBMI = () => {
+    const h = health.height / 100;
+    return h > 0 ? (health.weight / (h * h)).toFixed(1) : '0';
   };
 
-  const getBMI = () => (weight / (1.65 * 1.65)).toFixed(1);
+  const getCalories = () => {
+    return Math.round(10 * health.weight + 6.25 * health.height - 5 * health.age - 161 + (health.week > 13 ? 300 : 0));
+  };
+
+  // Build health summary for AI
+  const buildHealthSummary = (langKey: string) => {
+    const bmi = getBMI();
+    const cal = getCalories();
+    const bp = `${health.bloodPressureSys}/${health.bloodPressureDia}`;
+    const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : '';
+
+    const summaries: Record<string, string> = {
+      ar: `- الأسبوع: ${health.week}
+- العمر: ${health.age} سنة
+- الوزن: ${health.weight} كجم
+- الطول: ${health.height} سم
+- مؤشر كتلة الجسم: ${bmi}
+- ضغط الدم: ${bp} mmHg
+- فصيلة الدم: ${health.bloodType || 'غير محدد'}
+- مستوى ألم الظهر: ${health.painLevel}/10
+- ساعات النوم: ${health.sleepHours}
+- مستوى النشاط: ${health.activityLevel === 'sedentary' ? 'قليل' : health.activityLevel === 'moderate' ? 'متوسط' : 'نشيط'}
+- الحالة المزاجية: ${health.mood === 'great' ? 'ممتازة' : health.mood === 'good' ? 'جيدة' : health.mood === 'okay' ? 'مقبولة' : health.mood === 'stressed' ? 'متوترة' : 'منخفضة'}
+- السعرات الحرارية المطلوبة: ${cal} سعرة
+- الثلث: ${trimester.num}${conditionsText ? `\n- حالات صحية: ${conditionsText}` : ''}`,
+
+      en: `- Week: ${health.week}
+- Age: ${health.age} years
+- Weight: ${health.weight} kg
+- Height: ${health.height} cm
+- BMI: ${bmi}
+- Blood Pressure: ${bp} mmHg
+- Blood Type: ${health.bloodType || 'Not specified'}
+- Back Pain Level: ${health.painLevel}/10
+- Sleep Hours: ${health.sleepHours}
+- Activity Level: ${health.activityLevel}
+- Mood: ${health.mood}
+- Required Calories: ${cal} kcal
+- Trimester: ${trimester.num}${conditionsText ? `\n- Health Conditions: ${conditionsText}` : ''}`,
+
+      de: `- Woche: ${health.week}, Alter: ${health.age}, Gewicht: ${health.weight}kg, Größe: ${health.height}cm
+- BMI: ${bmi}, Blutdruck: ${bp}, Blutgruppe: ${health.bloodType || '-'}
+- Rückenschmerzen: ${health.painLevel}/10, Schlaf: ${health.sleepHours}h, Aktivität: ${health.activityLevel}
+- Stimmung: ${health.mood}, Kalorien: ${cal}, Trimester: ${trimester.num}${conditionsText ? `, Bedingungen: ${conditionsText}` : ''}`,
+
+      fr: `- Semaine: ${health.week}, Âge: ${health.age}, Poids: ${health.weight}kg, Taille: ${health.height}cm
+- IMC: ${bmi}, Tension: ${bp}, Groupe sanguin: ${health.bloodType || '-'}
+- Douleur dorsale: ${health.painLevel}/10, Sommeil: ${health.sleepHours}h, Activité: ${health.activityLevel}
+- Humeur: ${health.mood}, Calories: ${cal}, Trimestre: ${trimester.num}${conditionsText ? `, Conditions: ${conditionsText}` : ''}`,
+
+      es: `- Semana: ${health.week}, Edad: ${health.age}, Peso: ${health.weight}kg, Altura: ${health.height}cm
+- IMC: ${bmi}, Presión: ${bp}, Grupo sanguíneo: ${health.bloodType || '-'}
+- Dolor de espalda: ${health.painLevel}/10, Sueño: ${health.sleepHours}h, Actividad: ${health.activityLevel}
+- Estado de ánimo: ${health.mood}, Calorías: ${cal}, Trimestre: ${trimester.num}${conditionsText ? `, Condiciones: ${conditionsText}` : ''}`,
+
+      pt: `- Semana: ${health.week}, Idade: ${health.age}, Peso: ${health.weight}kg, Altura: ${health.height}cm
+- IMC: ${bmi}, Pressão: ${bp}, Tipo sanguíneo: ${health.bloodType || '-'}
+- Dor nas costas: ${health.painLevel}/10, Sono: ${health.sleepHours}h, Atividade: ${health.activityLevel}
+- Humor: ${health.mood}, Calorias: ${cal}, Trimestre: ${trimester.num}${conditionsText ? `, Condições: ${conditionsText}` : ''}`,
+
+      tr: `- Hafta: ${health.week}, Yaş: ${health.age}, Kilo: ${health.weight}kg, Boy: ${health.height}cm
+- VKİ: ${bmi}, Tansiyon: ${bp}, Kan grubu: ${health.bloodType || '-'}
+- Bel ağrısı: ${health.painLevel}/10, Uyku: ${health.sleepHours}h, Aktivite: ${health.activityLevel}
+- Ruh hali: ${health.mood}, Kalori: ${cal}, Trimester: ${trimester.num}${conditionsText ? `, Durumlar: ${conditionsText}` : ''}`,
+    };
+    return summaries[langKey] || summaries.en;
+  };
 
   const getExercisePlan = () => {
-    if (week >= 20 && painLevel > 3) {
+    if (health.week >= 20 && health.painLevel > 3) {
       return [
         { name: t("smartPlan.ex1"), duration: `5 ${t("common.minutes")}`, type: t("smartPlan.typeRelief"), icon: "🧘" },
         { name: t("smartPlan.ex2"), duration: `10 ${t("common.minutes")}`, type: t("smartPlan.typeStrength"), icon: "💪" },
@@ -75,135 +190,99 @@ const SmartPregnancyPlan = () => {
   const generateReport = async () => {
     setReportContent('');
     setActiveTab('report');
+    const summary = buildHealthSummary(lang);
 
     const reportPrompts: Record<string, string> = {
-      ar: `أنتِ طبيبة نساء وولادة متخصصة. أعدّي تقريراً صحياً شاملاً ومفصلاً للأسبوع ${week} من الحمل بناءً على هذه البيانات:
-- الوزن: ${weight} كجم
-- مؤشر كتلة الجسم: ${getBMI()}
-- مستوى ألم الظهر: ${painLevel}/10
-- الثلث: ${trimester.num}
-- السعرات الحرارية المطلوبة: ${getCalories()} سعرة
+      ar: `أنتِ طبيبة نساء وولادة متخصصة. أعدّي تقريراً صحياً شاملاً ومفصلاً بناءً على هذه البيانات الصحية:
+${summary}
 
 يجب أن يتضمن التقرير الأقسام التالية بتفصيل:
 ## 📊 ملخص الحالة الصحية
-- تحليل شامل للمؤشرات الحيوية وتقييم الوزن
+- تحليل شامل للمؤشرات الحيوية (الوزن، ضغط الدم، مؤشر كتلة الجسم) وتقييم المخاطر
 
 ## 🏥 تطور الجنين هذا الأسبوع
 - حجم الجنين ووزنه التقريبي والتطورات الجسدية
 
 ## 🍽️ خطة التغذية المخصصة
-- وجبات مفصلة (فطور، غداء، عشاء، وجبات خفيفة) مع الفيتامينات المطلوبة
+- وجبات مفصلة (فطور، غداء، عشاء، وجبات خفيفة) مع الفيتامينات المطلوبة حسب الحالة الصحية
 
 ## 🏃‍♀️ برنامج التمارين الآمنة
-- تمارين مخصصة حسب مستوى الألم والأسبوع
+- تمارين مخصصة حسب مستوى الألم والنشاط والأسبوع
+
+## 😴 تحسين النوم والراحة
+- نصائح مخصصة حسب ساعات النوم الحالية والحالة المزاجية
 
 ## ⚠️ أعراض يجب مراقبتها
-- أعراض طبيعية وأعراض تستدعي مراجعة الطبيب
+- أعراض طبيعية وأعراض تستدعي مراجعة الطبيب (مع مراعاة ضغط الدم وأي حالات صحية)
 
-## 💡 نصائح مخصصة للأسبوع ${week}
-- نصائح عملية للراحة والنوم والعناية الشخصية
+## 💡 نصائح مخصصة للأسبوع ${health.week}
+- نصائح عملية مبنية على كل البيانات المدخلة
 
 ## 📋 قائمة الفحوصات المطلوبة
-- الفحوصات والتحاليل المناسبة لهذا الأسبوع
+- الفحوصات والتحاليل المناسبة لهذا الأسبوع مع مراعاة فصيلة الدم والحالات الصحية
 
 اجعلي التقرير مفصلاً ومهنياً وشاملاً.`,
 
-      en: `You are a specialized OB-GYN doctor. Create a comprehensive, detailed health report for pregnancy week ${week} based on this data:
-- Weight: ${weight} kg
-- BMI: ${getBMI()}
-- Back pain level: ${painLevel}/10
-- Trimester: ${trimester.num}
-- Required calories: ${getCalories()} kcal
+      en: `You are a specialized OB-GYN doctor. Create a comprehensive, detailed health report based on this health data:
+${summary}
 
 Include these sections in detail:
 ## 📊 Health Status Summary
-- Comprehensive vital signs analysis and weight assessment
+- Comprehensive vital signs analysis (weight, blood pressure, BMI) and risk assessment
 
 ## 🏥 Fetal Development This Week
 - Baby's approximate size, weight, and physical developments
 
 ## 🍽️ Personalized Nutrition Plan
-- Detailed meals (breakfast, lunch, dinner, snacks) with required vitamins
+- Detailed meals (breakfast, lunch, dinner, snacks) with required vitamins based on health conditions
 
 ## 🏃‍♀️ Safe Exercise Program
-- Customized exercises based on pain level and week
+- Customized exercises based on pain level, activity level, and week
+
+## 😴 Sleep & Rest Optimization
+- Personalized tips based on current sleep hours and mood
 
 ## ⚠️ Symptoms to Watch
-- Normal symptoms and warning signs requiring medical attention
+- Normal symptoms and warning signs (considering blood pressure and health conditions)
 
-## 💡 Tips for Week ${week}
-- Practical tips for rest, sleep, and self-care
+## 💡 Tips for Week ${health.week}
+- Practical tips built on all entered data
 
 ## 📋 Required Checkups
-- Appropriate tests and screenings for this week
+- Appropriate tests and screenings considering blood type and health conditions
 
 Make the report detailed, professional, and comprehensive.`,
 
-      de: `Sie sind eine spezialisierte Gynäkologin. Erstellen Sie einen umfassenden Gesundheitsbericht für Schwangerschaftswoche ${week}:
-- Gewicht: ${weight} kg, BMI: ${getBMI()}, Rückenschmerzen: ${painLevel}/10, Trimester: ${trimester.num}, Kalorien: ${getCalories()} kcal
+      de: `Sie sind eine spezialisierte Gynäkologin. Erstellen Sie einen umfassenden Gesundheitsbericht:
+${summary}
 
-Bitte folgende Abschnitte detailliert:
-## 📊 Gesundheitsstatus
-## 🏥 Fetale Entwicklung
-## 🍽️ Ernährungsplan
-## 🏃‍♀️ Übungsprogramm
-## ⚠️ Zu beachtende Symptome
-## 💡 Tipps für Woche ${week}
-## 📋 Erforderliche Untersuchungen`,
+Detaillierte Abschnitte: Gesundheitsstatus, Fetale Entwicklung, Ernährungsplan, Übungsprogramm, Schlafoptimierung, Symptome, Tipps Woche ${health.week}, Untersuchungen.`,
 
-      fr: `Vous êtes une gynécologue-obstétricienne. Créez un rapport de santé complet pour la semaine ${week} de grossesse:
-- Poids: ${weight} kg, IMC: ${getBMI()}, Douleur dorsale: ${painLevel}/10, Trimestre: ${trimester.num}, Calories: ${getCalories()} kcal
+      fr: `Vous êtes gynécologue-obstétricienne. Créez un rapport de santé complet:
+${summary}
 
-Sections détaillées:
-## 📊 Bilan de santé
-## 🏥 Développement fœtal
-## 🍽️ Plan nutritionnel
-## 🏃‍♀️ Programme d'exercices
-## ⚠️ Symptômes à surveiller
-## 💡 Conseils semaine ${week}
-## 📋 Examens requis`,
+Sections détaillées: Bilan de santé, Développement fœtal, Plan nutritionnel, Exercices, Sommeil, Symptômes, Conseils semaine ${health.week}, Examens.`,
 
-      es: `Eres una ginecóloga-obstetra especializada. Crea un informe de salud completo para la semana ${week} de embarazo:
-- Peso: ${weight} kg, IMC: ${getBMI()}, Dolor de espalda: ${painLevel}/10, Trimestre: ${trimester.num}, Calorías: ${getCalories()} kcal
+      es: `Eres ginecóloga-obstetra. Crea un informe de salud completo:
+${summary}
 
-Secciones detalladas:
-## 📊 Resumen de salud
-## 🏥 Desarrollo fetal
-## 🍽️ Plan nutricional
-## 🏃‍♀️ Programa de ejercicios
-## ⚠️ Síntomas a vigilar
-## 💡 Consejos semana ${week}
-## 📋 Chequeos requeridos`,
+Secciones detalladas: Resumen de salud, Desarrollo fetal, Plan nutricional, Ejercicios, Sueño, Síntomas, Consejos semana ${health.week}, Chequeos.`,
 
-      pt: `Você é uma ginecologista-obstetra especializada. Crie um relatório de saúde completo para a semana ${week} de gravidez:
-- Peso: ${weight} kg, IMC: ${getBMI()}, Dor nas costas: ${painLevel}/10, Trimestre: ${trimester.num}, Calorias: ${getCalories()} kcal
+      pt: `Você é ginecologista-obstetra. Crie um relatório de saúde completo:
+${summary}
 
-Seções detalhadas:
-## 📊 Resumo de saúde
-## 🏥 Desenvolvimento fetal
-## 🍽️ Plano nutricional
-## 🏃‍♀️ Programa de exercícios
-## ⚠️ Sintomas a observar
-## 💡 Dicas semana ${week}
-## 📋 Exames necessários`,
+Seções detalhadas: Resumo de saúde, Desenvolvimento fetal, Plano nutricional, Exercícios, Sono, Sintomas, Dicas semana ${health.week}, Exames.`,
 
-      tr: `Uzman bir kadın doğum uzmanısınız. Hamileliğin ${week}. haftası için kapsamlı bir sağlık raporu oluşturun:
-- Kilo: ${weight} kg, VKİ: ${getBMI()}, Bel ağrısı: ${painLevel}/10, Trimester: ${trimester.num}, Kalori: ${getCalories()} kcal
+      tr: `Uzman kadın doğum uzmanısınız. Kapsamlı sağlık raporu oluşturun:
+${summary}
 
-Ayrıntılı bölümler:
-## 📊 Sağlık Durumu
-## 🏥 Fetal Gelişim
-## 🍽️ Beslenme Planı
-## 🏃‍♀️ Egzersiz Programı
-## ⚠️ İzlenmesi Gereken Belirtiler
-## 💡 ${week}. Hafta İpuçları
-## 📋 Gerekli Kontroller`,
+Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzersiz, Uyku, Belirtiler, ${health.week}. Hafta İpuçları, Kontroller.`,
     };
 
     await streamChat({
       type: 'pregnancy-assistant',
       messages: [{ role: 'user', content: reportPrompts[lang] || reportPrompts.en }],
-      context: { week, weight, language: lang },
+      context: { week: health.week, weight: health.weight, language: lang },
       onDelta: (text) => setReportContent(prev => prev + text),
       onDone: () => {},
     });
@@ -212,21 +291,22 @@ Ayrıntılı bölümler:
   // Generate quick AI plan
   const getAIPlan = async () => {
     setAiResponse('');
+    const summary = buildHealthSummary(lang);
 
     const prompts: Record<string, string> = {
-      ar: `أنا في الأسبوع ${week} من الحمل، وزني ${weight} كجم، ومستوى ألم الظهر ${painLevel}/10. أنشئي خطة يومية مخصصة تشمل تمارين آمنة، واقتراحات وجبات، ونصائح صحية مناسبة لحالتي الحالية. رتبي الخطة بعناوين واضحة وفقرات منظمة.`,
-      de: `Ich bin in Woche ${week} der Schwangerschaft, wiege ${weight}kg, Rückenschmerzen Stufe ${painLevel}/10. Erstelle einen personalisierten Tagesplan mit sicheren Übungen, Mahlzeitenvorschlägen und Wellness-Tipps.`,
-      fr: `Je suis à la semaine ${week} de grossesse, je pèse ${weight}kg, niveau de douleur dorsale ${painLevel}/10. Créez un plan quotidien personnalisé avec des exercices sûrs, des suggestions de repas et des conseils bien-être.`,
-      es: `Estoy en la semana ${week} de embarazo, peso ${weight}kg, nivel de dolor de espalda ${painLevel}/10. Crea un plan diario personalizado con ejercicios seguros, sugerencias de comidas y consejos de bienestar.`,
-      pt: `Estou na semana ${week} da gravidez, peso ${weight}kg, nível de dor nas costas ${painLevel}/10. Crie um plano diário personalizado com exercícios seguros, sugestões de refeições e dicas de bem-estar.`,
-      tr: `Hamileliğimin ${week}. haftasındayım, ${weight}kg ağırlığındayım, bel ağrısı seviyem ${painLevel}/10. Güvenli egzersizler, yemek önerileri ve sağlık ipuçları içeren kişiselleştirilmiş bir günlük plan oluşturun.`,
-      en: `I'm at week ${week} of pregnancy, weighing ${weight}kg, with back pain level ${painLevel}/10. Create a personalized daily plan including safe exercises, meal suggestions, and wellness tips tailored to my current state. Use clear headings and organized paragraphs.`,
+      ar: `أنا حامل، هذه بياناتي الصحية:\n${summary}\nأنشئي خطة يومية مخصصة تشمل تمارين آمنة، واقتراحات وجبات، ونصائح صحية مبنية على كل بياناتي. رتبي الخطة بعناوين واضحة.`,
+      en: `I'm pregnant. Here's my health data:\n${summary}\nCreate a personalized daily plan including safe exercises, meal suggestions, and wellness tips based on ALL my data. Use clear headings.`,
+      de: `Ich bin schwanger. Meine Gesundheitsdaten:\n${summary}\nErstellen Sie einen personalisierten Tagesplan mit Übungen, Mahlzeiten und Tipps.`,
+      fr: `Je suis enceinte. Mes données de santé:\n${summary}\nCréez un plan quotidien personnalisé avec exercices, repas et conseils.`,
+      es: `Estoy embarazada. Mis datos de salud:\n${summary}\nCrea un plan diario personalizado con ejercicios, comidas y consejos.`,
+      pt: `Estou grávida. Meus dados de saúde:\n${summary}\nCrie um plano diário personalizado com exercícios, refeições e dicas.`,
+      tr: `Hamileyim. Sağlık verilerim:\n${summary}\nEgzersizler, yemekler ve ipuçları içeren kişiselleştirilmiş bir günlük plan oluşturun.`,
     };
 
     await streamChat({
       type: 'pregnancy-assistant',
       messages: [{ role: 'user', content: prompts[lang] || prompts.en }],
-      context: { week, weight, language: lang },
+      context: { week: health.week, weight: health.weight, language: lang },
       onDelta: (text) => setAiResponse(prev => prev + text),
       onDone: () => {},
     });
@@ -237,11 +317,11 @@ Ayrıntılı bölümler:
     setIsExportingPDF(true);
     try {
       await exportSmartPlanPDF({
-        week,
-        weight,
+        week: health.week,
+        weight: health.weight,
         bmi: getBMI(),
         calories: getCalories(),
-        painLevel,
+        painLevel: health.painLevel,
         trimester: { num: trimester.num, label: trimester.label },
         progress,
         daysRemaining,
@@ -257,12 +337,36 @@ Ayrıntılı bölümler:
     }
   };
 
-  // Stats cards data
+  // Conditions list
+  const conditionOptions = [
+    { key: 'gestational_diabetes', ar: 'سكري الحمل', en: 'Gestational Diabetes', de: 'Schwangerschaftsdiabetes', fr: 'Diabète gestationnel', es: 'Diabetes gestacional', pt: 'Diabetes gestacional', tr: 'Gebelik Diyabeti' },
+    { key: 'hypertension', ar: 'ارتفاع ضغط الدم', en: 'Hypertension', de: 'Bluthochdruck', fr: 'Hypertension', es: 'Hipertensión', pt: 'Hipertensão', tr: 'Hipertansiyon' },
+    { key: 'anemia', ar: 'فقر الدم', en: 'Anemia', de: 'Anämie', fr: 'Anémie', es: 'Anemia', pt: 'Anemia', tr: 'Anemi' },
+    { key: 'thyroid', ar: 'مشاكل الغدة الدرقية', en: 'Thyroid Issues', de: 'Schilddrüsenprobleme', fr: 'Problèmes thyroïdiens', es: 'Problemas de tiroides', pt: 'Problemas de tireoide', tr: 'Tiroid Sorunları' },
+    { key: 'preeclampsia_risk', ar: 'خطر تسمم الحمل', en: 'Preeclampsia Risk', de: 'Präeklampsie-Risiko', fr: 'Risque de prééclampsie', es: 'Riesgo de preeclampsia', pt: 'Risco de pré-eclâmpsia', tr: 'Preeklampsi Riski' },
+  ];
+
+  const moodOptions = [
+    { value: 'great', ar: 'ممتازة', en: 'Great', de: 'Ausgezeichnet', fr: 'Excellent', es: 'Excelente', pt: 'Excelente', tr: 'Harika', icon: '😊' },
+    { value: 'good', ar: 'جيدة', en: 'Good', de: 'Gut', fr: 'Bien', es: 'Bien', pt: 'Bom', tr: 'İyi', icon: '🙂' },
+    { value: 'okay', ar: 'مقبولة', en: 'Okay', de: 'Okay', fr: 'Correct', es: 'Regular', pt: 'Razoável', tr: 'İdare eder', icon: '😐' },
+    { value: 'stressed', ar: 'متوترة', en: 'Stressed', de: 'Gestresst', fr: 'Stressée', es: 'Estresada', pt: 'Estressada', tr: 'Stresli', icon: '😰' },
+    { value: 'low', ar: 'منخفضة', en: 'Low', de: 'Niedrig', fr: 'Basse', es: 'Baja', pt: 'Baixo', tr: 'Düşük', icon: '😔' },
+  ];
+
+  const activityOptions = [
+    { value: 'sedentary', ar: 'قليل الحركة', en: 'Sedentary', de: 'Sitzend', fr: 'Sédentaire', es: 'Sedentario', pt: 'Sedentário', tr: 'Hareketsiz' },
+    { value: 'moderate', ar: 'متوسط', en: 'Moderate', de: 'Mäßig', fr: 'Modéré', es: 'Moderado', pt: 'Moderado', tr: 'Orta' },
+    { value: 'active', ar: 'نشيط', en: 'Active', de: 'Aktiv', fr: 'Actif', es: 'Activo', pt: 'Ativo', tr: 'Aktif' },
+  ];
+
+  const getLocalizedLabel = (option: Record<string, string>) => option[lang] || option.en;
+
   const statsCards = [
-    { icon: Baby, label: t("smartPlan.currentWeek", "Week"), value: `${week}/40`, color: "text-primary" },
+    { icon: Baby, label: t("smartPlan.currentWeek", "Week"), value: `${health.week}/40`, color: "text-primary" },
     { icon: Scale, label: t("smartPlan.bmi", "BMI"), value: getBMI(), color: "text-blue-500" },
     { icon: Flame, label: t("smartPlan.calories", "Calories"), value: `${getCalories()}`, color: "text-orange-500" },
-    { icon: Heart, label: t("smartPlan.pain", "Pain"), value: `${painLevel}/10`, color: "text-rose-500" },
+    { icon: Droplets, label: t("smartPlan.bp", "BP"), value: `${health.bloodPressureSys}/${health.bloodPressureDia}`, color: "text-rose-500" },
   ];
 
   return (
@@ -274,21 +378,171 @@ Ayrıntılı bölümler:
       icon={FileText}
     >
       <div className="space-y-5">
-        {/* Input Card */}
+        {/* Health Data Input Card */}
         <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm">{t("smartPlan.yourData")}</CardTitle>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm flex items-center gap-2">
+              <Stethoscope className="w-4 h-4 text-primary" />
+              {t("smartPlan.yourHealthData", "Your Health Data")}
+            </CardTitle>
+            <CardDescription className="text-[10px]">
+              {t("smartPlan.healthDataDesc", "Enter your data for a personalized report")}
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <WeekSlider week={week} onChange={setWeek} showCard={false} showTrimester label={t("smartPlan.currentWeek")} />
-            <div className="space-y-2">
-              <Label className="text-xs">{t("smartPlan.weight")} (kg)</Label>
-              <Input type="number" value={weight} onChange={(e) => setWeight(Number(e.target.value))} />
+            {/* Week slider */}
+            <WeekSlider week={health.week} onChange={(w) => update('week', w)} showCard={false} showTrimester label={t("smartPlan.currentWeek")} />
+
+            {/* Row 1: Weight + Height */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label className="text-[11px]">{t("smartPlan.weight", "Weight")} (kg)</Label>
+                <Input type="number" value={health.weight} onChange={(e) => update('weight', Number(e.target.value))} className="h-9 text-sm" />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-[11px]">{t("smartPlan.height", "Height")} (cm)</Label>
+                <Input type="number" value={health.height} onChange={(e) => update('height', Number(e.target.value))} className="h-9 text-sm" />
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label className="text-xs">{t("smartPlan.backPainLevel")}: {painLevel}/10</Label>
-              <Slider value={[painLevel]} onValueChange={(v) => setPainLevel(v[0])} max={10} step={1} />
+
+            {/* Row 2: Age + Blood Type */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label className="text-[11px]">{t("smartPlan.age", "Age")}</Label>
+                <Input type="number" value={health.age} onChange={(e) => update('age', Number(e.target.value))} className="h-9 text-sm" />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-[11px]">{t("smartPlan.bloodType", "Blood Type")}</Label>
+                <Select value={health.bloodType} onValueChange={(v) => update('bloodType', v)}>
+                  <SelectTrigger className="h-9 text-sm"><SelectValue placeholder="—" /></SelectTrigger>
+                  <SelectContent>
+                    {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map(bt => (
+                      <SelectItem key={bt} value={bt}>{bt}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
+
+            {/* Back pain slider */}
+            <div className="space-y-1.5">
+              <Label className="text-[11px]">{t("smartPlan.backPainLevel", "Back Pain Level")}: {health.painLevel}/10</Label>
+              <Slider value={[health.painLevel]} onValueChange={(v) => update('painLevel', v[0])} max={10} step={1} />
+            </div>
+
+            {/* Expandable section */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-full text-xs gap-1 h-7 text-muted-foreground"
+              onClick={() => setShowMore(!showMore)}
+            >
+              {showMore ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+              {showMore
+                ? t("smartPlan.showLess", "Show Less")
+                : t("smartPlan.moreHealthData", "More Health Data")}
+            </Button>
+
+            {showMore && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="space-y-4"
+              >
+                {/* Blood Pressure */}
+                <div className="space-y-1.5">
+                  <Label className="text-[11px] flex items-center gap-1">
+                    <Droplets className="w-3 h-3 text-rose-400" />
+                    {t("smartPlan.bloodPressure", "Blood Pressure")} (mmHg)
+                  </Label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="relative">
+                      <Input type="number" value={health.bloodPressureSys} onChange={(e) => update('bloodPressureSys', Number(e.target.value))} className="h-9 text-sm" />
+                      <span className="absolute end-2 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground">SYS</span>
+                    </div>
+                    <div className="relative">
+                      <Input type="number" value={health.bloodPressureDia} onChange={(e) => update('bloodPressureDia', Number(e.target.value))} className="h-9 text-sm" />
+                      <span className="absolute end-2 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground">DIA</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sleep Hours */}
+                <div className="space-y-1.5">
+                  <Label className="text-[11px] flex items-center gap-1">
+                    <Moon className="w-3 h-3 text-indigo-400" />
+                    {t("smartPlan.sleepHours", "Sleep Hours")}: {health.sleepHours}h
+                  </Label>
+                  <Slider value={[health.sleepHours]} onValueChange={(v) => update('sleepHours', v[0])} min={3} max={12} step={0.5} />
+                </div>
+
+                {/* Activity Level */}
+                <div className="space-y-1.5">
+                  <Label className="text-[11px] flex items-center gap-1">
+                    <Activity className="w-3 h-3 text-emerald-500" />
+                    {t("smartPlan.activityLevel", "Activity Level")}
+                  </Label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {activityOptions.map(opt => (
+                      <Button
+                        key={opt.value}
+                        variant={health.activityLevel === opt.value ? "default" : "outline"}
+                        size="sm"
+                        className="text-[10px] h-8"
+                        onClick={() => update('activityLevel', opt.value)}
+                      >
+                        {getLocalizedLabel(opt)}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mood */}
+                <div className="space-y-1.5">
+                  <Label className="text-[11px] flex items-center gap-1">
+                    <Smile className="w-3 h-3 text-amber-500" />
+                    {t("smartPlan.mood", "Mood")}
+                  </Label>
+                  <div className="flex gap-1.5 flex-wrap">
+                    {moodOptions.map(opt => (
+                      <Button
+                        key={opt.value}
+                        variant={health.mood === opt.value ? "default" : "outline"}
+                        size="sm"
+                        className="text-[10px] h-7 gap-1 px-2"
+                        onClick={() => update('mood', opt.value)}
+                      >
+                        <span>{opt.icon}</span>
+                        {getLocalizedLabel(opt)}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Health Conditions */}
+                <div className="space-y-2">
+                  <Label className="text-[11px] flex items-center gap-1">
+                    <AlertTriangle className="w-3 h-3 text-amber-500" />
+                    {t("smartPlan.healthConditions", "Health Conditions")}
+                  </Label>
+                  <div className="space-y-2">
+                    {conditionOptions.map(cond => (
+                      <div key={cond.key} className="flex items-center gap-2">
+                        <Checkbox
+                          id={cond.key}
+                          checked={health.conditions.includes(cond.key)}
+                          onCheckedChange={() => toggleCondition(cond.key)}
+                        />
+                        <label htmlFor={cond.key} className="text-xs cursor-pointer">
+                          {getLocalizedLabel(cond)}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </CardContent>
         </Card>
 
@@ -324,7 +578,7 @@ Ayrıntılı bölümler:
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm">{t("smartPlan.dailyRoutine")}</CardTitle>
-                <CardDescription className="text-xs">{t("smartPlan.exerciseDesc", { week })}</CardDescription>
+                <CardDescription className="text-xs">{t("smartPlan.exerciseDesc", { week: health.week })}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -402,7 +656,7 @@ Ayrıntılı bölümler:
                             <Baby className="w-5 h-5 text-primary" />
                           </div>
                           <div>
-                            <h3 className="text-sm font-bold">{t("smartPlan.weeklyReport")} — {t("common.week", "Week")} {week}</h3>
+                            <h3 className="text-sm font-bold">{t("smartPlan.weeklyReport")} — {t("common.week", "Week")} {health.week}</h3>
                             <p className="text-[10px] text-muted-foreground">{new Date().toLocaleDateString(isRTL ? 'ar-SA' : undefined)}</p>
                           </div>
                         </div>
