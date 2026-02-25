@@ -199,8 +199,8 @@
       "description": "Exercícios seguros personalizados para sua fase de gravidez."
     },
     "aiBackPainRelief": {
-      "title": "Alívio de dor nas costas IA",
-      "description": "Exercícios personalizados para dor nas costas na gravidez."
+      "title": "Guia de conforto para as costas",
+      "description": "Exercícios personalizados para o conforto das costas na gravidez."
     },
     "vitaminTracker": {
       "title": "Rastreador de vitaminas",
@@ -2175,8 +2175,8 @@
       "photoDownloadedDesc": "Agora você pode compartilhá-la manualmente"
     },
     "backPainRelief": {
-      "title": "Alívio de Dor nas Costas IA",
-      "subtitle": "Exercícios personalizados para dor nas costas na gravidez",
+      "title": "Guia de Conforto para as Costas",
+      "subtitle": "Exercícios personalizados para o conforto das costas na gravidez",
       "currentWeek": "Semana Atual",
       "painLocation": "Localização da Dor",
       "lowerBack": "Lombar",

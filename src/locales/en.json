@@ -199,8 +199,8 @@
       "description": "Safe exercises customized for your pregnancy stage."
     },
     "aiBackPainRelief": {
-      "title": "AI Back Pain Relief",
-      "description": "Personalized exercises for pregnancy back pain."
+      "title": "Back Comfort Guide",
+      "description": "Personalized exercises for pregnancy back comfort."
     },
     "vitaminTracker": {
       "title": "Vitamin Tracker",
@@ -2124,8 +2124,8 @@
       "photoDownloadedDesc": "You can now share it manually"
     },
     "backPainRelief": {
-      "title": "AI Back Pain Relief",
-      "subtitle": "Personalized exercises for pregnancy back pain",
+      "title": "Back Comfort Guide",
+      "subtitle": "Personalized exercises for pregnancy back comfort",
       "whereHurts": "Where does it hurt?",
       "lowerBack": "Lower Back",
       "upperBack": "Upper Back",
@@ -3861,8 +3861,8 @@
     }
   },
   "backPainRelief": {
-    "title": "AI Back Pain Relief",
-    "subtitle": "Pregnancy-safe exercises for back pain relief",
+    "title": "Back Comfort Guide",
+    "subtitle": "Pregnancy-safe exercises for back comfort",
     "whereHurts": "Where does it hurt?",
     "todaysRoutine": "Today's Relief Routine",
     "exercisesCompleted": "exercises completed",

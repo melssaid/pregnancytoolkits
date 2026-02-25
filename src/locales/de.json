@@ -199,8 +199,8 @@
       "description": "Sichere Übungen für Ihre Schwangerschaftsphase."
     },
     "aiBackPainRelief": {
-      "title": "KI-Rückenschmerzlinderung",
-      "description": "Personalisierte Übungen gegen Schwangerschaftsrückenschmerzen."
+      "title": "Rückenkomfort-Ratgeber",
+      "description": "Personalisierte Übungen für Rückenkomfort in der Schwangerschaft."
     },
     "vitaminTracker": {
       "title": "Vitamin-Tracker",
@@ -2819,8 +2819,8 @@
     "photoDownloadedDesc": "Sie können es jetzt manuell teilen"
   },
   "toolsInternal.backPainRelief": {
-    "title": "KI-Rückenschmerzlinderung",
-    "subtitle": "Schwangerschaftssichere Übungen zur Schmerzlinderung",
+    "title": "Rückenkomfort-Ratgeber",
+    "subtitle": "Schwangerschaftssichere Übungen für Rückenkomfort",
     "whereHurts": "Wo tut es weh?",
     "getAdvice": "KI-Schmerzlinderungs-Ratschläge erhalten",
     "exercisesTitle": "Rückenschmerz-Übungen"
