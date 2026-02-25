@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Baby, Info, Calendar, Save, Bell, Trash2, Share2, CalendarIcon } from "lucide-react";
+import { Baby, Info, Calendar, Save, Bell, Trash2, CalendarIcon } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { addDays, addWeeks, differenceInDays, format } from "date-fns";
 import { formatLocalized } from "@/lib/dateLocale";
 import { useToast } from "@/components/ui/use-toast";
@@ -45,9 +45,7 @@ export default function DueDateCalculator() {
   const [lmpDate, setLmpDate] = useState<Date | undefined>(
     userProfile.lastPeriodDate ? new Date(userProfile.lastPeriodDate + "T00:00:00") : undefined
   );
-  const [conceptionDate, setConceptionDate] = useState<Date | undefined>();
   const [lmpPopoverOpen, setLmpPopoverOpen] = useState(false);
-  const [conceptionPopoverOpen, setConceptionPopoverOpen] = useState(false);
   const [savedDates, setSavedDates] = useState<SavedDueDate[]>([]);
   const [result, setResult] = useState<{
     dueDate: Date;
@@ -76,16 +74,11 @@ export default function DueDateCalculator() {
     if (!lmpDate) return;
     const lmpStr = format(lmpDate, 'yyyy-MM-dd');
     saveProfileLMP(lmpStr);
-    calculate(lmpDate, addWeeks(lmpDate, 2));
+    calculate(lmpDate);
   };
 
-  const calculateFromConception = () => {
-    if (!conceptionDate) return;
-    const lmp = addWeeks(conceptionDate, -2);
-    calculate(lmp, conceptionDate);
-  };
-
-  const calculate = (lmp: Date, conception: Date) => {
+  const calculate = (lmp: Date) => {
+    const conception = addWeeks(lmp, 2);
     const dueDate = addDays(lmp, 280);
     const today = new Date();
     const totalDaysPregnant = differenceInDays(today, lmp);
@@ -144,49 +137,7 @@ export default function DueDateCalculator() {
     toast({ title: t('toolsInternal.dueDate.deleted'), description: t('toolsInternal.dueDate.deletedDesc') });
   };
 
-  const copyToClipboardFallback = (text: string): boolean => {
-    try {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      textarea.style.left = '-9999px';
-      document.body.appendChild(textarea);
-      textarea.focus();
-      textarea.select();
-      const success = document.execCommand('copy');
-      document.body.removeChild(textarea);
-      return success;
-    } catch {
-      return false;
-    }
-  };
 
-  const shareResult = async () => {
-    if (!result) return;
-    const text = `${t('toolsInternal.dueDate.estimatedDueDate')}: ${formatLocalized(result.dueDate, "MMMM d, yyyy", currentLanguage)}\n${t('toolsInternal.dueDate.currentlyAt')}: ${t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}\n${t('toolsInternal.dueDate.trimester', { number: result.trimester })}`;
-    
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: t('tools.dueDateCalculator.title'), text });
-        return;
-      } catch (err) {
-        // User cancelled or share failed, fall through to clipboard
-      }
-    }
-
-    try {
-      await navigator.clipboard.writeText(text);
-      toast({ title: t('toolsInternal.dueDate.copied'), description: t('toolsInternal.dueDate.copiedDesc') });
-    } catch {
-      const success = copyToClipboardFallback(text);
-      if (success) {
-        toast({ title: t('toolsInternal.dueDate.copied'), description: t('toolsInternal.dueDate.copiedDesc') });
-      } else {
-        toast({ title: t('toolsInternal.dueDate.shareError', 'خطأ'), description: t('toolsInternal.dueDate.shareErrorDesc', 'تعذّر نسخ النص'), variant: "destructive" });
-      }
-    }
-  };
 
   return (
     <ToolFrame 
@@ -212,20 +163,7 @@ export default function DueDateCalculator() {
                   {t('toolsInternal.dueDate.calculateDesc')}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <Tabs defaultValue="lmp">
-                  <TabsList className="grid w-full grid-cols-2 mb-4 h-10">
-                    <TabsTrigger value="lmp" className="text-[11px] px-1.5 gap-1">
-                      <CalendarIcon className="h-3.5 w-3.5 shrink-0" />
-                      <span className="truncate">{t('toolsInternal.dueDate.lastPeriod')}</span>
-                    </TabsTrigger>
-                    <TabsTrigger value="conception" className="text-[11px] px-1.5 gap-1">
-                      <Baby className="h-3.5 w-3.5 shrink-0" />
-                      <span className="truncate">{t('toolsInternal.dueDate.conceptionDate')}</span>
-                    </TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="lmp" className="space-y-4">
+              <CardContent className="space-y-4">
                     <div className="space-y-2">
                       <Label className="text-xs">{t('toolsInternal.dueDate.lmpLabel')}</Label>
                       <div className="flex gap-2">
@@ -266,45 +204,6 @@ export default function DueDateCalculator() {
                         {t('toolsInternal.dueDate.calculateBtn')}
                       </Button>
                     </motion.div>
-                  </TabsContent>
-
-                  <TabsContent value="conception" className="space-y-4">
-                    <div className="space-y-2">
-                      <Label className="text-xs">{t('toolsInternal.dueDate.conceptionLabel')}</Label>
-                      <div className="flex gap-2">
-                        <Popover open={conceptionPopoverOpen} onOpenChange={setConceptionPopoverOpen}>
-                          <PopoverTrigger asChild>
-                            <Button variant="outline" className={cn("flex-1 justify-start text-left font-normal h-11 border-border/60", !conceptionDate && "text-muted-foreground")}>
-                              <CalendarIcon className="mr-2 h-4 w-4 text-primary shrink-0" />
-                              {conceptionDate ? formatLocalized(conceptionDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
-                            <CalendarUI
-                              mode="single"
-                              selected={conceptionDate}
-                              onSelect={(date) => { setConceptionDate(date); setConceptionPopoverOpen(false); }}
-                              disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
-                              initialFocus
-                              className={cn("p-3 pointer-events-auto")}
-                            />
-                          </PopoverContent>
-                        </Popover>
-                        {conceptionDate && (
-                          <Button variant="ghost" size="icon" className="h-11 w-11 shrink-0 text-muted-foreground hover:text-destructive" onClick={() => { setConceptionDate(undefined); setResult(null); }}>
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                    <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
-                      <Button onClick={calculateFromConception} className="w-full h-11 font-medium shadow-sm" disabled={!conceptionDate}>
-                        <Calendar className="h-4 w-4 mr-2" />
-                        {t('toolsInternal.dueDate.calculateBtn')}
-                      </Button>
-                    </motion.div>
-                  </TabsContent>
-                </Tabs>
               </CardContent>
             </Card>
 
