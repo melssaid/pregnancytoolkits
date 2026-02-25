@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Heart, ChevronDown, Smile } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
-import { FertilityDailyTip } from "@/components/FertilityDailyTip";
+
 
 const DAY_KEYS = Array.from({ length: 14 }, (_, i) => `day${i + 1}`);
 
@@ -17,7 +17,6 @@ export default function TWWCompanion() {
   return (
     <ToolFrame title={t('tools.twwCompanion.title')} subtitle={t('tools.twwCompanion.description')} mood="nurturing" toolId="tww-companion">
       <div className="space-y-2" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
-        <FertilityDailyTip />
         <div className="flex items-center gap-2 mb-3">
           <Heart className="w-4 h-4 shrink-0 text-destructive" />
           <span className="text-xs font-bold text-foreground">{t('toolsInternal.twwCompanion.subtitle')}</span>

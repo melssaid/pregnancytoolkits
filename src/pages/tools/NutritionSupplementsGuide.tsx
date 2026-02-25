@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
-import { FertilityDailyTip } from "@/components/FertilityDailyTip";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const CATEGORY_KEYS = [
@@ -34,7 +34,7 @@ export default function NutritionSupplementsGuide() {
   return (
     <ToolFrame title={t('tools.nutritionSupplements.title')} subtitle={t('tools.nutritionSupplements.description')} mood="joyful" toolId="nutrition-supplements">
       <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
-        <FertilityDailyTip />
+        
         <Tabs defaultValue="nutrition" dir={dir}>
           <TabsList className="grid w-full grid-cols-2 mb-3">
             <TabsTrigger value="nutrition" className="text-xs">
