@@ -191,10 +191,15 @@
       "title": "Kegel Egzersizi",
       "description": "Zamanlayıcı ve tekrar sayacı ile günlük pelvik taban egzersizleri."
     },
-    "smartStretchReminder": {
-      "title": "Esneme Hatırlatıcısı",
-      "description": "Konforunuz için kişiselleştirilmiş esneme rutinleri."
-    },
+    "smartStretchReminder": {"title": "Esneme Hatırlatıcısı", "description": "Konforunuz için kişiselleştirilmiş esneme rutinleri."},
+    "fertileWindow": {"title": "Doğurganlık Penceresi", "description": "En verimli günlerinizi belirleyin."},
+    "fertilityAcademy": {"title": "Doğurganlık Akademisi", "description": "Doğurganlık hakkında interaktif dersler."},
+    "fertilitySigns": {"title": "Doğurganlık İşaretleri", "description": "Vücudunuzun sinyallerini okumayı öğrenin."},
+    "preconceptionNutrition": {"title": "Gebelik Öncesi Beslenme", "description": "Gebe kalmak için beslenmenizi optimize edin."},
+    "prenatalVitamins": {"title": "Doğum Öncesi Vitaminler", "description": "Hamilelik öncesi temel takviyeler."},
+    "twwCompanion": {"title": "Bekleme Arkadaşı", "description": "İki haftalık bekleme süresinde günlük destek."},
+    "stressFertility": {"title": "Stres ve Doğurganlık", "description": "Doğurganlık yolculuğunuz için rahatlama teknikleri."},
+    "preconceptionCheckup": {"title": "Gebelik Öncesi Kontrol", "description": "Hamilelik öncesi temel testler."},
     "aiLaborProgress": {
       "title": "Kasılma Günlüğü",
       "description": "Kasılma düzenlerinizi kaydedin."

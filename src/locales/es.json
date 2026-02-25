@@ -191,10 +191,15 @@
       "title": "Ejercicio de Kegel",
       "description": "Ejercicios diarios del suelo pélvico con temporizador y contador."
     },
-    "smartStretchReminder": {
-      "title": "Recordatorio de estiramiento",
-      "description": "Estiramientos personalizados para tu comodidad."
-    },
+    "smartStretchReminder": {"title": "Recordatorio de estiramiento", "description": "Estiramientos personalizados para tu comodidad."},
+    "fertileWindow": {"title": "Ventana de fertilidad", "description": "Identifica tus días más fértiles."},
+    "fertilityAcademy": {"title": "Academia de fertilidad", "description": "Lecciones interactivas sobre fertilidad."},
+    "fertilitySigns": {"title": "Señales de fertilidad", "description": "Aprende a leer las señales de tu cuerpo."},
+    "preconceptionNutrition": {"title": "Nutrición preconcepcional", "description": "Optimiza tu dieta para la concepción."},
+    "prenatalVitamins": {"title": "Vitaminas prenatales", "description": "Suplementos esenciales antes del embarazo."},
+    "twwCompanion": {"title": "Compañera de espera", "description": "Apoyo diario durante las dos semanas de espera."},
+    "stressFertility": {"title": "Estrés y fertilidad", "description": "Técnicas de relajación para tu camino."},
+    "preconceptionCheckup": {"title": "Chequeo preconcepcional", "description": "Exámenes esenciales antes del embarazo."},
     "aiLaborProgress": {
       "title": "Diario de contracciones",
       "description": "Registra tus patrones de contracciones."
