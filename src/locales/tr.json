@@ -4068,7 +4068,21 @@
     "summaryText": "Kişiselleştirilmiş planınızı takip etmeye devam edin ve herhangi bir endişe için doktorunuza danışın.",
     "doctorNotes": "Doktor Notları",
     "getAIPlan": "Yapay Zeka kişisel plan al",
-    "aiPlanTitle": "Yapay Zeka Kişisel Plan"
+    "aiPlanTitle": "Yapay Zeka Kişisel Plan",
+    "generateReport": "Kapsamlı rapor oluştur",
+    "reportHint": "Haftanıza, kilonuza ve durumunuza özel detaylı bir sağlık raporu alın",
+    "createReport": "Sağlık raporu oluştur",
+    "pregnancyProgress": "Gebelik İlerlemesi",
+    "daysRemaining": "{{days}} gün kaldı",
+    "exportPDF": "PDF olarak dışa aktar",
+    "regenerate": "Yeniden oluştur",
+    "pdfExported": "Rapor başarıyla dışa aktarıldı",
+    "pdfError": "PDF dışa aktarma başarısız",
+    "trimester1": "Birinci Trimester",
+    "trimester2": "İkinci Trimester",
+    "trimester3": "Üçüncü Trimester",
+    "bmi": "VKİ",
+    "calories": "Kalori"
   },
   "toolsInternal.walkingCoach": {
     "title": "Akıllı Yürüyüş Koçu",

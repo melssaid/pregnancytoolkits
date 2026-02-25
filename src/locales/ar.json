@@ -4107,7 +4107,21 @@
     "summaryText": "استمري في اتباع خطتك المخصصة واستشيري طبيبك لأي مخاوف.",
     "doctorNotes": "ملاحظات الطبيب",
     "getAIPlan": "احصلي على خطة ذكية مخصصة",
-    "aiPlanTitle": "الخطة الذكية المخصصة"
+    "aiPlanTitle": "الخطة الذكية المخصصة",
+    "generateReport": "إنشاء تقرير شامل",
+    "reportHint": "احصلي على تقرير صحي مفصل بالذكاء الاصطناعي مخصص لأسبوعك ووزنك وحالتك",
+    "createReport": "إنشاء التقرير الصحي",
+    "pregnancyProgress": "تقدم الحمل",
+    "daysRemaining": "{{days}} يوم متبقي",
+    "exportPDF": "تصدير PDF",
+    "regenerate": "إعادة إنشاء",
+    "pdfExported": "تم تصدير التقرير بنجاح",
+    "pdfError": "فشل تصدير PDF",
+    "trimester1": "الثلث الأول",
+    "trimester2": "الثلث الثاني",
+    "trimester3": "الثلث الثالث",
+    "bmi": "مؤشر الكتلة",
+    "calories": "سعرات"
   },
   "toolsInternal.walkingCoach": {
     "title": "مدرب المشي الذكي",

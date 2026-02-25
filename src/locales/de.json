@@ -3865,7 +3865,21 @@
     "summaryText": "Folge weiterhin deinem personalisierten Plan und konsultiere deinen Arzt bei Bedenken.",
     "doctorNotes": "Arztnotizen",
     "getAIPlan": "KI-personalisierten Plan erhalten",
-    "aiPlanTitle": "KI-personalisierter Plan"
+    "aiPlanTitle": "KI-personalisierter Plan",
+    "generateReport": "Umfassenden Bericht erstellen",
+    "reportHint": "Erhalten Sie einen detaillierten KI-gestützten Gesundheitsbericht",
+    "createReport": "Gesundheitsbericht erstellen",
+    "pregnancyProgress": "Schwangerschaftsfortschritt",
+    "daysRemaining": "{{days}} Tage verbleibend",
+    "exportPDF": "PDF exportieren",
+    "regenerate": "Neu generieren",
+    "pdfExported": "Bericht erfolgreich exportiert",
+    "pdfError": "PDF-Export fehlgeschlagen",
+    "trimester1": "Erstes Trimester",
+    "trimester2": "Zweites Trimester",
+    "trimester3": "Drittes Trimester",
+    "bmi": "BMI",
+    "calories": "Kalorien"
   },
   "toolsInternal.walkingCoach": {
     "title": "Smarter Geh-Coach",

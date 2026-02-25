@@ -4068,7 +4068,21 @@
     "summaryText": "Continue seguindo seu plano personalizado e consulte seu médico para quaisquer preocupações.",
     "doctorNotes": "Anotações do Médico",
     "getAIPlan": "Obter plano IA personalizado",
-    "aiPlanTitle": "Plano personalizado com IA"
+    "aiPlanTitle": "Plano personalizado com IA",
+    "generateReport": "Gerar relatório completo",
+    "reportHint": "Obtenha um relatório de saúde detalhado personalizado com IA",
+    "createReport": "Criar relatório de saúde",
+    "pregnancyProgress": "Progresso da gravidez",
+    "daysRemaining": "{{days}} dias restantes",
+    "exportPDF": "Exportar PDF",
+    "regenerate": "Regenerar",
+    "pdfExported": "Relatório exportado com sucesso",
+    "pdfError": "Falha ao exportar PDF",
+    "trimester1": "Primeiro trimestre",
+    "trimester2": "Segundo trimestre",
+    "trimester3": "Terceiro trimestre",
+    "bmi": "IMC",
+    "calories": "Calorias"
   },
   "toolsInternal.walkingCoach": {
     "title": "Coach de Caminhada Inteligente",
