@@ -92,13 +92,6 @@ Any patterns that might be worth discussing with a doctor`;
         transition={{ duration: 0.4 }}
         className="space-y-5 pb-16"
       >
-        {/* Instruction hint */}
-        <div className="flex items-start gap-2.5 px-3 py-2.5 rounded-xl bg-primary/8 border border-primary/15">
-          <Droplets className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-          <p className="text-xs text-foreground/70 leading-relaxed">
-            {t('toolsInternal.cycleTracker.calendarHintSimple', 'Tap any day to log your period, mood, and symptoms.')}
-          </p>
-        </div>
 
         {/* Calendar */}
         <CycleCalendarView
