@@ -3890,7 +3890,21 @@
     "summaryText": "Continuez à suivre votre plan personnalisé et consultez votre médecin pour toute préoccupation.",
     "doctorNotes": "Notes du Médecin",
     "getAIPlan": "Obtenir un plan IA personnalisé",
-    "aiPlanTitle": "Plan personnalisé par l'IA"
+    "aiPlanTitle": "Plan personnalisé par l'IA",
+    "generateReport": "Générer un rapport complet",
+    "reportHint": "Obtenez un rapport de santé détaillé personnalisé par l'IA",
+    "createReport": "Créer le rapport santé",
+    "pregnancyProgress": "Progression de la grossesse",
+    "daysRemaining": "{{days}} jours restants",
+    "exportPDF": "Exporter PDF",
+    "regenerate": "Régénérer",
+    "pdfExported": "Rapport exporté avec succès",
+    "pdfError": "Échec de l'export PDF",
+    "trimester1": "Premier trimestre",
+    "trimester2": "Deuxième trimestre",
+    "trimester3": "Troisième trimestre",
+    "bmi": "IMC",
+    "calories": "Calories"
   },
   "toolsInternal.walkingCoach": {
     "title": "Coach de Marche Intelligent",

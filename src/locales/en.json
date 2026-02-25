@@ -4727,7 +4727,21 @@
     "summaryText": "Continue following your personalized plan and consult your doctor for any concerns.",
     "doctorNotes": "Doctor's Notes",
     "getAIPlan": "Get AI-Personalized Plan",
-    "aiPlanTitle": "AI Personalized Plan"
+    "aiPlanTitle": "AI Personalized Plan",
+    "generateReport": "Generate Comprehensive Report",
+    "reportHint": "Get a detailed AI-powered health report personalized for your week, weight, and condition",
+    "createReport": "Create Health Report",
+    "pregnancyProgress": "Pregnancy Progress",
+    "daysRemaining": "{{days}} days remaining",
+    "exportPDF": "Export PDF",
+    "regenerate": "Regenerate",
+    "pdfExported": "Report exported successfully",
+    "pdfError": "Failed to export PDF",
+    "trimester1": "First Trimester",
+    "trimester2": "Second Trimester",
+    "trimester3": "Third Trimester",
+    "bmi": "BMI",
+    "calories": "Calories"
   },
   "kegel": {
     "dailyGoal": "Daily Goal",
