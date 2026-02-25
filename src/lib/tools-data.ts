@@ -60,10 +60,18 @@ export const toolsData: Tool[] = [
   { id: "smart-pregnancy-plan", titleKey: "tools.smartPregnancyPlan.title", descriptionKey: "tools.smartPregnancyPlan.description", icon: ClipboardList, categoryKey: "categories.smartAssistant", href: "/tools/smart-plan", priority: 3, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // FERTILITY & PLANNING
+  // FERTILITY & PLANNING — "أحلم بطفل" Journey
   // ═══════════════════════════════════════════════════════════════
   { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 4 },
   { id: "due-date-calculator", titleKey: "tools.dueDateCalculator.title", descriptionKey: "tools.dueDateCalculator.description", icon: Baby, categoryKey: "categories.fertility", href: "/tools/due-date-calculator", priority: 5 },
+  { id: "fertile-window", titleKey: "tools.fertileWindow.title", descriptionKey: "tools.fertileWindow.description", icon: Calendar, categoryKey: "categories.fertility", href: "/tools/fertile-window", priority: 6 },
+  { id: "fertility-academy", titleKey: "tools.fertilityAcademy.title", descriptionKey: "tools.fertilityAcademy.description", icon: Star, categoryKey: "categories.fertility", href: "/tools/fertility-academy", priority: 7 },
+  { id: "fertility-signs", titleKey: "tools.fertilitySigns.title", descriptionKey: "tools.fertilitySigns.description", icon: Heart, categoryKey: "categories.fertility", href: "/tools/fertility-signs", priority: 8 },
+  { id: "preconception-nutrition", titleKey: "tools.preconceptionNutrition.title", descriptionKey: "tools.preconceptionNutrition.description", icon: Utensils, categoryKey: "categories.fertility", href: "/tools/preconception-nutrition", priority: 9 },
+  { id: "prenatal-vitamins", titleKey: "tools.prenatalVitamins.title", descriptionKey: "tools.prenatalVitamins.description", icon: Pill, categoryKey: "categories.fertility", href: "/tools/prenatal-vitamins", priority: 10 },
+  { id: "tww-companion", titleKey: "tools.twwCompanion.title", descriptionKey: "tools.twwCompanion.description", icon: HeartHandshake, categoryKey: "categories.fertility", href: "/tools/tww-companion", priority: 11 },
+  { id: "stress-fertility", titleKey: "tools.stressFertility.title", descriptionKey: "tools.stressFertility.description", icon: Brain, categoryKey: "categories.fertility", href: "/tools/stress-fertility", priority: 12 },
+  { id: "preconception-checkup", titleKey: "tools.preconceptionCheckup.title", descriptionKey: "tools.preconceptionCheckup.description", icon: CheckSquare, categoryKey: "categories.fertility", href: "/tools/preconception-checkup", priority: 13 },
 
   // ═══════════════════════════════════════════════════════════════
   // PREGNANCY TRACKING

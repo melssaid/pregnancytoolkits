@@ -135,7 +135,15 @@
     "smartWalkingCoach": {"title": "مدرب المشي", "description": "برامج مشي آمنة حسب مرحلة الحمل"},
     "smartSnackPlanner": {"title": "مخطط الوجبات الخفيفة", "description": "وجبات خفيفة صحية لكل رغبة أثناء الحمل"},
     "kegelExercise": {"title": "تمارين كيجل", "description": "تمارين قاع الحوض اليومية مع مؤقت وعدّاد تكرارات"},
-    "smartStretchReminder": {"title": "تذكير بالتمدد", "description": "تمارين تمدد مخصصة لراحتك"}
+    "smartStretchReminder": {"title": "تذكير بالتمدد", "description": "تمارين تمدد مخصصة لراحتك"},
+    "fertileWindow": {"title": "مؤشر نافذة الخصوبة", "description": "حددي أيامك الأكثر خصوبة في كل دورة"},
+    "fertilityAcademy": {"title": "أكاديمية الخصوبة", "description": "دروس تفاعلية عن الخصوبة والحمل"},
+    "fertilitySigns": {"title": "دليل علامات الخصوبة", "description": "تعلّمي قراءة إشارات جسمك"},
+    "preconceptionNutrition": {"title": "تغذية ما قبل الحمل", "description": "نظام غذائي يدعم فرص الحمل"},
+    "prenatalVitamins": {"title": "دليل الفيتامينات التحضيرية", "description": "المكملات الضرورية قبل الحمل"},
+    "twwCompanion": {"title": "رفيقة الانتظار", "description": "دعم يومي خلال أسبوعي الانتظار بعد التبويض"},
+    "stressFertility": {"title": "التوتر والخصوبة", "description": "أدوات استرخاء لدعم رحلة الخصوبة"},
+    "preconceptionCheckup": {"title": "دليل الفحوصات التحضيرية", "description": "الفحوصات الأساسية قبل الحمل"}
   },
   "dashboard": {
     "tabs": {

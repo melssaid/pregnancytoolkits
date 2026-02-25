@@ -191,10 +191,15 @@
       "title": "Kegel-Übung",
       "description": "Tägliche Beckenbodenübungen mit Timer und Wiederholungszähler."
     },
-    "smartStretchReminder": {
-      "title": "Dehn-Erinnerung",
-      "description": "Personalisierte Dehnübungen für dein Wohlbefinden."
-    },
+    "smartStretchReminder": {"title": "Dehn-Erinnerung", "description": "Personalisierte Dehnübungen für dein Wohlbefinden."},
+    "fertileWindow": {"title": "Fruchtbarkeitsfenster", "description": "Bestimmen Sie Ihre fruchtbarsten Tage."},
+    "fertilityAcademy": {"title": "Fruchtbarkeitsakademie", "description": "Interaktive Lektionen über Fruchtbarkeit."},
+    "fertilitySigns": {"title": "Fruchtbarkeitszeichen", "description": "Lernen Sie die Signale Ihres Körpers zu lesen."},
+    "preconceptionNutrition": {"title": "Ernährung vor der Empfängnis", "description": "Optimieren Sie Ihre Ernährung für die Empfängnis."},
+    "prenatalVitamins": {"title": "Pränatale Vitamine", "description": "Wichtige Nahrungsergänzungsmittel vor der Schwangerschaft."},
+    "twwCompanion": {"title": "Wartezeitbegleiterin", "description": "Tägliche Unterstützung während der Wartezeit."},
+    "stressFertility": {"title": "Stress & Fruchtbarkeit", "description": "Entspannungstechniken für Ihre Fruchtbarkeitsreise."},
+    "preconceptionCheckup": {"title": "Vorsorgeuntersuchungen", "description": "Wichtige Tests vor der Schwangerschaft."},
     "aiLaborProgress": {
       "title": "Kontraktions-Tagebuch",
       "description": "Protokollieren Sie Ihre Kontraktionsmuster."
