@@ -7,6 +7,7 @@ import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
+import { ToolInsightTabs } from "./ToolInsightTabs";
 import logoImage from "@/assets/logo.png";
 
 interface ToolFrameProps {
@@ -179,6 +180,11 @@ export function ToolFrame({
               {children}
             </div>
           </motion.div>
+
+          {/* AI Insight Tabs */}
+          {toolId && (
+            <ToolInsightTabs toolId={toolId} />
+          )}
 
           {/* Related Tools */}
           {showRelated && toolId && (

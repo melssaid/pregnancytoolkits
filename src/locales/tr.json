@@ -4368,6 +4368,11 @@
     "error": "Silme hatası",
     "errorDesc": "Hesap silinirken bir hata oluştu"
   },
+  "insightTabs": {
+    "dailyTip": "Günün İpucu",
+    "reassurance": "Rahatlatma",
+    "loading": "Kişisel ipucunuz hazırlanıyor..."
+  },
   "toolBenefits": {
     "heading": "Bu araçtan ne kazanırım?",
     "pregnancy-assistant": "Hamilelik hakkında sorular sorun ve anında yanıt alın. Sonuçlar genel rehberlik amaçlıdır. Olağandışı belirtilerde doktorunuza danışın.",

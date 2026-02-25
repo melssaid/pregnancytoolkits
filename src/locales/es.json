@@ -4368,6 +4368,11 @@
     "error": "Error de eliminación",
     "errorDesc": "Ocurrió un error al eliminar la cuenta"
   },
+  "insightTabs": {
+    "dailyTip": "Consejo del día",
+    "reassurance": "Tranquilidad",
+    "loading": "Preparando tu consejo personalizado..."
+  },
   "toolBenefits": {
     "heading": "¿Qué me aporta esta herramienta?",
     "pregnancy-assistant": "Haz preguntas sobre el embarazo y obtén respuestas instantáneas. Los resultados son orientación general. Ante síntomas inusuales, consulta a tu médico inmediatamente.",
