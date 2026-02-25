@@ -82,8 +82,6 @@ export const toolsData: Tool[] = [
   // NUTRITION & DIET
   // ═══════════════════════════════════════════════════════════════
   { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, categoryKey: "categories.nutrition", href: "/tools/ai-meal-suggestion", priority: 10, hasAI: true },
-  { id: "ai-craving-alternatives", titleKey: "tools.aiCravingAlternatives.title", descriptionKey: "tools.aiCravingAlternatives.description", icon: Utensils, categoryKey: "categories.nutrition", href: "/tools/ai-craving-alternatives", priority: 11, hasAI: true },
-  { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: ShoppingCart, categoryKey: "categories.nutrition", href: "/tools/smart-grocery-list", priority: 12, hasAI: true },
   { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 13, hasAI: true },
   
 
@@ -92,7 +90,6 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   { id: "wellness-diary", titleKey: "tools.wellnessDiary.title", descriptionKey: "tools.wellnessDiary.description", icon: Heart, categoryKey: "categories.wellness", href: "/tools/wellness-diary", priority: 16 },
   { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 17, hasAI: true },
-  { id: "ai-back-pain-relief", titleKey: "tools.aiBackPainRelief.title", descriptionKey: "tools.aiBackPainRelief.description", icon: HeartPulse, categoryKey: "categories.wellness", href: "/tools/ai-back-pain-relief", priority: 18, hasAI: true },
   { id: "ai-sleep-optimizer", titleKey: "tools.aiSleepOptimizer.title", descriptionKey: "tools.aiSleepOptimizer.description", icon: Bed, categoryKey: "categories.wellness", href: "/tools/ai-sleep-optimizer", priority: 19, hasAI: true },
   { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.wellness", href: "/tools/ai-nausea-relief", priority: 20, hasAI: true },
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
@@ -114,7 +111,6 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   { id: "ai-labor-progress", titleKey: "tools.aiLaborProgress.title", descriptionKey: "tools.aiLaborProgress.description", icon: Activity, categoryKey: "categories.labor", href: "/tools/labor-progress", priority: 28, hasAI: true },
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.labor", href: "/tools/ai-birth-plan", priority: 29, hasAI: true },
-  { id: "ai-birth-position", titleKey: "tools.aiBirthPosition.title", descriptionKey: "tools.aiBirthPosition.description", icon: PersonStanding, categoryKey: "categories.labor", href: "/tools/ai-birth-position", priority: 30, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // PREPARATION
@@ -180,9 +176,7 @@ const toolRelationships: Record<string, string[]> = {
   // AI Core
   "pregnancy-assistant": ["wellness-diary", "weekly-summary", "ai-meal-suggestion"],
   "weekly-summary": ["pregnancy-assistant", "fetal-growth", "weight-gain"],
-  "ai-meal-suggestion": ["ai-craving-alternatives", "smart-grocery-list", "vitamin-tracker"],
-  "ai-craving-alternatives": ["ai-meal-suggestion", "smart-grocery-list", "vitamin-tracker"],
-  "smart-grocery-list": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
+  "ai-meal-suggestion": ["vitamin-tracker", "weekly-summary", "wellness-diary"],
 
   // Fertility
   "cycle-tracker": ["due-date-calculator", "pregnancy-assistant", "weekly-summary"],
@@ -196,17 +190,15 @@ const toolRelationships: Record<string, string[]> = {
   "smart-pregnancy-plan": ["weekly-summary", "smart-appointment-reminder", "ai-meal-suggestion"],
 
   // Labor & Birth
-  "ai-labor-progress": ["ai-birth-plan", "ai-birth-position", "ai-hospital-bag"],
-  "ai-birth-plan": ["ai-hospital-bag", "ai-birth-position", "ai-partner-guide"],
-  "ai-birth-position": ["ai-labor-progress", "ai-birth-plan", "ai-back-pain-relief"],
+  "ai-labor-progress": ["ai-birth-plan", "ai-hospital-bag", "ai-fitness-coach"],
+  "ai-birth-plan": ["ai-hospital-bag", "ai-labor-progress", "ai-partner-guide"],
 
   // Wellness
-  "wellness-diary": ["pregnancy-assistant", "ai-sleep-optimizer", "ai-back-pain-relief"],
-  "ai-fitness-coach": ["ai-back-pain-relief", "vitamin-tracker", "weight-gain"],
-  "ai-back-pain-relief": ["ai-fitness-coach", "ai-sleep-optimizer", "wellness-diary"],
-  "ai-sleep-optimizer": ["ai-back-pain-relief", "wellness-diary", "postpartum-mental-health"],
-  "ai-nausea-relief": ["ai-meal-suggestion", "wellness-diary", "ai-craving-alternatives"],
-  "vitamin-tracker": ["ai-meal-suggestion", "smart-grocery-list", "ai-craving-alternatives"],
+  "wellness-diary": ["pregnancy-assistant", "ai-sleep-optimizer", "ai-fitness-coach"],
+  "ai-fitness-coach": ["vitamin-tracker", "weight-gain", "wellness-diary"],
+  "ai-sleep-optimizer": ["ai-fitness-coach", "wellness-diary", "postpartum-mental-health"],
+  "ai-nausea-relief": ["ai-meal-suggestion", "wellness-diary", "vitamin-tracker"],
+  "vitamin-tracker": ["ai-meal-suggestion", "wellness-diary", "ai-nausea-relief"],
 
   // Mental Health
   "postpartum-mental-health": ["ai-sleep-optimizer", "pregnancy-assistant", "wellness-diary"],

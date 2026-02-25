@@ -16,6 +16,7 @@ import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { birthPositionVideosByLang } from "@/data/videoData";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+import { ToolHubNav, BIRTH_HUB_TABS } from "@/components/ToolHubNav";
 
 const AIBirthPosition = () => {
   const { t } = useTranslation();
@@ -119,6 +120,7 @@ Include safety considerations and when to change positions.`;
       mood="empowering"
       toolId="ai-birth-position"
     >
+      <ToolHubNav tabs={BIRTH_HUB_TABS} />
       <div className="space-y-4">
         
         {/* Position Cards - Professional List */}

@@ -32,6 +32,7 @@ import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nutritionVideosByLang } from "@/data/videoData";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+import { ToolHubNav, NUTRITION_HUB_TABS } from "@/components/ToolHubNav";
 
 const MEAL_TYPE_IDS = ["breakfast", "lunch", "dinner", "snack"] as const;
 const DIETARY_PREF_IDS = ["vegetarian", "low-sugar", "high-protein", "low-sodium", "iron-rich", "calcium-rich"] as const;
@@ -121,6 +122,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
       mood="joyful"
       toolId="ai-meal-suggestion"
     >
+      <ToolHubNav tabs={NUTRITION_HUB_TABS} />
       <div className="space-y-3">
         {!suggestion ? (
           <>

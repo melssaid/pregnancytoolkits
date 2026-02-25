@@ -11,6 +11,7 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { BackPainAnimation } from '@/components/fitness/BackPainAnimation';
+import { ToolHubNav, FITNESS_HUB_TABS } from '@/components/ToolHubNav';
 
 interface Exercise {
   id: string;
@@ -132,6 +133,7 @@ export default function AIBackPainRelief() {
       mood="calm"
       toolId="ai-back-pain-relief"
     >
+      <ToolHubNav tabs={FITNESS_HUB_TABS} />
       <div className="space-y-4">
         {/* Pain Location + Progress */}
         <Card>

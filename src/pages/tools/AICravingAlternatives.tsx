@@ -11,7 +11,8 @@ import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { RelatedTools } from '@/components/RelatedTools';
 import { RelatedToolLinks } from '@/components/RelatedToolLinks';
-import { Layout } from '@/components/Layout';
+import { ToolFrame } from '@/components/ToolFrame';
+import { ToolHubNav, NUTRITION_HUB_TABS } from '@/components/ToolHubNav';
 import { WeekSlider } from '@/components/WeekSlider';
 
 // Common pregnancy cravings for quick selection
@@ -114,36 +115,9 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
   }, []);
 
   return (
-    <Layout showBack>
-      <div className="container py-6">
-        <div className="max-w-4xl mx-auto space-y-6">
-          
-          {/* Tool Header */}
-          <div className="rounded-xl border border-border bg-card p-4 shadow-sm">
-            <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-primary/10">
-                <Salad className="w-5 h-5 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h1 className="text-base font-bold text-foreground">{t('toolsInternal.cravingAlternatives.title')}</h1>
-                <p className="text-xs text-muted-foreground mt-0.5">{t('toolsInternal.cravingAlternatives.subtitle')}</p>
-                <div className="flex flex-wrap gap-1.5 mt-2.5">
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/8 text-[10px] font-medium text-primary">
-                    <ShieldCheck className="w-3 h-3" />
-                    {t('toolsInternal.cravingAlternatives.pregnancySafe')}
-                  </span>
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent text-[10px] font-medium text-accent-foreground">
-                    <Zap className="w-3 h-3" />
-                    {t('toolsInternal.cravingAlternatives.nutrientDense')}
-                  </span>
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary text-[10px] font-medium text-foreground">
-                    <Sparkles className="w-3 h-3" />
-                    AI
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+    <ToolFrame title={t('toolsInternal.cravingAlternatives.title')} subtitle={t('toolsInternal.cravingAlternatives.subtitle')} mood="joyful" toolId="ai-craving-alternatives">
+      <ToolHubNav tabs={NUTRITION_HUB_TABS} />
+      <div className="space-y-6">
 
           {/* Week Selector - Using new slider component */}
           <WeekSlider
@@ -299,9 +273,8 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
 
           {/* Related Tools */}
           <RelatedTools currentToolId="ai-craving-alternatives" />
-        </div>
       </div>
-    </Layout>
+    </ToolFrame>
   );
 };
 
