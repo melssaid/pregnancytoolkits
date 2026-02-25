@@ -8,6 +8,15 @@
     "search": "Ara",
     "settings": "Ayarlar"
   },
+  "hubNav": {
+    "meals": "Öğünler",
+    "cravings": "Alternatifler",
+    "shopping": "Alışveriş",
+    "exercises": "Egzersizler",
+    "backPain": "Sırt Ağrısı",
+    "birthPlan": "Doğum Planı",
+    "positions": "Pozisyonlar"
+  },
   "relatedTools": {
     "title": "Yolculuğuna devam et"
   },

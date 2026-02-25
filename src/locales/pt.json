@@ -8,6 +8,15 @@
     "search": "Pesquisar",
     "settings": "Configurações"
   },
+  "hubNav": {
+    "meals": "Refeições",
+    "cravings": "Alternativas",
+    "shopping": "Compras",
+    "exercises": "Exercícios",
+    "backPain": "Dor nas costas",
+    "birthPlan": "Plano de parto",
+    "positions": "Posições"
+  },
   "relatedTools": {
     "title": "Continue sua jornada"
   },

@@ -8,6 +8,15 @@
     "search": "بحث",
     "settings": "الإعدادات"
   },
+  "hubNav": {
+    "meals": "الوجبات",
+    "cravings": "البدائل",
+    "shopping": "التسوق",
+    "exercises": "التمارين",
+    "backPain": "آلام الظهر",
+    "birthPlan": "خطة الولادة",
+    "positions": "الوضعيات"
+  },
   "relatedTools": {
     "title": "تابع رحلتك"
   },
