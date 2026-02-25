@@ -1136,6 +1136,10 @@
       "differentWeek": "Otra semana",
       "refresh": "Actualizar",
       "trackTip": "Sigue tu semana para obtener información personalizada sobre el crecimiento de tu bebé y los cambios en tu cuerpo",
+      "fetalDevLink": "Desarrollo fetal",
+      "fetalDevLinkDesc": "Ve el tamaño y desarrollo de tu bebé esta semana",
+      "kickCounterLink": "Contador de patadas",
+      "kickCounterLinkDesc": "Registra y anota los movimientos de tu bebé",
       "approximatelyRemaining": "Aproximadamente {{days}} días restantes",
       "noSummariesYet": "Aún no hay resúmenes",
       "generateFirstHint": "Toca el botón de arriba para generar tu primer resumen semanal",
@@ -1419,6 +1423,10 @@
       "info": "Solo alrededor del 5% de los bebés nacen en la fecha exacta. La mayoría nace dentro de 2 semanas antes o después. Tu médico puede ajustar la fecha según la ecografía.",
       "cycleTrackerLink": "Seguimiento del ciclo menstrual",
       "cycleTrackerLinkDesc": "Rastrea tu ciclo menstrual y obtén predicciones precisas",
+      "fetalDevLink": "Desarrollo fetal",
+      "fetalDevLinkDesc": "Sigue el crecimiento de tu bebé semana a semana",
+      "weeklySummaryLink": "Resumen semanal",
+      "weeklySummaryLinkDesc": "Obtén actualizaciones semanales inteligentes del embarazo",
       "aiGuideTitle": "Guía de Embarazo IA",
       "getWeeklyGuide": "Obtener Guía Semanal"
     },
@@ -1450,7 +1458,11 @@
       "analyzePatterns": "Analizar Patrones",
       "getHealthInsight": "Obtener Información de Salud",
       "getTips": "Obtener Consejos",
-      "analyzing": "Analizando..."
+      "analyzing": "Analizando...",
+      "fetalDevLink": "Desarrollo fetal",
+      "fetalDevLinkDesc": "Sigue el crecimiento y desarrollo de tu bebé",
+      "weeklySummaryLink": "Resumen semanal",
+      "weeklySummaryLinkDesc": "Obtén información semanal inteligente"
     },
     "symptomAnalyzer": {
       "title": "Diario de bienestar del embarazo",

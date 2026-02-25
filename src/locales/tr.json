@@ -1136,6 +1136,10 @@
       "differentWeek": "Farklı Hafta",
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
+      "fetalDevLink": "Fetüs Gelişimi",
+      "fetalDevLinkDesc": "Bu hafta bebeğinizin boyutunu ve gelişimini görün",
+      "kickCounterLink": "Tekme Sayacı",
+      "kickCounterLinkDesc": "Bebeğinizin hareketlerini takip edin ve kaydedin",
       "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
       "noSummariesYet": "Henüz özet yok",
       "generateFirstHint": "İlk haftalık özetinizi oluşturmak için yukarıdaki düğmeye dokunun",
@@ -1419,6 +1423,10 @@
       "info": "Bebeklerin sadece yaklaşık %5'i tam doğum tarihinde doğar. Çoğu 2 hafta önce veya sonra doğar. Sağlık uzmanınız ultrason ölçümlerine göre tarihi ayarlayabilir.",
       "cycleTrackerLink": "Adet Döngüsü Takibi",
       "cycleTrackerLinkDesc": "Adet döngünüzü takip edin ve doğru tahminler alın",
+      "fetalDevLink": "Fetüs Gelişimi",
+      "fetalDevLinkDesc": "Bebeğinizin hafta hafta büyümesini takip edin",
+      "weeklySummaryLink": "Haftalık Özet",
+      "weeklySummaryLinkDesc": "Haftalık AI destekli hamilelik güncellemeleri alın",
       "aiGuideTitle": "AI Hamilelik Rehberi",
       "getWeeklyGuide": "Haftalık Rehberi Al"
     },
@@ -1450,7 +1458,11 @@
       "analyzePatterns": "Desenleri Analiz Et",
       "getHealthInsight": "Sağlık İçgörüsü Al",
       "getTips": "İpuçları Al",
-      "analyzing": "Analiz ediliyor..."
+      "analyzing": "Analiz ediliyor...",
+      "fetalDevLink": "Fetüs Gelişimi",
+      "fetalDevLinkDesc": "Bebeğinizin büyümesini ve gelişimini takip edin",
+      "weeklySummaryLink": "Haftalık Özet",
+      "weeklySummaryLinkDesc": "Haftalık AI destekli içgörüler alın"
     },
     "symptomAnalyzer": {
       "title": "Hamilelik Sağlık Günlüğü",

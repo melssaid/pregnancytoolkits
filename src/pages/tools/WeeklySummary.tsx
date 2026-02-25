@@ -22,6 +22,7 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { WeekSlider } from "@/components/WeekSlider";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
 const STORAGE_KEY = "weekly-summary-data";
 
@@ -273,6 +274,12 @@ export default function WeeklySummary() {
             </CardContent>
           </Card>
         )}
+
+        {/* Related Tools */}
+        <RelatedToolLinks links={[
+          { to: "/tools/fetal-development", titleKey: "toolsInternal.weeklySummary.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.weeklySummary.fetalDevLinkDesc", descFallback: "See your baby's size and development", icon: "ruler" },
+          { to: "/tools/kick-counter", titleKey: "toolsInternal.weeklySummary.kickCounterLink", titleFallback: "Kick Counter", descKey: "toolsInternal.weeklySummary.kickCounterLinkDesc", descFallback: "Track your baby's movements", icon: "activity" },
+        ]} />
 
         {/* Tips */}
         <Card>
