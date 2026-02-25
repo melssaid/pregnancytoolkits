@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { 
-  Baby, Calendar, Droplets, Activity, TrendingUp, Ruler, 
+  Baby, Calendar, Droplets, Activity, TrendingUp, Ruler,
+  Utensils, ShoppingCart, Pill, ChevronLeft,
   type LucideIcon 
 } from "lucide-react";
 
@@ -20,6 +21,9 @@ const ICON_MAP: Record<string, LucideIcon> = {
   activity: Activity,
   trending: TrendingUp,
   ruler: Ruler,
+  utensils: Utensils,
+  cart: ShoppingCart,
+  pill: Pill,
 };
 
 interface RelatedToolLinksProps {

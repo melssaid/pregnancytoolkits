@@ -11,6 +11,16 @@
   "relatedTools": {
     "title": "Continue Your Journey"
   },
+  "nutritionLinks": {
+    "mealSuggestionLink": "AI Meal Planner",
+    "mealSuggestionLinkDesc": "Get personalized meal suggestions for your trimester",
+    "groceryListLink": "Smart Grocery List",
+    "groceryListLinkDesc": "Build a pregnancy-optimized shopping list",
+    "vitaminTrackerLink": "Vitamin Tracker",
+    "vitaminTrackerLinkDesc": "Track your daily supplement intake",
+    "cravingLink": "Craving Alternatives",
+    "cravingLinkDesc": "Find healthy swaps for your cravings"
+  },
   "videoLibrary": {
     "defaultTitle": "Educational Videos",
     "defaultSubtitle": "Learn more with expert guidance",
