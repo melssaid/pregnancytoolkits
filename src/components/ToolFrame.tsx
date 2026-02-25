@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield } from "lucide-react";
+import { Shield, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
@@ -117,7 +117,7 @@ export function ToolFrame({
           </div>
         </motion.header>
 
-        {/* Hero Section - Title Only */}
+        {/* Hero Section - Title + Tool Benefit */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -144,6 +144,26 @@ export function ToolFrame({
               </motion.p>
             )}
           </div>
+
+          {/* Tool Benefit Section */}
+          {toolId && t(`toolBenefits.${toolId}`, '') && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+              className="mt-3 p-3 rounded-xl bg-primary/5 border border-primary/10"
+            >
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <Lightbulb className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                <span className="text-[11px] font-semibold text-foreground">
+                  {t('toolBenefits.heading', 'What do I benefit from this tool?')}
+                </span>
+              </div>
+              <p className="text-[10px] text-muted-foreground leading-relaxed">
+                {t(`toolBenefits.${toolId}`)}
+              </p>
+            </motion.div>
+          )}
         </motion.section>
 
         {/* Main Content Card - Compact */}

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Check, Globe, Baby, Calendar, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Dumbbell } from 'lucide-react';
+import { Shield, Check, Globe, Baby, Calendar, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Dumbbell, Lock, DollarSign, Languages, Eye } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { cn } from '@/lib/utils';
+import logoImage from '@/assets/logo.png';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
 const FIRST_VISIT_KEY = 'language_selected_first_visit';
@@ -17,12 +18,6 @@ const languages = [
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'pt', name: 'Português', flag: '🇵🇹' },
-];
-
-const featureIcons = [
-  { icon: Brain, colorClass: 'text-purple-500' },
-  { icon: Heart, colorClass: 'text-pink-500' },
-  { icon: Dumbbell, colorClass: 'text-blue-500' },
 ];
 
 type Step = 'welcome' | 'profile' | 'disclaimer';
@@ -61,6 +56,19 @@ export const OnboardingDisclaimer: React.FC = () => {
 
   if (!show) return null;
 
+  const highlights = [
+    { icon: Brain, colorClass: 'text-purple-500', bgClass: 'bg-purple-500/10', key: 'feature1' },
+    { icon: Heart, colorClass: 'text-pink-500', bgClass: 'bg-pink-500/10', key: 'feature2' },
+    { icon: Dumbbell, colorClass: 'text-blue-500', bgClass: 'bg-blue-500/10', key: 'feature3' },
+  ];
+
+  const valueProps = [
+    { icon: DollarSign, key: 'noPressure' },
+    { icon: Languages, key: 'sevenLangs' },
+    { icon: Lock, key: 'privacyFirst' },
+    { icon: Eye, key: 'transparency' },
+  ];
+
   return (
     <AnimatePresence>
       {show && (
@@ -68,18 +76,18 @@ export const OnboardingDisclaimer: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[300] flex items-center justify-center bg-black/50 backdrop-blur-md p-4"
+          className="fixed inset-0 z-[300] flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="w-full max-w-[340px] rounded-2xl bg-card border border-border/50 shadow-2xl overflow-hidden"
+            className="w-full max-w-[380px] max-h-[90vh] rounded-2xl bg-card border border-border/50 shadow-2xl overflow-y-auto"
             dir={isRtl ? 'rtl' : 'ltr'}
           >
             {/* Progress bar */}
-            <div className="h-1 w-full bg-muted">
+            <div className="h-1 w-full bg-muted sticky top-0 z-10">
               <motion.div
                 className="h-full bg-gradient-to-r from-primary to-accent"
                 animate={{ width: `${((stepIndex + 1) / 3) * 100}%` }}
@@ -98,41 +106,62 @@ export const OnboardingDisclaimer: React.FC = () => {
             </div>
 
             <AnimatePresence mode="wait">
-              {/* STEP 1: Welcome + Language */}
+              {/* STEP 1: Welcome + Language + Value Proposition */}
               {step === 'welcome' && (
                 <motion.div key="welcome" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                  <div className="px-4 pt-2 pb-2 text-center">
+                  {/* Logo & App Name */}
+                  <div className="px-5 pt-3 pb-2 text-center">
                     <motion.div
                       animate={{ y: [0, -4, 0] }}
                       transition={{ duration: 3, repeat: Infinity }}
-                      className="w-12 h-12 mx-auto mb-2 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center"
+                      className="w-16 h-16 mx-auto mb-3 rounded-2xl shadow-lg overflow-hidden"
                     >
-                      <Sparkles className="w-6 h-6 text-primary" />
+                      <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
                     </motion.div>
-                    <h2 className="text-base font-bold text-foreground">
+                    <h2 className="text-lg font-bold text-foreground">
                       {t('app.name', 'Pregnancy Toolkits')}
                     </h2>
-                    <p className="text-[11px] text-muted-foreground mt-0.5">
+                    <p className="text-xs text-muted-foreground mt-1">
                       {t('app.tagline', 'Your Complete Pregnancy Companion')}
                     </p>
                   </div>
 
                   {/* Feature highlights */}
-                  <div className="px-4 pb-2">
-                    <div className="flex justify-center gap-3">
-                      {featureIcons.map((f, i) => (
+                  <div className="px-5 pb-3">
+                    <div className="flex justify-center gap-4">
+                      {highlights.map((f, i) => (
                         <motion.div
                           key={i}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.1 * i }}
-                          className="flex flex-col items-center gap-1"
+                          className="flex flex-col items-center gap-1.5"
                         >
-                          <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center">
-                            <f.icon className={cn("w-4 h-4", f.colorClass)} />
+                          <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", f.bgClass)}>
+                            <f.icon className={cn("w-5 h-5", f.colorClass)} />
                           </div>
-                          <span className="text-[9px] text-muted-foreground">
-                            {t(`onboarding.feature${i + 1}`, ['AI Tools', 'Tracking', 'Wellness'][i])}
+                          <span className="text-[10px] text-muted-foreground font-medium">
+                            {t(`onboarding.${f.key}`)}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Value Proposition */}
+                  <div className="px-4 pb-3">
+                    <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-3 border border-primary/10 space-y-1.5">
+                      {valueProps.map((vp, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, x: isRtl ? 10 : -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 + i * 0.08 }}
+                          className="flex items-center gap-2"
+                        >
+                          <vp.icon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          <span className="text-[10px] text-foreground/80">
+                            {t(`onboarding.${vp.key}`)}
                           </span>
                         </motion.div>
                       ))}
@@ -140,7 +169,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                   </div>
 
                   {/* Language selector */}
-                  <div className="px-3 pb-2">
+                  <div className="px-4 pb-2">
                     <div className="flex items-center gap-1.5 mb-1.5 px-1">
                       <Globe className="w-3 h-3 text-muted-foreground" />
                       <span className="text-[10px] font-medium text-muted-foreground">
@@ -169,7 +198,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="px-3 pb-3">
+                  <div className="px-4 pb-4">
                     <button
                       onClick={() => setStep('profile')}
                       className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity"
@@ -247,7 +276,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                 </motion.div>
               )}
 
-              {/* STEP 3: Disclaimer */}
+              {/* STEP 3: Value + Disclaimer */}
               {step === 'disclaimer' && (
                 <motion.div key="disclaimer" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                   <div className="px-4 pt-2 pb-2 text-center">
@@ -256,20 +285,31 @@ export const OnboardingDisclaimer: React.FC = () => {
                       transition={{ duration: 3, repeat: Infinity }}
                       className="w-10 h-10 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center"
                     >
-                      <Shield className="w-5 h-5 text-primary" />
+                      <Sparkles className="w-5 h-5 text-primary" />
                     </motion.div>
                     <h2 className="text-sm font-bold text-foreground">
-                      {t('onboarding.title', 'Welcome to Your Journey')}
+                      {t('onboarding.whyUs', 'Why Pregnancy Toolkits?')}
                     </h2>
                   </div>
 
+                  {/* App comprehensive statement */}
                   <div className="px-4 pb-2">
-                    <p className="text-[11px] text-muted-foreground text-center leading-relaxed">
-                      {t('onboarding.disclaimer', 'This app is for informational and educational purposes only. It provides general wellness information and does not replace professional health guidance.')}
+                    <p className="text-[11px] text-foreground/80 leading-relaxed text-center">
+                      {t('onboarding.comprehensiveStatement')}
                     </p>
                   </div>
 
-                  <div className="px-3 pb-3 space-y-2">
+                  {/* Disclaimer */}
+                  <div className="px-4 pb-2">
+                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50">
+                      <Shield className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
+                        {t('onboarding.disclaimer')}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="px-4 pb-4 space-y-2">
                     <div className="flex gap-2">
                       <button
                         onClick={() => setStep('profile')}
@@ -287,7 +327,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                       </button>
                     </div>
                     <p className="text-[9px] text-muted-foreground/60 text-center">
-                      {t('onboarding.consultNote', 'Always consult a qualified healthcare professional for any health concerns.')}
+                      {t('onboarding.consultNote')}
                     </p>
                   </div>
                 </motion.div>
