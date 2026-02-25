@@ -61,6 +61,14 @@
     "wellness": "Sağlık ve Fitness",
     "preparation": "Hazırlık"
   },
+  "journeys": {
+    "planning": "Hamilelik Planı",
+    "pregnant": "Hamilelik",
+    "postpartum": "Doğum Sonrası",
+    "planningDesc": "Doğurganlık takibi ve gebe kalma araçları",
+    "pregnantDesc": "Hamilelik boyunca eksiksiz rehberiniz",
+    "postpartumDesc": "Bebek bakımı ve iyileşme desteği"
+  },
   "onboarding": {
     "title": "Yolculuğunuza hoş geldiniz",
     "subtitle": "Yaşam tarzı ve eğitim rehberiniz",

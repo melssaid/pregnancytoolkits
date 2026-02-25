@@ -61,6 +61,14 @@
     "wellness": "Wohlbefinden & Fitness",
     "preparation": "Vorbereitung"
   },
+  "journeys": {
+    "planning": "Kinderwunsch",
+    "pregnant": "Schwangerschaft",
+    "postpartum": "Nach der Geburt",
+    "planningDesc": "Fruchtbarkeit & Empfängnisplanung",
+    "pregnantDesc": "Ihr Begleiter durch die Schwangerschaft",
+    "postpartumDesc": "Babypflege & Erholung"
+  },
   "onboarding": {
     "title": "Willkommen auf Ihrer Reise",
     "subtitle": "Ihr Lifestyle- & Bildungsbegleiter",

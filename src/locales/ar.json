@@ -61,6 +61,14 @@
     "wellness": "العافية واللياقة",
     "preparation": "التحضير"
   },
+  "journeys": {
+    "planning": "التخطيط للحمل",
+    "pregnant": "متابعة الحمل",
+    "postpartum": "ما بعد الولادة",
+    "planningDesc": "تتبع الخصوبة وأدوات التخطيط",
+    "pregnantDesc": "رفيقك الشامل خلال الحمل",
+    "postpartumDesc": "رعاية الطفل والتعافي"
+  },
   "onboarding": {
     "title": "مرحباً بكِ في رحلتك",
     "subtitle": "رفيقك التعليمي لنمط حياة صحي",
