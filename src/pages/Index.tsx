@@ -124,9 +124,6 @@ const CategoryCard = memo(function CategoryCard({ config, index }: { config: Cat
           <h2 className="text-sm font-extrabold text-foreground tracking-tight truncate flex-1">
             {t(config.key)}
           </h2>
-          <span className="text-[10px] font-medium text-muted-foreground bg-muted/50 px-2 py-0.5 rounded-full">
-            {tools.length}
-          </span>
         </div>
       </div>
 
