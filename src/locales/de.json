@@ -1063,6 +1063,8 @@
       "of": "von",
       "score": "Punktzahl",
       "takeScreeningAgain": "Fragebogen wiederholen",
+      "previousQuestion": "Vorherige Frage",
+      "responseBreakdown": "Antwortübersicht",
       "aiPersonalizedPlan": "KI-personalisierter Bewältigungsplan",
       "generateMyPlan": "Meinen persönlichen Plan erstellen",
       "creatingPlan": "Erstelle deinen persönlichen Plan...",
@@ -1091,7 +1093,12 @@
         "q2": { "question": "Ich habe mich auf Dinge gefreut", "o0": "So viel wie früher", "o1": "Etwas weniger als früher", "o2": "Definitiv weniger als früher", "o3": "Kaum noch" },
         "q3": { "question": "Ich habe mir unnötigerweise Vorwürfe gemacht, wenn etwas schief ging", "o0": "Nein, niemals", "o1": "Nicht sehr oft", "o2": "Ja, manchmal", "o3": "Ja, meistens" },
         "q4": { "question": "Ich war ängstlich oder besorgt ohne guten Grund", "o0": "Nein, überhaupt nicht", "o1": "Kaum jemals", "o2": "Ja, manchmal", "o3": "Ja, sehr oft" },
-        "q5": { "question": "Ich hatte Angst oder Panik ohne guten Grund", "o0": "Nein, überhaupt nicht", "o1": "Nein, nicht viel", "o2": "Ja, manchmal", "o3": "Ja, ziemlich oft" }
+        "q5": { "question": "Ich hatte Angst oder Panik ohne guten Grund", "o0": "Nein, überhaupt nicht", "o1": "Nein, nicht viel", "o2": "Ja, manchmal", "o3": "Ja, ziemlich oft" },
+        "q6": { "question": "Ich hatte Schwierigkeiten beim Schlafen, obwohl die Möglichkeit bestand", "o0": "Nein, überhaupt nicht", "o1": "Selten", "o2": "Ja, manchmal", "o3": "Ja, meistens" },
+        "q7": { "question": "Ich habe mich traurig gefühlt oder geweint", "o0": "Nein, überhaupt nicht", "o1": "Sehr selten", "o2": "Ja, manchmal", "o3": "Ja, meistens" },
+        "q8": { "question": "Mein Appetit hat sich merklich verändert (mehr oder weniger)", "o0": "Nein, normal", "o1": "Leicht verändert", "o2": "Merklich verändert", "o3": "Völlig appetitlos oder Überessen" },
+        "q9": { "question": "Ich hatte Schwierigkeiten, mich zu konzentrieren oder Entscheidungen zu treffen", "o0": "Nein, überhaupt nicht", "o1": "Selten", "o2": "Ja, manchmal", "o3": "Ja, meistens" },
+        "q10": { "question": "Ich habe mich erschöpft und energielos gefühlt", "o0": "Nein, meine Energie ist gut", "o1": "Weniger Energie als üblich", "o2": "Die meiste Zeit erschöpft", "o3": "Völlig ausgelaugt" }
       },
       "coping": {
         "sunlight": { "title": "Morgensonnenlicht", "desc": "Hole dir jeden Morgen 10-15 Minuten natürliches Licht" },
