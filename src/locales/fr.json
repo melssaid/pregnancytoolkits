@@ -3656,7 +3656,7 @@
   "toolsInternal.dueDate.videosTitle": "Vidéos Chronologie de Grossesse",
   "toolsInternal.dueDate.videosSubtitle": "Guides de développement hebdomadaire et de préparation",
   "toolsInternal.fertilityAcademy": {
-    "lessonsCount": "{{count}} leçons disponibles",
+    "lessonsCount": "{{count}} modules d'apprentissage",
     "lessons": {
       "menstrualCycle": { "title": "Comprendre le cycle menstruel" },
       "ovulationProcess": { "title": "Comment fonctionne l’ovulation" },
@@ -3669,7 +3669,25 @@
       "maleFertility": { "title": "Fertilité masculine" },
       "emotionalWellbeing": { "title": "Bien-être émotionnel" },
       "trackingMethods": { "title": "Méthodes de suivi" },
-      "optimizingTiming": { "title": "Optimiser le timing" }
+      "optimizingTiming": { "title": "Optimiser le timing" },
+      "implantationWindow": { "title": "La fenêtre d'implantation" },
+      "cervicalHealth": { "title": "Santé cervicale & fertilité" },
+      "thyroidFertility": { "title": "Thyroïde & fertilité" },
+      "pcosManagement": { "title": "Gérer le SOPK & fertilité" },
+      "endometriosisAwareness": { "title": "Endométriose & fertilité" },
+      "nutritionFertility": { "title": "Nutrition optimale pour la fertilité" },
+      "sleepHormones": { "title": "Sommeil & hormones de fertilité" },
+      "exerciseBalance": { "title": "Équilibrer exercice & fertilité" },
+      "supplementsGuide": { "title": "Guide intelligent des suppléments" },
+      "environmentalToxins": { "title": "Toxines environnementales & fertilité" },
+      "geneticFactors": { "title": "Facteurs génétiques & fertilité" },
+      "immunologyFertility": { "title": "Immunologie & fertilité" },
+      "secondaryInfertility": { "title": "Infertilité secondaire" },
+      "recurrentLoss": { "title": "Comprendre les fausses couches récurrentes" },
+      "fertilityPreservation": { "title": "Préservation de la fertilité" },
+      "assistedReproduction": { "title": "Techniques de reproduction assistée" },
+      "epigeneticsFertility": { "title": "Épigénétique & santé générationnelle" },
+      "mindBodyConnection": { "title": "La connexion corps-esprit" }
     }
   },
   "toolsInternal.fertileWindow": {

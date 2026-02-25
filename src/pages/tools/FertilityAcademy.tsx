@@ -11,6 +11,11 @@ const LESSON_KEYS = [
   "menstrualCycle", "ovulationProcess", "fertilizationBasics", "hormonesRole",
   "ageAndFertility", "lifestyleFactors", "commonMyths", "whenToSeekHelp",
   "maleFertility", "emotionalWellbeing", "trackingMethods", "optimizingTiming",
+  "implantationWindow", "cervicalHealth", "thyroidFertility", "pcosManagement",
+  "endometriosisAwareness", "nutritionFertility", "sleepHormones", "exerciseBalance",
+  "supplementsGuide", "environmentalToxins", "geneticFactors", "immunologyFertility",
+  "secondaryInfertility", "recurrentLoss", "fertilityPreservation", "assistedReproduction",
+  "epigeneticsFertility", "mindBodyConnection",
 ] as const;
 
 const SIGN_KEYS = [
