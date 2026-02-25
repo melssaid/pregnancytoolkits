@@ -33,7 +33,7 @@ export function CyclePhaseRing({ phase, day, avgCycle }: Props) {
   const phases: CyclePhase[] = ["menstrual", "follicular", "ovulation", "luteal"];
 
   return (
-    <div className="relative w-36 h-36 mx-auto">
+    <div className="relative w-40 h-40 mx-auto">
       <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
         {phases.map((p) => {
           const [startAngle, endAngle] = phaseAngles[p];
@@ -44,7 +44,7 @@ export function CyclePhaseRing({ phase, day, avgCycle }: Props) {
           return (
             <circle
               key={p} cx="60" cy="60" r={r} fill="none"
-              strokeWidth={isActive ? 7 : 5} stroke="currentColor"
+              strokeWidth={isActive ? 8 : 5} stroke="currentColor"
               className={cn("transition-all duration-500", isActive ? phaseConfig[p].ring : "text-muted/20")}
               strokeDasharray={`${segLength - 3} ${circ - segLength + 3}`}
               strokeDashoffset={offset} strokeLinecap="round"
@@ -65,12 +65,12 @@ export function CyclePhaseRing({ phase, day, avgCycle }: Props) {
         <motion.div
           initial={{ scale: 0 }} animate={{ scale: 1 }}
           transition={{ type: "spring", delay: 0.2 }}
-          className={cn("w-9 h-9 rounded-full flex items-center justify-center bg-gradient-to-br", phaseConfig[phase].gradient)}
+          className={cn("w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br", phaseConfig[phase].gradient)}
         >
-          <PhaseIcon className={cn("w-4 h-4", phaseConfig[phase].ring)} />
+          <PhaseIcon className={cn("w-5 h-5", phaseConfig[phase].ring)} />
         </motion.div>
-        <p className="text-[11px] font-bold text-foreground mt-1">{t(`toolsInternal.cycleTracker.${phase}`)}</p>
-        <p className="text-[9px] text-muted-foreground">{t('toolsInternal.cycleTracker.cycleDay', { day })}</p>
+        <p className="text-sm font-bold text-foreground mt-1.5">{t(`toolsInternal.cycleTracker.${phase}`)}</p>
+        <p className="text-xs text-foreground/60">{t('toolsInternal.cycleTracker.cycleDay', { day })}</p>
       </div>
     </div>
   );
