@@ -111,7 +111,7 @@ Helpful tips for diaper changes and tracking`
               <div className="flex items-center justify-between mb-2 gap-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <Brain className="h-4 w-4 text-primary shrink-0" />
-                  <h3 className="font-semibold text-sm truncate">{t('diaperPage.aiPatternAnalysis')}</h3>
+                  <h3 className="font-semibold text-sm leading-snug">{t('diaperPage.aiPatternAnalysis')}</h3>
                 </div>
                 <Button
                   variant="ghost"
