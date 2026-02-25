@@ -194,13 +194,13 @@ export default function DueDateCalculator() {
       mood="nurturing"
       toolId="due-date-calculator"
     >
-      <motion.div
+        <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className="space-y-4"
       >
-            <Card className="mb-4">
+            <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-center gap-2 text-sm">
                   <Baby className="h-4 w-4 text-primary" />
@@ -212,18 +212,24 @@ export default function DueDateCalculator() {
               </CardHeader>
               <CardContent>
                 <Tabs defaultValue="lmp">
-                  <TabsList className="grid w-full grid-cols-2 mb-4">
-                    <TabsTrigger value="lmp">{t('toolsInternal.dueDate.lastPeriod')}</TabsTrigger>
-                    <TabsTrigger value="conception">{t('toolsInternal.dueDate.conceptionDate')}</TabsTrigger>
+                  <TabsList className="grid w-full grid-cols-2 mb-4 h-10">
+                    <TabsTrigger value="lmp" className="text-xs px-2">
+                      <CalendarIcon className="h-3.5 w-3.5 mr-1.5 shrink-0" />
+                      {t('toolsInternal.dueDate.lastPeriod')}
+                    </TabsTrigger>
+                    <TabsTrigger value="conception" className="text-xs px-2">
+                      <Baby className="h-3.5 w-3.5 mr-1.5 shrink-0" />
+                      {t('toolsInternal.dueDate.conceptionDate')}
+                    </TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="lmp" className="space-y-4">
                     <div className="space-y-2">
-                      <Label>{t('toolsInternal.dueDate.lmpLabel')}</Label>
+                      <Label className="text-xs">{t('toolsInternal.dueDate.lmpLabel')}</Label>
                       <Popover>
                         <PopoverTrigger asChild>
-                          <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !lmpDate && "text-muted-foreground")}>
-                            <CalendarIcon className="mr-2 h-4 w-4" />
+                          <Button variant="outline" className={cn("w-full justify-start text-left font-normal h-11 border-border/60", !lmpDate && "text-muted-foreground")}>
+                            <CalendarIcon className="mr-2 h-4 w-4 text-primary shrink-0" />
                             {lmpDate ? formatLocalized(lmpDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
                           </Button>
                         </PopoverTrigger>
@@ -239,21 +245,27 @@ export default function DueDateCalculator() {
                         </PopoverContent>
                       </Popover>
                       {lmpDate && userProfile.lastPeriodDate && format(lmpDate, 'yyyy-MM-dd') === userProfile.lastPeriodDate && (
-                        <p className="text-xs text-primary flex items-center gap-1">✓ {t('toolsInternal.dueDate.fromProfile', 'Pre-filled from your profile')}</p>
+                        <p className="text-xs text-primary flex items-center gap-1">
+                          <Info className="h-3 w-3" />
+                          {t('toolsInternal.dueDate.fromProfile', 'Pre-filled from your profile')}
+                        </p>
                       )}
                     </div>
-                    <Button onClick={calculateFromLMP} className="w-full">
-                      {t('toolsInternal.dueDate.calculateBtn')}
-                    </Button>
+                    <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
+                      <Button onClick={calculateFromLMP} className="w-full h-11 font-medium shadow-sm" disabled={!lmpDate}>
+                        <Calendar className="h-4 w-4 mr-2" />
+                        {t('toolsInternal.dueDate.calculateBtn')}
+                      </Button>
+                    </motion.div>
                   </TabsContent>
 
                   <TabsContent value="conception" className="space-y-4">
                     <div className="space-y-2">
-                      <Label>{t('toolsInternal.dueDate.conceptionLabel')}</Label>
+                      <Label className="text-xs">{t('toolsInternal.dueDate.conceptionLabel')}</Label>
                       <Popover>
                         <PopoverTrigger asChild>
-                          <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !conceptionDate && "text-muted-foreground")}>
-                            <CalendarIcon className="mr-2 h-4 w-4" />
+                          <Button variant="outline" className={cn("w-full justify-start text-left font-normal h-11 border-border/60", !conceptionDate && "text-muted-foreground")}>
+                            <CalendarIcon className="mr-2 h-4 w-4 text-primary shrink-0" />
                             {conceptionDate ? formatLocalized(conceptionDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
                           </Button>
                         </PopoverTrigger>
@@ -269,9 +281,12 @@ export default function DueDateCalculator() {
                         </PopoverContent>
                       </Popover>
                     </div>
-                    <Button onClick={calculateFromConception} className="w-full">
-                      {t('toolsInternal.dueDate.calculateBtn')}
-                    </Button>
+                    <motion.div whileTap={{ scale: 0.97 }} transition={{ duration: 0.1 }}>
+                      <Button onClick={calculateFromConception} className="w-full h-11 font-medium shadow-sm" disabled={!conceptionDate}>
+                        <Calendar className="h-4 w-4 mr-2" />
+                        {t('toolsInternal.dueDate.calculateBtn')}
+                      </Button>
+                    </motion.div>
                   </TabsContent>
                 </Tabs>
               </CardContent>
@@ -281,8 +296,9 @@ export default function DueDateCalculator() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                className="space-y-4"
               >
-                <Card className="border-primary/20 bg-secondary/30 mb-4">
+                <Card className="border-primary/20 bg-secondary/30">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-xs flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-primary" />
@@ -290,55 +306,59 @@ export default function DueDateCalculator() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="rounded-lg bg-primary p-3 text-center">
-                       <p className="text-[10px] text-primary-foreground/80 mb-1">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
-                       <p className="text-sm font-bold text-primary-foreground">
+                    <div className="rounded-xl bg-primary p-4 text-center shadow-sm">
+                       <p className="text-[10px] text-primary-foreground/80 mb-1 uppercase tracking-wider">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
+                       <p className="text-base font-bold text-primary-foreground">
                         {formatLocalized(result.dueDate, "MMMM d, yyyy", currentLanguage)}
                       </p>
                     </div>
 
                     {result.currentWeeks >= 0 && (
-                      <div className="rounded-lg bg-card p-3 shadow-card text-center">
-                         <p className="text-xs text-muted-foreground mb-1">{t('toolsInternal.dueDate.currentlyAt')}</p>
-                         <p className="text-xs font-semibold text-foreground">
+                      <div className="rounded-xl bg-card p-3 shadow-sm border border-border/40 text-center">
+                         <p className="text-[10px] text-muted-foreground mb-1">{t('toolsInternal.dueDate.currentlyAt')}</p>
+                         <p className="text-sm font-semibold text-foreground">
                            {t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}
                          </p>
-                         <p className="text-xs text-primary mt-1">
+                         <p className="text-xs text-primary mt-1 font-medium">
                           {t('toolsInternal.dueDate.trimester', { number: result.trimester })}
                         </p>
                       </div>
                     )}
 
-                    <div className="grid gap-3 sm:grid-cols-3">
-                      <div className="rounded-lg bg-card p-3 shadow-card">
-                        <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.conception')}</p>
-                        <p className="font-medium text-foreground">
+                    <div className="grid gap-2 grid-cols-3">
+                      <div className="rounded-lg bg-card p-2.5 shadow-sm border border-border/30 text-center">
+                        <p className="text-[10px] text-muted-foreground leading-tight">{t('toolsInternal.dueDate.conception')}</p>
+                        <p className="text-xs font-semibold text-foreground mt-1">
                           {formatLocalized(result.conception, "MMM d", currentLanguage)}
                         </p>
                       </div>
-                      <div className="rounded-lg bg-card p-3 shadow-card">
-                        <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.secondTrimester')}</p>
-                        <p className="font-medium text-foreground">
+                      <div className="rounded-lg bg-card p-2.5 shadow-sm border border-border/30 text-center">
+                        <p className="text-[10px] text-muted-foreground leading-tight">{t('toolsInternal.dueDate.secondTrimester')}</p>
+                        <p className="text-xs font-semibold text-foreground mt-1">
                           {formatLocalized(result.firstTrimesterEnd, "MMM d", currentLanguage)}
                         </p>
                       </div>
-                      <div className="rounded-lg bg-card p-3 shadow-card">
-                        <p className="text-xs text-muted-foreground">{t('toolsInternal.dueDate.thirdTrimester')}</p>
-                        <p className="font-medium text-foreground">
+                      <div className="rounded-lg bg-card p-2.5 shadow-sm border border-border/30 text-center">
+                        <p className="text-[10px] text-muted-foreground leading-tight">{t('toolsInternal.dueDate.thirdTrimester')}</p>
+                        <p className="text-xs font-semibold text-foreground mt-1">
                           {formatLocalized(result.secondTrimesterEnd, "MMM d", currentLanguage)}
                         </p>
                       </div>
                     </div>
 
                     <div className="flex gap-2">
-                      <Button onClick={saveResult} variant="outline" className="flex-1 gap-2 text-sm h-9">
-                        <Save className="h-4 w-4 shrink-0" />
-                        <span className="truncate">{t('toolsInternal.dueDate.save')}</span>
-                      </Button>
-                      <Button onClick={shareResult} variant="outline" className="flex-1 gap-2 text-sm h-9">
-                        <Share2 className="h-4 w-4 shrink-0" />
-                        <span className="truncate">{t('toolsInternal.dueDate.share')}</span>
-                      </Button>
+                      <motion.div whileTap={{ scale: 0.95 }} className="flex-1">
+                        <Button onClick={saveResult} variant="outline" className="w-full gap-2 text-xs h-9">
+                          <Save className="h-3.5 w-3.5 shrink-0" />
+                          <span className="truncate">{t('toolsInternal.dueDate.save')}</span>
+                        </Button>
+                      </motion.div>
+                      <motion.div whileTap={{ scale: 0.95 }} className="flex-1">
+                        <Button onClick={shareResult} variant="outline" className="w-full gap-2 text-xs h-9">
+                          <Share2 className="h-3.5 w-3.5 shrink-0" />
+                          <span className="truncate">{t('toolsInternal.dueDate.share')}</span>
+                        </Button>
+                      </motion.div>
                     </div>
                   </CardContent>
                 </Card>
@@ -375,48 +395,54 @@ A supportive message for this stage of pregnancy`}
             )}
 
             {savedDates.length > 0 && (
-              <Card className="mb-4">
+              <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-xs">{t('toolsInternal.dueDate.savedDueDates')}</CardTitle>
+                  <CardTitle className="text-xs flex items-center gap-2">
+                    <Save className="h-3.5 w-3.5 text-muted-foreground" />
+                    {t('toolsInternal.dueDate.savedDueDates')}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {savedDates.map((saved) => (
                       <div
                         key={saved.id}
-                        className="flex items-center justify-between gap-2 rounded-lg bg-muted p-3"
+                        className="flex items-center justify-between gap-2 rounded-lg bg-muted/50 border border-border/30 p-3"
                       >
                         <div className="min-w-0 flex-1">
-                          <p className="font-medium text-foreground text-sm break-words">
+                          <p className="font-medium text-foreground text-xs break-words">
                             {t('toolsInternal.dueDate.due')}: {formatLocalized(new Date(saved.dueDate), "MMMM d, yyyy", currentLanguage)}
                           </p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-[10px] text-muted-foreground mt-0.5">
                             {t('toolsInternal.dueDate.calculated')}: {formatLocalized(new Date(saved.calculatedAt), "MMM d, yyyy", currentLanguage)}
                           </p>
                         </div>
-                        <div className="flex gap-2 flex-shrink-0">
-                          {!saved.reminderSet && (
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => setReminder(saved)}
-                              className="gap-1"
-                            >
-                              <Bell className="h-4 w-4" />
-                              {t('toolsInternal.dueDate.remind')}
-                            </Button>
-                          )}
-                          {saved.reminderSet && (
-                            <span className="text-xs text-primary px-2 py-1 bg-primary/10 rounded-full">
-                              ✓ {t('toolsInternal.dueDate.reminderSet')}
+                        <div className="flex items-center gap-1 flex-shrink-0">
+                          {!saved.reminderSet ? (
+                            <motion.div whileTap={{ scale: 0.9 }}>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => setReminder(saved)}
+                                className="gap-1 h-8 px-2 text-xs"
+                              >
+                                <Bell className="h-3.5 w-3.5" />
+                                {t('toolsInternal.dueDate.remind')}
+                              </Button>
+                            </motion.div>
+                          ) : (
+                            <span className="text-[10px] text-primary px-2 py-1 bg-primary/8 rounded-full flex items-center gap-1">
+                              <Info className="h-3 w-3" />
+                              {t('toolsInternal.dueDate.reminderSet')}
                             </span>
                           )}
-                          <button
+                          <motion.button
+                            whileTap={{ scale: 0.85 }}
                             onClick={() => deleteResult(saved.id)}
-                            className="text-muted-foreground hover:text-destructive transition-colors p-2"
+                            className="text-muted-foreground hover:text-destructive transition-colors p-2 rounded-md hover:bg-destructive/10"
                           >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </motion.button>
                         </div>
                       </div>
                     ))}
@@ -424,7 +450,6 @@ A supportive message for this stage of pregnancy`}
                 </CardContent>
               </Card>
             )}
-
             <VideoLibrary
               videosByLang={dueDateVideosByLang}
               title={t('toolsInternal.dueDate.videosTitle')}
