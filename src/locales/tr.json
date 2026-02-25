@@ -4353,20 +4353,20 @@
     }
   },
   "settings.deleteAccount": {
-    "title": "Hesap ve Verileri Sil",
-    "description": "Hesabınızı ve tüm verilerinizi uygulama ve sunucudan kalıcı olarak silin",
-    "button": "Hesabı Kalıcı Olarak Sil",
-    "confirmTitle": "Hesap Silmeyi Onayla",
-    "confirmDesc": "Hesabınız ve tüm saklanan veriler kalıcı olarak silinecektir. Bu işlem geri alınamaz.",
+    "title": "Tüm Verileri Sil",
+    "description": "Bu cihazda saklanan tüm verilerinizi kalıcı olarak silin",
+    "button": "Tüm Verileri Sil",
+    "confirmTitle": "Veri Silmeyi Onayla",
+    "confirmDesc": "Bu cihazda saklanan tüm veriler kalıcı olarak silinecektir. Bu işlem geri alınamaz.",
     "confirmWarning": "Bu işlem kalıcıdır ve geri alınamaz!",
     "confirmWord": "SİL",
-    "confirmButton": "Hesap Silmeyi Onayla",
+    "confirmButton": "Silmeyi Onayla",
     "confirmError": "Onay hatası",
     "confirmErrorDesc": "Onaylamak için lütfen \"{{word}}\" yazın",
-    "success": "Hesap silindi ✅",
+    "success": "Veriler silindi ✅",
     "successDesc": "Tüm verileriniz başarıyla silindi",
     "error": "Silme hatası",
-    "errorDesc": "Hesap silinirken bir hata oluştu"
+    "errorDesc": "Veriler silinirken bir hata oluştu"
   },
   "insightTabs": {
     "dailyTip": "Günün İpucu",

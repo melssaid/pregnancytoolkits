@@ -4175,20 +4175,20 @@
     }
   },
   "settings.deleteAccount": {
-    "title": "Supprimer le compte et les données",
-    "description": "Supprimer définitivement votre compte et toutes vos données de l'application et du serveur",
-    "button": "Supprimer le compte définitivement",
-    "confirmTitle": "Confirmer la suppression du compte",
-    "confirmDesc": "Votre compte et toutes les données stockées seront définitivement supprimés. Cette action ne peut pas être annulée.",
+    "title": "Supprimer toutes les données",
+    "description": "Supprimer définitivement toutes vos données stockées sur cet appareil",
+    "button": "Supprimer toutes les données",
+    "confirmTitle": "Confirmer la suppression des données",
+    "confirmDesc": "Toutes les données stockées sur cet appareil seront définitivement supprimées. Cette action ne peut pas être annulée.",
     "confirmWarning": "Cette action est définitive et irréversible !",
     "confirmWord": "SUPPRIMER",
     "confirmButton": "Confirmer la suppression",
     "confirmError": "Erreur de confirmation",
     "confirmErrorDesc": "Veuillez taper \"{{word}}\" pour confirmer",
-    "success": "Compte supprimé ✅",
+    "success": "Données supprimées ✅",
     "successDesc": "Toutes vos données ont été supprimées avec succès",
     "error": "Erreur de suppression",
-    "errorDesc": "Une erreur est survenue lors de la suppression du compte"
+    "errorDesc": "Une erreur est survenue lors de la suppression des données"
   },
   "insightTabs": {
     "dailyTip": "Conseil du jour",
