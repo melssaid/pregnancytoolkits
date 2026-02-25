@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Sparkles, Loader2, RefreshCw } from "lucide-react";
@@ -48,9 +48,28 @@ export function ToolInsightTabs({ toolId }: ToolInsightTabsProps) {
 
   const [tipContent, setTipContent] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const week = profile.pregnancyWeek;
   const lang = i18n.language?.split("-")[0] || "en";
+
+  // Only show once user scrolls to this section (IntersectionObserver)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const generateTip = useCallback(async () => {
     const cacheKey = getCacheKey(toolId, week);
@@ -90,11 +109,12 @@ Keep it warm, positive, non-medical, and conversational. Write in ${lang}.`;
     });
   }, [toolId, week, lang, t, streamChat]);
 
+  // Only generate when visible and not already loaded
   useEffect(() => {
-    if (!loaded && !isLoading) {
+    if (isVisible && !loaded && !isLoading) {
       generateTip();
     }
-  }, [loaded, isLoading, generateTip]);
+  }, [isVisible, loaded, isLoading, generateTip]);
 
   const handleRefresh = () => {
     localStorage.removeItem(getCacheKey(toolId, week));
@@ -104,47 +124,51 @@ Keep it warm, positive, non-medical, and conversational. Write in ${lang}.`;
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
-      className="mt-4"
-    >
-      <Card className="border-border/40 bg-gradient-to-br from-background to-muted/30 overflow-hidden">
-        <div className="px-4 pt-3 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-semibold text-foreground">{t("insightTabs.dailyTip")}</span>
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7 text-muted-foreground hover:text-foreground"
-            onClick={handleRefresh}
-            disabled={isLoading}
-          >
-            <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
-          </Button>
-        </div>
-
-        <CardContent className="px-4 pb-4 pt-2">
-          {error && (
-            <AIErrorBanner message={error} errorType={errorType} onRetry={handleRefresh} onDismiss={clearError} />
-          )}
-
-          {isLoading && !tipContent ? (
-            <div className="flex items-center justify-center py-6 gap-2 text-muted-foreground">
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span className="text-xs">{t("insightTabs.loading")}</span>
+    <div ref={containerRef}>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mt-4"
+        >
+          <Card className="border-border/40 bg-gradient-to-br from-background to-muted/30 overflow-hidden">
+            <div className="px-4 pt-3 flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <span className="text-xs font-semibold text-foreground">{t("insightTabs.dailyTip")}</span>
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-7 w-7 text-muted-foreground hover:text-foreground"
+                onClick={handleRefresh}
+                disabled={isLoading}
+              >
+                <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
+              </Button>
             </div>
-          ) : (
-            <div className="text-xs leading-relaxed">
-              <MarkdownRenderer content={tipContent} isLoading={isLoading} accentColor="primary" />
-            </div>
-          )}
-        </CardContent>
-      </Card>
-    </motion.div>
+
+            <CardContent className="px-4 pb-4 pt-2">
+              {error && (
+                <AIErrorBanner message={error} errorType={errorType} onRetry={handleRefresh} onDismiss={clearError} />
+              )}
+
+              {isLoading && !tipContent ? (
+                <div className="flex items-center justify-center py-6 gap-2 text-muted-foreground">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="text-xs">{t("insightTabs.loading")}</span>
+                </div>
+              ) : (
+                <div className="text-xs leading-relaxed">
+                  <MarkdownRenderer content={tipContent} isLoading={isLoading} accentColor="primary" />
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
+    </div>
   );
 }
 

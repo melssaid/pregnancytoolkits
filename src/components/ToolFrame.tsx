@@ -15,7 +15,7 @@ interface ToolFrameProps {
   title: string;
   subtitle?: string;
   icon?: React.ElementType;
-  customIcon?: string; // Legacy support - now uses toolId for icons
+  customIcon?: string;
   mood?: "calm" | "nurturing" | "empowering" | "joyful";
   toolId?: string;
   showRelated?: boolean;
@@ -61,10 +61,10 @@ export function ToolFrame({
   title, 
   subtitle, 
   icon: Icon,
-  customIcon, // Legacy - kept for compatibility
+  customIcon,
   mood = "nurturing",
   toolId,
-  showRelated = true 
+  showRelated = true,
 }: ToolFrameProps) {
   const { t } = useTranslation();
   const styles = moodStyles[mood];
@@ -181,7 +181,7 @@ export function ToolFrame({
             </div>
           </motion.div>
 
-          {/* AI Insight Tabs */}
+          {/* AI Insight - appears after user interacts with the tool */}
           {toolId && (
             <ToolInsightTabs toolId={toolId} />
           )}
