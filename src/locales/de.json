@@ -3633,6 +3633,23 @@
   "toolsInternal.cycleTracker.videosSubtitle": "Lernen Sie über Zyklusverfolgung und Gesundheit",
   "toolsInternal.dueDate.videosTitle": "Schwangerschafts-Zeitplan-Videos",
   "toolsInternal.dueDate.videosSubtitle": "Wöchentliche Entwicklung und Vorbereitungsanleitungen",
+  "toolsInternal.fertilityAcademy": {
+    "lessonsCount": "{{count}} Lektionen verfügbar",
+    "lessons": {
+      "menstrualCycle": { "title": "Den Menstruationszyklus verstehen" },
+      "ovulationProcess": { "title": "So funktioniert der Eisprung" },
+      "fertilizationBasics": { "title": "Grundlagen der Befruchtung" },
+      "hormonesRole": { "title": "Rolle der Hormone" },
+      "ageAndFertility": { "title": "Alter und Fruchtbarkeit" },
+      "lifestyleFactors": { "title": "Lebensstilfaktoren" },
+      "commonMyths": { "title": "Häufige Mythen" },
+      "whenToSeekHelp": { "title": "Wann Sie Hilfe suchen sollten" },
+      "maleFertility": { "title": "Männliche Fruchtbarkeit" },
+      "emotionalWellbeing": { "title": "Emotionales Wohlbefinden" },
+      "trackingMethods": { "title": "Tracking-Methoden" },
+      "optimizingTiming": { "title": "Timing optimieren" }
+    }
+  },
 
   "socialProof": {
     "title": "Alles was du brauchst 💕",

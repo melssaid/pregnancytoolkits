@@ -3658,6 +3658,23 @@
   "toolsInternal.cycleTracker.videosSubtitle": "Découvrez le suivi du cycle et la santé reproductive",
   "toolsInternal.dueDate.videosTitle": "Vidéos Chronologie de Grossesse",
   "toolsInternal.dueDate.videosSubtitle": "Guides de développement hebdomadaire et de préparation",
+  "toolsInternal.fertilityAcademy": {
+    "lessonsCount": "{{count}} leçons disponibles",
+    "lessons": {
+      "menstrualCycle": { "title": "Comprendre le cycle menstruel" },
+      "ovulationProcess": { "title": "Comment fonctionne l’ovulation" },
+      "fertilizationBasics": { "title": "Bases de la fécondation" },
+      "hormonesRole": { "title": "Rôle des hormones" },
+      "ageAndFertility": { "title": "Âge et fertilité" },
+      "lifestyleFactors": { "title": "Facteurs liés au mode de vie" },
+      "commonMyths": { "title": "Mythes fréquents" },
+      "whenToSeekHelp": { "title": "Quand consulter" },
+      "maleFertility": { "title": "Fertilité masculine" },
+      "emotionalWellbeing": { "title": "Bien-être émotionnel" },
+      "trackingMethods": { "title": "Méthodes de suivi" },
+      "optimizingTiming": { "title": "Optimiser le timing" }
+    }
+  },
 
   "socialProof": {
     "title": "Tout ce dont vous avez besoin 💕",

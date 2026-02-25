@@ -3836,6 +3836,23 @@
   "toolsInternal.cycleTracker.videosSubtitle": "Döngü takibi ve üreme sağlığı hakkında bilgi edinin",
   "toolsInternal.dueDate.videosTitle": "Gebelik Zaman Çizelgesi Videoları",
   "toolsInternal.dueDate.videosSubtitle": "Haftalık gelişim ve doğuma hazırlık rehberleri",
+  "toolsInternal.fertilityAcademy": {
+    "lessonsCount": "{{count}} ders mevcut",
+    "lessons": {
+      "menstrualCycle": { "title": "Adet döngüsünü anlamak" },
+      "ovulationProcess": { "title": "Yumurtlama nasıl çalışır?" },
+      "fertilizationBasics": { "title": "Döllenmenin temelleri" },
+      "hormonesRole": { "title": "Hormonların rolü" },
+      "ageAndFertility": { "title": "Yaş ve doğurganlık" },
+      "lifestyleFactors": { "title": "Yaşam tarzı faktörleri" },
+      "commonMyths": { "title": "Yaygın mitler" },
+      "whenToSeekHelp": { "title": "Ne zaman destek almalısın?" },
+      "maleFertility": { "title": "Erkek doğurganlığı" },
+      "emotionalWellbeing": { "title": "Duygusal iyi oluş" },
+      "trackingMethods": { "title": "Takip yöntemleri" },
+      "optimizingTiming": { "title": "Zamanlamayı optimize etmek" }
+    }
+  },
 
   "socialProof": {
     "title": "İhtiyacın olan her şey 💕",
