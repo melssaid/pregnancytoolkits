@@ -537,7 +537,7 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                       className="p-3 bg-muted/50 rounded-xl overflow-hidden"
                     >
                       <div className="text-xl mb-1">{strategy.icon}</div>
-                      <h4 className="font-medium text-xs mb-0.5 truncate">{t(strategy.titleKey)}</h4>
+                      <h4 className="font-medium text-xs mb-0.5 leading-snug">{t(strategy.titleKey)}</h4>
                       <p className="text-[10px] text-muted-foreground line-clamp-2">{t(strategy.descKey)}</p>
                     </motion.div>
                   ))}

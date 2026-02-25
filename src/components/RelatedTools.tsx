@@ -50,7 +50,7 @@ export const RelatedTools = forwardRef<HTMLDivElement, RelatedToolsProps>(
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
+                    <p className="text-sm font-semibold text-foreground leading-snug group-hover:text-primary transition-colors">
                       {t(tool.titleKey)}
                     </p>
                     <p className="text-xs text-muted-foreground truncate">

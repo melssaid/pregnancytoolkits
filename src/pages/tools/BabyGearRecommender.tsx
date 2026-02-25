@@ -237,7 +237,7 @@ export default function BabyGearRecommender() {
                       <div className="flex items-start justify-between gap-2 mb-1">
                         <div className="flex items-center gap-1.5 min-w-0">
                           <TypeIcon className="w-3.5 h-3.5 text-primary shrink-0" />
-                          <h4 className={`text-xs font-semibold truncate ${isChecked ? 'line-through text-muted-foreground' : ''}`}>
+                          <h4 className={`text-xs font-semibold leading-snug ${isChecked ? 'line-through text-muted-foreground' : ''}`}>
                             {t(item.nameKey)}
                           </h4>
                         </div>

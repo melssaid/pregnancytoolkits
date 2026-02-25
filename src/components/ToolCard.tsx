@@ -55,7 +55,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, va
             <Icon className="w-5.5 h-5.5 text-primary group-hover:text-primary transition-colors duration-300" strokeWidth={2} />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold text-foreground truncate leading-snug">
+            <h3 className="text-sm font-semibold text-foreground leading-snug">
               {t(titleKey)}
             </h3>
             <p className="text-xs text-foreground/70 line-clamp-2 mt-0.5 leading-relaxed">
