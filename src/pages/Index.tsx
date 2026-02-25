@@ -145,8 +145,8 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
 
   return (
     <div
-      className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm animate-fade-in`}
-      style={{ animationDelay: `${index * 80}ms` }}
+      className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm animate-fade-in journey-card-glow relative journey-card-shimmer`}
+      style={{ animationDelay: `${index * 120}ms` }}
     >
       {/* Gradient Header — clickable to toggle */}
       <button
