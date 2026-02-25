@@ -26,14 +26,15 @@ export function FertilityDailyTip() {
       transition={{ delay: 0.15, duration: 0.4 }}
       className="mb-4"
     >
-      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-background to-pink-50/30 dark:to-primary/5 overflow-hidden relative">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-3 ltr:-right-3 rtl:-left-3 opacity-[0.06]"
-        >
-          <Sparkles className="h-20 w-20 text-primary" />
-        </motion.div>
+      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-background to-pink-50/30 dark:to-primary/5 relative">
+        <div className="absolute -top-3 ltr:-right-3 rtl:-left-3 opacity-[0.06] overflow-hidden">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          >
+            <Sparkles className="h-20 w-20 text-primary" />
+          </motion.div>
+        </div>
 
         <CardContent className="p-4 relative z-10" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
           <div className="flex items-center gap-2 mb-2">
