@@ -1136,6 +1136,10 @@
       "differentWeek": "Outra semana",
       "refresh": "Atualizar",
       "trackTip": "Acompanhe sua semana para obter informações personalizadas sobre o crescimento do seu bebê e as mudanças no seu corpo",
+      "fetalDevLink": "Desenvolvimento fetal",
+      "fetalDevLinkDesc": "Veja o tamanho e desenvolvimento do seu bebê esta semana",
+      "kickCounterLink": "Contador de chutes",
+      "kickCounterLinkDesc": "Acompanhe e registre os movimentos do seu bebê",
       "approximatelyRemaining": "Aproximadamente {{days}} dias restantes",
       "noSummariesYet": "Nenhum resumo ainda",
       "generateFirstHint": "Toque no botão acima para gerar seu primeiro resumo semanal",
@@ -1419,6 +1423,10 @@
       "info": "Apenas cerca de 5% dos bebês nascem na data prevista. A maioria nasce dentro de 2 semanas antes ou depois. Seu médico pode ajustar a data com base no ultrassom.",
       "cycleTrackerLink": "Acompanhamento do ciclo menstrual",
       "cycleTrackerLinkDesc": "Acompanhe seu ciclo menstrual e obtenha previsões precisas",
+      "fetalDevLink": "Desenvolvimento fetal",
+      "fetalDevLinkDesc": "Acompanhe o crescimento do seu bebê semana a semana",
+      "weeklySummaryLink": "Resumo semanal",
+      "weeklySummaryLinkDesc": "Obtenha atualizações semanais inteligentes da gravidez",
       "aiGuideTitle": "Guia de Gravidez IA",
       "getWeeklyGuide": "Obter Guia Semanal"
     },
@@ -1450,7 +1458,11 @@
       "analyzePatterns": "Analisar Padrões",
       "getHealthInsight": "Obter Insight de Saúde",
       "getTips": "Obter Dicas",
-      "analyzing": "Analisando..."
+      "analyzing": "Analisando...",
+      "fetalDevLink": "Desenvolvimento fetal",
+      "fetalDevLinkDesc": "Acompanhe o crescimento e desenvolvimento do seu bebê",
+      "weeklySummaryLink": "Resumo semanal",
+      "weeklySummaryLinkDesc": "Obtenha insights semanais inteligentes"
     },
     "symptomAnalyzer": {
       "title": "Diário de bem-estar da gravidez",

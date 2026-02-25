@@ -878,6 +878,10 @@
       "differentWeek": "أسبوع آخر",
       "refresh": "تحديث",
       "trackTip": "تتبعي أسبوعك للحصول على معلومات مخصصة عن نمو طفلك وتغيرات جسمك",
+      "fetalDevLink": "تطور الجنين",
+      "fetalDevLinkDesc": "شاهدي حجم طفلك وتطوره هذا الأسبوع",
+      "kickCounterLink": "عداد الركلات",
+      "kickCounterLinkDesc": "تتبعي وسجلي حركات طفلك",
       "approximatelyRemaining": "حوالي {{days}} يوم متبقي",
       "noSummariesYet": "لا توجد ملخصات بعد",
       "generateFirstHint": "اضغطي على الزر أعلاه لإنشاء أول ملخص أسبوعي",
@@ -1116,6 +1120,10 @@
       "info": "حوالي 5% فقط من الأطفال يولدون في موعدهم المحدد. معظمهم يولدون خلال أسبوعين قبل أو بعد. قد يعدل طبيبك الموعد بناءً على قياسات السونار.",
       "cycleTrackerLink": "تتبع الدورة الشهرية",
       "cycleTrackerLinkDesc": "تابعي دورتك الشهرية واحصلي على تنبؤات دقيقة",
+      "fetalDevLink": "متتبع تطور الجنين",
+      "fetalDevLinkDesc": "تابعي نمو طفلك أسبوعاً بأسبوع",
+      "weeklySummaryLink": "الملخص الأسبوعي للحمل",
+      "weeklySummaryLinkDesc": "احصلي على تحديثات أسبوعية ذكية عن حملك",
       "aiGuideTitle": "دليل الحمل الذكي",
       "getWeeklyGuide": "احصلي على الدليل الأسبوعي"
     },
@@ -1147,7 +1155,11 @@
       "analyzePatterns": "تحليل الأنماط",
       "getHealthInsight": "احصلي على نظرة صحية",
       "getTips": "احصلي على نصائح",
-      "analyzing": "جاري التحليل..."
+      "analyzing": "جاري التحليل...",
+      "fetalDevLink": "تطور الجنين",
+      "fetalDevLinkDesc": "تابعي نمو طفلك وتطوره أسبوعاً بأسبوع",
+      "weeklySummaryLink": "الملخص الأسبوعي",
+      "weeklySummaryLinkDesc": "احصلي على تحديثات أسبوعية ذكية"
     },
     "symptomAnalyzer": {
       "title": "يوميات العافية أثناء الحمل",
@@ -2758,7 +2770,11 @@
         "week36": "الطفل قد ينزل للأسفل.",
         "week38": "قد يصل في أي يوم!",
         "week40": "موعد الولادة!"
-      }
+      },
+      "kickCounterLink": "عداد الركلات",
+      "kickCounterLinkDesc": "تتبعي حركات طفلك وأنماط نشاطه",
+      "dueDateLink": "حاسبة موعد الولادة",
+      "dueDateLinkDesc": "احسبي موعد ولادتك المتوقع"
     },
     "gdm": {
       "title": "تقييم خطر سكري الحمل",

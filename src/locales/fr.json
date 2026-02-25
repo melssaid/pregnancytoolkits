@@ -1136,6 +1136,10 @@
       "differentWeek": "Autre semaine",
       "refresh": "Actualiser",
       "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
+      "fetalDevLink": "Développement fœtal",
+      "fetalDevLinkDesc": "Voyez la taille et le développement de votre bébé cette semaine",
+      "kickCounterLink": "Compteur de coups",
+      "kickCounterLinkDesc": "Suivez et notez les mouvements de votre bébé",
       "approximatelyRemaining": "Environ {{days}} jours restants",
       "noSummariesYet": "Aucun résumé pour le moment",
       "generateFirstHint": "Appuyez sur le bouton ci-dessus pour générer votre premier résumé hebdomadaire",
@@ -1419,6 +1423,10 @@
       "info": "Seulement environ 5% des bébés naissent à la date prévue. La plupart naissent dans les 2 semaines avant ou après.",
       "cycleTrackerLink": "Suivi du cycle menstruel",
       "cycleTrackerLinkDesc": "Suivez votre cycle menstruel et obtenez des prédictions précises",
+      "fetalDevLink": "Développement fœtal",
+      "fetalDevLinkDesc": "Suivez la croissance de votre bébé semaine par semaine",
+      "weeklySummaryLink": "Résumé hebdomadaire",
+      "weeklySummaryLinkDesc": "Obtenez des mises à jour hebdomadaires intelligentes",
       "aiGuideTitle": "Guide IA Grossesse",
       "getWeeklyGuide": "Obtenir le guide hebdomadaire"
     },
@@ -1450,7 +1458,11 @@
       "analyzePatterns": "Analyser les patterns",
       "getHealthInsight": "Obtenir un aperçu santé",
       "getTips": "Obtenir des conseils",
-      "analyzing": "Analyse en cours..."
+      "analyzing": "Analyse en cours...",
+      "fetalDevLink": "Développement fœtal",
+      "fetalDevLinkDesc": "Suivez la croissance et le développement de votre bébé",
+      "weeklySummaryLink": "Résumé hebdomadaire",
+      "weeklySummaryLinkDesc": "Obtenez des informations hebdomadaires intelligentes"
     },
     "symptomAnalyzer": {
       "title": "Journal de bien-être grossesse",

@@ -12,6 +12,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
+import { RelatedToolLinks } from '@/components/RelatedToolLinks';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useUserProfile } from '@/hooks/useUserProfile';
 
@@ -719,6 +720,12 @@ Keep it practical, warm, and easy to follow.`;
             </div>
           </CardContent>
         </Card>
+
+        {/* Related Tools */}
+        <RelatedToolLinks links={[
+          { to: "/tools/fetal-development", titleKey: "toolsInternal.kickCounter.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.kickCounter.fetalDevLinkDesc", descFallback: "Track your baby's growth week by week", icon: "ruler" },
+          { to: "/tools/weekly-summary", titleKey: "toolsInternal.kickCounter.weeklySummaryLink", titleFallback: "Weekly Summary", descKey: "toolsInternal.kickCounter.weeklySummaryLinkDesc", descFallback: "Get AI-powered weekly insights", icon: "trending" },
+        ]} />
 
         {/* Educational Note */}
         <div className="bg-muted/30 rounded-xl p-4 text-center">

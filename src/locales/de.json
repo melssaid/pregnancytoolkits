@@ -1136,6 +1136,10 @@
       "differentWeek": "Andere Woche",
       "refresh": "Aktualisieren",
       "trackTip": "Verfolgen Sie Ihre Woche, um personalisierte Informationen über das Wachstum Ihres Babys und Ihre Körperveränderungen zu erhalten",
+      "fetalDevLink": "Fetale Entwicklung",
+      "fetalDevLinkDesc": "Sehen Sie die Größe und Entwicklung Ihres Babys diese Woche",
+      "kickCounterLink": "Trittezähler",
+      "kickCounterLinkDesc": "Verfolgen und notieren Sie die Bewegungen Ihres Babys",
       "approximatelyRemaining": "Ungefähr {{days}} Tage verbleibend",
       "noSummariesYet": "Noch keine Zusammenfassungen",
       "generateFirstHint": "Tippen Sie oben auf die Schaltfläche, um Ihre erste wöchentliche Zusammenfassung zu erstellen",
@@ -1419,6 +1423,10 @@
       "info": "Nur etwa 5% der Babys werden am genauen Termin geboren. Die meisten kommen innerhalb von 2 Wochen davor oder danach.",
       "cycleTrackerLink": "Zyklusverfolgung",
       "cycleTrackerLinkDesc": "Verfolgen Sie Ihren Menstruationszyklus und erhalten Sie genaue Vorhersagen",
+      "fetalDevLink": "Fetale Entwicklung",
+      "fetalDevLinkDesc": "Verfolgen Sie das Wachstum Ihres Babys Woche für Woche",
+      "weeklySummaryLink": "Wöchentliche Zusammenfassung",
+      "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Updates",
       "aiGuideTitle": "KI-Schwangerschaftsführer",
       "getWeeklyGuide": "Wöchentlichen Leitfaden erhalten"
     },
@@ -1450,7 +1458,11 @@
       "analyzePatterns": "Muster analysieren",
       "getHealthInsight": "Gesundheitseinblick erhalten",
       "getTips": "Tipps erhalten",
-      "analyzing": "Analysiere..."
+      "analyzing": "Analysiere...",
+      "fetalDevLink": "Fetale Entwicklung",
+      "fetalDevLinkDesc": "Verfolgen Sie das Wachstum und die Entwicklung Ihres Babys",
+      "weeklySummaryLink": "Wöchentliche Zusammenfassung",
+      "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Einblicke"
     },
     "symptomAnalyzer": {
       "title": "Schwangerschafts-Wohlbefinden-Tagebuch",
