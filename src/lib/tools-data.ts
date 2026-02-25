@@ -65,7 +65,7 @@ export const toolsData: Tool[] = [
   
   { id: "fertility-academy", titleKey: "tools.fertilityAcademy.title", descriptionKey: "tools.fertilityAcademy.description", icon: Star, categoryKey: "categories.fertility", href: "/tools/fertility-academy", priority: 7 },
   { id: "nutrition-supplements", titleKey: "tools.nutritionSupplements.title", descriptionKey: "tools.nutritionSupplements.description", icon: Leaf, categoryKey: "categories.fertility", href: "/tools/nutrition-supplements", priority: 8 },
-  { id: "tww-companion", titleKey: "tools.twwCompanion.title", descriptionKey: "tools.twwCompanion.description", icon: HeartHandshake, categoryKey: "categories.fertility", href: "/tools/tww-companion", priority: 9 },
+  
   { id: "preconception-checkup", titleKey: "tools.preconceptionCheckup.title", descriptionKey: "tools.preconceptionCheckup.description", icon: CheckSquare, categoryKey: "categories.fertility", href: "/tools/preconception-checkup", priority: 10 },
 
   // ═══════════════════════════════════════════════════════════════

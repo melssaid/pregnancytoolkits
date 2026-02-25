@@ -51,7 +51,7 @@ const DueDateCalculator = lazy(() => import("@/pages/tools/DueDateCalculator"));
 
 const FertilityAcademy = lazy(() => import("@/pages/tools/FertilityAcademy"));
 const NutritionSupplementsGuide = lazy(() => import("@/pages/tools/NutritionSupplementsGuide"));
-const TWWCompanion = lazy(() => import("@/pages/tools/TWWCompanion"));
+
 const PreconceptionCheckup = lazy(() => import("@/pages/tools/PreconceptionCheckup"));
 
 // PREGNANCY TRACKING
@@ -130,7 +130,7 @@ export function AnimatedRoutes() {
         
         <Route path="/tools/fertility-academy" element={<PageTransition><FertilityAcademy /></PageTransition>} />
         <Route path="/tools/nutrition-supplements" element={<PageTransition><NutritionSupplementsGuide /></PageTransition>} />
-        <Route path="/tools/tww-companion" element={<PageTransition><TWWCompanion /></PageTransition>} />
+        <Route path="/tools/tww-companion" element={<Navigate to="/tools/fertility-academy" replace />} />
         <Route path="/tools/preconception-checkup" element={<PageTransition><PreconceptionCheckup /></PageTransition>} />
 
         {/* LEGACY REDIRECTS — merged fertility tools */}

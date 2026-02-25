@@ -228,7 +228,7 @@
     },
     "smartStretchReminder": {"title": "Rappel d'étirement", "description": "Étirements personnalisés pour votre confort."},
     "fertileWindow": {"title": "Fenêtre de fertilité", "description": "Identifiez vos jours les plus fertiles."},
-    "fertilityAcademy": {"title": "Académie de fertilité", "description": "Éducation complète sur la fertilité : leçons, signes corporels et gestion du stress.", "lessonsTab": "Leçons", "signsTab": "Signes corporels", "stressTab": "Stress & Calme"},
+    "fertilityAcademy": {"title": "Académie de fertilité", "description": "Éducation complète sur la fertilité : leçons, signes corporels et gestion du stress.", "lessonsTab": "Leçons", "signsTab": "Signes corporels", "stressTab": "Stress & Calme", "twwTab": "Attente"},
     "nutritionSupplements": {"title": "Guide nutrition & compléments", "description": "Guide complet de nutrition et compléments prénataux.", "nutritionTab": "Nutrition", "supplementsTab": "Compléments"},
     "twwCompanion": {"title": "Compagne d'attente", "description": "Soutien quotidien pendant les deux semaines d'attente."},
     "preconceptionCheckup": {"title": "Bilan préconceptionnel", "description": "Examens essentiels avant la grossesse."},
