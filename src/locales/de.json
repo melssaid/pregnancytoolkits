@@ -163,7 +163,7 @@
       "description": "KI-gestützte Einkaufsliste für Schwangerschaftsernährung."
     },
     "aiSleepOptimizer": {
-      "title": "Erweiterter Schlafoptimierer",
+      "title": "Erweiterte Schlaftipps",
       "description": "Personalisierte Schlafberatung für die Schwangerschaft."
     },
     "aiHospitalBag": {
@@ -183,7 +183,7 @@
       "description": "Schwangerschaftssichere Hautpflegeroutine."
     },
     "aiNauseaRelief": {
-      "title": "KI-Übelkeitslinderung",
+      "title": "KI-Übelkeits-Komforttipps",
       "description": "Heilmittel und Tipps gegen morgendliche Übelkeit."
     },
     "aiBudgetPlanner": {
@@ -195,7 +195,7 @@
       "description": "Intelligente Schwangerschafts-Foto-Timeline mit KI-Einblicken."
     },
     "aiFitnessCoach": {
-      "title": "KI-Fitness-Coach",
+      "title": "KI-Fitness-Ratgeber",
       "description": "Sichere Übungen für Ihre Schwangerschaftsphase."
     },
     "aiBackPainRelief": {
@@ -215,7 +215,7 @@
       "description": "Dein personalisierter Tagesplan mit Übungen und Mahlzeiten."
     },
     "smartWalkingCoach": {
-      "title": "Geh-Coach",
+      "title": "Geh-Ratgeber",
       "description": "Sichere Gehprogramme für dein Trimester."
     },
     "smartSnackPlanner": {
@@ -257,8 +257,8 @@
       "description": "Begleiten Sie Ihre Gewichtsentwicklung in der Schwangerschaft."
     },
     "postpartumMentalHealth": {
-      "title": "Mental-Health-Coach",
-      "description": "EPDS-Fragebogen und psychische Gesundheitsunterstützung."
+      "title": "Ratgeber für seelisches Wohlbefinden",
+      "description": "EPDS-Fragebogen und Unterstützung für seelisches Wohlbefinden."
     },
     "gestationalDiabetes": {
       "title": "Gestationsdiabetes-Aufklärung (Allgemeine Infos)",
@@ -289,8 +289,8 @@
       "description": "Tägliche Windelwechsel protokollieren."
     },
     "babyCryTranslator": {
-      "title": "Baby-Wein-Übersetzer",
-      "description": "KI-Analyse der Weinmuster Ihres Babys."
+      "title": "Baby-Wein-Ratgeber",
+      "description": "KI-Einblicke in die Weinmuster Ihres Babys."
     },
     "postpartumRecovery": {
       "title": "Erholungsplan nach der Geburt",
@@ -340,7 +340,7 @@
       "babySleepDesc": "Schlafmuster",
       "diaperTracker": "Windel-Tracker",
       "diaperTrackerDesc": "Tägliche Wechsel",
-      "babyCry": "Wein-Übersetzer",
+      "babyCry": "Wein-Ratgeber",
       "babyCryDesc": "Weinmuster analysieren",
       "groceryList": "Einkaufsliste",
       "groceryListDesc": "Einkaufsplaner"
@@ -557,7 +557,7 @@
         "aiProducts": {
           "title": "KI-gestützte Produkte",
           "desc": "Wir bieten Produkte an, die durch künstliche Intelligenz über Drittanbieter einschließlich Perplexity AI unterstützt werden.",
-          "tools": ["KI-Schwangerschaftsassistent", "KI-Symptomanalysator", "KI-Mahlzeitenvorschlag", "Intelligente Terminerinnerung", "KI-Fitness-Coaches", "Geburtsfortschritts-Tracker"],
+          "tools": ["KI-Schwangerschaftsassistent", "Wellness-Tagebuch", "KI-Mahlzeitenvorschlag", "Intelligente Terminerinnerung", "KI-Fitness-Ratgeber", "Geburtsfortschritts-Ratgeber"],
           "dataNote": "Bei der Nutzung von KI-Funktionen wird nur Ihre spezifische Anfrage (anonymisiert) verarbeitet. Ihre gespeicherten Gesundheitsdaten bleiben auf Ihrem Gerät."
         },
         "notifications": {
@@ -761,7 +761,7 @@
     "disclaimer": "Dies ist nur eine vorläufige Bewertung. Konsultieren Sie immer Ihren Arzt."
   },
   "fitnessPage": {
-    "title": "KI-Fitness-Coach",
+    "title": "KI-Fitness-Ratgeber",
     "currentWeek": "Aktuelle Woche",
     "selectTrimester": "Trimester auswählen",
     "exerciseLevel": "Aktivitätsniveau",
@@ -1098,7 +1098,7 @@
   },
   "toolsInternal": {
     "mentalHealthCoach": {
-      "title": "Postpartum-Gesundheitscoach",
+      "title": "Postpartum-Wohlbefinden-Ratgeber",
       "subtitle": "Edinburgh Postpartum-Depressionsskala-Fragebogen",
       "youreNotAlone": "Du bist nicht allein",
       "emergencyMessage": "Basierend auf deinen Antworten ist es wichtig, mit jemandem zu sprechen, der helfen kann. Postpartale Depression ist häufig und behandelbar.",
@@ -1889,7 +1889,7 @@
       }
     },
     "nauseaRelief": {
-      "title": "KI-Übelkeitslinderung",
+      "title": "KI-Übelkeits-Komforttipps",
       "subtitle": "Mittel gegen morgendliche Übelkeit",
       "currentWeek": "Aktuelle Woche",
       "severity": "Schweregrad der Übelkeit",
@@ -1926,7 +1926,7 @@
       }
     },
     "mentalHealth": {
-      "title": "Mental-Health-Coach",
+      "title": "Ratgeber für seelisches Wohlbefinden",
       "subtitle": "EPDS-Fragebogen und Unterstützung",
       "takeScreening": "EPDS-Fragebogen ausfüllen",
       "screeningDesc": "Edinburgh-Postnatal-Depressions-Skala",
@@ -2306,7 +2306,7 @@
       "exportError": "Export der Checkliste fehlgeschlagen"
     },
     "stressRelief": {
-      "title": "KI-Stressabbau-Coach",
+      "title": "KI-Stressabbau-Ratgeber",
       "subtitle": "Personalisierte Entspannungstechniken für die Schwangerschaft",
       "howFeeling": "Wie fühlen Sie sich?",
       "stressLevel": "Stresslevel",
@@ -2329,7 +2329,7 @@
       }
     },
     "mobilityCoach": {
-      "title": "KI-Mobilitäts-Coach",
+      "title": "KI-Mobilitäts-Ratgeber",
       "subtitle": "Sanfte Bewegungen für Schwangerschaftskomfort",
       "selectArea": "Wählen Sie Ihren Fokusbereich",
       "areas": {
@@ -2346,7 +2346,7 @@
       "safetyText": "Stoppen Sie, wenn Sie Schwindel, Schmerzen oder Unbehagen verspüren"
     },
     "fitnessCoach": {
-      "title": "KI-Fitness-Coach",
+      "title": "KI-Fitness-Ratgeber",
       "subtitle": "Sichere Übungen für Ihre Schwangerschaftsphase",
       "currentWeek": "Aktuelle Woche",
       "activityLevel": "Aktivitätsniveau",
@@ -2645,7 +2645,7 @@
     "moreTips": "Mehr Tipps für Trimester"
   },
   "toolsInternal.nauseaRelief": {
-    "title": "KI-Übelkeitslinderungs-Coach",
+    "title": "KI-Übelkeits-Komfort-Ratgeber",
     "subtitle": "Personalisierte Strategien gegen Morgenübelkeit",
     "quickRemedies": "Schnelle Heilmittel",
     "nauseaSeverity": "Übelkeitsschwere",
@@ -2826,7 +2826,7 @@
     "exercisesTitle": "Rückenschmerz-Übungen"
   },
   "toolsInternal.sleepOptimizer": {
-    "title": "KI-Schlafoptimierer",
+    "title": "KI-Schlaftipps",
     "subtitle": "Personalisierte Schlafanleitung für die Schwangerschaft",
     "currentSleep": "Aktueller Schlaf: {{hours}} Stunden/Nacht",
     "usualBedtime": "Übliche Schlafenszeit",
@@ -3392,7 +3392,7 @@
     }
   },
   "mentalHealthCoach": {
-    "title": "Postpartum-Gesundheitscoach",
+    "title": "Postpartum-Wohlbefinden-Ratgeber",
     "subtitle": "Edinburgh Postpartum-Depressionsskala-Fragebogen",
     "youreNotAlone": "Du bist nicht allein",
     "emergencyMessage": "Basierend auf deinen Antworten ist es wichtig, mit jemandem zu sprechen, der helfen kann. Postpartale Depression ist häufig und behandelbar.",
@@ -4098,7 +4098,7 @@
     "bp": "Blutdruck"
   },
   "toolsInternal.walkingCoach": {
-    "title": "Smarter Geh-Coach",
+    "title": "Smarter Geh-Ratgeber",
     "subtitle": "Personalisiertes Gehprogramm für eine gesunde Schwangerschaft",
     "yourTrimester": "Dein Trimester",
     "trimester": "Trimester",
@@ -4111,8 +4111,8 @@
     "minutesThisWeek": "Minuten diese Woche",
     "recentWalks": "Letzte Spaziergänge",
     "goalMet": "Ziel erreicht!",
-    "getAIAdvice": "KI-Gehcoach-Rat",
-    "aiCoachTitle": "KI-Gehcoach",
+    "getAIAdvice": "KI-Gehratgeber-Rat",
+    "aiCoachTitle": "KI-Gehratgeber",
     "walkingTipsTitle": "Gehtipps",
     "walkingTips": {
       "tip1": "Geh auf flachen, ebenen Oberflächen",

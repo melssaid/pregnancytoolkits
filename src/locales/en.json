@@ -35,7 +35,7 @@
     "birthPlanLinkDesc": "Create a personalized birth plan",
     "birthPositionLink": "Birth Positions",
     "birthPositionLinkDesc": "Explore optimal positions for labor and delivery",
-    "laborProgressLink": "Labor Progress Tracker",
+    "laborProgressLink": "Labor Progress Guide",
     "laborProgressLinkDesc": "Track contractions and labor stages"
   },
   "postpartumLinks": {
@@ -163,7 +163,7 @@
       "description": "AI-powered shopping list for pregnancy nutrition."
     },
     "aiSleepOptimizer": {
-      "title": "Advanced Sleep Optimizer",
+      "title": "Advanced Sleep Tips",
       "description": "Personalized sleep guidance for pregnancy."
     },
     "aiHospitalBag": {
@@ -183,7 +183,7 @@
       "description": "Pregnancy-safe skincare routine."
     },
     "aiNauseaRelief": {
-      "title": "AI Nausea Relief",
+      "title": "AI Nausea Comfort Tips",
       "description": "Morning sickness remedies and tips."
     },
     "aiBudgetPlanner": {
@@ -195,7 +195,7 @@
       "description": "Smart pregnancy photo timeline with AI insights."
     },
     "aiFitnessCoach": {
-      "title": "AI Fitness Coach",
+      "title": "AI Fitness Guide",
       "description": "Safe exercises customized for your pregnancy stage."
     },
     "aiBackPainRelief": {
@@ -215,7 +215,7 @@
       "description": "Your personalized daily plan with exercises and meals."
     },
     "smartWalkingCoach": {
-      "title": "Walking Coach",
+      "title": "Walking Guide",
       "description": "Safe walking routines tailored to your trimester."
     },
     "smartSnackPlanner": {
@@ -255,8 +255,8 @@
       "description": "Track healthy pregnancy weight changes."
     },
     "postpartumMentalHealth": {
-      "title": "Mental Health Coach",
-      "description": "EPDS questionnaire and mental health support."
+      "title": "Mental Wellness Guide",
+      "description": "EPDS questionnaire and mental wellness support."
     },
     "gestationalDiabetes": {
       "title": "Gestational Diabetes Awareness (General Info)",
@@ -287,8 +287,8 @@
       "description": "Log daily diaper changes."
     },
     "babyCryTranslator": {
-      "title": "Baby Cry Translator",
-      "description": "AI analysis of your baby's crying patterns."
+      "title": "Baby Cry Guide",
+      "description": "AI insights into your baby's crying patterns."
     },
     "postpartumRecovery": {
       "title": "Postpartum Recovery Guide",
@@ -420,10 +420,10 @@
     },
     "aiTools": "AI-Powered Tools",
     "aiToolsList": {
-      "symptoms": "Symptom Analyzer",
+      "symptoms": "Wellness Diary",
       "weekly": "Weekly Summary",
       "mealPlan": "Meal Plan",
-      "fitness": "Fitness Coach"
+      "fitness": "Fitness Guide"
     },
     "chat": {
       "title": "AI Pregnancy Assistant",
@@ -581,7 +581,7 @@
         "aiProducts": {
           "title": "AI-Powered Products",
           "desc": "We offer products powered by artificial intelligence through third-party service providers including Perplexity AI.",
-          "tools": ["AI Pregnancy Assistant", "Pregnancy Wellness Diary", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Coaches", "Labor Progress Tracker"],
+          "tools": ["AI Pregnancy Assistant", "Pregnancy Wellness Diary", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Guides", "Labor Progress Guide"],
           "dataNote": "When using AI features, only your specific query (anonymized) is processed. Your stored health data remains on your device."
         },
         "notifications": {
@@ -795,7 +795,7 @@
     "disclaimer": "This is a preliminary assessment only. Always consult your healthcare provider."
   },
   "fitnessPage": {
-    "title": "AI Fitness Coach",
+    "title": "AI Fitness Guide",
     "currentWeek": "Current Week",
     "selectTrimester": "Select Trimester",
     "exerciseLevel": "Activity Level",
@@ -1611,7 +1611,7 @@
       "groceryOptimizer": "AI Grocery Optimizer"
     },
     "fitnessCoach": {
-      "title": "AI Fitness Coach",
+      "title": "AI Fitness Guide",
       "subtitle": "Safe exercises customized for your pregnancy stage",
       "currentWeek": "Current Week",
       "activityLevel": "Activity Level",
@@ -1936,7 +1936,7 @@
       "exportError": "Failed to export checklist"
     },
     "sleepOptimizer": {
-      "title": "AI Sleep Optimizer",
+      "title": "AI Sleep Tips",
       "subtitle": "Personalized sleep guidance for pregnancy",
       "currentSleep": "Current Sleep: {{hours}} hours/night",
       "usualBedtime": "Usual Bedtime",
@@ -1959,7 +1959,7 @@
       }
     },
     "nauseaRelief": {
-      "title": "AI Nausea Relief",
+      "title": "AI Nausea Comfort Tips",
       "subtitle": "Morning sickness remedies and tips",
       "currentWeek": "Current Week",
       "severity": "Nausea Severity",
@@ -1974,7 +1974,7 @@
       "getReliefPlan": "Get AI Relief Plan",
       "creatingPlan": "Creating Plan...",
       "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
-      "videosTitle": "Nausea Relief Videos",
+      "videosTitle": "Nausea Comfort Videos",
       "videosSubtitle": "Techniques and tips to ease morning sickness",
       "triggers": {
         "morning": "Worst in morning",
@@ -2456,7 +2456,7 @@
       "keepsakeDesc": "This story can be saved, printed, and included in a baby book or shared with family and friends."
     },
     "stressRelief": {
-      "title": "AI Stress Relief Coach",
+      "title": "AI Stress Relief Guide",
       "subtitle": "Guided relaxation techniques for pregnancy",
       "todaysAffirmation": "Today's Affirmation",
       "relaxationExercises": "Relaxation Exercises",
@@ -2490,7 +2490,7 @@
       }
     },
     "mobilityCoach": {
-      "title": "AI Mobility Coach",
+      "title": "AI Mobility Guide",
       "subtitle": "Walking tips & leg cramp prevention for pregnancy",
       "weeklyGoal": "Weekly Walking Goal",
       "adjustGoal": "Adjust Goal (minutes/week)",
@@ -2520,7 +2520,7 @@
       }
     },
     "postureCoach": {
-      "title": "AI Posture Coach",
+      "title": "AI Posture Guide",
       "subtitle": "Improve pregnancy posture to reduce back pain and discomfort",
       "yourTrimester": "Your Trimester",
       "todaysProgress": "Today's Progress",
@@ -2544,8 +2544,8 @@
       "massageTechniques": "Massage Techniques"
     },
     "mentalHealth": {
-      "title": "Mental Health Coach",
-      "subtitle": "EPDS questionnaire and mental health support",
+      "title": "Mental Wellness Guide",
+      "subtitle": "EPDS questionnaire and mental wellness support",
       "takeScreening": "Take EPDS Questionnaire",
       "screeningDesc": "Edinburgh Postnatal Depression Scale",
       "yourScore": "Your Score",
@@ -3135,7 +3135,7 @@
       "medium": "Medium"
     },
     "walkingCoach": {
-      "title": "Smart Walking Coach",
+      "title": "Smart Walking Guide",
       "subtitle": "Personalized walking program for a healthy pregnancy",
       "yourTrimester": "Your Trimester",
       "trimester": "Trimester",
@@ -3148,8 +3148,8 @@
       "minutesThisWeek": "Minutes This Week",
       "recentWalks": "Recent Walks",
       "goalMet": "Goal Met!",
-      "getAIAdvice": "Get AI Walking Coach Advice",
-      "aiCoachTitle": "AI Walking Coach",
+      "getAIAdvice": "Get AI Walking Guide Advice",
+      "aiCoachTitle": "AI Walking Guide",
       "walkingTipsTitle": "Walking Tips",
       "walkingTips": {
         "tip1": "Walk on flat, even surfaces",
@@ -3168,7 +3168,7 @@
       "videosSubtitle": "Curated videos for staying active during pregnancy"
     },
     "nutritionOptimizer": {
-      "title": "Smart Nutrition Optimizer",
+      "title": "Smart Nutrition Planner",
       "subtitle": "Personalized meal planning for your pregnancy week",
       "pregnancyWeek": "Pregnancy Week",
       "trimester": "Trimester",
@@ -3302,7 +3302,7 @@
       }
     },
     "mentalHealthCoach": {
-      "title": "Postpartum Mental Health Coach",
+      "title": "Postpartum Mental Wellness Guide",
       "subtitle": "Edinburgh Postnatal Depression Scale questionnaire",
       "youreNotAlone": "You're Not Alone",
       "emergencyMessage": "Based on your responses, it's important to talk to someone who can help. Postpartum depression is common and treatable.",
@@ -3660,7 +3660,7 @@
     }
   },
   "nauseaRelief": {
-    "title": "AI Nausea Relief Coach",
+    "title": "AI Nausea Comfort Guide",
     "subtitle": "Personalized relief strategies for morning sickness",
     "quickRemedies": "Quick Relief Remedies",
     "nauseaSeverity": "Nausea Severity",
@@ -3670,7 +3670,7 @@
     "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your healthcare provider immediately.",
     "getReliefPlan": "Get AI Relief Plan",
     "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
-    "videosTitle": "Nausea Relief Videos",
+    "videosTitle": "Nausea Comfort Videos",
     "videosSubtitle": "Techniques and tips to ease morning sickness",
     "severityLabels": { "mild": "Mild", "moderate": "Moderate", "severe": "Severe" },
     "triggers": {
@@ -3889,7 +3889,7 @@
     "difficulty": { "easy": "Easy", "moderate": "Moderate" }
   },
   "sleepOptimizer": {
-    "title": "AI Sleep Optimizer",
+    "title": "AI Sleep Tips",
     "subtitle": "Personalized sleep guidance for pregnancy",
     "currentSleep": "Current Sleep: {{hours}} hours/night",
     "usualBedtime": "Usual Bedtime",
@@ -3961,7 +3961,7 @@
     "gettingAdvice": "Getting personalized advice..."
   },
   "nutritionOptimizer": {
-    "title": "Smart Nutrition Optimizer",
+    "title": "Smart Nutrition Planner",
     "subtitle": "Personalized nutrition plans for each trimester",
     "pregnancyWeek": "Pregnancy Week",
     "trimester": "Trimester",

@@ -35,7 +35,7 @@
     "birthPlanLinkDesc": "أنشئي خطة ولادة مخصصة",
     "birthPositionLink": "وضعيات الولادة",
     "birthPositionLinkDesc": "استكشفي أفضل الوضعيات للمخاض والولادة",
-    "laborProgressLink": "متتبع تقدم المخاض",
+    "laborProgressLink": "دليل تقدم المخاض",
     "laborProgressLinkDesc": "تتبعي الانقباضات ومراحل المخاض"
   },
   "postpartumLinks": {
@@ -138,15 +138,15 @@
     "smartAppointmentReminder": {"title": "مُذكّر المواعيد التلقائي", "description": "لا تفوّت أي موعد متابعة"},
     "aiCravingAlternatives": {"title": "بدائل الرغبات الصحية", "description": "بدائل صحية للرغبات الغذائية أثناء الحمل"},
     "smartGroceryList": {"title": "قائمة التسوق الاحترافية", "description": "قائمة تسوق AI لتغذية الحمل"},
-    "aiSleepOptimizer": {"title": "محسّن النوم المتقدم", "description": "إرشادات نوم مخصصة للحمل"},
+    "aiSleepOptimizer": {"title": "نصائح النوم المتقدمة", "description": "إرشادات نوم مخصصة للحمل"},
     "aiHospitalBag": {"title": "حقيبة المستشفى المتكاملة", "description": "قائمة تعبئة شاملة ليوم الولادة"},
     "aiPartnerGuide": {"title": "دليل الشريك الشامل", "description": "نصائح دعم للشركاء والأزواج"},
     "aiBirthPosition": {"title": "وضعيات الولادة المثالية", "description": "وضعيات مثالية للمخاض"},
     "aiSkincare": {"title": "العناية بالبشرة الآمنة", "description": "روتين عناية آمن للحمل"},
-    "aiNauseaRelief": {"title": "تخفيف الغثيان الفعّال", "description": "علاجات ونصائح لغثيان الصباح"},
+    "aiNauseaRelief": {"title": "نصائح راحة الغثيان", "description": "علاجات ونصائح لغثيان الصباح"},
     "aiBudgetPlanner": {"title": "مخطط الميزانية الذكي", "description": "خطط نفقات الطفل بذكاء"},
     "aiBumpPhotos": {"title": "لقطات أسبوعية", "description": "خط زمني لصور الحمل مع تحليلات AI"},
-    "aiFitnessCoach": {"title": "مدرب اللياقة المحترف", "description": "تمارين آمنة مخصصة لمرحلة الحمل"},
+    "aiFitnessCoach": {"title": "دليل اللياقة المحترف", "description": "تمارين آمنة مخصصة لمرحلة الحمل"},
     "aiBackPainRelief": {"title": "تخفيف آلام الظهر المتخصص", "description": "تمارين مخصصة لآلام ظهر الحمل"},
     "vitaminTracker": {"title": "متتبع الفيتامينات", "description": "لا تنسَ فيتاميناتك"},
     "forbiddenFoods": {"title": "الأطعمة الممنوعة", "description": "اعرف ما هو آمن للأكل"},
@@ -156,7 +156,7 @@
     "fetalGrowth": {"title": "متتبع نمو الجنين", "description": "شاهد حجم الطفل هذا الأسبوع!"},
     "kickCounter": {"title": "يوميات حركات الطفل", "description": "سجّلي حركات الطفل في يومياتك"},
     "weightGain": {"title": "يوميات زيادة الوزن", "description": "تابعي تغيرات الوزن خلال الحمل"},
-    "postpartumMentalHealth": {"title": "مدرب الصحة النفسية أثناء الحمل وبعد الولادة", "description": "أداة توعوية لملاحظة مزاجك وتشجيعك على طلب المساعدة"},
+    "postpartumMentalHealth": {"title": "دليل العافية النفسية أثناء الحمل وبعد الولادة", "description": "أداة توعوية لملاحظة مزاجك وتشجيعك على طلب المساعدة"},
     "gestationalDiabetes": {"title": "التوعية بسكري الحمل (معلومات عامة)", "description": "معلومات مبسّطة عن سكّري الحمل والعوامل الشائعة"},
     "preeclampsiaRisk": {"title": "التوعية بتسمم الحمل", "description": "تعرفي على العوامل الشائعة لتسمم الحمل"},
     "babyGearRecommender": {"title": "مقترح مستلزمات الطفل", "description": "قائمة أساسيات لقدوم المولود"},
@@ -164,10 +164,10 @@
     "babySleepTracker": {"title": "متتبع نوم الطفل", "description": "تتبع أنماط نوم الطفل"},
     "babyGrowth": {"title": "نمو الطفل", "description": "تتبع النمو بمخططات WHO"},
     "diaperTracker": {"title": "متتبع الحفاضات", "description": "سجّلي تغييرات الحفاضات اليومية"},
-    "babyCryTranslator": {"title": "مترجم بكاء الطفل", "description": "تحليل ذكي لأنماط بكاء طفلك"},
+    "babyCryTranslator": {"title": "دليل بكاء الطفل", "description": "رؤى ذكية لأنماط بكاء طفلك"},
     "postpartumRecovery": {"title": "دليل التعافي بعد الولادة", "description": "خطة تعافي لمدة 6 أسابيع بعد الولادة"},
     "smartPregnancyPlan": {"title": "خطة الحمل الذكية", "description": "خطتك اليومية المخصصة مع التمارين والوجبات"},
-    "smartWalkingCoach": {"title": "مدرب المشي", "description": "برامج مشي آمنة حسب مرحلة الحمل"},
+    "smartWalkingCoach": {"title": "دليل المشي", "description": "برامج مشي آمنة حسب مرحلة الحمل"},
     "smartSnackPlanner": {"title": "مخطط الوجبات الخفيفة", "description": "وجبات خفيفة صحية لكل رغبة أثناء الحمل"},
     "kegelExercise": {"title": "تمارين كيجل", "description": "تمارين قاع الحوض اليومية مع مؤقت وعدّاد تكرارات"},
     "smartStretchReminder": {"title": "تذكير بالتمدد", "description": "تمارين تمدد مخصصة لراحتك"},
@@ -220,7 +220,7 @@
       "babySleepDesc": "أنماط النوم",
       "diaperTracker": "متتبع الحفاضات",
       "diaperTrackerDesc": "التغييرات اليومية",
-      "babyCry": "مترجم بكاء الطفل",
+      "babyCry": "دليل بكاء الطفل",
       "babyCryDesc": "تحليل أنماط البكاء",
       "groceryList": "قائمة التسوق",
       "groceryListDesc": "مخطط التسوق"
@@ -264,7 +264,7 @@
       "weeklySummary": "ملخص الأسبوع",
       "birthPlan": "خطة الولادة",
       "wellnessDiary": "يوميات العافية",
-      "laborProgress": "تقدم المخاض",
+      "laborProgress": "دليل المخاض",
       "babyGrowth": "نمو الطفل",
       "week": "الأسبوع",
       "month": "الشهر",
@@ -279,7 +279,7 @@
       "symptoms": "تحليل الأعراض",
       "weekly": "الملخص الأسبوعي",
       "mealPlan": "خطة الوجبات",
-      "fitness": "مدرب اللياقة"
+      "fitness": "دليل اللياقة"
     },
     "chat": {
       "title": "مساعد الحمل الذكي",
@@ -437,7 +437,7 @@
         "aiProducts": {
           "title": "المنتجات المدعومة بالذكاء الاصطناعي",
           "desc": "نقدم منتجات مدعومة بالذكاء الاصطناعي من خلال مزودي خدمة من أطراف ثالثة بما في ذلك Perplexity AI.",
-          "tools": ["مساعد الحمل الذكي", "محلل الأعراض الذكي", "اقتراح الوجبات الذكي", "تذكير المواعيد الذكي", "مدربي اللياقة الذكية", "متتبع تقدم المخاض"],
+          "tools": ["مساعد الحمل الذكي", "يوميات العافية", "اقتراح الوجبات الذكي", "تذكير المواعيد الذكي", "أدلة اللياقة الذكية", "دليل تقدم المخاض"],
           "dataNote": "عند استخدام ميزات الذكاء الاصطناعي، تتم معالجة استفسارك المحدد فقط (بشكل مجهول). بياناتك الصحية المخزنة تبقى على جهازك."
         },
         "notifications": {
@@ -840,7 +840,7 @@
   },
   "toolsInternal": {
     "mentalHealthCoach": {
-      "title": "مدرب الصحة النفسية أثناء الحمل وبعد الولادة",
+      "title": "دليل العافية النفسية أثناء الحمل وبعد الولادة",
       "subtitle": "أداة توعوية لمساعدتك على ملاحظة مزاجك وأفكارك خلال الحمل وبعد الولادة، وتشجيعك على طلب المساعدة المتخصصة عند الحاجة. هذه الأداة ليست اختباراً تشخيصياً ولا بديلاً عن استشارة الطبيب أو الأخصائي النفسي.",
       "youreNotAlone": "لستِ وحدك",
       "emergencyMessage": "بناءً على إجاباتك، من المهم التحدث مع شخص يمكنه المساعدة. اكتئاب ما بعد الولادة شائع وقابل للعلاج.",
@@ -1406,7 +1406,7 @@
       "groceryOptimizer": "محسّن قائمة التسوق"
     },
     "fitnessCoach": {
-      "title": "مدرب اللياقة الذكي",
+      "title": "دليل اللياقة الذكي",
       "subtitle": "تمارين آمنة مخصصة لمرحلة حملك",
       "currentWeek": "الأسبوع الحالي",
       "activityLevel": "مستوى النشاط",
@@ -1696,7 +1696,7 @@
       "storageFull": "المساحة ممتلئة"
     },
     "sleepOptimizer": {
-      "title": "محسّن النوم الذكي",
+      "title": "نصائح النوم الذكية",
       "subtitle": "إرشادات نوم مخصصة للحمل",
       "currentSleep": "النوم الحالي: {{hours}} ساعة/ليلة",
       "usualBedtime": "وقت النوم المعتاد",
@@ -1719,7 +1719,7 @@
       }
     },
     "nauseaRelief": {
-      "title": "تخفيف الغثيان الذكي",
+      "title": "نصائح راحة الغثيان",
       "subtitle": "علاجات ونصائح لغثيان الصباح",
       "currentWeek": "الأسبوع الحالي",
       "severity": "شدة الغثيان",
@@ -2224,8 +2224,8 @@
       "rule511Desc": "يُقترح التواصل مع مقدم الرعاية عند انقباضات كل 5 دقائق، لمدة دقيقة، لمدة ساعة"
     },
     "mentalHealth": {
-      "title": "مدرب الصحة النفسية",
-      "subtitle": "استبيان EPDS ودعم الصحة النفسية",
+      "title": "دليل العافية النفسية",
+      "subtitle": "استبيان EPDS ودعم العافية النفسية",
       "takeScreening": "أجري استبيان EPDS",
       "screeningDesc": "مقياس إدنبره لاكتئاب ما بعد الولادة",
       "yourScore": "نتيجتك",
@@ -2655,7 +2655,7 @@
       "mealSuggestionLinkDesc": "احصلي على أفكار وجبات صحية"
     },
     "stressRelief": {
-      "title": "مدرب تخفيف التوتر الذكي",
+      "title": "دليل تخفيف التوتر الذكي",
       "subtitle": "تقنيات استرخاء موجهة للحمل",
       "todaysAffirmation": "تأكيد اليوم",
       "relaxationExercises": "تمارين الاسترخاء",
@@ -2689,7 +2689,7 @@
       }
     },
     "mobilityCoach": {
-      "title": "مدرب الحركة الذكي",
+      "title": "دليل الحركة الذكي",
       "subtitle": "نصائح المشي والوقاية من تشنجات الساق للحمل",
       "weeklyGoal": "هدف المشي الأسبوعي",
       "adjustGoal": "تعديل الهدف (دقائق/أسبوع)",
