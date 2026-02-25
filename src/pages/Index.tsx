@@ -7,21 +7,21 @@ import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ── Category styling lookup ──────────────────────────────────────────────
+// ── Category styling lookup — brand-cohesive rose palette ────────────────
 const categoryStyles: Record<string, { iconColor: string; toolHover: string }> = {
-  "categories.smartAssistant": { iconColor: "text-pink-500 dark:text-pink-400", toolHover: "hover:bg-pink-50/70 dark:hover:bg-pink-900/20" },
-  "categories.fertility":     { iconColor: "text-rose-500 dark:text-rose-400", toolHover: "hover:bg-rose-50/70 dark:hover:bg-rose-900/20" },
-  "categories.pregnancy":     { iconColor: "text-pink-500 dark:text-pink-400", toolHover: "hover:bg-pink-50/70 dark:hover:bg-pink-900/20" },
-  "categories.nutrition":     { iconColor: "text-orange-500 dark:text-orange-400", toolHover: "hover:bg-orange-50/70 dark:hover:bg-orange-900/20" },
-  "categories.wellness":      { iconColor: "text-emerald-500 dark:text-emerald-400", toolHover: "hover:bg-emerald-50/70 dark:hover:bg-emerald-900/20" },
-  "categories.mentalHealth":   { iconColor: "text-sky-500 dark:text-sky-400", toolHover: "hover:bg-sky-50/70 dark:hover:bg-sky-900/20" },
-  "categories.selfCheck":     { iconColor: "text-amber-500 dark:text-amber-400", toolHover: "hover:bg-amber-50/70 dark:hover:bg-amber-900/20" },
-  "categories.labor":         { iconColor: "text-rose-500 dark:text-rose-400", toolHover: "hover:bg-rose-50/70 dark:hover:bg-rose-900/20" },
-  "categories.preparation":   { iconColor: "text-teal-500 dark:text-teal-400", toolHover: "hover:bg-teal-50/70 dark:hover:bg-teal-900/20" },
-  "categories.postpartum":    { iconColor: "text-fuchsia-500 dark:text-fuchsia-400", toolHover: "hover:bg-fuchsia-50/70 dark:hover:bg-fuchsia-900/20" },
+  "categories.smartAssistant": { iconColor: "text-[hsl(340,55%,55%)] dark:text-[hsl(340,50%,65%)]", toolHover: "hover:bg-[hsl(340,40%,96%)] dark:hover:bg-[hsl(340,30%,14%)]" },
+  "categories.fertility":     { iconColor: "text-[hsl(350,60%,58%)] dark:text-[hsl(350,55%,65%)]", toolHover: "hover:bg-[hsl(350,40%,96%)] dark:hover:bg-[hsl(350,30%,14%)]" },
+  "categories.pregnancy":     { iconColor: "text-[hsl(340,65%,52%)] dark:text-[hsl(340,60%,62%)]", toolHover: "hover:bg-[hsl(340,35%,96%)] dark:hover:bg-[hsl(340,25%,14%)]" },
+  "categories.nutrition":     { iconColor: "text-[hsl(15,65%,55%)] dark:text-[hsl(15,60%,62%)]",   toolHover: "hover:bg-[hsl(15,40%,96%)] dark:hover:bg-[hsl(15,30%,14%)]" },
+  "categories.wellness":      { iconColor: "text-[hsl(160,40%,45%)] dark:text-[hsl(160,35%,55%)]", toolHover: "hover:bg-[hsl(160,30%,96%)] dark:hover:bg-[hsl(160,20%,14%)]" },
+  "categories.mentalHealth":   { iconColor: "text-[hsl(280,35%,55%)] dark:text-[hsl(280,30%,65%)]", toolHover: "hover:bg-[hsl(280,25%,96%)] dark:hover:bg-[hsl(280,20%,14%)]" },
+  "categories.selfCheck":     { iconColor: "text-[hsl(25,60%,52%)] dark:text-[hsl(25,55%,60%)]",   toolHover: "hover:bg-[hsl(25,35%,96%)] dark:hover:bg-[hsl(25,25%,14%)]" },
+  "categories.labor":         { iconColor: "text-[hsl(345,55%,55%)] dark:text-[hsl(345,50%,62%)]", toolHover: "hover:bg-[hsl(345,35%,96%)] dark:hover:bg-[hsl(345,25%,14%)]" },
+  "categories.preparation":   { iconColor: "text-[hsl(170,35%,45%)] dark:text-[hsl(170,30%,55%)]", toolHover: "hover:bg-[hsl(170,25%,96%)] dark:hover:bg-[hsl(170,20%,14%)]" },
+  "categories.postpartum":    { iconColor: "text-[hsl(310,35%,52%)] dark:text-[hsl(310,30%,62%)]", toolHover: "hover:bg-[hsl(310,25%,96%)] dark:hover:bg-[hsl(310,20%,14%)]" },
 };
 
-// ── Journey card theming with psychological color impact ─────────────────
+// ── Journey card theming — emotionally resonant, brand-cohesive ─────────
 interface JourneyConfig {
   key: JourneyKey;
   icon: LucideIcon;
@@ -34,31 +34,34 @@ interface JourneyConfig {
 
 const journeyConfigs: JourneyConfig[] = [
   {
+    // Planning/Fertility — Warm Coral-Peach: hope, warmth, anticipation
     key: "planning",
     icon: Flower2,
-    headerGradient: "bg-gradient-to-r from-amber-400 via-orange-300 to-rose-300 dark:from-amber-500 dark:via-orange-400 dark:to-rose-400",
+    headerGradient: "bg-gradient-to-r from-[hsl(15,70%,62%)] via-[hsl(25,65%,65%)] to-[hsl(340,50%,65%)] dark:from-[hsl(15,65%,50%)] dark:via-[hsl(25,60%,52%)] dark:to-[hsl(340,45%,55%)]",
     headerText: "text-white",
-    iconBg: "bg-white/25",
-    bg: "from-amber-50/80 via-orange-50/40 to-rose-50/30 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-rose-950/10",
-    border: "border-amber-200/50 dark:border-amber-800/30",
+    iconBg: "bg-white/20",
+    bg: "from-[hsl(20,40%,97%)] via-[hsl(30,30%,97%)] to-[hsl(340,25%,97%)] dark:from-[hsl(20,20%,10%)] dark:via-[hsl(30,15%,9%)] dark:to-[hsl(340,15%,10%)]",
+    border: "border-[hsl(20,30%,90%)] dark:border-[hsl(20,15%,18%)]",
   },
   {
+    // Pregnancy — Deep Rose-Pink: love, strength, the core journey
     key: "pregnant",
     icon: Heart,
-    headerGradient: "bg-gradient-to-r from-pink-500 via-rose-400 to-pink-400 dark:from-pink-600 dark:via-rose-500 dark:to-pink-500",
+    headerGradient: "bg-gradient-to-r from-[hsl(340,65%,52%)] via-[hsl(345,60%,56%)] to-[hsl(350,55%,60%)] dark:from-[hsl(340,60%,45%)] dark:via-[hsl(345,55%,48%)] dark:to-[hsl(350,50%,52%)]",
     headerText: "text-white",
-    iconBg: "bg-white/25",
-    bg: "from-pink-50/80 via-rose-50/40 to-pink-50/30 dark:from-pink-950/30 dark:via-rose-950/20 dark:to-pink-950/10",
-    border: "border-pink-200/50 dark:border-pink-800/30",
+    iconBg: "bg-white/20",
+    bg: "from-[hsl(340,30%,97%)] via-[hsl(345,25%,97%)] to-[hsl(350,20%,97%)] dark:from-[hsl(340,20%,10%)] dark:via-[hsl(345,15%,9%)] dark:to-[hsl(350,12%,10%)]",
+    border: "border-[hsl(340,25%,90%)] dark:border-[hsl(340,15%,18%)]",
   },
   {
+    // Postpartum/Baby — Soft Mauve-Lavender: tenderness, nurturing calm
     key: "postpartum",
     icon: Baby,
-    headerGradient: "bg-gradient-to-r from-rose-400 via-pink-300 to-fuchsia-300 dark:from-rose-500 dark:via-pink-400 dark:to-fuchsia-400",
+    headerGradient: "bg-gradient-to-r from-[hsl(320,40%,58%)] via-[hsl(300,30%,60%)] to-[hsl(280,35%,62%)] dark:from-[hsl(320,35%,48%)] dark:via-[hsl(300,25%,50%)] dark:to-[hsl(280,30%,52%)]",
     headerText: "text-white",
-    iconBg: "bg-white/25",
-    bg: "from-rose-50/80 via-pink-50/40 to-fuchsia-50/30 dark:from-rose-950/30 dark:via-pink-950/20 dark:to-fuchsia-950/10",
-    border: "border-rose-200/50 dark:border-rose-800/30",
+    iconBg: "bg-white/20",
+    bg: "from-[hsl(320,25%,97%)] via-[hsl(300,20%,97%)] to-[hsl(280,20%,97%)] dark:from-[hsl(320,15%,10%)] dark:via-[hsl(300,12%,9%)] dark:to-[hsl(280,12%,10%)]",
+    border: "border-[hsl(310,20%,90%)] dark:border-[hsl(310,12%,18%)]",
   },
 ];
 
