@@ -48,7 +48,7 @@ export default function NutritionSupplementsGuide() {
 
           {/* NUTRITION TAB */}
           <TabsContent value="nutrition" className="space-y-2 mt-0">
-            <p className="text-[10px] text-muted-foreground mb-2">
+            <p className="text-xs text-muted-foreground mb-2">
               {t('toolsInternal.preconceptionNutrition.categoriesCount', { count: CATEGORY_KEYS.length })}
             </p>
             {CATEGORY_KEYS.map((key, i) => {
@@ -59,7 +59,7 @@ export default function NutritionSupplementsGuide() {
                     <CardContent className="p-0">
                       <div className="p-3">
                         <div className="flex items-center justify-between gap-2">
-                          <span className="text-xs font-semibold text-foreground">{t(`toolsInternal.preconceptionNutrition.categories.${key}.title`)}</span>
+                          <span className="text-sm font-bold text-foreground">{t(`toolsInternal.preconceptionNutrition.categories.${key}.title`)}</span>
                           <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted/70">
                             <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
                           </motion.span>
@@ -70,9 +70,9 @@ export default function NutritionSupplementsGuide() {
                           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.22, ease: "easeOut" }} className="overflow-hidden">
                             <div className="mx-3 mb-3 space-y-2">
                               <div className="rounded-lg border border-border/50 bg-background/70 p-3">
-                                <p className="whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground">{t(`toolsInternal.preconceptionNutrition.categories.${key}.description`)}</p>
+                                <p className="whitespace-pre-line text-xs leading-relaxed text-foreground/80">{t(`toolsInternal.preconceptionNutrition.categories.${key}.description`)}</p>
                               </div>
-                              <div className="p-2 rounded-lg bg-accent/10 text-[10px] text-accent-foreground dark:text-accent font-medium">
+                              <div className="p-2 rounded-lg bg-accent/10 text-xs text-accent-foreground dark:text-accent font-semibold">
                                 {t(`toolsInternal.preconceptionNutrition.categories.${key}.foods`)}
                               </div>
                             </div>
@@ -89,10 +89,10 @@ export default function NutritionSupplementsGuide() {
           {/* SUPPLEMENTS TAB */}
           <TabsContent value="supplements" className="space-y-2 mt-0">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-[10px] text-muted-foreground">
+              <p className="text-xs text-muted-foreground">
                 {t('toolsInternal.prenatalVitamins.supplementsCount', { count: VITAMIN_KEYS.length })}
               </p>
-              <span className="text-[10px] text-primary font-medium">{checkedVitamins.length}/{VITAMIN_KEYS.length}</span>
+              <span className="text-xs text-primary font-semibold">{checkedVitamins.length}/{VITAMIN_KEYS.length}</span>
             </div>
             {VITAMIN_KEYS.map((key, i) => {
               const isOpen = expandedVitamin === key;
@@ -107,7 +107,7 @@ export default function NutritionSupplementsGuide() {
                             <button onClick={e => { e.stopPropagation(); toggleCheck(key); }} className="shrink-0" type="button">
                               <CheckCircle className={`w-4 h-4 transition-colors ${isChecked ? 'text-primary' : 'text-muted-foreground/30'}`} />
                             </button>
-                            <span className="text-xs font-semibold text-foreground">{t(`toolsInternal.prenatalVitamins.vitamins.${key}.title`)}</span>
+                            <span className="text-sm font-bold text-foreground">{t(`toolsInternal.prenatalVitamins.vitamins.${key}.title`)}</span>
                           </div>
                           <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted/70">
                             <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
@@ -119,9 +119,9 @@ export default function NutritionSupplementsGuide() {
                           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.22, ease: "easeOut" }} className="overflow-hidden">
                             <div className="mx-3 mb-3 space-y-2">
                               <div className="rounded-lg border border-border/50 bg-background/70 p-3">
-                                <p className="whitespace-pre-line text-[11px] leading-relaxed text-muted-foreground">{t(`toolsInternal.prenatalVitamins.vitamins.${key}.description`)}</p>
+                                <p className="whitespace-pre-line text-xs leading-relaxed text-foreground/80">{t(`toolsInternal.prenatalVitamins.vitamins.${key}.description`)}</p>
                               </div>
-                              <div className="p-2 rounded-lg bg-warning/10 text-[10px] text-foreground font-medium">
+                              <div className="p-2 rounded-lg bg-warning/10 text-xs text-foreground/80 font-semibold">
                                 {t(`toolsInternal.prenatalVitamins.vitamins.${key}.dosage`)}
                               </div>
                             </div>
