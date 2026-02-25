@@ -1,41 +1,33 @@
 /**
  * Authentication utilities for the pregnancy app
- * Uses anonymous authentication for seamless user experience
+ * Uses localStorage-based user identification for seamless experience
  */
-import { supabase } from '@/integrations/supabase/client';
+
+const USER_ID_KEY = 'pregnancy_user_id';
 
 /**
- * Ensures the user is authenticated, signing in anonymously if needed.
- * This provides a seamless experience without requiring signup while
- * still enabling proper RLS-based data isolation.
+ * Get or create a local user identifier.
+ * No external auth calls - fully offline-capable.
  */
-export async function ensureAuthenticated() {
-  // Check if already authenticated
-  const { data: { user } } = await supabase.auth.getUser();
-  
-  if (user) {
-    return user;
+export function getLocalUserId(): string {
+  let userId = localStorage.getItem(USER_ID_KEY);
+  if (!userId) {
+    userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    localStorage.setItem(USER_ID_KEY, userId);
   }
-  
-  // Sign in anonymously for seamless experience
-  const { data, error } = await supabase.auth.signInAnonymously();
-  
-  if (error) {
-    console.error('Anonymous auth failed:', error);
-    throw error;
-  }
-  
-  return data.user;
+  return userId;
 }
 
 /**
- * Hook-compatible auth initialization that can be used in useEffect
+ * No-op auth initialization for backward compatibility.
  */
 export async function initializeAuth(): Promise<void> {
-  try {
-    await ensureAuthenticated();
-  } catch (error) {
-    // Log but don't throw - app should still function with localStorage fallback
-    console.warn('Auth initialization failed, using local storage fallback:', error);
-  }
+  getLocalUserId();
+}
+
+/**
+ * No-op for backward compatibility.
+ */
+export async function ensureAuthenticated() {
+  return { id: getLocalUserId() };
 }
