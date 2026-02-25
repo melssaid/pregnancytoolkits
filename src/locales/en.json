@@ -61,6 +61,14 @@
     "wellness": "Wellness & Fitness",
     "preparation": "Preparation"
   },
+  "journeys": {
+    "planning": "Planning",
+    "pregnant": "Pregnant",
+    "postpartum": "Postpartum",
+    "planningDesc": "Fertility tracking & conception tools",
+    "pregnantDesc": "Your complete pregnancy companion",
+    "postpartumDesc": "Baby care & recovery support"
+  },
   "onboarding": {
     "title": "Welcome to Your Journey",
     "subtitle": "Your lifestyle & educational companion",

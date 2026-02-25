@@ -61,6 +61,14 @@
     "wellness": "Bienestar y Fitness",
     "preparation": "Preparación"
   },
+  "journeys": {
+    "planning": "Planificación",
+    "pregnant": "Embarazo",
+    "postpartum": "Posparto",
+    "planningDesc": "Seguimiento de fertilidad y concepción",
+    "pregnantDesc": "Tu compañero completo del embarazo",
+    "postpartumDesc": "Cuidado del bebé y recuperación"
+  },
   "onboarding": {
     "title": "Bienvenida a tu viaje",
     "subtitle": "Tu compañero de estilo de vida y educación",

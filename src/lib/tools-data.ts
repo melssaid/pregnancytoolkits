@@ -261,3 +261,34 @@ export const getRelatedTools = (currentToolId: string, maxItems: number = 3) => 
   
   return [...sameCategoryTools, ...aiTools].slice(0, maxItems);
 };
+
+// ═══════════════════════════════════════════════════════════════════════════
+// JOURNEY MAPPING — 3 clear user paths
+// ═══════════════════════════════════════════════════════════════════════════
+
+export type JourneyKey = 'planning' | 'pregnant' | 'postpartum';
+
+const journeyCategoryMap: Record<JourneyKey, string[]> = {
+  planning: [
+    "categories.fertility",
+  ],
+  pregnant: [
+    "categories.smartAssistant",
+    "categories.pregnancy",
+    "categories.nutrition",
+    "categories.wellness",
+    "categories.mentalHealth",
+    "categories.selfCheck",
+    "categories.labor",
+    "categories.preparation",
+  ],
+  postpartum: [
+    "categories.postpartum",
+  ],
+};
+
+export const getJourneyCategories = (journey: JourneyKey): string[] =>
+  journeyCategoryMap[journey];
+
+export const getToolsByJourney = (journey: JourneyKey): Tool[] =>
+  toolsData.filter(t => journeyCategoryMap[journey].includes(t.categoryKey));

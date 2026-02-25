@@ -61,6 +61,14 @@
     "wellness": "Bien-être & Fitness",
     "preparation": "Préparation"
   },
+  "journeys": {
+    "planning": "Projet bébé",
+    "pregnant": "Grossesse",
+    "postpartum": "Post-partum",
+    "planningDesc": "Suivi de fertilité et conception",
+    "pregnantDesc": "Votre compagnon de grossesse complet",
+    "postpartumDesc": "Soins bébé et récupération"
+  },
   "onboarding": {
     "title": "Bienvenue dans votre parcours",
     "subtitle": "Votre compagnon lifestyle & éducatif",
