@@ -29,6 +29,14 @@
     "laborProgressLink": "متتبع تقدم المخاض",
     "laborProgressLinkDesc": "تتبعي الانقباضات ومراحل المخاض"
   },
+  "postpartumLinks": {
+    "lactationLink": "التحضير للرضاعة",
+    "lactationLinkDesc": "استعدي للرضاعة الطبيعية بتوجيه الذكاء الاصطناعي",
+    "recoveryLink": "التعافي بعد الولادة",
+    "recoveryLinkDesc": "خطة تعافي لمدة 6 أسابيع بعد الولادة",
+    "babySleepLink": "متتبع نوم الطفل",
+    "babySleepLinkDesc": "تتبعي وحسّني نوم طفلك"
+  },
   "videoLibrary": {
     "defaultTitle": "فيديوهات تعليمية",
     "defaultSubtitle": "تعلّم المزيد مع إرشادات الخبراء",

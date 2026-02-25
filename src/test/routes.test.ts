@@ -17,6 +17,8 @@ const definedRoutes = [
   "/tools/ai-lactation-prep", "/tools/postpartum-recovery", "/tools/baby-cry-translator",
   "/tools/baby-sleep-tracker", "/tools/baby-growth", "/tools/diaper-tracker",
   "/videos", "/splash",
+  "/tools/fertility-academy", "/tools/nutrition-supplements",
+  "/tools/tww-companion", "/tools/preconception-checkup",
 ];
 
 describe("Route integrity", () => {

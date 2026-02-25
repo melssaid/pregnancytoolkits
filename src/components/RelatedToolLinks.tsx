@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { 
   Baby, Calendar, Droplets, Activity, TrendingUp, Ruler,
   Utensils, ShoppingCart, Pill, FileText, PersonStanding, ChevronLeft,
+  Moon, Heart, Milk,
   type LucideIcon 
 } from "lucide-react";
 
@@ -26,6 +27,9 @@ const ICON_MAP: Record<string, LucideIcon> = {
   pill: Pill,
   fileText: FileText,
   personStanding: PersonStanding,
+  moon: Moon,
+  heart: Heart,
+  milk: Milk,
 };
 
 interface RelatedToolLinksProps {

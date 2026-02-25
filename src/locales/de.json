@@ -29,6 +29,14 @@
     "laborProgressLink": "Wehentracker",
     "laborProgressLinkDesc": "Verfolgen Sie Wehen und Geburtsphasen"
   },
+  "postpartumLinks": {
+    "lactationLink": "Stillvorbereitung",
+    "lactationLinkDesc": "Bereiten Sie sich mit KI-Unterstützung aufs Stillen vor",
+    "recoveryLink": "Wochenbett-Erholung",
+    "recoveryLinkDesc": "6-Wochen-Erholungsplan nach der Geburt",
+    "babySleepLink": "Baby-Schlaf-Tracker",
+    "babySleepLinkDesc": "Verfolgen und optimieren Sie den Schlaf Ihres Babys"
+  },
   "videoLibrary": {
     "defaultTitle": "Lehrvideos",
     "defaultSubtitle": "Lernen Sie mehr mit Expertenberatung",
