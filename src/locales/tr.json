@@ -11,6 +11,16 @@
   "relatedTools": {
     "title": "Yolculuğuna devam et"
   },
+  "nutritionLinks": {
+    "mealSuggestionLink": "Yapay Zeka Öğün Planlayıcı",
+    "mealSuggestionLinkDesc": "Trimesterinize özel kişiselleştirilmiş öğün önerileri alın",
+    "groceryListLink": "Akıllı Alışveriş Listesi",
+    "groceryListLinkDesc": "Hamilelik için optimize edilmiş bir alışveriş listesi oluşturun",
+    "vitaminTrackerLink": "Vitamin Takipçisi",
+    "vitaminTrackerLinkDesc": "Günlük takviye alımınızı takip edin",
+    "cravingLink": "Aşerme Alternatifleri",
+    "cravingLinkDesc": "Aşermeleriniz için sağlıklı alternatifler bulun"
+  },
   "videoLibrary": {
     "defaultTitle": "Eğitim Videoları",
     "defaultSubtitle": "Uzman rehberliğiyle daha fazla öğrenin",

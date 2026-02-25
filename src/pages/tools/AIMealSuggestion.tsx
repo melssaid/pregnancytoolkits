@@ -31,6 +31,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nutritionVideosByLang } from "@/data/videoData";
+import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
 const MEAL_TYPE_IDS = ["breakfast", "lunch", "dinner", "snack"] as const;
 const DIETARY_PREF_IDS = ["vegetarian", "low-sugar", "high-protein", "low-sodium", "iron-rich", "calcium-rich"] as const;
@@ -367,6 +368,13 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
           subtitle={t("toolsInternal.mealSuggestion.nutritionVideosSubtitle")}
           accentColor="emerald"
         />
+
+        {/* Related Nutrition Tools */}
+        <RelatedToolLinks links={[
+          { to: "/tools/smart-grocery-list", titleKey: "nutritionLinks.groceryListLink", titleFallback: "Smart Grocery List", descKey: "nutritionLinks.groceryListLinkDesc", descFallback: "Build a pregnancy-optimized shopping list", icon: "cart" },
+          { to: "/tools/ai-craving-alternatives", titleKey: "nutritionLinks.cravingLink", titleFallback: "Craving Alternatives", descKey: "nutritionLinks.cravingLinkDesc", descFallback: "Find healthy swaps for your cravings", icon: "utensils" },
+          { to: "/tools/vitamin-tracker", titleKey: "nutritionLinks.vitaminTrackerLink", titleFallback: "Vitamin Tracker", descKey: "nutritionLinks.vitaminTrackerLinkDesc", descFallback: "Track daily supplement intake", icon: "pill" },
+        ]} />
       </div>
     </ToolFrame>
   );

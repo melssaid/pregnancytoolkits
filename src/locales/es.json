@@ -11,6 +11,16 @@
   "relatedTools": {
     "title": "Continúa tu viaje"
   },
+  "nutritionLinks": {
+    "mealSuggestionLink": "Planificador de comidas IA",
+    "mealSuggestionLinkDesc": "Obtén sugerencias de comidas personalizadas para tu trimestre",
+    "groceryListLink": "Lista de compras inteligente",
+    "groceryListLinkDesc": "Crea una lista de compras optimizada para el embarazo",
+    "vitaminTrackerLink": "Seguimiento de vitaminas",
+    "vitaminTrackerLinkDesc": "Controla tu ingesta diaria de suplementos",
+    "cravingLink": "Alternativas a antojos",
+    "cravingLinkDesc": "Encuentra sustitutos saludables para tus antojos"
+  },
   "videoLibrary": {
     "defaultTitle": "Videos educativos",
     "defaultSubtitle": "Aprende más con guía experta",

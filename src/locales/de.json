@@ -11,6 +11,16 @@
   "relatedTools": {
     "title": "Setze deine Reise fort"
   },
+  "nutritionLinks": {
+    "mealSuggestionLink": "KI-Mahlzeitenplaner",
+    "mealSuggestionLinkDesc": "Erhalten Sie personalisierte Mahlzeitenvorschläge für Ihr Trimester",
+    "groceryListLink": "Intelligente Einkaufsliste",
+    "groceryListLinkDesc": "Erstellen Sie eine schwangerschaftsoptimierte Einkaufsliste",
+    "vitaminTrackerLink": "Vitamin-Tracker",
+    "vitaminTrackerLinkDesc": "Verfolgen Sie Ihre tägliche Nahrungsergänzung",
+    "cravingLink": "Heißhunger-Alternativen",
+    "cravingLinkDesc": "Finden Sie gesunde Alternativen für Ihre Gelüste"
+  },
   "videoLibrary": {
     "defaultTitle": "Lehrvideos",
     "defaultSubtitle": "Lernen Sie mehr mit Expertenberatung",

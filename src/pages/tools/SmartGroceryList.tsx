@@ -19,6 +19,7 @@ import { toast } from 'sonner';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { WeekSlider } from '@/components/WeekSlider';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
+import { RelatedToolLinks } from '@/components/RelatedToolLinks';
 
 interface GroceryItem {
   id: string;
@@ -685,6 +686,13 @@ Provide a structured 7-day meal plan with breakfast, lunch, dinner, and snacks.`
             </div>
           </TabsContent>
         </Tabs>
+
+        {/* Related Nutrition Tools */}
+        <RelatedToolLinks links={[
+          { to: "/tools/ai-meal-suggestion", titleKey: "nutritionLinks.mealSuggestionLink", titleFallback: "AI Meal Planner", descKey: "nutritionLinks.mealSuggestionLinkDesc", descFallback: "Get personalized meal suggestions", icon: "utensils" },
+          { to: "/tools/vitamin-tracker", titleKey: "nutritionLinks.vitaminTrackerLink", titleFallback: "Vitamin Tracker", descKey: "nutritionLinks.vitaminTrackerLinkDesc", descFallback: "Track daily supplement intake", icon: "pill" },
+          { to: "/tools/ai-craving-alternatives", titleKey: "nutritionLinks.cravingLink", titleFallback: "Craving Alternatives", descKey: "nutritionLinks.cravingLinkDesc", descFallback: "Find healthy swaps for your cravings", icon: "utensils" },
+        ]} />
       </div>
     </ToolFrame>
   );

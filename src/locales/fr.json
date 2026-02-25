@@ -11,6 +11,16 @@
   "relatedTools": {
     "title": "Continuez votre parcours"
   },
+  "nutritionLinks": {
+    "mealSuggestionLink": "Planificateur de repas IA",
+    "mealSuggestionLinkDesc": "Obtenez des suggestions de repas personnalisées pour votre trimestre",
+    "groceryListLink": "Liste de courses intelligente",
+    "groceryListLinkDesc": "Créez une liste de courses optimisée pour la grossesse",
+    "vitaminTrackerLink": "Suivi des vitamines",
+    "vitaminTrackerLinkDesc": "Suivez votre prise quotidienne de compléments",
+    "cravingLink": "Alternatives aux envies",
+    "cravingLinkDesc": "Trouvez des substituts sains pour vos envies"
+  },
   "videoLibrary": {
     "defaultTitle": "Vidéos éducatives",
     "defaultSubtitle": "Apprenez avec des conseils d'experts",

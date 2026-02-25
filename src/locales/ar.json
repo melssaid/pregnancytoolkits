@@ -11,6 +11,16 @@
   "relatedTools": {
     "title": "تابع رحلتك"
   },
+  "nutritionLinks": {
+    "mealSuggestionLink": "مخطط الوجبات الذكي",
+    "mealSuggestionLinkDesc": "احصلي على اقتراحات وجبات مخصصة لمرحلة حملك",
+    "groceryListLink": "قائمة البقالة الذكية",
+    "groceryListLinkDesc": "أنشئي قائمة تسوق مُحسّنة للحمل",
+    "vitaminTrackerLink": "متتبع الفيتامينات",
+    "vitaminTrackerLinkDesc": "تتبعي تناول المكملات الغذائية يومياً",
+    "cravingLink": "بدائل الرغبات",
+    "cravingLinkDesc": "اكتشفي بدائل صحية لرغباتك الغذائية"
+  },
   "videoLibrary": {
     "defaultTitle": "فيديوهات تعليمية",
     "defaultSubtitle": "تعلّم المزيد مع إرشادات الخبراء",
