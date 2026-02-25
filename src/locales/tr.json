@@ -21,6 +21,14 @@
     "cravingLink": "Aşerme Alternatifleri",
     "cravingLinkDesc": "Aşermeleriniz için sağlıklı alternatifler bulun"
   },
+  "laborLinks": {
+    "birthPlanLink": "Doğum Planı Oluşturucu",
+    "birthPlanLinkDesc": "Kişiselleştirilmiş bir doğum planı oluşturun",
+    "birthPositionLink": "Doğum Pozisyonları",
+    "birthPositionLinkDesc": "Doğum için en uygun pozisyonları keşfedin",
+    "laborProgressLink": "Doğum İlerleme Takibi",
+    "laborProgressLinkDesc": "Kasılmaları ve doğum aşamalarını takip edin"
+  },
   "videoLibrary": {
     "defaultTitle": "Eğitim Videoları",
     "defaultSubtitle": "Uzman rehberliğiyle daha fazla öğrenin",

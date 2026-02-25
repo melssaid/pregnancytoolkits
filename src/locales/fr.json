@@ -21,6 +21,14 @@
     "cravingLink": "Alternatives aux envies",
     "cravingLinkDesc": "Trouvez des substituts sains pour vos envies"
   },
+  "laborLinks": {
+    "birthPlanLink": "Générateur de plan de naissance",
+    "birthPlanLinkDesc": "Créez un plan de naissance personnalisé",
+    "birthPositionLink": "Positions d'accouchement",
+    "birthPositionLinkDesc": "Explorez les positions optimales pour le travail",
+    "laborProgressLink": "Suivi du travail",
+    "laborProgressLinkDesc": "Suivez les contractions et les étapes du travail"
+  },
   "videoLibrary": {
     "defaultTitle": "Vidéos éducatives",
     "defaultSubtitle": "Apprenez avec des conseils d'experts",

@@ -10,6 +10,7 @@ import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useTranslation } from 'react-i18next';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { RelatedToolLinks } from '@/components/RelatedToolLinks';
 
 interface Contraction {
   id: string;
@@ -506,6 +507,11 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
               ⚠️ {t('toolsInternal.laborTracker.disclaimer', "This tool is for informational purposes only. Always follow your healthcare provider's guidance.")}
             </p>
           </div>
+
+          <RelatedToolLinks links={[
+            { to: "/tools/ai-birth-plan", titleKey: "laborLinks.birthPlanLink", titleFallback: "Birth Plan Generator", descKey: "laborLinks.birthPlanLinkDesc", descFallback: "Create a personalized birth plan", icon: "fileText" },
+            { to: "/tools/ai-birth-position", titleKey: "laborLinks.birthPositionLink", titleFallback: "Birth Positions", descKey: "laborLinks.birthPositionLinkDesc", descFallback: "Explore optimal positions for labor and delivery", icon: "personStanding" },
+          ]} />
       </div>
     </ToolFrame>
   );

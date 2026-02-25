@@ -21,6 +21,14 @@
     "cravingLink": "Craving Alternatives",
     "cravingLinkDesc": "Find healthy swaps for your cravings"
   },
+  "laborLinks": {
+    "birthPlanLink": "Birth Plan Generator",
+    "birthPlanLinkDesc": "Create a personalized birth plan",
+    "birthPositionLink": "Birth Positions",
+    "birthPositionLinkDesc": "Explore optimal positions for labor and delivery",
+    "laborProgressLink": "Labor Progress Tracker",
+    "laborProgressLinkDesc": "Track contractions and labor stages"
+  },
   "videoLibrary": {
     "defaultTitle": "Educational Videos",
     "defaultSubtitle": "Learn more with expert guidance",

@@ -15,6 +15,7 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { birthPositionVideosByLang } from "@/data/videoData";
+import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
 const AIBirthPosition = () => {
   const { t } = useTranslation();
@@ -219,6 +220,11 @@ Include safety considerations and when to change positions.`;
           subtitle={t('toolsInternal.birthPosition.birthPositionVideosSubtitle')}
           accentColor="rose"
         />
+
+        <RelatedToolLinks links={[
+          { to: "/tools/ai-birth-plan", titleKey: "laborLinks.birthPlanLink", titleFallback: "Birth Plan Generator", descKey: "laborLinks.birthPlanLinkDesc", descFallback: "Create a personalized birth plan", icon: "fileText" },
+          { to: "/tools/labor-progress", titleKey: "laborLinks.laborProgressLink", titleFallback: "Labor Progress Tracker", descKey: "laborLinks.laborProgressLinkDesc", descFallback: "Track contractions and labor stages", icon: "activity" },
+        ]} />
       </div>
     </ToolFrame>
   );
