@@ -91,15 +91,11 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
 });
 
 // ── Sub-category divider ────────────────────────────────────────────────
-const SubCategoryHeader = memo(function SubCategoryHeader({ categoryKey, iconColor }: { categoryKey: string; iconColor: string }) {
-  const { t } = useTranslation();
+const SubCategoryDivider = memo(function SubCategoryDivider({ iconColor }: { iconColor: string }) {
   return (
-    <div className="flex items-center gap-2 px-1 pt-3 pb-1">
-      <div className="h-px flex-1 bg-border/40" />
-      <span className={`text-[10px] font-bold uppercase tracking-wider ${iconColor}`}>
-        {t(categoryKey)}
-      </span>
-      <div className="h-px flex-1 bg-border/40" />
+    <div className="flex items-center gap-1.5 px-3 pt-3 pb-1">
+      <div className={`w-1 h-1 rounded-full ${iconColor} opacity-40`} />
+      <div className={`h-[1.5px] flex-1 bg-gradient-to-r from-border/50 via-border/20 to-transparent dark:from-border/30 dark:via-border/10`} />
     </div>
   );
 });
@@ -146,9 +142,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
               {t(`journeys.${config.key}Desc`)}
             </p>
           </div>
-          <div className={`text-[10px] font-bold ${config.headerText} opacity-70 bg-white/15 px-2.5 py-1 rounded-full backdrop-blur-sm`}>
-            {totalTools}
-          </div>
+          <Icon className={`w-4 h-4 ${config.headerText} opacity-40`} strokeWidth={1.5} />
         </div>
       </div>
 
@@ -157,8 +151,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
         {toolsByCategory.map(({ catKey, tools }) => (
           <div key={catKey}>
             {showSubHeaders && (
-              <SubCategoryHeader
-                categoryKey={catKey}
+              <SubCategoryDivider
                 iconColor={categoryStyles[catKey]?.iconColor || "text-muted-foreground"}
               />
             )}
