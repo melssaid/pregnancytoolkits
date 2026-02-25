@@ -1,10 +1,11 @@
-import { useMemo, memo } from "react";
-import { Baby, Heart, Activity, Dumbbell, AlertTriangle, CheckCircle, Flower2, ChevronRight, ChevronLeft, Calendar, Shield, UtensilsCrossed, MessageSquare, HeartPulse, Sparkles } from "lucide-react";
+import { useMemo, memo, useState, useCallback } from "react";
+import { Baby, Heart, Activity, Dumbbell, AlertTriangle, CheckCircle, Flower2, ChevronRight, ChevronLeft, ChevronDown, Calendar, Shield, UtensilsCrossed, MessageSquare, HeartPulse, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/lib/tools-data";
 import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // ── Category styling lookup ──────────────────────────────────────────────
 const categoryStyles: Record<string, { iconColor: string; toolHover: string }> = {
@@ -24,19 +25,15 @@ const categoryStyles: Record<string, { iconColor: string; toolHover: string }> =
 interface JourneyConfig {
   key: JourneyKey;
   icon: LucideIcon;
-  // Header gradient — the emotional anchor
   headerGradient: string;
   headerText: string;
-  // Card body
   bg: string;
   border: string;
-  // Icon container in header
   iconBg: string;
 }
 
 const journeyConfigs: JourneyConfig[] = [
   {
-    // أحلم بطفل — Hope & Aspiration: warm rose → amber gold
     key: "planning",
     icon: Sparkles,
     headerGradient: "bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300 dark:from-rose-500 dark:via-pink-500 dark:to-amber-400",
@@ -46,7 +43,6 @@ const journeyConfigs: JourneyConfig[] = [
     border: "border-rose-200/50 dark:border-rose-800/30",
   },
   {
-    // حملي — Nurturing & Vitality: rich pink → soft coral
     key: "pregnant",
     icon: HeartPulse,
     headerGradient: "bg-gradient-to-r from-pink-500 via-rose-400 to-pink-400 dark:from-pink-600 dark:via-rose-500 dark:to-pink-500",
@@ -56,7 +52,6 @@ const journeyConfigs: JourneyConfig[] = [
     border: "border-pink-200/50 dark:border-pink-800/30",
   },
   {
-    // طفلي — Tenderness & New Life: fuchsia → soft lavender
     key: "postpartum",
     icon: Baby,
     headerGradient: "bg-gradient-to-r from-fuchsia-400 via-purple-400 to-violet-300 dark:from-fuchsia-500 dark:via-purple-500 dark:to-violet-400",
@@ -105,6 +100,9 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
+  const [isOpen, setIsOpen] = useState(index === 0);
+
+  const toggle = useCallback(() => setIsOpen(prev => !prev), []);
 
   const categories = useMemo(() => getJourneyCategories(config.key), [config.key]);
   const toolsByCategory = useMemo(() => {
@@ -124,9 +122,11 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
       className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm animate-fade-in`}
       style={{ animationDelay: `${index * 80}ms` }}
     >
-      {/* Gradient Header — the emotional anchor */}
-      <div className={`${config.headerGradient} px-4 py-4 relative overflow-hidden`}>
-        {/* Subtle decorative glow */}
+      {/* Gradient Header — clickable to toggle */}
+      <button
+        onClick={toggle}
+        className={`${config.headerGradient} px-4 py-4 relative overflow-hidden w-full text-start`}
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
         <div className="absolute -top-6 -end-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
         
@@ -142,27 +142,45 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
               {t(`journeys.${config.key}Desc`)}
             </p>
           </div>
-          <Icon className={`w-4 h-4 ${config.headerText} opacity-40`} strokeWidth={1.5} />
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+          >
+            <ChevronDown className={`w-5 h-5 ${config.headerText} opacity-60`} strokeWidth={2} />
+          </motion.div>
         </div>
-      </div>
+      </button>
 
-      {/* Tools */}
-      <div className="px-2 pb-3 pt-1">
-        {toolsByCategory.map(({ catKey, tools }) => (
-          <div key={catKey}>
-            {showSubHeaders && (
-              <SubCategoryDivider
-                iconColor={categoryStyles[catKey]?.iconColor || "text-muted-foreground"}
-              />
-            )}
-            <div className="space-y-1">
-              {tools.map(tool => (
-                <ToolRow key={tool.id} tool={tool} isRTL={isRTL} />
+      {/* Collapsible Tools */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="px-2 pb-3 pt-1">
+              {toolsByCategory.map(({ catKey, tools }) => (
+                <div key={catKey}>
+                  {showSubHeaders && (
+                    <SubCategoryDivider
+                      iconColor={categoryStyles[catKey]?.iconColor || "text-muted-foreground"}
+                    />
+                  )}
+                  <div className="space-y-1">
+                    {tools.map(tool => (
+                      <ToolRow key={tool.id} tool={tool} isRTL={isRTL} />
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
-        ))}
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 });
