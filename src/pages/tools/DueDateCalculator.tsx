@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Baby, Info, Calendar, Save, Bell, Trash2, CalendarIcon } from "lucide-react";
+import { Baby, Info, Calendar, Save, Bell, Trash2, CalendarIcon, Droplets } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ import { dueDateVideosByLang } from "@/data/videoData";
 import { Calendar as CalendarUI } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 interface SavedDueDate {
   id: string;
@@ -362,6 +363,15 @@ A supportive message for this stage of pregnancy`}
               title={t('toolsInternal.dueDate.videosTitle')}
               subtitle={t('toolsInternal.dueDate.videosSubtitle')}
             />
+
+            <Link to="/tools/cycle-tracker" className="flex items-center gap-2.5 rounded-xl bg-primary/8 border border-primary/15 p-3 hover:bg-primary/12 transition-colors">
+              <Droplets className="h-4 w-4 text-primary shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-medium text-foreground">{t('toolsInternal.dueDate.cycleTrackerLink', 'تتبع الدورة الشهرية')}</p>
+                <p className="text-[10px] text-muted-foreground">{t('toolsInternal.dueDate.cycleTrackerLinkDesc', 'تابعي دورتك الشهرية واحصلي على تنبؤات دقيقة')}</p>
+              </div>
+              <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+            </Link>
 
             <div className="flex items-start gap-2 rounded-lg bg-muted p-3">
               <Info className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />
