@@ -8,17 +8,17 @@ import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
-const categoryStyles: Record<string, { iconColor: string; toolHover: string }> = {
-  "categories.smartAssistant": { iconColor: "text-[hsl(340,55%,55%)] dark:text-[hsl(340,50%,65%)]", toolHover: "hover:bg-[hsl(340,40%,96%)] dark:hover:bg-[hsl(340,30%,14%)]" },
-  "categories.fertility":     { iconColor: "text-[hsl(350,60%,58%)] dark:text-[hsl(350,55%,65%)]", toolHover: "hover:bg-[hsl(350,40%,96%)] dark:hover:bg-[hsl(350,30%,14%)]" },
-  "categories.pregnancy":     { iconColor: "text-[hsl(340,65%,52%)] dark:text-[hsl(340,60%,62%)]", toolHover: "hover:bg-[hsl(340,35%,96%)] dark:hover:bg-[hsl(340,25%,14%)]" },
-  "categories.nutrition":     { iconColor: "text-[hsl(15,65%,55%)] dark:text-[hsl(15,60%,62%)]",   toolHover: "hover:bg-[hsl(15,40%,96%)] dark:hover:bg-[hsl(15,30%,14%)]" },
-  "categories.wellness":      { iconColor: "text-[hsl(160,40%,45%)] dark:text-[hsl(160,35%,55%)]", toolHover: "hover:bg-[hsl(160,30%,96%)] dark:hover:bg-[hsl(160,20%,14%)]" },
-  "categories.mentalHealth":   { iconColor: "text-[hsl(280,35%,55%)] dark:text-[hsl(280,30%,65%)]", toolHover: "hover:bg-[hsl(280,25%,96%)] dark:hover:bg-[hsl(280,20%,14%)]" },
-  "categories.selfCheck":     { iconColor: "text-[hsl(25,60%,52%)] dark:text-[hsl(25,55%,60%)]",   toolHover: "hover:bg-[hsl(25,35%,96%)] dark:hover:bg-[hsl(25,25%,14%)]" },
-  "categories.labor":         { iconColor: "text-[hsl(345,55%,55%)] dark:text-[hsl(345,50%,62%)]", toolHover: "hover:bg-[hsl(345,35%,96%)] dark:hover:bg-[hsl(345,25%,14%)]" },
-  "categories.preparation":   { iconColor: "text-[hsl(170,35%,45%)] dark:text-[hsl(170,30%,55%)]", toolHover: "hover:bg-[hsl(170,25%,96%)] dark:hover:bg-[hsl(170,20%,14%)]" },
-  "categories.postpartum":    { iconColor: "text-[hsl(310,35%,52%)] dark:text-[hsl(310,30%,62%)]", toolHover: "hover:bg-[hsl(310,25%,96%)] dark:hover:bg-[hsl(310,20%,14%)]" },
+const categoryStyles: Record<string, { iconColor: string; toolHover: string; hoverShadow: string; hoverBorder: string }> = {
+  "categories.smartAssistant": { iconColor: "text-[hsl(340,55%,55%)] dark:text-[hsl(340,50%,65%)]", toolHover: "hover:bg-[hsl(340,40%,96%)] dark:hover:bg-[hsl(340,30%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(340,50%,55%,0.15)]", hoverBorder: "hover:border-[hsl(340,40%,85%)] dark:hover:border-[hsl(340,30%,25%)]" },
+  "categories.fertility":     { iconColor: "text-[hsl(350,60%,58%)] dark:text-[hsl(350,55%,65%)]", toolHover: "hover:bg-[hsl(350,40%,96%)] dark:hover:bg-[hsl(350,30%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(350,55%,58%,0.15)]", hoverBorder: "hover:border-[hsl(350,40%,85%)] dark:hover:border-[hsl(350,30%,25%)]" },
+  "categories.pregnancy":     { iconColor: "text-[hsl(340,65%,52%)] dark:text-[hsl(340,60%,62%)]", toolHover: "hover:bg-[hsl(340,35%,96%)] dark:hover:bg-[hsl(340,25%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(340,60%,52%,0.15)]", hoverBorder: "hover:border-[hsl(340,35%,85%)] dark:hover:border-[hsl(340,25%,25%)]" },
+  "categories.nutrition":     { iconColor: "text-[hsl(15,65%,55%)] dark:text-[hsl(15,60%,62%)]",   toolHover: "hover:bg-[hsl(15,40%,96%)] dark:hover:bg-[hsl(15,30%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(15,60%,55%,0.15)]", hoverBorder: "hover:border-[hsl(15,35%,85%)] dark:hover:border-[hsl(15,25%,25%)]" },
+  "categories.wellness":      { iconColor: "text-[hsl(160,40%,45%)] dark:text-[hsl(160,35%,55%)]", toolHover: "hover:bg-[hsl(160,30%,96%)] dark:hover:bg-[hsl(160,20%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(160,35%,45%,0.15)]", hoverBorder: "hover:border-[hsl(160,25%,85%)] dark:hover:border-[hsl(160,18%,25%)]" },
+  "categories.mentalHealth":   { iconColor: "text-[hsl(280,35%,55%)] dark:text-[hsl(280,30%,65%)]", toolHover: "hover:bg-[hsl(280,25%,96%)] dark:hover:bg-[hsl(280,20%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(280,30%,55%,0.15)]", hoverBorder: "hover:border-[hsl(280,22%,85%)] dark:hover:border-[hsl(280,18%,25%)]" },
+  "categories.selfCheck":     { iconColor: "text-[hsl(25,60%,52%)] dark:text-[hsl(25,55%,60%)]",   toolHover: "hover:bg-[hsl(25,35%,96%)] dark:hover:bg-[hsl(25,25%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(25,55%,52%,0.15)]", hoverBorder: "hover:border-[hsl(25,30%,85%)] dark:hover:border-[hsl(25,22%,25%)]" },
+  "categories.labor":         { iconColor: "text-[hsl(345,55%,55%)] dark:text-[hsl(345,50%,62%)]", toolHover: "hover:bg-[hsl(345,35%,96%)] dark:hover:bg-[hsl(345,25%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(345,50%,55%,0.15)]", hoverBorder: "hover:border-[hsl(345,30%,85%)] dark:hover:border-[hsl(345,22%,25%)]" },
+  "categories.preparation":   { iconColor: "text-[hsl(170,35%,45%)] dark:text-[hsl(170,30%,55%)]", toolHover: "hover:bg-[hsl(170,25%,96%)] dark:hover:bg-[hsl(170,20%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(170,30%,45%,0.15)]", hoverBorder: "hover:border-[hsl(170,22%,85%)] dark:hover:border-[hsl(170,18%,25%)]" },
+  "categories.postpartum":    { iconColor: "text-[hsl(310,35%,52%)] dark:text-[hsl(310,30%,62%)]", toolHover: "hover:bg-[hsl(310,25%,96%)] dark:hover:bg-[hsl(310,20%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(310,30%,52%,0.15)]", hoverBorder: "hover:border-[hsl(310,22%,85%)] dark:hover:border-[hsl(310,18%,25%)]" },
 };
 
 // ── Journey card theming — emotionally resonant, brand-cohesive ─────────
@@ -69,20 +69,20 @@ const journeyConfigs: JourneyConfig[] = [
 const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: boolean }) {
   const { t } = useTranslation();
   const ToolIcon = tool.icon;
-  const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", toolHover: "hover:bg-muted/50" };
+  const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
   return (
     <Link to={tool.href} className="block">
-      <div className={`group flex items-center gap-2.5 p-2.5 rounded-xl bg-card/60 backdrop-blur-sm ${style.toolHover} border border-transparent hover:border-border/30 transition-all duration-200`}>
-        <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-white/90 dark:bg-white/10 border border-border/20 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-          <ToolIcon className={`w-4 h-4 ${style.iconColor} opacity-70 group-hover:opacity-100 transition-opacity`} strokeWidth={1.75} />
+      <div className={`group flex items-center gap-2.5 p-2.5 rounded-xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px]`}>
+        <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-white/90 dark:bg-white/10 border border-border/20 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105">
+          <ToolIcon className={`w-4 h-4 ${style.iconColor} opacity-70 group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.75} />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-xs font-semibold text-foreground truncate leading-snug">{t(tool.titleKey)}</h3>
           <p className="text-[10px] text-muted-foreground truncate mt-0.5">{t(tool.descriptionKey)}</p>
         </div>
-        <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/25 group-hover:text-muted-foreground/60 transition-colors" />
+        <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
       </div>
     </Link>
   );
