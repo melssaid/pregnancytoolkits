@@ -1063,6 +1063,8 @@
       "of": "de",
       "score": "Puntuación",
       "takeScreeningAgain": "Repetir cuestionario",
+      "previousQuestion": "Pregunta anterior",
+      "responseBreakdown": "Desglose de respuestas",
       "aiPersonalizedPlan": "Plan de afrontamiento personalizado con IA",
       "generateMyPlan": "Generar mi plan personalizado",
       "creatingPlan": "Creando tu plan personalizado...",
@@ -1091,7 +1093,12 @@
         "q2": { "question": "He esperado con ilusión las cosas", "o0": "Tanto como siempre", "o1": "Algo menos de lo habitual", "o2": "Definitivamente menos de lo habitual", "o3": "Casi nada" },
         "q3": { "question": "Me he culpado innecesariamente cuando las cosas salían mal", "o0": "No, nunca", "o1": "No muy a menudo", "o2": "Sí, a veces", "o3": "Sí, la mayor parte del tiempo" },
         "q4": { "question": "He estado ansiosa o preocupada sin razón", "o0": "No, para nada", "o1": "Casi nunca", "o2": "Sí, a veces", "o3": "Sí, muy a menudo" },
-        "q5": { "question": "He sentido miedo o pánico sin razón", "o0": "No, para nada", "o1": "No, no mucho", "o2": "Sí, a veces", "o3": "Sí, bastante" }
+        "q5": { "question": "He sentido miedo o pánico sin razón", "o0": "No, para nada", "o1": "No, no mucho", "o2": "Sí, a veces", "o3": "Sí, bastante" },
+        "q6": { "question": "He tenido dificultad para dormir aunque tenía la oportunidad", "o0": "No, para nada", "o1": "Raramente", "o2": "Sí, a veces", "o3": "Sí, la mayor parte del tiempo" },
+        "q7": { "question": "Me he sentido triste o he llorado", "o0": "No, para nada", "o1": "Muy raramente", "o2": "Sí, a veces", "o3": "Sí, la mayor parte del tiempo" },
+        "q8": { "question": "Mi apetito ha cambiado notablemente (aumentado o disminuido)", "o0": "No, es normal", "o1": "Cambió ligeramente", "o2": "Cambió notablemente", "o3": "Perdí el apetito o como en exceso" },
+        "q9": { "question": "He tenido dificultad para concentrarme o tomar decisiones", "o0": "No, para nada", "o1": "Raramente", "o2": "Sí, a veces", "o3": "Sí, la mayor parte del tiempo" },
+        "q10": { "question": "Me he sentido agotada y sin energía", "o0": "No, mi energía está bien", "o1": "Menos energía de lo habitual", "o2": "Agotada la mayor parte del tiempo", "o3": "Completamente exhausta" }
       },
       "coping": {
         "sunlight": { "title": "Luz solar matutina", "desc": "Obtén 10-15 minutos de luz natural cada mañana" },

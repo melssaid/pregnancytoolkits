@@ -1063,6 +1063,8 @@
       "of": "sur",
       "score": "Score",
       "takeScreeningAgain": "Refaire le questionnaire",
+      "previousQuestion": "Question précédente",
+      "responseBreakdown": "Détail des réponses",
       "aiPersonalizedPlan": "Plan de gestion personnalisé IA",
       "generateMyPlan": "Générer mon plan personnalisé",
       "creatingPlan": "Création de votre plan personnalisé...",
@@ -1091,7 +1093,12 @@
         "q2": { "question": "J'ai attendu les choses avec plaisir", "o0": "Autant que jamais", "o1": "Plutôt moins qu'avant", "o2": "Certainement moins qu'avant", "o3": "Presque pas" },
         "q3": { "question": "Je me suis blâmée inutilement quand les choses ont mal tourné", "o0": "Non, jamais", "o1": "Pas très souvent", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
         "q4": { "question": "J'ai été anxieuse ou inquiète sans bonne raison", "o0": "Non, pas du tout", "o1": "Presque jamais", "o2": "Oui, parfois", "o3": "Oui, très souvent" },
-        "q5": { "question": "J'ai eu peur ou panique sans bonne raison", "o0": "Non, pas du tout", "o1": "Non, pas beaucoup", "o2": "Oui, parfois", "o3": "Oui, assez souvent" }
+        "q5": { "question": "J'ai eu peur ou panique sans bonne raison", "o0": "Non, pas du tout", "o1": "Non, pas beaucoup", "o2": "Oui, parfois", "o3": "Oui, assez souvent" },
+        "q6": { "question": "J'ai eu du mal à dormir même quand j'en avais la possibilité", "o0": "Non, pas du tout", "o1": "Rarement", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
+        "q7": { "question": "Je me suis sentie triste ou j'ai pleuré", "o0": "Non, pas du tout", "o1": "Très rarement", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
+        "q8": { "question": "Mon appétit a changé de façon notable (augmenté ou diminué)", "o0": "Non, il est normal", "o1": "Légèrement changé", "o2": "Changé de façon notable", "o3": "J'ai perdu l'appétit ou je mange trop" },
+        "q9": { "question": "J'ai eu du mal à me concentrer ou à prendre des décisions", "o0": "Non, pas du tout", "o1": "Rarement", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
+        "q10": { "question": "Je me suis sentie épuisée et sans énergie", "o0": "Non, mon énergie est bonne", "o1": "Moins d'énergie que d'habitude", "o2": "Épuisée la plupart du temps", "o3": "Complètement vidée" }
       },
       "coping": {
         "sunlight": { "title": "Lumière matinale", "desc": "Exposez-vous 10-15 minutes à la lumière naturelle chaque matin" },

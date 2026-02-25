@@ -3213,6 +3213,8 @@
       "of": "of",
       "score": "Score",
       "takeScreeningAgain": "Take Questionnaire Again",
+      "previousQuestion": "Previous Question",
+      "responseBreakdown": "Response Breakdown",
       "aiPersonalizedPlan": "AI Personalized Coping Plan",
       "generateMyPlan": "Generate My Personalized Plan",
       "creatingPlan": "Creating your personalized plan...",
@@ -3281,6 +3283,41 @@
           "o1": "No, not much",
           "o2": "Yes, sometimes",
           "o3": "Yes, quite a lot"
+        },
+        "q6": {
+          "question": "I have had difficulty sleeping even when I had the chance",
+          "o0": "No, not at all",
+          "o1": "Rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q7": {
+          "question": "I have felt sad or tearful",
+          "o0": "No, not at all",
+          "o1": "Very rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q8": {
+          "question": "My appetite has changed noticeably (increased or decreased)",
+          "o0": "No, it's normal",
+          "o1": "Changed slightly",
+          "o2": "Changed noticeably",
+          "o3": "Lost my appetite completely or overeating"
+        },
+        "q9": {
+          "question": "I have had difficulty concentrating or making decisions",
+          "o0": "No, not at all",
+          "o1": "Rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q10": {
+          "question": "I have felt exhausted and low on energy",
+          "o0": "No, my energy is good",
+          "o1": "Less energy than usual",
+          "o2": "Exhausted most of the time",
+          "o3": "Completely drained"
         }
       },
       "coping": {

@@ -1063,6 +1063,8 @@
       "of": "/",
       "score": "Puan",
       "takeScreeningAgain": "Anketi tekrarla",
+      "previousQuestion": "Önceki soru",
+      "responseBreakdown": "Yanıt dağılımı",
       "aiPersonalizedPlan": "Yapay zeka kişiselleştirilmiş baş etme planı",
       "generateMyPlan": "Kişisel planımı oluştur",
       "creatingPlan": "Kişisel planınız oluşturuluyor...",
@@ -1091,7 +1093,12 @@
         "q2": { "question": "Olayları zevkle bekledim", "o0": "Her zamanki kadar", "o1": "Eskisinden biraz az", "o2": "Eskisinden kesinlikle az", "o3": "Neredeyse hiç" },
         "q3": { "question": "İşler ters gittiğinde gereksiz yere kendimi suçladım", "o0": "Hayır, hiçbir zaman", "o1": "Çok sık değil", "o2": "Evet, bazen", "o3": "Evet, çoğu zaman" },
         "q4": { "question": "İyi bir neden olmadan endişeli veya kaygılı oldum", "o0": "Hayır, hiç", "o1": "Neredeyse hiç", "o2": "Evet, bazen", "o3": "Evet, çok sık" },
-        "q5": { "question": "İyi bir neden olmadan korkmuş veya panik olmuş hissettim", "o0": "Hayır, hiç", "o1": "Hayır, pek değil", "o2": "Evet, bazen", "o3": "Evet, oldukça çok" }
+        "q5": { "question": "İyi bir neden olmadan korkmuş veya panik olmuş hissettim", "o0": "Hayır, hiç", "o1": "Hayır, pek değil", "o2": "Evet, bazen", "o3": "Evet, oldukça çok" },
+        "q6": { "question": "Fırsat olmasına rağmen uyumakta zorlandım", "o0": "Hayır, hiç", "o1": "Nadiren", "o2": "Evet, bazen", "o3": "Evet, çoğu zaman" },
+        "q7": { "question": "Kendimi üzgün hissettim veya ağladım", "o0": "Hayır, hiç", "o1": "Çok nadiren", "o2": "Evet, bazen", "o3": "Evet, çoğu zaman" },
+        "q8": { "question": "İştahım belirgin şekilde değişti (arttı veya azaldı)", "o0": "Hayır, normal", "o1": "Biraz değişti", "o2": "Belirgin şekilde değişti", "o3": "İştahımı tamamen kaybettim veya aşırı yiyorum" },
+        "q9": { "question": "Odaklanmakta veya karar vermekte zorlandım", "o0": "Hayır, hiç", "o1": "Nadiren", "o2": "Evet, bazen", "o3": "Evet, çoğu zaman" },
+        "q10": { "question": "Kendimi bitkin ve enerjisiz hissettim", "o0": "Hayır, enerjim iyi", "o1": "Normalden daha az enerji", "o2": "Çoğu zaman bitkin", "o3": "Tamamen tükenmiş" }
       },
       "coping": {
         "sunlight": { "title": "Sabah güneş ışığı", "desc": "Her sabah 10-15 dakika doğal ışık alın" },
