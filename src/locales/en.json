@@ -4831,6 +4831,8 @@
     "doctorNotes": "Doctor's Notes",
     "getAIPlan": "Get AI-Personalized Plan",
     "aiPlanTitle": "AI Personalized Plan",
+    "aiPlanTab": "Smart Plan",
+    "aiPlanHint": "Press the Smart Plan button above to create a personalized daily plan for you",
     "generateReport": "Generate Comprehensive Report",
     "reportHint": "Get a detailed AI-powered health report personalized for your week, weight, and condition",
     "createReport": "Create Health Report",

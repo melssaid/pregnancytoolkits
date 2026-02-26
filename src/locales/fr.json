@@ -4098,6 +4098,8 @@
     "doctorNotes": "Notes du Médecin",
     "getAIPlan": "Obtenir un plan IA personnalisé",
     "aiPlanTitle": "Plan personnalisé par l'IA",
+    "aiPlanTab": "Plan intelligent",
+    "aiPlanHint": "Appuyez sur le bouton Plan intelligent ci-dessus pour créer un plan quotidien personnalisé",
     "generateReport": "Générer un rapport complet",
     "reportHint": "Obtenez un rapport de santé détaillé personnalisé par l'IA",
     "createReport": "Créer le rapport santé",
