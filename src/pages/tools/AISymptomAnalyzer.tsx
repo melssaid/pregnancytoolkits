@@ -68,6 +68,7 @@ const AISymptomAnalyzer: React.FC = () => {
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [currentWeek, setCurrentWeek] = useState(12);
+  const [chartPulse, setChartPulse] = useState(false);
 
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [selectedMood, setSelectedMood] = useState<string>('');
@@ -146,6 +147,9 @@ Please provide brief, supportive wellness insights about these feelings during w
     setSelectedMood('');
     setNotes('');
     setAiInsight('');
+    // Trigger chart pulse animation
+    setChartPulse(true);
+    setTimeout(() => setChartPulse(false), 1500);
     toast.success(t('toolsInternal.symptomAnalyzer.entrySaved'));
   };
 
@@ -194,9 +198,6 @@ Please provide brief, supportive wellness insights about these feelings during w
           label={t('toolsInternal.weekSlider.currentWeek')}
           showTrimester
         />
-
-        {/* Wellness Chart */}
-        <WellnessDiaryChart entries={entries} />
 
         {/* Mood Selection */}
         <Card className="overflow-hidden">
@@ -334,6 +335,15 @@ Please provide brief, supportive wellness insights about these feelings during w
           <Plus className="w-3.5 h-3.5" />
           {t('toolsInternal.symptomAnalyzer.saveEntry')}
         </Button>
+
+        {/* Wellness Trends Chart — immediately after save for real-time feedback */}
+        <motion.div
+          animate={chartPulse ? { scale: [1, 1.02, 1], boxShadow: ['0 0 0 0 hsl(var(--primary) / 0)', '0 0 0 8px hsl(var(--primary) / 0.15)', '0 0 0 0 hsl(var(--primary) / 0)'] } : {}}
+          transition={{ duration: 1.2 }}
+          className="rounded-xl"
+        >
+          <WellnessDiaryChart entries={entries} />
+        </motion.div>
 
         {/* History Section */}
         {entries.length > 0 && (
