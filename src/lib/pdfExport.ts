@@ -415,9 +415,74 @@ function humanizeI18nKey(value: string): string {
     .trim();
 }
 
-// Resolve a value: if it's an i18n key, translate it; otherwise return as-is
+// Common standalone values that need translation (categories, statuses, types, etc.)
+const _valueTranslations: Record<string, Record<string, string>> = {
+  // Grocery categories
+  produce: { ar: 'الخضروات والفواكه', de: 'Obst & Gemüse', fr: 'Fruits & Légumes', es: 'Frutas y Verduras', pt: 'Frutas e Vegetais', tr: 'Sebze & Meyve' },
+  dairy: { ar: 'الألبان', de: 'Milchprodukte', fr: 'Produits laitiers', es: 'Lácteos', pt: 'Laticínios', tr: 'Süt Ürünleri' },
+  protein: { ar: 'البروتين', de: 'Eiweiß', fr: 'Protéines', es: 'Proteínas', pt: 'Proteínas', tr: 'Protein' },
+  grains: { ar: 'الحبوب', de: 'Getreide', fr: 'Céréales', es: 'Cereales', pt: 'Cereais', tr: 'Tahıllar' },
+  supplements: { ar: 'المكملات', de: 'Ergänzungen', fr: 'Suppléments', es: 'Suplementos', pt: 'Suplementos', tr: 'Takviyeler' },
+  snacks: { ar: 'الوجبات الخفيفة', de: 'Snacks', fr: 'Collations', es: 'Aperitivos', pt: 'Lanches', tr: 'Atıştırmalıklar' },
+  other: { ar: 'أخرى', de: 'Sonstiges', fr: 'Autres', es: 'Otros', pt: 'Outros', tr: 'Diğer' },
+  // Common boolean/status values
+  true: { ar: 'نعم', de: 'Ja', fr: 'Oui', es: 'Sí', pt: 'Sim', tr: 'Evet' },
+  false: { ar: 'لا', de: 'Nein', fr: 'Non', es: 'No', pt: 'Não', tr: 'Hayır' },
+  yes: { ar: 'نعم', de: 'Ja', fr: 'Oui', es: 'Sí', pt: 'Sim', tr: 'Evet' },
+  no: { ar: 'لا', de: 'Nein', fr: 'Non', es: 'No', pt: 'Não', tr: 'Hayır' },
+  // Priority levels
+  high: { ar: 'عالية', de: 'Hoch', fr: 'Élevée', es: 'Alta', pt: 'Alta', tr: 'Yüksek' },
+  medium: { ar: 'متوسطة', de: 'Mittel', fr: 'Moyenne', es: 'Media', pt: 'Média', tr: 'Orta' },
+  low: { ar: 'منخفضة', de: 'Niedrig', fr: 'Basse', es: 'Baja', pt: 'Baixa', tr: 'Baixa' },
+  // Common statuses
+  completed: { ar: 'مكتمل', de: 'Abgeschlossen', fr: 'Terminé', es: 'Completado', pt: 'Concluído', tr: 'Tamamlandı' },
+  pending: { ar: 'قيد الانتظار', de: 'Ausstehend', fr: 'En attente', es: 'Pendiente', pt: 'Pendente', tr: 'Beklemede' },
+  active: { ar: 'نشط', de: 'Aktiv', fr: 'Actif', es: 'Activo', pt: 'Ativo', tr: 'Aktif' },
+  // Nutrient names
+  iron: { ar: 'الحديد', de: 'Eisen', fr: 'Fer', es: 'Hierro', pt: 'Ferro', tr: 'Demir' },
+  folate: { ar: 'حمض الفوليك', de: 'Folsäure', fr: 'Folate', es: 'Ácido fólico', pt: 'Folato', tr: 'Folik Asit' },
+  calcium: { ar: 'الكالسيوم', de: 'Kalzium', fr: 'Calcium', es: 'Calcio', pt: 'Cálcio', tr: 'Kalsiyum' },
+  omega3: { ar: 'أوميغا-3', de: 'Omega-3', fr: 'Oméga-3', es: 'Omega-3', pt: 'Ômega-3', tr: 'Omega-3' },
+  // Hospital bag categories
+  momessentials: { ar: 'أساسيات الأم', de: 'Mutter-Essentials', fr: 'Essentiels maman', es: 'Esenciales mamá', pt: 'Essenciais da mãe', tr: 'Anne İhtiyaçları' },
+  babyessentials: { ar: 'أساسيات الطفل', de: 'Baby-Essentials', fr: 'Essentiels bébé', es: 'Esenciales bebé', pt: 'Essenciais do bebê', tr: 'Bebek İhtiyaçları' },
+  documents: { ar: 'المستندات', de: 'Dokumente', fr: 'Documents', es: 'Documentos', pt: 'Documentos', tr: 'Belgeler' },
+  comfort: { ar: 'الراحة', de: 'Komfort', fr: 'Confort', es: 'Comodidad', pt: 'Conforto', tr: 'Konfor' },
+  toiletries: { ar: 'مستلزمات العناية', de: 'Toilettenartikel', fr: 'Toilette', es: 'Artículos de aseo', pt: 'Higiene', tr: 'Kişisel Bakım' },
+  electronics: { ar: 'الإلكترونيات', de: 'Elektronik', fr: 'Électronique', es: 'Electrónica', pt: 'Eletrônicos', tr: 'Elektronik' },
+  clothing: { ar: 'الملابس', de: 'Kleidung', fr: 'Vêtements', es: 'Ropa', pt: 'Roupas', tr: 'Giyim' },
+  // Meal types
+  breakfast: { ar: 'فطور', de: 'Frühstück', fr: 'Petit-déjeuner', es: 'Desayuno', pt: 'Café da manhã', tr: 'Kahvaltı' },
+  lunch: { ar: 'غداء', de: 'Mittagessen', fr: 'Déjeuner', es: 'Almuerzo', pt: 'Almoço', tr: 'Öğle yemeği' },
+  dinner: { ar: 'عشاء', de: 'Abendessen', fr: 'Dîner', es: 'Cena', pt: 'Jantar', tr: 'Akşam yemeği' },
+  snack: { ar: 'وجبة خفيفة', de: 'Snack', fr: 'Collation', es: 'Merienda', pt: 'Lanche', tr: 'Atıştırmalık' },
+  // Mood values
+  happy: { ar: 'سعيدة', de: 'Glücklich', fr: 'Heureuse', es: 'Feliz', pt: 'Feliz', tr: 'Mutlu' },
+  sad: { ar: 'حزينة', de: 'Traurig', fr: 'Triste', es: 'Triste', pt: 'Triste', tr: 'Üzgün' },
+  anxious: { ar: 'قلقة', de: 'Ängstlich', fr: 'Anxieuse', es: 'Ansiosa', pt: 'Ansiosa', tr: 'Endişeli' },
+  calm: { ar: 'هادئة', de: 'Ruhig', fr: 'Calme', es: 'Tranquila', pt: 'Calma', tr: 'Sakin' },
+  tired: { ar: 'متعبة', de: 'Müde', fr: 'Fatiguée', es: 'Cansada', pt: 'Cansada', tr: 'Yorgun' },
+  energetic: { ar: 'نشيطة', de: 'Energiegeladen', fr: 'Énergique', es: 'Enérgica', pt: 'Energética', tr: 'Enerjik' },
+};
+
+function translateValue(value: string, language: string): string | null {
+  const key = value.toLowerCase().replace(/[-_\s]/g, '');
+  const entry = _valueTranslations[key];
+  if (entry && entry[language]) return entry[language];
+  return null;
+}
+
+// Resolve a value: if it's an i18n key, translate it; otherwise try value translation
 function resolveValue(value: any): any {
   if (isI18nKey(value)) return humanizeI18nKey(value);
+  if (typeof value === 'string' && _ctx.isRTL) {
+    const lang = i18n.language || 'ar';
+    const translated = translateValue(value, lang);
+    if (translated) return translated;
+  } else if (typeof value === 'string' && i18n.language !== 'en') {
+    const translated = translateValue(value, i18n.language);
+    if (translated) return translated;
+  }
   return value;
 }
 
