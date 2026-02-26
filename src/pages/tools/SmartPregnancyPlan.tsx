@@ -176,13 +176,13 @@ const SmartPregnancyPlan = () => {
   const getExercisePlan = () => {
     if (health.week >= 20 && health.painLevel > 3) {
       return [
-        { name: t("smartPlan.ex1"), duration: `5 ${t("common.minutes")}`, type: t("smartPlan.typeRelief"), icon: "🧘" },
-        { name: t("smartPlan.ex2"), duration: `10 ${t("common.minutes")}`, type: t("smartPlan.typeStrength"), icon: "💪" },
-        { name: t("smartPlan.ex3"), duration: `5 ${t("common.minutes")}`, type: t("smartPlan.typeFlexibility"), icon: "🤸" },
+        { name: t("smartPlan.ex1"), duration: `5 ${t("common.minutes")}`, type: t("smartPlan.typeRelief") },
+        { name: t("smartPlan.ex2"), duration: `10 ${t("common.minutes")}`, type: t("smartPlan.typeStrength") },
+        { name: t("smartPlan.ex3"), duration: `5 ${t("common.minutes")}`, type: t("smartPlan.typeFlexibility") },
       ];
     }
     return [
-      { name: t("smartPlan.exGeneral"), duration: `20 ${t("common.minutes")}`, type: t("smartPlan.typeCardio"), icon: "🚶" },
+      { name: t("smartPlan.exGeneral"), duration: `20 ${t("common.minutes")}`, type: t("smartPlan.typeCardio") },
     ];
   };
 
@@ -347,11 +347,11 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
   ];
 
   const moodOptions = [
-    { value: 'great', ar: 'ممتازة', en: 'Great', de: 'Ausgezeichnet', fr: 'Excellent', es: 'Excelente', pt: 'Excelente', tr: 'Harika', icon: '😊' },
-    { value: 'good', ar: 'جيدة', en: 'Good', de: 'Gut', fr: 'Bien', es: 'Bien', pt: 'Bom', tr: 'İyi', icon: '🙂' },
-    { value: 'okay', ar: 'مقبولة', en: 'Okay', de: 'Okay', fr: 'Correct', es: 'Regular', pt: 'Razoável', tr: 'İdare eder', icon: '😐' },
-    { value: 'stressed', ar: 'متوترة', en: 'Stressed', de: 'Gestresst', fr: 'Stressée', es: 'Estresada', pt: 'Estressada', tr: 'Stresli', icon: '😰' },
-    { value: 'low', ar: 'منخفضة', en: 'Low', de: 'Niedrig', fr: 'Basse', es: 'Baja', pt: 'Baixo', tr: 'Düşük', icon: '😔' },
+    { value: 'great', ar: 'ممتازة', en: 'Great', de: 'Ausgezeichnet', fr: 'Excellent', es: 'Excelente', pt: 'Excelente', tr: 'Harika' },
+    { value: 'good', ar: 'جيدة', en: 'Good', de: 'Gut', fr: 'Bien', es: 'Bien', pt: 'Bom', tr: 'İyi' },
+    { value: 'okay', ar: 'مقبولة', en: 'Okay', de: 'Okay', fr: 'Correct', es: 'Regular', pt: 'Razoável', tr: 'İdare eder' },
+    { value: 'stressed', ar: 'متوترة', en: 'Stressed', de: 'Gestresst', fr: 'Stressée', es: 'Estresada', pt: 'Estressada', tr: 'Stresli' },
+    { value: 'low', ar: 'منخفضة', en: 'Low', de: 'Niedrig', fr: 'Basse', es: 'Baja', pt: 'Baixo', tr: 'Düşük' },
   ];
 
   const activityOptions = [
@@ -513,7 +513,6 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
                         className="text-[10px] h-7 gap-1 px-2"
                         onClick={() => update('mood', opt.value)}
                       >
-                        <span>{opt.icon}</span>
                         {getLocalizedLabel(opt)}
                       </Button>
                     ))}
@@ -557,9 +556,33 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
           ))}
         </div>
 
-        {/* Tabs */}
+        {/* AI Generate Buttons */}
+        <div className="grid grid-cols-2 gap-2">
+          <motion.button
+            onClick={getAIPlan}
+            disabled={isLoading}
+            whileTap={{ scale: 0.95 }}
+            className="relative overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
+            style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%))' }}
+          >
+            {isLoading && activeTab !== 'report' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
+            {t('smartPlan.getAIPlan', 'Get AI-Personalized Plan')}
+          </motion.button>
+          <motion.button
+            onClick={generateReport}
+            disabled={isLoading}
+            whileTap={{ scale: 0.95 }}
+            className="relative overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
+            style={{ background: 'linear-gradient(135deg, hsl(280 60% 55%), hsl(var(--primary)))' }}
+          >
+            {isLoading && activeTab === 'report' ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileText className="w-4 h-4" />}
+            {t("smartPlan.createReport", "Create Health Report")}
+          </motion.button>
+        </div>
+
+        {/* Tabs — Results */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="exercises" className="text-xs gap-1">
               <Activity className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{t("smartPlan.exercises")}</span>
@@ -567,6 +590,10 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
             <TabsTrigger value="meals" className="text-xs gap-1">
               <Utensils className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{t("smartPlan.meals")}</span>
+            </TabsTrigger>
+            <TabsTrigger value="aiPlan" className="text-xs gap-1">
+              <Brain className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">{t("smartPlan.aiPlanTab", "AI Plan")}</span>
             </TabsTrigger>
             <TabsTrigger value="report" className="text-xs gap-1">
               <FileText className="w-3.5 h-3.5" />
@@ -584,14 +611,9 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
                 <div className="space-y-3">
                   {getExercisePlan().map((ex, i) => (
                     <div key={i} className="flex items-center justify-between p-3 bg-muted rounded-xl">
-                      <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-sm">
-                          {ex.icon}
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-semibold">{ex.name}</h4>
-                          <span className="text-[10px] text-muted-foreground px-2 py-0.5 bg-background rounded-full border">{ex.type}</span>
-                        </div>
+                      <div>
+                        <h4 className="text-sm font-semibold">{ex.name}</h4>
+                        <span className="text-[10px] text-muted-foreground px-2 py-0.5 bg-background rounded-full border">{ex.type}</span>
                       </div>
                       <span className="font-mono text-xs font-medium">{ex.duration}</span>
                     </div>
@@ -618,36 +640,40 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
             </Card>
           </TabsContent>
 
-          <TabsContent value="report">
-            {!reportContent ? (
-              <Card>
-                <CardContent className="p-5 text-center space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                    <FileText className="h-7 w-7 text-primary" />
+          <TabsContent value="aiPlan">
+            {aiResponse ? (
+              <Card className="border-primary/30 bg-primary/5">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Brain className="h-4 w-4 text-primary" />
+                      <h3 className="font-semibold text-sm">{t('smartPlan.aiPlanTitle', 'AI Personalized Plan')}</h3>
+                    </div>
+                    <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => setAiResponse('')}>
+                      <span className="sr-only">Close</span>✕
+                    </Button>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-semibold">{t("smartPlan.generateReport", "Generate Comprehensive Report")}</h3>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {t("smartPlan.reportHint", "Get a detailed AI-powered health report personalized for your week, weight, and condition")}
-                    </p>
-                  </div>
-                  <motion.button
-                    onClick={generateReport}
-                    disabled={isLoading}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full relative overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
-                    style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
-                  >
-                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
-                    {t("smartPlan.createReport", "Create Health Report")}
-                  </motion.button>
+                  <MarkdownRenderer content={aiResponse} isLoading={isLoading} />
                 </CardContent>
               </Card>
             ) : (
+              <Card>
+                <CardContent className="p-5 text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                    <Brain className="h-6 w-6 text-primary" />
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    {t("smartPlan.aiPlanHint", "Press the AI Plan button above to generate a personalized daily plan")}
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
+          <TabsContent value="report">
+            {reportContent ? (
               <div className="space-y-3">
-                {/* Report Content */}
                 <div id="smart-plan-report" ref={reportRef} className="bg-background rounded-xl" dir={isRTL ? 'rtl' : 'ltr'} lang={lang}>
-                  {/* Report Header */}
                   <Card className="border-primary/20">
                     <CardContent className="p-4 space-y-3">
                       <div className="flex items-center justify-between">
@@ -663,7 +689,6 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
                         <Badge className={`${trimester.color} text-white text-[10px]`}>{trimester.label}</Badge>
                       </div>
 
-                      {/* Progress bar */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between text-[10px] text-muted-foreground">
                           <span>{t("smartPlan.pregnancyProgress", "Pregnancy Progress")}</span>
@@ -675,7 +700,6 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
                         </p>
                       </div>
 
-                      {/* Stats Grid */}
                       <div className="grid grid-cols-4 gap-2 pt-1">
                         {statsCards.map((stat, i) => (
                           <div key={i} className="bg-muted/50 rounded-lg p-2 text-center">
@@ -688,7 +712,6 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
                     </CardContent>
                   </Card>
 
-                  {/* AI Report Content */}
                   <Card className="border-primary/20 bg-primary/5 mt-3">
                     <CardContent className="p-4">
                       <MarkdownRenderer content={reportContent} isLoading={isLoading} />
@@ -696,7 +719,6 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
                   </Card>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex gap-2">
                   <Button
                     onClick={handleExportPDF}
@@ -719,42 +741,20 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
                   </motion.button>
                 </div>
               </div>
+            ) : (
+              <Card>
+                <CardContent className="p-5 text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                    <FileText className="h-6 w-6 text-primary" />
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    {t("smartPlan.reportHint", "Get a detailed AI-powered health report personalized for your week, weight, and condition")}
+                  </p>
+                </CardContent>
+              </Card>
             )}
           </TabsContent>
         </Tabs>
-
-        {/* AI Quick Plan Button */}
-        <motion.button
-          onClick={getAIPlan}
-          disabled={isLoading}
-          whileTap={{ scale: 0.92 }}
-          className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
-        >
-          <div
-            className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl"
-            style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}
-          >
-            {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : <Brain className="h-4 w-4 shrink-0" />}
-            <span className="truncate">{t('smartPlan.getAIPlan', 'Get AI-Personalized Plan')}</span>
-          </div>
-          <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
-        </motion.button>
-
-        {/* AI Quick Plan Result */}
-        {aiResponse && (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <Brain className="h-4 w-4 text-primary" />
-                  <h3 className="font-semibold text-sm">{t('smartPlan.aiPlanTitle', 'AI Personalized Plan')}</h3>
-                </div>
-                <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => setAiResponse('')}>✕</Button>
-              </div>
-              <MarkdownRenderer content={aiResponse} isLoading={isLoading} />
-            </CardContent>
-          </Card>
-        )}
 
         {error && (
           <Card className="border-destructive/30 bg-destructive/5">
