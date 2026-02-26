@@ -559,7 +559,7 @@ export const ovulationVideosByLang: VideosByLang = {
     { id: "1", title: "فهم الإباضة وأيام الخصوبة", description: "شرح طبي لعملية الإباضة وكيفية تتبعها", youtubeId: "mvZhvIwEAyw", duration: "10:00", category: "تعليمي" },
     { id: "2", title: "علامات التبويض الأكيدة", description: "أعراض الإباضة وكيف تعرفينها", youtubeId: "sz5jvatde_M", duration: "8:00", category: "أعراض" },
     { id: "3", title: "نصائح لزيادة فرص الحمل", description: "نصائح طبية لتعزيز الخصوبة وزيادة فرص الإنجاب", youtubeId: "KEbLo7IR31M", duration: "12:00", category: "خصوبة" },
-    { id: "4", title: "حاسبة أيام التبويض", description: "كيفية حساب أيام الإباضة بدقة", youtubeId: "DO2Tr49fTQw", duration: "7:00", category: "تعليمي" },
+    { id: "4", title: "دليل أيام التبويض", description: "كيفية حساب أيام الإباضة بدقة", youtubeId: "DO2Tr49fTQw", duration: "7:00", category: "تعليمي" },
   ],
   tr: [
     { id: "1", title: "Yumurtlama Nedir? Nasıl Takip Edilir?", description: "Ovülasyonun bilimsel açıklaması ve takip yöntemleri", youtubeId: "GriRydmtnG0", duration: "10:00", category: "Eğitim" },
