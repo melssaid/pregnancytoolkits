@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Shield, Award, Heart, Settings } from "lucide-react";
+import { Shield, Heart, Settings } from "lucide-react";
 import logoImage from "@/assets/logo.png";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
@@ -32,8 +32,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Award className="h-3 w-3" />
-            <span>{t('layout.trustBar.freeAccess', 'Free Access')}</span>
+            <Shield className="h-3 w-3" />
+            <span>{t('layout.trustBar.premium')}</span>
           </div>
         </div>
       </div>
