@@ -1705,6 +1705,7 @@
       "resume": "Reanudar",
       "pause": "Pausar",
       "completed": "Completado",
+      "exerciseInProgress": "Ejercicio en curso",
       "allCategories": "Todos",
       "workoutProgress": "Progreso del Entrenamiento",
       "workoutComplete": "¡Entrenamiento Completado! 🎉",

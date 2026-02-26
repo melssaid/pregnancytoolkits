@@ -1438,6 +1438,7 @@
       "resume": "استأنفي",
       "pause": "توقفي",
       "completed": "مكتمل",
+      "exerciseInProgress": "التمرين قيد التنفيذ",
       "allCategories": "الكل",
       "workoutProgress": "تقدم التمرين",
       "workoutComplete": "اكتمل التمرين! 🎉",

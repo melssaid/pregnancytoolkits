@@ -1631,6 +1631,7 @@
       "resume": "Resume",
       "pause": "Pause",
       "completed": "Completed",
+      "exerciseInProgress": "Exercise in progress",
       "allCategories": "All",
       "workoutProgress": "Workout Progress",
       "workoutComplete": "Workout Complete! 🎉",

@@ -2428,6 +2428,7 @@
       "resume": "Reprendre",
       "pause": "Pause",
       "completed": "Terminé",
+      "exerciseInProgress": "Exercice en cours",
       "allCategories": "Tout",
       "workoutProgress": "Progression de l'entraînement",
       "workoutComplete": "Entraînement terminé ! 🎉",
