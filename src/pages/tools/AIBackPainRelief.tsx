@@ -184,10 +184,16 @@ export default function AIBackPainRelief() {
             <motion.button
               onClick={getAIReliefAdvice}
               disabled={isLoading}
-              whileTap={{ scale: 0.95 }}
-              className="w-full relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+              whileTap={{ scale: 0.92 }}
+              className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <div className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-xl bg-primary" style={{ boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.4)' }}>
+              <div
+                className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-2xl"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                  boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)',
+                }}
+              >
                 {isLoading ? (
                   <AILoadingDots text={t('toolsInternal.backPainRelief.analyzing')} />
                 ) : (
@@ -196,6 +202,10 @@ export default function AIBackPainRelief() {
                     <span>{t('toolsInternal.backPainRelief.getAIAdvice')}</span>
                   </>
                 )}
+                <span
+                  className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none"
+                  aria-hidden
+                />
               </div>
             </motion.button>
           </CardContent>
