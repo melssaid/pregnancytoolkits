@@ -80,6 +80,7 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 // VIDEO LIBRARY
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const Splash = lazy(() => import("@/pages/Splash"));
+const LandingEN = lazy(() => import("@/pages/LandingEN"));
 
 export function AnimatedRoutes() {
   return (
@@ -87,6 +88,7 @@ export function AnimatedRoutes() {
       <Routes>
         {/* Main Pages */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+        <Route path="/en" element={<PageTransition><LandingEN /></PageTransition>} />
         <Route path="/dashboard" element={<PageTransition><SmartDashboard /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />

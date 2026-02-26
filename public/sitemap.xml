@@ -19,6 +19,15 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/?lang=pt"/>
   </url>
 
+  <!-- English SEO Landing Page -->
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/en</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
+  </url>
+
   <!-- Dashboard -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/dashboard</loc>
