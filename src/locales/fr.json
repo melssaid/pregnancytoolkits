@@ -3843,6 +3843,30 @@
     }
   },
   "toolsInternal.preconceptionCheckup": {
+    "progressLabel": "Examens suivis",
+    "tracked": "suivi",
+    "allComplete": "Excellente préparation ! Discutez de vos résultats avec votre médecin.",
+    "categories": {
+      "essential": "Examens de santé essentiels",
+      "screening": "Dépistage infections & immunité",
+      "specialized": "Évaluations spécialisées",
+      "medications": "Médicaments & Vaccinations"
+    },
+    "ai": {
+      "title": "Analyse de préparation",
+      "analyze": "Analyser ma préparation",
+      "readinessTitle": "Aperçu de la préparation",
+      "priorityTitle": "Recommandations prioritaires",
+      "tipsTitle": "Conseils utiles",
+      "timelineTitle": "Calendrier suggéré"
+    },
+    "related": {
+      "academy": "Académie de fertilité",
+      "academyDesc": "Éducation complète sur la fertilité",
+      "nutrition": "Guide nutritionnel",
+      "nutritionDesc": "Nutrition & compléments préconception"
+    },
+    "disclaimer": "Cette liste est une référence éducative pour organiser vos discussions avec votre médecin. Elle ne remplace pas un avis médical, un diagnostic ou un traitement professionnel. Tous les examens doivent être discutés et prescrits par un professionnel de santé qualifié.",
     "checks": {
       "generalCheckup": { "title": "Bilan de santé général", "description": "Examen physique complet pour évaluer votre santé, tension artérielle, poids et discuter de vos projets de grossesse." },
       "bloodWork": { "title": "Numération formule sanguine", "description": "Vérifie l'anémie, les infections et la santé sanguine. Identifie la carence en fer à traiter avant la grossesse." },
