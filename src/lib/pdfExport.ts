@@ -57,20 +57,33 @@ async function loadLogoImage(): Promise<string | null> {
 async function fetchFontAsBase64(url: string): Promise<string | null> {
   try {
     const response = await fetch(url);
-    if (!response.ok) return null;
-    const arrayBuffer = await response.arrayBuffer();
-    const bytes = new Uint8Array(arrayBuffer);
-    let binary = '';
-    for (let i = 0; i < bytes.length; i++) {
-      binary += String.fromCharCode(bytes[i]);
+    if (!response.ok) {
+      console.warn(`[PDF] Font fetch failed: ${url} (${response.status})`);
+      return null;
     }
-    return btoa(binary);
-  } catch { return null; }
+    const blob = await response.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const result = reader.result as string;
+        // Extract base64 from data URL: "data:font/ttf;base64,XXXX"
+        const base64 = result.split(',')[1] || null;
+        resolve(base64);
+      };
+      reader.onerror = () => {
+        console.warn(`[PDF] Font FileReader failed: ${url}`);
+        resolve(null);
+      };
+      reader.readAsDataURL(blob);
+    });
+  } catch (e) {
+    console.warn(`[PDF] Font load error: ${url}`, e);
+    return null;
+  }
 }
 
 let tajawalFontCache: { regular: string; bold: string } | null = null;
 let amiriFontCache: { regular: string; bold: string } | null = null;
-let fontLoading: Promise<void> | null = null;
 
 const FONT_URLS = {
   tajawalRegular: '/fonts/Tajawal-Regular.ttf',
@@ -81,24 +94,23 @@ const FONT_URLS = {
 
 async function loadAllFonts(): Promise<void> {
   if (tajawalFontCache && amiriFontCache) return;
-  if (fontLoading) return fontLoading;
   
-  fontLoading = (async () => {
-    const [tajawalReg, tajawalBold, amiriReg, amiriBold] = await Promise.all([
-      fetchFontAsBase64(FONT_URLS.tajawalRegular),
-      fetchFontAsBase64(FONT_URLS.tajawalBold),
-      fetchFontAsBase64(FONT_URLS.amiriRegular),
-      fetchFontAsBase64(FONT_URLS.amiriBold),
-    ]);
-    if (tajawalReg) {
-      tajawalFontCache = { regular: tajawalReg, bold: tajawalBold || tajawalReg };
-    }
-    if (amiriReg) {
-      amiriFontCache = { regular: amiriReg, bold: amiriBold || amiriReg };
-    }
-  })();
-  
-  return fontLoading;
+  const [tajawalReg, tajawalBold, amiriReg, amiriBold] = await Promise.all([
+    !tajawalFontCache ? fetchFontAsBase64(FONT_URLS.tajawalRegular) : Promise.resolve(null),
+    !tajawalFontCache ? fetchFontAsBase64(FONT_URLS.tajawalBold) : Promise.resolve(null),
+    !amiriFontCache ? fetchFontAsBase64(FONT_URLS.amiriRegular) : Promise.resolve(null),
+    !amiriFontCache ? fetchFontAsBase64(FONT_URLS.amiriBold) : Promise.resolve(null),
+  ]);
+  if (tajawalReg && !tajawalFontCache) {
+    tajawalFontCache = { regular: tajawalReg, bold: tajawalBold || tajawalReg };
+    console.log('[PDF] Tajawal font loaded successfully');
+  }
+  if (amiriReg && !amiriFontCache) {
+    amiriFontCache = { regular: amiriReg, bold: amiriBold || amiriReg };
+    console.log('[PDF] Amiri font loaded successfully');
+  }
+  if (!tajawalFontCache) console.warn('[PDF] Tajawal font failed to load');
+  if (!amiriFontCache) console.warn('[PDF] Amiri font failed to load');
 }
 
 function setupFonts(doc: jsPDF) {
@@ -187,26 +199,34 @@ type RGB = { r: number; g: number; b: number };
 let _pageCount = 0;
 let _reportTitle = '';
 
+// Track already-reshaped strings to prevent double-reshaping
+const _reshapedCache = new Map<string, string>();
+
 function stripEmojis(text: string): string {
+  if (!text) return '';
   let cleaned = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '').replace(/\s{2,}/g, ' ').trim();
   // Reshape Arabic text for jsPDF (converts to Presentation Forms so letters connect)
-  if (_isRTL && /[\u0600-\u06FF]/.test(cleaned)) {
+  // Only reshape if text contains standard Arabic chars (not already reshaped Presentation Forms)
+  if (_isRTL && /[\u0600-\u06FF]/.test(cleaned) && !/[\uFB50-\uFDFF\uFE70-\uFEFF]/.test(cleaned)) {
+    const cached = _reshapedCache.get(cleaned);
+    if (cached) return cached;
     try {
-      cleaned = reshapeArabicForPDF(cleaned);
-    } catch { /* fallback to raw text */ }
+      const reshaped = reshapeArabicForPDF(cleaned);
+      _reshapedCache.set(cleaned, reshaped);
+      return reshaped;
+    } catch (e) {
+      console.warn('[PDF] Arabic reshaping failed:', e);
+    }
   }
   return cleaned;
 }
 
 /**
  * Reshape Arabic text for jsPDF rendering.
- * 1. Convert Arabic chars to Presentation Forms (so letters connect)
- * 2. Apply visual bidi: reverse the overall string but keep LTR runs (numbers, Latin) intact
+ * Converts Arabic chars to Presentation Forms (so letters connect).
+ * jsPDF with { align: 'right' } handles RTL text direction natively.
  */
 function reshapeArabicForPDF(text: string): string {
-  // Only reshape Arabic characters to connected Presentation Forms.
-  // jsPDF with { align: 'right' } handles RTL text direction natively,
-  // so we do NOT apply manual visual bidi reversal.
   return ArabicReshaper.convertArabic(text);
 }
 
@@ -356,15 +376,47 @@ function drawTableRow(s: PDFState, cells: { text: string; width: number; align?:
 
 // Draw a detailed list of array items
 function drawDetailedArrayItems(s: PDFState, items: any[], color: RGB, language: string) {
-  const maxItems = 15; // Show up to 15 items in detail
+  const maxItems = 30; // Show up to 30 items in detail
   const displayItems = items.slice(0, maxItems);
+  
+  // Localized field labels for common data keys
+  const fieldLabels: Record<string, Record<string, string>> = {
+    name: { ar: 'الاسم', de: 'Name', fr: 'Nom', es: 'Nombre', pt: 'Nome', tr: 'İsim', en: 'Name' },
+    date: { ar: 'التاريخ', de: 'Datum', fr: 'Date', es: 'Fecha', pt: 'Data', tr: 'Tarih', en: 'Date' },
+    time: { ar: 'الوقت', de: 'Zeit', fr: 'Heure', es: 'Hora', pt: 'Hora', tr: 'Saat', en: 'Time' },
+    type: { ar: 'النوع', de: 'Typ', fr: 'Type', es: 'Tipo', pt: 'Tipo', tr: 'Tür', en: 'Type' },
+    notes: { ar: 'ملاحظات', de: 'Notizen', fr: 'Notes', es: 'Notas', pt: 'Notas', tr: 'Notlar', en: 'Notes' },
+    value: { ar: 'القيمة', de: 'Wert', fr: 'Valeur', es: 'Valor', pt: 'Valor', tr: 'Değer', en: 'Value' },
+    status: { ar: 'الحالة', de: 'Status', fr: 'Statut', es: 'Estado', pt: 'Estado', tr: 'Durum', en: 'Status' },
+    title: { ar: 'العنوان', de: 'Titel', fr: 'Titre', es: 'Título', pt: 'Título', tr: 'Başlık', en: 'Title' },
+    description: { ar: 'الوصف', de: 'Beschreibung', fr: 'Description', es: 'Descripción', pt: 'Descrição', tr: 'Açıklama', en: 'Description' },
+    count: { ar: 'العدد', de: 'Anzahl', fr: 'Nombre', es: 'Cantidad', pt: 'Quantidade', tr: 'Sayı', en: 'Count' },
+    duration: { ar: 'المدة', de: 'Dauer', fr: 'Durée', es: 'Duración', pt: 'Duração', tr: 'Süre', en: 'Duration' },
+    weight: { ar: 'الوزن', de: 'Gewicht', fr: 'Poids', es: 'Peso', pt: 'Peso', tr: 'Ağırlık', en: 'Weight' },
+    week: { ar: 'الأسبوع', de: 'Woche', fr: 'Semaine', es: 'Semana', pt: 'Semana', tr: 'Hafta', en: 'Week' },
+    packed: { ar: 'محضّر', de: 'Gepackt', fr: 'Emballé', es: 'Empacado', pt: 'Embalado', tr: 'Hazır', en: 'Packed' },
+    priority: { ar: 'الأولوية', de: 'Priorität', fr: 'Priorité', es: 'Prioridad', pt: 'Prioridade', tr: 'Öncelik', en: 'Priority' },
+    category: { ar: 'الفئة', de: 'Kategorie', fr: 'Catégorie', es: 'Categoría', pt: 'Categoria', tr: 'Kategori', en: 'Category' },
+    amount: { ar: 'الكمية', de: 'Menge', fr: 'Quantité', es: 'Cantidad', pt: 'Quantidade', tr: 'Miktar', en: 'Amount' },
+    glasses: { ar: 'أكواب', de: 'Gläser', fr: 'Verres', es: 'Vasos', pt: 'Copos', tr: 'Bardak', en: 'Glasses' },
+    mood: { ar: 'المزاج', de: 'Stimmung', fr: 'Humeur', es: 'Estado de ánimo', pt: 'Humor', tr: 'Ruh hali', en: 'Mood' },
+    taken: { ar: 'تم تناوله', de: 'Eingenommen', fr: 'Pris', es: 'Tomado', pt: 'Tomado', tr: 'Alındı', en: 'Taken' },
+    kicks: { ar: 'الركلات', de: 'Tritte', fr: 'Coups', es: 'Patadas', pt: 'Chutes', tr: 'Tekmeler', en: 'Kicks' },
+  };
+  
+  const getFieldLabel = (key: string): string => {
+    const lowerKey = key.toLowerCase().replace(/[-_]/g, '');
+    for (const [k, labels] of Object.entries(fieldLabels)) {
+      if (lowerKey === k || lowerKey.includes(k)) return labels[language] || labels.en;
+    }
+    return key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim();
+  };
   
   displayItems.forEach((item, idx) => {
     if (typeof item === 'object' && item !== null) {
-      // Render object fields as a compact card
       const fields = Object.entries(item)
         .filter(([k]) => !['id', 'userId', 'user_id', 'createdAt', 'updatedAt', '__typename'].includes(k))
-        .slice(0, 6);
+        .slice(0, 8);
       
       if (fields.length === 0) return;
       
@@ -383,31 +435,35 @@ function drawDetailedArrayItems(s: PDFState, items: any[], color: RGB, language:
       fields.forEach(([key, value]) => {
         s.y += 4.5;
         ensureSpace(s, 4.5);
-        const displayKey = key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim();
+        const displayKey = getFieldLabel(key);
         let displayValue = '';
         if (value === null || value === undefined) displayValue = '-';
         else if (typeof value === 'boolean') displayValue = value ? '✓' : '✗';
         else if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}/.test(value)) {
           try { displayValue = formatDateForPDF(new Date(value), language); } catch { displayValue = String(value); }
         }
-        else if (Array.isArray(value)) displayValue = `[${value.length}]`;
-        else if (typeof value === 'object') displayValue = JSON.stringify(value).substring(0, 60);
-        else displayValue = String(value).substring(0, 80);
+        else if (Array.isArray(value)) displayValue = value.length > 0 ? (value.every(v => typeof v === 'string') ? value.join(', ') : `[${value.length}]`) : '-';
+        else if (typeof value === 'object') {
+          const entries = Object.entries(value).slice(0, 3);
+          displayValue = entries.map(([k, v]) => `${getFieldLabel(k)}: ${String(v).substring(0, 30)}`).join(' | ');
+        }
+        else displayValue = String(value).substring(0, 100);
         
         setFontBold(s.doc);
         s.doc.setFontSize(7);
         s.doc.setTextColor(71, 85, 105);
         const keyText = stripEmojis(displayKey);
+        const valText = stripEmojis(displayValue);
         if (_isRTL) {
           s.doc.text(keyText + ':', fieldStartX, s.y + 3, { align: 'right' });
           setFontNormal(s.doc);
           s.doc.setTextColor(100, 116, 139);
-          s.doc.text(stripEmojis(displayValue), fieldStartX - s.doc.getTextWidth(keyText + ': '), s.y + 3, { align: 'right' });
+          s.doc.text(valText, fieldStartX - s.doc.getTextWidth(keyText + ': '), s.y + 3, { align: 'right' });
         } else {
           s.doc.text(keyText + ':', fieldStartX, s.y + 3);
           setFontNormal(s.doc);
           s.doc.setTextColor(100, 116, 139);
-          s.doc.text(stripEmojis(displayValue), fieldStartX + s.doc.getTextWidth(keyText + ': ') + 1, s.y + 3);
+          s.doc.text(valText, fieldStartX + s.doc.getTextWidth(keyText + ': ') + 1, s.y + 3);
         }
       });
       s.y += 4;
@@ -429,7 +485,16 @@ function drawDetailedArrayItems(s: PDFState, items: any[], color: RGB, language:
     ensureSpace(s, 5);
     s.doc.setFontSize(7);
     s.doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-    const moreText = `+${items.length - maxItems} more items`;
+    const moreLabels: Record<string, string> = {
+      ar: `+${items.length - maxItems} عنصر إضافي`,
+      de: `+${items.length - maxItems} weitere Elemente`,
+      fr: `+${items.length - maxItems} éléments supplémentaires`,
+      es: `+${items.length - maxItems} elementos más`,
+      pt: `+${items.length - maxItems} itens adicionais`,
+      tr: `+${items.length - maxItems} daha fazla öğe`,
+      en: `+${items.length - maxItems} more items`,
+    };
+    const moreText = stripEmojis(moreLabels[language] || moreLabels.en);
     s.doc.text(moreText, PAGE_W / 2, s.y + 3, { align: 'center' });
     s.y += 5;
   }
