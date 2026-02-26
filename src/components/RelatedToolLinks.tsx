@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { 
   Baby, Calendar, Droplets, Activity, TrendingUp, Ruler,
-  Utensils, ShoppingCart, Pill, FileText, PersonStanding, ChevronLeft,
+  Utensils, ShoppingCart, Pill, FileText, PersonStanding, ChevronLeft, ChevronRight,
   Moon, Heart, Milk,
   type LucideIcon 
 } from "lucide-react";
@@ -44,7 +44,9 @@ interface RelatedToolLinksProps {
 }
 
 export function RelatedToolLinks({ links }: RelatedToolLinksProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+  const ArrowIcon = isRTL ? ChevronLeft : ChevronRight;
 
   return (
     <div className="space-y-2">
@@ -65,7 +67,7 @@ export function RelatedToolLinks({ links }: RelatedToolLinksProps) {
                 {t(link.descKey, link.descFallback)}
               </p>
             </div>
-            <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+            <ArrowIcon className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
           </Link>
         );
       })}
