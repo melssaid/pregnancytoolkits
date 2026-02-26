@@ -142,31 +142,33 @@ function setupFonts(doc: jsPDF) {
   } catch { /* fonts already added */ }
 }
 
-// Helpers to set bold/normal while respecting Unicode font
-let _activeFont: string = 'helvetica';
-let _isRTL: boolean = false;
+// ── PDF Context: encapsulates all mutable state per-export ──────────────
+interface PDFContext {
+  activeFont: string;
+  isRTL: boolean;
+  reportTitle: string;
+}
+
+let _ctx: PDFContext = { activeFont: 'helvetica', isRTL: false, reportTitle: '' };
 
 function setFontBold(doc: jsPDF) {
-  doc.setFont(_activeFont, 'bold');
+  doc.setFont(_ctx.activeFont, 'bold');
 }
 function setFontNormal(doc: jsPDF) {
-  doc.setFont(_activeFont, 'normal');
+  doc.setFont(_ctx.activeFont, 'normal');
 }
 
 // RTL-aware text helper: flips alignment and x-position for Arabic
 function rtlText(doc: jsPDF, text: string, x: number, y: number, options?: any) {
-  if (_isRTL) {
+  if (_ctx.isRTL) {
     const opts = { ...options };
-    // Flip alignment
     if (!opts.align || opts.align === 'left') {
       opts.align = 'right';
-      // Mirror x from left margin to right margin
       x = PAGE_W - (x - MARGIN_X) - MARGIN_X;
     } else if (opts.align === 'right') {
       opts.align = 'left';
       x = PAGE_W - (x - MARGIN_X) - MARGIN_X;
     }
-    // 'center' stays center
     doc.text(text, x, y, opts);
   } else {
     doc.text(text, x, y, options);
@@ -175,22 +177,30 @@ function rtlText(doc: jsPDF, text: string, x: number, y: number, options?: any) 
 
 // Create a pre-configured PDF document with Unicode font support
 async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
+  // Clear reshape cache between exports to prevent stale data
+  _reshapedCache.clear();
+
   await loadAllFonts();
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-  _isRTL = language === 'ar';
+  
+  // Reset all mutable context for this export
+  _ctx = {
+    activeFont: 'helvetica',
+    isRTL: language === 'ar',
+    reportTitle: '',
+  };
+
   setupFonts(doc);
   
   // Use Cairo as the primary font for all languages (supports Arabic + Latin)
   if (cairoFontCache) {
-    _activeFont = 'Cairo';
-  } else if (_isRTL && amiriFontCache) {
-    _activeFont = 'Amiri';
+    _ctx.activeFont = 'Cairo';
+  } else if (_ctx.isRTL && amiriFontCache) {
+    _ctx.activeFont = 'Amiri';
   } else if (tajawalFontCache) {
-    _activeFont = 'Tajawal';
-  } else {
-    _activeFont = 'helvetica';
+    _ctx.activeFont = 'Tajawal';
   }
-  doc.setFont(_activeFont, 'normal');
+  doc.setFont(_ctx.activeFont, 'normal');
   return { doc };
 }
 
@@ -209,9 +219,7 @@ const COLORS = {
 
 type RGB = { r: number; g: number; b: number };
 
-// Track page count for page numbering
-let _pageCount = 0;
-let _reportTitle = '';
+// Track already-reshaped strings to prevent double-reshaping
 
 // Track already-reshaped strings to prevent double-reshaping
 const _reshapedCache = new Map<string, string>();
