@@ -38,11 +38,13 @@ interface SectionConfig {
 
 const sectionConfigs: SectionConfig[] = [
   { id: "collection", icon: Database, titleKey: "collection", color: "text-primary", bgColor: "bg-primary/10", borderColor: "border-primary/20" },
+  { id: "data-safety", icon: Shield, titleKey: "dataSafety", color: "text-emerald-600", bgColor: "bg-emerald-500/10", borderColor: "border-emerald-500/20", important: true },
   { id: "local-storage", icon: Smartphone, titleKey: "localStorage", color: "text-green-600", bgColor: "bg-green-500/10", borderColor: "border-green-500/20", important: true },
   { id: "processing", icon: Scale, titleKey: "processing", color: "text-blue-600", bgColor: "bg-blue-500/10", borderColor: "border-blue-500/20" },
   { id: "sharing", icon: Users, titleKey: "sharing", color: "text-amber-600", bgColor: "bg-amber-500/10", borderColor: "border-amber-500/20" },
   { id: "ai-products", icon: Sparkles, titleKey: "aiProducts", color: "text-purple-600", bgColor: "bg-purple-500/10", borderColor: "border-purple-500/20" },
   { id: "notifications", icon: Bell, titleKey: "notifications", color: "text-teal-600", bgColor: "bg-teal-500/10", borderColor: "border-teal-500/20" },
+  { id: "photos", icon: Eye, titleKey: "photos", color: "text-rose-600", bgColor: "bg-rose-500/10", borderColor: "border-rose-500/20" },
   { id: "retention", icon: Clock, titleKey: "retention", color: "text-orange-600", bgColor: "bg-orange-500/10", borderColor: "border-orange-500/20" },
   { id: "security", icon: Lock, titleKey: "security", color: "text-red-600", bgColor: "bg-red-500/10", borderColor: "border-red-500/20" },
   { id: "minors", icon: Baby, titleKey: "minors", color: "text-pink-600", bgColor: "bg-pink-500/10", borderColor: "border-pink-500/20" },
@@ -62,14 +64,12 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
         <div className="space-y-4">
           <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
           <div className="grid gap-2 mt-3">
-            <div className="flex items-start gap-2 text-sm">
-              <XCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-              <span className="text-muted-foreground">{s("noSensitive")}</span>
-            </div>
-            <div className="flex items-start gap-2 text-sm">
-              <XCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
-              <span className="text-muted-foreground">{s("noThirdParty")}</span>
-            </div>
+            {["noSensitive", "noThirdParty", "noAccount", "noTracking"].map((key) => (
+              <div key={key} className="flex items-start gap-2 text-sm">
+                <XCircle className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
+                <span className="text-muted-foreground">{s(key)}</span>
+              </div>
+            ))}
             <div className="flex items-start gap-2 text-sm">
               <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
               <span className="text-muted-foreground">{s("paymentSecure")}</span>
@@ -78,12 +78,28 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
         </div>
       );
 
+    case "dataSafety":
+      return (
+        <div className="space-y-4">
+          <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
+          <div className="grid gap-2 mt-3">
+            {["noPersonalData", "localOnly", "encryption", "anonymousAnalytics", "deletion", "optOut"].map((key) => (
+              <div key={key} className="flex items-start gap-2 text-sm">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+                <span className="text-muted-foreground">{s(key)}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground/70 mt-2">{s("analyticsDetail")}</p>
+        </div>
+      );
+
     case "localStorage":
       return (
         <div className="space-y-4">
           <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
           <div className="grid gap-2 mt-3">
-            {["neverLeaves", "notUploaded", "notShared", "canDelete"].map((key) => (
+            {["neverLeaves", "notUploaded", "notShared", "canDelete", "encrypted"].map((key) => (
               <div key={key} className="flex items-start gap-2 text-sm">
                 <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
                 <span className="text-muted-foreground">{s(key)}</span>
@@ -114,6 +130,7 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
           <div className="mt-4 p-3 bg-green-500/5 rounded-lg border border-green-500/20">
             <p className="text-sm font-medium text-green-700 dark:text-green-400">{s("noSold")}</p>
           </div>
+          <p className="text-sm text-muted-foreground">{s("noAds")}</p>
         </div>
       );
 
@@ -131,6 +148,7 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
             ))}
           </div>
           <p className="text-sm text-muted-foreground mt-3">{s("dataNote")}</p>
+          <p className="text-xs text-muted-foreground/70">{s("noTraining")}</p>
         </div>
       );
     }
@@ -153,11 +171,27 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
     case "retention":
       return <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>;
 
+    case "photos":
+      return (
+        <div className="space-y-4">
+          <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
+          <div className="grid gap-2 mt-3">
+            {["localDefault", "optionalSync", "signedUrls", "noPublic"].map((key) => (
+              <div key={key} className="flex items-start gap-2 text-sm">
+                <CheckCircle2 className="w-4 h-4 text-rose-600 mt-0.5 shrink-0" />
+                <span className="text-muted-foreground">{s(key)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
     case "security":
       return (
         <div className="space-y-3">
           <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
           <p className="text-sm text-muted-foreground">{s("note")}</p>
+          <p className="text-xs text-muted-foreground/70">{s("measures")}</p>
         </div>
       );
 

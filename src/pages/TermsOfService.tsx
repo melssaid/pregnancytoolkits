@@ -30,9 +30,14 @@ const sectionConfigs: SectionConfig[] = [
   { id: "acceptance", icon: FileCheck, titleKey: "acceptance", color: "text-primary", bgColor: "bg-primary/10", borderColor: "border-primary/20" },
   { id: "medical", icon: AlertTriangle, titleKey: "medical", color: "text-destructive", bgColor: "bg-destructive/10", borderColor: "border-destructive/20", important: true },
   { id: "usage", icon: Shield, titleKey: "usage", color: "text-blue-600", bgColor: "bg-blue-500/10", borderColor: "border-blue-500/20" },
+  { id: "intellectualProperty", icon: Scale, titleKey: "intellectualProperty", color: "text-purple-600", bgColor: "bg-purple-500/10", borderColor: "border-purple-500/20" },
+  { id: "userContent", icon: Info, titleKey: "userContent", color: "text-teal-600", bgColor: "bg-teal-500/10", borderColor: "border-teal-500/20" },
   { id: "accuracy", icon: Info, titleKey: "accuracy", color: "text-amber-600", bgColor: "bg-amber-500/10", borderColor: "border-amber-500/20" },
-  { id: "liability", icon: Scale, titleKey: "liability", color: "text-purple-600", bgColor: "bg-purple-500/10", borderColor: "border-purple-500/20" },
-  { id: "modifications", icon: RefreshCw, titleKey: "modifications", color: "text-teal-600", bgColor: "bg-teal-500/10", borderColor: "border-teal-500/20" },
+  { id: "appStore", icon: Shield, titleKey: "appStore", color: "text-green-600", bgColor: "bg-green-500/10", borderColor: "border-green-500/20" },
+  { id: "liability", icon: Scale, titleKey: "liability", color: "text-red-600", bgColor: "bg-red-500/10", borderColor: "border-red-500/20" },
+  { id: "termination", icon: AlertTriangle, titleKey: "termination", color: "text-orange-600", bgColor: "bg-orange-500/10", borderColor: "border-orange-500/20" },
+  { id: "governingLaw", icon: FileCheck, titleKey: "governingLaw", color: "text-indigo-600", bgColor: "bg-indigo-500/10", borderColor: "border-indigo-500/20" },
+  { id: "modifications", icon: RefreshCw, titleKey: "modifications", color: "text-gray-600", bgColor: "bg-gray-500/10", borderColor: "border-gray-500/20" },
 ];
 
 const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
@@ -70,7 +75,7 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
         <div className="space-y-3">
           <p className="text-muted-foreground leading-relaxed text-sm mb-3">{s("content")}</p>
           <div className="grid gap-2">
-            {["personal", "notSubstitute", "seekCare"].map((key) => (
+            {["personal", "notSubstitute", "seekCare", "noMisuse"].map((key) => (
               <div key={key} className="flex items-start gap-2 text-sm">
                 <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
                 <span className="text-muted-foreground">{s(key)}</span>
@@ -80,12 +85,13 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
         </div>
       );
 
+    case "intellectualProperty":
+    case "userContent":
     case "accuracy":
-      return <p className="text-muted-foreground leading-relaxed text-sm">{s("content")}</p>;
-
+    case "appStore":
     case "liability":
-      return <p className="text-muted-foreground leading-relaxed text-sm">{s("content")}</p>;
-
+    case "termination":
+    case "governingLaw":
     case "modifications":
       return <p className="text-muted-foreground leading-relaxed text-sm">{s("content")}</p>;
 
