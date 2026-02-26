@@ -394,14 +394,38 @@ function drawTableRow(s: PDFState, cells: { text: string; width: number; align?:
   s.y += ROW_H;
 }
 
+// Detect i18n translation keys (e.g. "groceryList.groceryItems.spinach") and extract readable text
+function isI18nKey(value: any): boolean {
+  if (typeof value !== 'string') return false;
+  // Pattern: at least 2 dots, no spaces, looks like a dotted path
+  return /^[a-zA-Z][a-zA-Z0-9]*(\.[a-zA-Z][a-zA-Z0-9]*){2,}$/.test(value);
+}
+
+function humanizeI18nKey(value: string): string {
+  // Extract the last segment: "groceryList.groceryItems.spinach" → "spinach"
+  const lastSegment = value.split('.').pop() || value;
+  // CamelCase to spaces: "sweetPotatoes" → "Sweet Potatoes"
+  return lastSegment
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^\w/, c => c.toUpperCase())
+    .trim();
+}
+
+// Resolve a value: if it's an i18n key, humanize it; otherwise return as-is
+function resolveValue(value: any): any {
+  if (isI18nKey(value)) return humanizeI18nKey(value);
+  return value;
+}
+
 // Draw a detailed list of array items
 function drawDetailedArrayItems(s: PDFState, items: any[], color: RGB, language: string) {
   const maxItems = 30; // Show up to 30 items in detail
   const displayItems = items.slice(0, maxItems);
   
-  // Localized field labels for common data keys
+  // Localized field labels for common data keys (including grocery-specific keys)
   const fieldLabels: Record<string, Record<string, string>> = {
     name: { ar: 'الاسم', de: 'Name', fr: 'Nom', es: 'Nombre', pt: 'Nome', tr: 'İsim', en: 'Name' },
+    namekey: { ar: 'الاسم', de: 'Name', fr: 'Nom', es: 'Nombre', pt: 'Nome', tr: 'İsim', en: 'Name' },
     date: { ar: 'التاريخ', de: 'Datum', fr: 'Date', es: 'Fecha', pt: 'Data', tr: 'Tarih', en: 'Date' },
     time: { ar: 'الوقت', de: 'Zeit', fr: 'Heure', es: 'Hora', pt: 'Hora', tr: 'Saat', en: 'Time' },
     type: { ar: 'النوع', de: 'Typ', fr: 'Type', es: 'Tipo', pt: 'Tipo', tr: 'Tür', en: 'Type' },
@@ -422,6 +446,9 @@ function drawDetailedArrayItems(s: PDFState, items: any[], color: RGB, language:
     mood: { ar: 'المزاج', de: 'Stimmung', fr: 'Humeur', es: 'Estado de ánimo', pt: 'Humor', tr: 'Ruh hali', en: 'Mood' },
     taken: { ar: 'تم تناوله', de: 'Eingenommen', fr: 'Pris', es: 'Tomado', pt: 'Tomado', tr: 'Alındı', en: 'Taken' },
     kicks: { ar: 'الركلات', de: 'Tritte', fr: 'Coups', es: 'Patadas', pt: 'Chutes', tr: 'Tekmeler', en: 'Kicks' },
+    ischecked: { ar: 'محدد', de: 'Ausgewählt', fr: 'Coché', es: 'Marcado', pt: 'Marcado', tr: 'Seçili', en: 'Checked' },
+    pregnancybenefitkey: { ar: 'الفائدة', de: 'Nutzen', fr: 'Bénéfice', es: 'Beneficio', pt: 'Benefício', tr: 'Fayda', en: 'Benefit' },
+    nutrients: { ar: 'العناصر الغذائية', de: 'Nährstoffe', fr: 'Nutriments', es: 'Nutrientes', pt: 'Nutrientes', tr: 'Besin Değerleri', en: 'Nutrients' },
   };
   
   const getFieldLabel = (key: string): string => {
@@ -457,17 +484,18 @@ function drawDetailedArrayItems(s: PDFState, items: any[], color: RGB, language:
         ensureSpace(s, 4.5);
         const displayKey = getFieldLabel(key);
         let displayValue = '';
-        if (value === null || value === undefined) displayValue = '-';
-        else if (typeof value === 'boolean') displayValue = value ? '✓' : '✗';
-        else if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}/.test(value)) {
-          try { displayValue = formatDateForPDF(new Date(value), language); } catch { displayValue = String(value); }
+        const resolved = resolveValue(value);
+        if (resolved === null || resolved === undefined) displayValue = '-';
+        else if (typeof resolved === 'boolean') displayValue = resolved ? '✓' : '✗';
+        else if (typeof resolved === 'string' && /^\d{4}-\d{2}-\d{2}/.test(resolved)) {
+          try { displayValue = formatDateForPDF(new Date(resolved), language); } catch { displayValue = String(resolved); }
         }
-        else if (Array.isArray(value)) displayValue = value.length > 0 ? (value.every(v => typeof v === 'string') ? value.join(', ') : `[${value.length}]`) : '-';
-        else if (typeof value === 'object') {
-          const entries = Object.entries(value).slice(0, 3);
-          displayValue = entries.map(([k, v]) => `${getFieldLabel(k)}: ${String(v).substring(0, 30)}`).join(' | ');
+        else if (Array.isArray(resolved)) displayValue = resolved.length > 0 ? (resolved.every(v => typeof v === 'string') ? resolved.map(v => String(resolveValue(v))).join(', ') : `[${resolved.length}]`) : '-';
+        else if (typeof resolved === 'object') {
+          const entries = Object.entries(resolved).slice(0, 3);
+          displayValue = entries.map(([k, v]) => `${getFieldLabel(k)}: ${String(resolveValue(v)).substring(0, 30)}`).join(' | ');
         }
-        else displayValue = String(value).substring(0, 100);
+        else displayValue = String(resolved).substring(0, 100);
         
         setFontBold(s.doc);
         s.doc.setFontSize(7);
@@ -841,6 +869,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     if (value === null || value === undefined) return L.noData;
     if (isEncryptedOrRawData(value)) return `[encrypted]`;
     if (typeof value === 'string') {
+      if (isI18nKey(value)) return humanizeI18nKey(value);
       if (/^\d{4}-\d{2}-\d{2}/.test(value)) { try { return formatDateForPDF(new Date(value), language); } catch { return value; } }
       if (/^[a-f0-9-]{36}$/i.test(value) || /^[a-f0-9]{20,}$/i.test(value)) return '';
       return value;
