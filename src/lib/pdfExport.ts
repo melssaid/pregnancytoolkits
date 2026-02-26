@@ -899,6 +899,24 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
     'Notifications': { en: 'Notifications', ar: 'الإشعارات', de: 'Benachrichtigungen', fr: 'Notifications', es: 'Notificaciones', pt: 'Notificações', tr: 'Bildirimler' },
     'diaper_tracker_data': { en: 'Diaper Tracker', ar: 'متتبع الحفاضات', de: 'Windel-Tracker', fr: 'Suivi couches', es: 'Seguimiento pañales', pt: 'Rastreador de fraldas', tr: 'Bebek Bezi Takibi' },
     'baby_sleep_data': { en: 'Baby Sleep Data', ar: 'بيانات نوم الطفل', de: 'Baby-Schlafdaten', fr: 'Données sommeil bébé', es: 'Datos sueño bebé', pt: 'Dados sono bebê', tr: 'Bebek Uyku Verileri' },
+    'baby_growth_data': { en: 'Baby Growth Data', ar: 'بيانات نمو الطفل', de: 'Baby-Wachstumsdaten', fr: 'Données croissance bébé', es: 'Datos crecimiento bebé', pt: 'Dados crescimento bebê', tr: 'Bebek Büyüme Verileri' },
+    'pregnancy_tracker_data': { en: 'Pregnancy Tracker', ar: 'متتبع الحمل', de: 'Schwangerschafts-Tracker', fr: 'Suivi de grossesse', es: 'Seguimiento embarazo', pt: 'Rastreador de gravidez', tr: 'Gebelik Takibi' },
+    'health_records': { en: 'Health Records', ar: 'السجلات الصحية', de: 'Gesundheitsdaten', fr: 'Dossiers médicaux', es: 'Registros de salud', pt: 'Registros de saúde', tr: 'Sağlık Kayıtları' },
+    'mood_records': { en: 'Mood Records', ar: 'سجل المزاج', de: 'Stimmungsaufzeichnungen', fr: 'Suivi humeur', es: 'Registro de estado de ánimo', pt: 'Registros de humor', tr: 'Ruh Hali Kayıtları' },
+    'mood_history': { en: 'Mood History', ar: 'سجل المزاج', de: 'Stimmungsverlauf', fr: 'Historique humeur', es: 'Historial de ánimo', pt: 'Histórico de humor', tr: 'Ruh Hali Geçmişi' },
+    'smoothie_recipes': { en: 'Smoothie Recipes', ar: 'وصفات العصائر', de: 'Smoothie-Rezepte', fr: 'Recettes smoothies', es: 'Recetas batidos', pt: 'Receitas de smoothies', tr: 'Smoothie Tarifleri' },
+    'exercise_history': { en: 'Exercise History', ar: 'سجل التمارين', de: 'Trainingsverlauf', fr: 'Historique exercices', es: 'Historial de ejercicios', pt: 'Histórico de exercícios', tr: 'Egzersiz Geçmişi' },
+    'exercise_records': { en: 'Exercise Records', ar: 'سجل التمارين', de: 'Trainingsaufzeichnungen', fr: 'Enregistrements exercices', es: 'Registros de ejercicios', pt: 'Registros de exercícios', tr: 'Egzersiz Kayıtları' },
+    'baby_cry_data': { en: 'Baby Cry Data', ar: 'بيانات بكاء الطفل', de: 'Baby-Weindaten', fr: 'Données pleurs bébé', es: 'Datos llanto bebé', pt: 'Dados choro bebê', tr: 'Bebek Ağlama Verileri' },
+    'symptom_records': { en: 'Symptom Records', ar: 'سجل الأعراض', de: 'Symptomaufzeichnungen', fr: 'Suivi symptômes', es: 'Registro de síntomas', pt: 'Registros de sintomas', tr: 'Semptom Kayıtları' },
+    'blood_pressure_records': { en: 'Blood Pressure', ar: 'ضغط الدم', de: 'Blutdruck', fr: 'Tension artérielle', es: 'Presión arterial', pt: 'Pressão arterial', tr: 'Tansiyon' },
+    'glucose_records': { en: 'Glucose Records', ar: 'سجل السكر', de: 'Glukoseaufzeichnungen', fr: 'Glycémie', es: 'Registros de glucosa', pt: 'Registros de glicose', tr: 'Şeker Kayıtları' },
+    'craving_history': { en: 'Craving History', ar: 'سجل الرغبات', de: 'Heißhunger-Verlauf', fr: 'Historique envies', es: 'Historial de antojos', pt: 'Histórico de desejos', tr: 'İstek Geçmişi' },
+    'skincare_records': { en: 'Skincare Records', ar: 'سجل العناية بالبشرة', de: 'Hautpflege', fr: 'Soins de peau', es: 'Cuidado de piel', pt: 'Cuidados da pele', tr: 'Cilt Bakımı' },
+    'partner_notes': { en: 'Partner Notes', ar: 'ملاحظات الشريك', de: 'Partner-Notizen', fr: 'Notes partenaire', es: 'Notas del compañero', pt: 'Notas do parceiro', tr: 'Eş Notları' },
+    'budget_data': { en: 'Budget Data', ar: 'بيانات الميزانية', de: 'Budgetdaten', fr: 'Données budget', es: 'Datos de presupuesto', pt: 'Dados de orçamento', tr: 'Bütçe Verileri' },
+    'meditation_records': { en: 'Meditation Records', ar: 'سجل التأمل', de: 'Meditationsaufzeichnungen', fr: 'Séances méditation', es: 'Registros de meditación', pt: 'Registros de meditação', tr: 'Meditasyon Kayıtları' },
+    'breathing_records': { en: 'Breathing Records', ar: 'سجل تمارين التنفس', de: 'Atemübungen', fr: 'Exercices respiration', es: 'Ejercicios respiración', pt: 'Exercícios de respiração', tr: 'Nefes Egzersizleri' },
   };
 
   const SKIP_KEYS = ['disclaimer_accepted', 'onboarding_completed', 'user_selected_language', 'last_backup_date'];
@@ -941,6 +959,9 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
       if (isI18nKey(value)) return humanizeI18nKey(value);
       if (/^\d{4}-\d{2}-\d{2}/.test(value)) { try { return formatDateForPDF(new Date(value), language); } catch { return value; } }
       if (/^[a-f0-9-]{36}$/i.test(value) || /^[a-f0-9]{20,}$/i.test(value)) return '';
+      // Try translating standalone values (categories, statuses, etc.)
+      const translated = translateValue(value, language);
+      if (translated) return translated;
       return value;
     }
     if (typeof value === 'number') return String(value);
