@@ -192,92 +192,111 @@ const SmartPregnancyPlan = () => {
     setActiveTab('report');
     const summary = buildHealthSummary(lang);
 
+    const langInstruction: Record<string, string> = {
+      ar: 'أجيبي باللغة العربية الفصحى فقط. لا تستخدمي أي لغة أخرى.',
+      en: 'Respond ONLY in English.',
+      de: 'Antworten Sie NUR auf Deutsch.',
+      fr: 'Répondez UNIQUEMENT en français.',
+      es: 'Responde SOLO en español.',
+      pt: 'Responda APENAS em português.',
+      tr: 'SADECE Türkçe yanıt verin.',
+    };
+
     const reportPrompts: Record<string, string> = {
-      ar: `أنتِ طبيبة نساء وولادة متخصصة. أعدّي تقريراً صحياً شاملاً ومفصلاً بناءً على هذه البيانات الصحية:
+      ar: `${langInstruction.ar}
+أنتِ مرشدة صحية متخصصة في الحمل والأمومة. أعدّي تقريراً صحياً شاملاً ومفصلاً بناءً على هذه البيانات:
 ${summary}
 
 يجب أن يتضمن التقرير الأقسام التالية بتفصيل:
-## 📊 ملخص الحالة الصحية
+## ملخص الحالة الصحية
 - تحليل شامل للمؤشرات الحيوية (الوزن، ضغط الدم، مؤشر كتلة الجسم) وتقييم المخاطر
 
-## 🏥 تطور الجنين هذا الأسبوع
+## تطور الجنين هذا الأسبوع
 - حجم الجنين ووزنه التقريبي والتطورات الجسدية
 
-## 🍽️ خطة التغذية المخصصة
+## خطة التغذية المخصصة
 - وجبات مفصلة (فطور، غداء، عشاء، وجبات خفيفة) مع الفيتامينات المطلوبة حسب الحالة الصحية
 
-## 🏃‍♀️ برنامج التمارين الآمنة
+## برنامج التمارين الآمنة
 - تمارين مخصصة حسب مستوى الألم والنشاط والأسبوع
 
-## 😴 تحسين النوم والراحة
+## تحسين النوم والراحة
 - نصائح مخصصة حسب ساعات النوم الحالية والحالة المزاجية
 
-## ⚠️ أعراض يجب مراقبتها
-- أعراض طبيعية وأعراض تستدعي مراجعة الطبيب (مع مراعاة ضغط الدم وأي حالات صحية)
+## أعراض يجب مراقبتها
+- أعراض طبيعية وأعراض تستدعي الانتباه (مع مراعاة ضغط الدم وأي حالات صحية)
 
-## 💡 نصائح مخصصة للأسبوع ${health.week}
+## نصائح مخصصة للأسبوع ${health.week}
 - نصائح عملية مبنية على كل البيانات المدخلة
 
-## 📋 قائمة الفحوصات المطلوبة
+## قائمة الفحوصات المطلوبة
 - الفحوصات والتحاليل المناسبة لهذا الأسبوع مع مراعاة فصيلة الدم والحالات الصحية
 
-اجعلي التقرير مفصلاً ومهنياً وشاملاً.`,
+اجعلي التقرير مفصلاً ومهنياً وشاملاً. لا تستخدمي رموز إيموجي أو اختصارات. استخدمي عناوين عربية واضحة فقط.`,
 
-      en: `You are a specialized OB-GYN doctor. Create a comprehensive, detailed health report based on this health data:
+      en: `${langInstruction.en}
+You are a wellness companion specializing in pregnancy and motherhood. Create a comprehensive, detailed health report based on this health data:
 ${summary}
 
 Include these sections in detail:
-## 📊 Health Status Summary
+## Health Status Summary
 - Comprehensive vital signs analysis (weight, blood pressure, BMI) and risk assessment
 
-## 🏥 Fetal Development This Week
+## Fetal Development This Week
 - Baby's approximate size, weight, and physical developments
 
-## 🍽️ Personalized Nutrition Plan
+## Personalized Nutrition Plan
 - Detailed meals (breakfast, lunch, dinner, snacks) with required vitamins based on health conditions
 
-## 🏃‍♀️ Safe Exercise Program
+## Safe Exercise Program
 - Customized exercises based on pain level, activity level, and week
 
-## 😴 Sleep & Rest Optimization
+## Sleep & Rest Optimization
 - Personalized tips based on current sleep hours and mood
 
-## ⚠️ Symptoms to Watch
+## Symptoms to Watch
 - Normal symptoms and warning signs (considering blood pressure and health conditions)
 
-## 💡 Tips for Week ${health.week}
+## Tips for Week ${health.week}
 - Practical tips built on all entered data
 
-## 📋 Required Checkups
+## Required Checkups
 - Appropriate tests and screenings considering blood type and health conditions
 
-Make the report detailed, professional, and comprehensive.`,
+Make the report detailed, professional, and comprehensive. Do not use emoji shortcodes or clinical directive terms.`,
 
-      de: `Sie sind eine spezialisierte Gynäkologin. Erstellen Sie einen umfassenden Gesundheitsbericht:
+      de: `${langInstruction.de}
+Sie sind eine Wellness-Begleiterin für Schwangerschaft. Erstellen Sie einen umfassenden Gesundheitsbericht:
 ${summary}
 
-Detaillierte Abschnitte: Gesundheitsstatus, Fetale Entwicklung, Ernährungsplan, Übungsprogramm, Schlafoptimierung, Symptome, Tipps Woche ${health.week}, Untersuchungen.`,
+Detaillierte Abschnitte: Gesundheitsstatus, Fetale Entwicklung, Ernährungsplan, Übungsprogramm, Schlafoptimierung, Symptome, Tipps Woche ${health.week}, Untersuchungen. Keine Emojis.`,
 
-      fr: `Vous êtes gynécologue-obstétricienne. Créez un rapport de santé complet:
+      fr: `${langInstruction.fr}
+Vous êtes une accompagnante bien-être spécialisée en grossesse. Créez un rapport de santé complet:
 ${summary}
 
-Sections détaillées: Bilan de santé, Développement fœtal, Plan nutritionnel, Exercices, Sommeil, Symptômes, Conseils semaine ${health.week}, Examens.`,
+Sections détaillées: Bilan de santé, Développement fœtal, Plan nutritionnel, Exercices, Sommeil, Symptômes, Conseils semaine ${health.week}, Examens. Pas d'emojis.`,
 
-      es: `Eres ginecóloga-obstetra. Crea un informe de salud completo:
+      es: `${langInstruction.es}
+Eres una acompañante de bienestar especializada en embarazo. Crea un informe de salud completo:
 ${summary}
 
-Secciones detalladas: Resumen de salud, Desarrollo fetal, Plan nutricional, Ejercicios, Sueño, Síntomas, Consejos semana ${health.week}, Chequeos.`,
+Secciones detalladas: Resumen de salud, Desarrollo fetal, Plan nutricional, Ejercicios, Sueño, Síntomas, Consejos semana ${health.week}, Chequeos. Sin emojis.`,
 
-      pt: `Você é ginecologista-obstetra. Crie um relatório de saúde completo:
+      pt: `${langInstruction.pt}
+Você é uma companheira de bem-estar especializada em gravidez. Crie um relatório de saúde completo:
 ${summary}
 
-Seções detalhadas: Resumo de saúde, Desenvolvimento fetal, Plano nutricional, Exercícios, Sono, Sintomas, Dicas semana ${health.week}, Exames.`,
+Seções detalhadas: Resumo de saúde, Desenvolvimento fetal, Plano nutricional, Exercícios, Sono, Sintomas, Dicas semana ${health.week}, Exames. Sem emojis.`,
 
-      tr: `Uzman kadın doğum uzmanısınız. Kapsamlı sağlık raporu oluşturun:
+      tr: `${langInstruction.tr}
+Hamilelik ve annelik konusunda uzman bir sağlık rehberisiniz. Kapsamlı sağlık raporu oluşturun:
 ${summary}
 
-Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzersiz, Uyku, Belirtiler, ${health.week}. Hafta İpuçları, Kontroller.`,
+Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzersiz, Uyku, Belirtiler, ${health.week}. Hafta İpuçları, Kontroller. Emoji kullanmayın.`,
     };
+
+
 
     await streamChat({
       type: 'pregnancy-assistant',
@@ -291,6 +310,7 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
   // Generate quick AI plan
   const getAIPlan = async () => {
     setAiResponse('');
+    setActiveTab('aiPlan');
     const summary = buildHealthSummary(lang);
 
     const prompts: Record<string, string> = {
@@ -557,23 +577,22 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
         </div>
 
         {/* AI Generate Buttons */}
-        <div className="grid grid-cols-2 gap-2">
+        <div className="space-y-2">
           <motion.button
             onClick={getAIPlan}
             disabled={isLoading}
-            whileTap={{ scale: 0.95 }}
-            className="relative overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
-            style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%))' }}
+            whileTap={{ scale: 0.92 }}
+            className="w-full relative overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
+            style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.4)' }}
           >
-            {isLoading && activeTab !== 'report' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
+            {isLoading && activeTab === 'aiPlan' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
             {t('smartPlan.getAIPlan', 'Get AI-Personalized Plan')}
           </motion.button>
           <motion.button
             onClick={generateReport}
             disabled={isLoading}
-            whileTap={{ scale: 0.95 }}
-            className="relative overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
-            style={{ background: 'linear-gradient(135deg, hsl(280 60% 55%), hsl(var(--primary)))' }}
+            whileTap={{ scale: 0.92 }}
+            className="w-full relative overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 border-2 border-primary/30 bg-primary/5 text-primary text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none hover:bg-primary/10 transition-colors"
           >
             {isLoading && activeTab === 'report' ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileText className="w-4 h-4" />}
             {t("smartPlan.createReport", "Create Health Report")}
