@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart,
-  Sparkles,
+  Brain,
   Loader2,
   Calendar,
   CheckCircle2,
@@ -307,23 +307,22 @@ Please provide detailed recovery advice for this phase including:
                 </div>
 
                 {/* AI Advice Button */}
-                <Button
+                <motion.button
                   onClick={() => getAIAdvice(phase)}
                   disabled={isLoading}
-                  className={`w-full gap-2 h-10 rounded-xl text-[13px] transition-all ${
-                    aiAdvice
-                      ? "border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10"
-                      : "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm shadow-primary/20 hover:opacity-90"
-                  }`}
-                  variant="ghost"
+                  whileTap={{ scale: 0.92 }}
+                  className="relative w-full overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin shrink-0" />
-                  ) : (
-                    <Sparkles className="w-4 h-4 shrink-0" />
-                  )}
-                  <span className="truncate">{t("toolsInternal.postpartumRecovery.getAIAdvice")}</span>
-                </Button>
+                  <div className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+                    {isLoading ? (
+                      <Loader2 className="w-4 h-4 animate-spin shrink-0" />
+                    ) : (
+                      <Brain className="w-4 h-4 shrink-0" />
+                    )}
+                    <span className="truncate">{t("toolsInternal.postpartumRecovery.getAIAdvice")}</span>
+                  </div>
+                  <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+                </motion.button>
               </CardContent>
             </Card>
           </motion.div>
@@ -335,7 +334,7 @@ Please provide detailed recovery advice for this phase including:
             <Card className="border-primary/20 bg-primary/5">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-primary" />
+                  <Brain className="w-4 h-4 text-primary" />
                   {t("toolsInternal.postpartumRecovery.aiAdviceTitle")}
                 </CardTitle>
               </CardHeader>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { FileText, Download, Sparkles, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, FileDown, AlertCircle } from 'lucide-react';
+import { FileText, Download, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, FileDown, AlertCircle } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -316,23 +317,21 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
         </Card>
 
         {/* Generate Button */}
-        <Button
+        <motion.button
           onClick={generatePlan}
           disabled={isLoading}
-          className="w-full gap-2 text-[13px] h-10"
+          whileTap={{ scale: 0.92 }}
+          className="relative w-full overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {isLoading ? (
-            <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              {t('toolsInternal.birthPlan.generating')}
-            </>
-          ) : (
-            <>
-              <Sparkles className="w-4 h-4" />
-              {t('toolsInternal.birthPlan.generateButton')}
-            </>
-          )}
-        </Button>
+          <div className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+            {isLoading ? (
+              <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.birthPlan.generating')}</span></>
+            ) : (
+              <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.birthPlan.generateButton')}</span></>
+            )}
+          </div>
+          <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+        </motion.button>
 
         {error && (
           <Card className="border-destructive/30 bg-destructive/5">
