@@ -88,19 +88,33 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
         <AnimatePresence>
           {(insight || isLoading) && !error && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0, height: 0, scale: 0.97 }}
+              animate={{ opacity: 1, height: 'auto', scale: 1 }}
+              exit={{ opacity: 0, height: 0, scale: 0.97 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <Card className="border-primary/20 bg-primary/5">
+              <Card className="border-primary/20 bg-primary/5 overflow-hidden">
                 <CardContent className="pt-4 pb-4">
                   {isLoading && !insight && (
-                    <div className="flex items-center gap-2 text-primary">
+                    <motion.div
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                      className="flex items-center gap-2 text-primary"
+                    >
                       <Loader2 className="h-4 w-4 animate-spin shrink-0" />
                       <span className="text-sm">{t('toolsInternal.aiInsights.analyzing')}</span>
-                    </div>
+                    </motion.div>
                   )}
-                  {insight && <MarkdownRenderer content={insight} />}
+                  {insight && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                    >
+                      <MarkdownRenderer content={insight} />
+                    </motion.div>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
@@ -143,11 +157,18 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
             <AnimatePresence>
               {insight && !error && (
                 <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
+                  initial={{ opacity: 0, height: 0, y: 10 }}
+                  animate={{ opacity: 1, height: 'auto', y: 0 }}
+                  transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="mt-4 pt-4 border-t border-primary/15"
                 >
-                  <MarkdownRenderer content={insight} />
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.15, duration: 0.25 }}
+                  >
+                    <MarkdownRenderer content={insight} />
+                  </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -212,29 +233,49 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
         <AnimatePresence>
           {isExpanded && (insight || isLoading) && !error && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0, height: 0, scale: 0.97 }}
+              animate={{ opacity: 1, height: 'auto', scale: 1 }}
+              exit={{ opacity: 0, height: 0, scale: 0.97 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="mt-4 pt-4 border-t border-primary/15 overflow-hidden"
             >
               {isLoading && !insight && (
-                <div className="flex items-center gap-2 text-primary">
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="flex items-center gap-2 text-primary"
+                >
                   <Loader2 className="h-4 w-4 animate-spin shrink-0" />
                   <span className="text-sm">{t('toolsInternal.aiInsights.generatingInsights')}</span>
-                </div>
+                </motion.div>
               )}
-              {insight && <MarkdownRenderer content={insight} />}
+              {insight && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                >
+                  <MarkdownRenderer content={insight} />
+                </motion.div>
+              )}
 
               {hasGenerated && !isLoading && (
-                <Button
-                  onClick={generateInsight}
-                  variant="ghost"
-                  size="sm"
-                  className="mt-3 gap-1.5 text-[13px] text-primary hover:text-primary/80 hover:bg-primary/10 rounded-lg"
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
                 >
-                  <RefreshCw className="h-3.5 w-3.5" />
-                  {t('toolsInternal.aiInsights.regenerate')}
-                </Button>
+                  <Button
+                    onClick={generateInsight}
+                    variant="ghost"
+                    size="sm"
+                    className="mt-3 gap-1.5 text-[13px] text-primary hover:text-primary/80 hover:bg-primary/10 rounded-lg"
+                  >
+                    <RefreshCw className="h-3.5 w-3.5" />
+                    {t('toolsInternal.aiInsights.regenerate')}
+                  </Button>
+                </motion.div>
               )}
             </motion.div>
           )}
