@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Dumbbell, Lock, DollarSign, Languages, Eye, X, Ruler, Weight } from 'lucide-react';
+import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Flower2, Lock, DollarSign, Languages, Eye, X, Ruler, Weight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserProfile } from '@/hooks/useUserProfile';
@@ -87,7 +87,7 @@ export const OnboardingDisclaimer: React.FC = () => {
   const highlights = [
     { icon: Brain, colorClass: 'text-purple-500', bgClass: 'bg-purple-500/10', key: 'feature1' },
     { icon: Heart, colorClass: 'text-pink-500', bgClass: 'bg-pink-500/10', key: 'feature2' },
-    { icon: Dumbbell, colorClass: 'text-blue-500', bgClass: 'bg-blue-500/10', key: 'feature3' },
+    { icon: Flower2, colorClass: 'text-blue-500', bgClass: 'bg-blue-500/10', key: 'feature3' },
   ];
 
   const valueProps = [
