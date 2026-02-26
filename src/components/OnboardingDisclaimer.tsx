@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Flower2, Lock, DollarSign, Languages, Eye, X, Ruler, Weight } from 'lucide-react';
+import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Flower2, Lock, Languages, Eye, X, Ruler, Weight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserProfile } from '@/hooks/useUserProfile';
@@ -91,7 +91,7 @@ export const OnboardingDisclaimer: React.FC = () => {
   ];
 
   const valueProps = [
-    { icon: DollarSign, key: 'noPressure' },
+    { icon: Sparkles, key: 'aiAssistant247' },
     { icon: Languages, key: 'sevenLangs' },
     { icon: Lock, key: 'privacyFirst' },
     { icon: Eye, key: 'transparency' },
