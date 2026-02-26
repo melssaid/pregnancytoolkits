@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 import ArabicReshaper from 'arabic-reshaper';
+import i18n from '@/i18n';
 
 export type PDFProgressCallback = (percent: number) => void;
 
@@ -402,16 +403,19 @@ function isI18nKey(value: any): boolean {
 }
 
 function humanizeI18nKey(value: string): string {
-  // Extract the last segment: "groceryList.groceryItems.spinach" → "spinach"
+  // Try to resolve via i18n first (gets Arabic/localized translation)
+  const translated = i18n.t(value);
+  if (translated && translated !== value) return translated;
+  
+  // Fallback: extract the last segment and convert camelCase to spaces
   const lastSegment = value.split('.').pop() || value;
-  // CamelCase to spaces: "sweetPotatoes" → "Sweet Potatoes"
   return lastSegment
     .replace(/([A-Z])/g, ' $1')
     .replace(/^\w/, c => c.toUpperCase())
     .trim();
 }
 
-// Resolve a value: if it's an i18n key, humanize it; otherwise return as-is
+// Resolve a value: if it's an i18n key, translate it; otherwise return as-is
 function resolveValue(value: any): any {
   if (isI18nKey(value)) return humanizeI18nKey(value);
   return value;
