@@ -102,7 +102,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-card py-8 rounded-t-[2rem]">
+      <footer className="border-t border-border bg-card py-8 pb-24 md:pb-8 rounded-t-[2rem]">
         <div className="container">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2.5">
