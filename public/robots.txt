@@ -1,5 +1,4 @@
 # Pregnancy Toolkits - SEO Optimized Robots.txt
-# أفضل تطبيق حمل مجاني - Best Free Pregnancy App
 
 User-agent: Googlebot
 Allow: /
@@ -30,16 +29,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://pregnancytools.lovable.app/sitemap.xml
-
-# High-Priority Pages for Pregnancy Wellness Keywords
-# دليل الحمل - Pregnancy Guide
-# موعد الولادة المتوقع - Due Date Estimator  
-# يوميات حركة الجنين - Baby Movement Diary
-# متابعة نمو الجنين - Baby Growth Tracker
-# أعراض الحمل - Pregnancy Symptoms
-# تغذية الحامل - Pregnancy Nutrition
-# تمارين الحامل - Pregnancy Exercises
-# نصائح الحمل - Pregnancy Tips
-# حقيبة الولادة - Hospital Bag
-# علامات الولادة - Labor Signs
+Sitemap: https://pregnancytoolkits.lovable.app/sitemap.xml

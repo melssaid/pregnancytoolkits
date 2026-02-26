@@ -6,6 +6,7 @@ import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/li
 import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { SEOHead } from "@/components/SEOHead";
 
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
@@ -221,6 +222,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
 const Index = () => {
   return (
     <Layout>
+      <SEOHead />
       <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-primary/10 via-primary/5 to-transparent z-30" />
 
       <section className="py-3 relative z-10">
