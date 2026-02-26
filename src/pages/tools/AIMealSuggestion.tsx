@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Utensils,
-  Sparkles,
   Leaf,
   Apple,
   Clock,
@@ -328,7 +327,7 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
                 style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
-                {isLoading ? <AILoadingDots size="sm" /> : <Sparkles className="w-3.5 h-3.5" />}
+                {isLoading ? <AILoadingDots size="sm" /> : <Brain className="w-3.5 h-3.5" />}
                 {t("toolsInternal.mealSuggestion.refresh")}
               </motion.button>
             </div>

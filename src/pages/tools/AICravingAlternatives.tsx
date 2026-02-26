@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Sparkles, Heart, AlertTriangle, Salad, RefreshCw, ShieldCheck, Zap } from 'lucide-react';
+import { Brain, Heart, AlertTriangle, Salad, RefreshCw, ShieldCheck, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -166,20 +167,24 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
 
               {/* Action Buttons */}
               <div className="flex gap-2 pt-3">
-                <Button
+                <motion.button
                   onClick={analyzeAndSuggest}
                   disabled={!craving.trim() || isLoading}
-                  className="flex-1 h-10 text-[13px]"
+                  whileTap={{ scale: 0.92 }}
+                  className="relative flex-1 overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {isLoading ? (
-                    <AILoadingDots text={t('toolsInternal.common.analyzing', { defaultValue: '...' })} />
-                  ) : (
-                    <>
-                      <Sparkles className="w-4 h-4 mr-1.5" />
-                      {t('toolsInternal.cravingAlternatives.findAlternatives')}
-                    </>
-                  )}
-                </Button>
+                  <div className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
+                    {isLoading ? (
+                      <AILoadingDots text={t('toolsInternal.common.analyzing', { defaultValue: '...' })} />
+                    ) : (
+                      <>
+                        <Brain className="w-4 h-4 shrink-0" />
+                        <span>{t('toolsInternal.cravingAlternatives.findAlternatives')}</span>
+                      </>
+                    )}
+                  </div>
+                  <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+                </motion.button>
                 {(craving || result) && (
                   <Button
                     variant="outline"
@@ -239,7 +244,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
             <Card className="bg-accent/50 border-accent">
               <CardContent className="pt-6">
                 <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2 text-sm">
-                  <Sparkles className="w-4 h-4 text-primary" />
+                  <Brain className="w-4 h-4 text-primary" />
                   {t('toolsInternal.cravingAlternatives.whyCravingsHappen')}
                 </h3>
                 <ul className="space-y-2 text-muted-foreground text-sm">
