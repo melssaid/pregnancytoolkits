@@ -246,24 +246,49 @@ async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   const rawText = doc.text.bind(doc) as any;
   const rawSplitTextToSize = doc.splitTextToSize.bind(doc) as any;
   const rawGetTextWidth = doc.getTextWidth.bind(doc) as any;
+  const PROCESSED_MARKER = '\u2063'; // invisible separator, used to avoid double processing
+
+  const markProcessed = (value: string) => `${PROCESSED_MARKER}${value}`;
+  const unmarkIfProcessed = (value: string): { text: string; processed: boolean } => {
+    if (value.startsWith(PROCESSED_MARKER)) {
+      return { text: value.slice(PROCESSED_MARKER.length), processed: true };
+    }
+    return { text: value, processed: false };
+  };
 
   (doc as any).text = (text: any, ...args: any[]) => {
     if (typeof text === 'string') {
-      return rawText(prepareText(text), ...args);
+      const { text: unmarked, processed } = unmarkIfProcessed(text);
+      return rawText(processed ? unmarked : prepareText(unmarked), ...args);
+    }
+    if (Array.isArray(text)) {
+      const processedLines = text.map((line) => {
+        const rawLine = String(line ?? '');
+        const { text: unmarked, processed } = unmarkIfProcessed(rawLine);
+        return processed ? unmarked : prepareText(unmarked);
+      });
+      return rawText(processedLines, ...args);
     }
     return rawText(text, ...args);
   };
 
   (doc as any).splitTextToSize = (text: any, size: any, options?: any) => {
-    if (typeof text === 'string') {
-      return rawSplitTextToSize(prepareText(text), size, options);
+    if (typeof text !== 'string') return rawSplitTextToSize(text, size, options);
+
+    const { text: unmarked, processed } = unmarkIfProcessed(text);
+    const prepared = processed ? unmarked : prepareText(unmarked);
+    const lines = rawSplitTextToSize(prepared, size, options);
+
+    if (Array.isArray(lines)) {
+      return lines.map((line) => markProcessed(String(line ?? '')));
     }
-    return rawSplitTextToSize(text, size, options);
+    return markProcessed(String(lines ?? ''));
   };
 
   (doc as any).getTextWidth = (text: any) => {
     if (typeof text === 'string') {
-      return rawGetTextWidth(prepareText(text));
+      const { text: unmarked, processed } = unmarkIfProcessed(text);
+      return rawGetTextWidth(processed ? unmarked : prepareText(unmarked));
     }
     return rawGetTextWidth(text);
   };
