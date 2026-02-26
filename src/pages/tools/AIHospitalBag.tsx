@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Briefcase, Brain, Baby, User, Heart, Plus, FileDown, Share2, RotateCcw, Loader2 } from "lucide-react";
+import { Briefcase, Brain, Baby, User, Heart, Plus, Share2, RotateCcw, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -14,7 +14,7 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { VideoLibrary } from "@/components/VideoLibrary";
-import { exportHospitalBagPDF, generateHospitalBagShareText, canExportPDF, getRemainingExports, incrementPDFExportCount } from "@/lib/pdfExport";
+import { generateHospitalBagShareText } from "@/lib/pdfExport";
 
 import { toast } from "sonner";
 import { hospitalBagVideosByLang } from "@/data/videoData";
@@ -294,56 +294,7 @@ const AIHospitalBag = () => {
     return key; // Custom items use raw name
   };
 
-  // Export to PDF
-  const [isExportingPDF, setIsExportingPDF] = useState(false);
-  const [pdfProgress, setPdfProgress] = useState(0);
-  const handleExportPDF = async () => {
-    if (isExportingPDF) return;
-    if (!canExportPDF()) {
-      toast.error(t('common.dailyExportLimitReached'));
-      return;
-    }
-    setIsExportingPDF(true);
-    try {
-      const pdfItems = items.map(item => ({
-        id: item.id,
-        name: getItemDisplayName(item),
-        category: item.category,
-        packed: item.packed,
-        priority: item.priority,
-      }));
-
-      await exportHospitalBagPDF({
-        title: t('toolsInternal.hospitalBag.title'),
-        subtitle: t('toolsInternal.hospitalBag.subtitle'),
-        items: pdfItems,
-        language: i18n.language as any,
-        onProgress: setPdfProgress,
-        labels: {
-          mom: t('toolsInternal.hospitalBag.mom'),
-          baby: t('toolsInternal.hospitalBag.baby'),
-          partner: t('toolsInternal.hospitalBag.partner'),
-          documents: t('toolsInternal.hospitalBag.documents'),
-          packed: t('toolsInternal.hospitalBag.packed'),
-          notPacked: t('toolsInternal.hospitalBag.notPacked'),
-          essential: t('toolsInternal.hospitalBag.essential'),
-          recommended: t('toolsInternal.hospitalBag.recommended'),
-          optional: t('toolsInternal.hospitalBag.optional'),
-          progress: t('toolsInternal.hospitalBag.progress'),
-          totalItems: t('toolsInternal.hospitalBag.items.totalItems'),
-        },
-      });
-
-      incrementPDFExportCount();
-      toast.success(t('toolsInternal.hospitalBag.exportSuccess'));
-    } catch (error) {
-      console.error('PDF export error:', error);
-      toast.error(t('toolsInternal.hospitalBag.exportError'));
-    } finally {
-      setIsExportingPDF(false);
-      setPdfProgress(0);
-    }
-  };
+  // PDF export removed - using browser print instead
 
   // Share via WhatsApp
   const handleShareWhatsApp = () => {
@@ -554,19 +505,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             <span className="truncate">{isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}</span>
           </Button>
 
-          <Button
-            onClick={handleExportPDF}
-            variant="outline"
-            disabled={isExportingPDF || !canExportPDF()}
-            className="border-teal-300 text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30 disabled:opacity-70 disabled:text-teal-700 text-[12px] sm:text-[13px] h-9 px-2"
-          >
-            {isExportingPDF ? <Loader2 className="w-3.5 h-3.5 me-1.5 shrink-0 animate-spin" /> : <FileDown className="w-3.5 h-3.5 me-1.5 shrink-0" />}
-            <span className="truncate">{isExportingPDF ? t('common.exporting', 'Exporting...') : t('toolsInternal.hospitalBag.exportPDF')}</span>
-          </Button>
-        </div>
-        <p className="text-[10px] text-muted-foreground text-center">
-          {t("common.dailyExportRemaining", { count: getRemainingExports() })}
-        </p>
+          </div>
         <div className="grid grid-cols-2 gap-2">
           <Button
             onClick={handleShareWhatsApp}
