@@ -42,7 +42,7 @@ export function AdBanner({
     return (
       <div className={`w-full ${className}`}>
         <div className="mx-auto max-w-3xl px-4">
-          <div className="relative overflow-hidden rounded-xl border border-dashed border-border/60 bg-muted/20 backdrop-blur-sm min-h-[100px] flex items-center justify-center">
+          <div className="relative overflow-hidden rounded-xl border border-dashed border-border/60 bg-muted/20 backdrop-blur-sm min-h-[50px] flex items-center justify-center">
             <span className="text-[10px] text-muted-foreground/50 font-medium tracking-wider uppercase">
               {t('ads.placeholder', 'Ad Space')}
             </span>

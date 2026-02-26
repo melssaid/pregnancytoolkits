@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, Loader2, Calendar, FileText } from 'lucide-react';
+import { Download, Loader2, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +16,6 @@ const BACKUP_KEYS = [
   'disclaimer_accepted', 'onboarding_completed',
 ];
 
-// Keys to EXCLUDE from backup (system/internal keys)
 const EXCLUDED_KEY_PATTERNS = [
   'session_id', 'session_expiry', 'user_id', 'install_date', 'expanded_categories',
   'encrypted', 'checked_user', 'cookie', 'cache', 'token', 'auth', '_v2', '_version',
@@ -29,7 +28,6 @@ interface DataBackupManagerProps {
 
 export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = false }) => {
   const [isExporting, setIsExporting] = useState(false);
-  const [exportType, setExportType] = useState<'pdf' | 'json' | null>(null);
   const [lastBackupDate, setLastBackupDate] = useState<string | null>(null);
   const { toast } = useToast();
   const { t, i18n } = useTranslation();
@@ -74,14 +72,12 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
     e.stopPropagation();
     
     setIsExporting(true);
-    setExportType('pdf');
     try {
       const data = collectAllData();
       const dataCount = Object.keys(data).length;
       if (dataCount === 0) {
         toast({ title: t('settings.backup.noData'), description: t('settings.backup.noDataDesc'), variant: 'destructive' });
         setIsExporting(false);
-        setExportType(null);
         return;
       }
 
@@ -103,48 +99,6 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       toast({ title: t('settings.backup.exportError'), description: t('settings.backup.exportErrorDesc'), variant: 'destructive' });
     } finally {
       setIsExporting(false);
-      setExportType(null);
-    }
-  };
-
-  const handleExportJSON = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    setIsExporting(true);
-    setExportType('json');
-    try {
-      const data = collectAllData();
-      const dataCount = Object.keys(data).length;
-      if (dataCount === 0) {
-        toast({ title: t('settings.backup.noData'), description: t('settings.backup.noDataDesc'), variant: 'destructive' });
-        setIsExporting(false);
-        setExportType(null);
-        return;
-      }
-
-      const backup = { version: '1.0', createdAt: new Date().toISOString(), deviceInfo: navigator.userAgent, data };
-      const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const date = new Date().toISOString().split('T')[0];
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `pregnancy-tools-backup-${date}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      const now = new Date().toISOString();
-      localStorage.setItem('last_backup_date', now);
-      setLastBackupDate(now);
-      toast({ title: t('settings.backup.exportSuccess'), description: t('settings.backup.exportSuccessDesc', { count: dataCount }) });
-    } catch (error) {
-      console.error('JSON Export error:', error);
-      toast({ title: t('settings.backup.exportError'), description: t('settings.backup.exportErrorDesc'), variant: 'destructive' });
-    } finally {
-      setIsExporting(false);
-      setExportType(null);
     }
   };
 
@@ -163,30 +117,16 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
           </div>
         )}
 
-        <div className="grid grid-cols-2 gap-2">
-          <Button 
-            type="button"
-            disabled={isExporting} 
-            size="sm" 
-            className="gap-1.5 h-9 text-xs"
-            onClick={handleExportPDF}
-          >
-            {isExporting && exportType === 'pdf' ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
-            PDF
-          </Button>
-
-          <Button 
-            type="button"
-            variant="outline"
-            disabled={isExporting} 
-            size="sm" 
-            className="gap-1.5 h-9 text-xs"
-            onClick={handleExportJSON}
-          >
-            {isExporting && exportType === 'json' ? <Loader2 className="w-3 h-3 animate-spin" /> : <FileText className="w-3 h-3" />}
-            JSON
-          </Button>
-        </div>
+        <Button 
+          type="button"
+          disabled={isExporting} 
+          size="sm" 
+          className="w-full gap-1.5 h-9 text-xs"
+          onClick={handleExportPDF}
+        >
+          {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
+          {t('settings.backup.exportData')}
+        </Button>
       </div>
     );
   }
@@ -206,28 +146,15 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-2">
-        <Button 
-          type="button"
-          disabled={isExporting} 
-          className="gap-2"
-          onClick={handleExportPDF}
-        >
-          {isExporting && exportType === 'pdf' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-          {t('settings.backup.exportData')} PDF
-        </Button>
-
-        <Button 
-          type="button"
-          variant="outline"
-          disabled={isExporting} 
-          className="gap-2"
-          onClick={handleExportJSON}
-        >
-          {isExporting && exportType === 'json' ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileText className="w-4 h-4" />}
-          {t('settings.backup.exportData')} JSON
-        </Button>
-      </div>
+      <Button 
+        type="button"
+        disabled={isExporting} 
+        className="w-full gap-2"
+        onClick={handleExportPDF}
+      >
+        {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+        {t('settings.backup.exportData')}
+      </Button>
     </div>
   );
 };
