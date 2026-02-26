@@ -1705,6 +1705,7 @@
       "resume": "Devam",
       "pause": "Duraklat",
       "completed": "Tamamlandı",
+      "exerciseInProgress": "Egzersiz devam ediyor",
       "allCategories": "Tümü",
       "workoutProgress": "Antrenman İlerlemesi",
       "workoutComplete": "Antrenman Tamamlandı! 🎉",
