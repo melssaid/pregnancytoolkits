@@ -6,7 +6,7 @@ import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/li
 import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import dreamBabyIcon from "@/assets/icons/dream-baby.png";
+
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
 const categoryStyles: Record<string, { iconColor: string; toolHover: string; hoverShadow: string; hoverBorder: string }> = {
@@ -38,7 +38,7 @@ const journeyConfigs: JourneyConfig[] = [
   {
     // Planning/Fertility — Warm Coral-Peach: hope, warmth, anticipation
     key: "planning",
-    customIcon: dreamBabyIcon,
+    icon: Sparkles,
     headerGradient: "bg-gradient-to-r from-[hsl(15,70%,62%)] via-[hsl(25,65%,65%)] to-[hsl(340,50%,65%)] dark:from-[hsl(15,65%,50%)] dark:via-[hsl(25,60%,52%)] dark:to-[hsl(340,45%,55%)]",
     headerText: "text-white",
     iconBg: "bg-white/20",
