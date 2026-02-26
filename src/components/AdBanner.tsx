@@ -13,7 +13,7 @@ interface AdBannerProps {
 
 // Set your AdSense publisher ID here when ready
 const DEFAULT_AD_CLIENT = "ca-pub-4171592110992607";
-const DEFAULT_AD_SLOT = ""; // أضف رقم Ad Slot من حسابك في AdSense
+const DEFAULT_AD_SLOT = "6268499910";
 
 export function AdBanner({
   adSlot = DEFAULT_AD_SLOT,
