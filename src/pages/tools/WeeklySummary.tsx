@@ -7,7 +7,8 @@ import {
   RefreshCw,
   History,
   ChevronRight,
-  Brain
+  Brain,
+  Trash2
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -61,6 +62,19 @@ export default function WeeklySummary() {
   const handleWeekChange = useCallback((newWeek: number) => {
     setWeek(newWeek);
   }, []);
+
+  const deleteSummary = useCallback((generatedAt: string) => {
+    const updated = savedSummaries.filter(s => s.generatedAt !== generatedAt);
+    setSavedSummaries(updated);
+    safeSaveToLocalStorage(STORAGE_KEY, updated);
+  }, [savedSummaries]);
+
+  const deleteCurrentSummary = useCallback(() => {
+    const updated = savedSummaries.filter(s => s.week !== week);
+    setSavedSummaries(updated);
+    safeSaveToLocalStorage(STORAGE_KEY, updated);
+    setSummary("");
+  }, [savedSummaries, week]);
 
   const accumulatedRef = useRef("");
 
@@ -190,7 +204,7 @@ export default function WeeklySummary() {
                     <button
                       key={s.generatedAt}
                       onClick={() => { setWeek(s.week); setSummary(s.content); }}
-                      className="w-full text-start p-3 rounded-xl bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 transition-all group"
+                      className="w-full text-start p-3 rounded-xl bg-muted/50 hover:bg-muted border border-border/50 hover:border-primary/30 transition-all group relative"
                     >
                       <div className="flex items-center justify-between mb-1.5">
                         <div className="flex items-center gap-2">
@@ -202,11 +216,18 @@ export default function WeeklySummary() {
                             {tri.label}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1 text-muted-foreground group-hover:text-primary transition-colors">
+                        <div className="flex items-center gap-2 text-muted-foreground">
                           <span className="text-[10px]">
                             {new Date(s.generatedAt).toLocaleDateString()}
                           </span>
-                          <ChevronRight className="w-3 h-3" />
+                          <span
+                            role="button"
+                            onClick={(e) => { e.stopPropagation(); deleteSummary(s.generatedAt); }}
+                            className="p-1 rounded-md hover:bg-destructive/10 hover:text-destructive transition-colors"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </span>
+                          <ChevronRight className="w-3 h-3 group-hover:text-primary transition-colors" />
                         </div>
                       </div>
                       <p className="text-xs text-muted-foreground line-clamp-2 group-hover:text-foreground transition-colors">
@@ -251,6 +272,9 @@ export default function WeeklySummary() {
             <div className="flex gap-2">
               <Button onClick={() => setSummary("")} variant="outline" className="flex-1 text-xs h-9">
                 {t("toolsInternal.weeklySummary.differentWeek")}
+              </Button>
+              <Button onClick={deleteCurrentSummary} variant="outline" className="text-xs h-9 text-destructive hover:bg-destructive/10 border-destructive/30">
+                <Trash2 className="w-3.5 h-3.5" />
               </Button>
               <motion.button
                 whileTap={{ scale: 0.92 }}
