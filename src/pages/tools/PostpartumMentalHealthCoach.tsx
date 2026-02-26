@@ -121,7 +121,8 @@ export default function PostpartumMentalHealthCoach() {
     setDirection(1);
   };
 
-  const videos = mentalHealthVideosByLang[lang] || mentalHealthVideosByLang.en;
+  const videoData = mentalHealthVideosByLang(t);
+  const videos = videoData[lang] || videoData.en;
 
   if (showResults) {
     const score = getScore();
@@ -135,9 +136,9 @@ export default function PostpartumMentalHealthCoach() {
     const Icon = config.icon;
 
     return (
-      <ToolFrame title={t('toolsInternal.mentalHealthCoach.title')} subtitle={t('toolsInternal.mentalHealthCoach.subtitle')} icon={Brain} mood="calming" toolId="postpartum-mental-health">
+      <ToolFrame title={t('toolsInternal.mentalHealthCoach.title')} subtitle={t('toolsInternal.mentalHealthCoach.subtitle')} icon={Brain} mood="calm" toolId="postpartum-mental-health">
         <div className="space-y-4" dir={isRTL ? 'rtl' : 'ltr'}>
-          <MedicalDisclaimer toolName="mentalHealthCoach" />
+          <MedicalDisclaimer toolName="mentalHealthCoach" onAccept={() => {}} />
 
           <Card className={`${config.border} ${config.bg}`}>
             <CardContent className="p-4 space-y-3">
@@ -217,9 +218,9 @@ export default function PostpartumMentalHealthCoach() {
   const q = questions[currentQuestion];
 
   return (
-    <ToolFrame title={t('toolsInternal.mentalHealthCoach.title')} subtitle={t('toolsInternal.mentalHealthCoach.subtitle')} icon={Brain} mood="calming" toolId="postpartum-mental-health">
+    <ToolFrame title={t('toolsInternal.mentalHealthCoach.title')} subtitle={t('toolsInternal.mentalHealthCoach.subtitle')} icon={Brain} mood="calm" toolId="postpartum-mental-health">
       <div className="space-y-4" dir={isRTL ? 'rtl' : 'ltr'}>
-        <MedicalDisclaimer toolName="mentalHealthCoach" />
+        <MedicalDisclaimer toolName="mentalHealthCoach" onAccept={() => {}} />
 
         <div className="flex items-center gap-2 px-1">
           <div className="flex-1 bg-muted rounded-full h-2">
