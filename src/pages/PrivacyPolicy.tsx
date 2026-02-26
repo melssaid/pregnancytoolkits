@@ -1,4 +1,5 @@
 import { Layout } from "@/components/Layout";
+import { SEOHead } from "@/components/SEOHead";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { 
@@ -236,6 +237,7 @@ export default function PrivacyPolicy() {
   
   return (
     <Layout showBack>
+      <SEOHead title={t('layout.privacyPolicy.title')} description="Privacy policy for Pregnancy Toolkits – your data stays on your device. GDPR & CCPA compliant." />
       <div className="container py-6 pb-24">
         <div className="mx-auto max-w-3xl space-y-6">
           {/* Header */}

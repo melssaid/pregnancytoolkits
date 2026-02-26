@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEOHead } from '@/components/SEOHead';
 import { Database, Shield, Info, Heart, Lock, Globe, User, CheckCircle, Stethoscope } from 'lucide-react';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { DataClearManager } from '@/components/settings/DataClearManager';
@@ -20,6 +21,7 @@ const Settings: React.FC = () => {
 
   return (
     <Layout showBack>
+      <SEOHead title={t('settings.title')} description="Manage your preferences, data privacy, encryption and language settings" />
       <div className="container py-4 space-y-3 pb-24 max-w-lg mx-auto">
         
         {/* Header */}

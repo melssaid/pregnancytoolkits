@@ -1,4 +1,5 @@
 import { Layout } from "@/components/Layout";
+import { SEOHead } from "@/components/SEOHead";
 import { Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -8,6 +9,7 @@ export default function Contact() {
   
   return (
     <Layout showBack>
+      <SEOHead title={t('layout.contact.title')} description="Contact the Pregnancy Toolkits team for support, feedback, or questions" />
       <div className="container py-8 max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
