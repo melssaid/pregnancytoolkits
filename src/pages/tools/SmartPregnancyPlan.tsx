@@ -186,7 +186,7 @@ const SmartPregnancyPlan = () => {
       title={t("smartPlan.title")}
       subtitle={t("smartPlan.subtitle")}
       icon={Brain}
-      mood="professional"
+      mood="nurturing"
       toolId="smart-pregnancy-plan"
     >
       <div className="space-y-4" dir={isRTL ? "rtl" : "ltr"}>
@@ -220,7 +220,7 @@ const SmartPregnancyPlan = () => {
           <CardContent className="p-3 space-y-3">
             <div className="space-y-2">
               <Label className="text-xs font-semibold">{t("smartPlan.pregnancyWeek", "Pregnancy Week")}</Label>
-              <WeekSlider value={health.week} onChange={(v) => update('week', v)} />
+              <WeekSlider week={health.week} onChange={(v) => update('week', v)} />
             </div>
 
             <div className="grid grid-cols-2 gap-3">

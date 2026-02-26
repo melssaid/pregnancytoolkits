@@ -49,12 +49,40 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
     return EXCLUDED_KEY_PATTERNS.some(pattern => lowerKey.includes(pattern));
   };
 
+  // Translate known i18n keys in data values
+  const resolveTranslationKeys = (obj: any): any => {
+    if (typeof obj === 'string') {
+      // If it looks like an i18n key (e.g. "groceryList.items.spinach"), try translating
+      if (obj.includes('.') && !obj.includes(' ') && !obj.startsWith('http')) {
+        const translated = t(obj);
+        return translated !== obj ? translated : obj;
+      }
+      return obj;
+    }
+    if (Array.isArray(obj)) return obj.map(resolveTranslationKeys);
+    if (typeof obj === 'object' && obj !== null) {
+      const result: Record<string, any> = {};
+      for (const [k, v] of Object.entries(obj)) {
+        // Skip internal keys, resolve values
+        if (k === 'nameKey' || k === 'pregnancyBenefitKey' || k === 'descriptionKey' || k === 'tipsKey' || k === 'whenNeededKey' || k === 'labelKey') {
+          // Replace key field with resolved "name"/"label" field
+          const resolvedKey = k.replace('Key', '');
+          result[resolvedKey] = t(v as string);
+        } else {
+          result[k] = resolveTranslationKeys(v);
+        }
+      }
+      return result;
+    }
+    return obj;
+  };
+
   const collectAllData = (): Record<string, any> => {
     const data: Record<string, any> = {};
     BACKUP_KEYS.forEach(key => {
       const value = localStorage.getItem(key);
       if (value) {
-        try { data[key] = JSON.parse(value); } catch { data[key] = value; }
+        try { data[key] = resolveTranslationKeys(JSON.parse(value)); } catch { data[key] = value; }
       }
     });
     for (let i = 0; i < localStorage.length; i++) {
@@ -66,7 +94,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
           const value = localStorage.getItem(key);
           if (value) {
             if (value.length > 500 && !value.startsWith('{') && !value.startsWith('[')) continue;
-            try { data[key] = JSON.parse(value); } catch { data[key] = value; }
+            try { data[key] = resolveTranslationKeys(JSON.parse(value)); } catch { data[key] = value; }
           }
         }
       }
