@@ -9,6 +9,7 @@ import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { ToolInsightTabs } from "./ToolInsightTabs";
 import { AdBanner } from "./AdBanner";
+import { SEOHead } from "./SEOHead";
 import logoImage from "@/assets/logo.png";
 
 interface ToolFrameProps {
@@ -75,7 +76,7 @@ export function ToolFrame({
 
   return (
     <div className={`min-h-screen bg-gradient-to-br ${styles.gradient} overflow-x-hidden overflow-y-auto`}>
-      {/* Ambient Background */}
+      <SEOHead title={title} description={subtitle} />
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className={`absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gradient-to-br ${styles.glow} to-transparent rounded-full blur-3xl opacity-60`} />
         <div className={`absolute -bottom-32 -left-32 w-72 md:w-96 h-72 md:h-96 bg-gradient-to-tr ${styles.glow} to-transparent rounded-full blur-3xl opacity-40`} />
