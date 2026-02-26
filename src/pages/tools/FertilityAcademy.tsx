@@ -5,7 +5,7 @@ import { ChevronDown, Heart, Smile } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FertilityDailyTip } from "@/components/FertilityDailyTip";
+
 
 const LESSON_KEYS = [
   "menstrualCycle", "ovulationProcess", "hormonesRole", "fertilizationBasics", "implantationWindow",
@@ -241,7 +241,7 @@ export default function FertilityAcademy() {
           </TabsContent>
         </Tabs>
       </div>
-      <FertilityDailyTip />
+      
     </ToolFrame>
   );
 }

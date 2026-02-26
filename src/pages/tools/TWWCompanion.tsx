@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Heart, ChevronDown, Smile } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
-import { FertilityDailyTip } from "@/components/FertilityDailyTip";
+
 
 
 const DAY_KEYS = Array.from({ length: 14 }, (_, i) => `day${i + 1}`);
@@ -60,7 +60,7 @@ export default function TWWCompanion() {
           );
         })}
       </div>
-      <FertilityDailyTip />
+      
     </ToolFrame>
   );
 }
