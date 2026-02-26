@@ -687,7 +687,11 @@
     "cancel": "Abbrechen",
     "edit": "Bearbeiten",
     "showLess": "Weniger Anzeigen",
-    "moreItems": "+{{count}} Mehr"
+    "moreItems": "+{{count}} Mehr",
+    "exporting": "Exportieren...",
+    "exportComplete": "Export abgeschlossen!",
+    "exportFailed": "Export fehlgeschlagen",
+    "downloadPDF": "PDF herunterladen"
   },
   "subscription": {
     "subscribeNow": "Premium holen - 0,79€/Monat",

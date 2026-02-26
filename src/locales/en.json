@@ -719,7 +719,11 @@
     "pause": "Pause",
     "trimester": "Trimester",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "exporting": "Exporting...",
+    "exportComplete": "Export complete!",
+    "exportFailed": "Export failed",
+    "downloadPDF": "Download PDF"
   },
   "subscription": {
     "subscribeNow": "Get Premium - $0.79/mo",

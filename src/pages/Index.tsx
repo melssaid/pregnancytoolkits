@@ -6,6 +6,7 @@ import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/li
 import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import dreamBabyIcon from "@/assets/icons/dream-baby.png";
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
 const categoryStyles: Record<string, { iconColor: string; toolHover: string; hoverShadow: string; hoverBorder: string }> = {
@@ -24,7 +25,8 @@ const categoryStyles: Record<string, { iconColor: string; toolHover: string; hov
 // ── Journey card theming — emotionally resonant, brand-cohesive ─────────
 interface JourneyConfig {
   key: JourneyKey;
-  icon: LucideIcon;
+  icon?: LucideIcon;
+  customIcon?: string;
   headerGradient: string;
   headerText: string;
   bg: string;
@@ -36,7 +38,7 @@ const journeyConfigs: JourneyConfig[] = [
   {
     // Planning/Fertility — Warm Coral-Peach: hope, warmth, anticipation
     key: "planning",
-    icon: Sparkles,
+    customIcon: dreamBabyIcon,
     headerGradient: "bg-gradient-to-r from-[hsl(15,70%,62%)] via-[hsl(25,65%,65%)] to-[hsl(340,50%,65%)] dark:from-[hsl(15,65%,50%)] dark:via-[hsl(25,60%,52%)] dark:to-[hsl(340,45%,55%)]",
     headerText: "text-white",
     iconBg: "bg-white/20",
@@ -158,7 +160,11 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
         
         <div className="relative flex items-center gap-3">
           <div className={`w-11 h-11 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
-            <Icon className={`w-5.5 h-5.5 ${config.headerText}`} strokeWidth={2} />
+            {config.customIcon ? (
+              <img src={config.customIcon} alt="" className="w-7 h-7 object-contain" />
+            ) : Icon ? (
+              <Icon className={`w-5.5 h-5.5 ${config.headerText}`} strokeWidth={2} />
+            ) : null}
           </div>
           <div className="flex-1 min-w-0">
             <h2 className={`text-lg font-extrabold ${config.headerText} tracking-tight truncate`}>

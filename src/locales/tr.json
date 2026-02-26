@@ -687,7 +687,11 @@
     "cancel": "İptal",
     "edit": "Düzenle",
     "showLess": "Daha Az Göster",
-    "moreItems": "+{{count}} Daha Fazla"
+    "moreItems": "+{{count}} Daha Fazla",
+    "exporting": "Dışa aktarılıyor...",
+    "exportComplete": "Dışa aktarma tamamlandı!",
+    "exportFailed": "Dışa aktarma başarısız",
+    "downloadPDF": "PDF İndir"
   },
   "subscription": {
     "subscribeNow": "Premium Al - ₺24.99/ay",
