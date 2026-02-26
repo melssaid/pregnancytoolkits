@@ -41,12 +41,12 @@ export function SEOHead({
     || (titleKey ? t(titleKey) : null);
   const fullTitle = pageTitle
     ? `${pageTitle} | ${brandName}`
-    : `${brandName} – Lifestyle & Educational Companion | 42+ Wellness Tools`;
+    : `${brandName} – Free Pregnancy Tracker & AI Companion | 42+ Tools`;
 
   // Build description
   const pageDesc = descOverride
     || (descriptionKey ? t(descriptionKey) : null)
-    || t("seo.defaultDescription", "Pregnancy journal & lifestyle companion with 42+ wellness tools, daily tips & trackers. Not a medical device — for informational and educational purposes only. Available in 7 languages.");
+    || t("seo.defaultDescription", "Free pregnancy tracker app with 42+ AI-powered tools: due date calculator, kick counter, contraction timer, baby growth tracker, safe foods guide & more. Not a medical device.");
 
   // Truncate for SEO best practices
   const seoTitle = fullTitle.length > 60 ? fullTitle.slice(0, 57) + "..." : fullTitle;
