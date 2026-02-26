@@ -241,6 +241,33 @@ async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
     _ctx.activeFont = 'Tajawal';
   }
   doc.setFont(_ctx.activeFont, 'normal');
+
+  // Centralized text pipeline to prevent per-call RTL mistakes
+  const rawText = doc.text.bind(doc) as any;
+  const rawSplitTextToSize = doc.splitTextToSize.bind(doc) as any;
+  const rawGetTextWidth = doc.getTextWidth.bind(doc) as any;
+
+  (doc as any).text = (text: any, ...args: any[]) => {
+    if (typeof text === 'string') {
+      return rawText(prepareText(text), ...args);
+    }
+    return rawText(text, ...args);
+  };
+
+  (doc as any).splitTextToSize = (text: any, size: any, options?: any) => {
+    if (typeof text === 'string') {
+      return rawSplitTextToSize(prepareText(text), size, options);
+    }
+    return rawSplitTextToSize(text, size, options);
+  };
+
+  (doc as any).getTextWidth = (text: any) => {
+    if (typeof text === 'string') {
+      return rawGetTextWidth(prepareText(text));
+    }
+    return rawGetTextWidth(text);
+  };
+
   return { doc };
 }
 
@@ -259,35 +286,40 @@ const COLORS = {
 
 type RGB = { r: number; g: number; b: number };
 
-// Track already-reshaped strings to prevent double-reshaping
+// Track already-reshaped strings for current export context
 const _reshapedCache = new Map<string, string>();
 
 /**
- * Core text processing for PDF output.
- * For RTL (Arabic): strips emojis → reshapes → reverses for jsPDF LTR rendering.
- * For LTR: just strips emojis.
+ * Removes unsupported visual symbols while preserving textual content.
  */
-function prepareText(text: string): string {
+function sanitizeText(text: string): string {
   if (!text) return '';
-  // Strip emojis but preserve Arabic-relevant chars
-  let cleaned = text
+  return text
     .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{20E3}\u{FE0F}]/gu, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
-  
-  if (!_ctx.isRTL) return cleaned;
-  
+}
+
+/**
+ * Core text processing for PDF output.
+ * For RTL (Arabic): sanitize → reshape → bidi-safe reverse for jsPDF LTR rendering.
+ * For LTR: sanitize only.
+ */
+function prepareText(text: string): string {
+  const cleaned = sanitizeText(text);
+  if (!cleaned || !_ctx.isRTL) return cleaned;
+
   // Check if text has any Arabic characters that need processing
   const hasStandardArabic = /[\u0600-\u06FF]/.test(cleaned);
   const hasArabicNumerals = /[\u0660-\u0669\u06F0-\u06F9]/.test(cleaned);
-  
+
   if (!hasStandardArabic && !hasArabicNumerals) return cleaned;
-  
+
   // Use cache for performance
   const cacheKey = cleaned;
   const cached = _reshapedCache.get(cacheKey);
   if (cached) return cached;
-  
+
   try {
     const result = processArabicForJsPDF(cleaned);
     _reshapedCache.set(cacheKey, result);
@@ -298,9 +330,9 @@ function prepareText(text: string): string {
   }
 }
 
-// Keep old name as alias for compatibility
+// Compatibility helper name: now only sanitizes (no reshaping)
 function stripEmojis(text: string): string {
-  return prepareText(text);
+  return sanitizeText(text);
 }
 
 /**
@@ -310,55 +342,50 @@ function stripEmojis(text: string): string {
  */
 function processArabicForJsPDF(text: string): string {
   if (!text) return text;
-  
+
   // Step 1: Reshape entire text at once (handles word boundaries & ligatures correctly)
   const reshaped = ArabicReshaper.convertArabic(text);
-  
+
   // Step 2: If no embedded LTR content, simply reverse entire string
   if (!/[a-zA-Z0-9]/.test(reshaped)) {
     return [...reshaped].reverse().join('');
   }
-  
+
   // Step 3: Mixed content — split around LTR sequences, preserve their order
   // Match LTR runs: sequences of Latin chars, digits, and common punctuation between them
-  const ltrPattern = /([a-zA-Z0-9][a-zA-Z0-9.,%:()\/\-+@ ]*[a-zA-Z0-9]|[a-zA-Z0-9])/g;
-  
+  const ltrPattern = /([a-zA-ZÀ-ÖØ-öø-ÿ0-9][a-zA-ZÀ-ÖØ-öø-ÿ0-9.,%:()\/\-+@ ]*[a-zA-ZÀ-ÖØ-öø-ÿ0-9]|[a-zA-ZÀ-ÖØ-öø-ÿ0-9])/g;
+
   const parts: { text: string; isLTR: boolean }[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
-  
+
   while ((match = ltrPattern.exec(reshaped)) !== null) {
     // Add RTL segment before this LTR match
     if (match.index > lastIndex) {
       parts.push({ text: reshaped.slice(lastIndex, match.index), isLTR: false });
     }
-    // Add LTR match
-    parts.push({ text: match[0].trim(), isLTR: true });
+    // Add LTR match (keep original spacing to avoid collapsed words)
+    parts.push({ text: match[0], isLTR: true });
     lastIndex = match.index + match[0].length;
   }
   // Add remaining RTL segment
   if (lastIndex < reshaped.length) {
     parts.push({ text: reshaped.slice(lastIndex), isLTR: false });
   }
-  
+
   // Step 4: Reverse RTL parts' characters, keep LTR parts intact
   const processed = parts.map(p => {
     if (p.isLTR) return p.text;
     return [...p.text].reverse().join('');
   });
-  
+
   // Step 5: Reverse overall order for RTL paragraph direction in jsPDF's LTR engine
   return processed.reverse().join('');
 }
 
 function formatDateForPDF(date: Date, language: string): string {
   const localeMap: Record<string, string> = { ar: 'ar-SA', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', pt: 'pt-BR', tr: 'tr-TR', en: 'en-US' };
-  const formatted = date.toLocaleDateString(localeMap[language] || 'en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-  // Process Arabic dates through the same pipeline
-  if (_ctx.isRTL && /[\u0600-\u06FF]/.test(formatted)) {
-    return prepareText(formatted);
-  }
-  return formatted;
+  return date.toLocaleDateString(localeMap[language] || 'en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 
 function getBrandName(language: string): string {
@@ -366,9 +393,9 @@ function getBrandName(language: string): string {
   return brands[language] || 'Pregnancy Toolkits';
 }
 
-/** Get brand name processed for PDF rendering */
+/** Get brand name for PDF rendering */
 function getBrandNameForPDF(language: string): string {
-  return prepareText(getBrandName(language));
+  return getBrandName(language);
 }
 
 // =============================================
@@ -400,11 +427,10 @@ function addPageWithHeader(s: PDFState) {
   s.doc.rect(0, 0, PAGE_W, 8, 'F');
   s.doc.setFontSize(6);
   s.doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-  // Process entire header as one unit for correct RTL ordering
+  // Process entire header as one unit for correct RTL ordering via centralized doc.text wrapper
   const lang = _ctx.isRTL ? 'ar' : 'en';
   const rawHeader = _ctx.reportTitle ? `${getBrandName(lang)} — ${_ctx.reportTitle}` : getBrandName(lang);
-  const headerText = prepareText(rawHeader);
-  s.doc.text(headerText, PAGE_W / 2, 5, { align: 'center' });
+  s.doc.text(rawHeader, PAGE_W / 2, 5, { align: 'center' });
   s.y = MARGIN_Y + 6;
 }
 
