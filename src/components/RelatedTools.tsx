@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { getRelatedTools } from "@/lib/tools-data";
 
@@ -12,7 +12,9 @@ interface RelatedToolsProps {
 
 export const RelatedTools = forwardRef<HTMLDivElement, RelatedToolsProps>(
   ({ currentToolId, maxItems = 3 }, ref) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isRTL = i18n.dir() === "rtl";
+    const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
     
     const relatedTools = getRelatedTools(currentToolId, maxItems);
     
@@ -38,7 +40,7 @@ export const RelatedTools = forwardRef<HTMLDivElement, RelatedToolsProps>(
             return (
               <motion.div
                 key={tool.id}
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: isRTL ? 10 : -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
               >
@@ -57,7 +59,7 @@ export const RelatedTools = forwardRef<HTMLDivElement, RelatedToolsProps>(
                       {t(tool.categoryKey)}
                     </p>
                   </div>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                  <ArrowIcon className={`h-4 w-4 text-muted-foreground group-hover:text-primary transition-all ${isRTL ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
                 </Link>
               </motion.div>
             );
