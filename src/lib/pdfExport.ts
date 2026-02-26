@@ -84,37 +84,49 @@ async function fetchFontAsBase64(url: string): Promise<string | null> {
 
 let tajawalFontCache: { regular: string; bold: string } | null = null;
 let amiriFontCache: { regular: string; bold: string } | null = null;
+let cairoFontCache: { regular: string; bold: string } | null = null;
 
 const FONT_URLS = {
   tajawalRegular: '/fonts/Tajawal-Regular.ttf',
   tajawalBold: '/fonts/Tajawal-Bold.ttf',
   amiriRegular: '/fonts/Amiri-Regular.ttf',
   amiriBold: '/fonts/Amiri-Bold.ttf',
+  cairoRegular: '/fonts/Cairo-Regular.ttf',
+  cairoBold: '/fonts/Cairo-Bold.ttf',
 };
 
 async function loadAllFonts(): Promise<void> {
-  if (tajawalFontCache && amiriFontCache) return;
+  if (cairoFontCache && tajawalFontCache && amiriFontCache) return;
   
-  const [tajawalReg, tajawalBold, amiriReg, amiriBold] = await Promise.all([
+  const [tajawalReg, tajawalBold, amiriReg, amiriBold, cairoReg, cairoBold] = await Promise.all([
     !tajawalFontCache ? fetchFontAsBase64(FONT_URLS.tajawalRegular) : Promise.resolve(null),
     !tajawalFontCache ? fetchFontAsBase64(FONT_URLS.tajawalBold) : Promise.resolve(null),
     !amiriFontCache ? fetchFontAsBase64(FONT_URLS.amiriRegular) : Promise.resolve(null),
     !amiriFontCache ? fetchFontAsBase64(FONT_URLS.amiriBold) : Promise.resolve(null),
+    !cairoFontCache ? fetchFontAsBase64(FONT_URLS.cairoRegular) : Promise.resolve(null),
+    !cairoFontCache ? fetchFontAsBase64(FONT_URLS.cairoBold) : Promise.resolve(null),
   ]);
   if (tajawalReg && !tajawalFontCache) {
     tajawalFontCache = { regular: tajawalReg, bold: tajawalBold || tajawalReg };
-    console.log('[PDF] Tajawal font loaded successfully');
   }
   if (amiriReg && !amiriFontCache) {
     amiriFontCache = { regular: amiriReg, bold: amiriBold || amiriReg };
-    console.log('[PDF] Amiri font loaded successfully');
   }
-  if (!tajawalFontCache) console.warn('[PDF] Tajawal font failed to load');
-  if (!amiriFontCache) console.warn('[PDF] Amiri font failed to load');
+  if (cairoReg && !cairoFontCache) {
+    cairoFontCache = { regular: cairoReg, bold: cairoBold || cairoReg };
+    console.log('[PDF] Cairo font loaded successfully');
+  }
+  if (!cairoFontCache) console.warn('[PDF] Cairo font failed to load');
 }
 
 function setupFonts(doc: jsPDF) {
   try {
+    if (cairoFontCache) {
+      doc.addFileToVFS('Cairo-Regular.ttf', cairoFontCache.regular);
+      doc.addFont('Cairo-Regular.ttf', 'Cairo', 'normal');
+      doc.addFileToVFS('Cairo-Bold.ttf', cairoFontCache.bold);
+      doc.addFont('Cairo-Bold.ttf', 'Cairo', 'bold');
+    }
     if (tajawalFontCache) {
       doc.addFileToVFS('Tajawal-Regular.ttf', tajawalFontCache.regular);
       doc.addFont('Tajawal-Regular.ttf', 'Tajawal', 'normal');
@@ -168,8 +180,10 @@ async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   _isRTL = language === 'ar';
   setupFonts(doc);
   
-  // Use Amiri for Arabic (has Presentation Forms glyphs), Tajawal for others
-  if (_isRTL && amiriFontCache) {
+  // Use Cairo as the primary font for all languages (supports Arabic + Latin)
+  if (cairoFontCache) {
+    _activeFont = 'Cairo';
+  } else if (_isRTL && amiriFontCache) {
     _activeFont = 'Amiri';
   } else if (tajawalFontCache) {
     _activeFont = 'Tajawal';
