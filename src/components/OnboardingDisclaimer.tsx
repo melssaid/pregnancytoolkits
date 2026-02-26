@@ -50,7 +50,7 @@ export const OnboardingDisclaimer: React.FC = () => {
   }, []);
 
   const handleFinish = () => {
-    const updates: Record<string, unknown> = {};
+    const updates: Record<string, unknown> = { isPregnant };
 
     if (isPregnant) {
       const weekNum = parseInt(week);

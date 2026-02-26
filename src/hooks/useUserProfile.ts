@@ -7,6 +7,7 @@ import { useState, useEffect, useCallback } from "react";
 import { safeSaveToLocalStorage, safeParseLocalStorage } from "@/lib/safeStorage";
 
 export interface UserProfile {
+  isPregnant: boolean;           // هل المستخدمة حامل؟
   pregnancyWeek: number;        // أسبوع الحمل الحالي (1-42)
   weight: number | null;        // الوزن الحالي بالكيلوغرام
   prePregnancyWeight: number | null; // الوزن قبل الحمل
@@ -22,6 +23,7 @@ const PROFILE_KEY = "user_central_profile_v1";
 const LEGACY_PROFILE_KEY_PREFIX = "profile_";
 
 const DEFAULT_PROFILE: UserProfile = {
+  isPregnant: true,
   pregnancyWeek: 20,
   weight: null,
   prePregnancyWeight: null,
