@@ -127,7 +127,12 @@
     "noPressure": "Kein Abo-Druck — einfache, faire Preise",
     "sevenLangs": "Volle Unterstützung in 7 Sprachen für Schwangerschaft & Wochenbett",
     "privacyFirst": "Hoher Datenschutz — keine Datensammlung",
-    "transparency": "Vollständige Transparenz in allem, was wir bieten"
+    "transparency": "Vollständige Transparenz in allem, was wir bieten",
+    "pregnancyStatus": "Schwangerschaftsstatus",
+    "pregnant": "Schwanger",
+    "notPregnant": "Nicht schwanger",
+    "weight": "Gewicht",
+    "height": "Größe"
   },
   "tools": {
     "pregnancyAssistant": {

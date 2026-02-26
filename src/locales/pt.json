@@ -127,7 +127,12 @@
     "noPressure": "Sem pressão de assinatura — preços simples e justos",
     "sevenLangs": "Suporte completo em 7 idiomas para gravidez e pós-parto",
     "privacyFirst": "Alto respeito pela privacidade — sem coleta de dados",
-    "transparency": "Transparência total em tudo que oferecemos"
+    "transparency": "Transparência total em tudo que oferecemos",
+    "pregnancyStatus": "Estado de gravidez",
+    "pregnant": "Grávida",
+    "notPregnant": "Não grávida",
+    "weight": "Peso",
+    "height": "Altura"
   },
   "tools": {
     "pregnancyAssistant": {
