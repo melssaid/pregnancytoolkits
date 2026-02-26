@@ -11,7 +11,7 @@ import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { mentalHealthVideosByLang } from '@/data/videoData';
-import { exportAIResultPDF } from '@/lib/pdfExport';
+import { exportAIResultPDF, canExportPDF, getRemainingExports, incrementPDFExportCount } from '@/lib/pdfExport';
 import { Progress } from '@/components/ui/progress';
 import { toast } from 'sonner';
 
@@ -229,6 +229,10 @@ export default function PostpartumMentalHealthCoach() {
 
   const handleExportPDF = async () => {
     if (!aiCopingPlan || isExportingPDF) return;
+    if (!canExportPDF()) {
+      toast.error(t('common.dailyExportLimitReached'));
+      return;
+    }
     setIsExportingPDF(true);
     setPdfProgress(0);
     try {
@@ -245,6 +249,7 @@ export default function PostpartumMentalHealthCoach() {
         language: lang,
         onProgress: setPdfProgress,
       });
+      incrementPDFExportCount();
       toast.success(t('common.exportComplete', 'Export complete!'));
     } catch (err) {
       console.error('PDF export failed:', err);
@@ -494,19 +499,24 @@ Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind
                       <>
                         <MarkdownRenderer content={aiCopingPlan} />
                         {!aiLoading && (
-                          <Button
-                            onClick={handleExportPDF}
-                            variant="outline"
-                            disabled={isExportingPDF}
-                            className="w-full mt-4 border-violet-300 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 disabled:opacity-70 gap-2"
-                          >
-                            {isExportingPDF ? (
-                              <Loader2 className="w-4 h-4 animate-spin" />
-                            ) : (
-                              <FileDown className="w-4 h-4" />
-                            )}
-                            {isExportingPDF ? t('common.exporting', 'Exporting...') : t('common.downloadPDF', 'Download PDF')}
-                          </Button>
+                          <>
+                            <Button
+                              onClick={handleExportPDF}
+                              variant="outline"
+                              disabled={isExportingPDF || !canExportPDF()}
+                              className="w-full mt-4 border-violet-300 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 disabled:opacity-70 gap-2"
+                            >
+                              {isExportingPDF ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                              ) : (
+                                <FileDown className="w-4 h-4" />
+                              )}
+                              {isExportingPDF ? t('common.exporting', 'Exporting...') : t('common.downloadPDF', 'Download PDF')}
+                            </Button>
+                            <p className="text-[10px] text-muted-foreground text-center mt-1">
+                              {t("common.dailyExportRemaining", { count: getRemainingExports() })}
+                            </p>
+                          </>
                         )}
                       </>
                     ) : (

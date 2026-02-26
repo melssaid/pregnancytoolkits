@@ -4,6 +4,45 @@ import i18n from '@/i18n';
 
 export type PDFProgressCallback = (percent: number) => void;
 
+// =============================================
+// Daily export limit (4 per day)
+// =============================================
+const MAX_DAILY_EXPORTS = 4;
+const EXPORT_DATE_KEY = 'pdf_export_date';
+const EXPORT_COUNT_KEY = 'pdf_export_count';
+
+function getTodayStr(): string {
+  return new Date().toISOString().split('T')[0];
+}
+
+export function canExportPDF(): boolean {
+  const today = getTodayStr();
+  const lastDate = localStorage.getItem(EXPORT_DATE_KEY);
+  if (lastDate !== today) return true;
+  const count = parseInt(localStorage.getItem(EXPORT_COUNT_KEY) || '0', 10);
+  return count < MAX_DAILY_EXPORTS;
+}
+
+export function getRemainingExports(): number {
+  const today = getTodayStr();
+  const lastDate = localStorage.getItem(EXPORT_DATE_KEY);
+  if (lastDate !== today) return MAX_DAILY_EXPORTS;
+  const count = parseInt(localStorage.getItem(EXPORT_COUNT_KEY) || '0', 10);
+  return Math.max(0, MAX_DAILY_EXPORTS - count);
+}
+
+export function incrementPDFExportCount(): void {
+  const today = getTodayStr();
+  const lastDate = localStorage.getItem(EXPORT_DATE_KEY);
+  let count = 0;
+  if (lastDate === today) {
+    count = parseInt(localStorage.getItem(EXPORT_COUNT_KEY) || '0', 10);
+  }
+  count++;
+  localStorage.setItem(EXPORT_DATE_KEY, today);
+  localStorage.setItem(EXPORT_COUNT_KEY, String(count));
+}
+
 interface PDFExportOptions {
   title: string;
   content: string;
@@ -272,68 +311,44 @@ function stripEmojis(text: string): string {
 function processArabicForJsPDF(text: string): string {
   if (!text) return text;
   
-  // Split text into segments: Arabic words vs non-Arabic tokens
-  // This preserves numbers, Latin text, and punctuation correctly
-  const segments: { text: string; type: 'arabic' | 'ltr' | 'neutral' }[] = [];
+  // Step 1: Reshape entire text at once (handles word boundaries & ligatures correctly)
+  const reshaped = ArabicReshaper.convertArabic(text);
   
-  // Tokenize by whitespace first, then classify each token
-  const tokens = text.split(/(\s+)/);
-  
-  for (const token of tokens) {
-    if (/^\s+$/.test(token)) {
-      segments.push({ text: token, type: 'neutral' });
-      continue;
-    }
-    
-    const hasArabic = /[\u0600-\u06FF\u0660-\u0669\u06F0-\u06F9]/.test(token);
-    const hasLatin = /[a-zA-Z]/.test(token);
-    const hasWesternDigits = /[0-9]/.test(token);
-    
-    if (hasArabic && !hasLatin) {
-      // Pure Arabic token (may include Arabic numerals and punctuation)
-      segments.push({ text: token, type: 'arabic' });
-    } else if (hasLatin || (hasWesternDigits && !hasArabic)) {
-      // Latin or pure number token
-      segments.push({ text: token, type: 'ltr' });
-    } else if (hasArabic && hasLatin) {
-      // Mixed token - split into sub-segments
-      let current = '';
-      let currentType: 'arabic' | 'ltr' | null = null;
-      for (const ch of token) {
-        const isAr = /[\u0600-\u06FF\u0660-\u0669\u06F0-\u06F9]/.test(ch);
-        const chType = isAr ? 'arabic' : 'ltr';
-        if (currentType === null || chType === currentType) {
-          current += ch;
-          currentType = chType;
-        } else {
-          segments.push({ text: current, type: currentType });
-          current = ch;
-          currentType = chType;
-        }
-      }
-      if (current) segments.push({ text: current, type: currentType! });
-    } else {
-      // Pure punctuation/neutral
-      segments.push({ text: token, type: 'neutral' });
-    }
+  // Step 2: If no embedded LTR content, simply reverse entire string
+  if (!/[a-zA-Z0-9]/.test(reshaped)) {
+    return [...reshaped].reverse().join('');
   }
   
-  // Process Arabic segments: reshape for letter connection
-  const processed = segments.map(seg => {
-    if (seg.type === 'arabic') {
-      // Reshape Arabic characters to Presentation Forms (connected letters)
-      const reshaped = ArabicReshaper.convertArabic(seg.text);
-      // Reverse for jsPDF LTR rendering
-      return [...reshaped].reverse().join('');
+  // Step 3: Mixed content — split around LTR sequences, preserve their order
+  // Match LTR runs: sequences of Latin chars, digits, and common punctuation between them
+  const ltrPattern = /([a-zA-Z0-9][a-zA-Z0-9.,%:()\/\-+@ ]*[a-zA-Z0-9]|[a-zA-Z0-9])/g;
+  
+  const parts: { text: string; isLTR: boolean }[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  
+  while ((match = ltrPattern.exec(reshaped)) !== null) {
+    // Add RTL segment before this LTR match
+    if (match.index > lastIndex) {
+      parts.push({ text: reshaped.slice(lastIndex, match.index), isLTR: false });
     }
-    return seg.text;
+    // Add LTR match
+    parts.push({ text: match[0].trim(), isLTR: true });
+    lastIndex = match.index + match[0].length;
+  }
+  // Add remaining RTL segment
+  if (lastIndex < reshaped.length) {
+    parts.push({ text: reshaped.slice(lastIndex), isLTR: false });
+  }
+  
+  // Step 4: Reverse RTL parts' characters, keep LTR parts intact
+  const processed = parts.map(p => {
+    if (p.isLTR) return p.text;
+    return [...p.text].reverse().join('');
   });
   
-  // Reverse the order of ALL segments (RTL paragraph direction)
-  // This makes the first Arabic word appear on the right in jsPDF
-  processed.reverse();
-  
-  return processed.join('');
+  // Step 5: Reverse overall order for RTL paragraph direction in jsPDF's LTR engine
+  return processed.reverse().join('');
 }
 
 function formatDateForPDF(date: Date, language: string): string {

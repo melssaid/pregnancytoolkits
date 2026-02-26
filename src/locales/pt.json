@@ -696,7 +696,10 @@
     "exporting": "Exportando...",
     "exportComplete": "Exportação concluída!",
     "exportFailed": "Falha na exportação",
-    "downloadPDF": "Baixar PDF"
+    "downloadPDF": "Baixar PDF",
+    "dailyExportLimit": "Você pode exportar até 4 relatórios por dia",
+    "dailyExportRemaining": "{{count}} exportações restantes hoje",
+    "dailyExportLimitReached": "Limite diário atingido. Tente novamente amanhã."
   },
   "subscription": {
     "subscribeNow": "Premium - R$4,99/mês",

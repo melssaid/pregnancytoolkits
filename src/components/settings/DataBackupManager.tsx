@@ -3,6 +3,7 @@ import { Download, Loader2, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
+import { canExportPDF, getRemainingExports, incrementPDFExportCount } from '@/lib/pdfExport';
 
 // Keys to backup from localStorage
 const BACKUP_KEYS = [
@@ -72,6 +73,11 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
     e.stopPropagation();
     
     setIsExporting(true);
+    if (!canExportPDF()) {
+      toast({ title: t('common.dailyExportLimitReached'), variant: 'destructive' });
+      setIsExporting(false);
+      return;
+    }
     try {
       const data = collectAllData();
       const dataCount = Object.keys(data).length;
@@ -93,6 +99,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       const now = new Date().toISOString();
       localStorage.setItem('last_backup_date', now);
       setLastBackupDate(now);
+      incrementPDFExportCount();
       toast({ title: t('settings.backup.exportSuccess'), description: t('settings.backup.exportSuccessDesc', { count: dataCount }) });
     } catch (error) {
       console.error('PDF Export error:', error);
@@ -119,7 +126,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
 
         <Button 
           type="button"
-          disabled={isExporting} 
+          disabled={isExporting || !canExportPDF()} 
           size="sm" 
           className="w-full gap-1.5 h-9 text-xs"
           onClick={handleExportPDF}
@@ -127,6 +134,9 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
           {isExporting ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
           {t('settings.backup.exportData')}
         </Button>
+        <p className="text-[10px] text-muted-foreground text-center">
+          {t("common.dailyExportRemaining", { count: getRemainingExports() })}
+        </p>
       </div>
     );
   }
@@ -148,13 +158,16 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
 
       <Button 
         type="button"
-        disabled={isExporting} 
+        disabled={isExporting || !canExportPDF()} 
         className="w-full gap-2"
         onClick={handleExportPDF}
       >
         {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
         {t('settings.backup.exportData')}
       </Button>
+      <p className="text-[10px] text-muted-foreground text-center mt-1.5">
+        {t("common.dailyExportRemaining", { count: getRemainingExports() })}
+      </p>
     </div>
   );
 };

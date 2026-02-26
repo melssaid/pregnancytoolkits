@@ -23,7 +23,7 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { motion } from "framer-motion";
-import { exportSmartPlanPDF } from "@/lib/pdfExport";
+import { exportSmartPlanPDF, canExportPDF, getRemainingExports, incrementPDFExportCount } from "@/lib/pdfExport";
 
 const STORAGE_KEY = 'smart-plan-health-data';
 
@@ -334,6 +334,10 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
 
   const handleExportPDF = async () => {
     if (isExportingPDF) return;
+    if (!canExportPDF()) {
+      toast.error(t("common.dailyExportLimitReached"));
+      return;
+    }
     setIsExportingPDF(true);
     try {
       await exportSmartPlanPDF({
@@ -349,6 +353,7 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
         language: lang,
         onProgress: () => {},
       });
+      incrementPDFExportCount();
       toast.success(t("smartPlan.pdfExported", "Report exported successfully"));
     } catch {
       toast.error(t("smartPlan.pdfError", "Failed to export PDF"));
@@ -738,26 +743,31 @@ Ayrıntılı bölümler: Sağlık Durumu, Fetal Gelişim, Beslenme Planı, Egzer
                   </Card>
                 </div>
 
-                <div className="flex gap-2">
-                  <Button
-                    onClick={handleExportPDF}
-                    disabled={isExportingPDF || isLoading}
-                    variant="outline"
-                    className="flex-1 text-xs h-9"
-                  >
-                    {isExportingPDF ? <Loader2 className="w-3.5 h-3.5 me-1.5 animate-spin" /> : <Download className="w-3.5 h-3.5 me-1.5" />}
-                    {t("smartPlan.exportPDF", "Export PDF")}
-                  </Button>
-                  <motion.button
-                    whileTap={{ scale: 0.92 }}
-                    onClick={generateReport}
-                    disabled={isLoading}
-                    className="relative flex-1 overflow-hidden rounded-md h-9 flex items-center justify-center gap-1.5 text-white text-xs font-semibold disabled:opacity-60 disabled:pointer-events-none"
-                    style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
-                  >
-                    {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
-                    {t("smartPlan.regenerate", "Regenerate")}
-                  </motion.button>
+                <div className="space-y-1.5">
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={handleExportPDF}
+                      disabled={isExportingPDF || isLoading || !canExportPDF()}
+                      variant="outline"
+                      className="flex-1 text-xs h-9"
+                    >
+                      {isExportingPDF ? <Loader2 className="w-3.5 h-3.5 me-1.5 animate-spin" /> : <Download className="w-3.5 h-3.5 me-1.5" />}
+                      {t("smartPlan.exportPDF", "Export PDF")}
+                    </Button>
+                    <motion.button
+                      whileTap={{ scale: 0.92 }}
+                      onClick={generateReport}
+                      disabled={isLoading}
+                      className="relative flex-1 overflow-hidden rounded-md h-9 flex items-center justify-center gap-1.5 text-white text-xs font-semibold disabled:opacity-60 disabled:pointer-events-none"
+                      style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
+                    >
+                      {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
+                      {t("smartPlan.regenerate", "Regenerate")}
+                    </motion.button>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground text-center">
+                    {t("common.dailyExportRemaining", { count: getRemainingExports() })}
+                  </p>
                 </div>
               </div>
             ) : (
