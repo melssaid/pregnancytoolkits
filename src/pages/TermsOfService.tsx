@@ -1,4 +1,5 @@
 import { Layout } from "@/components/Layout";
+import { SEOHead } from "@/components/SEOHead";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { 
@@ -98,6 +99,7 @@ export default function TermsOfService() {
 
   return (
     <Layout showBack>
+      <SEOHead title={t('layout.termsOfService.title')} description="Terms of service for Pregnancy Toolkits – educational & lifestyle companion, not a medical device." />
       <div className="container py-6 pb-24">
         <div className="mx-auto max-w-3xl space-y-6">
           {/* Header */}

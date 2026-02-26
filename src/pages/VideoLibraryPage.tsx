@@ -1,5 +1,6 @@
 import React from 'react';
 import { BookOpen, ShieldCheck } from 'lucide-react';
+import { SEOHead } from '@/components/SEOHead';
 import { VideoLibrary } from '@/components/VideoLibrary';
 import { Layout } from '@/components/Layout';
 import { generalVideosByLang } from '@/data/videoData';
@@ -10,6 +11,7 @@ export default function VideoLibraryPage() {
 
   return (
     <Layout showBack>
+      <SEOHead title={t('videoLibrary.title')} description="Free pregnancy education videos: exercises, nutrition, labor preparation, and baby care guides." />
       <div className="container py-6 space-y-6">
         {/* Hero Section */}
         <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">

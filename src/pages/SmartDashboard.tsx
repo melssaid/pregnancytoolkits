@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { SEOHead } from "@/components/SEOHead";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -226,6 +227,7 @@ const SmartDashboard = () => {
 
   return (
     <Layout>
+      <SEOHead title={t('dashboard.title', 'Pregnancy Dashboard')} description="Your personalized pregnancy dashboard with AI assistant, health tracking, nutrition & exercise tools." />
       {/* Navigation Tabs with Notification Button */}
       <nav className="bg-background border-b border-border/50">
         <div className="container px-3">
