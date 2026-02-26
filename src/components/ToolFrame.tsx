@@ -8,6 +8,7 @@ import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { ToolInsightTabs } from "./ToolInsightTabs";
+import { AdBanner } from "./AdBanner";
 import logoImage from "@/assets/logo.png";
 
 interface ToolFrameProps {
@@ -197,6 +198,11 @@ export function ToolFrame({
             </motion.div>
           )}
         </section>
+
+        {/* Ad Banner */}
+        <div className="px-4 sm:px-6 py-4">
+          <AdBanner />
+        </div>
 
         {/* Minimal Footer Disclaimer */}
         <motion.footer
