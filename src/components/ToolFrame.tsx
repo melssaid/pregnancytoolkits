@@ -201,7 +201,7 @@ export function ToolFrame({
         </section>
 
         {/* Ad Banner */}
-        <div className="px-4 sm:px-6 py-4">
+        <div className="px-4 sm:px-6 py-3">
           <AdBanner />
         </div>
 
