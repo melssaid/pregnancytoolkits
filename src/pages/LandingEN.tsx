@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SEOHead } from "@/components/SEOHead";
 import { 
   Baby, Calendar, Heart, Activity, Apple, Brain, 
-  Shield, Star, Users, ArrowRight, CheckCircle2,
+  Shield, Users, ArrowRight, CheckCircle2,
   Smartphone, Clock, Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -117,7 +117,7 @@ export default function LandingEN() {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Track your pregnancy week by week with our free due date calculator, baby kick counter, 
             contraction timer, fetal development guide, and personalized AI assistant. 
-            Trusted by thousands of expecting parents in the US, UK, Canada, and Europe.
+            Designed for expecting parents worldwide — available in 7 languages.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
@@ -154,10 +154,9 @@ export default function LandingEN() {
             </div>
             <div>
               <div className="flex items-center justify-center gap-1">
-                <p className="text-2xl font-bold text-primary">4.8</p>
-                <Star className="h-5 w-5 text-primary fill-primary" />
+                <p className="text-2xl font-bold text-primary">24/7</p>
               </div>
-              <p className="text-sm text-muted-foreground">User Rating</p>
+              <p className="text-sm text-muted-foreground">AI Assistant</p>
             </div>
           </div>
         </div>
