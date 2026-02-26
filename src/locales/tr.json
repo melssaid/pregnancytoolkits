@@ -4276,6 +4276,8 @@
     "doctorNotes": "Doktor Notları",
     "getAIPlan": "Yapay Zeka kişisel plan al",
     "aiPlanTitle": "Yapay Zeka Kişisel Plan",
+    "aiPlanTab": "Akıllı Plan",
+    "aiPlanHint": "Kişiselleştirilmiş günlük plan oluşturmak için yukarıdaki Akıllı Plan düğmesine basın",
     "generateReport": "Kapsamlı rapor oluştur",
     "reportHint": "Haftanıza, kilonuza ve durumunuza özel detaylı bir sağlık raporu alın",
     "createReport": "Sağlık raporu oluştur",

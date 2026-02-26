@@ -4073,6 +4073,8 @@
     "doctorNotes": "Arztnotizen",
     "getAIPlan": "KI-personalisierten Plan erhalten",
     "aiPlanTitle": "KI-personalisierter Plan",
+    "aiPlanTab": "Smarter Plan",
+    "aiPlanHint": "Drücke oben den Smart-Plan-Button, um einen personalisierten Tagesplan zu erstellen",
     "generateReport": "Umfassenden Bericht erstellen",
     "reportHint": "Erhalten Sie einen detaillierten KI-gestützten Gesundheitsbericht",
     "createReport": "Gesundheitsbericht erstellen",

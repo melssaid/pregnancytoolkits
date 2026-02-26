@@ -4276,6 +4276,8 @@
     "doctorNotes": "Notas del Médico",
     "getAIPlan": "Obtener plan IA personalizado",
     "aiPlanTitle": "Plan personalizado con IA",
+    "aiPlanTab": "Plan inteligente",
+    "aiPlanHint": "Pulsa el botón de Plan inteligente arriba para crear un plan diario personalizado",
     "generateReport": "Generar informe completo",
     "reportHint": "Obtén un informe de salud detallado personalizado con IA",
     "createReport": "Crear informe de salud",
