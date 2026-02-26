@@ -2,7 +2,7 @@ import React from 'react';
 import { SEOHead } from '@/components/SEOHead';
 import { Database, Shield, Info, Heart, Lock, Globe, User, CheckCircle, Stethoscope } from 'lucide-react';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
-import { DataClearManager } from '@/components/settings/DataClearManager';
+
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
 import { AccountDeletion } from '@/components/settings/AccountDeletion';
 import { LanguageSelector } from '@/components/settings/LanguageSelector';
@@ -102,7 +102,6 @@ const Settings: React.FC = () => {
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4 space-y-3">
               <DataBackupManager compact />
-              <DataClearManager compact />
               <AccountDeletion compact />
             </AccordionContent>
           </AccordionItem>
