@@ -624,7 +624,10 @@
     "min": "د",
     "sec": "ث",
     "seconds": "ثواني",
-    "hours": "ساعات"
+    "hours": "ساعات",
+    "dailyExportLimit": "يمكنك تصدير حتى 4 تقارير يومياً",
+    "dailyExportRemaining": "{{count}} تقارير متبقية اليوم",
+    "dailyExportLimitReached": "تم الوصول للحد اليومي. حاول مرة أخرى غداً."
   },
   "smartPlan": {
     "title": "خطتي الذكية",

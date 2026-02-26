@@ -14,7 +14,7 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { VideoLibrary } from "@/components/VideoLibrary";
-import { exportHospitalBagPDF, generateHospitalBagShareText } from "@/lib/pdfExport";
+import { exportHospitalBagPDF, generateHospitalBagShareText, canExportPDF, getRemainingExports, incrementPDFExportCount } from "@/lib/pdfExport";
 
 import { toast } from "sonner";
 import { hospitalBagVideosByLang } from "@/data/videoData";
@@ -299,6 +299,10 @@ const AIHospitalBag = () => {
   const [pdfProgress, setPdfProgress] = useState(0);
   const handleExportPDF = async () => {
     if (isExportingPDF) return;
+    if (!canExportPDF()) {
+      toast.error(t('common.dailyExportLimitReached'));
+      return;
+    }
     setIsExportingPDF(true);
     try {
       const pdfItems = items.map(item => ({
@@ -330,6 +334,7 @@ const AIHospitalBag = () => {
         },
       });
 
+      incrementPDFExportCount();
       toast.success(t('toolsInternal.hospitalBag.exportSuccess'));
     } catch (error) {
       console.error('PDF export error:', error);
@@ -552,15 +557,16 @@ Include seasonal considerations and hospital-specific recommendations.`;
           <Button
             onClick={handleExportPDF}
             variant="outline"
-            disabled={isExportingPDF}
+            disabled={isExportingPDF || !canExportPDF()}
             className="border-teal-300 text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30 disabled:opacity-70 disabled:text-teal-700 text-[12px] sm:text-[13px] h-9 px-2"
           >
             {isExportingPDF ? <Loader2 className="w-3.5 h-3.5 me-1.5 shrink-0 animate-spin" /> : <FileDown className="w-3.5 h-3.5 me-1.5 shrink-0" />}
             <span className="truncate">{isExportingPDF ? t('common.exporting', 'Exporting...') : t('toolsInternal.hospitalBag.exportPDF')}</span>
           </Button>
         </div>
-
-        {/* Share & Reset Buttons */}
+        <p className="text-[10px] text-muted-foreground text-center">
+          {t("common.dailyExportRemaining", { count: getRemainingExports() })}
+        </p>
         <div className="grid grid-cols-2 gap-2">
           <Button
             onClick={handleShareWhatsApp}

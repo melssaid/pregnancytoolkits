@@ -12,7 +12,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
-import { exportBirthPlanToPDF, MAX_SAVED_PLANS } from '@/lib/pdfExport';
+import { exportBirthPlanToPDF, MAX_SAVED_PLANS, canExportPDF, getRemainingExports, incrementPDFExportCount } from '@/lib/pdfExport';
 
 import { Progress } from '@/components/ui/progress';
 import { RelatedToolLinks } from '@/components/RelatedToolLinks';
@@ -212,6 +212,10 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
   const [pdfProgress, setPdfProgress] = useState(0);
   const exportPlanAsPDF = useCallback(async () => {
     if (!generatedPlan || isExportingPDF) return;
+    if (!canExportPDF()) {
+      toast.error(t('common.dailyExportLimitReached'));
+      return;
+    }
     setIsExportingPDF(true);
     setPdfProgress(0);
     try {
@@ -224,6 +228,7 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
         language: i18n.language?.split('-')[0] || 'en',
         onProgress: setPdfProgress,
       });
+      incrementPDFExportCount();
       toast.success(t('toolsInternal.birthPlan.pdfSuccess'));
     } catch (error) {
       console.error('PDF export error:', error);
@@ -362,13 +367,16 @@ REMINDER: The ENTIRE response must be in ${langName}. Do NOT use any other langu
                     size="sm" 
                     variant="default" 
                     onClick={exportPlanAsPDF}
-                    disabled={isExportingPDF}
+                    disabled={isExportingPDF || !canExportPDF()}
                     className="gap-1 flex-1 disabled:opacity-70"
                   >
                     {isExportingPDF ? <Loader2 className="w-4 h-4 shrink-0 animate-spin" /> : <FileDown className="w-4 h-4 shrink-0" />}
                     {isExportingPDF ? t('common.exporting', 'Exporting...') : 'PDF'}
                   </Button>
                 </div>
+                <p className="text-[10px] text-muted-foreground text-center">
+                  {t("common.dailyExportRemaining", { count: getRemainingExports() })}
+                </p>
               </div>
               <div ref={planContentRef}>
                 <MarkdownRenderer content={generatedPlan} />

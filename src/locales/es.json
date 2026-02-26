@@ -696,7 +696,10 @@
     "exporting": "Exportando...",
     "exportComplete": "¡Exportación completada!",
     "exportFailed": "Error en la exportación",
-    "downloadPDF": "Descargar PDF"
+    "downloadPDF": "Descargar PDF",
+    "dailyExportLimit": "Puedes exportar hasta 4 informes por día",
+    "dailyExportRemaining": "{{count}} exportaciones restantes hoy",
+    "dailyExportLimitReached": "Límite diario alcanzado. Inténtalo mañana."
   },
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mes",

@@ -696,7 +696,10 @@
     "exporting": "Dışa aktarılıyor...",
     "exportComplete": "Dışa aktarma tamamlandı!",
     "exportFailed": "Dışa aktarma başarısız",
-    "downloadPDF": "PDF İndir"
+    "downloadPDF": "PDF İndir",
+    "dailyExportLimit": "Günde en fazla 4 rapor dışa aktarabilirsiniz",
+    "dailyExportRemaining": "Bugün {{count}} dışa aktarma kaldı",
+    "dailyExportLimitReached": "Günlük dışa aktarma limiti doldu. Yarın tekrar deneyin."
   },
   "subscription": {
     "subscribeNow": "Premium Al - ₺24.99/ay",
