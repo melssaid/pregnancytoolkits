@@ -1,0 +1,200 @@
+import React, { useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@/components/ui/button';
+import { Printer } from 'lucide-react';
+
+interface PrintableReportProps {
+  children: React.ReactNode;
+  title?: string;
+}
+
+const printLabels: Record<string, string> = {
+  en: 'Print Report',
+  ar: 'طباعة التقرير',
+  de: 'Bericht drucken',
+  fr: 'Imprimer le rapport',
+  es: 'Imprimir informe',
+  pt: 'Imprimir relatório',
+  tr: 'Raporu yazdır',
+};
+
+export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title }) => {
+  const { i18n } = useTranslation();
+  const reportRef = useRef<HTMLDivElement>(null);
+  const lang = i18n.language?.split('-')[0] || 'en';
+  const isRTL = lang === 'ar';
+
+  const handlePrint = useCallback(() => {
+    if (!reportRef.current) return;
+
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+
+    const brandNames: Record<string, string> = {
+      ar: 'أدوات الحمل الذكية',
+      de: 'Schwangerschafts-Toolkit',
+      fr: 'Outils de Grossesse',
+      es: 'Herramientas de Embarazo',
+      pt: 'Ferramentas de Gravidez',
+      tr: 'Gebelik Araçları',
+      en: 'Pregnancy Toolkits',
+    };
+
+    const content = reportRef.current.innerHTML;
+    const brand = brandNames[lang] || brandNames.en;
+
+    printWindow.document.write(`<!DOCTYPE html>
+<html dir="${isRTL ? 'rtl' : 'ltr'}" lang="${lang}">
+<head>
+  <meta charset="utf-8" />
+  <title>${title || brand}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #1e293b;
+      background: #fff;
+      padding: 20mm 15mm;
+      line-height: 1.7;
+      direction: ${isRTL ? 'rtl' : 'ltr'};
+      font-size: 14px;
+    }
+    
+    .print-header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #ec4899;
+    }
+    .print-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ec4899;
+      margin-bottom: 4px;
+    }
+    .print-header .brand {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    .print-header .date {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+    
+    .print-content h1, .print-content h2, .print-content h3, .print-content h4 {
+      color: #1e293b;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .print-content h1 { font-size: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; }
+    .print-content h2 { font-size: 17px; color: #ec4899; }
+    .print-content h3 { font-size: 15px; color: #8b5cf6; }
+    .print-content h4 { font-size: 14px; }
+    
+    .print-content p { margin-bottom: 8px; }
+    .print-content ul, .print-content ol { 
+      margin-bottom: 10px; 
+      padding-${isRTL ? 'right' : 'left'}: 24px; 
+    }
+    .print-content li { margin-bottom: 4px; }
+    .print-content strong { font-weight: 700; color: #334155; }
+    
+    .print-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    .print-content th, .print-content td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 10px;
+      text-align: ${isRTL ? 'right' : 'left'};
+      font-size: 13px;
+    }
+    .print-content th { background: #f8fafc; font-weight: 600; }
+    
+    .print-footer {
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      font-size: 10px;
+      color: #94a3b8;
+    }
+
+    /* Hide non-printable elements */
+    button, .no-print, [data-no-print] { display: none !important; }
+    
+    /* Card-like elements */
+    [class*="card"], [class*="Card"] {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    
+    /* Badge */
+    [class*="badge"], [class*="Badge"] {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    /* Progress bar */
+    [role="progressbar"] {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    @media print {
+      body { padding: 10mm; }
+      @page { margin: 10mm; size: A4; }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-header">
+    <h1>${title || brand}</h1>
+    <div class="brand">${brand}</div>
+    <div class="date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : lang === 'de' ? 'de-DE' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : lang === 'pt' ? 'pt-BR' : lang === 'tr' ? 'tr-TR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+  </div>
+  <div class="print-content">${content}</div>
+  <div class="print-footer">${brand} &mdash; ${new Date().getFullYear()}</div>
+</body>
+</html>`);
+    printWindow.document.close();
+    
+    // Wait for fonts to load before printing
+    setTimeout(() => {
+      printWindow.print();
+    }, 600);
+  }, [lang, isRTL, title]);
+
+  return (
+    <div>
+      <div ref={reportRef}>
+        {children}
+      </div>
+      <Button
+        variant="outline"
+        onClick={handlePrint}
+        className="w-full mt-3 gap-2"
+        data-no-print
+      >
+        <Printer className="w-4 h-4" />
+        {printLabels[lang] || printLabels.en}
+      </Button>
+    </div>
+  );
+};
+
+export default PrintableReport;

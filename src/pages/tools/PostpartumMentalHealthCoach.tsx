@@ -4,15 +4,14 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles, FileDown, ArrowRight, ArrowLeft, RotateCcw } from 'lucide-react';
+import { AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles, ArrowRight, ArrowLeft, RotateCcw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VideoLibrary } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { mentalHealthVideosByLang } from '@/data/videoData';
-import { exportAIResultPDF, canExportPDF, getRemainingExports, incrementPDFExportCount } from '@/lib/pdfExport';
-import { Progress } from '@/components/ui/progress';
+import { PrintableReport } from '@/components/PrintableReport';
 import { toast } from 'sonner';
 
 interface ScreeningQuestion {
@@ -33,138 +32,49 @@ const getEpdsQuestions = (): ScreeningQuestion[] => [
       { labelKey: 'toolsInternal.mentalHealthCoach.epds.q1.o3', value: 3 }
     ]
   },
-  {
-    id: '2', icon: '🌟',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q2.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o3', value: 3 }
-    ]
-  },
-  {
-    id: '3', icon: '💭',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q3.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o3', value: 3 }
-    ]
-  },
-  {
-    id: '4', icon: '😰',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q4.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o3', value: 3 }
-    ]
-  },
-  {
-    id: '5', icon: '😨',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q5.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o3', value: 3 }
-    ]
-  },
-  {
-    id: '6', icon: '😴',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q6.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q6.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q6.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q6.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q6.o3', value: 3 }
-    ]
-  },
-  {
-    id: '7', icon: '😢',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q7.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q7.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q7.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q7.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q7.o3', value: 3 }
-    ]
-  },
-  {
-    id: '8', icon: '🍽️',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q8.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q8.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q8.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q8.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q8.o3', value: 3 }
-    ]
-  },
-  {
-    id: '9', icon: '🧠',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q9.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q9.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q9.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q9.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q9.o3', value: 3 }
-    ]
-  },
-  {
-    id: '10', icon: '⚡',
-    questionKey: 'toolsInternal.mentalHealthCoach.epds.q10.question',
-    options: [
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q10.o0', value: 0 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q10.o1', value: 1 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q10.o2', value: 2 },
-      { labelKey: 'toolsInternal.mentalHealthCoach.epds.q10.o3', value: 3 }
-    ]
-  }
+  { id: '2', icon: '🌟', questionKey: 'toolsInternal.mentalHealthCoach.epds.q2.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q2.o3', value: 3 } ] },
+  { id: '3', icon: '💭', questionKey: 'toolsInternal.mentalHealthCoach.epds.q3.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q3.o3', value: 3 } ] },
+  { id: '4', icon: '😰', questionKey: 'toolsInternal.mentalHealthCoach.epds.q4.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q4.o3', value: 3 } ] },
+  { id: '5', icon: '😢', questionKey: 'toolsInternal.mentalHealthCoach.epds.q5.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q5.o3', value: 3 } ] },
+  { id: '6', icon: '😓', questionKey: 'toolsInternal.mentalHealthCoach.epds.q6.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q6.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q6.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q6.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q6.o3', value: 3 } ] },
+  { id: '7', icon: '😴', questionKey: 'toolsInternal.mentalHealthCoach.epds.q7.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q7.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q7.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q7.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q7.o3', value: 3 } ] },
+  { id: '8', icon: '💔', questionKey: 'toolsInternal.mentalHealthCoach.epds.q8.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q8.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q8.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q8.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q8.o3', value: 3 } ] },
+  { id: '9', icon: '😿', questionKey: 'toolsInternal.mentalHealthCoach.epds.q9.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q9.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q9.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q9.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q9.o3', value: 3 } ] },
+  { id: '10', icon: '⚠️', questionKey: 'toolsInternal.mentalHealthCoach.epds.q10.question', options: [ { labelKey: 'toolsInternal.mentalHealthCoach.epds.q10.o0', value: 0 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q10.o1', value: 1 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q10.o2', value: 2 }, { labelKey: 'toolsInternal.mentalHealthCoach.epds.q10.o3', value: 3 } ] },
 ];
-
-const copingStrategyKeys = [
-  { icon: '🌤️', titleKey: 'toolsInternal.mentalHealthCoach.coping.sunlight.title', descKey: 'toolsInternal.mentalHealthCoach.coping.sunlight.desc' },
-  { icon: '🚶‍♀️', titleKey: 'toolsInternal.mentalHealthCoach.coping.movement.title', descKey: 'toolsInternal.mentalHealthCoach.coping.movement.desc' },
-  { icon: '📞', titleKey: 'toolsInternal.mentalHealthCoach.coping.connect.title', descKey: 'toolsInternal.mentalHealthCoach.coping.connect.desc' },
-  { icon: '😴', titleKey: 'toolsInternal.mentalHealthCoach.coping.rest.title', descKey: 'toolsInternal.mentalHealthCoach.coping.rest.desc' },
-  { icon: '🥗', titleKey: 'toolsInternal.mentalHealthCoach.coping.nourish.title', descKey: 'toolsInternal.mentalHealthCoach.coping.nourish.desc' },
-  { icon: '✍️', titleKey: 'toolsInternal.mentalHealthCoach.coping.journal.title', descKey: 'toolsInternal.mentalHealthCoach.coping.journal.desc' }
-];
-
-type RiskLevel = 'low' | 'moderate' | 'high';
 
 export default function PostpartumMentalHealthCoach() {
   const { t, i18n } = useTranslation();
-  const [showDisclaimer, setShowDisclaimer] = useState(true);
+  const lang = i18n.language?.split('-')[0] || 'en';
+  const isRTL = lang === 'ar';
+  const questions = useMemo(getEpdsQuestions, []);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResults, setShowResults] = useState(false);
-  const [direction, setDirection] = useState(1); // 1 = forward, -1 = back
-  
+  const [direction, setDirection] = useState(1);
+
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [aiCopingPlan, setAiCopingPlan] = useState('');
   const [showAICoping, setShowAICoping] = useState(false);
-  const [isExportingPDF, setIsExportingPDF] = useState(false);
-  const [pdfProgress, setPdfProgress] = useState(0);
-  
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
 
   useResetOnLanguageChange(() => {
+    setCurrentQuestion(0);
+    setAnswers({});
+    setShowResults(false);
     setAiCopingPlan('');
     setShowAICoping(false);
-  });
-  
-  const epdsQuestions = useMemo(() => getEpdsQuestions(), []);
-  const mentalHealthVideos = mentalHealthVideosByLang(t);
-  const maxScore = epdsQuestions.length * 3; // 30
-
-  const handleAnswer = (questionId: string, value: number) => {
-    setAnswers(prev => ({ ...prev, [questionId]: value }));
     setDirection(1);
-    
-    if (currentQuestion < epdsQuestions.length - 1) {
+  });
+
+  const maxScore = questions.length * 3;
+  const getScore = () => Object.values(answers).reduce((sum, v) => sum + v, 0);
+  const getRiskLevel = (score: number) => score <= 8 ? 'low' : score <= 12 ? 'moderate' : 'high';
+
+  const handleAnswer = (value: number) => {
+    setAnswers(prev => ({ ...prev, [questions[currentQuestion].id]: value }));
+    if (currentQuestion < questions.length - 1) {
+      setDirection(1);
       setCurrentQuestion(prev => prev + 1);
     } else {
       setShowResults(true);
@@ -178,403 +88,196 @@ export default function PostpartumMentalHealthCoach() {
     }
   };
 
-  const getScore = () => Object.values(answers).reduce((sum, val) => sum + val, 0);
-
-  const getRiskLevel = (score: number): RiskLevel => {
-    if (score <= 9) return 'low';
-    if (score <= 18) return 'moderate';
-    return 'high';
-  };
-
-  const getScoreConfig = (level: RiskLevel) => {
-    const configs = {
-      low: {
-        color: 'text-emerald-600 dark:text-emerald-400',
-        bg: 'from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/30',
-        border: 'border-emerald-200/50 dark:border-emerald-800/50',
-        ringColor: 'stroke-emerald-500',
-        icon: CheckCircle,
-        emoji: '🌸'
-      },
-      moderate: {
-        color: 'text-amber-600 dark:text-amber-400',
-        bg: 'from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30',
-        border: 'border-amber-200/50 dark:border-amber-800/50',
-        ringColor: 'stroke-amber-500',
-        icon: HelpCircle,
-        emoji: '💛'
-      },
-      high: {
-        color: 'text-rose-600 dark:text-rose-400',
-        bg: 'from-rose-50 to-pink-50 dark:from-rose-950/30 dark:to-pink-950/30',
-        border: 'border-rose-200/50 dark:border-rose-800/50',
-        ringColor: 'stroke-rose-500',
-        icon: AlertTriangle,
-        emoji: '💜'
-      }
+  const getAICopingPlan = async () => {
+    setShowAICoping(true);
+    setAiCopingPlan('');
+    const score = getScore();
+    const level = getRiskLevel(score);
+    const prompts: Record<string, string> = {
+      en: `Based on Edinburgh Postnatal Depression Scale score ${score}/${maxScore} (${level} risk), create a personalized coping plan. Include daily routines, self-care tips, breathing exercises, when to seek help, and partner support suggestions.`,
+      ar: `بناءً على نتيجة مقياس إدنبرة لاكتئاب ما بعد الولادة ${score}/${maxScore} (خطر ${level === 'low' ? 'منخفض' : level === 'moderate' ? 'متوسط' : 'عالي'})، أنشئ خطة تكيف مخصصة. تشمل روتين يومي، نصائح العناية الذاتية، تمارين التنفس، متى تطلب المساعدة، واقتراحات دعم الشريك.`,
+      de: `Basierend auf dem Edinburgh Postnatal Depression Scale Score ${score}/${maxScore} (${level} Risiko), erstelle einen personalisierten Bewältigungsplan.`,
+      fr: `Sur la base du score Edinburgh ${score}/${maxScore} (risque ${level}), créez un plan personnalisé.`,
+      es: `Basándose en la puntuación Edinburgh ${score}/${maxScore} (riesgo ${level}), cree un plan personalizado.`,
+      pt: `Com base na pontuação Edinburgh ${score}/${maxScore} (risco ${level}), crie um plano personalizado.`,
+      tr: `Edinburgh Doğum Sonrası Depresyon Ölçeği puanı ${score}/${maxScore} (${level} risk) temelinde kişiselleştirilmiş bir başa çıkma planı oluşturun.`,
     };
-    return configs[level];
+
+    await streamChat({
+      type: 'pregnancy-assistant',
+      messages: [{ role: 'user', content: prompts[lang] || prompts.en }],
+      context: { language: lang },
+      onDelta: (text) => setAiCopingPlan(prev => prev + text),
+      onDone: () => {},
+    });
   };
 
-  const resetScreening = () => {
+  const resetAll = () => {
     setCurrentQuestion(0);
     setAnswers({});
     setShowResults(false);
     setAiCopingPlan('');
     setShowAICoping(false);
-    setIsExportingPDF(false);
-    setPdfProgress(0);
     setDirection(1);
   };
 
-  const handleExportPDF = async () => {
-    if (!aiCopingPlan || isExportingPDF) return;
-    if (!canExportPDF()) {
-      toast.error(t('common.dailyExportLimitReached'));
-      return;
-    }
-    setIsExportingPDF(true);
-    setPdfProgress(0);
-    try {
-      const lang = (i18n.language || 'en') as string;
-      const score = getScore();
-      const level = getRiskLevel(score);
-      const scoreLabel = t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.title`);
-      
-      await exportAIResultPDF({
-        title: t('toolsInternal.mentalHealthCoach.title'),
-        subtitle: t('toolsInternal.mentalHealthCoach.subtitle'),
-        content: aiCopingPlan,
-        score: { value: score, max: maxScore, label: scoreLabel },
-        language: lang,
-        onProgress: setPdfProgress,
-      });
-      incrementPDFExportCount();
-      toast.success(t('common.exportComplete', 'Export complete!'));
-    } catch (err) {
-      console.error('PDF export failed:', err);
-      toast.error(t('common.exportFailed', 'Export failed'));
-    } finally {
-      setIsExportingPDF(false);
-    }
-  };
+  const videos = mentalHealthVideosByLang[lang] || mentalHealthVideosByLang.en;
 
-  const getAICopingPlan = async () => {
+  if (showResults) {
     const score = getScore();
     const level = getRiskLevel(score);
-    
-    setShowAICoping(true);
-    setAiCopingPlan('');
+    const riskConfig = {
+      low: { icon: CheckCircle, color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-950/30', border: 'border-emerald-200' },
+      moderate: { icon: HelpCircle, color: 'text-amber-600', bg: 'bg-amber-50 dark:bg-amber-950/30', border: 'border-amber-200' },
+      high: { icon: AlertTriangle, color: 'text-red-600', bg: 'bg-red-50 dark:bg-red-950/30', border: 'border-red-200' },
+    };
+    const config = riskConfig[level];
+    const Icon = config.icon;
 
-    const prompt = `As a compassionate postpartum mental health specialist, create a personalized coping plan:
-
-**Wellness Assessment Score:** ${score}/${maxScore}
-**Level:** ${t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.title`)}
-**Responses Pattern:** ${Object.entries(answers).map(([q, a]) => `Q${q}: ${a}/3`).join(', ')}
-
-Based on this assessment, provide:
-
-1. **Understanding Your Feelings** 🌸
-   - Validate their experience
-   - Explain what the score means in compassionate terms
-   - Normalize postpartum challenges
-
-2. **Your Daily Self-Care Routine** ☀️
-   - Morning ritual (5 mins)
-   - Afternoon check-in (5 mins)
-   - Evening wind-down (10 mins)
-
-3. **Connection & Support Plan** 💜
-   - Who to reach out to
-   - How to communicate your needs
-   - Building your support circle
-
-4. **Quick Relief Techniques** 🌿
-   - 3 grounding exercises for anxiety moments
-   - Breathing technique for overwhelm
-   - Self-compassion phrases to repeat
-
-5. **Weekly Goals** 📝
-   - 3 achievable, gentle goals for this week
-   - How to track progress without pressure
-
-6. **When to Seek Help** ⚕️
-   - Clear indicators that professional support is needed
-   - How to take the first step
-
-Keep the tone warm, non-judgmental, and empowering. Use emojis sparingly. Remind them they're doing better than they think.`;
-
-    await streamChat({
-      type: 'pregnancy-assistant',
-      messages: [{ role: 'user', content: prompt }],
-      onDelta: (text) => setAiCopingPlan((prev) => prev + text),
-      onDone: () => {},
-    });
-  };
-
-  if (showDisclaimer) {
     return (
-      <MedicalDisclaimer
-        toolName={t('toolsInternal.mentalHealthCoach.title')}
-        onAccept={() => setShowDisclaimer(false)}
-      />
+      <ToolFrame title={t('toolsInternal.mentalHealthCoach.title')} subtitle={t('toolsInternal.mentalHealthCoach.subtitle')} icon={Brain} mood="calming" toolId="postpartum-mental-health">
+        <div className="space-y-4" dir={isRTL ? 'rtl' : 'ltr'}>
+          <MedicalDisclaimer toolName="mentalHealthCoach" />
+
+          <Card className={`${config.border} ${config.bg}`}>
+            <CardContent className="p-4 space-y-3">
+              <div className="flex items-center gap-3">
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center ${config.bg}`}>
+                  <Icon className={`w-6 h-6 ${config.color}`} />
+                </div>
+                <div className="flex-1">
+                  <h3 className={`font-bold ${config.color}`}>
+                    {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.title`)}
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    {t('toolsInternal.mentalHealthCoach.scoreLabel')}: {score}/{maxScore}
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-sm">
+                {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.description`)}
+              </p>
+
+              <div className="w-full bg-muted rounded-full h-3">
+                <div
+                  className={`h-3 rounded-full transition-all ${level === 'low' ? 'bg-emerald-500' : level === 'moderate' ? 'bg-amber-500' : 'bg-red-500'}`}
+                  style={{ width: `${Math.min(100, (score / maxScore) * 100)}%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-4 space-y-3">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-violet-500" />
+                <h3 className="font-semibold text-sm">
+                  {t('toolsInternal.mentalHealthCoach.personalizedPlan')}
+                </h3>
+              </div>
+              
+              {!showAICoping ? (
+                <Button
+                  onClick={getAICopingPlan}
+                  disabled={aiLoading}
+                  className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 gap-2"
+                >
+                  {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
+                  {t('toolsInternal.mentalHealthCoach.generateMyPlan')}
+                </Button>
+              ) : (
+                <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[500px] overflow-y-auto">
+                  {aiCopingPlan ? (
+                    <PrintableReport title={t('toolsInternal.mentalHealthCoach.title')}>
+                      <MarkdownRenderer content={aiCopingPlan} />
+                    </PrintableReport>
+                  ) : (
+                    <div className="flex items-center justify-center py-8 text-muted-foreground">
+                      <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                      {t('toolsInternal.mentalHealthCoach.creatingPlan')}
+                    </div>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          <Button onClick={resetAll} variant="outline" className="w-full gap-2">
+            <RotateCcw className="w-4 h-4" /> {t('toolsInternal.mentalHealthCoach.retake')}
+          </Button>
+
+          {videos.length > 0 && <VideoLibrary videos={videos} title={t('toolsInternal.mentalHealthCoach.helpfulVideos')} />}
+        </div>
+      </ToolFrame>
     );
   }
 
-  const score = getScore();
-  const level = getRiskLevel(score);
-  const config = getScoreConfig(level);
-  const progressPercent = ((currentQuestion + (showResults ? 1 : 0)) / epdsQuestions.length) * 100;
-  const scorePercent = (score / maxScore) * 100;
-
+  // Questionnaire UI
+  const q = questions[currentQuestion];
 
   return (
-    <ToolFrame
-      title={t('toolsInternal.mentalHealthCoach.title')}
-      subtitle={t('toolsInternal.mentalHealthCoach.subtitle')}
-      customIcon="health-shield"
-      mood="nurturing"
-      toolId="mental-health-coach"
-    >
-      <div className="space-y-5">
-        {/* Progress bar */}
-        {!showResults && (
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span>{t('toolsInternal.mentalHealthCoach.question')} {currentQuestion + 1} {t('toolsInternal.mentalHealthCoach.of')} {epdsQuestions.length}</span>
-              <span>{Math.round(progressPercent)}%</span>
-            </div>
-            <Progress value={progressPercent} className="h-2" />
-          </div>
-        )}
+    <ToolFrame title={t('toolsInternal.mentalHealthCoach.title')} subtitle={t('toolsInternal.mentalHealthCoach.subtitle')} icon={Brain} mood="calming" toolId="postpartum-mental-health">
+      <div className="space-y-4" dir={isRTL ? 'rtl' : 'ltr'}>
+        <MedicalDisclaimer toolName="mentalHealthCoach" />
 
-        {!showResults ? (
-          <AnimatePresence mode="wait" custom={direction}>
+        <div className="flex items-center gap-2 px-1">
+          <div className="flex-1 bg-muted rounded-full h-2">
             <motion.div
-              key={currentQuestion}
-              custom={direction}
-              initial={{ opacity: 0, x: direction * 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction * -60 }}
-              transition={{ duration: 0.25, ease: 'easeInOut' }}
-            >
-              <Card className="overflow-hidden border-border/40">
-                <CardContent className="p-5">
-                  <div className="text-center mb-5">
-                    <span className="text-3xl mb-2 block">{epdsQuestions[currentQuestion].icon}</span>
-                    <h3 className="text-base font-semibold leading-relaxed">
-                      {t(epdsQuestions[currentQuestion].questionKey)}
-                    </h3>
-                  </div>
+              className="h-2 rounded-full bg-gradient-to-r from-violet-500 to-purple-500"
+              initial={false}
+              animate={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+          <span className="text-xs text-muted-foreground font-medium">{currentQuestion + 1}/{questions.length}</span>
+        </div>
 
-                  <div className="space-y-2.5">
-                    {epdsQuestions[currentQuestion].options.map((option, index) => {
-                      const isSelected = answers[epdsQuestions[currentQuestion].id] === option.value;
-                      return (
-                        <motion.button
-                          key={index}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() => handleAnswer(epdsQuestions[currentQuestion].id, option.value)}
-                          className={`w-full p-3.5 text-sm text-start rounded-xl border transition-all ${
-                            isSelected 
-                              ? 'border-primary bg-primary/10 text-primary font-medium' 
-                              : 'border-border/60 hover:border-primary/50 hover:bg-primary/5'
-                          }`}
-                        >
-                          {t(option.labelKey)}
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-
-                  {currentQuestion > 0 && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={goBack}
-                      className="mt-4 gap-1.5 text-muted-foreground"
-                    >
-                      <ArrowLeft className="w-3.5 h-3.5" />
-                      {t('toolsInternal.mentalHealthCoach.previousQuestion')}
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          </AnimatePresence>
-        ) : (
+        <AnimatePresence mode="wait" custom={direction}>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-5"
+            key={currentQuestion}
+            custom={direction}
+            initial={{ x: direction * 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: direction * -50, opacity: 0 }}
+            transition={{ duration: 0.2 }}
           >
-            {/* Score Overview */}
-            <Card className={`bg-gradient-to-br ${config.bg} ${config.border} overflow-hidden`}>
-              <CardContent className="p-4">
-                {/* Top: Score ring centered with level badge */}
-                <div className="flex flex-col items-center text-center mb-4">
-                  <div className="relative w-24 h-24 mb-2">
-                    <svg width={96} height={96} className="-rotate-90" viewBox="0 0 96 96">
-                      <circle cx="48" cy="48" r="40" fill="none" stroke="currentColor" strokeWidth="7" className="text-muted/20" />
-                      <motion.circle
-                        cx="48" cy="48" r="40" fill="none" strokeWidth="7" strokeLinecap="round"
-                        className={config.ringColor}
-                        strokeDasharray={2 * Math.PI * 40}
-                        initial={{ strokeDashoffset: 2 * Math.PI * 40 }}
-                        animate={{ strokeDashoffset: (2 * Math.PI * 40) - (scorePercent / 100) * (2 * Math.PI * 40) }}
-                        transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className={`text-xl font-bold ${config.color}`}>{score}</span>
-                      <span className="text-[9px] text-muted-foreground font-medium">/ {maxScore}</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-base">{config.emoji}</span>
-                    <span className={`text-sm font-bold ${config.color}`}>
-                      {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.title`)}
-                    </span>
-                  </div>
-                  <p className="text-xs text-foreground/70 leading-relaxed mt-1.5 max-w-[280px]">
-                    {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.message`)}
-                  </p>
-                </div>
-
-                {/* Response breakdown */}
-                <div className="pt-3 border-t border-border/30">
-                  <p className="text-[10px] font-medium text-muted-foreground mb-2 uppercase tracking-wider">
-                    {t('toolsInternal.mentalHealthCoach.responseBreakdown')}
-                  </p>
-                  <div className="grid grid-cols-10 gap-1">
-                    {epdsQuestions.map((q, i) => {
-                      const val = answers[q.id] ?? 0;
-                      const barColors = ['bg-emerald-400', 'bg-amber-400', 'bg-orange-400', 'bg-rose-400'];
-                      return (
-                        <div key={i} className="flex flex-col items-center gap-0.5">
-                          <div className="w-full h-7 bg-muted/30 rounded-sm relative overflow-hidden">
-                            <motion.div
-                              className={`absolute bottom-0 w-full rounded-sm ${barColors[val]}`}
-                              initial={{ height: 0 }}
-                              animate={{ height: `${(val / 3) * 100}%` }}
-                              transition={{ duration: 0.5, delay: 0.5 + i * 0.05 }}
-                            />
-                          </div>
-                          <span className="text-[7px] text-muted-foreground">{i + 1}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* AI Personalized Plan */}
-            <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30 border-violet-200/50 dark:border-violet-800/50 overflow-hidden">
-              <CardContent className="p-5">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-base font-semibold flex items-center gap-2">
-                    <Sparkles className="w-4.5 h-4.5 text-violet-500" />
-                    {t('toolsInternal.mentalHealthCoach.aiPersonalizedPlan')}
-                  </h3>
-                </div>
-                
-                {!showAICoping ? (
-                  <Button
-                    onClick={getAICopingPlan}
-                    disabled={aiLoading}
-                    className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 gap-2"
-                  >
-                    {aiLoading ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <Brain className="w-4 h-4" />
-                    )}
-                    {t('toolsInternal.mentalHealthCoach.generateMyPlan')}
-                  </Button>
-                ) : (
-                  <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[500px] overflow-y-auto">
-                    {aiCopingPlan ? (
-                      <>
-                        <MarkdownRenderer content={aiCopingPlan} />
-                        {!aiLoading && (
-                          <>
-                            <Button
-                              onClick={handleExportPDF}
-                              variant="outline"
-                              disabled={isExportingPDF || !canExportPDF()}
-                              className="w-full mt-4 border-violet-300 text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-violet-950/30 disabled:opacity-70 gap-2"
-                            >
-                              {isExportingPDF ? (
-                                <Loader2 className="w-4 h-4 animate-spin" />
-                              ) : (
-                                <FileDown className="w-4 h-4" />
-                              )}
-                              {isExportingPDF ? t('common.exporting', 'Exporting...') : t('common.downloadPDF', 'Download PDF')}
-                            </Button>
-                            <p className="text-[10px] text-muted-foreground text-center mt-1">
-                              {t("common.dailyExportRemaining", { count: getRemainingExports() })}
-                            </p>
-                          </>
-                        )}
-                      </>
-                    ) : (
-                      <div className="flex items-center justify-center py-8 text-muted-foreground">
-                        <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                        {t('toolsInternal.mentalHealthCoach.creatingPlan')}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Coping strategies */}
             <Card>
-              <CardContent className="p-4">
-                <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                  <Sun className="w-4 h-4 text-primary shrink-0" />
-                  <span className="leading-snug">{t('toolsInternal.mentalHealthCoach.dailyCopingStrategies')}</span>
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {copingStrategyKeys.map((strategy, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 * index }}
-                      className="p-3 bg-muted/50 rounded-xl overflow-hidden"
+              <CardContent className="p-4 space-y-4">
+                <div className="text-center">
+                  <span className="text-3xl mb-2 block">{q.icon}</span>
+                  <h3 className="text-sm font-semibold">{t(q.questionKey)}</h3>
+                </div>
+
+                <div className="space-y-2">
+                  {q.options.map((option, i) => (
+                    <motion.button
+                      key={i}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => handleAnswer(option.value)}
+                      className={`w-full text-start p-3 rounded-xl border transition-all text-sm ${
+                        answers[q.id] === option.value
+                          ? 'border-violet-400 bg-violet-50 dark:bg-violet-950/30'
+                          : 'border-border hover:border-violet-200 hover:bg-violet-50/50 dark:hover:bg-violet-950/10'
+                      }`}
                     >
-                      <div className="text-xl mb-1">{strategy.icon}</div>
-                      <h4 className="font-medium text-xs mb-0.5 leading-snug">{t(strategy.titleKey)}</h4>
-                      <p className="text-[10px] text-muted-foreground line-clamp-2">{t(strategy.descKey)}</p>
-                    </motion.div>
+                      {t(option.labelKey)}
+                    </motion.button>
                   ))}
                 </div>
               </CardContent>
             </Card>
-
-            {/* Retake button */}
-            <Button onClick={resetScreening} variant="outline" className="w-full gap-2">
-              <RotateCcw className="w-3.5 h-3.5" />
-              {t('toolsInternal.mentalHealthCoach.takeScreeningAgain')}
-            </Button>
           </motion.div>
-        )}
+        </AnimatePresence>
 
-        <div className="bg-muted/30 rounded-xl p-4 text-center">
-          <p className="text-xs text-muted-foreground">
-            {t('toolsInternal.mentalHealthCoach.screeningDisclaimer')}
-          </p>
+        <div className="flex gap-2">
+          {currentQuestion > 0 && (
+            <Button variant="outline" onClick={goBack} className="gap-1">
+              {isRTL ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
+              {t('common.back')}
+            </Button>
+          )}
         </div>
-
-        <VideoLibrary
-          videosByLang={mentalHealthVideos}
-          title={t('toolsInternal.mentalHealthCoach.mentalWellnessVideos')}
-          subtitle={t('toolsInternal.mentalHealthCoach.videosSubtitle')}
-          accentColor="rose"
-        />
       </div>
     </ToolFrame>
   );
