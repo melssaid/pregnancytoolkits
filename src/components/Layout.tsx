@@ -103,7 +103,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       </main>
 
       {/* Ad Banner */}
-      <AdBanner className="py-4" />
+      <AdBanner className="py-3 px-4" />
 
       {/* Footer */}
       <footer className="border-t border-border bg-card py-8 pb-24 md:pb-8 rounded-t-[2rem]">
