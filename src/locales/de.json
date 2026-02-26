@@ -3818,6 +3818,30 @@
     }
   },
   "toolsInternal.preconceptionCheckup": {
+    "progressLabel": "Untersuchungen erfasst",
+    "tracked": "erfasst",
+    "allComplete": "Hervorragende Vorbereitung! Bespreche deine Ergebnisse mit deinem Arzt.",
+    "categories": {
+      "essential": "Grundlegende Gesundheitschecks",
+      "screening": "Infektions- & Immunitätsscreening",
+      "specialized": "Spezialisierte Untersuchungen",
+      "medications": "Medikamente & Impfungen"
+    },
+    "ai": {
+      "title": "Vorbereitungs-Einblicke",
+      "analyze": "Meine Vorbereitung analysieren",
+      "readinessTitle": "Bereitschaftsübersicht",
+      "priorityTitle": "Prioritätsempfehlungen",
+      "tipsTitle": "Hilfreiche Tipps",
+      "timelineTitle": "Vorgeschlagener Zeitplan"
+    },
+    "related": {
+      "academy": "Fruchtbarkeitsakademie",
+      "academyDesc": "Umfassende Fruchtbarkeitsausbildung",
+      "nutrition": "Ernährungsratgeber",
+      "nutritionDesc": "Ernährung & Nahrungsergänzung vor der Schwangerschaft"
+    },
+    "disclaimer": "Diese Checkliste ist eine Bildungsreferenz, um Gespräche mit Ihrem Arzt zu organisieren. Sie ersetzt keine professionelle medizinische Beratung, Diagnose oder Behandlung. Alle Untersuchungen sollten mit einem qualifizierten Gesundheitsfachmann besprochen und angeordnet werden.",
     "checks": {
       "generalCheckup": { "title": "Allgemeine Gesundheitsuntersuchung", "description": "Umfassende körperliche Untersuchung zur Beurteilung deiner Gesundheit, Blutdruck, Gewicht und Besprechung deiner Schwangerschaftspläne." },
       "bloodWork": { "title": "Großes Blutbild", "description": "Prüft auf Anämie, Infektionen und allgemeine Blutgesundheit. Identifiziert Eisenmangel, der vor der Schwangerschaft behandelt werden sollte." },

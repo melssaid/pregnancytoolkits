@@ -4021,6 +4021,30 @@
     }
   },
   "toolsInternal.preconceptionCheckup": {
+    "progressLabel": "Exámenes registrados",
+    "tracked": "registrado",
+    "allComplete": "¡Excelente preparación! Discute tus resultados con tu médico.",
+    "categories": {
+      "essential": "Chequeos esenciales de salud",
+      "screening": "Detección de infecciones e inmunidad",
+      "specialized": "Evaluaciones especializadas",
+      "medications": "Medicamentos y vacunas"
+    },
+    "ai": {
+      "title": "Análisis de preparación",
+      "analyze": "Analizar mi preparación",
+      "readinessTitle": "Resumen de preparación",
+      "priorityTitle": "Recomendaciones prioritarias",
+      "tipsTitle": "Consejos útiles",
+      "timelineTitle": "Cronograma sugerido"
+    },
+    "related": {
+      "academy": "Academia de fertilidad",
+      "academyDesc": "Educación integral sobre fertilidad",
+      "nutrition": "Guía nutricional",
+      "nutritionDesc": "Nutrición y suplementos preconcepcionales"
+    },
+    "disclaimer": "Esta lista es una referencia educativa para organizar conversaciones con tu médico. No reemplaza el consejo médico profesional, diagnóstico o tratamiento. Todos los exámenes deben ser discutidos y ordenados por un profesional de salud calificado.",
     "checks": {
       "generalCheckup": { "title": "Chequeo general de salud", "description": "Examen físico completo para evaluar tu salud, presión arterial, peso y discutir tus planes de embarazo." },
       "bloodWork": { "title": "Hemograma completo", "description": "Verifica anemia, infecciones y salud sanguínea. Identifica deficiencia de hierro a tratar antes del embarazo." },

@@ -5381,6 +5381,30 @@
     }
   },
   "toolsInternal.preconceptionCheckup": {
+    "progressLabel": "Screenings tracked",
+    "tracked": "tracked",
+    "allComplete": "Great preparation! Discuss your results with your healthcare provider.",
+    "categories": {
+      "essential": "Essential Health Checks",
+      "screening": "Infection & Immunity Screening",
+      "specialized": "Specialized Assessments",
+      "medications": "Medications & Vaccinations"
+    },
+    "ai": {
+      "title": "Preparation Insights",
+      "analyze": "Analyze My Preparation",
+      "readinessTitle": "Readiness Overview",
+      "priorityTitle": "Priority Recommendations",
+      "tipsTitle": "Helpful Tips",
+      "timelineTitle": "Suggested Timeline"
+    },
+    "related": {
+      "academy": "Fertility Academy",
+      "academyDesc": "Comprehensive fertility education",
+      "nutrition": "Nutrition Guide",
+      "nutritionDesc": "Preconception nutrition & supplements"
+    },
+    "disclaimer": "This checklist is an educational reference to help you organize conversations with your healthcare provider. It does not replace professional medical advice, diagnosis, or treatment. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.",
     "checks": {
       "generalCheckup": {
         "title": "General Health Checkup",

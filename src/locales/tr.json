@@ -4021,6 +4021,30 @@
     }
   },
   "toolsInternal.preconceptionCheckup": {
+    "progressLabel": "Takip edilen taramalar",
+    "tracked": "takip edilen",
+    "allComplete": "Harika hazırlık! Sonuçlarınızı doktorunuzla tartışın.",
+    "categories": {
+      "essential": "Temel Sağlık Kontrolleri",
+      "screening": "Enfeksiyon & Bağışıklık Taraması",
+      "specialized": "Uzman Değerlendirmeleri",
+      "medications": "İlaçlar & Aşılar"
+    },
+    "ai": {
+      "title": "Hazırlık Analizi",
+      "analyze": "Hazırlığımı Analiz Et",
+      "readinessTitle": "Hazırlık Genel Görünümü",
+      "priorityTitle": "Öncelik Önerileri",
+      "tipsTitle": "Yararlı İpuçları",
+      "timelineTitle": "Önerilen Zaman Çizelgesi"
+    },
+    "related": {
+      "academy": "Doğurganlık Akademisi",
+      "academyDesc": "Kapsamlı doğurganlık eğitimi",
+      "nutrition": "Beslenme Rehberi",
+      "nutritionDesc": "Gebelik öncesi beslenme ve takviyeler"
+    },
+    "disclaimer": "Bu liste, doktorunuzla görüşmelerinizi organize etmenize yardımcı olacak eğitici bir referanstır. Profesyonel tıbbi tavsiye, teşhis veya tedavinin yerini almaz. Tüm taramalar ve testler nitelikli bir sağlık profesyoneli tarafından tartışılmalı ve istenmelidir.",
     "checks": {
       "generalCheckup": { "title": "Genel sağlık kontrolü", "description": "Genel sağlığını, tansiyonunu, kilonu değerlendirmek ve hamilelik planlarını görüşmek için kapsamlı fizik muayene." },
       "bloodWork": { "title": "Tam kan sayımı", "description": "Anemi, enfeksiyonlar ve genel kan sağlığını kontrol eder. Hamilelik öncesi tedavi edilmesi gereken demir eksikliğini tespit eder." },
