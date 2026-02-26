@@ -220,8 +220,6 @@ const COLORS = {
 type RGB = { r: number; g: number; b: number };
 
 // Track already-reshaped strings to prevent double-reshaping
-
-// Track already-reshaped strings to prevent double-reshaping
 const _reshapedCache = new Map<string, string>();
 
 function stripEmojis(text: string): string {
@@ -229,7 +227,7 @@ function stripEmojis(text: string): string {
   let cleaned = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '').replace(/\s{2,}/g, ' ').trim();
   // Reshape Arabic text for jsPDF (converts to Presentation Forms so letters connect)
   // Only reshape if text contains standard Arabic chars (not already reshaped Presentation Forms)
-  if (_isRTL && /[\u0600-\u06FF]/.test(cleaned) && !/[\uFB50-\uFDFF\uFE70-\uFEFF]/.test(cleaned)) {
+  if (_ctx.isRTL && /[\u0600-\u06FF]/.test(cleaned) && !/[\uFB50-\uFDFF\uFE70-\uFEFF]/.test(cleaned)) {
     const cached = _reshapedCache.get(cleaned);
     if (cached) return cached;
     try {
@@ -291,7 +289,7 @@ function addPageWithHeader(s: PDFState) {
   s.doc.rect(0, 0, PAGE_W, 8, 'F');
   s.doc.setFontSize(6);
   s.doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-  const headerText = _reportTitle ? `${getBrandName(_isRTL ? 'ar' : 'en')} — ${stripEmojis(_reportTitle)}` : getBrandName(_isRTL ? 'ar' : 'en');
+  const headerText = _ctx.reportTitle ? `${getBrandName(_ctx.isRTL ? 'ar' : 'en')} — ${stripEmojis(_ctx.reportTitle)}` : getBrandName(_ctx.isRTL ? 'ar' : 'en');
   s.doc.text(headerText, PAGE_W / 2, 5, { align: 'center' });
   s.y = MARGIN_Y + 6;
 }
@@ -369,10 +367,10 @@ function drawTableRow(s: PDFState, cells: { text: string; width: number; align?:
     s.doc.rect(MARGIN_X, s.y, CONTENT_W, ROW_H, 'F');
   }
   
-  let x = _isRTL ? MARGIN_X + CONTENT_W : MARGIN_X;
+  let x = _ctx.isRTL ? MARGIN_X + CONTENT_W : MARGIN_X;
   
   cells.forEach(cell => {
-    const cellX = _isRTL ? x - cell.width + 3 : x + 3;
+    const cellX = _ctx.isRTL ? x - cell.width + 3 : x + 3;
     if (cell.bold) setFontBold(s.doc);
     else setFontNormal(s.doc);
     
@@ -383,7 +381,7 @@ function drawTableRow(s: PDFState, cells: { text: string; width: number; align?:
       ? processedText.substring(0, Math.floor(processedText.length * maxW / s.doc.getTextWidth(processedText))) + '...'
       : processedText;
     
-    if (_isRTL) {
+    if (_ctx.isRTL) {
       s.doc.text(truncated, cellX + cell.width - 6, s.y + 4, { align: 'right' });
       x -= cell.width;
     } else {
@@ -446,14 +444,14 @@ function drawDetailedArrayItems(s: PDFState, items: any[], color: RGB, language:
       
       // Item number badge
       s.doc.setFillColor(Math.min(255, color.r + 180), Math.min(255, color.g + 180), Math.min(255, color.b + 180));
-      const badgeX = _isRTL ? MARGIN_X + CONTENT_W - 8 : MARGIN_X + 4;
+      const badgeX = _ctx.isRTL ? MARGIN_X + CONTENT_W - 8 : MARGIN_X + 4;
       s.doc.roundedRect(badgeX, s.y, 8, 5, 1.5, 1.5, 'F');
       s.doc.setFontSize(7);
       s.doc.setTextColor(color.r, color.g, color.b);
       s.doc.text(String(idx + 1), badgeX + 4, s.y + 3.5, { align: 'center' });
       
       // Draw fields
-      const fieldStartX = _isRTL ? MARGIN_X + CONTENT_W - 20 : MARGIN_X + 16;
+      const fieldStartX = _ctx.isRTL ? MARGIN_X + CONTENT_W - 20 : MARGIN_X + 16;
       fields.forEach(([key, value]) => {
         s.y += 4.5;
         ensureSpace(s, 4.5);
@@ -476,7 +474,7 @@ function drawDetailedArrayItems(s: PDFState, items: any[], color: RGB, language:
         s.doc.setTextColor(71, 85, 105);
         const keyText = stripEmojis(displayKey);
         const valText = stripEmojis(displayValue);
-        if (_isRTL) {
+        if (_ctx.isRTL) {
           s.doc.text(keyText + ':', fieldStartX, s.y + 3, { align: 'right' });
           setFontNormal(s.doc);
           s.doc.setTextColor(100, 116, 139);
@@ -529,14 +527,14 @@ function drawSectionHeader(s: PDFState, title: string, color: RGB, count?: strin
   s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, 8, 2, 2, 'F');
   s.doc.setFillColor(color.r, color.g, color.b);
   // Accent bar on the correct side for RTL
-  if (_isRTL) {
+  if (_ctx.isRTL) {
     s.doc.rect(MARGIN_X + CONTENT_W - 2.5, s.y, 2.5, 8, 'F');
   } else {
     s.doc.rect(MARGIN_X, s.y, 2.5, 8, 'F');
   }
   s.doc.setFontSize(10);
   s.doc.setTextColor(color.r, color.g, color.b);
-  if (_isRTL) {
+  if (_ctx.isRTL) {
     s.doc.text(stripEmojis(title), MARGIN_X + CONTENT_W - 8, s.y + 5.5, { align: 'right' });
   } else {
     s.doc.text(stripEmojis(title), MARGIN_X + 8, s.y + 5.5);
@@ -544,7 +542,7 @@ function drawSectionHeader(s: PDFState, title: string, color: RGB, count?: strin
   if (count) {
     s.doc.setFontSize(8);
     s.doc.setTextColor(148, 163, 184);
-    if (_isRTL) {
+    if (_ctx.isRTL) {
       s.doc.text(count, MARGIN_X + 4, s.y + 5.5);
     } else {
       s.doc.text(count, MARGIN_X + CONTENT_W - 4, s.y + 5.5, { align: 'right' });
@@ -563,14 +561,14 @@ function drawBulletItem(s: PDFState, text: string, color: RGB) {
   
   // Bullet dot
   s.doc.setFillColor(color.r, color.g, color.b);
-  if (_isRTL) {
+  if (_ctx.isRTL) {
     s.doc.circle(MARGIN_X + CONTENT_W - 6, s.y + 2, 1.2, 'F');
   } else {
     s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
   }
   // Text
   s.doc.setTextColor(51, 65, 85);
-  if (_isRTL) {
+  if (_ctx.isRTL) {
     s.doc.text(lines, MARGIN_X + CONTENT_W - 10, s.y + 3, { align: 'right' });
   } else {
     s.doc.text(lines, MARGIN_X + 10, s.y + 3);
@@ -587,14 +585,14 @@ function drawLabelValueItem(s: PDFState, label: string, value: string, color: RG
   ensureSpace(s, neededSpace);
   
   s.doc.setFillColor(color.r, color.g, color.b);
-  if (_isRTL) {
+  if (_ctx.isRTL) {
     s.doc.circle(MARGIN_X + CONTENT_W - 6, s.y + 2, 1.2, 'F');
   } else {
     s.doc.circle(MARGIN_X + 6, s.y + 2, 1.2, 'F');
   }
   setFontBold(s.doc);
   s.doc.setTextColor(71, 85, 105);
-  if (_isRTL) {
+  if (_ctx.isRTL) {
     s.doc.text(lbl, MARGIN_X + CONTENT_W - 10, s.y + 3, { align: 'right' });
     setFontNormal(s.doc);
     s.doc.setTextColor(100, 116, 139);
@@ -634,7 +632,7 @@ function renderMarkdownToPDF(s: PDFState, markdown: string, accentColor: RGB) {
       const barH = level <= 2 ? 8 : 7;
       s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, barH, 2, 2, 'F');
       s.doc.setFillColor(accentColor.r, accentColor.g, accentColor.b);
-      if (_isRTL) {
+      if (_ctx.isRTL) {
         s.doc.rect(MARGIN_X + CONTENT_W - (level <= 2 ? 3 : 2), s.y, level <= 2 ? 3 : 2, barH, 'F');
       } else {
         s.doc.rect(MARGIN_X, s.y, level <= 2 ? 3 : 2, barH, 'F');
@@ -642,7 +640,7 @@ function renderMarkdownToPDF(s: PDFState, markdown: string, accentColor: RGB) {
       s.doc.setFontSize(sizes[level - 1]);
       setFontBold(s.doc);
       s.doc.setTextColor(level <= 2 ? 30 : accentColor.r, level <= 2 ? 41 : accentColor.g, level <= 2 ? 59 : accentColor.b);
-      if (_isRTL) {
+      if (_ctx.isRTL) {
         s.doc.text(text, MARGIN_X + CONTENT_W - 8, s.y + barH - 2.5, { align: 'right' });
       } else {
         s.doc.text(text, MARGIN_X + 8, s.y + barH - 2.5);
@@ -685,7 +683,7 @@ function renderMarkdownToPDF(s: PDFState, markdown: string, accentColor: RGB) {
     const wrappedLines = s.doc.splitTextToSize(plainText, CONTENT_W - 8);
     for (const wl of wrappedLines) {
       ensureSpace(s, 4.5);
-      if (_isRTL) {
+      if (_ctx.isRTL) {
         s.doc.text(wl, MARGIN_X + CONTENT_W - 4, s.y + 3, { align: 'right' });
       } else {
         s.doc.text(wl, MARGIN_X + 4, s.y + 3);
@@ -707,7 +705,7 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
   const logoData = await loadLogoImage();
   const { doc } = await createPDFDoc(language);
   const s: PDFState = { doc, y: MARGIN_Y, pageNum: 1 };
-  _reportTitle = title;
+  _ctx.reportTitle = title;
 
   options.onProgress?.(10);
   drawLogo(s, logoData);
@@ -744,7 +742,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
   const logoData = await loadLogoImage();
   const { doc } = await createPDFDoc(language);
   const s: PDFState = { doc, y: MARGIN_Y, pageNum: 1 };
-  _reportTitle = title;
+  _ctx.reportTitle = title;
 
   options.onProgress?.(10);
 
@@ -967,7 +965,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
         setFontBold(s.doc);
         s.doc.setTextColor(meta.color.r, meta.color.g, meta.color.b);
         const arrayLabel = `${stripEmojis(item.label)} — ${rawValue.length} ${L.records}`;
-        if (_isRTL) {
+        if (_ctx.isRTL) {
           s.doc.text(arrayLabel, MARGIN_X + CONTENT_W - 6, s.y + 3, { align: 'right' });
         } else {
           s.doc.text(arrayLabel, MARGIN_X + 6, s.y + 3);
@@ -989,7 +987,7 @@ export async function exportDataBackupPDF(options: DataBackupPDFOptions): Promis
           s.doc.setFontSize(9);
           setFontBold(s.doc);
           s.doc.setTextColor(meta.color.r, meta.color.g, meta.color.b);
-          if (_isRTL) {
+          if (_ctx.isRTL) {
             s.doc.text(stripEmojis(item.label), MARGIN_X + CONTENT_W - 6, s.y + 3, { align: 'right' });
           } else {
             s.doc.text(stripEmojis(item.label), MARGIN_X + 6, s.y + 3);
@@ -1055,7 +1053,7 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
   const { title, content, date, preferences, additionalNotes, language = 'en' } = options;
   const logoData = await loadLogoImage();
   const { doc } = await createPDFDoc(language);
-  _reportTitle = title;
+  _ctx.reportTitle = title;
   const accentColor = COLORS.primary;
 
   const labels: Record<string, Record<string, string>> = {
@@ -1100,7 +1098,7 @@ export async function exportBirthPlanToPDF(options: PDFExportOptions): Promise<v
     const noteLines = s.doc.splitTextToSize(stripEmojis(additionalNotes.trim()), CONTENT_W - 12);
     for (const nl of noteLines) {
       ensureSpace(s, 4.5);
-      if (_isRTL) {
+      if (_ctx.isRTL) {
         s.doc.text(nl, MARGIN_X + CONTENT_W - 6, s.y + 3, { align: 'right' });
       } else {
         s.doc.text(nl, MARGIN_X + 6, s.y + 3);
@@ -1161,7 +1159,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   const { title, subtitle, items, language = 'en', labels } = options;
   const logoData = await loadLogoImage();
   const accentColor = { r: 20, g: 184, b: 166 };
-  _reportTitle = title;
+  _ctx.reportTitle = title;
   const { doc } = await createPDFDoc(language);
   const s: PDFState = { doc, y: MARGIN_Y, pageNum: 1 };
 
@@ -1182,7 +1180,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
   s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, 14, 3, 3, 'F');
   s.doc.setFontSize(11);
   s.doc.setTextColor(30, 41, 59);
-  if (_isRTL) {
+  if (_ctx.isRTL) {
     s.doc.text(`${stripEmojis(labels.progress)}: ${progress}%`, MARGIN_X + CONTENT_W - 6, s.y + 6, { align: 'right' });
     s.doc.setFontSize(9);
     s.doc.setTextColor(100, 116, 139);
@@ -1240,7 +1238,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
       const checkY = s.y;
       
       // Position checkbox on correct side for RTL
-      const checkX = _isRTL ? MARGIN_X + CONTENT_W - 8 : MARGIN_X + 4;
+      const checkX = _ctx.isRTL ? MARGIN_X + CONTENT_W - 8 : MARGIN_X + 4;
       
       if (item.packed) {
         s.doc.setFillColor(34, 197, 94);
@@ -1258,7 +1256,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
       const maxTextW = CONTENT_W - 50;
       const truncName = s.doc.getTextWidth(itemName) > maxTextW ? itemName.substring(0, Math.floor(itemName.length * maxTextW / s.doc.getTextWidth(itemName))) + '...' : itemName;
       
-      if (_isRTL) {
+      if (_ctx.isRTL) {
         s.doc.text(truncName, checkX - 3, checkY + 3.2, { align: 'right' });
       } else {
         s.doc.text(truncName, checkX + 7, checkY + 3.2);
@@ -1267,7 +1265,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
       if (item.priority === 'essential' && !item.packed) {
         const badgeText = stripEmojis(labels.essential);
         const badgeW = s.doc.getTextWidth(badgeText) + 4;
-        if (_isRTL) {
+        if (_ctx.isRTL) {
           s.doc.setFillColor(254, 226, 226);
           s.doc.roundedRect(MARGIN_X + 14, checkY - 0.5, badgeW, 5, 1, 1, 'F');
           s.doc.setFontSize(7); s.doc.setTextColor(239, 68, 68);
@@ -1283,7 +1281,7 @@ export async function exportHospitalBagPDF(options: HospitalBagPDFOptions): Prom
       const statusColor = item.packed ? [34, 197, 94] : [239, 68, 68];
       const statusText = stripEmojis(item.packed ? labels.packed : labels.notPacked);
       s.doc.setFontSize(7); s.doc.setTextColor(statusColor[0], statusColor[1], statusColor[2]);
-      if (_isRTL) {
+      if (_ctx.isRTL) {
         s.doc.text(statusText, MARGIN_X + 4, checkY + 3.2);
       } else {
         s.doc.text(statusText, MARGIN_X + CONTENT_W - 4, checkY + 3.2, { align: 'right' });
@@ -1336,7 +1334,7 @@ interface AIResultPDFOptions {
 export async function exportAIResultPDF(options: AIResultPDFOptions): Promise<void> {
   const { title, subtitle, content, score, language = 'en' } = options;
   const logoData = await loadLogoImage();
-  _reportTitle = title;
+  _ctx.reportTitle = title;
   const accentColor = COLORS.secondary; // Violet
 
   const disclaimerLabels: Record<string, string> = {
@@ -1434,7 +1432,7 @@ export async function exportSmartPlanPDF(options: SmartPlanPDFOptions): Promise<
     tr: { title: 'Haftalık Rapor', weekLabel: 'Hafta', bmiLabel: 'VKİ', caloriesLabel: 'Kalori', painLabel: 'Ağrı', progressLabel: 'Gebelik İlerlemesi', daysLabel: 'gün kaldı', disclaimer: 'Bu rapor yapay zeka ile oluşturulmuştur. Her zaman doktorunuza danışın.' },
   };
   const L = i18nLabels[language] || i18nLabels.en;
-  _reportTitle = L.title;
+  _ctx.reportTitle = L.title;
 
 
   // Header
