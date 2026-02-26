@@ -223,103 +223,137 @@ type RGB = { r: number; g: number; b: number };
 // Track already-reshaped strings to prevent double-reshaping
 const _reshapedCache = new Map<string, string>();
 
-function stripEmojis(text: string): string {
+/**
+ * Core text processing for PDF output.
+ * For RTL (Arabic): strips emojis → reshapes → reverses for jsPDF LTR rendering.
+ * For LTR: just strips emojis.
+ */
+function prepareText(text: string): string {
   if (!text) return '';
-  // Remove emojis but preserve ZWJ (U+200D) which is important for Arabic ligatures
-  let cleaned = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{20E3}]/gu, '').replace(/\s{2,}/g, ' ').trim();
-  // Reshape Arabic text for jsPDF (converts to Presentation Forms so letters connect)
-  // Only reshape if text contains standard Arabic chars (not already reshaped Presentation Forms)
-  if (_ctx.isRTL && /[\u0600-\u06FF]/.test(cleaned) && !/[\uFB50-\uFDFF\uFE70-\uFEFF]/.test(cleaned)) {
-    const cached = _reshapedCache.get(cleaned);
-    if (cached) return cached;
-    try {
-      const reshaped = reshapeArabicForPDF(cleaned);
-      _reshapedCache.set(cleaned, reshaped);
-      return reshaped;
-    } catch (e) {
-      console.warn('[PDF] Arabic reshaping failed:', e);
-    }
+  // Strip emojis but preserve Arabic-relevant chars
+  let cleaned = text
+    .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{20E3}\u{FE0F}]/gu, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+  
+  if (!_ctx.isRTL) return cleaned;
+  
+  // Check if text has any Arabic characters that need processing
+  const hasStandardArabic = /[\u0600-\u06FF]/.test(cleaned);
+  const hasArabicNumerals = /[\u0660-\u0669\u06F0-\u06F9]/.test(cleaned);
+  
+  if (!hasStandardArabic && !hasArabicNumerals) return cleaned;
+  
+  // Use cache for performance
+  const cacheKey = cleaned;
+  const cached = _reshapedCache.get(cacheKey);
+  if (cached) return cached;
+  
+  try {
+    const result = processArabicForJsPDF(cleaned);
+    _reshapedCache.set(cacheKey, result);
+    return result;
+  } catch (e) {
+    console.warn('[PDF] Arabic processing failed:', e);
+    return cleaned;
   }
-  return cleaned;
+}
+
+// Keep old name as alias for compatibility
+function stripEmojis(text: string): string {
+  return prepareText(text);
 }
 
 /**
- * Reshape Arabic text for jsPDF rendering.
- * 1. Converts Arabic chars to Presentation Forms (so letters connect).
- * 2. Applies bidi-like reversal so jsPDF (which renders LTR) shows correct RTL order.
+ * Full Arabic text processing pipeline for jsPDF:
+ * 1. Reshape Arabic characters (connect letters using Presentation Forms)
+ * 2. Reverse for jsPDF's LTR rendering engine
  */
-function reshapeArabicForPDF(text: string): string {
-  const reshaped = ArabicReshaper.convertArabic(text);
-  return applyBidiReversal(reshaped);
-}
-
-/**
- * Bidi-aware reversal for jsPDF:
- * - Splits text into runs of RTL (Arabic/Presentation Forms) and LTR (Latin/digits/punctuation)
- * - Reverses the overall run order (RTL paragraph direction)
- * - Reverses characters within each RTL run
- * - Keeps LTR runs (numbers, Latin) in their original internal order
- */
-function applyBidiReversal(text: string): string {
+function processArabicForJsPDF(text: string): string {
   if (!text) return text;
   
-  // Regex for Arabic characters (standard + Presentation Forms A & B + supplements)
-  const isRTLChar = (ch: string) => {
-    const code = ch.charCodeAt(0);
-    return (
-      (code >= 0x0600 && code <= 0x06FF) || // Arabic
-      (code >= 0x0750 && code <= 0x077F) || // Arabic Supplement
-      (code >= 0x08A0 && code <= 0x08FF) || // Arabic Extended-A
-      (code >= 0xFB50 && code <= 0xFDFF) || // Arabic Presentation Forms-A
-      (code >= 0xFE70 && code <= 0xFEFF)    // Arabic Presentation Forms-B
-    );
-  };
-
-  // Split into runs of RTL and LTR characters
-  const runs: { text: string; isRTL: boolean }[] = [];
-  let currentRun = '';
-  let currentIsRTL: boolean | null = null;
-
-  for (const ch of text) {
-    const charIsRTL = isRTLChar(ch);
-    // Neutral characters (spaces, punctuation) attach to the current run
-    const isNeutral = !charIsRTL && /[\s\u00A0.,;:!?\-()[\]{}\/\\'"،؛؟٪]/.test(ch);
+  // Split text into segments: Arabic words vs non-Arabic tokens
+  // This preserves numbers, Latin text, and punctuation correctly
+  const segments: { text: string; type: 'arabic' | 'ltr' | 'neutral' }[] = [];
+  
+  // Tokenize by whitespace first, then classify each token
+  const tokens = text.split(/(\s+)/);
+  
+  for (const token of tokens) {
+    if (/^\s+$/.test(token)) {
+      segments.push({ text: token, type: 'neutral' });
+      continue;
+    }
     
-    if (currentIsRTL === null) {
-      currentIsRTL = charIsRTL;
-      currentRun = ch;
-    } else if (charIsRTL === currentIsRTL || isNeutral) {
-      currentRun += ch;
+    const hasArabic = /[\u0600-\u06FF\u0660-\u0669\u06F0-\u06F9]/.test(token);
+    const hasLatin = /[a-zA-Z]/.test(token);
+    const hasWesternDigits = /[0-9]/.test(token);
+    
+    if (hasArabic && !hasLatin) {
+      // Pure Arabic token (may include Arabic numerals and punctuation)
+      segments.push({ text: token, type: 'arabic' });
+    } else if (hasLatin || (hasWesternDigits && !hasArabic)) {
+      // Latin or pure number token
+      segments.push({ text: token, type: 'ltr' });
+    } else if (hasArabic && hasLatin) {
+      // Mixed token - split into sub-segments
+      let current = '';
+      let currentType: 'arabic' | 'ltr' | null = null;
+      for (const ch of token) {
+        const isAr = /[\u0600-\u06FF\u0660-\u0669\u06F0-\u06F9]/.test(ch);
+        const chType = isAr ? 'arabic' : 'ltr';
+        if (currentType === null || chType === currentType) {
+          current += ch;
+          currentType = chType;
+        } else {
+          segments.push({ text: current, type: currentType });
+          current = ch;
+          currentType = chType;
+        }
+      }
+      if (current) segments.push({ text: current, type: currentType! });
     } else {
-      runs.push({ text: currentRun, isRTL: currentIsRTL });
-      currentRun = ch;
-      currentIsRTL = charIsRTL;
+      // Pure punctuation/neutral
+      segments.push({ text: token, type: 'neutral' });
     }
   }
-  if (currentRun) {
-    runs.push({ text: currentRun, isRTL: currentIsRTL ?? true });
-  }
-
-  // Reverse the order of runs (RTL paragraph direction)
-  runs.reverse();
-
-  // Reverse characters within RTL runs, keep LTR runs as-is
-  return runs.map(run => {
-    if (run.isRTL) {
-      return [...run.text].reverse().join('');
+  
+  // Process Arabic segments: reshape for letter connection
+  const processed = segments.map(seg => {
+    if (seg.type === 'arabic') {
+      // Reshape Arabic characters to Presentation Forms (connected letters)
+      const reshaped = ArabicReshaper.convertArabic(seg.text);
+      // Reverse for jsPDF LTR rendering
+      return [...reshaped].reverse().join('');
     }
-    return run.text;
-  }).join('');
+    return seg.text;
+  });
+  
+  // Reverse the order of ALL segments (RTL paragraph direction)
+  // This makes the first Arabic word appear on the right in jsPDF
+  processed.reverse();
+  
+  return processed.join('');
 }
 
 function formatDateForPDF(date: Date, language: string): string {
   const localeMap: Record<string, string> = { ar: 'ar-SA', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', pt: 'pt-BR', tr: 'tr-TR', en: 'en-US' };
-  return date.toLocaleDateString(localeMap[language] || 'en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const formatted = date.toLocaleDateString(localeMap[language] || 'en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  // Process Arabic dates through the same pipeline
+  if (_ctx.isRTL && /[\u0600-\u06FF]/.test(formatted)) {
+    return prepareText(formatted);
+  }
+  return formatted;
 }
 
 function getBrandName(language: string): string {
   const brands: Record<string, string> = { ar: 'أدوات الحمل الذكية', de: 'Schwangerschafts-Toolkit', fr: 'Outils de Grossesse', es: 'Herramientas de Embarazo', pt: 'Ferramentas de Gravidez', tr: 'Gebelik Araçları' };
   return brands[language] || 'Pregnancy Toolkits';
+}
+
+/** Get brand name processed for PDF rendering */
+function getBrandNameForPDF(language: string): string {
+  return prepareText(getBrandName(language));
 }
 
 // =============================================
@@ -351,7 +385,10 @@ function addPageWithHeader(s: PDFState) {
   s.doc.rect(0, 0, PAGE_W, 8, 'F');
   s.doc.setFontSize(6);
   s.doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
-  const headerText = _ctx.reportTitle ? `${getBrandName(_ctx.isRTL ? 'ar' : 'en')} — ${stripEmojis(_ctx.reportTitle)}` : getBrandName(_ctx.isRTL ? 'ar' : 'en');
+  // Process entire header as one unit for correct RTL ordering
+  const lang = _ctx.isRTL ? 'ar' : 'en';
+  const rawHeader = _ctx.reportTitle ? `${getBrandName(lang)} — ${_ctx.reportTitle}` : getBrandName(lang);
+  const headerText = prepareText(rawHeader);
   s.doc.text(headerText, PAGE_W / 2, 5, { align: 'center' });
   s.y = MARGIN_Y + 6;
 }
@@ -389,7 +426,7 @@ function drawTitle(s: PDFState, title: string, subtitle?: string) {
 function drawBrand(s: PDFState, language: string, color: RGB) {
   s.doc.setFontSize(8);
   s.doc.setTextColor(color.r, color.g, color.b);
-  s.doc.text(getBrandName(language), PAGE_W / 2, s.y, { align: 'center' });
+  s.doc.text(getBrandNameForPDF(language), PAGE_W / 2, s.y, { align: 'center' });
   s.y += 3;
 }
 
@@ -413,7 +450,7 @@ function drawFooter(s: PDFState, language: string, color: RGB) {
   s.y += 4;
   s.doc.setFontSize(7);
   s.doc.setTextColor(color.r, color.g, color.b);
-  s.doc.text(getBrandName(language), PAGE_W / 2, s.y, { align: 'center' });
+  s.doc.text(getBrandNameForPDF(language), PAGE_W / 2, s.y, { align: 'center' });
   // Add page numbers to all pages at the end
   addPageNumbers(s);
 }
