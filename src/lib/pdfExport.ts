@@ -225,7 +225,8 @@ const _reshapedCache = new Map<string, string>();
 
 function stripEmojis(text: string): string {
   if (!text) return '';
-  let cleaned = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{200D}\u{20E3}\u{FE0F}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+  // Remove emojis but preserve ZWJ (U+200D) which is important for Arabic ligatures
+  let cleaned = text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{20E3}]/gu, '').replace(/\s{2,}/g, ' ').trim();
   // Reshape Arabic text for jsPDF (converts to Presentation Forms so letters connect)
   // Only reshape if text contains standard Arabic chars (not already reshaped Presentation Forms)
   if (_ctx.isRTL && /[\u0600-\u06FF]/.test(cleaned) && !/[\uFB50-\uFDFF\uFE70-\uFEFF]/.test(cleaned)) {
@@ -244,11 +245,71 @@ function stripEmojis(text: string): string {
 
 /**
  * Reshape Arabic text for jsPDF rendering.
- * Converts Arabic chars to Presentation Forms (so letters connect).
- * jsPDF with { align: 'right' } handles RTL text direction natively.
+ * 1. Converts Arabic chars to Presentation Forms (so letters connect).
+ * 2. Applies bidi-like reversal so jsPDF (which renders LTR) shows correct RTL order.
  */
 function reshapeArabicForPDF(text: string): string {
-  return ArabicReshaper.convertArabic(text);
+  const reshaped = ArabicReshaper.convertArabic(text);
+  return applyBidiReversal(reshaped);
+}
+
+/**
+ * Bidi-aware reversal for jsPDF:
+ * - Splits text into runs of RTL (Arabic/Presentation Forms) and LTR (Latin/digits/punctuation)
+ * - Reverses the overall run order (RTL paragraph direction)
+ * - Reverses characters within each RTL run
+ * - Keeps LTR runs (numbers, Latin) in their original internal order
+ */
+function applyBidiReversal(text: string): string {
+  if (!text) return text;
+  
+  // Regex for Arabic characters (standard + Presentation Forms A & B + supplements)
+  const isRTLChar = (ch: string) => {
+    const code = ch.charCodeAt(0);
+    return (
+      (code >= 0x0600 && code <= 0x06FF) || // Arabic
+      (code >= 0x0750 && code <= 0x077F) || // Arabic Supplement
+      (code >= 0x08A0 && code <= 0x08FF) || // Arabic Extended-A
+      (code >= 0xFB50 && code <= 0xFDFF) || // Arabic Presentation Forms-A
+      (code >= 0xFE70 && code <= 0xFEFF)    // Arabic Presentation Forms-B
+    );
+  };
+
+  // Split into runs of RTL and LTR characters
+  const runs: { text: string; isRTL: boolean }[] = [];
+  let currentRun = '';
+  let currentIsRTL: boolean | null = null;
+
+  for (const ch of text) {
+    const charIsRTL = isRTLChar(ch);
+    // Neutral characters (spaces, punctuation) attach to the current run
+    const isNeutral = !charIsRTL && /[\s\u00A0.,;:!?\-()[\]{}\/\\'"،؛؟٪]/.test(ch);
+    
+    if (currentIsRTL === null) {
+      currentIsRTL = charIsRTL;
+      currentRun = ch;
+    } else if (charIsRTL === currentIsRTL || isNeutral) {
+      currentRun += ch;
+    } else {
+      runs.push({ text: currentRun, isRTL: currentIsRTL });
+      currentRun = ch;
+      currentIsRTL = charIsRTL;
+    }
+  }
+  if (currentRun) {
+    runs.push({ text: currentRun, isRTL: currentIsRTL ?? true });
+  }
+
+  // Reverse the order of runs (RTL paragraph direction)
+  runs.reverse();
+
+  // Reverse characters within RTL runs, keep LTR runs as-is
+  return runs.map(run => {
+    if (run.isRTL) {
+      return [...run.text].reverse().join('');
+    }
+    return run.text;
+  }).join('');
 }
 
 function formatDateForPDF(date: Date, language: string): string {
