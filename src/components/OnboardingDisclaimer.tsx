@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Dumbbell, Lock, DollarSign, Languages, Eye, X } from 'lucide-react';
+import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Dumbbell, Lock, DollarSign, Languages, Eye, X, Ruler, Weight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserProfile } from '@/hooks/useUserProfile';
@@ -25,7 +25,7 @@ const languages = [
   { code: 'pt', name: 'Português', flag: '🇵🇹' },
 ];
 
-type Step = 'welcome' | 'profile' | 'disclaimer';
+type Step = 'welcome' | 'profile';
 
 export const OnboardingDisclaimer: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -34,7 +34,10 @@ export const OnboardingDisclaimer: React.FC = () => {
   const { currentLanguage, changeLanguage } = useLanguage();
   const { profile, updateProfile, setLastPeriodDate } = useUserProfile();
   const [selectedLang, setSelectedLang] = useState(currentLanguage);
+  const [isPregnant, setIsPregnant] = useState(true);
   const [week, setWeek] = useState<string>(String(profile.pregnancyWeek ?? 20));
+  const [weight, setWeight] = useState<string>(profile.weight ? String(profile.weight) : '');
+  const [height, setHeight] = useState<string>(profile.height ? String(profile.height) : '');
   const [lmpDate, setLmpDate] = useState<Date | undefined>(
     profile.lastPeriodDate ? new Date(profile.lastPeriodDate + "T00:00:00") : undefined
   );
@@ -47,20 +50,37 @@ export const OnboardingDisclaimer: React.FC = () => {
   }, []);
 
   const handleFinish = () => {
-    const weekNum = parseInt(week);
-    if (!isNaN(weekNum) && weekNum >= 1 && weekNum <= 42) {
-      updateProfile({ pregnancyWeek: weekNum });
+    const updates: Record<string, unknown> = {};
+
+    if (isPregnant) {
+      const weekNum = parseInt(week);
+      if (!isNaN(weekNum) && weekNum >= 1 && weekNum <= 42) {
+        updates.pregnancyWeek = weekNum;
+      }
+      if (lmpDate) {
+        setLastPeriodDate(format(lmpDate, 'yyyy-MM-dd'));
+      }
     }
-    if (lmpDate) {
-      setLastPeriodDate(format(lmpDate, 'yyyy-MM-dd'));
-    }
+
+    const w = parseFloat(weight);
+    if (!isNaN(w) && w > 0 && w < 300) updates.weight = w;
+
+    const h = parseFloat(height);
+    if (!isNaN(h) && h > 0 && h < 300) updates.height = h;
+
+    if (Object.keys(updates).length > 0) updateProfile(updates);
+
     changeLanguage(selectedLang);
     localStorage.setItem(ONBOARDING_KEY, 'true');
     localStorage.setItem(FIRST_VISIT_KEY, 'true');
     setShow(false);
   };
 
-  const stepIndex = { welcome: 0, profile: 1, disclaimer: 2 }[step];
+  const stepIndex = step === 'welcome' ? 0 : 1;
+
+  // RTL-aware chevron icons
+  const NextIcon = isRtl ? ChevronLeft : ChevronRight;
+  const BackIcon = isRtl ? ChevronRight : ChevronLeft;
 
   if (!show) return null;
 
@@ -98,14 +118,14 @@ export const OnboardingDisclaimer: React.FC = () => {
             <div className="h-1 w-full bg-muted sticky top-0 z-10">
               <motion.div
                 className="h-full bg-gradient-to-r from-primary to-accent"
-                animate={{ width: `${((stepIndex + 1) / 3) * 100}%` }}
+                animate={{ width: `${((stepIndex + 1) / 2) * 100}%` }}
                 transition={{ duration: 0.4 }}
               />
             </div>
 
             {/* Step dots */}
             <div className="flex justify-center gap-2 pt-3 pb-1">
-              {[0, 1, 2].map(i => (
+              {[0, 1].map(i => (
                 <div key={i} className={cn(
                   "w-1.5 h-1.5 rounded-full transition-all",
                   i === stepIndex ? "bg-primary w-4" : i < stepIndex ? "bg-primary/40" : "bg-muted"
@@ -114,9 +134,9 @@ export const OnboardingDisclaimer: React.FC = () => {
             </div>
 
             <AnimatePresence mode="wait">
-              {/* STEP 1: Welcome + Language + Value Proposition */}
+              {/* STEP 1: Welcome + Language */}
               {step === 'welcome' && (
-                <motion.div key="welcome" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                <motion.div key="welcome" initial={{ opacity: 0, x: isRtl ? -20 : 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: isRtl ? 20 : -20 }}>
                   {/* Logo & App Name */}
                   <div className="px-5 pt-3 pb-2 text-center">
                     <motion.div
@@ -211,15 +231,15 @@ export const OnboardingDisclaimer: React.FC = () => {
                       onClick={() => setStep('profile')}
                       className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity"
                     >
-                      {t('onboarding.next', 'Continue')} <ChevronRight className="w-3.5 h-3.5" />
+                      {t('onboarding.next', 'Continue')} <NextIcon className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </motion.div>
               )}
 
-              {/* STEP 2: Profile */}
+              {/* STEP 2: Profile + Disclaimer */}
               {step === 'profile' && (
-                <motion.div key="profile" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                <motion.div key="profile" initial={{ opacity: 0, x: isRtl ? -20 : 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: isRtl ? 20 : -20 }}>
                   <div className="px-4 pt-2 pb-2 text-center">
                     <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center">
                       <Baby className="w-5 h-5 text-primary" />
@@ -233,122 +253,148 @@ export const OnboardingDisclaimer: React.FC = () => {
                   </div>
 
                   <div className="px-4 pb-3 space-y-3">
+                    {/* Pregnant / Not Pregnant Toggle */}
                     <div>
-                      <label className="text-[11px] font-medium text-muted-foreground block mb-1">
-                        {t('onboarding.pregnancyWeek', 'Current Pregnancy Week')} (1–42)
+                      <label className="text-[11px] font-medium text-muted-foreground block mb-1.5">
+                        {t('onboarding.pregnancyStatus', 'Pregnancy Status')}
                       </label>
-                      <input
-                        type="number"
-                        min={1} max={42}
-                        value={week}
-                        onChange={e => setWeek(e.target.value)}
-                        className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                        placeholder="20"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-[11px] font-medium text-muted-foreground block mb-1">
-                        <CalendarIcon className="w-3 h-3 inline me-1" />
-                        {t('onboarding.lastPeriod', 'Last Period Date')} ({t('onboarding.optional', 'optional')})
-                      </label>
-                      <div className="flex gap-1.5">
-                        <Popover open={lmpPopoverOpen} onOpenChange={setLmpPopoverOpen}>
-                          <PopoverTrigger asChild>
-                            <Button
-                              variant="outline"
-                              className={cn(
-                                "flex-1 justify-start text-left font-normal h-9 text-sm",
-                                !lmpDate && "text-muted-foreground"
-                              )}
-                            >
-                              <CalendarIcon className="mr-2 h-3.5 w-3.5 text-primary shrink-0" />
-                              {lmpDate ? formatLocalized(lmpDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0 z-[400]" align="start">
-                            <Calendar
-                              mode="single"
-                              selected={lmpDate}
-                              onSelect={(date) => { setLmpDate(date); setLmpPopoverOpen(false); }}
-                              disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
-                              initialFocus
-                              className={cn("p-3 pointer-events-auto")}
-                            />
-                          </PopoverContent>
-                        </Popover>
-                        {lmpDate && (
-                          <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive" onClick={() => setLmpDate(undefined)}>
-                            <X className="h-3.5 w-3.5" />
-                          </Button>
-                        )}
+                      <div className="grid grid-cols-2 gap-1.5">
+                        <button
+                          onClick={() => setIsPregnant(true)}
+                          className={cn(
+                            "py-2 rounded-lg border text-xs font-medium transition-all flex items-center justify-center gap-1.5",
+                            isPregnant
+                              ? "bg-primary/10 border-primary/40 text-primary"
+                              : "bg-background/60 border-border text-muted-foreground hover:bg-muted/50"
+                          )}
+                        >
+                          <Baby className="w-3.5 h-3.5" />
+                          {t('onboarding.pregnant', 'Pregnant')}
+                        </button>
+                        <button
+                          onClick={() => setIsPregnant(false)}
+                          className={cn(
+                            "py-2 rounded-lg border text-xs font-medium transition-all flex items-center justify-center gap-1.5",
+                            !isPregnant
+                              ? "bg-primary/10 border-primary/40 text-primary"
+                              : "bg-background/60 border-border text-muted-foreground hover:bg-muted/50"
+                          )}
+                        >
+                          <Sparkles className="w-3.5 h-3.5" />
+                          {t('onboarding.notPregnant', 'Not Pregnant')}
+                        </button>
                       </div>
-                      {lmpDate && (
-                        <p className="text-[10px] text-primary mt-0.5">
-                          ✓ {t('onboarding.dueDateWillCompute', 'Due date will be computed automatically')}
-                        </p>
-                      )}
                     </div>
 
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => setStep('welcome')}
-                        className="flex-1 py-2 rounded-xl border border-border text-xs font-medium flex items-center justify-center gap-1 hover:bg-muted/50 transition-colors"
+                    {/* Pregnancy Week - only when pregnant */}
+                    {isPregnant && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="space-y-3"
                       >
-                        <ChevronLeft className="w-3.5 h-3.5" />
-                        {t('onboarding.back', 'Back')}
-                      </button>
-                      <button
-                        onClick={() => setStep('disclaimer')}
-                        className="flex-1 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold flex items-center justify-center gap-1 hover:opacity-90 transition-opacity"
-                      >
-                        {t('onboarding.next', 'Continue')} <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
+                        <div>
+                          <label className="text-[11px] font-medium text-muted-foreground block mb-1">
+                            {t('onboarding.pregnancyWeek', 'Current Pregnancy Week')} (1–42)
+                          </label>
+                          <input
+                            type="number"
+                            min={1} max={42}
+                            value={week}
+                            onChange={e => setWeek(e.target.value)}
+                            className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                            placeholder="20"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="text-[11px] font-medium text-muted-foreground block mb-1">
+                            <CalendarIcon className="w-3 h-3 inline me-1" />
+                            {t('onboarding.lastPeriod', 'Last Period Date')} ({t('onboarding.optional', 'optional')})
+                          </label>
+                          <div className="flex gap-1.5">
+                            <Popover open={lmpPopoverOpen} onOpenChange={setLmpPopoverOpen}>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                  className={cn(
+                                    "flex-1 justify-start text-left font-normal h-9 text-sm",
+                                    !lmpDate && "text-muted-foreground"
+                                  )}
+                                >
+                                  <CalendarIcon className="me-2 h-3.5 w-3.5 text-primary shrink-0" />
+                                  {lmpDate ? formatLocalized(lmpDate, "PPP", currentLanguage) : <span>{t('toolsInternal.dueDate.pickDate', 'Pick a date')}</span>}
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0 z-[400]" align="start">
+                                <Calendar
+                                  mode="single"
+                                  selected={lmpDate}
+                                  onSelect={(date) => { setLmpDate(date); setLmpPopoverOpen(false); }}
+                                  disabled={(date) => date > new Date() || date < new Date("2020-01-01")}
+                                  initialFocus
+                                  className={cn("p-3 pointer-events-auto")}
+                                />
+                              </PopoverContent>
+                            </Popover>
+                            {lmpDate && (
+                              <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive" onClick={() => setLmpDate(undefined)}>
+                                <X className="h-3.5 w-3.5" />
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Weight & Height */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="text-[11px] font-medium text-muted-foreground block mb-1">
+                          <Weight className="w-3 h-3 inline me-1" />
+                          {t('onboarding.weight', 'Weight')} (kg)
+                        </label>
+                        <input
+                          type="number"
+                          min={30} max={200}
+                          value={weight}
+                          onChange={e => setWeight(e.target.value)}
+                          className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          placeholder="65"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[11px] font-medium text-muted-foreground block mb-1">
+                          <Ruler className="w-3 h-3 inline me-1" />
+                          {t('onboarding.height', 'Height')} (cm)
+                        </label>
+                        <input
+                          type="number"
+                          min={100} max={220}
+                          value={height}
+                          onChange={e => setHeight(e.target.value)}
+                          className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          placeholder="165"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              )}
 
-              {/* STEP 3: Value + Disclaimer */}
-              {step === 'disclaimer' && (
-                <motion.div key="disclaimer" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                  <div className="px-4 pt-2 pb-2 text-center">
-                    <motion.div
-                      animate={{ y: [0, -3, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      className="w-10 h-10 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center"
-                    >
-                      <Sparkles className="w-5 h-5 text-primary" />
-                    </motion.div>
-                    <h2 className="text-sm font-bold text-foreground">
-                      {t('onboarding.whyUs', 'Why Pregnancy Toolkits?')}
-                    </h2>
-                  </div>
-
-                  {/* App comprehensive statement */}
-                  <div className="px-4 pb-2">
-                    <p className="text-[11px] text-foreground/80 leading-relaxed text-center">
-                      {t('onboarding.comprehensiveStatement')}
-                    </p>
-                  </div>
-
-                  {/* Disclaimer */}
-                  <div className="px-4 pb-2">
+                    {/* Disclaimer */}
                     <div className="flex items-start gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50">
                       <Shield className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
                       <p className="text-[10px] text-muted-foreground leading-relaxed">
                         {t('onboarding.disclaimer')}
                       </p>
                     </div>
-                  </div>
 
-                  <div className="px-4 pb-4 space-y-2">
+                    {/* Navigation */}
                     <div className="flex gap-2">
                       <button
-                        onClick={() => setStep('profile')}
+                        onClick={() => setStep('welcome')}
                         className="flex-1 py-2 rounded-xl border border-border text-xs font-medium flex items-center justify-center gap-1 hover:bg-muted/50 transition-colors"
                       >
-                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <BackIcon className="w-3.5 h-3.5" />
                         {t('onboarding.back', 'Back')}
                       </button>
                       <button
@@ -359,6 +405,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                         {t('onboarding.accept', 'I Understand & Continue')}
                       </button>
                     </div>
+
                     <p className="text-[9px] text-muted-foreground/60 text-center">
                       {t('onboarding.consultNote')}
                     </p>

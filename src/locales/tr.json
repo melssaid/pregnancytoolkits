@@ -127,7 +127,12 @@
     "noPressure": "Abonelik baskısı yok — basit, adil fiyatlandırma",
     "sevenLangs": "Hamilelik ve doğum sonrası için 7 dilde tam destek",
     "privacyFirst": "Yüksek gizlilik saygısı — veri toplama yok",
-    "transparency": "Sunduğumuz her şeyde tam şeffaflık"
+    "transparency": "Sunduğumuz her şeyde tam şeffaflık",
+    "pregnancyStatus": "Gebelik durumu",
+    "pregnant": "Hamile",
+    "notPregnant": "Hamile değil",
+    "weight": "Kilo",
+    "height": "Boy"
   },
   "tools": {
     "pregnancyAssistant": {
