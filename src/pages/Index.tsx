@@ -224,21 +224,7 @@ const Index = () => {
       <SEOHead />
       <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-primary/10 via-primary/5 to-transparent z-30" />
 
-      <section className="pt-5 pb-2 relative z-10">
-        <div className="container text-center space-y-1.5">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 mb-1">
-            <img src="/logo.png" alt="" className="w-7 h-7 object-contain" />
-          </div>
-          <h1 className="text-2xl font-extrabold text-foreground tracking-tight leading-tight">
-            {t('home.tagline')}
-          </h1>
-          <p className="text-sm text-muted-foreground font-semibold tracking-wide">
-            {t('home.aiSubtitle')}
-          </p>
-        </div>
-      </section>
-
-      <section className="py-3 relative z-10">
+      <section className="pt-4 pb-2 relative z-10">
         <div className="container space-y-4">
           {journeyConfigs.map((config, index) => (
             <JourneyCard key={config.key} config={config} index={index} />
