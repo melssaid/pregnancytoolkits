@@ -1443,7 +1443,9 @@
       "weeklySummaryLink": "Resumen semanal",
       "weeklySummaryLinkDesc": "Obtén actualizaciones semanales inteligentes del embarazo",
       "aiGuideTitle": "Guía de Embarazo IA",
-      "getWeeklyGuide": "Obtener Guía Semanal"
+      "getWeeklyGuide": "Obtener Guía Semanal",
+      "pickDate": "Elegir una fecha",
+      "fromProfile": "Completado automáticamente desde tu perfil"
     },
     "kickCounter": {
       "title": "Diario de movimientos del bebé",
@@ -1892,6 +1894,41 @@
         "normalweight": "Peso normal",
         "overweight": "Sobrepeso",
         "obese": "Obeso"
+      }
+    },
+    "gdm": {
+      "title": "Conciencia sobre Diabetes Gestacional (Info General)",
+      "subtitle": "Esta herramienta proporciona información simple sobre la diabetes gestacional: factores comunes, patrones de estilo de vida y preguntas útiles para discutir con tu médico. No mide el azúcar en sangre ni reemplaza la atención prenatal.",
+      "disclaimer": "Esta es una herramienta educativa únicamente. No proporciona una evaluación profesional. Siempre consulta a tu médico para las pruebas adecuadas.",
+      "checkRiskFactors": "Revisa tus factores de riesgo",
+      "riskFactorsSelected": "Factores de riesgo seleccionados",
+      "aiCoachTitle": "Coach IA de Prevención de Diabetes",
+      "getPreventionPlan": "Obtener plan de prevención personalizado",
+      "preventionTipsTitle": "Consejos de prevención",
+      "infoNote": "Las pruebas de diabetes gestacional generalmente se realizan entre las semanas 24-28. Si tienes múltiples factores de riesgo, tu médico puede recomendar pruebas más tempranas. Esta herramienta es solo con fines educativos.",
+      "riskLevels": {
+        "high": { "title": "Riesgo más alto", "description": "Tus factores de riesgo sugieren una mayor probabilidad. Se puede recomendar un cribado temprano." },
+        "moderate": { "title": "Riesgo moderado", "description": "Tienes algunos factores de riesgo. Se recomienda el cribado estándar en las semanas 24-28." },
+        "low": { "title": "Riesgo más bajo", "description": "Tienes pocos factores de riesgo, pero el cribado de rutina en las semanas 24-28 sigue siendo recomendado." }
+      },
+      "riskFactors": {
+        "age": "Edad de 35 años o más",
+        "bmi": "IMC de 30 o más antes del embarazo",
+        "family": "Antecedentes familiares de diabetes (padre o hermano)",
+        "previousGdm": "Diabetes gestacional previa",
+        "previousLarge": "Bebé anterior de más de 4 kg",
+        "pcos": "Síndrome de ovario poliquístico (SOP)",
+        "prediabetes": "Prediabetes o azúcar en sangre alto",
+        "ethnicity": "Etnicidad de mayor riesgo",
+        "multiple": "Embarazo múltiple (gemelos, trillizos)",
+        "sedentary": "Estilo de vida sedentario antes del embarazo"
+      },
+      "preventionTips": {
+        "tip1": "Mantener un peso saludable antes y durante el embarazo",
+        "tip2": "Seguir una dieta equilibrada rica en fibra y cereales integrales",
+        "tip3": "Mantenerse físicamente activa con ejercicios aprobados por el médico",
+        "tip4": "Asistir a todas las citas prenatales",
+        "tip5": "Limitar los alimentos azucarados y los carbohidratos refinados"
       }
     },
     "healthMonitor": {
@@ -2838,7 +2875,9 @@
       "fertileNoteUpcoming": "Tu ventana fértil comienza alrededor de {{fertileDate}}, en aproximadamente {{days}} días.",
       "fertileNotePassed": "Tu ventana fértil ha pasado para este ciclo.",
       "generalStatus": "Estado general",
-      "stickyAnalyze": "Analizar con IA"
+      "stickyAnalyze": "Analizar con IA",
+      "emptyTitle": "Comienza a registrar tu ciclo",
+      "emptyDesc": "Toca los días de tu último período en el calendario de arriba para obtener predicciones e información."
     },
     "weightGain": {
       "title": "Guía de Aumento de Peso",

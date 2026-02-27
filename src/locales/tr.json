@@ -1443,7 +1443,9 @@
       "weeklySummaryLink": "Haftalık Özet",
       "weeklySummaryLinkDesc": "Haftalık AI destekli hamilelik güncellemeleri alın",
       "aiGuideTitle": "AI Hamilelik Rehberi",
-      "getWeeklyGuide": "Haftalık Rehberi Al"
+      "getWeeklyGuide": "Haftalık Rehberi Al",
+      "pickDate": "Bir tarih seçin",
+      "fromProfile": "Profilinizden otomatik dolduruldu"
     },
     "kickCounter": {
       "title": "Bebek Hareket Günlüğü",
@@ -1892,6 +1894,41 @@
         "normalweight": "Normal kilolu",
         "overweight": "Fazla kilolu",
         "obese": "Obez"
+      }
+    },
+    "gdm": {
+      "title": "Gebelik Diyabeti Farkındalığı (Genel Bilgi)",
+      "subtitle": "Bu araç gebelik diyabeti hakkında basit bilgiler sunar: yaygın faktörler, yaşam tarzı kalıpları ve doktorunuzla tartışılacak faydalı sorular. Kan şekerini ölçmez ve doğum öncesi bakımın yerini almaz.",
+      "disclaimer": "Bu yalnızca eğitim amaçlı bir araçtır. Gebelik diyabeti için profesyonel değerlendirme sağlamaz. Uygun testler için her zaman doktorunuza danışın.",
+      "checkRiskFactors": "Risk faktörlerinizi kontrol edin",
+      "riskFactorsSelected": "Seçilen risk faktörleri",
+      "aiCoachTitle": "AI Diyabet Önleme Koçu",
+      "getPreventionPlan": "Kişiselleştirilmiş önleme planı al",
+      "preventionTipsTitle": "Önleme ipuçları",
+      "infoNote": "Gebelik diyabeti testleri genellikle 24-28. haftalar arasında yapılır. Birden fazla risk faktörünüz varsa doktorunuz daha erken test önerebilir. Bu araç yalnızca eğitim amaçlıdır.",
+      "riskLevels": {
+        "high": { "title": "Daha yüksek risk", "description": "Risk faktörleriniz yüksek bir olasılık göstermektedir. Erken tarama önerilebilir." },
+        "moderate": { "title": "Orta risk", "description": "Bazı risk faktörleriniz var. 24-28. haftalarda standart tarama önerilir." },
+        "low": { "title": "Daha düşük risk", "description": "Az risk faktörünüz var, ancak 24-28. haftalarda rutin tarama yine de önerilir." }
+      },
+      "riskFactors": {
+        "age": "35 yaş ve üzeri",
+        "bmi": "Hamilelik öncesi VKİ 30 ve üzeri",
+        "family": "Ailede diyabet geçmişi (ebeveyn veya kardeş)",
+        "previousGdm": "Önceki gebelik diyabeti",
+        "previousLarge": "Önceki bebek 4 kg üzerinde",
+        "pcos": "Polikistik over sendromu (PKOS)",
+        "prediabetes": "Prediyabet veya yüksek kan şekeri",
+        "ethnicity": "Daha yüksek riskli etnik köken",
+        "multiple": "Çoğul gebelik (ikiz, üçüz)",
+        "sedentary": "Hamilelik öncesi hareketsiz yaşam tarzı"
+      },
+      "preventionTips": {
+        "tip1": "Hamilelik öncesi ve sırasında sağlıklı kilo koruyun",
+        "tip2": "Lif ve tam tahıl açısından zengin dengeli bir diyet uygulayın",
+        "tip3": "Doktor onaylı egzersizlerle fiziksel olarak aktif kalın",
+        "tip4": "Tüm doğum öncesi randevulara katılın",
+        "tip5": "Şekerli gıdaları ve rafine karbonhidratları sınırlayın"
       }
     },
     "healthMonitor": {
@@ -2838,7 +2875,9 @@
       "fertileNoteUpcoming": "Verimli pencereniz {{fertileDate}} civarında başlıyor, yaklaşık {{days}} gün sonra.",
       "fertileNotePassed": "Bu döngü için verimli pencereniz geçti.",
       "generalStatus": "Genel Durum",
-      "stickyAnalyze": "AI ile Analiz Et"
+      "stickyAnalyze": "AI ile Analiz Et",
+      "emptyTitle": "Döngünüzü takip etmeye başlayın",
+      "emptyDesc": "Tahminler ve içgörüler almak için yukarıdaki takvimde son adet günlerinize dokunun."
     },
     "weightGain": {
       "title": "Kilo Alımı Rehberi",

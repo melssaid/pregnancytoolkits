@@ -1443,7 +1443,9 @@
       "weeklySummaryLink": "Resumo semanal",
       "weeklySummaryLinkDesc": "Obtenha atualizações semanais inteligentes da gravidez",
       "aiGuideTitle": "Guia de Gravidez IA",
-      "getWeeklyGuide": "Obter Guia Semanal"
+      "getWeeklyGuide": "Obter Guia Semanal",
+      "pickDate": "Escolher uma data",
+      "fromProfile": "Preenchido automaticamente do seu perfil"
     },
     "kickCounter": {
       "title": "Diário de movimentos do bebê",
@@ -1892,6 +1894,41 @@
         "normalweight": "Peso normal",
         "overweight": "Sobrepeso",
         "obese": "Obeso"
+      }
+    },
+    "gdm": {
+      "title": "Conscientização sobre Diabetes Gestacional (Info Geral)",
+      "subtitle": "Esta ferramenta fornece informações simples sobre diabetes gestacional: fatores comuns, padrões de estilo de vida e perguntas úteis para discutir com seu médico. Não mede a glicemia nem substitui o pré-natal.",
+      "disclaimer": "Esta é uma ferramenta educacional apenas. Não fornece avaliação profissional. Sempre consulte seu médico para os testes adequados.",
+      "checkRiskFactors": "Verifique seus fatores de risco",
+      "riskFactorsSelected": "Fatores de risco selecionados",
+      "aiCoachTitle": "Coach IA de Prevenção de Diabetes",
+      "getPreventionPlan": "Obter plano de prevenção personalizado",
+      "preventionTipsTitle": "Dicas de prevenção",
+      "infoNote": "Os testes de diabetes gestacional geralmente são realizados entre as semanas 24-28. Se você tiver múltiplos fatores de risco, seu médico pode recomendar testes mais cedo. Esta ferramenta é apenas para fins educacionais.",
+      "riskLevels": {
+        "high": { "title": "Risco mais alto", "description": "Seus fatores de risco sugerem uma probabilidade elevada. Rastreamento precoce pode ser recomendado." },
+        "moderate": { "title": "Risco moderado", "description": "Você tem alguns fatores de risco. Rastreamento padrão nas semanas 24-28 é recomendado." },
+        "low": { "title": "Risco mais baixo", "description": "Você tem poucos fatores de risco, mas o rastreamento de rotina nas semanas 24-28 ainda é recomendado." }
+      },
+      "riskFactors": {
+        "age": "Idade de 35 anos ou mais",
+        "bmi": "IMC de 30 ou mais antes da gravidez",
+        "family": "Histórico familiar de diabetes (pai/mãe ou irmão/irmã)",
+        "previousGdm": "Diabetes gestacional anterior",
+        "previousLarge": "Bebê anterior com mais de 4 kg",
+        "pcos": "Síndrome dos ovários policísticos (SOP)",
+        "prediabetes": "Pré-diabetes ou glicemia alta",
+        "ethnicity": "Etnicidade de maior risco",
+        "multiple": "Gravidez múltipla (gêmeos, trigêmeos)",
+        "sedentary": "Estilo de vida sedentário antes da gravidez"
+      },
+      "preventionTips": {
+        "tip1": "Manter um peso saudável antes e durante a gravidez",
+        "tip2": "Seguir uma dieta equilibrada rica em fibras e grãos integrais",
+        "tip3": "Manter-se fisicamente ativa com exercícios aprovados pelo médico",
+        "tip4": "Comparecer a todas as consultas pré-natais",
+        "tip5": "Limitar alimentos açucarados e carboidratos refinados"
       }
     },
     "healthMonitor": {
@@ -2838,7 +2875,9 @@
       "fertileNoteUpcoming": "Sua janela fértil começa por volta de {{fertileDate}}, em aproximadamente {{days}} dias.",
       "fertileNotePassed": "Sua janela fértil já passou para este ciclo.",
       "generalStatus": "Estado Geral",
-      "stickyAnalyze": "Analisar com IA"
+      "stickyAnalyze": "Analisar com IA",
+      "emptyTitle": "Comece a rastrear seu ciclo",
+      "emptyDesc": "Toque nos dias da sua última menstruação no calendário acima para obter previsões e insights."
     },
     "weightGain": {
       "title": "Guia de Ganho de Peso",
