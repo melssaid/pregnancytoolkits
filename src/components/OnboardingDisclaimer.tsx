@@ -130,7 +130,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                 >
                   {/* Logo & Title */}
                   <div className="px-5 pt-3 pb-3 text-center">
-                    <div className="w-14 h-14 mx-auto mb-3 rounded-full overflow-hidden shadow-md">
+                    <div className="w-14 h-14 mx-auto mb-3 rounded-full overflow-hidden">
                       <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
                     </div>
                     <h2 className="text-base font-bold text-foreground">
