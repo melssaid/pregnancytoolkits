@@ -4804,6 +4804,7 @@
     "vitamins": "Vitamins",
     "exercise": "Exercise",
     "water": "Water",
+    "cycleReminders": "Cycle & Ovulation",
     "stretching": "Stretching",
     "kegel": "Kegel",
     "backup": "Backup",
@@ -4858,7 +4859,15 @@
     "appointmentMsg": "{{title}} at {{time}}",
     "appointmentMsgDoctor": "{{title}} with {{doctor}} at {{time}}",
     "appointmentMsgLocation": "{{title}} at {{time}} - {{location}}",
-    "appointmentMsgDoctorLocation": "{{title}} with {{doctor}} at {{time}} - {{location}}"
+    "appointmentMsgDoctorLocation": "{{title}} with {{doctor}} at {{time}} - {{location}}",
+    "cyclePeriod2dTitle": "🩸 Period in 2 Days",
+    "cyclePeriod2dMsg": "Your period is expected to start in 2 days. Be prepared!",
+    "cyclePeriod1dTitle": "🩸 Period Tomorrow",
+    "cyclePeriod1dMsg": "Your period is expected to start tomorrow. Stay comfortable!",
+    "cycleOv2dTitle": "🌸 Ovulation in 2 Days",
+    "cycleOv2dMsg": "Your fertile window is approaching. Ovulation expected in 2 days.",
+    "cycleOv1dTitle": "🌸 Ovulation Tomorrow",
+    "cycleOv1dMsg": "Peak fertility! Ovulation is expected tomorrow."
   },
   "seo": {
     "title": "Best Pregnancy Tracking App",

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { differenceInDays, addDays, format } from 'date-fns';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { playNotificationSound } from '@/lib/notificationSound';
 import { showPushNotification, getPermissionStatus } from '@/lib/pushNotifications';
@@ -21,7 +22,7 @@ const formatAppointmentMsg = (apt: any, timeStr: string): string => {
 
 export interface Notification {
   id: string;
-  type: 'appointment' | 'vitamin' | 'water' | 'general';
+  type: 'appointment' | 'vitamin' | 'water' | 'cycle' | 'general';
   title: string;
   message: string;
   time: string;
@@ -33,12 +34,14 @@ interface NotificationSettings {
   appointmentReminders: boolean;
   vitaminReminders: boolean;
   waterReminders: boolean;
+  cycleReminders: boolean;
 }
 
 const DEFAULT_SETTINGS: NotificationSettings = {
   appointmentReminders: true,
   vitaminReminders: true,
   waterReminders: true,
+  cycleReminders: true,
 };
 
 const WATER_INTERVAL_HOURS = 6;
@@ -79,6 +82,71 @@ const isSettings = (data: unknown): data is NotificationSettings => {
   );
 };
 
+/* ── Cycle data reader ── */
+const getCycleStatsFromStorage = (): { nextPeriod: string | null; ovulationDay: string | null } => {
+  try {
+    const raw = localStorage.getItem('cycle-tracker-v2');
+    if (!raw) return { nextPeriod: null, ovulationDay: null };
+    const data = JSON.parse(raw);
+    if (!data.setup && Object.keys(data.dayLogs || {}).length === 0) return { nextPeriod: null, ovulationDay: null };
+
+    // date-fns imported at top level
+
+    // Detect cycles from dayLogs
+    const dayLogs = data.dayLogs || {};
+    const dates = Object.keys(dayLogs).filter(d => dayLogs[d]?.flow).sort();
+    
+    let lastPeriodStart: Date | null = null;
+    let avgCycle = data.setup?.cycleLength || 28;
+
+    if (dates.length > 0) {
+      // Find period groups
+      const periods: string[] = [];
+      let curStart = dates[0];
+      let curEnd = dates[0];
+      for (let i = 1; i < dates.length; i++) {
+        const gap = differenceInDays(new Date(dates[i]), new Date(curEnd));
+        if (gap <= 2) {
+          curEnd = dates[i];
+        } else {
+          periods.push(curStart);
+          curStart = dates[i];
+          curEnd = dates[i];
+        }
+      }
+      periods.push(curStart);
+
+      lastPeriodStart = new Date(periods[periods.length - 1]);
+
+      // Calculate average cycle from detected periods
+      if (periods.length >= 2) {
+        const cycleLengths: number[] = [];
+        for (let i = 0; i < periods.length - 1; i++) {
+          const len = differenceInDays(new Date(periods[i + 1]), new Date(periods[i]));
+          if (len > 0 && len < 60) cycleLengths.push(len);
+        }
+        if (cycleLengths.length > 0) {
+          avgCycle = Math.round(cycleLengths.reduce((a, b) => a + b, 0) / cycleLengths.length);
+        }
+      }
+    } else if (data.setup?.lastPeriodDate) {
+      lastPeriodStart = new Date(data.setup.lastPeriodDate);
+    }
+
+    if (!lastPeriodStart) return { nextPeriod: null, ovulationDay: null };
+
+    const nextPeriod = addDays(lastPeriodStart, avgCycle);
+    const ovulationDay = addDays(lastPeriodStart, avgCycle - 14);
+
+    return {
+      nextPeriod: format(nextPeriod, 'yyyy-MM-dd'),
+      ovulationDay: format(ovulationDay, 'yyyy-MM-dd'),
+    };
+  } catch {
+    return { nextPeriod: null, ovulationDay: null };
+  }
+};
+
 export function useNotifications() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [settings, setSettings] = useState<NotificationSettings>(DEFAULT_SETTINGS);
@@ -103,9 +171,10 @@ export function useNotifications() {
       appointmentReminders: savedSettings.appointmentReminders ?? true,
       vitaminReminders: savedSettings.vitaminReminders ?? true,
       waterReminders: savedSettings.waterReminders ?? true,
+      cycleReminders: (savedSettings as any).cycleReminders ?? true,
     });
     // Filter out legacy notification types
-    const validTypes = ['appointment', 'vitamin', 'water', 'general'];
+    const validTypes = ['appointment', 'vitamin', 'water', 'cycle', 'general'];
     setNotifications(savedNotifications.filter(n => validTypes.includes(n.type)));
     
     isInitialized.current = true;
@@ -293,6 +362,71 @@ export function useNotifications() {
               time: nowISO,
               read: false,
               actionUrl: '/tools/smart-appointment-reminder',
+            });
+          }
+        }
+      }
+      // Cycle reminders — 1-2 days before period & ovulation
+      if (settings.cycleReminders && hour >= 8) {
+        const cycleStats = getCycleStatsFromStorage();
+        const todayStr = format(now, 'yyyy-MM-dd');
+        
+        if (cycleStats.nextPeriod) {
+          const daysUntilPeriod = differenceInDays(new Date(cycleStats.nextPeriod), new Date(todayStr));
+          
+          // 2 days before period
+          if (daysUntilPeriod === 2 && !hasTodayReminder('cycle', 'period-2d')) {
+            newNotifications.push({
+              id: `cycle-period-2d-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              type: 'cycle',
+              title: tn('cyclePeriod2dTitle'),
+              message: tn('cyclePeriod2dMsg'),
+              time: nowISO,
+              read: false,
+              actionUrl: '/tools/cycle-tracker',
+            });
+          }
+          
+          // 1 day before period
+          if (daysUntilPeriod === 1 && !hasTodayReminder('cycle', 'period-1d')) {
+            newNotifications.push({
+              id: `cycle-period-1d-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              type: 'cycle',
+              title: tn('cyclePeriod1dTitle'),
+              message: tn('cyclePeriod1dMsg'),
+              time: nowISO,
+              read: false,
+              actionUrl: '/tools/cycle-tracker',
+            });
+          }
+        }
+        
+        if (cycleStats.ovulationDay) {
+          const daysUntilOv = differenceInDays(new Date(cycleStats.ovulationDay), new Date(todayStr));
+          
+          // 2 days before ovulation
+          if (daysUntilOv === 2 && !hasTodayReminder('cycle', 'ov-2d')) {
+            newNotifications.push({
+              id: `cycle-ov-2d-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              type: 'cycle',
+              title: tn('cycleOv2dTitle'),
+              message: tn('cycleOv2dMsg'),
+              time: nowISO,
+              read: false,
+              actionUrl: '/tools/cycle-tracker',
+            });
+          }
+          
+          // 1 day before ovulation
+          if (daysUntilOv === 1 && !hasTodayReminder('cycle', 'ov-1d')) {
+            newNotifications.push({
+              id: `cycle-ov-1d-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              type: 'cycle',
+              title: tn('cycleOv1dTitle'),
+              message: tn('cycleOv1dMsg'),
+              time: nowISO,
+              read: false,
+              actionUrl: '/tools/cycle-tracker',
             });
           }
         }

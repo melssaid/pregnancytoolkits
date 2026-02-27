@@ -4317,6 +4317,7 @@
     "vitamins": "Vitaminas",
     "exercise": "Ejercicio",
     "water": "Agua",
+    "cycleReminders": "Ciclo y ovulación",
     "stretching": "Estiramientos",
     "kegel": "Kegel",
     "backup": "Copia de seguridad",
@@ -4371,7 +4372,15 @@
     "appointmentMsg": "{{title}} a las {{time}}",
     "appointmentMsgDoctor": "{{title}} con {{doctor}} a las {{time}}",
     "appointmentMsgLocation": "{{title}} a las {{time}} - {{location}}",
-    "appointmentMsgDoctorLocation": "{{title}} con {{doctor}} a las {{time}} - {{location}}"
+    "appointmentMsgDoctorLocation": "{{title}} con {{doctor}} a las {{time}} - {{location}}",
+    "cyclePeriod2dTitle": "🩸 Período en 2 días",
+    "cyclePeriod2dMsg": "Se espera que tu período comience en 2 días. ¡Prepárate!",
+    "cyclePeriod1dTitle": "🩸 Período mañana",
+    "cyclePeriod1dMsg": "Se espera que tu período comience mañana. ¡Cuídate!",
+    "cycleOv2dTitle": "🌸 Ovulación en 2 días",
+    "cycleOv2dMsg": "Tu ventana fértil se acerca. Ovulación esperada en 2 días.",
+    "cycleOv1dTitle": "🌸 Ovulación mañana",
+    "cycleOv1dMsg": "¡Pico de fertilidad! Se espera la ovulación mañana."
   },
   "seo": {
     "title": "Mejor app de seguimiento de embarazo",

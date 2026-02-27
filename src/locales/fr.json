@@ -4139,6 +4139,7 @@
     "vitamins": "Vitamines",
     "exercise": "Exercice",
     "water": "Eau",
+    "cycleReminders": "Cycle et ovulation",
     "stretching": "Étirements",
     "kegel": "Kegel",
     "backup": "Sauvegarde",
@@ -4193,7 +4194,15 @@
     "appointmentMsg": "{{title}} à {{time}}",
     "appointmentMsgDoctor": "{{title}} avec {{doctor}} à {{time}}",
     "appointmentMsgLocation": "{{title}} à {{time}} - {{location}}",
-    "appointmentMsgDoctorLocation": "{{title}} avec {{doctor}} à {{time}} - {{location}}"
+    "appointmentMsgDoctorLocation": "{{title}} avec {{doctor}} à {{time}} - {{location}}",
+    "cyclePeriod2dTitle": "🩸 Règles dans 2 jours",
+    "cyclePeriod2dMsg": "Vos règles devraient commencer dans 2 jours. Soyez prête !",
+    "cyclePeriod1dTitle": "🩸 Règles demain",
+    "cyclePeriod1dMsg": "Vos règles devraient commencer demain. Prenez soin de vous !",
+    "cycleOv2dTitle": "🌸 Ovulation dans 2 jours",
+    "cycleOv2dMsg": "Votre fenêtre fertile approche. Ovulation prévue dans 2 jours.",
+    "cycleOv1dTitle": "🌸 Ovulation demain",
+    "cycleOv1dMsg": "Pic de fertilité ! L'ovulation est prévue demain."
   },
   "seo": {
     "title": "Meilleure application de suivi de grossesse",

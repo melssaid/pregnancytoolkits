@@ -4299,6 +4299,7 @@
     "vitamins": "الفيتامينات",
     "exercise": "التمارين",
     "water": "الماء",
+    "cycleReminders": "الدورة والتبويض",
     "stretching": "التمدد",
     "kegel": "كيجل",
     "backup": "النسخ الاحتياطي",
@@ -4353,7 +4354,15 @@
     "appointmentMsg": "{{title}} الساعة {{time}}",
     "appointmentMsgDoctor": "{{title}} مع {{doctor}} الساعة {{time}}",
     "appointmentMsgLocation": "{{title}} الساعة {{time}} - {{location}}",
-    "appointmentMsgDoctorLocation": "{{title}} مع {{doctor}} الساعة {{time}} - {{location}}"
+    "appointmentMsgDoctorLocation": "{{title}} مع {{doctor}} الساعة {{time}} - {{location}}",
+    "cyclePeriod2dTitle": "🩸 الدورة بعد يومين",
+    "cyclePeriod2dMsg": "من المتوقع أن تبدأ دورتك بعد يومين. كوني مستعدة!",
+    "cyclePeriod1dTitle": "🩸 الدورة غداً",
+    "cyclePeriod1dMsg": "من المتوقع أن تبدأ دورتك غداً. اعتني بنفسك!",
+    "cycleOv2dTitle": "🌸 التبويض بعد يومين",
+    "cycleOv2dMsg": "نافذة الخصوبة تقترب. التبويض متوقع بعد يومين.",
+    "cycleOv1dTitle": "🌸 التبويض غداً",
+    "cycleOv1dMsg": "ذروة الخصوبة! التبويض متوقع غداً."
   },
   "seo": {
     "title": "رفيقتك الذكية في رحلة الأمومة",

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { sendDailyScheduleToSW } from '@/lib/scheduleNotifications';
 import { 
-  Bell, X, CheckCheck, Pill, Droplet, Calendar,
+  Bell, X, CheckCheck, Pill, Droplet, Calendar, Heart,
   BellRing, BellPlus, BellOff,
   CheckCircle, Smartphone, Trash2, ExternalLink, ChevronRight, Settings
 } from 'lucide-react';
@@ -17,6 +17,7 @@ const typeIcons: Record<string, any> = {
   appointment: Calendar,
   vitamin: Pill,
   water: Droplet,
+  cycle: Heart,
   general: Bell,
 };
 
@@ -24,6 +25,7 @@ const typeGradients: Record<string, string> = {
   appointment: 'from-blue-500 to-blue-600',
   vitamin: 'from-amber-400 to-amber-500',
   water: 'from-sky-400 to-sky-500',
+  cycle: 'from-rose-400 to-rose-500',
   general: 'from-primary to-accent',
 };
 
@@ -213,6 +215,7 @@ export function NotificationsPanel() {
               <SettingsItem icon={Calendar} label={t('notificationsPanel.appointments')} color="bg-blue-500" checked={settings.appointmentReminders} onChange={(v) => updateSettings({ appointmentReminders: v })} />
               <SettingsItem icon={Pill} label={t('notificationsPanel.vitamins')} color="bg-amber-500" checked={settings.vitaminReminders} onChange={(v) => updateSettings({ vitaminReminders: v })} />
               <SettingsItem icon={Droplet} label={t('notificationsPanel.water')} color="bg-sky-500" checked={settings.waterReminders} onChange={(v) => updateSettings({ waterReminders: v })} />
+              <SettingsItem icon={Heart} label={t('notificationsPanel.cycleReminders')} color="bg-rose-500" checked={settings.cycleReminders} onChange={(v) => updateSettings({ cycleReminders: v })} />
 
               {pushSupported && (
                 <div className="pt-1 mt-1 border-t border-border/30">

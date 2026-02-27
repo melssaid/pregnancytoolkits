@@ -4317,6 +4317,7 @@
     "vitamins": "Vitaminler",
     "exercise": "Egzersiz",
     "water": "Su",
+    "cycleReminders": "Döngü ve yumurtlama",
     "stretching": "Esneme",
     "kegel": "Kegel",
     "backup": "Yedekleme",
@@ -4371,7 +4372,15 @@
     "appointmentMsg": "{{title}} saat {{time}}",
     "appointmentMsgDoctor": "{{title}} - {{doctor}} saat {{time}}",
     "appointmentMsgLocation": "{{title}} saat {{time}} - {{location}}",
-    "appointmentMsgDoctorLocation": "{{title}} - {{doctor}} saat {{time}} - {{location}}"
+    "appointmentMsgDoctorLocation": "{{title}} - {{doctor}} saat {{time}} - {{location}}",
+    "cyclePeriod2dTitle": "🩸 Adet 2 Gün Sonra",
+    "cyclePeriod2dMsg": "Adetinizin 2 gün sonra başlaması bekleniyor. Hazırlıklı olun!",
+    "cyclePeriod1dTitle": "🩸 Adet Yarın",
+    "cyclePeriod1dMsg": "Adetinizin yarın başlaması bekleniyor. Kendinize iyi bakın!",
+    "cycleOv2dTitle": "🌸 Yumurtlama 2 Gün Sonra",
+    "cycleOv2dMsg": "Verimli pencereniz yaklaşıyor. Yumurtlama 2 gün sonra bekleniyor.",
+    "cycleOv1dTitle": "🌸 Yumurtlama Yarın",
+    "cycleOv1dMsg": "En yüksek doğurganlık! Yumurtlama yarın bekleniyor."
   },
   "seo": {
     "title": "En İyi Hamilelik Takip Uygulaması",
