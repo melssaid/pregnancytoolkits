@@ -63,14 +63,26 @@ export function AdBanner({
     };
   }, [isConfigured]);
 
-  // Don't render anything if not configured
   if (!isConfigured) return null;
 
+  // Hidden until ad loads — no space taken
+  if (!adLoaded) {
+    return (
+      <div ref={adRef} className="w-0 h-0 overflow-hidden absolute" aria-hidden="true">
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block", minHeight: "1px" }}
+          data-ad-client={adClient}
+          data-ad-slot={adSlot}
+          data-ad-format={format}
+          data-full-width-responsive="true"
+        />
+      </div>
+    );
+  }
+
   return (
-    <div
-      ref={adRef}
-      className={`w-full transition-all duration-300 ${adLoaded ? `opacity-100 ${className}` : "h-0 overflow-hidden opacity-0"}`}
-    >
+    <div ref={adRef} className={`w-full ${className}`}>
       <ins
         className="adsbygoogle"
         style={{ display: "block", minHeight: adLoaded ? "50px" : "1px" }}
