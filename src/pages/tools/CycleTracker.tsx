@@ -14,7 +14,8 @@ import { cycleTrackerVideosByLang } from "@/data/videoData";
 import { useCycleData } from "@/hooks/useCycleData";
 import { CycleCalendarView } from "@/components/cycle/CycleCalendarView";
 import { CycleDaySheet } from "@/components/cycle/CycleDaySheet";
-import { CycleDashboard } from "@/components/cycle/CycleDashboard";
+import { CycleHeroCircle } from "@/components/cycle/CycleHeroCircle";
+import { CycleInsightsCards } from "@/components/cycle/CycleInsightsCards";
 import { CycleHistoryChart } from "@/components/cycle/CycleHistoryChart";
 import { useToast } from "@/components/ui/use-toast";
 import {
@@ -39,6 +40,11 @@ export default function CycleTracker() {
   const handleDeleteDay = (dateStr: string) => {
     deleteDay(dateStr);
     toast({ title: t('toolsInternal.cycleTracker.deleted'), duration: 1500 });
+  };
+
+  const handleLogPeriod = () => {
+    const today = format(new Date(), "yyyy-MM-dd");
+    setEditingDate(today);
   };
 
   const getSymptomLabel = (key: string) => t(`toolsInternal.cycleTracker.symptomOptions.${key}`, key);
@@ -91,36 +97,46 @@ Any patterns that might be worth discussing with a doctor`;
         transition={{ duration: 0.4 }}
         className="space-y-5 pb-16"
       >
+        {/* Hero Circle or Empty State */}
+        {stats ? (
+          <>
+            <CycleHeroCircle
+              phase={stats.phase}
+              day={stats.cycleDay}
+              avgCycle={stats.avgCycle}
+              daysUntilPeriod={stats.daysToPeriod}
+              daysUntilOvulation={stats.daysToOv}
+              onLogPeriod={handleLogPeriod}
+            />
+            <CycleInsightsCards stats={stats} />
+          </>
+        ) : (
+          <div className="flex flex-col items-center py-8 space-y-4">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className="w-20 h-20 rounded-full bg-rose-500/10 flex items-center justify-center"
+            >
+              <CalendarIcon className="w-9 h-9 text-rose-400" />
+            </motion.div>
+            <div className="text-center space-y-1.5">
+              <p className="text-sm font-bold text-foreground">
+                {t('toolsInternal.cycleTracker.emptyTitle', 'Start tracking your cycle')}
+              </p>
+              <p className="text-xs text-muted-foreground max-w-[260px] mx-auto leading-relaxed">
+                {t('toolsInternal.cycleTracker.emptyDesc', 'Tap the days of your last period on the calendar below to get predictions and insights.')}
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Calendar */}
         <CycleCalendarView
           dayLogs={dayLogs}
           predictedDates={predictedDates}
           onDayTap={handleDayTap}
         />
-
-        {/* Dashboard or Empty State */}
-        {stats ? (
-          <CycleDashboard stats={stats} />
-        ) : (
-          <Card className="border-dashed border-2 border-primary/20 bg-primary/5 rounded-3xl">
-            <CardContent className="py-8 text-center space-y-3">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto"
-              >
-                <CalendarIcon className="w-7 h-7 text-primary/50" />
-              </motion.div>
-              <p className="text-sm font-bold text-foreground">
-                {t('toolsInternal.cycleTracker.emptyTitle', 'Start tracking your cycle')}
-              </p>
-              <p className="text-xs text-muted-foreground max-w-[260px] mx-auto leading-relaxed">
-                {t('toolsInternal.cycleTracker.emptyDesc', 'Tap the days of your last period on the calendar above to get predictions and insights.')}
-              </p>
-            </CardContent>
-          </Card>
-        )}
 
         {/* Cycle History Chart */}
         {stats && stats.detectedCycles.length >= 2 && (
