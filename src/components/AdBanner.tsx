@@ -57,7 +57,7 @@ export function AdBanner({
     <div ref={adRef} className={`w-full ${className}`}>
       <ins
         className="adsbygoogle"
-        style={{ display: "block", minHeight: "100px" }}
+        style={{ display: "block", minHeight: "50px" }}
         data-ad-client={adClient}
         data-ad-slot={adSlot}
         data-ad-format={format}
