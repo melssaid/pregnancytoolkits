@@ -1,17 +1,12 @@
-import { useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useEffect, useRef, useState } from "react";
 
 interface AdBannerProps {
-  /** AdSense ad slot ID - leave empty for placeholder mode */
   adSlot?: string;
-  /** AdSense publisher ID (ca-pub-XXXXX) */
   adClient?: string;
-  /** Ad format */
   format?: "auto" | "horizontal" | "rectangle" | "fluid";
   className?: string;
 }
 
-// Set your AdSense publisher ID here when ready
 const DEFAULT_AD_CLIENT = "ca-pub-4171592110992607";
 const DEFAULT_AD_SLOT = "6268499910";
 
@@ -21,9 +16,9 @@ export function AdBanner({
   format = "auto",
   className = "",
 }: AdBannerProps) {
-  const { t } = useTranslation();
   const adRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
+  const [adLoaded, setAdLoaded] = useState(false);
   const isConfigured = adClient && adSlot;
 
   useEffect(() => {
@@ -35,29 +30,50 @@ export function AdBanner({
     } catch {
       // AdSense not loaded yet
     }
+
+    // Observe the ad container for content changes (ad fill)
+    const observer = new MutationObserver(() => {
+      if (adRef.current) {
+        const ins = adRef.current.querySelector("ins.adsbygoogle");
+        if (ins && (ins as HTMLElement).offsetHeight > 0) {
+          setAdLoaded(true);
+          observer.disconnect();
+        }
+      }
+    });
+
+    if (adRef.current) {
+      observer.observe(adRef.current, { childList: true, subtree: true, attributes: true });
+    }
+
+    // Fallback: check after a delay
+    const timeout = setTimeout(() => {
+      if (adRef.current) {
+        const ins = adRef.current.querySelector("ins.adsbygoogle");
+        if (ins && (ins as HTMLElement).offsetHeight > 0) {
+          setAdLoaded(true);
+        }
+      }
+      observer.disconnect();
+    }, 5000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeout);
+    };
   }, [isConfigured]);
 
-  // Placeholder mode
-  if (!isConfigured) {
-    return (
-      <div className={`w-full ${className}`}>
-        <div className="mx-auto max-w-3xl px-4">
-          <div className="relative overflow-hidden rounded-xl border border-dashed border-border/60 bg-muted/20 backdrop-blur-sm min-h-[50px] flex items-center justify-center">
-            <span className="text-[10px] text-muted-foreground/50 font-medium tracking-wider uppercase">
-              {t('ads.placeholder', 'Ad Space')}
-            </span>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Don't render anything if not configured
+  if (!isConfigured) return null;
 
-  // Live AdSense mode
   return (
-    <div ref={adRef} className={`w-full ${className}`}>
+    <div
+      ref={adRef}
+      className={`w-full transition-all duration-300 ${adLoaded ? `opacity-100 ${className}` : "h-0 overflow-hidden opacity-0"}`}
+    >
       <ins
         className="adsbygoogle"
-        style={{ display: "block", minHeight: "50px" }}
+        style={{ display: "block", minHeight: adLoaded ? "50px" : "1px" }}
         data-ad-client={adClient}
         data-ad-slot={adSlot}
         data-ad-format={format}
