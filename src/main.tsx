@@ -7,6 +7,10 @@ import { SettingsProvider } from "@/providers/SettingsProvider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { registerServiceWorker } from "@/lib/pushNotifications";
 import { sendDailyScheduleToSW } from "@/lib/scheduleNotifications";
+import { maybeRunCleanup } from "@/lib/storageCleanup";
+
+// Run periodic storage cleanup (non-blocking)
+maybeRunCleanup();
 
 // Wait for initial language to load, then render
 i18nReady.then(() => {
