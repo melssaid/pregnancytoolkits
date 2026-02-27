@@ -45,16 +45,16 @@ export const CycleHistoryChart = ({ cycles, avgCycle }: CycleHistoryChartProps) 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.15 }}
     >
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden rounded-3xl">
         <CardContent className="py-4">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-primary shrink-0" />
-              <span className="text-sm font-semibold">
+              <span className="text-sm font-bold">
                 {t('toolsInternal.cycleTracker.cycleHistory', 'Cycle History')}
               </span>
             </div>
-            <span className="text-xs text-muted-foreground">
+            <span className="text-xs text-muted-foreground font-medium">
               {t('toolsInternal.cycleTracker.avgLabel', 'Avg')}: {avgCycle} {t('toolsInternal.cycleTracker.days', 'days')}
             </span>
           </div>
@@ -62,25 +62,15 @@ export const CycleHistoryChart = ({ cycles, avgCycle }: CycleHistoryChartProps) 
           <div className="h-44">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} barGap={2}>
-                <XAxis
-                  dataKey="label"
-                  tick={{ fontSize: 10 }}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  domain={['dataMin - 3', 'dataMax + 3']}
-                  tick={{ fontSize: 10 }}
-                  tickLine={false}
-                  axisLine={false}
-                  width={28}
-                />
+                <XAxis dataKey="label" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+                <YAxis domain={['dataMin - 3', 'dataMax + 3']} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} width={28} />
                 <Tooltip
                   contentStyle={{
-                    borderRadius: '10px',
+                    borderRadius: '14px',
                     border: '1px solid hsl(var(--border))',
                     backgroundColor: 'hsl(var(--card))',
                     fontSize: '12px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
                   }}
                   formatter={(value: number, name: string) => [
                     `${value} ${t('toolsInternal.cycleTracker.days', 'days')}`,
@@ -91,11 +81,11 @@ export const CycleHistoryChart = ({ cycles, avgCycle }: CycleHistoryChartProps) 
                 />
                 <ReferenceLine
                   y={avgCycle}
-                  stroke="hsl(var(--primary) / 0.4)"
+                  stroke="hsl(var(--primary) / 0.35)"
                   strokeDasharray="4 4"
                   strokeWidth={1.5}
                 />
-                <Bar dataKey="length" radius={[4, 4, 0, 0]} maxBarSize={32}>
+                <Bar dataKey="length" radius={[6, 6, 0, 0]} maxBarSize={28}>
                   {chartData.map((entry, index) => (
                     <Cell key={index} fill={getBarColor(entry.length)} />
                   ))}

@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { CalendarIcon, Info, Droplets, Trash2 } from "lucide-react";
+import { CalendarIcon, Info, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 import { ToolFrame } from "@/components/ToolFrame";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
@@ -28,12 +28,8 @@ export default function CycleTracker() {
   const { toast } = useToast();
   const { dayLogs, stats, predictedDates, updateDay, deleteDay, clearAll } = useCycleData();
   const [editingDate, setEditingDate] = useState<string | null>(null);
-  
 
-  // Every tap opens the day sheet - simple and consistent
-  const handleDayTap = (dateStr: string) => {
-    setEditingDate(dateStr);
-  };
+  const handleDayTap = (dateStr: string) => setEditingDate(dateStr);
 
   const handleSaveDay = (dateStr: string, log: import("@/hooks/useCycleData").DayLog) => {
     updateDay(dateStr, log);
@@ -44,9 +40,6 @@ export default function CycleTracker() {
     deleteDay(dateStr);
     toast({ title: t('toolsInternal.cycleTracker.deleted'), duration: 1500 });
   };
-
-
-
 
   const getSymptomLabel = (key: string) => t(`toolsInternal.cycleTracker.symptomOptions.${key}`, key);
 
@@ -98,7 +91,6 @@ Any patterns that might be worth discussing with a doctor`;
         transition={{ duration: 0.4 }}
         className="space-y-5 pb-16"
       >
-
         {/* Calendar */}
         <CycleCalendarView
           dayLogs={dayLogs}
@@ -110,13 +102,20 @@ Any patterns that might be worth discussing with a doctor`;
         {stats ? (
           <CycleDashboard stats={stats} />
         ) : (
-          <Card className="border-dashed border-2 border-primary/20 bg-primary/3">
-            <CardContent className="py-6 text-center space-y-2">
-              <CalendarIcon className="w-8 h-8 text-primary/40 mx-auto" />
-              <p className="text-sm font-medium text-foreground">
+          <Card className="border-dashed border-2 border-primary/20 bg-primary/5 rounded-3xl">
+            <CardContent className="py-8 text-center space-y-3">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto"
+              >
+                <CalendarIcon className="w-7 h-7 text-primary/50" />
+              </motion.div>
+              <p className="text-sm font-bold text-foreground">
                 {t('toolsInternal.cycleTracker.emptyTitle', 'Start tracking your cycle')}
               </p>
-              <p className="text-xs text-muted-foreground max-w-[250px] mx-auto">
+              <p className="text-xs text-muted-foreground max-w-[260px] mx-auto leading-relaxed">
                 {t('toolsInternal.cycleTracker.emptyDesc', 'Tap the days of your last period on the calendar above to get predictions and insights.')}
               </p>
             </CardContent>
@@ -130,26 +129,24 @@ Any patterns that might be worth discussing with a doctor`;
 
         {/* AI Analysis */}
         {stats && (
-          <div>
-            <AIInsightCard
-              title={t('toolsInternal.cycleTracker.cycleInsights')}
-              prompt={aiPrompt}
-              variant="compact"
-              buttonText={t('toolsInternal.cycleTracker.analyzePatterns')}
-            />
-          </div>
+          <AIInsightCard
+            title={t('toolsInternal.cycleTracker.cycleInsights')}
+            prompt={aiPrompt}
+            variant="compact"
+            buttonText={t('toolsInternal.cycleTracker.analyzePatterns')}
+          />
         )}
 
         {/* Clear All Data */}
         {Object.keys(dayLogs).length > 0 && (
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="outline" size="sm" className="w-full text-destructive border-destructive/30 hover:bg-destructive/10">
+              <Button variant="outline" size="sm" className="w-full rounded-xl text-destructive border-destructive/30 hover:bg-destructive/10 h-11">
                 <Trash2 className="w-4 h-4 me-2" />
                 {t('toolsInternal.cycleTracker.clearAll', 'Clear All Data & Start Over')}
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="rounded-2xl">
               <AlertDialogHeader>
                 <AlertDialogTitle>{t('toolsInternal.cycleTracker.clearAllTitle', 'Clear all cycle data?')}</AlertDialogTitle>
                 <AlertDialogDescription>
@@ -157,9 +154,9 @@ Any patterns that might be worth discussing with a doctor`;
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>{t('toolsInternal.cycleTracker.cancel', 'Cancel')}</AlertDialogCancel>
+                <AlertDialogCancel className="rounded-xl">{t('toolsInternal.cycleTracker.cancel', 'Cancel')}</AlertDialogCancel>
                 <AlertDialogAction
-                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-xl"
                   onClick={() => {
                     clearAll();
                     toast({ title: t('toolsInternal.cycleTracker.clearedSuccess', 'All data cleared successfully'), duration: 2000 });
@@ -184,9 +181,9 @@ Any patterns that might be worth discussing with a doctor`;
         ]} />
 
         {/* Tip */}
-        <div className="flex items-start gap-2.5 rounded-xl bg-muted/50 p-3.5">
+        <div className="flex items-start gap-2.5 rounded-2xl bg-muted/40 p-4">
           <Info className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
-          <p className="text-xs text-foreground/60 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             {t('toolsInternal.cycleTracker.trackTip')}
           </p>
         </div>
@@ -201,7 +198,6 @@ Any patterns that might be worth discussing with a doctor`;
         onDelete={handleDeleteDay}
         onClose={() => setEditingDate(null)}
       />
-
     </ToolFrame>
   );
 }
