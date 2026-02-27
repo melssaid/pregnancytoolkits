@@ -62,9 +62,14 @@ interface Props {
   avgCycle: number;
   daysUntilPeriod: number;
   daysUntilOvulation: number;
+  nextPeriodLabel?: string;
+  ovulationLabel?: string;
+  fertileLabel?: string;
+  isRegular?: boolean;
+  avgPeriod?: number;
 }
 
-export function CycleHeroCircle({ phase, day, avgCycle, daysUntilPeriod, daysUntilOvulation }: Props) {
+export function CycleHeroCircle({ phase, day, avgCycle, daysUntilPeriod, daysUntilOvulation, nextPeriodLabel, ovulationLabel, fertileLabel, isRegular, avgPeriod }: Props) {
   const { t } = useTranslation();
   const theme = phaseTheme[phase];
   const PhaseIcon = theme.icon;
@@ -161,26 +166,57 @@ export function CycleHeroCircle({ phase, day, avgCycle, daysUntilPeriod, daysUnt
         </div>
       </div>
 
-      {/* Quick stats below circle */}
+      {/* Compact info strip */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="flex items-center gap-6 mt-3"
+        className="w-full max-w-xs mt-4 space-y-2"
       >
-        <div className="text-center">
-          <p className="text-lg font-bold text-foreground tabular-nums">{daysUntilOvulation}</p>
-          <p className="text-[10px] text-muted-foreground font-medium">
-            {t('toolsInternal.cycleTracker.daysUntilOvulation')}
-          </p>
+        {/* Countdowns */}
+        <div className="flex items-center gap-2">
+          <div className="flex-1 rounded-xl bg-violet-500/8 border border-violet-200/30 dark:border-violet-800/20 px-3 py-2.5 text-center">
+            <p className="text-lg font-bold text-violet-600 dark:text-violet-400 tabular-nums">{daysUntilOvulation}</p>
+            <p className="text-[9px] text-muted-foreground font-medium leading-tight">
+              {t('toolsInternal.cycleTracker.daysUntilOvulation')}
+            </p>
+            {ovulationLabel && <p className="text-[9px] text-violet-500/70 mt-0.5">{ovulationLabel}</p>}
+          </div>
+          <div className="flex-1 rounded-xl bg-rose-500/8 border border-rose-200/30 dark:border-rose-800/20 px-3 py-2.5 text-center">
+            <p className="text-lg font-bold text-rose-600 dark:text-rose-400 tabular-nums">{daysUntilPeriod}</p>
+            <p className="text-[9px] text-muted-foreground font-medium leading-tight">
+              {t('toolsInternal.cycleTracker.daysUntilPeriod')}
+            </p>
+            {nextPeriodLabel && <p className="text-[9px] text-rose-500/70 mt-0.5">{nextPeriodLabel}</p>}
+          </div>
         </div>
-        <div className="w-px h-8 bg-border/50" />
-        <div className="text-center">
-          <p className="text-lg font-bold text-foreground tabular-nums">{daysUntilPeriod}</p>
-          <p className="text-[10px] text-muted-foreground font-medium">
-            {t('toolsInternal.cycleTracker.daysUntilPeriod')}
-          </p>
-        </div>
+
+        {/* Quick stats bar */}
+        {avgPeriod !== undefined && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="flex items-center justify-between rounded-xl bg-muted/30 border border-border/30 px-3 py-2"
+          >
+            <div className="text-center flex-1">
+              <p className="text-sm font-bold text-foreground">{avgCycle}</p>
+              <p className="text-[9px] text-muted-foreground">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
+            </div>
+            <div className="w-px h-6 bg-border/40" />
+            <div className="text-center flex-1">
+              <p className="text-sm font-bold text-foreground">{avgPeriod}</p>
+              <p className="text-[9px] text-muted-foreground">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
+            </div>
+            <div className="w-px h-6 bg-border/40" />
+            <div className="text-center flex-1">
+              <p className={cn("text-[11px] font-bold", isRegular ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400")}>
+                {isRegular ? t('toolsInternal.cycleTracker.regular') : t('toolsInternal.cycleTracker.irregular')}
+              </p>
+              <p className="text-[9px] text-muted-foreground">{t('toolsInternal.cycleTracker.regularity')}</p>
+            </div>
+          </motion.div>
+        )}
       </motion.div>
 
     </div>
