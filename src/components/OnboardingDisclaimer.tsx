@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Heart, Brain, Flower2, Lock, Languages, Eye, X, Ruler, Weight } from 'lucide-react';
+import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Lock, X, Ruler, Weight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserProfile } from '@/hooks/useUserProfile';
@@ -77,25 +77,10 @@ export const OnboardingDisclaimer: React.FC = () => {
   };
 
   const stepIndex = step === 'welcome' ? 0 : 1;
-
-  // RTL-aware chevron icons
   const NextIcon = isRtl ? ChevronLeft : ChevronRight;
   const BackIcon = isRtl ? ChevronRight : ChevronLeft;
 
   if (!show) return null;
-
-  const highlights = [
-    { icon: Brain, colorClass: 'text-purple-500', bgClass: 'bg-purple-500/10', key: 'feature1' },
-    { icon: Heart, colorClass: 'text-pink-500', bgClass: 'bg-pink-500/10', key: 'feature2' },
-    { icon: Flower2, colorClass: 'text-blue-500', bgClass: 'bg-blue-500/10', key: 'feature3' },
-  ];
-
-  const valueProps = [
-    { icon: Sparkles, key: 'aiAssistant247' },
-    { icon: Languages, key: 'sevenLangs' },
-    { icon: Lock, key: 'privacyFirst' },
-    { icon: Eye, key: 'transparency' },
-  ];
 
   return (
     <AnimatePresence>
@@ -104,22 +89,22 @@ export const OnboardingDisclaimer: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[300] flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[300] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="w-full max-w-[380px] max-h-[90vh] rounded-2xl bg-card border border-border/50 shadow-2xl overflow-y-auto"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.25 }}
+            className="w-full max-w-[380px] max-h-[90vh] rounded-2xl bg-card border border-border/40 shadow-xl overflow-y-auto"
             dir={isRtl ? 'rtl' : 'ltr'}
           >
-            {/* Progress bar */}
-            <div className="h-1 w-full bg-muted sticky top-0 z-10">
-              <motion.div
-                className="h-full bg-gradient-to-r from-primary to-accent"
-                animate={{ width: `${((stepIndex + 1) / 2) * 100}%` }}
-                transition={{ duration: 0.4 }}
+            {/* Minimal progress */}
+            <div className="h-0.5 w-full bg-muted">
+              <div
+                className="h-full bg-primary transition-all duration-300"
+                style={{ width: `${((stepIndex + 1) / 2) * 100}%` }}
               />
             </div>
 
@@ -127,8 +112,8 @@ export const OnboardingDisclaimer: React.FC = () => {
             <div className="flex justify-center gap-2 pt-3 pb-1">
               {[0, 1].map(i => (
                 <div key={i} className={cn(
-                  "w-1.5 h-1.5 rounded-full transition-all",
-                  i === stepIndex ? "bg-primary w-4" : i < stepIndex ? "bg-primary/40" : "bg-muted"
+                  "h-1.5 rounded-full transition-all duration-200",
+                  i === stepIndex ? "bg-primary w-5" : i < stepIndex ? "bg-primary/30 w-1.5" : "bg-muted-foreground/20 w-1.5"
                 )} />
               ))}
             </div>
@@ -136,62 +121,44 @@ export const OnboardingDisclaimer: React.FC = () => {
             <AnimatePresence mode="wait">
               {/* STEP 1: Welcome + Language */}
               {step === 'welcome' && (
-                <motion.div key="welcome" initial={{ opacity: 0, x: isRtl ? -20 : 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: isRtl ? 20 : -20 }}>
-                  {/* Logo & App Name */}
-                  <div className="px-5 pt-3 pb-2 text-center">
-                    <motion.div
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      className="w-16 h-16 mx-auto mb-3 rounded-full shadow-lg overflow-hidden"
-                    >
+                <motion.div
+                  key="welcome"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  {/* Logo & Title */}
+                  <div className="px-5 pt-3 pb-3 text-center">
+                    <div className="w-14 h-14 mx-auto mb-3 rounded-full overflow-hidden shadow-md">
                       <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
-                    </motion.div>
-                    <h2 className="text-lg font-bold text-foreground">
+                    </div>
+                    <h2 className="text-base font-bold text-foreground">
                       {t('app.name', 'Pregnancy Toolkits')}
                     </h2>
-                    <p className="text-xs text-muted-foreground mt-1">
+                    <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">
                       {t('app.tagline', 'Your Complete Pregnancy Companion')}
                     </p>
                   </div>
 
-                  {/* Feature highlights */}
+                  {/* Compact value props */}
                   <div className="px-5 pb-3">
-                    <div className="flex justify-center gap-4">
-                      {highlights.map((f, i) => (
-                        <motion.div
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {[
+                        { icon: Sparkles, key: 'aiAssistant247' },
+                        { icon: Globe, key: 'sevenLangs' },
+                        { icon: Lock, key: 'privacyFirst' },
+                        { icon: Shield, key: 'transparency' },
+                      ].map((vp, i) => (
+                        <div
                           key={i}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.1 * i }}
-                          className="flex flex-col items-center gap-1.5"
-                        >
-                          <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", f.bgClass)}>
-                            <f.icon className={cn("w-5 h-5", f.colorClass)} />
-                          </div>
-                          <span className="text-[10px] text-muted-foreground font-medium">
-                            {t(`onboarding.${f.key}`)}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Value Proposition */}
-                  <div className="px-4 pb-3">
-                    <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-3 border border-primary/10 space-y-1.5">
-                      {valueProps.map((vp, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, x: isRtl ? 10 : -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.2 + i * 0.08 }}
-                          className="flex items-center gap-2"
+                          className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-muted/40"
                         >
                           <vp.icon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                          <span className="text-[10px] text-foreground/80">
+                          <span className="text-[10px] text-foreground/70 leading-tight">
                             {t(`onboarding.${vp.key}`)}
                           </span>
-                        </motion.div>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -200,8 +167,8 @@ export const OnboardingDisclaimer: React.FC = () => {
                   <div className="px-4 pb-2">
                     <div className="flex items-center gap-1.5 mb-1.5 px-1">
                       <Globe className="w-3 h-3 text-muted-foreground" />
-                      <span className="text-[10px] font-medium text-muted-foreground">
-                        {t('onboarding.chooseLang', 'Choose Language')}
+                      <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+                        {t('onboarding.chooseLang', 'Language')}
                       </span>
                     </div>
                     <div className="grid grid-cols-2 gap-1">
@@ -210,14 +177,14 @@ export const OnboardingDisclaimer: React.FC = () => {
                           key={lang.code}
                           onClick={() => { setSelectedLang(lang.code); changeLanguage(lang.code); }}
                           className={cn(
-                            "flex items-center gap-1.5 px-2 py-1.5 rounded-lg border transition-all text-start",
+                            "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border transition-colors text-start",
                             selectedLang === lang.code
-                              ? "bg-primary/10 border-primary/40"
-                              : "bg-background/60 border-transparent hover:bg-muted/80"
+                              ? "bg-primary/8 border-primary/30"
+                              : "bg-transparent border-transparent hover:bg-muted/60"
                           )}
                         >
                           <span className="text-sm">{lang.flag}</span>
-                          <span className={cn("text-[11px] font-medium truncate", selectedLang === lang.code ? "text-primary" : "text-foreground")}>
+                          <span className={cn("text-[11px] font-medium truncate", selectedLang === lang.code ? "text-primary" : "text-foreground/70")}>
                             {lang.name}
                           </span>
                           {selectedLang === lang.code && <Check className="w-2.5 h-2.5 text-primary ms-auto flex-shrink-0" />}
@@ -226,7 +193,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="px-4 pb-4">
+                  <div className="px-4 pb-4 pt-1">
                     <button
                       onClick={() => setStep('profile')}
                       className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity"
@@ -239,16 +206,22 @@ export const OnboardingDisclaimer: React.FC = () => {
 
               {/* STEP 2: Profile + Disclaimer */}
               {step === 'profile' && (
-                <motion.div key="profile" initial={{ opacity: 0, x: isRtl ? -20 : 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: isRtl ? 20 : -20 }}>
+                <motion.div
+                  key="profile"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
                   <div className="px-4 pt-2 pb-2 text-center">
-                    <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Baby className="w-5 h-5 text-primary" />
+                    <div className="w-9 h-9 mx-auto mb-2 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <Baby className="w-4.5 h-4.5 text-primary" />
                     </div>
                     <h2 className="text-sm font-bold text-foreground">
-                      {t('onboarding.profileTitle', 'Your Pregnancy Info')}
+                      {t('onboarding.profileTitle', 'Your Info')}
                     </h2>
                     <p className="text-[11px] text-muted-foreground mt-0.5">
-                      {t('onboarding.profileSubtitle', 'Helps all tools work instantly for you')}
+                      {t('onboarding.profileSubtitle', 'Personalizes all tools for you')}
                     </p>
                   </div>
 
@@ -256,16 +229,16 @@ export const OnboardingDisclaimer: React.FC = () => {
                     {/* Pregnant / Not Pregnant Toggle */}
                     <div>
                       <label className="text-[11px] font-medium text-muted-foreground block mb-1.5">
-                        {t('onboarding.pregnancyStatus', 'Pregnancy Status')}
+                        {t('onboarding.pregnancyStatus', 'Status')}
                       </label>
                       <div className="grid grid-cols-2 gap-1.5">
                         <button
                           onClick={() => setIsPregnant(true)}
                           className={cn(
-                            "py-2 rounded-lg border text-xs font-medium transition-all flex items-center justify-center gap-1.5",
+                            "py-2 rounded-lg border text-xs font-medium transition-colors flex items-center justify-center gap-1.5",
                             isPregnant
-                              ? "bg-primary/10 border-primary/40 text-primary"
-                              : "bg-background/60 border-border text-muted-foreground hover:bg-muted/50"
+                              ? "bg-primary/10 border-primary/30 text-primary"
+                              : "bg-transparent border-border text-muted-foreground hover:bg-muted/40"
                           )}
                         >
                           <Baby className="w-3.5 h-3.5" />
@@ -274,10 +247,10 @@ export const OnboardingDisclaimer: React.FC = () => {
                         <button
                           onClick={() => setIsPregnant(false)}
                           className={cn(
-                            "py-2 rounded-lg border text-xs font-medium transition-all flex items-center justify-center gap-1.5",
+                            "py-2 rounded-lg border text-xs font-medium transition-colors flex items-center justify-center gap-1.5",
                             !isPregnant
-                              ? "bg-primary/10 border-primary/40 text-primary"
-                              : "bg-background/60 border-border text-muted-foreground hover:bg-muted/50"
+                              ? "bg-primary/10 border-primary/30 text-primary"
+                              : "bg-transparent border-border text-muted-foreground hover:bg-muted/40"
                           )}
                         >
                           <Sparkles className="w-3.5 h-3.5" />
@@ -286,24 +259,19 @@ export const OnboardingDisclaimer: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Pregnancy Week - only when pregnant */}
+                    {/* Pregnancy fields */}
                     {isPregnant && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="space-y-3"
-                      >
+                      <div className="space-y-3">
                         <div>
                           <label className="text-[11px] font-medium text-muted-foreground block mb-1">
-                            {t('onboarding.pregnancyWeek', 'Current Pregnancy Week')} (1–42)
+                            {t('onboarding.pregnancyWeek', 'Week')} (1–42)
                           </label>
                           <input
                             type="number"
                             min={1} max={42}
                             value={week}
                             onChange={e => setWeek(e.target.value)}
-                            className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                            className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/30"
                             placeholder="20"
                           />
                         </div>
@@ -311,7 +279,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                         <div>
                           <label className="text-[11px] font-medium text-muted-foreground block mb-1">
                             <CalendarIcon className="w-3 h-3 inline me-1" />
-                            {t('onboarding.lastPeriod', 'Last Period Date')} ({t('onboarding.optional', 'optional')})
+                            {t('onboarding.lastPeriod', 'Last Period')} ({t('onboarding.optional', 'optional')})
                           </label>
                           <div className="flex gap-1.5">
                             <Popover open={lmpPopoverOpen} onOpenChange={setLmpPopoverOpen}>
@@ -345,7 +313,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                             )}
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
                     )}
 
                     {/* Weight & Height */}
@@ -360,7 +328,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                           min={30} max={200}
                           value={weight}
                           onChange={e => setWeight(e.target.value)}
-                          className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/30"
                           placeholder="65"
                         />
                       </div>
@@ -374,14 +342,14 @@ export const OnboardingDisclaimer: React.FC = () => {
                           min={100} max={220}
                           value={height}
                           onChange={e => setHeight(e.target.value)}
-                          className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/30"
                           placeholder="165"
                         />
                       </div>
                     </div>
 
                     {/* Disclaimer */}
-                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-muted/40 border border-border/50">
+                    <div className="flex items-start gap-2 p-2.5 rounded-lg bg-muted/30 border border-border/30">
                       <Shield className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
                       <p className="text-[10px] text-muted-foreground leading-relaxed">
                         {t('onboarding.disclaimer')}
@@ -392,21 +360,21 @@ export const OnboardingDisclaimer: React.FC = () => {
                     <div className="flex gap-2">
                       <button
                         onClick={() => setStep('welcome')}
-                        className="flex-1 py-2 rounded-xl border border-border text-xs font-medium flex items-center justify-center gap-1 hover:bg-muted/50 transition-colors"
+                        className="flex-1 py-2 rounded-xl border border-border text-xs font-medium flex items-center justify-center gap-1 hover:bg-muted/40 transition-colors"
                       >
                         <BackIcon className="w-3.5 h-3.5" />
                         {t('onboarding.back', 'Back')}
                       </button>
                       <button
                         onClick={handleFinish}
-                        className="flex-1 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity shadow-md shadow-primary/20"
+                        className="flex-1 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity"
                       >
                         <Check className="w-3.5 h-3.5" />
-                        {t('onboarding.accept', 'I Understand & Continue')}
+                        {t('onboarding.accept', 'Continue')}
                       </button>
                     </div>
 
-                    <p className="text-[9px] text-muted-foreground/60 text-center">
+                    <p className="text-[9px] text-muted-foreground/50 text-center">
                       {t('onboarding.consultNote')}
                     </p>
                   </div>
