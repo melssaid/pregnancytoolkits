@@ -84,12 +84,11 @@ export const toolsData: Tool[] = [
   
 
   // ═══════════════════════════════════════════════════════════════
-  // WELLNESS & FITNESS
+  // WELLNESS & FITNESS (Hub)
   // ═══════════════════════════════════════════════════════════════
   { id: "wellness-diary", titleKey: "tools.wellnessDiary.title", descriptionKey: "tools.wellnessDiary.description", icon: Heart, categoryKey: "categories.wellness", href: "/tools/wellness-diary", priority: 16 },
   { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 17, hasAI: true },
-  { id: "ai-sleep-optimizer", titleKey: "tools.aiSleepOptimizer.title", descriptionKey: "tools.aiSleepOptimizer.description", icon: Bed, categoryKey: "categories.wellness", href: "/tools/ai-sleep-optimizer", priority: 19, hasAI: true },
-  { id: "ai-nausea-relief", titleKey: "tools.aiNauseaRelief.title", descriptionKey: "tools.aiNauseaRelief.description", icon: Leaf, categoryKey: "categories.wellness", href: "/tools/ai-nausea-relief", priority: 20, hasAI: true },
+  { id: "pregnancy-comfort", titleKey: "tools.pregnancyComfort.title", descriptionKey: "tools.pregnancyComfort.description", icon: Bed, categoryKey: "categories.wellness", href: "/tools/pregnancy-comfort", priority: 19, hasAI: true },
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
   
 
@@ -104,10 +103,9 @@ export const toolsData: Tool[] = [
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.labor", href: "/tools/ai-birth-plan", priority: 29, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // PREPARATION (includes former self-check tools)
+  // PREPARATION
   // ═══════════════════════════════════════════════════════════════
-  { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.preparation", href: "/tools/gestational-diabetes", priority: 30 },
-  { id: "preeclampsia-risk", titleKey: "tools.preeclampsiaRisk.title", descriptionKey: "tools.preeclampsiaRisk.description", icon: AlertTriangle, categoryKey: "categories.preparation", href: "/tools/preeclampsia-risk", priority: 31 },
+  { id: "maternal-health-awareness", titleKey: "tools.maternalHealth.title", descriptionKey: "tools.maternalHealth.description", icon: AlertTriangle, categoryKey: "categories.preparation", href: "/tools/maternal-health", priority: 30 },
   { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, categoryKey: "categories.preparation", href: "/tools/ai-hospital-bag", priority: 32, hasAI: true },
   { id: "baby-gear-recommender", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/baby-gear-recommender", priority: 33, hasAI: true },
   { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, categoryKey: "categories.preparation", href: "/tools/smart-appointment-reminder", priority: 34, hasAI: true },
@@ -186,19 +184,17 @@ const toolRelationships: Record<string, string[]> = {
   "ai-birth-plan": ["ai-hospital-bag", "ai-labor-progress", "ai-partner-guide"],
 
   // Wellness
-  "wellness-diary": ["pregnancy-assistant", "ai-sleep-optimizer", "ai-fitness-coach"],
+  "wellness-diary": ["pregnancy-assistant", "ai-fitness-coach", "pregnancy-comfort"],
   "ai-fitness-coach": ["vitamin-tracker", "weight-gain", "wellness-diary"],
-  "ai-sleep-optimizer": ["ai-fitness-coach", "wellness-diary", "postpartum-mental-health"],
-  "ai-nausea-relief": ["ai-meal-suggestion", "wellness-diary", "vitamin-tracker"],
-  "vitamin-tracker": ["ai-meal-suggestion", "wellness-diary", "ai-nausea-relief"],
+  "pregnancy-comfort": ["wellness-diary", "ai-fitness-coach", "ai-meal-suggestion"],
+  "vitamin-tracker": ["ai-meal-suggestion", "wellness-diary", "pregnancy-comfort"],
 
   // Mental Health
-  "postpartum-mental-health": ["ai-sleep-optimizer", "pregnancy-assistant", "wellness-diary"],
+  "postpartum-mental-health": ["pregnancy-comfort", "pregnancy-assistant", "wellness-diary"],
   "ai-pregnancy-skincare": ["ai-meal-suggestion", "vitamin-tracker", "weekly-summary"],
 
-  // Self-Check
-  "gestational-diabetes": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
-  "preeclampsia-risk": ["wellness-diary", "pregnancy-assistant", "gestational-diabetes"],
+  // Health Awareness
+  "maternal-health-awareness": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
 
   // Preparation
   "ai-hospital-bag": ["ai-birth-plan", "ai-partner-guide", "baby-gear-recommender"],

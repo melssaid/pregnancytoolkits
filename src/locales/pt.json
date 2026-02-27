@@ -16,6 +16,7 @@
     "meals": "Refeições",
     "cravings": "Alternativas",
     "shopping": "Compras",
+    "diary": "Diário",
     "exercises": "Exercícios",
     "backPain": "Dor nas costas",
     "birthPlan": "Plano de parto",
@@ -270,12 +271,20 @@
       "description": "Questionário EPDS e suporte de bem-estar mental."
     },
     "gestationalDiabetes": {
-      "title": "Conscientização sobre diabetes gestacional (Info geral)",
+      "title": "Diabetes gestacional",
       "description": "Informações simples sobre diabetes gestacional e fatores comuns."
     },
     "preeclampsiaRisk": {
-      "title": "Conscientização sobre pré-eclâmpsia",
+      "title": "Pré-eclâmpsia",
       "description": "Conheça os fatores comuns da pré-eclâmpsia."
+    },
+    "maternalHealth": {
+      "title": "Saúde materna",
+      "description": "Informações educativas sobre diabetes gestacional e pré-eclâmpsia."
+    },
+    "pregnancyComfort": {
+      "title": "Conforto na gravidez",
+      "description": "Dicas avançadas de sono e alívio de náuseas durante a gravidez."
     },
     "babyGearRecommender": {
       "title": "Recomendador de itens para bebê",

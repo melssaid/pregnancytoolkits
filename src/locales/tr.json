@@ -16,6 +16,7 @@
     "meals": "Öğünler",
     "cravings": "Alternatifler",
     "shopping": "Alışveriş",
+    "diary": "Günlük",
     "exercises": "Egzersizler",
     "backPain": "Sırt Ağrısı",
     "birthPlan": "Doğum Planı",
@@ -270,12 +271,20 @@
       "description": "EPDS anketi ve ruhsal iyilik desteği."
     },
     "gestationalDiabetes": {
-      "title": "Gestasyonel Diyabet Farkındalığı (Genel Bilgi)",
+      "title": "Gebelik diyabeti",
       "description": "Gestasyonel diyabet ve yaygın faktörler hakkında basit bilgiler."
     },
     "preeclampsiaRisk": {
-      "title": "Preeklampsi Farkındalığı",
+      "title": "Preeklampsi",
       "description": "Preeklampsiyle ilgili yaygın faktörleri öğrenin."
+    },
+    "maternalHealth": {
+      "title": "Anne sağlığı farkındalığı",
+      "description": "Gebelik diyabeti ve preeklampsi hakkında eğitici bilgiler."
+    },
+    "pregnancyComfort": {
+      "title": "Hamilelik konforu",
+      "description": "İleri düzey uyku önerileri ve hamilelikte bulantı giderme."
     },
     "babyGearRecommender": {
       "title": "Bebek Ekipman Önerici",

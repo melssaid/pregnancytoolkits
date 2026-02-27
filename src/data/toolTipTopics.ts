@@ -232,6 +232,18 @@ export const toolTopicMap: Record<string, string[]> = {
     "how calcium supplementation relates to preeclampsia prevention",
     "why sudden swelling and headaches together need immediate attention",
   ],
+  "maternal-health-awareness": [
+    "how a 10-minute walk after meals helps blood sugar control",
+    "why blood pressure monitoring at home can be life-saving",
+    "why the glucose test is done between weeks 24-28",
+    "how calcium supplementation relates to preeclampsia prevention",
+  ],
+  "pregnancy-comfort": [
+    "how left-side sleeping improves baby's oxygen supply",
+    "why ginger is one of the safest natural nausea remedies",
+    "a simple breathing technique that helps with sleep onset",
+    "why eating small frequent meals reduces pregnancy nausea",
+  ],
 };
 
 export const genericTopics = [

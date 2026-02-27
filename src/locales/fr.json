@@ -16,6 +16,7 @@
     "meals": "Repas",
     "cravings": "Alternatives",
     "shopping": "Courses",
+    "diary": "Journal",
     "exercises": "Exercices",
     "backPain": "Mal de dos",
     "birthPlan": "Plan de naissance",
@@ -270,12 +271,20 @@
       "description": "Questionnaire EPDS et soutien bien-être mental."
     },
     "gestationalDiabetes": {
-      "title": "Sensibilisation au diabète gestationnel (Infos générales)",
+      "title": "Diabète gestationnel",
       "description": "Informations simples sur le diabète gestationnel et les facteurs courants."
     },
     "preeclampsiaRisk": {
-      "title": "Sensibilisation à la prééclampsie",
+      "title": "Prééclampsie",
       "description": "Découvrez les facteurs courants de la prééclampsie."
+    },
+    "maternalHealth": {
+      "title": "Sensibilisation santé maternelle",
+      "description": "Informations éducatives sur le diabète gestationnel et la prééclampsie."
+    },
+    "pregnancyComfort": {
+      "title": "Confort de grossesse",
+      "description": "Conseils avancés de sommeil et soulagement des nausées pendant la grossesse."
     },
     "babyGearRecommender": {
       "title": "Recommandations équipement bébé",

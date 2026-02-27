@@ -16,6 +16,7 @@
     "meals": "Meals",
     "cravings": "Alternatives",
     "shopping": "Shopping",
+    "diary": "Diary",
     "exercises": "Exercises",
     "backPain": "Back Pain",
     "birthPlan": "Birth Plan",
@@ -268,12 +269,20 @@
       "description": "EPDS questionnaire and mental wellness support."
     },
     "gestationalDiabetes": {
-      "title": "Gestational Diabetes Awareness (General Info)",
+      "title": "Gestational Diabetes",
       "description": "Simple information about gestational diabetes and common factors."
     },
     "preeclampsiaRisk": {
-      "title": "Preeclampsia Awareness",
+      "title": "Preeclampsia",
       "description": "Learn about common preeclampsia factors."
+    },
+    "maternalHealth": {
+      "title": "Maternal Health Awareness",
+      "description": "Educational information about gestational diabetes and preeclampsia."
+    },
+    "pregnancyComfort": {
+      "title": "Pregnancy Comfort",
+      "description": "Advanced sleep tips and nausea relief during pregnancy."
     },
     "babyGearRecommender": {
       "title": "Baby Gear Recommender",

@@ -27,12 +27,11 @@ const SmartPregnancyPlan = lazy(() => import("@/pages/tools/SmartPregnancyPlan")
 
 
 // AI 2026 TOOLS
-const AISleepOptimizer = lazy(() => import("@/pages/tools/AISleepOptimizer"));
+const PregnancyComfort = lazy(() => import("@/pages/tools/PregnancyComfort"));
 const AIHospitalBag = lazy(() => import("@/pages/tools/AIHospitalBag"));
 const AIPartnerGuide = lazy(() => import("@/pages/tools/AIPartnerGuide"));
 const AIBirthPosition = lazy(() => import("@/pages/tools/AIBirthPosition"));
 const AIPregnancySkincare = lazy(() => import("@/pages/tools/AIPregnancySkincare"));
-const AINauseaRelief = lazy(() => import("@/pages/tools/AINauseaRelief"));
 const AIBumpPhotos = lazy(() => import("@/pages/tools/AIBumpPhotos"));
 
 // AI WELLNESS
@@ -62,9 +61,8 @@ const SmartWeightGainAnalyzer = lazy(() => import("@/pages/tools/SmartWeightGain
 // MENTAL HEALTH
 const PostpartumMentalHealthCoach = lazy(() => import("@/pages/tools/PostpartumMentalHealthCoach"));
 
-// SELF-CHECK
-const GestationalDiabetes = lazy(() => import("@/pages/tools/GestationalDiabetes"));
-const PreeclampsiaRisk = lazy(() => import("@/pages/tools/PreeclampsiaRisk"));
+// MATERNAL HEALTH AWARENESS (merged)
+const MaternalHealthAwareness = lazy(() => import("@/pages/tools/MaternalHealthAwareness"));
 
 // PREPARATION
 const BabyGearRecommender = lazy(() => import("@/pages/tools/BabyGearRecommender"));
@@ -108,13 +106,14 @@ export function AnimatedRoutes() {
         
         
 
-        {/* AI 2026 TOOLS */}
-        <Route path="/tools/ai-sleep-optimizer" element={<PageTransition><AISleepOptimizer /></PageTransition>} />
+        {/* PREGNANCY COMFORT (merged sleep + nausea) */}
+        <Route path="/tools/pregnancy-comfort" element={<PageTransition><PregnancyComfort /></PageTransition>} />
+        <Route path="/tools/ai-sleep-optimizer" element={<Navigate to="/tools/pregnancy-comfort" replace />} />
+        <Route path="/tools/ai-nausea-relief" element={<Navigate to="/tools/pregnancy-comfort" replace />} />
         <Route path="/tools/ai-hospital-bag" element={<PageTransition><AIHospitalBag /></PageTransition>} />
         <Route path="/tools/ai-partner-guide" element={<PageTransition><AIPartnerGuide /></PageTransition>} />
         <Route path="/tools/ai-birth-position" element={<PageTransition><AIBirthPosition /></PageTransition>} />
         <Route path="/tools/ai-skincare" element={<PageTransition><AIPregnancySkincare /></PageTransition>} />
-        <Route path="/tools/ai-nausea-relief" element={<PageTransition><AINauseaRelief /></PageTransition>} />
         <Route path="/tools/ai-bump-photos" element={<PageTransition><AIBumpPhotos /></PageTransition>} />
 
         {/* AI WELLNESS */}
@@ -150,9 +149,10 @@ export function AnimatedRoutes() {
         {/* MENTAL HEALTH */}
         <Route path="/tools/mental-health-coach" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
 
-        {/* SELF-CHECK */}
-        <Route path="/tools/gestational-diabetes" element={<PageTransition><GestationalDiabetes /></PageTransition>} />
-        <Route path="/tools/preeclampsia-risk" element={<PageTransition><PreeclampsiaRisk /></PageTransition>} />
+        {/* MATERNAL HEALTH AWARENESS (merged diabetes + preeclampsia) */}
+        <Route path="/tools/maternal-health" element={<PageTransition><MaternalHealthAwareness /></PageTransition>} />
+        <Route path="/tools/gestational-diabetes" element={<Navigate to="/tools/maternal-health" replace />} />
+        <Route path="/tools/preeclampsia-risk" element={<Navigate to="/tools/maternal-health" replace />} />
 
         {/* PREPARATION */}
         <Route path="/tools/baby-gear-recommender" element={<PageTransition><BabyGearRecommender /></PageTransition>} />
