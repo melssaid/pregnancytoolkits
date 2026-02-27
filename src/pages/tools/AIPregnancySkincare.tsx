@@ -196,9 +196,9 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         >
           <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
           {isLoading ? (
-            <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span className="truncate">{t('toolsInternal.skincare.creatingRoutine')}</span></>
+            <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.skincare.creatingRoutine')}</span></>
           ) : (
-            <><Brain className="w-4 h-4 shrink-0" /><span className="truncate">{t('toolsInternal.skincare.getRoutine')}</span></>
+            <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.skincare.getRoutine')}</span></>
           )}
         </motion.button>
 

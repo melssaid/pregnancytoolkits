@@ -319,7 +319,7 @@ Please provide detailed recovery advice for this phase including:
                     ) : (
                       <Brain className="w-4 h-4 shrink-0" />
                     )}
-                    <span className="truncate">{t("toolsInternal.postpartumRecovery.getAIAdvice")}</span>
+                    <span>{t("toolsInternal.postpartumRecovery.getAIAdvice")}</span>
                   </div>
                   <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
                 </motion.button>

@@ -157,7 +157,7 @@ Be warm, practical, and specific. Include real examples.`;
           className="w-full text-[13px] h-10"
         >
           <Sparkles className="w-3.5 h-3.5 me-1.5 shrink-0" />
-          <span className="truncate">{isLoading ? t('toolsInternal.partnerGuide.gettingAdvice') : t('toolsInternal.partnerGuide.getAdvice')}</span>
+          <span>{isLoading ? t('toolsInternal.partnerGuide.gettingAdvice') : t('toolsInternal.partnerGuide.getAdvice')}</span>
         </Button>
 
         {/* AI Response */}
@@ -173,19 +173,19 @@ Be warm, practical, and specific. Include real examples.`;
           <ul className="space-y-1.5 text-[10px]">
             <li className="flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[9px] shrink-0">1</span>
-              <span className="truncate">{t('toolsInternal.partnerGuide.action1')}</span>
+              <span>{t('toolsInternal.partnerGuide.action1')}</span>
             </li>
             <li className="flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[9px] shrink-0">2</span>
-              <span className="truncate">{t('toolsInternal.partnerGuide.action2')}</span>
+              <span>{t('toolsInternal.partnerGuide.action2')}</span>
             </li>
             <li className="flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[9px] shrink-0">3</span>
-              <span className="truncate">{t('toolsInternal.partnerGuide.action3')}</span>
+              <span>{t('toolsInternal.partnerGuide.action3')}</span>
             </li>
             <li className="flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-[9px] shrink-0">4</span>
-              <span className="truncate">{t('toolsInternal.partnerGuide.action4')}</span>
+              <span>{t('toolsInternal.partnerGuide.action4')}</span>
             </li>
           </ul>
         </Card>

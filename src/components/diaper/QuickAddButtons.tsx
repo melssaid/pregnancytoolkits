@@ -69,7 +69,7 @@ export const QuickAddButtons = ({ onAdd }: QuickAddButtonsProps) => {
                 }`}
               >
                 <div className="shrink-0">{icon}</div>
-                <span className="text-xs font-medium truncate w-full text-center text-foreground">
+                <span className="text-xs font-medium w-full text-center text-foreground">
                   {t(`diaperPage.${type}`)}
                 </span>
                 
