@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useAIUsageLimit } from "./useAIUsageLimit";
 
 type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery";
 
@@ -27,6 +28,7 @@ export function usePregnancyAI() {
   const [error, setError] = useState<string | null>(null);
   const [errorType, setErrorType] = useState<AIErrorType | null>(null);
   const { i18n, t } = useTranslation();
+  const { isLimitReached, remaining, incrementUsage, limit } = useAIUsageLimit();
 
   const languageRef = useRef(i18n.language);
   languageRef.current = i18n.language;
@@ -54,6 +56,15 @@ export function usePregnancyAI() {
       onDelta: (text: string) => void;
       onDone: () => void;
     }) => {
+      // Check daily limit
+      if (isLimitReached) {
+        const limitMsg = t('aiErrors.dailyLimitMsg', { limit, remaining: 0 });
+        setError(limitMsg);
+        setErrorType('rate_limit');
+        onDone();
+        return;
+      }
+
       setIsLoading(true);
       setError(null);
       setErrorType(null);
@@ -126,6 +137,7 @@ export function usePregnancyAI() {
           }
         }
 
+        incrementUsage();
         onDone();
       } catch (err) {
         const raw = err instanceof Error ? err.message : "";
@@ -137,7 +149,7 @@ export function usePregnancyAI() {
         setIsLoading(false);
       }
     },
-    [resolveError]
+    [resolveError, isLimitReached, remaining, incrementUsage, limit, t]
   );
 
   const generateContent = useCallback(
@@ -173,5 +185,5 @@ export function usePregnancyAI() {
     setErrorType(null);
   }, []);
 
-  return { streamChat, generateContent, isLoading, error, errorType, clearError };
+  return { streamChat, generateContent, isLoading, error, errorType, clearError, aiRemaining: remaining, aiLimit: limit };
 }

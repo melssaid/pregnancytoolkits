@@ -4524,7 +4524,10 @@
     "unknownTitle": "حدث خطأ غير متوقع",
     "unknownMsg": "واجه المساعد الذكي خطأً غير متوقع. يُرجى المحاولة مجدداً.",
     "retry": "إعادة المحاولة",
-    "dismiss": "إغلاق"
+    "dismiss": "إغلاق",
+    "dailyLimitMsg": "لقد استخدمتِ جميع طلبات الذكاء الاصطناعي اليومية ({{limit}} طلب). يُرجى المحاولة غداً.",
+    "dailyLimitTitle": "تم الوصول للحد اليومي",
+    "remainingHint": "متبقي {{remaining}} من {{limit}} طلب اليوم"
   },
   "settings.deleteAccount": {
     "title": "حذف جميع البيانات",

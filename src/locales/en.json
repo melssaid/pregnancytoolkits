@@ -4953,7 +4953,10 @@
     "unknownTitle": "Something Went Wrong",
     "unknownMsg": "The AI assistant encountered an unexpected error. Please try again.",
     "retry": "Try Again",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "dailyLimitMsg": "You've used all {{limit}} daily AI requests. Please try again tomorrow.",
+    "dailyLimitTitle": "Daily Limit Reached",
+    "remainingHint": "{{remaining}} of {{limit}} requests remaining today"
   },
   "settings.deleteAccount": {
     "title": "Delete All Data",

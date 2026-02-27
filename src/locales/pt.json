@@ -4443,7 +4443,10 @@
     "unknownTitle": "Algo deu errado",
     "unknownMsg": "O assistente de IA encontrou um erro inesperado. Por favor tente novamente.",
     "retry": "Tentar novamente",
-    "dismiss": "Fechar"
+    "dismiss": "Fechar",
+    "dailyLimitMsg": "Você usou todas as {{limit}} solicitações diárias de IA. Tente novamente amanhã.",
+    "dailyLimitTitle": "Limite diário atingido",
+    "remainingHint": "{{remaining}} de {{limit}} solicitações restantes hoje"
   },
   "groceryList": {
     "title": "Lista de compras inteligente",
