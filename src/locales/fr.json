@@ -708,7 +708,7 @@
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mois",
     "premiumFeature": "Fonctionnalité Premium",
-    "unlockAccess": "Débloquez les 35 outils",
+    "unlockAccess": "Débloquez les 30 outils",
     "subscribeToAccess": "Abonnez-vous pour débloquer"
   },
   "dueDatePage": {
@@ -3893,7 +3893,7 @@
   "socialProof": {
     "title": "Tout ce dont vous avez besoin 💕",
     "subtitle": "Votre compagnon de grossesse complet",
-    "tools": "35 Outils",
+    "tools": "30 Outils",
     "toolsDesc": "Pour votre parcours",
     "trackEverything": "Tout suivre",
     "trackDesc": "Coups de pied, contractions et plus",
@@ -4036,7 +4036,7 @@
     "pushGuideReload": "Recharger la page après activation",
     "pushEnabledSuccess": "Notifications push activées ! Vous serez notifiée même quand l'app est en arrière-plan.",
     "welcome": "👋 Bienvenue !",
-    "welcomeDesc": "Profitez de 40+ outils intelligents pour suivre votre grossesse facilement et en toute sécurité.",
+    "welcomeDesc": "Profitez de 30+ outils intelligents pour suivre votre grossesse facilement et en toute sécurité.",
     "disclaimer": "📋 Avis important",
     "disclaimerDesc": "Cette application est à titre informatif uniquement et ne remplace pas les conseils de santé professionnels.",
     "disclaimerTitle": "Avis important",
@@ -4073,7 +4073,7 @@
   },
   "seo": {
     "title": "Meilleure application de suivi de grossesse",
-    "description": "Application de grossesse complète avec 35+ outils IA pour chaque étape de la maternité. 100% gratuite et disponible en 7 langues.",
+    "description": "Application de grossesse complète avec 30+ outils IA pour chaque étape de la maternité. 100% gratuite et disponible en 7 langues.",
     "babyGrowth": "Suivi de croissance du bébé",
     "babyGrowthDesc": "Suivez le développement hebdomadaire de votre bébé avec des comparaisons de taille",
     "kickCounter": "Compteur de coups de pied",

@@ -708,7 +708,7 @@
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mes",
     "premiumFeature": "Función Premium",
-    "unlockAccess": "Desbloquea las 35 herramientas",
+    "unlockAccess": "Desbloquea las 30 herramientas",
     "subscribeToAccess": "Suscríbete para desbloquear"
   },
   "dueDatePage": {
@@ -4071,7 +4071,7 @@
   "socialProof": {
     "title": "Todo lo que necesitas 💕",
     "subtitle": "Tu compañero completo de embarazo",
-    "tools": "35 Herramientas",
+    "tools": "30 Herramientas",
     "toolsDesc": "Para tu viaje",
     "trackEverything": "Sigue todo",
     "trackDesc": "Patadas, contracciones y más",
@@ -4214,7 +4214,7 @@
     "pushGuideReload": "Recargar página después de activar",
     "pushEnabledSuccess": "¡Notificaciones push activadas! Serás notificada incluso con la app en segundo plano.",
     "welcome": "👋 ¡Bienvenida!",
-    "welcomeDesc": "Disfruta de 40+ herramientas inteligentes para seguir tu embarazo fácilmente y con seguridad.",
+    "welcomeDesc": "Disfruta de 30+ herramientas inteligentes para seguir tu embarazo fácilmente y con seguridad.",
     "disclaimer": "📋 Aviso importante",
     "disclaimerDesc": "Esta aplicación es solo informativa y no sustituye la orientación profesional de salud.",
     "disclaimerTitle": "Aviso importante",
@@ -4251,7 +4251,7 @@
   },
   "seo": {
     "title": "Mejor app de seguimiento de embarazo",
-    "description": "App de embarazo completa con 35+ herramientas de IA para cada etapa de la maternidad. 100% gratis y disponible en 7 idiomas.",
+    "description": "App de embarazo completa con 30+ herramientas de IA para cada etapa de la maternidad. 100% gratis y disponible en 7 idiomas.",
     "babyGrowth": "Seguimiento del crecimiento del bebé",
     "babyGrowthDesc": "Sigue el desarrollo semanal de tu bebé con comparaciones de tamaño de frutas",
     "kickCounter": "Contador de patadas",

@@ -708,7 +708,7 @@
   "subscription": {
     "subscribeNow": "Premium - R$4,99/mês",
     "premiumFeature": "Recurso Premium",
-    "unlockAccess": "Desbloqueie as 35 ferramentas",
+    "unlockAccess": "Desbloqueie as 30 ferramentas",
     "subscribeToAccess": "Assine para desbloquear"
   },
   "dueDatePage": {
@@ -4071,7 +4071,7 @@
   "socialProof": {
     "title": "Tudo o que você precisa 💕",
     "subtitle": "Seu companheiro completo de gravidez",
-    "tools": "35 Ferramentas",
+    "tools": "30 Ferramentas",
     "toolsDesc": "Para sua jornada",
     "trackEverything": "Acompanhe tudo",
     "trackDesc": "Chutes, contrações e mais",
@@ -4214,7 +4214,7 @@
     "pushGuideReload": "Recarregar página após ativar",
     "pushEnabledSuccess": "Notificações push ativadas! Você será notificada mesmo com o app em segundo plano.",
     "welcome": "👋 Bem-vinda!",
-    "welcomeDesc": "Aproveite 40+ ferramentas inteligentes para acompanhar sua gravidez com facilidade e segurança.",
+    "welcomeDesc": "Aproveite 30+ ferramentas inteligentes para acompanhar sua gravidez com facilidade e segurança.",
     "disclaimer": "📋 Aviso importante",
     "disclaimerDesc": "Este aplicativo é apenas informativo e não substitui orientação profissional de saúde.",
     "disclaimerTitle": "Aviso importante",
@@ -4251,7 +4251,7 @@
   },
   "seo": {
     "title": "Melhor app de acompanhamento de gravidez",
-    "description": "App de gravidez completo com 35+ ferramentas de IA para cada etapa da maternidade. 100% grátis e disponível em 7 idiomas.",
+    "description": "App de gravidez completo com 30+ ferramentas de IA para cada etapa da maternidade. 100% grátis e disponível em 7 idiomas.",
     "babyGrowth": "Acompanhamento do crescimento do bebê",
     "babyGrowthDesc": "Acompanhe o desenvolvimento semanal do bebê com comparações de tamanho de frutas",
     "kickCounter": "Contador de chutes",
