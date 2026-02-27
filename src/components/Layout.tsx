@@ -52,7 +52,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                 height={showBack ? 36 : 44}
                 loading="eager"
                 decoding="async"
-                className={`rounded-full shadow-lg object-cover ${showBack ? 'h-9 w-9' : 'h-11 w-11'}`}
+                className={`rounded-full shadow-sm object-cover ${showBack ? 'h-9 w-9' : 'h-11 w-11'}`}
               />
               {showBack ? (
                 <span className="text-sm font-bold text-foreground tracking-tight truncate max-w-[120px] sm:max-w-none">
