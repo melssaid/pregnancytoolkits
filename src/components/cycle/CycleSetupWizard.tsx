@@ -45,24 +45,26 @@ export function CycleSetupWizard({ onComplete }: Props) {
           <div className="text-center">
             <span className="text-5xl font-extrabold text-foreground tabular-nums">{cycleLength}</span>
             <span className="text-sm text-muted-foreground ms-1.5 font-medium">
-              {t('toolsInternal.cycleTracker.days', 'days')}
+              {t('toolsInternal.cycleTracker.day', 'day')}
             </span>
           </div>
-          <div className="flex flex-wrap justify-center gap-2 max-w-[300px] mx-auto">
-            {CYCLE_OPTIONS.map(n => (
-              <button
-                key={n}
-                onClick={() => setCycleLength(n)}
-                className={cn(
-                  "w-10 h-10 rounded-xl text-sm font-bold transition-all",
-                  cycleLength === n
-                    ? "bg-primary text-primary-foreground shadow-md scale-110"
-                    : "bg-muted/50 text-foreground/70 hover:bg-muted active:scale-95"
-                )}
-              >
-                {n}
-              </button>
-            ))}
+          <div className="rounded-2xl border border-border/50 bg-muted/20 p-3">
+            <div className="flex flex-wrap justify-center gap-2.5">
+              {CYCLE_OPTIONS.map(n => (
+                <button
+                  key={n}
+                  onClick={() => setCycleLength(n)}
+                  className={cn(
+                    "w-12 h-12 rounded-xl text-base font-bold transition-all",
+                    cycleLength === n
+                      ? "bg-primary text-primary-foreground shadow-md scale-110"
+                      : "bg-background text-foreground/70 hover:bg-muted active:scale-95 border border-border/40"
+                  )}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
           </div>
           <p className="text-[11px] text-muted-foreground text-center">
             {t('toolsInternal.cycleTracker.setup.dontKnow', "Don't know? 28 days is the average.")}
@@ -79,24 +81,26 @@ export function CycleSetupWizard({ onComplete }: Props) {
           <div className="text-center">
             <span className="text-5xl font-extrabold text-foreground tabular-nums">{periodLength}</span>
             <span className="text-sm text-muted-foreground ms-1.5 font-medium">
-              {t('toolsInternal.cycleTracker.days', 'days')}
+              {t('toolsInternal.cycleTracker.day', 'day')}
             </span>
           </div>
-          <div className="flex flex-wrap justify-center gap-2.5">
-            {PERIOD_OPTIONS.map(n => (
-              <button
-                key={n}
-                onClick={() => setPeriodLength(n)}
-                className={cn(
-                  "w-12 h-12 rounded-xl text-base font-bold transition-all",
-                  periodLength === n
-                    ? "bg-rose-500 text-white shadow-md scale-110"
-                    : "bg-muted/50 text-foreground/70 hover:bg-muted active:scale-95"
-                )}
-              >
-                {n}
-              </button>
-            ))}
+          <div className="rounded-2xl border border-border/50 bg-muted/20 p-3">
+            <div className="flex flex-wrap justify-center gap-2.5">
+              {PERIOD_OPTIONS.map(n => (
+                <button
+                  key={n}
+                  onClick={() => setPeriodLength(n)}
+                  className={cn(
+                    "w-12 h-12 rounded-xl text-base font-bold transition-all",
+                    periodLength === n
+                      ? "bg-rose-500 text-white shadow-md scale-110"
+                      : "bg-background text-foreground/70 hover:bg-muted active:scale-95 border border-border/40"
+                  )}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
           </div>
           <p className="text-[11px] text-muted-foreground text-center">
             {t('toolsInternal.cycleTracker.setup.periodHint', "Most women have 4–6 day periods.")}

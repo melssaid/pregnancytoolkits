@@ -2351,6 +2351,7 @@
       "deleted": "Supprimé",
       "deletedDesc": "Entrée de cycle supprimée.",
       "days": "jours",
+      "day": "jour",
       "copied": "Copié !",
       "copiedDesc": "Statistiques copiées dans le presse-papiers.",
       "currentPhase": "Phase actuelle",
