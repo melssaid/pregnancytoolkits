@@ -2950,7 +2950,26 @@
       "generalStatus": "General Status",
       "stickyAnalyze": "Analyze with AI",
       "emptyTitle": "Start tracking your cycle",
-      "emptyDesc": "Tap the days of your last period on the calendar above to get predictions and insights."
+      "emptyDesc": "Tap the days of your last period on the calendar above to get predictions and insights.",
+      "clearAll": "Clear All Data & Start Over",
+      "clearAllTitle": "Clear all cycle data?",
+      "clearAllDesc": "This will permanently delete all your tracked periods, symptoms, and predictions. This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirmClear": "Yes, clear everything",
+      "clearedSuccess": "All data cleared successfully",
+      "setup": {
+        "cycleLengthTitle": "How long is your cycle?",
+        "cycleLengthDesc": "The number of days from the first day of one period to the first day of the next. Most cycles are 21–35 days.",
+        "dontKnow": "Don't know? 28 days is the average.",
+        "periodLengthTitle": "How long does your period last?",
+        "periodLengthDesc": "The number of days you typically bleed. Most periods last 3–7 days.",
+        "periodHint": "Most women have 4–6 day periods.",
+        "lastPeriodTitle": "When did your last period start?",
+        "lastPeriodDesc": "Select the first day of your most recent period.",
+        "back": "Back",
+        "next": "Next",
+        "start": "Start Tracking"
+      }
     },
     "weightGain": {
       "title": "Weight Gain Guide",

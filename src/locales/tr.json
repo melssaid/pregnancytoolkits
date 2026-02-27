@@ -2831,10 +2831,28 @@
       "dueDateLink": "Doğum Tarihi Hesaplayıcı",
       "dueDateLinkDesc": "Son adet tarihinize göre tahmini doğum tarihinizi hesaplayın",
       "flowLevels": {
+        "spotting": "Lekelenme",
         "light": "Hafif",
         "medium": "Orta",
         "heavy": "Yoğun"
       },
+      "mood": "Ruh Hali",
+      "moods": {
+        "great": "Harika",
+        "good": "İyi",
+        "okay": "İdare Eder",
+        "bad": "Kötü",
+        "awful": "Çok Kötü"
+      },
+      "notes": "Notlar",
+      "notesPlaceholder": "Gününüz hakkında not ekleyin...",
+      "saveDay": "Kaydet",
+      "removeDay": "Kaydı Sil",
+      "dayMarked": "Adet günü işaretlendi",
+      "dayRemoved": "Gün kaldırıldı",
+      "calendarHint": "Adetinizi işaretlemek için bir güne dokunun. İşaretli bir güne dokunarak düzenleyebilir veya silebilirsiniz.",
+      "calendarHintTitle": "Nasıl kullanılır",
+      "predicted": "Tahmini",
       "symptomOptions": {
         "cramps": "Kramplar",
         "headache": "Baş ağrısı",
@@ -2886,7 +2904,26 @@
       "generalStatus": "Genel Durum",
       "stickyAnalyze": "AI ile Analiz Et",
       "emptyTitle": "Döngünüzü takip etmeye başlayın",
-      "emptyDesc": "Tahminler ve içgörüler almak için yukarıdaki takvimde son adet günlerinize dokunun."
+      "emptyDesc": "Tahminler ve içgörüler almak için yukarıdaki takvimde son adet günlerinize dokunun.",
+      "clearAll": "Tüm verileri sil ve yeniden başla",
+      "clearAllTitle": "Tüm döngü verileri silinsin mi?",
+      "clearAllDesc": "Bu, kaydedilmiş tüm adet dönemlerinizi, belirtilerinizi ve tahminlerinizi kalıcı olarak silecektir. Bu işlem geri alınamaz.",
+      "cancel": "İptal",
+      "confirmClear": "Evet, her şeyi sil",
+      "clearedSuccess": "Tüm veriler başarıyla silindi",
+      "setup": {
+        "cycleLengthTitle": "Döngünüz kaç gün sürüyor?",
+        "cycleLengthDesc": "Bir adet döneminin ilk gününden bir sonrakinin ilk gününe kadar olan gün sayısı. Çoğu döngü 21–35 gün sürer.",
+        "dontKnow": "Bilmiyor musunuz? 28 gün ortalamadır.",
+        "periodLengthTitle": "Adetiniz kaç gün sürüyor?",
+        "periodLengthDesc": "Normalde kaç gün kanama yaşarsınız. Çoğu adet 3–7 gün sürer.",
+        "periodHint": "Çoğu kadının adeti 4–6 gün sürer.",
+        "lastPeriodTitle": "Son adetiniz ne zaman başladı?",
+        "lastPeriodDesc": "En son adetinizin ilk gününü seçin.",
+        "back": "Geri",
+        "next": "İleri",
+        "start": "Takibe Başla"
+      }
     },
     "weightGain": {
       "title": "Kilo Alımı Rehberi",

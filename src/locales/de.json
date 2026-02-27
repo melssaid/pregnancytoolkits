@@ -2143,10 +2143,28 @@
       "dueDateLink": "Geburtsterminrechner",
       "dueDateLinkDesc": "Berechnen Sie Ihren voraussichtlichen Geburtstermin basierend auf Ihrer letzten Periode",
       "flowLevels": {
+        "spotting": "Schmierblutung",
         "light": "Leicht",
         "medium": "Mittel",
         "heavy": "Stark"
       },
+      "mood": "Stimmung",
+      "moods": {
+        "great": "Super",
+        "good": "Gut",
+        "okay": "Okay",
+        "bad": "Schlecht",
+        "awful": "Sehr schlecht"
+      },
+      "notes": "Notizen",
+      "notesPlaceholder": "Notizen zu Ihrem Tag hinzufügen...",
+      "saveDay": "Speichern",
+      "removeDay": "Eintrag entfernen",
+      "dayMarked": "Periodetag markiert",
+      "dayRemoved": "Tag entfernt",
+      "calendarHint": "Tippen Sie auf einen Tag, um Ihre Periode zu markieren. Tippen Sie auf einen markierten Tag, um ihn zu bearbeiten oder zu löschen.",
+      "calendarHintTitle": "Anleitung",
+      "predicted": "Vorhergesagt",
       "symptomOptions": {
         "cramps": "Krämpfe",
         "headache": "Kopfschmerzen",
@@ -2198,7 +2216,26 @@
       "generalStatus": "Allgemeiner Status",
       "stickyAnalyze": "Mit KI analysieren",
       "emptyTitle": "Beginnen Sie mit der Zyklusverfolgung",
-      "emptyDesc": "Tippen Sie auf die Tage Ihrer letzten Periode im Kalender oben, um Vorhersagen und Einblicke zu erhalten."
+      "emptyDesc": "Tippen Sie auf die Tage Ihrer letzten Periode im Kalender oben, um Vorhersagen und Einblicke zu erhalten.",
+      "clearAll": "Alle Daten löschen und neu beginnen",
+      "clearAllTitle": "Alle Zyklusdaten löschen?",
+      "clearAllDesc": "Dadurch werden alle aufgezeichneten Perioden, Symptome und Vorhersagen dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+      "cancel": "Abbrechen",
+      "confirmClear": "Ja, alles löschen",
+      "clearedSuccess": "Alle Daten wurden erfolgreich gelöscht",
+      "setup": {
+        "cycleLengthTitle": "Wie lang ist Ihr Zyklus?",
+        "cycleLengthDesc": "Die Anzahl der Tage vom ersten Tag einer Periode bis zum ersten Tag der nächsten. Die meisten Zyklen dauern 21–35 Tage.",
+        "dontKnow": "Wissen Sie nicht? 28 Tage ist der Durchschnitt.",
+        "periodLengthTitle": "Wie lange dauert Ihre Periode?",
+        "periodLengthDesc": "Die Anzahl der Tage, an denen Sie normalerweise bluten. Die meisten Perioden dauern 3–7 Tage.",
+        "periodHint": "Die meisten Frauen haben 4–6 Tage lange Perioden.",
+        "lastPeriodTitle": "Wann hat Ihre letzte Periode begonnen?",
+        "lastPeriodDesc": "Wählen Sie den ersten Tag Ihrer letzten Periode.",
+        "back": "Zurück",
+        "next": "Weiter",
+        "start": "Tracking starten"
+      }
     },
     "birthPosition": {
       "title": "KI-Geburtspositionen",

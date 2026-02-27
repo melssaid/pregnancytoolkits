@@ -2314,10 +2314,28 @@
       "dueDateLink": "Calculateur de date d'accouchement",
       "dueDateLinkDesc": "Calculez votre date d'accouchement prévue selon vos dernières règles",
       "flowLevels": {
+        "spotting": "Spotting",
         "light": "Léger",
         "medium": "Moyen",
         "heavy": "Abondant"
       },
+      "mood": "Humeur",
+      "moods": {
+        "great": "Super",
+        "good": "Bien",
+        "okay": "Correct",
+        "bad": "Mauvais",
+        "awful": "Terrible"
+      },
+      "notes": "Notes",
+      "notesPlaceholder": "Ajoutez des notes sur votre journée...",
+      "saveDay": "Enregistrer",
+      "removeDay": "Supprimer l'entrée",
+      "dayMarked": "Jour de règles marqué",
+      "dayRemoved": "Jour supprimé",
+      "calendarHint": "Appuyez sur un jour pour marquer vos règles. Appuyez sur un jour marqué pour le modifier ou le supprimer.",
+      "calendarHintTitle": "Mode d'emploi",
+      "predicted": "Prédit",
       "symptomOptions": {
         "cramps": "Crampes",
         "headache": "Maux de tête",
@@ -2369,7 +2387,26 @@
       "generalStatus": "État général",
       "stickyAnalyze": "Analyser avec l'IA",
       "emptyTitle": "Commencez à suivre votre cycle",
-      "emptyDesc": "Appuyez sur les jours de vos dernières règles dans le calendrier ci-dessus pour obtenir des prédictions et des insights."
+      "emptyDesc": "Appuyez sur les jours de vos dernières règles dans le calendrier ci-dessus pour obtenir des prédictions et des insights.",
+      "clearAll": "Effacer toutes les données et recommencer",
+      "clearAllTitle": "Effacer toutes les données du cycle ?",
+      "clearAllDesc": "Cela supprimera définitivement toutes vos règles, symptômes et prédictions enregistrés. Cette action est irréversible.",
+      "cancel": "Annuler",
+      "confirmClear": "Oui, tout effacer",
+      "clearedSuccess": "Toutes les données ont été effacées avec succès",
+      "setup": {
+        "cycleLengthTitle": "Quelle est la durée de votre cycle ?",
+        "cycleLengthDesc": "Le nombre de jours entre le premier jour d'une période et le premier jour de la suivante. La plupart des cycles durent 21–35 jours.",
+        "dontKnow": "Vous ne savez pas ? 28 jours est la moyenne.",
+        "periodLengthTitle": "Combien de jours durent vos règles ?",
+        "periodLengthDesc": "Le nombre de jours de saignement habituels. La plupart des règles durent 3–7 jours.",
+        "periodHint": "La plupart des femmes ont des règles de 4–6 jours.",
+        "lastPeriodTitle": "Quand ont commencé vos dernières règles ?",
+        "lastPeriodDesc": "Sélectionnez le premier jour de vos règles les plus récentes.",
+        "back": "Retour",
+        "next": "Suivant",
+        "start": "Commencer le suivi"
+      }
     },
     "birthPosition": {
       "title": "Positions d'Accouchement IA",

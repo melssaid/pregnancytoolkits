@@ -2831,10 +2831,28 @@
       "dueDateLink": "Calculadora de fecha de parto",
       "dueDateLinkDesc": "Calcula tu fecha de parto esperada según tu último período",
       "flowLevels": {
+        "spotting": "Manchado",
         "light": "Ligero",
         "medium": "Medio",
         "heavy": "Abundante"
       },
+      "mood": "Estado de ánimo",
+      "moods": {
+        "great": "Genial",
+        "good": "Bien",
+        "okay": "Normal",
+        "bad": "Mal",
+        "awful": "Terrible"
+      },
+      "notes": "Notas",
+      "notesPlaceholder": "Añade notas sobre tu día...",
+      "saveDay": "Guardar",
+      "removeDay": "Eliminar entrada",
+      "dayMarked": "Día de período marcado",
+      "dayRemoved": "Día eliminado",
+      "calendarHint": "Toca un día para marcar tu período. Toca un día marcado para editarlo o eliminarlo.",
+      "calendarHintTitle": "Cómo usar",
+      "predicted": "Predicho",
       "symptomOptions": {
         "cramps": "Calambres",
         "headache": "Dolor de cabeza",
@@ -2886,7 +2904,26 @@
       "generalStatus": "Estado general",
       "stickyAnalyze": "Analizar con IA",
       "emptyTitle": "Comienza a registrar tu ciclo",
-      "emptyDesc": "Toca los días de tu último período en el calendario de arriba para obtener predicciones e información."
+      "emptyDesc": "Toca los días de tu último período en el calendario de arriba para obtener predicciones e información.",
+      "clearAll": "Borrar todos los datos y empezar de nuevo",
+      "clearAllTitle": "¿Borrar todos los datos del ciclo?",
+      "clearAllDesc": "Esto eliminará permanentemente todos los períodos, síntomas y predicciones registrados. Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirmClear": "Sí, borrar todo",
+      "clearedSuccess": "Todos los datos se han borrado exitosamente",
+      "setup": {
+        "cycleLengthTitle": "¿Cuánto dura tu ciclo?",
+        "cycleLengthDesc": "El número de días desde el primer día de un período hasta el primer día del siguiente. La mayoría de los ciclos duran 21–35 días.",
+        "dontKnow": "¿No lo sabes? 28 días es el promedio.",
+        "periodLengthTitle": "¿Cuántos días dura tu período?",
+        "periodLengthDesc": "El número de días que normalmente sangras. La mayoría de los períodos duran 3–7 días.",
+        "periodHint": "La mayoría de las mujeres tienen períodos de 4–6 días.",
+        "lastPeriodTitle": "¿Cuándo comenzó tu último período?",
+        "lastPeriodDesc": "Selecciona el primer día de tu período más reciente.",
+        "back": "Atrás",
+        "next": "Siguiente",
+        "start": "Comenzar seguimiento"
+      }
     },
     "weightGain": {
       "title": "Guía de Aumento de Peso",
