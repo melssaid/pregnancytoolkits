@@ -21,6 +21,7 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { toast } from 'sonner';
+import { ToolHubNav, WELLNESS_HUB_TABS } from '@/components/ToolHubNav';
 
 const STORAGE_KEY = 'wellness-diary-entries';
 
@@ -179,6 +180,7 @@ Please provide brief, supportive wellness insights about these feelings during w
       mood="calm"
       toolId="wellness-diary"
     >
+      <ToolHubNav tabs={WELLNESS_HUB_TABS} />
       <div className="space-y-4">
 
         {/* Today's summary */}

@@ -16,6 +16,7 @@
     "meals": "Mahlzeiten",
     "cravings": "Alternativen",
     "shopping": "Einkaufen",
+    "diary": "Tagebuch",
     "exercises": "Übungen",
     "backPain": "Rückenschmerzen",
     "birthPlan": "Geburtsplan",
@@ -270,12 +271,20 @@
       "description": "EPDS-Fragebogen und Unterstützung für seelisches Wohlbefinden."
     },
     "gestationalDiabetes": {
-      "title": "Gestationsdiabetes-Aufklärung (Allgemeine Infos)",
+      "title": "Schwangerschaftsdiabetes",
       "description": "Einfache Informationen über Gestationsdiabetes und häufige Faktoren."
     },
     "preeclampsiaRisk": {
-      "title": "Präeklampsie Bewusstsein",
+      "title": "Präeklampsie",
       "description": "Erfahren Sie mehr über häufige Präeklampsie-Faktoren."
+    },
+    "maternalHealth": {
+      "title": "Gesundheitsbewusstsein für Schwangere",
+      "description": "Aufklärung über Schwangerschaftsdiabetes und Präeklampsie."
+    },
+    "pregnancyComfort": {
+      "title": "Schwangerschafts-Komfort",
+      "description": "Fortgeschrittene Schlaftipps und Übelkeitslinderung in der Schwangerschaft."
     },
     "babyGearRecommender": {
       "title": "Baby-Ausstattungs-Empfehler",

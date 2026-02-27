@@ -52,10 +52,13 @@ export const NUTRITION_HUB_TABS: HubTab[] = [
   { path: "/tools/smart-grocery-list", labelKey: "hubNav.shopping", labelFallback: "Shopping" },
 ];
 
-export const FITNESS_HUB_TABS: HubTab[] = [
+export const WELLNESS_HUB_TABS: HubTab[] = [
+  { path: "/tools/wellness-diary", labelKey: "hubNav.diary", labelFallback: "Diary" },
   { path: "/tools/ai-fitness-coach", labelKey: "hubNav.exercises", labelFallback: "Exercises" },
   { path: "/tools/ai-back-pain-relief", labelKey: "hubNav.backPain", labelFallback: "Back Pain" },
 ];
+
+export const FITNESS_HUB_TABS = WELLNESS_HUB_TABS;
 
 export const BIRTH_HUB_TABS: HubTab[] = [
   { path: "/tools/ai-birth-plan", labelKey: "hubNav.birthPlan", labelFallback: "Birth Plan" },
