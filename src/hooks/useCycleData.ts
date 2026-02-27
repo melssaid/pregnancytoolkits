@@ -14,8 +14,15 @@ export interface DayLog {
   notes?: string;
 }
 
+export interface CycleSetup {
+  cycleLength: number;    // user's typical cycle length (21-45)
+  periodLength: number;   // user's typical period length (2-10)
+  lastPeriodDate: string; // YYYY-MM-DD
+}
+
 export interface CycleDataState {
   dayLogs: Record<string, DayLog>;
+  setup?: CycleSetup;
   version: number;
 }
 
@@ -118,11 +125,15 @@ function detectCycles(dayLogs: Record<string, DayLog>): DetectedCycle[] {
 function getCurrentPhase(lastStart: Date, avgCycle: number, avgPeriod: number): { phase: CyclePhase; day: number } {
   const today = new Date();
   const day = differenceInDays(today, lastStart) + 1;
+  
+  // Handle case where we're past the expected cycle length
+  const adjustedDay = day > avgCycle ? ((day - 1) % avgCycle) + 1 : day;
+  
   const ovDay = Math.round(avgCycle - 14);
-  if (day <= avgPeriod) return { phase: "menstrual", day };
-  if (day < ovDay - 2) return { phase: "follicular", day };
-  if (day <= ovDay + 1) return { phase: "ovulation", day };
-  return { phase: "luteal", day };
+  if (adjustedDay <= avgPeriod) return { phase: "menstrual", day: adjustedDay };
+  if (adjustedDay < ovDay - 2) return { phase: "follicular", day: adjustedDay };
+  if (adjustedDay <= ovDay + 1) return { phase: "ovulation", day: adjustedDay };
+  return { phase: "luteal", day: adjustedDay };
 }
 
 /* ── Validation ── */
@@ -150,7 +161,7 @@ export function useCycleData() {
     let loaded = safeParseLocalStorage<CycleDataState>(STORAGE_KEY, { dayLogs: {}, version: 2 }, isValidV2);
     
     // If empty, try migrating from old format
-    if (Object.keys(loaded.dayLogs).length === 0) {
+    if (Object.keys(loaded.dayLogs).length === 0 && !loaded.setup) {
       const oldData = safeParseLocalStorage<OldCycleEntry[]>(OLD_STORAGE_KEY, [], isValidOld);
       if (oldData.length > 0) {
         loaded = migrateFromOld(oldData);
@@ -167,12 +178,30 @@ export function useCycleData() {
     safeSaveToLocalStorage(STORAGE_KEY, data);
   }, [data]);
 
+  // Save setup (onboarding)
+  const saveSetup = useCallback((setup: CycleSetup) => {
+    setData(prev => {
+      const logs = { ...prev.dayLogs };
+      // Auto-log the last period days based on setup
+      const start = new Date(setup.lastPeriodDate);
+      for (let i = 0; i < setup.periodLength; i++) {
+        const dateStr = format(addDays(start, i), "yyyy-MM-dd");
+        if (!logs[dateStr]) {
+          logs[dateStr] = { flow: i === 0 || i === setup.periodLength - 1 ? "light" : "medium" };
+        }
+      }
+      return { ...prev, setup, dayLogs: logs };
+    });
+  }, []);
+
+  // Check if setup is done
+  const isSetupDone = !!data.setup;
+
   // Toggle a day's period status (quick tap)
   const toggleDay = useCallback((dateStr: string) => {
     setData(prev => {
       const logs = { ...prev.dayLogs };
       if (logs[dateStr]?.flow) {
-        // Remove flow but keep other data if any
         const { flow, ...rest } = logs[dateStr];
         if (Object.keys(rest).length === 0 || (Object.keys(rest).length === 1 && !rest.symptoms?.length && !rest.mood && !rest.notes)) {
           delete logs[dateStr];
@@ -214,23 +243,54 @@ export function useCycleData() {
     setData({ dayLogs: {}, version: 2 });
   }, []);
 
-  // Computed stats
+  // Computed stats - uses setup defaults when not enough logged data
   const stats = useMemo((): CycleStats | null => {
     const cycles = detectCycles(data.dayLogs);
+    
+    // If no cycles detected but we have setup, create stats from setup
+    if (cycles.length === 0 && data.setup) {
+      const { cycleLength, periodLength, lastPeriodDate } = data.setup;
+      const lastStart = new Date(lastPeriodDate);
+      const nextPeriod = addDays(lastStart, cycleLength);
+      const ovulationDay = addDays(lastStart, cycleLength - 14);
+      const fertileStart = addDays(ovulationDay, -4);
+      const fertileEnd = addDays(ovulationDay, 1);
+      const phaseInfo = getCurrentPhase(lastStart, cycleLength, periodLength);
+
+      return {
+        avgCycle: cycleLength,
+        avgPeriod: periodLength,
+        nextPeriod,
+        ovulationDay,
+        fertileStart,
+        fertileEnd,
+        daysToOv: Math.max(0, differenceInDays(ovulationDay, new Date())),
+        daysToPeriod: Math.max(0, differenceInDays(nextPeriod, new Date())),
+        daysToFertile: Math.max(0, differenceInDays(fertileStart, new Date())),
+        isRegular: true,
+        phase: phaseInfo.phase,
+        cycleDay: phaseInfo.day,
+        detectedCycles: [],
+      };
+    }
+
     if (cycles.length === 0) return null;
 
     const cycleLengths = cycles
       .map(c => c.cycleLength)
       .filter((l): l is number => l !== undefined && l > 0 && l < 60);
 
+    // Use setup cycle length as fallback if no detected cycle lengths
+    const defaultCycle = data.setup?.cycleLength || 28;
     const avg = cycleLengths.length
       ? Math.round(cycleLengths.reduce((a, b) => a + b, 0) / cycleLengths.length)
-      : 28;
+      : defaultCycle;
 
     const periodLengths = cycles.map(c => c.periodLength);
+    const defaultPeriod = data.setup?.periodLength || 5;
     const avgPeriod = periodLengths.length
       ? Math.round(periodLengths.reduce((a, b) => a + b, 0) / periodLengths.length)
-      : 5;
+      : defaultPeriod;
 
     const lastCycle = cycles[cycles.length - 1];
     const lastStart = new Date(lastCycle.startDate);
@@ -263,7 +323,7 @@ export function useCycleData() {
       cycleDay: phaseInfo.day,
       detectedCycles: cycles,
     };
-  }, [data.dayLogs]);
+  }, [data.dayLogs, data.setup]);
 
   // Get predicted dates for calendar coloring
   const predictedDates = useMemo(() => {
@@ -296,8 +356,11 @@ export function useCycleData() {
 
   return {
     dayLogs: data.dayLogs,
+    setup: data.setup,
+    isSetupDone,
     stats,
     predictedDates,
+    saveSetup,
     toggleDay,
     updateDay,
     deleteDay,
