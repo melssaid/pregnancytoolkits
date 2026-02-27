@@ -21,39 +21,28 @@ const formatAppointmentMsg = (apt: any, timeStr: string): string => {
 
 export interface Notification {
   id: string;
-  type: 'appointment' | 'vitamin' | 'exercise' | 'water' | 'stretch' | 'backup' | 'kegel' | 'general' | 'welcome' | 'disclaimer';
+  type: 'appointment' | 'vitamin' | 'water' | 'general';
   title: string;
   message: string;
-  time: string; // Store as ISO string for safer serialization
+  time: string;
   read: boolean;
   actionUrl?: string;
-  isPinned?: boolean; // Pinned notifications cannot be cleared
 }
 
 interface NotificationSettings {
   appointmentReminders: boolean;
   vitaminReminders: boolean;
-  exerciseReminders: boolean;
   waterReminders: boolean;
-  stretchReminders: boolean;
-  backupReminders: boolean;
-  kegelReminders: boolean;
 }
 
 const DEFAULT_SETTINGS: NotificationSettings = {
   appointmentReminders: true,
   vitaminReminders: true,
-  exerciseReminders: false,
   waterReminders: true,
-  stretchReminders: false,
-  backupReminders: false,
-  kegelReminders: true,
 };
 
-// Backup reminder interval in days
-const BACKUP_REMINDER_DAYS = 7;
+const WATER_INTERVAL_HOURS = 4;
 
-// Helper to get appointments from localStorage
 const getAppointmentsFromStorage = (): any[] => {
   try {
     const data = localStorage.getItem('appointments');
@@ -63,7 +52,6 @@ const getAppointmentsFromStorage = (): any[] => {
   }
 };
 
-// Validators for type-safe parsing
 const isNotification = (data: unknown): data is Notification => {
   if (typeof data !== 'object' || data === null) return false;
   const n = data as Record<string, unknown>;
@@ -87,10 +75,7 @@ const isSettings = (data: unknown): data is NotificationSettings => {
   return (
     typeof s.appointmentReminders === 'boolean' &&
     typeof s.vitaminReminders === 'boolean' &&
-    typeof s.exerciseReminders === 'boolean' &&
-    typeof s.waterReminders === 'boolean' &&
-    typeof s.stretchReminders === 'boolean'
-    // backupReminders & kegelReminders optional for backward compat
+    typeof s.waterReminders === 'boolean'
   );
 };
 
@@ -100,7 +85,7 @@ export function useNotifications() {
   const [unreadCount, setUnreadCount] = useState(0);
   const isInitialized = useRef(false);
 
-  // Load from localStorage with safe parsing
+  // Load from localStorage
   useEffect(() => {
     const savedNotifications = safeParseLocalStorage<Notification[]>(
       'pregnancyNotifications',
@@ -113,20 +98,27 @@ export function useNotifications() {
       DEFAULT_SETTINGS,
       isSettings
     );
-    setSettings(savedSettings);
-    setNotifications(savedNotifications);
+    // Migrate old settings — drop removed keys
+    setSettings({ 
+      appointmentReminders: savedSettings.appointmentReminders ?? true,
+      vitaminReminders: savedSettings.vitaminReminders ?? true,
+      waterReminders: savedSettings.waterReminders ?? true,
+    });
+    // Filter out legacy notification types
+    const validTypes = ['appointment', 'vitamin', 'water', 'general'];
+    setNotifications(savedNotifications.filter(n => validTypes.includes(n.type)));
     
     isInitialized.current = true;
   }, []);
 
-  // Save notifications to localStorage
+  // Save notifications
   useEffect(() => {
     if (!isInitialized.current) return;
     safeSaveToLocalStorage('pregnancyNotifications', notifications);
     setUnreadCount(notifications.filter(n => !n.read).length);
   }, [notifications]);
 
-  // Save settings to localStorage
+  // Save settings
   useEffect(() => {
     if (!isInitialized.current) return;
     safeSaveToLocalStorage('notificationSettings', settings);
@@ -138,7 +130,6 @@ export function useNotifications() {
     const TWELVE_HOURS = 12 * 60 * 60 * 1000;
     const now = Date.now();
     const cleaned = notifications.filter(n => {
-      if (n.isPinned) return true;
       if (!n.read) return true;
       return (now - new Date(n.time).getTime()) < TWELVE_HOURS;
     });
@@ -157,7 +148,6 @@ export function useNotifications() {
       const hour = now.getHours();
       const newNotifications: Notification[] = [];
 
-      // Helper: check if a reminder was already sent today for a given type
       const hasTodayReminder = (type: string, subKey?: string) => {
         return notifications.some(
           n => n.type === type && 
@@ -166,7 +156,7 @@ export function useNotifications() {
         );
       };
 
-      // Morning vitamin reminder (8 AM+ window - once daily)
+      // Morning vitamin reminder (8 AM+ — once daily)
       if (settings.vitaminReminders && hour >= 8 && !hasTodayReminder('vitamin')) {
         newNotifications.push({
           id: `vitamin-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
@@ -179,28 +169,13 @@ export function useNotifications() {
         });
       }
 
-      // Stretch reminder (10 AM+ window - once daily)
-      if (settings.stretchReminders && hour >= 10 && !hasTodayReminder('stretch')) {
-        newNotifications.push({
-          id: `stretch-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          type: 'stretch',
-          title: tn('stretchReminderTitle'),
-          message: tn('stretchReminderMsg'),
-          time: nowISO,
-          read: false,
-          actionUrl: '/tools/ai-fitness-coach',
-        });
-      }
-
-
-
-
+      // Water reminder (every 4 hours)
       if (settings.waterReminders) {
-        const recentWaterReminder = notifications.find(
+        const recentWater = notifications.find(
           n => n.type === 'water' && 
-          (now.getTime() - new Date(n.time).getTime()) < 6 * 60 * 60 * 1000
+          (now.getTime() - new Date(n.time).getTime()) < WATER_INTERVAL_HOURS * 60 * 60 * 1000
         );
-        if (!recentWaterReminder) {
+        if (!recentWater) {
           newNotifications.push({
             id: `water-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
             type: 'water',
@@ -208,49 +183,11 @@ export function useNotifications() {
             message: tn('waterReminderMsg'),
             time: nowISO,
             read: false,
-            actionUrl: '/tools/vitamin-tracker',
           });
         }
       }
 
-      // Exercise reminder (4 PM+ window - once daily)
-      if (settings.exerciseReminders && hour >= 16 && !hasTodayReminder('exercise')) {
-        newNotifications.push({
-          id: `exercise-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          type: 'exercise',
-          title: tn('exerciseReminderTitle'),
-          message: tn('exerciseReminderMsg'),
-          time: nowISO,
-          read: false,
-          actionUrl: '/tools/ai-fitness-coach',
-        });
-      }
-
-      // Backup reminder (9 AM+ window - once daily if backup is old)
-      if (settings.backupReminders && hour >= 9 && !hasTodayReminder('backup')) {
-        const lastBackupDate = localStorage.getItem('last_backup_date');
-        const daysSinceBackup = lastBackupDate 
-          ? Math.floor((now.getTime() - new Date(lastBackupDate).getTime()) / (1000 * 60 * 60 * 24))
-          : 999;
-        
-        if (daysSinceBackup >= BACKUP_REMINDER_DAYS) {
-          const message = lastBackupDate 
-            ? tn('backupReminderMsgDays', { days: daysSinceBackup })
-            : tn('backupReminderMsgNever');
-          
-          newNotifications.push({
-            id: `backup-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-            type: 'backup',
-            title: tn('backupReminderTitle'),
-            message,
-            time: nowISO,
-            read: false,
-            actionUrl: '/settings',
-          });
-        }
-      }
-
-      // Appointment reminders - tomorrow (8 AM+ window, once daily)
+      // Appointment reminders — tomorrow (8 AM+ window, once daily)
       if (settings.appointmentReminders && hour >= 8) {
         const appointments = getAppointmentsFromStorage();
         const tomorrow = new Date(now);
@@ -292,7 +229,7 @@ export function useNotifications() {
           }
         }
         
-        // Today's appointments (once daily)
+        // Today's appointments
         const todayStart = new Date(now);
         todayStart.setHours(0, 0, 0, 0);
         
@@ -327,7 +264,7 @@ export function useNotifications() {
         }
       }
 
-      // 2-hour before appointment reminder (runs EVERY check, not gated by hour)
+      // 2-hour before appointment reminder
       if (settings.appointmentReminders) {
         const appointments = getAppointmentsFromStorage();
         const allUpcoming = appointments.filter((apt: any) => {
@@ -339,8 +276,7 @@ export function useNotifications() {
 
         for (const apt of allUpcoming) {
           const existingReminder = notifications.find(
-            n => n.type === 'appointment' && 
-            n.id.includes(`2h-${apt.id}`)
+            n => n.type === 'appointment' && n.id.includes(`2h-${apt.id}`)
           );
           
           if (!existingReminder) {
@@ -363,15 +299,14 @@ export function useNotifications() {
       }
 
       if (newNotifications.length > 0) {
-        setNotifications(prev => [...newNotifications, ...prev].slice(0, 25));
+        setNotifications(prev => [...newNotifications, ...prev].slice(0, 20));
         
-        // Play sound for appointment reminders
-        const hasAppointmentReminder = newNotifications.some(n => n.type === 'appointment');
-        if (hasAppointmentReminder) {
+        const hasAppointment = newNotifications.some(n => n.type === 'appointment');
+        if (hasAppointment) {
           playNotificationSound('reminder');
         }
 
-        // Send push notifications if enabled
+        // Push notifications
         const pushEnabled = localStorage.getItem('pushNotificationsEnabled') === 'true';
         if (pushEnabled && getPermissionStatus() === 'granted') {
           for (const n of newNotifications) {
@@ -386,7 +321,6 @@ export function useNotifications() {
       }
     };
 
-    // Check for reminders every minute
     generateSmartReminders();
     const interval = setInterval(generateSmartReminders, 60000);
     return () => clearInterval(interval);
@@ -399,13 +333,11 @@ export function useNotifications() {
       time: new Date().toISOString(),
       read: false,
     };
-    setNotifications(prev => [newNotification, ...prev].slice(0, 25));
+    setNotifications(prev => [newNotification, ...prev].slice(0, 20));
     
-    // Play notification sound based on type
     const soundType = notification.type === 'appointment' ? 'reminder' : 'gentle';
     playNotificationSound(soundType);
 
-    // Send push notification if enabled
     const pushEnabled = localStorage.getItem('pushNotificationsEnabled') === 'true';
     if (pushEnabled && getPermissionStatus() === 'granted') {
       showPushNotification({
@@ -418,9 +350,7 @@ export function useNotifications() {
   }, []);
 
   const markAsRead = useCallback((id: string) => {
-    setNotifications(prev => 
-      prev.map(n => n.id === id ? { ...n, read: true } : n)
-    );
+    setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
   }, []);
 
   const markAllAsRead = useCallback(() => {
@@ -428,13 +358,11 @@ export function useNotifications() {
   }, []);
 
   const clearNotification = useCallback((id: string) => {
-    // Don't allow clearing pinned notifications
-    setNotifications(prev => prev.filter(n => n.id === id ? !n.isPinned : true));
+    setNotifications(prev => prev.filter(n => n.id !== id));
   }, []);
 
   const clearAll = useCallback(() => {
-    // Keep pinned notifications
-    setNotifications(prev => prev.filter(n => n.isPinned));
+    setNotifications([]);
   }, []);
 
   const updateSettings = useCallback((newSettings: Partial<NotificationSettings>) => {
