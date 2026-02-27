@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Target, Droplets, Share2 } from "lucide-react";
+import { Target, Droplets } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatLocalized } from "@/lib/dateLocale";
@@ -81,7 +81,7 @@ export function CycleDashboard({ stats }: Props) {
           </div>
         </div>
 
-        {/* Compact stats + share */}
+        {/* Compact stats */}
         <div className="flex items-center justify-between text-center">
           <div className="flex-1">
             <p className="text-base font-bold text-foreground">{stats.avgCycle}</p>
@@ -97,9 +97,6 @@ export function CycleDashboard({ stats }: Props) {
             </p>
             <p className="text-[10px] text-foreground/50 font-medium">{t('toolsInternal.cycleTracker.regularity')}</p>
           </div>
-          <Button variant="ghost" size="icon" onClick={shareStats} className="h-9 w-9 text-muted-foreground shrink-0">
-            <Share2 className="h-4 w-4" />
-          </Button>
         </div>
       </CardContent>
     </Card>
