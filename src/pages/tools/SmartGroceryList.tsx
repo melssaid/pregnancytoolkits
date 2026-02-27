@@ -485,7 +485,7 @@ export default function SmartGroceryList() {
                             <CatIcon className={`w-3.5 h-3.5 ${categoryText[item.category]}`} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-medium text-foreground truncate">
+                            <p className="text-xs font-medium text-foreground">
                               {item.nameKey ? t(item.nameKey) : item.name}
                             </p>
                           </div>

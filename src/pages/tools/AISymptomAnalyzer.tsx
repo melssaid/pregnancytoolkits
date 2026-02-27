@@ -252,7 +252,7 @@ Please provide brief, supportive wellness insights about these feelings during w
                     }`}
                   >
                     <SymptomIcon className={`w-4 h-4 shrink-0 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`} />
-                    <span className="font-medium truncate">
+                    <span className="font-medium">
                       {t(`toolsInternal.symptomAnalyzer.symptoms.${id}`)}
                     </span>
                   </button>

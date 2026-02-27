@@ -502,7 +502,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             className="bg-gradient-to-r from-teal-500 to-cyan-600 text-[12px] sm:text-[13px] h-9 px-2"
           >
             <Brain className="w-3.5 h-3.5 me-1.5 shrink-0" />
-            <span className="truncate">{isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}</span>
+            <span>{isLoading ? t('toolsInternal.hospitalBag.generating') : t('toolsInternal.hospitalBag.getAIList')}</span>
           </Button>
 
           </div>
@@ -513,7 +513,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             className="border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 text-green-700 dark:text-green-400 text-[12px] sm:text-[13px] h-9 px-2"
           >
             <Share2 className="w-3.5 h-3.5 me-1.5 shrink-0" />
-            <span className="truncate">{t('toolsInternal.hospitalBag.shareWhatsApp')}</span>
+            <span>{t('toolsInternal.hospitalBag.shareWhatsApp')}</span>
           </Button>
 
           <Button
@@ -522,7 +522,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
             className="border-destructive/50 hover:bg-destructive/10 text-destructive text-[12px] sm:text-[13px] h-9 px-2"
           >
             <RotateCcw className="w-3.5 h-3.5 me-1.5 shrink-0" />
-            <span className="truncate">{t('toolsInternal.hospitalBag.resetList')}</span>
+            <span>{t('toolsInternal.hospitalBag.resetList')}</span>
           </Button>
         </div>
 
