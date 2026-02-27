@@ -35,18 +35,15 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [i18n]);
 
   // Smooth language change with minimal transition
-  const changeLanguage = useCallback((lang: string) => {
+  const changeLanguage = useCallback(async (lang: string) => {
     if (!SUPPORTED_LANGUAGES.includes(lang) || lang === currentLanguage) return;
     
     setIsChanging(true);
-    
-    // Apply smooth transition class to body
     document.body.classList.add('language-transition');
     
-    // Change language
-    setManualLanguage(lang);
+    // Await bundle load so translations appear instantly
+    await setManualLanguage(lang);
     
-    // Remove transition class after animation
     setTimeout(() => {
       document.body.classList.remove('language-transition');
     }, 300);
