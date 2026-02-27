@@ -4919,7 +4919,14 @@
     "activityLevel": "Activity Level",
     "mood": "Mood",
     "healthConditions": "Health Conditions",
-    "bp": "BP"
+    "bp": "BP",
+    "pregnancyWeek": "Pregnancy Week",
+    "painLevel": "Pain Level",
+    "moreOptions": "More details",
+    "systolic": "Systolic",
+    "diastolic": "Diastolic",
+    "conditions": "Health Conditions",
+    "aiPlan": "AI Plan"
   },
   "kegel": {
     "dailyGoal": "Daily Goal",

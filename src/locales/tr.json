@@ -1072,42 +1072,6 @@
       "recommendedRange": "Önerilen aralık"
     }
   },
-  "smartPlan": {
-    "title": "Akıllı Planım",
-    "subtitle": "Verilerinize dayalı kişiselleştirilmiş günlük planlar",
-    "yourData": "Verileriniz",
-    "currentWeek": "Mevcut Hafta",
-    "weight": "Ağırlık",
-    "backPainLevel": "Sırt Ağrısı Seviyesi",
-    "exercises": "Egzersizler",
-    "meals": "Öğünler",
-    "report": "Rapor",
-    "dailyRoutine": "Günlük Rutininiz",
-    "exerciseDesc": "Bu egzersizler {{week}}. hafta ve sağlık durumunuz için seçildi.",
-    "ex1": { "name": "Kedi-İnek Germe" },
-    "ex2": { "name": "Pelvik Taban Güçlendirme" },
-    "ex3": { "name": "Omuz Rotasyonu" },
-    "exGeneral": { "name": "Hafif Yürüyüş" },
-    "nutritionPlan": "Beslenme Planı",
-    "caloriesTarget": "Günlük Kalori Hedefi",
-    "breakfast": "Kahvaltı",
-    "breakfastDesc": "Meyve ve kuruyemişli yulaf (350 kal)",
-    "lunch": "Öğle Yemeği",
-    "lunchDesc": "Kinoa ile ızgara tavuk salatası (500 kal)",
-    "dinner": "Akşam Yemeği",
-    "dinnerDesc": "Soteli sebzelerle ızgara balık (400 kal)",
-    "weeklyReport": "Haftalık Doktor Raporu",
-    "reportDesc": "Durum özetinizi içeren yazdırmaya hazır rapor",
-    "readyToPrint": "Yazdırmaya Hazır",
-    "printNote": "Raporu yazdırmak veya PDF olarak kaydetmek için düğmeye tıklayın",
-    "printBtn": "Raporu Yazdır / PDF Kaydet",
-    "printSuccess": "Yazdırma hazırlanıyor...",
-    "vitals": "Hayati Değerler",
-    "pain": "Ağrı Seviyesi",
-    "summary": "Durum Özeti",
-    "summaryText": "Hasta düzenli kontrollere geliyor. Aktivite seviyesi iyi. Beslenme dengeli.",
-    "doctorNotes": "Doktor Notları"
-  },
   "appUpdated": {
     "title": "Uygulama güncellendi, yeniden yükleniyor...",
     "description": "Uygulama güncellendi, yeniden yükleniyor..."
@@ -4415,7 +4379,14 @@
     "activityLevel": "Aktivite Düzeyi",
     "mood": "Ruh Hali",
     "healthConditions": "Sağlık Durumları",
-    "bp": "Tansiyon"
+    "bp": "Tansiyon",
+    "pregnancyWeek": "Gebelik Haftası",
+    "painLevel": "Ağrı Seviyesi",
+    "moreOptions": "Daha Fazla Bilgi",
+    "systolic": "Sistolik",
+    "diastolic": "Diastolik",
+    "conditions": "Sağlık Durumları",
+    "aiPlan": "Yapay Zeka Planı"
   },
   "toolsInternal.walkingCoach": {
     "title": "Akıllı Yürüyüş Rehberi",
