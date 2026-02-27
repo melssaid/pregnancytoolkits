@@ -37,10 +37,13 @@ const HIDDEN_FIELDS = new Set([
 function isJunkValue(v: any): boolean {
   if (typeof v === 'number' && v > 1_000_000_000_000) return true;
   if (typeof v !== 'string') return false;
-  if (v.length > 30 && /^[A-Za-z0-9+/=]+$/.test(v)) return true; // base64 / encrypted
-  if (/^[a-f0-9]{24,}$/i.test(v)) return true; // hex hash
+  if (v.length > 20 && /^[A-Za-z0-9+/=]+$/.test(v)) return true; // base64 / encrypted
+  if (v.length > 20 && /[+/]{2,}/.test(v) && /[A-Za-z0-9]{10,}/.test(v)) return true; // mixed encrypted
+  if (/^[a-f0-9]{20,}$/i.test(v)) return true; // hex hash
   if (v.includes('�')) return true; // corrupted unicode
-  if (v.length > 30 && /[+/=]{3,}/.test(v)) return true; // partial base64
+  if (v.length > 20 && /[+/=]{3,}/.test(v)) return true; // partial base64
+  // Catch encrypted-looking strings with high entropy (lots of mixed case + symbols)
+  if (v.length > 30 && /[A-Z]/.test(v) && /[a-z]/.test(v) && /[0-9]/.test(v) && /[+/=]/.test(v)) return true;
   return false;
 }
 
@@ -307,10 +310,20 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       });
 
 
-      const printWindow = window.open('', '_blank');
-      if (!printWindow) { setIsExporting(false); return; }
+      // Print directly using an iframe instead of a new window
+      const iframe = document.createElement('iframe');
+      iframe.style.position = 'fixed';
+      iframe.style.right = '0';
+      iframe.style.bottom = '0';
+      iframe.style.width = '0';
+      iframe.style.height = '0';
+      iframe.style.border = 'none';
+      document.body.appendChild(iframe);
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (!iframeDoc) { document.body.removeChild(iframe); setIsExporting(false); return; }
 
-      printWindow.document.write(`<!DOCTYPE html>
+      iframeDoc.open();
+      iframeDoc.write(`<!DOCTYPE html>
 <html dir="${isRTL ? 'rtl' : 'ltr'}" lang="${lang}">
 <head><meta charset="utf-8"><title>${reportTitle}</title>
 <style>
@@ -330,12 +343,15 @@ body { font-family: 'Cairo', sans-serif; color: #1e293b; padding: 15mm; line-hei
 @media print { body { padding: 10mm; } @page { margin: 10mm; size: A4; } }
 </style></head>
 <body>
-<div class="header"><h1>${reportTitle}</h1><div class="brand">${brand}</div><div class="date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div><div class="count" style="margin-top:6px">${dataCount} items</div></div>
+<div class="header"><h1>${reportTitle}</h1><div class="brand">${brand}</div><div class="date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div><div class="count" style="margin-top:6px">${dataCount} ${lang === 'ar' ? 'عنصر' : 'items'}</div></div>
 ${html}
 <div class="footer">${brand} &mdash; ${new Date().getFullYear()}</div>
 </body></html>`);
-      printWindow.document.close();
-      setTimeout(() => { printWindow.print(); }, 600);
+      iframeDoc.close();
+      setTimeout(() => {
+        iframe.contentWindow?.print();
+        setTimeout(() => { document.body.removeChild(iframe); }, 1000);
+      }, 500);
       toast({ title: t('settings.backup.exportSuccess'), description: t('settings.backup.exportSuccessDesc', { count: dataCount }) });
     } catch (error) {
       console.error('Print error:', error);
