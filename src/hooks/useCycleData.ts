@@ -209,6 +209,11 @@ export function useCycleData() {
     });
   }, []);
 
+  // Clear all data
+  const clearAll = useCallback(() => {
+    setData({ dayLogs: {}, version: 2 });
+  }, []);
+
   // Computed stats
   const stats = useMemo((): CycleStats | null => {
     const cycles = detectCycles(data.dayLogs);
@@ -296,5 +301,6 @@ export function useCycleData() {
     toggleDay,
     updateDay,
     deleteDay,
+    clearAll,
   };
 }

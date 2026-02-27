@@ -2855,9 +2855,9 @@
       "currentPhase": "Mevcut Faz",
       "cycleDay": "Gün {{day}}",
       "menstrual": "Adet",
-      "follicular": "Foliküler Faz",
+      "follicular": "Adet Sonrası",
       "ovulation": "Yumurtlama",
-      "luteal": "Luteal Faz",
+      "luteal": "Adet Öncesi",
       "fertileWindowDates": "Verimli Pencere",
       "ovulationDate": "Yumurtlama Günü",
       "nextPeriodDate": "Sonraki Adet",
@@ -2865,9 +2865,9 @@
       "daysUntilPeriod": "Adete Kalan Gün",
       "phaseDescription": {
         "menstrual": "Adet döneminiz. Dinlenme ve hafif aktiviteler önerilir.",
-        "follicular": "Enerji yükseliyor. Yeni aktiviteler için iyi bir zaman.",
-        "ovulation": "En yüksek doğurganlık. En yüksek enerji seviyeleri.",
-        "luteal": "Progesteron yükseliyor. Öz bakım ve rahatlama zamanı."
+        "follicular": "Vücudunuz yumurtlamaya hazırlanıyor. Enerji yükseliyor!",
+        "ovulation": "En yüksek doğurganlık. Hamilelik için en iyi zaman.",
+        "luteal": "Vücudunuz bir sonraki döngüye hazırlanıyor. Kendinize iyi bakın."
       },
       "selectStartDate": "Başlangıç tarihi seçin",
       "selectEndDate": "Bitiş tarihi seçin",
