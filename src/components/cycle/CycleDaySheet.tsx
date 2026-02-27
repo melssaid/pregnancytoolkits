@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trash2, Droplets, ChevronDown, ChevronUp } from "lucide-react";
+import { Trash2, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
@@ -21,28 +20,28 @@ interface Props {
   onClose: () => void;
 }
 
-const FLOW_OPTIONS: { value: FlowLevel; dots: number; color: string }[] = [
-  { value: "spotting", dots: 1, color: "bg-rose-300" },
-  { value: "light", dots: 2, color: "bg-rose-400" },
-  { value: "medium", dots: 3, color: "bg-rose-500" },
-  { value: "heavy", dots: 4, color: "bg-rose-600" },
+const FLOW_LEVELS: { value: FlowLevel; emoji: string }[] = [
+  { value: "spotting", emoji: "💧" },
+  { value: "light", emoji: "💧💧" },
+  { value: "medium", emoji: "💧💧💧" },
+  { value: "heavy", emoji: "🩸" },
 ];
 
 export function CycleDaySheet({ open, dateStr, currentLog, onSave, onDelete, onClose }: Props) {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
-  const [flow, setFlow] = useState<FlowLevel | undefined>(currentLog?.flow);
+  const [isPeriod, setIsPeriod] = useState(!!currentLog?.flow);
+  const [flow, setFlow] = useState<FlowLevel>(currentLog?.flow || "medium");
   const [symptoms, setSymptoms] = useState<string[]>(currentLog?.symptoms || []);
   const [mood, setMood] = useState<MoodLevel | undefined>(currentLog?.mood);
   const [notes, setNotes] = useState(currentLog?.notes || "");
-  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
-    setFlow(currentLog?.flow);
+    setIsPeriod(!!currentLog?.flow);
+    setFlow(currentLog?.flow || "medium");
     setSymptoms(currentLog?.symptoms || []);
     setMood(currentLog?.mood);
     setNotes(currentLog?.notes || "");
-    setShowMore(!!(currentLog?.symptoms?.length || currentLog?.mood || currentLog?.notes));
   }, [currentLog, dateStr]);
 
   const toggleSymptom = (s: string) =>
@@ -50,7 +49,7 @@ export function CycleDaySheet({ open, dateStr, currentLog, onSave, onDelete, onC
 
   const handleSave = () => {
     onSave(dateStr, {
-      flow,
+      flow: isPeriod ? flow : undefined,
       symptoms: symptoms.length > 0 ? symptoms : undefined,
       mood,
       notes: notes.trim() || undefined,
@@ -63,11 +62,6 @@ export function CycleDaySheet({ open, dateStr, currentLog, onSave, onDelete, onC
     onClose();
   };
 
-  const handleQuickMark = () => {
-    onSave(dateStr, { ...currentLog, flow: "medium" });
-    onClose();
-  };
-
   const date = dateStr ? new Date(dateStr + "T00:00:00") : new Date();
   const dateLabel = dateStr ? formatLocalized(date, "EEEE, d MMMM", currentLanguage) : "";
   const hasExistingData = !!(currentLog?.flow || currentLog?.symptoms?.length || currentLog?.mood || currentLog?.notes);
@@ -75,152 +69,119 @@ export function CycleDaySheet({ open, dateStr, currentLog, onSave, onDelete, onC
   return (
     <Drawer open={open} onOpenChange={(o) => !o && onClose()}>
       <DrawerContent className="max-h-[85vh]">
-        <DrawerHeader className="pb-2">
+        <DrawerHeader className="pb-1">
           <DrawerTitle className="text-base font-bold text-center">{dateLabel}</DrawerTitle>
         </DrawerHeader>
 
-        <div className="px-4 pb-3 space-y-4 overflow-y-auto">
-          {/* Quick mark */}
-          {!currentLog?.flow && (
-            <motion.button
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={handleQuickMark}
-              className="w-full flex items-center justify-center gap-2.5 py-4 rounded-2xl border-2 border-dashed border-rose-300/50 hover:border-rose-400 hover:bg-rose-500/5 transition-all"
-            >
-              <Droplets className="w-5 h-5 text-rose-500" />
-              <span className="text-sm font-bold text-rose-600 dark:text-rose-400">
-                {t('toolsInternal.cycleTracker.markPeriod', 'Mark as period day')}
-              </span>
-            </motion.button>
-          )}
-
-          {/* Flow intensity */}
-          <div className="space-y-2">
-            <Label className="text-sm font-bold">{t('toolsInternal.cycleTracker.flowIntensity')}</Label>
-            <div className="grid grid-cols-4 gap-2">
-              {FLOW_OPTIONS.map(({ value, dots, color }) => (
-                <motion.button
-                  key={value}
-                  whileTap={{ scale: 0.92 }}
-                  onClick={() => setFlow(flow === value ? undefined : value)}
-                  className={cn(
-                    "flex flex-col items-center gap-1.5 p-3 rounded-2xl border-2 transition-all",
-                    flow === value
-                      ? "bg-rose-500/10 border-rose-400/70 dark:border-rose-500/50"
-                      : "border-border/60 hover:bg-muted/50"
-                  )}
-                >
-                  <div className="flex gap-[3px]">
-                    {Array.from({ length: dots }).map((_, i) => (
-                      <div key={i} className={cn("w-2 h-2 rounded-full transition-colors", flow === value ? color : "bg-muted-foreground/20")} />
-                    ))}
-                  </div>
-                  <span className="text-[11px] font-medium text-foreground/80">
-                    {t(`toolsInternal.cycleTracker.flowLevels.${value}`, value)}
-                  </span>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Mood */}
-          <div className="space-y-2">
-            <Label className="text-sm font-bold">{t('toolsInternal.cycleTracker.mood', 'Mood')}</Label>
-            <div className="flex gap-2">
-              {MOOD_OPTIONS.map((m) => (
-                <motion.button
-                  key={m}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setMood(mood === m ? undefined : m)}
-                  className={cn(
-                    "flex-1 flex flex-col items-center gap-1 py-2.5 rounded-2xl border-2 transition-all",
-                    mood === m
-                      ? "bg-primary/10 border-primary/60"
-                      : "border-border/60 hover:bg-muted/50"
-                  )}
-                >
-                  <span className="text-xl">{MOOD_EMOJIS[m]}</span>
-                  <span className="text-[10px] font-medium text-muted-foreground">
-                    {t(`toolsInternal.cycleTracker.moods.${m}`, m)}
-                  </span>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Expandable Symptoms + Notes */}
-          <button
-            onClick={() => setShowMore(prev => !prev)}
-            className="w-full flex items-center justify-center gap-1.5 text-sm font-semibold text-primary/70 hover:text-primary py-1.5 transition-colors"
-          >
-            {showMore ? (
-              <>
-                <ChevronUp className="w-4 h-4" />
-                {t('toolsInternal.cycleTracker.showLess', 'Show less')}
-              </>
-            ) : (
-              <>
-                <ChevronDown className="w-4 h-4" />
-                {t('toolsInternal.cycleTracker.addMore', '+ Add symptoms & notes')}
-              </>
+        <div className="px-4 pb-2 space-y-3 overflow-y-auto">
+          {/* Period Toggle */}
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            onClick={() => setIsPeriod(!isPeriod)}
+            className={cn(
+              "w-full flex items-center justify-center gap-2.5 py-3.5 rounded-2xl border-2 transition-all",
+              isPeriod
+                ? "bg-rose-500/10 border-rose-400/60 dark:border-rose-500/40"
+                : "border-dashed border-border/60 hover:border-rose-300 hover:bg-rose-500/5"
             )}
-          </button>
+          >
+            <Droplets className={cn("w-5 h-5", isPeriod ? "text-rose-500" : "text-muted-foreground")} />
+            <span className={cn("text-sm font-bold", isPeriod ? "text-rose-600 dark:text-rose-400" : "text-muted-foreground")}>
+              {t('toolsInternal.cycleTracker.markPeriod', 'Mark as period day')}
+            </span>
+          </motion.button>
 
+          {/* Flow Level - only when period is on */}
           <AnimatePresence>
-            {showMore && (
+            {isPeriod && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="space-y-4 overflow-hidden"
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
               >
-                {/* Symptoms */}
-                <div className="space-y-2">
-                  <Label className="text-sm font-bold">{t('toolsInternal.cycleTracker.symptoms')}</Label>
-                  <div className="flex flex-wrap gap-2">
-                    {SYMPTOM_KEYS.map((key) => (
-                      <motion.button
-                        key={key}
-                        whileTap={{ scale: 0.93 }}
-                        onClick={() => toggleSymptom(key)}
-                        className={cn(
-                          "rounded-full px-3.5 py-1.5 text-xs font-medium transition-all border-2",
-                          symptoms.includes(key)
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "bg-muted/50 text-foreground/70 hover:bg-accent border-transparent"
-                        )}
-                      >
-                        {t(`toolsInternal.cycleTracker.symptomOptions.${key}`, key)}
-                      </motion.button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Notes */}
-                <div className="space-y-2">
-                  <Label className="text-sm font-bold">{t('toolsInternal.cycleTracker.notes', 'Notes')}</Label>
-                  <Textarea
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
-                    placeholder={t('toolsInternal.cycleTracker.notesPlaceholder', 'Add notes...')}
-                    className="text-sm min-h-[60px] resize-none rounded-xl"
-                    maxLength={500}
-                  />
+                <div className="flex gap-2">
+                  {FLOW_LEVELS.map(({ value, emoji }) => (
+                    <motion.button
+                      key={value}
+                      whileTap={{ scale: 0.92 }}
+                      onClick={() => setFlow(value)}
+                      className={cn(
+                        "flex-1 flex flex-col items-center gap-1 py-2 rounded-xl border-2 transition-all",
+                        flow === value
+                          ? "bg-rose-500/10 border-rose-400/60 dark:border-rose-500/40"
+                          : "border-border/40 hover:bg-muted/50"
+                      )}
+                    >
+                      <span className="text-sm">{emoji}</span>
+                      <span className="text-[10px] font-medium text-foreground/70">
+                        {t(`toolsInternal.cycleTracker.flowLevels.${value}`, value)}
+                      </span>
+                    </motion.button>
+                  ))}
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Mood */}
+          <div className="flex gap-1.5">
+            {MOOD_OPTIONS.map((m) => (
+              <motion.button
+                key={m}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setMood(mood === m ? undefined : m)}
+                className={cn(
+                  "flex-1 flex flex-col items-center gap-0.5 py-2 rounded-xl border-2 transition-all",
+                  mood === m
+                    ? "bg-primary/10 border-primary/50"
+                    : "border-border/40 hover:bg-muted/50"
+                )}
+              >
+                <span className="text-lg">{MOOD_EMOJIS[m]}</span>
+                <span className="text-[9px] font-medium text-muted-foreground">
+                  {t(`toolsInternal.cycleTracker.moods.${m}`, m)}
+                </span>
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Symptoms */}
+          <div className="flex flex-wrap gap-1.5">
+            {SYMPTOM_KEYS.map((key) => (
+              <motion.button
+                key={key}
+                whileTap={{ scale: 0.93 }}
+                onClick={() => toggleSymptom(key)}
+                className={cn(
+                  "rounded-full px-3 py-1.5 text-[11px] font-medium transition-all border",
+                  symptoms.includes(key)
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-muted/40 text-foreground/60 hover:bg-accent border-transparent"
+                )}
+              >
+                {t(`toolsInternal.cycleTracker.symptomOptions.${key}`, key)}
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Notes */}
+          <Textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            placeholder={t('toolsInternal.cycleTracker.notesPlaceholder', 'Add notes...')}
+            className="text-sm min-h-[50px] resize-none rounded-xl"
+            maxLength={300}
+          />
         </div>
 
-        <DrawerFooter className="pt-0 gap-2">
-          <Button onClick={handleSave} className="w-full h-12 text-sm font-bold rounded-xl">
+        <DrawerFooter className="pt-1 gap-1.5">
+          <Button onClick={handleSave} className="w-full h-11 text-sm font-bold rounded-xl">
             {t('toolsInternal.cycleTracker.saveDay', 'Save')}
           </Button>
           {hasExistingData && (
-            <Button variant="ghost" size="sm" onClick={handleDelete} className="w-full text-destructive hover:text-destructive gap-1.5 h-9 text-xs font-semibold">
+            <Button variant="ghost" size="sm" onClick={handleDelete} className="w-full text-destructive hover:text-destructive gap-1.5 h-8 text-xs font-semibold">
               <Trash2 className="w-3.5 h-3.5" />
               {t('toolsInternal.cycleTracker.removeDay', 'Remove')}
             </Button>
