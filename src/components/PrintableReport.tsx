@@ -33,8 +33,12 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   const l = profileLabels[lang] || profileLabels.en;
   const rows: string[] = [];
 
+  // Only show fields the user actually entered (non-null, non-default)
+  const hasRealData = profile.weight || profile.height || profile.bloodType || profile.dueDate || profile.lastPeriodDate || profile.prePregnancyWeight;
+  if (!hasRealData) return ''; // No user-entered data, skip patient card entirely
+
   rows.push(`<strong>${l.status}:</strong> ${profile.isPregnant ? l.pregnant : l.planning}`);
-  if (profile.isPregnant && profile.pregnancyWeek) rows.push(`<strong>${l.week}:</strong> ${profile.pregnancyWeek}`);
+  if (profile.isPregnant && profile.lastPeriodDate) rows.push(`<strong>${l.week}:</strong> ${profile.pregnancyWeek}`);
   if (profile.weight) rows.push(`<strong>${l.weight}:</strong> ${profile.weight} ${l.kg}`);
   if (profile.prePregnancyWeight) rows.push(`<strong>${l.preWeight}:</strong> ${profile.prePregnancyWeight} ${l.kg}`);
   if (profile.height) rows.push(`<strong>${l.height}:</strong> ${profile.height} ${l.cm}`);
