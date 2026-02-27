@@ -110,7 +110,6 @@ Any patterns that might be worth discussing with a doctor`;
                 avgCycle={stats.avgCycle}
                 daysUntilPeriod={stats.daysToPeriod}
                 daysUntilOvulation={stats.daysToOv}
-                onLogPeriod={handleLogPeriod}
               />
             )}
 
