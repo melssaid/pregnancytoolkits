@@ -4114,6 +4114,7 @@
     "vitamins": "Vitamine",
     "exercise": "Übungen",
     "water": "Wasser",
+    "cycleReminders": "Zyklus & Eisprung",
     "stretching": "Dehnen",
     "kegel": "Kegel",
     "backup": "Backup",
@@ -4168,7 +4169,15 @@
     "appointmentMsg": "{{title}} um {{time}}",
     "appointmentMsgDoctor": "{{title}} bei {{doctor}} um {{time}}",
     "appointmentMsgLocation": "{{title}} um {{time}} - {{location}}",
-    "appointmentMsgDoctorLocation": "{{title}} bei {{doctor}} um {{time}} - {{location}}"
+    "appointmentMsgDoctorLocation": "{{title}} bei {{doctor}} um {{time}} - {{location}}",
+    "cyclePeriod2dTitle": "🩸 Periode in 2 Tagen",
+    "cyclePeriod2dMsg": "Ihre Periode wird voraussichtlich in 2 Tagen beginnen. Seien Sie vorbereitet!",
+    "cyclePeriod1dTitle": "🩸 Periode morgen",
+    "cyclePeriod1dMsg": "Ihre Periode wird voraussichtlich morgen beginnen. Achten Sie auf sich!",
+    "cycleOv2dTitle": "🌸 Eisprung in 2 Tagen",
+    "cycleOv2dMsg": "Ihr fruchtbares Fenster nähert sich. Eisprung in 2 Tagen erwartet.",
+    "cycleOv1dTitle": "🌸 Eisprung morgen",
+    "cycleOv1dMsg": "Höchste Fruchtbarkeit! Der Eisprung wird morgen erwartet."
   },
   "seo": {
     "title": "Beste Schwangerschafts-Tracking-App",
