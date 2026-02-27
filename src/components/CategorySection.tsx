@@ -46,7 +46,7 @@ export function CategorySection({
             {t(categoryKey)}
           </h2>
           <p className="text-sm text-muted-foreground">
-            {tools.length} tools
+            {t('searchDialog.toolsCount', { count: tools.length })}
           </p>
         </div>
         {onToggle && (

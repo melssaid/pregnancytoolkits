@@ -708,7 +708,7 @@
   "subscription": {
     "subscribeNow": "Premium Al - ₺24.99/ay",
     "premiumFeature": "Premium Özellik",
-    "unlockAccess": "Tüm 35 aracı açın",
+    "unlockAccess": "Tüm 30 aracı açın",
     "subscribeToAccess": "Açmak için abone olun"
   },
   "dueDatePage": {
@@ -4071,7 +4071,7 @@
   "socialProof": {
     "title": "İhtiyacın olan her şey 💕",
     "subtitle": "Tam kapsamlı hamilelik yoldaşın",
-    "tools": "35 Araç",
+    "tools": "30 Araç",
     "toolsDesc": "Yolculuğun için",
     "trackEverything": "Her şeyi takip et",
     "trackDesc": "Tekmeler, kasılmalar ve daha fazlası",
@@ -4214,7 +4214,7 @@
     "pushGuideReload": "Etkinleştirdikten sonra sayfayı yenile",
     "pushEnabledSuccess": "Anlık bildirimler etkinleştirildi! Uygulama arka planda olsa bile bilgilendirileceksiniz.",
     "welcome": "👋 Hoş geldiniz!",
-    "welcomeDesc": "Hamileliğinizi kolayca ve güvenle takip etmek için 40+ akıllı aracın keyfini çıkarın.",
+    "welcomeDesc": "Hamileliğinizi kolayca ve güvenle takip etmek için 30+ akıllı aracın keyfini çıkarın.",
     "disclaimer": "📋 Önemli Bilgilendirme",
     "disclaimerDesc": "Bu uygulama yalnızca bilgi amaçlıdır ve profesyonel sağlık rehberliğinin yerini almaz.",
     "disclaimerTitle": "Önemli Bilgilendirme",
@@ -4251,7 +4251,7 @@
   },
   "seo": {
     "title": "En İyi Hamilelik Takip Uygulaması",
-    "description": "Anneliğin her aşaması için 35+ yapay zeka destekli araçla tam kapsamlı hamilelik uygulaması. %100 ücretsiz ve 7 dilde kullanılabilir.",
+    "description": "Anneliğin her aşaması için 30+ yapay zeka destekli araçla tam kapsamlı hamilelik uygulaması. %100 ücretsiz ve 7 dilde kullanılabilir.",
     "babyGrowth": "Bebek Büyüme Takibi",
     "babyGrowthDesc": "Bebeğinizin haftalık gelişimini meyve boyutu karşılaştırmalarıyla takip edin",
     "kickCounter": "Tekme Sayacı",
