@@ -140,7 +140,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Compagnon Pro de Grossesse",
+      "title": "Guide Intelligent de Grossesse",
       "description": "Posez n'importe quelle question sur la grossesse et obtenez des réponses instantanées."
     },
     "wellnessDiary": {
@@ -411,7 +411,7 @@
       "weekly": "Hebdomadaire"
     },
     "chat": {
-      "title": "Assistant grossesse IA",
+      "title": "Guide Intelligent de Grossesse",
       "placeholder": "Tapez votre question...",
       "welcomeMessage": "Bonjour ! Je suis votre assistant grossesse intelligent. Comment puis-je vous aider aujourd'hui ?",
       "quickQuestions": {
@@ -566,7 +566,7 @@
         "aiProducts": {
           "title": "Produits alimentés par l'IA",
           "desc": "Nous proposons des produits alimentés par l'intelligence artificielle via des fournisseurs tiers dont Perplexity AI.",
-          "tools": ["Assistant de grossesse IA", "Journal de bien-être", "Suggestion de repas IA", "Rappel de rendez-vous intelligent", "Guides fitness IA", "Guide du travail"],
+          "tools": ["Guide Intelligent de Grossesse", "Journal de bien-être", "Suggestion de repas IA", "Rappel de rendez-vous intelligent", "Guides fitness IA", "Guide du travail"],
           "dataNote": "Lors de l'utilisation des fonctionnalités IA, seule votre requête spécifique (anonymisée) est traitée. Vos données de santé restent sur votre appareil."
         },
         "notifications": {
@@ -2689,8 +2689,8 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Compagnon Pro de Grossesse",
-    "subtitle": "Votre compagnon de grossesse 24/7",
+    "title": "Guide Intelligent de Grossesse",
+    "subtitle": "Votre guide de grossesse 24/7",
     "hello": "Bonjour! Je suis là pour vous aider 👋",
     "askAnything": "Posez des questions sur la grossesse, la nutrition ou les soins du bébé",
     "placeholder": "Tapez votre question...",
@@ -4078,8 +4078,8 @@
     "babyGrowthDesc": "Suivez le développement hebdomadaire de votre bébé avec des comparaisons de taille",
     "kickCounter": "Compteur de coups de pied",
     "kickCounterDesc": "Enregistrez les mouvements du bébé et surveillez les schémas d'activité",
-    "aiAssistant": "Assistant IA de grossesse",
-    "aiAssistantDesc": "Obtenez des réponses instantanées d'une IA spécialisée en grossesse",
+    "aiAssistant": "Guide Intelligent de Grossesse",
+    "aiAssistantDesc": "Obtenez des réponses instantanées d'un guide IA spécialisé en grossesse",
     "maternalHealth": "Santé maternelle et fœtale",
     "maternalHealthDesc": "Conseils quotidiens personnalisés pour la nutrition, l'exercice et les soins",
     "contractionTimer": "Minuteur de contractions",
