@@ -140,7 +140,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Pro Pregnancy Companion",
+      "title": "Smart Pregnancy Guide",
       "description": "Ask any pregnancy question and get instant answers."
     },
     "wellnessDiary": {
@@ -435,7 +435,7 @@
       "fitness": "Fitness Guide"
     },
     "chat": {
-      "title": "AI Pregnancy Assistant",
+      "title": "Smart Pregnancy Guide",
       "placeholder": "Type your question...",
       "welcomeMessage": "Hello! I'm your smart pregnancy assistant. How can I help you today?",
       "quickQuestions": {
@@ -605,7 +605,7 @@
         "aiProducts": {
           "title": "AI-Powered Features",
           "desc": "We offer features powered by artificial intelligence through secure cloud-based AI models (Google Gemini). No third-party AI providers have access to your stored health data.",
-          "tools": ["AI Pregnancy Assistant", "Pregnancy Wellness Diary", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Guides", "Labor Progress Guide"],
+          "tools": ["Smart Pregnancy Guide", "Pregnancy Wellness Diary", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Guides", "Labor Progress Guide"],
           "dataNote": "When using AI features, only your specific query text is sent anonymously to our secure backend. Your stored health data remains entirely on your device and is never transmitted.",
           "noTraining": "Your queries are NOT used to train AI models"
         },
@@ -3856,7 +3856,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Pro Pregnancy Companion",
+    "title": "Smart Pregnancy Guide",
     "subtitle": "Your 24/7 pregnancy companion",
     "hello": "Hello! I'm Here to Help 👋",
     "askAnything": "Ask anything about pregnancy, nutrition, or baby care",
@@ -4834,7 +4834,7 @@
     "babyGrowthDesc": "Track your baby's weekly development with fruit size comparisons and milestones",
     "kickCounter": "Baby Movement Diary",
     "kickCounterDesc": "Journal your baby's movements and activity patterns for peace of mind",
-    "aiAssistant": "AI Pregnancy Assistant",
+    "aiAssistant": "Smart Pregnancy Guide",
     "aiAssistantDesc": "Get instant answers to your questions from an AI specialized in pregnancy",
     "maternalHealth": "Maternal & Fetal Health",
     "maternalHealthDesc": "Personalized daily tips for nutrition, exercise, and caring for you and your baby",

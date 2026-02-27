@@ -140,7 +140,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Profesyonel Hamilelik Rehberi",
+      "title": "Akıllı Hamilelik Rehberi",
       "description": "Hamilelik hakkında herhangi bir soru sorun ve anında cevap alın."
     },
     "wellnessDiary": {
@@ -411,7 +411,7 @@
       "weekly": "Haftalık"
     },
     "chat": {
-      "title": "AI Hamilelik Asistanı",
+      "title": "Akıllı Hamilelik Rehberi",
       "placeholder": "Sorunuzu yazın...",
       "welcomeMessage": "Merhaba! Ben akıllı hamilelik asistanınızım. Bugün size nasıl yardımcı olabilirim?",
       "quickQuestions": {
@@ -566,7 +566,7 @@
         "aiProducts": {
           "title": "Yapay Zeka Destekli Ürünler",
           "desc": "Perplexity AI dahil üçüncü taraf hizmet sağlayıcılar aracılığıyla yapay zeka destekli ürünler sunuyoruz.",
-          "tools": ["AI Gebelik Asistanı", "Sağlık Günlüğü", "AI Yemek Önerisi", "Akıllı Randevu Hatırlatıcı", "AI Fitness Rehberleri", "Doğum İlerleme Rehberi"],
+          "tools": ["Akıllı Hamilelik Rehberi", "Sağlık Günlüğü", "AI Yemek Önerisi", "Akıllı Randevu Hatırlatıcı", "AI Fitness Rehberleri", "Doğum İlerleme Rehberi"],
           "dataNote": "AI özelliklerini kullanırken yalnızca spesifik sorgunuz (anonim olarak) işlenir. Saklanan sağlık verileriniz cihazınızda kalır."
         },
         "notifications": {
@@ -3028,8 +3028,8 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Profesyonel Hamilelik Rehberi",
-    "subtitle": "7/24 hamilelik arkadaşınız",
+    "title": "Akıllı Hamilelik Rehberi",
+    "subtitle": "7/24 hamilelik rehberiniz",
     "hello": "Merhaba! Yardım etmek için buradayım 👋",
     "askAnything": "Hamilelik, beslenme veya bebek bakımı hakkında her şeyi sorun",
     "placeholder": "Sorunuzu yazın...",
@@ -4256,8 +4256,8 @@
     "babyGrowthDesc": "Bebeğinizin haftalık gelişimini meyve boyutu karşılaştırmalarıyla takip edin",
     "kickCounter": "Tekme Sayacı",
     "kickCounterDesc": "Bebek hareketlerini kaydedin ve aktivite kalıplarını izleyin",
-    "aiAssistant": "Yapay Zeka Hamilelik Asistanı",
-    "aiAssistantDesc": "Hamilelik konusunda uzmanlaşmış yapay zekadan anında cevap alın",
+    "aiAssistant": "Akıllı Hamilelik Rehberi",
+    "aiAssistantDesc": "Hamilelik konusunda uzmanlaşmış akıllı rehberden anında cevap alın",
     "maternalHealth": "Anne ve Bebek Sağlığı",
     "maternalHealthDesc": "Beslenme, egzersiz ve bakım için kişiselleştirilmiş günlük ipuçları",
     "contractionTimer": "Kasılma Zamanlayıcı",
