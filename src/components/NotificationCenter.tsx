@@ -162,9 +162,7 @@ export function NotificationCenter() {
                 {[
                   { key: 'appointmentReminders', icon: Calendar, label: t('notificationCenter.appointments'), color: 'text-blue-500' },
                   { key: 'vitaminReminders', icon: Pill, label: t('notificationCenter.vitamins'), color: 'text-amber-500' },
-                  { key: 'exerciseReminders', icon: Dumbbell, label: t('notificationCenter.exercise'), color: 'text-emerald-500' },
                   { key: 'waterReminders', icon: Droplet, label: t('notificationCenter.water'), color: 'text-sky-500' },
-                  { key: 'stretchReminders', icon: Sparkles, label: t('notificationCenter.stretching'), color: 'text-violet-500' },
                 ].map(({ key, icon: ItemIcon, label, color }) => (
                   <div key={key} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
