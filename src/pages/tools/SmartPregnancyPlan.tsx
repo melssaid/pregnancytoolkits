@@ -241,7 +241,7 @@ const SmartPregnancyPlan = () => {
 
             <button onClick={() => setShowMore(!showMore)} className="text-xs text-primary flex items-center gap-1">
               {showMore ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-              {t("smartPlan.moreOptions", "More health details")}
+              {t("smartPlan.moreOptions", "More details")}
             </button>
 
             {showMore && (
@@ -335,7 +335,7 @@ const SmartPregnancyPlan = () => {
               <CardContent className="p-4 text-center space-y-3">
                 <Activity className="w-10 h-10 text-primary mx-auto" />
                 <p className="text-xs text-muted-foreground">
-                  {t("smartPlan.exerciseHint", "Get personalized exercise recommendations based on your trimester and health data")}
+                  {t("smartPlan.exerciseHint", "Get personalized exercise recommendations based on your trimester and profile")}
                 </p>
                 <Button onClick={generateAIPlan} disabled={isLoading} className="gap-2">
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
@@ -378,7 +378,7 @@ const SmartPregnancyPlan = () => {
                     <Brain className="h-6 w-6 text-primary" />
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    {t("smartPlan.aiPlanHint", "Get a personalized AI-powered pregnancy plan based on your health data")}
+                    {t("smartPlan.aiPlanHint", "Get a personalized AI-powered pregnancy plan based on your profile")}
                   </p>
                   <Button onClick={generateAIPlan} disabled={isLoading} className="gap-2">
                     {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
