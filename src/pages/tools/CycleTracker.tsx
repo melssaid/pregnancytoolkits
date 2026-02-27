@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Info, Trash2 } from "lucide-react";
 import { format } from "date-fns";
+import { formatLocalized } from "@/lib/dateLocale";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ToolFrame } from "@/components/ToolFrame";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
@@ -26,6 +28,7 @@ import {
 
 export default function CycleTracker() {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
   const { toast } = useToast();
   const { dayLogs, isSetupDone, stats, predictedDates, saveSetup, updateDay, deleteDay, clearAll } = useCycleData();
   const [editingDate, setEditingDate] = useState<string | null>(null);
@@ -110,18 +113,12 @@ Any patterns that might be worth discussing with a doctor`;
                 avgCycle={stats.avgCycle}
                 daysUntilPeriod={stats.daysToPeriod}
                 daysUntilOvulation={stats.daysToOv}
+                nextPeriodLabel={formatLocalized(stats.nextPeriod, "MMM d", currentLanguage)}
+                ovulationLabel={formatLocalized(stats.ovulationDay, "MMM d", currentLanguage)}
+                isRegular={stats.isRegular}
+                avgPeriod={stats.avgPeriod}
               />
             )}
-
-            {/* Calendar */}
-            <CycleCalendarView
-              dayLogs={dayLogs}
-              predictedDates={predictedDates}
-              onDayTap={handleDayTap}
-            />
-
-            {/* Insights - key dates + stats */}
-            {stats && <CycleInsightsCards stats={stats} />}
 
             {/* Cycle History Chart */}
             {stats && stats.detectedCycles.length >= 2 && (
