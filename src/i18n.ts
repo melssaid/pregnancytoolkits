@@ -1,14 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import en from './locales/en.json';
-import ar from './locales/ar.json';
-import de from './locales/de.json';
-import tr from './locales/tr.json';
-import fr from './locales/fr.json';
-import es from './locales/es.json';
-import pt from './locales/pt.json';
-
 // Expand flat dotted keys (e.g. "toolsInternal.babyCryTranslator") into nested objects
 function expandDottedKeys(obj: Record<string, any>): Record<string, any> {
   const result: Record<string, any> = {};
@@ -43,18 +35,35 @@ function expandDottedKeys(obj: Record<string, any>): Record<string, any> {
   return result;
 }
 
-const resources = {
-  en: { translation: expandDottedKeys(en as Record<string, any>) },
-  ar: { translation: expandDottedKeys(ar as Record<string, any>) },
-  de: { translation: expandDottedKeys(de as Record<string, any>) },
-  tr: { translation: expandDottedKeys(tr as Record<string, any>) },
-  fr: { translation: expandDottedKeys(fr as Record<string, any>) },
-  es: { translation: expandDottedKeys(es as Record<string, any>) },
-  pt: { translation: expandDottedKeys(pt as Record<string, any>) },
-};
-
 const SUPPORTED_LANGUAGES = ['en', 'ar', 'de', 'tr', 'fr', 'es', 'pt'];
 const MANUAL_LANGUAGE_KEY = 'user_selected_language';
+
+// Lazy loaders for each locale — Vite will code-split these
+const localeLoaders: Record<string, () => Promise<Record<string, any>>> = {
+  en: () => import('./locales/en.json').then(m => m.default),
+  ar: () => import('./locales/ar.json').then(m => m.default),
+  de: () => import('./locales/de.json').then(m => m.default),
+  tr: () => import('./locales/tr.json').then(m => m.default),
+  fr: () => import('./locales/fr.json').then(m => m.default),
+  es: () => import('./locales/es.json').then(m => m.default),
+  pt: () => import('./locales/pt.json').then(m => m.default),
+};
+
+// Cache to avoid re-processing
+const loadedLanguages = new Set<string>();
+
+async function loadLanguage(lng: string): Promise<void> {
+  if (loadedLanguages.has(lng)) return;
+  const loader = localeLoaders[lng];
+  if (!loader) return;
+  try {
+    const data = await loader();
+    i18n.addResourceBundle(lng, 'translation', expandDottedKeys(data), true, true);
+    loadedLanguages.add(lng);
+  } catch (e) {
+    console.error(`Failed to load locale: ${lng}`, e);
+  }
+}
 
 // Get the best matching language from browser
 const getBrowserLanguage = (): string => {
@@ -62,40 +71,50 @@ const getBrowserLanguage = (): string => {
   return SUPPORTED_LANGUAGES.includes(browserLang) ? browserLang : 'en';
 };
 
-// Check if user manually selected a language
 const getManualLanguage = (): string | null => {
   return localStorage.getItem(MANUAL_LANGUAGE_KEY);
 };
 
-// Determine initial language: manual selection > browser language
 const getInitialLanguage = (): string => {
   const manualLang = getManualLanguage();
-  if (manualLang && SUPPORTED_LANGUAGES.includes(manualLang)) {
-    return manualLang;
-  }
+  if (manualLang && SUPPORTED_LANGUAGES.includes(manualLang)) return manualLang;
   return getBrowserLanguage();
 };
+
+const initialLang = getInitialLanguage();
 
 i18n
   .use(initReactI18next)
   .init({
-    resources,
-    lng: getInitialLanguage(),
+    resources: {},
+    lng: initialLang,
     fallbackLng: 'en',
     supportedLngs: SUPPORTED_LANGUAGES,
-    interpolation: {
-      escapeValue: false,
-    },
+    interpolation: { escapeValue: false },
+    // Return key as fallback while loading
+    returnNull: false,
+    react: { useSuspense: false },
   });
 
-// Function to update document direction based on language
+// Load initial language + fallback
+const initPromise = (async () => {
+  const toLoad = [initialLang];
+  if (initialLang !== 'en') toLoad.push('en');
+  await Promise.all(toLoad.map(loadLanguage));
+})();
+
+// On language change, lazy-load the new locale
+i18n.on('languageChanged', (lng) => {
+  updateDocumentDirection(lng);
+  loadLanguage(lng);
+});
+
 export const updateDocumentDirection = (language: string) => {
   const dir = language === 'ar' ? 'rtl' : 'ltr';
   document.documentElement.setAttribute('dir', dir);
   document.documentElement.setAttribute('lang', language);
 };
 
-// Function to manually set language (saves to localStorage)
 export const setManualLanguage = (language: string) => {
   if (SUPPORTED_LANGUAGES.includes(language)) {
     localStorage.setItem(MANUAL_LANGUAGE_KEY, language);
@@ -103,19 +122,16 @@ export const setManualLanguage = (language: string) => {
   }
 };
 
-// Function to reset to browser language
 export const resetToBrowserLanguage = () => {
   localStorage.removeItem(MANUAL_LANGUAGE_KEY);
   const browserLang = getBrowserLanguage();
   i18n.changeLanguage(browserLang);
 };
 
-// Set initial direction
-updateDocumentDirection(i18n.language);
+// Set initial direction synchronously
+updateDocumentDirection(initialLang);
 
-// Listen for language changes
-i18n.on('languageChanged', (lng) => {
-  updateDocumentDirection(lng);
-});
+// Export the init promise for components that need to wait
+export const i18nReady = initPromise;
 
 export default i18n;
