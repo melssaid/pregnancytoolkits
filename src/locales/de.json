@@ -1072,42 +1072,6 @@
       "recommendedRange": "Empfohlener Bereich"
     }
   },
-  "smartPlan": {
-    "title": "Mein Smart Plan",
-    "subtitle": "Personalisierte Tagespläne basierend auf Ihren Daten",
-    "yourData": "Ihre Daten",
-    "currentWeek": "Aktuelle Woche",
-    "weight": "Gewicht",
-    "backPainLevel": "Rückenschmerz-Level",
-    "exercises": "Übungen",
-    "meals": "Mahlzeiten",
-    "report": "Bericht",
-    "dailyRoutine": "Ihre Tagesroutine",
-    "exerciseDesc": "Diese Übungen wurden für Woche {{week}} und Ihren Gesundheitszustand ausgewählt.",
-    "ex1": { "name": "Katze-Kuh-Dehnung" },
-    "ex2": { "name": "Beckenbodenstärkung" },
-    "ex3": { "name": "Schulterrotation" },
-    "exGeneral": { "name": "Leichtes Gehen" },
-    "nutritionPlan": "Ernährungsplan",
-    "caloriesTarget": "Tägliches Kalorienziel",
-    "breakfast": "Frühstück",
-    "breakfastDesc": "Haferflocken mit Obst und Nüssen (350 kcal)",
-    "lunch": "Mittagessen",
-    "lunchDesc": "Gegrillter Hähnchensalat mit Quinoa (500 kcal)",
-    "dinner": "Abendessen",
-    "dinnerDesc": "Gegrillter Fisch mit sautiertem Gemüse (400 kcal)",
-    "weeklyReport": "Wöchentlicher Arztbericht",
-    "reportDesc": "Druckfertiger Bericht mit Ihrer Zustandsübersicht",
-    "readyToPrint": "Druckbereit",
-    "printNote": "Klicken Sie auf die Schaltfläche, um den Bericht zu drucken oder als PDF zu speichern",
-    "printBtn": "Bericht drucken / PDF speichern",
-    "printSuccess": "Druck wird vorbereitet...",
-    "vitals": "Vitalzeichen",
-    "pain": "Schmerzniveau",
-    "summary": "Zustandsübersicht",
-    "summaryText": "Patientin hat regelmäßige Kontrollen. Aktivitätsniveau ist gut. Ernährung ist ausgewogen.",
-    "doctorNotes": "Arztnotizen"
-  },
   "appUpdated": {
     "title": "App aktualisiert, wird neu geladen...",
     "description": "App aktualisiert, wird neu geladen..."
@@ -4212,7 +4176,14 @@
     "activityLevel": "Aktivitätsniveau",
     "mood": "Stimmung",
     "healthConditions": "Gesundheitszustände",
-    "bp": "Blutdruck"
+    "bp": "Blutdruck",
+    "pregnancyWeek": "Schwangerschaftswoche",
+    "painLevel": "Schmerzniveau",
+    "moreOptions": "Weitere Details",
+    "systolic": "Systolisch",
+    "diastolic": "Diastolisch",
+    "conditions": "Gesundheitszustände",
+    "aiPlan": "KI-Plan"
   },
   "toolsInternal.walkingCoach": {
     "title": "Smarter Geh-Ratgeber",

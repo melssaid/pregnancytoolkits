@@ -1072,42 +1072,6 @@
       "recommendedRange": "Faixa recomendada"
     }
   },
-  "smartPlan": {
-    "title": "Meu plano inteligente",
-    "subtitle": "Planos diários personalizados baseados nos seus dados",
-    "yourData": "Seus dados",
-    "currentWeek": "Semana atual",
-    "weight": "Peso",
-    "backPainLevel": "Nível de dor nas costas",
-    "exercises": "Exercícios",
-    "meals": "Refeições",
-    "report": "Relatório",
-    "dailyRoutine": "Sua rotina diária",
-    "exerciseDesc": "Estes exercícios foram selecionados para a semana {{week}} e seu estado de saúde.",
-    "ex1": { "name": "Alongamento gato-vaca" },
-    "ex2": { "name": "Fortalecimento do assoalho pélvico" },
-    "ex3": { "name": "Rotação de ombros" },
-    "exGeneral": { "name": "Caminhada leve" },
-    "nutritionPlan": "Plano de nutrição",
-    "caloriesTarget": "Meta de calorias diárias",
-    "breakfast": "Café da manhã",
-    "breakfastDesc": "Aveia com frutas e castanhas (350 kcal)",
-    "lunch": "Almoço",
-    "lunchDesc": "Salada de frango grelhado com quinoa (500 kcal)",
-    "dinner": "Jantar",
-    "dinnerDesc": "Peixe grelhado com legumes salteados (400 kcal)",
-    "weeklyReport": "Relatório médico semanal",
-    "reportDesc": "Relatório pronto para imprimir com resumo do seu estado",
-    "readyToPrint": "Pronto para imprimir",
-    "printNote": "Clique no botão para imprimir o relatório ou salvar como PDF",
-    "printBtn": "Imprimir relatório / Salvar PDF",
-    "printSuccess": "Preparando impressão...",
-    "vitals": "Sinais vitais",
-    "pain": "Nível de dor",
-    "summary": "Resumo do estado",
-    "summaryText": "Paciente tem consultas regulares. Nível de atividade bom. Nutrição equilibrada.",
-    "doctorNotes": "Notas do médico"
-  },
   "appUpdated": {
     "title": "Aplicativo atualizado, recarregando...",
     "description": "Aplicativo atualizado, recarregando..."
@@ -4415,7 +4379,14 @@
     "activityLevel": "Nível de atividade",
     "mood": "Humor",
     "healthConditions": "Condições de saúde",
-    "bp": "Pressão"
+    "bp": "Pressão",
+    "pregnancyWeek": "Semana de gravidez",
+    "painLevel": "Nível de dor",
+    "moreOptions": "Mais detalhes",
+    "systolic": "Sistólica",
+    "diastolic": "Diastólica",
+    "conditions": "Condições de saúde",
+    "aiPlan": "Plano IA"
   },
   "toolsInternal.walkingCoach": {
     "title": "Guia de Caminhada Inteligente",
