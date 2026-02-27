@@ -44,16 +44,18 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           <div className="flex items-center gap-3">
             {showBack && <BackButton />}
             
-            <Link to="/" className="flex items-center gap-2.5">
-              <img 
-                src={logoImage} 
-                alt="Pregnancy Toolkits" 
-                width={showBack ? 40 : 48}
-                height={showBack ? 40 : 48}
-                loading="eager"
-                decoding="async"
-                className={`rounded-full object-cover ${showBack ? 'h-10 w-10' : 'h-12 w-12'}`}
-              />
+              <Link to="/" className="flex items-center gap-2.5">
+              <div className={`rounded-full overflow-hidden flex-shrink-0 ${showBack ? 'h-10 w-10' : 'h-12 w-12'}`}>
+                <img 
+                  src={logoImage} 
+                  alt="Pregnancy Toolkits" 
+                  width={showBack ? 40 : 48}
+                  height={showBack ? 40 : 48}
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover scale-[1.3]"
+                />
+              </div>
               {showBack ? (
                 <span className="text-sm font-bold text-foreground tracking-tight truncate max-w-[120px] sm:max-w-none">
                   {t('app.name')}
