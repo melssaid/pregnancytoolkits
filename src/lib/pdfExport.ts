@@ -80,7 +80,7 @@ let logoImageCache: string | null = null;
 async function loadLogoImage(): Promise<string | null> {
   if (logoImageCache) return logoImageCache;
   try {
-    const response = await fetch('/logo.png');
+    const response = await fetch('/logo.webp');
     const blob = await response.blob();
     return new Promise((resolve) => {
       const reader = new FileReader();

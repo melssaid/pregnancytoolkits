@@ -358,7 +358,7 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
       if (!iframeDoc) { document.body.removeChild(iframe); setIsExporting(false); return; }
 
-      const logoUrl = window.location.origin + '/logo.png';
+      const logoUrl = window.location.origin + '/logo.webp';
 
       iframeDoc.open();
       iframeDoc.write(`<!DOCTYPE html>
