@@ -1,12 +1,13 @@
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { CalendarIcon, Info, Droplets } from "lucide-react";
+import { CalendarIcon, Info, Droplets, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 import { ToolFrame } from "@/components/ToolFrame";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { cycleTrackerVideosByLang } from "@/data/videoData";
@@ -16,11 +17,16 @@ import { CycleDaySheet } from "@/components/cycle/CycleDaySheet";
 import { CycleDashboard } from "@/components/cycle/CycleDashboard";
 import { CycleHistoryChart } from "@/components/cycle/CycleHistoryChart";
 import { useToast } from "@/components/ui/use-toast";
+import {
+  AlertDialog, AlertDialogAction, AlertDialogCancel,
+  AlertDialogContent, AlertDialogDescription, AlertDialogFooter,
+  AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export default function CycleTracker() {
   const { t } = useTranslation();
   const { toast } = useToast();
-  const { dayLogs, stats, predictedDates, updateDay, deleteDay } = useCycleData();
+  const { dayLogs, stats, predictedDates, updateDay, deleteDay, clearAll } = useCycleData();
   const [editingDate, setEditingDate] = useState<string | null>(null);
   
 
@@ -132,6 +138,38 @@ Any patterns that might be worth discussing with a doctor`;
               buttonText={t('toolsInternal.cycleTracker.analyzePatterns')}
             />
           </div>
+        )}
+
+        {/* Clear All Data */}
+        {Object.keys(dayLogs).length > 0 && (
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="outline" size="sm" className="w-full text-destructive border-destructive/30 hover:bg-destructive/10">
+                <Trash2 className="w-4 h-4 me-2" />
+                {t('toolsInternal.cycleTracker.clearAll', 'Clear All Data & Start Over')}
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{t('toolsInternal.cycleTracker.clearAllTitle', 'Clear all cycle data?')}</AlertDialogTitle>
+                <AlertDialogDescription>
+                  {t('toolsInternal.cycleTracker.clearAllDesc', 'This will permanently delete all your tracked periods, symptoms, and predictions. This action cannot be undone.')}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>{t('toolsInternal.cycleTracker.cancel', 'Cancel')}</AlertDialogCancel>
+                <AlertDialogAction
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  onClick={() => {
+                    clearAll();
+                    toast({ title: t('toolsInternal.cycleTracker.clearedSuccess', 'All data cleared successfully'), duration: 2000 });
+                  }}
+                >
+                  {t('toolsInternal.cycleTracker.confirmClear', 'Yes, clear everything')}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         )}
 
         {/* Videos */}
