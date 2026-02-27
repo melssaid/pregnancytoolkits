@@ -93,16 +93,9 @@ export const toolsData: Tool[] = [
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
   
 
-  // ═══════════════════════════════════════════════════════════════
-  // MENTAL HEALTH
-  // ═══════════════════════════════════════════════════════════════
-  { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, categoryKey: "categories.mentalHealth", href: "/tools/mental-health-coach", priority: 25, hasAI: true },
+  // Mental health moved to postpartum section
 
-  // ═══════════════════════════════════════════════════════════════
-  // SELF-CHECK
-  // ═══════════════════════════════════════════════════════════════
-  { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.selfCheck", href: "/tools/gestational-diabetes", priority: 26 },
-  { id: "preeclampsia-risk", titleKey: "tools.preeclampsiaRisk.title", descriptionKey: "tools.preeclampsiaRisk.description", icon: AlertTriangle, categoryKey: "categories.selfCheck", href: "/tools/preeclampsia-risk", priority: 27 },
+  // Self-check tools merged into preparation section below
 
   // ═══════════════════════════════════════════════════════════════
   // LABOR & BIRTH
@@ -111,22 +104,25 @@ export const toolsData: Tool[] = [
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.labor", href: "/tools/ai-birth-plan", priority: 29, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // PREPARATION
+  // PREPARATION (includes former self-check tools)
   // ═══════════════════════════════════════════════════════════════
-  { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, categoryKey: "categories.preparation", href: "/tools/ai-hospital-bag", priority: 31, hasAI: true },
-  { id: "baby-gear-recommender", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/baby-gear-recommender", priority: 32, hasAI: true },
-  { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, categoryKey: "categories.preparation", href: "/tools/smart-appointment-reminder", priority: 33, hasAI: true },
-  { id: "ai-partner-guide", titleKey: "tools.aiPartnerGuide.title", descriptionKey: "tools.aiPartnerGuide.description", icon: HeartHandshake, categoryKey: "categories.preparation", href: "/tools/ai-partner-guide", priority: 34, hasAI: true },
+  { id: "gestational-diabetes", titleKey: "tools.gestationalDiabetes.title", descriptionKey: "tools.gestationalDiabetes.description", icon: AlertTriangle, categoryKey: "categories.preparation", href: "/tools/gestational-diabetes", priority: 30 },
+  { id: "preeclampsia-risk", titleKey: "tools.preeclampsiaRisk.title", descriptionKey: "tools.preeclampsiaRisk.description", icon: AlertTriangle, categoryKey: "categories.preparation", href: "/tools/preeclampsia-risk", priority: 31 },
+  { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, categoryKey: "categories.preparation", href: "/tools/ai-hospital-bag", priority: 32, hasAI: true },
+  { id: "baby-gear-recommender", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/baby-gear-recommender", priority: 33, hasAI: true },
+  { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, categoryKey: "categories.preparation", href: "/tools/smart-appointment-reminder", priority: 34, hasAI: true },
+  { id: "ai-partner-guide", titleKey: "tools.aiPartnerGuide.title", descriptionKey: "tools.aiPartnerGuide.description", icon: HeartHandshake, categoryKey: "categories.preparation", href: "/tools/ai-partner-guide", priority: 35, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // POSTPARTUM & BABY
   // ═══════════════════════════════════════════════════════════════
-  { id: "ai-lactation-prep", titleKey: "tools.aiLactationPrep.title", descriptionKey: "tools.aiLactationPrep.description", icon: Milk, categoryKey: "categories.postpartum", href: "/tools/ai-lactation-prep", priority: 35, hasAI: true },
-  { id: "postpartum-recovery", titleKey: "tools.postpartumRecovery.title", descriptionKey: "tools.postpartumRecovery.description", icon: Flower2, categoryKey: "categories.postpartum", href: "/tools/postpartum-recovery", priority: 36, hasAI: true },
-  { id: "baby-cry-translator", titleKey: "tools.babyCryTranslator.title", descriptionKey: "tools.babyCryTranslator.description", icon: Volume2, categoryKey: "categories.postpartum", href: "/tools/baby-cry-translator", priority: 37, hasAI: true },
-  { id: "baby-sleep-tracker", titleKey: "tools.babySleepTracker.title", descriptionKey: "tools.babySleepTracker.description", icon: Moon, categoryKey: "categories.postpartum", href: "/tools/baby-sleep-tracker", priority: 38, hasAI: true },
-  { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 39 },
-  { id: "diaper-tracker", titleKey: "tools.diaperTracker.title", descriptionKey: "tools.diaperTracker.description", icon: Baby, categoryKey: "categories.postpartum", href: "/tools/diaper-tracker", priority: 40 },
+  { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, categoryKey: "categories.postpartum", href: "/tools/mental-health-coach", priority: 36, hasAI: true },
+  { id: "ai-lactation-prep", titleKey: "tools.aiLactationPrep.title", descriptionKey: "tools.aiLactationPrep.description", icon: Milk, categoryKey: "categories.postpartum", href: "/tools/ai-lactation-prep", priority: 37, hasAI: true },
+  { id: "postpartum-recovery", titleKey: "tools.postpartumRecovery.title", descriptionKey: "tools.postpartumRecovery.description", icon: Flower2, categoryKey: "categories.postpartum", href: "/tools/postpartum-recovery", priority: 38, hasAI: true },
+  { id: "baby-cry-translator", titleKey: "tools.babyCryTranslator.title", descriptionKey: "tools.babyCryTranslator.description", icon: Volume2, categoryKey: "categories.postpartum", href: "/tools/baby-cry-translator", priority: 39, hasAI: true },
+  { id: "baby-sleep-tracker", titleKey: "tools.babySleepTracker.title", descriptionKey: "tools.babySleepTracker.description", icon: Moon, categoryKey: "categories.postpartum", href: "/tools/baby-sleep-tracker", priority: 40, hasAI: true },
+  { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 41 },
+  { id: "diaper-tracker", titleKey: "tools.diaperTracker.title", descriptionKey: "tools.diaperTracker.description", icon: Baby, categoryKey: "categories.postpartum", href: "/tools/diaper-tracker", priority: 42 },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -140,8 +136,6 @@ export const categoryKeys = [
   "categories.pregnancy",
   "categories.nutrition",
   "categories.wellness",
-  "categories.mentalHealth",
-  "categories.selfCheck",
   "categories.labor",
   "categories.preparation",
   "categories.postpartum",
@@ -272,8 +266,6 @@ const journeyCategoryMap: Record<JourneyKey, string[]> = {
     "categories.pregnancy",
     "categories.nutrition",
     "categories.wellness",
-    "categories.mentalHealth",
-    "categories.selfCheck",
     "categories.labor",
     "categories.preparation",
   ],
