@@ -142,7 +142,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                     <motion.div
                       animate={{ y: [0, -4, 0] }}
                       transition={{ duration: 3, repeat: Infinity }}
-                      className="w-16 h-16 mx-auto mb-3 rounded-full shadow-lg overflow-hidden ring-2 ring-primary/20 ring-offset-2 ring-offset-background"
+                      className="w-16 h-16 mx-auto mb-3 rounded-full shadow-lg overflow-hidden"
                     >
                       <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
                     </motion.div>
