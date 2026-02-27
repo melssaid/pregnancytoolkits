@@ -358,30 +358,67 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
       if (!iframeDoc) { document.body.removeChild(iframe); setIsExporting(false); return; }
 
+      const logoUrl = window.location.origin + '/logo.png';
+
       iframeDoc.open();
       iframeDoc.write(`<!DOCTYPE html>
 <html dir="${isRTL ? 'rtl' : 'ltr'}" lang="${lang}">
 <head><meta charset="utf-8"><title>${reportTitle}</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Cairo', sans-serif; color: #1e293b; padding: 15mm; line-height: 1.6; direction: ${isRTL ? 'rtl' : 'ltr'}; font-size: 13px; }
-.header { text-align: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #ec4899; }
-.header h1 { font-size: 20px; color: #ec4899; } .header .brand { font-size: 11px; color: #94a3b8; } .header .date { font-size: 11px; color: #64748b; margin-top: 4px; }
-.data-section { margin-bottom: 14px; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; page-break-inside: avoid; }
-.data-section h3 { font-size: 14px; color: #ec4899; margin-bottom: 6px; text-transform: capitalize; border-bottom: 1px solid #f1f5f9; padding-bottom: 4px; }
-.count { font-size: 11px; color: #94a3b8; margin-bottom: 6px; }
-.item { padding: 6px 8px; margin: 4px 0; background: #f8fafc; border-radius: 6px; font-size: 12px; }
-.num { display: inline-block; width: 20px; height: 20px; background: #ec4899; color: white; border-radius: 50%; text-align: center; line-height: 20px; font-size: 10px; margin-${isRTL ? 'left' : 'right'}: 6px; }
-.field { font-size: 12px; margin: 2px 0; } .field strong { color: #475569; }
-.more { font-size: 11px; color: #94a3b8; text-align: center; margin-top: 6px; }
-.footer { margin-top: 20px; text-align: center; font-size: 10px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 10px; }
-@media print { body { padding: 10mm; } @page { margin: 10mm; size: A4; } }
+body { font-family: 'Cairo', sans-serif; color: #1e293b; padding: 12mm 15mm; line-height: 1.5; direction: ${isRTL ? 'rtl' : 'ltr'}; font-size: 12px; background: #fff; }
+
+/* Header */
+.report-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; margin-bottom: 20px; border-bottom: 2px solid #1e293b; }
+.header-logo { display: flex; align-items: center; gap: 10px; }
+.header-logo img { width: 40px; height: 40px; border-radius: 8px; }
+.header-logo .brand-name { font-size: 16px; font-weight: 700; color: #1e293b; letter-spacing: -0.3px; }
+.header-meta { text-align: ${isRTL ? 'left' : 'right'}; }
+.header-meta .report-title { font-size: 13px; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.5px; }
+.header-meta .report-date { font-size: 10px; color: #64748b; margin-top: 2px; }
+.header-meta .report-stats { font-size: 10px; color: #94a3b8; margin-top: 1px; }
+
+/* Sections */
+.data-section { margin-bottom: 16px; page-break-inside: avoid; }
+.data-section h3 { font-size: 12px; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.4px; padding: 6px 0; margin-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
+.count { font-size: 10px; color: #94a3b8; margin-bottom: 4px; }
+.item { padding: 6px 10px; margin: 3px 0; background: #f8fafc; border-${isRTL ? 'right' : 'left'}: 3px solid #cbd5e1; font-size: 11px; }
+.num { display: inline-block; min-width: 18px; font-weight: 700; color: #64748b; margin-${isRTL ? 'left' : 'right'}: 6px; font-size: 10px; }
+.field { font-size: 11px; margin: 1px 0; line-height: 1.6; }
+.field strong { color: #334155; font-weight: 600; }
+
+/* Footer */
+.report-footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: #94a3b8; }
+.report-footer .url { color: #64748b; }
+
+@media print {
+  body { padding: 8mm 12mm; }
+  @page { margin: 8mm; size: A4; }
+  .data-section { break-inside: avoid; }
+}
 </style></head>
 <body>
-<div class="header"><h1>${reportTitle}</h1><div class="brand">${brand}</div><div class="date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div><div class="count" style="margin-top:6px">${sectionCount} ${lang === 'ar' ? 'قسم' : 'sections'}</div></div>
+
+<div class="report-header">
+  <div class="header-logo">
+    <img src="${logoUrl}" alt="Logo" onerror="this.style.display='none'" />
+    <span class="brand-name">${brand}</span>
+  </div>
+  <div class="header-meta">
+    <div class="report-title">${reportTitle}</div>
+    <div class="report-date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+    <div class="report-stats">${sectionCount} ${lang === 'ar' ? 'قسم' : 'sections'}</div>
+  </div>
+</div>
+
 ${html}
-<div class="footer">${brand} &mdash; ${new Date().getFullYear()}</div>
+
+<div class="report-footer">
+  <span>${brand} &copy; ${new Date().getFullYear()}</span>
+  <span class="url">pregnancytoolkits.lovable.app</span>
+</div>
+
 </body></html>`);
       iframeDoc.close();
       setTimeout(() => {
