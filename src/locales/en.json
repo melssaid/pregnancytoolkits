@@ -1,4 +1,8 @@
 {
+  "home": {
+    "tagline": "Your Smart Companion at Every Stage",
+    "aiSubtitle": "Advanced AI-Powered Tools"
+  },
   "nav": {
     "home": "Home",
     "dashboard": "Dashboard",

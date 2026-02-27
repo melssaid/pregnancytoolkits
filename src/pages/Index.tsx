@@ -220,10 +220,22 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
 
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
+  const { t } = useTranslation();
   return (
     <Layout>
       <SEOHead />
       <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-primary/10 via-primary/5 to-transparent z-30" />
+
+      <section className="pt-4 pb-1 relative z-10">
+        <div className="container text-center space-y-1">
+          <h1 className="text-lg font-extrabold text-foreground tracking-tight">
+            {t('home.tagline')}
+          </h1>
+          <p className="text-xs text-muted-foreground font-medium">
+            {t('home.aiSubtitle')}
+          </p>
+        </div>
+      </section>
 
       <section className="py-3 relative z-10">
         <div className="container space-y-4">

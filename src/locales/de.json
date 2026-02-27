@@ -1,4 +1,8 @@
 {
+  "home": {
+    "tagline": "Ihr smarter Begleiter in jeder Phase",
+    "aiSubtitle": "Fortschrittliche KI-Tools"
+  },
   "nav": {
     "home": "Start",
     "dashboard": "Dashboard",

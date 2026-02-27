@@ -1,4 +1,8 @@
 {
+  "home": {
+    "tagline": "Votre compagnon intelligent à chaque étape",
+    "aiSubtitle": "Outils d'IA avancés"
+  },
   "nav": {
     "home": "Accueil",
     "dashboard": "Tableau de bord",
