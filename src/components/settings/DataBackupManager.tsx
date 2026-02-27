@@ -13,14 +13,67 @@ const BACKUP_KEYS = [
   'food_diary', 'nutrition_log', 'birth_plans', 'hospital_bag', 'baby_names',
   'bump_photos_local', 'milestones', 'cycle_data', 'ovulation_data', 'period_history',
   'journal_entries', 'pregnancy_notes', 'doctor_questions', 'weekly_summaries', 'ai_insights',
-  'disclaimer_accepted', 'onboarding_completed',
 ];
 
 const EXCLUDED_KEY_PATTERNS = [
   'session_id', 'session_expiry', 'user_id', 'install_date', 'expanded_categories',
   'encrypted', 'checked_user', 'cookie', 'cache', 'token', 'auth', '_v2', '_version',
   'selected_language', 'backup_date', 'last_visit', 'theme', 'sb-', 'supabase',
+  'ai_daily_usage', 'journey-card-states', 'disclaimer', 'onboarding',
+  'central_profile', 'splash_',
 ];
+
+// Internal field names to hide from the report
+const HIDDEN_FIELDS = new Set([
+  'id', 'userId', 'user_id', 'ts', 'timestamp', 'updatedAt', 'updated_at',
+  'createdAt', 'created_at', 'iv', 'encrypted', 'hash', 'salt', 'key',
+  'sessionId', 'session_id', '_id', '__v',
+]);
+
+// Detect junk values: encrypted strings, long hashes, raw timestamps
+function isJunkValue(v: any): boolean {
+  if (typeof v === 'number' && v > 1_000_000_000_000) return true; // Unix ms timestamp
+  if (typeof v !== 'string') return false;
+  if (v.length > 60 && /^[A-Za-z0-9+/=]+$/.test(v)) return true; // base64 / encrypted
+  if (/^[a-f0-9]{32,}$/i.test(v)) return true; // hex hash
+  return false;
+}
+
+// Format a timestamp into a readable date
+function formatTimestamp(v: any, isRTL: boolean): string | null {
+  const num = typeof v === 'number' ? v : (typeof v === 'string' && /^\d{13}$/.test(v) ? Number(v) : null);
+  if (!num || num < 1_000_000_000_000) return null;
+  try {
+    return new Date(num).toLocaleDateString(isRTL ? 'ar-SA' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  } catch { return null; }
+}
+
+// Readable section labels
+const SECTION_LABELS: Record<string, Record<string, string>> = {
+  kick_sessions: { ar: 'جلسات حركات الطفل', en: 'Kick Sessions' },
+  kick_history: { ar: 'سجل الحركات', en: 'Kick History' },
+  weight_records: { ar: 'سجل الوزن', en: 'Weight Records' },
+  vitamin_tracker: { ar: 'متابعة الفيتامينات', en: 'Vitamin Tracker' },
+  vitamin_records: { ar: 'سجل الفيتامينات', en: 'Vitamin Records' },
+  sleep_records: { ar: 'سجل النوم', en: 'Sleep Records' },
+  contraction_records: { ar: 'سجل الانقباضات', en: 'Contraction Records' },
+  appointments: { ar: 'المواعيد', en: 'Appointments' },
+  reminders: { ar: 'التذكيرات', en: 'Reminders' },
+  meal_history: { ar: 'سجل الوجبات', en: 'Meal History' },
+  grocery_lists: { ar: 'قوائم البقالة', en: 'Grocery Lists' },
+  birth_plans: { ar: 'خطط الولادة', en: 'Birth Plans' },
+  hospital_bag: { ar: 'حقيبة المستشفى', en: 'Hospital Bag' },
+  baby_names: { ar: 'أسماء الأطفال', en: 'Baby Names' },
+  cycle_data: { ar: 'بيانات الدورة', en: 'Cycle Data' },
+  period_history: { ar: 'سجل الدورات', en: 'Period History' },
+  weekly_summaries: { ar: 'الملخصات الأسبوعية', en: 'Weekly Summaries' },
+  ai_insights: { ar: 'نتائج الذكاء الاصطناعي', en: 'AI Insights' },
+  water_intake: { ar: 'شرب الماء', en: 'Water Intake' },
+  water_history: { ar: 'سجل شرب الماء', en: 'Water History' },
+  pregnancy_notes: { ar: 'ملاحظات الحمل', en: 'Pregnancy Notes' },
+  doctor_questions: { ar: 'أسئلة الطبيب', en: 'Doctor Questions' },
+  journal_entries: { ar: 'يوميات', en: 'Journal Entries' },
+};
 
 interface DataBackupManagerProps {
   compact?: boolean;
@@ -126,31 +179,55 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       // Build HTML content
       let html = '';
       Object.entries(data).forEach(([key, value]) => {
-        const label = key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim();
+        const label = SECTION_LABELS[key]?.[lang] || SECTION_LABELS[key]?.en || key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim();
         html += `<div class="data-section"><h3>${label}</h3>`;
+        
+        const renderField = (k: string, v: any): string => {
+          if (HIDDEN_FIELDS.has(k)) return '';
+          if (isJunkValue(v)) return '';
+          // Try to format timestamps in known date fields
+          if (['date', 'time', 'scheduledAt', 'completedAt', 'startTime', 'endTime', 'dueDate', 'lastPeriodDate'].includes(k)) {
+            const formatted = formatTimestamp(v, isRTL);
+            if (formatted) return `<div class="field"><strong>${k}:</strong> ${formatted}</div>`;
+          }
+          const strVal = typeof v === 'object' ? JSON.stringify(v).substring(0, 80) : String(v).substring(0, 100);
+          if (isJunkValue(strVal)) return '';
+          return `<div class="field"><strong>${k}:</strong> ${strVal}</div>`;
+        };
+
         if (Array.isArray(value)) {
-          html += `<p class="count">${value.length} items</p>`;
-          value.slice(0, 20).forEach((item, i) => {
+          const cleanItems = value.filter(item => {
+            if (typeof item === 'string' && isJunkValue(item)) return false;
+            return true;
+          });
+          html += `<p class="count">${cleanItems.length} ${lang === 'ar' ? 'عنصر' : 'items'}</p>`;
+          cleanItems.slice(0, 20).forEach((item, i) => {
             if (typeof item === 'object' && item !== null) {
-              html += `<div class="item"><span class="num">${i + 1}</span>`;
-              Object.entries(item).filter(([k]) => !['id', 'userId', 'user_id'].includes(k)).slice(0, 6).forEach(([k, v]) => {
-                html += `<div class="field"><strong>${k}:</strong> ${typeof v === 'object' ? JSON.stringify(v).substring(0, 80) : String(v).substring(0, 100)}</div>`;
-              });
-              html += `</div>`;
-            } else {
+              const fields = Object.entries(item)
+                .filter(([k]) => !HIDDEN_FIELDS.has(k))
+                .filter(([, v]) => !isJunkValue(v))
+                .slice(0, 6)
+                .map(([k, v]) => renderField(k, v))
+                .filter(Boolean)
+                .join('');
+              if (fields) html += `<div class="item"><span class="num">${i + 1}</span>${fields}</div>`;
+            } else if (!isJunkValue(item)) {
               html += `<div class="item">${String(item).substring(0, 150)}</div>`;
             }
           });
-          if (value.length > 20) html += `<p class="more">+${value.length - 20} more</p>`;
+          if (cleanItems.length > 20) html += `<p class="more">+${cleanItems.length - 20} ${lang === 'ar' ? 'عنصر إضافي' : 'more'}</p>`;
         } else if (typeof value === 'object' && value !== null) {
-          Object.entries(value).slice(0, 10).forEach(([k, v]) => {
-            html += `<div class="field"><strong>${k}:</strong> ${String(v).substring(0, 100)}</div>`;
-          });
-        } else {
+          Object.entries(value)
+            .filter(([k]) => !HIDDEN_FIELDS.has(k))
+            .filter(([, v]) => !isJunkValue(v))
+            .slice(0, 10)
+            .forEach(([k, v]) => { html += renderField(k, v); });
+        } else if (!isJunkValue(value)) {
           html += `<div class="field">${String(value).substring(0, 200)}</div>`;
         }
         html += `</div>`;
       });
+
 
       const printWindow = window.open('', '_blank');
       if (!printWindow) { setIsExporting(false); return; }
