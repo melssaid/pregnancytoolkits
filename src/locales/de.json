@@ -4240,7 +4240,10 @@
     "unknownTitle": "Etwas ist schiefgelaufen",
     "unknownMsg": "Der KI-Assistent hat einen unerwarteten Fehler gefunden. Bitte versuchen Sie es erneut.",
     "retry": "Erneut versuchen",
-    "dismiss": "Schließen"
+    "dismiss": "Schließen",
+    "dailyLimitMsg": "Sie haben alle {{limit}} täglichen KI-Anfragen verbraucht. Bitte versuchen Sie es morgen erneut.",
+    "dailyLimitTitle": "Tageslimit erreicht",
+    "remainingHint": "{{remaining}} von {{limit}} Anfragen heute übrig"
   },
   "groceryList": {
     "title": "Intelligente Einkaufsliste",

@@ -4443,7 +4443,10 @@
     "unknownTitle": "Bir şeyler ters gitti",
     "unknownMsg": "Yapay zeka asistanı beklenmeyen bir hatayla karşılaştı. Lütfen tekrar deneyin.",
     "retry": "Tekrar dene",
-    "dismiss": "Kapat"
+    "dismiss": "Kapat",
+    "dailyLimitMsg": "Günlük {{limit}} yapay zeka isteğinizi kullandınız. Lütfen yarın tekrar deneyin.",
+    "dailyLimitTitle": "Günlük limite ulaşıldı",
+    "remainingHint": "Bugün {{remaining}}/{{limit}} istek kaldı"
   },
   "groceryList": {
     "title": "Akıllı Alışveriş Listesi",
