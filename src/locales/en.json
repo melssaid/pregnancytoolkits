@@ -2914,6 +2914,7 @@
       "deleted": "Deleted",
       "deletedDesc": "Cycle entry removed.",
       "days": "days",
+      "day": "day",
       "copied": "Copied!",
       "copiedDesc": "Stats copied to clipboard.",
       "currentPhase": "Current Phase",
