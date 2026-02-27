@@ -115,9 +115,11 @@ export const updateDocumentDirection = (language: string) => {
   document.documentElement.setAttribute('lang', language);
 };
 
-export const setManualLanguage = (language: string) => {
+export const setManualLanguage = async (language: string) => {
   if (SUPPORTED_LANGUAGES.includes(language)) {
     localStorage.setItem(MANUAL_LANGUAGE_KEY, language);
+    // Pre-load the bundle BEFORE switching so UI updates instantly
+    await loadLanguage(language);
     i18n.changeLanguage(language);
   }
 };
