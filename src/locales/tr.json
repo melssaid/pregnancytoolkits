@@ -1184,7 +1184,7 @@
       "good": "İyi",
       "complete": "Tamamlandı",
       "weekSummary": "Hafta {{week}} özeti",
-      "differentWeek": "Farklı Hafta",
+      "differentWeek": "Haftayı Değiştir",
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
       "fetalDevLink": "Fetüs Gelişimi",
@@ -1896,7 +1896,7 @@
       "good": "İyi",
       "complete": "Tamamlandı",
       "weekSummary": "Hafta {{week}} Özeti",
-      "differentWeek": "Farklı Hafta",
+      "differentWeek": "Haftayı Değiştir",
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
       "trimester": {

@@ -1184,7 +1184,7 @@
       "good": "Bueno",
       "complete": "Completo",
       "weekSummary": "Resumen de la semana {{week}}",
-      "differentWeek": "Otra semana",
+      "differentWeek": "Cambiar semana",
       "refresh": "Actualizar",
       "trackTip": "Sigue tu semana para obtener información personalizada sobre el crecimiento de tu bebé y los cambios en tu cuerpo",
       "fetalDevLink": "Desarrollo fetal",
@@ -1896,7 +1896,7 @@
       "good": "Bueno",
       "complete": "Completo",
       "weekSummary": "Resumen Semana {{week}}",
-      "differentWeek": "Otra Semana",
+      "differentWeek": "Cambiar Semana",
       "refresh": "Actualizar",
       "trackTip": "Rastrea tu semana para obtener información personalizada sobre el crecimiento de tu bebé y los cambios de tu cuerpo",
       "trimester": {
