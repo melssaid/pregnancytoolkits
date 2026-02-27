@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
-  Activity, Utensils, FileText, Brain, Loader2,
+  Utensils, FileText, Brain, Loader2,
   RefreshCw, Baby, Heart, Scale, Flame,
   Ruler, Droplets, Moon, Smile, ChevronDown, ChevronUp,
   Stethoscope, AlertTriangle
@@ -57,7 +57,7 @@ const SmartPregnancyPlan = () => {
     } catch { return DEFAULT_HEALTH; }
   });
   const [showMore, setShowMore] = useState(false);
-  const [activeTab, setActiveTab] = useState("exercises");
+  const [activeTab, setActiveTab] = useState("aiplan");
   const [aiResponse, setAiResponse] = useState('');
   const [reportContent, setReportContent] = useState('');
   const { streamChat, isLoading, error } = usePregnancyAI();
@@ -314,52 +314,14 @@ const SmartPregnancyPlan = () => {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-4 h-auto">
-            <TabsTrigger value="exercises" className="text-[10px] py-1.5 gap-1">
-              <Activity className="w-3 h-3" /> {t("smartPlan.exercises", "Exercises")}
+          <TabsList className="grid grid-cols-2 h-auto">
+            <TabsTrigger value="aiplan" className="text-xs py-2 gap-1.5">
+              <Brain className="w-3.5 h-3.5" /> {t("smartPlan.aiPlan", "AI Plan")}
             </TabsTrigger>
-            <TabsTrigger value="meals" className="text-[10px] py-1.5 gap-1">
-              <Utensils className="w-3 h-3" /> {t("smartPlan.meals", "Meals")}
-            </TabsTrigger>
-            <TabsTrigger value="aiplan" className="text-[10px] py-1.5 gap-1">
-              <Brain className="w-3 h-3" /> {t("smartPlan.aiPlan", "AI Plan")}
-            </TabsTrigger>
-            <TabsTrigger value="report" className="text-[10px] py-1.5 gap-1">
-              <FileText className="w-3 h-3" /> {t("smartPlan.report", "Report")}
+            <TabsTrigger value="report" className="text-xs py-2 gap-1.5">
+              <FileText className="w-3.5 h-3.5" /> {t("smartPlan.report", "Report")}
             </TabsTrigger>
           </TabsList>
-
-          {/* Exercises Tab */}
-          <TabsContent value="exercises" className="space-y-3">
-            <Card>
-              <CardContent className="p-4 text-center space-y-3">
-                <Activity className="w-10 h-10 text-primary mx-auto" />
-                <p className="text-xs text-muted-foreground">
-                  {t("smartPlan.exerciseHint", "Get personalized exercise recommendations based on your trimester and profile")}
-                </p>
-                <Button onClick={generateAIPlan} disabled={isLoading} className="gap-2">
-                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
-                  {t("smartPlan.getAIPlan", "Get Smart Plan")}
-                </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Meals Tab */}
-          <TabsContent value="meals" className="space-y-3">
-            <Card>
-              <CardContent className="p-4 text-center space-y-3">
-                <Utensils className="w-10 h-10 text-orange-500 mx-auto" />
-                <p className="text-xs text-muted-foreground">
-                  {t("smartPlan.mealsHint", "Receive personalized meal plans and nutrition advice")}
-                </p>
-                <Button onClick={generateAIPlan} disabled={isLoading} className="gap-2">
-                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
-                  {t("smartPlan.getAIPlan", "Get Smart Plan")}
-                </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
 
           {/* AI Plan Tab */}
           <TabsContent value="aiplan" className="space-y-3">
