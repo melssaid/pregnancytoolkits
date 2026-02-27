@@ -3,6 +3,7 @@ import { Download, Loader2, Calendar, Printer } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
+import { isEncrypted, decryptData } from '@/lib/encryption';
 
 // Keys to backup from localStorage
 const BACKUP_KEYS = [
@@ -189,14 +190,29 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
     return obj;
   };
 
-  const collectAllData = (): Record<string, any> => {
+  const collectAllData = async (): Promise<Record<string, any>> => {
     const data: Record<string, any> = {};
-    BACKUP_KEYS.forEach(key => {
+    
+    const tryParseValue = async (value: string): Promise<any> => {
+      let raw = value;
+      // Decrypt if encrypted (starts with ENC:)
+      if (isEncrypted(raw)) {
+        const decrypted = await decryptData(raw);
+        if (!decrypted) return null; // Can't decrypt, skip entirely
+        raw = decrypted;
+      }
+      try { return JSON.parse(raw); } catch { return raw; }
+    };
+
+    for (const key of BACKUP_KEYS) {
       const value = localStorage.getItem(key);
       if (value) {
-        try { data[key] = resolveTranslationKeys(JSON.parse(value)); } catch { data[key] = value; }
+        const parsed = await tryParseValue(value);
+        if (parsed !== null && !isJunkValue(parsed)) {
+          data[key] = resolveTranslationKeys(parsed);
+        }
       }
-    });
+    }
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key && !data[key] && !isExcludedKey(key)) {
@@ -205,8 +221,11 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
             key.includes('_data') || key.includes('_list') || key.includes('_entries')) {
           const value = localStorage.getItem(key);
           if (value) {
-            if (value.length > 500 && !value.startsWith('{') && !value.startsWith('[')) continue;
-            try { data[key] = resolveTranslationKeys(JSON.parse(value)); } catch { data[key] = value; }
+            if (value.length > 500 && !value.startsWith('{') && !value.startsWith('[') && !isEncrypted(value)) continue;
+            const parsed = await tryParseValue(value);
+            if (parsed !== null && !isJunkValue(parsed)) {
+              data[key] = resolveTranslationKeys(parsed);
+            }
           }
         }
       }
@@ -214,13 +233,13 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
     return data;
   };
 
-  const handlePrintReport = (e: React.MouseEvent) => {
+  const handlePrintReport = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     
     setIsExporting(true);
     try {
-      const data = collectAllData();
+      const data = await collectAllData();
       const dataCount = Object.keys(data).length;
       if (dataCount === 0) {
         toast({ title: t('settings.backup.noData'), description: t('settings.backup.noDataDesc'), variant: 'destructive' });
