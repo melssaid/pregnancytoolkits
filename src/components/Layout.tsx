@@ -48,11 +48,11 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               <img 
                 src={logoImage} 
                 alt="Pregnancy Toolkits" 
-                width={showBack ? 36 : 44}
-                height={showBack ? 36 : 44}
+                width={showBack ? 40 : 48}
+                height={showBack ? 40 : 48}
                 loading="eager"
                 decoding="async"
-                className={`rounded-full shadow object-cover ${showBack ? 'h-9 w-9' : 'h-11 w-11'}`}
+                className={`rounded-full shadow object-cover ${showBack ? 'h-10 w-10' : 'h-12 w-12'}`}
               />
               {showBack ? (
                 <span className="text-sm font-bold text-foreground tracking-tight truncate max-w-[120px] sm:max-w-none">
