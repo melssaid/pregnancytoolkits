@@ -20,22 +20,27 @@ const EXCLUDED_KEY_PATTERNS = [
   'encrypted', 'checked_user', 'cookie', 'cache', 'token', 'auth', '_v2', '_version',
   'selected_language', 'backup_date', 'last_visit', 'theme', 'sb-', 'supabase',
   'ai_daily_usage', 'journey-card-states', 'disclaimer', 'onboarding',
-  'central_profile', 'splash_',
+  'central_profile', 'splash_', 'insight', 'smart-plan', 'smart-pregnancy',
+  'active', 'tip-of-the-day', 'motivational', 'first_visit', 'notification',
+  'push_', 'cookie_consent', 'search_', 'recent_',
 ];
 
 // Internal field names to hide from the report
 const HIDDEN_FIELDS = new Set([
   'id', 'userId', 'user_id', 'ts', 'timestamp', 'updatedAt', 'updated_at',
   'createdAt', 'created_at', 'iv', 'encrypted', 'hash', 'salt', 'key',
-  'sessionId', 'session_id', '_id', '__v',
+  'sessionId', 'session_id', '_id', '__v', 'version', 'type', 'source',
+  'category', 'categoryKey', 'toolId', 'tool_id', 'lang', 'language',
 ]);
 
-// Detect junk values: encrypted strings, long hashes, raw timestamps
+// Detect junk values: encrypted strings, long hashes, raw timestamps, garbled text
 function isJunkValue(v: any): boolean {
-  if (typeof v === 'number' && v > 1_000_000_000_000) return true; // Unix ms timestamp
+  if (typeof v === 'number' && v > 1_000_000_000_000) return true;
   if (typeof v !== 'string') return false;
-  if (v.length > 60 && /^[A-Za-z0-9+/=]+$/.test(v)) return true; // base64 / encrypted
-  if (/^[a-f0-9]{32,}$/i.test(v)) return true; // hex hash
+  if (v.length > 30 && /^[A-Za-z0-9+/=]+$/.test(v)) return true; // base64 / encrypted
+  if (/^[a-f0-9]{24,}$/i.test(v)) return true; // hex hash
+  if (v.includes('�')) return true; // corrupted unicode
+  if (v.length > 30 && /[+/=]{3,}/.test(v)) return true; // partial base64
   return false;
 }
 
@@ -48,8 +53,50 @@ function formatTimestamp(v: any, isRTL: boolean): string | null {
   } catch { return null; }
 }
 
+// Readable field labels
+const FIELD_LABELS: Record<string, Record<string, string>> = {
+  week: { ar: 'الأسبوع', en: 'Week' },
+  weight: { ar: 'الوزن (كجم)', en: 'Weight (kg)' },
+  height: { ar: 'الطول (سم)', en: 'Height (cm)' },
+  age: { ar: 'العمر', en: 'Age' },
+  painLevel: { ar: 'مستوى الألم', en: 'Pain Level' },
+  bloodType: { ar: 'فصيلة الدم', en: 'Blood Type' },
+  bloodPressureSys: { ar: 'ضغط الدم (انقباضي)', en: 'Blood Pressure (Systolic)' },
+  bloodPressureDia: { ar: 'ضغط الدم (انبساطي)', en: 'Blood Pressure (Diastolic)' },
+  sleepHours: { ar: 'ساعات النوم', en: 'Sleep Hours' },
+  activityLevel: { ar: 'مستوى النشاط', en: 'Activity Level' },
+  dueDate: { ar: 'تاريخ الولادة المتوقع', en: 'Due Date' },
+  lastPeriodDate: { ar: 'آخر دورة شهرية', en: 'Last Period Date' },
+  name: { ar: 'الاسم', en: 'Name' },
+  title: { ar: 'العنوان', en: 'Title' },
+  date: { ar: 'التاريخ', en: 'Date' },
+  time: { ar: 'الوقت', en: 'Time' },
+  notes: { ar: 'ملاحظات', en: 'Notes' },
+  doctor: { ar: 'الطبيب', en: 'Doctor' },
+  location: { ar: 'المكان', en: 'Location' },
+  count: { ar: 'العدد', en: 'Count' },
+  duration: { ar: 'المدة', en: 'Duration' },
+  startTime: { ar: 'وقت البداية', en: 'Start Time' },
+  endTime: { ar: 'وقت النهاية', en: 'End Time' },
+  completed: { ar: 'مكتمل', en: 'Completed' },
+  checked: { ar: 'محدد', en: 'Checked' },
+  scheduledAt: { ar: 'الموعد المحدد', en: 'Scheduled At' },
+  description: { ar: 'الوصف', en: 'Description' },
+  content: { ar: 'المحتوى', en: 'Content' },
+};
+
+// Activity level translations
+const ACTIVITY_LABELS: Record<string, Record<string, string>> = {
+  sedentary: { ar: 'قليل الحركة', en: 'Sedentary' },
+  light: { ar: 'نشاط خفيف', en: 'Light' },
+  moderate: { ar: 'نشاط متوسط', en: 'Moderate' },
+  active: { ar: 'نشط', en: 'Active' },
+};
+
 // Readable section labels
 const SECTION_LABELS: Record<string, Record<string, string>> = {
+  pregnancy_profile: { ar: 'الملف الصحي', en: 'Health Profile' },
+  user_settings: { ar: 'الإعدادات', en: 'Settings' },
   kick_sessions: { ar: 'جلسات حركات الطفل', en: 'Kick Sessions' },
   kick_history: { ar: 'سجل الحركات', en: 'Kick History' },
   weight_records: { ar: 'سجل الوزن', en: 'Weight Records' },
@@ -73,6 +120,15 @@ const SECTION_LABELS: Record<string, Record<string, string>> = {
   pregnancy_notes: { ar: 'ملاحظات الحمل', en: 'Pregnancy Notes' },
   doctor_questions: { ar: 'أسئلة الطبيب', en: 'Doctor Questions' },
   journal_entries: { ar: 'يوميات', en: 'Journal Entries' },
+  pregnancy_week: { ar: 'أسبوع الحمل', en: 'Pregnancy Week' },
+  due_date: { ar: 'تاريخ الولادة المتوقع', en: 'Due Date' },
+  last_period_date: { ar: 'آخر دورة شهرية', en: 'Last Period Date' },
+  food_diary: { ar: 'يوميات الطعام', en: 'Food Diary' },
+  nutrition_log: { ar: 'سجل التغذية', en: 'Nutrition Log' },
+  milestones: { ar: 'المعالم', en: 'Milestones' },
+  ovulation_data: { ar: 'بيانات الإباضة', en: 'Ovulation Data' },
+  bump_photos_local: { ar: 'صور البطن', en: 'Bump Photos' },
+  stretch_reminders: { ar: 'تذكيرات التمدد', en: 'Stretch Reminders' },
 };
 
 interface DataBackupManagerProps {
@@ -185,21 +241,43 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
         const renderField = (k: string, v: any): string => {
           if (HIDDEN_FIELDS.has(k)) return '';
           if (isJunkValue(v)) return '';
+          
+          // Get readable field label
+          const fieldLabel = FIELD_LABELS[k]?.[lang] || FIELD_LABELS[k]?.en || k;
+          
           // Try to format timestamps in known date fields
           if (['date', 'time', 'scheduledAt', 'completedAt', 'startTime', 'endTime', 'dueDate', 'lastPeriodDate'].includes(k)) {
             const formatted = formatTimestamp(v, isRTL);
-            if (formatted) return `<div class="field"><strong>${k}:</strong> ${formatted}</div>`;
+            if (formatted) return `<div class="field"><strong>${fieldLabel}:</strong> ${formatted}</div>`;
           }
+          
+          // Translate known enum values
+          if (k === 'activityLevel' && typeof v === 'string' && ACTIVITY_LABELS[v]) {
+            return `<div class="field"><strong>${fieldLabel}:</strong> ${ACTIVITY_LABELS[v][lang] || ACTIVITY_LABELS[v].en}</div>`;
+          }
+          
+          // Boolean values
+          if (typeof v === 'boolean') {
+            const boolLabel = v ? (lang === 'ar' ? 'نعم' : 'Yes') : (lang === 'ar' ? 'لا' : 'No');
+            return `<div class="field"><strong>${fieldLabel}:</strong> ${boolLabel}</div>`;
+          }
+          
           const strVal = typeof v === 'object' ? JSON.stringify(v).substring(0, 80) : String(v).substring(0, 100);
           if (isJunkValue(strVal)) return '';
-          return `<div class="field"><strong>${k}:</strong> ${strVal}</div>`;
+          return `<div class="field"><strong>${fieldLabel}:</strong> ${strVal}</div>`;
         };
 
         if (Array.isArray(value)) {
           const cleanItems = value.filter(item => {
             if (typeof item === 'string' && isJunkValue(item)) return false;
+            if (typeof item === 'object' && item !== null) {
+              // Skip items where all values are junk
+              const usableFields = Object.entries(item).filter(([k, v]) => !HIDDEN_FIELDS.has(k) && !isJunkValue(v));
+              if (usableFields.length === 0) return false;
+            }
             return true;
           });
+          if (cleanItems.length === 0) { html += `</div>`; return; }
           html += `<p class="count">${cleanItems.length} ${lang === 'ar' ? 'عنصر' : 'items'}</p>`;
           cleanItems.slice(0, 20).forEach((item, i) => {
             if (typeof item === 'object' && item !== null) {
