@@ -6,7 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const TOTAL_TIPS = 44;
 
-export function FertilityDailyTip() {
+interface FertilityDailyTipProps {
+  titleKey?: string;
+}
+
+export function FertilityDailyTip({ titleKey = "fertilityTip.tipOfTheDay" }: FertilityDailyTipProps) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
   const dir = isRTL ? "rtl" : "ltr";
@@ -42,7 +46,7 @@ export function FertilityDailyTip() {
               <Stethoscope className="w-3.5 h-3.5 text-primary" />
             </div>
             <span className="text-sm font-bold text-primary">
-              {t("fertilityTip.title")}
+              {t(titleKey)}
             </span>
           </div>
           <p className="text-sm leading-relaxed text-foreground/90 font-medium whitespace-pre-wrap break-words">
