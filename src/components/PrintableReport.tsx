@@ -64,9 +64,6 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const handlePrint = useCallback(() => {
     if (!reportRef.current) return;
 
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) return;
-
     const brandNames: Record<string, string> = {
       ar: 'أدوات الحمل الذكية', de: 'Schwangerschafts-Toolkit', fr: 'Outils de Grossesse',
       es: 'Herramientas de Embarazo', pt: 'Ferramentas de Gravidez', tr: 'Gebelik Araçları', en: 'Pregnancy Toolkits',
@@ -76,7 +73,20 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     const brand = brandNames[lang] || brandNames.en;
     const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
 
-    printWindow.document.write(`<!DOCTYPE html>
+    // Remove any previous hidden iframe
+    const existingFrame = document.getElementById('__print-frame');
+    if (existingFrame) existingFrame.remove();
+
+    const iframe = document.createElement('iframe');
+    iframe.id = '__print-frame';
+    iframe.style.cssText = 'position:fixed;width:0;height:0;border:none;left:-9999px;top:-9999px;';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) return;
+
+    doc.open();
+    doc.write(`<!DOCTYPE html>
 <html dir="${isRTL ? 'rtl' : 'ltr'}" lang="${lang}">
 <head>
   <meta charset="utf-8" />
@@ -107,7 +117,6 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     .print-header .brand { font-size: 11px; color: #94a3b8; }
     .print-header .date { font-size: 11px; color: #64748b; margin-top: 4px; }
 
-    /* Patient Info Card */
     .patient-card {
       margin-bottom: 16px;
       border: 1px solid #e2e8f0;
@@ -183,8 +192,14 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   <div class="print-footer">${brand} &mdash; ${new Date().getFullYear()}</div>
 </body>
 </html>`);
-    printWindow.document.close();
-    setTimeout(() => { printWindow.print(); }, 600);
+    doc.close();
+
+    iframe.onload = () => {
+      setTimeout(() => {
+        iframe.contentWindow?.print();
+        setTimeout(() => iframe.remove(), 1000);
+      }, 400);
+    };
   }, [lang, isRTL, title, profile]);
 
   return (
