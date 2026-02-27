@@ -205,7 +205,7 @@ Important: Frame all advice as general educational information, not medical dire
                     <CatIcon className={`w-4 h-4 ${cat.colorClass}`} />
                   </div>
                   <div className="flex-1 min-w-0 text-start">
-                    <p className="text-sm font-bold text-foreground truncate">
+                    <p className="text-sm font-bold text-foreground leading-snug">
                       {t(`toolsInternal.preconceptionCheckup.categories.${cat.key}`)}
                     </p>
                     <p className="text-[10px] text-muted-foreground">
