@@ -104,6 +104,7 @@ export function AnimatedRoutes() {
         <Route path="/tools/ai-craving-alternatives" element={<PageTransition><AICravingAlternatives /></PageTransition>} />
         <Route path="/tools/smart-grocery-list" element={<PageTransition><SmartGroceryList /></PageTransition>} />
         <Route path="/tools/smart-plan" element={<PageTransition><SmartPregnancyPlan /></PageTransition>} />
+        <Route path="/tools/smart-pregnancy-plan" element={<Navigate to="/tools/smart-plan" replace />} />
         
         
 
