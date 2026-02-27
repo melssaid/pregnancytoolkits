@@ -2831,10 +2831,28 @@
       "dueDateLink": "Calculadora de data de parto",
       "dueDateLinkDesc": "Calcule sua data de parto prevista com base na sua última menstruação",
       "flowLevels": {
+        "spotting": "Escape",
         "light": "Leve",
         "medium": "Médio",
         "heavy": "Intenso"
       },
+      "mood": "Humor",
+      "moods": {
+        "great": "Ótimo",
+        "good": "Bom",
+        "okay": "Normal",
+        "bad": "Ruim",
+        "awful": "Péssimo"
+      },
+      "notes": "Notas",
+      "notesPlaceholder": "Adicione notas sobre seu dia...",
+      "saveDay": "Salvar",
+      "removeDay": "Remover entrada",
+      "dayMarked": "Dia de período marcado",
+      "dayRemoved": "Dia removido",
+      "calendarHint": "Toque em um dia para marcar seu período. Toque em um dia marcado para editá-lo ou excluí-lo.",
+      "calendarHintTitle": "Como usar",
+      "predicted": "Previsto",
       "symptomOptions": {
         "cramps": "Cólicas",
         "headache": "Dor de cabeça",
@@ -2886,7 +2904,26 @@
       "generalStatus": "Estado Geral",
       "stickyAnalyze": "Analisar com IA",
       "emptyTitle": "Comece a rastrear seu ciclo",
-      "emptyDesc": "Toque nos dias da sua última menstruação no calendário acima para obter previsões e insights."
+      "emptyDesc": "Toque nos dias da sua última menstruação no calendário acima para obter previsões e insights.",
+      "clearAll": "Apagar todos os dados e recomeçar",
+      "clearAllTitle": "Apagar todos os dados do ciclo?",
+      "clearAllDesc": "Isso excluirá permanentemente todos os períodos, sintomas e previsões registrados. Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirmClear": "Sim, apagar tudo",
+      "clearedSuccess": "Todos os dados foram apagados com sucesso",
+      "setup": {
+        "cycleLengthTitle": "Qual é a duração do seu ciclo?",
+        "cycleLengthDesc": "O número de dias do primeiro dia de um período até o primeiro dia do próximo. A maioria dos ciclos dura 21–35 dias.",
+        "dontKnow": "Não sabe? 28 dias é a média.",
+        "periodLengthTitle": "Quantos dias dura sua menstruação?",
+        "periodLengthDesc": "O número de dias que você normalmente sangra. A maioria das menstruações dura 3–7 dias.",
+        "periodHint": "A maioria das mulheres tem menstruação de 4–6 dias.",
+        "lastPeriodTitle": "Quando começou sua última menstruação?",
+        "lastPeriodDesc": "Selecione o primeiro dia da sua menstruação mais recente.",
+        "back": "Voltar",
+        "next": "Próximo",
+        "start": "Começar rastreamento"
+      }
     },
     "weightGain": {
       "title": "Guia de Ganho de Peso",
