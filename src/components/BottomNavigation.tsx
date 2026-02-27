@@ -249,7 +249,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 }
 
                 return (
-                  <>{navElement}{separator}</>
+                  <div key={item.id} className="contents">{navElement}{separator}</div>
                 );
               })}
             </div>

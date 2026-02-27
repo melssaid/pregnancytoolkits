@@ -18,4 +18,30 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Optimized chunking for 400+ concurrent users
+    target: "es2020",
+    cssCodeSplit: true,
+    sourcemap: false,
+    minify: "esbuild",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor core — cached across all pages
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          "vendor-ui": ["framer-motion", "lucide-react", "sonner", "class-variance-authority", "clsx", "tailwind-merge"],
+          "vendor-query": ["@tanstack/react-query"],
+          "vendor-i18n": ["i18next", "react-i18next"],
+          "vendor-charts": ["recharts"],
+          "vendor-supabase": ["@supabase/supabase-js"],
+        },
+        // Content-hash for long-term caching
+        chunkFileNames: "assets/js/[name]-[hash].js",
+        entryFileNames: "assets/js/[name]-[hash].js",
+        assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+      },
+    },
+    // Increase chunk size warning threshold
+    chunkSizeWarningLimit: 600,
+  },
 }));

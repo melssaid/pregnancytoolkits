@@ -11,6 +11,7 @@ import { OnboardingDisclaimer } from "@/components/OnboardingDisclaimer";
 import { useEffect } from "react";
 import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
+import { prefetchCriticalRoutes } from "@/lib/routePrefetch";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,8 @@ const App = () => {
   // Initialize anonymous authentication on app load
   useEffect(() => {
     initializeAuth();
+    // Prefetch critical routes after initial render
+    prefetchCriticalRoutes();
   }, []);
 
   // Handle dynamic import failures (e.g., after app updates)
