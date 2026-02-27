@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { sendDailyScheduleToSW } from '@/lib/scheduleNotifications';
 import { 
-  Bell, X, CheckCheck, Settings, Pill, Droplet, Calendar,
+  Bell, X, CheckCheck, Pill, Droplet, Calendar,
   BellRing, BellPlus, BellOff,
-  CheckCircle, Smartphone, Trash2, ExternalLink, ChevronRight
+  CheckCircle, Smartphone, Trash2, ExternalLink, ChevronRight, Settings
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
 import { Link } from 'react-router-dom';
@@ -21,21 +20,20 @@ const typeIcons: Record<string, any> = {
   general: Bell,
 };
 
-const typeColors: Record<string, string> = {
-  appointment: 'bg-blue-500',
-  vitamin: 'bg-amber-500',
-  water: 'bg-sky-500',
-  general: 'bg-primary',
+const typeGradients: Record<string, string> = {
+  appointment: 'from-blue-500 to-blue-600',
+  vitamin: 'from-amber-400 to-amber-500',
+  water: 'from-sky-400 to-sky-500',
+  general: 'from-primary to-accent',
 };
 
-function NotificationItem({ notification, onRead, onClear, index }: { 
+function NotificationItem({ notification, onRead, onClear }: { 
   notification: Notification; 
   onRead: () => void;
   onClear: () => void;
-  index: number;
 }) {
   const Icon = typeIcons[notification.type] || Bell;
-  const colorClass = typeColors[notification.type] || 'bg-primary';
+  const gradient = typeGradients[notification.type] || 'from-primary to-accent';
   
   const { t } = useTranslation();
   const timeAgo = () => {
@@ -48,65 +46,63 @@ function NotificationItem({ notification, onRead, onClear, index }: {
   };
 
   const handleDragEnd = (_: any, info: PanInfo) => {
-    if (Math.abs(info.offset.x) > 100) {
-      onClear();
-    }
+    if (Math.abs(info.offset.x) > 100) onClear();
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, height: 0, marginBottom: 0, overflow: 'hidden' }}
-      transition={{ delay: index * 0.03, duration: 0.15 }}
+      initial={{ opacity: 0, x: -8 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 40, height: 0, marginBottom: 0 }}
+      transition={{ duration: 0.2 }}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.4}
+      dragElastic={0.3}
       onDragEnd={handleDragEnd}
       onClick={() => { if (!notification.read) onRead(); }}
-      className={`relative px-2.5 py-2 rounded-lg border transition-colors touch-pan-y cursor-pointer ${
+      className={`relative flex items-start gap-2.5 p-2.5 rounded-xl transition-all touch-pan-y cursor-pointer group ${
         notification.read 
-          ? 'bg-muted/20 border-transparent' 
-          : 'bg-card border-border/40'
+          ? 'opacity-50' 
+          : 'bg-card/60'
       }`}
     >
-      {/* Unread dot */}
-      {!notification.read && (
-        <div className="absolute start-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-primary" />
-      )}
-      
-      <div className="flex items-center gap-2">
-        <div className={`w-6 h-6 rounded-md ${colorClass} flex items-center justify-center text-white flex-shrink-0`}>
-          <Icon className="w-3 h-3" />
-        </div>
-        
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between gap-1">
-            <h4 className={`text-[11px] font-semibold leading-snug ${notification.read ? 'text-muted-foreground' : 'text-foreground'}`}>
-              {notification.title}
-            </h4>
-            <span className="text-[9px] text-muted-foreground shrink-0">{timeAgo()}</span>
-          </div>
-          <p className="text-[10px] text-muted-foreground leading-snug">{notification.message}</p>
-        </div>
-
-        <button 
-          onClick={(e) => { e.stopPropagation(); onClear(); }} 
-          className="p-1 rounded-md hover:bg-muted/60 transition-colors shrink-0"
-        >
-          <X className="w-3 h-3 text-muted-foreground" />
-        </button>
+      {/* Icon */}
+      <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${gradient} flex items-center justify-center text-white flex-shrink-0 shadow-sm`}>
+        <Icon className="w-3.5 h-3.5" />
       </div>
       
-      {/* Action link */}
-      {notification.actionUrl && (
-        <Link 
-          to={notification.actionUrl} 
-          onClick={(e) => { e.stopPropagation(); onRead(); }}
-          className="mt-1 ms-8 text-[10px] font-medium text-primary flex items-center gap-0.5"
-        >
-          {t('notificationsPanel.viewDetails')} <ChevronRight className="w-2.5 h-2.5" />
-        </Link>
+      {/* Content */}
+      <div className="flex-1 min-w-0 pt-0.5">
+        <div className="flex items-start justify-between gap-2">
+          <h4 className={`text-xs font-semibold leading-tight ${notification.read ? 'text-muted-foreground' : 'text-foreground'}`}>
+            {notification.title}
+          </h4>
+          <span className="text-[9px] text-muted-foreground/70 shrink-0 pt-0.5">{timeAgo()}</span>
+        </div>
+        <p className="text-[11px] text-muted-foreground/80 leading-snug mt-0.5 line-clamp-2">{notification.message}</p>
+        
+        {notification.actionUrl && !notification.read && (
+          <Link 
+            to={notification.actionUrl} 
+            onClick={(e) => { e.stopPropagation(); onRead(); }}
+            className="inline-flex items-center gap-0.5 mt-1.5 text-[10px] font-semibold text-primary hover:underline"
+          >
+            {t('notificationsPanel.viewDetails')} <ChevronRight className="w-2.5 h-2.5" />
+          </Link>
+        )}
+      </div>
+
+      {/* Dismiss */}
+      <button 
+        onClick={(e) => { e.stopPropagation(); onClear(); }} 
+        className="p-1 rounded-md opacity-0 group-hover:opacity-100 hover:bg-muted/60 transition-all shrink-0"
+      >
+        <X className="w-3 h-3 text-muted-foreground" />
+      </button>
+      
+      {/* Unread indicator */}
+      {!notification.read && (
+        <div className="absolute start-0 top-1/2 -translate-y-1/2 w-1 h-4 rounded-full bg-primary" />
       )}
     </motion.div>
   );
@@ -120,20 +116,20 @@ function SettingsItem({
   return (
     <button
       onClick={() => onChange(!checked)}
-      className={`flex items-center justify-between py-2 px-2.5 rounded-lg border transition-all duration-200 w-full ${
+      className={`flex items-center justify-between py-2 px-3 rounded-xl transition-all duration-200 w-full ${
         checked 
-          ? 'bg-primary/8 border-primary/30' 
-          : 'bg-muted/20 border-border/40 opacity-50'
+          ? 'bg-primary/8 border border-primary/20' 
+          : 'bg-muted/30 border border-transparent opacity-60'
       }`}
     >
-      <div className="flex items-center gap-2">
-        <div className={`w-5 h-5 rounded-md ${checked ? color : 'bg-muted-foreground/30'} flex items-center justify-center transition-colors`}>
-          <Icon className="w-2.5 h-2.5 text-white" />
+      <div className="flex items-center gap-2.5">
+        <div className={`w-6 h-6 rounded-lg ${checked ? color : 'bg-muted-foreground/20'} flex items-center justify-center transition-colors`}>
+          <Icon className="w-3 h-3 text-white" />
         </div>
         <span className={`text-xs font-medium ${checked ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
       </div>
-      <div className={`w-4 h-4 rounded-full border-[1.5px] flex items-center justify-center transition-all ${
-        checked ? 'border-primary bg-primary' : 'border-muted-foreground/40'
+      <div className={`w-4.5 h-4.5 rounded-full border-2 flex items-center justify-center transition-all ${
+        checked ? 'border-primary bg-primary' : 'border-muted-foreground/30'
       }`}>
         {checked && <CheckCircle className="w-3 h-3 text-primary-foreground" />}
       </div>
@@ -160,85 +156,82 @@ export function NotificationsPanel() {
   const { supported: pushSupported, permission: pushPermission, enabled: pushEnabled, enablePush, disablePush } = usePushNotifications();
 
   return (
-    <Card className="overflow-hidden border-border/50">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="px-3 py-2 border-b border-border/40">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="relative">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <BellRing className="w-3.5 h-3.5 text-primary-foreground" />
-              </div>
-              {unreadCount > 0 && (
-                <span className="absolute -top-1 -end-1 w-3.5 h-3.5 bg-destructive text-destructive-foreground text-[8px] font-bold rounded-full flex items-center justify-center">
-                  {unreadCount > 9 ? '9+' : unreadCount}
-                </span>
-              )}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="relative">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-sm">
+              <BellRing className="w-4 h-4 text-primary-foreground" />
             </div>
-            <div>
-              <h3 className="text-[11px] font-bold leading-tight">{t('notificationsPanel.title')}</h3>
-              <p className="text-[9px] text-muted-foreground">
-                {unreadCount > 0 ? t('notificationsPanel.unread', { count: unreadCount }) : t('notificationsPanel.allCaughtUp')}
-              </p>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-0.5">
             {unreadCount > 0 && (
-              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={markAllAsRead}>
-                <CheckCheck className="w-3 h-3" />
-              </Button>
+              <span className="absolute -top-1 -end-1 min-w-[18px] h-[18px] px-1 bg-destructive text-destructive-foreground text-[9px] font-bold rounded-full flex items-center justify-center ring-2 ring-card">
+                {unreadCount > 9 ? '9+' : unreadCount}
+              </span>
             )}
-            {notifications.length > 0 && (
-              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={clearAll} title={t('notificationsPanel.clearAll')}>
-                <Trash2 className="w-3 h-3 text-muted-foreground" />
-              </Button>
-            )}
-            <Button 
-              variant={showSettings ? "secondary" : "ghost"}
-              size="icon" 
-              className="h-6 w-6"
-              onClick={() => setShowSettings(!showSettings)}
-            >
-              <Settings className={`w-3 h-3 transition-transform ${showSettings ? 'rotate-90' : ''}`} />
-            </Button>
           </div>
+          <div>
+            <h3 className="text-xs font-bold">{t('notificationsPanel.title')}</h3>
+            <p className="text-[10px] text-muted-foreground">
+              {unreadCount > 0 ? t('notificationsPanel.unread', { count: unreadCount }) : t('notificationsPanel.allCaughtUp')}
+            </p>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-1">
+          {unreadCount > 0 && (
+            <Button variant="ghost" size="icon" className="h-7 w-7 rounded-lg" onClick={markAllAsRead}>
+              <CheckCheck className="w-3.5 h-3.5" />
+            </Button>
+          )}
+          {notifications.length > 0 && (
+            <Button variant="ghost" size="icon" className="h-7 w-7 rounded-lg" onClick={clearAll}>
+              <Trash2 className="w-3.5 h-3.5 text-muted-foreground" />
+            </Button>
+          )}
+          <Button 
+            variant={showSettings ? "secondary" : "ghost"}
+            size="icon" 
+            className="h-7 w-7 rounded-lg"
+            onClick={() => setShowSettings(!showSettings)}
+          >
+            <Settings className={`w-3.5 h-3.5 transition-transform ${showSettings ? 'rotate-90' : ''}`} />
+          </Button>
         </div>
       </div>
 
-      {/* Settings Panel */}
+      {/* Settings */}
       <AnimatePresence>
         {showSettings && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-b border-border/40"
+            className="overflow-hidden"
           >
-            <div className="p-2.5 bg-muted/20 space-y-1.5">
+            <div className="space-y-1.5 pb-2">
               <SettingsItem icon={Calendar} label={t('notificationsPanel.appointments')} color="bg-blue-500" checked={settings.appointmentReminders} onChange={(v) => updateSettings({ appointmentReminders: v })} />
               <SettingsItem icon={Pill} label={t('notificationsPanel.vitamins')} color="bg-amber-500" checked={settings.vitaminReminders} onChange={(v) => updateSettings({ vitaminReminders: v })} />
               <SettingsItem icon={Droplet} label={t('notificationsPanel.water')} color="bg-sky-500" checked={settings.waterReminders} onChange={(v) => updateSettings({ waterReminders: v })} />
 
-              {/* Push Notifications */}
               {pushSupported && (
-                <div className="pt-1.5 border-t border-border/30">
+                <div className="pt-1 mt-1 border-t border-border/30">
                   {pushPermission === 'denied' ? (
-                    <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-2 space-y-1.5">
-                      <div className="flex items-center gap-1">
-                        <Smartphone className="w-3 h-3 text-amber-500" />
-                        <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-400">
+                    <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 space-y-2">
+                      <div className="flex items-center gap-1.5">
+                        <Smartphone className="w-3.5 h-3.5 text-amber-500" />
+                        <span className="text-[11px] font-semibold text-amber-700 dark:text-amber-400">
                           {t('notificationsPanel.pushGuideTitle')}
                         </span>
                       </div>
-                      <p className="text-[9px] text-muted-foreground leading-relaxed">
+                      <p className="text-[10px] text-muted-foreground leading-relaxed">
                         {t('notificationsPanel.pushGuideDesc')}
                       </p>
                       <button
                         onClick={() => window.location.reload()}
-                        className="w-full py-1 rounded-md bg-amber-500/15 hover:bg-amber-500/25 text-[9px] font-medium text-amber-700 dark:text-amber-400 transition-colors flex items-center justify-center gap-1"
+                        className="w-full py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-[10px] font-medium text-amber-700 dark:text-amber-400 transition-colors flex items-center justify-center gap-1"
                       >
-                        <ExternalLink className="w-2.5 h-2.5" />
+                        <ExternalLink className="w-3 h-3" />
                         {t('notificationsPanel.pushGuideReload')}
                       </button>
                     </div>
@@ -255,20 +248,20 @@ export function NotificationsPanel() {
                           disablePush();
                         }
                       }}
-                      className={`flex items-center justify-between py-2 px-2.5 rounded-lg border transition-all w-full ${
-                        pushEnabled ? 'bg-primary/8 border-primary/30' : 'bg-muted/20 border-border/40 opacity-50'
+                      className={`flex items-center justify-between py-2 px-3 rounded-xl border transition-all w-full ${
+                        pushEnabled ? 'bg-primary/8 border-primary/20' : 'bg-muted/30 border-transparent opacity-60'
                       }`}
                     >
-                      <div className="flex items-center gap-2">
-                        <div className={`w-5 h-5 rounded-md ${pushEnabled ? 'bg-primary' : 'bg-muted-foreground/30'} flex items-center justify-center`}>
-                          {pushEnabled ? <BellPlus className="w-2.5 h-2.5 text-primary-foreground" /> : <BellOff className="w-2.5 h-2.5 text-white" />}
+                      <div className="flex items-center gap-2.5">
+                        <div className={`w-6 h-6 rounded-lg ${pushEnabled ? 'bg-primary' : 'bg-muted-foreground/20'} flex items-center justify-center`}>
+                          {pushEnabled ? <BellPlus className="w-3 h-3 text-primary-foreground" /> : <BellOff className="w-3 h-3 text-white" />}
                         </div>
                         <span className={`text-xs font-medium ${pushEnabled ? 'text-foreground' : 'text-muted-foreground'}`}>
                           {t('notificationsPanel.enablePush')}
                         </span>
                       </div>
-                      <div className={`w-4 h-4 rounded-full border-[1.5px] flex items-center justify-center ${
-                        pushEnabled ? 'border-primary bg-primary' : 'border-muted-foreground/40'
+                      <div className={`w-4.5 h-4.5 rounded-full border-2 flex items-center justify-center ${
+                        pushEnabled ? 'border-primary bg-primary' : 'border-muted-foreground/30'
                       }`}>
                         {pushEnabled && <CheckCircle className="w-3 h-3 text-primary-foreground" />}
                       </div>
@@ -282,35 +275,28 @@ export function NotificationsPanel() {
       </AnimatePresence>
 
       {/* Notifications List */}
-      <CardContent className="p-2">
-        {notifications.length === 0 ? (
-          <div className="text-center py-6">
-            <Bell className="w-8 h-8 mx-auto text-muted-foreground/30 mb-2" />
-            <p className="text-[11px] font-medium text-muted-foreground">{t('notificationsPanel.noCaughtUp')}</p>
-            <p className="text-[9px] text-muted-foreground mt-0.5">{t('notificationsPanel.noDesc')}</p>
+      {notifications.length === 0 ? (
+        <div className="text-center py-8">
+          <div className="w-12 h-12 rounded-2xl bg-muted/40 flex items-center justify-center mx-auto mb-3">
+            <Bell className="w-5 h-5 text-muted-foreground/40" />
           </div>
-        ) : (
-          <div className="space-y-1">
-            <AnimatePresence mode="popLayout">
-              {notifications.slice(0, 10).map((notification, index) => (
-                <NotificationItem
-                  key={notification.id}
-                  notification={notification}
-                  onRead={() => markAsRead(notification.id)}
-                  onClear={() => clearNotification(notification.id)}
-                  index={index}
-                />
-              ))}
-            </AnimatePresence>
-            
-            {notifications.length > 10 && (
-              <p className="text-center text-[9px] text-muted-foreground pt-1">
-                +{notifications.length - 10} {t('notificationsPanel.moreNotifications', { count: notifications.length - 10 })}
-              </p>
-            )}
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          <p className="text-xs font-medium text-muted-foreground">{t('notificationsPanel.noCaughtUp')}</p>
+          <p className="text-[10px] text-muted-foreground/60 mt-0.5">{t('notificationsPanel.noDesc')}</p>
+        </div>
+      ) : (
+        <div className="space-y-0.5">
+          <AnimatePresence mode="popLayout">
+            {notifications.map((notification) => (
+              <NotificationItem
+                key={notification.id}
+                notification={notification}
+                onRead={() => markAsRead(notification.id)}
+                onClear={() => clearNotification(notification.id)}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
+      )}
+    </div>
   );
 }

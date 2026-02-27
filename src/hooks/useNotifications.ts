@@ -41,7 +41,7 @@ const DEFAULT_SETTINGS: NotificationSettings = {
   waterReminders: true,
 };
 
-const WATER_INTERVAL_HOURS = 4;
+const WATER_INTERVAL_HOURS = 6;
 
 const getAppointmentsFromStorage = (): any[] => {
   try {
@@ -127,11 +127,11 @@ export function useNotifications() {
   // Auto-clean old read notifications (older than 12 hours)
   useEffect(() => {
     if (!isInitialized.current) return;
-    const TWELVE_HOURS = 12 * 60 * 60 * 1000;
+    const SIX_HOURS = 6 * 60 * 60 * 1000;
     const now = Date.now();
     const cleaned = notifications.filter(n => {
       if (!n.read) return true;
-      return (now - new Date(n.time).getTime()) < TWELVE_HOURS;
+      return (now - new Date(n.time).getTime()) < SIX_HOURS;
     });
     if (cleaned.length !== notifications.length) {
       setNotifications(cleaned);
@@ -299,7 +299,7 @@ export function useNotifications() {
       }
 
       if (newNotifications.length > 0) {
-        setNotifications(prev => [...newNotifications, ...prev].slice(0, 20));
+        setNotifications(prev => [...newNotifications, ...prev].slice(0, 10));
         
         const hasAppointment = newNotifications.some(n => n.type === 'appointment');
         if (hasAppointment) {
@@ -333,7 +333,7 @@ export function useNotifications() {
       time: new Date().toISOString(),
       read: false,
     };
-    setNotifications(prev => [newNotification, ...prev].slice(0, 20));
+    setNotifications(prev => [newNotification, ...prev].slice(0, 10));
     
     const soundType = notification.type === 'appointment' ? 'reminder' : 'gentle';
     playNotificationSound(soundType);

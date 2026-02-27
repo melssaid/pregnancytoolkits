@@ -72,8 +72,8 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 }}
                 className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[70vh] overflow-auto rounded-2xl bg-card border border-border/40 shadow-2xl md:hidden touch-pan-x"
               >
-                <div className="p-3">
-                  <div className="w-10 h-1 bg-muted-foreground/30 rounded-full mx-auto mb-3 cursor-grab active:cursor-grabbing" />
+                <div className="p-4">
+                  <div className="w-10 h-1 bg-muted-foreground/20 rounded-full mx-auto mb-4 cursor-grab active:cursor-grabbing" />
                   <NotificationsPanel />
                 </div>
               </motion.div>
