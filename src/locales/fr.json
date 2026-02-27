@@ -1443,7 +1443,9 @@
       "weeklySummaryLink": "Résumé hebdomadaire",
       "weeklySummaryLinkDesc": "Obtenez des mises à jour hebdomadaires intelligentes",
       "aiGuideTitle": "Guide IA Grossesse",
-      "getWeeklyGuide": "Obtenir le guide hebdomadaire"
+      "getWeeklyGuide": "Obtenir le guide hebdomadaire",
+      "pickDate": "Choisir une date",
+      "fromProfile": "Pré-rempli depuis votre profil"
     },
     "kickCounter": {
       "title": "Journal des mouvements bébé",
@@ -1755,6 +1757,41 @@
         "normalweight": "Poids normal",
         "overweight": "Surpoids",
         "obese": "Obèse"
+      }
+    },
+    "gdm": {
+      "title": "Sensibilisation au Diabète Gestationnel (Informations Générales)",
+      "subtitle": "Cet outil fournit des informations simples sur le diabète gestationnel : facteurs courants, habitudes de vie et questions utiles à discuter avec votre médecin. Il ne mesure pas la glycémie et ne remplace pas les soins prénataux.",
+      "disclaimer": "Ceci est un outil de sensibilisation uniquement. Il ne fournit pas d'évaluation professionnelle. Consultez toujours votre médecin pour les tests appropriés.",
+      "checkRiskFactors": "Vérifier vos facteurs de risque",
+      "riskFactorsSelected": "Facteurs de risque sélectionnés",
+      "aiCoachTitle": "Coach IA Prévention Diabète",
+      "getPreventionPlan": "Obtenir un plan de prévention personnalisé",
+      "preventionTipsTitle": "Conseils de prévention",
+      "infoNote": "Les tests de diabète gestationnel sont généralement effectués entre les semaines 24 et 28. Si vous avez plusieurs facteurs de risque, votre médecin peut recommander des tests plus tôt. Cet outil est à but éducatif uniquement.",
+      "riskLevels": {
+        "high": { "title": "Risque plus élevé", "description": "Vos facteurs de risque suggèrent une probabilité accrue. Un dépistage précoce peut être recommandé." },
+        "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque. Le dépistage standard à 24-28 semaines est recommandé." },
+        "low": { "title": "Risque plus faible", "description": "Vous avez peu de facteurs de risque, mais le dépistage de routine à 24-28 semaines reste recommandé." }
+      },
+      "riskFactors": {
+        "age": "Âge de 35 ans ou plus",
+        "bmi": "IMC de 30 ou plus avant la grossesse",
+        "family": "Antécédents familiaux de diabète (parent ou frère/sœur)",
+        "previousGdm": "Diabète gestationnel antérieur",
+        "previousLarge": "Bébé précédent de plus de 4 kg",
+        "pcos": "Syndrome des ovaires polykystiques (SOPK)",
+        "prediabetes": "Prédiabète ou glycémie élevée",
+        "ethnicity": "Origine ethnique à risque plus élevé",
+        "multiple": "Grossesse multiple (jumeaux, triplés)",
+        "sedentary": "Mode de vie sédentaire avant la grossesse"
+      },
+      "preventionTips": {
+        "tip1": "Maintenir un poids santé avant et pendant la grossesse",
+        "tip2": "Adopter une alimentation équilibrée riche en fibres et céréales complètes",
+        "tip3": "Rester physiquement active avec des exercices approuvés par votre médecin",
+        "tip4": "Assister à tous les rendez-vous prénataux",
+        "tip5": "Limiter les aliments sucrés et les glucides raffinés"
       }
     },
     "healthMonitor": {
@@ -2321,7 +2358,9 @@
       "fertileNoteUpcoming": "Votre fenêtre fertile commence vers {{fertileDate}}, dans environ {{days}} jours.",
       "fertileNotePassed": "Votre fenêtre fertile est passée pour ce cycle.",
       "generalStatus": "État général",
-      "stickyAnalyze": "Analyser avec l'IA"
+      "stickyAnalyze": "Analyser avec l'IA",
+      "emptyTitle": "Commencez à suivre votre cycle",
+      "emptyDesc": "Appuyez sur les jours de vos dernières règles dans le calendrier ci-dessus pour obtenir des prédictions et des insights."
     },
     "birthPosition": {
       "title": "Positions d'Accouchement IA",

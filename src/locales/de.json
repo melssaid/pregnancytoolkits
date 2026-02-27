@@ -1443,7 +1443,9 @@
       "weeklySummaryLink": "Wöchentliche Zusammenfassung",
       "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Updates",
       "aiGuideTitle": "KI-Schwangerschaftsführer",
-      "getWeeklyGuide": "Wöchentlichen Leitfaden erhalten"
+      "getWeeklyGuide": "Wöchentlichen Leitfaden erhalten",
+      "pickDate": "Datum auswählen",
+      "fromProfile": "Automatisch aus Ihrem Profil ausgefüllt"
     },
     "kickCounter": {
       "title": "Baby-Bewegungstagebuch",
@@ -2185,7 +2187,9 @@
       "fertileNoteUpcoming": "Ihr fruchtbares Fenster beginnt um {{fertileDate}}, in etwa {{days}} Tagen.",
       "fertileNotePassed": "Ihr fruchtbares Fenster ist für diesen Zyklus vorbei.",
       "generalStatus": "Allgemeiner Status",
-      "stickyAnalyze": "Mit KI analysieren"
+      "stickyAnalyze": "Mit KI analysieren",
+      "emptyTitle": "Beginnen Sie mit der Zyklusverfolgung",
+      "emptyDesc": "Tippen Sie auf die Tage Ihrer letzten Periode im Kalender oben, um Vorhersagen und Einblicke zu erhalten."
     },
     "birthPosition": {
       "title": "KI-Geburtspositionen",
@@ -2553,6 +2557,41 @@
         "normalweight": "Normalgewicht",
         "overweight": "Übergewicht",
         "obese": "Adipös"
+      }
+    },
+    "gdm": {
+      "title": "Bewusstsein für Schwangerschaftsdiabetes (Allgemeine Infos)",
+      "subtitle": "Dieses Tool bietet einfache Informationen über Schwangerschaftsdiabetes: häufige Faktoren, Lebensstilmuster und nützliche Fragen für Ihren Arzt. Es misst keinen Blutzucker und ersetzt keine ärztliche Betreuung.",
+      "disclaimer": "Dies ist ein reines Aufklärungstool. Es bietet keine professionelle Bewertung für Schwangerschaftsdiabetes. Konsultieren Sie immer Ihren Arzt für ordnungsgemäße Tests.",
+      "checkRiskFactors": "Risikofaktoren prüfen",
+      "riskFactorsSelected": "Ausgewählte Risikofaktoren",
+      "aiCoachTitle": "KI-Diabetes-Präventionscoach",
+      "getPreventionPlan": "Personalisierten Präventionsplan erhalten",
+      "preventionTipsTitle": "Präventionstipps",
+      "infoNote": "Tests auf Schwangerschaftsdiabetes werden typischerweise zwischen Woche 24-28 durchgeführt. Bei mehreren Risikofaktoren kann Ihr Arzt frühere Tests empfehlen. Dieses Tool dient nur zu Bildungszwecken.",
+      "riskLevels": {
+        "high": { "title": "Höheres Risiko", "description": "Ihre Risikofaktoren deuten auf eine erhöhte Wahrscheinlichkeit hin. Frühes Screening kann empfohlen werden." },
+        "moderate": { "title": "Moderates Risiko", "description": "Sie haben einige Risikofaktoren. Standard-Screening in Woche 24-28 wird empfohlen." },
+        "low": { "title": "Geringeres Risiko", "description": "Sie haben wenige Risikofaktoren, aber Routine-Screening in Woche 24-28 wird dennoch empfohlen." }
+      },
+      "riskFactors": {
+        "age": "Alter 35 oder älter",
+        "bmi": "BMI 30 oder höher vor der Schwangerschaft",
+        "family": "Familiengeschichte von Diabetes (Eltern oder Geschwister)",
+        "previousGdm": "Früherer Schwangerschaftsdiabetes",
+        "previousLarge": "Früheres Baby über 4 kg",
+        "pcos": "Polyzystisches Ovarialsyndrom (PCOS)",
+        "prediabetes": "Prädiabetes oder hoher Blutzucker",
+        "ethnicity": "Ethnische Zugehörigkeit mit höherem Risiko",
+        "multiple": "Mehrlingsschwangerschaft",
+        "sedentary": "Sitzender Lebensstil vor der Schwangerschaft"
+      },
+      "preventionTips": {
+        "tip1": "Gesundes Gewicht vor und während der Schwangerschaft halten",
+        "tip2": "Ausgewogene Ernährung reich an Ballaststoffen und Vollkorn",
+        "tip3": "Körperlich aktiv bleiben mit ärztlich genehmigten Übungen",
+        "tip4": "Alle Vorsorgeuntersuchungen wahrnehmen",
+        "tip5": "Zuckerhaltige Lebensmittel und raffinierte Kohlenhydrate einschränken"
       }
     },
     "healthMonitor": {

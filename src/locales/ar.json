@@ -1199,7 +1199,9 @@
       "weeklySummaryLink": "الملخص الأسبوعي للحمل",
       "weeklySummaryLinkDesc": "احصلي على تحديثات أسبوعية ذكية عن حملك",
       "aiGuideTitle": "دليل الحمل الذكي",
-      "getWeeklyGuide": "احصلي على الدليل الأسبوعي"
+      "getWeeklyGuide": "احصلي على الدليل الأسبوعي",
+      "pickDate": "اختاري تاريخاً",
+      "fromProfile": "تم ملؤه تلقائياً من ملفك الشخصي"
     },
     "kickCounter": {
       "title": "عداد حركات الجنين الذكي",
@@ -2639,7 +2641,9 @@
       "fertileNoteUpcoming": "نافذة خصوبتك تبدأ حوالي {{fertileDate}}، بعد حوالي {{days}} أيام.",
       "fertileNotePassed": "نافذة الخصوبة قد انتهت لهذه الدورة.",
       "generalStatus": "الوضع العام",
-      "stickyAnalyze": "تحليل بالذكاء الاصطناعي"
+      "stickyAnalyze": "تحليل بالذكاء الاصطناعي",
+      "emptyTitle": "ابدئي بتتبع دورتك",
+      "emptyDesc": "اضغطي على أيام آخر دورة في التقويم أعلاه للحصول على التنبؤات والرؤى."
     },
     "weightGain": {
       "title": "دليل زيادة الوزن",

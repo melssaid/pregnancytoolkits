@@ -1424,7 +1424,9 @@
       "aiGuideTitle": "AI Pregnancy Guide",
       "getWeeklyGuide": "Get Weekly Guide",
       "videosTitle": "Pregnancy Timeline Videos",
-      "videosSubtitle": "Week by week development and preparation guides"
+      "videosSubtitle": "Week by week development and preparation guides",
+      "pickDate": "Pick a date",
+      "fromProfile": "Pre-filled from your profile"
     },
     "kickCounter": {
       "title": "Baby Movement Diary",
@@ -2937,7 +2939,9 @@
       "fertileNoteUpcoming": "Your fertile window starts around {{fertileDate}}, about {{days}} days from now.",
       "fertileNotePassed": "Your fertile window has passed for this cycle.",
       "generalStatus": "General Status",
-      "stickyAnalyze": "Analyze with AI"
+      "stickyAnalyze": "Analyze with AI",
+      "emptyTitle": "Start tracking your cycle",
+      "emptyDesc": "Tap the days of your last period on the calendar above to get predictions and insights."
     },
     "weightGain": {
       "title": "Weight Gain Guide",
