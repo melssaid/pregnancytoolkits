@@ -62,10 +62,9 @@ interface Props {
   avgCycle: number;
   daysUntilPeriod: number;
   daysUntilOvulation: number;
-  onLogPeriod?: () => void;
 }
 
-export function CycleHeroCircle({ phase, day, avgCycle, daysUntilPeriod, daysUntilOvulation, onLogPeriod }: Props) {
+export function CycleHeroCircle({ phase, day, avgCycle, daysUntilPeriod, daysUntilOvulation }: Props) {
   const { t } = useTranslation();
   const theme = phaseTheme[phase];
   const PhaseIcon = theme.icon;
@@ -184,22 +183,6 @@ export function CycleHeroCircle({ phase, day, avgCycle, daysUntilPeriod, daysUnt
         </div>
       </motion.div>
 
-      {/* Log period button */}
-      {onLogPeriod && (
-        <motion.button
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onLogPeriod}
-          className="mt-4 flex items-center gap-2 px-6 py-2.5 rounded-full bg-rose-500/10 hover:bg-rose-500/15 border border-rose-300/40 transition-all"
-        >
-          <Droplets className="w-4 h-4 text-rose-500" />
-          <span className="text-sm font-bold text-rose-600 dark:text-rose-400">
-            {t('toolsInternal.cycleTracker.logPeriod', 'Log period')}
-          </span>
-        </motion.button>
-      )}
     </div>
   );
 }
