@@ -8,9 +8,15 @@ import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { ToolInsightTabs } from "./ToolInsightTabs";
+import { FertilityDailyTip } from "./FertilityDailyTip";
 import { AdBanner } from "./AdBanner";
 import { SEOHead } from "./SEOHead";
 import logoImage from "@/assets/logo.webp";
+
+const FERTILITY_TOOL_IDS = new Set([
+  "cycle-tracker", "due-date-calculator", "fertility-academy",
+  "nutrition-supplements", "preconception-checkup",
+]);
 
 interface ToolFrameProps {
   children: React.ReactNode;
@@ -183,9 +189,16 @@ export function ToolFrame({
             </div>
           </motion.div>
 
-          {/* AI Insight - appears after user interacts with the tool */}
-          {toolId && (
+          {/* AI Insight - skip for fertility tools */}
+          {toolId && !FERTILITY_TOOL_IDS.has(toolId) && (
             <ToolInsightTabs toolId={toolId} />
+          )}
+
+          {/* Fertility Daily Tip - only for non-fertility tools */}
+          {toolId && !FERTILITY_TOOL_IDS.has(toolId) && (
+            <div className="mt-4">
+              <FertilityDailyTip />
+            </div>
           )}
 
           {/* Related Tools */}

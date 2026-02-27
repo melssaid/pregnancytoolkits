@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Stethoscope, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const TOTAL_TIPS = 37;
+const TOTAL_TIPS = 44;
 
 export function FertilityDailyTip() {
   const { t, i18n } = useTranslation();
