@@ -10,7 +10,7 @@ import { formatLocalized } from '@/lib/dateLocale';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-import logoImage from '@/assets/logo.png';
+import logoImage from '@/assets/logo.webp';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
 const FIRST_VISIT_KEY = 'language_selected_first_visit';

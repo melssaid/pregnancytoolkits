@@ -10,7 +10,7 @@ import { LanguageDropdown } from "./LanguageDropdown";
 import { ToolInsightTabs } from "./ToolInsightTabs";
 import { AdBanner } from "./AdBanner";
 import { SEOHead } from "./SEOHead";
-import logoImage from "@/assets/logo.png";
+import logoImage from "@/assets/logo.webp";
 
 interface ToolFrameProps {
   children: React.ReactNode;
