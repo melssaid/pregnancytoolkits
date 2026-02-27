@@ -4999,8 +4999,11 @@
     "reassurance": "Reassurance",
     "loading": "Preparing your personalized insight..."
   },
+  "fertilityExpert": {
+    "title": "Fertility Expert Says:"
+  },
   "fertilityTip": {
-    "title": "Fertility Expert Says:",
+    "title": "Tip of the Day:",
     "disclaimer": "General wellness guidance — not a substitute for professional medical advice.",
     "tips": {
       "tip1": "The fertile window is only about 6 days per cycle — 5 days before ovulation and the day of ovulation itself. Timing intimacy within this window significantly increases your chances. Don't wait for a positive ovulation test to start trying.",

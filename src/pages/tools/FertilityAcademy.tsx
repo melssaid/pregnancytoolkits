@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Heart, Smile } from "lucide-react";
+import { ChevronDown, Heart, Smile, Stethoscope, Sparkles } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -49,9 +49,44 @@ export default function FertilityAcademy() {
     content: t(`toolsInternal.fertilityAcademy.lessons.${key}.content`),
   }));
 
+  const tipIndex = useMemo(() => {
+    const today = new Date();
+    const dayOfYear = Math.floor(
+      (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000
+    );
+    return (dayOfYear % 44) + 1;
+  }, []);
+
   return (
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
       <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+
+        {/* Fertility Expert Daily Tip */}
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.4 }} className="mb-1">
+          <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-background to-pink-50/30 dark:to-primary/5 relative overflow-visible">
+            <div className="absolute -top-3 ltr:-right-3 rtl:-left-3 opacity-[0.06] pointer-events-none">
+              <motion.div animate={{ rotate: 360 }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }}>
+                <Sparkles className="h-20 w-20 text-primary" />
+              </motion.div>
+            </div>
+            <CardContent className="p-4 relative z-10" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <Stethoscope className="w-3.5 h-3.5 text-primary" />
+                </div>
+                <span className="text-sm font-bold text-primary">
+                  {t("fertilityExpert.title")}
+                </span>
+              </div>
+              <p className="text-sm leading-relaxed text-foreground/90 font-medium whitespace-pre-wrap break-words">
+                {t(`fertilityTip.tips.tip${tipIndex}`)}
+              </p>
+              <p className="text-[10px] text-muted-foreground/60 mt-3">
+                {t("fertilityTip.disclaimer")}
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
 
         <Tabs defaultValue="lessons" dir={dir}>
           <TabsList className="grid w-full grid-cols-4 mb-4 h-11 rounded-xl bg-muted/60 border border-border/40 p-1">

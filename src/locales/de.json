@@ -4546,8 +4546,11 @@
     "reassurance": "Beruhigung",
     "loading": "Dein persönlicher Tipp wird vorbereitet..."
   },
+  "fertilityExpert": {
+    "title": "Der Fruchtbarkeitsexperte sagt:"
+  },
   "fertilityTip": {
-    "title": "Der Fruchtbarkeitsexperte sagt",
+    "title": "Tipp des Tages:",
     "disclaimer": "Allgemeine Wellness-Hinweise — kein Ersatz für professionelle medizinische Beratung.",
     "tips": {
       "tip1": "Das fruchtbare Fenster umfasst nur etwa 6 Tage pro Zyklus — 5 Tage vor dem Eisprung und den Eisprungtag selbst. Die Intimität in diesem Fenster zu planen, erhöht deine Chancen erheblich. Warte nicht auf einen positiven Ovulationstest, um anzufangen.",
