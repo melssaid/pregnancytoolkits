@@ -254,80 +254,97 @@ export const DataBackupManager: React.FC<DataBackupManagerProps> = ({ compact = 
       const brand = brandNames[lang] || brandNames.en;
       const reportTitle = t('settings.backup.pdfTitle', 'Data Backup Report');
 
-      // Build HTML content
-      let html = '';
+      // Build HTML content - only sections with real user data
+      const sections: string[] = [];
       Object.entries(data).forEach(([key, value]) => {
         const label = SECTION_LABELS[key]?.[lang] || SECTION_LABELS[key]?.en || key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').trim();
-        html += `<div class="data-section"><h3>${label}</h3>`;
         
         const renderField = (k: string, v: any): string => {
           if (HIDDEN_FIELDS.has(k)) return '';
           if (isJunkValue(v)) return '';
           
-          // Get readable field label
           const fieldLabel = FIELD_LABELS[k]?.[lang] || FIELD_LABELS[k]?.en || k;
           
-          // Try to format timestamps in known date fields
           if (['date', 'time', 'scheduledAt', 'completedAt', 'startTime', 'endTime', 'dueDate', 'lastPeriodDate'].includes(k)) {
             const formatted = formatTimestamp(v, isRTL);
             if (formatted) return `<div class="field"><strong>${fieldLabel}:</strong> ${formatted}</div>`;
           }
           
-          // Translate known enum values
           if (k === 'activityLevel' && typeof v === 'string' && ACTIVITY_LABELS[v]) {
             return `<div class="field"><strong>${fieldLabel}:</strong> ${ACTIVITY_LABELS[v][lang] || ACTIVITY_LABELS[v].en}</div>`;
           }
           
-          // Boolean values
           if (typeof v === 'boolean') {
             const boolLabel = v ? (lang === 'ar' ? 'نعم' : 'Yes') : (lang === 'ar' ? 'لا' : 'No');
             return `<div class="field"><strong>${fieldLabel}:</strong> ${boolLabel}</div>`;
           }
+
+          // Render arrays/objects inline nicely
+          if (Array.isArray(v)) {
+            const items = v.filter(i => typeof i === 'string' && !isJunkValue(i)).map(i => String(i)).join('، ');
+            if (!items) return '';
+            return `<div class="field"><strong>${fieldLabel}:</strong> ${items}</div>`;
+          }
           
-          const strVal = typeof v === 'object' ? JSON.stringify(v).substring(0, 80) : String(v).substring(0, 100);
+          const strVal = typeof v === 'object' ? JSON.stringify(v).substring(0, 200) : String(v).substring(0, 200);
           if (isJunkValue(strVal)) return '';
           return `<div class="field"><strong>${fieldLabel}:</strong> ${strVal}</div>`;
         };
+
+        let sectionContent = '';
 
         if (Array.isArray(value)) {
           const cleanItems = value.filter(item => {
             if (typeof item === 'string' && isJunkValue(item)) return false;
             if (typeof item === 'object' && item !== null) {
-              // Skip items where all values are junk
               const usableFields = Object.entries(item).filter(([k, v]) => !HIDDEN_FIELDS.has(k) && !isJunkValue(v));
               if (usableFields.length === 0) return false;
             }
             return true;
           });
-          if (cleanItems.length === 0) { html += `</div>`; return; }
-          html += `<p class="count">${cleanItems.length} ${lang === 'ar' ? 'عنصر' : 'items'}</p>`;
-          cleanItems.slice(0, 20).forEach((item, i) => {
+          if (cleanItems.length === 0) return; // Skip empty sections entirely
+          sectionContent += `<p class="count">${cleanItems.length} ${lang === 'ar' ? 'عنصر' : 'items'}</p>`;
+          cleanItems.forEach((item, i) => {
             if (typeof item === 'object' && item !== null) {
               const fields = Object.entries(item)
                 .filter(([k]) => !HIDDEN_FIELDS.has(k))
                 .filter(([, v]) => !isJunkValue(v))
-                .slice(0, 6)
                 .map(([k, v]) => renderField(k, v))
                 .filter(Boolean)
                 .join('');
-              if (fields) html += `<div class="item"><span class="num">${i + 1}</span>${fields}</div>`;
+              if (fields) sectionContent += `<div class="item"><span class="num">${i + 1}</span>${fields}</div>`;
             } else if (!isJunkValue(item)) {
-              html += `<div class="item">${String(item).substring(0, 150)}</div>`;
+              sectionContent += `<div class="item">${String(item).substring(0, 300)}</div>`;
             }
           });
-          if (cleanItems.length > 20) html += `<p class="more">+${cleanItems.length - 20} ${lang === 'ar' ? 'عنصر إضافي' : 'more'}</p>`;
         } else if (typeof value === 'object' && value !== null) {
-          Object.entries(value)
+          const fields = Object.entries(value)
             .filter(([k]) => !HIDDEN_FIELDS.has(k))
             .filter(([, v]) => !isJunkValue(v))
-            .slice(0, 10)
-            .forEach(([k, v]) => { html += renderField(k, v); });
+            .map(([k, v]) => renderField(k, v))
+            .filter(Boolean)
+            .join('');
+          if (!fields) return; // Skip empty sections
+          sectionContent = fields;
         } else if (!isJunkValue(value)) {
-          html += `<div class="field">${String(value).substring(0, 200)}</div>`;
+          sectionContent = `<div class="field">${String(value).substring(0, 300)}</div>`;
+        } else {
+          return; // Skip junk
         }
-        html += `</div>`;
+
+        if (sectionContent.trim()) {
+          sections.push(`<div class="data-section"><h3>${label}</h3>${sectionContent}</div>`);
+        }
       });
 
+      const html = sections.join('\n');
+      const sectionCount = sections.length;
+
+      if (sectionCount === 0) {
+        toast({ title: t('settings.backup.noData'), description: t('settings.backup.noDataDesc'), variant: 'destructive' });
+        setIsExporting(false);
+        return;
+      }
 
       // Print directly using an iframe instead of a new window
       const iframe = document.createElement('iframe');
@@ -362,7 +379,7 @@ body { font-family: 'Cairo', sans-serif; color: #1e293b; padding: 15mm; line-hei
 @media print { body { padding: 10mm; } @page { margin: 10mm; size: A4; } }
 </style></head>
 <body>
-<div class="header"><h1>${reportTitle}</h1><div class="brand">${brand}</div><div class="date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div><div class="count" style="margin-top:6px">${dataCount} ${lang === 'ar' ? 'عنصر' : 'items'}</div></div>
+<div class="header"><h1>${reportTitle}</h1><div class="brand">${brand}</div><div class="date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div><div class="count" style="margin-top:6px">${sectionCount} ${lang === 'ar' ? 'قسم' : 'sections'}</div></div>
 ${html}
 <div class="footer">${brand} &mdash; ${new Date().getFullYear()}</div>
 </body></html>`);
@@ -371,7 +388,7 @@ ${html}
         iframe.contentWindow?.print();
         setTimeout(() => { document.body.removeChild(iframe); }, 1000);
       }, 500);
-      toast({ title: t('settings.backup.exportSuccess'), description: t('settings.backup.exportSuccessDesc', { count: dataCount }) });
+      toast({ title: t('settings.backup.exportSuccess'), description: t('settings.backup.exportSuccessDesc', { count: sectionCount }) });
     } catch (error) {
       console.error('Print error:', error);
       toast({ title: t('settings.backup.exportError'), description: t('settings.backup.exportErrorDesc'), variant: 'destructive' });
