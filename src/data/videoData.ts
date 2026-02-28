@@ -127,40 +127,39 @@ export const birthPositionVideosByLang: VideosByLang = {
     { id: "4", title: "تمارين إطالة للحامل", description: "تمارين إطالة آمنة للورك والظهر أثناء الحمل", youtubeId: "uWRwBBMFXys", duration: "12:00", category: "تمارين" },
   ],
   tr: [
-    { id: "1", title: "Doğumda En İyi Pozisyonlar", description: "3D animasyonla doğum pozisyonları", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Doğum" },
+    { id: "1", title: "Doğumda En İyi Pozisyonlar", description: "3D animasyonla doğum pozisyonları", youtubeId: "B6X4zGqgN34", duration: "10:00", category: "Doğum" },
     { id: "2", title: "Doğuma Hazırlık Egzersizleri", description: "Doğumu kolaylaştıran egzersizler ve hazırlık", youtubeId: "hmJbDNahUuA", duration: "12:00", category: "Hazırlık" },
     { id: "3", title: "Normal Doğum İçin İpuçları", description: "Ağrısız doğum için önemli bilgiler", youtubeId: "RTFFwC6nvpo", duration: "12:00", category: "İpuçları" },
     { id: "4", title: "Pelvik Taban Egzersizleri", description: "Doğum öncesi pelvik taban güçlendirme egzersizleri", youtubeId: "PYCYH6M8BzU", duration: "12:00", category: "Egzersiz" },
   ],
   de: [
-    { id: "1", title: "Beste Geburtspositionen", description: "3D-Animation der Geburtspositionen", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Geburt" },
+    { id: "1", title: "Beste Geburtspositionen", description: "3D-Animation der Geburtspositionen", youtubeId: "B6X4zGqgN34", duration: "10:00", category: "Geburt" },
     { id: "2", title: "Geburtspositionen mit Hebamme", description: "Hebamme zeigt die besten Positionen für die Geburt", youtubeId: "mqBCpcqhZd4", duration: "12:00", category: "Geburt" },
     { id: "3", title: "Geburt: Der Weg durch dein Becken", description: "Hebamme erklärt den Geburtskanal und Geburtspositionen", youtubeId: "PB90jLX50pI", duration: "14:00", category: "Geburt" },
     { id: "4", title: "Baby in Geburtsposition bringen", description: "Übungen damit das Baby tiefer ins Becken rutscht", youtubeId: "JabamlKbpKc", duration: "12:00", category: "Vorbereitung" },
   ],
   fr: [
-    { id: "1", title: "Meilleures positions d'accouchement", description: "Animation 3D des positions d'accouchement", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Accouchement" },
+    { id: "1", title: "Meilleures positions d'accouchement", description: "Animation 3D des positions d'accouchement", youtubeId: "B6X4zGqgN34", duration: "10:00", category: "Accouchement" },
     { id: "2", title: "Mouvements pour préparer l'accouchement", description: "Kinésithérapeute montre des mouvements pour faciliter le travail", youtubeId: "UAnC5Xklvsg", duration: "12:00", category: "Préparation" },
     { id: "3", title: "Comment se passe un accouchement", description: "Un docteur explique le déroulement de l'accouchement", youtubeId: "ZAv2diKYJYQ", duration: "14:00", category: "Accouchement" },
     { id: "4", title: "Accouchement sur simulateur", description: "Simulation réaliste du processus d'accouchement", youtubeId: "K-AyOw0TPcU", duration: "15:00", category: "Accouchement" },
   ],
   es: [
-    { id: "1", title: "Mejores posiciones de parto", description: "Animación 3D de posiciones de parto", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Parto" },
+    { id: "1", title: "Mejores posiciones de parto", description: "Animación 3D de posiciones de parto", youtubeId: "B6X4zGqgN34", duration: "10:00", category: "Parto" },
     { id: "2", title: "Ejercicios de preparación al parto", description: "Ejercicios para facilitar el parto", youtubeId: "mLVZoZ9KDBM", duration: "15:00", category: "Preparación" },
     { id: "3", title: "Ejercicios de suelo pélvico", description: "Fortalecimiento del suelo pélvico", youtubeId: "eugdUjFGnyQ", duration: "12:00", category: "Ejercicios" },
     { id: "4", title: "Parto natural - Consejos", description: "Consejos importantes para un parto más fácil", youtubeId: "dtwlqVWThMY", duration: "14:00", category: "Consejos" },
   ],
   pt: [
-    { id: "1", title: "Melhores posições de parto", description: "Animação 3D das posições de parto", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Parto" },
+    { id: "1", title: "Melhores posições de parto", description: "Animação 3D das posições de parto", youtubeId: "B6X4zGqgN34", duration: "10:00", category: "Parto" },
     { id: "2", title: "Exercícios para preparar o parto", description: "Exercícios para facilitar o trabalho de parto", youtubeId: "-6QpPBWsiAo", duration: "12:00", category: "Preparação" },
     { id: "3", title: "Exercícios de assoalho pélvico", description: "Fortalecimento do assoalho pélvico para gestantes", youtubeId: "InieW2MYgsA", duration: "10:00", category: "Exercícios" },
     { id: "4", title: "Dicas para parto normal", description: "Dicas importantes para um parto mais tranquilo", youtubeId: "2E52kABbQg0", duration: "15:00", category: "Dicas" },
   ],
   default: [
-    { id: "1", title: "Childbirth Stations - 3D Animation", description: "3D medical animation showing baby's progress through birth canal", youtubeId: "ze53Ep-gwBQ", duration: "10:00", category: "Pushing" },
+    { id: "1", title: "Labor and Delivery - 3D Animation", description: "3D medical animation showing baby's progress through birth canal", youtubeId: "B6X4zGqgN34", duration: "10:00", category: "Pushing" },
     { id: "2", title: "Labor and Delivery - 3D Animation", description: "Stage-by-stage 3D animated guide to childbirth", youtubeId: "Szm-TxgXhGU", duration: "15:00", category: "Labor Positions" },
-    { id: "3", title: "Patient Education: Labor & Birth", description: "Animated patient education about labor and vaginal birth", youtubeId: "ZDP_ewMDxCo", duration: "12:00", category: "Pushing" },
-    { id: "4", title: "Mechanism of Labour - OSCE Guide", description: "Medical educational guide to fetal positions during labor", youtubeId: "ruIa1bC4tsw", duration: "14:00", category: "Labor Positions" },
+    { id: "3", title: "Mechanism of Labour - OSCE Guide", description: "Medical educational guide to fetal positions during labor", youtubeId: "ruIa1bC4tsw", duration: "14:00", category: "Labor Positions" },
   ],
 };
 
@@ -229,7 +228,7 @@ export const nauseaVideosByLang: VideosByLang = {
     { id: "4", title: "Gebelikte 6. Hafta ve Bulantı Yönetimi", description: "Erken gebelikte bulantı belirtileri ve uzman tavsiyeleri", youtubeId: "HKp_ShC-jIY", duration: "10:00", category: "Erken Gebelik" },
   ],
   de: [
-    { id: "1", title: "Übelkeit in der Schwangerschaft", description: "Hausmittel und Tipps gegen Schwangerschaftsübelkeit", youtubeId: "ZkZd3xjSzXs", duration: "8:00", category: "Tipps" },
+    { id: "1", title: "Übelkeit in der Schwangerschaft", description: "10 Tipps gegen Übelkeit in der Schwangerschaft", youtubeId: "pwc0svwRMHc", duration: "8:00", category: "Tipps" },
     { id: "2", title: "Morgenübelkeit bewältigen", description: "Praktische Tipps gegen Morgenübelkeit in der Schwangerschaft", youtubeId: "qIPAwjCk3N4", duration: "12:00", category: "Tipps" },
     { id: "3", title: "Erstes Trimester - Übelkeit lindern", description: "Strategien gegen Übelkeit im ersten Trimester", youtubeId: "PUjUEHtQMgw", duration: "10:00", category: "Erstes Trimester" },
     { id: "4", title: "Natürliche Mittel gegen Übelkeit", description: "Hausmittel und natürliche Hilfe bei Schwangerschaftsübelkeit", youtubeId: "-dzXS-qCuXg", duration: "10:00", category: "Hausmittel" },
@@ -331,10 +330,10 @@ export const skincareVideosByLang = (t: (key: string) => string): VideosByLang =
     { id: "4", title: "Nabelpflege beim Baby", description: "Richtige Pflege des Nabels beim Neugeborenen", youtubeId: "9gbPht6Wu0w", duration: "8:00", category: "Babypflege" },
   ],
   fr: [
-    { id: "1", title: "Vergetures : causes et solutions", description: "Comprendre et prévenir les vergetures de grossesse", youtubeId: "faoSNxFReaY", duration: "15:00", category: "Vergetures" },
+    { id: "1", title: "Vergetures : comment les faire disparaître", description: "Comprendre et traiter les vergetures de grossesse", youtubeId: "OVM6lfHGC0o", duration: "15:00", category: "Vergetures" },
     { id: "2", title: "Masque de grossesse (mélasma)", description: "Dermatologue explique le mélasma de grossesse", youtubeId: "Fts1GYLFqcU", duration: "12:00", category: "Soins peau" },
     { id: "3", title: "Beurre de karité contre vergetures", description: "Utiliser le beurre de karité pendant la grossesse", youtubeId: "gXSOCoDoAPs", duration: "10:00", category: "Remèdes naturels" },
-    { id: "4", title: "Soins de la peau enceinte", description: "Routine complète de soins pendant la grossesse", youtubeId: "lT3llgCqryo", duration: "14:00", category: "Soins peau" },
+    { id: "4", title: "Soins de la peau enceinte", description: "Routine complète de soins pendant la grossesse", youtubeId: "EDIQ-D9jfjc", duration: "14:00", category: "Soins peau" },
   ],
   es: [
     { id: "1", title: "Cuidado de la piel en el embarazo", description: "Rutina de cuidado seguro para embarazadas", youtubeId: "w4n63nLF2js", duration: "12:00", category: "Cuidado piel" },
@@ -501,7 +500,7 @@ export const generalVideosByLang: VideosByLang = {
     { id: "5", youtubeId: "CWa-cAZuVyE", title: "Cuisses et fessiers grossesse", description: "Renforcement bas du corps pour enceintes", category: "Exercices", duration: "20:00" },
     { id: "6", youtubeId: "Mlhv7comF9I", title: "Premiers soins du nouveau-né", description: "Guide complet des soins bébé pour nouveaux parents", category: "Soins bébé", duration: "15:00" },
     { id: "7", youtubeId: "mOlNtHGWdVM", title: "Allaitement au biberon", description: "Comment nourrir bébé au biberon avec lait maternel", category: "Soins bébé", duration: "15:00" },
-    { id: "8", youtubeId: "faoSNxFReaY", title: "Vergetures : causes et solutions", description: "Comprendre et prévenir les vergetures de grossesse", category: "Soins peau", duration: "15:00" },
+    { id: "8", youtubeId: "OVM6lfHGC0o", title: "Vergetures : comment les faire disparaître", description: "Comprendre et traiter les vergetures de grossesse", category: "Soins peau", duration: "15:00" },
   ],
   es: [
     { id: "1", youtubeId: "yvsnl79qH28", title: "Alimentación en el embarazo", description: "Guía nutricional para embarazadas", category: "Nutrición", duration: "14:00" },
@@ -537,9 +536,8 @@ export const generalVideosByLang: VideosByLang = {
     { id: "9", youtubeId: "vEcZD8Js2Ws", title: "Prenatal Yoga Nidra", description: "Deep relaxation meditation for pregnancy", category: "Mental Health", duration: "25:00" },
     { id: "10", youtubeId: "6kV2_L3uSS0", title: "What is Postpartum Depression?", description: "Mental health professionals explain PPD", category: "Mental Health", duration: "8:30" },
     { id: "11", youtubeId: "Aj1Vk3q-4tg", title: "Postpartum Depression Explained", description: "Symptoms, risk factors, and treatment", category: "Mental Health", duration: "10:15" },
-    { id: "12", youtubeId: "ze53Ep-gwBQ", title: "Childbirth Stations - 3D Animation", description: "3D medical animation of baby's progress through birth canal", category: "Labor & Birth", duration: "10:00" },
+    { id: "12", youtubeId: "B6X4zGqgN34", title: "Labor And Delivery - 3D Animation", description: "3D medical animation of childbirth process", category: "Labor & Birth", duration: "10:00" },
     { id: "13", youtubeId: "Szm-TxgXhGU", title: "Labor & Delivery - 3D Animation", description: "Stage-by-stage 3D animated childbirth guide", category: "Labor & Birth", duration: "15:00" },
-    { id: "14", youtubeId: "ZDP_ewMDxCo", title: "Patient Education: Labor & Birth", description: "Animated patient education about labor", category: "Labor & Birth", duration: "12:00" },
     { id: "15", youtubeId: "NTulfAOzbp8", title: "Hospital Bag Checklist", description: "Midwife advice on what to pack", category: "Preparation", duration: "8:00" },
     { id: "16", youtubeId: "oUxVPhwFuMM", title: "Essential Hospital Bag Items", description: "Must-have items for labor and delivery", category: "Preparation", duration: "12:30" },
     { id: "17", youtubeId: "hpgjwK_oQe0", title: "Newborn Care Week 1", description: "Pediatrician guide to first week", category: "Newborn Care", duration: "18:00" },
@@ -587,7 +585,7 @@ export const ovulationVideosByLang: VideosByLang = {
     { id: "3", title: "Sintomas da ovulação", description: "Reconhecer os sinais da ovulação", youtubeId: "6L1oeXOOHt8", duration: "8:00", category: "Sintomas" },
   ],
   default: [
-    { id: "1", title: "Understanding Ovulation", description: "Medical explanation of the ovulation cycle", youtubeId: "lD5OI9936DY", duration: "10:00", category: "Education" },
+    { id: "1", title: "Understanding Ovulation", description: "Medical explanation of the ovulation cycle", youtubeId: "3Lt9I5LrWZw", duration: "10:00", category: "Education" },
     { id: "2", title: "How to Track Fertile Days", description: "Methods to identify your fertility window", youtubeId: "KquoXUVHqaw", duration: "12:00", category: "Fertility" },
     { id: "3", title: "Signs of Ovulation", description: "Physical symptoms that indicate ovulation", youtubeId: "wtxQRuEmgyM", duration: "8:00", category: "Symptoms" },
     { id: "4", title: "Boosting Fertility Naturally", description: "Lifestyle tips for increasing chances of conception", youtubeId: "CwgaFwHJM4g", duration: "15:00", category: "Fertility" },
@@ -629,7 +627,7 @@ export const cycleTrackerVideosByLang: VideosByLang = {
     { id: "3", title: "Ciclos irregulares", description: "Causas e quando procurar o médico", youtubeId: "6L1oeXOOHt8", duration: "9:00", category: "Saúde" },
   ],
   default: [
-    { id: "1", title: "Understanding Your Menstrual Cycle", description: "Complete medical guide to the menstrual cycle phases", youtubeId: "lD5OI9936DY", duration: "12:00", category: "Education" },
+    { id: "1", title: "Understanding Your Menstrual Cycle", description: "Complete medical guide to the menstrual cycle phases", youtubeId: "3Lt9I5LrWZw", duration: "12:00", category: "Education" },
     { id: "2", title: "How to Track Your Period", description: "Methods and tips for accurate cycle tracking", youtubeId: "KquoXUVHqaw", duration: "10:00", category: "Tracking" },
     { id: "3", title: "Irregular Periods Explained", description: "When to worry and when to see a doctor", youtubeId: "wtxQRuEmgyM", duration: "9:00", category: "Health" },
     { id: "4", title: "Menstrual Cycle Phases", description: "Detailed walkthrough of cycle phases and hormones", youtubeId: "h36poEtEbi4", duration: "14:00", category: "Health" },
