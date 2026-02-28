@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Lock, X, Ruler, Weight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -44,6 +44,16 @@ export const OnboardingDisclaimer: React.FC = () => {
   const [lmpPopoverOpen, setLmpPopoverOpen] = useState(false);
   const isRtl = i18n.dir() === 'rtl';
 
+  // Debounced language change — apply after a short delay to avoid lag on rapid taps
+  const langTimerRef = React.useRef<ReturnType<typeof setTimeout>>();
+  const handleLangSelect = useCallback((code: string) => {
+    setSelectedLang(code);
+    if (langTimerRef.current) clearTimeout(langTimerRef.current);
+    langTimerRef.current = setTimeout(() => {
+      changeLanguage(code);
+    }, 150);
+  }, [changeLanguage]);
+
   useEffect(() => {
     const accepted = localStorage.getItem(ONBOARDING_KEY);
     if (!accepted) setShow(true);
@@ -70,7 +80,9 @@ export const OnboardingDisclaimer: React.FC = () => {
 
     if (Object.keys(updates).length > 0) updateProfile(updates);
 
-    changeLanguage(selectedLang);
+    // Language is already changed via debounced handler — ensure final selection is applied
+    if (langTimerRef.current) clearTimeout(langTimerRef.current);
+    if (selectedLang !== currentLanguage) changeLanguage(selectedLang);
     localStorage.setItem(ONBOARDING_KEY, 'true');
     localStorage.setItem(FIRST_VISIT_KEY, 'true');
     setShow(false);
@@ -175,7 +187,7 @@ export const OnboardingDisclaimer: React.FC = () => {
                       {languages.map((lang) => (
                         <button
                           key={lang.code}
-                          onClick={() => { setSelectedLang(lang.code); changeLanguage(lang.code); }}
+                          onClick={() => handleLangSelect(lang.code)}
                           className={cn(
                             "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border transition-colors text-start",
                             selectedLang === lang.code
