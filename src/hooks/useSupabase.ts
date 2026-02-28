@@ -58,7 +58,7 @@ export const useUserProfile = () => {
 // Hook for pregnancy week
 export const usePregnancyWeek = () => {
   const { profile, updateProfile } = useUserProfile();
-  const [week, setWeek] = useState(20);
+  const [week, setWeek] = useState(0);
 
   useEffect(() => {
     if (profile?.pregnancy_week) {

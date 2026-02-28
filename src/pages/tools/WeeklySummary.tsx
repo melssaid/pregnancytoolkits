@@ -39,7 +39,7 @@ export default function WeeklySummary() {
   const { profile: userProfile } = useUserProfile();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   // Initialize week from central profile
-  const [week, setWeek] = useState<number>(userProfile.pregnancyWeek ?? 20);
+  const [week, setWeek] = useState<number>(userProfile.pregnancyWeek || 0);
   const [summary, setSummary] = useState<string>("");
 
   useResetOnLanguageChange(() => {

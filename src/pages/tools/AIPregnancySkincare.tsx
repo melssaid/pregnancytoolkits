@@ -70,7 +70,7 @@ const AIPregnancySkincare = () => {
 
 As a pregnancy-safe skincare specialist, create a personalized routine:
 
-**Pregnancy Week:** ${settings.pregnancyWeek || 20}
+**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Skin Type:** ${skinTypeLabel}
 **Concerns:** ${concernLabels.join(", ") || "General pregnancy skincare"}
 **Budget:** ${budgetLabel}
@@ -90,7 +90,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 20 },
+      context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),
       onDone: () => {},
     });

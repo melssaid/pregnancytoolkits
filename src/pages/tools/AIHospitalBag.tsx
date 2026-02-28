@@ -336,7 +336,7 @@ const AIHospitalBag = () => {
 
 As a hospital bag expert for expectant mothers, create a personalized packing list:
 
-**Pregnancy Week:** ${settings.pregnancyWeek || 36}
+**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Due Date:** ${settings.dueDate || "Not set"}
 **Birth Plan:** ${settings.birthPlan || "Not specified"}
 
@@ -354,7 +354,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 36 },
+      context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),
       onDone: () => {},
     });

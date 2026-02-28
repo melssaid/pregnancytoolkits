@@ -42,7 +42,7 @@ const VitaminTracker: React.FC = () => {
   const { profile: userProfile } = useUserProfile();
   const [todayLogs, setTodayLogs] = useState<any[]>([]);
   const [weekHistory, setWeekHistory] = useState<any[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 20);
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [isLoading, setIsLoading] = useState(true);
   const [savingId, setSavingId] = useState<string | null>(null);
   const [aiAnalysis, setAiAnalysis] = useState('');

@@ -64,14 +64,14 @@ const AISleepOptimizer = () => {
 
     const prompt = `As a pregnancy sleep specialist, analyze this sleep profile and provide personalized recommendations:
 
-**Pregnancy Week:** ${settings.pregnancyWeek || 20}
+**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Sleep:** ${sleepHours[0]} hours/night
 **Bedtime:** ${bedtime}
 **Sleep Issues:** ${issueLabels.join(", ") || "None specified"}
 
 Provide:
 1. **Sleep Quality Assessment** - Rate current sleep and identify main concerns
-2. **Optimal Sleep Position** - Best positions for pregnancy week ${settings.pregnancyWeek || 20}
+2. **Optimal Sleep Position** - Best positions for the current pregnancy stage
 3. **Pre-Sleep Routine** - 30-minute wind-down routine
 4. **Environment Optimization** - Temperature, lighting, pillow setup
 5. **Natural Remedies** - Safe herbs, foods, and techniques
@@ -83,7 +83,7 @@ Include specific product recommendations (pillows, white noise) and YouTube link
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 20 },
+      context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),
       onDone: () => {},
     });
@@ -97,7 +97,7 @@ Include specific product recommendations (pillows, white noise) and YouTube link
 
     const prompt = `As a sleep meditation specialist for pregnant women, create a calming bedtime meditation script:
 
-**Pregnancy Week:** ${settings.pregnancyWeek || 20}
+**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Sleep Issues:** ${issueLabels.join(", ") || "General sleep difficulty"}
 
 Create a 10-minute guided meditation script that includes:
@@ -116,7 +116,7 @@ Write it as a script that can be read aloud or followed along. Use calm, soothin
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 20 },
+      context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setMeditationScript((prev) => prev + text),
       onDone: () => {},
     });
@@ -130,7 +130,7 @@ Write it as a script that can be read aloud or followed along. Use calm, soothin
 
     const prompt = `As a pregnancy sleep specialist, create a complete evening routine:
 
-**Pregnancy Week:** ${settings.pregnancyWeek || 20}
+**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Bedtime:** ${bedtime}
 **Sleep Issues:** ${issueLabels.join(", ") || "General improvement"}
 **Current Sleep Duration:** ${sleepHours[0]} hours
@@ -160,7 +160,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 20 },
+      context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setRoutinePlan((prev) => prev + text),
       onDone: () => {},
     });

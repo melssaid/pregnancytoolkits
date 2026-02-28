@@ -24,7 +24,7 @@ const SmartKickCounter: React.FC = () => {
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
   const { profile: userProfile } = useUserProfile();
-  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 28);
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [history, setHistory] = useState<any[]>([]);
   const [notes, setNotes] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +48,7 @@ const SmartKickCounter: React.FC = () => {
 
   useEffect(() => {
     // Sync week from central profile
-    setCurrentWeek(userProfile.pregnancyWeek ?? 28);
+    if (userProfile.pregnancyWeek) setCurrentWeek(userProfile.pregnancyWeek);
   }, [userProfile.pregnancyWeek]);
 
   useEffect(() => {

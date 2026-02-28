@@ -35,7 +35,7 @@ const AIBumpPhotos: React.FC = () => {
   const { t } = useTranslation();
   const { profile: userProfile } = useUserProfile();
   const [photos, setPhotos] = useState<BumpPhoto[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 12);
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [isUploading, setIsUploading] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<BumpPhoto | null>(null);
