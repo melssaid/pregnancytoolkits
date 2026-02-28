@@ -4,7 +4,8 @@ import { sendDailyScheduleToSW } from '@/lib/scheduleNotifications';
 import { 
   Bell, X, CheckCheck, Pill, Droplet, Calendar, Heart,
   BellRing, BellPlus, BellOff,
-  CheckCircle, Smartphone, Trash2, ExternalLink, ChevronRight, Settings
+  CheckCircle, Smartphone, Trash2, ExternalLink, ChevronRight, Settings,
+  Baby, Footprints, Trophy
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
@@ -18,6 +19,9 @@ const typeIcons: Record<string, any> = {
   vitamin: Pill,
   water: Droplet,
   cycle: Heart,
+  weeklyTip: Baby,
+  kickReminder: Footprints,
+  milestone: Trophy,
   general: Bell,
 };
 
@@ -26,6 +30,9 @@ const typeGradients: Record<string, string> = {
   vitamin: 'from-amber-400 to-amber-500',
   water: 'from-sky-400 to-sky-500',
   cycle: 'from-rose-400 to-rose-500',
+  weeklyTip: 'from-pink-400 to-pink-500',
+  kickReminder: 'from-violet-400 to-violet-500',
+  milestone: 'from-yellow-400 to-orange-500',
   general: 'from-primary to-accent',
 };
 
@@ -216,6 +223,9 @@ export function NotificationsPanel() {
               <SettingsItem icon={Pill} label={t('notificationsPanel.vitamins')} color="bg-amber-500" checked={settings.vitaminReminders} onChange={(v) => updateSettings({ vitaminReminders: v })} />
               <SettingsItem icon={Droplet} label={t('notificationsPanel.water')} color="bg-sky-500" checked={settings.waterReminders} onChange={(v) => updateSettings({ waterReminders: v })} />
               <SettingsItem icon={Heart} label={t('notificationsPanel.cycleReminders')} color="bg-rose-500" checked={settings.cycleReminders} onChange={(v) => updateSettings({ cycleReminders: v })} />
+              <SettingsItem icon={Baby} label={t('notificationsPanel.weeklyTipReminders')} color="bg-pink-500" checked={settings.weeklyTipReminders} onChange={(v) => updateSettings({ weeklyTipReminders: v })} />
+              <SettingsItem icon={Footprints} label={t('notificationsPanel.kickReminders')} color="bg-violet-500" checked={settings.kickReminders} onChange={(v) => updateSettings({ kickReminders: v })} />
+              <SettingsItem icon={Trophy} label={t('notificationsPanel.milestoneReminders')} color="bg-yellow-500" checked={settings.milestoneReminders} onChange={(v) => updateSettings({ milestoneReminders: v })} />
 
               {pushSupported && (
                 <div className="pt-1 mt-1 border-t border-border/30">
