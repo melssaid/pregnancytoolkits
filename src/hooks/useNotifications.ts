@@ -225,19 +225,20 @@ export function useNotifications() {
     safeSaveToLocalStorage('notificationSettings', settings);
   }, [settings]);
 
-  // Auto-clean old read notifications (older than 6 hours)
+  // Auto-clean old read notifications (older than 6 hours) — runs once on init
   useEffect(() => {
     if (!isInitialized.current) return;
     const SIX_HOURS = 6 * 60 * 60 * 1000;
     const now = Date.now();
-    const cleaned = notifications.filter(n => {
-      if (!n.read) return true;
-      return (now - new Date(n.time).getTime()) < SIX_HOURS;
+    setNotifications(prev => {
+      const cleaned = prev.filter(n => {
+        if (!n.read) return true;
+        return (now - new Date(n.time).getTime()) < SIX_HOURS;
+      });
+      return cleaned.length !== prev.length ? cleaned : prev;
     });
-    if (cleaned.length !== notifications.length) {
-      setNotifications(cleaned);
-    }
-  }, [notifications]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run once on mount only
 
   // Generate smart reminders
   useEffect(() => {
