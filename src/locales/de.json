@@ -137,7 +137,11 @@
     "pregnant": "Schwanger",
     "notPregnant": "Nicht schwanger",
     "weight": "Gewicht",
-    "height": "Größe"
+    "height": "Größe",
+    "selectDate": "Datum auswählen",
+    "weeksUnit": "Wochen",
+    "autoWeekNote": "Woche wird automatisch berechnet",
+    "dueDateLabel": "Voraussichtlicher Geburtstermin"
   },
   "tools": {
     "pregnancyAssistant": {
@@ -911,7 +915,9 @@
       "heightUnit": "cm",
       "bloodTypeLabel": "Blutgruppe",
       "bloodTypePlaceholder": "Blutgruppe auswählen",
-      "bloodTypeUnknown": "Unbekannt / Nicht getestet"
+      "bloodTypeUnknown": "Unbekannt / Nicht getestet",
+      "bmiLabel": "Body-Mass-Index (BMI)",
+      "bmi": { "underweight": "Untergewicht", "normal": "Normalgewicht", "overweight": "Übergewicht", "obese": "Adipositas" }
     },
     "securityPrivacy": "Sicherheit & Datenschutz",
     "securityDesc": "Datenverschlüsselung und Schutz",

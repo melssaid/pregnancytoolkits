@@ -137,7 +137,11 @@
     "pregnant": "Hamile",
     "notPregnant": "Hamile değil",
     "weight": "Kilo",
-    "height": "Boy"
+    "height": "Boy",
+    "selectDate": "Tarih seçin",
+    "weeksUnit": "hafta",
+    "autoWeekNote": "Hafta bu tarihten otomatik hesaplanır",
+    "dueDateLabel": "Tahmini doğum tarihi"
   },
   "tools": {
     "pregnancyAssistant": {
@@ -911,7 +915,9 @@
       "heightUnit": "cm",
       "bloodTypeLabel": "Kan grubu",
       "bloodTypePlaceholder": "Kan grubu seçin",
-      "bloodTypeUnknown": "Bilinmiyor / Test edilmedi"
+      "bloodTypeUnknown": "Bilinmiyor / Test edilmedi",
+      "bmiLabel": "Vücut Kitle İndeksi (VKİ)",
+      "bmi": { "underweight": "Düşük kilolu", "normal": "Normal", "overweight": "Fazla kilolu", "obese": "Obez" }
     },
     "securityPrivacy": "Güvenlik ve Gizlilik",
     "securityDesc": "Veri şifreleme ve koruma",
