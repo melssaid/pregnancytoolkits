@@ -46,7 +46,7 @@ const SmartAppointmentReminder: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [showAllPast, setShowAllPast] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek ?? 20);
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
   const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
   const { streamChat, error: aiError } = usePregnancyAI();

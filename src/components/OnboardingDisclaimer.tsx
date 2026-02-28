@@ -36,7 +36,7 @@ export const OnboardingDisclaimer: React.FC = () => {
   const { profile, updateProfile, setLastPeriodDate } = useUserProfile();
   const [selectedLang, setSelectedLang] = useState(currentLanguage);
   const [isPregnant, setIsPregnant] = useState(true);
-  const [week, setWeek] = useState<string>(String(profile.pregnancyWeek ?? 20));
+  const [week, setWeek] = useState<string>(profile.pregnancyWeek ? String(profile.pregnancyWeek) : '');
   const [weight, setWeight] = useState<string>(profile.weight ? String(profile.weight) : '');
   const [height, setHeight] = useState<string>(profile.height ? String(profile.height) : '');
   const [lmpDate, setLmpDate] = useState<Date | undefined>(

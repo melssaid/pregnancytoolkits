@@ -86,7 +86,7 @@ const AIBirthPosition = () => {
 
 As a certified doula and birth position specialist, recommend optimal birthing positions:
 
-**Pregnancy Week:** ${settings.pregnancyWeek || 38}
+**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Birth Preference:** ${t(birthPreferences.find(b => b.id === birthPlan)?.labelKey || '')}
 **Physical Conditions:** ${conditionLabels.join(", ") || "None"}
 **Labor Stage:** ${laborStageLabels[laborStage]}
@@ -106,7 +106,7 @@ Include safety considerations and when to change positions.`;
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 38 },
+      context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),
       onDone: () => {},
     });

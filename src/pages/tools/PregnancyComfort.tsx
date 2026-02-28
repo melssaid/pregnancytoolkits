@@ -80,21 +80,21 @@ function SleepTab() {
   }).filter(Boolean);
 
   const analyzeSleep = async () => {
-    const prompt = `As a pregnancy sleep specialist, analyze this sleep profile:\n**Pregnancy Week:** ${settings.pregnancyWeek || 20}\n**Current Sleep:** ${sleepHours[0]} hours/night\n**Bedtime:** ${bedtime}\n**Sleep Issues:** ${getIssueLabels().join(", ") || "None"}\n\nProvide:\n1. **Sleep Quality Assessment**\n2. **Optimal Sleep Position** for week ${settings.pregnancyWeek || 20}\n3. **Pre-Sleep Routine**\n4. **Environment Optimization**\n5. **Natural Remedies**\n6. **When to Wake**`;
+    const prompt = `As a pregnancy sleep specialist, analyze this sleep profile:\n**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}\n**Current Sleep:** ${sleepHours[0]} hours/night\n**Bedtime:** ${bedtime}\n**Sleep Issues:** ${getIssueLabels().join(", ") || "None"}\n\nProvide:\n1. **Sleep Quality Assessment**\n2. **Optimal Sleep Position** for the current pregnancy stage\n3. **Pre-Sleep Routine**\n4. **Environment Optimization**\n5. **Natural Remedies**\n6. **When to Wake**`;
     setResponse("");
-    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 20 }, onDelta: (text) => setResponse(prev => prev + text), onDone: () => {} });
+    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setResponse(prev => prev + text), onDone: () => {} });
   };
 
   const generateMeditation = async () => {
-    const prompt = `Create a 10-minute guided bedtime meditation for week ${settings.pregnancyWeek || 20} pregnancy. Issues: ${getIssueLabels().join(", ") || "General"}. Include: Opening (1 min), Body Scan (3 mins), Breathing (2 mins), Visualization (3 mins), Closing (1 min). Use calm language with [...] pauses.`;
+    const prompt = `Create a 10-minute guided bedtime meditation for a pregnant woman (week: ${settings.pregnancyWeek || "not specified"}). Issues: ${getIssueLabels().join(", ") || "General"}. Include: Opening (1 min), Body Scan (3 mins), Breathing (2 mins), Visualization (3 mins), Closing (1 min). Use calm language with [...] pauses.`;
     setMeditationScript(""); setActiveTab('meditation');
-    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 20 }, onDelta: (text) => setMeditationScript(prev => prev + text), onDone: () => {} });
+    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setMeditationScript(prev => prev + text), onDone: () => {} });
   };
 
   const generateRoutine = async () => {
-    const prompt = `Create a 2-hour wind-down routine for ${bedtime} bedtime at pregnancy week ${settings.pregnancyWeek || 20}. Sleep issues: ${getIssueLabels().join(", ") || "General"}. Current sleep: ${sleepHours[0]} hours. Include Hour 1 (active), Hour 2 (passive), Final 30 minutes.`;
+    const prompt = `Create a 2-hour wind-down routine for ${bedtime} bedtime at pregnancy week ${settings.pregnancyWeek || "not specified"}. Sleep issues: ${getIssueLabels().join(", ") || "General"}. Current sleep: ${sleepHours[0]} hours. Include Hour 1 (active), Hour 2 (passive), Final 30 minutes.`;
     setRoutinePlan(""); setActiveTab('routine');
-    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 20 }, onDelta: (text) => setRoutinePlan(prev => prev + text), onDone: () => {} });
+    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setRoutinePlan(prev => prev + text), onDone: () => {} });
   };
 
   return (
@@ -193,9 +193,9 @@ function NauseaTab() {
 
   const getReliefPlan = async () => {
     const triggerLabels = triggers.map(id => { const tr = nauseaTriggers.find(t => t.id === id); return tr ? t(tr.labelKey) : null; }).filter(Boolean);
-    const prompt = `As a pregnancy nausea specialist:\n**Week:** ${settings.pregnancyWeek || 8}\n**Severity:** ${severity[0]}/10\n**Triggers:** ${triggerLabels.join(", ") || "Not specified"}\n**Vomiting:** ${vomiting ? "Yes" : "No"}\n\nProvide:\n1. **Immediate Relief**\n2. **Dietary Changes**\n3. **Eating Schedule**\n4. **Natural Remedies**\n5. **Lifestyle Adjustments**\n6. **When to Call Doctor**\n7. **Weekly Outlook**\n${severity[0] >= 8 ? "⚠️ Include hyperemesis information." : ""}`;
+    const prompt = `As a pregnancy nausea specialist:\n**Week:** ${settings.pregnancyWeek || "Not specified"}\n**Severity:** ${severity[0]}/10\n**Triggers:** ${triggerLabels.join(", ") || "Not specified"}\n**Vomiting:** ${vomiting ? "Yes" : "No"}\n\nProvide:\n1. **Immediate Relief**\n2. **Dietary Changes**\n3. **Eating Schedule**\n4. **Natural Remedies**\n5. **Lifestyle Adjustments**\n6. **When to Call Doctor**\n7. **Weekly Outlook**\n${severity[0] >= 8 ? "⚠️ Include hyperemesis information." : ""}`;
     setResponse("");
-    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 8 }, onDelta: (text) => setResponse(prev => prev + text), onDone: () => {} });
+    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setResponse(prev => prev + text), onDone: () => {} });
   };
 
   return (

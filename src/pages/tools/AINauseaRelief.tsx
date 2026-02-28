@@ -66,7 +66,7 @@ const AINauseaRelief = () => {
 
     const prompt = `As a pregnancy nausea specialist, provide relief strategies:
 
-**Pregnancy Week:** ${settings.pregnancyWeek || 8}
+**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Severity (1-10):** ${severity[0]}
 **Triggers:** ${triggerLabels.join(", ") || "Not specified"}
 **Vomiting:** ${vomiting ? "Yes, experiencing vomiting" : "No vomiting, just nausea"}
@@ -88,7 +88,7 @@ Be compassionate - morning sickness is exhausting!`;
     await streamChat({
       type: "pregnancy-assistant",
       messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 8 },
+      context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),
       onDone: () => {},
     });
