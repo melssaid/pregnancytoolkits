@@ -477,10 +477,10 @@
         "heartburn": "Heartburn",
         "insomnia": "Insomnia"
       },
-      "saveAnalyze": "Save & Analyze",
-      "smartAnalysis": "Smart Analysis",
-      "aiAnalysisLabel": "AI Analysis",
-      "aiPrompt": "Analyze pregnancy health: Week {{week}}, Weight: {{weight}}kg, BP: {{bp}}, Mood: {{mood}}, Symptoms: {{symptoms}}. Give brief personalized tips.",
+      "saveAnalyze": "Save & Review",
+      "smartAnalysis": "Smart Insights",
+      "aiAnalysisLabel": "AI Insights",
+      "aiPrompt": "Review pregnancy wellness: Week {{week}}, Weight: {{weight}}kg, BP: {{bp}}, Mood: {{mood}}, Symptoms: {{symptoms}}. Give brief personalized tips.",
       "noSymptoms": "None",
       "analysis": {
         "expectedGain": "Expected weight gain so far: ~{{kg}} kg",
@@ -489,7 +489,7 @@
         "bpNormal": "Blood pressure is normal",
         "mentalSupport": "Mental support is important - talk to someone you trust",
         "recordedSymptoms": "Recorded symptoms: {{symptoms}}",
-        "enterData": "Enter your data for smart analysis"
+        "enterData": "Enter your data for smart insights"
       }
     },
     "nutrition": {
@@ -629,8 +629,7 @@
           "title": "Ultrasound Gallery & Media",
           "desc": "The Ultrasound Gallery allows you to save and view your ultrasound photos with optional AI-powered educational observations. This feature does NOT perform medical diagnoses or clinical image analysis — it provides general educational information only.",
           "localDefault": "Ultrasound photos are stored locally on your device by default using compressed Base64",
-          "optionalSync": "Optional cloud sync uses private, encrypted storage buckets",
-          "signedUrls": "Cloud-stored photos are accessed via time-limited signed URLs (1-hour expiry)",
+          "localOnly": "All ultrasound photos are stored exclusively on your device and never uploaded to any server",
           "noPublic": "Photos are never publicly accessible or shared with third parties",
           "noDiagnosis": "AI observations are educational only — not a substitute for professional medical interpretation"
         },
@@ -913,9 +912,9 @@
     "total": "Total",
     "recentChanges": "Recent Changes",
     "info": "Tracking diaper changes helps monitor your baby's hydration and health. Newborns typically need 6-8 wet diapers daily.",
-    "analyzeWithAI": "Analyze Diaper Patterns with AI",
-    "aiPatternAnalysis": "AI Pattern Analysis",
-    "analyzingPatterns": "Analyzing patterns...",
+    "analyzeWithAI": "Review Diaper Patterns with AI",
+    "aiPatternAnalysis": "AI Pattern Insights",
+    "analyzingPatterns": "Reviewing patterns...",
     "timeSinceLastChange": "Since last change",
     "noChangesYet": "No changes recorded yet",
     "dailyGoal": "daily goal",
@@ -971,9 +970,9 @@
     "caloriesPlaceholder": "Number of calories",
     "saveMeal": "Save Meal",
     "todaysMeals": "Today's Meals",
-    "analyzeDay": "Analyze Day",
+    "analyzeDay": "Review Day",
     "aiTip": "AI Tip",
-    "dailyAnalysis": "Your Daily Nutrition Analysis",
+    "dailyAnalysis": "Your Daily Nutrition Review",
     "tipsTitle": "Pregnancy Nutrition Tips",
     "tip1": "Eat 5-6 small meals instead of 3 large ones",
     "tip2": "Drink 8-10 glasses of water daily",
@@ -1489,7 +1488,7 @@
       "fetalDevLinkDesc": "Track your baby's growth and development week by week",
       "weeklySummaryLink": "Weekly Summary",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy insights",
-      "weightGainLink": "Weight Gain Analyzer",
+      "weightGainLink": "Weight Gain Guide",
       "weightGainLinkDesc": "Monitor your healthy weight gain",
       "exportPDF": "Share your journal with your consultant"
     },
@@ -2864,7 +2863,7 @@
       "share": "Share",
       "avgCycleLength": "Avg Cycle Length",
       "avgPeriodLength": "Avg Period Length",
-      "analyzePatterns": "Analyze My Patterns",
+      "analyzePatterns": "Review My Patterns",
       "startDate": "Start Date",
       "endDate": "End Date (optional)",
       "flowIntensity": "Flow Intensity",
@@ -3172,7 +3171,7 @@
       "kickCounterLinkDesc": "Track your baby's movements and activity patterns",
       "dueDateLink": "Due Date Calculator",
       "dueDateLinkDesc": "Calculate your expected delivery date",
-      "weightGainLink": "Weight Gain Analyzer",
+      "weightGainLink": "Weight Gain Guide",
       "weightGainLinkDesc": "Monitor your healthy weight gain"
     },
     "gdm": {
