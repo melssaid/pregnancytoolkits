@@ -24,7 +24,7 @@ const LEGACY_PROFILE_KEY_PREFIX = "profile_";
 
 const DEFAULT_PROFILE: UserProfile = {
   isPregnant: true,
-  pregnancyWeek: 20,
+  pregnancyWeek: 0,
   weight: null,
   prePregnancyWeight: null,
   height: null,
