@@ -184,6 +184,7 @@ export function useNotifications() {
   const [settings, setSettings] = useState<NotificationSettings>(DEFAULT_SETTINGS);
   const [unreadCount, setUnreadCount] = useState(0);
   const isInitialized = useRef(false);
+  const notificationsRef = useRef<Notification[]>([]);
 
   // Load from localStorage
   useEffect(() => {
@@ -210,9 +211,10 @@ export function useNotifications() {
     isInitialized.current = true;
   }, []);
 
-  // Save notifications
+  // Save notifications & sync ref
   useEffect(() => {
     if (!isInitialized.current) return;
+    notificationsRef.current = notifications;
     safeSaveToLocalStorage('pregnancyNotifications', notifications);
     setUnreadCount(notifications.filter(n => !n.read).length);
   }, [notifications]);
@@ -249,9 +251,10 @@ export function useNotifications() {
       const newNotifications: Notification[] = [];
 
       // Check if a notification key already exists today (either in list or dismissed)
+      const currentNotifications = notificationsRef.current;
       const hasToday = (key: string) => {
         if (isDismissedToday(key)) return true;
-        return notifications.some(
+        return currentNotifications.some(
           n => n.id.startsWith(key) && new Date(n.time).toDateString() === todayDate
         );
       };
@@ -466,7 +469,8 @@ export function useNotifications() {
     // Check twice daily: on app open + once after 12 hours
     const interval = setInterval(generateSmartReminders, 12 * 60 * 60 * 1000);
     return () => clearInterval(interval);
-  }, [settings, notifications]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settings]);
 
   const addNotification = useCallback((notification: Omit<Notification, 'id' | 'time' | 'read'>) => {
     const newNotification: Notification = {
