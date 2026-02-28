@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { differenceInDays, addDays, format } from 'date-fns';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
-import { playNotificationSound } from '@/lib/notificationSound';
 import { showPushNotification, getPermissionStatus } from '@/lib/pushNotifications';
 import i18n from 'i18next';
 
@@ -43,11 +42,11 @@ interface NotificationSettings {
 const DEFAULT_SETTINGS: NotificationSettings = {
   appointmentReminders: true,
   vitaminReminders: true,
-  waterReminders: true,
+  waterReminders: false,
   cycleReminders: true,
-  weeklyTipReminders: true,
-  kickReminders: true,
-  milestoneReminders: true,
+  weeklyTipReminders: false,
+  kickReminders: false,
+  milestoneReminders: false,
 };
 
 /* ── Dismissed tracker ──
@@ -452,33 +451,6 @@ export function useNotifications() {
         }
       }
 
-      // ── Pregnancy weekly tip ──
-      if (settings.weeklyTipReminders && hour >= 7) {
-        try {
-          const profileRaw = localStorage.getItem('user_central_profile_v1');
-          if (profileRaw) {
-            const prof = JSON.parse(profileRaw);
-            if (prof.isPregnant && prof.pregnancyWeek) {
-              const week = prof.pregnancyWeek;
-              const tipKey = `weekly-tip-${todayDate}`;
-              if (!hasToday(tipKey)) {
-                const specificMsg = i18n.t(`notificationsPanel.weeklyTipMsg_${week}`, { defaultValue: '' });
-                const msg = specificMsg || tn('weeklyTipMsg_default', { week });
-                newNotifications.push({
-                  id: tipKey,
-                  type: 'weeklyTip',
-                  title: tn('weeklyTipTitle', { week }),
-                  message: msg,
-                  time: nowISO,
-                  read: false,
-                  actionUrl: '/tools/baby-growth',
-                });
-              }
-            }
-          }
-        } catch {}
-      }
-
       // ── Kick counter reminder (week 28+) at 10 AM ──
       if (settings.kickReminders && hour >= 10) {
         try {
@@ -539,15 +511,8 @@ export function useNotifications() {
       if (newNotifications.length > 0) {
         setNotifications(prev => [...newNotifications, ...prev].slice(0, 15));
         
-        const hasAppointment = newNotifications.some(n => n.type === 'appointment');
-        const hasMilestone = newNotifications.some(n => n.type === 'milestone');
-        if (hasMilestone) {
-          playNotificationSound('success');
-        } else if (hasAppointment) {
-          playNotificationSound('reminder');
-        }
 
-        // Push notifications
+        // Push notifications (silent — no in-app sounds)
         const pushEnabled = localStorage.getItem('pushNotificationsEnabled') === 'true';
         if (pushEnabled && getPermissionStatus() === 'granted') {
           for (const n of newNotifications) {
@@ -576,10 +541,7 @@ export function useNotifications() {
       time: new Date().toISOString(),
       read: false,
     };
-    setNotifications(prev => [newNotification, ...prev].slice(0, 10));
-    
-    const soundType = notification.type === 'appointment' ? 'reminder' : 'gentle';
-    playNotificationSound(soundType);
+    setNotifications(prev => [newNotification, ...prev].slice(0, 15));
 
     const pushEnabled = localStorage.getItem('pushNotificationsEnabled') === 'true';
     if (pushEnabled && getPermissionStatus() === 'granted') {
