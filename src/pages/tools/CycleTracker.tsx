@@ -7,7 +7,7 @@ import { formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ToolFrame } from "@/components/ToolFrame";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
-import { FertilityDailyTip } from "@/components/FertilityDailyTip";
+
 
 import { Button } from "@/components/ui/button";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
@@ -187,8 +187,7 @@ Any patterns that might be worth discussing with a doctor`;
               </p>
             </div>
 
-            {/* Fertility Expert Tip */}
-            <FertilityDailyTip titleKey="fertilityExpert.title" />
+
           </>
         )}
       </motion.div>
