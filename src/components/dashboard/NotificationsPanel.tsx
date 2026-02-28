@@ -8,7 +8,7 @@ import {
   Baby, Footprints, Trophy
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNotifications, Notification, hasAppointmentData, hasVitaminData, hasCycleData, hasKickData } from '@/hooks/useNotifications';
+import { useNotifications, Notification } from '@/hooks/useNotifications';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -177,12 +177,7 @@ export function NotificationsPanel() {
   
   const [showSettings, setShowSettings] = useState(false);
 
-  const noDataMsg = t('notificationsPanel.noDataYet', 'Use the tool first');
-  const _hasAppt = hasAppointmentData();
-  const _hasVit = hasVitaminData();
-  const _hasCycle = hasCycleData();
-  const _hasKick = hasKickData();
-  
+
   const { supported: pushSupported, permission: pushPermission, enabled: pushEnabled, enablePush, disablePush } = usePushNotifications();
 
   return (
@@ -240,11 +235,11 @@ export function NotificationsPanel() {
             className="overflow-hidden"
           >
             <div className="space-y-1.5 pb-2">
-              <SettingsItem icon={Calendar} label={t('notificationsPanel.appointments')} color="bg-blue-500" checked={settings.appointmentReminders} onChange={(v) => updateSettings({ appointmentReminders: v })} hasData={_hasAppt} noDataLabel={noDataMsg} />
-              <SettingsItem icon={Pill} label={t('notificationsPanel.vitamins')} color="bg-amber-500" checked={settings.vitaminReminders} onChange={(v) => updateSettings({ vitaminReminders: v })} hasData={_hasVit} noDataLabel={noDataMsg} />
+              <SettingsItem icon={Calendar} label={t('notificationsPanel.appointments')} color="bg-blue-500" checked={settings.appointmentReminders} onChange={(v) => updateSettings({ appointmentReminders: v })} />
+              <SettingsItem icon={Pill} label={t('notificationsPanel.vitamins')} color="bg-amber-500" checked={settings.vitaminReminders} onChange={(v) => updateSettings({ vitaminReminders: v })} />
               <SettingsItem icon={Droplet} label={t('notificationsPanel.water')} color="bg-sky-500" checked={settings.waterReminders} onChange={(v) => updateSettings({ waterReminders: v })} />
-              <SettingsItem icon={Heart} label={t('notificationsPanel.cycleReminders')} color="bg-rose-500" checked={settings.cycleReminders} onChange={(v) => updateSettings({ cycleReminders: v })} hasData={_hasCycle} noDataLabel={noDataMsg} />
-              <SettingsItem icon={Footprints} label={t('notificationsPanel.kickReminders')} color="bg-violet-500" checked={settings.kickReminders} onChange={(v) => updateSettings({ kickReminders: v })} hasData={_hasKick} noDataLabel={noDataMsg} />
+              <SettingsItem icon={Heart} label={t('notificationsPanel.cycleReminders')} color="bg-rose-500" checked={settings.cycleReminders} onChange={(v) => updateSettings({ cycleReminders: v })} />
+              <SettingsItem icon={Footprints} label={t('notificationsPanel.kickReminders')} color="bg-violet-500" checked={settings.kickReminders} onChange={(v) => updateSettings({ kickReminders: v })} />
               <SettingsItem icon={Trophy} label={t('notificationsPanel.milestoneReminders')} color="bg-yellow-500" checked={settings.milestoneReminders} onChange={(v) => updateSettings({ milestoneReminders: v })} />
 
               {pushSupported && (

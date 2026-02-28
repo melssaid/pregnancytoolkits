@@ -60,10 +60,10 @@ interface NotificationSettings {
 }
 
 const DEFAULT_SETTINGS: NotificationSettings = {
-  appointmentReminders: true,
-  vitaminReminders: true,
+  appointmentReminders: false,
+  vitaminReminders: false,
   waterReminders: false,
-  cycleReminders: true,
+  cycleReminders: false,
   weeklyTipReminders: false,
   kickReminders: false,
   milestoneReminders: false,
