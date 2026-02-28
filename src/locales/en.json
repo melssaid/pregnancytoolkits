@@ -201,8 +201,8 @@
       "description": "Plan baby expenses smartly."
     },
     "aiBumpPhotos": {
-      "title": "Ultrasound Analyzer",
-      "description": "AI-powered ultrasound photo analysis & insights."
+      "title": "Ultrasound Gallery",
+      "description": "Save & explore your ultrasound photos with educational insights."
     },
     "aiFitnessCoach": {
       "title": "AI Fitness Guide",
@@ -377,7 +377,7 @@
       "babyGrowth": "Baby Growth",
       "babyGrowthDesc": "Postnatal tracking",
       "bumpPhotos": "Ultrasound",
-      "bumpPhotosDesc": "AI analysis",
+      "bumpPhotosDesc": "Educational insights",
       "babySleep": "Baby Sleep",
       "babySleepDesc": "Sleep patterns",
       "diaperTracker": "Diaper Tracker",
@@ -2134,14 +2134,14 @@
       }
     },
     "bumpPhotos": {
-      "title": "Ultrasound Analyzer",
-      "subtitle": "AI-powered ultrasound photo analysis & insights",
+      "title": "Ultrasound Gallery",
+      "subtitle": "Save & explore your ultrasound photos with educational insights",
       "currentWeek": "Current Week",
       "takePhoto": "Take Photo",
       "uploadPhoto": "Upload Photo",
       "photoTimeline": "Ultrasound Gallery",
       "noPhotos": "No ultrasound photos yet",
-      "noPhotosDesc": "Upload your ultrasound images for AI analysis",
+      "noPhotosDesc": "Upload your ultrasound images for educational insights",
       "compareWeeks": "Compare Weeks",
       "aiAnalysis": "AI Analysis",
       "getAnalysis": "Analyze with AI",
