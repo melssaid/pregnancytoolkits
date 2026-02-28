@@ -14,7 +14,7 @@ type AIType =
 
 interface AIRequest {
   type: AIType;
-  messages?: { role: string; content: string }[];
+  messages?: { role: string; content: string | Array<{ type: string; text?: string; image_url?: { url: string } }> }[];
   context?: {
     week?: number;
     trimester?: number;
@@ -376,21 +376,30 @@ Always consult your healthcare provider before taking supplements during pregnan
 
     case "bump-photos": {
       const bumpWeek = context?.week || 20;
-      return persona + `You are specialized in pregnancy progression for week ${bumpWeek}.
+      return persona + `You are specialized in analyzing pregnancy bump photos and progression for week ${bumpWeek}.
+
+If an image is provided, analyze the actual photo and provide personalized observations:
+
+## 📸 Photo Analysis
+- Comment on the bump shape and size relative to week ${bumpWeek}
+- Note posture observations (supportive, encouraging tone)
+- Suggest improvements for future photos (lighting, angle, pose)
 
 ## 🗓️ Week ${bumpWeek} Development
-### 👶 Baby's Current Size
+### 👶 Baby's Current Size (fruit/vegetable comparison)
 ### 🌟 Key Developments This Week
+
 ## 🤰 Your Body This Week
-### Physical Changes
-### Expected Symptoms
-## 📸 Photo Documentation Tips
-### Capturing This Moment
-### Weekly Tracking Ideas
-## 💕 Self-Care Reminders
+### Physical Changes to Expect
+### How Your Bump Compares to Typical Week ${bumpWeek}
+
+## 💕 Self-Care Tips
+- Skin care for stretch marks
+- Comfort recommendations for this stage
+
 ## ✨ Words of Encouragement
 
-Be warm, encouraging, and focus on celebrating this beautiful journey.`;
+IMPORTANT: Be warm, positive, and celebratory. NEVER make negative comments about the mother's appearance or weight. Focus on the beauty of the journey and healthy development.`;
     }
 
     case "baby-cry-analysis":
@@ -460,8 +469,12 @@ function validateRequest(body: unknown): { valid: true; data: AIRequest } | { va
     if (totalLen > MAX_CONTENT_LENGTH) return { valid: false, error: `Content too long (max ${MAX_CONTENT_LENGTH} chars)`, status: 400 };
 
     for (const msg of messages) {
-      if (typeof msg.role !== "string" || typeof msg.content !== "string") {
-        return { valid: false, error: "Each message must have string 'role' and 'content'", status: 400 };
+      if (typeof msg.role !== "string") {
+        return { valid: false, error: "Each message must have a string 'role'", status: 400 };
+      }
+      // Allow string content OR multimodal array content (for image analysis)
+      if (typeof msg.content !== "string" && !Array.isArray(msg.content)) {
+        return { valid: false, error: "Each message must have string or array 'content'", status: 400 };
       }
     }
   }

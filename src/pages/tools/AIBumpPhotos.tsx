@@ -199,53 +199,21 @@ const AIBumpPhotos: React.FC = () => {
       
       const previousPhoto = photos.find(p => p.week < photo.week);
       
-      const prompt = previousPhoto 
-        ? `I am in week ${photo.week} of pregnancy (last photo was at week ${previousPhoto.week}).
+      const textPrompt = previousPhoto 
+        ? `I am in week ${photo.week} of pregnancy (last photo was at week ${previousPhoto.week}). Please analyze this bump photo and provide a comprehensive pregnancy progress update with photo-specific observations.`
+        : `I am in week ${photo.week} of pregnancy. Please analyze this bump photo and provide a comprehensive pregnancy update with photo-specific observations.`;
 
-Please provide a comprehensive pregnancy progress update:
-
-## Week ${photo.week} Development
-- What's happening with baby this week
-- Expected size and weight comparisons
-
-## Body Changes
-- Normal changes to expect from week ${previousPhoto.week} to week ${photo.week}
-- Belly growth patterns
-
-## Self-Care Tips
-- Skin care recommendations for stretch mark prevention
-- Comfort tips for this stage
-
-## Photo Tips
-- Best poses for documenting this stage
-- Lighting and angle suggestions
-
-Keep the tone supportive and celebratory of the pregnancy journey.`
-        : `I am in week ${photo.week} of pregnancy.
-
-Please provide a comprehensive pregnancy update:
-
-## Week ${photo.week} Development
-- Baby's current size (fruit/vegetable comparison)
-- Key developments this week
-
-## Your Body
-- Expected changes and symptoms
-- Belly growth information
-
-## Weekly Self-Care
-- Skin care for stretch mark prevention
-- Comfort recommendations
-
-## Photo Documentation Tips
-- How to capture this special moment
-- Pose and styling suggestions`;
+      // Build multimodal message with image
+      const messageContent: Array<{ type: string; text?: string; image_url?: { url: string } }> = [
+        { type: "text", text: textPrompt },
+        { type: "image_url", image_url: { url: photo.public_url } },
+      ];
 
       let fullResponse = '';
       
       await streamChat({
         type: 'bump-photos',
-        messages: [{ role: 'user', content: prompt }],
+        messages: [{ role: 'user', content: messageContent }],
         context: { week: photo.week },
         onDelta: (text) => {
           if (abortRef.current) return;
