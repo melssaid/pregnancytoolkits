@@ -6,9 +6,11 @@ type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "
 
 export type AIErrorType = "rate_limit" | "payment" | "network" | "unknown";
 
+type MessageContentPart = { type: string; text?: string; image_url?: { url: string } };
+
 interface Message {
   role: "user" | "assistant";
-  content: string;
+  content: string | MessageContentPart[];
 }
 
 interface AIContext {
