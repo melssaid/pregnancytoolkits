@@ -629,7 +629,7 @@
           "title": "Ultrasound Gallery & Media",
           "desc": "The Ultrasound Gallery allows you to save and view your ultrasound photos with optional AI-powered educational observations. This feature does NOT perform medical diagnoses or clinical image analysis — it provides general educational information only.",
           "localDefault": "Ultrasound photos are stored locally on your device by default using compressed Base64",
-          "localOnly": "All ultrasound photos are stored exclusively on your device and never uploaded to any server",
+          "localOnly": "All photos are stored exclusively on your device and never uploaded to any server",
           "noPublic": "Photos are never publicly accessible or shared with third parties",
           "noDiagnosis": "AI observations are educational only — not a substitute for professional medical interpretation"
         },
