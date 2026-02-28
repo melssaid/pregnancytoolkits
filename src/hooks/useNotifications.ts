@@ -560,7 +560,7 @@ export function useNotifications() {
           const profileRaw = localStorage.getItem('user_central_profile_v1');
           if (profileRaw) {
             const prof = JSON.parse(profileRaw);
-            if (prof.isPregnant && prof.pregnancyWeek) {
+            if (prof.isPregnant && prof.pregnancyWeek && prof.pregnancyWeek > 0 && prof.lastPeriodDate) {
               const week = prof.pregnancyWeek;
               // Month boundaries: month2=8w, month3=12w, month4=16w, month5=20w, month6=24w, month7=28w, month8=32w, month9=36w
               const milestoneWeeks: Record<number, string> = {

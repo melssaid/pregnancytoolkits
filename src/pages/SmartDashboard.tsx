@@ -133,7 +133,7 @@ const SmartDashboard = () => {
     bloodPressure: "",
     mood: userProfile.mood ?? "Good",
     symptoms: [],
-    weekOfPregnancy: userProfile.pregnancyWeek ?? 20
+    weekOfPregnancy: userProfile.pregnancyWeek || 0
   });
   const [healthSaved, setHealthSaved] = useState(false);
   const [aiHealthInsight, setAiHealthInsight] = useState('');
@@ -259,14 +259,16 @@ const SmartDashboard = () => {
             className="space-y-5"
           >
             {/* 1. Progress Ring - Pregnancy Week Status */}
-            <Card className="overflow-hidden rounded-3xl bg-gradient-to-br from-card to-muted/20 card-pink-top">
-              <CardContent className="p-6 flex flex-col items-center">
-                <ProgressRing 
-                  currentWeek={healthData.weekOfPregnancy} 
-                  totalWeeks={40}
-                />
-              </CardContent>
-            </Card>
+            {healthData.weekOfPregnancy > 0 && (
+              <Card className="overflow-hidden rounded-3xl bg-gradient-to-br from-card to-muted/20 card-pink-top">
+                <CardContent className="p-6 flex flex-col items-center">
+                  <ProgressRing 
+                    currentWeek={healthData.weekOfPregnancy} 
+                    totalWeeks={40}
+                  />
+                </CardContent>
+              </Card>
+            )}
 
             {/* 2. Quick Stats - Daily Health Overview */}
             <QuickStats
