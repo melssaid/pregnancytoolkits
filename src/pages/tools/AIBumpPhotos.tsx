@@ -200,10 +200,10 @@ const AIBumpPhotos: React.FC = () => {
       const previousPhoto = photos.find(p => p.week < photo.week);
       
       const textPrompt = previousPhoto 
-        ? `I am in week ${photo.week} of pregnancy (last photo was at week ${previousPhoto.week}). Please analyze this bump photo and provide a comprehensive pregnancy progress update with photo-specific observations.`
-        : `I am in week ${photo.week} of pregnancy. Please analyze this bump photo and provide a comprehensive pregnancy update with photo-specific observations.`;
+        ? `I am in week ${photo.week} of pregnancy (previous ultrasound was at week ${previousPhoto.week}). Please analyze this ultrasound (sonogram) image and provide educational observations about what is visible, baby's development at this stage, and any notable features.`
+        : `I am in week ${photo.week} of pregnancy. Please analyze this ultrasound (sonogram) image and provide educational observations about what is visible, baby's development at this stage, and any notable features.`;
 
-      // Build multimodal message with image
+      // Build multimodal message with ultrasound image
       const messageContent: Array<{ type: string; text?: string; image_url?: { url: string } }> = [
         { type: "text", text: textPrompt },
         { type: "image_url", image_url: { url: photo.public_url } },
