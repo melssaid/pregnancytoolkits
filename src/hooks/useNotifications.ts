@@ -88,6 +88,43 @@ function isDismissedToday(key: string): boolean {
   return getDismissedSet().has(key);
 }
 
+/* ── Data existence checks ──
+ * Notifications only fire when the user has actually used the related tool.
+ * Exported so the panel can show which notifications are available.
+ */
+export const hasAppointmentData = (): boolean => {
+  try {
+    const data = localStorage.getItem('appointments');
+    return data ? JSON.parse(data).length > 0 : false;
+  } catch { return false; }
+};
+
+export const hasVitaminData = (): boolean => {
+  try {
+    const userId = localStorage.getItem('pregnancy_user_id') || 'default';
+    const data = localStorage.getItem(`vitamin_logs_${userId}`);
+    return data ? JSON.parse(data).length > 0 : false;
+  } catch { return false; }
+};
+
+export const hasCycleData = (): boolean => {
+  try {
+    const raw = localStorage.getItem('cycle-tracker-v2');
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    const dayLogs = data.dayLogs || {};
+    return Object.keys(dayLogs).some(d => dayLogs[d]?.flow) || !!data.setup?.lastPeriodDate;
+  } catch { return false; }
+};
+
+export const hasKickData = (): boolean => {
+  try {
+    const userId = localStorage.getItem('pregnancy_user_id') || 'default';
+    const data = localStorage.getItem(`kick_sessions_${userId}`);
+    return data ? JSON.parse(data).length > 0 : false;
+  } catch { return false; }
+};
+
 const getAppointmentsFromStorage = (): any[] => {
   try {
     const data = localStorage.getItem('appointments');
@@ -283,8 +320,8 @@ export function useNotifications() {
         }
       }
 
-      // ── Vitamin reminder: once daily at 8 AM ──
-      if (settings.vitaminReminders && hour >= 8) {
+      // ── Vitamin reminder: once daily at 8 AM (only if user has vitamin data) ──
+      if (settings.vitaminReminders && hour >= 8 && hasVitaminData()) {
         const vitaminKey = `vitamin-daily-${todayDate}`;
         if (!hasToday(vitaminKey)) {
           newNotifications.push({
@@ -451,8 +488,8 @@ export function useNotifications() {
         }
       }
 
-      // ── Kick counter reminder (week 28+) at 10 AM ──
-      if (settings.kickReminders && hour >= 10) {
+      // ── Kick counter reminder (week 28+) at 10 AM — only if user has kick data ──
+      if (settings.kickReminders && hour >= 10 && hasKickData()) {
         try {
           const profileRaw = localStorage.getItem('user_central_profile_v1');
           if (profileRaw) {

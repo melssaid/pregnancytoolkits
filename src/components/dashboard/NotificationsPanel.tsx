@@ -8,7 +8,7 @@ import {
   Baby, Footprints, Trophy
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNotifications, Notification } from '@/hooks/useNotifications';
+import { useNotifications, Notification, hasAppointmentData, hasVitaminData, hasCycleData, hasKickData } from '@/hooks/useNotifications';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -118,29 +118,37 @@ function NotificationItem({ notification, onRead, onClear }: {
 }
 
 function SettingsItem({ 
-  icon: Icon, label, color, checked, onChange 
+  icon: Icon, label, color, checked, onChange, hasData = true, noDataLabel 
 }: { 
-  icon: any; label: string; color: string; checked: boolean; onChange: (v: boolean) => void;
+  icon: any; label: string; color: string; checked: boolean; onChange: (v: boolean) => void; hasData?: boolean; noDataLabel?: string;
 }) {
   return (
     <button
-      onClick={() => onChange(!checked)}
+      onClick={() => hasData && onChange(!checked)}
       className={`flex items-center justify-between py-2 px-3 rounded-xl transition-all duration-200 w-full ${
-        checked 
-          ? 'bg-primary/8 border border-primary/20' 
-          : 'bg-muted/30 border border-transparent opacity-60'
+        !hasData 
+          ? 'bg-muted/15 border border-transparent opacity-40 cursor-not-allowed'
+          : checked 
+            ? 'bg-primary/8 border border-primary/20' 
+            : 'bg-muted/30 border border-transparent opacity-60'
       }`}
+      disabled={!hasData}
     >
       <div className="flex items-center gap-2.5">
-        <div className={`w-6 h-6 rounded-lg ${checked ? color : 'bg-muted-foreground/20'} flex items-center justify-center transition-colors`}>
+        <div className={`w-6 h-6 rounded-lg ${checked && hasData ? color : 'bg-muted-foreground/20'} flex items-center justify-center transition-colors`}>
           <Icon className="w-3 h-3 text-white" />
         </div>
-        <span className={`text-xs font-medium ${checked ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
+        <div className="text-start">
+          <span className={`text-xs font-medium block ${checked && hasData ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
+          {!hasData && noDataLabel && (
+            <span className="text-[9px] text-muted-foreground/50 block">{noDataLabel}</span>
+          )}
+        </div>
       </div>
       <div className={`w-4.5 h-4.5 rounded-full border-2 flex items-center justify-center transition-all ${
-        checked ? 'border-primary bg-primary' : 'border-muted-foreground/30'
+        checked && hasData ? 'border-primary bg-primary' : 'border-muted-foreground/30'
       }`}>
-        {checked && <CheckCircle className="w-3 h-3 text-primary-foreground" />}
+        {checked && hasData && <CheckCircle className="w-3 h-3 text-primary-foreground" />}
       </div>
     </button>
   );
@@ -161,6 +169,12 @@ export function NotificationsPanel() {
   } = useNotifications();
   
   const [showSettings, setShowSettings] = useState(false);
+
+  const noDataMsg = t('notificationsPanel.noDataYet', 'Use the tool first');
+  const _hasAppt = hasAppointmentData();
+  const _hasVit = hasVitaminData();
+  const _hasCycle = hasCycleData();
+  const _hasKick = hasKickData();
   
   const { supported: pushSupported, permission: pushPermission, enabled: pushEnabled, enablePush, disablePush } = usePushNotifications();
 
@@ -219,12 +233,11 @@ export function NotificationsPanel() {
             className="overflow-hidden"
           >
             <div className="space-y-1.5 pb-2">
-              <SettingsItem icon={Calendar} label={t('notificationsPanel.appointments')} color="bg-blue-500" checked={settings.appointmentReminders} onChange={(v) => updateSettings({ appointmentReminders: v })} />
-              <SettingsItem icon={Pill} label={t('notificationsPanel.vitamins')} color="bg-amber-500" checked={settings.vitaminReminders} onChange={(v) => updateSettings({ vitaminReminders: v })} />
+              <SettingsItem icon={Calendar} label={t('notificationsPanel.appointments')} color="bg-blue-500" checked={settings.appointmentReminders} onChange={(v) => updateSettings({ appointmentReminders: v })} hasData={_hasAppt} noDataLabel={noDataMsg} />
+              <SettingsItem icon={Pill} label={t('notificationsPanel.vitamins')} color="bg-amber-500" checked={settings.vitaminReminders} onChange={(v) => updateSettings({ vitaminReminders: v })} hasData={_hasVit} noDataLabel={noDataMsg} />
               <SettingsItem icon={Droplet} label={t('notificationsPanel.water')} color="bg-sky-500" checked={settings.waterReminders} onChange={(v) => updateSettings({ waterReminders: v })} />
-              <SettingsItem icon={Heart} label={t('notificationsPanel.cycleReminders')} color="bg-rose-500" checked={settings.cycleReminders} onChange={(v) => updateSettings({ cycleReminders: v })} />
-              <SettingsItem icon={Footprints} label={t('notificationsPanel.kickReminders')} color="bg-violet-500" checked={settings.kickReminders} onChange={(v) => updateSettings({ kickReminders: v })} />
-              <SettingsItem icon={Footprints} label={t('notificationsPanel.kickReminders')} color="bg-violet-500" checked={settings.kickReminders} onChange={(v) => updateSettings({ kickReminders: v })} />
+              <SettingsItem icon={Heart} label={t('notificationsPanel.cycleReminders')} color="bg-rose-500" checked={settings.cycleReminders} onChange={(v) => updateSettings({ cycleReminders: v })} hasData={_hasCycle} noDataLabel={noDataMsg} />
+              <SettingsItem icon={Footprints} label={t('notificationsPanel.kickReminders')} color="bg-violet-500" checked={settings.kickReminders} onChange={(v) => updateSettings({ kickReminders: v })} hasData={_hasKick} noDataLabel={noDataMsg} />
               <SettingsItem icon={Trophy} label={t('notificationsPanel.milestoneReminders')} color="bg-yellow-500" checked={settings.milestoneReminders} onChange={(v) => updateSettings({ milestoneReminders: v })} />
 
               {pushSupported && (
