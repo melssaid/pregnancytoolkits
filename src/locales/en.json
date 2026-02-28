@@ -561,12 +561,12 @@
     "privacyPolicy": {
       "title": "Privacy Policy",
       "subtitle": "Your privacy is important to us. This notice explains how we handle your information.",
-      "lastUpdated": "Last updated: February 26, 2026",
+      "lastUpdated": "Last updated: February 28, 2026",
       "footerNote": "By continuing to use Pregnancy Toolkits, you acknowledge that you have read and understood this Privacy Policy. For the full legal text, please contact us.",
       "privacyFirst": {
         "title": "Privacy-First Approach",
         "badge": "Important",
-        "content": "We offer all services without the collection of personal data. Our application is specialized in providing tools to support pregnant women, with strict adherence not to collect user data for any commercial purposes. All health data is stored locally on your device and optionally encrypted."
+        "content": "We offer all services without the collection of personal data. Our application is a lifestyle and educational companion — it is NOT a medical device under EU MDR (Medical Device Regulation) or any jurisdiction. It does not provide diagnoses, clinical assessments, or medical advice. All AI-generated content is educational only. All health data is stored locally on your device and optionally encrypted."
       },
       "keyPoint": "Key Point",
       "sections": {
@@ -614,7 +614,7 @@
         "aiProducts": {
           "title": "AI-Powered Features",
           "desc": "We offer features powered by artificial intelligence through secure cloud-based AI models (Google Gemini). No third-party AI providers have access to your stored health data.",
-          "tools": ["Smart Pregnancy Guide", "Pregnancy Wellness Diary", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Guides", "Labor Progress Guide"],
+          "tools": ["Smart Pregnancy Guide", "Pregnancy Wellness Diary", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Guides", "Labor Progress Guide", "Ultrasound Gallery"],
           "dataNote": "When using AI features, only your specific query text is sent anonymously to our secure backend. Your stored health data remains entirely on your device and is never transmitted.",
           "noTraining": "Your queries are NOT used to train AI models"
         },
@@ -626,12 +626,13 @@
           "canDisable": "Can be enabled/disabled in settings"
         },
         "photos": {
-          "title": "Photos & Media",
-          "desc": "If you use the bump photos feature, photos are stored securely:",
-          "localDefault": "Photos are stored locally on your device by default",
+          "title": "Ultrasound Gallery & Media",
+          "desc": "The Ultrasound Gallery allows you to save and view your ultrasound photos with optional AI-powered educational observations. This feature does NOT perform medical diagnoses or clinical image analysis — it provides general educational information only.",
+          "localDefault": "Ultrasound photos are stored locally on your device by default using compressed Base64",
           "optionalSync": "Optional cloud sync uses private, encrypted storage buckets",
           "signedUrls": "Cloud-stored photos are accessed via time-limited signed URLs (1-hour expiry)",
-          "noPublic": "Photos are never publicly accessible or shared with third parties"
+          "noPublic": "Photos are never publicly accessible or shared with third parties",
+          "noDiagnosis": "AI observations are educational only — not a substitute for professional medical interpretation"
         },
         "retention": {
           "title": "Data Retention",

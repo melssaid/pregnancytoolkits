@@ -176,7 +176,7 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
         <div className="space-y-4">
           <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
           <div className="grid gap-2 mt-3">
-            {["localDefault", "optionalSync", "signedUrls", "noPublic"].map((key) => (
+            {["localDefault", "optionalSync", "signedUrls", "noPublic", "noDiagnosis"].map((key) => (
               <div key={key} className="flex items-start gap-2 text-sm">
                 <CheckCircle2 className="w-4 h-4 text-rose-600 mt-0.5 shrink-0" />
                 <span className="text-muted-foreground">{s(key)}</span>
