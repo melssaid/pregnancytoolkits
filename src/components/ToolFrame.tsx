@@ -194,10 +194,10 @@ export function ToolFrame({
             <ToolInsightTabs toolId={toolId} />
           )}
 
-          {/* Fertility Daily Tip - only for non-fertility tools */}
-          {toolId && !FERTILITY_TOOL_IDS.has(toolId) && (
+          {/* Daily Tip - fertility expert for fertility tools, tip of the day for others */}
+          {toolId && (
             <div className="mt-4">
-              <FertilityDailyTip />
+              <FertilityDailyTip titleKey={FERTILITY_TOOL_IDS.has(toolId) ? "fertilityExpert.title" : "fertilityTip.title"} />
             </div>
           )}
 
