@@ -463,8 +463,8 @@ export function useNotifications() {
     };
 
     generateSmartReminders();
-    // Check every 5 minutes instead of every minute (less aggressive)
-    const interval = setInterval(generateSmartReminders, 5 * 60 * 1000);
+    // Check twice daily: on app open + once after 12 hours
+    const interval = setInterval(generateSmartReminders, 12 * 60 * 60 * 1000);
     return () => clearInterval(interval);
   }, [settings, notifications]);
 
