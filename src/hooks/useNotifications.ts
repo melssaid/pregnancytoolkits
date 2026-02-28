@@ -44,7 +44,44 @@ const DEFAULT_SETTINGS: NotificationSettings = {
   cycleReminders: true,
 };
 
-const WATER_INTERVAL_HOURS = 6;
+/* ── Dismissed tracker ──
+ * Tracks which notification keys were dismissed TODAY.
+ * Prevents regeneration after user clears a notification.
+ */
+const DISMISSED_KEY = 'notificationsDismissedToday';
+
+function getTodayStr(): string {
+  return new Date().toDateString();
+}
+
+function getDismissedSet(): Set<string> {
+  try {
+    const raw = localStorage.getItem(DISMISSED_KEY);
+    if (!raw) return new Set();
+    const parsed = JSON.parse(raw);
+    if (parsed.date !== getTodayStr()) {
+      // New day — reset
+      localStorage.removeItem(DISMISSED_KEY);
+      return new Set();
+    }
+    return new Set(parsed.keys || []);
+  } catch {
+    return new Set();
+  }
+}
+
+function addDismissedKey(key: string): void {
+  const dismissed = getDismissedSet();
+  dismissed.add(key);
+  localStorage.setItem(DISMISSED_KEY, JSON.stringify({
+    date: getTodayStr(),
+    keys: Array.from(dismissed),
+  }));
+}
+
+function isDismissedToday(key: string): boolean {
+  return getDismissedSet().has(key);
+}
 
 const getAppointmentsFromStorage = (): any[] => {
   try {
@@ -90,9 +127,6 @@ const getCycleStatsFromStorage = (): { nextPeriod: string | null; ovulationDay: 
     const data = JSON.parse(raw);
     if (!data.setup && Object.keys(data.dayLogs || {}).length === 0) return { nextPeriod: null, ovulationDay: null };
 
-    // date-fns imported at top level
-
-    // Detect cycles from dayLogs
     const dayLogs = data.dayLogs || {};
     const dates = Object.keys(dayLogs).filter(d => dayLogs[d]?.flow).sort();
     
@@ -100,7 +134,6 @@ const getCycleStatsFromStorage = (): { nextPeriod: string | null; ovulationDay: 
     let avgCycle = data.setup?.cycleLength || 28;
 
     if (dates.length > 0) {
-      // Find period groups
       const periods: string[] = [];
       let curStart = dates[0];
       let curEnd = dates[0];
@@ -118,7 +151,6 @@ const getCycleStatsFromStorage = (): { nextPeriod: string | null; ovulationDay: 
 
       lastPeriodStart = new Date(periods[periods.length - 1]);
 
-      // Calculate average cycle from detected periods
       if (periods.length >= 2) {
         const cycleLengths: number[] = [];
         for (let i = 0; i < periods.length - 1; i++) {
@@ -166,14 +198,12 @@ export function useNotifications() {
       DEFAULT_SETTINGS,
       isSettings
     );
-    // Migrate old settings — drop removed keys
     setSettings({ 
       appointmentReminders: savedSettings.appointmentReminders ?? true,
       vitaminReminders: savedSettings.vitaminReminders ?? true,
       waterReminders: savedSettings.waterReminders ?? true,
       cycleReminders: (savedSettings as any).cycleReminders ?? true,
     });
-    // Filter out legacy notification types
     const validTypes = ['appointment', 'vitamin', 'water', 'cycle', 'general'];
     setNotifications(savedNotifications.filter(n => validTypes.includes(n.type)));
     
@@ -193,7 +223,7 @@ export function useNotifications() {
     safeSaveToLocalStorage('notificationSettings', settings);
   }, [settings]);
 
-  // Auto-clean old read notifications (older than 12 hours)
+  // Auto-clean old read notifications (older than 6 hours)
   useEffect(() => {
     if (!isInitialized.current) return;
     const SIX_HOURS = 6 * 60 * 60 * 1000;
@@ -215,38 +245,23 @@ export function useNotifications() {
       const now = new Date();
       const nowISO = now.toISOString();
       const hour = now.getHours();
+      const todayDate = now.toDateString();
       const newNotifications: Notification[] = [];
 
-      const hasTodayReminder = (type: string, subKey?: string) => {
+      // Check if a notification key already exists today (either in list or dismissed)
+      const hasToday = (key: string) => {
+        if (isDismissedToday(key)) return true;
         return notifications.some(
-          n => n.type === type && 
-          (!subKey || n.id.includes(subKey)) &&
-          new Date(n.time).toDateString() === now.toDateString()
+          n => n.id.startsWith(key) && new Date(n.time).toDateString() === todayDate
         );
       };
 
-      // Morning vitamin reminder (8 AM+ — once daily)
-      if (settings.vitaminReminders && hour >= 8 && !hasTodayReminder('vitamin')) {
-        newNotifications.push({
-          id: `vitamin-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          type: 'vitamin',
-          title: tn('vitaminReminderTitle'),
-          message: tn('vitaminReminderMsg'),
-          time: nowISO,
-          read: false,
-          actionUrl: '/tools/vitamin-tracker',
-        });
-      }
-
-      // Water reminder (every 4 hours)
-      if (settings.waterReminders) {
-        const recentWater = notifications.find(
-          n => n.type === 'water' && 
-          (now.getTime() - new Date(n.time).getTime()) < WATER_INTERVAL_HOURS * 60 * 60 * 1000
-        );
-        if (!recentWater) {
+      // ── Water reminder: ONCE daily at 9 AM ──
+      if (settings.waterReminders && hour >= 9) {
+        const waterKey = `water-daily-${todayDate}`;
+        if (!hasToday(waterKey)) {
           newNotifications.push({
-            id: `water-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            id: waterKey,
             type: 'water',
             title: tn('waterReminderTitle'),
             message: tn('waterReminderMsg'),
@@ -256,7 +271,23 @@ export function useNotifications() {
         }
       }
 
-      // Appointment reminders — tomorrow (8 AM+ window, once daily)
+      // ── Vitamin reminder: once daily at 8 AM ──
+      if (settings.vitaminReminders && hour >= 8) {
+        const vitaminKey = `vitamin-daily-${todayDate}`;
+        if (!hasToday(vitaminKey)) {
+          newNotifications.push({
+            id: vitaminKey,
+            type: 'vitamin',
+            title: tn('vitaminReminderTitle'),
+            message: tn('vitaminReminderMsg'),
+            time: nowISO,
+            read: false,
+            actionUrl: '/tools/vitamin-tracker',
+          });
+        }
+      }
+
+      // ── Appointment reminders ──
       if (settings.appointmentReminders && hour >= 8) {
         const appointments = getAppointmentsFromStorage();
         const tomorrow = new Date(now);
@@ -266,28 +297,21 @@ export function useNotifications() {
         const dayAfterTomorrow = new Date(tomorrow);
         dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
         
+        // Tomorrow's appointments
         const tomorrowAppointments = appointments.filter((apt: any) => {
           const aptDate = new Date(apt.appointment_date);
           return aptDate >= tomorrow && aptDate < dayAfterTomorrow;
         });
         
         for (const apt of tomorrowAppointments) {
-          const existingReminder = notifications.find(
-            n => n.type === 'appointment' && 
-            n.id.includes(apt.id) &&
-            !n.id.includes('today-') &&
-            !n.id.includes('2h-') &&
-            new Date(n.time).toDateString() === now.toDateString()
-          );
-          
-          if (!existingReminder) {
+          const aptKey = `apt-tmrw-${apt.id}-${todayDate}`;
+          if (!hasToday(aptKey)) {
             const aptDate = new Date(apt.appointment_date);
             const timeStr = aptDate.toLocaleTimeString('en-US', { 
               hour: 'numeric', minute: '2-digit', hour12: true 
             });
-            
             newNotifications.push({
-              id: `appointment-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              id: aptKey,
               type: 'appointment',
               title: tn('appointmentTomorrowTitle'),
               message: formatAppointmentMsg(apt, timeStr),
@@ -308,20 +332,14 @@ export function useNotifications() {
         });
         
         for (const apt of todayAppointments) {
-          const existingReminder = notifications.find(
-            n => n.type === 'appointment' && 
-            n.id.includes(`today-${apt.id}`) &&
-            new Date(n.time).toDateString() === now.toDateString()
-          );
-          
-          if (!existingReminder) {
+          const aptKey = `apt-today-${apt.id}-${todayDate}`;
+          if (!hasToday(aptKey)) {
             const aptDate = new Date(apt.appointment_date);
             const timeStr = aptDate.toLocaleTimeString('en-US', { 
               hour: 'numeric', minute: '2-digit', hour12: true 
             });
-            
             newNotifications.push({
-              id: `appointment-today-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              id: aptKey,
               type: 'appointment',
               title: tn('appointmentTodayTitle'),
               message: formatAppointmentMsg(apt, timeStr),
@@ -333,7 +351,7 @@ export function useNotifications() {
         }
       }
 
-      // 2-hour before appointment reminder
+      // ── 2-hour before appointment ──
       if (settings.appointmentReminders) {
         const appointments = getAppointmentsFromStorage();
         const allUpcoming = appointments.filter((apt: any) => {
@@ -344,18 +362,14 @@ export function useNotifications() {
         });
 
         for (const apt of allUpcoming) {
-          const existingReminder = notifications.find(
-            n => n.type === 'appointment' && n.id.includes(`2h-${apt.id}`)
-          );
-          
-          if (!existingReminder) {
+          const aptKey = `apt-2h-${apt.id}-${todayDate}`;
+          if (!hasToday(aptKey)) {
             const aptDate = new Date(apt.appointment_date);
             const timeStr = aptDate.toLocaleTimeString('en-US', { 
               hour: 'numeric', minute: '2-digit', hour12: true 
             });
-            
             newNotifications.push({
-              id: `appointment-2h-${apt.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+              id: aptKey,
               type: 'appointment',
               title: tn('appointment2hTitle'),
               message: formatAppointmentMsg(apt, timeStr),
@@ -366,7 +380,8 @@ export function useNotifications() {
           }
         }
       }
-      // Cycle reminders — 1-2 days before period & ovulation
+
+      // ── Cycle reminders ──
       if (settings.cycleReminders && hour >= 8) {
         const cycleStats = getCycleStatsFromStorage();
         const todayStr = format(now, 'yyyy-MM-dd');
@@ -374,60 +389,52 @@ export function useNotifications() {
         if (cycleStats.nextPeriod) {
           const daysUntilPeriod = differenceInDays(new Date(cycleStats.nextPeriod), new Date(todayStr));
           
-          // 2 days before period
-          if (daysUntilPeriod === 2 && !hasTodayReminder('cycle', 'period-2d')) {
-            newNotifications.push({
-              id: `cycle-period-2d-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-              type: 'cycle',
-              title: tn('cyclePeriod2dTitle'),
-              message: tn('cyclePeriod2dMsg'),
-              time: nowISO,
-              read: false,
-              actionUrl: '/tools/cycle-tracker',
-            });
+          if (daysUntilPeriod === 2) {
+            const key = `cycle-period-2d-${todayDate}`;
+            if (!hasToday(key)) {
+              newNotifications.push({
+                id: key, type: 'cycle',
+                title: tn('cyclePeriod2dTitle'), message: tn('cyclePeriod2dMsg'),
+                time: nowISO, read: false, actionUrl: '/tools/cycle-tracker',
+              });
+            }
           }
           
-          // 1 day before period
-          if (daysUntilPeriod === 1 && !hasTodayReminder('cycle', 'period-1d')) {
-            newNotifications.push({
-              id: `cycle-period-1d-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-              type: 'cycle',
-              title: tn('cyclePeriod1dTitle'),
-              message: tn('cyclePeriod1dMsg'),
-              time: nowISO,
-              read: false,
-              actionUrl: '/tools/cycle-tracker',
-            });
+          if (daysUntilPeriod === 1) {
+            const key = `cycle-period-1d-${todayDate}`;
+            if (!hasToday(key)) {
+              newNotifications.push({
+                id: key, type: 'cycle',
+                title: tn('cyclePeriod1dTitle'), message: tn('cyclePeriod1dMsg'),
+                time: nowISO, read: false, actionUrl: '/tools/cycle-tracker',
+              });
+            }
           }
         }
         
         if (cycleStats.ovulationDay) {
           const daysUntilOv = differenceInDays(new Date(cycleStats.ovulationDay), new Date(todayStr));
           
-          // 2 days before ovulation
-          if (daysUntilOv === 2 && !hasTodayReminder('cycle', 'ov-2d')) {
-            newNotifications.push({
-              id: `cycle-ov-2d-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-              type: 'cycle',
-              title: tn('cycleOv2dTitle'),
-              message: tn('cycleOv2dMsg'),
-              time: nowISO,
-              read: false,
-              actionUrl: '/tools/cycle-tracker',
-            });
+          if (daysUntilOv === 2) {
+            const key = `cycle-ov-2d-${todayDate}`;
+            if (!hasToday(key)) {
+              newNotifications.push({
+                id: key, type: 'cycle',
+                title: tn('cycleOv2dTitle'), message: tn('cycleOv2dMsg'),
+                time: nowISO, read: false, actionUrl: '/tools/cycle-tracker',
+              });
+            }
           }
           
-          // 1 day before ovulation
-          if (daysUntilOv === 1 && !hasTodayReminder('cycle', 'ov-1d')) {
-            newNotifications.push({
-              id: `cycle-ov-1d-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-              type: 'cycle',
-              title: tn('cycleOv1dTitle'),
-              message: tn('cycleOv1dMsg'),
-              time: nowISO,
-              read: false,
-              actionUrl: '/tools/cycle-tracker',
-            });
+          if (daysUntilOv === 1) {
+            const key = `cycle-ov-1d-${todayDate}`;
+            if (!hasToday(key)) {
+              newNotifications.push({
+                id: key, type: 'cycle',
+                title: tn('cycleOv1dTitle'), message: tn('cycleOv1dMsg'),
+                time: nowISO, read: false, actionUrl: '/tools/cycle-tracker',
+              });
+            }
           }
         }
       }
@@ -456,7 +463,8 @@ export function useNotifications() {
     };
 
     generateSmartReminders();
-    const interval = setInterval(generateSmartReminders, 60000);
+    // Check every 5 minutes instead of every minute (less aggressive)
+    const interval = setInterval(generateSmartReminders, 5 * 60 * 1000);
     return () => clearInterval(interval);
   }, [settings, notifications]);
 
@@ -491,13 +499,17 @@ export function useNotifications() {
     setNotifications(prev => prev.map(n => ({ ...n, read: true })));
   }, []);
 
+  // When user clears a notification, record it as dismissed so it won't regenerate
   const clearNotification = useCallback((id: string) => {
+    addDismissedKey(id);
     setNotifications(prev => prev.filter(n => n.id !== id));
   }, []);
 
+  // Clear all — dismiss all current notification keys
   const clearAll = useCallback(() => {
+    notifications.forEach(n => addDismissedKey(n.id));
     setNotifications([]);
-  }, []);
+  }, [notifications]);
 
   const updateSettings = useCallback((newSettings: Partial<NotificationSettings>) => {
     setSettings(prev => ({ ...prev, ...newSettings }));

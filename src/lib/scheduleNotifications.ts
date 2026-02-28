@@ -1,5 +1,6 @@
 /**
  * Builds today's reminder schedule and sends it to the Service Worker.
+ * Water: once daily at 9 AM. Vitamin: once daily at 8 AM.
  */
 
 import { scheduleRemindersInSW, getPermissionStatus } from '@/lib/pushNotifications';
@@ -34,46 +35,35 @@ export async function sendDailyScheduleToSW(): Promise<void> {
     (v): v is Record<string, boolean> => typeof v === 'object' && v !== null
   );
 
-  const existingNotifications: Array<{ type: string; time: string; id: string }> =
-    safeParseLocalStorage('pregnancyNotifications', [], (v): v is any[] => Array.isArray(v));
-
   const now = Date.now();
+  const reminders: ScheduledReminder[] = [];
   const todayStr = new Date().toDateString();
 
-  const hasTodayReminder = (type: string) =>
-    existingNotifications.some(
-      (n) => n.type === type && new Date(n.time).toDateString() === todayStr
-    );
-
-  const reminders: ScheduledReminder[] = [];
-
-  // Vitamin reminder at 8:00 AM
-  if (settings.vitaminReminders && !hasTodayReminder('vitamin')) {
+  // Vitamin reminder at 8:00 AM (once daily)
+  if (settings.vitaminReminders) {
     const fireAt = todayAt(8);
     if (fireAt > now) {
       reminders.push({
         title: tn('vitaminReminderTitle'),
         body: tn('vitaminReminderMsg'),
-        tag: 'vitamin-scheduled-' + todayStr,
+        tag: 'vitamin-daily-' + todayStr,
         url: '/tools/vitamin-tracker',
         fireAt,
       });
     }
   }
 
-  // Water reminders every 4 hours from 8 AM to 10 PM
+  // Water reminder at 9:00 AM (once daily)
   if (settings.waterReminders) {
-    for (let hour = 8; hour <= 22; hour += 4) {
-      const fireAt = todayAt(hour);
-      if (fireAt > now) {
-        reminders.push({
-          title: tn('waterReminderTitle'),
-          body: tn('waterReminderMsg'),
-          tag: `water-scheduled-${hour}-${todayStr}`,
-          url: '/',
-          fireAt,
-        });
-      }
+    const fireAt = todayAt(9);
+    if (fireAt > now) {
+      reminders.push({
+        title: tn('waterReminderTitle'),
+        body: tn('waterReminderMsg'),
+        tag: 'water-daily-' + todayStr,
+        url: '/',
+        fireAt,
+      });
     }
   }
 
