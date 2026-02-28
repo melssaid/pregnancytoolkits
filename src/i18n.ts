@@ -52,7 +52,7 @@ const localeLoaders: Record<string, () => Promise<Record<string, any>>> = {
 // Cache to avoid re-processing
 const loadedLanguages = new Set<string>();
 
-async function loadLanguage(lng: string): Promise<void> {
+export async function loadLanguage(lng: string): Promise<void> {
   if (loadedLanguages.has(lng)) return;
   const loader = localeLoaders[lng];
   if (!loader) return;
@@ -63,6 +63,11 @@ async function loadLanguage(lng: string): Promise<void> {
   } catch (e) {
     console.error(`Failed to load locale: ${lng}`, e);
   }
+}
+
+/** Preload all supported language bundles (non-blocking) */
+export function preloadAllLanguages(): Promise<void[]> {
+  return Promise.all(SUPPORTED_LANGUAGES.map(loadLanguage));
 }
 
 // Get the best matching language from browser
