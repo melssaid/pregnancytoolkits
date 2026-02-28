@@ -137,7 +137,11 @@
     "pregnant": "حامل",
     "notPregnant": "غير حامل",
     "weight": "الوزن",
-    "height": "الطول"
+    "height": "الطول",
+    "selectDate": "اختر تاريخاً",
+    "weeksUnit": "أسابيع",
+    "autoWeekNote": "يُحسب الأسبوع تلقائياً من هذا التاريخ",
+    "dueDateLabel": "تاريخ الولادة المتوقع"
   },
   "tools": {
     "pregnancyAssistant": {"title": "دليل الحمل الذكي", "description": "اسألي أي سؤال عن الحمل واحصلي على إجابة فورية"},
@@ -643,12 +647,20 @@
       "title": "ملفي الشخصي",
       "desc": "الوزن والطول وأسبوع الحمل",
       "saved": "تم تحديث الملف الشخصي بنجاح",
+      "save": "حفظ الملف الشخصي",
       "heightLabel": "الطول",
       "heightPlaceholder": "مثال: 165",
       "heightUnit": "سم",
       "bloodTypeLabel": "فصيلة الدم",
       "bloodTypePlaceholder": "اختر فصيلة الدم",
-      "bloodTypeUnknown": "غير معروف / لم يُفحص"
+      "bloodTypeUnknown": "غير معروف / لم يُفحص",
+      "bmiLabel": "مؤشر كتلة الجسم (BMI)",
+      "bmi": {
+        "underweight": "أقل من الطبيعي",
+        "normal": "طبيعي",
+        "overweight": "زيادة في الوزن",
+        "obese": "سمنة"
+      }
     },
     "securityPrivacy": "الأمان والخصوصية",
     "securityDesc": "تشفير البيانات وحمايتها",

@@ -151,7 +151,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
       <div className="space-y-1.5">
         <Label className="flex items-center gap-1.5 text-xs font-medium">
           <Baby className="w-3.5 h-3.5 text-primary" />
-          {t('onboarding.pregnancyWeekLabel', 'Pregnancy Week')}
+          {t('onboarding.pregnancyWeek', 'Pregnancy Week')}
         </Label>
         <div className="flex items-center gap-2">
           <Input
@@ -173,7 +173,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
       <div className="space-y-1.5">
         <Label className="flex items-center gap-1.5 text-xs font-medium">
           <Calendar className="w-3.5 h-3.5 text-primary" />
-          {t('onboarding.lastPeriodLabel', 'Last Menstrual Period')}
+          {t('onboarding.lastPeriod', 'Last Menstrual Period')}
         </Label>
         <Popover open={lmpOpen} onOpenChange={setLmpOpen}>
           <PopoverTrigger asChild>
@@ -216,7 +216,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
         <div className="space-y-1.5">
           <Label className="flex items-center gap-1.5 text-xs font-medium">
             <Scale className="w-3.5 h-3.5 text-primary" />
-            {t('onboarding.weightLabel', 'Current Weight')}
+            {t('onboarding.weight', 'Current Weight')}
           </Label>
           <div className="flex items-center gap-1.5">
             <Input
