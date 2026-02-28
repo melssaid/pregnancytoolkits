@@ -22,7 +22,7 @@ const formatAppointmentMsg = (apt: any, timeStr: string): string => {
 
 export interface Notification {
   id: string;
-  type: 'appointment' | 'vitamin' | 'water' | 'cycle' | 'general';
+  type: 'appointment' | 'vitamin' | 'water' | 'cycle' | 'general' | 'weeklyTip' | 'kickReminder' | 'milestone';
   title: string;
   message: string;
   time: string;
@@ -35,6 +35,9 @@ interface NotificationSettings {
   vitaminReminders: boolean;
   waterReminders: boolean;
   cycleReminders: boolean;
+  weeklyTipReminders: boolean;
+  kickReminders: boolean;
+  milestoneReminders: boolean;
 }
 
 const DEFAULT_SETTINGS: NotificationSettings = {
@@ -42,6 +45,9 @@ const DEFAULT_SETTINGS: NotificationSettings = {
   vitaminReminders: true,
   waterReminders: true,
   cycleReminders: true,
+  weeklyTipReminders: true,
+  kickReminders: true,
+  milestoneReminders: true,
 };
 
 /* ── Dismissed tracker ──
@@ -204,8 +210,11 @@ export function useNotifications() {
       vitaminReminders: savedSettings.vitaminReminders ?? true,
       waterReminders: savedSettings.waterReminders ?? true,
       cycleReminders: (savedSettings as any).cycleReminders ?? true,
+      weeklyTipReminders: (savedSettings as any).weeklyTipReminders ?? true,
+      kickReminders: (savedSettings as any).kickReminders ?? true,
+      milestoneReminders: (savedSettings as any).milestoneReminders ?? true,
     });
-    const validTypes = ['appointment', 'vitamin', 'water', 'cycle', 'general'];
+    const validTypes = ['appointment', 'vitamin', 'water', 'cycle', 'general', 'weeklyTip', 'kickReminder', 'milestone'];
     setNotifications(savedNotifications.filter(n => validTypes.includes(n.type)));
     
     isInitialized.current = true;
@@ -443,11 +452,98 @@ export function useNotifications() {
         }
       }
 
+      // ── Pregnancy weekly tip ──
+      if (settings.weeklyTipReminders && hour >= 7) {
+        try {
+          const profileRaw = localStorage.getItem('user_central_profile_v1');
+          if (profileRaw) {
+            const prof = JSON.parse(profileRaw);
+            if (prof.isPregnant && prof.pregnancyWeek) {
+              const week = prof.pregnancyWeek;
+              const tipKey = `weekly-tip-${todayDate}`;
+              if (!hasToday(tipKey)) {
+                const specificMsg = i18n.t(`notificationsPanel.weeklyTipMsg_${week}`, { defaultValue: '' });
+                const msg = specificMsg || tn('weeklyTipMsg_default', { week });
+                newNotifications.push({
+                  id: tipKey,
+                  type: 'weeklyTip',
+                  title: tn('weeklyTipTitle', { week }),
+                  message: msg,
+                  time: nowISO,
+                  read: false,
+                  actionUrl: '/tools/baby-growth',
+                });
+              }
+            }
+          }
+        } catch {}
+      }
+
+      // ── Kick counter reminder (week 28+) at 10 AM ──
+      if (settings.kickReminders && hour >= 10) {
+        try {
+          const profileRaw = localStorage.getItem('user_central_profile_v1');
+          if (profileRaw) {
+            const prof = JSON.parse(profileRaw);
+            if (prof.isPregnant && prof.pregnancyWeek >= 28) {
+              const kickKey = `kick-reminder-${todayDate}`;
+              if (!hasToday(kickKey)) {
+                newNotifications.push({
+                  id: kickKey,
+                  type: 'kickReminder',
+                  title: tn('kickReminderTitle'),
+                  message: tn('kickReminderMsg'),
+                  time: nowISO,
+                  read: false,
+                  actionUrl: '/tools/smart-kick-counter',
+                });
+              }
+            }
+          }
+        } catch {}
+      }
+
+      // ── Monthly milestone celebrations ──
+      if (settings.milestoneReminders && hour >= 8) {
+        try {
+          const profileRaw = localStorage.getItem('user_central_profile_v1');
+          if (profileRaw) {
+            const prof = JSON.parse(profileRaw);
+            if (prof.isPregnant && prof.pregnancyWeek) {
+              const week = prof.pregnancyWeek;
+              // Month boundaries: month2=8w, month3=12w, month4=16w, month5=20w, month6=24w, month7=28w, month8=32w, month9=36w
+              const milestoneWeeks: Record<number, string> = {
+                8: 'month2', 12: 'month3', 16: 'month4', 20: 'month5',
+                24: 'month6', 28: 'month7', 32: 'month8', 36: 'month9',
+              };
+              const milestone = milestoneWeeks[week];
+              if (milestone) {
+                const msKey = `milestone-${milestone}-${todayDate}`;
+                if (!hasToday(msKey)) {
+                  newNotifications.push({
+                    id: msKey,
+                    type: 'milestone',
+                    title: tn('milestoneTitle'),
+                    message: tn(`milestoneMsg_${milestone}`),
+                    time: nowISO,
+                    read: false,
+                    actionUrl: '/tools/baby-growth',
+                  });
+                }
+              }
+            }
+          }
+        } catch {}
+      }
+
       if (newNotifications.length > 0) {
-        setNotifications(prev => [...newNotifications, ...prev].slice(0, 10));
+        setNotifications(prev => [...newNotifications, ...prev].slice(0, 15));
         
         const hasAppointment = newNotifications.some(n => n.type === 'appointment');
-        if (hasAppointment) {
+        const hasMilestone = newNotifications.some(n => n.type === 'milestone');
+        if (hasMilestone) {
+          playNotificationSound('success');
+        } else if (hasAppointment) {
           playNotificationSound('reminder');
         }
 
