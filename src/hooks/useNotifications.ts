@@ -19,6 +19,20 @@ const formatAppointmentMsg = (apt: any, timeStr: string): string => {
   return tn('appointmentMsg', { title: apt.title, time: timeStr });
 };
 
+/** Returns the appropriate message key and params for an appointment notification */
+const getAppointmentMsgKeyAndParams = (apt: any, timeStr: string): { messageKey: string; messageParams: Record<string, string> } => {
+  if (apt.doctor_name && apt.location) {
+    return { messageKey: 'notificationsPanel.appointmentMsgDoctorLocation', messageParams: { title: apt.title, doctor: apt.doctor_name, time: timeStr, location: apt.location } };
+  }
+  if (apt.doctor_name) {
+    return { messageKey: 'notificationsPanel.appointmentMsgDoctor', messageParams: { title: apt.title, doctor: apt.doctor_name, time: timeStr } };
+  }
+  if (apt.location) {
+    return { messageKey: 'notificationsPanel.appointmentMsgLocation', messageParams: { title: apt.title, time: timeStr, location: apt.location } };
+  }
+  return { messageKey: 'notificationsPanel.appointmentMsg', messageParams: { title: apt.title, time: timeStr } };
+};
+
 export interface Notification {
   id: string;
   type: 'appointment' | 'vitamin' | 'water' | 'cycle' | 'general' | 'weeklyTip' | 'kickReminder' | 'milestone';
@@ -27,6 +41,12 @@ export interface Notification {
   time: string;
   read: boolean;
   actionUrl?: string;
+  /** i18n key for title — resolved at render time for live language switching */
+  titleKey?: string;
+  /** i18n key for message — resolved at render time */
+  messageKey?: string;
+  /** Interpolation params for messageKey */
+  messageParams?: Record<string, string>;
 }
 
 interface NotificationSettings {
@@ -314,6 +334,8 @@ export function useNotifications() {
             type: 'water',
             title: tn('waterReminderTitle'),
             message: tn('waterReminderMsg'),
+            titleKey: 'notificationsPanel.waterReminderTitle',
+            messageKey: 'notificationsPanel.waterReminderMsg',
             time: nowISO,
             read: false,
           });
@@ -329,6 +351,8 @@ export function useNotifications() {
             type: 'vitamin',
             title: tn('vitaminReminderTitle'),
             message: tn('vitaminReminderMsg'),
+            titleKey: 'notificationsPanel.vitaminReminderTitle',
+            messageKey: 'notificationsPanel.vitaminReminderMsg',
             time: nowISO,
             read: false,
             actionUrl: '/tools/vitamin-tracker',
@@ -359,11 +383,15 @@ export function useNotifications() {
             const timeStr = aptDate.toLocaleTimeString('en-US', { 
               hour: 'numeric', minute: '2-digit', hour12: true 
             });
+            const { messageKey, messageParams } = getAppointmentMsgKeyAndParams(apt, timeStr);
             newNotifications.push({
               id: aptKey,
               type: 'appointment',
               title: tn('appointmentTomorrowTitle'),
               message: formatAppointmentMsg(apt, timeStr),
+              titleKey: 'notificationsPanel.appointmentTomorrowTitle',
+              messageKey,
+              messageParams,
               time: nowISO,
               read: false,
               actionUrl: '/tools/smart-appointment-reminder',
@@ -387,11 +415,15 @@ export function useNotifications() {
             const timeStr = aptDate.toLocaleTimeString('en-US', { 
               hour: 'numeric', minute: '2-digit', hour12: true 
             });
+            const { messageKey, messageParams } = getAppointmentMsgKeyAndParams(apt, timeStr);
             newNotifications.push({
               id: aptKey,
               type: 'appointment',
               title: tn('appointmentTodayTitle'),
               message: formatAppointmentMsg(apt, timeStr),
+              titleKey: 'notificationsPanel.appointmentTodayTitle',
+              messageKey,
+              messageParams,
               time: nowISO,
               read: false,
               actionUrl: '/tools/smart-appointment-reminder',
@@ -417,11 +449,15 @@ export function useNotifications() {
             const timeStr = aptDate.toLocaleTimeString('en-US', { 
               hour: 'numeric', minute: '2-digit', hour12: true 
             });
+            const { messageKey, messageParams } = getAppointmentMsgKeyAndParams(apt, timeStr);
             newNotifications.push({
               id: aptKey,
               type: 'appointment',
               title: tn('appointment2hTitle'),
               message: formatAppointmentMsg(apt, timeStr),
+              titleKey: 'notificationsPanel.appointment2hTitle',
+              messageKey,
+              messageParams,
               time: nowISO,
               read: false,
               actionUrl: '/tools/smart-appointment-reminder',
@@ -444,6 +480,7 @@ export function useNotifications() {
               newNotifications.push({
                 id: key, type: 'cycle',
                 title: tn('cyclePeriod2dTitle'), message: tn('cyclePeriod2dMsg'),
+                titleKey: 'notificationsPanel.cyclePeriod2dTitle', messageKey: 'notificationsPanel.cyclePeriod2dMsg',
                 time: nowISO, read: false, actionUrl: '/tools/cycle-tracker',
               });
             }
@@ -455,6 +492,7 @@ export function useNotifications() {
               newNotifications.push({
                 id: key, type: 'cycle',
                 title: tn('cyclePeriod1dTitle'), message: tn('cyclePeriod1dMsg'),
+                titleKey: 'notificationsPanel.cyclePeriod1dTitle', messageKey: 'notificationsPanel.cyclePeriod1dMsg',
                 time: nowISO, read: false, actionUrl: '/tools/cycle-tracker',
               });
             }
@@ -470,6 +508,7 @@ export function useNotifications() {
               newNotifications.push({
                 id: key, type: 'cycle',
                 title: tn('cycleOv2dTitle'), message: tn('cycleOv2dMsg'),
+                titleKey: 'notificationsPanel.cycleOv2dTitle', messageKey: 'notificationsPanel.cycleOv2dMsg',
                 time: nowISO, read: false, actionUrl: '/tools/cycle-tracker',
               });
             }
@@ -481,6 +520,7 @@ export function useNotifications() {
               newNotifications.push({
                 id: key, type: 'cycle',
                 title: tn('cycleOv1dTitle'), message: tn('cycleOv1dMsg'),
+                titleKey: 'notificationsPanel.cycleOv1dTitle', messageKey: 'notificationsPanel.cycleOv1dMsg',
                 time: nowISO, read: false, actionUrl: '/tools/cycle-tracker',
               });
             }
@@ -502,6 +542,8 @@ export function useNotifications() {
                   type: 'kickReminder',
                   title: tn('kickReminderTitle'),
                   message: tn('kickReminderMsg'),
+                  titleKey: 'notificationsPanel.kickReminderTitle',
+                  messageKey: 'notificationsPanel.kickReminderMsg',
                   time: nowISO,
                   read: false,
                   actionUrl: '/tools/smart-kick-counter',
@@ -534,6 +576,8 @@ export function useNotifications() {
                     type: 'milestone',
                     title: tn('milestoneTitle'),
                     message: tn(`milestoneMsg_${milestone}`),
+                    titleKey: 'notificationsPanel.milestoneTitle',
+                    messageKey: `notificationsPanel.milestoneMsg_${milestone}`,
                     time: nowISO,
                     read: false,
                     actionUrl: '/tools/baby-growth',

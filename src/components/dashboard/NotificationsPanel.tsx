@@ -45,6 +45,13 @@ function NotificationItem({ notification, onRead, onClear }: {
   const gradient = typeGradients[notification.type] || 'from-primary to-accent';
   
   const { t } = useTranslation();
+
+  // Resolve i18n keys at render time for live language switching
+  const displayTitle = notification.titleKey ? t(notification.titleKey) : notification.title;
+  const displayMessage = notification.messageKey 
+    ? t(notification.messageKey, notification.messageParams || {}) 
+    : notification.message;
+
   const timeAgo = () => {
     const diff = Date.now() - new Date(notification.time).getTime();
     const minutes = Math.floor(diff / 60000);
@@ -84,11 +91,11 @@ function NotificationItem({ notification, onRead, onClear }: {
       <div className="flex-1 min-w-0 pt-0.5">
         <div className="flex items-start justify-between gap-2">
           <h4 className={`text-xs font-semibold leading-tight ${notification.read ? 'text-muted-foreground' : 'text-foreground'}`}>
-            {notification.title}
+            {displayTitle}
           </h4>
           <span className="text-[9px] text-muted-foreground/70 shrink-0 pt-0.5">{timeAgo()}</span>
         </div>
-        <p className="text-[11px] text-muted-foreground/80 leading-snug mt-0.5 line-clamp-2">{notification.message}</p>
+        <p className="text-[11px] text-muted-foreground/80 leading-snug mt-0.5 line-clamp-2">{displayMessage}</p>
         
         {notification.actionUrl && !notification.read && (
           <Link 
