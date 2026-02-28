@@ -10,7 +10,7 @@ interface FertilityDailyTipProps {
   titleKey?: string;
 }
 
-export function FertilityDailyTip({ titleKey = "fertilityTip.tipOfTheDay" }: FertilityDailyTipProps) {
+export function FertilityDailyTip({ titleKey = "fertilityTip.title" }: FertilityDailyTipProps) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
   const dir = isRTL ? "rtl" : "ltr";

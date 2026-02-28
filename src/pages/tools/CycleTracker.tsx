@@ -188,7 +188,7 @@ Any patterns that might be worth discussing with a doctor`;
             </div>
 
             {/* Fertility Expert Tip */}
-            <FertilityDailyTip titleKey="fertilityTip.title" />
+            <FertilityDailyTip titleKey="fertilityExpert.title" />
           </>
         )}
       </motion.div>
