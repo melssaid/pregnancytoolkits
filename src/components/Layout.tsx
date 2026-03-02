@@ -7,7 +7,7 @@ import { BackButton } from "./BackButton";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
-import { AdBanner } from "./AdBanner";
+
 
 
 interface LayoutProps {
@@ -104,8 +104,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         <BottomNavigation />
       </main>
 
-      {/* Ad Banner */}
-      <AdBanner className="py-1 px-4" />
 
       {/* Footer */}
       <footer className="border-t border-border bg-card py-5 pb-24 md:pb-5 rounded-t-[2rem]">

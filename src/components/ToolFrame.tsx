@@ -9,7 +9,7 @@ import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { ToolInsightTabs } from "./ToolInsightTabs";
 import { FertilityDailyTip } from "./FertilityDailyTip";
-import { AdBanner } from "./AdBanner";
+
 import { SEOHead } from "./SEOHead";
 import logoImage from "@/assets/logo.webp";
 
@@ -213,10 +213,6 @@ export function ToolFrame({
           )}
         </section>
 
-        {/* Ad Banner */}
-        <div className="px-4 sm:px-6 py-3">
-          <AdBanner />
-        </div>
 
         {/* Minimal Footer Disclaimer */}
         <motion.footer
