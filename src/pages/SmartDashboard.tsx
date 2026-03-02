@@ -27,6 +27,8 @@ import { Link } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
+import { toast } from "sonner";
+import { safeSaveToLocalStorage, safeParseLocalStorage } from "@/lib/safeStorage";
 
 
 type TabType = "home" | "chat" | "health" | "nutrition" | "exercise" | "videos";
@@ -42,6 +44,7 @@ interface HealthData {
   mood: string;
   symptoms: string[];
   weekOfPregnancy: number;
+  savedAt?: string;
 }
 
 // أدوات التتبع والتخزين - مرتبة منطقياً بدون تكرار
@@ -127,13 +130,21 @@ const SmartDashboard = () => {
     { role: "assistant", content: t('dashboard.chat.welcomeMessage') }
   ]);
   const [userInput, setUserInput] = useState("");
-  // Sync healthData from central profile
-  const [healthData, setHealthData] = useState<HealthData>({
-    weight: userProfile.weight ? String(userProfile.weight) : "",
-    bloodPressure: "",
-    mood: userProfile.mood ?? "Good",
-    symptoms: [],
-    weekOfPregnancy: userProfile.pregnancyWeek || 0
+  // Load health data from localStorage or profile
+  const [healthData, setHealthData] = useState<HealthData>(() => {
+    const saved = safeParseLocalStorage<HealthData | null>("dashboard_health_checkin_v1", null);
+    if (saved) return {
+      ...saved,
+      weekOfPregnancy: userProfile.pregnancyWeek || saved.weekOfPregnancy || 0,
+      weight: userProfile.weight ? String(userProfile.weight) : saved.weight || "",
+    };
+    return {
+      weight: userProfile.weight ? String(userProfile.weight) : "",
+      bloodPressure: "",
+      mood: userProfile.mood ?? "Good",
+      symptoms: [],
+      weekOfPregnancy: userProfile.pregnancyWeek || 0,
+    };
   });
   const [healthSaved, setHealthSaved] = useState(false);
   const [aiHealthInsight, setAiHealthInsight] = useState('');
@@ -580,134 +591,184 @@ const SmartDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            {/* Read-only profile summary from central profile */}
-            <div className="flex items-center justify-between px-1">
-              <div className="flex gap-3">
-                <div className="flex flex-col items-center bg-primary/8 rounded-xl px-4 py-2 border border-primary/15">
-                  <span className="text-lg font-bold text-primary">{healthData.weekOfPregnancy}</span>
-                  <span className="text-[10px] text-muted-foreground">{t('dashboard.health.weekOfPregnancy')}</span>
+            {/* Profile Summary Strip */}
+            <div className="flex items-center gap-2 px-1">
+              <div className="flex-1 flex gap-2">
+                <div className="flex items-center gap-2 bg-primary/8 rounded-xl px-3 py-2 border border-primary/15 flex-1">
+                  <Calendar className="w-4 h-4 text-primary" />
+                  <div>
+                    <span className="text-base font-bold text-primary">{healthData.weekOfPregnancy || '—'}</span>
+                    <span className="text-[10px] text-muted-foreground block leading-none">{t('dashboard.health.weekOfPregnancy')}</span>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center bg-primary/8 rounded-xl px-4 py-2 border border-primary/15">
-                  <span className="text-lg font-bold text-primary">{healthData.weight || '—'} <span className="text-xs font-normal">kg</span></span>
-                  <span className="text-[10px] text-muted-foreground">{t('dashboard.health.weightKg')}</span>
+                <div className="flex items-center gap-2 bg-primary/8 rounded-xl px-3 py-2 border border-primary/15 flex-1">
+                  <Scale className="w-4 h-4 text-primary" />
+                  <div>
+                    <span className="text-base font-bold text-primary">{healthData.weight || '—'}<span className="text-[10px] font-normal"> kg</span></span>
+                    <span className="text-[10px] text-muted-foreground block leading-none">{t('dashboard.health.weightKg')}</span>
+                  </div>
                 </div>
               </div>
-              <Link to="/settings" className="text-[10px] text-primary flex items-center gap-1 underline underline-offset-2">
-                <ChevronRight className="w-3 h-3" />
-                {t('settings.profile.title', 'Edit Profile')}
+              <Link to="/settings" className="p-2 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                <ChevronRight className="w-4 h-4 text-muted-foreground" />
               </Link>
             </div>
 
-            <Card className="rounded-3xl">
-              <CardContent className="p-4">
-                <h2 className="text-base font-bold mb-4 flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-primary" />
+            {/* Daily Health Check-in Card */}
+            <Card className="rounded-3xl overflow-hidden">
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 px-4 py-3 border-b border-border/50">
+                <h2 className="text-sm font-bold flex items-center gap-2">
+                  <Heart className="w-4 h-4 text-primary" />
                   {t('dashboard.health.title')}
                 </h2>
-
-                <div className="grid grid-cols-2 gap-3 mb-4">
+                {healthData.savedAt && (
+                  <p className="text-[10px] text-muted-foreground mt-0.5">
+                    {t('dashboard.health.lastSaved', { time: new Date(healthData.savedAt).toLocaleTimeString(currentLanguage === 'ar' ? 'ar-SA' : undefined, { hour: '2-digit', minute: '2-digit' }) })}
+                  </p>
+                )}
+              </div>
+              <CardContent className="p-4 space-y-4">
+                {/* Blood Pressure & Mood Row */}
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.bloodPressure')}</label>
+                    <label className="text-xs font-medium text-muted-foreground mb-1.5 block">{t('dashboard.health.bloodPressure')}</label>
                     <Input
                       placeholder="120/80"
                       value={healthData.bloodPressure}
-                      onChange={(e) => setHealthData({ ...healthData, bloodPressure: e.target.value })}
-                      className="text-sm"
+                      onChange={(e) => setHealthData(prev => ({ ...prev, bloodPressure: e.target.value }))}
+                      className="text-sm h-10"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('dashboard.health.mood')}</label>
-                    <select
-                      value={healthData.mood}
-                      onChange={(e) => setHealthData({ ...healthData, mood: e.target.value })}
-                      className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
-                    >
-                      <option value="Excellent">{t('dashboard.health.moods.excellent')}</option>
-                      <option value="Good">{t('dashboard.health.moods.good')}</option>
-                      <option value="Normal">{t('dashboard.health.moods.normal')}</option>
-                      <option value="Anxious">{t('dashboard.health.moods.anxious')}</option>
-                      <option value="Bad">{t('dashboard.health.moods.bad')}</option>
-                    </select>
+                    <label className="text-xs font-medium text-muted-foreground mb-1.5 block">{t('dashboard.health.mood')}</label>
+                    <div className="flex gap-1.5">
+                      {[
+                        { value: "Excellent", emoji: "😄" },
+                        { value: "Good", emoji: "🙂" },
+                        { value: "Normal", emoji: "😐" },
+                        { value: "Anxious", emoji: "😰" },
+                        { value: "Bad", emoji: "😞" },
+                      ].map(m => (
+                        <button
+                          key={m.value}
+                          onClick={() => setHealthData(prev => ({ ...prev, mood: m.value }))}
+                          className={`flex-1 h-10 rounded-lg text-lg transition-all ${
+                            healthData.mood === m.value
+                              ? "bg-primary/15 border-2 border-primary scale-110 shadow-sm"
+                              : "bg-muted/40 border border-transparent hover:bg-muted/70"
+                          }`}
+                          title={t(`dashboard.health.moods.${m.value.toLowerCase()}`)}
+                        >
+                          {m.emoji}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="mb-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">{t('dashboard.health.todaysSymptoms')}</label>
-                  <div className="flex flex-wrap gap-2">
-                    {symptomKeys.map(symptomKey => (
-                      <button
-                        key={symptomKey}
-                        onClick={() => {
-                          if (healthData.symptoms.includes(symptomKey)) {
-                            setHealthData({ ...healthData, symptoms: healthData.symptoms.filter(s => s !== symptomKey) });
-                          } else {
-                            setHealthData({ ...healthData, symptoms: [...healthData.symptoms, symptomKey] });
-                          }
-                        }}
-                        className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                          healthData.symptoms.includes(symptomKey)
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-muted text-muted-foreground hover:bg-muted/80"
-                        }`}
-                      >
-                        {t(`dashboard.health.symptoms.${symptomKey}`)}
-                      </button>
-                    ))}
+                {/* Symptoms */}
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">
+                    {t('dashboard.health.todaysSymptoms')}
+                    {healthData.symptoms.length > 0 && (
+                      <span className="ms-2 text-primary font-bold">({healthData.symptoms.length})</span>
+                    )}
+                  </label>
+                  <div className="flex flex-wrap gap-1.5">
+                    {symptomKeys.map(symptomKey => {
+                      const isActive = healthData.symptoms.includes(symptomKey);
+                      return (
+                        <motion.button
+                          key={symptomKey}
+                          whileTap={{ scale: 0.92 }}
+                          onClick={() => {
+                            setHealthData(prev => ({
+                              ...prev,
+                              symptoms: isActive
+                                ? prev.symptoms.filter(s => s !== symptomKey)
+                                : [...prev.symptoms, symptomKey]
+                            }));
+                          }}
+                          className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                            isActive
+                              ? "bg-primary text-primary-foreground shadow-sm"
+                              : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                          }`}
+                        >
+                          {isActive && <span className="me-1">✓</span>}
+                          {t(`dashboard.health.symptoms.${symptomKey}`)}
+                        </motion.button>
+                      );
+                    })}
                   </div>
                 </div>
 
-                <Button className="w-full" onClick={() => {
-                  setHealthSaved(true);
-                  // Save only mood to central profile (week/weight managed in Settings)
-                  updateUserProfile({ mood: healthData.mood });
-                  // Generate AI health insight
-                  setAiHealthInsight('');
-                  const symptomsList = healthData.symptoms.map(s => t(`dashboard.health.symptoms.${s}`)).join(', ');
-                  const prompt = t('dashboard.health.aiPrompt', {
-                    week: healthData.weekOfPregnancy,
-                    weight: healthData.weight || 'N/A',
-                    bp: healthData.bloodPressure || 'N/A',
-                    mood: t(`dashboard.health.moods.${healthData.mood.toLowerCase()}`),
-                    symptoms: symptomsList || t('dashboard.health.noSymptoms')
-                  });
-                  streamChat({
-                    type: 'pregnancy-assistant',
-                    messages: [{ role: 'user', content: prompt }],
-                    context: { week: healthData.weekOfPregnancy, language: currentLanguage },
-                    onDelta: (text) => setAiHealthInsight(prev => prev + text),
-                    onDone: () => {},
-                  });
-                }}>
-                  <Scale className="w-4 h-4 me-2" />
-                  {t('dashboard.health.saveAnalyze')}
-                </Button>
+                {/* Save Button */}
+                <motion.div whileTap={{ scale: 0.98 }}>
+                  <Button 
+                    className="w-full h-11 text-sm font-bold" 
+                    disabled={isLoading && healthSaved}
+                    onClick={() => {
+                      const now = new Date().toISOString();
+                      const updatedHealth = { ...healthData, savedAt: now };
+                      setHealthData(updatedHealth);
+                      setHealthSaved(true);
+                      
+                      // Save to localStorage
+                      safeSaveToLocalStorage("dashboard_health_checkin_v1", updatedHealth);
+                      
+                      // Save mood to central profile
+                      updateUserProfile({ mood: healthData.mood });
+                      
+                      toast.success(t('dashboard.health.savedSuccess', 'تم حفظ بياناتك الصحية بنجاح'));
+                      
+                      // Generate AI health insight
+                      setAiHealthInsight('');
+                      const symptomsList = healthData.symptoms.map(s => t(`dashboard.health.symptoms.${s}`)).join(', ');
+                      const prompt = t('dashboard.health.aiPrompt', {
+                        week: healthData.weekOfPregnancy,
+                        weight: healthData.weight || 'N/A',
+                        bp: healthData.bloodPressure || 'N/A',
+                        mood: t(`dashboard.health.moods.${healthData.mood.toLowerCase()}`),
+                        symptoms: symptomsList || t('dashboard.health.noSymptoms')
+                      });
+                      streamChat({
+                        type: 'pregnancy-assistant',
+                        messages: [{ role: 'user', content: prompt }],
+                        context: { week: healthData.weekOfPregnancy, language: currentLanguage },
+                        onDelta: (text) => setAiHealthInsight(prev => prev + text),
+                        onDone: () => {},
+                      });
+                    }}
+                  >
+                    {isLoading && healthSaved ? (
+                      <Loader2 className="w-4 h-4 me-2 animate-spin" />
+                    ) : (
+                      <Activity className="w-4 h-4 me-2" />
+                    )}
+                    {t('dashboard.health.saveAnalyze')}
+                  </Button>
+                </motion.div>
               </CardContent>
             </Card>
 
-            {/* AI Analysis */}
-            <Card className="rounded-3xl bg-gradient-to-br from-primary/5 to-primary/[0.02]">
-              <CardContent className="p-4">
-                <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
-                  <Brain className="w-4 h-4 text-primary" />
-                  {t('dashboard.health.smartAnalysis')}
-                </h3>
-                <div className="space-y-2">
-                  {getHealthAnalysis().map((item, i) => (
-                    <div key={i} className="bg-background p-3 rounded-lg text-sm">
-                      {item}
-                    </div>
-                  ))}
-                </div>
-                {/* AI Generated Insight */}
-                {(aiHealthInsight || (isLoading && healthSaved)) && (
-                  <div className="mt-3 p-3 bg-background rounded-lg border border-primary/20">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Sparkles className="w-3.5 h-3.5 text-primary" />
-                      <span className="text-xs font-semibold text-primary">{t('dashboard.health.aiAnalysisLabel')}</span>
+            {/* AI Analysis - Only show after saving */}
+            {(aiHealthInsight || (isLoading && healthSaved)) && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <Card className="rounded-3xl bg-gradient-to-br from-primary/5 to-transparent border-primary/15">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="p-1.5 rounded-lg bg-primary/10">
+                        <Sparkles className="w-4 h-4 text-primary" />
+                      </div>
+                      <h3 className="text-sm font-bold">{t('dashboard.health.aiAnalysisLabel')}</h3>
                     </div>
                     {isLoading && !aiHealthInsight ? (
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <div className="flex items-center gap-2 text-muted-foreground py-4 justify-center">
+                        <Loader2 className="w-4 h-4 animate-spin" />
                         <span className="text-xs">{t('toolsInternal.aiInsights.analyzing')}</span>
                       </div>
                     ) : (
@@ -715,10 +776,34 @@ const SmartDashboard = () => {
                         <MarkdownRenderer content={aiHealthInsight} />
                       </div>
                     )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* Static Analysis - Quick Health Summary */}
+            {!healthSaved && (
+              <div className="space-y-1.5">
+                {getHealthAnalysis().map((item, i) => (
+                  <div key={i} className="flex items-start gap-2 p-3 rounded-xl bg-muted/30 text-sm">
+                    <Activity className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                    <span>{item}</span>
                   </div>
-                )}
-              </CardContent>
-            </Card>
+                ))}
+              </div>
+            )}
+
+            {/* Quick Links to Health Tools */}
+            <div className="grid grid-cols-2 gap-2">
+              <Link to="/tools/ai-symptom-analyzer" className="flex items-center gap-2 p-3 rounded-xl bg-muted/30 hover:bg-primary/10 transition-colors">
+                <Stethoscope className="w-4 h-4 text-primary" />
+                <span className="text-xs font-medium">{t('dashboard.aiToolsList.symptoms')}</span>
+              </Link>
+              <Link to="/tools/weight-gain" className="flex items-center gap-2 p-3 rounded-xl bg-muted/30 hover:bg-primary/10 transition-colors">
+                <Scale className="w-4 h-4 text-primary" />
+                <span className="text-xs font-medium">{t('dashboard.trackingTools.weightTracker')}</span>
+              </Link>
+            </div>
           </motion.div>
         )}
 
