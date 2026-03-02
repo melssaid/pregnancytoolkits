@@ -1,5 +1,6 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { Baby, Heart, Activity, Dumbbell, AlertTriangle, CheckCircle, ChevronRight, ChevronLeft, ChevronDown, Calendar, Shield, UtensilsCrossed, MessageSquare, HeartPulse, Sparkles, Footprints } from "lucide-react";
+import dreamBabyIcon from "@/assets/icons/dream-baby.png";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/lib/tools-data";
@@ -37,7 +38,7 @@ const journeyConfigs: JourneyConfig[] = [
   {
     // Planning/Fertility — Warm Coral-Peach: hope, warmth, anticipation
     key: "planning",
-    icon: Footprints,
+    customIcon: dreamBabyIcon,
     headerGradient: "bg-gradient-to-r from-[hsl(15,70%,62%)] via-[hsl(25,65%,65%)] to-[hsl(340,50%,65%)] dark:from-[hsl(15,65%,50%)] dark:via-[hsl(25,60%,52%)] dark:to-[hsl(340,45%,55%)]",
     headerText: "text-white",
     iconBg: "bg-white/20",
@@ -160,7 +161,13 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
         <div className="relative flex items-center gap-3">
           <div className={`w-11 h-11 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
             {config.customIcon ? (
-              <img src={config.customIcon} alt="" className="w-7 h-7 object-contain" />
+              <motion.img 
+                src={config.customIcon} 
+                alt="" 
+                className="w-8 h-8 object-contain rounded-lg"
+                animate={config.key === "planning" ? { scale: [1, 1.15, 1], rotate: [0, -6, 6, 0] } : {}}
+                transition={config.key === "planning" ? { duration: 2.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" } : {}}
+              />
             ) : Icon ? (
               <motion.div
                 {...(config.key === "planning" ? {
