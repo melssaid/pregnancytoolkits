@@ -215,6 +215,20 @@ export function ToolFrame({
         </section>
 
 
+        {/* Minimal Footer Disclaimer */}
+        <motion.footer
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="px-4 sm:px-6 pb-8"
+        >
+          <div className="flex items-center justify-center gap-1.5 opacity-40">
+            <Shield className="h-2.5 w-2.5 text-muted-foreground shrink-0" />
+            <span className="text-[9px] text-muted-foreground tracking-wide">
+              {t('app.medicalDisclaimer')}
+            </span>
+          </div>
+        </motion.footer>
 
 
 
