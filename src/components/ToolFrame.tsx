@@ -105,7 +105,12 @@ export function ToolFrame({
               <BackButton />
             </div>
             <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
-              <div className="relative group">
+              <motion.div 
+                className="relative group"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: [0.8, 1.08, 0.97, 1], opacity: 1 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
                 <div className="absolute -inset-1.5 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-accent/15 blur-md opacity-70 group-hover:opacity-100 transition-opacity" />
                 <img 
                   src={logoImage} 
@@ -116,7 +121,7 @@ export function ToolFrame({
                   decoding="async"
                   className="relative h-11 w-11 rounded-full shadow-md ring-2 ring-primary/15 object-cover"
                 />
-              </div>
+              </motion.div>
             </Link>
             <div className="flex-shrink-0">
               <LanguageDropdown />
