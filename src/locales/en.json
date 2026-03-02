@@ -145,7 +145,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Smart Pregnancy Guide",
+      "title": "Ask the Inner Mind",
       "description": "Ask any pregnancy question and get instant answers."
     },
     "wellnessDiary": {
@@ -3909,25 +3909,35 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Smart Pregnancy Guide",
-    "subtitle": "Your 24/7 pregnancy companion",
-    "hello": "Hello! I'm Here to Help 👋",
-    "askAnything": "Ask anything about pregnancy, nutrition, or baby care",
-    "placeholder": "Type your question...",
+    "title": "Ask the Inner Mind",
+    "subtitle": "Your smart companion on the motherhood journey",
+    "hello": "Welcome 💫",
+    "askAnything": "Ask me anything on your mind.. I'm here to help",
+    "placeholder": "What's on your mind?",
     "trustIndicators": {
       "available": "24/7 Available",
-      "medical": "Medical Knowledge",
+      "medical": "Trusted Knowledge",
       "secure": "Private & Secure"
     },
+    "quickCategories": {
+      "popular": "Popular",
+      "body": "Your Body",
+      "baby": "Your Baby",
+      "lifestyle": "Lifestyle"
+    },
     "quickQuestions": {
-      "symptoms": "First month symptoms?",
-      "coffee": "Is coffee safe?",
-      "labor": "Prepare for labor?",
-      "vitamins": "Important vitamins?",
-      "sleep": "Sleep tips for pregnancy?",
-      "exercise": "Safe exercises?",
-      "nutrition": "Best foods for baby?",
-      "emotions": "Mood swings normal?"
+      "symptoms": "What are first trimester symptoms?",
+      "coffee": "Is coffee safe during pregnancy?",
+      "labor": "How to prepare for labor?",
+      "vitamins": "What vitamins are essential?",
+      "sleep": "How to improve sleep during pregnancy?",
+      "exercise": "What exercises are safe?",
+      "nutrition": "Best foods for baby growth?",
+      "emotions": "Are mood swings normal?",
+      "skincare": "How to care for skin during pregnancy?",
+      "weight": "What's normal weight gain?",
+      "babyMovement": "When will I feel baby move?",
+      "backPain": "How to relieve back pain?"
     }
   },
   "lactationPrep": {
