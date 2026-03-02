@@ -10,7 +10,7 @@ import { useNotifications } from "@/hooks/useNotifications";
 const NAV_ITEMS = [
   { id: "home", icon: Home, labelKey: "nav.home", href: "/" },
   { id: "dashboard", icon: LayoutDashboard, labelKey: "nav.dashboard", href: "/dashboard" },
-  { id: "ai-tools", icon: Sparkles, labelKey: "nav.aiTools", href: "/#ai-tools" },
+  { id: "ai-tools", icon: Sparkles, labelKey: "nav.aiTools", href: "/tools/pregnancy-assistant" },
   { id: "more", icon: Menu, labelKey: "nav.more", href: null },
 ] as const;
 
