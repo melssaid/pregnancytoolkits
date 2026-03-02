@@ -109,11 +109,11 @@ export function ToolFrame({
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
-                  width={32}
-                  height={32}
+                  width={44}
+                  height={44}
                   loading="eager"
                   decoding="async"
-                  className="h-8 w-8 rounded-full shadow-md object-cover flex-shrink-0"
+                  className="h-11 w-11 rounded-full shadow-md object-cover flex-shrink-0"
                 />
                 <span className="text-sm font-bold text-foreground truncate hidden sm:block">
                   {t('app.name')}
