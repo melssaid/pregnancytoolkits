@@ -1,159 +1,201 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SEOHead } from '@/components/SEOHead';
-import { Database, Shield, Info, Heart, Lock, Globe, User, CheckCircle, Stethoscope } from 'lucide-react';
+import { 
+  Globe, User, Download, Trash2, Shield, Heart, 
+  ChevronRight, ChevronLeft, Stethoscope, Lock
+} from 'lucide-react';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
-
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
 import { AccountDeletion } from '@/components/settings/AccountDeletion';
 import { LanguageSelector } from '@/components/settings/LanguageSelector';
 import { ProfileEditor } from '@/components/settings/ProfileEditor';
 import { Layout } from '@/components/Layout';
 import { useTranslation } from 'react-i18next';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
+
+type SettingsView = 'main' | 'profile' | 'language' | 'security' | 'backup' | 'delete';
+
+const APP_VERSION = '2.5.0';
 
 const Settings: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
+  const [activeView, setActiveView] = useState<SettingsView>('main');
+  const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
+
+  const settingsItems: {
+    id: SettingsView;
+    icon: React.ComponentType<{ className?: string }>;
+    label: string;
+    desc: string;
+    iconColor: string;
+    iconBg: string;
+  }[] = [
+    {
+      id: 'profile',
+      icon: User,
+      label: t('settings.profile.title'),
+      desc: t('settings.profile.desc'),
+      iconColor: 'text-primary',
+      iconBg: 'bg-primary/10',
+    },
+    {
+      id: 'language',
+      icon: Globe,
+      label: t('settings.language.sectionTitle'),
+      desc: t('settings.language.desc'),
+      iconColor: 'text-primary',
+      iconBg: 'bg-primary/10',
+    },
+    {
+      id: 'backup',
+      icon: Download,
+      label: t('settings.backup.title'),
+      desc: t('settings.backup.description'),
+      iconColor: 'text-accent',
+      iconBg: 'bg-accent/10',
+    },
+    {
+      id: 'security',
+      icon: Lock,
+      label: t('settings.securityPrivacy'),
+      desc: t('settings.securityDesc'),
+      iconColor: 'text-amber-500',
+      iconBg: 'bg-amber-500/10',
+    },
+    {
+      id: 'delete',
+      icon: Trash2,
+      label: t('settings.deleteAccount.title', 'حذف البيانات'),
+      desc: t('settings.deleteAccount.description', 'حذف جميع بياناتك نهائياً'),
+      iconColor: 'text-destructive',
+      iconBg: 'bg-destructive/10',
+    },
+  ];
+
+  const renderSubView = () => {
+    switch (activeView) {
+      case 'profile': return <ProfileEditor compact />;
+      case 'language': return <LanguageSelector compact />;
+      case 'security': return <EncryptionManager compact />;
+      case 'backup': return <DataBackupManager compact />;
+      case 'delete': return <AccountDeletion compact />;
+      default: return null;
+    }
+  };
+
+  const getSubViewTitle = () => {
+    const item = settingsItems.find(i => i.id === activeView);
+    return item?.label || t('settings.title');
+  };
 
   return (
     <Layout showBack>
       <SEOHead title={t('settings.title')} description="Manage your preferences, data privacy, encryption and language settings" />
-      <div className="container py-4 space-y-3 pb-24 max-w-lg mx-auto">
-        
-        {/* Header */}
-        <div className="text-center mb-4">
-          <h1 className="text-xl font-bold text-foreground">{t('settings.title')}</h1>
-          <p className="text-xs text-muted-foreground mt-1">{t('settings.subtitle')}</p>
-        </div>
+      <div className="container py-4 pb-24 max-w-lg mx-auto">
 
-        {/* Accordion-based Settings */}
-        <Accordion type="multiple" defaultValue={["profile"]} className="space-y-2">
-
-          {/* My Profile */}
-          <AccordionItem value="profile" className="border rounded-xl bg-card overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <User className="w-4 h-4 text-primary" />
-                </div>
-                <div className="text-start">
-                  <span className="font-medium text-sm block">{t('settings.profile.title')}</span>
-                  <span className="text-[10px] text-muted-foreground">{t('settings.profile.desc')}</span>
-                </div>
+        <AnimatePresence mode="wait">
+          {activeView === 'main' ? (
+            <motion.div
+              key="main"
+              initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: isRTL ? -20 : 20 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-4"
+            >
+              {/* Header */}
+              <div className="text-center mb-2">
+                <h1 className="text-xl font-bold text-foreground">{t('settings.title')}</h1>
+                <p className="text-xs text-muted-foreground mt-1">{t('settings.subtitle')}</p>
               </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4 pb-4">
-              <ProfileEditor compact />
-            </AccordionContent>
-          </AccordionItem>
 
-          {/* Language */}
-          <AccordionItem value="language" className="border rounded-xl bg-card overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Globe className="w-4 h-4 text-primary" />
-                </div>
-                <div className="text-start">
-                  <span className="font-medium text-sm block">{t('settings.language.sectionTitle')}</span>
-                  <span className="text-[10px] text-muted-foreground">{t('settings.language.desc')}</span>
-                </div>
+              {/* Settings List */}
+              <div className="rounded-2xl border bg-card overflow-hidden divide-y divide-border/50">
+                {settingsItems.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.button
+                      key={item.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.04 }}
+                      onClick={() => setActiveView(item.id)}
+                      className="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-muted/40 transition-colors active:scale-[0.99]"
+                    >
+                      <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0", item.iconBg)}>
+                        <Icon className={cn("w-4.5 h-4.5", item.iconColor)} />
+                      </div>
+                      <div className="flex-1 text-start min-w-0">
+                        <span className="text-sm font-medium text-foreground block">{item.label}</span>
+                        <span className="text-[10px] text-muted-foreground line-clamp-1">{item.desc}</span>
+                      </div>
+                      <ChevronIcon className="w-4 h-4 text-muted-foreground/40 flex-shrink-0" />
+                    </motion.button>
+                  );
+                })}
               </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4 pb-4">
-              <LanguageSelector compact />
-            </AccordionContent>
-          </AccordionItem>
 
-          {/* Security */}
-          <AccordionItem value="security" className="border rounded-xl bg-card overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                  <Lock className="w-4 h-4 text-amber-500" />
-                </div>
-                <div className="text-start">
-                  <span className="font-medium text-sm block">{t('settings.securityPrivacy')}</span>
-                  <span className="text-[10px] text-muted-foreground">{t('settings.securityDesc')}</span>
-                </div>
+              {/* Privacy Badge */}
+              <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-primary/5 border border-primary/15">
+                <Shield className="w-4 h-4 text-primary flex-shrink-0" />
+                <p className="text-[11px] text-muted-foreground leading-relaxed">
+                  {t('settings.privacyPoint1')}
+                </p>
               </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4 pb-4">
-              <EncryptionManager compact />
-            </AccordionContent>
-          </AccordionItem>
 
-          {/* Data Management */}
-          <AccordionItem value="data" className="border rounded-xl bg-card overflow-hidden">
-            <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-accent/15 flex items-center justify-center">
-                  <Database className="w-4 h-4 text-accent" />
+              {/* Footer */}
+              <div className="text-center space-y-2 pt-2">
+                <div className="flex items-center justify-center gap-1.5">
+                  <Heart className="w-3 h-3 text-primary" />
+                  <span className="text-xs text-muted-foreground">{t('settings.appTagline')}</span>
                 </div>
-                <div className="text-start">
-                  <span className="font-medium text-sm block">{t('settings.dataManagement')}</span>
-                  <span className="text-[10px] text-muted-foreground">{t('settings.dataManagementDesc')}</span>
+                <div className="flex items-center justify-center gap-3 text-[10px] text-muted-foreground/60">
+                  <span>v{APP_VERSION}</span>
+                  <span>·</span>
+                  <Link to="/privacy" className="hover:text-primary transition-colors">
+                    {t('settings.dataPrivacy')}
+                  </Link>
+                  <span>·</span>
+                  <Link to="/terms" className="hover:text-primary transition-colors">
+                    {t('footer.terms', 'Terms')}
+                  </Link>
                 </div>
+                <p className="text-[9px] text-muted-foreground/50 flex items-center justify-center gap-1">
+                  <Stethoscope className="w-2.5 h-2.5" />
+                  {t('settings.medicalNote')}
+                </p>
               </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-4 pb-4 space-y-3">
-              <DataBackupManager compact />
-              <AccountDeletion compact />
-            </AccordionContent>
-          </AccordionItem>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={activeView}
+              initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: isRTL ? 20 : -20 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-4"
+            >
+              {/* Sub-view Header */}
+              <button
+                onClick={() => setActiveView('main')}
+                className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors active:scale-[0.97] mb-1"
+              >
+                {isRTL ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+                <span className="font-medium">{t('settings.title')}</span>
+              </button>
 
-        </Accordion>
+              <h2 className="text-lg font-bold text-foreground">{getSubViewTitle()}</h2>
 
-        {/* Privacy & About */}
-        <div className="space-y-2 mt-4">
-          
-          {/* Privacy Info */}
-          <div className="p-3.5 rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20">
-            <div className="flex items-center gap-2 mb-2.5">
-              <Shield className="w-4 h-4 text-primary" />
-              <span className="font-medium text-sm">{t('settings.dataPrivacy')}</span>
-            </div>
-            <div className="text-xs text-muted-foreground space-y-1.5">
-              <p className="flex items-center gap-2">
-                <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
-                {t('settings.privacyPoint1')}
-              </p>
-              <p className="flex items-center gap-2">
-                <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
-                {t('settings.privacyPoint2')}
-              </p>
-              <p className="flex items-center gap-2">
-                <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
-                {t('settings.privacyPoint3')}
-              </p>
-            </div>
-          </div>
-
-          {/* App Info */}
-          <div className="p-3.5 rounded-xl bg-muted/30 border">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Info className="w-4 h-4 text-muted-foreground" />
-                <span className="font-medium text-sm">{t('settings.aboutApp')}</span>
+              {/* Sub-view Content */}
+              <div className="rounded-2xl border bg-card p-4">
+                {renderSubView()}
               </div>
-              <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">v1.0.0</span>
-            </div>
-            <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1.5">
-              <Heart className="w-3 h-3 text-primary flex-shrink-0" />
-              {t('settings.appTagline')}
-            </p>
-            <div className="mt-2.5 pt-2.5 border-t border-border/50 flex items-start gap-1.5">
-              <Stethoscope className="w-3 h-3 text-muted-foreground/70 flex-shrink-0 mt-0.5" />
-              <p className="text-[10px] text-muted-foreground/70 leading-relaxed">
-                {t('settings.medicalNote')}
-              </p>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </Layout>
