@@ -12,29 +12,6 @@ import { maybeRunCleanup } from "@/lib/storageCleanup";
 // Run periodic storage cleanup (non-blocking)
 maybeRunCleanup();
 
-// Register WebView with AdSense for Google Play compliance
-// Prevents account suspension when ads are shown inside a WebView app
-try {
-  const adsbygoogle = (window as any).adsbygoogle || [];
-  if (typeof adsbygoogle.registerWebView === "function") {
-    adsbygoogle.registerWebView();
-  } else {
-    // Wait for AdSense script to load, then register
-    const onAdsLoaded = () => {
-      try {
-        const ads = (window as any).adsbygoogle;
-        if (ads && typeof ads.registerWebView === "function") {
-          ads.registerWebView();
-        }
-      } catch {
-        // Silent fail — not in WebView or AdSense not ready
-      }
-    };
-    window.addEventListener("load", onAdsLoaded, { once: true });
-  }
-} catch {
-  // Silent fail — safe for non-WebView environments
-}
 
 // Wait for initial language to load, then render
 i18nReady.then(() => {
