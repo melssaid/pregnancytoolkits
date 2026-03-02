@@ -1,29 +1,40 @@
 import { forwardRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface BackButtonProps {
   className?: string;
+  fallbackPath?: string;
 }
 
 export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
-  ({ className = "" }, ref) => {
+  ({ className = "", fallbackPath = "/" }, ref) => {
     const { i18n } = useTranslation();
     const navigate = useNavigate();
+    const location = useLocation();
     const isRTL = i18n.language === "ar";
     const Icon = isRTL ? ArrowRight : ArrowLeft;
 
     const handleBack = useCallback(() => {
-      // Check if there's history to go back to
-      if (window.history.length > 1) {
+      // Check if we have internal navigation history (not just the browser's default entry)
+      // window.history.state?.idx > 0 means React Router has tracked at least one navigation
+      const hasRouterHistory = window.history.state?.idx > 0;
+      
+      if (hasRouterHistory) {
         navigate(-1);
       } else {
-        // Fallback: navigate to home if no history
-        navigate("/");
+        // No internal history — navigate to a sensible fallback
+        // If on a tool page, go to dashboard; otherwise go to home
+        const path = location.pathname;
+        if (path.startsWith("/tools/")) {
+          navigate("/dashboard", { replace: true });
+        } else {
+          navigate(fallbackPath, { replace: true });
+        }
       }
-    }, [navigate]);
+    }, [navigate, location.pathname, fallbackPath]);
 
     return (
       <button
