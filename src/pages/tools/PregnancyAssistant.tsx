@@ -81,6 +81,7 @@ export default function PregnancyAssistant() {
       customIcon="chat-assistant"
       mood="nurturing"
       toolId="pregnancy-assistant"
+      noCard
     >
       <div className="space-y-3">
         {/* Chat Container */}
