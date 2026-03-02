@@ -2,19 +2,21 @@ import { motion } from "framer-motion";
 
 const BabyFootprintsIcon = ({ className = "w-9 h-9" }: { className?: string }) => (
   <svg viewBox="0 0 401.141 401.141" fill="white" className={className}>
-    {/* Right foot — lifts first */}
+    {/* Right foot — steps forward first */}
     <motion.g
       animate={{
-        y: [0, -8, 0, 0, 0],
-        opacity: [0.6, 1, 0.85, 0.6, 0.6],
-        scale: [1, 0.95, 1.02, 1, 1],
+        y: [0, -10, -2, 0, 0],
+        x: [0, 2, 4, 4, 0],
+        opacity: [0.55, 1, 0.9, 0.7, 0.55],
+        scale: [1, 0.93, 1.04, 1, 1],
+        rotate: [0, -3, 1, 0, 0],
       }}
       transition={{
-        duration: 2.4,
+        duration: 2.6,
         repeat: Infinity,
-        repeatDelay: 0.6,
+        repeatDelay: 0.5,
         ease: "easeInOut",
-        times: [0, 0.18, 0.35, 0.5, 1],
+        times: [0, 0.2, 0.38, 0.55, 1],
       }}
       style={{ transformOrigin: "300px 200px" }}
     >
@@ -22,19 +24,21 @@ const BabyFootprintsIcon = ({ className = "w-9 h-9" }: { className?: string }) =
       <path d="M231.645,60.708c15.646,0,28.503-12.121,29.7-27.465c3.841,6.514,10.926,10.896,19.02,10.896c9.675,0,17.909-6.26,20.881-14.938c2.401,8.602,10.288,14.938,19.645,14.938c7.44,0,13.942-4.014,17.51-9.976c0.549,9.854,8.714,17.708,18.702,17.708c10.342,0,18.756-8.414,18.756-18.756s-8.414-18.756-18.756-18.756c-6.659,0-12.503,3.498-15.831,8.743c-0.334-10.967-9.336-19.79-20.381-19.79c-8.771,0-16.245,5.572-19.127,13.354C299.347,7.102,290.671,0,280.364,0c-10.875,0-19.932,7.909-21.735,18.276c-4.763-10.136-15.064-17.173-26.984-17.173c-16.434,0-29.804,13.369-29.804,29.803C201.841,47.339,215.211,60.708,231.645,60.708z" />
     </motion.g>
 
-    {/* Left foot — lifts second (staggered) */}
+    {/* Left foot — steps forward second (staggered) */}
     <motion.g
       animate={{
-        y: [0, 0, 0, -8, 0],
-        opacity: [0.6, 0.6, 0.6, 1, 0.85],
-        scale: [1, 1, 1, 0.95, 1.02],
+        y: [0, 0, 0, -10, -2],
+        x: [0, 0, 0, -2, -4],
+        opacity: [0.55, 0.55, 0.55, 1, 0.9],
+        scale: [1, 1, 1, 0.93, 1.04],
+        rotate: [0, 0, 0, 3, -1],
       }}
       transition={{
-        duration: 2.4,
+        duration: 2.6,
         repeat: Infinity,
-        repeatDelay: 0.6,
+        repeatDelay: 0.5,
         ease: "easeInOut",
-        times: [0, 0.35, 0.5, 0.68, 0.85],
+        times: [0, 0.35, 0.5, 0.7, 0.88],
       }}
       style={{ transformOrigin: "100px 260px" }}
     >
