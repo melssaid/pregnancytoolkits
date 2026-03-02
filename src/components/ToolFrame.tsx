@@ -103,9 +103,13 @@ export function ToolFrame({
             <div className="absolute -top-4 right-0 w-32 h-12 bg-primary/10 rounded-full blur-xl" />
           </div>
           <div className="px-4 sm:px-6 py-2 flex items-center justify-between">
-            <div className="flex items-center gap-2 min-w-0 flex-1">
+            <div className="flex items-center min-w-0">
               <BackButton />
-              <Link to="/" className="flex items-center gap-2 min-w-0">
+            </div>
+            <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+              <div className="relative group">
+                {/* Soft glow ring */}
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-accent/15 blur-sm opacity-80 group-hover:opacity-100 transition-opacity" />
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
@@ -113,14 +117,11 @@ export function ToolFrame({
                   height={44}
                   loading="eager"
                   decoding="async"
-                  className="h-11 w-11 rounded-full shadow-md object-cover flex-shrink-0"
+                  className="relative h-11 w-11 rounded-full shadow-md ring-2 ring-primary/15 object-cover"
                 />
-                <span className="text-sm font-bold text-foreground truncate hidden sm:block">
-                  {t('app.name')}
-                </span>
-              </Link>
-            </div>
-            <div className="flex-shrink-0 ms-3">
+              </div>
+            </Link>
+            <div className="flex-shrink-0">
               <LanguageDropdown />
             </div>
           </div>
