@@ -48,7 +48,7 @@ export function QuickStats({
       value: weight > 0 ? `${weight} kg` : "—",
       subtextKey: "dashboard.quickStats.lastRecorded",
       href: "/tools/weight-gain",
-      colorClass: "bg-primary/15 text-primary"
+      colorClass: "bg-primary/10 text-primary"
     },
     {
       id: "kicks",
@@ -58,7 +58,7 @@ export function QuickStats({
       subtextKey: kicks >= 10 ? "dashboard.quickStats.goalReached" : "dashboard.quickStats.goal",
       subtextParams: { goal: 10 },
       href: "/tools/kick-counter",
-      colorClass: "bg-accent/15 text-accent"
+      colorClass: "bg-primary/10 text-primary"
     },
     {
       id: "mood",
@@ -76,7 +76,7 @@ export function QuickStats({
       value: `${waterGlasses}/8`,
       subtextKey: "dashboard.quickStats.glassesToday",
       href: "/tools/vitamin-tracker",
-      colorClass: "bg-secondary text-secondary-foreground"
+      colorClass: "bg-primary/8 text-primary"
     },
   ];
 
@@ -128,8 +128,8 @@ export function QuickStats({
             to="/settings"
             className="flex items-center gap-4 p-4 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all group"
           >
-            <div className="p-2.5 rounded-xl bg-accent/15">
-              <Ruler className="w-4 h-4 text-accent-foreground" />
+            <div className="p-2.5 rounded-xl bg-primary/10">
+              <Ruler className="w-4 h-4 text-primary" />
             </div>
             <div className="flex-1">
               <p className="text-xs text-muted-foreground">{t("dashboard.quickStats.bmi", "BMI")}</p>
@@ -146,7 +146,7 @@ export function QuickStats({
             </div>
             <div className={`text-xs font-medium px-2.5 py-1 rounded-full ${
               bmi < 18.5 ? 'bg-primary/10 text-primary'
-              : bmi < 25  ? 'bg-accent/20 text-accent-foreground'
+              : bmi < 25  ? 'bg-primary/15 text-primary'
               : bmi < 30  ? 'bg-primary/10 text-primary'
               :             'bg-destructive/10 text-destructive'
             }`}>
