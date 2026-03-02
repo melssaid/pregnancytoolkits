@@ -2,62 +2,76 @@ import { motion } from "framer-motion";
 
 const BabyFootprintsIcon = ({ className = "w-9 h-9" }: { className?: string }) => {
   return (
-    <div className={`${className} relative overflow-visible`}>
-      {/* Left foot — steps first */}
+    <div className={`${className} relative`}>
+      {/* Left foot */}
       <motion.svg
-        viewBox="0 0 50 80"
-        className="absolute w-[48%] h-[80%] left-[2%] top-[10%]"
+        viewBox="0 0 120 160"
+        className="absolute w-[46%] h-[88%] left-[3%] top-[6%]"
         fill="currentColor"
         animate={{
-          y: [0, -4, 0, 0, 0],
-          scale: [1, 1.08, 1, 1, 1],
-          opacity: [0.85, 1, 0.85, 0.85, 0.85],
+          y: [0, -3, 0, 0, 0],
+          opacity: [0.9, 1, 0.9, 0.9, 0.9],
         }}
         transition={{
           duration: 1.6,
           repeat: Infinity,
-          repeatDelay: 0.8,
+          repeatDelay: 1.2,
           ease: "easeInOut",
-          times: [0, 0.25, 0.5, 0.75, 1],
+          times: [0, 0.2, 0.4, 0.7, 1],
         }}
       >
-        {/* Toes */}
-        <ellipse cx="12" cy="6" rx="5.5" ry="6" />
-        <ellipse cx="23" cy="3" rx="4.5" ry="5" />
-        <ellipse cx="33" cy="4" rx="4" ry="4.5" />
-        <ellipse cx="41" cy="8" rx="3.5" ry="4" />
-        <ellipse cx="46" cy="15" rx="3" ry="3.5" />
-        {/* Sole */}
-        <path d="M8 18c2-2 8-4 14-4 6 0 12 2 16 6 4 5 6 12 5 20-1 10-6 22-14 30-3 3-6 5-8 5s-5-2-7-5C6 62 2 50 1 40 0 32 2 24 8 18z" />
+        {/* Big toe */}
+        <ellipse cx="38" cy="16" rx="16" ry="16" />
+        {/* Second toe */}
+        <ellipse cx="60" cy="8" rx="12" ry="13" />
+        {/* Third toe */}
+        <ellipse cx="78" cy="12" rx="10" ry="11" />
+        {/* Fourth toe */}
+        <ellipse cx="93" cy="20" rx="9" ry="10" />
+        {/* Pinky toe */}
+        <ellipse cx="104" cy="32" rx="8" ry="9" />
+        {/* Ball of foot */}
+        <ellipse cx="62" cy="58" rx="38" ry="22" />
+        {/* Arch bridge - thinner connection */}
+        <ellipse cx="50" cy="90" rx="18" ry="18" />
+        {/* Heel */}
+        <ellipse cx="48" cy="128" rx="28" ry="28" />
       </motion.svg>
 
-      {/* Right foot — steps second (offset timing) */}
+      {/* Right foot */}
       <motion.svg
-        viewBox="0 0 50 80"
-        className="absolute w-[48%] h-[80%] right-[2%] top-[10%]"
+        viewBox="0 0 120 160"
+        className="absolute w-[46%] h-[88%] right-[3%] top-[6%]"
         fill="currentColor"
         style={{ scaleX: -1 }}
         animate={{
-          y: [0, 0, 0, -4, 0],
-          scale: [1, 1, 1, 1.08, 1],
-          opacity: [0.85, 0.85, 0.85, 1, 0.85],
+          y: [0, 0, 0, -3, 0],
+          opacity: [0.9, 0.9, 0.9, 1, 0.9],
         }}
         transition={{
           duration: 1.6,
           repeat: Infinity,
-          repeatDelay: 0.8,
+          repeatDelay: 1.2,
           ease: "easeInOut",
-          times: [0, 0.25, 0.5, 0.75, 1],
+          times: [0, 0.2, 0.5, 0.7, 1],
         }}
       >
-        {/* Toes */}
-        <ellipse cx="12" cy="6" rx="5.5" ry="6" />
-        <ellipse cx="23" cy="3" rx="4.5" ry="5" />
-        <ellipse cx="33" cy="4" rx="4" ry="4.5" />
-        <ellipse cx="41" cy="8" rx="3.5" ry="4" />
-        <ellipse cx="46" cy="15" rx="3" ry="3.5" />
-        {/* Sole */}
-        <path d="M8 18c2-2 8-4 14-4 6 0 12 2 16 6 4 5 6 12 5 20-1 10-6 22-14 30-3 3-6 5-8 5s-5-2-7-5C6 62 2 50 1 40 0 32 2 24 8 18z" />
+        {/* Big toe */}
+        <ellipse cx="38" cy="16" rx="16" ry="16" />
+        {/* Second toe */}
+        <ellipse cx="60" cy="8" rx="12" ry="13" />
+        {/* Third toe */}
+        <ellipse cx="78" cy="12" rx="10" ry="11" />
+        {/* Fourth toe */}
+        <ellipse cx="93" cy="20" rx="9" ry="10" />
+        {/* Pinky toe */}
+        <ellipse cx="104" cy="32" rx="8" ry="9" />
+        {/* Ball of foot */}
+        <ellipse cx="62" cy="58" rx="38" ry="22" />
+        {/* Arch bridge */}
+        <ellipse cx="50" cy="90" rx="18" ry="18" />
+        {/* Heel */}
+        <ellipse cx="48" cy="128" rx="28" ry="28" />
       </motion.svg>
     </div>
   );
