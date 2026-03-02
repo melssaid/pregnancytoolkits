@@ -142,35 +142,33 @@ export function ToolFrame({
             >
               {title}
             </motion.h1>
-            {subtitle && (
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.25 }}
-                className="text-muted-foreground text-[11px] sm:text-xs leading-relaxed line-clamp-1"
-              >
-                {subtitle}
-              </motion.p>
-            )}
           </div>
 
-          {/* Tool Benefit Section */}
+          {/* Tool Benefit Section — Modern glassmorphism card */}
           {toolId && t(`toolBenefits.${toolId}`, '') && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              className="mt-3 p-3 rounded-xl bg-primary/5 border border-primary/10"
+              initial={{ opacity: 0, y: 12, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+              className="mt-3 relative overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/[0.06] via-white/80 to-accent/[0.06] backdrop-blur-sm shadow-sm"
             >
-              <div className="flex items-center gap-1.5 mb-1.5">
-                <Lightbulb className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                <span className="text-[11px] font-semibold text-foreground">
-                  {t('toolBenefits.heading', 'What do I benefit from this tool?')}
-                </span>
+              {/* Decorative gradient orbs */}
+              <div className="absolute -top-6 -right-6 w-20 h-20 bg-primary/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-accent/10 rounded-full blur-xl pointer-events-none" />
+              
+              <div className="relative z-10 p-3.5">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-gradient-to-br from-primary to-primary/70 shadow-sm">
+                    <Lightbulb className="w-3.5 h-3.5 text-primary-foreground" />
+                  </div>
+                  <span className="text-[11px] font-bold text-foreground tracking-tight">
+                    {t('toolBenefits.heading', 'What do I benefit from this tool?')}
+                  </span>
+                </div>
+                <p className="text-[11px] text-muted-foreground leading-relaxed ps-8">
+                  {t(`toolBenefits.${toolId}`)}
+                </p>
               </div>
-              <p className="text-[10px] text-muted-foreground leading-relaxed">
-                {t(`toolBenefits.${toolId}`)}
-              </p>
             </motion.div>
           )}
         </motion.section>
