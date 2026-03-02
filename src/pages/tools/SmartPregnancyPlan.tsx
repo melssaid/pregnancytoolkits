@@ -193,31 +193,28 @@ const SmartPregnancyPlan = () => {
         {/* Stats Overview */}
         <div className="grid grid-cols-4 gap-2">
           {statsCards.map((stat, i) => (
-            <Card key={i} className="text-center p-2">
+            <div key={i} className="text-center p-2 rounded-xl bg-muted/40 border border-border/30">
               <stat.icon className={`w-4 h-4 mx-auto mb-0.5 ${stat.color}`} />
               <p className="text-sm font-bold">{stat.value}</p>
               <p className="text-[9px] text-muted-foreground">{stat.label}</p>
-            </Card>
+            </div>
           ))}
         </div>
 
         {/* Trimester & Progress */}
-        <Card>
-          <CardContent className="p-3 space-y-2">
-            <div className="flex items-center justify-between">
-              <Badge className={`${trimester.color} text-white text-xs`}>{trimester.label}</Badge>
-              <span className="text-xs text-muted-foreground">{progress}%</span>
-            </div>
-            <Progress value={progress} className="h-2" />
-            <p className="text-[10px] text-center text-muted-foreground">
-              {t("smartPlan.daysRemaining", "{{days}} days remaining", { days: daysRemaining })}
-            </p>
-          </CardContent>
-        </Card>
+        <div className="rounded-xl bg-muted/30 border border-border/30 p-3 space-y-2">
+          <div className="flex items-center justify-between">
+            <Badge className={`${trimester.color} text-white text-xs`}>{trimester.label}</Badge>
+            <span className="text-xs text-muted-foreground">{progress}%</span>
+          </div>
+          <Progress value={progress} className="h-2" />
+          <p className="text-[10px] text-center text-muted-foreground">
+            {t("smartPlan.daysRemaining", "{{days}} days remaining", { days: daysRemaining })}
+          </p>
+        </div>
 
         {/* Health Inputs */}
-        <Card>
-          <CardContent className="p-3 space-y-3">
+        <div className="space-y-3">
             <div className="space-y-2">
               <Label className="text-xs font-semibold">{t("smartPlan.pregnancyWeek", "Pregnancy Week")}</Label>
               <WeekSlider week={health.week} onChange={(v) => update('week', v)} />
@@ -309,8 +306,7 @@ const SmartPregnancyPlan = () => {
                 </div>
               </motion.div>
             )}
-          </CardContent>
-        </Card>
+        </div>
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -324,82 +320,80 @@ const SmartPregnancyPlan = () => {
           </TabsList>
 
           {/* AI Plan Tab */}
-          <TabsContent value="aiplan" className="space-y-3">
+          <TabsContent value="aiplan" className="space-y-3 mt-3">
             {aiResponse ? (
               <PrintableReport title={t("smartPlan.aiPlan", "AI Plan")}>
-                <Card className="border-primary/20 bg-primary/5">
-                  <CardContent className="p-4">
-                    <MarkdownRenderer content={aiResponse} isLoading={isLoading} />
-                  </CardContent>
-                </Card>
+                <div className="rounded-xl bg-primary/5 border border-primary/15 p-4">
+                  <MarkdownRenderer content={aiResponse} isLoading={isLoading} />
+                </div>
               </PrintableReport>
             ) : (
-              <Card>
-                <CardContent className="p-5 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                    <Brain className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">
-                    {t("smartPlan.aiPlanHint", "Get a personalized AI-powered pregnancy plan based on your profile")}
-                  </p>
-                  <Button onClick={generateAIPlan} disabled={isLoading} className="gap-2">
-                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
-                    {t("smartPlan.getAIPlan", "Get Smart Plan")}
-                  </Button>
-                </CardContent>
-              </Card>
+              <div className="py-6 text-center space-y-3">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                  <Brain className="h-6 w-6 text-primary" />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {t("smartPlan.aiPlanHint", "Get a personalized AI-powered pregnancy plan based on your profile")}
+                </p>
+                <motion.button
+                  whileTap={{ scale: 0.92 }}
+                  onClick={generateAIPlan}
+                  disabled={isLoading}
+                  className="relative mx-auto overflow-hidden rounded-2xl h-10 px-6 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
+                  style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
+                >
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
+                  {t("smartPlan.getAIPlan", "Get Smart Plan")}
+                </motion.button>
+              </div>
             )}
           </TabsContent>
 
           {/* Report Tab */}
-          <TabsContent value="report" className="space-y-3">
+          <TabsContent value="report" className="space-y-3 mt-3">
             {reportContent ? (
               <div className="space-y-3">
                 <PrintableReport title={`${t("smartPlan.weeklyReport")} — ${t("common.week", "Week")} ${health.week}`}>
-                  <div id="smart-plan-report" ref={reportRef} className="bg-background rounded-xl" dir={isRTL ? 'rtl' : 'ltr'} lang={lang}>
-                    <Card className="border-primary/20">
-                      <CardContent className="p-4 space-y-3">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
-                              <Baby className="w-5 h-5 text-primary" />
-                            </div>
-                            <div>
-                              <h3 className="text-sm font-bold">{t("smartPlan.weeklyReport")} — {t("common.week", "Week")} {health.week}</h3>
-                              <p className="text-[10px] text-muted-foreground">{new Date().toLocaleDateString(isRTL ? 'ar-SA' : undefined)}</p>
-                            </div>
+                  <div id="smart-plan-report" ref={reportRef} className="rounded-xl" dir={isRTL ? 'rtl' : 'ltr'} lang={lang}>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
+                            <Baby className="w-5 h-5 text-primary" />
                           </div>
-                          <Badge className={`${trimester.color} text-white text-[10px]`}>{trimester.label}</Badge>
-                        </div>
-
-                        <div className="space-y-1.5">
-                          <div className="flex justify-between text-[10px] text-muted-foreground">
-                            <span>{t("smartPlan.pregnancyProgress", "Pregnancy Progress")}</span>
-                            <span>{progress}%</span>
+                          <div>
+                            <h3 className="text-sm font-bold">{t("smartPlan.weeklyReport")} — {t("common.week", "Week")} {health.week}</h3>
+                            <p className="text-[10px] text-muted-foreground">{new Date().toLocaleDateString(isRTL ? 'ar-SA' : undefined)}</p>
                           </div>
-                          <Progress value={progress} className="h-2" />
-                          <p className="text-[10px] text-center text-muted-foreground">
-                            {t("smartPlan.daysRemaining", "{{days}} days remaining", { days: daysRemaining })}
-                          </p>
                         </div>
+                        <Badge className={`${trimester.color} text-white text-[10px]`}>{trimester.label}</Badge>
+                      </div>
 
-                        <div className="grid grid-cols-4 gap-2 pt-1">
-                          {statsCards.map((stat, i) => (
-                            <div key={i} className="bg-muted/50 rounded-lg p-2 text-center">
-                              <stat.icon className={`w-3.5 h-3.5 mx-auto mb-0.5 ${stat.color}`} />
-                              <p className="text-xs font-bold">{stat.value}</p>
-                              <p className="text-[8px] text-muted-foreground">{stat.label}</p>
-                            </div>
-                          ))}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between text-[10px] text-muted-foreground">
+                          <span>{t("smartPlan.pregnancyProgress", "Pregnancy Progress")}</span>
+                          <span>{progress}%</span>
                         </div>
-                      </CardContent>
-                    </Card>
+                        <Progress value={progress} className="h-2" />
+                        <p className="text-[10px] text-center text-muted-foreground">
+                          {t("smartPlan.daysRemaining", "{{days}} days remaining", { days: daysRemaining })}
+                        </p>
+                      </div>
 
-                    <Card className="border-primary/20 bg-primary/5 mt-3">
-                      <CardContent className="p-4">
-                        <MarkdownRenderer content={reportContent} isLoading={isLoading} />
-                      </CardContent>
-                    </Card>
+                      <div className="grid grid-cols-4 gap-2 pt-1">
+                        {statsCards.map((stat, i) => (
+                          <div key={i} className="bg-muted/50 rounded-lg p-2 text-center">
+                            <stat.icon className={`w-3.5 h-3.5 mx-auto mb-0.5 ${stat.color}`} />
+                            <p className="text-xs font-bold">{stat.value}</p>
+                            <p className="text-[8px] text-muted-foreground">{stat.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="rounded-xl bg-primary/5 border border-primary/15 p-4 mt-3">
+                      <MarkdownRenderer content={reportContent} isLoading={isLoading} />
+                    </div>
                   </div>
                 </PrintableReport>
 
@@ -407,7 +401,7 @@ const SmartPregnancyPlan = () => {
                   whileTap={{ scale: 0.92 }}
                   onClick={generateReport}
                   disabled={isLoading}
-                  className="relative w-full overflow-hidden rounded-md h-9 flex items-center justify-center gap-1.5 text-white text-xs font-semibold disabled:opacity-60 disabled:pointer-events-none"
+                  className="relative w-full overflow-hidden rounded-2xl h-9 flex items-center justify-center gap-1.5 text-white text-xs font-semibold disabled:opacity-60 disabled:pointer-events-none"
                   style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
                 >
                   {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
@@ -415,28 +409,30 @@ const SmartPregnancyPlan = () => {
                 </motion.button>
               </div>
             ) : (
-              <Card>
-                <CardContent className="p-5 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                    <FileText className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">
-                    {t("smartPlan.reportHint", "Get a detailed AI-powered health report personalized for your week, weight, and condition")}
-                  </p>
-                  <Button onClick={generateReport} disabled={isLoading} className="gap-2">
-                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
-                    {t("smartPlan.generateReport", "Generate Health Report")}
-                  </Button>
-                </CardContent>
-              </Card>
+              <div className="py-6 text-center space-y-3">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                  <FileText className="h-6 w-6 text-primary" />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {t("smartPlan.reportHint", "Get a detailed AI-powered health report personalized for your week, weight, and condition")}
+                </p>
+                <motion.button
+                  whileTap={{ scale: 0.92 }}
+                  onClick={generateReport}
+                  disabled={isLoading}
+                  className="relative mx-auto overflow-hidden rounded-2xl h-10 px-6 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
+                  style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
+                >
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
+                  {t("smartPlan.generateReport", "Generate Health Report")}
+                </motion.button>
+              </div>
             )}
           </TabsContent>
         </Tabs>
 
         {error && (
-          <Card className="border-destructive/30 bg-destructive/5">
-            <CardContent className="p-4 text-destructive text-xs">{error}</CardContent>
-          </Card>
+          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{error}</div>
         )}
       </div>
     </ToolFrame>
