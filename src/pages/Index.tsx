@@ -165,8 +165,12 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
                 src={config.customIcon} 
                 alt="" 
                 className="w-7 h-7 object-contain mix-blend-multiply dark:mix-blend-screen"
-                animate={{ scale: [1, 1.15, 1], rotate: [0, -6, 6, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" }}
+                animate={{ 
+                  y: [0, -3, 0, -3, 0],
+                  rotate: [0, -8, 0, 8, 0],
+                  x: [0, -1, 0, 1, 0],
+                }}
+                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
               />
             ) : Icon ? (
               <motion.div
