@@ -84,8 +84,7 @@ export default function PregnancyAssistant() {
     >
       <div className="space-y-3">
         {/* Chat Container */}
-        <Card className="border border-primary/10 shadow-sm overflow-hidden">
-          <CardContent className="p-0">
+        <div className="overflow-hidden">
             <ScrollArea className="h-[calc(100vh-320px)] min-h-[320px] max-h-[450px]" ref={scrollRef}>
               <div className="p-3">
                 {messages.length === 0 ? (
@@ -261,8 +260,7 @@ export default function PregnancyAssistant() {
                 </Button>
               </div>
             </div>
-          </CardContent>
-        </Card>
+        </div>
 
         {/* Trust Indicators - Compact */}
         <div className="flex flex-wrap justify-center gap-3 text-[10px] sm:text-xs text-muted-foreground">
