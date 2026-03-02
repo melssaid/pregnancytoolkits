@@ -159,12 +159,12 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
         <div className="absolute -top-6 -end-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
         
         <div className="relative flex items-center gap-3">
-          <div className={`w-11 h-11 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
+          <div className={`w-11 h-11 rounded-xl ${config.customIcon ? '' : config.iconBg + ' backdrop-blur-sm shadow-lg'} flex items-center justify-center`}>
             {config.customIcon ? (
               <motion.img 
                 src={config.customIcon} 
                 alt="" 
-                className="w-11 h-11 object-contain"
+                className="w-11 h-11 object-contain mix-blend-multiply dark:mix-blend-screen"
                 animate={config.key === "planning" ? { scale: [1, 1.15, 1], rotate: [0, -6, 6, 0] } : {}}
                 transition={config.key === "planning" ? { duration: 2.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" } : {}}
               />
