@@ -164,7 +164,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
               <motion.img 
                 src={config.customIcon} 
                 alt="" 
-                className="w-8 h-8 object-contain rounded-lg"
+                className="w-10 h-10 object-contain"
                 animate={config.key === "planning" ? { scale: [1, 1.15, 1], rotate: [0, -6, 6, 0] } : {}}
                 transition={config.key === "planning" ? { duration: 2.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" } : {}}
               />
