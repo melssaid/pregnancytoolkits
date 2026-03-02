@@ -85,10 +85,10 @@ const trackingTools = [
 ];
 
 const quickQuestionKeys = [
-  { icon: Baby,       key: "firstTrimester", color: "from-primary to-pink-500" },
-  { icon: Pill,       key: "coffee",         color: "from-amber-500 to-orange-500" },
-  { icon: Stethoscope,key: "labor",          color: "from-blue-500 to-indigo-500" },
-  { icon: Salad,      key: "vitamins",       color: "from-emerald-500 to-green-500" },
+  { icon: Baby,       key: "firstTrimester", color: "from-primary to-primary/70" },
+  { icon: Pill,       key: "coffee",         color: "from-primary/80 to-primary/60" },
+  { icon: Stethoscope,key: "labor",          color: "from-primary/90 to-primary/70" },
+  { icon: Salad,      key: "vitamins",       color: "from-primary/70 to-primary/50" },
 ];
 
 const nutritionKeys = [
@@ -238,7 +238,7 @@ const SmartDashboard = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap transition-all flex-shrink-0 ${
                   activeTab === tab.id
-                    ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-sm"
+                    ? "bg-gradient-to-r from-primary to-primary/70 text-primary-foreground shadow-sm"
                     : "bg-muted/40 text-muted-foreground hover:bg-muted"
                 }`}
               >
@@ -287,9 +287,9 @@ const SmartDashboard = () => {
             >
               <Link
                 to="/tools/smart-plan"
-                className="flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 hover:border-primary/40 hover:shadow-md transition-all group card-pink-top"
+                className="flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 hover:shadow-md transition-all group card-pink-top"
               >
-                <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-accent shadow-lg">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-primary to-primary/70 shadow-lg">
                   <CalendarCheck className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -370,10 +370,10 @@ const SmartDashboard = () => {
                           </span>
                         </div>
                         <div className="flex items-center gap-1">
-                          {hasData && <CheckCircle2 className="w-2.5 h-2.5 text-accent" />}
+                          {hasData && <CheckCircle2 className="w-2.5 h-2.5 text-primary" />}
                           <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${
                             hasData 
-                              ? 'bg-accent/10 text-accent' 
+                              ? 'bg-primary/10 text-primary' 
                               : 'bg-muted text-muted-foreground'
                           }`}>
                             {summary}
@@ -454,7 +454,7 @@ const SmartDashboard = () => {
           >
             <Card className="overflow-hidden rounded-3xl">
               <CardContent className="p-0">
-                <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-4 border-b border-border">
+                <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-4 border-b border-border">
                   <h2 className="text-base font-bold flex items-center gap-2">
                     <Bot className="w-5 h-5 text-primary" />
                     {t('dashboard.chat.title')}
@@ -490,7 +490,7 @@ const SmartDashboard = () => {
                         >
                           <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
                             msg.role === "user"
-                              ? "bg-gradient-to-br from-primary to-accent"
+                              ? "bg-gradient-to-br from-primary to-primary/70"
                               : "bg-muted"
                           }`}>
                             {msg.role === "user" ? (
@@ -501,7 +501,7 @@ const SmartDashboard = () => {
                           </div>
                           <div className={`max-w-[80%] rounded-2xl px-3 py-2 text-sm ${
                             msg.role === "user"
-                              ? "bg-gradient-to-br from-primary to-accent text-primary-foreground rounded-tr-sm"
+                              ? "bg-gradient-to-br from-primary to-primary/70 text-primary-foreground rounded-tr-sm"
                               : "bg-muted rounded-tl-sm"
                           }`}>
                             {msg.role === "assistant" ? (
@@ -587,8 +587,8 @@ const SmartDashboard = () => {
                   <span className="text-lg font-bold text-primary">{healthData.weekOfPregnancy}</span>
                   <span className="text-[10px] text-muted-foreground">{t('dashboard.health.weekOfPregnancy')}</span>
                 </div>
-                <div className="flex flex-col items-center bg-accent/8 rounded-xl px-4 py-2 border border-accent/15">
-                  <span className="text-lg font-bold text-accent">{healthData.weight || '—'} <span className="text-xs font-normal">kg</span></span>
+                <div className="flex flex-col items-center bg-primary/8 rounded-xl px-4 py-2 border border-primary/15">
+                  <span className="text-lg font-bold text-primary">{healthData.weight || '—'} <span className="text-xs font-normal">kg</span></span>
                   <span className="text-[10px] text-muted-foreground">{t('dashboard.health.weightKg')}</span>
                 </div>
               </div>
@@ -685,7 +685,7 @@ const SmartDashboard = () => {
             </Card>
 
             {/* AI Analysis */}
-            <Card className="rounded-3xl bg-gradient-to-br from-primary/5 to-accent/5">
+            <Card className="rounded-3xl bg-gradient-to-br from-primary/5 to-primary/[0.02]">
               <CardContent className="p-4">
                 <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
                   <Brain className="w-4 h-4 text-primary" />

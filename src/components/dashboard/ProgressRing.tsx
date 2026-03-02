@@ -50,7 +50,7 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
           <defs>
             <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="hsl(var(--primary))" />
-              <stop offset="100%" stopColor="hsl(var(--accent))" />
+              <stop offset="100%" stopColor="hsl(350, 55%, 60%)" />
             </linearGradient>
           </defs>
         </svg>
@@ -60,7 +60,7 @@ export function ProgressRing({ currentWeek, totalWeeks = 40, dueDate }: Progress
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3, type: "spring" }}
-            className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-1"
+            className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mb-1"
           >
             <Baby className="w-6 h-6 text-primary-foreground" />
           </motion.div>
