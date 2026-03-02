@@ -86,15 +86,14 @@ export default function PregnancyAssistant() {
       <div className="space-y-3">
         {/* Chat Container */}
         <div className="overflow-hidden">
-            <ScrollArea className="h-[calc(100vh-320px)] min-h-[320px] max-h-[450px]" ref={scrollRef}>
+            {messages.length === 0 ? (
               <div className="p-3">
-                {messages.length === 0 ? (
                   <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="flex flex-col items-center justify-center min-h-[280px] text-center space-y-4"
+                    className="flex flex-col items-center justify-center text-center space-y-4"
                   >
-                    {/* Welcome Icon - Smaller */}
+                    {/* Welcome Icon */}
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -114,7 +113,7 @@ export default function PregnancyAssistant() {
                       </motion.div>
                     </motion.div>
 
-                    {/* Welcome Text - Compact */}
+                    {/* Welcome Text */}
                     <div className="space-y-1 max-w-xs">
                       <h3 className="text-base font-bold text-foreground">
                         {t("pregnancyAssistant.hello")}
@@ -124,7 +123,7 @@ export default function PregnancyAssistant() {
                       </p>
                     </div>
 
-                    {/* Quick Questions - 2x4 Grid */}
+                    {/* Quick Questions */}
                     <div className="grid grid-cols-2 gap-1.5 w-full max-w-sm">
                       {quickQuestions.map((q, i) => (
                         <motion.button
@@ -145,82 +144,80 @@ export default function PregnancyAssistant() {
                       ))}
                     </div>
                   </motion.div>
-                ) : (
-                  <div className="space-y-4">
-                    <AnimatePresence mode="popLayout">
-                      {messages.map((msg, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, y: 15, scale: 0.97 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          transition={{ duration: 0.25 }}
-                          className={`flex gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
-                        >
-                          {/* Avatar */}
-                          <div
-                            className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow ${
-                              msg.role === "user"
-                                ? "bg-gradient-to-br from-primary to-pink-500"
-                                : "bg-gradient-to-br from-slate-600 to-slate-700"
-                            }`}
-                          >
-                            {msg.role === "user" ? (
-                              <User className="w-4 h-4 text-white" />
-                            ) : (
-                              <Bot className="w-4 h-4 text-white" />
-                            )}
-                          </div>
-
-                          {/* Message Bubble */}
-                          <div
-                            className={`max-w-[85%] rounded-2xl px-3 py-2.5 shadow-sm ${
-                              msg.role === "user"
-                                ? "bg-gradient-to-br from-primary to-pink-500 text-white rounded-tr-sm"
-                                : "bg-white border border-gray-100 rounded-tl-sm"
-                            }`}
-                          >
-                            {msg.role === "assistant" ? (
-                              <div className="prose prose-sm max-w-none text-sm">
-                                <MarkdownRenderer content={msg.content} accentColor="primary" />
-                              </div>
-                            ) : (
-                              <p className="text-sm whitespace-pre-wrap leading-relaxed">
-                                {msg.content}
-                              </p>
-                            )}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </AnimatePresence>
-
-                    {/* Typing Indicator */}
-                    {isLoading && messages[messages.length - 1]?.role === "user" && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex gap-2.5"
+              </div>
+            ) : (
+              <ScrollArea className="h-[calc(100vh-320px)] min-h-[320px] max-h-[450px]" ref={scrollRef}>
+                <div className="p-3 space-y-4">
+                  <AnimatePresence mode="popLayout">
+                    {messages.map((msg, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 15, scale: 0.97 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.25 }}
+                        className={`flex gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
                       >
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center shadow">
-                          <Bot className="w-4 h-4 text-white" />
+                        <div
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow ${
+                            msg.role === "user"
+                              ? "bg-gradient-to-br from-primary to-pink-500"
+                              : "bg-gradient-to-br from-slate-600 to-slate-700"
+                          }`}
+                        >
+                          {msg.role === "user" ? (
+                            <User className="w-4 h-4 text-white" />
+                          ) : (
+                            <Bot className="w-4 h-4 text-white" />
+                          )}
                         </div>
-                        <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
-                          <div className="flex gap-1">
-                            {[0, 1, 2].map((i) => (
-                              <motion.div
-                                key={i}
-                                className="w-1.5 h-1.5 rounded-full bg-primary"
-                                animate={{ y: [0, -6, 0] }}
-                                transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.12 }}
-                              />
-                            ))}
-                          </div>
+                        <div
+                          className={`max-w-[85%] rounded-2xl px-3 py-2.5 shadow-sm ${
+                            msg.role === "user"
+                              ? "bg-gradient-to-br from-primary to-pink-500 text-white rounded-tr-sm"
+                              : "bg-white border border-gray-100 rounded-tl-sm"
+                          }`}
+                        >
+                          {msg.role === "assistant" ? (
+                            <div className="prose prose-sm max-w-none text-sm">
+                              <MarkdownRenderer content={msg.content} accentColor="primary" />
+                            </div>
+                          ) : (
+                            <p className="text-sm whitespace-pre-wrap leading-relaxed">
+                              {msg.content}
+                            </p>
+                          )}
                         </div>
                       </motion.div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </ScrollArea>
+                    ))}
+                  </AnimatePresence>
+
+                  {/* Typing Indicator */}
+                  {isLoading && messages[messages.length - 1]?.role === "user" && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex gap-2.5"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center shadow">
+                        <Bot className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+                        <div className="flex gap-1">
+                          {[0, 1, 2].map((i) => (
+                            <motion.div
+                              key={i}
+                              className="w-1.5 h-1.5 rounded-full bg-primary"
+                              animate={{ y: [0, -6, 0] }}
+                              transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.12 }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              </ScrollArea>
+            )}
 
             {/* Error Display */}
             {error && (
