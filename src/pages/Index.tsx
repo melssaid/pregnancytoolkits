@@ -162,7 +162,14 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
             {config.customIcon ? (
               <img src={config.customIcon} alt="" className="w-7 h-7 object-contain" />
             ) : Icon ? (
-              <Icon className={`w-5.5 h-5.5 ${config.headerText}`} strokeWidth={2} />
+              <motion.div
+                {...(config.key === "planning" ? {
+                  animate: { scale: [1, 1.18, 1], rotate: [0, -8, 8, 0] },
+                  transition: { duration: 2.5, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" }
+                } : {})}
+              >
+                <Icon className={`w-5.5 h-5.5 ${config.headerText}`} strokeWidth={2} />
+              </motion.div>
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
