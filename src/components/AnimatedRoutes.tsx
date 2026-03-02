@@ -78,7 +78,7 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 // VIDEO LIBRARY
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const Splash = lazy(() => import("@/pages/Splash"));
-const FootprintPreview = lazy(() => import("@/pages/FootprintPreview"));
+
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 
 export function AnimatedRoutes() {
@@ -171,7 +171,7 @@ export function AnimatedRoutes() {
 
         {/* SPLASH SCREEN */}
         <Route path="/splash" element={<Splash />} />
-        <Route path="/footprint-preview" element={<PageTransition><FootprintPreview /></PageTransition>} />
+        
 
         {/* LEGACY REDIRECTS — deleted tools */}
         <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
