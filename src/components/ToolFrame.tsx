@@ -27,6 +27,7 @@ interface ToolFrameProps {
   mood?: "calm" | "nurturing" | "empowering" | "joyful";
   toolId?: string;
   showRelated?: boolean;
+  noCard?: boolean;
 }
 
 const moodStyles = {
@@ -73,6 +74,7 @@ export function ToolFrame({
   mood = "nurturing",
   toolId,
   showRelated = true,
+  noCard = false,
 }: ToolFrameProps) {
   const { t } = useTranslation();
   const styles = moodStyles[mood];
@@ -175,20 +177,31 @@ export function ToolFrame({
 
         {/* Main Content Card */}
         <section className="px-4 sm:px-6 pb-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
-            className="relative bg-card backdrop-blur-xl rounded-2xl overflow-hidden border border-border/50 shadow-card"
-          >
-            {/* Top accent stripe */}
-            <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-primary/50 via-primary/25 to-accent/35" />
-            
-            {/* Content */}
-            <div className="relative p-4 sm:p-5 pt-5 overflow-hidden [&_*]:min-w-0">
+          {noCard ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
+              className="overflow-hidden [&_*]:min-w-0"
+            >
               {children}
-            </div>
-          </motion.div>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
+              className="relative bg-card backdrop-blur-xl rounded-2xl overflow-hidden border border-border/50 shadow-card"
+            >
+              {/* Top accent stripe */}
+              <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-primary/50 via-primary/25 to-accent/35" />
+              
+              {/* Content */}
+              <div className="relative p-4 sm:p-5 pt-5 overflow-hidden [&_*]:min-w-0">
+                {children}
+              </div>
+            </motion.div>
+          )}
 
           {/* AI Insight - skip for fertility tools */}
           {toolId && !FERTILITY_TOOL_IDS.has(toolId) && (
