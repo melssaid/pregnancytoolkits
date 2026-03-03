@@ -10,6 +10,7 @@ import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
@@ -206,22 +207,20 @@ export default function AIBirthPlanGenerator() {
         {error && <Card className="border-destructive/30 bg-destructive/5"><CardContent className="p-3 text-destructive text-xs">{error}</CardContent></Card>}
 
         {generatedPlan && (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-3">
-              <div className="flex flex-col gap-2 mb-3">
-                <h3 className="font-semibold flex items-center gap-2 text-xs">
-                  <FileText className="w-4 h-4 text-primary shrink-0" />
-                  {t('toolsInternal.birthPlan.yourBirthPlan')}
-                </h3>
-                <Button size="sm" variant="outline" onClick={savePlan} disabled={savedPlans.length >= MAX_SAVED_PLANS}>
-                  {t('common.save')}
-                </Button>
-              </div>
-              <PrintableReport title={t('toolsInternal.birthPlan.title')}>
-                <MarkdownRenderer content={generatedPlan} />
-              </PrintableReport>
-            </CardContent>
-          </Card>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Button size="sm" variant="outline" onClick={savePlan} disabled={savedPlans.length >= MAX_SAVED_PLANS}>
+                {t('common.save')}
+              </Button>
+            </div>
+            <PrintableReport title={t('toolsInternal.birthPlan.title')}>
+              <AIResponseFrame
+                content={generatedPlan}
+                title={t('toolsInternal.birthPlan.yourBirthPlan')}
+                icon={FileText}
+              />
+            </PrintableReport>
+          </div>
         )}
 
         <Card>

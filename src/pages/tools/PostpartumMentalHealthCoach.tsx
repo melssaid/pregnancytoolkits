@@ -10,6 +10,7 @@ import { VideoLibrary } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { mentalHealthVideosByLang } from '@/data/videoData';
 import { PrintableReport } from '@/components/PrintableReport';
 import { toast } from 'sonner';
@@ -188,10 +189,14 @@ export default function PostpartumMentalHealthCoach() {
                   {t('toolsInternal.mentalHealthCoach.generateMyPlan')}
                 </Button>
               ) : (
-                <div className="bg-white/50 dark:bg-black/20 rounded-xl p-4 max-h-[500px] overflow-y-auto">
+                <div className="max-h-[500px] overflow-y-auto">
                   {aiCopingPlan ? (
                     <PrintableReport title={t('toolsInternal.mentalHealthCoach.title')}>
-                      <MarkdownRenderer content={aiCopingPlan} />
+                      <AIResponseFrame
+                        content={aiCopingPlan}
+                        title={t('toolsInternal.mentalHealthCoach.title')}
+                        icon={Brain}
+                      />
                     </PrintableReport>
                   ) : (
                     <div className="flex items-center justify-center py-8 text-muted-foreground">

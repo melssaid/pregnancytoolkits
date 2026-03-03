@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { motion } from 'framer-motion';
 import { 
   Brain, Info, Loader2, Sparkles, Calendar, 
@@ -293,15 +294,12 @@ Please provide brief, supportive wellness insights about these feelings during w
 
         {/* AI Response */}
         {aiInsight && (
-          <Card className="overflow-hidden border-accent/30 bg-accent/5">
-            <CardContent className="p-3">
-              <div className="flex items-center gap-2 mb-2">
-                <Brain className="w-4 h-4 text-accent-foreground" />
-                <span className="text-xs font-semibold">{t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}</span>
-              </div>
-              <MarkdownRenderer content={aiInsight} isLoading={isGettingInsight} />
-            </CardContent>
-          </Card>
+          <AIResponseFrame
+            content={aiInsight}
+            isLoading={isGettingInsight}
+            title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}
+            icon={Brain}
+          />
         )}
 
         {/* Save Entry Button */}

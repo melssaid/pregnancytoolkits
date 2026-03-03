@@ -9,6 +9,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { WeekSlider } from '@/components/WeekSlider';
 import { useTranslation } from 'react-i18next';
 import { useUserProfile } from '@/hooks/useUserProfile';
@@ -196,27 +197,20 @@ const VitaminTracker: React.FC = () => {
 
         {/* AI Analysis */}
         {showAiAnalysis && (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-3">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <Brain className="w-4 h-4 text-primary" />
-                  <h3 className="font-semibold text-sm">{t('toolsInternal.vitaminTracker.aiAnalysisTitle')}</h3>
-                </div>
-                <Button variant="ghost" size="sm" onClick={getAIAnalysis} disabled={aiLoading} className="h-7 w-7 p-0">
-                  <RefreshCw className={`w-3.5 h-3.5 ${aiLoading ? 'animate-spin' : ''}`} />
-                </Button>
-              </div>
-              {aiAnalysis ? (
-                <MarkdownRenderer content={aiAnalysis} isLoading={aiLoading} />
-              ) : (
+          <AIResponseFrame
+            content={aiAnalysis || ''}
+            isLoading={aiLoading}
+            title={t('toolsInternal.vitaminTracker.aiAnalysisTitle')}
+            icon={Brain}
+            footer={
+              !aiAnalysis ? (
                 <div className="flex items-center justify-center py-6 text-muted-foreground">
                   <Loader2 className="w-4 h-4 animate-spin mr-2" />
                   <span className="text-xs">{t('toolsInternal.vitaminTracker.analyzingIntake')}</span>
                 </div>
-              )}
-            </CardContent>
-          </Card>
+              ) : undefined
+            }
+          />
         )}
 
         {/* Vitamins List */}

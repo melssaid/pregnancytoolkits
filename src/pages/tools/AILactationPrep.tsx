@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Brain, Loader2, Sparkles, Clock, ShoppingBag, AlertCircle } from "lucide-react";
+import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -230,9 +231,11 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
         {/* AI Response */}
         {response && (
-          <Card className="p-4 bg-muted/50">
-            <MarkdownRenderer content={response} isLoading={isLoading} />
-          </Card>
+          <AIResponseFrame
+            content={response}
+            isLoading={isLoading}
+            title={t('toolsInternal.lactationPrep.title')}
+          />
         )}
 
         {/* Support Note */}

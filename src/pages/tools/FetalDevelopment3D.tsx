@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { RelatedToolLinks } from '@/components/RelatedToolLinks';
 
 interface WeekData {
@@ -400,9 +401,12 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-3 p-3 bg-muted/30 rounded-lg max-h-[300px] overflow-y-auto"
+                  className="mt-3"
                 >
-                  <MarkdownRenderer content={aiInsight} isLoading={aiLoading} />
+                  <AIResponseFrame
+                    content={aiInsight}
+                    isLoading={aiLoading}
+                  />
                 </motion.div>
               )}
             </AnimatePresence>

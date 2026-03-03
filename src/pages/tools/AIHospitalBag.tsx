@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import { Briefcase, Brain, Baby, User, Heart, Plus, Share2, RotateCcw, Loader2 } from "lucide-react";
+import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -527,9 +528,11 @@ Include seasonal considerations and hospital-specific recommendations.`;
         </div>
 
         {response && (
-          <Card className="p-4 bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-950/30 dark:to-cyan-950/30">
-            <MarkdownRenderer content={response} isLoading={isLoading} />
-          </Card>
+          <AIResponseFrame
+            content={response}
+            isLoading={isLoading}
+            title={t('toolsInternal.hospitalBag.title')}
+          />
         )}
 
         {/* Educational Videos */}

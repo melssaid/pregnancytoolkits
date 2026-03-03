@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Heart } from "lucide-react";
+import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -162,9 +163,12 @@ Be warm, practical, and specific. Include real examples.`;
 
         {/* AI Response */}
         {response && (
-          <Card className="p-3 bg-muted/50">
-            <MarkdownRenderer content={response} isLoading={isLoading} />
-          </Card>
+          <AIResponseFrame
+            content={response}
+            isLoading={isLoading}
+            title={t('toolsInternal.partnerGuide.getAdvice')}
+            icon={Heart}
+          />
         )}
 
         {/* Quick Tips */}

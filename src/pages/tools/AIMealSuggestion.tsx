@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { useTranslation } from "react-i18next";
 import {
   Utensils,
@@ -278,26 +279,13 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
         ) : (
           <>
             {/* Suggestion Result */}
-            <Card className="border-primary/20 bg-primary/5 shadow-none">
-              <CardHeader className="p-3 pb-2">
-                <div className="flex items-center justify-between gap-2">
-                  <CardTitle className="text-xs flex items-center gap-1.5 text-primary">
-                    <Utensils className="w-3.5 h-3.5 shrink-0" />
-                    {t("toolsInternal.mealSuggestion.mealSuggestion")}
-                  </CardTitle>
-                  <Badge variant="secondary" className="text-[10px] shrink-0">
-                    {t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
-                  </Badge>
-                </div>
-              </CardHeader>
-              <CardContent className="p-3 pt-0">
-                <MarkdownRenderer
-                  content={suggestion}
-                  isLoading={isLoading}
-                  accentColor="primary"
-                />
-              </CardContent>
-            </Card>
+            <AIResponseFrame
+              content={suggestion}
+              isLoading={isLoading}
+              title={t("toolsInternal.mealSuggestion.mealSuggestion")}
+              subtitle={t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
+              icon={Utensils}
+            />
 
             {/* Actions */}
             <div className="flex gap-2">

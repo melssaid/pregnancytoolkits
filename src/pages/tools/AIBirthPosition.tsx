@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import { Baby, Sparkles, Clock, Brain, Loader2 } from "lucide-react";
+import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -212,9 +213,12 @@ Include safety considerations and when to change positions.`;
 
         {/* AI Response */}
         {response && (
-          <Card className="p-3 bg-muted/50">
-            <MarkdownRenderer content={response} isLoading={isLoading} />
-          </Card>
+          <AIResponseFrame
+            content={response}
+            isLoading={isLoading}
+            title={t('toolsInternal.birthPosition.title')}
+            icon={Baby}
+          />
         )}
 
         {/* Educational Videos with Thumbnails */}

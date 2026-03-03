@@ -13,6 +13,7 @@ import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { AIActionButton } from '@/components/ai/AIActionButton';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
@@ -152,18 +153,28 @@ function SleepTab() {
       </div>
 
       {(response || meditationScript || routinePlan) && (
-        <Card className="p-3 bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30">
-          <Tabs value={activeTab} onValueChange={v => setActiveTab(v as any)}>
-            <TabsList className="w-full mb-3">
-              <TabsTrigger value="analysis" className="flex-1" disabled={!response}><Brain className="w-4 h-4 me-1" />{t('toolsInternal.sleepOptimizer.sleepPlan')}</TabsTrigger>
-              <TabsTrigger value="meditation" className="flex-1" disabled={!meditationScript}><Wind className="w-4 h-4 me-1" />{t('toolsInternal.sleepOptimizer.meditation')}</TabsTrigger>
-              <TabsTrigger value="routine" className="flex-1" disabled={!routinePlan}><Bed className="w-4 h-4 me-1" />{t('toolsInternal.sleepOptimizer.routine')}</TabsTrigger>
-            </TabsList>
-            <TabsContent value="analysis" className="max-h-[400px] overflow-y-auto">{response && <MarkdownRenderer content={response} isLoading={isLoading && activeTab === 'analysis'} />}</TabsContent>
-            <TabsContent value="meditation" className="max-h-[400px] overflow-y-auto">{meditationScript && <MarkdownRenderer content={meditationScript} isLoading={isLoading && activeTab === 'meditation'} />}</TabsContent>
-            <TabsContent value="routine" className="max-h-[400px] overflow-y-auto">{routinePlan && <MarkdownRenderer content={routinePlan} isLoading={isLoading && activeTab === 'routine'} />}</TabsContent>
-          </Tabs>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative rounded-2xl overflow-hidden border border-primary/15 shadow-sm"
+        >
+          <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
+          <div className="p-3">
+            <Tabs value={activeTab} onValueChange={v => setActiveTab(v as any)}>
+              <TabsList className="w-full mb-3">
+                <TabsTrigger value="analysis" className="flex-1" disabled={!response}><Brain className="w-4 h-4 me-1" />{t('toolsInternal.sleepOptimizer.sleepPlan')}</TabsTrigger>
+                <TabsTrigger value="meditation" className="flex-1" disabled={!meditationScript}><Wind className="w-4 h-4 me-1" />{t('toolsInternal.sleepOptimizer.meditation')}</TabsTrigger>
+                <TabsTrigger value="routine" className="flex-1" disabled={!routinePlan}><Bed className="w-4 h-4 me-1" />{t('toolsInternal.sleepOptimizer.routine')}</TabsTrigger>
+              </TabsList>
+              <TabsContent value="analysis" className="max-h-[400px] overflow-y-auto rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">{response && <MarkdownRenderer content={response} isLoading={isLoading && activeTab === 'analysis'} />}</TabsContent>
+              <TabsContent value="meditation" className="max-h-[400px] overflow-y-auto rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">{meditationScript && <MarkdownRenderer content={meditationScript} isLoading={isLoading && activeTab === 'meditation'} />}</TabsContent>
+              <TabsContent value="routine" className="max-h-[400px] overflow-y-auto rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">{routinePlan && <MarkdownRenderer content={routinePlan} isLoading={isLoading && activeTab === 'routine'} />}</TabsContent>
+            </Tabs>
+          </div>
+          <p className="text-[8px] text-muted-foreground/40 text-center pb-2.5 tracking-wide">
+            {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
+          </p>
+        </motion.div>
       )}
 
       <Card className="p-3 bg-muted/30">
@@ -269,7 +280,13 @@ function NauseaTab() {
         loadingLabel={t('toolsInternal.nauseaRelief.creatingPlan')}
       />
 
-      {response && <Card className="p-3 bg-muted/50"><MarkdownRenderer content={response} isLoading={isLoading} /></Card>}
+      {response && (
+        <AIResponseFrame
+          content={response}
+          isLoading={isLoading}
+          title={t('toolsInternal.nauseaRelief.title')}
+        />
+      )}
 
       <Card className="p-3 bg-muted/30 text-center">
         <p className="text-xs text-muted-foreground leading-relaxed">{t('toolsInternal.nauseaRelief.encouragingNote')}</p>
