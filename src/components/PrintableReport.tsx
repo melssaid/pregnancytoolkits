@@ -200,12 +200,16 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
 </html>`);
     doc.close();
 
-    iframe.onload = () => {
-      setTimeout(() => {
+    // Use setTimeout instead of onload — onload is unreliable with doc.write()
+    setTimeout(() => {
+      try {
+        iframe.contentWindow?.focus();
         iframe.contentWindow?.print();
-        setTimeout(() => iframe.remove(), 1000);
-      }, 400);
-    };
+      } catch (e) {
+        console.error('Print failed:', e);
+      }
+      setTimeout(() => iframe.remove(), 2000);
+    }, 800);
   }, [lang, isRTL, title, profile]);
 
   return (
