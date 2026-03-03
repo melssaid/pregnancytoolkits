@@ -62,7 +62,7 @@ interface NotificationSettings {
 const DEFAULT_SETTINGS: NotificationSettings = {
   appointmentReminders: true,
   vitaminReminders: true,
-  waterReminders: true,
+  waterReminders: false,
   cycleReminders: false,
   weeklyTipReminders: false,
   kickReminders: false,
@@ -264,11 +264,11 @@ export function useNotifications() {
     setSettings({ 
       appointmentReminders: savedSettings.appointmentReminders ?? true,
       vitaminReminders: savedSettings.vitaminReminders ?? true,
-      waterReminders: savedSettings.waterReminders ?? true,
-      cycleReminders: (savedSettings as any).cycleReminders ?? true,
-      weeklyTipReminders: (savedSettings as any).weeklyTipReminders ?? true,
-      kickReminders: (savedSettings as any).kickReminders ?? true,
-      milestoneReminders: (savedSettings as any).milestoneReminders ?? true,
+      waterReminders: savedSettings.waterReminders ?? false,
+      cycleReminders: (savedSettings as any).cycleReminders ?? false,
+      weeklyTipReminders: (savedSettings as any).weeklyTipReminders ?? false,
+      kickReminders: (savedSettings as any).kickReminders ?? false,
+      milestoneReminders: (savedSettings as any).milestoneReminders ?? false,
     });
     const validTypes = ['appointment', 'vitamin', 'water', 'cycle', 'general', 'weeklyTip', 'kickReminder', 'milestone'];
     setNotifications(savedNotifications.filter(n => validTypes.includes(n.type)));
