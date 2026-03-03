@@ -9,6 +9,7 @@ import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { RelatedTools } from '@/components/RelatedTools';
@@ -203,31 +204,20 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
 
           {/* Results */}
           {(result || isLoading) && (
-            <Card ref={resultRef} className="shadow-xl border-border bg-card overflow-hidden">
-              <CardHeader className="bg-primary/5 border-b border-border pb-3">
-                <CardTitle className="flex items-center gap-2 text-sm text-primary">
-                  <Salad className="w-4 h-4" />
-                  {t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                {isLoading && !result && (
-                  <div className="flex items-center justify-center py-12">
-                    <div className="text-center">
-                      <AILoadingDots text={t('toolsInternal.cravingAlternatives.analyzingCraving')} size="md" />
-                    </div>
-                  </div>
-                )}
-                
-                {result && (
-                  <div className="prose prose-pink max-w-none">
-                    <MarkdownRenderer content={result} />
-                  </div>
-                )}
-                
-                {result && !isLoading && <AIResultDisclaimer />}
-              </CardContent>
-            </Card>
+            <div ref={resultRef}>
+              {isLoading && !result && (
+                <div className="flex items-center justify-center py-12">
+                  <AILoadingDots text={t('toolsInternal.cravingAlternatives.analyzingCraving')} size="md" />
+                </div>
+              )}
+              {result && (
+                <AIResponseFrame
+                  content={result}
+                  title={t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}
+                  icon={Salad}
+                />
+              )}
+            </div>
           )}
 
           {/* Tips Card */}

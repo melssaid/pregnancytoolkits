@@ -9,6 +9,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { useTranslation } from 'react-i18next';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { RelatedToolLinks } from '@/components/RelatedToolLinks';
@@ -293,15 +294,12 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
 
           {/* AI Response */}
           {showAIAnalysis && aiResponse && (
-            <Card className="border-primary/30 bg-primary/5">
-              <CardContent className="p-3">
-                <div className="flex items-center gap-2 mb-2">
-                  <Brain className="w-4 h-4 text-primary" />
-                  <h3 className="font-semibold text-sm">{t('toolsInternal.laborTracker.aiAnalysis', 'AI Journal Insights')}</h3>
-                </div>
-                <MarkdownRenderer content={aiResponse} />
-              </CardContent>
-            </Card>
+            <AIResponseFrame
+              content={aiResponse}
+              isLoading={isLoading}
+              title={t('toolsInternal.laborTracker.aiAnalysis', 'AI Journal Insights')}
+              icon={Brain}
+            />
           )}
 
           {error && (

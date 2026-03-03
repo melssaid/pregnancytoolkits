@@ -13,6 +13,7 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { Progress } from "@/components/ui/progress";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
@@ -391,19 +392,11 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <Card className="border-primary/20 bg-primary/5">
-                <CardHeader className="pb-1.5 pt-3">
-                  <CardTitle className="text-xs flex items-center gap-1.5">
-                    <Sparkles className="h-3.5 w-3.5 text-primary" />
-                    {t('toolsInternal.babySleep.aiSleepAdvisor')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pb-3">
-                  <div className="text-xs leading-relaxed">
-                    <MarkdownRenderer content={aiAdvice} />
-                  </div>
-                </CardContent>
-              </Card>
+              <AIResponseFrame
+                content={aiAdvice}
+                title={t('toolsInternal.babySleep.aiSleepAdvisor')}
+                icon={Sparkles}
+              />
             </motion.div>
           )}
         </AnimatePresence>

@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { BackPainAnimation } from '@/components/fitness/BackPainAnimation';
 import { ToolHubNav, FITNESS_HUB_TABS } from '@/components/ToolHubNav';
@@ -200,15 +201,12 @@ export default function AIBackPainRelief() {
 
         {/* AI Response */}
         {showAIAdvice && aiResponse && (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-3">
-              <div className="flex items-center gap-2 mb-2">
-                <Brain className="w-4 h-4 text-primary" />
-                <h3 className="font-semibold text-sm">{t('toolsInternal.backPainRelief.aiCoach')}</h3>
-              </div>
-              <MarkdownRenderer content={aiResponse} />
-            </CardContent>
-          </Card>
+          <AIResponseFrame
+            content={aiResponse}
+            isLoading={isLoading}
+            title={t('toolsInternal.backPainRelief.aiCoach')}
+            icon={Brain}
+          />
         )}
 
         {error && (
