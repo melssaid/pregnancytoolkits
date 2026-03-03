@@ -29,6 +29,12 @@ const profileLabels: Record<string, Record<string, string>> = {
   tr: { week: 'Gebelik Haftası', weight: 'Kilo', height: 'Boy', preWeight: 'Gebelik öncesi kilo', bloodType: 'Kan grubu', dueDate: 'Tahmini doğum', lmp: 'Son adet', mood: 'Ruh hali', status: 'Durum', pregnant: 'Hamile', planning: 'Planlama', patientInfo: 'Hasta Bilgileri', kg: 'kg', cm: 'cm' },
 };
 
+function escapeHtml(text: string): string {
+  const div = document.createElement('div');
+  div.textContent = String(text);
+  return div.innerHTML;
+}
+
 function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): string {
   const l = profileLabels[lang] || profileLabels.en;
   const rows: string[] = [];
@@ -37,19 +43,19 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   const hasRealData = profile.weight || profile.height || profile.bloodType || profile.dueDate || profile.lastPeriodDate || profile.prePregnancyWeight;
   if (!hasRealData) return ''; // No user-entered data, skip patient card entirely
 
-  rows.push(`<strong>${l.status}:</strong> ${profile.isPregnant ? l.pregnant : l.planning}`);
-  if (profile.isPregnant && profile.lastPeriodDate) rows.push(`<strong>${l.week}:</strong> ${profile.pregnancyWeek}`);
-  if (profile.weight) rows.push(`<strong>${l.weight}:</strong> ${profile.weight} ${l.kg}`);
-  if (profile.prePregnancyWeight) rows.push(`<strong>${l.preWeight}:</strong> ${profile.prePregnancyWeight} ${l.kg}`);
-  if (profile.height) rows.push(`<strong>${l.height}:</strong> ${profile.height} ${l.cm}`);
-  if (profile.bloodType) rows.push(`<strong>${l.bloodType}:</strong> ${profile.bloodType}`);
-  if (profile.dueDate) rows.push(`<strong>${l.dueDate}:</strong> ${new Date(profile.dueDate).toLocaleDateString(isRTL ? 'ar-SA' : lang === 'de' ? 'de-DE' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : lang === 'pt' ? 'pt-BR' : lang === 'tr' ? 'tr-TR' : 'en-US')}`);
-  if (profile.lastPeriodDate) rows.push(`<strong>${l.lmp}:</strong> ${new Date(profile.lastPeriodDate).toLocaleDateString(isRTL ? 'ar-SA' : 'en-US')}`);
+  rows.push(`<strong>${escapeHtml(l.status)}:</strong> ${escapeHtml(profile.isPregnant ? l.pregnant : l.planning)}`);
+  if (profile.isPregnant && profile.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.week)}:</strong> ${escapeHtml(String(profile.pregnancyWeek))}`);
+  if (profile.weight) rows.push(`<strong>${escapeHtml(l.weight)}:</strong> ${escapeHtml(String(profile.weight))} ${escapeHtml(l.kg)}`);
+  if (profile.prePregnancyWeight) rows.push(`<strong>${escapeHtml(l.preWeight)}:</strong> ${escapeHtml(String(profile.prePregnancyWeight))} ${escapeHtml(l.kg)}`);
+  if (profile.height) rows.push(`<strong>${escapeHtml(l.height)}:</strong> ${escapeHtml(String(profile.height))} ${escapeHtml(l.cm)}`);
+  if (profile.bloodType) rows.push(`<strong>${escapeHtml(l.bloodType)}:</strong> ${escapeHtml(String(profile.bloodType))}`);
+  if (profile.dueDate) rows.push(`<strong>${escapeHtml(l.dueDate)}:</strong> ${escapeHtml(new Date(profile.dueDate).toLocaleDateString(isRTL ? 'ar-SA' : lang === 'de' ? 'de-DE' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : lang === 'pt' ? 'pt-BR' : lang === 'tr' ? 'tr-TR' : 'en-US'))}`);
+  if (profile.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.lmp)}:</strong> ${escapeHtml(new Date(profile.lastPeriodDate).toLocaleDateString(isRTL ? 'ar-SA' : 'en-US'))}`);
 
   if (rows.length <= 1) return ''; // Only status, not enough info
 
   return `<div class="patient-card">
-    <h3 class="patient-title">${l.patientInfo}</h3>
+    <h3 class="patient-title">${escapeHtml(l.patientInfo)}</h3>
     <div class="patient-grid">${rows.map(r => `<span class="patient-field">${r}</span>`).join('')}</div>
   </div>`;
 }
