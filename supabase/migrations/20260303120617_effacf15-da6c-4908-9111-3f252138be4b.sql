@@ -1,0 +1,1 @@
+ALTER TABLE public.bump_photos RENAME COLUMN public_url TO image_ref;

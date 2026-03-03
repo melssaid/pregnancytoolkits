@@ -7,7 +7,7 @@ export interface BumpPhoto {
   id: string;
   week: number;
   caption: string;
-  public_url: string;
+  image_ref: string;
   storage_path: string;
   ai_analysis?: string;
   created_at: string;
@@ -77,7 +77,7 @@ export function useBumpPhotosStorage(): UseBumpPhotosStorageReturn {
                 .from('bump-photos')
                 .createSignedUrl(photo.storage_path, 3600); // 1 hour expiry
               if (!urlError && urlData) {
-                return { ...photo, public_url: urlData.signedUrl };
+                return { ...photo, image_ref: urlData.signedUrl };
               }
             } catch {
               // Fall back to stored URL
@@ -161,7 +161,7 @@ export function useBumpPhotosStorage(): UseBumpPhotosStorageReturn {
           week,
           caption: caption || `Week ${week} bump photo`,
           storage_path: fileName,
-          public_url: fileName // Store path reference, not a URL
+          image_ref: fileName // Store path reference, not a URL
         })
         .select()
         .single();
@@ -169,7 +169,7 @@ export function useBumpPhotosStorage(): UseBumpPhotosStorageReturn {
       if (dbError) throw dbError;
 
       // Use the fresh signed URL for immediate display
-      const displayPhoto = { ...photoData, public_url: urlData.signedUrl };
+      const displayPhoto = { ...photoData, image_ref: urlData.signedUrl };
 
       if (dbError) throw dbError;
 
