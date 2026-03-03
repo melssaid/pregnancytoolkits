@@ -8,23 +8,23 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   <svg viewBox="0 0 100 100" fill="white" className={className} overflow="visible">
     {/* ── Floating hearts — large & prominent, emerging from pupil ── */}
     {[
-      { delay: 0, dx: -14, startY: 52, color: "#ff4d6d" },
-      { delay: 1.2, dx: 10, startY: 52, color: "white" },
-      { delay: 2.4, dx: -3, startY: 52, color: "#e0115f" },
-      { delay: 0.7, dx: 16, startY: 52, color: "#ffb3c6" },
+      { delay: 0, dx: -8, startY: 48 },
+      { delay: 1.2, dx: 6, startY: 48 },
+      { delay: 2.4, dx: -2, startY: 48 },
+      { delay: 0.7, dx: 10, startY: 48 },
     ].map((h, i) => (
       <motion.path
         key={i}
         d="M0 -8 C-3 -14 -12 -14 -12 -8 C-12 0 0 10 0 13 C0 10 12 0 12 -8 C12 -14 3 -14 0 -8 Z"
-        fill={h.color}
+        fill="white"
         style={{ transform: `translate(50px, ${h.startY}px)` }}
         animate={{
-          y: [0, -28, -55],
-          x: [0, h.dx, h.dx * 1.8],
+          y: [0, -16, -35],
+          x: [0, h.dx, h.dx * 1.4],
           opacity: [0, 0.95, 0],
-          scale: [0.3, 1.3, 0.7],
+          scale: [0.3, 1.2, 0.6],
         }}
-        transition={{ duration: 3, repeat: Infinity, delay: h.delay, ease: "easeOut" }}
+        transition={{ duration: 2.8, repeat: Infinity, delay: h.delay, ease: "easeOut" }}
       />
     ))}
 
