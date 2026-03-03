@@ -1,5 +1,5 @@
 import { useMemo, memo, useState, useCallback } from "react";
-import { Baby, Heart, Activity, Dumbbell, AlertTriangle, CheckCircle, ChevronRight, ChevronLeft, ChevronDown, Calendar, Shield, UtensilsCrossed, MessageSquare, HeartPulse, Sparkles, Footprints } from "lucide-react";
+import { Heart, ChevronRight, ChevronLeft, ChevronDown } from "lucide-react";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import DreamEyeIcon from "@/components/DreamEyeIcon";
 import { useTranslation } from "react-i18next";
@@ -91,48 +91,8 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
   );
 });
 
-// ── Sub-category divider — themed with category label ───────────────────
-const SubCategoryDivider = memo(function SubCategoryDivider({ iconColor }: { iconColor: string }) {
-  return (
-    <div className="flex items-center gap-2 px-3 pt-5 pb-2">
-      <motion.div
-        className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-border/30 to-transparent"
-        initial={{ scaleX: 0, originX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      />
-      <div className="flex items-center gap-1.5">
-        <motion.svg
-          width="10" height="9" viewBox="0 0 10 9"
-          className={`${iconColor} opacity-40`}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <path d="M5 0 C4 0 2.5 1 2.5 2.5 C2.5 5 5 7 5 9 C5 7 7.5 5 7.5 2.5 C7.5 1 6 0 5 0Z" fill="currentColor" />
-        </motion.svg>
-        <motion.div
-          className={`w-1 h-1 rounded-full ${iconColor}`}
-          animate={{ opacity: [0.25, 0.6, 0.25], scale: [1, 1.4, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        />
-        <motion.svg
-          width="10" height="9" viewBox="0 0 10 9"
-          className={`${iconColor} opacity-40`}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        >
-          <path d="M5 0 C4 0 2.5 1 2.5 2.5 C2.5 5 5 7 5 9 C5 7 7.5 5 7.5 2.5 C7.5 1 6 0 5 0Z" fill="currentColor" />
-        </motion.svg>
-      </div>
-      <motion.div
-        className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-border/30 to-transparent"
-        initial={{ scaleX: 0, originX: 1 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      />
-    </div>
-  );
-});
+
+
 
 // ── Journey card ────────────────────────────────────────────────────────
 const JOURNEY_STATE_KEY = "journey-card-states";
@@ -177,7 +137,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
   const totalTools = useMemo(() => toolsByCategory.reduce((sum, g) => sum + g.tools.length, 0), [toolsByCategory]);
   if (totalTools === 0) return null;
 
-  const showSubHeaders = toolsByCategory.length > 1;
+  
 
   return (
     <div
