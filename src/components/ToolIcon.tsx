@@ -1,150 +1,73 @@
 import React from 'react';
 
-// Import all tool icons
-import chatAssistant from '@/assets/icons/chat-assistant.png';
-import symptomAnalyzer from '@/assets/icons/symptom-analyzer.png';
-import mealSuggestion from '@/assets/icons/meal-suggestion.png';
-import weeklySummary from '@/assets/icons/weekly-summary.png';
-import birthPlan from '@/assets/icons/birth-plan.png';
-import babyName from '@/assets/icons/baby-name.png';
-import pregnancyTips from '@/assets/icons/pregnancy-tips.png';
-import groceryList from '@/assets/icons/grocery-list.png';
-import sleepOptimizer from '@/assets/icons/sleep-optimizer.png';
-import hospitalBag from '@/assets/icons/hospital-bag.png';
-import partnerGuide from '@/assets/icons/partner-guide.png';
-import birthPosition from '@/assets/icons/birth-position.png';
-import skincare from '@/assets/icons/skincare.png';
-import nauseaRelief from '@/assets/icons/nausea-relief.png';
-
-import lactation from '@/assets/icons/lactation.png';
-import postureCoach from '@/assets/icons/posture-coach.png';
-import stretchReminder from '@/assets/icons/stretch-reminder.png';
-import backPain from '@/assets/icons/back-pain.png';
-import mobilityCoach from '@/assets/icons/mobility-coach.png';
-import smoothie from '@/assets/icons/smoothie.png';
-import exercise from '@/assets/icons/exercise.png';
-import laborProgress from '@/assets/icons/labor-progress.png';
-import contractionTimer from '@/assets/icons/contraction-timer.png';
-import breathing from '@/assets/icons/breathing.png';
-import ovulation from '@/assets/icons/ovulation.png';
-import cycleTracker from '@/assets/icons/cycle-tracker.png';
-import dueDate from '@/assets/icons/due-date.png';
-import fetalGrowth from '@/assets/icons/fetal-growth.png';
-import kickCounter from '@/assets/icons/kick-counter.png';
-import milestones from '@/assets/icons/milestones.png';
-import bumpPhotos from '@/assets/icons/bump-photos.png';
-import weightGain from '@/assets/icons/weight-gain.png';
-import waterIntake from '@/assets/icons/water-intake.png';
-import vitaminTracker from '@/assets/icons/vitamin-tracker.png';
-import meditation from '@/assets/icons/meditation.png';
-import affirmations from '@/assets/icons/affirmations.png';
-import mentalHealth from '@/assets/icons/mental-health.png';
-import diabetes from '@/assets/icons/diabetes.png';
-import birthPrep from '@/assets/icons/birth-prep.png';
-import babySleep from '@/assets/icons/baby-sleep.png';
-import babyGrowth from '@/assets/icons/baby-growth.png';
-import doctorQuestions from '@/assets/icons/doctor-questions.png';
-import appointmentReminder from '@/assets/icons/appointment-reminder.png';
-import birthStory from '@/assets/icons/birth-story.png';
-import cravingAlternatives from '@/assets/icons/craving-alternatives.png';
-import fitnessCoach from '@/assets/icons/fitness-coach.png';
-import legCramp from '@/assets/icons/leg-cramp.png';
-import stressRelief from '@/assets/icons/stress-relief.png';
-import massageGuide from '@/assets/icons/massage-guide.png';
-import babyCryTranslator from '@/assets/icons/baby-cry-translator.png';
-import postpartumRecovery from '@/assets/icons/postpartum-recovery.png';
-// Map tool IDs to their icon imports
-export const toolIconMap: Record<string, string> = {
-  // AI Core Tools
-  'pregnancy-assistant': chatAssistant,
-  'wellness-diary': symptomAnalyzer,
-  'ai-meal-suggestion': mealSuggestion,
-  'weekly-summary': weeklySummary,
-  'ai-birth-plan': birthPlan,
-  'smart-appointment-reminder': appointmentReminder,
-  'ai-baby-name-finder': babyName,
-  'ai-pregnancy-tips': pregnancyTips,
-  'ai-birth-story': birthStory,
-  'smart-grocery-list': groceryList,
-  
-  // AI Tools 2026
-  'ai-sleep-optimizer': sleepOptimizer,
-  'ai-hospital-bag': hospitalBag,
-  'ai-partner-guide': partnerGuide,
-  'ai-birth-position': birthPosition,
-  'ai-pregnancy-skincare': skincare,
-  'ai-nausea-relief': nauseaRelief,
-  
-  'ai-lactation-prep': lactation,
-  'ai-craving-alternatives': cravingAlternatives,
-  'ai-recipe-modifier': mealSuggestion,
-  
-  // Wellness & Fitness
-  'ai-posture-coach': postureCoach,
-  'smart-stretch-reminder': stretchReminder,
-  'ai-back-pain-relief': backPain,
-  'ai-mobility-coach': mobilityCoach,
-  'pregnancy-smoothie-ai': smoothie,
-  'exercise-guide': exercise,
-  'ai-fitness-coach': fitnessCoach,
-  'ai-leg-cramp-preventer': legCramp,
-  'ai-stress-relief': stressRelief,
-  'pregnancy-massage-guide': massageGuide,
-  'smart-walking-coach': mobilityCoach,
-  'smart-nutrition-optimizer': mealSuggestion,
-  'smart-snack-planner': smoothie,
-  
-  // Labor & Monitoring
-  'ai-labor-progress': laborProgress,
-  'contraction-timer': contractionTimer,
-  'labor-breathing': breathing,
-  
-  // Fertility & Planning
-  'ovulation-calculator': ovulation,
-  'cycle-tracker': cycleTracker,
-  'due-date-calculator': dueDate,
-  'conception-calculator': ovulation,
-  
-  // Pregnancy Tracking
-  'fetal-growth': fetalGrowth,
-  'kick-counter': kickCounter,
-  'pregnancy-milestones': milestones,
-  'bump-photos': bumpPhotos,
-  'weight-gain': weightGain,
-  'baby-gear-recommender': groceryList,
-  'fetal-development-3d': fetalGrowth,
-  'preeclampsia-risk': diabetes,
-  'blood-type': diabetes,
-  'pregnancy-bmi': weightGain,
-  'forbidden-foods': cravingAlternatives,
-  'pregnancy-photo-timeline': bumpPhotos,
-  
-  // Nutrition & Hydration
-  'water-intake': waterIntake,
-  'vitamin-tracker': vitaminTracker,
-  'meditation-yoga': meditation,
-  'kegel-exercises': exercise,
-  
-  // Mental Health
-  'affirmations': affirmations,
-  'postpartum-mental-health': mentalHealth,
-  
-  // Health Monitoring
-  'gestational-diabetes': diabetes,
-  
-  // Preparation
-  'birth-prep': birthPrep,
-  
-  // Postpartum & Baby
-  'baby-sleep-tracker': babySleep,
-  'baby-growth': babyGrowth,
-  'doctor-questions': doctorQuestions,
-  'diaper-tracker': babyGrowth,
-  'baby-cry-translator': babyCryTranslator,
-  'postpartum-recovery': postpartumRecovery,
-  
-  // Workout & Personalized Plans
-  'personalized-workout-planner': fitnessCoach,
+// Map tool IDs to their icon filenames in /public/icons/
+const toolIconMap: Record<string, string> = {
+  'pregnancy-assistant': 'chat-assistant',
+  'wellness-diary': 'symptom-analyzer',
+  'ai-meal-suggestion': 'meal-suggestion',
+  'weekly-summary': 'weekly-summary',
+  'ai-birth-plan': 'birth-plan',
+  'smart-appointment-reminder': 'appointment-reminder',
+  'ai-baby-name-finder': 'baby-name',
+  'ai-pregnancy-tips': 'pregnancy-tips',
+  'ai-birth-story': 'birth-story',
+  'smart-grocery-list': 'grocery-list',
+  'ai-sleep-optimizer': 'sleep-optimizer',
+  'ai-hospital-bag': 'hospital-bag',
+  'ai-partner-guide': 'partner-guide',
+  'ai-birth-position': 'birth-position',
+  'ai-pregnancy-skincare': 'skincare',
+  'ai-nausea-relief': 'nausea-relief',
+  'ai-lactation-prep': 'lactation',
+  'ai-craving-alternatives': 'craving-alternatives',
+  'ai-recipe-modifier': 'meal-suggestion',
+  'ai-posture-coach': 'posture-coach',
+  'smart-stretch-reminder': 'stretch-reminder',
+  'ai-back-pain-relief': 'back-pain',
+  'ai-mobility-coach': 'mobility-coach',
+  'pregnancy-smoothie-ai': 'smoothie',
+  'exercise-guide': 'exercise',
+  'ai-fitness-coach': 'fitness-coach',
+  'ai-leg-cramp-preventer': 'leg-cramp',
+  'ai-stress-relief': 'stress-relief',
+  'pregnancy-massage-guide': 'massage-guide',
+  'smart-walking-coach': 'mobility-coach',
+  'smart-nutrition-optimizer': 'meal-suggestion',
+  'smart-snack-planner': 'smoothie',
+  'ai-labor-progress': 'labor-progress',
+  'contraction-timer': 'contraction-timer',
+  'labor-breathing': 'breathing',
+  'ovulation-calculator': 'ovulation',
+  'cycle-tracker': 'cycle-tracker',
+  'due-date-calculator': 'due-date',
+  'conception-calculator': 'ovulation',
+  'fetal-growth': 'fetal-growth',
+  'kick-counter': 'kick-counter',
+  'pregnancy-milestones': 'milestones',
+  'bump-photos': 'bump-photos',
+  'weight-gain': 'weight-gain',
+  'baby-gear-recommender': 'grocery-list',
+  'fetal-development-3d': 'fetal-growth',
+  'preeclampsia-risk': 'diabetes',
+  'blood-type': 'diabetes',
+  'pregnancy-bmi': 'weight-gain',
+  'forbidden-foods': 'craving-alternatives',
+  'pregnancy-photo-timeline': 'bump-photos',
+  'water-intake': 'water-intake',
+  'vitamin-tracker': 'vitamin-tracker',
+  'meditation-yoga': 'meditation',
+  'kegel-exercises': 'exercise',
+  'affirmations': 'affirmations',
+  'postpartum-mental-health': 'mental-health',
+  'gestational-diabetes': 'diabetes',
+  'birth-prep': 'birth-prep',
+  'baby-sleep-tracker': 'baby-sleep',
+  'baby-growth': 'baby-growth',
+  'doctor-questions': 'doctor-questions',
+  'diaper-tracker': 'baby-growth',
+  'baby-cry-translator': 'baby-cry-translator',
+  'postpartum-recovery': 'postpartum-recovery',
+  'personalized-workout-planner': 'fitness-coach',
 };
 
 export type ToolIconName = keyof typeof toolIconMap;
@@ -160,29 +83,22 @@ export const ToolIcon: React.FC<ToolIconProps> = ({
   size = 100,
   className = ''
 }) => {
-  const iconSrc = toolIconMap[toolId];
+  const iconFile = toolIconMap[toolId];
   
-  if (!iconSrc) {
-    return null;
-  }
+  if (!iconFile) return null;
 
   return (
     <img 
-      src={iconSrc}
+      src={`/icons/${iconFile}.png`}
       alt={toolId}
+      loading="lazy"
+      decoding="async"
       className={`object-cover ${className}`}
-      style={{
-        width: size,
-        height: size,
-        borderRadius: '50%',
-      }}
+      style={{ width: size, height: size, borderRadius: '50%' }}
     />
   );
 };
 
-// Helper to check if a tool has a custom icon
-export const hasToolIcon = (toolId: string): boolean => {
-  return toolId in toolIconMap;
-};
+export const hasToolIcon = (toolId: string): boolean => toolId in toolIconMap;
 
 export default ToolIcon;
