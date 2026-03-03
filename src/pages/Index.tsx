@@ -1,6 +1,7 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { Baby, Heart, Activity, Dumbbell, AlertTriangle, CheckCircle, ChevronRight, ChevronLeft, ChevronDown, Calendar, Shield, UtensilsCrossed, MessageSquare, HeartPulse, Sparkles, Footprints } from "lucide-react";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
+import EmbryoIcon from "@/components/EmbryoIcon";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/lib/tools-data";
@@ -26,7 +27,7 @@ const categoryStyles: Record<string, { iconColor: string; toolHover: string; hov
 interface JourneyConfig {
   key: JourneyKey;
   icon?: LucideIcon;
-  customIcon?: boolean;
+  customIcon?: "embryo" | "footprints";
   headerGradient: string;
   headerText: string;
   bg: string;
@@ -38,7 +39,7 @@ const journeyConfigs: JourneyConfig[] = [
   {
     // Planning/Fertility — Warm Coral-Peach: hope, warmth, anticipation
     key: "planning",
-    customIcon: true,
+    customIcon: "embryo",
     headerGradient: "bg-gradient-to-r from-[hsl(15,70%,62%)] via-[hsl(25,65%,65%)] to-[hsl(340,50%,65%)] dark:from-[hsl(15,65%,50%)] dark:via-[hsl(25,60%,52%)] dark:to-[hsl(340,45%,55%)]",
     headerText: "text-white",
     iconBg: "bg-white/20",
@@ -58,7 +59,7 @@ const journeyConfigs: JourneyConfig[] = [
   {
     // Postpartum/Baby — Soft Mauve-Lavender: tenderness, nurturing calm
     key: "postpartum",
-    icon: Baby,
+    customIcon: "footprints",
     headerGradient: "bg-gradient-to-r from-[hsl(320,40%,58%)] via-[hsl(300,30%,60%)] to-[hsl(280,35%,62%)] dark:from-[hsl(320,35%,48%)] dark:via-[hsl(300,25%,50%)] dark:to-[hsl(280,30%,52%)]",
     headerText: "text-white",
     iconBg: "bg-white/20",
@@ -160,8 +161,10 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
         
         <div className="relative flex items-center gap-3">
           <div className={`w-11 h-11 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
-            {config.customIcon ? (
+            {config.customIcon === "footprints" ? (
               <BabyFootprintsIcon className="w-6 h-6 text-white" />
+            ) : config.customIcon === "embryo" ? (
+              <EmbryoIcon className="w-6 h-6 text-white" />
             ) : Icon ? (
               <motion.div
                 {...(config.key === "planning" ? {
