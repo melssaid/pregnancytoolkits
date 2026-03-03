@@ -8,15 +8,15 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   <svg viewBox="0 0 100 100" fill="white" className={className} overflow="visible">
     {/* ── Floating hearts — large & prominent, emerging from pupil ── */}
     {[
-      { delay: 0, dx: -14, startY: 52 },
-      { delay: 1.2, dx: 10, startY: 52 },
-      { delay: 2.4, dx: -3, startY: 52 },
-      { delay: 0.7, dx: 16, startY: 52 },
+      { delay: 0, dx: -14, startY: 52, color: "#ff4d6d" },
+      { delay: 1.2, dx: 10, startY: 52, color: "white" },
+      { delay: 2.4, dx: -3, startY: 52, color: "#e0115f" },
+      { delay: 0.7, dx: 16, startY: 52, color: "#ffb3c6" },
     ].map((h, i) => (
       <motion.path
         key={i}
         d="M0 -5 C-2 -9 -8 -9 -8 -5 C-8 0 0 6 0 8 C0 6 8 0 8 -5 C8 -9 2 -9 0 -5 Z"
-        fill="white"
+        fill={h.color}
         style={{ transform: `translate(50px, ${h.startY}px)` }}
         animate={{
           y: [0, -28, -55],
