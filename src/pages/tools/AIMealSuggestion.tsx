@@ -25,6 +25,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
@@ -267,23 +268,12 @@ Please provide an easy recipe with ingredients, preparation steps, and nutrition
             </Card>
 
             {/* AI Suggest Button */}
-            <motion.button
-              whileTap={{ scale: 0.92 }}
+            <AIActionButton
               onClick={getSuggestion}
-              disabled={isLoading}
-              className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
-              style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
-              {isLoading ? (
-                <AILoadingDots text={t("toolsInternal.common.analyzing", { defaultValue: "..." })} />
-              ) : (
-                <>
-                  <Brain className="w-4 h-4 shrink-0" />
-                  <span>{t("toolsInternal.mealSuggestion.suggestMeal")}</span>
-                </>
-              )}
-            </motion.button>
+              isLoading={isLoading}
+              label={t("toolsInternal.mealSuggestion.suggestMeal")}
+              loadingLabel={t("toolsInternal.common.analyzing", { defaultValue: "..." })}
+            />
           </>
         ) : (
           <>

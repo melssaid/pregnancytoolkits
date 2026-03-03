@@ -20,6 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ToolFrame } from "@/components/ToolFrame";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
@@ -307,22 +308,11 @@ Please provide detailed recovery advice for this phase including:
                 </div>
 
                 {/* AI Advice Button */}
-                <motion.button
+                <AIActionButton
                   onClick={() => getAIAdvice(phase)}
-                  disabled={isLoading}
-                  whileTap={{ scale: 0.92 }}
-                  className="relative w-full overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  <div className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-                    {isLoading ? (
-                      <Loader2 className="w-4 h-4 animate-spin shrink-0" />
-                    ) : (
-                      <Brain className="w-4 h-4 shrink-0" />
-                    )}
-                    <span>{t("toolsInternal.postpartumRecovery.getAIAdvice")}</span>
-                  </div>
-                  <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
-                </motion.button>
+                  isLoading={isLoading}
+                  label={t("toolsInternal.postpartumRecovery.getAIAdvice")}
+                />
               </CardContent>
             </Card>
           </motion.div>

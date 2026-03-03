@@ -19,6 +19,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useTranslation } from 'react-i18next';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { toast } from 'sonner';
 import { ToolHubNav, WELLNESS_HUB_TABS } from '@/components/ToolHubNav';
@@ -283,36 +284,13 @@ Please provide brief, supportive wellness insights about these feelings during w
 
         {/* AI Insight Button */}
         {selectedSymptoms.length > 0 && (
-          <motion.button
+          <AIActionButton
             onClick={getAIInsight}
-            disabled={aiLoading || isGettingInsight}
-            whileTap={{ scale: 0.92 }}
-            className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-          <div
-              className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-2xl"
-              style={{
-                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
-                boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)',
-              }}
-            >
-              {isGettingInsight ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin shrink-0" />
-                  <span>{t('toolsInternal.symptomAnalyzer.analyzing')}</span>
-                </>
-              ) : (
-                <>
-                  <Brain className="w-4 h-4 shrink-0" />
-                  <span>{t('toolsInternal.symptomAnalyzer.getInsights')}</span>
-                </>
-              )}
-              <span
-                className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none"
-                aria-hidden
-              />
-            </div>
-          </motion.button>
+            isLoading={isGettingInsight}
+            disabled={aiLoading}
+            label={t('toolsInternal.symptomAnalyzer.getInsights')}
+            loadingLabel={t('toolsInternal.symptomAnalyzer.analyzing')}
+          />
         )}
 
         {/* AI Response */}

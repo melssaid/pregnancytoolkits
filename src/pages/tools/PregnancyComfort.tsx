@@ -12,6 +12,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
@@ -261,11 +262,12 @@ function NauseaTab() {
         </Card>
       )}
 
-      <motion.button whileTap={{ scale: 0.92 }} onClick={getReliefPlan} disabled={isLoading}
-        className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60"
-        style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}>
-        {isLoading ? <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.nauseaRelief.creatingPlan')}</span></> : <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.nauseaRelief.getReliefPlan')}</span></>}
-      </motion.button>
+      <AIActionButton
+        onClick={getReliefPlan}
+        isLoading={isLoading}
+        label={t('toolsInternal.nauseaRelief.getReliefPlan')}
+        loadingLabel={t('toolsInternal.nauseaRelief.creatingPlan')}
+      />
 
       {response && <Card className="p-3 bg-muted/50"><MarkdownRenderer content={response} isLoading={isLoading} /></Card>}
 
