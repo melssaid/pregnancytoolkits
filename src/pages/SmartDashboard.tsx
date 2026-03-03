@@ -435,7 +435,7 @@ const SmartDashboard = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/ai-symptom-analyzer" },
+                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/wellness-diary" },
                     { title: t('dashboard.aiToolsList.weekly'),      icon: Sparkles,     href: "/tools/weekly-summary" },
                     { title: t('dashboard.aiToolsList.mealPlan'),    icon: Salad,        href: "/tools/ai-meal-suggestion" },
                     { title: t('dashboard.aiToolsList.fitness'),     icon: Dumbbell,     href: "/tools/ai-fitness-coach" },
@@ -795,7 +795,7 @@ const SmartDashboard = () => {
 
             {/* Quick Links to Health Tools */}
             <div className="grid grid-cols-2 gap-2">
-              <Link to="/tools/ai-symptom-analyzer" className="flex items-center gap-2 p-3 rounded-xl bg-muted/30 hover:bg-primary/10 transition-colors">
+              <Link to="/tools/wellness-diary" className="flex items-center gap-2 p-3 rounded-xl bg-muted/30 hover:bg-primary/10 transition-colors">
                 <Stethoscope className="w-4 h-4 text-primary" />
                 <span className="text-xs font-medium">{t('dashboard.aiToolsList.symptoms')}</span>
               </Link>
