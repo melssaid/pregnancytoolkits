@@ -5,25 +5,34 @@ import { motion } from "framer-motion";
  */
 const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   <svg viewBox="0 0 140 140" fill="white" className={className} overflow="visible">
-    {/* ── 2 floating hearts ── */}
+    {/* ── 2 hearts that pulse & bloom from the eye ── */}
     {[
-      { delay: 0.5, dx: -14, startY: 48, maxScale: 2.6 },
-      { delay: 2.8, dx: 11, startY: 45, maxScale: 2.9 },
-    ].map((h, i) => (
-      <motion.path
-        key={i}
-        d="M0 -10 C-4 -18 -15 -18 -15 -10 C-15 0 0 13 0 16 C0 13 15 0 15 -10 C15 -18 4 -18 0 -10 Z"
-        fill="white"
-        style={{ transform: `translate(70px, ${h.startY}px)` }}
-        animate={{
-          y: [0, -28, -55],
-          x: [0, h.dx, h.dx * 1.3],
-          opacity: [0, 0.85, 0],
-          scale: [0.15, h.maxScale, h.maxScale * 0.2],
-        }}
-        transition={{ duration: 4, repeat: Infinity, delay: h.delay, ease: "easeOut" }}
-      />
-    ))}
+      { delay: 0, angle: -40, dist: 50 },
+      { delay: 2.2, angle: 35, dist: 46 },
+    ].map((h, i) => {
+      const rad = (h.angle * Math.PI) / 180;
+      const tx = 70 + Math.cos(rad) * h.dist;
+      const ty = 38 + Math.sin(rad) * h.dist * 0.35;
+      return (
+        <motion.path
+          key={i}
+          d="M0 -6 C-3 -12 -10 -12 -10 -6 C-10 2 0 9 0 11 C0 9 10 2 10 -6 C10 -12 3 -12 0 -6 Z"
+          fill="white"
+          style={{ transform: `translate(${tx}px, ${ty}px)` }}
+          animate={{
+            scale: [0, 2, 2.6, 0],
+            opacity: [0, 0.9, 0.6, 0],
+            rotate: [0, -12, 12, 0],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            delay: h.delay,
+            ease: "easeInOut",
+          }}
+        />
+      );
+    })}
 
     <defs>
       <clipPath id="eyeClip">
