@@ -2,7 +2,6 @@ import { useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useAIUsageLimit } from "./useAIUsageLimit";
 import { supabase } from "@/integrations/supabase/client";
-import { ensureAuthenticated } from "@/lib/auth";
 
 // Must match all types accepted by the edge function
 type AIType =
@@ -12,7 +11,7 @@ type AIType =
   | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
   | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery";
 
-export type AIErrorType = "rate_limit" | "payment" | "network" | "unknown";
+export type AIErrorType = "rate_limit" | "payment" | "network" | "auth" | "unknown";
 
 type MessageContentPart = { type: string; text?: string; image_url?: { url: string } };
 
@@ -46,32 +45,38 @@ export function usePregnancyAI() {
   const resolveError = useCallback((status?: number, rawMsg?: string): { msg: string; type: AIErrorType } => {
     if (status === 429) return { msg: t('aiErrors.rateLimitMsg'), type: 'rate_limit' };
     if (status === 402) return { msg: t('aiErrors.paymentMsg'), type: 'payment' };
-    if (status === 401) return { msg: t('aiErrors.networkMsg'), type: 'network' };
-    if (rawMsg?.toLowerCase().includes('fetch') || rawMsg?.toLowerCase().includes('network') || rawMsg?.toLowerCase().includes('connect')) {
+    if (status === 401) return { msg: t('aiErrors.networkMsg'), type: 'auth' };
+    const lower = rawMsg?.toLowerCase() || '';
+    if (lower.includes('fetch') || lower.includes('network') || lower.includes('connect') || lower.includes('failed')) {
       return { msg: t('aiErrors.networkMsg'), type: 'network' };
+    }
+    if (lower.includes('auth')) {
+      return { msg: t('aiErrors.networkMsg'), type: 'auth' };
     }
     return { msg: t('aiErrors.unknownMsg'), type: 'unknown' };
   }, [t]);
 
   /**
-   * Get a valid access token, refreshing if needed.
-   * Returns null if authentication fails entirely.
+   * Get the best available authorization token.
+   * Priority: session access_token > anon key (fallback)
    */
-  const getAccessToken = useCallback(async (): Promise<string | null> => {
+  const getAuthHeader = useCallback(async (): Promise<string> => {
     try {
-      // First try existing session
+      // Try existing session
       const { data: { session } } = await supabase.auth.getSession();
-      if (session?.access_token) return session.access_token;
+      if (session?.access_token) return `Bearer ${session.access_token}`;
 
-      // No session — ensure authenticated (anonymous sign-in)
-      await ensureAuthenticated();
-
-      // Retry getting session after auth
-      const { data: { session: newSession } } = await supabase.auth.getSession();
-      return newSession?.access_token ?? null;
+      // Try anonymous sign-in
+      const { data, error: authError } = await supabase.auth.signInAnonymously();
+      if (!authError && data.session?.access_token) {
+        return `Bearer ${data.session.access_token}`;
+      }
     } catch {
-      return null;
+      // Auth failed — fall through to anon key
     }
+
+    // Fallback: use anon key (edge function has verify_jwt=false so this works)
+    return `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`;
   }, []);
 
   const streamChat = useCallback(
@@ -108,14 +113,7 @@ export function usePregnancyAI() {
       };
 
       try {
-        const token = await getAccessToken();
-
-        if (!token) {
-          setError(t('aiErrors.networkMsg'));
-          setErrorType('network');
-          onDone();
-          return;
-        }
+        const authHeader = await getAuthHeader();
 
         const response = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
@@ -123,43 +121,44 @@ export function usePregnancyAI() {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
+              Authorization: authHeader,
             },
             body: JSON.stringify({ type, messages, context: contextWithLanguage }),
           }
         );
 
         if (!response.ok) {
-          // Try to read error details from response body
+          // Read server error for better diagnostics
           let serverMsg: string | undefined;
           try {
             const errBody = await response.json();
             serverMsg = errBody?.error;
-          } catch { /* ignore parse failures */ }
+          } catch { /* ignore */ }
 
-          // If 401, token may have expired — try once more with refresh
+          // On 401, try refresh + retry once
           if (response.status === 401) {
-            const { data: { session } } = await supabase.auth.refreshSession();
-            if (session?.access_token) {
-              const retryResponse = await fetch(
-                `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${session.access_token}`,
-                  },
-                  body: JSON.stringify({ type, messages, context: contextWithLanguage }),
+            try {
+              const { data: { session } } = await supabase.auth.refreshSession();
+              if (session?.access_token) {
+                const retryResp = await fetch(
+                  `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `Bearer ${session.access_token}`,
+                    },
+                    body: JSON.stringify({ type, messages, context: contextWithLanguage }),
+                  }
+                );
+                if (retryResp.ok && retryResp.body) {
+                  await processStream(retryResp.body, onDelta);
+                  incrementUsage();
+                  onDone();
+                  return;
                 }
-              );
-              if (retryResponse.ok && retryResponse.body) {
-                // Success on retry — continue to stream parsing below
-                await processStream(retryResponse.body, onDelta);
-                incrementUsage();
-                onDone();
-                return;
               }
-            }
+            } catch { /* retry failed */ }
           }
 
           const { msg, type: errType } = resolveError(response.status, serverMsg);
@@ -190,7 +189,7 @@ export function usePregnancyAI() {
         setIsLoading(false);
       }
     },
-    [resolveError, isLimitReached, incrementUsage, limit, t, getAccessToken]
+    [resolveError, isLimitReached, incrementUsage, limit, t, getAuthHeader]
   );
 
   const generateContent = useCallback(
