@@ -59,7 +59,7 @@ function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, blink: num
   }
 
   // ── Pupil ──
-  const pupilR = irisR * 0.42;
+  const pupilR = irisR * 0.3;
   ctx.beginPath();
   ctx.arc(0, 0, pupilR, 0, Math.PI * 2);
   ctx.fillStyle = "#0a0604";
