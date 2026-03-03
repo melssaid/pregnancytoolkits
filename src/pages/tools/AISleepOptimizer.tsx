@@ -81,7 +81,7 @@ Include specific product recommendations (pillows, white noise) and YouTube link
 
     setResponse("");
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "sleep-analysis",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),
@@ -114,7 +114,7 @@ Write it as a script that can be read aloud or followed along. Use calm, soothin
     setActiveTab('meditation');
     
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "sleep-analysis",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setMeditationScript((prev) => prev + text),
@@ -158,7 +158,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
     setActiveTab('routine');
     
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "sleep-analysis",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setRoutinePlan((prev) => prev + text),

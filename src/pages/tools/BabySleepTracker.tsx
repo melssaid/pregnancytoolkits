@@ -241,7 +241,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
     setShowAiAdvice(true);
 
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "sleep-analysis",
       messages: [{ role: "user", content: prompt }],
       onDelta: (text) => setAiAdvice(prev => prev + text),
       onDone: () => {},

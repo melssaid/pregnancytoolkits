@@ -352,7 +352,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
 
     setResponse("");
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "hospital-bag",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),

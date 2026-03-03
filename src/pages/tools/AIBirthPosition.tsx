@@ -105,7 +105,7 @@ Include safety considerations and when to change positions.`;
 
     setResponse("");
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "birth-position",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),

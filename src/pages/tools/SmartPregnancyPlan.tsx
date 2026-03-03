@@ -118,7 +118,7 @@ const SmartPregnancyPlan = () => {
     };
 
     await streamChat({
-      type: 'pregnancy-assistant',
+      type: 'pregnancy-plan',
       messages: [{ role: 'user', content: prompts[lang] || prompts.en }],
       context: { week: health.week, weight: health.weight, language: lang },
       onDelta: (text) => setAiResponse(prev => prev + text),
@@ -142,7 +142,7 @@ const SmartPregnancyPlan = () => {
     };
 
     await streamChat({
-      type: 'pregnancy-assistant',
+      type: 'pregnancy-plan',
       messages: [{ role: 'user', content: prompts[lang] || prompts.en }],
       context: { week: health.week, weight: health.weight, language: lang },
       onDelta: (text) => setReportContent(prev => prev + text),

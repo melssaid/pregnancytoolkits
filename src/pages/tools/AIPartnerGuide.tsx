@@ -71,7 +71,7 @@ Be warm, practical, and specific. Include real examples.`;
 
     setResponse("");
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "partner-guide",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),
