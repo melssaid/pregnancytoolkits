@@ -89,7 +89,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
 
     setResponse("");
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "skincare-advice",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),

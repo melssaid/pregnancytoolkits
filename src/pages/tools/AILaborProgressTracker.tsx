@@ -171,7 +171,7 @@ export default function AILaborProgressTracker() {
     const phase = getLaborPhase().phase;
 
     await streamChat({
-      type: 'labor-tracker' as any,
+      type: 'labor-tracker',
       messages: [
         {
           role: 'user',

@@ -104,7 +104,7 @@ export default function PostpartumMentalHealthCoach() {
     };
 
     await streamChat({
-      type: 'pregnancy-assistant',
+      type: 'mental-health',
       messages: [{ role: 'user', content: prompts[lang] || prompts.en }],
       context: { language: lang },
       onDelta: (text) => setAiCopingPlan(prev => prev + text),

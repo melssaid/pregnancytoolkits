@@ -87,7 +87,7 @@ Be compassionate - morning sickness is exhausting!`;
 
     setResponse("");
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "nausea-relief",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),

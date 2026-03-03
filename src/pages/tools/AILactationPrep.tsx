@@ -103,7 +103,7 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
     setResponse("");
     await streamChat({
-      type: "pregnancy-assistant",
+      type: "lactation-prep",
       messages: [{ role: "user", content: prompt }],
       context: { week: Number(settings.pregnancyWeek) || 0 },
       onDelta: (text) => setResponse((prev) => prev + text),

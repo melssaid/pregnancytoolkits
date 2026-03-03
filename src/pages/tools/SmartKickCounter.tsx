@@ -235,7 +235,7 @@ Provide a supportive journal review including:
 Keep the tone warm, supportive, and educational. Avoid any clinical or diagnostic language.`;
 
     await streamChat({
-      type: 'pregnancy-assistant',
+      type: 'kick-analysis',
       messages: [{ role: 'user', content: prompt }],
       context: { week: currentWeek },
       onDelta: (text) => setAiPatternAnalysis((prev) => prev + text),
@@ -279,7 +279,7 @@ Provide friendly, educational guidance:
 Be warm, supportive, and educational. Always suggest consulting with a healthcare provider for personalized guidance.`;
 
     await streamChat({
-      type: 'pregnancy-assistant',
+      type: 'kick-analysis',
       messages: [{ role: 'user', content: prompt }],
       context: { week: currentWeek },
       onDelta: (text) => setAiHealthInsight((prev) => prev + text),
@@ -324,7 +324,7 @@ Provide a helpful guide:
 Keep it practical, warm, and easy to follow.`;
 
     await streamChat({
-      type: 'pregnancy-assistant',
+      type: 'kick-analysis',
       messages: [{ role: 'user', content: prompt }],
       context: { week: currentWeek },
       onDelta: (text) => setAiTips((prev) => prev + text),

@@ -9,7 +9,9 @@ type AIType =
   | "posture-coach" | "walking-coach" | "stretch-reminder" | "back-pain-relief"
   | "leg-cramp-preventer" | "smoothie-generator" | "daily-tips" | "labor-tracker"
   | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
-  | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery";
+  | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
+  | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
+  | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan";
 
 export type AIErrorType = "rate_limit" | "payment" | "network" | "auth" | "unknown";
 

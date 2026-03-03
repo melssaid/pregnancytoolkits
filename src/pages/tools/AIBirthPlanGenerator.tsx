@@ -125,7 +125,7 @@ export default function AIBirthPlanGenerator() {
     const langNames: Record<string, string> = { en: 'English', ar: 'Arabic', de: 'German', tr: 'Turkish', fr: 'French', es: 'Spanish', pt: 'Portuguese' };
 
     await streamChat({
-      type: 'pregnancy-assistant',
+      type: 'birth-plan',
       messages: [{ role: 'user', content: `IMPORTANT: Write ENTIRE response in ${langNames[langCode] || 'English'}.\nCreate a comprehensive birth plan:\n${selectedPrefs}\n${additionalNotes ? `Notes: ${additionalNotes}` : ''}\nInclude introduction, organized sections, backup plans, and a flexibility note.` }],
       context: { language: langCode },
       onDelta: (text) => setGeneratedPlan(prev => prev + text),

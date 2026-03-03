@@ -104,7 +104,7 @@ export default function AIBackPainRelief() {
       return ex ? t(`toolsInternal.backPainRelief.${ex.nameKey}`) : null;
     }).filter(Boolean);
     await streamChat({
-      type: 'back-pain-relief' as any,
+      type: 'back-pain-relief',
       messages: [{
         role: 'user',
         content: `I'm pregnant and experiencing ${painLocation} pain. I've completed these exercises today: ${completedNames.join(', ') || 'none yet'}. Please give me personalized back pain relief advice and additional exercises I should try.`,

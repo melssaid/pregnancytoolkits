@@ -83,19 +83,19 @@ function SleepTab() {
   const analyzeSleep = async () => {
     const prompt = `As a pregnancy sleep specialist, analyze this sleep profile:\n**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}\n**Current Sleep:** ${sleepHours[0]} hours/night\n**Bedtime:** ${bedtime}\n**Sleep Issues:** ${getIssueLabels().join(", ") || "None"}\n\nProvide:\n1. **Sleep Quality Assessment**\n2. **Optimal Sleep Position** for the current pregnancy stage\n3. **Pre-Sleep Routine**\n4. **Environment Optimization**\n5. **Natural Remedies**\n6. **When to Wake**`;
     setResponse("");
-    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setResponse(prev => prev + text), onDone: () => {} });
+    await streamChat({ type: "sleep-analysis", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setResponse(prev => prev + text), onDone: () => {} });
   };
 
   const generateMeditation = async () => {
     const prompt = `Create a 10-minute guided bedtime meditation for a pregnant woman (week: ${settings.pregnancyWeek || "not specified"}). Issues: ${getIssueLabels().join(", ") || "General"}. Include: Opening (1 min), Body Scan (3 mins), Breathing (2 mins), Visualization (3 mins), Closing (1 min). Use calm language with [...] pauses.`;
     setMeditationScript(""); setActiveTab('meditation');
-    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setMeditationScript(prev => prev + text), onDone: () => {} });
+    await streamChat({ type: "sleep-analysis", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setMeditationScript(prev => prev + text), onDone: () => {} });
   };
 
   const generateRoutine = async () => {
     const prompt = `Create a 2-hour wind-down routine for ${bedtime} bedtime at pregnancy week ${settings.pregnancyWeek || "not specified"}. Sleep issues: ${getIssueLabels().join(", ") || "General"}. Current sleep: ${sleepHours[0]} hours. Include Hour 1 (active), Hour 2 (passive), Final 30 minutes.`;
     setRoutinePlan(""); setActiveTab('routine');
-    await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setRoutinePlan(prev => prev + text), onDone: () => {} });
+    await streamChat({ type: "sleep-analysis", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setRoutinePlan(prev => prev + text), onDone: () => {} });
   };
 
   return (
