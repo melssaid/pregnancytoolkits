@@ -156,11 +156,11 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
         <div className="relative flex items-center gap-3">
           <div className={`w-11 h-11 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
             {config.customIcon === "footprints" ? (
-              <BabyFootprintsIcon className="w-6 h-6 text-white" />
+              <BabyFootprintsIcon className="w-7 h-7" />
             ) : config.customIcon === "rockingBaby" ? (
-              <RockingBabyIcon className="w-8 h-8" />
+              <RockingBabyIcon className="w-7 h-7" />
             ) : config.customIcon === "pregnancyHeart" ? (
-              <PregnancyHeartIcon className="w-8 h-8" />
+              <PregnancyHeartIcon className="w-7 h-7" />
             ) : Icon ? (
               <motion.div
                 animate={{ scale: [1, 1.12, 1] }}
