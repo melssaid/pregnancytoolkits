@@ -283,7 +283,7 @@ Please provide brief, supportive wellness insights about these feelings during w
         </Card>
 
         {/* AI Insight Button */}
-        {selectedSymptoms.length > 0 && (
+        {(selectedSymptoms.length > 0 || selectedMood) && (
           <AIActionButton
             onClick={getAIInsight}
             isLoading={isGettingInsight}
