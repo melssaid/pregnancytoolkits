@@ -232,12 +232,44 @@ export function NotificationsPanel() {
             className="overflow-hidden"
           >
             <div className="space-y-1.5 pb-2">
+              {/* Master toggle */}
+              <button
+                onClick={() => updateSettings({ masterEnabled: !settings.masterEnabled })}
+                className={`flex items-center justify-between py-2.5 px-3 rounded-xl border transition-all w-full mb-2 ${
+                  settings.masterEnabled 
+                    ? 'bg-primary/10 border-primary/30' 
+                    : 'bg-destructive/5 border-destructive/20'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className={`w-7 h-7 rounded-lg ${settings.masterEnabled ? 'bg-primary' : 'bg-muted-foreground/30'} flex items-center justify-center transition-colors`}>
+                    {settings.masterEnabled ? <BellRing className="w-3.5 h-3.5 text-primary-foreground" /> : <BellOff className="w-3.5 h-3.5 text-white" />}
+                  </div>
+                  <div className="text-start">
+                    <span className={`text-xs font-bold block ${settings.masterEnabled ? 'text-foreground' : 'text-muted-foreground'}`}>
+                      {t('notificationsPanel.masterToggle')}
+                    </span>
+                    <span className="text-[9px] text-muted-foreground block">
+                      {settings.masterEnabled ? t('notificationsPanel.masterOnHint') : t('notificationsPanel.masterOffHint')}
+                    </span>
+                  </div>
+                </div>
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                  settings.masterEnabled ? 'border-primary bg-primary' : 'border-muted-foreground/30'
+                }`}>
+                  {settings.masterEnabled && <CheckCircle className="w-3.5 h-3.5 text-primary-foreground" />}
+                </div>
+              </button>
+
+              {/* Individual toggles — only show when master is ON */}
+              {settings.masterEnabled && (<>
               <SettingsItem icon={Calendar} label={t('notificationsPanel.appointments')} hint={t('notificationsPanel.appointmentsHint')} color="bg-blue-500" checked={settings.appointmentReminders} onChange={(v) => updateSettings({ appointmentReminders: v })} />
               <SettingsItem icon={Pill} label={t('notificationsPanel.vitamins')} hint={t('notificationsPanel.vitaminsHint')} color="bg-amber-500" checked={settings.vitaminReminders} onChange={(v) => updateSettings({ vitaminReminders: v })} />
               <SettingsItem icon={Droplet} label={t('notificationsPanel.water')} hint={t('notificationsPanel.waterHint')} color="bg-sky-500" checked={settings.waterReminders} onChange={(v) => updateSettings({ waterReminders: v })} />
               <SettingsItem icon={Heart} label={t('notificationsPanel.cycleReminders')} hint={t('notificationsPanel.cycleHint')} color="bg-rose-500" checked={settings.cycleReminders} onChange={(v) => updateSettings({ cycleReminders: v })} />
               <SettingsItem icon={Footprints} label={t('notificationsPanel.kickReminders')} hint={t('notificationsPanel.kickHint')} color="bg-violet-500" checked={settings.kickReminders} onChange={(v) => updateSettings({ kickReminders: v })} />
               <SettingsItem icon={Trophy} label={t('notificationsPanel.milestoneReminders')} hint={t('notificationsPanel.milestoneHint')} color="bg-yellow-500" checked={settings.milestoneReminders} onChange={(v) => updateSettings({ milestoneReminders: v })} />
+              </>)}
 
               {pushSupported && (
                 <div className="pt-1 mt-1 border-t border-border/30">
