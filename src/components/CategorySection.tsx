@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ToolCard } from "./ToolCard";
@@ -56,27 +56,39 @@ export function CategorySection({
         )}
       </div>
       
-      {isExpanded && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-        >
-          {tools.map((tool, index) => (
-            <ToolCard
-              key={tool.id}
-              titleKey={tool.titleKey}
-              descriptionKey={tool.descriptionKey}
-              icon={tool.icon}
-              href={tool.href}
-              categoryKey={tool.categoryKey}
-              index={index}
-            />
-          ))}
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
+            {tools.map((tool, index) => (
+              <motion.div
+                key={tool.id}
+                initial={{ opacity: 0, y: 18, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.3,
+                  delay: index * 0.06,
+                  ease: "easeOut",
+                }}
+              >
+                <ToolCard
+                  titleKey={tool.titleKey}
+                  descriptionKey={tool.descriptionKey}
+                  icon={tool.icon}
+                  href={tool.href}
+                  categoryKey={tool.categoryKey}
+                  index={index}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 }
