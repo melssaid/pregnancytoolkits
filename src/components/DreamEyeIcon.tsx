@@ -9,9 +9,12 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
     {/* ── Floating hearts — large & prominent, emerging from pupil ── */}
     {[
       { delay: 0, dx: -8, startY: 48 },
-      { delay: 1.2, dx: 6, startY: 48 },
-      { delay: 2.4, dx: -2, startY: 48 },
-      { delay: 0.7, dx: 10, startY: 48 },
+      { delay: 0.8, dx: 6, startY: 48 },
+      { delay: 1.6, dx: -2, startY: 48 },
+      { delay: 0.4, dx: 10, startY: 48 },
+      { delay: 2.0, dx: -12, startY: 50 },
+      { delay: 1.2, dx: 14, startY: 50 },
+      { delay: 2.6, dx: 0, startY: 46 },
     ].map((h, i) => (
       <motion.path
         key={i}
