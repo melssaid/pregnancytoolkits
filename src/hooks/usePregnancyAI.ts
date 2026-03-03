@@ -81,9 +81,17 @@ export function usePregnancyAI() {
 
       try {
         // Ensure authenticated to get a valid JWT
-        await ensureAuthenticated();
+        const user = await ensureAuthenticated();
         const { data: { session } } = await supabase.auth.getSession();
-        const token = session?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+        const token = session?.access_token;
+        
+        if (!token) {
+          const { msg, type: errType } = resolveError(undefined, 'network');
+          setError(msg);
+          setErrorType(errType);
+          onDone();
+          return;
+        }
 
         const response = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,

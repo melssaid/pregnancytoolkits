@@ -529,14 +529,14 @@ Deno.serve(async (req) => {
       { global: { headers: { Authorization: authHeader } } }
     );
 
-    const token = authHeader.replace("Bearer ", "");
-    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
-    if (claimsError || !claimsData?.claims) {
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if (userError || !user) {
+      console.error("[AI] auth failed:", userError?.message);
       return jsonError("Invalid or expired authentication token", 401);
     }
 
-    const userId = claimsData.claims.sub;
-    console.log(`[AI] authenticated user: ${userId?.substring(0, 8)}...`);
+    const userId = user.id;
+    console.log(`[AI] authenticated user: ${userId.substring(0, 8)}...`);
 
     // Rate limit (now by authenticated user ID)
     if (!checkRateLimit(userId)) {
