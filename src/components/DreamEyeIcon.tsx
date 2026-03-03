@@ -135,12 +135,20 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
 
     const animate = (time: number) => {
       const elapsed = (time - startTime) / 1000;
-      // Blink pattern: open most of the time, quick blink every ~3.5s
-      const blinkCycle = elapsed % 3.5;
+      // Realistic blink: slow close, pause, slow open — every ~4s
+      const blinkCycle = elapsed % 4.5;
       let blink = 0;
-      if (blinkCycle > 3.0 && blinkCycle < 3.35) {
-        const bt = (blinkCycle - 3.0) / 0.35;
-        blink = bt < 0.5 ? bt * 2 : (1 - bt) * 2;
+      if (blinkCycle > 3.8 && blinkCycle <= 4.1) {
+        // Closing phase (0.3s) — smooth ease-in
+        const t = (blinkCycle - 3.8) / 0.3;
+        blink = t * t; // ease-in (accelerate)
+      } else if (blinkCycle > 4.1 && blinkCycle <= 4.15) {
+        // Closed pause (0.05s)
+        blink = 1;
+      } else if (blinkCycle > 4.15 && blinkCycle <= 4.5) {
+        // Opening phase (0.35s) — smooth ease-out (slower open)
+        const t = 1 - (blinkCycle - 4.15) / 0.35;
+        blink = t * t; // ease-out (decelerate)
       }
 
       drawEye(ctx, size, size, blink);
