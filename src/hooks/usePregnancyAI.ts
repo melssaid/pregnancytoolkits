@@ -1,6 +1,8 @@
 import { useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useAIUsageLimit } from "./useAIUsageLimit";
+import { supabase } from "@/integrations/supabase/client";
+import { ensureAuthenticated } from "@/lib/auth";
 
 type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery";
 
@@ -78,13 +80,18 @@ export function usePregnancyAI() {
       };
 
       try {
+        // Ensure authenticated to get a valid JWT
+        await ensureAuthenticated();
+        const { data: { session } } = await supabase.auth.getSession();
+        const token = session?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
         const response = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+              Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({ type, messages, context: contextWithLanguage }),
           }

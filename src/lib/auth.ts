@@ -1,13 +1,16 @@
 /**
- * Authentication utilities for the pregnancy app
- * Uses localStorage-based user identification for seamless experience
+ * Authentication utilities for the pregnancy app.
+ * Local-only ID for localStorage data (health tracking, vitamins, kicks, etc.)
+ * Supabase anonymous auth for cloud-stored data (bump photos).
  */
+
+import { supabase } from '@/integrations/supabase/client';
 
 const USER_ID_KEY = 'pregnancy_user_id';
 
 /**
  * Get or create a local user identifier.
- * No external auth calls - fully offline-capable.
+ * Used ONLY for localStorage namespacing — never sent to Supabase.
  */
 export function getLocalUserId(): string {
   let userId = localStorage.getItem(USER_ID_KEY);
@@ -26,8 +29,20 @@ export async function initializeAuth(): Promise<void> {
 }
 
 /**
- * No-op for backward compatibility.
+ * Ensure the user is authenticated with Supabase.
+ * Uses anonymous sign-in for seamless experience with proper RLS isolation.
+ * Returns the Supabase user object with a cryptographically verified ID.
  */
 export async function ensureAuthenticated() {
-  return { id: getLocalUserId() };
+  // Check for existing session first
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user) return user;
+
+  // No session — sign in anonymously
+  const { data, error } = await supabase.auth.signInAnonymously();
+  if (error) {
+    console.error('Anonymous auth failed:', error.message);
+    throw new Error('Authentication failed');
+  }
+  return data.user;
 }
