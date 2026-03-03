@@ -8,13 +8,13 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   <svg viewBox="0 0 100 100" fill="white" className={className} overflow="visible">
     {/* ── Floating hearts — large & prominent, emerging from pupil ── */}
     {[
-      { delay: 0, dx: -8, startY: 48 },
-      { delay: 0.8, dx: 6, startY: 48 },
-      { delay: 1.6, dx: -2, startY: 48 },
-      { delay: 0.4, dx: 10, startY: 48 },
-      { delay: 2.0, dx: -12, startY: 50 },
-      { delay: 1.2, dx: 14, startY: 50 },
-      { delay: 2.6, dx: 0, startY: 46 },
+      { delay: 0, dx: -8, startY: 48, maxScale: 1.4 },
+      { delay: 0.8, dx: 6, startY: 48, maxScale: 0.7 },
+      { delay: 1.6, dx: -2, startY: 48, maxScale: 1.1 },
+      { delay: 0.4, dx: 10, startY: 48, maxScale: 0.55 },
+      { delay: 2.0, dx: -12, startY: 50, maxScale: 0.85 },
+      { delay: 1.2, dx: 14, startY: 50, maxScale: 1.3 },
+      { delay: 2.6, dx: 0, startY: 46, maxScale: 0.6 },
     ].map((h, i) => (
       <motion.path
         key={i}
@@ -25,7 +25,7 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
           y: [0, -16, -35],
           x: [0, h.dx, h.dx * 1.4],
           opacity: [0, 0.95, 0],
-          scale: [0.3, 1.2, 0.6],
+          scale: [0.2, h.maxScale, h.maxScale * 0.45],
         }}
         transition={{ duration: 2.8, repeat: Infinity, delay: h.delay, ease: "easeOut" }}
       />
