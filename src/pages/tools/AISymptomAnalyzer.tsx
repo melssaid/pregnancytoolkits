@@ -282,16 +282,14 @@ Please provide brief, supportive wellness insights about these feelings during w
           </CardContent>
         </Card>
 
-        {/* AI Insight Button */}
-        {(selectedSymptoms.length > 0 || selectedMood) && (
-          <AIActionButton
-            onClick={getAIInsight}
-            isLoading={isGettingInsight}
-            disabled={aiLoading}
-            label={t('toolsInternal.symptomAnalyzer.getInsights')}
-            loadingLabel={t('toolsInternal.symptomAnalyzer.analyzing')}
-          />
-        )}
+        {/* AI Insight Button — always visible */}
+        <AIActionButton
+          onClick={getAIInsight}
+          isLoading={isGettingInsight}
+          disabled={aiLoading || (selectedSymptoms.length === 0 && !selectedMood)}
+          label={t('toolsInternal.symptomAnalyzer.getInsights')}
+          loadingLabel={t('toolsInternal.symptomAnalyzer.analyzing')}
+        />
 
         {/* AI Response */}
         {aiInsight && (
