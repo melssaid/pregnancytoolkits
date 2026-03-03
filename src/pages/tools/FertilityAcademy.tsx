@@ -180,7 +180,7 @@ export default function FertilityAcademy() {
       <div className="space-y-4" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
 
         {/* ── Custom Tab Navigation ── */}
-        <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1">
+        <div className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none -mx-1 px-1">
           {TAB_CONFIG.map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.key;
@@ -188,22 +188,19 @@ export default function FertilityAcademy() {
               <motion.button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`relative flex items-center gap-1.5 px-3 py-2 rounded-xl text-[11px] font-semibold whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                className={`relative flex flex-col items-center gap-1 min-w-[68px] px-3 py-2.5 rounded-2xl font-semibold whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
                   isActive
-                    ? `bg-gradient-to-r ${tab.gradient} text-white shadow-md ring-2 ${tab.ring} ring-offset-1 ring-offset-background`
-                    : "bg-muted/40 text-muted-foreground hover:bg-muted/70 hover:text-foreground"
+                    ? `bg-gradient-to-br ${tab.gradient} text-white shadow-lg shadow-black/10`
+                    : `${tab.lightBg} ${tab.darkBg} text-muted-foreground hover:text-foreground border border-border/20`
                 }`}
-                whileTap={{ scale: 0.96 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-white" : ""}`} />
-                {t(`tools.fertilityAcademy.${tab.key}Tab`)}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTabIndicator"
-                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-white/10 to-transparent pointer-events-none"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                  />
-                )}
+                <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
+                  isActive ? "bg-white/20" : "bg-white/80 dark:bg-white/10"
+                }`}>
+                  <Icon className={`w-4.5 h-4.5 ${isActive ? "text-white" : ""}`} strokeWidth={1.8} />
+                </div>
+                <span className="text-[10px] leading-tight">{t(`tools.fertilityAcademy.${tab.key}Tab`)}</span>
               </motion.button>
             );
           })}
