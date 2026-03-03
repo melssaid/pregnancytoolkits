@@ -324,16 +324,51 @@ const SmartPregnancyPlan = () => {
           <TabsContent value="aiplan" className="space-y-3 mt-3">
             {aiResponse ? (
               <PrintableReport title={t("smartPlan.aiPlan", "AI Plan")}>
-                <div className="rounded-xl bg-primary/5 border border-primary/15 p-4">
-                  <MarkdownRenderer content={aiResponse} isLoading={isLoading} />
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative rounded-2xl overflow-hidden border border-primary/15 shadow-sm"
+                >
+                  {/* Gradient accent top bar */}
+                  <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
+                  
+                  {/* Header */}
+                  <div className="flex items-center gap-2.5 px-4 pt-4 pb-2">
+                    <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(330 70% 55% / 0.1))' }}>
+                      <Brain className="w-4.5 h-4.5 text-primary" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-bold text-foreground">{t("smartPlan.aiPlan", "AI Plan")}</h3>
+                      <p className="text-[10px] text-muted-foreground">{t("common.week", "Week")} {health.week} • {trimester.label}</p>
+                    </div>
+                    {isLoading && (
+                      <div className="flex gap-1 ms-auto">
+                        {[0, 1, 2].map(i => (
+                          <motion.div key={i} className="w-1.5 h-1.5 rounded-full bg-primary" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }} />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="px-4 pb-5 pt-1">
+                    <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
+                      <MarkdownRenderer content={aiResponse} isLoading={isLoading} />
+                    </div>
+                  </div>
+                </motion.div>
               </PrintableReport>
             ) : (
-              <div className="py-6 text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                  <Brain className="h-6 w-6 text-primary" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="py-8 text-center space-y-4 rounded-2xl border border-dashed border-primary/20 bg-gradient-to-b from-primary/[0.03] to-transparent"
+              >
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.12), hsl(330 70% 55% / 0.08))' }}>
+                  <Brain className="h-7 w-7 text-primary" />
                 </div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground max-w-[240px] mx-auto leading-relaxed">
                   {t("smartPlan.aiPlanHint", "Get a personalized AI-powered pregnancy plan based on your profile")}
                 </p>
                 <AIActionButton
@@ -341,7 +376,7 @@ const SmartPregnancyPlan = () => {
                   isLoading={isLoading}
                   label={t("smartPlan.getAIPlan", "Get Smart Plan")}
                 />
-              </div>
+              </motion.div>
             )}
           </TabsContent>
 
@@ -350,15 +385,28 @@ const SmartPregnancyPlan = () => {
             {reportContent ? (
               <div className="space-y-3">
                 <PrintableReport title={`${t("smartPlan.weeklyReport")} — ${t("common.week", "Week")} ${health.week}`}>
-                  <div id="smart-plan-report" ref={reportRef} className="rounded-xl" dir={isRTL ? 'rtl' : 'ltr'} lang={lang}>
-                    <div className="space-y-3">
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    id="smart-plan-report"
+                    ref={reportRef}
+                    className="relative rounded-2xl overflow-hidden border border-primary/15 shadow-sm"
+                    dir={isRTL ? 'rtl' : 'ltr'}
+                    lang={lang}
+                  >
+                    {/* Gradient accent top bar */}
+                    <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, hsl(280 60% 55%), hsl(330 70% 55%), hsl(var(--primary)))' }} />
+
+                    {/* Report Header */}
+                    <div className="px-4 pt-4 pb-2 space-y-3">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center">
-                            <Baby className="w-5 h-5 text-primary" />
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(280 60% 55% / 0.1))' }}>
+                            <FileText className="w-5 h-5 text-primary" />
                           </div>
                           <div>
-                            <h3 className="text-sm font-bold">{t("smartPlan.weeklyReport")} — {t("common.week", "Week")} {health.week}</h3>
+                            <h3 className="text-sm font-bold text-foreground">{t("smartPlan.weeklyReport")} — {t("common.week", "Week")} {health.week}</h3>
                             <p className="text-[10px] text-muted-foreground">{new Date().toLocaleDateString(isRTL ? 'ar-SA' : undefined)}</p>
                           </div>
                         </div>
@@ -376,9 +424,9 @@ const SmartPregnancyPlan = () => {
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-4 gap-2 pt-1">
+                      <div className="grid grid-cols-4 gap-2">
                         {statsCards.map((stat, i) => (
-                          <div key={i} className="bg-muted/50 rounded-lg p-2 text-center">
+                          <div key={i} className="bg-muted/40 rounded-lg p-2 text-center border border-border/20">
                             <stat.icon className={`w-3.5 h-3.5 mx-auto mb-0.5 ${stat.color}`} />
                             <p className="text-xs font-bold">{stat.value}</p>
                             <p className="text-[8px] text-muted-foreground">{stat.label}</p>
@@ -387,10 +435,13 @@ const SmartPregnancyPlan = () => {
                       </div>
                     </div>
 
-                    <div className="rounded-xl bg-primary/5 border border-primary/15 p-4 mt-3">
-                      <MarkdownRenderer content={reportContent} isLoading={isLoading} />
+                    {/* Report Content */}
+                    <div className="px-4 pb-5">
+                      <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
+                        <MarkdownRenderer content={reportContent} isLoading={isLoading} />
+                      </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </PrintableReport>
 
                 <motion.button
@@ -405,11 +456,15 @@ const SmartPregnancyPlan = () => {
                 </motion.button>
               </div>
             ) : (
-              <div className="py-6 text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                  <FileText className="h-6 w-6 text-primary" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="py-8 text-center space-y-4 rounded-2xl border border-dashed border-primary/20 bg-gradient-to-b from-primary/[0.03] to-transparent"
+              >
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto" style={{ background: 'linear-gradient(135deg, hsl(280 60% 55% / 0.12), hsl(var(--primary) / 0.08))' }}>
+                  <FileText className="h-7 w-7 text-primary" />
                 </div>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground max-w-[240px] mx-auto leading-relaxed">
                   {t("smartPlan.reportHint", "Get a detailed AI-powered health report personalized for your week, weight, and condition")}
                 </p>
                 <motion.button
@@ -422,7 +477,7 @@ const SmartPregnancyPlan = () => {
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
                   {t("smartPlan.generateReport", "Generate Health Report")}
                 </motion.button>
-              </div>
+              </motion.div>
             )}
           </TabsContent>
         </Tabs>
