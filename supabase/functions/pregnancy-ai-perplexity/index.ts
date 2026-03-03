@@ -87,6 +87,15 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "bump-photos":          { temperature: 0.5, max_tokens: 2000 },
   "baby-cry-analysis":    { temperature: 0.3, max_tokens: 2500 },
   "postpartum-recovery":  { temperature: 0.3, max_tokens: 3000 },
+  "hospital-bag":         { temperature: 0.5, max_tokens: 2500 },
+  "birth-position":       { temperature: 0.4, max_tokens: 2000 },
+  "partner-guide":        { temperature: 0.5, max_tokens: 3000 },
+  "lactation-prep":       { temperature: 0.4, max_tokens: 2500 },
+  "nausea-relief":        { temperature: 0.4, max_tokens: 2000 },
+  "skincare-advice":      { temperature: 0.5, max_tokens: 2000 },
+  "birth-plan":           { temperature: 0.5, max_tokens: 3000 },
+  "mental-health":        { temperature: 0.3, max_tokens: 3000 },
+  "pregnancy-plan":       { temperature: 0.4, max_tokens: 3000 },
 };
 
 // ── Language configuration ──
@@ -497,7 +506,7 @@ function validateRequest(body: unknown): { valid: true; data: AIRequest } | { va
 
   if (context) {
     if (typeof context !== "object") return { valid: false, error: "Context must be an object", status: 400 };
-    if (context.week !== undefined && (typeof context.week !== "number" || context.week < 1 || context.week > 42)) {
+    if (context.week !== undefined && context.week !== 0 && (typeof context.week !== "number" || context.week < 1 || context.week > 42)) {
       return { valid: false, error: "Week must be 1-42", status: 400 };
     }
   }
