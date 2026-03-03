@@ -78,6 +78,7 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 // VIDEO LIBRARY
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const Splash = lazy(() => import("@/pages/Splash"));
+const MyPage = lazy(() => import("@/pages/MyPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 
 
@@ -171,6 +172,7 @@ export function AnimatedRoutes() {
 
         {/* SPLASH SCREEN */}
         <Route path="/splash" element={<Splash />} />
+        <Route path="/my-page" element={<PageTransition><MyPage /></PageTransition>} />
         
 
         {/* LEGACY REDIRECTS — deleted tools */}
