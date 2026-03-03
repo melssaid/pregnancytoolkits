@@ -9,26 +9,26 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
     {/* Lucide Eye icon */}
     <Eye className="w-full h-full text-white" strokeWidth={1.8} />
 
-    {/* 2 pulsing hearts */}
+    {/* 2 hearts floating upward */}
     {[
-      { delay: 0, x: "-60%", y: "-70%" },
-      { delay: 2.2, x: "50%", y: "-65%" },
+      { delay: 0.3, x: "-40%", y: "10%" },
+      { delay: 2.5, x: "80%", y: "5%" },
     ].map((h, i) => (
       <motion.svg
         key={i}
         viewBox="0 0 24 24"
-        className="absolute w-[45%] h-[45%] text-white"
+        className="absolute w-[38%] h-[38%] text-white pointer-events-none"
         style={{ left: h.x, top: h.y }}
         animate={{
-          scale: [0, 1.2, 1.5, 0],
-          opacity: [0, 0.9, 0.5, 0],
-          rotate: [0, -10, 10, 0],
+          y: [0, -16, -30],
+          opacity: [0, 0.85, 0],
+          scale: [0.4, 1, 0.65],
         }}
         transition={{
-          duration: 3,
+          duration: 3.5,
           repeat: Infinity,
           delay: h.delay,
-          ease: "easeInOut",
+          ease: "easeOut",
         }}
       >
         <path
