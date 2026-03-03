@@ -1,6 +1,7 @@
 import { useMemo, memo, useState, useCallback } from "react";
-import { Heart, ChevronRight, ChevronLeft, ChevronDown, Sparkles } from "lucide-react";
+import { Heart, ChevronRight, ChevronLeft, ChevronDown } from "lucide-react";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
+import DreamEyeIcon from "@/components/DreamEyeIcon";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/lib/tools-data";
@@ -26,7 +27,7 @@ const categoryStyles: Record<string, { iconColor: string; toolHover: string; hov
 interface JourneyConfig {
   key: JourneyKey;
   icon?: LucideIcon;
-  customIcon?: "sparkles" | "footprints";
+  customIcon?: "dreamEye" | "footprints";
   headerGradient: string;
   headerText: string;
   bg: string;
@@ -38,7 +39,7 @@ const journeyConfigs: JourneyConfig[] = [
   {
     // Planning/Fertility — Warm Coral-Peach: hope, warmth, anticipation
     key: "planning",
-    customIcon: "sparkles",
+    customIcon: "dreamEye",
     headerGradient: "bg-gradient-to-r from-[hsl(15,70%,62%)] via-[hsl(25,65%,65%)] to-[hsl(340,50%,65%)] dark:from-[hsl(15,65%,50%)] dark:via-[hsl(25,60%,52%)] dark:to-[hsl(340,45%,55%)]",
     headerText: "text-white",
     iconBg: "bg-white/20",
@@ -155,8 +156,8 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
           <div className={`w-11 h-11 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
             {config.customIcon === "footprints" ? (
               <BabyFootprintsIcon className="w-6 h-6 text-white" />
-            ) : config.customIcon === "sparkles" ? (
-              <Sparkles className="w-6 h-6 text-white" />
+            ) : config.customIcon === "dreamEye" ? (
+              <DreamEyeIcon className="w-6 h-6 text-white" />
             ) : Icon ? (
               <motion.div
                 {...(config.key === "planning" ? {
