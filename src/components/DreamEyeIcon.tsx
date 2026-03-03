@@ -9,8 +9,8 @@ import { motion } from "framer-motion";
 function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, blink: number) {
   const cx = w / 2;
   const cy = h / 2;
-  const eyeW = w * 0.42;
-  const eyeH = h * 0.22;
+  const eyeW = w * 0.46;
+  const eyeH = h * 0.28;
 
   ctx.clearRect(0, 0, w, h);
   ctx.save();
@@ -37,7 +37,7 @@ function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, blink: num
   ctx.fill();
 
   // ── Iris ──
-  const irisR = eyeH * 0.85;
+  const irisR = eyeH * 1;
   const irisGrad = ctx.createRadialGradient(0, 0, irisR * 0.15, 0, 0, irisR);
   irisGrad.addColorStop(0, "#6b4226");
   irisGrad.addColorStop(0.5, "#8b5e3c");
@@ -80,7 +80,7 @@ function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, blink: num
 
   // ── Eyelid outlines ──
   ctx.strokeStyle = "rgba(255,255,255,0.9)";
-  ctx.lineWidth = 1.5;
+  ctx.lineWidth = 2;
   ctx.lineCap = "round";
 
   // Upper lid
@@ -104,7 +104,7 @@ function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, blink: num
     const lx = -eyeW + t * eyeW * 2;
     const ly = -openH * 2 * (1 - Math.pow(2 * t - 1, 2)) * (1 - blink * 0.8);
     const angle = -Math.PI / 2 + (t - 0.5) * 0.6;
-    const lashLen = 3 + Math.sin(t * Math.PI) * 3;
+    const lashLen = 4 + Math.sin(t * Math.PI) * 4;
     ctx.beginPath();
     ctx.moveTo(lx, ly);
     ctx.lineTo(
@@ -153,11 +153,11 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
 
   // Heart bubble configs
   const hearts = [
-    { delay: 0.0, size: 30, startX: 2, driftX: -10, duration: 3.2 },
-    { delay: 1.0, size: 20, startX: -3, driftX: 8, duration: 2.8 },
-    { delay: 1.8, size: 26, startX: 5, driftX: -14, duration: 3.5 },
-    { delay: 2.5, size: 16, startX: -6, driftX: 12, duration: 3.0 },
-    { delay: 0.5, size: 22, startX: 0, driftX: -5, duration: 3.8 },
+    { delay: 0.0, size: 45, startX: 2, driftX: -12, duration: 3.2 },
+    { delay: 1.0, size: 32, startX: -4, driftX: 10, duration: 2.8 },
+    { delay: 1.8, size: 38, startX: 5, driftX: -16, duration: 3.5 },
+    { delay: 2.5, size: 28, startX: -6, driftX: 14, duration: 3.0 },
+    { delay: 0.5, size: 35, startX: 0, driftX: -8, duration: 3.8 },
   ];
 
   return (
@@ -180,10 +180,10 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
             top: "25%",
           }}
           animate={{
-            y: [0, -14, -36],
+            y: [0, -20, -48],
             x: [0, h.driftX * 0.4, h.driftX],
             opacity: [0, 0.95, 0],
-            scale: [0.2, 1, 0.5],
+            scale: [0.3, 1.15, 0.5],
           }}
           transition={{
             duration: h.duration,
