@@ -1,133 +1,190 @@
 import { motion } from "framer-motion";
 
 /**
- * Premium rocking baby in cradle — clean, natural look without harsh lines
+ * Large, clear rocking baby in cradle — bold visible features
  */
-const RockingBabyIcon = ({ className = "w-10 h-10" }: { className?: string }) => {
+const RockingBabyIcon = ({ className = "w-14 h-14" }: { className?: string }) => {
   return (
     <motion.svg
-      viewBox="0 0 56 56"
+      viewBox="0 0 80 80"
       className={className}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      animate={{ rotate: [-3.5, 3.5, -3.5] }}
+      animate={{ rotate: [-3, 3, -3] }}
       transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      style={{ originX: "50%", originY: "90%" }}
+      style={{ originX: "50%", originY: "88%" }}
     >
-      {/* Cradle rocker base */}
-      <motion.path
-        d="M8 49 Q28 42, 48 49"
+      {/* ── Rocker base ── */}
+      <path
+        d="M12 70 Q40 60, 68 70"
+        stroke="white"
+        strokeWidth={3}
+        strokeLinecap="round"
+        fill="none"
+        opacity={0.85}
+      />
+
+      {/* ── Cradle body ── */}
+      <path
+        d="M20 62 L17 40 Q17 36, 22 36 L58 36 Q63 36, 63 40 L60 62 Z"
+        fill="white"
+        fillOpacity={0.15}
+        stroke="white"
+        strokeWidth={2.2}
+        strokeLinejoin="round"
+        opacity={0.85}
+      />
+
+      {/* ── Cradle hood ── */}
+      <path
+        d="M22 36 Q22 22, 40 19 Q58 22, 58 36"
+        stroke="white"
+        strokeWidth={2}
+        strokeLinecap="round"
+        fill="white"
+        fillOpacity={0.08}
+        opacity={0.55}
+      />
+
+      {/* ── Blanket ── */}
+      <path
+        d="M24 60 Q24 48, 40 45 Q56 48, 56 60"
+        fill="white"
+        fillOpacity={0.22}
+        stroke="white"
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity={0.8}
+      />
+      {/* Blanket fold */}
+      <path
+        d="M28 54 Q40 57, 52 54"
+        stroke="white"
+        strokeWidth={1.2}
+        strokeLinecap="round"
+        opacity={0.3}
+      />
+
+      {/* ── Baby head ── */}
+      <circle
+        cx="40"
+        cy="35"
+        r="11"
+        fill="white"
+        fillOpacity={0.28}
+        stroke="white"
+        strokeWidth={2.2}
+        opacity={0.95}
+      />
+
+      {/* ── Hair ── */}
+      <path
+        d="M32 28 Q35 22, 40 21 Q45 22, 48 28"
         stroke="white"
         strokeWidth={2}
         strokeLinecap="round"
         fill="none"
-        opacity={0.75}
-      />
-
-      {/* Cradle body — soft filled shape */}
-      <path
-        d="M14 44 L12 30 Q12 27, 15 27 L41 27 Q44 27, 44 30 L42 44 Z"
-        fill="white"
-        fillOpacity={0.12}
-        stroke="white"
-        strokeWidth={1.4}
-        strokeLinejoin="round"
-        strokeLinecap="round"
         opacity={0.6}
       />
-
-      {/* Cradle hood — subtle arc */}
       <path
-        d="M15 27 Q15 17, 28 15 Q41 17, 41 27"
-        stroke="white"
-        strokeWidth={1.2}
-        strokeLinecap="round"
-        fill="white"
-        fillOpacity={0.06}
-        opacity={0.4}
-      />
-
-      {/* Blanket / swaddle — soft shape */}
-      <path
-        d="M17 42 Q17 35, 28 33 Q39 35, 39 42"
-        fill="white"
-        fillOpacity={0.2}
-        stroke="white"
-        strokeWidth={1.2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity={0.7}
-      />
-
-      {/* Baby head — soft circle */}
-      <circle
-        cx="28"
-        cy="27"
-        r="7.5"
-        fill="white"
-        fillOpacity={0.25}
-        stroke="white"
-        strokeWidth={1.4}
-        opacity={0.9}
-      />
-
-      {/* Hair — soft wisps */}
-      <path
-        d="M22.5 22 Q24 18, 28 17.5 Q32 18, 33.5 22"
+        d="M34 25 Q40 20, 46 25"
         stroke="white"
         strokeWidth={1.2}
         strokeLinecap="round"
         fill="none"
+        opacity={0.3}
+      />
+
+      {/* ── Closed eyes ── */}
+      <motion.g
+        animate={{ scaleY: [1, 0.1, 1] }}
+        transition={{ duration: 5, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}
+        style={{ originX: "40px", originY: "34px" }}
+      >
+        {/* Left eye */}
+        <path
+          d="M33 34 Q35.5 31, 38 34"
+          stroke="white"
+          strokeWidth={2}
+          strokeLinecap="round"
+          fill="none"
+          opacity={0.9}
+        />
+        {/* Right eye */}
+        <path
+          d="M42 34 Q44.5 31, 47 34"
+          stroke="white"
+          strokeWidth={2}
+          strokeLinecap="round"
+          fill="none"
+          opacity={0.9}
+        />
+      </motion.g>
+
+      {/* ── Eyelashes ── */}
+      <line x1="32.5" y1="33.5" x2="31.5" y2="32" stroke="white" strokeWidth={1.2} strokeLinecap="round" opacity={0.45} />
+      <line x1="47.5" y1="33.5" x2="48.5" y2="32" stroke="white" strokeWidth={1.2} strokeLinecap="round" opacity={0.45} />
+
+      {/* ── Nose ── */}
+      <path
+        d="M39 37.5 Q40 38.5, 41 37.5"
+        stroke="white"
+        strokeWidth={1.3}
+        strokeLinecap="round"
         opacity={0.5}
       />
 
-      {/* Closed eyes — gentle arcs */}
-      <motion.g
-        animate={{ scaleY: [1, 0.15, 1] }}
-        transition={{ duration: 4.5, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}
-        style={{ originX: "28px", originY: "26px" }}
-      >
-        <path d="M24 26.5 Q25.5 24.5, 27 26.5" stroke="white" strokeWidth={1.3} strokeLinecap="round" fill="none" opacity={0.85} />
-        <path d="M29 26.5 Q30.5 24.5, 32 26.5" stroke="white" strokeWidth={1.3} strokeLinecap="round" fill="none" opacity={0.85} />
-      </motion.g>
+      {/* ── Smile ── */}
+      <path
+        d="M37 40 Q40 42, 43 40"
+        stroke="white"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        opacity={0.7}
+      />
 
-      {/* Nose */}
-      <path d="M27.5 28.5 Q28 29, 28.5 28.5" stroke="white" strokeWidth={0.9} strokeLinecap="round" opacity={0.4} />
+      {/* ── Cheeks ── */}
+      <circle cx="33" cy="37.5" r="2.5" fill="white" fillOpacity={0.1} />
+      <circle cx="47" cy="37.5" r="2.5" fill="white" fillOpacity={0.1} />
 
-      {/* Smile */}
-      <path d="M26.5 30 Q28 31.2, 29.5 30" stroke="white" strokeWidth={1} strokeLinecap="round" opacity={0.55} />
+      {/* ── Tiny hand ── */}
+      <path
+        d="M32 49 Q30.5 47.5, 31.5 46 Q32.5 47, 34 47.5"
+        stroke="white"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        opacity={0.5}
+      />
 
-      {/* Cheek glow */}
-      <circle cx="24" cy="28.5" r="2" fill="white" fillOpacity={0.08} />
-      <circle cx="32" cy="28.5" r="2" fill="white" fillOpacity={0.08} />
-
-      {/* Floating Z's */}
+      {/* ── Z's ── */}
       <motion.text
-        x="40" y="18" fill="white" fontSize="8" fontWeight="bold" fontFamily="serif"
-        animate={{ y: [18, 13, 18], opacity: [0.15, 0.5, 0.15], x: [40, 42, 40] }}
+        x="56" y="24" fill="white" fontSize="10" fontWeight="bold" fontFamily="serif"
+        animate={{ y: [24, 18, 24], opacity: [0.1, 0.5, 0.1], x: [56, 58, 56] }}
         transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
       >z</motion.text>
       <motion.text
-        x="44" y="12" fill="white" fontSize="6" fontWeight="bold" fontFamily="serif"
-        animate={{ y: [12, 8, 12], opacity: [0.1, 0.35, 0.1], x: [44, 46, 44] }}
+        x="61" y="16" fill="white" fontSize="7.5" fontWeight="bold" fontFamily="serif"
+        animate={{ y: [16, 11, 16], opacity: [0.08, 0.35, 0.08], x: [61, 63, 61] }}
         transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
       >z</motion.text>
 
-      {/* Sparkle */}
+      {/* ── Sparkle ── */}
       <motion.g
-        animate={{ opacity: [0, 0.6, 0], scale: [0.6, 1, 0.6] }}
+        animate={{ opacity: [0, 0.65, 0], scale: [0.5, 1, 0.5] }}
         transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 2.5, ease: "easeInOut" }}
-        style={{ originX: "10px", originY: "14px" }}
+        style={{ originX: "14px", originY: "20px" }}
       >
-        <line x1="10" y1="11" x2="10" y2="17" stroke="white" strokeWidth={1} strokeLinecap="round" opacity={0.6} />
-        <line x1="7" y1="14" x2="13" y2="14" stroke="white" strokeWidth={1} strokeLinecap="round" opacity={0.6} />
+        <line x1="14" y1="16" x2="14" y2="24" stroke="white" strokeWidth={1.3} strokeLinecap="round" opacity={0.65} />
+        <line x1="10" y1="20" x2="18" y2="20" stroke="white" strokeWidth={1.3} strokeLinecap="round" opacity={0.65} />
       </motion.g>
 
-      {/* Dot star */}
       <motion.circle
-        cx="46" cy="8" r="1.2" fill="white"
-        animate={{ opacity: [0.1, 0.5, 0.1], scale: [0.7, 1.1, 0.7] }}
-        transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.8, delay: 1.2, ease: "easeInOut" }}
+        cx="64" cy="12" r="1.5" fill="white"
+        animate={{ opacity: [0.1, 0.55, 0.1], scale: [0.7, 1.2, 0.7] }}
+        transition={{ duration: 2, repeat: Infinity, repeatDelay: 2, delay: 1, ease: "easeInOut" }}
       />
     </motion.svg>
   );
