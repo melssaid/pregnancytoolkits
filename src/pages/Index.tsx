@@ -91,21 +91,13 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
   );
 });
 
-// ── Sub-category divider — themed with category label ───────────────────
+// ── Sub-category divider — elegant gradient line with soft glow dot ────
 const SubCategoryDivider = memo(function SubCategoryDivider({ iconColor }: { iconColor: string }) {
   return (
-    <div className="flex items-center gap-2 px-3 pt-5 pb-2">
-      <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-border/30 to-transparent" />
-      <div className="flex items-center gap-1.5">
-        <svg width="10" height="9" viewBox="0 0 10 9" className={`${iconColor} opacity-40`}>
-          <path d="M5 0 C4 0 2.5 1 2.5 2.5 C2.5 5 5 7 5 9 C5 7 7.5 5 7.5 2.5 C7.5 1 6 0 5 0Z" fill="currentColor" />
-        </svg>
-        <div className={`w-1 h-1 rounded-full ${iconColor} opacity-25`} />
-        <svg width="10" height="9" viewBox="0 0 10 9" className={`${iconColor} opacity-40`}>
-          <path d="M5 0 C4 0 2.5 1 2.5 2.5 C2.5 5 5 7 5 9 C5 7 7.5 5 7.5 2.5 C7.5 1 6 0 5 0Z" fill="currentColor" />
-        </svg>
-      </div>
-      <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-border/30 to-transparent" />
+    <div className="flex items-center gap-0 px-4 pt-5 pb-2">
+      <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-border/40 to-border/15" />
+      <div className={`w-1.5 h-1.5 rounded-full ${iconColor} opacity-30 shadow-[0_0_6px_1px_currentColor] mx-2`} />
+      <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-border/40 to-border/15" />
     </div>
   );
 });
