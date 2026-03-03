@@ -16,7 +16,7 @@ const DreamEyeIcon = ({ className = "w-8 h-8" }: { className?: string }) => {
   const lidColor = "#c4644e"; // matches header gradient tone
 
   return (
-    <svg viewBox="0 0 100 60" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 100 60" className={className} fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: "hidden" }}>
       <defs>
         <radialGradient id="de-iris" cx="50%" cy="48%" r="50%">
           <stop offset="0%" stopColor="#D4A76A" />
