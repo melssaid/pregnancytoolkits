@@ -240,11 +240,6 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
             <div className="px-2 pb-3 pt-1">
               {toolsByCategory.map(({ catKey, tools }) => (
                 <div key={catKey}>
-                  {showSubHeaders && (
-                    <SubCategoryDivider
-                      iconColor={categoryStyles[catKey]?.iconColor || "text-muted-foreground"}
-                    />
-                  )}
                   <div className="space-y-1">
                     {tools.map((tool, toolIdx) => (
                       <motion.div
