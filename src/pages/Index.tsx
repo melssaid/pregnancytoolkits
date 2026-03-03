@@ -1,5 +1,6 @@
 import { useMemo, memo, useState, useCallback } from "react";
-import { Heart, ChevronRight, ChevronLeft, ChevronDown } from "lucide-react";
+import { ChevronRight, ChevronLeft, ChevronDown } from "lucide-react";
+import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
 import { useTranslation } from "react-i18next";
@@ -27,7 +28,7 @@ const categoryStyles: Record<string, { iconColor: string; toolHover: string; hov
 interface JourneyConfig {
   key: JourneyKey;
   icon?: LucideIcon;
-  customIcon?: "footprints" | "rockingBaby";
+  customIcon?: "footprints" | "rockingBaby" | "pregnancyHeart";
   headerGradient: string;
   headerText: string;
   bg: string;
@@ -49,7 +50,7 @@ const journeyConfigs: JourneyConfig[] = [
   {
     // Pregnancy — Deep Rose-Pink: love, strength, the core journey
     key: "pregnant",
-    icon: Heart,
+    customIcon: "pregnancyHeart",
     headerGradient: "bg-gradient-to-r from-[hsl(340,65%,52%)] via-[hsl(345,60%,56%)] to-[hsl(350,55%,60%)] dark:from-[hsl(340,60%,45%)] dark:via-[hsl(345,55%,48%)] dark:to-[hsl(350,50%,52%)]",
     headerText: "text-white",
     iconBg: "bg-white/20",
@@ -158,6 +159,8 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
               <BabyFootprintsIcon className="w-6 h-6 text-white" />
             ) : config.customIcon === "rockingBaby" ? (
               <RockingBabyIcon className="w-8 h-8" />
+            ) : config.customIcon === "pregnancyHeart" ? (
+              <PregnancyHeartIcon className="w-8 h-8" />
             ) : Icon ? (
               <motion.div
                 animate={{ scale: [1, 1.12, 1] }}
