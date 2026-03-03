@@ -1,254 +1,250 @@
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { BackButton } from "@/components/BackButton";
-import { Progress } from "@/components/ui/progress";
-import {
-  Brain, Activity, Clock, Users, TrendingUp,
-  BarChart3, Globe, Zap, ShieldCheck
-} from "lucide-react";
-import { motion } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { RefreshCw, Activity, Users, Clock, TrendingUp, Zap, Globe } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-interface DailyStats {
-  total: number;
-  successful: number;
-  failed: number;
-  avgResponseTime: number;
+interface UsageStats {
+  today: { total: number; success: number; failed: number; avgResponseMs: number; uniqueUsers: number };
+  month: { total: number; success: number; failed: number; uniqueUsers: number };
+  byType: Record<string, number>;
+  byLanguage: Record<string, number>;
+  dailyBreakdown: { date: string; count: number }[];
+  generatedAt: string;
 }
 
-interface ToolBreakdown {
-  ai_type: string;
-  count: number;
-}
+const COLORS = [
+  "hsl(var(--primary))", "hsl(var(--accent))", "#f59e0b", "#10b981",
+  "#6366f1", "#ec4899", "#14b8a6", "#f97316", "#8b5cf6",
+];
 
-interface LanguageBreakdown {
-  language: string;
-  count: number;
-}
+const LANG_NAMES: Record<string, string> = {
+  ar: "العربية", en: "English", de: "Deutsch", fr: "Français",
+  es: "Español", pt: "Português", tr: "Türkçe",
+};
 
 export default function AIUsageDashboard() {
-  const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === "ar";
-  const [todayStats, setTodayStats] = useState<DailyStats>({ total: 0, successful: 0, failed: 0, avgResponseTime: 0 });
-  const [weekStats, setWeekStats] = useState<DailyStats>({ total: 0, successful: 0, failed: 0, avgResponseTime: 0 });
-  const [toolBreakdown, setToolBreakdown] = useState<ToolBreakdown[]>([]);
-  const [languageBreakdown, setLanguageBreakdown] = useState<LanguageBreakdown[]>([]);
+  const { t } = useTranslation();
+  const [stats, setStats] = useState<UsageStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  async function fetchStats() {
+  const fetchStats = useCallback(async () => {
+    setLoading(true);
+    setError(null);
     try {
-      const today = new Date().toISOString().split("T")[0];
-      const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-      // Today's stats
-      const { data: todayData } = await supabase
-        .from("ai_usage_logs")
-        .select("*")
-        .gte("created_at", today);
-
-      if (todayData) {
-        const successful = todayData.filter(r => r.success).length;
-        const avgTime = todayData.length > 0
-          ? todayData.reduce((sum, r) => sum + (r.response_time_ms || 0), 0) / todayData.length
-          : 0;
-        setTodayStats({
-          total: todayData.length,
-          successful,
-          failed: todayData.length - successful,
-          avgResponseTime: Math.round(avgTime),
-        });
-      }
-
-      // Week stats
-      const { data: weekData } = await supabase
-        .from("ai_usage_logs")
-        .select("*")
-        .gte("created_at", weekAgo);
-
-      if (weekData) {
-        const successful = weekData.filter(r => r.success).length;
-        const avgTime = weekData.length > 0
-          ? weekData.reduce((sum, r) => sum + (r.response_time_ms || 0), 0) / weekData.length
-          : 0;
-        setWeekStats({
-          total: weekData.length,
-          successful,
-          failed: weekData.length - successful,
-          avgResponseTime: Math.round(avgTime),
-        });
-
-        // Tool breakdown
-        const toolMap: Record<string, number> = {};
-        weekData.forEach(r => {
-          toolMap[r.ai_type] = (toolMap[r.ai_type] || 0) + 1;
-        });
-        setToolBreakdown(
-          Object.entries(toolMap)
-            .map(([ai_type, count]) => ({ ai_type, count }))
-            .sort((a, b) => b.count - a.count)
-        );
-
-        // Language breakdown
-        const langMap: Record<string, number> = {};
-        weekData.forEach(r => {
-          langMap[r.language] = (langMap[r.language] || 0) + 1;
-        });
-        setLanguageBreakdown(
-          Object.entries(langMap)
-            .map(([language, count]) => ({ language, count }))
-            .sort((a, b) => b.count - a.count)
-        );
-      }
-    } catch (err) {
-      console.error("Failed to fetch AI stats:", err);
+      const res = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-usage-stats`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      setStats(data);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load");
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
-  const successRate = todayStats.total > 0
-    ? Math.round((todayStats.successful / todayStats.total) * 100)
-    : 100;
+  useEffect(() => { fetchStats(); }, [fetchStats]);
 
-  const statCards = [
-    {
-      icon: <Zap className="h-5 w-5" />,
-      label: t("admin.todayRequests", "طلبات اليوم"),
-      value: todayStats.total,
-      color: "text-blue-500",
-    },
-    {
-      icon: <ShieldCheck className="h-5 w-5" />,
-      label: t("admin.successRate", "نسبة النجاح"),
-      value: `${successRate}%`,
-      color: "text-green-500",
-    },
-    {
-      icon: <Clock className="h-5 w-5" />,
-      label: t("admin.avgResponse", "متوسط الاستجابة"),
-      value: `${todayStats.avgResponseTime}ms`,
-      color: "text-amber-500",
-    },
-    {
-      icon: <TrendingUp className="h-5 w-5" />,
-      label: t("admin.weekTotal", "إجمالي الأسبوع"),
-      value: weekStats.total,
-      color: "text-purple-500",
-    },
-  ];
+  const typeChartData = stats
+    ? Object.entries(stats.byType)
+        .sort((a, b) => b[1] - a[1])
+        .map(([name, value]) => ({ name: name.replace(/-/g, " "), value }))
+    : [];
+
+  const langChartData = stats
+    ? Object.entries(stats.byLanguage)
+        .sort((a, b) => b[1] - a[1])
+        .map(([code, value]) => ({ name: LANG_NAMES[code] || code, value }))
+    : [];
 
   return (
-    <div className="min-h-screen bg-background pb-24" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="max-w-lg mx-auto p-4 space-y-4">
-        {/* Header */}
-        <div className="flex items-center gap-2">
-          <BackButton />
-          <h1 className="text-lg font-bold text-foreground flex-1 flex items-center gap-2">
-            <Brain className="h-5 w-5 text-primary" />
-            {t("admin.aiDashboard", "لوحة تحكم الذكاء الاصطناعي")}
-          </h1>
-        </div>
+    <div className="min-h-screen bg-background p-4 max-w-4xl mx-auto space-y-4">
+      <div className="flex items-center gap-2">
+        <BackButton />
+        <h1 className="text-lg font-bold text-foreground flex-1">📊 AI Usage Analytics</h1>
+        <Button variant="outline" size="sm" onClick={fetchStats} disabled={loading}>
+          <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+        </Button>
+      </div>
 
-        {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <Activity className="h-6 w-6 animate-spin text-primary" />
+      {error && (
+        <Card className="border-destructive">
+          <CardContent className="p-4 text-destructive text-sm">{error}</CardContent>
+        </Card>
+      )}
+
+      {stats && (
+        <>
+          {/* Summary Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <StatCard icon={<Zap className="h-4 w-4" />} label="Today" value={stats.today.total} sub={`${stats.today.success} ✓`} />
+            <StatCard icon={<TrendingUp className="h-4 w-4" />} label="This Month" value={stats.month.total} sub={`${stats.month.success} ✓`} />
+            <StatCard icon={<Users className="h-4 w-4" />} label="Users Today" value={stats.today.uniqueUsers} sub={`${stats.month.uniqueUsers} /mo`} />
+            <StatCard icon={<Clock className="h-4 w-4" />} label="Avg Response" value={`${stats.today.avgResponseMs}ms`} sub="today" />
           </div>
-        ) : (
-          <>
-            {/* Quick Stats Grid */}
-            <div className="grid grid-cols-2 gap-3">
-              {statCards.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Card>
-                    <CardContent className="p-3 flex flex-col gap-1">
-                      <div className={`flex items-center gap-1.5 ${stat.color}`}>
-                        {stat.icon}
-                        <span className="text-[10px] text-muted-foreground">{stat.label}</span>
-                      </div>
-                      <p className="text-xl font-bold text-foreground">{stat.value}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
 
-            {/* Success Rate Bar */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+          <Tabs defaultValue="daily" className="w-full">
+            <TabsList className="w-full">
+              <TabsTrigger value="daily" className="flex-1">📈 Daily</TabsTrigger>
+              <TabsTrigger value="tools" className="flex-1">🔧 Tools</TabsTrigger>
+              <TabsTrigger value="langs" className="flex-1">🌐 Languages</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="daily">
               <Card>
-                <CardContent className="p-4 space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">{t("admin.successRate", "نسبة النجاح")}</span>
-                    <span className="font-semibold text-foreground">{successRate}%</span>
-                  </div>
-                  <Progress value={successRate} className="h-2" />
-                  <div className="flex justify-between text-[10px] text-muted-foreground">
-                    <span>{todayStats.successful} {t("admin.successful", "ناجح")}</span>
-                    <span>{todayStats.failed} {t("admin.failed", "فاشل")}</span>
-                  </div>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm flex items-center gap-2">
+                    <Activity className="h-4 w-4" /> Daily AI Calls
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {stats.dailyBreakdown.length > 0 ? (
+                    <ResponsiveContainer width="100%" height={250}>
+                      <BarChart data={stats.dailyBreakdown}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
+                        <XAxis dataKey="date" tick={{ fontSize: 10 }} tickFormatter={(d) => d.slice(5)} />
+                        <YAxis tick={{ fontSize: 10 }} />
+                        <Tooltip />
+                        <Bar dataKey="count" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  ) : (
+                    <p className="text-muted-foreground text-sm text-center py-8">No data yet. AI calls will appear here.</p>
+                  )}
                 </CardContent>
               </Card>
-            </motion.div>
+            </TabsContent>
 
-            {/* Tool Breakdown */}
-            {toolBreakdown.length > 0 && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
-                <Card>
-                  <CardHeader className="pb-2 p-4">
-                    <CardTitle className="text-sm flex items-center gap-2">
-                      <BarChart3 className="h-4 w-4 text-primary" />
-                      {t("admin.toolBreakdown", "توزيع الأدوات")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0">
-                    <div className="space-y-2">
-                      {toolBreakdown.slice(0, 8).map((tool, i) => (
-                        <div key={i} className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground truncate flex-1">{tool.ai_type}</span>
-                          <span className="font-semibold text-foreground ms-2">{tool.count}</span>
-                        </div>
-                      ))}
+            <TabsContent value="tools">
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm">Tool Usage Breakdown</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {typeChartData.length > 0 ? (
+                    <div className="space-y-4">
+                      <ResponsiveContainer width="100%" height={200}>
+                        <PieChart>
+                          <Pie data={typeChartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80}>
+                            {typeChartData.map((_, i) => (
+                              <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                            ))}
+                          </Pie>
+                          <Tooltip />
+                        </PieChart>
+                      </ResponsiveContainer>
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Tool</TableHead>
+                            <TableHead className="text-right">Calls</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {typeChartData.map((t) => (
+                            <TableRow key={t.name}>
+                              <TableCell className="text-xs capitalize">{t.name}</TableCell>
+                              <TableCell className="text-right font-mono">{t.value}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )}
+                  ) : (
+                    <p className="text-muted-foreground text-sm text-center py-8">No data yet</p>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-            {/* Language Breakdown */}
-            {languageBreakdown.length > 0 && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                <Card>
-                  <CardHeader className="pb-2 p-4">
-                    <CardTitle className="text-sm flex items-center gap-2">
-                      <Globe className="h-4 w-4 text-primary" />
-                      {t("admin.languageBreakdown", "توزيع اللغات")}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0">
-                    <div className="space-y-2">
-                      {languageBreakdown.map((lang, i) => (
-                        <div key={i} className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">{lang.language.toUpperCase()}</span>
-                          <span className="font-semibold text-foreground">{lang.count}</span>
-                        </div>
-                      ))}
+            <TabsContent value="langs">
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm flex items-center gap-2">
+                    <Globe className="h-4 w-4" /> Language Distribution
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {langChartData.length > 0 ? (
+                    <div className="space-y-4">
+                      <ResponsiveContainer width="100%" height={200}>
+                        <PieChart>
+                          <Pie data={langChartData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label>
+                            {langChartData.map((_, i) => (
+                              <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                            ))}
+                          </Pie>
+                          <Tooltip />
+                        </PieChart>
+                      </ResponsiveContainer>
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Language</TableHead>
+                            <TableHead className="text-right">Calls</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {langChartData.map((l) => (
+                            <TableRow key={l.name}>
+                              <TableCell className="text-xs">{l.name}</TableCell>
+                              <TableCell className="text-right font-mono">{l.value}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )}
-          </>
-        )}
-      </div>
+                  ) : (
+                    <p className="text-muted-foreground text-sm text-center py-8">No data yet</p>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+
+          <p className="text-[10px] text-muted-foreground text-center">
+            Updated: {new Date(stats.generatedAt).toLocaleString()}
+          </p>
+        </>
+      )}
+
+      {loading && !stats && (
+        <div className="flex items-center justify-center py-20">
+          <RefreshCw className="h-6 w-6 animate-spin text-primary" />
+        </div>
+      )}
     </div>
+  );
+}
+
+function StatCard({ icon, label, value, sub }: { icon: React.ReactNode; label: string; value: string | number; sub: string }) {
+  return (
+    <Card>
+      <CardContent className="p-3 flex flex-col gap-1">
+        <div className="flex items-center gap-1.5 text-muted-foreground">
+          {icon}
+          <span className="text-[10px]">{label}</span>
+        </div>
+        <p className="text-xl font-bold text-foreground">{value}</p>
+        <p className="text-[10px] text-muted-foreground">{sub}</p>
+      </CardContent>
+    </Card>
   );
 }
