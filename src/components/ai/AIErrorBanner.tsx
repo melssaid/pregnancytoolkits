@@ -16,6 +16,7 @@ const iconMap: Record<AIErrorType, React.ElementType> = {
   rate_limit: Clock,
   payment: CreditCard,
   network: WifiOff,
+  auth: WifiOff,
   unknown: AlertCircle,
 };
 
@@ -38,6 +39,12 @@ const colorMap: Record<AIErrorType, { bg: string; border: string; icon: string; 
     icon: 'text-blue-600 dark:text-blue-400',
     badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300',
   },
+  auth: {
+    bg: 'bg-blue-50 dark:bg-blue-950/20',
+    border: 'border-blue-200/60 dark:border-blue-800/40',
+    icon: 'text-blue-600 dark:text-blue-400',
+    badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300',
+  },
   unknown: {
     bg: 'bg-muted/40',
     border: 'border-border/60',
@@ -50,6 +57,7 @@ const titleKeyMap: Record<AIErrorType, string> = {
   rate_limit: 'aiErrors.rateLimitTitle',
   payment: 'aiErrors.paymentTitle',
   network: 'aiErrors.networkTitle',
+  auth: 'aiErrors.networkTitle',
   unknown: 'aiErrors.unknownTitle',
 };
 

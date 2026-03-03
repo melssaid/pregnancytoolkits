@@ -516,31 +516,33 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // ── JWT Authentication ──
+    // ── Authentication (graceful — accepts JWT or anon key) ──
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
       return jsonError("Authentication required", 401);
     }
 
-    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
-    const supabaseClient = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_ANON_KEY") ?? "",
-      { global: { headers: { Authorization: authHeader } } }
-    );
+    let rateLimitId = getClientId(req);
 
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
-    if (userError || !user) {
-      console.error("[AI] auth failed:", userError?.message);
-      return jsonError("Invalid or expired authentication token", 401);
+    // Try to verify JWT for user-level rate limiting
+    try {
+      const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+      const supabaseClient = createClient(
+        Deno.env.get("SUPABASE_URL") ?? "",
+        Deno.env.get("SUPABASE_ANON_KEY") ?? "",
+        { global: { headers: { Authorization: authHeader } } }
+      );
+
+      const { data: { user } } = await supabaseClient.auth.getUser();
+      if (user?.id) {
+        rateLimitId = user.id;
+      }
+    } catch {
+      // Auth verification failed — continue with IP-based rate limiting
     }
 
-    const userId = user.id;
-    console.log(`[AI] authenticated user: ${userId.substring(0, 8)}...`);
-
-    // Rate limit (now by authenticated user ID)
-    if (!checkRateLimit(userId)) {
-      console.log("Rate limit exceeded for user");
+    // Rate limit by user ID or IP
+    if (!checkRateLimit(rateLimitId)) {
       return jsonError("Rate limit exceeded. Please wait a minute before trying again.", 429);
     }
 
