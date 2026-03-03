@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 
 /**
  * Feminine blinking eye with eyeliner, long curved lashes, eyeshadow & heart bubbles.
@@ -231,14 +230,6 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
     return () => cancelAnimationFrame(animRef.current);
   }, []);
 
-  const hearts = [
-    { delay: 0.0, size: 42, startX: 2, driftX: -12, duration: 3.2 },
-    { delay: 1.0, size: 30, startX: -4, driftX: 10, duration: 2.8 },
-    { delay: 1.8, size: 36, startX: 5, driftX: -16, duration: 3.5 },
-    { delay: 2.5, size: 26, startX: -6, driftX: 14, duration: 3.0 },
-    { delay: 0.5, size: 32, startX: 0, driftX: -8, duration: 3.8 },
-  ];
-
   return (
     <div className={`relative inline-flex items-center justify-center ${className}`}>
       <canvas
@@ -246,40 +237,6 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
         className="w-full h-full"
         style={{ imageRendering: "auto" }}
       />
-
-      {hearts.map((h, i) => (
-        <motion.div
-          key={i}
-          className="absolute pointer-events-none"
-          style={{
-            width: `${h.size}%`,
-            height: `${h.size}%`,
-            left: `calc(50% + ${h.startX}px)`,
-            top: "20%",
-          }}
-          animate={{
-            y: [0, -20, -48],
-            x: [0, h.driftX * 0.4, h.driftX],
-            opacity: [0, 0.95, 0],
-            scale: [0.3, 1.15, 0.5],
-          }}
-          transition={{
-            duration: h.duration,
-            repeat: Infinity,
-            delay: h.delay,
-            ease: "easeOut",
-          }}
-        >
-          <svg viewBox="0 0 24 24" className="w-full h-full drop-shadow-sm">
-            <path
-              d="M12 6 C10 2 5 2 5 6 C5 10 12 16 12 18 C12 16 19 10 19 6 C19 2 14 2 12 6Z"
-              fill="white"
-              fillOpacity="0.9"
-            />
-            <circle cx="8.5" cy="5.5" r="1" fill="white" opacity="0.6" />
-          </svg>
-        </motion.div>
-      ))}
     </div>
   );
 };
