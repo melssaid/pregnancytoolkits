@@ -1,116 +1,187 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 /**
- * Realistic blinking eye using pure canvas animation + floating heart bubbles.
- * Draws a natural eye that blinks periodically, with hearts bubbling out.
+ * Feminine blinking eye with eyeliner, long curved lashes, eyeshadow & heart bubbles.
  */
 
-function drawEye(ctx: CanvasRenderingContext2D, w: number, h: number, blink: number) {
+function drawFeminineEye(ctx: CanvasRenderingContext2D, w: number, h: number, blink: number) {
   const cx = w / 2;
   const cy = h / 2;
-  const eyeW = w * 0.46;
-  const eyeH = h * 0.28;
+  const eyeW = w * 0.44;
+  const eyeH = h * 0.26;
+  const openH = eyeH * (1 - blink);
 
   ctx.clearRect(0, 0, w, h);
   ctx.save();
   ctx.translate(cx, cy);
 
-  // ── Sclera (white of the eye) ──
-  const openH = eyeH * (1 - blink);
+  // ── Eyeshadow glow (behind the eye) ──
+  if (blink < 0.8) {
+    const shadowGrad = ctx.createRadialGradient(0, -openH * 0.6, 0, 0, -openH * 0.4, eyeW * 1.2);
+    shadowGrad.addColorStop(0, "rgba(180, 120, 160, 0.25)");
+    shadowGrad.addColorStop(0.5, "rgba(140, 90, 130, 0.12)");
+    shadowGrad.addColorStop(1, "rgba(140, 90, 130, 0)");
+    ctx.fillStyle = shadowGrad;
+    ctx.beginPath();
+    ctx.ellipse(0, -openH * 0.5, eyeW * 1.1, openH * 1.4, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
 
+  // ── Eye shape clip ──
   ctx.save();
   ctx.beginPath();
-  // Upper lid curve
-  ctx.moveTo(-eyeW, 0);
-  ctx.quadraticCurveTo(0, -openH * 2, eyeW, 0);
-  // Lower lid curve
-  ctx.quadraticCurveTo(0, openH * 2, -eyeW, 0);
+  // Almond shape — slightly lifted outer corner (feminine cat-eye)
+  ctx.moveTo(-eyeW, 2);
+  ctx.bezierCurveTo(-eyeW * 0.5, -openH * 2.2, eyeW * 0.5, -openH * 2.4, eyeW + 2, -3);
+  // Lower lid — softer curve
+  ctx.bezierCurveTo(eyeW * 0.5, openH * 1.6, -eyeW * 0.5, openH * 1.8, -eyeW, 2);
   ctx.closePath();
   ctx.clip();
 
-  // White fill
-  const scleraGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, eyeW * 0.9);
-  scleraGrad.addColorStop(0, "#ffffff");
-  scleraGrad.addColorStop(1, "#e8e0dc");
+  // Sclera
+  const scleraGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, eyeW * 0.85);
+  scleraGrad.addColorStop(0, "#fffaf8");
+  scleraGrad.addColorStop(0.8, "#f0e6e0");
+  scleraGrad.addColorStop(1, "#e0d4cc");
   ctx.fillStyle = scleraGrad;
-  ctx.fill();
+  ctx.fillRect(-eyeW - 5, -eyeH * 3, eyeW * 2 + 10, eyeH * 6);
 
-  // ── Iris ──
-  const irisR = eyeH * 1;
-  const irisGrad = ctx.createRadialGradient(0, 0, irisR * 0.15, 0, 0, irisR);
-  irisGrad.addColorStop(0, "#6b4226");
-  irisGrad.addColorStop(0.5, "#8b5e3c");
-  irisGrad.addColorStop(0.8, "#5a3520");
-  irisGrad.addColorStop(1, "#3e2012");
+  // ── Iris — warm hazel-green ──
+  const irisR = eyeH * 0.95;
+  const irisGrad = ctx.createRadialGradient(0, 0, irisR * 0.1, 0, 0, irisR);
+  irisGrad.addColorStop(0, "#7a9b6d");
+  irisGrad.addColorStop(0.3, "#5e8a52");
+  irisGrad.addColorStop(0.6, "#8b7e4a");
+  irisGrad.addColorStop(0.85, "#5a6b3e");
+  irisGrad.addColorStop(1, "#3a4a28");
   ctx.beginPath();
   ctx.arc(0, 0, irisR, 0, Math.PI * 2);
   ctx.fillStyle = irisGrad;
   ctx.fill();
 
-  // Iris texture lines
-  ctx.strokeStyle = "rgba(40, 20, 5, 0.15)";
-  ctx.lineWidth = 0.5;
-  for (let a = 0; a < Math.PI * 2; a += Math.PI / 12) {
+  // Iris ring
+  ctx.strokeStyle = "rgba(35, 50, 25, 0.4)";
+  ctx.lineWidth = 0.8;
+  ctx.stroke();
+
+  // Iris texture — fine radial lines
+  ctx.strokeStyle = "rgba(30, 45, 20, 0.1)";
+  ctx.lineWidth = 0.4;
+  for (let a = 0; a < Math.PI * 2; a += Math.PI / 16) {
     ctx.beginPath();
-    ctx.moveTo(Math.cos(a) * irisR * 0.3, Math.sin(a) * irisR * 0.3);
-    ctx.lineTo(Math.cos(a) * irisR * 0.95, Math.sin(a) * irisR * 0.95);
+    ctx.moveTo(Math.cos(a) * irisR * 0.25, Math.sin(a) * irisR * 0.25);
+    ctx.lineTo(Math.cos(a) * irisR * 0.92, Math.sin(a) * irisR * 0.92);
     ctx.stroke();
   }
 
+  // Inner iris glow
+  const innerGlow = ctx.createRadialGradient(0, 0, 0, 0, 0, irisR * 0.45);
+  innerGlow.addColorStop(0, "rgba(200, 180, 100, 0.2)");
+  innerGlow.addColorStop(1, "rgba(200, 180, 100, 0)");
+  ctx.fillStyle = innerGlow;
+  ctx.beginPath();
+  ctx.arc(0, 0, irisR * 0.45, 0, Math.PI * 2);
+  ctx.fill();
+
   // ── Pupil ──
-  const pupilR = irisR * 0.3;
+  const pupilR = irisR * 0.32;
   ctx.beginPath();
   ctx.arc(0, 0, pupilR, 0, Math.PI * 2);
-  ctx.fillStyle = "#0a0604";
+  ctx.fillStyle = "#080604";
   ctx.fill();
 
-  // ── Shine reflections ──
+  // ── Shine reflections (larger, more glossy — feminine) ──
   ctx.beginPath();
-  ctx.arc(-irisR * 0.28, -irisR * 0.32, pupilR * 0.38, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(255,255,255,0.85)";
+  ctx.arc(-irisR * 0.25, -irisR * 0.3, pupilR * 0.5, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(255,255,255,0.92)";
   ctx.fill();
 
   ctx.beginPath();
-  ctx.arc(irisR * 0.18, irisR * 0.22, pupilR * 0.18, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(255,255,255,0.45)";
+  ctx.arc(irisR * 0.2, irisR * 0.18, pupilR * 0.22, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(255,255,255,0.5)";
+  ctx.fill();
+
+  // Tiny sparkle
+  ctx.beginPath();
+  ctx.arc(-irisR * 0.1, -irisR * 0.45, pupilR * 0.12, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.fill();
 
   ctx.restore();
 
-  // ── Eyelid outlines ──
-  ctx.strokeStyle = "rgba(255,255,255,0.9)";
-  ctx.lineWidth = 2;
+  // ── Eyeliner — thick upper lid (cat-eye wing) ──
   ctx.lineCap = "round";
+  ctx.lineJoin = "round";
 
-  // Upper lid
+  // Upper eyeliner (thick, dramatic)
   ctx.beginPath();
-  ctx.moveTo(-eyeW, 0);
-  ctx.quadraticCurveTo(0, -openH * 2, eyeW, 0);
+  ctx.moveTo(-eyeW, 2);
+  ctx.bezierCurveTo(-eyeW * 0.5, -openH * 2.2, eyeW * 0.5, -openH * 2.4, eyeW + 2, -3);
+  // Wing extension
+  ctx.lineTo(eyeW + 5, -6);
+  ctx.strokeStyle = "rgba(255,255,255,0.95)";
+  ctx.lineWidth = 2.5;
   ctx.stroke();
 
-  // Lower lid
+  // Lower lid — thinner, softer
   ctx.beginPath();
-  ctx.moveTo(-eyeW, 0);
-  ctx.quadraticCurveTo(0, openH * 2, eyeW, 0);
+  ctx.moveTo(-eyeW, 2);
+  ctx.bezierCurveTo(-eyeW * 0.5, openH * 1.8, eyeW * 0.5, openH * 1.6, eyeW + 2, -3);
+  ctx.strokeStyle = "rgba(255,255,255,0.6)";
+  ctx.lineWidth = 1.2;
   ctx.stroke();
 
-  // ── Eyelashes (upper) ──
-  ctx.strokeStyle = "rgba(255,255,255,0.7)";
-  ctx.lineWidth = 1;
-  const lashCount = 7;
-  for (let i = 0; i < lashCount; i++) {
-    const t = (i + 1) / (lashCount + 1);
-    const lx = -eyeW + t * eyeW * 2;
-    const ly = -openH * 2 * (1 - Math.pow(2 * t - 1, 2)) * (1 - blink * 0.8);
-    const angle = -Math.PI / 2 + (t - 0.5) * 0.6;
-    const lashLen = 4 + Math.sin(t * Math.PI) * 4;
+  // ── Eyelashes — long, curved, feminine ──
+  const drawLash = (startX: number, startY: number, angle: number, len: number, curve: number, thickness: number) => {
+    const openFactor = 1 - blink;
+    const effLen = len * openFactor;
+    if (effLen < 1) return;
+
+    const endX = startX + Math.cos(angle) * effLen;
+    const endY = startY + Math.sin(angle) * effLen;
+    const cpX = startX + Math.cos(angle + curve) * effLen * 0.6;
+    const cpY = startY + Math.sin(angle + curve) * effLen * 0.6;
+
     ctx.beginPath();
-    ctx.moveTo(lx, ly);
-    ctx.lineTo(
-      lx + Math.cos(angle) * lashLen * (1 - blink),
-      ly + Math.sin(angle) * lashLen * (1 - blink)
-    );
+    ctx.moveTo(startX, startY);
+    ctx.quadraticCurveTo(cpX, cpY, endX, endY);
+    ctx.strokeStyle = "rgba(255,255,255,0.85)";
+    ctx.lineWidth = thickness;
+    ctx.stroke();
+  };
+
+  // Upper lashes — long and curved
+  const upperLashCount = 9;
+  for (let i = 0; i < upperLashCount; i++) {
+    const t = (i + 0.5) / upperLashCount;
+    const x = -eyeW + t * (eyeW * 2 + 2);
+    const y = -openH * 2 * (1 - Math.pow(2 * t - 1, 2)) * (1 - blink * 0.9) + (t > 0.8 ? -2 : 0);
+    const baseAngle = -Math.PI / 2 + (t - 0.5) * 0.7;
+    const len = 5 + Math.sin(t * Math.PI) * 5 + (t > 0.7 ? 3 : 0); // longer outer lashes
+    const curve = t < 0.5 ? 0.4 : -0.4; // curl direction
+    const thickness = 0.8 + Math.sin(t * Math.PI) * 0.4;
+    drawLash(x, y, baseAngle, len, curve, thickness);
+  }
+
+  // Lower lashes — shorter, delicate
+  const lowerLashCount = 5;
+  for (let i = 0; i < lowerLashCount; i++) {
+    const t = (i + 1) / (lowerLashCount + 1);
+    const x = -eyeW * 0.7 + t * eyeW * 1.4;
+    const y = openH * 1.7 * (1 - Math.pow(2 * t - 1, 2)) * (1 - blink * 0.8);
+    const angle = Math.PI / 2 + (t - 0.5) * 0.4;
+    drawLash(x, y, angle, 3 + Math.sin(t * Math.PI) * 2, t < 0.5 ? -0.3 : 0.3, 0.6);
+  }
+
+  // ── Eyebrow hint — soft arch ──
+  if (blink < 0.5) {
+    ctx.beginPath();
+    ctx.moveTo(-eyeW * 0.8, -eyeH * 2.2);
+    ctx.quadraticCurveTo(0, -eyeH * 3.0, eyeW * 0.9, -eyeH * 2.0);
+    ctx.strokeStyle = "rgba(255,255,255,0.3)";
+    ctx.lineWidth = 1.5;
+    ctx.lineCap = "round";
     ctx.stroke();
   }
 
@@ -131,27 +202,20 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
     canvas.width = size;
     canvas.height = size;
 
-    let startTime = performance.now();
-
     const animate = (time: number) => {
-      const elapsed = (time - startTime) / 1000;
-      // Realistic blink: slow close, pause, slow open — every ~4s
+      const elapsed = time / 1000;
       const blinkCycle = elapsed % 4.5;
       let blink = 0;
       if (blinkCycle > 3.8 && blinkCycle <= 4.1) {
-        // Closing phase (0.3s) — smooth ease-in
         const t = (blinkCycle - 3.8) / 0.3;
-        blink = t * t; // ease-in (accelerate)
+        blink = t * t;
       } else if (blinkCycle > 4.1 && blinkCycle <= 4.15) {
-        // Closed pause (0.05s)
         blink = 1;
       } else if (blinkCycle > 4.15 && blinkCycle <= 4.5) {
-        // Opening phase (0.35s) — smooth ease-out (slower open)
         const t = 1 - (blinkCycle - 4.15) / 0.35;
-        blink = t * t; // ease-out (decelerate)
+        blink = t * t;
       }
-
-      drawEye(ctx, size, size, blink);
+      drawFeminineEye(ctx, size, size, blink);
       animRef.current = requestAnimationFrame(animate);
     };
 
@@ -159,13 +223,12 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
     return () => cancelAnimationFrame(animRef.current);
   }, []);
 
-  // Heart bubble configs
   const hearts = [
-    { delay: 0.0, size: 45, startX: 2, driftX: -12, duration: 3.2 },
-    { delay: 1.0, size: 32, startX: -4, driftX: 10, duration: 2.8 },
-    { delay: 1.8, size: 38, startX: 5, driftX: -16, duration: 3.5 },
-    { delay: 2.5, size: 28, startX: -6, driftX: 14, duration: 3.0 },
-    { delay: 0.5, size: 35, startX: 0, driftX: -8, duration: 3.8 },
+    { delay: 0.0, size: 42, startX: 2, driftX: -12, duration: 3.2 },
+    { delay: 1.0, size: 30, startX: -4, driftX: 10, duration: 2.8 },
+    { delay: 1.8, size: 36, startX: 5, driftX: -16, duration: 3.5 },
+    { delay: 2.5, size: 26, startX: -6, driftX: 14, duration: 3.0 },
+    { delay: 0.5, size: 32, startX: 0, driftX: -8, duration: 3.8 },
   ];
 
   return (
@@ -176,7 +239,6 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
         style={{ imageRendering: "auto" }}
       />
 
-      {/* Floating heart bubbles */}
       {hearts.map((h, i) => (
         <motion.div
           key={i}
@@ -185,7 +247,7 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => {
             width: `${h.size}%`,
             height: `${h.size}%`,
             left: `calc(50% + ${h.startX}px)`,
-            top: "25%",
+            top: "20%",
           }}
           animate={{
             y: [0, -20, -48],
