@@ -6,24 +6,25 @@ import { motion } from "framer-motion";
  */
 const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   <svg viewBox="0 0 100 100" fill="white" className={className} overflow="visible">
-    {/* ── Floating hearts ── */}
+    {/* ── Floating hearts — large & prominent, emerging from pupil ── */}
     {[
-      { delay: 0, dx: -8, startY: 22 },
-      { delay: 1.3, dx: 6, startY: 24 },
-      { delay: 2.5, dx: -2, startY: 20 },
+      { delay: 0, dx: -14, startY: 52 },
+      { delay: 1.2, dx: 10, startY: 52 },
+      { delay: 2.4, dx: -3, startY: 52 },
+      { delay: 0.7, dx: 16, startY: 52 },
     ].map((h, i) => (
       <motion.path
         key={i}
-        d="M0 -3 C-1 -5.5 -4.5 -5.5 -4.5 -3 C-4.5 0 0 3 0 4.5 C0 3 4.5 0 4.5 -3 C4.5 -5.5 1 -5.5 0 -3 Z"
-        fill="white" opacity="0.8"
+        d="M0 -5 C-2 -9 -8 -9 -8 -5 C-8 0 0 6 0 8 C0 6 8 0 8 -5 C8 -9 2 -9 0 -5 Z"
+        fill="white"
         style={{ transform: `translate(50px, ${h.startY}px)` }}
         animate={{
-          y: [0, -18, -36],
-          x: [0, h.dx, h.dx * 1.6],
-          opacity: [0, 0.85, 0],
-          scale: [0.4, 1, 0.5],
+          y: [0, -28, -55],
+          x: [0, h.dx, h.dx * 1.8],
+          opacity: [0, 0.95, 0],
+          scale: [0.3, 1.3, 0.7],
         }}
-        transition={{ duration: 2.8, repeat: Infinity, delay: h.delay, ease: "easeOut" }}
+        transition={{ duration: 3, repeat: Infinity, delay: h.delay, ease: "easeOut" }}
       />
     ))}
 
