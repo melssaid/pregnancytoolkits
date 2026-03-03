@@ -92,21 +92,20 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
 });
 
 // ── Sub-category divider — themed with category label ───────────────────
-const SubCategoryDivider = memo(function SubCategoryDivider({ iconColor, categoryKey }: { iconColor: string; categoryKey: string }) {
-  const { t } = useTranslation();
-  const label = t(categoryKey);
-
+const SubCategoryDivider = memo(function SubCategoryDivider({ iconColor }: { iconColor: string }) {
   return (
-    <div className="flex items-center gap-2.5 px-2 pt-4 pb-1.5">
-      <div className={`h-[1.5px] flex-1 bg-gradient-to-r from-transparent via-border/40 to-border/10 dark:via-border/20`} />
-      <div className="flex items-center gap-1.5 shrink-0">
-        <div className={`w-1.5 h-1.5 rounded-full ${iconColor} opacity-60`} />
-        <span className={`text-[10px] font-semibold ${iconColor} opacity-70 tracking-wide`}>
-          {label}
-        </span>
-        <div className={`w-1.5 h-1.5 rounded-full ${iconColor} opacity-60`} />
+    <div className="flex items-center gap-2 px-3 pt-5 pb-2">
+      <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-border/30 to-transparent" />
+      <div className="flex items-center gap-1.5">
+        <svg width="10" height="9" viewBox="0 0 10 9" className={`${iconColor} opacity-40`}>
+          <path d="M5 0 C4 0 2.5 1 2.5 2.5 C2.5 5 5 7 5 9 C5 7 7.5 5 7.5 2.5 C7.5 1 6 0 5 0Z" fill="currentColor" />
+        </svg>
+        <div className={`w-1 h-1 rounded-full ${iconColor} opacity-25`} />
+        <svg width="10" height="9" viewBox="0 0 10 9" className={`${iconColor} opacity-40`}>
+          <path d="M5 0 C4 0 2.5 1 2.5 2.5 C2.5 5 5 7 5 9 C5 7 7.5 5 7.5 2.5 C7.5 1 6 0 5 0Z" fill="currentColor" />
+        </svg>
       </div>
-      <div className={`h-[1.5px] flex-1 bg-gradient-to-l from-transparent via-border/40 to-border/10 dark:via-border/20`} />
+      <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-border/30 to-transparent" />
     </div>
   );
 });
@@ -220,12 +219,18 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
                   {showSubHeaders && (
                     <SubCategoryDivider
                       iconColor={categoryStyles[catKey]?.iconColor || "text-muted-foreground"}
-                      categoryKey={catKey}
                     />
                   )}
                   <div className="space-y-1">
-                    {tools.map(tool => (
-                      <ToolRow key={tool.id} tool={tool} isRTL={isRTL} />
+                    {tools.map((tool, toolIdx) => (
+                      <motion.div
+                        key={tool.id}
+                        initial={{ opacity: 0, x: isRTL ? -16 : 16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.28, delay: toolIdx * 0.05, ease: "easeOut" }}
+                      >
+                        <ToolRow tool={tool} isRTL={isRTL} />
+                      </motion.div>
                     ))}
                   </div>
                 </div>
