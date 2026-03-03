@@ -15,7 +15,7 @@ const DreamEyeIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
     ].map((h, i) => (
       <motion.path
         key={i}
-        d="M0 -5 C-2 -9 -8 -9 -8 -5 C-8 0 0 6 0 8 C0 6 8 0 8 -5 C8 -9 2 -9 0 -5 Z"
+        d="M0 -8 C-3 -14 -12 -14 -12 -8 C-12 0 0 10 0 13 C0 10 12 0 12 -8 C12 -14 3 -14 0 -8 Z"
         fill={h.color}
         style={{ transform: `translate(50px, ${h.startY}px)` }}
         animate={{
