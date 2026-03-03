@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import eyeOpen from "@/assets/icons/feminine-eye-open.png";
+import eyeOpen from "@/assets/icons/eye-v2-tearful.png";
 import eyeClosed from "@/assets/icons/feminine-eye-closed.png";
 
 /**
