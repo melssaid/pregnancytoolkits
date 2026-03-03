@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Heart, Smile, BookOpen, Eye, Brain, Calendar } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const LESSON_KEYS = [
   "menstrualCycle", "ovulationProcess", "hormonesRole", "fertilizationBasics", "implantationWindow",
@@ -151,11 +150,19 @@ function TipBlock({ text, accent = "primary", icon: Icon }: { text: string; acce
   );
 }
 
-// ── Main Component ───────────────────────────────────────────────────
+// ── Tab config with unique theming ───────────────────────────────────
+const TAB_CONFIG = [
+  { key: "lessons", icon: BookOpen, gradient: "from-[hsl(340,55%,55%)] to-[hsl(350,50%,60%)]", lightBg: "bg-[hsl(340,30%,96%)]", darkBg: "dark:bg-[hsl(340,20%,12%)]", ring: "ring-[hsl(340,40%,70%)]" },
+  { key: "signs", icon: Eye, gradient: "from-[hsl(280,45%,55%)] to-[hsl(300,40%,58%)]", lightBg: "bg-[hsl(280,25%,96%)]", darkBg: "dark:bg-[hsl(280,15%,12%)]", ring: "ring-[hsl(280,35%,70%)]" },
+  { key: "stress", icon: Brain, gradient: "from-[hsl(170,40%,42%)] to-[hsl(160,35%,48%)]", lightBg: "bg-[hsl(170,20%,96%)]", darkBg: "dark:bg-[hsl(170,12%,12%)]", ring: "ring-[hsl(170,30%,65%)]" },
+  { key: "tww", icon: Calendar, gradient: "from-[hsl(15,60%,55%)] to-[hsl(25,55%,58%)]", lightBg: "bg-[hsl(15,30%,96%)]", darkBg: "dark:bg-[hsl(15,18%,12%)]", ring: "ring-[hsl(15,40%,70%)]" },
+] as const;
+
 export default function FertilityAcademy() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
   const dir = isRTL ? "rtl" : "ltr";
+  const [activeTab, setActiveTab] = useState("lessons");
   const [expandedLesson, setExpandedLesson] = useState<string | null>(LESSON_KEYS[0]);
   const [expandedSign, setExpandedSign] = useState<string | null>(null);
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
@@ -166,141 +173,152 @@ export default function FertilityAcademy() {
   const toggleTopic = useCallback((key: string) => setExpandedTopic(prev => prev === key ? null : key), []);
   const toggleDay = useCallback((key: string) => setExpandedDay(prev => prev === key ? null : key), []);
 
-  const tabIcons = {
-    lessons: BookOpen,
-    signs: Eye,
-    stress: Brain,
-    tww: Calendar,
-  };
+  const activeConfig = TAB_CONFIG.find(c => c.key === activeTab)!;
 
   return (
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
-      <div className="space-y-3" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
+      <div className="space-y-4" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
 
-        <Tabs defaultValue="lessons" dir={dir}>
-          <TabsList className="grid w-full grid-cols-4 mb-4 h-11 rounded-xl bg-muted/50 border border-border/30 p-1 gap-0.5">
-            {(["lessons", "signs", "stress", "tww"] as const).map(tab => {
-              const Icon = tabIcons[tab];
-              return (
-                <TabsTrigger
-                  key={tab}
-                  value={tab}
-                  className="text-[10px] sm:text-[11px] font-semibold rounded-lg data-[state=active]:shadow-sm flex items-center gap-1 px-1"
-                >
-                  <Icon className="w-3 h-3 shrink-0 hidden sm:inline" />
-                  {t(`tools.fertilityAcademy.${tab}Tab`)}
-                </TabsTrigger>
-              );
-            })}
-          </TabsList>
+        {/* ── Custom Tab Navigation ── */}
+        <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1">
+          {TAB_CONFIG.map(tab => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.key;
+            return (
+              <motion.button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`relative flex items-center gap-1.5 px-3 py-2 rounded-xl text-[11px] font-semibold whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                  isActive
+                    ? `bg-gradient-to-r ${tab.gradient} text-white shadow-md ring-2 ${tab.ring} ring-offset-1 ring-offset-background`
+                    : "bg-muted/40 text-muted-foreground hover:bg-muted/70 hover:text-foreground"
+                }`}
+                whileTap={{ scale: 0.96 }}
+              >
+                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-white" : ""}`} />
+                {t(`tools.fertilityAcademy.${tab.key}Tab`)}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTabIndicator"
+                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-white/10 to-transparent pointer-events-none"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                  />
+                )}
+              </motion.button>
+            );
+          })}
+        </div>
 
-          {/* LESSONS TAB */}
-          <TabsContent value="lessons" className="mt-0">
-            <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
-              {t("toolsInternal.fertilityAcademy.lessonsCount", { count: LESSON_KEYS.length })}
-            </p>
-            <div className="space-y-2">
-              {LESSON_KEYS.map((key, i) => (
-                <AccordionItem
-                  key={key}
-                  isOpen={expandedLesson === key}
-                  onToggle={() => toggleLesson(key)}
-                  index={i}
-                  isRTL={isRTL}
-                  badge={<NumBadge n={i + 1} />}
-                  title={t(`toolsInternal.fertilityAcademy.lessons.${key}.title`)}
-                >
-                  <ContentBlock
-                    text={t(`toolsInternal.fertilityAcademy.lessons.${key}.content`)}
-                    isRTL={isRTL}
-                  />
-                </AccordionItem>
-              ))}
-            </div>
-          </TabsContent>
+        {/* ── Tab Content ── */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+          >
+            {/* LESSONS */}
+            {activeTab === "lessons" && (
+              <>
+                <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
+                  {t("toolsInternal.fertilityAcademy.lessonsCount", { count: LESSON_KEYS.length })}
+                </p>
+                <div className="space-y-2">
+                  {LESSON_KEYS.map((key, i) => (
+                    <AccordionItem
+                      key={key}
+                      isOpen={expandedLesson === key}
+                      onToggle={() => toggleLesson(key)}
+                      index={i}
+                      isRTL={isRTL}
+                      badge={<NumBadge n={i + 1} />}
+                      title={t(`toolsInternal.fertilityAcademy.lessons.${key}.title`)}
+                    >
+                      <ContentBlock text={t(`toolsInternal.fertilityAcademy.lessons.${key}.content`)} isRTL={isRTL} />
+                    </AccordionItem>
+                  ))}
+                </div>
+              </>
+            )}
 
-          {/* FERTILITY SIGNS TAB */}
-          <TabsContent value="signs" className="mt-0">
-            <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
-              {t('toolsInternal.fertilitySigns.signsCount', { count: SIGN_KEYS.length })}
-            </p>
-            <div className="space-y-2">
-              {SIGN_KEYS.map((key, i) => (
-                <AccordionItem
-                  key={key}
-                  isOpen={expandedSign === key}
-                  onToggle={() => toggleSign(key)}
-                  index={i}
-                  isRTL={isRTL}
-                  title={t(`toolsInternal.fertilitySigns.signs.${key}.title`)}
-                >
-                  <ContentBlock
-                    text={t(`toolsInternal.fertilitySigns.signs.${key}.description`)}
-                    isRTL={isRTL}
-                  />
-                  <TipBlock text={t(`toolsInternal.fertilitySigns.signs.${key}.tip`)} />
-                </AccordionItem>
-              ))}
-            </div>
-          </TabsContent>
+            {/* SIGNS */}
+            {activeTab === "signs" && (
+              <>
+                <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
+                  {t('toolsInternal.fertilitySigns.signsCount', { count: SIGN_KEYS.length })}
+                </p>
+                <div className="space-y-2">
+                  {SIGN_KEYS.map((key, i) => (
+                    <AccordionItem
+                      key={key}
+                      isOpen={expandedSign === key}
+                      onToggle={() => toggleSign(key)}
+                      index={i}
+                      isRTL={isRTL}
+                      title={t(`toolsInternal.fertilitySigns.signs.${key}.title`)}
+                    >
+                      <ContentBlock text={t(`toolsInternal.fertilitySigns.signs.${key}.description`)} isRTL={isRTL} />
+                      <TipBlock text={t(`toolsInternal.fertilitySigns.signs.${key}.tip`)} />
+                    </AccordionItem>
+                  ))}
+                </div>
+              </>
+            )}
 
-          {/* STRESS & FERTILITY TAB */}
-          <TabsContent value="stress" className="mt-0">
-            <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
-              {t('toolsInternal.stressFertility.topicsCount', { count: TOPIC_KEYS.length })}
-            </p>
-            <div className="space-y-2">
-              {TOPIC_KEYS.map((key, i) => (
-                <AccordionItem
-                  key={key}
-                  isOpen={expandedTopic === key}
-                  onToggle={() => toggleTopic(key)}
-                  index={i}
-                  isRTL={isRTL}
-                  title={t(`toolsInternal.stressFertility.topics.${key}.title`)}
-                >
-                  <ContentBlock
-                    text={t(`toolsInternal.stressFertility.topics.${key}.content`)}
-                    isRTL={isRTL}
-                  />
-                  <TipBlock text={t(`toolsInternal.stressFertility.topics.${key}.practice`)} />
-                </AccordionItem>
-              ))}
-            </div>
-          </TabsContent>
+            {/* STRESS */}
+            {activeTab === "stress" && (
+              <>
+                <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
+                  {t('toolsInternal.stressFertility.topicsCount', { count: TOPIC_KEYS.length })}
+                </p>
+                <div className="space-y-2">
+                  {TOPIC_KEYS.map((key, i) => (
+                    <AccordionItem
+                      key={key}
+                      isOpen={expandedTopic === key}
+                      onToggle={() => toggleTopic(key)}
+                      index={i}
+                      isRTL={isRTL}
+                      title={t(`toolsInternal.stressFertility.topics.${key}.title`)}
+                    >
+                      <ContentBlock text={t(`toolsInternal.stressFertility.topics.${key}.content`)} isRTL={isRTL} />
+                      <TipBlock text={t(`toolsInternal.stressFertility.topics.${key}.practice`)} />
+                    </AccordionItem>
+                  ))}
+                </div>
+              </>
+            )}
 
-          {/* TWW COMPANION TAB */}
-          <TabsContent value="tww" className="mt-0">
-            <div className="flex items-center gap-2 mb-3">
-              <Heart className="w-4 h-4 shrink-0 text-destructive" />
-              <span className="text-sm font-bold text-foreground">{t('toolsInternal.twwCompanion.subtitle')}</span>
-            </div>
-            <div className="space-y-2">
-              {DAY_KEYS.map((key, i) => (
-                <AccordionItem
-                  key={key}
-                  isOpen={expandedDay === key}
-                  onToggle={() => toggleDay(key)}
-                  index={i}
-                  isRTL={isRTL}
-                  badge={<NumBadge n={i + 1} accent="destructive" />}
-                  title={t(`toolsInternal.twwCompanion.days.${key}.title`)}
-                  accentColor="destructive"
-                >
-                  <ContentBlock
-                    text={t(`toolsInternal.twwCompanion.days.${key}.body`)}
-                    isRTL={isRTL}
-                  />
-                  <TipBlock
-                    text={t(`toolsInternal.twwCompanion.days.${key}.tip`)}
-                    accent="destructive"
-                    icon={Smile}
-                  />
-                </AccordionItem>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+            {/* TWW */}
+            {activeTab === "tww" && (
+              <>
+                <div className="flex items-center gap-2 mb-3">
+                  <Heart className="w-4 h-4 shrink-0 text-destructive" />
+                  <span className="text-sm font-bold text-foreground">{t('toolsInternal.twwCompanion.subtitle')}</span>
+                </div>
+                <div className="space-y-2">
+                  {DAY_KEYS.map((key, i) => (
+                    <AccordionItem
+                      key={key}
+                      isOpen={expandedDay === key}
+                      onToggle={() => toggleDay(key)}
+                      index={i}
+                      isRTL={isRTL}
+                      badge={<NumBadge n={i + 1} accent="destructive" />}
+                      title={t(`toolsInternal.twwCompanion.days.${key}.title`)}
+                      accentColor="destructive"
+                    >
+                      <ContentBlock text={t(`toolsInternal.twwCompanion.days.${key}.body`)} isRTL={isRTL} />
+                      <TipBlock text={t(`toolsInternal.twwCompanion.days.${key}.tip`)} accent="destructive" icon={Smile} />
+                    </AccordionItem>
+                  ))}
+                </div>
+              </>
+            )}
+          </motion.div>
+        </AnimatePresence>
+
       </div>
     </ToolFrame>
   );
