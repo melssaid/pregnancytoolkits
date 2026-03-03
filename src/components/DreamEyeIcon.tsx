@@ -47,38 +47,46 @@ function drawFeminineEye(ctx: CanvasRenderingContext2D, w: number, h: number, bl
   ctx.fillStyle = scleraGrad;
   ctx.fillRect(-eyeW - 5, -eyeH * 3, eyeW * 2 + 10, eyeH * 6);
 
-  // ── Iris — warm hazel-green ──
+  // ── Iris — dark brown ──
   const irisR = eyeH * 0.95;
-  const irisGrad = ctx.createRadialGradient(0, 0, irisR * 0.1, 0, 0, irisR);
-  irisGrad.addColorStop(0, "#7a9b6d");
-  irisGrad.addColorStop(0.3, "#5e8a52");
-  irisGrad.addColorStop(0.6, "#8b7e4a");
-  irisGrad.addColorStop(0.85, "#5a6b3e");
-  irisGrad.addColorStop(1, "#3a4a28");
+
+  // Iris outer circle border for roundness
+  ctx.beginPath();
+  ctx.arc(0, 0, irisR + 0.8, 0, Math.PI * 2);
+  ctx.fillStyle = "#1a0e08";
+  ctx.fill();
+
+  // Iris — dark brown gradient
+  const irisGrad = ctx.createRadialGradient(0, 0, irisR * 0.08, 0, 0, irisR);
+  irisGrad.addColorStop(0, "#5c3a1e");
+  irisGrad.addColorStop(0.25, "#4a2c14");
+  irisGrad.addColorStop(0.5, "#3d2210");
+  irisGrad.addColorStop(0.75, "#2e1a0c");
+  irisGrad.addColorStop(1, "#1a0e08");
   ctx.beginPath();
   ctx.arc(0, 0, irisR, 0, Math.PI * 2);
   ctx.fillStyle = irisGrad;
   ctx.fill();
 
-  // Iris ring
-  ctx.strokeStyle = "rgba(35, 50, 25, 0.4)";
-  ctx.lineWidth = 0.8;
+  // Iris ring — strong dark border
+  ctx.strokeStyle = "rgba(10, 5, 2, 0.6)";
+  ctx.lineWidth = 1;
   ctx.stroke();
 
   // Iris texture — fine radial lines
-  ctx.strokeStyle = "rgba(30, 45, 20, 0.1)";
+  ctx.strokeStyle = "rgba(80, 50, 25, 0.12)";
   ctx.lineWidth = 0.4;
-  for (let a = 0; a < Math.PI * 2; a += Math.PI / 16) {
+  for (let a = 0; a < Math.PI * 2; a += Math.PI / 18) {
     ctx.beginPath();
-    ctx.moveTo(Math.cos(a) * irisR * 0.25, Math.sin(a) * irisR * 0.25);
-    ctx.lineTo(Math.cos(a) * irisR * 0.92, Math.sin(a) * irisR * 0.92);
+    ctx.moveTo(Math.cos(a) * irisR * 0.22, Math.sin(a) * irisR * 0.22);
+    ctx.lineTo(Math.cos(a) * irisR * 0.9, Math.sin(a) * irisR * 0.9);
     ctx.stroke();
   }
 
-  // Inner iris glow
-  const innerGlow = ctx.createRadialGradient(0, 0, 0, 0, 0, irisR * 0.45);
-  innerGlow.addColorStop(0, "rgba(200, 180, 100, 0.2)");
-  innerGlow.addColorStop(1, "rgba(200, 180, 100, 0)");
+  // Inner iris warm glow
+  const innerGlow = ctx.createRadialGradient(0, 0, 0, 0, 0, irisR * 0.4);
+  innerGlow.addColorStop(0, "rgba(140, 90, 40, 0.2)");
+  innerGlow.addColorStop(1, "rgba(140, 90, 40, 0)");
   ctx.fillStyle = innerGlow;
   ctx.beginPath();
   ctx.arc(0, 0, irisR * 0.45, 0, Math.PI * 2);
