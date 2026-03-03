@@ -271,8 +271,8 @@ const SmartDashboard = () => {
           >
             {/* 1. Progress Ring - Pregnancy Week Status */}
             {healthData.weekOfPregnancy > 0 && (
-              <Card className="overflow-hidden rounded-3xl bg-gradient-to-br from-card to-muted/20 card-pink-top">
-                <CardContent className="p-6 flex flex-col items-center">
+              <Card className="overflow-hidden rounded-2xl bg-gradient-to-br from-card to-muted/20 card-pink-top">
+                <CardContent className="p-3.5">
                   <ProgressRing 
                     currentWeek={healthData.weekOfPregnancy} 
                     totalWeeks={40}

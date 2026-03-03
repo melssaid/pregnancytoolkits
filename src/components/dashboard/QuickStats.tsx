@@ -3,17 +3,6 @@ import { Scale, Activity, Heart, Droplets, Calendar, Ruler } from "lucide-react"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-interface StatCard {
-  id: string;
-  icon: React.ComponentType<{ className?: string }>;
-  labelKey: string;
-  value: string;
-  subtextKey?: string;
-  subtextParams?: Record<string, unknown>;
-  href: string;
-  colorClass: string;
-}
-
 interface QuickStatsProps {
   weight?: number;
   height?: number;
@@ -39,146 +28,143 @@ export function QuickStats({
 }: QuickStatsProps) {
   const { t } = useTranslation();
   const bmi = calcBMI(weight, height);
-  
-  const stats: StatCard[] = [
+
+  const stats = [
     {
       id: "weight",
       icon: Scale,
       labelKey: "dashboard.quickStats.weight",
-      value: weight > 0 ? `${weight} kg` : "—",
-      subtextKey: "dashboard.quickStats.lastRecorded",
+      value: weight > 0 ? `${weight}` : "—",
+      unit: weight > 0 ? "kg" : "",
       href: "/tools/weight-gain",
-      colorClass: "bg-primary/10 text-primary"
+      color: "text-primary",
+      bg: "bg-primary/10",
     },
     {
       id: "kicks",
       icon: Activity,
       labelKey: "dashboard.quickStats.kicksToday",
       value: kicks > 0 ? String(kicks) : "—",
-      subtextKey: kicks >= 10 ? "dashboard.quickStats.goalReached" : "dashboard.quickStats.goal",
-      subtextParams: { goal: 10 },
+      unit: "",
       href: "/tools/kick-counter",
-      colorClass: "bg-primary/10 text-primary"
+      color: "text-primary",
+      bg: "bg-primary/10",
     },
     {
       id: "mood",
       icon: Heart,
       labelKey: "dashboard.quickStats.mood",
       value: mood ? t(`dashboard.quickStats.moods.${mood.toLowerCase()}`, mood) : "—",
-      subtextKey: "dashboard.quickStats.howYouFeel",
+      unit: "",
       href: "/tools/mental-health-coach",
-      colorClass: "bg-destructive/10 text-destructive"
+      color: "text-destructive",
+      bg: "bg-destructive/10",
     },
     {
       id: "water",
       icon: Droplets,
       labelKey: "dashboard.quickStats.water",
       value: `${waterGlasses}/8`,
-      subtextKey: "dashboard.quickStats.glassesToday",
+      unit: "",
       href: "/tools/vitamin-tracker",
-      colorClass: "bg-primary/8 text-primary"
+      color: "text-primary",
+      bg: "bg-primary/8",
     },
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-3">
-      {stats.map((stat, index) => {
-        const Icon = stat.icon;
-        return (
-          <motion.div
-            key={stat.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 * index }}
-          >
-            <Link
-              to={stat.href}
-              className="block p-4 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group"
+    <div className="space-y-2">
+      {/* 4 compact stat cards in 2x2 grid */}
+      <div className="grid grid-cols-4 gap-1.5">
+        {stats.map((stat, i) => {
+          const Icon = stat.icon;
+          return (
+            <motion.div
+              key={stat.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 * i }}
             >
-              <div className="flex items-start justify-between mb-3">
-                <div className={`p-2 rounded-xl ${stat.colorClass}`}>
-                  <Icon className="w-4 h-4" />
+              <Link
+                to={stat.href}
+                className="flex flex-col items-center p-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group text-center"
+              >
+                <div className={`w-7 h-7 rounded-lg ${stat.bg} flex items-center justify-center mb-1.5`}>
+                  <Icon className={`w-3.5 h-3.5 ${stat.color}`} />
                 </div>
-              </div>
-              <div>
-                <p className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                <p className="text-sm font-bold text-foreground leading-none group-hover:text-primary transition-colors">
                   {stat.value}
+                  {stat.unit && <span className="text-[9px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
                 </p>
-                <p className="text-xs text-muted-foreground mt-0.5">{t(stat.labelKey)}</p>
-                {stat.subtextKey && (
-                  <p className="text-[10px] text-muted-foreground/70 mt-1">
-                    {t(stat.subtextKey, stat.subtextParams)}
+                <p className="text-[9px] text-muted-foreground mt-1 leading-tight">{t(stat.labelKey)}</p>
+              </Link>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* BMI + Appointment row */}
+      {(bmi !== null || nextAppointment) && (
+        <div className="flex gap-1.5">
+          {bmi !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.25 }}
+              className="flex-1"
+            >
+              <Link
+                to="/settings"
+                className="flex items-center gap-2.5 p-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group"
+              >
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Ruler className="w-3.5 h-3.5 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[9px] text-muted-foreground">{t("dashboard.quickStats.bmi", "BMI")}</p>
+                  <p className="text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-none">
+                    {bmi}
+                    <span className={`text-[9px] font-medium ms-1 ${
+                      bmi < 18.5 ? 'text-primary' : bmi < 25 ? 'text-emerald-600' : bmi < 30 ? 'text-amber-600' : 'text-destructive'
+                    }`}>
+                      {bmi < 18.5
+                        ? t("settings.profile.bmi.underweight", "↓")
+                        : bmi < 25
+                        ? "✓"
+                        : bmi < 30
+                        ? t("settings.profile.bmi.overweight", "↑")
+                        : t("settings.profile.bmi.obese", "↑↑")}
+                    </span>
                   </p>
-                )}
-              </div>
-            </Link>
-          </motion.div>
-        );
-      })}
+                </div>
+              </Link>
+            </motion.div>
+          )}
 
-      {/* BMI Card - عرض فقط إذا توفر الوزن والطول */}
-      {bmi !== null && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45 }}
-          className="col-span-2"
-        >
-          <Link
-            to="/settings"
-            className="flex items-center gap-4 p-4 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all group"
-          >
-            <div className="p-2.5 rounded-xl bg-primary/10">
-              <Ruler className="w-4 h-4 text-primary" />
-            </div>
-            <div className="flex-1">
-              <p className="text-xs text-muted-foreground">{t("dashboard.quickStats.bmi", "BMI")}</p>
-              <p className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{bmi}</p>
-              <p className="text-[10px] text-muted-foreground/70">
-                {bmi < 18.5
-                  ? t("settings.profile.bmi.underweight", "Underweight")
-                  : bmi < 25
-                  ? t("settings.profile.bmi.normal", "Normal")
-                  : bmi < 30
-                  ? t("settings.profile.bmi.overweight", "Overweight")
-                  : t("settings.profile.bmi.obese", "Obese")}
-              </p>
-            </div>
-            <div className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-              bmi < 18.5 ? 'bg-primary/10 text-primary'
-              : bmi < 25  ? 'bg-primary/15 text-primary'
-              : bmi < 30  ? 'bg-primary/10 text-primary'
-              :             'bg-destructive/10 text-destructive'
-            }`}>
-              {bmi < 18.5 ? '↓' : bmi < 25 ? '✓' : '↑'}
-            </div>
-          </Link>
-        </motion.div>
-      )}
-
-      {/* Next Appointment Card - Full width */}
-      {nextAppointment && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="col-span-2"
-        >
-          <Link
-            to="/tools/smart-appointment-reminder"
-            className="flex items-center gap-4 p-4 rounded-2xl bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all group"
-          >
-            <div className="p-3 rounded-xl bg-primary/10">
-              <Calendar className="w-5 h-5 text-primary" />
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                {t("dashboard.quickStats.nextAppointment")}
-              </p>
-              <p className="text-xs text-muted-foreground">{nextAppointment}</p>
-            </div>
-          </Link>
-        </motion.div>
+          {nextAppointment && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="flex-1"
+            >
+              <Link
+                to="/tools/smart-appointment-reminder"
+                className="flex items-center gap-2.5 p-2.5 rounded-xl bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all group"
+              >
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Calendar className="w-3.5 h-3.5 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] font-semibold text-foreground group-hover:text-primary transition-colors leading-tight truncate">
+                    {t("dashboard.quickStats.nextAppointment")}
+                  </p>
+                  <p className="text-[9px] text-muted-foreground truncate">{nextAppointment}</p>
+                </div>
+              </Link>
+            </motion.div>
+          )}
+        </div>
       )}
     </div>
   );
