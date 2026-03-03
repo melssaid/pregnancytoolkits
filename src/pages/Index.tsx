@@ -157,7 +157,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
             {config.customIcon === "footprints" ? (
               <BabyFootprintsIcon className="w-6 h-6 text-white" />
             ) : config.customIcon === "dreamEye" ? (
-              <DreamEyeIcon className="w-6 h-6 text-white" />
+              <DreamEyeIcon className="w-8 h-8" />
             ) : Icon ? (
               <motion.div
                 {...(config.key === "planning" ? {
