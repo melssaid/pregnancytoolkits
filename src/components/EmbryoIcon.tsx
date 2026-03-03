@@ -1,42 +1,129 @@
 import { motion } from "framer-motion";
 
+/**
+ * Realistic fetal silhouette icon with gentle floating animation.
+ * Designed to match the anatomical baby-footprints style used elsewhere.
+ */
 const EmbryoIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
-  <svg viewBox="0 0 64 64" fill="white" className={className}>
+  <svg viewBox="0 0 100 100" fill="white" className={className}>
+    {/* Gentle floating / breathing animation */}
     <motion.g
       animate={{
-        y: [0, -2, 0, 1, 0],
-        rotate: [0, 2, -1, 1, 0],
-        scale: [1, 1.03, 0.98, 1.01, 1],
+        y: [0, -1.5, 0, 1, 0],
+        rotate: [0, 1.5, 0, -1, 0],
+        scale: [1, 1.02, 1, 0.99, 1],
       }}
       transition={{
-        duration: 3.5,
+        duration: 4,
         repeat: Infinity,
-        repeatDelay: 1,
         ease: "easeInOut",
         times: [0, 0.25, 0.5, 0.75, 1],
       }}
-      style={{ transformOrigin: "32px 32px" }}
+      style={{ transformOrigin: "50px 50px" }}
     >
-      {/* Fetal body — curled position */}
-      <path d="M44.5 18c-2.5-4-7-6.5-12-6.5c-8 0-14.5 6.5-14.5 14.5c0 3.5 1.2 6.7 3.3 9.2c-1.8 2.5-3.3 5.5-3.3 9.3c0 4 2 7.5 5 9.5c1.5 1 3.2 1.5 5 1.5c2 0 3.8-0.7 5.2-1.8c1.5 1.1 3.3 1.8 5.3 1.8c5 0 9-4 9-9c0-2.5-1-4.8-2.7-6.5c1.7-2.5 2.7-5.5 2.7-8.5C47.5 26.2 46.5 21.5 44.5 18z" />
-      {/* Head */}
-      <circle cx="32" cy="19" r="8.5" />
-      {/* Curled legs hint */}
-      <path d="M25 42c0 0-2 4-1 7c0.5 1.5 2 2.5 3.5 2.5c1.5 0 2.8-1 3.2-2.5" opacity="0.8" />
-      <path d="M35 40c0 0 1.5 4 0.8 7c-0.4 1.5-1.8 2.5-3.3 2.5" opacity="0.8" />
-      {/* Arm curl */}
-      <path d="M22 28c-2 1-3.5 3-3.5 5.5c0 2 1 3.8 2.5 4.8" opacity="0.7" strokeWidth="0" />
+      {/* ── Head ── */}
+      <ellipse cx="52" cy="24" rx="14" ry="15.5" opacity="1" />
+
+      {/* ── Face details ── */}
+      {/* Closed eye */}
+      <ellipse cx="56" cy="22" rx="2.8" ry="1" fill="currentColor" opacity="0.15" transform="rotate(-5 56 22)" />
+      {/* Nose hint */}
+      <circle cx="59" cy="26" r="1" fill="currentColor" opacity="0.1" />
+
+      {/* ── Body / torso — curled fetal position ── */}
+      <path
+        d="M42 36 C38 38, 34 44, 34 52 C34 60, 38 67, 44 72 C48 75, 54 76, 58 73 C64 68, 66 60, 64 52 C63 46, 60 40, 56 37 Z"
+        opacity="0.95"
+      />
+
+      {/* ── Spine curve hint ── */}
+      <path
+        d="M40 38 C36 45, 34 54, 37 64 C38 68, 41 71, 44 72"
+        fill="none"
+        stroke="white"
+        strokeWidth="1.2"
+        opacity="0.15"
+        strokeLinecap="round"
+      />
+
+      {/* ── Right arm (curled near face) ── */}
+      <path
+        d="M56 38 C60 40, 63 38, 64 34 C64.5 31, 63 28, 60 27"
+        fill="none"
+        stroke="white"
+        strokeWidth="4"
+        strokeLinecap="round"
+        opacity="0.85"
+      />
+      {/* Hand / fist near face */}
+      <circle cx="60" cy="27" r="2.8" opacity="0.8" />
+
+      {/* ── Left arm (tucked against body) ── */}
+      <path
+        d="M44 42 C40 44, 38 42, 37 39"
+        fill="none"
+        stroke="white"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <circle cx="37" cy="39" r="2.2" opacity="0.65" />
+
+      {/* ── Right leg (drawn up) ── */}
+      <path
+        d="M56 68 C58 72, 60 76, 58 80 C56 83, 52 84, 50 82"
+        fill="none"
+        stroke="white"
+        strokeWidth="5"
+        strokeLinecap="round"
+        opacity="0.85"
+      />
+      {/* Right foot */}
+      <ellipse cx="49" cy="82" rx="3.5" ry="2" transform="rotate(-20 49 82)" opacity="0.8" />
+
+      {/* ── Left leg (tucked) ── */}
+      <path
+        d="M48 70 C46 74, 43 78, 40 79 C38 79, 36 78, 36 76"
+        fill="none"
+        stroke="white"
+        strokeWidth="4.5"
+        strokeLinecap="round"
+        opacity="0.75"
+      />
+      {/* Left foot */}
+      <ellipse cx="36" cy="76" rx="3" ry="1.8" transform="rotate(15 36 76)" opacity="0.7" />
+
+      {/* ── Ear ── */}
+      <path
+        d="M40 20 C38 18, 37 21, 38.5 23"
+        fill="none"
+        stroke="white"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        opacity="0.4"
+      />
     </motion.g>
-    {/* Umbilical cord suggestion */}
+
+    {/* ── Umbilical cord — separate gentle sway ── */}
     <motion.path
-      d="M32 11c0 0 2-4 6-5.5c2-0.7 4-0.3 5 0.5"
+      d="M50 76 C48 82, 44 86, 40 90 C37 93, 33 94, 30 92"
       fill="none"
       stroke="white"
-      strokeWidth="1.5"
+      strokeWidth="2"
       strokeLinecap="round"
-      opacity="0.5"
-      animate={{ opacity: [0.3, 0.6, 0.3] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      opacity="0.35"
+      animate={{
+        d: [
+          "M50 76 C48 82, 44 86, 40 90 C37 93, 33 94, 30 92",
+          "M50 76 C49 83, 46 87, 42 90 C39 92, 35 93, 32 91",
+          "M50 76 C48 82, 44 86, 40 90 C37 93, 33 94, 30 92",
+        ],
+      }}
+      transition={{
+        duration: 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
     />
   </svg>
 );
