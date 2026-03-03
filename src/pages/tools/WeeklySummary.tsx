@@ -18,6 +18,7 @@ import { Progress } from "@/components/ui/progress";
 import { ToolFrame } from "@/components/ToolFrame";
 import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
@@ -174,20 +175,12 @@ export default function WeeklySummary() {
         {!summary ? (
           <>
             {/* Generate Button */}
-            <motion.button
-              whileTap={{ scale: 0.92 }}
+            <AIActionButton
               onClick={getSummary}
-              disabled={isLoading}
-              className="relative w-full overflow-hidden rounded-xl h-11 flex items-center justify-center gap-2 text-white text-sm font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
-              style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
-              {isLoading ? (
-                <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t("toolsInternal.weeklySummary.generating", "Generating...")}</span></>
-              ) : (
-                <><Brain className="w-4 h-4 shrink-0" /><span>{t("toolsInternal.weeklySummary.showSummary", { week })}</span></>
-              )}
-            </motion.button>
+              isLoading={isLoading}
+              label={t("toolsInternal.weeklySummary.showSummary", { week })}
+              loadingLabel={t("toolsInternal.weeklySummary.generating", "Generating...")}
+            />
 
             {/* Real Previous Summaries — replaces fake static cards */}
             {savedSummaries.length > 0 ? (

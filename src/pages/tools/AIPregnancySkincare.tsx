@@ -11,6 +11,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
@@ -187,20 +188,12 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         </div>
 
         {/* Get Routine */}
-        <motion.button
-          whileTap={{ scale: 0.92 }}
+        <AIActionButton
           onClick={getSkincareRoutine}
-          disabled={isLoading}
-          className="relative w-full overflow-hidden rounded-xl h-10 flex items-center justify-center gap-2 text-white text-[13px] font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
-          style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
-        >
-          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
-          {isLoading ? (
-            <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.skincare.creatingRoutine')}</span></>
-          ) : (
-            <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.skincare.getRoutine')}</span></>
-          )}
-        </motion.button>
+          isLoading={isLoading}
+          label={t('toolsInternal.skincare.getRoutine')}
+          loadingLabel={t('toolsInternal.skincare.creatingRoutine')}
+        />
 
         {/* AI Response */}
         {response && (

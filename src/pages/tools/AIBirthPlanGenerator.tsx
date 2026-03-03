@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { FileText, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, AlertCircle } from 'lucide-react';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
@@ -195,11 +196,12 @@ export default function AIBirthPlanGenerator() {
           </CardContent>
         </Card>
 
-        <motion.button onClick={generatePlan} disabled={isLoading} whileTap={{ scale: 0.92 }} className="relative w-full overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed">
-          <div className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-            {isLoading ? <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.birthPlan.generating')}</span></> : <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.birthPlan.generateButton')}</span></> }
-          </div>
-        </motion.button>
+        <AIActionButton
+          onClick={generatePlan}
+          isLoading={isLoading}
+          label={t('toolsInternal.birthPlan.generateButton')}
+          loadingLabel={t('toolsInternal.birthPlan.generating')}
+        />
 
         {error && <Card className="border-destructive/30 bg-destructive/5"><CardContent className="p-3 text-destructive text-xs">{error}</CardContent></Card>}
 

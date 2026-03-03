@@ -20,6 +20,7 @@ import { toast } from "sonner";
 import { WeekSlider } from "@/components/WeekSlider";
 import { ToolFrame } from "@/components/ToolFrame";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { motion } from "framer-motion";
@@ -335,16 +336,11 @@ const SmartPregnancyPlan = () => {
                 <p className="text-xs text-muted-foreground">
                   {t("smartPlan.aiPlanHint", "Get a personalized AI-powered pregnancy plan based on your profile")}
                 </p>
-                <motion.button
-                  whileTap={{ scale: 0.92 }}
+                <AIActionButton
                   onClick={generateAIPlan}
-                  disabled={isLoading}
-                  className="relative mx-auto overflow-hidden rounded-2xl h-10 px-6 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
-                  style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
-                >
-                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
-                  {t("smartPlan.getAIPlan", "Get Smart Plan")}
-                </motion.button>
+                  isLoading={isLoading}
+                  label={t("smartPlan.getAIPlan", "Get Smart Plan")}
+                />
               </div>
             )}
           </TabsContent>

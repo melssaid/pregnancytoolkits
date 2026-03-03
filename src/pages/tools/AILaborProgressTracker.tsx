@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Activity, Clock, AlertTriangle, Phone, TrendingUp, Timer, Baby, Brain, Loader2, Wind, Heart, Sparkles } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useTranslation } from 'react-i18next';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -280,20 +281,12 @@ Please provide a comprehensive wellness analysis with breathing techniques, comf
                 <p className="text-[10px] text-muted-foreground mb-2">
                   {t('toolsInternal.laborTracker.aiAnalysisDesc', 'Get personalized breathing techniques, comfort measures, and encouragement based on your journal entries.')}
                 </p>
-                <motion.button
-                  whileTap={{ scale: 0.92 }}
+                <AIActionButton
                   onClick={getAILaborAnalysis}
-                  disabled={isLoading}
-                  className="relative w-full overflow-hidden rounded-xl h-10 flex items-center justify-center gap-2 text-white text-[13px] font-semibold shadow-lg disabled:opacity-60 disabled:pointer-events-none"
-                  style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
-                  {isLoading ? (
-                    <><Loader2 className="w-4 h-4 animate-spin shrink-0" /><span>{t('toolsInternal.laborTracker.analyzing', 'Analyzing...')}</span></>
-                  ) : (
-                    <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Wellness Insights')}</span></>
-                  )}
-                </motion.button>
+                  isLoading={isLoading}
+                  label={t('toolsInternal.laborTracker.getAIAnalysis', 'Get AI Wellness Insights')}
+                  loadingLabel={t('toolsInternal.laborTracker.analyzing', 'Analyzing...')}
+                />
               </CardContent>
             </Card>
           )}
