@@ -4,7 +4,13 @@ import { useAIUsageLimit } from "./useAIUsageLimit";
 import { supabase } from "@/integrations/supabase/client";
 import { ensureAuthenticated } from "@/lib/auth";
 
-type AIType = "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary" | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery";
+// Must match all types accepted by the edge function
+type AIType =
+  | "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary"
+  | "posture-coach" | "walking-coach" | "stretch-reminder" | "back-pain-relief"
+  | "leg-cramp-preventer" | "smoothie-generator" | "daily-tips" | "labor-tracker"
+  | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
+  | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery";
 
 export type AIErrorType = "rate_limit" | "payment" | "network" | "unknown";
 
@@ -40,11 +46,33 @@ export function usePregnancyAI() {
   const resolveError = useCallback((status?: number, rawMsg?: string): { msg: string; type: AIErrorType } => {
     if (status === 429) return { msg: t('aiErrors.rateLimitMsg'), type: 'rate_limit' };
     if (status === 402) return { msg: t('aiErrors.paymentMsg'), type: 'payment' };
+    if (status === 401) return { msg: t('aiErrors.networkMsg'), type: 'network' };
     if (rawMsg?.toLowerCase().includes('fetch') || rawMsg?.toLowerCase().includes('network') || rawMsg?.toLowerCase().includes('connect')) {
       return { msg: t('aiErrors.networkMsg'), type: 'network' };
     }
     return { msg: t('aiErrors.unknownMsg'), type: 'unknown' };
   }, [t]);
+
+  /**
+   * Get a valid access token, refreshing if needed.
+   * Returns null if authentication fails entirely.
+   */
+  const getAccessToken = useCallback(async (): Promise<string | null> => {
+    try {
+      // First try existing session
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.access_token) return session.access_token;
+
+      // No session — ensure authenticated (anonymous sign-in)
+      await ensureAuthenticated();
+
+      // Retry getting session after auth
+      const { data: { session: newSession } } = await supabase.auth.getSession();
+      return newSession?.access_token ?? null;
+    } catch {
+      return null;
+    }
+  }, []);
 
   const streamChat = useCallback(
     async ({
@@ -80,15 +108,11 @@ export function usePregnancyAI() {
       };
 
       try {
-        // Ensure authenticated to get a valid JWT
-        const user = await ensureAuthenticated();
-        const { data: { session } } = await supabase.auth.getSession();
-        const token = session?.access_token;
-        
+        const token = await getAccessToken();
+
         if (!token) {
-          const { msg, type: errType } = resolveError(undefined, 'network');
-          setError(msg);
-          setErrorType(errType);
+          setError(t('aiErrors.networkMsg'));
+          setErrorType('network');
           onDone();
           return;
         }
@@ -106,7 +130,39 @@ export function usePregnancyAI() {
         );
 
         if (!response.ok) {
-          const { msg, type: errType } = resolveError(response.status);
+          // Try to read error details from response body
+          let serverMsg: string | undefined;
+          try {
+            const errBody = await response.json();
+            serverMsg = errBody?.error;
+          } catch { /* ignore parse failures */ }
+
+          // If 401, token may have expired — try once more with refresh
+          if (response.status === 401) {
+            const { data: { session } } = await supabase.auth.refreshSession();
+            if (session?.access_token) {
+              const retryResponse = await fetch(
+                `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${session.access_token}`,
+                  },
+                  body: JSON.stringify({ type, messages, context: contextWithLanguage }),
+                }
+              );
+              if (retryResponse.ok && retryResponse.body) {
+                // Success on retry — continue to stream parsing below
+                await processStream(retryResponse.body, onDelta);
+                incrementUsage();
+                onDone();
+                return;
+              }
+            }
+          }
+
+          const { msg, type: errType } = resolveError(response.status, serverMsg);
           setError(msg);
           setErrorType(errType);
           onDone();
@@ -114,50 +170,18 @@ export function usePregnancyAI() {
         }
 
         if (!response.body) {
-          const { msg, type: errType } = resolveError(undefined, 'network');
-          setError(msg);
-          setErrorType(errType);
+          setError(t('aiErrors.networkMsg'));
+          setErrorType('network');
           onDone();
           return;
         }
 
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let buffer = "";
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-
-          let newlineIndex: number;
-          while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
-            let line = buffer.slice(0, newlineIndex);
-            buffer = buffer.slice(newlineIndex + 1);
-
-            if (line.endsWith("\r")) line = line.slice(0, -1);
-            if (line.startsWith(":") || line.trim() === "") continue;
-            if (!line.startsWith("data: ")) continue;
-
-            const jsonStr = line.slice(6).trim();
-            if (jsonStr === "[DONE]") break;
-
-            try {
-              const parsed = JSON.parse(jsonStr);
-              const content = parsed.choices?.[0]?.delta?.content;
-              if (content) onDelta(content);
-            } catch {
-              buffer = line + "\n" + buffer;
-              break;
-            }
-          }
-        }
-
+        await processStream(response.body, onDelta);
         incrementUsage();
         onDone();
       } catch (err) {
-        const raw = err instanceof Error ? err.message : "";
+        console.error("[AI] streamChat error:", err);
+        const raw = err instanceof Error ? err.message : String(err);
         const { msg, type: errType } = resolveError(undefined, raw);
         setError(msg);
         setErrorType(errType);
@@ -166,7 +190,7 @@ export function usePregnancyAI() {
         setIsLoading(false);
       }
     },
-    [resolveError, isLimitReached, remaining, incrementUsage, limit, t]
+    [resolveError, isLimitReached, incrementUsage, limit, t, getAccessToken]
   );
 
   const generateContent = useCallback(
@@ -203,4 +227,43 @@ export function usePregnancyAI() {
   }, []);
 
   return { streamChat, generateContent, isLoading, error, errorType, clearError, aiRemaining: remaining, aiLimit: limit };
+}
+
+/** Parse SSE stream and emit deltas */
+async function processStream(
+  body: ReadableStream<Uint8Array>,
+  onDelta: (text: string) => void,
+) {
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+
+    let newlineIndex: number;
+    while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
+      let line = buffer.slice(0, newlineIndex);
+      buffer = buffer.slice(newlineIndex + 1);
+
+      if (line.endsWith("\r")) line = line.slice(0, -1);
+      if (line.startsWith(":") || line.trim() === "") continue;
+      if (!line.startsWith("data: ")) continue;
+
+      const jsonStr = line.slice(6).trim();
+      if (jsonStr === "[DONE]") return;
+
+      try {
+        const parsed = JSON.parse(jsonStr);
+        const content = parsed.choices?.[0]?.delta?.content;
+        if (content) onDelta(content);
+      } catch {
+        buffer = line + "\n" + buffer;
+        break;
+      }
+    }
+  }
 }
