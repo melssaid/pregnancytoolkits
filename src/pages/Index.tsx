@@ -91,12 +91,22 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
   );
 });
 
-// ── Sub-category divider ────────────────────────────────────────────────
-const SubCategoryDivider = memo(function SubCategoryDivider({ iconColor }: { iconColor: string }) {
+// ── Sub-category divider — themed with category label ───────────────────
+const SubCategoryDivider = memo(function SubCategoryDivider({ iconColor, categoryKey }: { iconColor: string; categoryKey: string }) {
+  const { t } = useTranslation();
+  const label = t(categoryKey);
+
   return (
-    <div className="flex items-center gap-1.5 px-3 pt-3 pb-1">
-      <div className={`w-1 h-1 rounded-full ${iconColor} opacity-40`} />
-      <div className={`h-[1.5px] flex-1 bg-gradient-to-r from-border/50 via-border/20 to-transparent dark:from-border/30 dark:via-border/10`} />
+    <div className="flex items-center gap-2.5 px-2 pt-4 pb-1.5">
+      <div className={`h-[1.5px] flex-1 bg-gradient-to-r from-transparent via-border/40 to-border/10 dark:via-border/20`} />
+      <div className="flex items-center gap-1.5 shrink-0">
+        <div className={`w-1.5 h-1.5 rounded-full ${iconColor} opacity-60`} />
+        <span className={`text-[10px] font-semibold ${iconColor} opacity-70 tracking-wide`}>
+          {label}
+        </span>
+        <div className={`w-1.5 h-1.5 rounded-full ${iconColor} opacity-60`} />
+      </div>
+      <div className={`h-[1.5px] flex-1 bg-gradient-to-l from-transparent via-border/40 to-border/10 dark:via-border/20`} />
     </div>
   );
 });
@@ -210,6 +220,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
                   {showSubHeaders && (
                     <SubCategoryDivider
                       iconColor={categoryStyles[catKey]?.iconColor || "text-muted-foreground"}
+                      categoryKey={catKey}
                     />
                   )}
                   <div className="space-y-1">
