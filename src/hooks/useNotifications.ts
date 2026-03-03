@@ -49,7 +49,8 @@ export interface Notification {
   messageParams?: Record<string, string>;
 }
 
-interface NotificationSettings {
+export interface NotificationSettings {
+  masterEnabled: boolean;
   appointmentReminders: boolean;
   vitaminReminders: boolean;
   waterReminders: boolean;
@@ -60,8 +61,9 @@ interface NotificationSettings {
 }
 
 const DEFAULT_SETTINGS: NotificationSettings = {
-  appointmentReminders: true,
-  vitaminReminders: true,
+  masterEnabled: false,
+  appointmentReminders: false,
+  vitaminReminders: false,
   waterReminders: false,
   cycleReminders: false,
   weeklyTipReminders: false,
@@ -261,17 +263,46 @@ export function useNotifications() {
       DEFAULT_SETTINGS,
       isSettings
     );
-    setSettings({ 
-      appointmentReminders: savedSettings.appointmentReminders ?? true,
-      vitaminReminders: savedSettings.vitaminReminders ?? true,
-      waterReminders: savedSettings.waterReminders ?? false,
-      cycleReminders: (savedSettings as any).cycleReminders ?? false,
-      weeklyTipReminders: (savedSettings as any).weeklyTipReminders ?? false,
-      kickReminders: (savedSettings as any).kickReminders ?? false,
-      milestoneReminders: (savedSettings as any).milestoneReminders ?? false,
-    });
+
+    // Auto-enable notifications ONLY for categories where user has confirmed data
+    // and ONLY if user has never manually configured settings
+    const hasManuallyConfigured = localStorage.getItem('notificationSettings') !== null;
+    
+    let resolvedSettings: NotificationSettings;
+    if (hasManuallyConfigured) {
+      resolvedSettings = {
+        masterEnabled: (savedSettings as any).masterEnabled ?? true,
+        appointmentReminders: savedSettings.appointmentReminders ?? false,
+        vitaminReminders: savedSettings.vitaminReminders ?? false,
+        waterReminders: savedSettings.waterReminders ?? false,
+        cycleReminders: (savedSettings as any).cycleReminders ?? false,
+        weeklyTipReminders: (savedSettings as any).weeklyTipReminders ?? false,
+        kickReminders: (savedSettings as any).kickReminders ?? false,
+        milestoneReminders: (savedSettings as any).milestoneReminders ?? false,
+      };
+    } else {
+      // Smart defaults: only enable if user has actual data
+      const hasAnyData = hasAppointmentData() || hasVitaminData() || hasCycleData();
+      resolvedSettings = {
+        masterEnabled: hasAnyData,
+        appointmentReminders: hasAppointmentData(),
+        vitaminReminders: hasVitaminData(),
+        waterReminders: false, // always manual opt-in
+        cycleReminders: hasCycleData(),
+        weeklyTipReminders: false,
+        kickReminders: false,
+        milestoneReminders: false,
+      };
+    }
+
+    setSettings(resolvedSettings);
+
     const validTypes = ['appointment', 'vitamin', 'water', 'cycle', 'general', 'weeklyTip', 'kickReminder', 'milestone'];
-    setNotifications(savedNotifications.filter(n => validTypes.includes(n.type)));
+    const validNotifications = savedNotifications.filter(n => validTypes.includes(n.type));
+    
+    // CRITICAL: Set ref BEFORE setting state to prevent race condition
+    notificationsRef.current = validNotifications;
+    setNotifications(validNotifications);
     
     isInitialized.current = true;
   }, []);
@@ -310,6 +341,8 @@ export function useNotifications() {
     if (!isInitialized.current) return;
 
     const generateSmartReminders = () => {
+      // Master toggle check — skip all generation if disabled
+      if (!settings.masterEnabled) return;
       const now = new Date();
       const nowISO = now.toISOString();
       const hour = now.getHours();
@@ -608,10 +641,11 @@ export function useNotifications() {
       }
     };
 
-    generateSmartReminders();
-    // Check twice daily: on app open + once after 12 hours
-    const interval = setInterval(generateSmartReminders, 12 * 60 * 60 * 1000);
-    return () => clearInterval(interval);
+    // Small delay to ensure ref is populated from init effect
+    const timeout = setTimeout(generateSmartReminders, 500);
+    // Check once every 6 hours (not on every settings change)
+    const interval = setInterval(generateSmartReminders, 6 * 60 * 60 * 1000);
+    return () => { clearTimeout(timeout); clearInterval(interval); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings]);
 
