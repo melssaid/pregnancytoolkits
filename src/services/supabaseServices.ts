@@ -245,7 +245,7 @@ export const BumpPhotoService = {
             user_id: authUserId,
             week: week,
             storage_path: fileName,
-            public_url: urlData.signedUrl,
+            image_ref: urlData.signedUrl,
             caption: caption || null
           })
           .select()
@@ -268,7 +268,7 @@ export const BumpPhotoService = {
           id: generateId(),
           user_id: localUserId,
           week: week,
-          public_url: reader.result as string,
+          image_ref: reader.result as string,
           storage_path: `local_${Date.now()}`,
           caption: caption || null,
           ai_analysis: null,
@@ -304,7 +304,7 @@ export const BumpPhotoService = {
                     .from('bump-photos')
                     .createSignedUrl(photo.storage_path, 3600); // 1 hour expiry
                   if (!urlError && urlData) {
-                    return { ...photo, public_url: urlData.signedUrl };
+                    return { ...photo, image_ref: urlData.signedUrl };
                   }
                 } catch {
                   // Fall back to stored URL

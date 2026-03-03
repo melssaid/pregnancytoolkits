@@ -24,7 +24,7 @@ interface BumpPhoto {
   id: string;
   week: number;
   caption: string | null;
-  public_url: string;
+  image_ref: string;
   storage_path: string;
   ai_analysis: string | null;
   created_at: string;
@@ -62,7 +62,7 @@ const AIBumpPhotos: React.FC = () => {
 
   // Calculate storage usage
   const storageInfo = useMemo(() => {
-    const totalBytes = photos.reduce((sum, p) => sum + estimateDataUrlSize(p.public_url), 0);
+    const totalBytes = photos.reduce((sum, p) => sum + estimateDataUrlSize(p.image_ref), 0);
     const maxStorage = 5 * 1024 * 1024;
     const percentage = Math.min(100, (totalBytes / maxStorage) * 100);
     return { used: formatBytes(totalBytes), percentage, isWarning: percentage > 70, isCritical: percentage > 90 };
@@ -128,7 +128,7 @@ const AIBumpPhotos: React.FC = () => {
         id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         week: currentWeek,
         caption: caption || null,
-        public_url: compressedDataUrl,
+        image_ref: compressedDataUrl,
         storage_path: `local/${currentWeek}_${Date.now()}`,
         ai_analysis: null,
         created_at: new Date().toISOString(),
@@ -206,7 +206,7 @@ const AIBumpPhotos: React.FC = () => {
       // Build multimodal message with ultrasound image
       const messageContent: Array<{ type: string; text?: string; image_url?: { url: string } }> = [
         { type: "text", text: textPrompt },
-        { type: "image_url", image_url: { url: photo.public_url } },
+        { type: "image_url", image_url: { url: photo.image_ref } },
       ];
 
       let fullResponse = '';
@@ -269,7 +269,7 @@ const AIBumpPhotos: React.FC = () => {
 
   const handleDownload = (photo: BumpPhoto) => {
     const link = document.createElement('a');
-    link.href = photo.public_url;
+    link.href = photo.image_ref;
     link.download = `bump-week-${photo.week}.jpg`;
     link.click();
   };
@@ -277,7 +277,7 @@ const AIBumpPhotos: React.FC = () => {
   const handleShare = async (photo: BumpPhoto) => {
     try {
       // Convert base64 to blob
-      const response = await fetch(photo.public_url);
+      const response = await fetch(photo.image_ref);
       const blob = await response.blob();
       const file = new File([blob], `bump-week-${photo.week}.jpg`, { type: 'image/jpeg' });
       
@@ -508,7 +508,7 @@ const AIBumpPhotos: React.FC = () => {
                       </select>
                       {comparePhoto && (
                         <img
-                          src={comparePhoto.public_url}
+                          src={comparePhoto.image_ref}
                           alt={`Week ${comparePhoto.week}`}
                           className="w-full aspect-[3/4] object-cover rounded-lg"
                         />
@@ -531,7 +531,7 @@ const AIBumpPhotos: React.FC = () => {
                       </select>
                       {selectedPhoto && (
                         <img
-                          src={selectedPhoto.public_url}
+                          src={selectedPhoto.image_ref}
                           alt={`Week ${selectedPhoto.week}`}
                           className="w-full aspect-[3/4] object-cover rounded-lg"
                         />
@@ -570,7 +570,7 @@ const AIBumpPhotos: React.FC = () => {
                 >
                   <div className="relative aspect-[3/4]">
                     <img
-                      src={photo.public_url}
+                      src={photo.image_ref}
                       alt={`Week ${photo.week}`}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -773,7 +773,7 @@ const AIBumpPhotos: React.FC = () => {
                       selectedPhoto?.id === photo.id ? 'ring-2 ring-primary ring-offset-2' : ''
                     } rounded-full`}>
                       <img
-                        src={photo.public_url}
+                        src={photo.image_ref}
                         alt={`Week ${photo.week}`}
                         className="w-16 h-16 rounded-full object-cover"
                       />
@@ -832,7 +832,7 @@ const AIBumpPhotos: React.FC = () => {
               <Badge className="bg-white/20">{t('common.week')} {selectedPhoto.week}</Badge>
             </div>
             <img
-              src={selectedPhoto.public_url}
+              src={selectedPhoto.image_ref}
               alt={`${t('common.week')} ${selectedPhoto.week}`}
               className="max-w-full max-h-[90vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}

@@ -63,7 +63,7 @@ export const BumpPhotoService = {
       id: generateId(),
       user_id: getUserId(),
       week,
-      public_url: base64,
+      image_ref: base64,
       storage_path: `local/${week}_${Date.now()}`,
       caption: caption || null,
       ai_analysis: null,
