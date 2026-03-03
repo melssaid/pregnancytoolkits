@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_usage_logs: {
+        Row: {
+          ai_type: string
+          client_id: string
+          created_at: string
+          id: string
+          language: string
+          response_time_ms: number | null
+          success: boolean
+          tokens_used: number | null
+          user_id: string | null
+        }
+        Insert: {
+          ai_type: string
+          client_id: string
+          created_at?: string
+          id?: string
+          language?: string
+          response_time_ms?: number | null
+          success?: boolean
+          tokens_used?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          ai_type?: string
+          client_id?: string
+          created_at?: string
+          id?: string
+          language?: string
+          response_time_ms?: number | null
+          success?: boolean
+          tokens_used?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       bump_photos: {
         Row: {
           ai_analysis: string | null
@@ -127,6 +163,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_old_ai_logs: { Args: never; Returns: number }
       cleanup_old_analytics: { Args: never; Returns: number }
     }
     Enums: {

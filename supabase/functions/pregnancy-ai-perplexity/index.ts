@@ -509,6 +509,31 @@ function jsonError(msg: string, status: number): Response {
   });
 }
 
+// ── Log AI usage to database (service_role bypasses RLS) ──
+async function logAIUsage(
+  aiType: string, language: string, clientId: string,
+  userId: string | null, tokensUsed: number, success: boolean, responseTimeMs: number
+): Promise<void> {
+  try {
+    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+    const adminClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    );
+    await adminClient.from("ai_usage_logs").insert({
+      ai_type: aiType,
+      language,
+      client_id: clientId,
+      user_id: userId,
+      tokens_used: tokensUsed,
+      success,
+      response_time_ms: responseTimeMs,
+    });
+  } catch (e) {
+    console.error("[AI] Failed to log usage:", String(e).substring(0, 100));
+  }
+}
+
 // ── Main handler ──
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -557,6 +582,7 @@ Deno.serve(async (req) => {
     if (!validation.valid) return jsonError(validation.error, validation.status);
 
     const { type, messages, context } = validation.data;
+    const requestStartTime = Date.now();
 
     // API key check
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
@@ -597,6 +623,10 @@ Deno.serve(async (req) => {
         });
 
         if (response.ok) {
+          // Log successful AI usage (fire-and-forget)
+          const elapsed = Date.now() - requestStartTime;
+          logAIUsage(type, lang, rateLimitId, rateLimitId !== getClientId(req) ? rateLimitId : null, tuning.max_tokens, true, elapsed).catch(() => {});
+
           return new Response(response.body, {
             headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
           });
