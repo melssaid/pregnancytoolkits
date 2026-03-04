@@ -44,7 +44,10 @@ const VALID_TYPES: AIType[] = [
 const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
 
-// ── Rate limiting ──
+// ── Daily usage limit ──
+const DAILY_LIMIT = 25;
+
+// ── Rate limiting (per-minute burst protection) ──
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const MAX_REQUESTS_PER_WINDOW = 10;
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -59,6 +62,42 @@ function checkRateLimit(id: string): boolean {
   if (rec.count >= MAX_REQUESTS_PER_WINDOW) return false;
   rec.count++;
   return true;
+}
+
+// ── Server-side daily usage check ──
+async function getDailyUsageCount(clientId: string, userId: string | null): Promise<number> {
+  try {
+    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+    const adminClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    );
+    
+    // Get today's start in UTC
+    const todayStart = new Date();
+    todayStart.setUTCHours(0, 0, 0, 0);
+    
+    // Query by user_id first, fallback to client_id
+    const filterCol = userId ? "user_id" : "client_id";
+    const filterVal = userId || clientId;
+    
+    const { count, error } = await adminClient
+      .from("ai_usage_logs")
+      .select("*", { count: "exact", head: true })
+      .eq(filterCol, filterVal)
+      .eq("success", true)
+      .gte("created_at", todayStart.toISOString());
+    
+    if (error) {
+      console.error("[AI] daily usage check error:", error.message);
+      return 0; // Fail open — don't block on DB errors
+    }
+    
+    return count || 0;
+  } catch (e) {
+    console.error("[AI] daily usage check failed:", String(e).substring(0, 100));
+    return 0; // Fail open
+  }
 }
 
 function getClientId(req: Request): string {
@@ -584,6 +623,27 @@ Deno.serve(async (req) => {
       return jsonError("Rate limit exceeded. Please wait a minute before trying again.", 429);
     }
 
+    // ── Server-side daily limit check ──
+    const userId = rateLimitId !== getClientId(req) ? rateLimitId : null;
+    const dailyUsed = await getDailyUsageCount(rateLimitId, userId);
+    const dailyRemaining = Math.max(0, DAILY_LIMIT - dailyUsed);
+    
+    if (dailyUsed >= DAILY_LIMIT) {
+      return new Response(
+        JSON.stringify({ error: "daily_limit_reached", used: dailyUsed, limit: DAILY_LIMIT, remaining: 0 }),
+        {
+          status: 429,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+            "X-Daily-Limit": String(DAILY_LIMIT),
+            "X-Daily-Used": String(dailyUsed),
+            "X-Daily-Remaining": "0",
+          },
+        }
+      );
+    }
+
     // Parse body
     let body: unknown;
     try { body = await req.json(); } catch {
@@ -609,11 +669,18 @@ Deno.serve(async (req) => {
     const systemPrompt = buildSystemPrompt(type, context, lang);
     const tuning = MODEL_TUNING[type];
 
-    console.log(`[AI] type=${type} lang=${lang} temp=${tuning.temperature} max_tokens=${tuning.max_tokens}`);
+    console.log(`[AI] type=${type} lang=${lang} used=${dailyUsed}/${DAILY_LIMIT} temp=${tuning.temperature}`);
 
     // ── Call Lovable AI (Gemini) ──
     const MAX_RETRIES = 2;
     let lastStatus = 500;
+
+    // Usage headers to include in successful responses
+    const usageHeaders = {
+      "X-Daily-Limit": String(DAILY_LIMIT),
+      "X-Daily-Used": String(dailyUsed + 1),
+      "X-Daily-Remaining": String(Math.max(0, dailyRemaining - 1)),
+    };
 
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
       try {
@@ -638,10 +705,10 @@ Deno.serve(async (req) => {
         if (response.ok) {
           // Log successful AI usage (fire-and-forget)
           const elapsed = Date.now() - requestStartTime;
-          logAIUsage(type, lang, rateLimitId, rateLimitId !== getClientId(req) ? rateLimitId : null, tuning.max_tokens, true, elapsed).catch(() => {});
+          logAIUsage(type, lang, rateLimitId, userId, tuning.max_tokens, true, elapsed).catch(() => {});
 
           return new Response(response.body, {
-            headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+            headers: { ...corsHeaders, ...usageHeaders, "Content-Type": "text/event-stream" },
           });
         }
 

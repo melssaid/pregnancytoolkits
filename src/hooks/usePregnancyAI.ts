@@ -39,7 +39,7 @@ export function usePregnancyAI() {
   const [error, setError] = useState<string | null>(null);
   const [errorType, setErrorType] = useState<AIErrorType | null>(null);
   const { i18n, t } = useTranslation();
-  const { isLimitReached, remaining, incrementUsage, limit } = useAIUsageLimit();
+  const { isLimitReached, remaining, incrementUsage, syncFromServer, limit } = useAIUsageLimit();
 
   const languageRef = useRef(i18n.language);
   languageRef.current = i18n.language;
@@ -129,13 +129,30 @@ export function usePregnancyAI() {
           }
         );
 
+        // Sync server-reported usage from headers
+        const serverUsed = response.headers.get("X-Daily-Used");
+        if (serverUsed) {
+          syncFromServer(parseInt(serverUsed, 10));
+        }
+
         if (!response.ok) {
           // Read server error for better diagnostics
           let serverMsg: string | undefined;
+          let isDailyLimit = false;
           try {
             const errBody = await response.json();
             serverMsg = errBody?.error;
+            isDailyLimit = serverMsg === "daily_limit_reached";
           } catch { /* ignore */ }
+
+          // Server-enforced daily limit
+          if (isDailyLimit) {
+            const limitMsg = t('aiErrors.dailyLimitMsg', { limit, remaining: 0 });
+            setError(limitMsg);
+            setErrorType('rate_limit');
+            onDone();
+            return;
+          }
 
           // On 401, try refresh + retry once
           if (response.status === 401) {
@@ -154,8 +171,9 @@ export function usePregnancyAI() {
                   }
                 );
                 if (retryResp.ok && retryResp.body) {
+                  const retryUsed = retryResp.headers.get("X-Daily-Used");
+                  if (retryUsed) syncFromServer(parseInt(retryUsed, 10));
                   await processStream(retryResp.body, onDelta);
-                  incrementUsage();
                   onDone();
                   return;
                 }
@@ -178,7 +196,6 @@ export function usePregnancyAI() {
         }
 
         await processStream(response.body, onDelta);
-        incrementUsage();
         onDone();
       } catch (err) {
         console.error("[AI] streamChat error:", err);
@@ -191,7 +208,7 @@ export function usePregnancyAI() {
         setIsLoading(false);
       }
     },
-    [resolveError, isLimitReached, incrementUsage, limit, t, getAuthHeader]
+    [resolveError, isLimitReached, syncFromServer, limit, t, getAuthHeader]
   );
 
   const generateContent = useCallback(
