@@ -632,7 +632,7 @@
         "aiProducts": {
           "title": "AI-Powered Features",
           "desc": "We offer features powered by artificial intelligence through secure cloud-based AI models (Google Gemini). No third-party AI providers have access to your stored health data.",
-          "tools": ["Smart Pregnancy Guide", "Pregnancy Wellness Diary", "AI Meal Suggestion", "Smart Appointment Reminder", "AI Fitness Guides", "Labor Progress Guide", "Ultrasound Gallery"],
+          "tools": ["Smart Pregnancy Assistant", "Pregnancy Wellness Diary", "Smart Meal Suggestions", "Smart Appointment Planner", "Fitness & Flexibility Coach", "Contraction Logger", "Ultrasound Gallery"],
           "dataNote": "When using AI features, only your specific query text is sent anonymously to our secure backend. Your stored health data remains entirely on your device and is never transmitted.",
           "noTraining": "Your queries are NOT used to train AI models"
         },
