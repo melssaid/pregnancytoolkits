@@ -920,6 +920,80 @@ const SmartDashboard = () => {
             </Link>
           </motion.div>
         )}
+        {/* Professional Animated Divider */}
+        <motion.div 
+          className="relative my-8 flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
+          <motion.div 
+            className="absolute inset-0 flex items-center"
+            aria-hidden="true"
+          >
+            <div className="w-full border-t border-border/40" />
+          </motion.div>
+          <motion.div 
+            className="relative flex items-center gap-3"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.5, type: "spring" }}
+          >
+            <motion.div 
+              className="h-[2px] w-12 rounded-full bg-gradient-to-r from-transparent to-primary/60"
+              initial={{ width: 0 }}
+              animate={{ width: 48 }}
+              transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+            />
+            <motion.div
+              className="h-2 w-2 rounded-full bg-primary/50"
+              animate={{ 
+                scale: [1, 1.3, 1],
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="h-1.5 w-1.5 rounded-full bg-primary/70"
+              animate={{ 
+                scale: [1, 1.4, 1],
+                opacity: [0.6, 1, 0.6],
+              }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+            />
+            <motion.div
+              className="h-3 w-3 rounded-full bg-gradient-to-br from-primary to-accent shadow-sm shadow-primary/20"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 360],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="h-1.5 w-1.5 rounded-full bg-primary/70"
+              animate={{ 
+                scale: [1, 1.4, 1],
+                opacity: [0.6, 1, 0.6],
+              }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+            />
+            <motion.div
+              className="h-2 w-2 rounded-full bg-primary/50"
+              animate={{ 
+                scale: [1, 1.3, 1],
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
+            />
+            <motion.div 
+              className="h-[2px] w-12 rounded-full bg-gradient-to-l from-transparent to-primary/60"
+              initial={{ width: 0 }}
+              animate={{ width: 48 }}
+              transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+            />
+          </motion.div>
+        </motion.div>
+
       </main>
     </Layout>
   );
