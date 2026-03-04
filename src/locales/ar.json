@@ -144,7 +144,7 @@
     "dueDateLabel": "تاريخ الولادة المتوقع"
   },
   "tools": {
-    "pregnancyAssistant": {"title": "دليل الحمل الذكي", "description": "اسألي أي سؤال عن الحمل واحصلي على إجابة فورية"},
+    "pregnancyAssistant": {"title": "دليل الحمل الذكي", "description": "مرافقك الذكي للإجابة عن كل ما يخص الحمل والأمومة"},
     "wellnessDiary": {"title": "يوميات العافية أثناء الحمل", "description": "سجّلي وتأملي في شعورك خلال رحلة الحمل"},
     "aiMealSuggestion": {"title": "مخطط الوجبات المخصص", "description": "اقتراحات وجبات مخصصة لمرحلة الحمل"},
     "weeklySummary": {"title": "ملخص الأسبوع", "description": "تحديثات أسبوعية عن نمو الطفل"},

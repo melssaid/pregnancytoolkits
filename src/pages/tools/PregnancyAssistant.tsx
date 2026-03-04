@@ -230,22 +230,8 @@ function ChatView({
               initial={{ opacity: 0, y: 15, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.25 }}
-              className={`flex gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
+              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
-              <div
-                className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 shadow-sm ${
-                  msg.role === "user"
-                    ? "bg-gradient-to-br from-primary to-pink-500"
-                    : ""
-                }`}
-                style={msg.role === "assistant" ? { background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(330 70% 55% / 0.1))' } : undefined}
-              >
-                {msg.role === "user" ? (
-                  <User className="w-4 h-4 text-white" />
-                ) : (
-                  <Bot className="w-4 h-4 text-primary" />
-                )}
-              </div>
               {msg.role === "user" ? (
                 <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm bg-gradient-to-br from-primary to-pink-500 text-primary-foreground rounded-tr-sm">
                   <p className="text-sm whitespace-pre-wrap leading-relaxed">
@@ -253,14 +239,14 @@ function ChatView({
                   </p>
                 </div>
               ) : (
-                <div className="max-w-[92%] rounded-2xl overflow-hidden shadow-sm border border-primary/15 rounded-tl-sm">
+                <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-primary/15">
                   <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
                   <div className="px-3.5 py-3 bg-card">
                     <div className="prose prose-sm max-w-none text-sm">
                       <MarkdownRenderer content={msg.content} accentColor="primary" />
                     </div>
-                    <p className="text-[7px] text-muted-foreground/35 text-end mt-2 tracking-wide">
-                      {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
+                    <p className="text-[7px] text-muted-foreground/30 text-end mt-2">
+                      {t('ai.resultDisclaimer')}
                     </p>
                   </div>
                 </div>
@@ -273,12 +259,9 @@ function ChatView({
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex gap-2.5"
+            className="flex justify-start"
           >
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-muted-foreground/70 to-muted-foreground/50 flex items-center justify-center shadow-sm">
-              <Bot className="w-4 h-4 text-white" />
-            </div>
-            <div className="bg-card border border-border/60 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+            <div className="bg-card border border-border/60 rounded-2xl px-4 py-3 shadow-sm">
               <div className="flex gap-1.5">
                 {[0, 1, 2].map((i) => (
                   <motion.div
