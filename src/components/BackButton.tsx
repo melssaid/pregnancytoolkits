@@ -18,14 +18,18 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
     const Icon = isRTL ? ArrowRight : ArrowLeft;
 
     const handleBack = useCallback(() => {
-      const hasRouterHistory = (window.history.state?.idx ?? 0) > 0;
-      
-      if (hasRouterHistory) {
+      // Primary: check React Router's history index
+      const routerIdx = window.history.state?.idx ?? 0;
+      // Secondary: check native browser history length
+      const hasBrowserHistory = window.history.length > 1;
+
+      if (routerIdx > 0 || hasBrowserHistory) {
         navigate(-1);
       } else {
+        // No history at all — use fallback
         const path = location.pathname;
         if (path.startsWith("/tools/")) {
-          navigate("/dashboard", { replace: true });
+          navigate("/", { replace: true });
         } else {
           navigate(fallbackPath, { replace: true });
         }
