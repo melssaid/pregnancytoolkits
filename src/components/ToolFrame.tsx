@@ -123,23 +123,23 @@ export function ToolFrame({
                 animate={{ scale: [0.8, 1.08, 0.97, 1], opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                {/* Heartbeat pulse rings */}
+                {/* Heartbeat pulse rings — rose pink */}
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
-                    className="absolute inset-0 rounded-full border-2 border-primary/25"
+                    className="absolute inset-0 rounded-full border-[1.5px] border-rose-400/35"
                     initial={{ scale: 1, opacity: 0.5 }}
-                    animate={{ scale: [1, 1.6, 2.2], opacity: [0.45, 0.2, 0] }}
+                    animate={{ scale: [1, 1.5, 2], opacity: [0.5, 0.2, 0] }}
                     transition={{
-                      duration: 2.5,
+                      duration: 2.8,
                       repeat: Infinity,
-                      delay: i * 0.8,
+                      delay: i * 0.9,
                       ease: "easeOut",
                     }}
                   />
                 ))}
-                {/* Soft glow */}
-                <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-accent/10 blur-lg opacity-60 group-hover:opacity-90 transition-opacity" />
+                {/* Soft rose glow */}
+                <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-rose-400/25 via-pink-300/15 to-rose-300/10 blur-lg opacity-70 group-hover:opacity-100 transition-opacity" />
                 <div className="relative h-11 w-11 rounded-full overflow-hidden shadow-lg ring-[2.5px] ring-white/90 bg-white">
                   <img 
                     src={logoImage} 
