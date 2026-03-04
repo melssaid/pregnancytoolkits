@@ -984,6 +984,12 @@
       "noSummariesYet": "لا توجد ملخصات بعد",
       "generateFirstHint": "اضغطي على الزر أعلاه لإنشاء أول ملخص أسبوعي",
       "previousSummaries": "الملخصات السابقة",
+      "autoSave": "حفظ تلقائي",
+      "savedAutomatically": "✓ تم الحفظ تلقائياً",
+      "lastGenerated": "آخر تحديث",
+      "regenerate": "إعادة التوليد",
+      "current": "الحالي",
+      "localStorageNote": "البيانات محفوظة محلياً على جهازك",
       "trimester": {
         "first": "الثلث الأول",
         "second": "الثلث الثاني",
