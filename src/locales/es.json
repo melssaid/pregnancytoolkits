@@ -731,7 +731,8 @@
     "downloadPDF": "Descargar PDF",
     "dailyExportLimit": "Puedes exportar hasta 4 informes por día",
     "dailyExportRemaining": "{{count}} exportaciones restantes hoy",
-    "dailyExportLimitReached": "Límite diario alcanzado. Inténtalo mañana."
+    "dailyExportLimitReached": "Límite diario alcanzado. Inténtalo mañana.",
+    "back": "Volver"
   },
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mes",
