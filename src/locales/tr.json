@@ -2690,19 +2690,24 @@
         "history": "Geçmiş"
       },
       "status": {
+        "label": "Durum",
         "normal": "Normal",
         "belowNormal": "Normalin Altı",
         "aboveNormal": "Normalin Üstü"
       },
       "ageMonths": "Yaş (ay)",
+      "monthUnit": "ay",
       "weightKg": "Ağırlık (kg)",
       "heightCm": "Boy (cm)",
       "headCircCm": "Baş Çevresi (cm)",
+      "optionalMeasurements": "Boy ve baş (isteğe bağlı)",
       "calculateResult": "Sonucu Hesapla",
       "result": "Sonuç",
       "weightPercentile": "Ağırlık Yüzdeliği",
-      "normalRange": "Bu yaş için normal aralık",
-      "saveToHistory": "Geçmişe Kaydet",
+      "normalRange": "Normal aralık",
+      "saveToHistory": "Ölçümü kaydet",
+      "saved": "Ölçüm kaydedildi!",
+      "deleted": "Silindi",
       "whoStandards": "WHO Büyüme Standartlarına dayalı",
       "month": "Ay {{month}}",
       "addFirst": "İlk Ölçümü Ekle"

@@ -2397,19 +2397,24 @@
         "history": "السجل"
       },
       "status": {
+        "label": "الحالة",
         "normal": "طبيعي",
         "belowNormal": "أقل من الطبيعي",
         "aboveNormal": "أعلى من الطبيعي"
       },
       "ageMonths": "العمر (بالأشهر)",
+      "monthUnit": "شهر",
       "weightKg": "الوزن (كغ)",
       "heightCm": "الطول (سم)",
       "headCircCm": "محيط الرأس (سم)",
+      "optionalMeasurements": "الطول ومحيط الرأس (اختياري)",
       "calculateResult": "احسبي النتيجة",
       "result": "النتيجة",
-      "weightPercentile": "نسبة الوزن على مخطط النمو",
-      "normalRange": "النطاق الطبيعي لهذا العمر",
-      "saveToHistory": "حفظ في السجل",
+      "weightPercentile": "نسبة الوزن",
+      "normalRange": "النطاق الطبيعي",
+      "saveToHistory": "حفظ القياس",
+      "saved": "تم حفظ القياس!",
+      "deleted": "تم الحذف",
       "whoStandards": "مبني على معايير منظمة الصحة العالمية",
       "month": "الشهر {{month}}",
       "addFirst": "أضيفي أول قياس"
