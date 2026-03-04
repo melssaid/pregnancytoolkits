@@ -1212,6 +1212,12 @@
       "noSummariesYet": "No summaries yet",
       "generateFirstHint": "Tap the button above to generate your first weekly summary",
       "previousSummaries": "Previous Summaries",
+      "autoSave": "Auto-save",
+      "savedAutomatically": "✓ Saved automatically",
+      "lastGenerated": "Last updated",
+      "regenerate": "Regenerate",
+      "current": "Current",
+      "localStorageNote": "Data saved locally on your device",
       "trimester": {
         "first": "First Trimester",
         "second": "Second Trimester",
