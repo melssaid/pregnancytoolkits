@@ -141,21 +141,19 @@ export default function NutritionSupplementsGuide() {
         </Tabs>
       </div>
 
-      {/* Promotional Video (non-Arabic only) */}
-      {lang !== 'ar' && (
-        <div className="mt-4 rounded-xl overflow-hidden border border-border/40">
-          <video
-            src="/videos/nutrition-promo.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="w-full"
-            style={{ maxHeight: 280 }}
-          />
-        </div>
-      )}
+      {/* Promotional Video */}
+      <div className="mt-4 rounded-xl overflow-hidden border border-border/40">
+        <video
+          src={lang === 'ar' ? '/videos/nutrition-promo-ar.mp4' : '/videos/nutrition-promo.mp4'}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full"
+          style={{ maxHeight: 280 }}
+        />
+      </div>
 
       {/* Video Library */}
       <VideoLibrary
