@@ -2245,6 +2245,8 @@
       "dailyLimitReached": "You've used today's uploads 🌙 Come back tomorrow!",
       "dailyLimitReachedTitle": "Daily limit reached",
       "dailyLimitReachedDesc": "You can upload 3 new photos tomorrow ☀️",
+      "lastPhotoReminderTitle": "1 photo left today 📸",
+      "lastPhotoReminderDesc": "Use it wisely! Your 3 daily uploads reset tomorrow 💕",
       "imageSizeLimitTitle": "Image too large",
       "imageSizeLimitDesc": "Please choose an image smaller than 2MB for optimal performance"
     },
