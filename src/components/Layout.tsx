@@ -20,6 +20,24 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
+      {/* Trust Bar - Above header */}
+      <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-1 px-3">
+        <div className="flex items-center justify-center gap-3 sm:gap-5 text-[10px] font-medium tracking-wide">
+          <div className="flex items-center gap-1">
+            <Shield className="h-3 w-3" />
+            <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
+          </div>
+          <div className="hidden sm:flex items-center gap-1">
+            <Heart className="h-3 w-3" />
+            <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Shield className="h-3 w-3" />
+            <span>{t('layout.trustBar.premium')}</span>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm">
         <div className="flex h-14 items-center justify-between px-3">
@@ -69,24 +87,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             >
               <Settings className="h-5 w-5" />
             </Link>
-          </div>
-        </div>
-
-        {/* Trust Bar - Below header */}
-        <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-1 px-3">
-          <div className="flex items-center justify-center gap-3 sm:gap-5 text-[10px] font-medium tracking-wide">
-            <div className="flex items-center gap-1">
-              <Shield className="h-3 w-3" />
-              <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
-            </div>
-            <div className="hidden sm:flex items-center gap-1">
-              <Heart className="h-3 w-3" />
-              <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Shield className="h-3 w-3" />
-              <span>{t('layout.trustBar.premium')}</span>
-            </div>
           </div>
         </div>
       </header>
