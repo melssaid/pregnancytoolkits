@@ -147,7 +147,7 @@ export function ToolFrame({
                   height={64}
                   loading="eager"
                   decoding="async"
-                  className="relative h-16 w-16 rounded-full shadow-lg ring-2 ring-primary/20 object-cover"
+                  className="relative h-16 w-16 object-contain drop-shadow-md"
                 />
               </motion.div>
             </Link>
