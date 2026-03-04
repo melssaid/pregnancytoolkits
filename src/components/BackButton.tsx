@@ -22,19 +22,14 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
     const Icon = isRTL ? ArrowRight : ArrowLeft;
 
     const handleBack = useCallback(() => {
-      // Smart fallback: tools → dashboard, else → home
-      const smartFallback = fallbackPath
-        ?? (location.pathname.startsWith("/tools/") ? "/dashboard" : "/");
-
-      const routerIdx = window.history.state?.idx ?? 0;
-
-      if (navDepth > 0 || routerIdx > 0) {
-        navDepth = Math.max(0, navDepth - 1);
+      // Always try real browser back if there's history
+      if (window.history.length > 1) {
         navigate(-1);
       } else {
-        navigate(smartFallback, { replace: true });
+        // Truly no history (direct link access) → go home
+        navigate(fallbackPath ?? "/", { replace: true });
       }
-    }, [navigate, location.pathname, fallbackPath]);
+    }, [navigate, fallbackPath]);
 
     return (
       <button
