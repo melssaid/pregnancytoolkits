@@ -317,7 +317,7 @@ const SmartDashboard = () => {
             {/* 5. Data Tracking Tools - Organized by Category */}
             <Card className="overflow-hidden rounded-3xl card-pink-top">
               <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-semibold flex items-center gap-2">
                     <Database className="w-4 h-4 text-primary" />
                     {t('dashboard.myTrackingData')}
@@ -326,6 +326,9 @@ const SmartDashboard = () => {
                     {trackingTools.reduce((acc, cat) => acc + cat.tools.length, 0)} {t('dashboard.tools')}
                   </span>
                 </div>
+                <p className="text-[10px] text-muted-foreground/60 mb-4 leading-relaxed">
+                  {t('dashboard.dataHint', 'تظهر البيانات والإحصائيات تلقائياً عند استخدام الأدوات وإضافة بياناتك')}
+                </p>
                 
                 <div className="space-y-4">
                   {trackingTools.map((category, catIndex) => {

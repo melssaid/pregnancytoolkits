@@ -357,6 +357,7 @@
     "smartPlanDesc": "My Daily Plan & PDF Report",
     "myTrackingData": "My Tracking Data",
     "tools": "tools",
+    "dataHint": "Stats and insights appear automatically as you use tools and add your data",
     "categories": {
       "dailyTracking": "Daily Tracking",
       "planning": "Planning",
