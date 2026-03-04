@@ -207,10 +207,10 @@ Keep recipes simple (under 30 min prep). Avoid raw/undercooked foods, high-mercu
       return persona + `Provide clear, well-organized, and supportive responses.
 
 Structure complex responses with:
-## 📌 Quick Answer
-## 📚 Detailed Information
-## 💡 Practical Tips
-## 📞 When to Consult Your Doctor
+## 🌸 ما يهمك معرفته
+## 📚 معلومات تفصيلية
+## 💡 نصائح عملية
+## 📞 متى تستشيرين طبيبتك
 
 Be warm, reassuring, and professional. Avoid alarmist language.`;
 
@@ -281,7 +281,7 @@ Provide reassuring, practical advice focused on pregnancy-safe techniques.`;
 
 ## 🦵 Cramp Analysis
 ## 💡 Prevention Strategy
-## 🆘 Quick Relief Guide
+## 🆘 تخفيف فوري
 ## 🥗 Dietary Recommendations
 ## ⚠️ When to Seek Medical Help
 
