@@ -1,4 +1,9 @@
 {
+  "notFound": {
+    "title": "Page introuvable",
+    "message": "Oups ! Page introuvable",
+    "returnHome": "Retour à l'accueil"
+  },
   "home": {
     "tagline": "Votre compagnon intelligent à chaque étape",
     "aiSubtitle": "Outils d'IA avancés"

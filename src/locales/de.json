@@ -1,4 +1,9 @@
 {
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "message": "Hoppla! Seite nicht gefunden",
+    "returnHome": "Zur Startseite"
+  },
   "home": {
     "tagline": "Ihr smarter Begleiter in jeder Phase",
     "aiSubtitle": "Fortschrittliche KI-Tools"

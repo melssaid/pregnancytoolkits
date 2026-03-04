@@ -1,4 +1,9 @@
 {
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "message": "Hay aksi! Sayfa bulunamadı",
+    "returnHome": "Ana sayfaya dön"
+  },
   "home": {
     "tagline": "Her aşamada akıllı yol arkadaşınız",
     "aiSubtitle": "Gelişmiş yapay zekâ araçları"

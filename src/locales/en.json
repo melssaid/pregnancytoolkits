@@ -1,4 +1,9 @@
 {
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  },
   "home": {
     "tagline": "Your Smart Companion at Every Stage",
     "aiSubtitle": "Advanced AI-Powered Tools"
