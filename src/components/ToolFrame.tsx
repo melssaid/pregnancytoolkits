@@ -123,23 +123,42 @@ export function ToolFrame({
                 animate={{ scale: [0.8, 1.08, 0.97, 1], opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                {/* Heartbeat pulse rings — rose pink */}
-                {[0, 1, 2].map((i) => (
+                {/* Orbital ring */}
+                <motion.div
+                  className="absolute inset-[-6px] rounded-full border border-rose-300/15"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                />
+                {/* Orbital particles */}
+                {[0, 1, 2, 3, 4, 5].map((i) => (
                   <motion.div
                     key={i}
-                    className="absolute inset-0 rounded-full border-[1.5px] border-rose-400/35"
-                    initial={{ scale: 1, opacity: 0.5 }}
-                    animate={{ scale: [1, 1.5, 2], opacity: [0.5, 0.2, 0] }}
-                    transition={{
-                      duration: 2.8,
-                      repeat: Infinity,
-                      delay: i * 0.9,
-                      ease: "easeOut",
+                    className="absolute"
+                    style={{ top: "50%", left: "50%" }}
+                    animate={{
+                      x: [
+                        Math.cos((i / 6) * Math.PI * 2) * 28,
+                        Math.cos(((i + 1) / 6) * Math.PI * 2) * 28,
+                        Math.cos(((i + 2) / 6) * Math.PI * 2) * 28,
+                      ],
+                      y: [
+                        Math.sin((i / 6) * Math.PI * 2) * 28,
+                        Math.sin(((i + 1) / 6) * Math.PI * 2) * 28,
+                        Math.sin(((i + 2) / 6) * Math.PI * 2) * 28,
+                      ],
+                      opacity: [0.3, 0.8, 0.3],
+                      scale: [0.8, 1.2, 0.8],
                     }}
-                  />
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      delay: (i / 6) * 6,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <div className="w-[4px] h-[4px] rounded-full bg-gradient-to-br from-rose-400 to-pink-400 shadow-sm shadow-rose-400/50" />
+                  </motion.div>
                 ))}
-                {/* Soft rose glow */}
-                <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-rose-400/25 via-pink-300/15 to-rose-300/10 blur-lg opacity-70 group-hover:opacity-100 transition-opacity" />
                 <div className="relative h-11 w-11 rounded-full overflow-hidden shadow-lg ring-[2.5px] ring-white/90 bg-white">
                   <img 
                     src={logoImage} 
