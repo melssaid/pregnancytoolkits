@@ -210,8 +210,8 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
         )}
       </div>
       {disclaimerContent && (
-        <div className="mt-4 rounded-xl border border-primary/15 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent p-3.5">
-          <div className="space-y-0.5 text-[10px] leading-relaxed text-muted-foreground">
+        <div className="mt-4 rounded-xl border border-primary/15 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent p-4">
+          <div className="space-y-1 text-[11px] leading-relaxed text-muted-foreground">
             {disclaimerContent}
           </div>
         </div>
