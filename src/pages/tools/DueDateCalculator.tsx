@@ -365,8 +365,7 @@ A supportive message for this stage of pregnancy`}
             />
             <RelatedToolLinks links={[
               { to: "/tools/cycle-tracker", titleKey: "toolsInternal.dueDate.cycleTrackerLink", titleFallback: "Cycle Tracker", descKey: "toolsInternal.dueDate.cycleTrackerLinkDesc", descFallback: "Track your menstrual cycle", icon: "droplets" },
-              { to: "/tools/fetal-growth", titleKey: "toolsInternal.dueDate.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.dueDate.fetalDevLinkDesc", descFallback: "Track your baby's growth week by week", icon: "baby" },
-              { to: "/tools/weekly-summary", titleKey: "toolsInternal.dueDate.weeklySummaryLink", titleFallback: "Weekly Summary", descKey: "toolsInternal.dueDate.weeklySummaryLinkDesc", descFallback: "Get AI-powered weekly pregnancy insights", icon: "trending" },
+              { to: "/tools/fertility-academy", titleKey: "toolsInternal.dueDate.fertilityAcademyLink", titleFallback: "Fertility Academy", descKey: "toolsInternal.dueDate.fertilityAcademyLinkDesc", descFallback: "Comprehensive fertility education", icon: "heart" },
             ]} />
 
             <div className="flex items-start gap-2 rounded-lg bg-muted p-3">

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
+import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -136,6 +137,11 @@ export default function NutritionSupplementsGuide() {
           </TabsContent>
         </Tabs>
       </div>
+
+      <RelatedToolLinks links={[
+        { to: "/tools/fertility-academy", titleKey: "toolsInternal.nutritionSupplements.related.academy", titleFallback: "Fertility Academy", descKey: "toolsInternal.nutritionSupplements.related.academyDesc", descFallback: "Comprehensive fertility education", icon: "heart" },
+        { to: "/tools/preconception-checkup", titleKey: "toolsInternal.nutritionSupplements.related.preconception", titleFallback: "Preconception Checkup", descKey: "toolsInternal.nutritionSupplements.related.preconceptionDesc", descFallback: "Prepare for a healthy pregnancy", icon: "activity" },
+      ]} />
       
     </ToolFrame>
   );

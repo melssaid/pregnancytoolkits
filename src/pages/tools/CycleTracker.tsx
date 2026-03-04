@@ -177,6 +177,7 @@ Any patterns that might be worth discussing with a doctor`;
 
             <RelatedToolLinks links={[
               { to: "/tools/due-date-calculator", titleKey: "toolsInternal.cycleTracker.dueDateLink", titleFallback: "Due Date Calculator", descKey: "toolsInternal.cycleTracker.dueDateLinkDesc", descFallback: "Calculate your expected due date", icon: "calendar" },
+              { to: "/tools/fertility-academy", titleKey: "toolsInternal.cycleTracker.fertilityAcademyLink", titleFallback: "Fertility Academy", descKey: "toolsInternal.cycleTracker.fertilityAcademyLinkDesc", descFallback: "Comprehensive fertility education", icon: "heart" },
             ]} />
 
             {/* Tip */}
