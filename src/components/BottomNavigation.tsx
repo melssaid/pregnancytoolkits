@@ -51,93 +51,101 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
         {/* Notifications Panel */}
         <AnimatePresence>
           {notificationsOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setNotificationsOpen(false)}
-                className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
-              />
-              <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 100, opacity: 0 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                drag="y"
-                dragConstraints={{ top: 0, bottom: 0 }}
-                dragElastic={{ top: 0, bottom: 0.6 }}
-                onDragEnd={(_: any, info: PanInfo) => {
-                  if (info.offset.y > 80) setNotificationsOpen(false);
-                }}
-                className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[70vh] overflow-auto rounded-2xl bg-card border border-border/40 shadow-2xl md:hidden touch-pan-x"
-              >
-                <div className="p-4">
-                  <div className="w-10 h-1 bg-muted-foreground/20 rounded-full mx-auto mb-4 cursor-grab active:cursor-grabbing" />
-                  <NotificationsPanel />
-                </div>
-              </motion.div>
-            </>
+            <motion.div
+              key="notif-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setNotificationsOpen(false)}
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {notificationsOpen && (
+            <motion.div
+              key="notif-panel"
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              drag="y"
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0, bottom: 0.6 }}
+              onDragEnd={(_: any, info: PanInfo) => {
+                if (info.offset.y > 80) setNotificationsOpen(false);
+              }}
+              className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[70vh] overflow-auto rounded-2xl bg-card border border-border/40 shadow-2xl md:hidden touch-pan-x"
+            >
+              <div className="p-4">
+                <div className="w-10 h-1 bg-muted-foreground/20 rounded-full mx-auto mb-4 cursor-grab active:cursor-grabbing" />
+                <NotificationsPanel />
+              </div>
+            </motion.div>
           )}
         </AnimatePresence>
 
         {/* More Menu Panel */}
         <AnimatePresence>
           {moreOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setMoreOpen(false)}
-                className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
-              />
-              <motion.div
-                initial={{ y: 60, opacity: 0, scale: 0.95 }}
-                animate={{ y: 0, opacity: 1, scale: 1 }}
-                exit={{ y: 60, opacity: 0, scale: 0.95 }}
-                transition={{ type: "spring", damping: 28, stiffness: 350 }}
-                className="fixed bottom-[4.5rem] end-2 z-50 w-52 rounded-2xl bg-card border border-border/50 shadow-2xl md:hidden overflow-hidden"
-              >
-                <div className="p-2 space-y-0.5">
-                  {moreItems.map((item) => {
-                    const Icon = item.icon;
-                    
-                    if (item.href) {
-                      return (
-                        <Link
-                          key={item.id}
-                          to={item.href}
-                          onClick={() => setMoreOpen(false)}
-                          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-foreground/80 hover:bg-muted/60 transition-colors active:scale-[0.97]"
-                        >
-                          <Icon className="w-4.5 h-4.5 text-muted-foreground" strokeWidth={1.8} />
-                          <span>{t(item.labelKey)}</span>
-                        </Link>
-                      );
-                    }
-
+            <motion.div
+              key="more-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMoreOpen(false)}
+              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {moreOpen && (
+            <motion.div
+              key="more-panel"
+              initial={{ y: 60, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 60, opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              className="fixed bottom-[4.5rem] end-2 z-50 w-52 rounded-2xl bg-card border border-border/50 shadow-2xl md:hidden overflow-hidden"
+            >
+              <div className="p-2 space-y-0.5">
+                {moreItems.map((item) => {
+                  const Icon = item.icon;
+                  
+                  if (item.href) {
                     return (
-                      <button
+                      <Link
                         key={item.id}
-                        onClick={() => handleMoreAction(item.action)}
-                        className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-foreground/80 hover:bg-muted/60 transition-colors active:scale-[0.97]"
+                        to={item.href}
+                        onClick={() => setMoreOpen(false)}
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-foreground/80 hover:bg-muted/60 transition-colors active:scale-[0.97]"
                       >
-                        <div className="relative">
-                          <Icon className="w-4.5 h-4.5 text-muted-foreground" strokeWidth={1.8} />
-                          {item.badge && item.badge > 0 ? (
-                            <span className="absolute -top-1.5 -end-1.5 w-3.5 h-3.5 bg-destructive text-destructive-foreground text-[7px] font-bold rounded-full flex items-center justify-center">
-                              {item.badge > 9 ? '9+' : item.badge}
-                            </span>
-                          ) : null}
-                        </div>
+                        <Icon className="w-4.5 h-4.5 text-muted-foreground" strokeWidth={1.8} />
                         <span>{t(item.labelKey)}</span>
-                      </button>
+                      </Link>
                     );
-                  })}
-                </div>
-              </motion.div>
-            </>
+                  }
+
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleMoreAction(item.action)}
+                      className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-foreground/80 hover:bg-muted/60 transition-colors active:scale-[0.97]"
+                    >
+                      <div className="relative">
+                        <Icon className="w-4.5 h-4.5 text-muted-foreground" strokeWidth={1.8} />
+                        {item.badge && item.badge > 0 ? (
+                          <span className="absolute -top-1.5 -end-1.5 w-3.5 h-3.5 bg-destructive text-destructive-foreground text-[7px] font-bold rounded-full flex items-center justify-center">
+                            {item.badge > 9 ? '9+' : item.badge}
+                          </span>
+                        ) : null}
+                      </div>
+                      <span>{t(item.labelKey)}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
           )}
         </AnimatePresence>
 
