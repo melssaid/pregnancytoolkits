@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Baby, Play, TrendingUp, Clock, Loader2, Save, Sparkles, AlertTriangle, Activity, BarChart3, Brain, RefreshCw, Zap, ChevronDown, ChevronUp, Target, Shield } from 'lucide-react';
+import { Baby, Play, TrendingUp, Clock, Loader2, Save, Sparkles, AlertTriangle, Activity, BarChart3, Brain, RefreshCw, Zap, Target, Shield, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -33,9 +33,8 @@ const SmartKickCounter: React.FC = () => {
   // AI States
   const [aiPatternAnalysis, setAiPatternAnalysis] = useState('');
   const [aiHealthInsight, setAiHealthInsight] = useState('');
-  const [aiActiveTab, setAiActiveTab] = useState<'pattern' | 'health' | 'tips'>('pattern');
+  const [aiActiveTab, setAiActiveTab] = useState<'pattern' | 'health' | 'tips' | null>(null);
   const [aiTips, setAiTips] = useState('');
-  const [showAIDetails, setShowAIDetails] = useState(false);
   
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const { toast } = useToast();
@@ -658,142 +657,130 @@ Keep it practical, warm, and easy to follow.`;
           </Card>
         </div>
 
-        {/* Enhanced AI Analysis Section */}
-        {history.length >= 2 && (
-          <Card className="bg-gradient-to-br from-primary/5 to-secondary/10 border-primary/20">
-            <CardContent className="py-3">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-sm flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-primary" />
-                  {t('toolsInternal.kickCounter.aiDataAnalysis')}
-                </h3>
-                <div className="flex items-center gap-2">
-                  {(aiPatternAnalysis || aiHealthInsight || aiTips) && !aiLoading && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        if (aiActiveTab === 'pattern') analyzePatterns(history);
-                        else if (aiActiveTab === 'health') getHealthInsight();
-                        else getAITips();
-                      }}
-                    >
-                      <RefreshCw className="w-4 h-4" />
-                    </Button>
-                  )}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setShowAIDetails(!showAIDetails)}
-                  >
-                    {showAIDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                  </Button>
-                </div>
+        {/* AI Analysis Section - always visible after 1+ sessions */}
+        {history.length >= 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            {/* Section header */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(330 70% 55% / 0.1))' }}>
+                <Brain className="w-3.5 h-3.5 text-primary" />
               </div>
+              <h3 className="text-sm font-bold text-foreground">{t('toolsInternal.kickCounter.aiDataAnalysis')}</h3>
+            </div>
 
-              {/* Quick AI Summary Stats */}
-              <div className="grid grid-cols-3 gap-2 mb-3">
-                <div className="bg-background/60 rounded-lg p-2.5 text-center">
-                  <Target className="w-4 h-4 mx-auto mb-1 text-primary" />
-                  <div className="text-sm font-bold">{getAverageKicks()}</div>
-                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.avgPerSession')}</p>
-                </div>
-                <div className="bg-background/60 rounded-lg p-2.5 text-center">
-                  <Activity className="w-4 h-4 mx-auto mb-1 text-primary" />
-                  <div className={`text-sm font-bold ${getScoreColor(movementScore)}`}>
-                    {movementScore}%
-                  </div>
-                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.healthScore')}</p>
-                </div>
-                <div className="bg-background/60 rounded-lg p-2.5 text-center">
-                  <Shield className="w-4 h-4 mx-auto mb-1 text-primary" />
-                  <div className="text-sm font-bold text-accent">
-                    {movementScore >= 70 ? '✓' : movementScore >= 40 ? '!' : '⚠'}
-                  </div>
-                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.status')}</p>
-                </div>
-              </div>
-
-              <AnimatePresence>
-                {showAIDetails && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
+            {/* 3 AI action cards */}
+            <div className="grid grid-cols-3 gap-2 mb-3">
+              {[
+                { tab: 'pattern' as const, onClick: () => analyzePatterns(history), icon: BarChart3, label: t('toolsInternal.kickCounter.patterns'), color: 'from-primary/10 to-primary/5', minSessions: 2 },
+                { tab: 'health' as const, onClick: getHealthInsight, icon: Heart, label: t('toolsInternal.kickCounter.health'), color: 'from-pink-500/10 to-pink-500/5', minSessions: 1 },
+                { tab: 'tips' as const, onClick: getAITips, icon: Sparkles, label: t('toolsInternal.kickCounter.tips'), color: 'from-purple-500/10 to-purple-500/5', minSessions: 1 },
+              ].map(({ tab, onClick, icon: Icon, label, color, minSessions }) => {
+                const isSelected = aiActiveTab === tab;
+                const isDisabled = aiLoading || history.length < minSessions;
+                return (
+                  <motion.button
+                    key={tab}
+                    whileTap={{ scale: 0.95 }}
+                    disabled={isDisabled}
+                    onClick={() => {
+                      setAiActiveTab(tab);
+                      onClick();
+                    }}
+                    className={`relative rounded-xl p-3 text-center transition-all border disabled:opacity-40 ${
+                      isSelected 
+                        ? 'border-primary/30 shadow-sm' 
+                        : 'border-border/40 hover:border-primary/20'
+                    } bg-gradient-to-b ${color}`}
                   >
-                    {/* AI Tab Buttons */}
-                    <div className="grid grid-cols-3 gap-2 mb-4">
-                      {[
-                        { tab: 'pattern', onClick: () => analyzePatterns(history), icon: BarChart3, label: t('toolsInternal.kickCounter.patterns') },
-                        { tab: 'health',  onClick: getHealthInsight,               icon: Activity,  label: t('toolsInternal.kickCounter.health') },
-                        { tab: 'tips',    onClick: getAITips,                      icon: Brain,     label: t('toolsInternal.kickCounter.tips') },
-                      ].map(({ tab, onClick, icon: Icon, label }) => (
-                        <motion.button
-                          key={tab}
-                          onClick={onClick}
-                          disabled={aiLoading}
-                          whileTap={{ scale: 0.92 }}
-                          className="relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
-                        >
-                          <div
-                            className={`flex items-center justify-center gap-1 py-2 px-2 text-xs rounded-xl font-medium transition-all ${aiActiveTab === tab ? 'text-white' : 'text-foreground bg-muted/60 hover:bg-muted'}`}
-                            style={aiActiveTab === tab ? { background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' } : {}}
-                          >
-                            {aiLoading && aiActiveTab === tab ? <Loader2 className="w-3 h-3 animate-spin" /> : <Icon className="w-3 h-3" />}
-                            <span>{label}</span>
-                          </div>
-                        </motion.button>
-                      ))}
+                    <div className={`w-8 h-8 rounded-full mx-auto mb-1.5 flex items-center justify-center ${isSelected ? 'bg-primary/15' : 'bg-muted/50'}`}>
+                      {aiLoading && isSelected ? (
+                        <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                      ) : (
+                        <Icon className={`w-4 h-4 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`} />
+                      )}
                     </div>
+                    <span className={`text-[11px] font-medium ${isSelected ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
+                    {history.length < minSessions && (
+                      <p className="text-[8px] text-muted-foreground/60 mt-0.5">{t('toolsInternal.kickCounter.needMoreSessions', '٢+ جلسات')}</p>
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
 
-                    {/* AI Content */}
-                    {(aiPatternAnalysis || aiHealthInsight || aiTips || aiLoading) && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="bg-background/50 rounded-xl p-4 max-h-[400px] overflow-y-auto"
-                      >
-                        {aiLoading && !aiPatternAnalysis && !aiHealthInsight && !aiTips ? (
-                          <div className="flex items-center justify-center py-8 text-muted-foreground">
-                            <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                            {t('toolsInternal.kickCounter.analyzingMovements')}
-                          </div>
-                        ) : (
-                          <MarkdownRenderer 
+            {/* AI Result */}
+            <AnimatePresence mode="wait">
+              {aiActiveTab && (aiPatternAnalysis || aiHealthInsight || aiTips || aiLoading) && (
+                <motion.div
+                  key={aiActiveTab}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <Card className="overflow-hidden border-border/40">
+                    <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
+                    <CardContent className="p-4">
+                      {aiLoading && !aiPatternAnalysis && !aiHealthInsight && !aiTips ? (
+                        <div className="flex items-center justify-center py-8 gap-2 text-muted-foreground">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span className="text-xs">{t('toolsInternal.kickCounter.analyzingMovements')}</span>
+                        </div>
+                      ) : (
+                        <>
+                          <MarkdownRenderer
                             content={
                               aiActiveTab === 'pattern' ? aiPatternAnalysis :
                               aiActiveTab === 'health' ? aiHealthInsight :
                               aiTips
-                            } 
+                            }
+                            isLoading={aiLoading}
                           />
-                        )}
-                      </motion.div>
-                    )}
-
-                    {!aiPatternAnalysis && !aiHealthInsight && !aiTips && !aiLoading && (
-                      <div className="text-center py-6">
-                        <Brain className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
-                        <p className="text-sm text-muted-foreground">
-                          {t('toolsInternal.kickCounter.tapForInsights')}
+                          {/* Refresh */}
+                          {!aiLoading && (
+                            <div className="flex justify-end mt-3">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-7 text-[10px] text-muted-foreground"
+                                onClick={() => {
+                                  if (aiActiveTab === 'pattern') analyzePatterns(history);
+                                  else if (aiActiveTab === 'health') getHealthInsight();
+                                  else getAITips();
+                                }}
+                              >
+                                <RefreshCw className="w-3 h-3 me-1" />
+                                {t('common.refresh', 'تحديث')}
+                              </Button>
+                            </div>
+                          )}
+                        </>
+                      )}
+                      {/* Disclaimer */}
+                      <div className="mt-3 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
+                        <p className="text-[9px] text-muted-foreground/60 tracking-wide">
+                          {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
                         </p>
                       </div>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {!showAIDetails && (
-                <Button 
-                  variant="outline" 
-                  className="w-full mt-2"
-                  onClick={() => setShowAIDetails(true)}
-                >
-                  <Brain className="w-4 h-4 mr-2" />
-                  {t('toolsInternal.kickCounter.viewDetailedAnalysis')}
-                </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               )}
-            </CardContent>
-          </Card>
+            </AnimatePresence>
+
+            {/* Empty state when no tab selected */}
+            {!aiActiveTab && !aiLoading && (
+              <div className="text-center py-4 bg-muted/20 rounded-xl border border-border/30">
+                <p className="text-xs text-muted-foreground">
+                  {t('toolsInternal.kickCounter.tapForInsights')}
+                </p>
+              </div>
+            )}
+          </motion.div>
         )}
 
         {/* History */}
