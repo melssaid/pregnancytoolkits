@@ -96,10 +96,12 @@ export const AIResponseFrame = ({
         </div>
         {footer}
 
-        {/* Subtle disclaimer */}
-        <p className="text-[8px] text-muted-foreground/40 text-center mt-2.5 tracking-wide">
-          {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
-        </p>
+        {/* Disclaimer */}
+        <div className="mt-3 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
+          <p className="text-[9px] text-muted-foreground/60 tracking-wide">
+            {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
+          </p>
+        </div>
       </div>
     </motion.div>
   );
