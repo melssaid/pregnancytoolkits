@@ -140,15 +140,17 @@ export function ToolFrame({
                 ))}
                 {/* Soft glow */}
                 <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-accent/10 blur-lg opacity-60 group-hover:opacity-90 transition-opacity" />
-                <img 
-                  src={logoImage} 
-                  alt="Pregnancy Toolkits" 
-                  width={64}
-                  height={64}
-                  loading="eager"
-                  decoding="async"
-                  className="relative h-16 w-16 rounded-full object-cover shadow-lg ring-[2.5px] ring-white/90"
-                />
+                <div className="relative h-11 w-11 rounded-full overflow-hidden shadow-lg ring-[2.5px] ring-white/90 bg-white">
+                  <img 
+                    src={logoImage} 
+                    alt="Pregnancy Toolkits" 
+                    width={44}
+                    height={44}
+                    loading="eager"
+                    decoding="async"
+                    className="h-full w-full object-cover scale-[1.35]"
+                  />
+                </div>
               </motion.div>
             </Link>
             <div className="flex-shrink-0">
