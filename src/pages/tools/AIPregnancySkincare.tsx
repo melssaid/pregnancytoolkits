@@ -111,103 +111,76 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
         >
-          <Card className="overflow-hidden border-primary/15 shadow-xl">
-            <CardContent className="p-0">
-              {/* Status strip */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border/30 bg-gradient-to-r from-primary/8 to-primary/3">
-                <div className="flex items-center gap-2 min-w-0">
-                  <div className="p-1.5 rounded-lg bg-primary/10">
-                    <Droplet className="h-3.5 w-3.5 text-primary" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[10px] text-muted-foreground leading-none">
-                      {t('toolsInternal.skincare.skinType')}
-                    </span>
-                    <span className="text-xs font-semibold text-foreground mt-0.5">
-                      {t(`toolsInternal.skincare.${skinType}`)}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="px-2 py-0.5 rounded-full bg-muted text-[10px] font-medium">
-                    {concerns.length > 0 ? `${concerns.length} ✓` : '0'}
-                  </span>
-                </div>
-              </div>
-
-              {/* Main action area */}
-              <div className="p-5">
-                {/* Gesture hint */}
-                <AnimatePresence>
-                  {showHint && concerns.length === 0 && (
+          <Card className="overflow-hidden border-border/50">
+            <CardContent className="p-3 space-y-3">
+              {/* Gesture hint */}
+              <AnimatePresence>
+                {showHint && concerns.length === 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    className="text-center"
+                  >
                     <motion.div
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -5 }}
-                      className="text-center mb-4"
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      className="inline-flex items-center gap-1.5"
                     >
-                      <motion.div
-                        animate={{ y: [0, -3, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="inline-flex items-center gap-1.5 text-primary"
-                      >
-                        <span className="text-lg">👇</span>
-                        <span className="text-xs font-medium text-muted-foreground">
-                          {t('toolsInternal.skincare.selectConcernsHint')}
-                        </span>
-                      </motion.div>
+                      <span className="text-lg">👇</span>
+                      <span className="text-xs font-medium text-muted-foreground">
+                        {t('toolsInternal.skincare.selectConcernsHint')}
+                      </span>
                     </motion.div>
-                  )}
-                </AnimatePresence>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-                {/* Skin Type Selector */}
-                <div className="space-y-1.5 mb-4">
-                  <Label className="text-xs text-muted-foreground">{t('toolsInternal.skincare.skinType')}</Label>
-                  <Select value={skinType} onValueChange={setSkinType}>
-                    <SelectTrigger className="w-full text-xs h-9">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-popover z-50">
-                      <SelectItem value="dry">{t('toolsInternal.skincare.dry')}</SelectItem>
-                      <SelectItem value="oily">{t('toolsInternal.skincare.oily')}</SelectItem>
-                      <SelectItem value="combination">{t('toolsInternal.skincare.combination')}</SelectItem>
-                      <SelectItem value="sensitive">{t('toolsInternal.skincare.sensitive')}</SelectItem>
-                      <SelectItem value="normal">{t('toolsInternal.skincare.normal')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Budget Selector */}
-                <div className="space-y-1.5 mb-4">
-                  <Label className="text-xs text-muted-foreground">{t('toolsInternal.skincare.budgetPreference')}</Label>
-                  <Select value={budget} onValueChange={setBudget}>
-                    <SelectTrigger className="w-full text-xs h-9">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-popover z-50">
-                      <SelectItem value="low">{t('toolsInternal.skincare.budgetLow')}</SelectItem>
-                      <SelectItem value="medium">{t('toolsInternal.skincare.budgetMedium')}</SelectItem>
-                      <SelectItem value="high">{t('toolsInternal.skincare.budgetHigh')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Skin Concerns Grid */}
-                <SkincareConcernGrid
-                  concerns={concerns}
-                  onToggle={toggleConcern}
-                />
+              {/* Skin Type Selector */}
+              <div className="space-y-1.5">
+                <Label className="text-xs text-muted-foreground">{t('toolsInternal.skincare.skinType')}</Label>
+                <Select value={skinType} onValueChange={setSkinType}>
+                  <SelectTrigger className="w-full text-xs h-9">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="dry">{t('toolsInternal.skincare.dry')}</SelectItem>
+                    <SelectItem value="oily">{t('toolsInternal.skincare.oily')}</SelectItem>
+                    <SelectItem value="combination">{t('toolsInternal.skincare.combination')}</SelectItem>
+                    <SelectItem value="sensitive">{t('toolsInternal.skincare.sensitive')}</SelectItem>
+                    <SelectItem value="normal">{t('toolsInternal.skincare.normal')}</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
-              {/* Action footer */}
-              <div className="px-5 pb-5">
-                <AIActionButton
-                  onClick={getSkincareRoutine}
-                  isLoading={isLoading}
-                  label={t('toolsInternal.skincare.getRoutine')}
-                  loadingLabel={t('toolsInternal.skincare.creatingRoutine')}
-                />
+              {/* Budget Selector */}
+              <div className="space-y-1.5">
+                <Label className="text-xs text-muted-foreground">{t('toolsInternal.skincare.budgetPreference')}</Label>
+                <Select value={budget} onValueChange={setBudget}>
+                  <SelectTrigger className="w-full text-xs h-9">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="low">{t('toolsInternal.skincare.budgetLow')}</SelectItem>
+                    <SelectItem value="medium">{t('toolsInternal.skincare.budgetMedium')}</SelectItem>
+                    <SelectItem value="high">{t('toolsInternal.skincare.budgetHigh')}</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
+
+              {/* Skin Concerns Grid */}
+              <SkincareConcernGrid
+                concerns={concerns}
+                onToggle={toggleConcern}
+              />
+
+              {/* Action button */}
+              <AIActionButton
+                onClick={getSkincareRoutine}
+                isLoading={isLoading}
+                label={t('toolsInternal.skincare.getRoutine')}
+                loadingLabel={t('toolsInternal.skincare.creatingRoutine')}
+              />
             </CardContent>
           </Card>
         </motion.div>

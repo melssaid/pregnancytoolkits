@@ -2,11 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { motion } from 'framer-motion';
 import { 
-  Brain, Info, Loader2, Sparkles, Calendar, 
+  Brain, Info, Sparkles, Calendar, 
   Clock, Trash2, ChevronDown, ChevronUp, Plus, Heart, SmilePlus, NotebookPen,
-  Waves, BatteryLow, Zap, AlignCenterVertical, Wind, Footprints, Flame,
-  Moon, TrendingUp, Compass, Smile, Meh, Frown, Coffee, CloudRain,
-  type LucideIcon
 } from 'lucide-react';
 import { WellnessDiaryChart } from '@/components/charts/WellnessDiaryChart';
 import { ToolFrame } from '@/components/ToolFrame';
@@ -24,6 +21,7 @@ import { AIActionButton } from '@/components/ai/AIActionButton';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { toast } from 'sonner';
 import { ToolHubNav, WELLNESS_HUB_TABS } from '@/components/ToolHubNav';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const STORAGE_KEY = 'wellness-diary-entries';
 
@@ -32,27 +30,14 @@ const SYMPTOM_IDS = [
   'swelling', 'heartburn', 'insomnia', 'moodswings', 'dizziness'
 ] as const;
 
-const SYMPTOM_ICONS: Record<string, LucideIcon> = {
-  nausea:     Waves,
-  fatigue:    BatteryLow,
-  headache:   Zap,
-  backpain:   AlignCenterVertical,
-  cramps:     Wind,
-  swelling:   Footprints,
-  heartburn:  Flame,
-  insomnia:   Moon,
-  moodswings: TrendingUp,
-  dizziness:  Compass,
-};
-
 const MOOD_OPTIONS = ['great', 'good', 'okay', 'tired', 'tough'] as const;
 
-const MOOD_ICONS: Record<string, LucideIcon> = {
-  great: Smile,
-  good:  SmilePlus,
-  okay:  Meh,
-  tired: Coffee,
-  tough: CloudRain,
+const MOOD_EMOJIS: Record<string, string> = {
+  great: '😊',
+  good: '🙂',
+  okay: '😐',
+  tired: '😴',
+  tough: '😔',
 };
 
 interface DiaryEntry {
@@ -212,18 +197,17 @@ Provide brief, supportive wellness insights about these feelings during week ${c
             </div>
             <div className="grid grid-cols-5 gap-1.5">
               {MOOD_OPTIONS.map(mood => {
-                const MoodIcon = MOOD_ICONS[mood];
                 return (
                   <button
                     key={mood}
                     onClick={() => setSelectedMood(prev => prev === mood ? '' : mood)}
-                    className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all ${
+                    className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-all ${
                       selectedMood === mood
-                        ? 'bg-primary/15 ring-2 ring-primary/40 shadow-sm'
+                        ? 'bg-primary/15 ring-2 ring-primary/40'
                         : 'bg-muted/60 hover:bg-muted'
                     }`}
                   >
-                    <MoodIcon className={`w-5 h-5 ${selectedMood === mood ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <span className="text-base">{MOOD_EMOJIS[mood]}</span>
                     <span className="text-[10px] font-medium leading-tight text-center">
                       {t(`toolsInternal.symptomAnalyzer.moods.${mood}`)}
                     </span>
@@ -244,19 +228,18 @@ Provide brief, supportive wellness insights about these feelings during week ${c
             <div className="grid grid-cols-2 gap-1.5">
               {SYMPTOM_IDS.map(id => {
                 const isSelected = selectedSymptoms.includes(id);
-                const SymptomIcon = SYMPTOM_ICONS[id];
                 return (
                   <button
                     key={id}
                     onClick={() => toggleSymptom(id)}
-                    className={`flex items-center gap-2 p-2.5 rounded-xl text-start transition-all text-xs ${
+                    className={`flex items-center gap-2 p-2 rounded-lg text-start transition-all text-xs ${
                       isSelected
-                        ? 'bg-primary/15 ring-1 ring-primary/40 shadow-sm'
-                        : 'bg-muted/60 hover:bg-muted'
+                        ? 'bg-primary/10 border border-primary/30'
+                        : 'bg-muted/60 hover:bg-muted border border-transparent'
                     }`}
                   >
-                    <SymptomIcon className={`w-4 h-4 shrink-0 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`} />
-                    <span className="font-medium">
+                    <Checkbox checked={isSelected} className="shrink-0 pointer-events-none" />
+                    <span className="font-medium leading-snug">
                       {t(`toolsInternal.symptomAnalyzer.symptoms.${id}`)}
                     </span>
                   </button>
@@ -342,7 +325,6 @@ Provide brief, supportive wellness insights about these feelings during week ${c
               {showHistory && (
                 <div className="mt-3 space-y-2 max-h-[400px] overflow-y-auto">
                   {entries.slice(0, 30).map(entry => {
-                    const EntryMoodIcon = entry.mood ? MOOD_ICONS[entry.mood] : null;
                     return (
                       <div key={entry.id} className="bg-muted/40 rounded-xl p-2.5 border border-border/50">
                         <div className="flex items-center justify-between mb-1.5">
@@ -353,8 +335,8 @@ Provide brief, supportive wellness insights about these feelings during week ${c
                             <Badge variant="outline" className="text-[9px] px-1.5 py-0">
                               {t('toolsInternal.symptomAnalyzer.week', { week: entry.week })}
                             </Badge>
-                            {EntryMoodIcon && (
-                              <EntryMoodIcon className="w-3.5 h-3.5 text-primary" />
+                            {entry.mood && (
+                              <span className="text-xs">{MOOD_EMOJIS[entry.mood]}</span>
                             )}
                           </div>
                           <button
@@ -367,15 +349,11 @@ Provide brief, supportive wellness insights about these feelings during week ${c
 
                         {entry.symptoms.length > 0 && (
                           <div className="flex flex-wrap gap-1 mb-1">
-                            {entry.symptoms.map(s => {
-                              const SIcon = SYMPTOM_ICONS[s];
-                              return (
-                                <span key={s} className="inline-flex items-center gap-1 text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full">
-                                  {SIcon && <SIcon className="w-2.5 h-2.5" />}
-                                  {t(`toolsInternal.symptomAnalyzer.symptoms.${s}`)}
-                                </span>
-                              );
-                            })}
+                            {entry.symptoms.map(s => (
+                              <span key={s} className="inline-flex items-center text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-full">
+                                {t(`toolsInternal.symptomAnalyzer.symptoms.${s}`)}
+                              </span>
+                            ))}
                           </div>
                         )}
 
