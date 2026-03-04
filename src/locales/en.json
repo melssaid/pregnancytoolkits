@@ -938,7 +938,11 @@
     "yesterday": "Yesterday",
     "h": "h",
     "m": "m",
-    "s": "s"
+    "s": "s",
+    "timeToChange": "Time for a change! 🍼",
+    "tapToRecord": "Tap the icon to record a change",
+    "goalReached": "Great job! Daily goal reached 🎉",
+    "lastChange": "Last change"
   },
   "babyGrowthPage": {
     "title": "Baby Growth",
@@ -1517,7 +1521,11 @@
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy insights",
       "weightGainLink": "Weight Gain Guide",
       "weightGainLinkDesc": "Monitor your healthy weight gain",
-      "exportPDF": "Share your journal with your consultant"
+      "exportPDF": "Share your journal with your consultant",
+      "startHint": "Start a new session then tap the circle for each baby movement",
+      "lastKick": "Last movement",
+      "goalReached": "Great job! Goal reached",
+      "goalReachedDesc": "10 movements recorded — you can continue or save the session"
     },
     "symptomAnalyzer": {
       "title": "Pregnancy Wellness Diary",

@@ -502,7 +502,7 @@ Keep it practical, warm, and easy to follow.`;
                     transition={{ delay: 0.3 }}
                   >
                     <p className="text-sm text-muted-foreground text-center max-w-[220px] leading-relaxed">
-                      {t('toolsInternal.kickCounter.startHint', 'ابدئي جلسة جديدة ثم اضغطي على الدائرة عند كل حركة لطفلك')}
+                      {t('toolsInternal.kickCounter.startHint')}
                     </p>
                     <Button
                       className="px-8 h-12 text-sm font-bold rounded-2xl shadow-lg shadow-primary/20"
@@ -547,7 +547,7 @@ Keep it practical, warm, and easy to follow.`;
                         animate={{ opacity: 1 }}
                         className="text-[10px] text-muted-foreground/60"
                       >
-                        {t('toolsInternal.kickCounter.lastKick', 'آخر حركة')}: {new Date(kicks[kicks.length - 1].time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                        {t('toolsInternal.kickCounter.lastKick')}: {new Date(kicks[kicks.length - 1].time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                       </motion.p>
                     )}
 
@@ -621,8 +621,8 @@ Keep it practical, warm, and easy to follow.`;
               >
                 🎉
               </motion.span>
-              <p className="text-sm font-bold text-foreground">{t('toolsInternal.kickCounter.goalReached', 'ممتاز! وصلتِ للهدف')}</p>
-              <p className="text-xs text-muted-foreground mt-1">{t('toolsInternal.kickCounter.goalReachedDesc', '10 حركات مسجّلة — يمكنك الاستمرار أو حفظ الجلسة')}</p>
+               <p className="text-sm font-bold text-foreground">{t('toolsInternal.kickCounter.goalReached')}</p>
+               <p className="text-xs text-muted-foreground mt-1">{t('toolsInternal.kickCounter.goalReachedDesc')}</p>
             </motion.div>
           )}
         </AnimatePresence>

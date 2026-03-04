@@ -152,7 +152,7 @@ const DiaperTracker = () => {
                         animate={{ opacity: 1 }}
                         className="text-[9px] text-destructive font-medium mt-0.5"
                       >
-                        {t('diaperPage.timeToChange', 'حان وقت التغيير! 🍼')}
+                        {t('diaperPage.timeToChange')}
                       </motion.span>
                     )}
                   </div>
@@ -197,7 +197,7 @@ const DiaperTracker = () => {
                       >
                         <span className="text-lg">👇</span>
                         <span className="text-xs font-medium text-muted-foreground">
-                          {t('diaperPage.tapToRecord', 'اضغطي على الأيقونة لتسجيل التغيير')}
+                          {t('diaperPage.tapToRecord')}
                         </span>
                       </motion.div>
                     </motion.div>
@@ -290,7 +290,7 @@ const DiaperTracker = () => {
                     animate={{ opacity: 1 }}
                     className="text-[10px] text-green-600 font-medium text-center mt-1.5"
                   >
-                    {t('diaperPage.goalReached', 'ممتاز! تم تحقيق الهدف اليومي 🎉')}
+                    {t('diaperPage.goalReached')}
                   </motion.p>
                 )}
               </div>
@@ -306,7 +306,7 @@ const DiaperTracker = () => {
             transition={{ delay: 0.2 }}
             className="flex items-center justify-center gap-2 text-[11px] text-muted-foreground"
           >
-            <span>{t('diaperPage.lastChange', 'آخر تغيير')}:</span>
+            <span>{t('diaperPage.lastChange')}:</span>
             <span className="font-medium text-foreground">
               {new Date(entries[0].time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </span>

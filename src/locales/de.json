@@ -857,7 +857,11 @@
     "yesterday": "Gestern",
     "h": "Std",
     "m": "Min",
-    "s": "Sek"
+    "s": "Sek",
+    "timeToChange": "Zeit zum Wechseln! 🍼",
+    "tapToRecord": "Tippen Sie auf das Symbol, um einen Wechsel zu erfassen",
+    "goalReached": "Super! Tagesziel erreicht 🎉",
+    "lastChange": "Letzter Wechsel"
   },
   "babyGrowthPage": {
     "title": "Baby-Wachstum",
@@ -1504,7 +1508,11 @@
       "fetalDevLink": "Fetale Entwicklung",
       "fetalDevLinkDesc": "Verfolgen Sie das Wachstum und die Entwicklung Ihres Babys",
       "weeklySummaryLink": "Wöchentliche Zusammenfassung",
-      "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Einblicke"
+      "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Einblicke",
+      "startHint": "Starten Sie eine neue Sitzung und tippen Sie bei jeder Babybewegung auf den Kreis",
+      "lastKick": "Letzte Bewegung",
+      "goalReached": "Super! Ziel erreicht",
+      "goalReachedDesc": "10 Bewegungen aufgezeichnet — Sie können fortfahren oder die Sitzung speichern"
     },
     "symptomAnalyzer": {
       "title": "Schwangerschafts-Wohlbefinden-Tagebuch",
