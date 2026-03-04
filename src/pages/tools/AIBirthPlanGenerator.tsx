@@ -64,7 +64,7 @@ const birthPlanCategories: { titleKey: string; preferences: BirthPlanPreference[
   {
     titleKey: "toolsInternal.birthPlan.categories.afterBirth",
     preferences: [
-      { id: "skinToSkin", labelKey: "toolsInternal.birthPlan.prefs.skinToSkin.label", optionKeys: ["toolsInternal.birthPlan.prefs.skinToSkin.immediate", "toolsInternal.birthPlan.prefs.skinToSkin.afterCleaning", "toolsInternal.birthPlan.prefs.skinToSkin.partnerFirst", "toolsInternal.birthPlan.prefs.skinToSkin.noPreference"] },
+      { id: "firstMoments", labelKey: "toolsInternal.birthPlan.prefs.firstMoments.label", optionKeys: ["toolsInternal.birthPlan.prefs.firstMoments.immediately", "toolsInternal.birthPlan.prefs.firstMoments.afterChecks", "toolsInternal.birthPlan.prefs.firstMoments.partnerFirst"] },
       { id: "cordClamping", labelKey: "toolsInternal.birthPlan.prefs.cordClamping.label", optionKeys: ["toolsInternal.birthPlan.prefs.cordClamping.delayed", "toolsInternal.birthPlan.prefs.cordClamping.immediate", "toolsInternal.birthPlan.prefs.cordClamping.partnerCut", "toolsInternal.birthPlan.prefs.cordClamping.noPreference"] },
       { id: "feeding", labelKey: "toolsInternal.birthPlan.prefs.feeding.label", optionKeys: ["toolsInternal.birthPlan.prefs.feeding.breastfeeding", "toolsInternal.birthPlan.prefs.feeding.formula", "toolsInternal.birthPlan.prefs.feeding.combination", "toolsInternal.birthPlan.prefs.feeding.undecided"] },
     ]
@@ -135,16 +135,15 @@ export default function AIBirthPlanGenerator() {
   }, [preferences, additionalNotes, streamChat, t, i18n.language]);
 
   const savePlan = useCallback(() => {
-    if (!generatedPlan) { toast.error('Generate a plan first'); return; }
-    if (savedPlans.length >= MAX_SAVED_PLANS) { toast.error(`Maximum ${MAX_SAVED_PLANS} plans allowed.`); return; }
+    if (!generatedPlan) { toast.error(t('toolsInternal.birthPlan.selectPreference')); return; }
+    if (savedPlans.length >= MAX_SAVED_PLANS) { toast.error(t('toolsInternal.birthPlan.storageFull')); return; }
     const newPlan: SavedPlan = { id: `plan-${Date.now()}`, date: new Date().toISOString(), preferences, notes: additionalNotes, generatedPlan };
     setSavedPlans(prev => [newPlan, ...prev]);
-    toast.success('Birth plan saved!');
-  }, [generatedPlan, preferences, additionalNotes, savedPlans.length]);
+    toast.success(t('toolsInternal.birthPlan.planGenerated'));
+  }, [generatedPlan, preferences, additionalNotes, savedPlans.length, t]);
 
   const deletePlan = useCallback((id: string) => {
     setSavedPlans(prev => prev.filter(p => p.id !== id));
-    toast.success('Plan deleted');
   }, []);
 
   const loadPlan = useCallback((plan: SavedPlan) => {
@@ -152,7 +151,6 @@ export default function AIBirthPlanGenerator() {
     setAdditionalNotes(plan.notes);
     setGeneratedPlan(plan.generatedPlan);
     setShowArchive(false);
-    toast.success('Plan loaded');
   }, []);
 
   return (
