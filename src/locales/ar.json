@@ -874,7 +874,11 @@
     "yesterday": "أمس",
     "h": "س",
     "m": "د",
-    "s": "ث"
+    "s": "ث",
+    "timeToChange": "حان وقت التغيير! 🍼",
+    "tapToRecord": "اضغطي على الأيقونة لتسجيل التغيير",
+    "goalReached": "ممتاز! تم تحقيق الهدف اليومي 🎉",
+    "lastChange": "آخر تغيير"
   },
   "babyGrowthPage": {
     "title": "نمو الطفل",
@@ -1268,7 +1272,11 @@
       "weeklySummaryLink": "الملخص الأسبوعي",
       "weeklySummaryLinkDesc": "احصلي على تحديثات أسبوعية ذكية",
       "weightGainLink": "دليل زيادة الوزن",
-      "weightGainLinkDesc": "تابعي زيادة وزنك الصحية"
+      "weightGainLinkDesc": "تابعي زيادة وزنك الصحية",
+      "startHint": "ابدئي جلسة جديدة ثم اضغطي على الدائرة عند كل حركة لطفلك",
+      "lastKick": "آخر حركة",
+      "goalReached": "ممتاز! وصلتِ للهدف",
+      "goalReachedDesc": "10 حركات مسجّلة — يمكنك الاستمرار أو حفظ الجلسة"
     },
     "symptomAnalyzer": {
       "title": "يوميات العافية أثناء الحمل",

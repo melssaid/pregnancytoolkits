@@ -857,7 +857,11 @@
     "yesterday": "Ontem",
     "h": "h",
     "m": "m",
-    "s": "s"
+    "s": "s",
+    "timeToChange": "Hora de trocar! 🍼",
+    "tapToRecord": "Toque no ícone para registrar uma troca",
+    "goalReached": "Ótimo! Meta diária alcançada 🎉",
+    "lastChange": "Última troca"
   },
   "babyGrowthPage": {
     "title": "Crescimento do bebê",
@@ -1504,7 +1508,11 @@
       "fetalDevLink": "Desenvolvimento fetal",
       "fetalDevLinkDesc": "Acompanhe o crescimento e desenvolvimento do seu bebê",
       "weeklySummaryLink": "Resumo semanal",
-      "weeklySummaryLinkDesc": "Obtenha insights semanais inteligentes"
+      "weeklySummaryLinkDesc": "Obtenha insights semanais inteligentes",
+      "startHint": "Inicie uma nova sessão e toque no círculo a cada movimento do bebê",
+      "lastKick": "Último movimento",
+      "goalReached": "Ótimo! Meta alcançada",
+      "goalReachedDesc": "10 movimentos registrados — você pode continuar ou salvar a sessão"
     },
     "symptomAnalyzer": {
       "title": "Diário de bem-estar da gravidez",

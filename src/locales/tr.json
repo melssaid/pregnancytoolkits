@@ -857,7 +857,11 @@
     "yesterday": "Dün",
     "h": "sa",
     "m": "dk",
-    "s": "sn"
+    "s": "sn",
+    "timeToChange": "Değiştirme zamanı! 🍼",
+    "tapToRecord": "Değişiklik kaydetmek için simgeye dokunun",
+    "goalReached": "Harika! Günlük hedefe ulaşıldı 🎉",
+    "lastChange": "Son değişiklik"
   },
   "babyGrowthPage": {
     "title": "Bebek Büyümesi",
@@ -1504,7 +1508,11 @@
       "fetalDevLink": "Fetüs Gelişimi",
       "fetalDevLinkDesc": "Bebeğinizin büyümesini ve gelişimini takip edin",
       "weeklySummaryLink": "Haftalık Özet",
-      "weeklySummaryLinkDesc": "Haftalık AI destekli içgörüler alın"
+      "weeklySummaryLinkDesc": "Haftalık AI destekli içgörüler alın",
+      "startHint": "Yeni bir oturum başlatın ve her bebek hareketi için daireye dokunun",
+      "lastKick": "Son hareket",
+      "goalReached": "Harika! Hedefe ulaşıldı",
+      "goalReachedDesc": "10 hareket kaydedildi — devam edebilir veya oturumu kaydedebilirsiniz"
     },
     "symptomAnalyzer": {
       "title": "Hamilelik Sağlık Günlüğü",

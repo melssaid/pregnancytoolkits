@@ -353,7 +353,7 @@ export default function WeeklySummary() {
               {t("toolsInternal.weeklySummary.noSummariesYet", "لا توجد ملخصات بعد")}
             </p>
             <p className="text-[11px] mt-1 opacity-70">
-              {t("toolsInternal.weeklySummary.generateFirstHint", "اضغطي على الزر أعلاه لإنشاء أول ملخص أسبوعي")}
+              {t("toolsInternal.weeklySummary.generateFirstHint")}
             </p>
           </div>
         )}
