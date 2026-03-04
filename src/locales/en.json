@@ -4968,7 +4968,11 @@
     "milestoneMsg_month8": "8 months! Baby is gaining weight rapidly. Almost there! 💪",
     "milestoneMsg_month9": "9 months! Your baby is fully developed and ready to arrive! 🎁",
     "milestoneReminders": "Milestones",
-    "weeklyTipReminders": "Weekly Tips"
+    "weeklyTipReminders": "Weekly Tips",
+    "diaperReminders": "Diaper Reminder",
+    "diaperHint": "Alert after 5 hours without a change",
+    "diaperReminderTitle": "🧷 Time for a Diaper Change",
+    "diaperReminderMsg": "It's been 5 hours since the last diaper change. Check on your baby!"
   },
   "seo": {
     "title": "Best Pregnancy Tracking App",

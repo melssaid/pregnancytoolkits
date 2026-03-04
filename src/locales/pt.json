@@ -4424,7 +4424,11 @@
     "milestoneMsg_month8": "8 meses! Seu bebê está ganhando peso rapidamente 💪",
     "milestoneMsg_month9": "9 meses! Seu bebê está pronto para chegar! 🎁",
     "milestoneReminders": "Marcos",
-    "weeklyTipReminders": "Dicas semanais"
+    "weeklyTipReminders": "Dicas semanais",
+    "diaperReminders": "Lembrete de fraldas",
+    "diaperHint": "Alerta após 5 horas sem troca",
+    "diaperReminderTitle": "🧷 Hora de trocar a fralda",
+    "diaperReminderMsg": "Já se passaram 5 horas desde a última troca de fralda. Verifique seu bebê!"
   },
   "seo": {
     "title": "Melhor app de acompanhamento de gravidez",

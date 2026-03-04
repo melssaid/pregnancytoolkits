@@ -5,7 +5,7 @@ import {
   Bell, X, CheckCheck, Pill, Droplet, Calendar, Heart,
   BellRing, BellPlus, BellOff,
   CheckCircle, Smartphone, Trash2, ExternalLink, ChevronRight, Settings,
-  Baby, Footprints, Trophy
+  Baby, Footprints, Trophy, Shirt
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
@@ -22,6 +22,7 @@ const typeIcons: Record<string, any> = {
   weeklyTip: Baby,
   kickReminder: Footprints,
   milestone: Trophy,
+  diaper: Shirt,
   general: Bell,
 };
 
@@ -33,6 +34,7 @@ const typeGradients: Record<string, string> = {
   weeklyTip: 'from-pink-400 to-pink-500',
   kickReminder: 'from-violet-400 to-violet-500',
   milestone: 'from-yellow-400 to-orange-500',
+  diaper: 'from-teal-400 to-teal-500',
   general: 'from-primary to-accent',
 };
 
@@ -269,6 +271,7 @@ export function NotificationsPanel() {
               <SettingsItem icon={Heart} label={t('notificationsPanel.cycleReminders')} hint={t('notificationsPanel.cycleHint')} color="bg-rose-500" checked={settings.cycleReminders} onChange={(v) => updateSettings({ cycleReminders: v })} />
               <SettingsItem icon={Footprints} label={t('notificationsPanel.kickReminders')} hint={t('notificationsPanel.kickHint')} color="bg-violet-500" checked={settings.kickReminders} onChange={(v) => updateSettings({ kickReminders: v })} />
               <SettingsItem icon={Trophy} label={t('notificationsPanel.milestoneReminders')} hint={t('notificationsPanel.milestoneHint')} color="bg-yellow-500" checked={settings.milestoneReminders} onChange={(v) => updateSettings({ milestoneReminders: v })} />
+              <SettingsItem icon={Shirt} label={t('notificationsPanel.diaperReminders')} hint={t('notificationsPanel.diaperHint')} color="bg-teal-500" checked={settings.diaperReminders} onChange={(v) => updateSettings({ diaperReminders: v })} />
               </>)}
 
               {pushSupported && (

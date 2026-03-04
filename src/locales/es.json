@@ -4424,7 +4424,11 @@
     "milestoneMsg_month8": "¡8 meses! Tu bebé está ganando peso rápidamente 💪",
     "milestoneMsg_month9": "¡9 meses! Tu bebé está listo para llegar 🎁",
     "milestoneReminders": "Logros",
-    "weeklyTipReminders": "Consejos semanales"
+    "weeklyTipReminders": "Consejos semanales",
+    "diaperReminders": "Recordatorio de pañales",
+    "diaperHint": "Alerta después de 5 horas sin cambio",
+    "diaperReminderTitle": "🧷 Hora de cambiar el pañal",
+    "diaperReminderMsg": "Han pasado 5 horas desde el último cambio de pañal. ¡Revisa a tu bebé!"
   },
   "seo": {
     "title": "Mejor app de seguimiento de embarazo",

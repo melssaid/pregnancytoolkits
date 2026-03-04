@@ -4464,7 +4464,11 @@
     "milestoneMsg_month8": "8 أشهر! طفلك يكتسب الوزن بسرعة. اقتربتِ! 💪",
     "milestoneMsg_month9": "9 أشهر! طفلك مكتمل النمو ومستعد للوصول! 🎁",
     "milestoneReminders": "الإنجازات",
-    "weeklyTipReminders": "نصائح أسبوعية"
+    "weeklyTipReminders": "نصائح أسبوعية",
+    "diaperReminders": "تذكير الحفاضات",
+    "diaperHint": "تنبيه عند مرور 5 ساعات بدون تغيير",
+    "diaperReminderTitle": "🧷 حان وقت تغيير الحفاضة",
+    "diaperReminderMsg": "مرّت 5 ساعات منذ آخر تغيير حفاضة. تحققي من طفلك!"
   },
   "seo": {
     "title": "رفيقتك الذكية في رحلة الأمومة",

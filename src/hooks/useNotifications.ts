@@ -35,7 +35,7 @@ const getAppointmentMsgKeyAndParams = (apt: any, timeStr: string): { messageKey:
 
 export interface Notification {
   id: string;
-  type: 'appointment' | 'vitamin' | 'water' | 'cycle' | 'general' | 'weeklyTip' | 'kickReminder' | 'milestone';
+  type: 'appointment' | 'vitamin' | 'water' | 'cycle' | 'general' | 'weeklyTip' | 'kickReminder' | 'milestone' | 'diaper';
   title: string;
   message: string;
   time: string;
@@ -58,6 +58,7 @@ export interface NotificationSettings {
   weeklyTipReminders: boolean;
   kickReminders: boolean;
   milestoneReminders: boolean;
+  diaperReminders: boolean;
 }
 
 const DEFAULT_SETTINGS: NotificationSettings = {
@@ -69,6 +70,7 @@ const DEFAULT_SETTINGS: NotificationSettings = {
   weeklyTipReminders: false,
   kickReminders: false,
   milestoneReminders: false,
+  diaperReminders: false,
 };
 
 /* ── Dismissed tracker ──
@@ -145,6 +147,23 @@ export const hasKickData = (): boolean => {
     const data = localStorage.getItem(`kick_sessions_${userId}`);
     return data ? JSON.parse(data).length > 0 : false;
   } catch { return false; }
+};
+
+export const hasDiaperData = (): boolean => {
+  try {
+    const data = localStorage.getItem('diaperEntries');
+    return data ? JSON.parse(data).length > 0 : false;
+  } catch { return false; }
+};
+
+const getLastDiaperChangeTime = (): Date | null => {
+  try {
+    const data = localStorage.getItem('diaperEntries');
+    if (!data) return null;
+    const entries = JSON.parse(data);
+    if (entries.length === 0) return null;
+    return new Date(entries[0].time);
+  } catch { return null; }
 };
 
 const getAppointmentsFromStorage = (): any[] => {
@@ -279,6 +298,7 @@ export function useNotifications() {
         weeklyTipReminders: (savedSettings as any).weeklyTipReminders ?? false,
         kickReminders: (savedSettings as any).kickReminders ?? false,
         milestoneReminders: (savedSettings as any).milestoneReminders ?? false,
+        diaperReminders: (savedSettings as any).diaperReminders ?? false,
       };
     } else {
       // Smart defaults: only enable if user has actual data
@@ -292,12 +312,13 @@ export function useNotifications() {
         weeklyTipReminders: false,
         kickReminders: false,
         milestoneReminders: false,
+        diaperReminders: false, // always manual opt-in
       };
     }
 
     setSettings(resolvedSettings);
 
-    const validTypes = ['appointment', 'vitamin', 'water', 'cycle', 'general', 'weeklyTip', 'kickReminder', 'milestone'];
+    const validTypes = ['appointment', 'vitamin', 'water', 'cycle', 'general', 'weeklyTip', 'kickReminder', 'milestone', 'diaper'];
     const validNotifications = savedNotifications.filter(n => validTypes.includes(n.type));
     
     // CRITICAL: Set ref BEFORE setting state to prevent race condition
@@ -620,6 +641,30 @@ export function useNotifications() {
             }
           }
         } catch {}
+      }
+
+      // ── Diaper change reminder: fires when 5+ hours since last change ──
+      if (settings.diaperReminders && hasDiaperData()) {
+        const lastChange = getLastDiaperChangeTime();
+        if (lastChange) {
+          const hoursSinceChange = (now.getTime() - lastChange.getTime()) / (1000 * 60 * 60);
+          if (hoursSinceChange >= 5) {
+            const diaperKey = `diaper-5h-${todayDate}-${Math.floor(hoursSinceChange / 5)}`;
+            if (!hasToday(diaperKey)) {
+              newNotifications.push({
+                id: diaperKey,
+                type: 'diaper',
+                title: tn('diaperReminderTitle'),
+                message: tn('diaperReminderMsg'),
+                titleKey: 'notificationsPanel.diaperReminderTitle',
+                messageKey: 'notificationsPanel.diaperReminderMsg',
+                time: nowISO,
+                read: false,
+                actionUrl: '/tools/diaper-tracker',
+              });
+            }
+          }
+        }
       }
 
       if (newNotifications.length > 0) {
