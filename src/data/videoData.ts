@@ -723,3 +723,38 @@ export const walkingVideosByLang: VideosByLang = {
     { id: "4", title: "Pregnancy Yoga for Beginners", description: "Deep relaxation and gentle movement", youtubeId: "vEcZD8Js2Ws", duration: "25:00", category: "Yoga" },
   ],
 };
+
+// ════════════════════════════════════════════════════════════
+// NUTRITION SUPPLEMENTS GUIDE
+// ════════════════════════════════════════════════════════════
+export const nutritionSupplementsVideosByLang: VideosByLang = {
+  ar: [
+    { id: "1", title: "فيتامينات الحمل الأساسية", description: "أهم المكملات الغذائية للحامل", youtubeId: "fYsBctNUamo", duration: "10:00", category: "مكملات" },
+    { id: "2", title: "حمض الفوليك والحديد", description: "أهمية الفوليك والحديد قبل وأثناء الحمل", youtubeId: "dPH-JlE3kH4", duration: "8:00", category: "مكملات" },
+  ],
+  fr: [
+    { id: "1", title: "Vitamines et grossesse", description: "Complémentation en acide folique et vitamines essentielles", youtubeId: "LFP2b6Hdgeo", duration: "10:00", category: "Suppléments" },
+    { id: "2", title: "Alimentation et compléments", description: "Guide nutritionnel complet pour la grossesse", youtubeId: "EswSlduwhDg", duration: "14:00", category: "Nutrition" },
+  ],
+  es: [
+    { id: "1", title: "Vitaminas en el embarazo", description: "Suplementos esenciales para embarazadas", youtubeId: "9VQx0AkVqJY", duration: "12:00", category: "Suplementos" },
+    { id: "2", title: "Ácido fólico y hierro", description: "Importancia de los suplementos prenatales", youtubeId: "yvT-X1LQQBY", duration: "10:00", category: "Suplementos" },
+  ],
+  de: [
+    { id: "1", title: "Vitamine in der Schwangerschaft", description: "Wichtige Nahrungsergänzungsmittel", youtubeId: "G2rUVlb3Xgg", duration: "11:00", category: "Ergänzung" },
+    { id: "2", title: "Folsäure und Eisen", description: "Essentielle Nährstoffe für Schwangere", youtubeId: "cJHuoqb1kE4", duration: "9:00", category: "Ergänzung" },
+  ],
+  tr: [
+    { id: "1", title: "Hamilelikte Vitaminler", description: "Gebelikte alınması gereken takviyeler", youtubeId: "Jj6pDWVDLks", duration: "10:00", category: "Takviye" },
+    { id: "2", title: "Folik Asit ve Demir", description: "Hamilelik öncesi ve sırasında önemli besinler", youtubeId: "bMYEBsHCe8k", duration: "8:00", category: "Takviye" },
+  ],
+  pt: [
+    { id: "1", title: "Vitaminas na gravidez", description: "Suplementos essenciais para gestantes", youtubeId: "FprOVxmwzR8", duration: "14:00", category: "Suplementos" },
+    { id: "2", title: "Ácido fólico e ferro", description: "Nutrientes importantes para a gestação", youtubeId: "2kNGY3gyrEc", duration: "11:00", category: "Suplementos" },
+  ],
+  default: [
+    { id: "1", title: "Prenatal Vitamins Guide", description: "Essential supplements for a healthy pregnancy", youtubeId: "vNZ2GsJOsZc", duration: "18:42", category: "Supplements" },
+    { id: "2", title: "Top Pregnancy Supplements", description: "Which vitamins you actually need during pregnancy", youtubeId: "xZs3gCHcjhY", duration: "14:23", category: "Supplements" },
+    { id: "3", title: "Folate, Iron & DHA Explained", description: "Understanding the most important prenatal nutrients", youtubeId: "3GTK6MLPJ9g", duration: "12:15", category: "Supplements" },
+  ],
+};

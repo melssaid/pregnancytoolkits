@@ -5,6 +5,8 @@ import { ChevronDown, CheckCircle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+import { VideoLibrary } from "@/components/VideoLibrary";
+import { nutritionSupplementsVideosByLang } from "@/data/videoData";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -25,6 +27,7 @@ export default function NutritionSupplementsGuide() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
   const dir = isRTL ? "rtl" : "ltr";
+  const lang = i18n.language?.split('-')[0] || 'en';
   const [expandedNutrition, setExpandedNutrition] = useState<string | null>(null);
   const [expandedVitamin, setExpandedVitamin] = useState<string | null>(null);
   const [checkedVitamins, setCheckedVitamins] = useState<string[]>([]);
@@ -137,6 +140,27 @@ export default function NutritionSupplementsGuide() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Promotional Video (non-Arabic only) */}
+      {lang !== 'ar' && (
+        <div className="mt-4 rounded-xl overflow-hidden border border-border/40">
+          <video
+            src="/videos/nutrition-promo.mp4"
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full"
+            style={{ maxHeight: 280 }}
+          />
+        </div>
+      )}
+
+      {/* Video Library */}
+      <VideoLibrary
+        videosByLang={nutritionSupplementsVideosByLang}
+        title={t('tools.nutritionSupplements.videosTitle', 'Educational Videos')}
+        subtitle={t('tools.nutritionSupplements.videosSubtitle', 'Learn about prenatal nutrition and supplements')}
+      />
 
       <RelatedToolLinks links={[
         { to: "/tools/fertility-academy", titleKey: "toolsInternal.nutritionSupplements.related.academy", titleFallback: "Fertility Academy", descKey: "toolsInternal.nutritionSupplements.related.academyDesc", descFallback: "Comprehensive fertility education", icon: "heart" },
