@@ -86,6 +86,10 @@
   "ai": {
     "resultDisclaimer": "AI-generated • Consult your healthcare provider"
   },
+  "compliance": {
+    "disclaimerCompact": "For informational purposes only. Consult your healthcare provider.",
+    "disclaimerFull": "This tool provides general guidance. Always consult your healthcare provider for medical advice."
+  },
   "categories": {
     "all": "All",
     "ai": "Smart Tools",
@@ -2307,6 +2311,7 @@
       "budgetMedium": "💰 Mid-range",
       "budgetHigh": "💎 Premium",
       "skinConcerns": "Your Skin Concerns",
+      "selectConcernsHint": "Select your skin concerns",
       "getRoutine": "Get AI Skincare Routine",
       "creatingRoutine": "Creating Routine...",
       "morning": "Morning",

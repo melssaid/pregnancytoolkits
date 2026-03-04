@@ -86,6 +86,10 @@
   "ai": {
     "resultDisclaimer": "Gerado por IA • Consulte seu médico"
   },
+  "compliance": {
+    "disclaimerCompact": "Apenas para fins informativos. Consulte seu profissional de saúde.",
+    "disclaimerFull": "Esta ferramenta fornece orientações gerais. Sempre consulte seu profissional de saúde para aconselhamento médico."
+  },
   "categories": {
     "all": "Tudo",
     "ai": "Ferramentas IA",
@@ -2333,6 +2337,7 @@
       "budgetMedium": "💰 Intermediário",
       "budgetHigh": "💎 Premium",
       "skinConcerns": "Suas Preocupações com a Pele",
+      "selectConcernsHint": "Selecione suas preocupações com a pele",
       "getRoutine": "Obter Rotina de Cuidados IA",
       "creatingRoutine": "Criando rotina...",
       "morning": "Manhã",

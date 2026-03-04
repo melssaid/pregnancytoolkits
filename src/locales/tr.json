@@ -86,6 +86,10 @@
   "ai": {
     "resultDisclaimer": "Yapay zeka tarafından oluşturuldu • Sağlık uzmanınıza danışın"
   },
+  "compliance": {
+    "disclaimerCompact": "Yalnızca bilgi amaçlıdır. Sağlık uzmanınıza danışın.",
+    "disclaimerFull": "Bu araç genel rehberlik sağlar. Tıbbi tavsiye için her zaman sağlık uzmanınıza danışın."
+  },
   "categories": {
     "all": "Tümü",
     "ai": "Akıllı Araçlar",
@@ -2333,6 +2337,7 @@
       "budgetMedium": "💰 Orta Segment",
       "budgetHigh": "💎 Premium",
       "skinConcerns": "Cilt Endişeleriniz",
+      "selectConcernsHint": "Cilt endişelerinizi seçin",
       "getRoutine": "AI Cilt Bakım Rutini Al",
       "creatingRoutine": "Rutin oluşturuluyor...",
       "morning": "Sabah",

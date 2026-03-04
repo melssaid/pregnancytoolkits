@@ -86,6 +86,10 @@
   "ai": {
     "resultDisclaimer": "KI-generiert • Konsultieren Sie Ihren Arzt"
   },
+  "compliance": {
+    "disclaimerCompact": "Nur zu Informationszwecken. Konsultieren Sie Ihren Arzt.",
+    "disclaimerFull": "Dieses Tool bietet allgemeine Hinweise. Konsultieren Sie immer Ihren Arzt für medizinische Beratung."
+  },
   "categories": {
     "all": "Alle",
     "ai": "Smart Tools",
@@ -2009,6 +2013,7 @@
       "budgetMedium": "💰 Mittelklasse",
       "budgetHigh": "💎 Premium",
       "skinConcerns": "Ihre Hautprobleme",
+      "selectConcernsHint": "Wählen Sie Ihre Hautprobleme",
       "getRoutine": "KI-Hautpflegeroutine erhalten",
       "creatingRoutine": "Routine wird erstellt...",
       "morning": "Morgen",
