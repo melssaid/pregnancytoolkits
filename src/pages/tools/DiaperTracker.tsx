@@ -236,8 +236,8 @@ const DiaperTracker = () => {
 
                   {/* Both */}
                   <DiaperActionButton
-                    count={stats.total}
-                    label={t('diaperPage.total')}
+                    count={stats.wet + stats.dirty}
+                    label={t('diaperPage.both')}
                     emoji="👶"
                     gradientFrom="from-primary/15"
                     gradientTo="to-primary/5"
@@ -377,7 +377,7 @@ const DiaperActionButton = ({
     >
       {/* Emoji icon */}
       <motion.span 
-        className="text-2xl"
+        className="text-3xl"
         animate={isActive ? { scale: [1, 1.3, 1], rotate: [0, 10, -10, 0] } : {}}
         transition={{ duration: 0.4 }}
       >
@@ -392,14 +392,14 @@ const DiaperActionButton = ({
           animate={{ y: 0, opacity: 1, scale: 1 }}
           exit={{ y: 10, opacity: 0, scale: 0.7 }}
           transition={{ type: "spring", stiffness: 350, damping: 20 }}
-          className={`text-2xl font-bold tabular-nums ${textColor}`}
+          className={`text-3xl font-bold tabular-nums ${textColor}`}
         >
           {count}
         </motion.span>
       </AnimatePresence>
 
       {/* Label */}
-      <span className="text-[10px] text-muted-foreground font-medium">{label}</span>
+      <span className="text-xs text-muted-foreground font-medium">{label}</span>
 
       {/* Ripple on tap */}
       {isActive && (
