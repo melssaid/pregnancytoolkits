@@ -1,4 +1,9 @@
 {
+  "notFound": {
+    "title": "Página não encontrada",
+    "message": "Ops! Página não encontrada",
+    "returnHome": "Voltar ao início"
+  },
   "home": {
     "tagline": "Seu companheiro inteligente em cada fase",
     "aiSubtitle": "Ferramentas avançadas de IA"

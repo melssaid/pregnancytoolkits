@@ -160,7 +160,7 @@ const Settings: React.FC = () => {
                   </Link>
                   <span>·</span>
                   <Link to="/terms" className="hover:text-primary transition-colors">
-                    {t('footer.terms', 'Terms')}
+                    {t('layout.footer.terms')}
                   </Link>
                 </div>
                 <p className="text-[9px] text-muted-foreground/50 flex items-center justify-center gap-1">
