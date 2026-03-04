@@ -18,14 +18,14 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { sleepVideosByLang } from "@/data/videoData";
 
 const sleepIssueKeys = [
-  { id: "back-pain", key: "backPain", icon: "🔙" },
-  { id: "frequent-urination", key: "frequentUrination", icon: "🚽" },
-  { id: "leg-cramps", key: "legCramps", icon: "🦵" },
-  { id: "heartburn", key: "heartburn", icon: "🔥" },
-  { id: "anxiety", key: "anxiety", icon: "💭" },
-  { id: "baby-movements", key: "babyMovements", icon: "👶" },
-  { id: "hot-flashes", key: "hotFlashes", icon: "🌡️" },
-  { id: "snoring", key: "snoring", icon: "😮‍💨" },
+  { id: "back-pain", key: "backPain" },
+  { id: "frequent-urination", key: "frequentUrination" },
+  { id: "leg-cramps", key: "legCramps" },
+  { id: "heartburn", key: "heartburn" },
+  { id: "anxiety", key: "anxiety" },
+  { id: "baby-movements", key: "babyMovements" },
+  { id: "hot-flashes", key: "hotFlashes" },
+  { id: "snoring", key: "snoring" },
 ];
 
 const AISleepOptimizer = () => {
@@ -225,7 +225,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
               <div
                 key={issue.id}
                 onClick={() => toggleIssue(issue.id)}
-                className={`p-2.5 rounded-lg border cursor-pointer transition-all overflow-hidden ${
+                className={`p-2.5 rounded-lg border cursor-pointer transition-all ${
                   selectedIssues.includes(issue.id)
                     ? "bg-primary/10 border-primary"
                     : "bg-card hover:bg-muted"
@@ -233,7 +233,6 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <Checkbox checked={selectedIssues.includes(issue.id)} className="shrink-0" />
-                  <span className="text-sm shrink-0">{issue.icon}</span>
                   <span className="text-xs leading-snug">
                     {t(`toolsInternal.sleepOptimizer.issues.${issue.key}`)}
                   </span>
