@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Baby, Play, TrendingUp, Clock, Loader2, Save, Sparkles, AlertTriangle, Activity, BarChart3, Brain, RefreshCw, Zap, Target, Shield, Heart } from 'lucide-react';
+import { Baby, Play, TrendingUp, Clock, Loader2, Save, AlertTriangle, Activity, Brain, RefreshCw, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,6 +10,8 @@ import { useToast } from '@/hooks/use-toast';
 import { KickService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { AIActionButton } from '@/components/ai/AIActionButton';
+import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RelatedToolLinks } from '@/components/RelatedToolLinks';
@@ -31,18 +33,14 @@ const SmartKickCounter: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   
   // AI States
-  const [aiPatternAnalysis, setAiPatternAnalysis] = useState('');
-  const [aiHealthInsight, setAiHealthInsight] = useState('');
-  const [aiActiveTab, setAiActiveTab] = useState<'pattern' | 'health' | 'tips' | null>(null);
-  const [aiTips, setAiTips] = useState('');
+  const [aiResult, setAiResult] = useState('');
+  
   
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const { toast } = useToast();
 
   useResetOnLanguageChange(() => {
-    setAiPatternAnalysis('');
-    setAiHealthInsight('');
-    setAiTips('');
+    setAiResult('');
   });
 
   useEffect(() => {
@@ -187,10 +185,9 @@ const SmartKickCounter: React.FC = () => {
     return 'text-muted-foreground';
   };
 
-  // AI Pattern Analysis
+  // Unified AI Analysis
   const analyzePatterns = async (sessions: any[]) => {
-    setAiActiveTab('pattern');
-    setAiPatternAnalysis('');
+    setAiResult('');
 
     const sessionData = sessions.slice(0, 7).map(s => ({
       kicks: s.total_kicks,
@@ -203,7 +200,7 @@ const SmartKickCounter: React.FC = () => {
     const avgKicks = sessions.reduce((sum, s) => sum + s.total_kicks, 0) / sessions.length;
     const avgDuration = sessions.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / sessions.length;
 
-    const prompt = `As a pregnancy wellness guide, review this baby movement diary for a pregnancy at week ${currentWeek}. Use supportive, non-clinical language. Do NOT use words like "danger", "high risk", "go to hospital", or provide any medical diagnoses.
+    const prompt = `As a pregnancy wellness guide, provide a comprehensive baby movement analysis for week ${currentWeek}. Use supportive, non-clinical language.
 
 **Journal Entries (Last ${sessions.length} entries):**
 ${sessionData.map(s => `- ${s.date} at ${s.time}: ${s.kicks} movements in ${s.duration} minutes`).join('\n')}
@@ -211,122 +208,21 @@ ${sessionData.map(s => `- ${s.date} at ${s.time}: ${s.kicks} movements in ${s.du
 **Summary:**
 - Average movements per entry: ${avgKicks.toFixed(1)}
 - Average entry duration: ${avgDuration.toFixed(1)} minutes
+- Activity score: ${getMovementScore()}/100
 
-Provide a supportive journal review including:
+Provide a comprehensive analysis covering:
+1. **Movement Patterns** - Daily trends, time-of-day observations, consistency
+2. **Health Insight** - What these patterns suggest for week ${currentWeek}, encouraging notes
+3. **Practical Tips** - Best times to journal, positions to feel movements, foods that encourage activity
+4. **Your Takeaway** - Warm encouraging summary
 
-1. **📊 Movement Patterns**
-   - Daily activity trends
-   - Time-of-day observations
-   - Consistency notes
-
-2. **📝 Journal Summary**
-   - How this compares to typical activity at week ${currentWeek}
-   - Observations about the entries
-
-3. **📈 Trend Notes**
-   - Is activity increasing, stable, or changing?
-   - Expected patterns for this stage
-
-4. **✅ Your Takeaway**
-   - Encouraging summary for the mother
-   - Suggestion to share journal with healthcare provider if desired
-
-Keep the tone warm, supportive, and educational. Avoid any clinical or diagnostic language.`;
+Keep the tone warm, supportive. Avoid clinical or diagnostic language.`;
 
     await streamChat({
       type: 'kick-analysis',
       messages: [{ role: 'user', content: prompt }],
       context: { week: currentWeek },
-      onDelta: (text) => setAiPatternAnalysis((prev) => prev + text),
-      onDone: () => {},
-    });
-  };
-
-  // AI Health Insight
-  const getHealthInsight = async () => {
-    setAiActiveTab('health');
-    setAiHealthInsight('');
-
-    const avgKicks = getAverageKicks();
-    const movementScore = getMovementScore();
-
-    const prompt = `As a pregnancy wellness guide, provide supportive guidance based on baby movement diary data. Do NOT use clinical or diagnostic language. Avoid words like "danger", "high risk", "warning signs", or "go to hospital".
-
-**Pregnancy Week:** ${currentWeek}
-**Activity Level:** ${movementScore}/100
-**Average Movements Per Entry:** ${avgKicks}
-**Total Entries:** ${history.length}
-
-Provide friendly, educational guidance:
-
-1. **💓 Baby's Activity**
-   - What these movement patterns generally suggest
-   - Understanding quieter vs more active periods
-
-2. **📋 When to Share Your Journal**
-   - Changes worth noting for your next provider visit
-   - What information to have ready
-
-3. **💪 Encouraging Baby's Activity**
-   - Best times to journal movements
-   - Foods and activities that may encourage movement
-
-4. **📅 Week ${currentWeek} Notes**
-   - Typical movement patterns for this stage
-   - How patterns may evolve
-
-Be warm, supportive, and educational. Always suggest consulting with a healthcare provider for personalized guidance.`;
-
-    await streamChat({
-      type: 'kick-analysis',
-      messages: [{ role: 'user', content: prompt }],
-      context: { week: currentWeek },
-      onDelta: (text) => setAiHealthInsight((prev) => prev + text),
-      onDone: () => {},
-    });
-  };
-
-  // AI Tips
-  const getAITips = async () => {
-    setAiActiveTab('tips');
-    setAiTips('');
-
-    const prompt = `As a pregnancy wellness guide, provide practical journaling tips for baby movement at week ${currentWeek}. Use warm, encouraging language. Avoid clinical or diagnostic terminology.
-
-**Current Journal:**
-- Entries logged: ${history.length}
-- Average movements: ${getAverageKicks()} per entry
-- Activity level: ${getMovementScore()}/100
-
-Provide a helpful guide:
-
-1. **🕐 Best Times to Journal**
-   - Optimal times for noting movements
-   - Baby's natural activity cycles
-
-2. **🛋️ Comfortable Positions**
-   - Best positions to feel movements
-   - Tips for different placenta positions
-
-3. **🍎 Encouraging Movement**
-   - Snacks that may increase activity
-   - Music, talking, and bonding
-
-4. **📝 Journaling Tips**
-   - What to note besides movement counts
-   - Making entries meaningful
-
-5. **🧘 Mindful Moments**
-   - Using journal time for bonding
-   - Relaxation during movement journaling
-
-Keep it practical, warm, and easy to follow.`;
-
-    await streamChat({
-      type: 'kick-analysis',
-      messages: [{ role: 'user', content: prompt }],
-      context: { week: currentWeek },
-      onDelta: (text) => setAiTips((prev) => prev + text),
+      onDelta: (text) => setAiResult((prev) => prev + text),
       onDone: () => {},
     });
   };
@@ -353,48 +249,28 @@ Keep it practical, warm, and easy to follow.`;
       toolId="smart-kick-counter"
     >
       <div className="space-y-4">
-        {/* Movement Score Card */}
+        {/* Movement Score - Compact */}
         {history.length > 0 && (
-          <Card className="bg-gradient-to-br from-primary/5 to-secondary border-primary/20">
-            <CardContent className="py-3">
+          <Card className="border-primary/15">
+            <CardContent className="py-2.5 px-3">
               <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.movementScore')}</p>
-                  <div className={`text-lg font-bold ${getScoreColor(movementScore)}`}>
-                    {movementScore}
-                    <span className="text-xs text-muted-foreground">/100</span>
+                <div className="flex items-center gap-3">
+                  <div className="relative w-12 h-12">
+                    <svg className="w-full h-full transform -rotate-90">
+                      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" strokeWidth="4" className="text-muted/20" />
+                      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" strokeWidth="4"
+                        strokeDasharray={`${(movementScore / 100) * 126} 126`} strokeLinecap="round"
+                        className={getScoreColor(movementScore)} />
+                    </svg>
+                    <span className={`absolute inset-0 flex items-center justify-center text-xs font-bold ${getScoreColor(movementScore)}`}>{movementScore}</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-foreground">{t('toolsInternal.kickCounter.movementScore')}</p>
+                    <p className="text-[11px] text-muted-foreground">{t('toolsInternal.kickCounter.basedOnSessions', { count: history.length })}</p>
                   </div>
                 </div>
-                <div className="relative w-20 h-20">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle
-                      cx="40"
-                      cy="40"
-                      r="35"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="8"
-                      className="text-muted/20"
-                    />
-                    <circle
-                      cx="40"
-                      cy="40"
-                      r="35"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="8"
-                      strokeDasharray={`${(movementScore / 100) * 220} 220`}
-                      strokeLinecap="round"
-                      className={getScoreColor(movementScore)}
-                    />
-                  </svg>
-                  <Activity className={`absolute inset-0 m-auto w-8 h-8 ${getScoreColor(movementScore)}`} />
-                </div>
+                <span className="text-xs text-muted-foreground">{getAverageKicks()} {t('toolsInternal.kickCounter.avgKicks')}</span>
               </div>
-              <Progress value={movementScore} className="mt-3 h-2" />
-              <p className="text-xs text-muted-foreground mt-2">
-                {t('toolsInternal.kickCounter.basedOnSessions', { count: history.length })}
-              </p>
             </CardContent>
           </Card>
         )}
@@ -697,130 +573,25 @@ Keep it practical, warm, and easy to follow.`;
           </motion.div>
         )}
 
-        {/* AI Analysis Section - always visible after 1+ sessions */}
+        {/* AI Analysis - Single Button */}
         {history.length >= 1 && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            {/* Section header */}
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(330 70% 55% / 0.1))' }}>
-                <Brain className="w-3.5 h-3.5 text-primary" />
-              </div>
-              <h3 className="text-sm font-bold text-foreground">{t('toolsInternal.kickCounter.aiDataAnalysis')}</h3>
-            </div>
+          <div className="space-y-3">
+            <AIActionButton
+              onClick={() => analyzePatterns(history)}
+              isLoading={aiLoading}
+              label={t('toolsInternal.kickCounter.aiDataAnalysis')}
+              loadingLabel={t('toolsInternal.kickCounter.analyzingMovements')}
+            />
 
-            {/* 3 AI action cards */}
-            <div className="grid grid-cols-3 gap-2 mb-3">
-              {[
-                { tab: 'pattern' as const, onClick: () => analyzePatterns(history), icon: BarChart3, label: t('toolsInternal.kickCounter.patterns'), color: 'from-primary/10 to-primary/5', minSessions: 2 },
-                { tab: 'health' as const, onClick: getHealthInsight, icon: Heart, label: t('toolsInternal.kickCounter.health'), color: 'from-pink-500/10 to-pink-500/5', minSessions: 1 },
-                { tab: 'tips' as const, onClick: getAITips, icon: Sparkles, label: t('toolsInternal.kickCounter.tips'), color: 'from-purple-500/10 to-purple-500/5', minSessions: 1 },
-              ].map(({ tab, onClick, icon: Icon, label, color, minSessions }) => {
-                const isSelected = aiActiveTab === tab;
-                const isDisabled = aiLoading || history.length < minSessions;
-                return (
-                  <motion.button
-                    key={tab}
-                    whileTap={{ scale: 0.95 }}
-                    disabled={isDisabled}
-                    onClick={() => {
-                      setAiActiveTab(tab);
-                      onClick();
-                    }}
-                    className={`relative rounded-xl p-3 text-center transition-all border disabled:opacity-40 ${
-                      isSelected 
-                        ? 'border-primary/30 shadow-sm' 
-                        : 'border-border/40 hover:border-primary/20'
-                    } bg-gradient-to-b ${color}`}
-                  >
-                    <div className={`w-8 h-8 rounded-full mx-auto mb-1.5 flex items-center justify-center ${isSelected ? 'bg-primary/15' : 'bg-muted/50'}`}>
-                      {aiLoading && isSelected ? (
-                        <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                      ) : (
-                        <Icon className={`w-4 h-4 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`} />
-                      )}
-                    </div>
-                    <span className={`text-[11px] font-medium ${isSelected ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
-                    {history.length < minSessions && (
-                      <p className="text-[8px] text-muted-foreground/60 mt-0.5">{t('toolsInternal.kickCounter.needMoreSessions', '٢+ جلسات')}</p>
-                    )}
-                  </motion.button>
-                );
-              })}
-            </div>
-
-            {/* AI Result */}
-            <AnimatePresence mode="wait">
-              {aiActiveTab && (aiPatternAnalysis || aiHealthInsight || aiTips || aiLoading) && (
-                <motion.div
-                  key={aiActiveTab}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <Card className="overflow-hidden border-border/40">
-                    <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
-                    <CardContent className="p-4">
-                      {aiLoading && !aiPatternAnalysis && !aiHealthInsight && !aiTips ? (
-                        <div className="flex items-center justify-center py-8 gap-2 text-muted-foreground">
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span className="text-xs">{t('toolsInternal.kickCounter.analyzingMovements')}</span>
-                        </div>
-                      ) : (
-                        <>
-                          <MarkdownRenderer
-                            content={
-                              aiActiveTab === 'pattern' ? aiPatternAnalysis :
-                              aiActiveTab === 'health' ? aiHealthInsight :
-                              aiTips
-                            }
-                            isLoading={aiLoading}
-                          />
-                          {/* Refresh */}
-                          {!aiLoading && (
-                            <div className="flex justify-end mt-3">
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="h-7 text-[10px] text-muted-foreground"
-                                onClick={() => {
-                                  if (aiActiveTab === 'pattern') analyzePatterns(history);
-                                  else if (aiActiveTab === 'health') getHealthInsight();
-                                  else getAITips();
-                                }}
-                              >
-                                <RefreshCw className="w-3 h-3 me-1" />
-                                {t('common.refresh', 'تحديث')}
-                              </Button>
-                            </div>
-                          )}
-                        </>
-                      )}
-                      {/* Disclaimer */}
-                      <div className="mt-3 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
-                        <p className="text-[9px] text-muted-foreground/60 tracking-wide">
-                          {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Empty state when no tab selected */}
-            {!aiActiveTab && !aiLoading && (
-              <div className="text-center py-4 bg-muted/20 rounded-xl border border-border/30">
-                <p className="text-xs text-muted-foreground">
-                  {t('toolsInternal.kickCounter.tapForInsights')}
-                </p>
-              </div>
+            {aiResult && (
+              <AIResponseFrame
+                content={aiResult}
+                isLoading={aiLoading}
+                title={t('toolsInternal.kickCounter.aiDataAnalysis')}
+                icon={Brain}
+              />
             )}
-          </motion.div>
+          </div>
         )}
 
         {/* History */}
