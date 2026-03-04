@@ -4221,7 +4221,11 @@
     "milestoneMsg_month8": "8 Monate! Ihr Baby nimmt schnell an Gewicht zu 💪",
     "milestoneMsg_month9": "9 Monate! Ihr Baby ist voll entwickelt und bereit! 🎁",
     "milestoneReminders": "Meilensteine",
-    "weeklyTipReminders": "Wöchentliche Tipps"
+    "weeklyTipReminders": "Wöchentliche Tipps",
+    "diaperReminders": "Windel-Erinnerung",
+    "diaperHint": "Warnung nach 5 Stunden ohne Wechsel",
+    "diaperReminderTitle": "🧷 Zeit zum Windelwechseln",
+    "diaperReminderMsg": "Es sind 5 Stunden seit dem letzten Windelwechsel vergangen. Schauen Sie nach Ihrem Baby!"
   },
   "seo": {
     "title": "Beste Schwangerschafts-Tracking-App",

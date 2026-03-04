@@ -4424,7 +4424,11 @@
     "milestoneMsg_month8": "8 ay! Bebeğiniz hızla kilo alıyor 💪",
     "milestoneMsg_month9": "9 ay! Bebeğiniz gelmeye hazır! 🎁",
     "milestoneReminders": "Kilometre Taşları",
-    "weeklyTipReminders": "Haftalık İpuçları"
+    "weeklyTipReminders": "Haftalık İpuçları",
+    "diaperReminders": "Bez Hatırlatıcı",
+    "diaperHint": "5 saat değişiklik yapılmazsa uyarı",
+    "diaperReminderTitle": "🧷 Bez Değiştirme Zamanı",
+    "diaperReminderMsg": "Son bez değişikliğinin üzerinden 5 saat geçti. Bebeğinizi kontrol edin!"
   },
   "seo": {
     "title": "En İyi Hamilelik Takip Uygulaması",

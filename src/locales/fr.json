@@ -4246,7 +4246,11 @@
     "milestoneMsg_month8": "8 mois ! Bébé prend du poids rapidement 💪",
     "milestoneMsg_month9": "9 mois ! Bébé est prêt à arriver ! 🎁",
     "milestoneReminders": "Étapes",
-    "weeklyTipReminders": "Conseils hebdomadaires"
+    "weeklyTipReminders": "Conseils hebdomadaires",
+    "diaperReminders": "Rappel couches",
+    "diaperHint": "Alerte après 5 heures sans changement",
+    "diaperReminderTitle": "🧷 C'est l'heure du change",
+    "diaperReminderMsg": "5 heures se sont écoulées depuis le dernier change. Vérifiez votre bébé !"
   },
   "seo": {
     "title": "Meilleure application de suivi de grossesse",
