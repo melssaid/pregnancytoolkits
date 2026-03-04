@@ -2305,7 +2305,17 @@
       "deleteFailed": "Falha na Exclusão",
       "analysisFailedTitle": "Falha na Análise",
       "photoDownloaded": "Foto baixada",
-      "photoDownloadedDesc": "Agora você pode compartilhá-la manualmente"
+      "photoDownloadedDesc": "Agora você pode compartilhá-la manualmente",
+      "dailyLimitTitle": "Limites de uso diário",
+      "dailyLimitDesc": "Para manter o desempenho do app, você pode enviar até <bold>3 fotos por dia</bold> com tamanho máximo de <bold>2 MB</bold> cada. As imagens são comprimidas automaticamente para manter a qualidade economizando espaço 💜",
+      "dailyLimitRemaining": "Restantes hoje: {{remaining}} de 3 fotos",
+      "dailyLimitReached": "Você usou seus envios de hoje 🌙 Volte amanhã!",
+      "dailyLimitReachedTitle": "Limite diário atingido",
+      "dailyLimitReachedDesc": "Você poderá enviar 3 novas fotos amanhã ☀️",
+      "lastPhotoReminderTitle": "1 foto restante hoje 📸",
+      "lastPhotoReminderDesc": "Use com sabedoria! Seus 3 envios diários renovam amanhã 💕",
+      "imageSizeLimitTitle": "Imagem muito grande",
+      "imageSizeLimitDesc": "Por favor escolha uma imagem menor que 2 MB para desempenho ideal"
     },
     "backPainRelief": {
       "title": "Guia de Conforto para as Costas",

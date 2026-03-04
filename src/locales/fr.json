@@ -2995,7 +2995,17 @@
     "deleteFailed": "Échec de la suppression",
     "analysisFailedTitle": "Échec de l'analyse",
     "photoDownloaded": "Photo téléchargée",
-    "photoDownloadedDesc": "Vous pouvez maintenant la partager manuellement"
+    "photoDownloadedDesc": "Vous pouvez maintenant la partager manuellement",
+    "dailyLimitTitle": "Limites d'utilisation quotidiennes",
+    "dailyLimitDesc": "Pour maintenir les performances de l'application, vous pouvez téléverser jusqu'à <bold>3 photos par jour</bold> d'une taille maximale de <bold>2 Mo</bold> chacune. Les images sont compressées automatiquement pour préserver la qualité tout en économisant l'espace 💜",
+    "dailyLimitRemaining": "Restant aujourd'hui : {{remaining}} sur 3 photos",
+    "dailyLimitReached": "Vous avez utilisé vos téléversements du jour 🌙 Revenez demain !",
+    "dailyLimitReachedTitle": "Limite quotidienne atteinte",
+    "dailyLimitReachedDesc": "Vous pourrez téléverser 3 nouvelles photos demain ☀️",
+    "lastPhotoReminderTitle": "1 photo restante aujourd'hui 📸",
+    "lastPhotoReminderDesc": "Utilisez-la judicieusement ! Vos 3 téléversements quotidiens se renouvellent demain 💕",
+    "imageSizeLimitTitle": "Image trop volumineuse",
+    "imageSizeLimitDesc": "Veuillez choisir une image de moins de 2 Mo pour des performances optimales"
   },
   "toolsInternal.backPainRelief": {
     "title": "Guide confort du dos",

@@ -2995,7 +2995,17 @@
     "deleteFailed": "Löschen fehlgeschlagen",
     "analysisFailedTitle": "Analyse fehlgeschlagen",
     "photoDownloaded": "Foto heruntergeladen",
-    "photoDownloadedDesc": "Sie können es jetzt manuell teilen"
+    "photoDownloadedDesc": "Sie können es jetzt manuell teilen",
+    "dailyLimitTitle": "Tägliche Nutzungsgrenzen",
+    "dailyLimitDesc": "Um die App-Leistung zu erhalten, können Sie täglich bis zu <bold>3 Fotos</bold> mit maximal <bold>2 MB</bold> pro Bild hochladen. Bilder werden automatisch komprimiert, um Qualität bei Platzersparnis zu bewahren 💜",
+    "dailyLimitRemaining": "Heute verbleibend: {{remaining}} von 3 Fotos",
+    "dailyLimitReached": "Sie haben Ihre heutigen Uploads verbraucht 🌙 Kommen Sie morgen wieder!",
+    "dailyLimitReachedTitle": "Tageslimit erreicht",
+    "dailyLimitReachedDesc": "Sie können morgen 3 neue Fotos hochladen ☀️",
+    "lastPhotoReminderTitle": "Noch 1 Foto heute 📸",
+    "lastPhotoReminderDesc": "Nutzen Sie es weise! Ihre 3 täglichen Uploads werden morgen erneuert 💕",
+    "imageSizeLimitTitle": "Bild zu groß",
+    "imageSizeLimitDesc": "Bitte wählen Sie ein Bild unter 2 MB für optimale Leistung"
   },
   "toolsInternal.backPainRelief": {
     "title": "Rückenkomfort-Ratgeber",
