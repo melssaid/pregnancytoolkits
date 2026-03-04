@@ -591,10 +591,11 @@
           "noSold": "Wir haben in den letzten 12 Monaten KEINE personenbezogenen Daten zu kommerziellen Zwecken an Dritte verkauft oder weitergegeben."
         },
         "aiProducts": {
-          "title": "KI-gestützte Produkte",
-          "desc": "Wir bieten Produkte an, die durch künstliche Intelligenz über Drittanbieter einschließlich Perplexity AI unterstützt werden.",
-          "tools": ["Intelligenter Schwangerschafts-Ratgeber", "Wellness-Tagebuch", "KI-Mahlzeitenvorschlag", "Intelligente Terminerinnerung", "KI-Fitness-Ratgeber", "Geburtsfortschritts-Ratgeber"],
-          "dataNote": "Bei der Nutzung von KI-Funktionen wird nur Ihre spezifische Anfrage (anonymisiert) verarbeitet. Ihre gespeicherten Gesundheitsdaten bleiben auf Ihrem Gerät."
+          "title": "KI-gestützte Funktionen",
+          "desc": "Wir bieten Funktionen an, die durch künstliche Intelligenz über sichere cloudbasierte KI-Modelle (Google Gemini) unterstützt werden. Kein Drittanbieter hat Zugriff auf Ihre gespeicherten Gesundheitsdaten.",
+          "tools": ["Intelligenter Schwangerschaftsassistent", "Schwangerschafts-Wellness-Tagebuch", "Intelligente Mahlzeitenvorschläge", "Intelligenter Terminplaner", "Fitness- & Flexibilitäts-Coach", "Kontraktions-Tagebuch", "Ultraschall-Galerie"],
+          "dataNote": "Bei der Nutzung von KI-Funktionen wird nur Ihr Anfragetext anonym an unseren sicheren Server gesendet. Ihre gespeicherten Gesundheitsdaten bleiben vollständig auf Ihrem Gerät.",
+          "noTraining": "Ihre Anfragen werden NICHT zum Training von KI-Modellen verwendet"
         },
         "notifications": {
           "title": "Benachrichtigungstöne",

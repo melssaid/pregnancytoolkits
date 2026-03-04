@@ -591,10 +591,11 @@
           "noSold": "NO hemos vendido ni compartido información personal con terceros con fines comerciales en los últimos 12 meses."
         },
         "aiProducts": {
-          "title": "Productos impulsados por IA",
-          "desc": "Ofrecemos productos impulsados por inteligencia artificial a través de proveedores de servicios externos incluyendo Perplexity AI.",
-          "tools": ["Guía Inteligente del Embarazo", "Diario de bienestar", "Sugerencia de comidas IA", "Recordatorio inteligente de citas", "Guías fitness IA", "Guía del progreso del parto"],
-          "dataNote": "Al usar funciones de IA, solo se procesa tu consulta específica (anonimizada). Tus datos de salud almacenados permanecen en tu dispositivo."
+          "title": "Funciones impulsadas por IA",
+          "desc": "Ofrecemos funciones impulsadas por inteligencia artificial a través de modelos IA seguros en la nube (Google Gemini). Ningún proveedor externo tiene acceso a tus datos de salud almacenados.",
+          "tools": ["Asistente Inteligente del Embarazo", "Diario de bienestar del embarazo", "Sugerencias inteligentes de comidas", "Planificador inteligente de citas", "Coach de fitness y flexibilidad", "Diario de contracciones", "Galería de ecografía"],
+          "dataNote": "Al usar funciones de IA, solo el texto de tu consulta se envía de forma anónima a nuestro servidor seguro. Tus datos de salud permanecen completamente en tu dispositivo.",
+          "noTraining": "Tus consultas NO se utilizan para entrenar modelos de IA"
         },
         "notifications": {
           "title": "Sonidos de notificación",

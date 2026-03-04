@@ -591,10 +591,11 @@
           "noSold": "Son 12 ayda ticari amaçlarla üçüncü taraflara herhangi bir kişisel bilgi SATMADIK veya PAYLAŞMADIK."
         },
         "aiProducts": {
-          "title": "Yapay Zeka Destekli Ürünler",
-          "desc": "Perplexity AI dahil üçüncü taraf hizmet sağlayıcılar aracılığıyla yapay zeka destekli ürünler sunuyoruz.",
-          "tools": ["Akıllı Hamilelik Rehberi", "Sağlık Günlüğü", "AI Yemek Önerisi", "Akıllı Randevu Hatırlatıcı", "AI Fitness Rehberleri", "Doğum İlerleme Rehberi"],
-          "dataNote": "AI özelliklerini kullanırken yalnızca spesifik sorgunuz (anonim olarak) işlenir. Saklanan sağlık verileriniz cihazınızda kalır."
+          "title": "Yapay Zeka Destekli Özellikler",
+          "desc": "Güvenli bulut tabanlı AI modelleri (Google Gemini) aracılığıyla yapay zeka destekli özellikler sunuyoruz. Hiçbir üçüncü taraf AI sağlayıcısı saklanan sağlık verilerinize erişemez.",
+          "tools": ["Akıllı Hamilelik Asistanı", "Hamilelik Wellness Günlüğü", "Akıllı Öğün Önerileri", "Akıllı Randevu Planlayıcı", "Fitness & Esneklik Koçu", "Kasılma Günlüğü", "Ultrason Galerisi"],
+          "dataNote": "AI özelliklerini kullanırken yalnızca sorgu metniniz anonim olarak güvenli sunucumuza gönderilir. Saklanan sağlık verileriniz tamamen cihazınızda kalır.",
+          "noTraining": "Sorgularınız AI modellerini eğitmek için KULLANILMAZ"
         },
         "notifications": {
           "title": "Bildirim Sesleri",
