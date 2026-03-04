@@ -731,30 +731,43 @@ export const nutritionSupplementsVideosByLang: VideosByLang = {
   ar: [
     { id: "1", title: "فيتامينات الحمل الأساسية", description: "أهم المكملات الغذائية للحامل", youtubeId: "fYsBctNUamo", duration: "10:00", category: "مكملات" },
     { id: "2", title: "حمض الفوليك للحامل", description: "أفضل وقت لتناول مكمل حمض الفوليك أثناء الحمل", youtubeId: "FDas2ErU9B8", duration: "8:00", category: "مكملات" },
+    { id: "3", title: "مكمل غذائي للحامل", description: "الفيتامينات المناسبة أثناء الحمل من الشهر الأول للأخير", youtubeId: "c2-kPRL9MTI", duration: "12:00", category: "مكملات" },
+    { id: "4", title: "ماذا يحدث للجنين بدون فيتامينات", description: "أهمية تناول الفيتامينات للحامل وتأثيرها على الجنين", youtubeId: "wpaQcnSJ6Ko", duration: "9:00", category: "مكملات" },
   ],
   fr: [
     { id: "1", title: "Vitamines et grossesse", description: "Complémentation en acide folique et vitamines essentielles", youtubeId: "LFP2b6Hdgeo", duration: "10:00", category: "Suppléments" },
     { id: "2", title: "Alimentation et compléments", description: "Guide nutritionnel complet pour la grossesse", youtubeId: "EswSlduwhDg", duration: "14:00", category: "Nutrition" },
+    { id: "3", title: "Vitamines grossesse : attention", description: "Devez-vous consommer des vitamines prénatales ? Découvrez la vérité", youtubeId: "z1dVLHD1E6U", duration: "11:00", category: "Suppléments" },
+    { id: "4", title: "Compléments alimentaires enceinte", description: "Les compléments recommandés et ceux à éviter pendant la grossesse", youtubeId: "S5KiCtR39Ss", duration: "15:00", category: "Nutrition" },
   ],
   es: [
     { id: "1", title: "Vitaminas prenatales y ácido fólico", description: "Importancia de la vitamina prenatal para un embarazo saludable", youtubeId: "reE2BNt93Ko", duration: "12:00", category: "Suplementos" },
     { id: "2", title: "Vitaminas durante el embarazo", description: "Qué vitaminas tomar durante el embarazo", youtubeId: "5lZxZhuKCtw", duration: "10:00", category: "Suplementos" },
+    { id: "3", title: "Qué vitaminas debo tomar", description: "Vitaminas prenatales antes y durante el embarazo", youtubeId: "Mu1iUsRbwIs", duration: "14:00", category: "Suplementos" },
+    { id: "4", title: "Suplementos buscando embarazo", description: "Pastillas prenatales y vitaminas esenciales", youtubeId: "e_JKY0E1UGg", duration: "11:00", category: "Suplementos" },
   ],
   de: [
     { id: "1", title: "Vitamine in der Schwangerschaft", description: "Nahrungsergänzung und Nährstoffmangel bei Kinderwunsch und Schwangerschaft", youtubeId: "58ebyYd_8gY", duration: "15:00", category: "Ergänzung" },
     { id: "2", title: "Vitamine - Wie viel brauchen wir?", description: "Alles über Vitamine und Nahrungsergänzungsmittel", youtubeId: "O8rTG3qHXjU", duration: "45:00", category: "Ergänzung" },
+    { id: "3", title: "B12, Omega 3 und Zink", description: "Wie gesund sind Nahrungsergänzungsmittel? Ernährungs-Docs Podcast", youtubeId: "lvWQKSMMKHQ", duration: "30:00", category: "Ergänzung" },
+    { id: "4", title: "Folsäure in der Schwangerschaft", description: "Warum Folsäure so wichtig ist und wie man sie richtig einnimmt", youtubeId: "1_vNOq8Pad0", duration: "20:00", category: "Ergänzung" },
   ],
   tr: [
     { id: "1", title: "Hamilelikte Multivitaminler", description: "Gebelikte hangi multivitaminler kullanılmalı", youtubeId: "js_y9PHdAS0", duration: "12:00", category: "Takviye" },
     { id: "2", title: "Folik Asit Rehberi", description: "Folik asidin önemi ve doğru kullanımı", youtubeId: "L6Hf5yPk1g0", duration: "8:00", category: "Takviye" },
+    { id: "3", title: "Folik Asit Düşüklüğü Tehlikesi", description: "Modern yaşam folik asit vitaminini nasıl düşürüyor", youtubeId: "EqxFveZvWnE", duration: "15:00", category: "Takviye" },
+    { id: "4", title: "Gebelikte Demir Takviyesi", description: "Hamilelikte demir eksikliği ve doğru takviye kullanımı", youtubeId: "zlodEueNwAs", duration: "10:00", category: "Takviye" },
   ],
   pt: [
     { id: "1", title: "Vitaminas na gravidez", description: "Suplementos essenciais para gestantes", youtubeId: "FprOVxmwzR8", duration: "14:00", category: "Suplementos" },
     { id: "2", title: "Ácido fólico e ferro", description: "Nutrientes importantes para a gestação", youtubeId: "2kNGY3gyrEc", duration: "11:00", category: "Suplementos" },
+    { id: "3", title: "Suplementação para gestantes", description: "Guia completo de suplementação durante a gravidez", youtubeId: "seLZ_KQtOew", duration: "13:00", category: "Suplementos" },
+    { id: "4", title: "Vitamina Materna é bom?", description: "Análise completa da vitamina materna para gestantes", youtubeId: "kf6ebtEKxsk", duration: "10:00", category: "Suplementos" },
   ],
   default: [
     { id: "1", title: "Prenatal Vitamins Guide", description: "Essential supplements for a healthy pregnancy", youtubeId: "vNZ2GsJOsZc", duration: "18:42", category: "Supplements" },
     { id: "2", title: "Top Pregnancy Supplements", description: "Which vitamins you actually need during pregnancy", youtubeId: "xZs3gCHcjhY", duration: "14:23", category: "Supplements" },
-    { id: "3", title: "Folate, Iron & DHA Explained", description: "Understanding the most important prenatal nutrients", youtubeId: "3GTK6MLPJ9g", duration: "12:15", category: "Supplements" },
+    { id: "3", title: "Best Prenatal Vitamin Research", description: "Detailed research based on independent studies", youtubeId: "VKoQHEwiC4o", duration: "20:00", category: "Supplements" },
+    { id: "4", title: "OBGYN Explains Prenatal Vitamins", description: "Important ingredients and what to look for", youtubeId: "0gr8wxOj18s", duration: "15:00", category: "Supplements" },
   ],
 };
