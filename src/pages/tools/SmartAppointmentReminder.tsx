@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check, Sparkles, Stethoscope, TestTube, Baby, Activity, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check, Sparkles, Stethoscope, TestTube, Baby, Activity, ChevronDown, ChevronUp, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -486,6 +487,14 @@ Respond in the same language the user is using. Format as a numbered list (1-5),
                     <label className="text-xs font-medium flex items-center gap-1.5">
                       <MessageSquare className="w-3.5 h-3.5 text-primary" />
                       {t('toolsInternal.appointmentReminder.questionsForDoctor')}
+                      <motion.span
+                        className="inline-flex items-center text-primary"
+                        animate={{ x: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <ArrowLeft className="w-3.5 h-3.5 rtl:hidden" />
+                        <ArrowRight className="w-3.5 h-3.5 ltr:hidden" />
+                      </motion.span>
                     </label>
                     <Button
                       type="button"
