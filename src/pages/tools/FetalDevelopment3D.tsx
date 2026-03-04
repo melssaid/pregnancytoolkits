@@ -10,7 +10,7 @@ import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
-import { RelatedToolLinks } from '@/components/RelatedToolLinks';
+
 
 interface WeekData {
   week: number;
@@ -412,13 +412,6 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
             </AnimatePresence>
           </CardContent>
         </Card>
-
-        {/* Related Tools */}
-        <RelatedToolLinks links={[
-          { to: "/tools/kick-counter", titleKey: "toolsInternal.fetalDevelopment.kickCounterLink", titleFallback: "Kick Counter", descKey: "toolsInternal.fetalDevelopment.kickCounterLinkDesc", descFallback: "Track your baby's movements", icon: "activity" },
-          { to: "/tools/weight-gain", titleKey: "toolsInternal.fetalDevelopment.weightGainLink", titleFallback: "Weight Gain Analyzer", descKey: "toolsInternal.fetalDevelopment.weightGainLinkDesc", descFallback: "Monitor healthy weight gain", icon: "trending" },
-          { to: "/tools/due-date-calculator", titleKey: "toolsInternal.fetalDevelopment.dueDateLink", titleFallback: "Due Date Calculator", descKey: "toolsInternal.fetalDevelopment.dueDateLinkDesc", descFallback: "Calculate your expected due date", icon: "calendar" },
-        ]} />
 
         {/* Week Tip */}
         <Card className="bg-muted/30 border-border">

@@ -17,7 +17,7 @@ import { format } from 'date-fns';
 import { PrintableReport } from '@/components/PrintableReport';
 
 import { Progress } from '@/components/ui/progress';
-import { RelatedToolLinks } from '@/components/RelatedToolLinks';
+
 import { ToolHubNav, BIRTH_HUB_TABS } from '@/components/ToolHubNav';
 
 const MAX_SAVED_PLANS = 9;
@@ -263,11 +263,6 @@ export default function AIBirthPlanGenerator() {
             )}
           </CardContent>
         </Card>
-
-        <RelatedToolLinks links={[
-          { to: "/tools/ai-birth-position", titleKey: "laborLinks.birthPositionLink", titleFallback: "Birth Positions", descKey: "laborLinks.birthPositionLinkDesc", descFallback: "Explore optimal positions", icon: "personStanding" },
-          { to: "/tools/labor-progress", titleKey: "laborLinks.laborProgressLink", titleFallback: "Labor Progress", descKey: "laborLinks.laborProgressLinkDesc", descFallback: "Track labor stages", icon: "activity" },
-        ]} />
       </div>
     </ToolFrame>
   );

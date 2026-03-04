@@ -12,7 +12,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { useTranslation } from 'react-i18next';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
-import { RelatedToolLinks } from '@/components/RelatedToolLinks';
+
 
 interface Contraction {
   id: string;
@@ -504,11 +504,6 @@ Provide:
               ⚠️ {t('toolsInternal.laborTracker.disclaimer')}
             </p>
           </div>
-
-          <RelatedToolLinks links={[
-            { to: "/tools/ai-birth-plan", titleKey: "laborLinks.birthPlanLink", titleFallback: "Birth Plan Generator", descKey: "laborLinks.birthPlanLinkDesc", descFallback: "Create a personalized birth plan", icon: "fileText" },
-            { to: "/tools/ai-birth-position", titleKey: "laborLinks.birthPositionLink", titleFallback: "Birth Positions", descKey: "laborLinks.birthPositionLinkDesc", descFallback: "Explore optimal positions for labor and delivery", icon: "personStanding" },
-          ]} />
       </div>
     </ToolFrame>
   );
