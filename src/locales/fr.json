@@ -1387,6 +1387,9 @@
       "storageFull": "Stockage plein. Supprimez d'anciens plans pour en sauvegarder de nouveaux.",
       "selectPreference": "Veuillez sélectionner au moins une préférence",
       "planGenerated": "Plan de naissance créé avec succès !",
+      "planSaved": "Plan de naissance sauvegardé !",
+      "planDeleted": "Plan supprimé",
+      "planLoaded": "Plan chargé",
       "pdfSuccess": "PDF téléchargé avec succès !",
       "pdfError": "Échec de l'export PDF"
     },
