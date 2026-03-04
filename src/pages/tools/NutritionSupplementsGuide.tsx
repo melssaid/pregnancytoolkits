@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, CheckCircle } from "lucide-react";
@@ -144,6 +144,12 @@ export default function NutritionSupplementsGuide() {
       {/* Promotional Video */}
       <div className="mt-4 rounded-xl overflow-hidden border border-border/40">
         <video
+          ref={(el) => {
+            if (el) {
+              el.muted = true;
+              el.play().catch(() => {});
+            }
+          }}
           src={lang === 'ar' ? '/videos/nutrition-promo-ar.mp4' : '/videos/nutrition-promo.mp4'}
           autoPlay
           loop
