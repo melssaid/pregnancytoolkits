@@ -146,9 +146,11 @@ export default function NutritionSupplementsGuide() {
         <div className="mt-4 rounded-xl overflow-hidden border border-border/40">
           <video
             src="/videos/nutrition-promo.mp4"
-            controls
+            autoPlay
+            loop
+            muted
             playsInline
-            preload="metadata"
+            preload="auto"
             className="w-full"
             style={{ maxHeight: 280 }}
           />
