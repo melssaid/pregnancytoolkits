@@ -82,7 +82,7 @@ function SleepTab() {
   }).filter(Boolean);
 
   const analyzeSleep = async () => {
-    const prompt = `As a pregnancy sleep specialist, analyze this sleep profile:\n**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}\n**Current Sleep:** ${sleepHours[0]} hours/night\n**Bedtime:** ${bedtime}\n**Sleep Issues:** ${getIssueLabels().join(", ") || "None"}\n\nProvide:\n1. **Sleep Quality Assessment**\n2. **Optimal Sleep Position** for the current pregnancy stage\n3. **Pre-Sleep Routine**\n4. **Environment Optimization**\n5. **Natural Remedies**\n6. **When to Wake**`;
+    const prompt = `As a pregnancy sleep wellness guide, analyze this sleep profile:\n\n**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}\n**Current Sleep:** ${sleepHours[0]} hours/night\n**Bedtime:** ${bedtime}\n**Sleep Issues:** ${getIssueLabels().join(", ") || "None"}\n\nProvide:\n1. **Sleep Quality Assessment**\n2. **Optimal Sleep Position** for the current pregnancy stage\n3. **Pre-Sleep Routine**\n4. **Environment Optimization**\n5. **Natural Remedies**\n6. **When to Wake**`;
     setResponse("");
     await streamChat({ type: "sleep-analysis", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setResponse(prev => prev + text), onDone: () => {} });
   };
@@ -205,7 +205,7 @@ function NauseaTab() {
 
   const getReliefPlan = async () => {
     const triggerLabels = triggers.map(id => { const tr = nauseaTriggers.find(t => t.id === id); return tr ? t(tr.labelKey) : null; }).filter(Boolean);
-    const prompt = `As a pregnancy nausea specialist:\n**Week:** ${settings.pregnancyWeek || "Not specified"}\n**Severity:** ${severity[0]}/10\n**Triggers:** ${triggerLabels.join(", ") || "Not specified"}\n**Vomiting:** ${vomiting ? "Yes" : "No"}\n\nProvide:\n1. **Immediate Relief**\n2. **Dietary Changes**\n3. **Eating Schedule**\n4. **Natural Remedies**\n5. **Lifestyle Adjustments**\n6. **When to Call Doctor**\n7. **Weekly Outlook**\n${severity[0] >= 8 ? "⚠️ Include hyperemesis information." : ""}`;
+    const prompt = `As a pregnancy nausea wellness guide, provide comfort strategies:\n\n**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}\n**Severity:** ${severity[0]}/10\n**Triggers:** ${triggerLabels.join(", ") || "Not specified"}\n**Vomiting:** ${vomiting ? "Yes" : "No"}\n\nProvide:\n1. **Immediate Relief** - What to do right now\n2. **Dietary Changes** - Foods that help\n3. **Eating Schedule** - When and how to eat\n4. **Natural Remedies** - Ginger, B6, acupressure\n5. **Lifestyle Adjustments** - Triggers to avoid\n6. **When to Consult Provider** - Signs to discuss\n7. **Weekly Outlook** - When improvement is expected\n${severity[0] >= 8 ? "Note: Severity is high - include information about when to seek additional support." : ""}`;
     setResponse("");
     await streamChat({ type: "pregnancy-assistant", messages: [{ role: "user", content: prompt }], context: { week: Number(settings.pregnancyWeek) || 0 }, onDelta: (text) => setResponse(prev => prev + text), onDone: () => {} });
   };

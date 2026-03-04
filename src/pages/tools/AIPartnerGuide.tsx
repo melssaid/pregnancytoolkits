@@ -53,7 +53,7 @@ const AIPartnerGuide = () => {
 
     const prompt = `${langInstruction}
 
-As a pregnancy relationship counselor, provide guidance for a ${partnerLabel} supporting their pregnant partner:
+As a pregnancy support guide, provide guidance for a ${partnerLabel} supporting their pregnant partner:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Trimester:** ${trimester}

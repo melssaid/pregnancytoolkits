@@ -95,7 +95,7 @@ export default function WeeklySummary() {
     setJustSaved(false);
     accumulatedRef.current = "";
 
-    const prompt = `Please provide a comprehensive summary for week ${week} of pregnancy.`;
+    const prompt = `As a pregnancy wellness guide, provide a comprehensive weekly summary for week ${week} of pregnancy. Cover baby's development, mother's changes, nutrition tips, exercise recommendations, and important milestones.`;
 
     await streamChat({
       type: "weekly-summary",

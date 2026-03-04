@@ -66,7 +66,7 @@ const AINauseaRelief = () => {
       return trigger ? t(trigger.labelKey) : null;
     }).filter(Boolean);
 
-    const prompt = `As a pregnancy nausea specialist, provide relief strategies:
+    const prompt = `As a pregnancy nausea wellness guide, provide relief strategies:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Severity (1-10):** ${severity[0]}

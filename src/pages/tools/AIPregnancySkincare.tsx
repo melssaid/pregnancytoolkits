@@ -70,7 +70,7 @@ const AIPregnancySkincare = () => {
 
     const prompt = `${langInstruction}
 
-As a pregnancy-safe skincare specialist, create a personalized routine:
+As a pregnancy skincare wellness guide, create a personalized routine:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Skin Type:** ${skinTypeLabel}

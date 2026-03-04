@@ -228,13 +228,13 @@ const BabySleepTracker = () => {
           .reduce((sum, s) => sum + differenceInMinutes(new Date(s.endTime!), new Date(s.startTime)), 0) / napCount
       : 0;
 
-    const prompt = `As a pediatric sleep specialist, analyze this baby's sleep data and provide brief, actionable advice:
+    const prompt = `As a pediatric sleep wellness guide, analyze this baby's sleep data and provide supportive advice:
 
-Baby's estimated age: ${ageEstimate}
-Today's total sleep: ${formatDuration(stats.totalMinutes)}
-7-day daily average: ${formatDuration(weeklyAvg)}
-Recent naps: ${napCount} (avg ${Math.round(avgNapDuration)} mins each)
-Recent night sleeps: ${nightCount}
+**Baby's Estimated Age:** ${ageEstimate}
+**Today's Total Sleep:** ${formatDuration(stats.totalMinutes)}
+**7-Day Daily Average:** ${formatDuration(weeklyAvg)}
+**Recent Naps:** ${napCount} (avg ${Math.round(avgNapDuration)} mins each)
+**Recent Night Sleeps:** ${nightCount}
 
 Provide 3 specific tips to improve this baby's sleep schedule. Keep response under 150 words. Be encouraging and supportive.`;
 

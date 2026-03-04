@@ -111,9 +111,9 @@ const AISymptomAnalyzer: React.FC = () => {
     ).join(', ');
     const moodLabel = selectedMood ? t(`toolsInternal.symptomAnalyzer.moods.${selectedMood}`) : '';
 
-    const prompt = `I'm at week ${currentWeek} of pregnancy. Today I'm experiencing: ${symptomNames}.${moodLabel ? ` My mood is: ${moodLabel}.` : ''}${notes ? ` Additional notes: ${notes}` : ''}
+    const prompt = `As a pregnancy wellness guide, provide supportive insights for a woman at week ${currentWeek} of pregnancy experiencing: ${symptomNames}.${moodLabel ? ` Her mood is: ${moodLabel}.` : ''}${notes ? ` Additional notes: ${notes}` : ''}
 
-Please provide brief, supportive wellness insights about these feelings during week ${currentWeek}. Include practical comfort tips and when to share with my healthcare provider. Keep it concise and warm.`;
+Provide brief, supportive wellness insights about these feelings during week ${currentWeek}. Include practical comfort tips and when to share with a healthcare provider. Keep it concise and warm.`;
 
     await streamChat({
       type: "symptom-analysis",
