@@ -210,7 +210,7 @@ const DiaperTracker = () => {
                   <DiaperActionButton
                     count={stats.wet}
                     label={t('diaperPage.wet')}
-                    emoji="💧"
+                    emoji="🫧"
                     gradientFrom="from-blue-500/15"
                     gradientTo="to-blue-400/5"
                     borderColor="border-blue-500/20"
@@ -224,7 +224,7 @@ const DiaperTracker = () => {
                   <DiaperActionButton
                     count={stats.dirty}
                     label={t('diaperPage.dirty')}
-                    emoji="💩"
+                    emoji="🍂"
                     gradientFrom="from-amber-500/15"
                     gradientTo="to-amber-400/5"
                     borderColor="border-amber-500/20"
@@ -238,7 +238,7 @@ const DiaperTracker = () => {
                   <DiaperActionButton
                     count={stats.total}
                     label={t('diaperPage.total')}
-                    emoji="🧷"
+                    emoji="👶"
                     gradientFrom="from-primary/15"
                     gradientTo="to-primary/5"
                     borderColor="border-primary/20"
@@ -311,7 +311,7 @@ const DiaperTracker = () => {
               {new Date(entries[0].time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </span>
             <span className="px-1.5 py-0.5 rounded-full bg-muted text-[10px] font-medium">
-              {entries[0].type === 'wet' ? '💧' : entries[0].type === 'dirty' ? '💩' : '🧷'}
+              {entries[0].type === 'wet' ? '🫧' : entries[0].type === 'dirty' ? '🍂' : '👶'}
               {' '}
               {t(`diaperPage.${entries[0].type}`)}
             </span>
