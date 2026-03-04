@@ -2,3 +2,6 @@ project_id = "frlrngdogjzqpqpjhjvq"
 
 [functions.pregnancy-ai-perplexity]
 verify_jwt = false
+
+[functions.pregnancy-plan-enhanced]
+verify_jwt = false

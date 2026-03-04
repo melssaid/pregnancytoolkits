@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ import {
   Utensils, FileText, Brain, Loader2,
   RefreshCw, Baby, Heart, Scale, Flame,
   Ruler, Droplets, Moon, Smile, ChevronDown, ChevronUp,
-  Stethoscope, AlertTriangle
+  Stethoscope, AlertTriangle, Sparkles, Globe
 } from "lucide-react";
 import { toast } from "sonner";
 import { WeekSlider } from "@/components/WeekSlider";
@@ -61,6 +61,8 @@ const SmartPregnancyPlan = () => {
   const [activeTab, setActiveTab] = useState("aiplan");
   const [aiResponse, setAiResponse] = useState('');
   const [reportContent, setReportContent] = useState('');
+  const [researchEnhanced, setResearchEnhanced] = useState(false);
+  const [enhancedLoading, setEnhancedLoading] = useState(false);
   const { streamChat, isLoading, error } = usePregnancyAI();
   const reportRef = useRef<HTMLDivElement>(null);
 
@@ -102,52 +104,122 @@ const SmartPregnancyPlan = () => {
   const progress = Math.min(100, Math.round((health.week / 40) * 100));
   const daysRemaining = Math.max(0, (40 - health.week) * 7);
 
+  // SSE stream parser for enhanced endpoint
+  const streamEnhanced = useCallback(async (mode: "plan" | "report", onDelta: (text: string) => void) => {
+    setEnhancedLoading(true);
+    setResearchEnhanced(false);
+
+    try {
+      const authHeader = `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`;
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-plan-enhanced`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authHeader,
+          },
+          body: JSON.stringify({
+            week: health.week,
+            weight: health.weight,
+            height: health.height,
+            age: health.age,
+            painLevel: health.painLevel,
+            bloodPressureSys: health.bloodPressureSys,
+            bloodPressureDia: health.bloodPressureDia,
+            sleepHours: health.sleepHours,
+            activityLevel: health.activityLevel,
+            mood: health.mood,
+            conditions: health.conditions,
+            language: lang,
+            mode,
+          }),
+        }
+      );
+
+      if (!response.ok || !response.body) {
+        // Fallback to standard AI if enhanced fails
+        console.warn("[Enhanced] Failed, falling back to standard AI");
+        throw new Error("Enhanced endpoint failed");
+      }
+
+      // Check if research was used
+      const isResearchEnhanced = response.headers.get("X-Research-Enhanced") === "true";
+      setResearchEnhanced(isResearchEnhanced);
+
+      // Parse SSE stream
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        let newlineIndex: number;
+        while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
+          let line = buffer.slice(0, newlineIndex);
+          buffer = buffer.slice(newlineIndex + 1);
+          if (line.endsWith("\r")) line = line.slice(0, -1);
+          if (line.startsWith(":") || line.trim() === "") continue;
+          if (!line.startsWith("data: ")) continue;
+          const jsonStr = line.slice(6).trim();
+          if (jsonStr === "[DONE]") return;
+          try {
+            const parsed = JSON.parse(jsonStr);
+            const content = parsed.choices?.[0]?.delta?.content;
+            if (content) onDelta(content);
+          } catch {
+            buffer = line + "\n" + buffer;
+            break;
+          }
+        }
+      }
+    } finally {
+      setEnhancedLoading(false);
+    }
+  }, [health, lang]);
+
   const generateAIPlan = async () => {
     setAiResponse('');
     setActiveTab('aiplan');
 
-    const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
-    const prompts: Record<string, string> = {
-      en: `I'm in week ${health.week} of pregnancy. My weight is ${health.weight}kg, height ${health.height}cm, age ${health.age}, pain level ${health.painLevel}/10, blood pressure ${health.bloodPressureSys}/${health.bloodPressureDia}, sleep ${health.sleepHours}hrs, mood: ${health.mood}, activity: ${health.activityLevel}, conditions: ${conditionsText}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations. Be specific and practical.`,
-      ar: `أنا في الأسبوع ${health.week} من الحمل. وزني ${health.weight} كجم، طولي ${health.height} سم، عمري ${health.age}، مستوى الألم ${health.painLevel}/10، ضغط الدم ${health.bloodPressureSys}/${health.bloodPressureDia}، النوم ${health.sleepHours} ساعات، المزاج: ${health.mood}، النشاط: ${health.activityLevel}، الحالات الصحية: ${conditionsText}. أعطني خطة حمل أسبوعية مخصصة تشمل تمارين ونصائح تغذية وتوصيات صحية. كوني محددة وعملية.`,
-      de: `Ich bin in der ${health.week}. Schwangerschaftswoche. Gewicht ${health.weight}kg, Größe ${health.height}cm, Alter ${health.age}, Schmerzniveau ${health.painLevel}/10, Blutdruck ${health.bloodPressureSys}/${health.bloodPressureDia}, Schlaf ${health.sleepHours}h, Stimmung: ${health.mood}, Aktivität: ${health.activityLevel}, Vorerkrankungen: ${conditionsText}. Erstelle einen personalisierten Schwangerschaftsplan.`,
-      fr: `Je suis à la semaine ${health.week} de grossesse. Poids ${health.weight}kg, taille ${health.height}cm, âge ${health.age}, douleur ${health.painLevel}/10, tension ${health.bloodPressureSys}/${health.bloodPressureDia}, sommeil ${health.sleepHours}h, humeur: ${health.mood}, activité: ${health.activityLevel}, conditions: ${conditionsText}. Créez un plan de grossesse personnalisé.`,
-      es: `Estoy en la semana ${health.week} de embarazo. Peso ${health.weight}kg, altura ${health.height}cm, edad ${health.age}, dolor ${health.painLevel}/10, presión ${health.bloodPressureSys}/${health.bloodPressureDia}, sueño ${health.sleepHours}h, ánimo: ${health.mood}, actividad: ${health.activityLevel}, condiciones: ${conditionsText}. Crea un plan de embarazo personalizado.`,
-      pt: `Estou na semana ${health.week} de gravidez. Peso ${health.weight}kg, altura ${health.height}cm, idade ${health.age}, dor ${health.painLevel}/10, pressão ${health.bloodPressureSys}/${health.bloodPressureDia}, sono ${health.sleepHours}h, humor: ${health.mood}, atividade: ${health.activityLevel}, condições: ${conditionsText}. Crie um plano de gravidez personalizado.`,
-      tr: `Hamileliğimin ${health.week}. haftasındayım. Kilo ${health.weight}kg, boy ${health.height}cm, yaş ${health.age}, ağrı ${health.painLevel}/10, tansiyon ${health.bloodPressureSys}/${health.bloodPressureDia}, uyku ${health.sleepHours}sa, ruh hali: ${health.mood}, aktivite: ${health.activityLevel}, durumlar: ${conditionsText}. Kişiselleştirilmiş bir gebelik planı oluşturun.`,
-    };
-
-    await streamChat({
-      type: 'pregnancy-plan',
-      messages: [{ role: 'user', content: prompts[lang] || prompts.en }],
-      context: { week: health.week, weight: health.weight, language: lang },
-      onDelta: (text) => setAiResponse(prev => prev + text),
-      onDone: () => { },
-    });
+    try {
+      await streamEnhanced("plan", (text) => setAiResponse(prev => prev + text));
+    } catch {
+      // Fallback to standard Gemini-only flow
+      const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
+      const prompt = `I'm in week ${health.week} of pregnancy. Weight: ${health.weight}kg, height: ${health.height}cm, age: ${health.age}, pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, sleep: ${health.sleepHours}hrs, mood: ${health.mood}, activity: ${health.activityLevel}, conditions: ${conditionsText}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.`;
+      await streamChat({
+        type: 'pregnancy-plan',
+        messages: [{ role: 'user', content: prompt }],
+        context: { week: health.week, weight: health.weight, language: lang },
+        onDelta: (text) => setAiResponse(prev => prev + text),
+        onDone: () => {},
+      });
+    }
   };
 
   const generateReport = async () => {
     setReportContent('');
     setActiveTab('report');
 
-    const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
-    const prompts: Record<string, string> = {
-      en: `Generate a comprehensive weekly pregnancy health report for Week ${health.week}. Patient data: Weight ${health.weight}kg, Height ${health.height}cm, BMI ${getBMI()}, Age ${health.age}, BP ${health.bloodPressureSys}/${health.bloodPressureDia}, Pain ${health.painLevel}/10, Sleep ${health.sleepHours}hrs, Mood ${health.mood}, Activity ${health.activityLevel}, Conditions: ${conditionsText}. Include: 1) Health assessment 2) Risk factors 3) Recommended tests 4) Nutrition guidance 5) Exercise recommendations 6) Warning signs to watch. Be thorough and medical.`,
-      ar: `أنشئ تقريرًا صحيًا أسبوعيًا شاملاً للحمل للأسبوع ${health.week}. بيانات المريضة: الوزن ${health.weight} كجم، الطول ${health.height} سم، مؤشر كتلة الجسم ${getBMI()}، العمر ${health.age}، ضغط الدم ${health.bloodPressureSys}/${health.bloodPressureDia}، الألم ${health.painLevel}/10، النوم ${health.sleepHours} ساعات، المزاج ${health.mood}، النشاط ${health.activityLevel}، الحالات الصحية: ${conditionsText}. يشمل: 1) تقييم صحي 2) عوامل الخطر 3) الفحوصات الموصى بها 4) إرشادات التغذية 5) توصيات التمارين 6) علامات التحذير. كن شاملاً وطبيًا.`,
-      de: `Erstelle einen umfassenden wöchentlichen Schwangerschaftsgesundheitsbericht für Woche ${health.week}. Patientendaten: Gewicht ${health.weight}kg, Größe ${health.height}cm, BMI ${getBMI()}, Alter ${health.age}, Blutdruck ${health.bloodPressureSys}/${health.bloodPressureDia}, Schmerz ${health.painLevel}/10, Schlaf ${health.sleepHours}h, Stimmung ${health.mood}, Aktivität ${health.activityLevel}, Vorerkrankungen: ${conditionsText}.`,
-      fr: `Générez un rapport de santé hebdomadaire complet pour la semaine ${health.week} de grossesse. Données: Poids ${health.weight}kg, Taille ${health.height}cm, IMC ${getBMI()}, Âge ${health.age}, TA ${health.bloodPressureSys}/${health.bloodPressureDia}, Douleur ${health.painLevel}/10, Sommeil ${health.sleepHours}h, Humeur ${health.mood}, Activité ${health.activityLevel}, Conditions: ${conditionsText}.`,
-      es: `Genera un informe de salud semanal completo para la semana ${health.week} de embarazo. Datos: Peso ${health.weight}kg, Altura ${health.height}cm, IMC ${getBMI()}, Edad ${health.age}, PA ${health.bloodPressureSys}/${health.bloodPressureDia}, Dolor ${health.painLevel}/10, Sueño ${health.sleepHours}h, Ánimo ${health.mood}, Actividad ${health.activityLevel}, Condiciones: ${conditionsText}.`,
-      pt: `Gere um relatório semanal de saúde para a semana ${health.week} de gravidez. Dados: Peso ${health.weight}kg, Altura ${health.height}cm, IMC ${getBMI()}, Idade ${health.age}, PA ${health.bloodPressureSys}/${health.bloodPressureDia}, Dor ${health.painLevel}/10, Sono ${health.sleepHours}h, Humor ${health.mood}, Atividade ${health.activityLevel}, Condições: ${conditionsText}.`,
-      tr: `${health.week}. hafta için kapsamlı bir gebelik sağlık raporu oluşturun. Veriler: Kilo ${health.weight}kg, Boy ${health.height}cm, VKİ ${getBMI()}, Yaş ${health.age}, Tansiyon ${health.bloodPressureSys}/${health.bloodPressureDia}, Ağrı ${health.painLevel}/10, Uyku ${health.sleepHours}sa, Ruh hali ${health.mood}, Aktivite ${health.activityLevel}, Durumlar: ${conditionsText}.`,
-    };
-
-    await streamChat({
-      type: 'pregnancy-plan',
-      messages: [{ role: 'user', content: prompts[lang] || prompts.en }],
-      context: { week: health.week, weight: health.weight, language: lang },
-      onDelta: (text) => setReportContent(prev => prev + text),
-      onDone: () => { },
-    });
+    try {
+      await streamEnhanced("report", (text) => setReportContent(prev => prev + text));
+    } catch {
+      // Fallback to standard Gemini-only flow
+      const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
+      const prompt = `Generate a comprehensive weekly pregnancy health report for Week ${health.week}. Weight: ${health.weight}kg, Height: ${health.height}cm, BMI: ${getBMI()}, Age: ${health.age}, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Pain: ${health.painLevel}/10, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}.`;
+      await streamChat({
+        type: 'pregnancy-plan',
+        messages: [{ role: 'user', content: prompt }],
+        context: { week: health.week, weight: health.weight, language: lang },
+        onDelta: (text) => setReportContent(prev => prev + text),
+        onDone: () => {},
+      });
+    }
   };
 
   // Conditions list
@@ -338,11 +410,17 @@ const SmartPregnancyPlan = () => {
                     <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(330 70% 55% / 0.1))' }}>
                       <Brain className="w-4.5 h-4.5 text-primary" />
                     </div>
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <h3 className="text-sm font-bold text-foreground">{t("smartPlan.aiPlan", "AI Plan")}</h3>
                       <p className="text-[10px] text-muted-foreground">{t("common.week", "Week")} {health.week} • {trimester.label}</p>
                     </div>
-                    {isLoading && (
+                    {researchEnhanced && (
+                      <Badge variant="outline" className="text-[9px] gap-1 border-emerald-500/30 text-emerald-600 bg-emerald-500/10 shrink-0">
+                        <Globe className="w-2.5 h-2.5" />
+                        {t("smartPlan.researchEnhanced", "Research-Enhanced")}
+                      </Badge>
+                    )}
+                    {(isLoading || enhancedLoading) && (
                       <div className="flex gap-1 ms-auto">
                         {[0, 1, 2].map(i => (
                           <motion.div key={i} className="w-1.5 h-1.5 rounded-full bg-primary" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }} />
@@ -354,7 +432,7 @@ const SmartPregnancyPlan = () => {
                   {/* Content */}
                   <div className="px-4 pb-5 pt-1">
                     <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
-                      <MarkdownRenderer content={aiResponse} isLoading={isLoading} />
+                      <MarkdownRenderer content={aiResponse} isLoading={isLoading || enhancedLoading} />
                     </div>
                   </div>
                 </motion.div>
@@ -368,12 +446,16 @@ const SmartPregnancyPlan = () => {
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.12), hsl(330 70% 55% / 0.08))' }}>
                   <Brain className="h-7 w-7 text-primary" />
                 </div>
-                <p className="text-xs text-muted-foreground max-w-[240px] mx-auto leading-relaxed">
-                  {t("smartPlan.aiPlanHint", "Get a personalized AI-powered pregnancy plan based on your profile")}
+                <p className="text-xs text-muted-foreground max-w-[260px] mx-auto leading-relaxed">
+                  {t("smartPlan.aiPlanHintEnhanced", "Get a personalized AI plan enhanced with the latest medical research")}
                 </p>
+                <div className="flex items-center justify-center gap-1.5 text-[10px] text-emerald-600">
+                  <Globe className="w-3 h-3" />
+                  <span>{t("smartPlan.poweredByResearch", "Powered by real-time medical research")}</span>
+                </div>
                 <AIActionButton
                   onClick={generateAIPlan}
-                  isLoading={isLoading}
+                  isLoading={isLoading || enhancedLoading}
                   label={t("smartPlan.getAIPlan", "Get Smart Plan")}
                 />
               </motion.div>
@@ -410,7 +492,15 @@ const SmartPregnancyPlan = () => {
                             <p className="text-[10px] text-muted-foreground">{new Date().toLocaleDateString(isRTL ? 'ar-SA' : undefined)}</p>
                           </div>
                         </div>
-                        <Badge className={`${trimester.color} text-white text-[10px]`}>{trimester.label}</Badge>
+                        <div className="flex items-center gap-2">
+                          {researchEnhanced && (
+                            <Badge variant="outline" className="text-[8px] gap-0.5 border-emerald-500/30 text-emerald-600 bg-emerald-500/10 shrink-0">
+                              <Globe className="w-2 h-2" />
+                              {t("smartPlan.researchEnhanced", "Research-Enhanced")}
+                            </Badge>
+                          )}
+                          <Badge className={`${trimester.color} text-white text-[10px]`}>{trimester.label}</Badge>
+                        </div>
                       </div>
 
                       <div className="space-y-1.5">
@@ -438,7 +528,7 @@ const SmartPregnancyPlan = () => {
                     {/* Report Content */}
                     <div className="px-4 pb-5">
                       <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
-                        <MarkdownRenderer content={reportContent} isLoading={isLoading} />
+                        <MarkdownRenderer content={reportContent} isLoading={isLoading || enhancedLoading} />
                       </div>
                     </div>
                   </motion.div>
@@ -447,11 +537,11 @@ const SmartPregnancyPlan = () => {
                 <motion.button
                   whileTap={{ scale: 0.92 }}
                   onClick={generateReport}
-                  disabled={isLoading}
+                  disabled={isLoading || enhancedLoading}
                   className="relative w-full overflow-hidden rounded-2xl h-9 flex items-center justify-center gap-1.5 text-white text-xs font-semibold disabled:opacity-60 disabled:pointer-events-none"
                   style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
                 >
-                  {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
+                  {(isLoading || enhancedLoading) ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
                   {t("smartPlan.regenerate", "Regenerate")}
                 </motion.button>
               </div>
@@ -464,17 +554,21 @@ const SmartPregnancyPlan = () => {
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto" style={{ background: 'linear-gradient(135deg, hsl(280 60% 55% / 0.12), hsl(var(--primary) / 0.08))' }}>
                   <FileText className="h-7 w-7 text-primary" />
                 </div>
-                <p className="text-xs text-muted-foreground max-w-[240px] mx-auto leading-relaxed">
-                  {t("smartPlan.reportHint", "Get a detailed AI-powered health report personalized for your week, weight, and condition")}
+                <p className="text-xs text-muted-foreground max-w-[260px] mx-auto leading-relaxed">
+                  {t("smartPlan.reportHintEnhanced", "Get a detailed health report enhanced with the latest medical research")}
                 </p>
+                <div className="flex items-center justify-center gap-1.5 text-[10px] text-emerald-600">
+                  <Globe className="w-3 h-3" />
+                  <span>{t("smartPlan.poweredByResearch", "Powered by real-time medical research")}</span>
+                </div>
                 <motion.button
                   whileTap={{ scale: 0.92 }}
                   onClick={generateReport}
-                  disabled={isLoading}
+                  disabled={isLoading || enhancedLoading}
                   className="relative mx-auto overflow-hidden rounded-2xl h-10 px-6 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
                   style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
                 >
-                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
+                  {(isLoading || enhancedLoading) ? <Loader2 className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
                   {t("smartPlan.generateReport", "Generate Health Report")}
                 </motion.button>
               </motion.div>
