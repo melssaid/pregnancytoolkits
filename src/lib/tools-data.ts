@@ -53,9 +53,9 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // SMART ASSISTANT — Flagship AI tools
   // ═══════════════════════════════════════════════════════════════
-  { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, categoryKey: "categories.smartAssistant", href: "/tools/pregnancy-assistant", priority: 1, hasAI: true },
-  { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, categoryKey: "categories.smartAssistant", href: "/tools/weekly-summary", priority: 2, hasAI: true },
-  { id: "smart-pregnancy-plan", titleKey: "tools.smartPregnancyPlan.title", descriptionKey: "tools.smartPregnancyPlan.description", icon: ClipboardList, categoryKey: "categories.smartAssistant", href: "/tools/smart-plan", priority: 3, hasAI: true },
+  { id: "smart-pregnancy-plan", titleKey: "tools.smartPregnancyPlan.title", descriptionKey: "tools.smartPregnancyPlan.description", icon: ClipboardList, categoryKey: "categories.smartAssistant", href: "/tools/smart-plan", priority: 1, hasAI: true },
+  { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, categoryKey: "categories.smartAssistant", href: "/tools/pregnancy-assistant", priority: 2, hasAI: true },
+  { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, categoryKey: "categories.smartAssistant", href: "/tools/weekly-summary", priority: 3, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // FERTILITY & PLANNING — "أحلم بطفل" Journey
