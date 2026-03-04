@@ -1,7 +1,7 @@
 import { useState, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Heart, Smile, BookOpen, Eye, Brain, Calendar } from "lucide-react";
+import { ChevronDown, Heart, Smile, BookOpen, Eye, Brain, Calendar, Sparkles, Search, Leaf, Sun } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 
 const LESSON_KEYS = [
@@ -118,12 +118,21 @@ const AccordionItem = memo(function AccordionItem({
   );
 });
 
-// ── Number Badge ─────────────────────────────────────────────────────
-function NumBadge({ n, accent = "primary" }: { n: number; accent?: "primary" | "destructive" }) {
+// ── Icon Badge ───────────────────────────────────────────────────────
+const LESSON_ICONS = [
+  BookOpen, Sparkles, Brain, Heart, Sun, Search, Calendar,
+  Leaf, Sparkles, Brain, Heart, BookOpen, Search, Sun,
+  Leaf, Sparkles, Brain, Calendar, Heart, Search,
+  BookOpen, Sun, Leaf, Sparkles, Brain, Heart,
+  Search, Calendar, BookOpen,
+];
+
+function IconBadge({ index, accent = "primary" }: { index: number; accent?: "primary" | "destructive" }) {
   const bg = accent === "destructive" ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary";
+  const Icon = LESSON_ICONS[index % LESSON_ICONS.length];
   return (
-    <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${bg} text-[10px] font-bold`}>
-      {n}
+    <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${bg}`}>
+      <Icon className="h-3 w-3" />
     </span>
   );
 }
@@ -229,7 +238,7 @@ export default function FertilityAcademy() {
                       onToggle={() => toggleLesson(key)}
                       index={i}
                       isRTL={isRTL}
-                      badge={<NumBadge n={i + 1} />}
+                      badge={<IconBadge index={i} />}
                       title={t(`toolsInternal.fertilityAcademy.lessons.${key}.title`)}
                     >
                       <ContentBlock text={t(`toolsInternal.fertilityAcademy.lessons.${key}.content`)} isRTL={isRTL} />
@@ -253,6 +262,7 @@ export default function FertilityAcademy() {
                       onToggle={() => toggleSign(key)}
                       index={i}
                       isRTL={isRTL}
+                      badge={<IconBadge index={i} />}
                       title={t(`toolsInternal.fertilitySigns.signs.${key}.title`)}
                     >
                       <ContentBlock text={t(`toolsInternal.fertilitySigns.signs.${key}.description`)} isRTL={isRTL} />
@@ -277,6 +287,7 @@ export default function FertilityAcademy() {
                       onToggle={() => toggleTopic(key)}
                       index={i}
                       isRTL={isRTL}
+                      badge={<IconBadge index={i} />}
                       title={t(`toolsInternal.stressFertility.topics.${key}.title`)}
                     >
                       <ContentBlock text={t(`toolsInternal.stressFertility.topics.${key}.content`)} isRTL={isRTL} />
@@ -302,7 +313,7 @@ export default function FertilityAcademy() {
                       onToggle={() => toggleDay(key)}
                       index={i}
                       isRTL={isRTL}
-                      badge={<NumBadge n={i + 1} accent="destructive" />}
+                      badge={<IconBadge index={i} accent="destructive" />}
                       title={t(`toolsInternal.twwCompanion.days.${key}.title`)}
                       accentColor="destructive"
                     >
