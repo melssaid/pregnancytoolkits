@@ -401,94 +401,231 @@ Keep it practical, warm, and easy to follow.`;
         )}
 
         {/* Main Counter */}
-        <Card className="shadow-xl">
-          <CardContent className="p-4">
-            {/* Timer Display */}
-            <div className="text-center mb-4">
-              <div className="text-xl font-bold text-foreground mb-1">
-                {formatTime(elapsedTime)}
-              </div>
-              <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.elapsedTime')}</p>
-            </div>
-
-            {/* Kick Count Display */}
-            <motion.div 
-              className={`relative w-36 h-36 mx-auto rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 ${
-                isActive 
-                  ? 'bg-gradient-to-br from-primary to-primary/80 hover:scale-105 active:scale-95 shadow-2xl' 
-                  : 'bg-muted'
-              }`}
-              onClick={isActive ? recordKick : undefined}
-              whileTap={isActive ? { scale: 0.95 } : {}}
-            >
-              <div className="text-center text-primary-foreground">
-                <motion.div 
-                  key={kicks.length}
-                  initial={{ scale: 1.2 }}
-                  animate={{ scale: 1 }}
-                  className="text-2xl font-bold"
-                >
-                  {kicks.length}
-                </motion.div>
-                <div className="text-sm opacity-90">{t('toolsInternal.kickCounter.kicks')}</div>
-              </div>
-              
-              {isActive && (
-                <motion.div 
-                  className="absolute inset-0 rounded-full border-4 border-primary-foreground/30"
-                  animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              )}
-            </motion.div>
-
+        <Card className="shadow-xl overflow-hidden">
+          <CardContent className="p-0">
+            {/* Timer Bar */}
             {isActive && (
-              <p className="text-center text-muted-foreground mt-4 animate-pulse">
-                👆 {t('toolsInternal.kickCounter.tapCircle')}
-              </p>
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-gradient-to-r from-primary/15 to-primary/5 px-4 py-2.5 border-b border-primary/10 flex items-center justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <motion.div 
+                    className="w-2 h-2 rounded-full bg-destructive"
+                    animate={{ opacity: [1, 0.3, 1] }}
+                    transition={{ duration: 1.2, repeat: Infinity }}
+                  />
+                  <span className="text-xs font-medium text-muted-foreground">{t('toolsInternal.kickCounter.recording', 'جارٍ التسجيل')}</span>
+                </div>
+                <div className="font-mono text-sm font-bold text-foreground tabular-nums">
+                  {formatTime(elapsedTime)}
+                </div>
+              </motion.div>
             )}
 
-            {/* Control Buttons */}
-            <div className="flex justify-center gap-3 mt-4">
-              {!isActive ? (
-                <Button
-                  className="px-6 h-10 text-[13px]"
-                  onClick={startSession}
-                >
-                  <Play className="w-4 h-4 mr-2" />
-                  {t('toolsInternal.kickCounter.startNewSession')}
-                </Button>
-              ) : (
-                <Button
-                  variant="destructive"
-                  className="h-10 text-[13px]"
-                  onClick={endSession}
-                  disabled={isSaving}
-                >
-                  {isSaving ? (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  ) : (
-                    <Save className="w-4 h-4 mr-2" />
+            <div className="p-5 pb-6">
+              {/* Kick Counter Circle */}
+              <div className="flex flex-col items-center">
+                {/* Main Tap Area */}
+                <div className="relative">
+                  {/* Outer pulse rings - only when active */}
+                  {isActive && (
+                    <>
+                      <motion.div
+                        className="absolute inset-0 rounded-full border-2 border-primary/20"
+                        animate={{ scale: [1, 1.3, 1.3], opacity: [0.4, 0, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                        style={{ margin: -8 }}
+                      />
+                      <motion.div
+                        className="absolute inset-0 rounded-full border-2 border-primary/15"
+                        animate={{ scale: [1, 1.5, 1.5], opacity: [0.3, 0, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
+                        style={{ margin: -8 }}
+                      />
+                    </>
                   )}
-                  {t('toolsInternal.kickCounter.endAndSave')}
-                </Button>
+
+                  <motion.div
+                    className={`relative w-44 h-44 rounded-full flex items-center justify-center cursor-pointer select-none transition-colors duration-300 ${
+                      isActive
+                        ? 'bg-gradient-to-br from-primary via-primary/90 to-primary/70 shadow-2xl shadow-primary/30'
+                        : 'bg-gradient-to-br from-muted to-muted/80 shadow-lg'
+                    }`}
+                    onClick={isActive ? recordKick : undefined}
+                    whileTap={isActive ? { scale: 0.92 } : {}}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  >
+                    {/* Inner glow ring */}
+                    {isActive && (
+                      <div className="absolute inset-2 rounded-full border border-primary-foreground/20" />
+                    )}
+
+                    <div className="text-center z-10">
+                      <AnimatePresence mode="popLayout">
+                        <motion.div
+                          key={kicks.length}
+                          initial={{ scale: 1.5, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.8, opacity: 0 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                          className={`text-4xl font-bold leading-none ${isActive ? 'text-primary-foreground' : 'text-muted-foreground'}`}
+                        >
+                          {kicks.length}
+                        </motion.div>
+                      </AnimatePresence>
+                      <div className={`text-sm mt-1 font-medium ${isActive ? 'text-primary-foreground/80' : 'text-muted-foreground/60'}`}>
+                        {t('toolsInternal.kickCounter.kicks')}
+                      </div>
+                    </div>
+
+                    {/* Ripple effect on tap */}
+                    {isActive && kicks.length > 0 && (
+                      <motion.div
+                        key={`ripple-${kicks.length}`}
+                        className="absolute inset-0 rounded-full bg-primary-foreground/20"
+                        initial={{ scale: 0.5, opacity: 0.6 }}
+                        animate={{ scale: 1.2, opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    )}
+                  </motion.div>
+                </div>
+
+                {/* Gesture Hint - Before starting */}
+                {!isActive && (
+                  <motion.div 
+                    className="mt-6 flex flex-col items-center gap-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <p className="text-sm text-muted-foreground text-center max-w-[220px] leading-relaxed">
+                      {t('toolsInternal.kickCounter.startHint', 'ابدئي جلسة جديدة ثم اضغطي على الدائرة عند كل حركة لطفلك')}
+                    </p>
+                    <Button
+                      className="px-8 h-12 text-sm font-bold rounded-2xl shadow-lg shadow-primary/20"
+                      onClick={startSession}
+                    >
+                      <Play className="w-4 h-4 me-2" />
+                      {t('toolsInternal.kickCounter.startNewSession')}
+                    </Button>
+                  </motion.div>
+                )}
+
+                {/* Active State - Tap hint with animated hand */}
+                {isActive && (
+                  <motion.div 
+                    className="mt-5 flex flex-col items-center gap-3"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    {/* Animated tap gesture */}
+                    <motion.div
+                      className="flex items-center gap-2 text-primary"
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <motion.span 
+                        className="text-2xl"
+                        animate={{ scale: [1, 1.15, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        👆
+                      </motion.span>
+                      <span className="text-xs font-medium text-muted-foreground">
+                        {t('toolsInternal.kickCounter.tapCircle')}
+                      </span>
+                    </motion.div>
+
+                    {/* Last kick time */}
+                    {kicks.length > 0 && (
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-[10px] text-muted-foreground/60"
+                      >
+                        {t('toolsInternal.kickCounter.lastKick', 'آخر حركة')}: {new Date(kicks[kicks.length - 1].time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                      </motion.p>
+                    )}
+
+                    {/* Goal progress indicator */}
+                    <div className="w-full max-w-[200px]">
+                      <div className="flex justify-between mb-1">
+                        <span className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.goal', 'الهدف')}</span>
+                        <span className="text-[10px] font-bold text-primary">{kicks.length}/10</span>
+                      </div>
+                      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${Math.min(100, (kicks.length / 10) * 100)}%` }}
+                          transition={{ type: "spring", stiffness: 100 }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* End Session Button */}
+                    <Button
+                      variant="outline"
+                      className="h-10 text-xs rounded-xl border-destructive/30 text-destructive hover:bg-destructive/10 mt-1"
+                      onClick={endSession}
+                      disabled={isSaving}
+                    >
+                      {isSaving ? (
+                        <Loader2 className="w-3.5 h-3.5 me-1.5 animate-spin" />
+                      ) : (
+                        <Save className="w-3.5 h-3.5 me-1.5" />
+                      )}
+                      {t('toolsInternal.kickCounter.endAndSave')}
+                    </Button>
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Notes - Compact */}
+              {isActive && kicks.length >= 3 && (
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  className="mt-4"
+                >
+                  <Textarea
+                    placeholder={t('toolsInternal.kickCounter.notesPlaceholder')}
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    className="resize-none text-xs rounded-xl"
+                    rows={2}
+                  />
+                </motion.div>
               )}
             </div>
-
-            {/* Notes */}
-            {isActive && (
-              <div className="mt-4">
-                <Textarea
-                  placeholder={t('toolsInternal.kickCounter.notesPlaceholder')}
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="resize-none"
-                  rows={2}
-                />
-              </div>
-            )}
           </CardContent>
         </Card>
+
+        {/* Success celebration when goal reached */}
+        <AnimatePresence>
+          {isActive && kicks.length === 10 && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 rounded-2xl p-4 text-center"
+            >
+              <motion.span 
+                className="text-3xl block mb-2"
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 0.5 }}
+              >
+                🎉
+              </motion.span>
+              <p className="text-sm font-bold text-foreground">{t('toolsInternal.kickCounter.goalReached', 'ممتاز! وصلتِ للهدف')}</p>
+              <p className="text-xs text-muted-foreground mt-1">{t('toolsInternal.kickCounter.goalReachedDesc', '10 حركات مسجّلة — يمكنك الاستمرار أو حفظ الجلسة')}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3">
