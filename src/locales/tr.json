@@ -1387,6 +1387,9 @@
       "storageFull": "Depolama dolu. Yeni kaydetmek için eski planları silin.",
       "selectPreference": "Lütfen en az bir tercih seçin",
       "planGenerated": "Doğum planı başarıyla oluşturuldu!",
+      "planSaved": "Doğum planı kaydedildi!",
+      "planDeleted": "Plan silindi",
+      "planLoaded": "Plan yüklendi",
       "pdfSuccess": "PDF başarıyla indirildi!",
       "pdfError": "PDF dışa aktarılamadı"
     },

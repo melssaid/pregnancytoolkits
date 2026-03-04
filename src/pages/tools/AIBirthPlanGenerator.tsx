@@ -139,19 +139,21 @@ export default function AIBirthPlanGenerator() {
     if (savedPlans.length >= MAX_SAVED_PLANS) { toast.error(t('toolsInternal.birthPlan.storageFull')); return; }
     const newPlan: SavedPlan = { id: `plan-${Date.now()}`, date: new Date().toISOString(), preferences, notes: additionalNotes, generatedPlan };
     setSavedPlans(prev => [newPlan, ...prev]);
-    toast.success(t('toolsInternal.birthPlan.planGenerated'));
+    toast.success(t('toolsInternal.birthPlan.planSaved'));
   }, [generatedPlan, preferences, additionalNotes, savedPlans.length, t]);
 
   const deletePlan = useCallback((id: string) => {
     setSavedPlans(prev => prev.filter(p => p.id !== id));
-  }, []);
+    toast.success(t('toolsInternal.birthPlan.planDeleted'));
+  }, [t]);
 
   const loadPlan = useCallback((plan: SavedPlan) => {
     setPreferences(plan.preferences);
     setAdditionalNotes(plan.notes);
     setGeneratedPlan(plan.generatedPlan);
     setShowArchive(false);
-  }, []);
+    toast.success(t('toolsInternal.birthPlan.planLoaded'));
+  }, [t]);
 
   return (
     <ToolFrame title={t('toolsInternal.birthPlan.title')} subtitle={t('toolsInternal.birthPlan.subtitle')} icon={FileText} mood="nurturing" toolId="ai-birth-plan">

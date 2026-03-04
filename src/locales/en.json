@@ -1422,6 +1422,9 @@
       "storageFull": "Storage full. Delete old plans to save new ones.",
       "selectPreference": "Please select at least one preference",
       "planGenerated": "Birth plan generated successfully!",
+      "planSaved": "Birth plan saved!",
+      "planDeleted": "Plan deleted",
+      "planLoaded": "Plan loaded",
       "pdfSuccess": "PDF downloaded successfully!",
       "pdfError": "Failed to export PDF"
     },

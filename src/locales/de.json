@@ -1387,6 +1387,9 @@
       "storageFull": "Speicher voll. Löschen Sie alte Pläne, um neue zu speichern.",
       "selectPreference": "Bitte wählen Sie mindestens eine Präferenz",
       "planGenerated": "Geburtsplan erfolgreich erstellt!",
+      "planSaved": "Geburtsplan gespeichert!",
+      "planDeleted": "Plan gelöscht",
+      "planLoaded": "Plan geladen",
       "pdfSuccess": "PDF erfolgreich heruntergeladen!",
       "pdfError": "PDF-Export fehlgeschlagen"
     },

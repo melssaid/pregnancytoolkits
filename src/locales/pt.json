@@ -1387,6 +1387,9 @@
       "storageFull": "Armazenamento cheio. Exclua planos antigos para salvar novos.",
       "selectPreference": "Selecione pelo menos uma preferência",
       "planGenerated": "Plano de parto criado com sucesso!",
+      "planSaved": "Plano de parto salvo!",
+      "planDeleted": "Plano excluído",
+      "planLoaded": "Plano carregado",
       "pdfSuccess": "PDF baixado com sucesso!",
       "pdfError": "Falha ao exportar o PDF"
     },
