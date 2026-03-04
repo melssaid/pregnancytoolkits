@@ -166,7 +166,6 @@ Write in ${lang}. No title, no heading, just the tip.`;
           <Card className="border-border/40 bg-gradient-to-br from-background to-muted/30 overflow-hidden">
             <div className="px-4 pt-3 flex items-center justify-between">
               <div className="flex items-center gap-1.5">
-                <Brain className="w-3.5 h-3.5 text-primary" />
                 <span className="text-xs font-semibold text-foreground">{t("insightTabs.dailyTip")}</span>
               </div>
               <Button
