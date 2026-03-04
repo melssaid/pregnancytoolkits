@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Lightbulb } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
@@ -235,12 +235,9 @@ export function ToolFrame({
           transition={{ delay: 0.7 }}
           className="px-4 sm:px-6 pb-8"
         >
-          <div className="flex items-center justify-center gap-1.5 opacity-40">
-            <Shield className="h-2.5 w-2.5 text-muted-foreground shrink-0" />
-            <span className="text-[9px] text-muted-foreground tracking-wide">
-              {t('app.medicalDisclaimer')}
-            </span>
-          </div>
+          <p className="text-[8px] text-muted-foreground/40 text-center tracking-wide leading-relaxed">
+            {t('app.medicalDisclaimer')}
+          </p>
         </motion.footer>
 
 
