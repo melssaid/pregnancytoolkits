@@ -251,7 +251,6 @@ export default function PostpartumMentalHealthCoach() {
             <Card>
               <CardContent className="p-4 space-y-4">
                 <div className="text-center">
-                  <span className="text-3xl mb-2 block">{q.icon}</span>
                   <h3 className="text-sm font-semibold">{t(q.questionKey)}</h3>
                 </div>
 
