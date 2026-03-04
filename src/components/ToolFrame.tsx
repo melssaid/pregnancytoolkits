@@ -143,11 +143,11 @@ export function ToolFrame({
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
-                  width={64}
-                  height={64}
+                  width={44}
+                  height={44}
                   loading="eager"
                   decoding="async"
-                  className="relative h-16 w-16 object-contain drop-shadow-md"
+                  className="relative h-11 w-11 rounded-full object-cover shadow-md ring-2 ring-white/80"
                 />
               </motion.div>
             </Link>
