@@ -1673,19 +1673,24 @@
         "history": "Historique"
       },
       "status": {
+        "label": "État",
         "normal": "Normal",
         "belowNormal": "Sous la normale",
         "aboveNormal": "Au-dessus de la normale"
       },
       "ageMonths": "Âge (mois)",
+      "monthUnit": "mois",
       "weightKg": "Poids (kg)",
       "heightCm": "Taille (cm)",
       "headCircCm": "Périmètre crânien (cm)",
+      "optionalMeasurements": "Taille et tête (optionnel)",
       "calculateResult": "Calculer le résultat",
       "result": "Résultat",
-      "weightPercentile": "Percentile de poids sur la courbe",
-      "normalRange": "Plage normale pour cet âge",
-      "saveToHistory": "Sauvegarder dans l'historique",
+      "weightPercentile": "Percentile de poids",
+      "normalRange": "Plage normale",
+      "saveToHistory": "Enregistrer la mesure",
+      "saved": "Mesure enregistrée !",
+      "deleted": "Supprimé",
       "whoStandards": "Basé sur les normes OMS",
       "month": "Mois {{month}}",
       "addFirst": "Ajouter première mesure"

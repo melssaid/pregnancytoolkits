@@ -2690,19 +2690,24 @@
         "history": "Histórico"
       },
       "status": {
+        "label": "Estado",
         "normal": "Normal",
         "belowNormal": "Abaixo do normal",
         "aboveNormal": "Acima do normal"
       },
       "ageMonths": "Idade (meses)",
+      "monthUnit": "mês",
       "weightKg": "Peso (kg)",
       "heightCm": "Altura (cm)",
       "headCircCm": "Perímetro (cm)",
+      "optionalMeasurements": "Altura e cabeça (opcional)",
       "calculateResult": "Calcular Resultado",
       "result": "Resultado",
-      "weightPercentile": "Percentil de peso no gráfico",
-      "normalRange": "Faixa normal para esta idade",
-      "saveToHistory": "Salvar no histórico",
+      "weightPercentile": "Percentil de peso",
+      "normalRange": "Faixa normal",
+      "saveToHistory": "Salvar medição",
+      "saved": "Medição salva!",
+      "deleted": "Excluído",
       "whoStandards": "Baseado em padrões OMS",
       "month": "Mês {{month}}",
       "addFirst": "Adicionar primeira medição"

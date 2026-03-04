@@ -2746,19 +2746,24 @@
         "history": "History"
       },
       "status": {
+        "label": "Status",
         "normal": "Normal",
         "belowNormal": "Below Normal",
         "aboveNormal": "Above Normal"
       },
       "ageMonths": "Age (months)",
+      "monthUnit": "mo",
       "weightKg": "Weight (kg)",
       "heightCm": "Height (cm)",
       "headCircCm": "Head Circ. (cm)",
+      "optionalMeasurements": "Height & Head (optional)",
       "calculateResult": "Calculate Result",
       "result": "Result",
-      "weightPercentile": "Weight Percentile on Growth Chart",
-      "normalRange": "Normal Range for This Age",
-      "saveToHistory": "Save to History",
+      "weightPercentile": "Weight Percentile",
+      "normalRange": "Normal Range",
+      "saveToHistory": "Save Measurement",
+      "saved": "Measurement saved!",
+      "deleted": "Deleted",
       "whoStandards": "Based on WHO Growth Standards",
       "month": "Month {{month}}",
       "addFirst": "Add First Measurement"

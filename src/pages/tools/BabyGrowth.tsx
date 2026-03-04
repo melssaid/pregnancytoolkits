@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Baby, TrendingUp, Plus, Trash2, BarChart3 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Baby, Plus, Trash2, ChevronDown, ChevronUp, Ruler, Scale, CircleDot } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BabyGrowthChart } from "@/components/charts/BabyGrowthChart";
+import { toast } from "sonner";
 
 interface GrowthEntry {
   id: string;
@@ -55,65 +53,43 @@ const BabyGrowth = () => {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [headCirc, setHeadCirc] = useState("");
-  const [activeTab, setActiveTab] = useState("add");
-  const [showResult, setShowResult] = useState(false);
-  const [result, setResult] = useState<{
-    weightPercentile: string;
-    status: string;
-    expectedRange: { min: number; max: number };
-  } | null>(null);
+  const [showHistory, setShowHistory] = useState(false);
+  const [showOptional, setShowOptional] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
-      setEntries(JSON.parse(saved));
+      try { setEntries(JSON.parse(saved)); } catch { /* */ }
     }
   }, []);
 
-  const calculate = () => {
-    const age = parseInt(ageMonths);
-    const w = parseFloat(weight);
-    
-    if (!age && age !== 0 || !w) return;
-
-    const standards = gender === "boy" ? WHO_WEIGHT_BOYS : WHO_WEIGHT_GIRLS;
-    
-    // Find closest age bracket
+  const getPercentileInfo = useCallback((age: number, w: number, g: "boy" | "girl") => {
+    const standards = g === "boy" ? WHO_WEIGHT_BOYS : WHO_WEIGHT_GIRLS;
     let closest = standards[0];
     for (const s of standards) {
       if (s.month <= age) closest = s;
     }
+    if (w < closest.p3) return { percentile: "<3%", status: "underweight" as const, color: "text-amber-500" };
+    if (w < closest.p50) return { percentile: "3-50%", status: "normal" as const, color: "text-emerald-500" };
+    if (w < closest.p97) return { percentile: "50-97%", status: "normal" as const, color: "text-emerald-500" };
+    return { percentile: ">97%", status: "overweight" as const, color: "text-amber-500" };
+  }, []);
 
-    let percentile = "50%";
-    let status = "normal";
-
-    if (w < closest.p3) {
-      percentile = "<3%";
-      status = "underweight";
-    } else if (w < closest.p50) {
-      percentile = "3%-50%";
-      status = "normal";
-    } else if (w < closest.p97) {
-      percentile = "50%-97%";
-      status = "normal";
-    } else {
-      percentile = ">97%";
-      status = "overweight";
+  const getExpectedRange = useCallback((age: number, g: "boy" | "girl") => {
+    const standards = g === "boy" ? WHO_WEIGHT_BOYS : WHO_WEIGHT_GIRLS;
+    let closest = standards[0];
+    for (const s of standards) {
+      if (s.month <= age) closest = s;
     }
+    return { min: closest.p3, max: closest.p97 };
+  }, []);
 
-    setResult({
-      weightPercentile: percentile,
-      status,
-      expectedRange: { min: closest.p3, max: closest.p97 },
-    });
-    setShowResult(true);
-  };
+  const canSave = ageMonths !== "" && weight !== "" && parseFloat(weight) > 0;
 
   const saveEntry = () => {
     const age = parseInt(ageMonths);
     const w = parseFloat(weight);
-    
-    if (!age && age !== 0 || !w) return;
+    if (isNaN(age) || isNaN(w) || w <= 0) return;
 
     const newEntry: GrowthEntry = {
       id: Date.now().toString(),
@@ -125,7 +101,7 @@ const BabyGrowth = () => {
       gender,
     };
 
-    const updated = [newEntry, ...entries].sort((a, b) => b.ageMonths - a.ageMonths);
+    const updated = [newEntry, ...entries].sort((a, b) => a.ageMonths - b.ageMonths);
     setEntries(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
 
@@ -134,30 +110,22 @@ const BabyGrowth = () => {
     setWeight("");
     setHeight("");
     setHeadCirc("");
-    setShowResult(false);
-    setResult(null);
-    
-    // Switch to chart tab
-    setActiveTab("chart");
+    setShowOptional(false);
+    toast.success(t('toolsInternal.babyGrowth.saved', 'Measurement saved!'));
   };
 
   const deleteEntry = (id: string) => {
     const updated = entries.filter((e) => e.id !== id);
     setEntries(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    toast.success(t('toolsInternal.babyGrowth.deleted', 'Deleted'));
   };
 
-  const getStatusColor = (status: string) => {
-    if (status === "normal") return "text-success";
-    if (status === "underweight") return "text-warning";
-    return "text-destructive";
-  };
-
-  const getStatusText = (status: string) => {
-    if (status === "normal") return t('toolsInternal.babyGrowth.status.normal');
-    if (status === "underweight") return t('toolsInternal.babyGrowth.status.belowNormal');
-    return t('toolsInternal.babyGrowth.status.aboveNormal');
-  };
+  // Live preview of percentile while typing
+  const livePercentile = canSave
+    ? getPercentileInfo(parseInt(ageMonths), parseFloat(weight), gender)
+    : null;
+  const liveRange = ageMonths ? getExpectedRange(parseInt(ageMonths), gender) : null;
 
   return (
     <ToolFrame 
@@ -170,220 +138,286 @@ const BabyGrowth = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="space-y-4"
+        transition={{ duration: 0.4 }}
+        className="space-y-4 pb-16"
       >
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-3 mb-4">
-              <TabsTrigger value="add" className="gap-2">
-                <Plus className="h-4 w-4" />
-                {t('toolsInternal.babyGrowth.tabs.add')}
-              </TabsTrigger>
-              <TabsTrigger value="chart" className="gap-2">
-                <BarChart3 className="h-4 w-4" />
-                {t('toolsInternal.babyGrowth.tabs.chart')}
-              </TabsTrigger>
-              <TabsTrigger value="history" className="gap-2">
-                <TrendingUp className="h-4 w-4" />
-                {t('toolsInternal.babyGrowth.tabs.history')}
-              </TabsTrigger>
-            </TabsList>
+        {/* ── Gender Toggle ── */}
+        <div className="flex gap-2">
+          {(["boy", "girl"] as const).map((g) => (
+            <motion.button
+              key={g}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setGender(g)}
+              className={`flex-1 py-3 rounded-xl text-sm font-semibold transition-all ${
+                gender === g
+                  ? g === "boy"
+                    ? "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-2 border-blue-500/30"
+                    : "bg-pink-500/15 text-pink-600 dark:text-pink-400 border-2 border-pink-500/30"
+                  : "bg-muted/50 text-muted-foreground border-2 border-transparent"
+              }`}
+            >
+              {g === "boy" ? "👦" : "👧"} {t(`toolsInternal.babyGrowth.${g}`)}
+            </motion.button>
+          ))}
+        </div>
 
-            <TabsContent value="add" className="space-y-4">
-              <Card className="relative z-10">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Baby className="h-5 w-5 text-primary" />
-                    {t('toolsInternal.babyGrowth.measurements')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2 relative z-20">
-                    <Label>{t('toolsInternal.babyGrowth.gender')}</Label>
-                    <Select value={gender} onValueChange={(v) => setGender(v as "boy" | "girl")}>
-                      <SelectTrigger className="relative z-20">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="z-[100]">
-                        <SelectItem value="boy">{t('toolsInternal.babyGrowth.boy')} 👦</SelectItem>
-                        <SelectItem value="girl">{t('toolsInternal.babyGrowth.girl')} 👧</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+        {/* ── Input Card ── */}
+        <div className="rounded-2xl bg-card border border-border/50 p-4 space-y-4">
+          {/* Age + Weight — side by side */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.ageMonths')}</Label>
+              <div className="relative">
+                <Input
+                  type="number"
+                  min="0"
+                  max="24"
+                  inputMode="numeric"
+                  placeholder="0-24"
+                  value={ageMonths}
+                  onChange={(e) => setAgeMonths(e.target.value)}
+                  className="pe-10 text-base h-12 rounded-xl"
+                />
+                <span className="absolute end-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
+                  {t('toolsInternal.babyGrowth.monthUnit', 'شهر')}
+                </span>
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <Label className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.weightKg')} *</Label>
+              <div className="relative">
+                <Input
+                  type="number"
+                  step="0.1"
+                  inputMode="decimal"
+                  placeholder="0.0"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  className="pe-10 text-base h-12 rounded-xl"
+                />
+                <span className="absolute end-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">kg</span>
+              </div>
+            </div>
+          </div>
 
-                  <div className="space-y-2">
-                    <Label>{t('toolsInternal.babyGrowth.ageMonths')}</Label>
-                    <Input
-                      type="number"
-                      min="0"
-                      max="24"
-                      placeholder="0-24"
-                      value={ageMonths}
-                      onChange={(e) => setAgeMonths(e.target.value)}
-                    />
-                  </div>
+          {/* Optional fields toggle */}
+          <button
+            onClick={() => setShowOptional(!showOptional)}
+            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {showOptional ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            {t('toolsInternal.babyGrowth.optionalMeasurements', 'Height & Head (optional)')}
+          </button>
 
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="space-y-2">
-                      <Label>{t('toolsInternal.babyGrowth.weightKg')} *</Label>
+          <AnimatePresence>
+            {showOptional && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <Label className="text-xs text-muted-foreground flex items-center gap-1">
+                      <Ruler className="w-3 h-3" />
+                      {t('toolsInternal.babyGrowth.heightCm')}
+                    </Label>
+                    <div className="relative">
                       <Input
                         type="number"
                         step="0.1"
-                        placeholder="kg"
-                        value={weight}
-                        onChange={(e) => setWeight(e.target.value)}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label>{t('toolsInternal.babyGrowth.heightCm')}</Label>
-                      <Input
-                        type="number"
-                        step="0.1"
-                        placeholder="cm"
+                        inputMode="decimal"
+                        placeholder="0.0"
                         value={height}
                         onChange={(e) => setHeight(e.target.value)}
+                        className="pe-10 h-11 rounded-xl"
                       />
+                      <span className="absolute end-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">cm</span>
                     </div>
-                    <div className="space-y-2">
-                      <Label>{t('toolsInternal.babyGrowth.headCircCm')}</Label>
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs text-muted-foreground flex items-center gap-1">
+                      <CircleDot className="w-3 h-3" />
+                      {t('toolsInternal.babyGrowth.headCircCm')}
+                    </Label>
+                    <div className="relative">
                       <Input
                         type="number"
                         step="0.1"
-                        placeholder="cm"
+                        inputMode="decimal"
+                        placeholder="0.0"
                         value={headCirc}
                         onChange={(e) => setHeadCirc(e.target.value)}
+                        className="pe-10 h-11 rounded-xl"
                       />
+                      <span className="absolute end-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">cm</span>
                     </div>
                   </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-                  <Button onClick={calculate} className="w-full">
-                    {t('toolsInternal.babyGrowth.calculateResult')}
-                  </Button>
-                </CardContent>
-              </Card>
+          {/* ── Live Percentile Preview ── */}
+          <AnimatePresence>
+            {livePercentile && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                className="rounded-xl bg-muted/50 p-3 space-y-2"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.weightPercentile')}</span>
+                  <span className={`text-sm font-bold ${livePercentile.color}`}>
+                    {livePercentile.percentile}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.status.label', 'Status')}</span>
+                  <span className={`text-xs font-medium ${livePercentile.color}`}>
+                    {t(`toolsInternal.babyGrowth.status.${livePercentile.status === "normal" ? "normal" : livePercentile.status === "underweight" ? "belowNormal" : "aboveNormal"}`)}
+                  </span>
+                </div>
+                {liveRange && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.normalRange')}</span>
+                    <span className="text-xs font-medium text-foreground">
+                      {liveRange.min} – {liveRange.max} kg
+                    </span>
+                  </div>
+                )}
 
-              {showResult && result && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <TrendingUp className="h-5 w-5 text-primary" />
-                        {t('toolsInternal.babyGrowth.result')}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="rounded-lg bg-secondary p-4 text-center">
-                        <p className="text-sm text-muted-foreground mb-1">
-                          {t('toolsInternal.babyGrowth.weightPercentile')}
-                        </p>
-                        <p className="text-sm font-bold text-primary">
-                          {result.weightPercentile}
-                        </p>
-                        <p className={`text-sm mt-2 ${getStatusColor(result.status)}`}>
-                          {getStatusText(result.status)}
-                        </p>
-                      </div>
+                {/* Visual bar */}
+                <div className="relative h-2 rounded-full bg-muted overflow-hidden">
+                  {liveRange && (
+                    <>
+                      <div className="absolute inset-y-0 bg-emerald-500/30 rounded-full"
+                        style={{
+                          left: `${(liveRange.min / liveRange.max) * 50}%`,
+                          right: `${100 - 85}%`,
+                        }}
+                      />
+                      <motion.div
+                        className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary border-2 border-card shadow-sm"
+                        initial={false}
+                        animate={{
+                          left: `${Math.min(95, Math.max(5, (parseFloat(weight) / liveRange.max) * 85))}%`,
+                        }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    </>
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-                      <div className="rounded-lg bg-muted p-4">
-                        <p className="text-sm text-muted-foreground">
-                          {t('toolsInternal.babyGrowth.normalRange')}
-                        </p>
-                        <p className="font-medium">
-                          {result.expectedRange.min} - {result.expectedRange.max} kg
-                        </p>
-                      </div>
+          {/* Save Button */}
+          <Button
+            onClick={saveEntry}
+            disabled={!canSave}
+            className="w-full h-12 rounded-xl text-sm font-semibold gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            {t('toolsInternal.babyGrowth.saveToHistory')}
+          </Button>
 
-                      <Button onClick={saveEntry} className="w-full">
-                        <Plus className="h-4 w-4 me-2" />
-                        {t('toolsInternal.babyGrowth.saveToHistory')}
-                      </Button>
+          <p className="text-[9px] text-muted-foreground/50 text-center">
+            {t('toolsInternal.babyGrowth.whoStandards')}
+          </p>
+        </div>
 
-                      <p className="text-sm text-muted-foreground text-center">
-                        {t('toolsInternal.babyGrowth.whoStandards')}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+        {/* ── Growth Chart (auto-shown when entries exist) ── */}
+        {entries.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <BabyGrowthChart entries={entries} gender={gender} />
+          </motion.div>
+        )}
+
+        {/* ── History Section ── */}
+        {entries.length > 0 && (
+          <div className="space-y-2">
+            <button
+              onClick={() => setShowHistory(!showHistory)}
+              className="w-full flex items-center justify-between py-2.5 px-1"
+            >
+              <span className="text-sm font-semibold text-foreground">
+                {t('toolsInternal.babyGrowth.tabs.history')} ({entries.length})
+              </span>
+              {showHistory ? (
+                <ChevronUp className="w-4 h-4 text-muted-foreground" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-muted-foreground" />
               )}
-            </TabsContent>
+            </button>
 
-            <TabsContent value="chart">
-              <BabyGrowthChart entries={entries} gender={gender} />
-            </TabsContent>
-
-            <TabsContent value="history">
-              {entries.length > 0 ? (
-                <div className="space-y-2">
+            <AnimatePresence>
+              {showHistory && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="overflow-hidden space-y-2"
+                >
                   {entries.map((entry) => {
-                    const standards = entry.gender === "boy" ? WHO_WEIGHT_BOYS : WHO_WEIGHT_GIRLS;
-                    const closest = standards.find((s) => s.month <= entry.ageMonths) || standards[0];
-                    const isNormal = entry.weight >= closest.p3 && entry.weight <= closest.p97;
-                    
+                    const info = getPercentileInfo(entry.ageMonths, entry.weight, entry.gender);
                     return (
-                      <Card key={entry.id}>
-                        <CardContent className="py-3">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className="text-base">
-                                {entry.gender === "boy" ? "👦" : "👧"}
-                              </div>
-                              <div>
-                                <p className="font-medium">
-                                  {t('toolsInternal.babyGrowth.month', { month: entry.ageMonths })}
-                                </p>
-                                <p className="text-sm text-muted-foreground">
-                                  {formatLocalized(new Date(entry.date), "d MMM yyyy", currentLanguage)}
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <div className="text-right">
-                                <p className={`text-sm font-bold ${isNormal ? "text-success" : "text-warning"}`}>
-                                  {entry.weight} kg
-                                </p>
-                                {entry.height && (
-                                  <p className="text-xs text-muted-foreground">
-                                    {t('toolsInternal.babyGrowth.height')}: {entry.height} cm
-                                  </p>
-                                )}
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => deleteEntry(entry.id)}
-                              >
-                                <Trash2 className="h-4 w-4 text-destructive" />
-                              </Button>
-                            </div>
+                      <motion.div
+                        key={entry.id}
+                        layout
+                        className="flex items-center gap-3 rounded-xl bg-card border border-border/50 p-3"
+                      >
+                        <div className="text-lg">
+                          {entry.gender === "boy" ? "👦" : "👧"}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-semibold">
+                              {t('toolsInternal.babyGrowth.month', { month: entry.ageMonths })}
+                            </span>
+                            <span className={`text-xs font-medium ${info.color}`}>
+                              {entry.weight} kg
+                            </span>
                           </div>
-                        </CardContent>
-                      </Card>
+                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                            <span>{formatLocalized(new Date(entry.date), "d MMM yyyy", currentLanguage)}</span>
+                            {entry.height && <span>• {entry.height} cm</span>}
+                            {entry.headCirc && <span>• ⊘ {entry.headCirc} cm</span>}
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => deleteEntry(entry.id)}
+                          className="p-2 rounded-lg hover:bg-destructive/10 transition-colors shrink-0"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 text-destructive/60" />
+                        </button>
+                      </motion.div>
                     );
                   })}
-                </div>
-              ) : (
-                <Card>
-                  <CardContent className="py-8 text-center">
-                    <Baby className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-                    <p className="text-muted-foreground">
-                      {t('toolsInternal.babyGrowth.noMeasurements')}
-                    </p>
-                    <Button
-                      variant="link"
-                      onClick={() => setActiveTab("add")}
-                      className="mt-2"
-                    >
-                      {t('toolsInternal.babyGrowth.addFirst')}
-                    </Button>
-                  </CardContent>
-                </Card>
+                </motion.div>
               )}
-            </TabsContent>
-          </Tabs>
-        </motion.div>
+            </AnimatePresence>
+          </div>
+        )}
+
+        {/* Empty state hint */}
+        {entries.length === 0 && (
+          <div className="text-center py-6 space-y-2">
+            <Baby className="w-10 h-10 text-muted-foreground/30 mx-auto" />
+            <p className="text-xs text-muted-foreground">
+              {t('toolsInternal.babyGrowth.noMeasurements')}
+            </p>
+          </div>
+        )}
+      </motion.div>
     </ToolFrame>
   );
 };
