@@ -657,6 +657,46 @@ Keep it practical, warm, and easy to follow.`;
           </Card>
         </div>
 
+        {/* Mini Kick History Chart */}
+        {history.length >= 2 && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+          >
+            <Card className="overflow-hidden border-border/40">
+              <CardContent className="py-3 px-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-semibold text-foreground">{t('toolsInternal.kickCounter.recentActivity', 'Recent Activity')}</span>
+                  <span className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.lastSessions', { count: Math.min(history.length, 7) })}</span>
+                </div>
+                <div className="flex items-end gap-1.5 h-16">
+                  {history.slice(0, 7).reverse().map((session, i) => {
+                    const maxKicks = Math.max(...history.slice(0, 7).map(s => s.total_kicks), 1);
+                    const heightPercent = Math.max(12, (session.total_kicks / maxKicks) * 100);
+                    const isLast = i === Math.min(history.length, 7) - 1;
+                    return (
+                      <div key={session.id || i} className="flex-1 flex flex-col items-center gap-1">
+                        <span className="text-[9px] font-bold text-muted-foreground tabular-nums">{session.total_kicks}</span>
+                        <motion.div
+                          initial={{ height: 0 }}
+                          animate={{ height: `${heightPercent}%` }}
+                          transition={{ duration: 0.5, delay: i * 0.05 }}
+                          className={`w-full rounded-t-md ${isLast ? 'bg-primary' : 'bg-primary/30'}`}
+                          style={{ minHeight: 4 }}
+                        />
+                        <span className="text-[8px] text-muted-foreground">
+                          {new Date(session.started_at).toLocaleDateString(undefined, { day: 'numeric' })}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
         {/* AI Analysis Section - always visible after 1+ sessions */}
         {history.length >= 1 && (
           <motion.div

@@ -1,8 +1,5 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Card, CardContent } from "@/components/ui/card";
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Legend } from "recharts";
-import { BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 import { format, subDays, startOfDay } from "date-fns";
 
@@ -35,99 +32,80 @@ export const DiaperChart = ({ entries }: DiaperChartProps) => {
 
       data.push({
         day: format(date, "EEE"),
-        date: format(date, "MM/dd"),
+        dateNum: format(date, "d"),
         wet: dayEntries.filter(e => e.type === "wet" || e.type === "both").length,
         dirty: dayEntries.filter(e => e.type === "dirty" || e.type === "both").length,
+        total: dayEntries.length,
+        isToday: i === 0,
       });
     }
     
     return data;
   }, [entries]);
 
-  const hasData = chartData.some(d => d.wet > 0 || d.dirty > 0);
-
+  const hasData = chartData.some(d => d.total > 0);
   if (!hasData) return null;
 
-  const avg = entries.length > 0 
-    ? (chartData.reduce((s, d) => s + d.wet + d.dirty, 0) / 7).toFixed(1)
-    : "0";
+  const maxTotal = Math.max(...chartData.map(d => d.total), 1);
+  const avg = (chartData.reduce((s, d) => s + d.total, 0) / 7).toFixed(1);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.2 }}
+      transition={{ duration: 0.3, delay: 0.2 }}
+      className="rounded-xl border border-border/40 bg-card p-3"
     >
-      <Card className="overflow-hidden">
-        <CardContent className="py-4">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4 text-primary shrink-0" />
-              <span className="text-sm font-semibold">{t('diaperPage.weeklyTrend')}</span>
-            </div>
-            <span className="text-xs text-muted-foreground">
-              ≈ {avg} {t('diaperPage.avgPerDay')}
-            </span>
-          </div>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-2.5">
+        <span className="text-xs font-semibold text-foreground">{t('diaperPage.weeklyTrend')}</span>
+        <span className="text-[10px] text-muted-foreground">≈ {avg} {t('diaperPage.avgPerDay')}</span>
+      </div>
 
-          <div className="h-44">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} barGap={2}>
-                <XAxis 
-                  dataKey="day" 
-                  tick={{ fontSize: 11 }} 
-                  tickLine={false} 
-                  axisLine={false}
-                />
-                <YAxis 
-                  allowDecimals={false} 
-                  tick={{ fontSize: 11 }} 
-                  tickLine={false} 
-                  axisLine={false}
-                  width={24}
-                />
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: '10px',
-                    border: '1px solid hsl(var(--border))',
-                    backgroundColor: 'hsl(var(--card))',
-                    fontSize: '12px',
-                  }}
-                  formatter={(value: number, name: string) => [
-                    value,
-                    name === 'wet' ? t('diaperPage.wet') : t('diaperPage.dirty')
-                  ]}
-                  labelFormatter={(label, payload) => {
-                    if (payload && payload.length > 0) {
-                      return (payload[0].payload as any).date;
-                    }
-                    return label;
-                  }}
-                />
-                <Legend 
-                  formatter={(value) => (
-                    <span className="text-xs">
-                      {value === 'wet' ? t('diaperPage.wet') : t('diaperPage.dirty')}
-                    </span>
+      {/* Mini bar chart */}
+      <div className="flex items-end gap-1.5 h-14">
+        {chartData.map((d, i) => {
+          const heightPercent = Math.max(8, (d.total / maxTotal) * 100);
+          return (
+            <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
+              {d.total > 0 && (
+                <span className="text-[9px] font-bold text-muted-foreground tabular-nums">{d.total}</span>
+              )}
+              <div className="w-full relative" style={{ height: `${heightPercent}%`, minHeight: 3 }}>
+                {/* Wet portion */}
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: '100%' }}
+                  transition={{ duration: 0.4, delay: i * 0.04 }}
+                  className={`w-full rounded-t-md overflow-hidden ${d.isToday ? 'bg-primary' : 'bg-primary/25'}`}
+                >
+                  {d.dirty > 0 && d.wet > 0 && (
+                    <div 
+                      className={`w-full ${d.isToday ? 'bg-amber-500' : 'bg-amber-500/40'} rounded-t-md`}
+                      style={{ height: `${(d.dirty / d.total) * 100}%` }}
+                    />
                   )}
-                />
-                <Bar 
-                  dataKey="wet" 
-                  fill="hsl(210, 80%, 60%)" 
-                  radius={[4, 4, 0, 0]} 
-                  maxBarSize={28}
-                />
-                <Bar 
-                  dataKey="dirty" 
-                  fill="hsl(30, 70%, 50%)" 
-                  radius={[4, 4, 0, 0]} 
-                  maxBarSize={28}
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </CardContent>
-      </Card>
+                </motion.div>
+              </div>
+              <span className={`text-[9px] ${d.isToday ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
+                {d.dateNum}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Legend */}
+      <div className="flex items-center justify-center gap-3 mt-2">
+        <div className="flex items-center gap-1">
+          <div className="w-2 h-2 rounded-sm bg-primary/40" />
+          <span className="text-[9px] text-muted-foreground">{t('diaperPage.wet')}</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-2 h-2 rounded-sm bg-amber-500/50" />
+          <span className="text-[9px] text-muted-foreground">{t('diaperPage.dirty')}</span>
+        </div>
+      </div>
     </motion.div>
   );
 };
