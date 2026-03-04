@@ -95,46 +95,46 @@ export function AnimatedRoutes() {
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         
         {/* AI-POWERED CORE TOOLS */}
-        <Route path="/tools/pregnancy-assistant" element={<PageTransition><PregnancyAssistant /></PageTransition>} />
-        <Route path="/tools/wellness-diary" element={<PageTransition><WellnessDiary /></PageTransition>} />
-        <Route path="/tools/ai-meal-suggestion" element={<PageTransition><AIMealSuggestion /></PageTransition>} />
-        <Route path="/tools/weekly-summary" element={<PageTransition><WeeklySummary /></PageTransition>} />
-        <Route path="/tools/smart-appointment-reminder" element={<PageTransition><SmartAppointmentReminder /></PageTransition>} />
-        <Route path="/tools/ai-craving-alternatives" element={<PageTransition><AICravingAlternatives /></PageTransition>} />
-        <Route path="/tools/smart-grocery-list" element={<PageTransition><SmartGroceryList /></PageTransition>} />
-        <Route path="/tools/smart-plan" element={<PageTransition><SmartPregnancyPlan /></PageTransition>} />
+        <Route path="/tools/pregnancy-assistant" element={<PageTransition variant="tool"><PregnancyAssistant /></PageTransition>} />
+        <Route path="/tools/wellness-diary" element={<PageTransition variant="tool"><WellnessDiary /></PageTransition>} />
+        <Route path="/tools/ai-meal-suggestion" element={<PageTransition variant="tool"><AIMealSuggestion /></PageTransition>} />
+        <Route path="/tools/weekly-summary" element={<PageTransition variant="tool"><WeeklySummary /></PageTransition>} />
+        <Route path="/tools/smart-appointment-reminder" element={<PageTransition variant="tool"><SmartAppointmentReminder /></PageTransition>} />
+        <Route path="/tools/ai-craving-alternatives" element={<PageTransition variant="tool"><AICravingAlternatives /></PageTransition>} />
+        <Route path="/tools/smart-grocery-list" element={<PageTransition variant="tool"><SmartGroceryList /></PageTransition>} />
+        <Route path="/tools/smart-plan" element={<PageTransition variant="tool"><SmartPregnancyPlan /></PageTransition>} />
         <Route path="/tools/smart-pregnancy-plan" element={<Navigate to="/tools/smart-plan" replace />} />
         
         
 
         {/* PREGNANCY COMFORT (merged sleep + nausea) */}
-        <Route path="/tools/pregnancy-comfort" element={<PageTransition><PregnancyComfort /></PageTransition>} />
+        <Route path="/tools/pregnancy-comfort" element={<PageTransition variant="tool"><PregnancyComfort /></PageTransition>} />
         <Route path="/tools/ai-sleep-optimizer" element={<Navigate to="/tools/pregnancy-comfort" replace />} />
         <Route path="/tools/ai-nausea-relief" element={<Navigate to="/tools/pregnancy-comfort" replace />} />
-        <Route path="/tools/ai-hospital-bag" element={<PageTransition><AIHospitalBag /></PageTransition>} />
-        <Route path="/tools/ai-partner-guide" element={<PageTransition><AIPartnerGuide /></PageTransition>} />
-        <Route path="/tools/ai-birth-position" element={<PageTransition><AIBirthPosition /></PageTransition>} />
-        <Route path="/tools/ai-skincare" element={<PageTransition><AIPregnancySkincare /></PageTransition>} />
-        <Route path="/tools/ai-bump-photos" element={<PageTransition><AIBumpPhotos /></PageTransition>} />
+        <Route path="/tools/ai-hospital-bag" element={<PageTransition variant="tool"><AIHospitalBag /></PageTransition>} />
+        <Route path="/tools/ai-partner-guide" element={<PageTransition variant="tool"><AIPartnerGuide /></PageTransition>} />
+        <Route path="/tools/ai-birth-position" element={<PageTransition variant="tool"><AIBirthPosition /></PageTransition>} />
+        <Route path="/tools/ai-skincare" element={<PageTransition variant="tool"><AIPregnancySkincare /></PageTransition>} />
+        <Route path="/tools/ai-bump-photos" element={<PageTransition variant="tool"><AIBumpPhotos /></PageTransition>} />
 
         {/* AI WELLNESS */}
-        <Route path="/tools/ai-fitness-coach" element={<PageTransition><AIFitnessCoach /></PageTransition>} />
-        <Route path="/tools/ai-back-pain-relief" element={<PageTransition><AIBackPainRelief /></PageTransition>} />
-        <Route path="/tools/vitamin-tracker" element={<PageTransition><VitaminTracker /></PageTransition>} />
+        <Route path="/tools/ai-fitness-coach" element={<PageTransition variant="tool"><AIFitnessCoach /></PageTransition>} />
+        <Route path="/tools/ai-back-pain-relief" element={<PageTransition variant="tool"><AIBackPainRelief /></PageTransition>} />
+        <Route path="/tools/vitamin-tracker" element={<PageTransition variant="tool"><VitaminTracker /></PageTransition>} />
         
 
         {/* AI LABOR */}
-        <Route path="/tools/labor-progress" element={<PageTransition><AILaborProgressTracker /></PageTransition>} />
-        <Route path="/tools/ai-birth-plan" element={<PageTransition><AIBirthPlanGenerator /></PageTransition>} />
+        <Route path="/tools/labor-progress" element={<PageTransition variant="tool"><AILaborProgressTracker /></PageTransition>} />
+        <Route path="/tools/ai-birth-plan" element={<PageTransition variant="tool"><AIBirthPlanGenerator /></PageTransition>} />
 
         {/* FERTILITY & PLANNING */}
-        <Route path="/tools/cycle-tracker" element={<PageTransition><CycleTracker /></PageTransition>} />
-        <Route path="/tools/due-date-calculator" element={<PageTransition><DueDateCalculator /></PageTransition>} />
+        <Route path="/tools/cycle-tracker" element={<PageTransition variant="tool"><CycleTracker /></PageTransition>} />
+        <Route path="/tools/due-date-calculator" element={<PageTransition variant="tool"><DueDateCalculator /></PageTransition>} />
         
-        <Route path="/tools/fertility-academy" element={<PageTransition><FertilityAcademy /></PageTransition>} />
-        <Route path="/tools/nutrition-supplements" element={<PageTransition><NutritionSupplementsGuide /></PageTransition>} />
+        <Route path="/tools/fertility-academy" element={<PageTransition variant="tool"><FertilityAcademy /></PageTransition>} />
+        <Route path="/tools/nutrition-supplements" element={<PageTransition variant="tool"><NutritionSupplementsGuide /></PageTransition>} />
         <Route path="/tools/tww-companion" element={<Navigate to="/tools/fertility-academy" replace />} />
-        <Route path="/tools/preconception-checkup" element={<PageTransition><PreconceptionCheckup /></PageTransition>} />
+        <Route path="/tools/preconception-checkup" element={<PageTransition variant="tool"><PreconceptionCheckup /></PageTransition>} />
 
         {/* LEGACY REDIRECTS — merged fertility tools */}
         <Route path="/tools/fertility-signs" element={<Navigate to="/tools/fertility-academy" replace />} />
@@ -143,28 +143,28 @@ export function AnimatedRoutes() {
         <Route path="/tools/prenatal-vitamins" element={<Navigate to="/tools/nutrition-supplements" replace />} />
 
         {/* PREGNANCY TRACKING */}
-        <Route path="/tools/fetal-growth" element={<PageTransition><FetalDevelopment3D /></PageTransition>} />
-        <Route path="/tools/kick-counter" element={<PageTransition><SmartKickCounter /></PageTransition>} />
-        <Route path="/tools/weight-gain" element={<PageTransition><SmartWeightGainAnalyzer /></PageTransition>} />
+        <Route path="/tools/fetal-growth" element={<PageTransition variant="tool"><FetalDevelopment3D /></PageTransition>} />
+        <Route path="/tools/kick-counter" element={<PageTransition variant="tool"><SmartKickCounter /></PageTransition>} />
+        <Route path="/tools/weight-gain" element={<PageTransition variant="tool"><SmartWeightGainAnalyzer /></PageTransition>} />
 
         {/* MENTAL HEALTH */}
-        <Route path="/tools/mental-health-coach" element={<PageTransition><PostpartumMentalHealthCoach /></PageTransition>} />
+        <Route path="/tools/mental-health-coach" element={<PageTransition variant="tool"><PostpartumMentalHealthCoach /></PageTransition>} />
 
         {/* MATERNAL HEALTH AWARENESS (merged diabetes + preeclampsia) */}
-        <Route path="/tools/maternal-health" element={<PageTransition><MaternalHealthAwareness /></PageTransition>} />
+        <Route path="/tools/maternal-health" element={<PageTransition variant="tool"><MaternalHealthAwareness /></PageTransition>} />
         <Route path="/tools/gestational-diabetes" element={<Navigate to="/tools/maternal-health" replace />} />
         <Route path="/tools/preeclampsia-risk" element={<Navigate to="/tools/maternal-health" replace />} />
 
         {/* PREPARATION */}
-        <Route path="/tools/baby-gear-recommender" element={<PageTransition><BabyGearRecommender /></PageTransition>} />
+        <Route path="/tools/baby-gear-recommender" element={<PageTransition variant="tool"><BabyGearRecommender /></PageTransition>} />
 
         {/* POSTPARTUM */}
-        <Route path="/tools/ai-lactation-prep" element={<PageTransition><AILactationPrep /></PageTransition>} />
-        <Route path="/tools/postpartum-recovery" element={<PageTransition><PostpartumRecoveryGuide /></PageTransition>} />
-        <Route path="/tools/baby-cry-translator" element={<PageTransition><BabyCryTranslator /></PageTransition>} />
-        <Route path="/tools/baby-sleep-tracker" element={<PageTransition><BabySleepTracker /></PageTransition>} />
-        <Route path="/tools/baby-growth" element={<PageTransition><BabyGrowth /></PageTransition>} />
-        <Route path="/tools/diaper-tracker" element={<PageTransition><DiaperTracker /></PageTransition>} />
+        <Route path="/tools/ai-lactation-prep" element={<PageTransition variant="tool"><AILactationPrep /></PageTransition>} />
+        <Route path="/tools/postpartum-recovery" element={<PageTransition variant="tool"><PostpartumRecoveryGuide /></PageTransition>} />
+        <Route path="/tools/baby-cry-translator" element={<PageTransition variant="tool"><BabyCryTranslator /></PageTransition>} />
+        <Route path="/tools/baby-sleep-tracker" element={<PageTransition variant="tool"><BabySleepTracker /></PageTransition>} />
+        <Route path="/tools/baby-growth" element={<PageTransition variant="tool"><BabyGrowth /></PageTransition>} />
+        <Route path="/tools/diaper-tracker" element={<PageTransition variant="tool"><DiaperTracker /></PageTransition>} />
 
         {/* VIDEO LIBRARY */}
         <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />
