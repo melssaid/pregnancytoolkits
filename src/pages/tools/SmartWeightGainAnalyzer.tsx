@@ -479,7 +479,7 @@ export default function SmartWeightGainAnalyzer() {
         <RelatedToolLinks links={[
           { to: "/tools/fetal-growth", titleKey: "toolsInternal.weightGain.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.weightGain.fetalDevLinkDesc", descFallback: "Track your baby's growth week by week", icon: "ruler" },
           { to: "/tools/kick-counter", titleKey: "toolsInternal.weightGain.kickCounterLink", titleFallback: "Kick Counter", descKey: "toolsInternal.weightGain.kickCounterLinkDesc", descFallback: "Track your baby's movements", icon: "activity" },
-          { to: "/tools/ai-meal-suggestion", titleKey: "toolsInternal.weightGain.mealSuggestionLink", titleFallback: "Meal Suggestions", descKey: "toolsInternal.weightGain.mealSuggestionLinkDesc", descFallback: "Get healthy meal ideas", icon: "utensils" },
+          { to: "/tools/ai-bump-photos", titleKey: "toolsInternal.weightGain.bumpPhotosLink", titleFallback: "Bump Photos", descKey: "toolsInternal.weightGain.bumpPhotosLinkDesc", descFallback: "AI-powered ultrasound analysis", icon: "baby" },
         ]} />
       </div>
     </ToolFrame>

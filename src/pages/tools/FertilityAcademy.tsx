@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Heart, Smile, BookOpen, Eye, Brain, Calendar } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
+import { RelatedToolLinks } from "@/components/RelatedToolLinks";
 
 const LESSON_KEYS = [
   "menstrualCycle", "ovulationProcess", "hormonesRole", "fertilizationBasics", "implantationWindow",
@@ -317,6 +318,12 @@ export default function FertilityAcademy() {
             )}
           </motion.div>
         </AnimatePresence>
+
+        <RelatedToolLinks links={[
+          { to: "/tools/cycle-tracker", titleKey: "toolsInternal.fertilityAcademy.related.cycleTracker", titleFallback: "Cycle Tracker", descKey: "toolsInternal.fertilityAcademy.related.cycleTrackerDesc", descFallback: "Track your menstrual cycle", icon: "droplets" },
+          { to: "/tools/preconception-checkup", titleKey: "toolsInternal.fertilityAcademy.related.preconception", titleFallback: "Preconception Checkup", descKey: "toolsInternal.fertilityAcademy.related.preconceptionDesc", descFallback: "Prepare for a healthy pregnancy", icon: "heart" },
+          { to: "/tools/nutrition-supplements", titleKey: "toolsInternal.fertilityAcademy.related.nutrition", titleFallback: "Nutrition Guide", descKey: "toolsInternal.fertilityAcademy.related.nutritionDesc", descFallback: "Fertility nutrition & supplements", icon: "pill" },
+        ]} />
 
       </div>
     </ToolFrame>

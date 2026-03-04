@@ -377,8 +377,8 @@ export default function WeeklySummary() {
 
         {/* Related Tools */}
         <RelatedToolLinks links={[
-          { to: "/tools/fetal-growth", titleKey: "toolsInternal.weeklySummary.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.weeklySummary.fetalDevLinkDesc", descFallback: "See your baby's size and development", icon: "ruler" },
-          { to: "/tools/kick-counter", titleKey: "toolsInternal.weeklySummary.kickCounterLink", titleFallback: "Kick Counter", descKey: "toolsInternal.weeklySummary.kickCounterLinkDesc", descFallback: "Track your baby's movements", icon: "activity" },
+          { to: "/tools/pregnancy-assistant", titleKey: "toolsInternal.weeklySummary.assistantLink", titleFallback: "Pregnancy Assistant", descKey: "toolsInternal.weeklySummary.assistantLinkDesc", descFallback: "Chat with your AI pregnancy assistant", icon: "heart" },
+          { to: "/tools/smart-plan", titleKey: "toolsInternal.weeklySummary.smartPlanLink", titleFallback: "Smart Pregnancy Plan", descKey: "toolsInternal.weeklySummary.smartPlanLinkDesc", descFallback: "Personalized pregnancy planning", icon: "fileText" },
         ]} />
 
         {/* Tips */}
