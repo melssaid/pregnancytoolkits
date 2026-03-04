@@ -93,16 +93,16 @@
   "categories": {
     "all": "All",
     "ai": "Smart Tools",
-    "smartAssistant": "Personal Guide",
-    "fertility": "Fertility & Ovulation",
-    "pregnancy": "Weekly Tracking",
-    "nutrition": "Nutrition",
-    "labor": "Birth Readiness",
+    "smartAssistant": "Smart Pregnancy Assistant",
+    "fertility": "Fertility Planning",
+    "pregnancy": "Pregnancy Journey",
+    "nutrition": "Pregnancy Nutrition",
+    "labor": "Labor & Delivery",
     "postpartum": "Newborn Care",
     "selfCheck": "Self Assessment",
     "riskAssessment": "Self Assessment",
     "mentalHealth": "Emotional Wellbeing",
-    "wellness": "Body Care",
+    "wellness": "Pregnancy Fitness",
     "preparation": "Essentials"
   },
   "journeys": {
@@ -149,7 +149,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Smart Pregnancy Guide",
+      "title": "Smart Pregnancy Assistant",
       "description": "Ask any pregnancy question and get instant answers."
     },
     "wellnessDiary": {
@@ -157,19 +157,19 @@
       "description": "Log and reflect on how you feel throughout your pregnancy journey."
     },
     "aiMealSuggestion": {
-      "title": "Smart Meal Planner",
+      "title": "Smart Meal Suggestions",
       "description": "Get personalized meal suggestions for your trimester."
     },
     "weeklySummary": {
-      "title": "Weekly Insights",
+      "title": "Weekly Pregnancy Summary",
       "description": "Smart weekly updates on your baby's growth."
     },
     "aiBirthPlan": {
-      "title": "AI Birth Plan Generator",
+      "title": "Smart Birth Plan",
       "description": "Create your personalized birth plan with AI guidance."
     },
     "smartAppointmentReminder": {
-      "title": "Auto Appointment Reminder",
+      "title": "Smart Appointment Planner",
       "description": "Never miss a prenatal appointment."
     },
     "aiCravingAlternatives": {
@@ -185,11 +185,11 @@
       "description": "Personalized sleep guidance for pregnancy."
     },
     "aiHospitalBag": {
-      "title": "Ultimate Hospital Bag",
+      "title": "Smart Hospital Bag",
       "description": "Complete packing list for delivery day."
     },
     "aiPartnerGuide": {
-      "title": "AI Partner Guide",
+      "title": "The Logical Dad's Guide",
       "description": "Support tips for partners and spouses."
     },
     "aiBirthPosition": {
@@ -197,7 +197,7 @@
       "description": "Optimal positions for your labor."
     },
     "aiSkincare": {
-      "title": "AI Skincare",
+      "title": "Pregnancy Skin Analysis",
       "description": "Pregnancy-safe skincare routine."
     },
     "aiNauseaRelief": {
@@ -213,7 +213,7 @@
       "description": "Save & explore your ultrasound photos with educational insights."
     },
     "aiFitnessCoach": {
-      "title": "AI Fitness Guide",
+      "title": "Fitness & Flexibility Coach",
       "description": "Safe exercises customized for your pregnancy stage."
     },
     "aiBackPainRelief": {
@@ -221,7 +221,7 @@
       "description": "Personalized exercises for pregnancy back comfort."
     },
     "vitaminTracker": {
-      "title": "Vitamin Tracker",
+      "title": "Smart Vitamin Tracker",
       "description": "Never miss your prenatal vitamins."
     },
     "forbiddenFoods": {
@@ -253,7 +253,7 @@
       "description": "Log and journal your contraction patterns."
     },
     "cycleTracker": {
-      "title": "Cycle Journal",
+      "title": "Amazing Cycle Tracker",
       "description": "Track your cycle and find your fertile days."
     },
     "dueDateCalculator": {
@@ -261,19 +261,19 @@
       "description": "Find out when your little one will arrive."
     },
     "fetalGrowth": {
-      "title": "Fetal Growth Tracker",
+      "title": "Fetal Growth Tracking",
       "description": "See how big your baby is this week!"
     },
     "kickCounter": {
-      "title": "Baby Movement Diary",
+      "title": "Fetal Kick Tracking",
       "description": "Log and journal your baby's precious movements."
     },
     "weightGain": {
-      "title": "Weight Gain Journal",
+      "title": "Pregnancy Weight Analysis",
       "description": "Track healthy pregnancy weight changes."
     },
     "postpartumMentalHealth": {
-      "title": "Mental Wellness Guide",
+      "title": "Pregnancy Mental Health",
       "description": "EPDS questionnaire and mental wellness support."
     },
     "gestationalDiabetes": {
@@ -289,15 +289,15 @@
       "description": "Educational information about gestational diabetes and preeclampsia."
     },
     "pregnancyComfort": {
-      "title": "Pregnancy Comfort",
+      "title": "Comfortable Pregnancy",
       "description": "Advanced sleep tips and nausea relief during pregnancy."
     },
     "babyGearRecommender": {
-      "title": "Baby Gear Recommender",
+      "title": "Baby Essentials Setup",
       "description": "Essential items checklist for your new arrival."
     },
     "aiLactationPrep": {
-      "title": "AI Lactation Prep",
+      "title": "Smart Breastfeeding Guide",
       "description": "Breastfeeding preparation guide."
     },
     "babySleepTracker": {
@@ -305,11 +305,11 @@
       "description": "Track your baby's sleep patterns."
     },
     "babyGrowth": {
-      "title": "Baby Growth",
+      "title": "Smart Baby Growth",
       "description": "Track growth with WHO charts."
     },
     "diaperTracker": {
-      "title": "Diaper Tracker",
+      "title": "Smart Diaper Tracker",
       "description": "Log daily diaper changes."
     },
     "babyCryTranslator": {
@@ -333,7 +333,7 @@
       "twwTab": "TWW"
     },
     "nutritionSupplements": {
-      "title": "Nutrition & Supplements Guide",
+      "title": "Nutritional Supplements Guide",
       "description": "Complete nutrition and prenatal supplements guide for conception.",
       "nutritionTab": "Nutrition",
       "supplementsTab": "Supplements"
@@ -3938,7 +3938,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Smart Pregnancy Guide",
+    "title": "Smart Pregnancy Assistant",
     "subtitle": "Your 24/7 pregnancy companion",
     "hello": "Hello! I'm Here to Help 👋",
     "askAnything": "Ask anything about pregnancy, nutrition, or baby care",

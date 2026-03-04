@@ -93,16 +93,16 @@
   "categories": {
     "all": "Tudo",
     "ai": "Ferramentas IA",
-    "smartAssistant": "Guia Pessoal",
-    "fertility": "Fertilidade e Ovulação",
-    "pregnancy": "Acompanhamento Semanal",
-    "nutrition": "Nutrição",
-    "labor": "Preparação para o Parto",
+    "smartAssistant": "Assistente Inteligente da Gravidez",
+    "fertility": "Planejamento de Fertilidade",
+    "pregnancy": "Jornada da Gravidez",
+    "nutrition": "Nutrição da Gravidez",
+    "labor": "Trabalho de Parto",
     "postpartum": "Cuidados com o Recém-nascido",
     "selfCheck": "Autoavaliação",
     "riskAssessment": "Autoavaliação",
     "mentalHealth": "Bem-estar Emocional",
-    "wellness": "Cuidados com o Corpo",
+    "wellness": "Fitness da Gravidez",
     "preparation": "Essenciais"
   },
   "journeys": {
@@ -149,7 +149,7 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Guia Inteligente da Gravidez",
+      "title": "Assistente Inteligente da Gravidez",
       "description": "Faça qualquer pergunta sobre gravidez e obtenha respostas instantâneas."
     },
     "wellnessDiary": {
@@ -157,19 +157,19 @@
       "description": "Registre e reflita sobre como você se sente durante a gravidez."
     },
     "aiMealSuggestion": {
-      "title": "Planejador de refeições IA",
+      "title": "Sugestões inteligentes de refeições",
       "description": "Sugestões de refeições personalizadas para seu trimestre."
     },
     "weeklySummary": {
-      "title": "Resumo semanal",
+      "title": "Resumo semanal da gravidez",
       "description": "Atualizações inteligentes sobre o crescimento do seu bebê."
     },
     "aiBirthPlan": {
-      "title": "Gerador de plano de parto IA",
+      "title": "Plano de parto inteligente",
       "description": "Crie seu plano de parto personalizado com orientação de IA."
     },
     "smartAppointmentReminder": {
-      "title": "Lembrete automático de consultas",
+      "title": "Planejador inteligente de consultas",
       "description": "Nunca perca uma consulta pré-natal."
     },
     "aiCravingAlternatives": {
@@ -185,11 +185,11 @@
       "description": "Orientação de sono personalizada para a gravidez."
     },
     "aiHospitalBag": {
-      "title": "Mala de maternidade completa",
+      "title": "Mala de maternidade inteligente",
       "description": "Lista de preparação integral para o dia do parto."
     },
     "aiPartnerGuide": {
-      "title": "Guia do parceiro IA",
+      "title": "O guia lógico do papai",
       "description": "Dicas de apoio para parceiros e cônjuges."
     },
     "aiBirthPosition": {
@@ -197,7 +197,7 @@
       "description": "Posições ideais para seu trabalho de parto."
     },
     "aiSkincare": {
-      "title": "Cuidados com a pele IA",
+      "title": "Análise de pele na gravidez",
       "description": "Rotina de cuidados segura para a gravidez."
     },
     "aiNauseaRelief": {
@@ -213,7 +213,7 @@
       "description": "Salve e explore suas fotos de ultrassom com observações educativas."
     },
     "aiFitnessCoach": {
-      "title": "Guia fitness IA",
+      "title": "Coach de fitness e flexibilidade",
       "description": "Exercícios seguros personalizados para sua fase de gravidez."
     },
     "aiBackPainRelief": {
@@ -221,7 +221,7 @@
       "description": "Exercícios personalizados para o conforto das costas na gravidez."
     },
     "vitaminTracker": {
-      "title": "Rastreador de vitaminas",
+      "title": "Rastreador inteligente de vitaminas",
       "description": "Nunca esqueça suas vitaminas pré-natais."
     },
     "forbiddenFoods": {
@@ -247,7 +247,7 @@
     "smartStretchReminder": {"title": "Lembrete de alongamento", "description": "Alongamentos personalizados para seu conforto."},
     "fertileWindow": {"title": "Janela de fertilidade", "description": "Identifique seus dias mais férteis."},
     "fertilityAcademy": {"title": "Academia de fertilidade", "description": "Educação completa sobre fertilidade: lições, sinais corporais e gestão do estresse.", "lessonsTab": "Lições", "signsTab": "Sinais corporais", "stressTab": "Estresse & Calma", "twwTab": "Espera"},
-    "nutritionSupplements": {"title": "Guia de nutrição e suplementos", "description": "Guia completo de nutrição e suplementos pré-natais.", "nutritionTab": "Nutrição", "supplementsTab": "Suplementos"},
+    "nutritionSupplements": {"title": "Guia de suplementos nutricionais", "description": "Guia completo de nutrição e suplementos pré-natais.", "nutritionTab": "Nutrição", "supplementsTab": "Suplementos"},
     "twwCompanion": {"title": "Companheira de espera", "description": "Apoio diário durante as duas semanas de espera."},
     "preconceptionCheckup": {"title": "Exames pré-concepcionais", "description": "Exames essenciais antes da gravidez."},
     "aiLaborProgress": {
@@ -255,7 +255,7 @@
       "description": "Registre seus padrões de contrações."
     },
     "cycleTracker": {
-      "title": "Diário do ciclo",
+      "title": "Rastreador de ciclo incrível",
       "description": "Acompanhe seu ciclo e encontre seus dias férteis."
     },
     "dueDateCalculator": {
@@ -263,19 +263,19 @@
       "description": "Descubra quando seu bebê chegará."
     },
     "fetalGrowth": {
-      "title": "Rastreador de crescimento fetal",
+      "title": "Rastreamento do crescimento fetal",
       "description": "Veja o tamanho do seu bebê esta semana!"
     },
     "kickCounter": {
-      "title": "Diário de movimentos do bebê",
+      "title": "Rastreamento de chutes fetais",
       "description": "Registre os preciosos movimentos do seu bebê."
     },
     "weightGain": {
-      "title": "Diário de ganho de peso",
+      "title": "Análise de peso na gravidez",
       "description": "Acompanhe as mudanças de peso durante a gravidez."
     },
     "postpartumMentalHealth": {
-      "title": "Guia de bem-estar mental",
+      "title": "Saúde mental na gravidez",
       "description": "Questionário EPDS e suporte de bem-estar mental."
     },
     "gestationalDiabetes": {
@@ -291,15 +291,15 @@
       "description": "Informações educativas sobre diabetes gestacional e pré-eclâmpsia."
     },
     "pregnancyComfort": {
-      "title": "Conforto na gravidez",
+      "title": "Gravidez confortável",
       "description": "Dicas avançadas de sono e alívio de náuseas durante a gravidez."
     },
     "babyGearRecommender": {
-      "title": "Recomendador de itens para bebê",
+      "title": "Preparação dos itens do bebê",
       "description": "Lista de itens essenciais para seu recém-nascido."
     },
     "aiLactationPrep": {
-      "title": "Preparação para amamentação IA",
+      "title": "Guia inteligente de amamentação",
       "description": "Guia de preparação para amamentação."
     },
     "babySleepTracker": {
@@ -307,11 +307,11 @@
       "description": "Acompanhe os padrões de sono do seu bebê."
     },
     "babyGrowth": {
-      "title": "Crescimento do bebê",
+      "title": "Crescimento inteligente do bebê",
       "description": "Acompanhe o crescimento com gráficos da OMS."
     },
     "diaperTracker": {
-      "title": "Rastreador de fraldas",
+      "title": "Rastreador inteligente de fraldas",
       "description": "Registre as trocas diárias."
     },
     "babyCryTranslator": {
@@ -3189,7 +3189,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Guia Inteligente da Gravidez",
+    "title": "Assistente Inteligente da Gravidez",
     "subtitle": "Seu guia de gravidez 24/7",
     "hello": "Olá! Estou aqui para ajudar 👋",
     "askAnything": "Pergunte sobre gravidez, nutrição ou cuidados com o bebê",
