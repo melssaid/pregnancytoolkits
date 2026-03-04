@@ -10,7 +10,7 @@
 import { useState, useCallback } from 'react';
 
 const STORAGE_KEY = 'ai_daily_usage';
-const DAILY_LIMIT = 25;
+const DAILY_LIMIT = 40;
 
 interface UsageData {
   date: string; // YYYY-MM-DD
