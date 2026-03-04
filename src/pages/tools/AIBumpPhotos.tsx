@@ -31,6 +31,19 @@ interface BumpPhoto {
   updated_at: string;
 }
 
+const MAX_DAILY_PHOTOS = 3;
+const MAX_FILE_SIZE_MB = 2;
+const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
+function getTodayKey() {
+  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+}
+
+function getTodayUploadCount(photos: BumpPhoto[]): number {
+  const today = getTodayKey();
+  return photos.filter(p => p.created_at.startsWith(today)).length;
+}
+
 const AIBumpPhotos: React.FC = () => {
   const { t } = useTranslation();
   const { profile: userProfile } = useUserProfile();
@@ -54,6 +67,10 @@ const AIBumpPhotos: React.FC = () => {
   const { streamChat } = usePregnancyAI();
 
   useResetOnLanguageChange(() => { setAiAnalysis(''); });
+
+  const todayUploads = getTodayUploadCount(photos);
+  const remainingToday = Math.max(0, MAX_DAILY_PHOTOS - todayUploads);
+  const canUploadToday = remainingToday > 0;
 
   // Sync week from central profile
   useEffect(() => {
@@ -91,6 +108,16 @@ const AIBumpPhotos: React.FC = () => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    // Check daily limit
+    if (!canUploadToday) {
+      toast({
+        title: t('toolsInternal.bumpPhotos.dailyLimitReachedTitle'),
+        description: t('toolsInternal.bumpPhotos.dailyLimitReachedDesc'),
+        variant: 'destructive'
+      });
+      return;
+    }
+
     if (!file.type.startsWith('image/')) {
       toast({
         title: t('toolsInternal.kickCounter.error'),
@@ -100,10 +127,10 @@ const AIBumpPhotos: React.FC = () => {
       return;
     }
 
-    if (file.size > 10 * 1024 * 1024) {
+    if (file.size > MAX_FILE_SIZE_BYTES) {
       toast({
-        title: t('toolsInternal.kickCounter.error'),
-        description: t('toolsInternal.bumpPhotos.errorTooLarge'),
+        title: t('toolsInternal.bumpPhotos.imageSizeLimitTitle'),
+        description: t('toolsInternal.bumpPhotos.imageSizeLimitDesc'),
         variant: 'destructive'
       });
       return;
@@ -321,55 +348,77 @@ const AIBumpPhotos: React.FC = () => {
       toolId="ai-bump-photos"
     >
       <div className="space-y-6">
-        {/* Local Storage Notice */}
+        {/* Daily Usage & Limits — Friendly Explanation */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200/50 rounded-xl p-4"
+          className="relative overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/[0.06] via-card to-accent/[0.04]"
         >
-          <div className="flex items-start gap-3">
-            <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-900/50">
-              <HardDrive className="w-5 h-5 text-emerald-600" />
+          {/* Decorative accent */}
+          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary/40 via-primary/60 to-primary/40" />
+          
+          <div className="p-4 space-y-3">
+            {/* Title row */}
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 rounded-xl bg-primary/10">
+                <Shield className="w-4.5 h-4.5 text-primary" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-foreground">{t('toolsInternal.bumpPhotos.dailyLimitTitle')}</h4>
+              </div>
             </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <h4 className="font-semibold text-emerald-800 dark:text-emerald-300">{t('toolsInternal.bumpPhotos.localStorageTitle')}</h4>
-                <Badge variant="outline" className="text-xs border-emerald-300 text-emerald-700">
-                  <Shield className="w-3 h-3 mr-1" />
-                  {t('toolsInternal.bumpPhotos.privateLabel')}
-                </Badge>
+
+            {/* Description */}
+            <p 
+              className="text-xs text-muted-foreground leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: t('toolsInternal.bumpPhotos.dailyLimitDesc') }}
+            />
+
+            {/* Daily progress indicator */}
+            <div className="flex items-center gap-3">
+              <div className="flex gap-1.5">
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                    className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${
+                      i < todayUploads
+                        ? 'bg-primary text-primary-foreground shadow-sm'
+                        : 'bg-muted/50 text-muted-foreground/40 border border-border/50'
+                    }`}
+                  >
+                    {i < todayUploads ? (
+                      <Check className="w-4 h-4" />
+                    ) : (
+                      <Camera className="w-3.5 h-3.5" />
+                    )}
+                  </motion.div>
+                ))}
               </div>
-              <p className="text-sm text-emerald-700 dark:text-emerald-400 mb-3">
-                {t('toolsInternal.bumpPhotos.localStorageDesc')}
-              </p>
-              
-              {/* Storage Usage Bar */}
-              <div className="space-y-1">
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">{t('toolsInternal.bumpPhotos.storageUsed')}</span>
-                  <span className={`font-medium ${
-                    storageInfo.isCritical ? 'text-destructive' : 
-                    storageInfo.isWarning ? 'text-amber-600' : 'text-emerald-600'
-                  }`}>
-                    {storageInfo.used} / 5 MB
-                  </span>
-                </div>
-                <Progress 
-                  value={storageInfo.percentage} 
-                  className={`h-2 ${
-                    storageInfo.isCritical ? '[&>div]:bg-destructive' : 
-                    storageInfo.isWarning ? '[&>div]:bg-amber-500' : '[&>div]:bg-emerald-500'
-                  }`}
-                />
-                {storageInfo.isWarning && (
-                  <p className="text-xs text-amber-600 flex items-center gap-1 mt-1">
-                    <AlertTriangle className="w-3 h-3" />
-                    {storageInfo.isCritical 
-                      ? t('toolsInternal.bumpPhotos.storageCritical')
-                      : t('toolsInternal.bumpPhotos.storageWarning')}
-                  </p>
-                )}
+              <span className={`text-xs font-medium ${canUploadToday ? 'text-primary' : 'text-destructive'}`}>
+                {canUploadToday 
+                  ? t('toolsInternal.bumpPhotos.dailyLimitRemaining', { remaining: remainingToday })
+                  : t('toolsInternal.bumpPhotos.dailyLimitReached')}
+              </span>
+            </div>
+
+            {/* Storage bar — compact */}
+            <div className="pt-1 space-y-1">
+              <div className="flex justify-between text-[10px]">
+                <span className="text-muted-foreground">{t('toolsInternal.bumpPhotos.storageUsed')}</span>
+                <span className={`font-medium ${
+                  storageInfo.isCritical ? 'text-destructive' : 
+                  storageInfo.isWarning ? 'text-amber-600' : 'text-primary'
+                }`}>
+                  {storageInfo.used} / 5 MB
+                </span>
               </div>
+              <Progress 
+                value={storageInfo.percentage} 
+                className="h-1.5"
+              />
             </div>
           </div>
         </motion.div>
@@ -415,10 +464,14 @@ const AIBumpPhotos: React.FC = () => {
             
             {/* Upload Zone */}
             <motion.div 
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="flex flex-col items-center justify-center border-2 border-dashed border-primary/30 rounded-xl p-6 bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer"
-              onClick={() => fileInputRef.current?.click()}
+              whileHover={canUploadToday ? { scale: 1.01 } : undefined}
+              whileTap={canUploadToday ? { scale: 0.99 } : undefined}
+              className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-6 transition-colors ${
+                canUploadToday 
+                  ? 'border-primary/30 bg-primary/5 hover:bg-primary/10 cursor-pointer' 
+                  : 'border-muted/30 bg-muted/5 opacity-50 cursor-not-allowed'
+              }`}
+              onClick={() => canUploadToday && fileInputRef.current?.click()}
             >
               <input
                 ref={fileInputRef}

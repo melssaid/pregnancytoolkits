@@ -2238,7 +2238,15 @@
       "deleteFailed": "Delete Failed",
       "analysisFailedTitle": "Analysis Failed",
       "photoDownloaded": "Image downloaded",
-      "photoDownloadedDesc": "You can now share it manually"
+      "photoDownloadedDesc": "You can now share it manually",
+      "dailyLimitTitle": "Daily Usage Limits",
+      "dailyLimitDesc": "To keep the app running smoothly, you can upload up to <strong>3 photos per day</strong> with a max size of <strong>2MB</strong> each. Images are auto-compressed for optimal quality 💜",
+      "dailyLimitRemaining": "Remaining today: {{remaining}} of 3 photos",
+      "dailyLimitReached": "You've used today's uploads 🌙 Come back tomorrow!",
+      "dailyLimitReachedTitle": "Daily limit reached",
+      "dailyLimitReachedDesc": "You can upload 3 new photos tomorrow ☀️",
+      "imageSizeLimitTitle": "Image too large",
+      "imageSizeLimitDesc": "Please choose an image smaller than 2MB for optimal performance"
     },
     "backPainRelief": {
       "title": "Back Comfort Guide",
