@@ -8,7 +8,7 @@ interface MarkdownRendererProps {
 }
 
 export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }: MarkdownRendererProps) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isRTL = i18n.language?.startsWith('ar');
 
   // Common emoji shortcode to emoji map for AI model outputs
@@ -210,11 +210,9 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
         )}
       </div>
       {disclaimerContent && (
-        <div className="mt-4 rounded-xl border border-primary/15 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent p-4">
-          <div className="space-y-1 text-[11px] leading-relaxed text-muted-foreground">
-            {disclaimerContent}
-          </div>
-        </div>
+        <p className="text-[9px] text-muted-foreground/40 text-center mt-3 tracking-wide">
+          {t('ai.resultDisclaimer')}
+        </p>
       )}
     </div>
   );
