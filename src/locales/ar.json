@@ -1974,6 +1974,8 @@
       "dailyLimitReached": "لقد استنفدتِ صور اليوم 🌙 عودي غداً لرفع المزيد!",
       "dailyLimitReachedTitle": "انتهت صور اليوم",
       "dailyLimitReachedDesc": "يمكنكِ رفع 3 صور جديدة غداً إن شاء الله ☀️",
+      "lastPhotoReminderTitle": "تبقّت لكِ صورة واحدة اليوم 📸",
+      "lastPhotoReminderDesc": "استخدميها بحكمة! ستتجدد الصور الثلاث غداً بإذن الله 💕",
       "imageSizeLimitTitle": "حجم الصورة كبير",
       "imageSizeLimitDesc": "يرجى اختيار صورة أصغر من 2MB للحفاظ على أداء التطبيق"
     },

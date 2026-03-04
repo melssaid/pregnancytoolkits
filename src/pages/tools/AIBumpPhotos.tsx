@@ -175,6 +175,18 @@ const AIBumpPhotos: React.FC = () => {
         description: t('toolsInternal.bumpPhotos.photoSavedDesc', { week: currentWeek })
       });
 
+      // Friendly reminder when only 1 upload remains today
+      const newTodayCount = getTodayUploadCount(updatedPhotos);
+      const newRemaining = MAX_DAILY_PHOTOS - newTodayCount;
+      if (newRemaining === 1) {
+        setTimeout(() => {
+          toast({
+            title: t('toolsInternal.bumpPhotos.lastPhotoReminderTitle'),
+            description: t('toolsInternal.bumpPhotos.lastPhotoReminderDesc'),
+          });
+        }, 1500);
+      }
+
       // Auto analyze
       analyzePhoto(photo);
       
