@@ -93,16 +93,16 @@
   "categories": {
     "all": "Tümü",
     "ai": "Akıllı Araçlar",
-    "smartAssistant": "Kişisel Rehber",
-    "fertility": "Doğurganlık ve Yumurtlama",
-    "pregnancy": "Haftalık Takip",
-    "nutrition": "Beslenme",
-    "labor": "Doğuma Hazırlık",
+    "smartAssistant": "Akıllı Hamilelik Asistanı",
+    "fertility": "Doğurganlık Planlaması",
+    "pregnancy": "Hamilelik Yolculuğu",
+    "nutrition": "Hamilelik Beslenmesi",
+    "labor": "Doğum Süreci",
     "postpartum": "Yenidoğan Bakımı",
     "selfCheck": "Öz Değerlendirme",
     "riskAssessment": "Öz Değerlendirme",
     "mentalHealth": "Duygusal İyi Oluş",
-    "wellness": "Vücut Bakımı",
+    "wellness": "Hamilelik Fitness'ı",
     "preparation": "Temel İhtiyaçlar"
   },
   "journeys": {
@@ -149,27 +149,27 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Akıllı Hamilelik Rehberi",
+      "title": "Akıllı Hamilelik Asistanı",
       "description": "Hamilelik hakkında herhangi bir soru sorun ve anında cevap alın."
     },
     "wellnessDiary": {
-      "title": "Hamilelik Sağlık Günlüğü",
+      "title": "Hamilelik Wellness Günlüğü",
       "description": "Hamilelik yolculuğunuz boyunca nasıl hissettiğinizi kaydedin ve düşünün."
     },
     "aiMealSuggestion": {
-      "title": "Akıllı Öğün Planlayıcı",
+      "title": "Akıllı Öğün Önerileri",
       "description": "Trimesterinize göre kişiselleştirilmiş öğün önerileri alın."
     },
     "weeklySummary": {
-      "title": "Haftalık İçgörüler",
+      "title": "Haftalık Hamilelik Özeti",
       "description": "Bebeğinizin büyümesi hakkında akıllı haftalık güncellemeler."
     },
     "aiBirthPlan": {
-      "title": "AI Doğum Planı Oluşturucu",
+      "title": "Akıllı Doğum Planı",
       "description": "AI rehberliğiyle kişiselleştirilmiş doğum planınızı oluşturun."
     },
     "smartAppointmentReminder": {
-      "title": "Otomatik Randevu Hatırlatıcı",
+      "title": "Akıllı Randevu Planlayıcı",
       "description": "Asla bir doğum öncesi randevuyu kaçırmayın."
     },
     "aiCravingAlternatives": {
@@ -185,11 +185,11 @@
       "description": "Hamilelik için kişiselleştirilmiş uyku rehberliği."
     },
     "aiHospitalBag": {
-      "title": "Eksiksiz Hastane Çantası",
+      "title": "Akıllı Hastane Çantası",
       "description": "Doğum günü için kapsamlı paketleme listesi."
     },
     "aiPartnerGuide": {
-      "title": "AI Partner Rehberi",
+      "title": "Babanın Mantıksal Rehberi",
       "description": "Partnerler ve eşler için destek ipuçları."
     },
     "aiBirthPosition": {
@@ -197,7 +197,7 @@
       "description": "Doğumunuz için optimal pozisyonlar."
     },
     "aiSkincare": {
-      "title": "AI Cilt Bakımı",
+      "title": "Hamilelik Cilt Analizi",
       "description": "Hamilelikte güvenli cilt bakım rutini."
     },
     "aiNauseaRelief": {
@@ -213,7 +213,7 @@
       "description": "Ultrason fotoğraflarınızı kaydedin ve eğitici bilgiler edinin."
     },
     "aiFitnessCoach": {
-      "title": "AI Fitness Rehberi",
+      "title": "Fitness & Esneklik Koçu",
       "description": "Hamilelik aşamanıza göre güvenli egzersizler."
     },
     "aiBackPainRelief": {
@@ -221,7 +221,7 @@
       "description": "Hamilelikte sırt konforu için kişiselleştirilmiş egzersizler."
     },
     "vitaminTracker": {
-      "title": "Vitamin Takibi",
+      "title": "Akıllı Vitamin Takibi",
       "description": "Doğum öncesi vitaminlerinizi asla kaçırmayın."
     },
     "forbiddenFoods": {
@@ -247,7 +247,7 @@
     "smartStretchReminder": {"title": "Esneme Hatırlatıcısı", "description": "Konforunuz için kişiselleştirilmiş esneme rutinleri."},
     "fertileWindow": {"title": "Doğurganlık Penceresi", "description": "En verimli günlerinizi belirleyin."},
     "fertilityAcademy": {"title": "Doğurganlık Akademisi", "description": "Kapsamlı doğurganlık eğitimi: dersler, vücut işaretleri ve stres yönetimi.", "lessonsTab": "Dersler", "signsTab": "Vücut İşaretleri", "stressTab": "Stres & Huzur", "twwTab": "Bekleme"},
-    "nutritionSupplements": {"title": "Beslenme & Takviye Rehberi", "description": "Gebe kalmak için kapsamlı beslenme ve takviye rehberi.", "nutritionTab": "Beslenme", "supplementsTab": "Takviyeler"},
+    "nutritionSupplements": {"title": "Besin Takviyesi Rehberi", "description": "Gebe kalmak için kapsamlı beslenme ve takviye rehberi.", "nutritionTab": "Beslenme", "supplementsTab": "Takviyeler"},
     "twwCompanion": {"title": "Bekleme Arkadaşı", "description": "İki haftalık bekleme süresinde günlük destek."},
     "preconceptionCheckup": {"title": "Gebelik Öncesi Kontrol", "description": "Hamilelik öncesi temel testler."},
     "aiLaborProgress": {
@@ -255,7 +255,7 @@
       "description": "Kasılma düzenlerinizi kaydedin."
     },
     "cycleTracker": {
-      "title": "Döngü Günlüğü",
+      "title": "Muhteşem Döngü Takipçisi",
       "description": "Döngünüzü takip edin ve verimli günlerinizi bulun."
     },
     "dueDateCalculator": {
@@ -267,15 +267,15 @@
       "description": "Bu hafta bebeğinizin ne kadar büyük olduğunu görün!"
     },
     "kickCounter": {
-      "title": "Bebek Hareket Günlüğü",
+      "title": "Fetal Tekme Takibi",
       "description": "Bebeğinizin değerli hareketlerini kaydedin."
     },
     "weightGain": {
-      "title": "Kilo Günlüğü",
+      "title": "Hamilelik Kilo Analizi",
       "description": "Hamilelik sürecinde kilo değişimlerinizi takip edin."
     },
     "postpartumMentalHealth": {
-      "title": "Ruhsal İyilik Rehberi",
+      "title": "Hamilelik Ruh Sağlığı",
       "description": "EPDS anketi ve ruhsal iyilik desteği."
     },
     "gestationalDiabetes": {
@@ -291,15 +291,15 @@
       "description": "Gebelik diyabeti ve preeklampsi hakkında eğitici bilgiler."
     },
     "pregnancyComfort": {
-      "title": "Hamilelik konforu",
+      "title": "Konforlu Hamilelik",
       "description": "İleri düzey uyku önerileri ve hamilelikte bulantı giderme."
     },
     "babyGearRecommender": {
-      "title": "Bebek Ekipman Önerici",
+      "title": "Bebek Eşyaları Hazırlığı",
       "description": "Yeni gelen bebeğiniz için gerekli eşyalar listesi."
     },
     "aiLactationPrep": {
-      "title": "AI Emzirme Hazırlığı",
+      "title": "Akıllı Emzirme Rehberi",
       "description": "Emzirme hazırlık rehberi."
     },
     "babySleepTracker": {
@@ -307,11 +307,11 @@
       "description": "Bebeğinizin uyku düzenini takip edin."
     },
     "babyGrowth": {
-      "title": "Bebek Büyümesi",
+      "title": "Akıllı Bebek Büyümesi",
       "description": "WHO grafikleriyle büyümeyi takip edin."
     },
     "diaperTracker": {
-      "title": "Bez Takibi",
+      "title": "Akıllı Bez Takibi",
       "description": "Günlük bez değişimlerini kaydedin."
     },
     "babyCryTranslator": {
@@ -3189,7 +3189,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Akıllı Hamilelik Rehberi",
+    "title": "Akıllı Hamilelik Asistanı",
     "subtitle": "7/24 hamilelik rehberiniz",
     "hello": "Merhaba! Yardım etmek için buradayım 👋",
     "askAnything": "Hamilelik, beslenme veya bebek bakımı hakkında her şeyi sorun",

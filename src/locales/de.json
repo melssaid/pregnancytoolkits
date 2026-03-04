@@ -93,16 +93,16 @@
   "categories": {
     "all": "Alle",
     "ai": "Smart Tools",
-    "smartAssistant": "Persönlicher Ratgeber",
-    "fertility": "Fruchtbarkeit & Eisprung",
-    "pregnancy": "Wöchentliche Begleitung",
-    "nutrition": "Ernährung",
-    "labor": "Geburtsvorbereitung",
+    "smartAssistant": "Intelligenter Schwangerschaftsassistent",
+    "fertility": "Fruchtbarkeitsplanung",
+    "pregnancy": "Schwangerschaftsreise",
+    "nutrition": "Schwangerschaftsernährung",
+    "labor": "Wehen & Geburt",
     "postpartum": "Neugeborenenpflege",
     "selfCheck": "Selbsteinschätzung",
     "riskAssessment": "Selbsteinschätzung",
     "mentalHealth": "Emotionales Wohlbefinden",
-    "wellness": "Körperpflege",
+    "wellness": "Schwangerschafts-Fitness",
     "preparation": "Ausstattung"
   },
   "journeys": {
@@ -149,27 +149,27 @@
   },
   "tools": {
     "pregnancyAssistant": {
-      "title": "Intelligenter Schwangerschafts-Ratgeber",
+      "title": "Intelligenter Schwangerschaftsassistent",
       "description": "Stellen Sie jede Frage zur Schwangerschaft und erhalten Sie sofortige Antworten."
     },
     "wellnessDiary": {
-      "title": "Schwangerschafts-Wohlbefinden-Tagebuch",
+      "title": "Schwangerschafts-Wellness-Tagebuch",
       "description": "Dokumentieren und reflektieren Sie Ihr Befinden während der Schwangerschaft."
     },
     "aiMealSuggestion": {
-      "title": "Intelligenter Mahlzeitenplaner",
+      "title": "Intelligente Mahlzeitenvorschläge",
       "description": "Personalisierte Mahlzeitenvorschläge für Ihr Trimester."
     },
     "weeklySummary": {
-      "title": "Wöchentliche Einblicke",
+      "title": "Wöchentliche Schwangerschaftsübersicht",
       "description": "Intelligente wöchentliche Updates zum Wachstum Ihres Babys."
     },
     "aiBirthPlan": {
-      "title": "KI-Geburtsplan-Generator",
+      "title": "Intelligenter Geburtsplan",
       "description": "Erstellen Sie Ihren personalisierten Geburtsplan mit KI-Anleitung."
     },
     "smartAppointmentReminder": {
-      "title": "Automatische Terminerinnerung",
+      "title": "Intelligenter Terminplaner",
       "description": "Verpassen Sie nie einen Vorsorgetermin."
     },
     "aiCravingAlternatives": {
@@ -185,11 +185,11 @@
       "description": "Personalisierte Schlafberatung für die Schwangerschaft."
     },
     "aiHospitalBag": {
-      "title": "Komplette Kliniktasche",
+      "title": "Intelligente Kliniktasche",
       "description": "Umfassende Packliste für den Entbindungstag."
     },
     "aiPartnerGuide": {
-      "title": "KI-Partnerführer",
+      "title": "Der logische Papa-Ratgeber",
       "description": "Unterstützungstipps für Partner und Ehepartner."
     },
     "aiBirthPosition": {
@@ -197,7 +197,7 @@
       "description": "Optimale Positionen für Ihre Wehen."
     },
     "aiSkincare": {
-      "title": "KI-Hautpflege",
+      "title": "Schwangerschafts-Hautanalyse",
       "description": "Schwangerschaftssichere Hautpflegeroutine."
     },
     "aiNauseaRelief": {
@@ -213,7 +213,7 @@
       "description": "Speichern und erkunden Sie Ihre Ultraschallbilder mit Lerneinblicken."
     },
     "aiFitnessCoach": {
-      "title": "KI-Fitness-Ratgeber",
+      "title": "Fitness- & Flexibilitäts-Coach",
       "description": "Sichere Übungen für Ihre Schwangerschaftsphase."
     },
     "aiBackPainRelief": {
@@ -221,7 +221,7 @@
       "description": "Personalisierte Übungen für Rückenkomfort in der Schwangerschaft."
     },
     "vitaminTracker": {
-      "title": "Vitamin-Tracker",
+      "title": "Intelligenter Vitamin-Tracker",
       "description": "Vergessen Sie nie Ihre pränatalen Vitamine."
     },
     "forbiddenFoods": {
@@ -247,7 +247,7 @@
     "smartStretchReminder": {"title": "Dehn-Erinnerung", "description": "Personalisierte Dehnübungen für dein Wohlbefinden."},
     "fertileWindow": {"title": "Fruchtbarkeitsfenster", "description": "Bestimmen Sie Ihre fruchtbarsten Tage."},
     "fertilityAcademy": {"title": "Fruchtbarkeitsakademie", "description": "Umfassende Fruchtbarkeitsbildung: Lektionen, Körperzeichen und Stressbewältigung.", "lessonsTab": "Lektionen", "signsTab": "Körperzeichen", "stressTab": "Stress & Ruhe", "twwTab": "Wartezeit"},
-    "nutritionSupplements": {"title": "Ernährungs- & Ergänzungsguide", "description": "Umfassender Leitfaden für Ernährung und pränatale Nahrungsergänzung.", "nutritionTab": "Ernährung", "supplementsTab": "Ergänzungen"},
+    "nutritionSupplements": {"title": "Ratgeber für Nahrungsergänzungsmittel", "description": "Umfassender Leitfaden für Ernährung und pränatale Nahrungsergänzung.", "nutritionTab": "Ernährung", "supplementsTab": "Ergänzungen"},
     "twwCompanion": {"title": "Wartezeitbegleiterin", "description": "Tägliche Unterstützung während der Wartezeit."},
     "preconceptionCheckup": {"title": "Vorsorgeuntersuchungen", "description": "Wichtige Tests vor der Schwangerschaft."},
     "aiLaborProgress": {
@@ -255,7 +255,7 @@
       "description": "Protokollieren Sie Ihre Kontraktionsmuster."
     },
     "cycleTracker": {
-      "title": "Zyklustagebuch",
+      "title": "Der fantastische Zyklus-Tracker",
       "description": "Verfolgen Sie Ihren Zyklus und finden Sie Ihre fruchtbaren Tage."
     },
     "dueDateCalculator": {
@@ -263,19 +263,19 @@
       "description": "Finden Sie heraus, wann Ihr Kleines ankommt."
     },
     "fetalGrowth": {
-      "title": "Fetales Wachstum",
+      "title": "Fetales Wachstum verfolgen",
       "description": "Sehen Sie, wie groß Ihr Baby diese Woche ist!"
     },
     "kickCounter": {
-      "title": "Baby-Bewegungstagebuch",
+      "title": "Fetale Tritte verfolgen",
       "description": "Halten Sie die wertvollen Bewegungen Ihres Babys fest."
     },
     "weightGain": {
-      "title": "Gewichtstagebuch",
+      "title": "Schwangerschafts-Gewichtsanalyse",
       "description": "Begleiten Sie Ihre Gewichtsentwicklung in der Schwangerschaft."
     },
     "postpartumMentalHealth": {
-      "title": "Ratgeber für seelisches Wohlbefinden",
+      "title": "Psychische Gesundheit in der Schwangerschaft",
       "description": "EPDS-Fragebogen und Unterstützung für seelisches Wohlbefinden."
     },
     "gestationalDiabetes": {
@@ -291,15 +291,15 @@
       "description": "Aufklärung über Schwangerschaftsdiabetes und Präeklampsie."
     },
     "pregnancyComfort": {
-      "title": "Schwangerschafts-Komfort",
+      "title": "Komfortable Schwangerschaft",
       "description": "Fortgeschrittene Schlaftipps und Übelkeitslinderung in der Schwangerschaft."
     },
     "babyGearRecommender": {
-      "title": "Baby-Ausstattungs-Empfehler",
+      "title": "Baby-Ausstattung vorbereiten",
       "description": "Checkliste für wesentliche Artikel für Ihr Neugeborenes."
     },
     "aiLactationPrep": {
-      "title": "KI-Stillvorbereitung",
+      "title": "Intelligenter Stillratgeber",
       "description": "Stillvorbereitungsanleitung."
     },
     "babySleepTracker": {
@@ -307,11 +307,11 @@
       "description": "Verfolgen Sie die Schlafmuster Ihres Babys."
     },
     "babyGrowth": {
-      "title": "Baby-Wachstum",
+      "title": "Intelligentes Baby-Wachstum",
       "description": "Verfolgen Sie das Wachstum mit WHO-Diagrammen."
     },
     "diaperTracker": {
-      "title": "Windel-Tracker",
+      "title": "Intelligenter Windel-Tracker",
       "description": "Tägliche Windelwechsel protokollieren."
     },
     "babyCryTranslator": {
@@ -2850,7 +2850,7 @@
     }
   },
   "pregnancyAssistant": {
-    "title": "Intelligenter Schwangerschafts-Ratgeber",
+    "title": "Intelligenter Schwangerschaftsassistent",
     "subtitle": "Ihr 24/7-Schwangerschafts-Ratgeber",
     "hello": "Hallo! Ich bin hier, um zu helfen 👋",
     "askAnything": "Fragen Sie alles über Schwangerschaft, Ernährung oder Babypflege",
