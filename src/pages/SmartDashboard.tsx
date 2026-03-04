@@ -240,23 +240,36 @@ const SmartDashboard = () => {
     <Layout>
       <SEOHead title={t('dashboard.title', 'Pregnancy Dashboard')} description="Your personalized pregnancy dashboard with AI assistant, health tracking, nutrition & exercise tools." />
       {/* Navigation Tabs with Notification Button */}
-      <nav className="bg-background border-b border-border/50">
+      <nav className="bg-background/80 backdrop-blur-md border-b border-border/30 sticky top-16 z-40">
         <div className="container px-3">
-          <div className="flex gap-1.5 overflow-x-auto scrollbar-hide py-2 pb-2.5">
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-medium whitespace-nowrap transition-all flex-shrink-0 ${
-                  activeTab === tab.id
-                    ? "bg-gradient-to-r from-primary to-primary/70 text-primary-foreground shadow-sm"
-                    : "bg-muted/40 text-muted-foreground hover:bg-muted"
-                }`}
-              >
-                <tab.icon className="w-3 h-3" />
-                <span>{tab.label}</span>
-              </button>
-            ))}
+          <div className="flex gap-1 overflow-x-auto scrollbar-hide py-2.5">
+            {tabs.map(tab => {
+              const isActive = activeTab === tab.id;
+              return (
+                <motion.button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative flex items-center gap-1.5 px-3 py-2 rounded-xl text-[11px] font-semibold whitespace-nowrap transition-colors flex-shrink-0 ${
+                    isActive
+                      ? "text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  }`}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 rounded-xl shadow-md shadow-primary/20"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-1.5">
+                    <tab.icon className="w-3.5 h-3.5" />
+                    <span>{tab.label}</span>
+                  </span>
+                </motion.button>
+              );
+            })}
           </div>
         </div>
       </nav>
@@ -595,27 +608,42 @@ const SmartDashboard = () => {
             className="space-y-4"
           >
             {/* Profile Summary Strip */}
-            <div className="flex items-center gap-2 px-1">
+            <motion.div 
+              className="flex items-center gap-2 px-1"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+            >
               <div className="flex-1 flex gap-2">
-                <div className="flex items-center gap-2 bg-primary/8 rounded-xl px-3 py-2 border border-primary/15 flex-1">
-                  <Calendar className="w-4 h-4 text-primary" />
-                  <div>
-                    <span className="text-base font-bold text-primary">{healthData.weekOfPregnancy || '—'}</span>
-                    <span className="text-[10px] text-muted-foreground block leading-none">{t('dashboard.health.weekOfPregnancy')}</span>
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center gap-2 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl px-3.5 py-2.5 border border-primary/15 flex-1 shadow-sm"
+                >
+                  <div className="p-1.5 rounded-lg bg-primary/15">
+                    <Calendar className="w-4 h-4 text-primary" />
                   </div>
-                </div>
-                <div className="flex items-center gap-2 bg-primary/8 rounded-xl px-3 py-2 border border-primary/15 flex-1">
-                  <Scale className="w-4 h-4 text-primary" />
                   <div>
-                    <span className="text-base font-bold text-primary">{healthData.weight || '—'}<span className="text-[10px] font-normal"> kg</span></span>
-                    <span className="text-[10px] text-muted-foreground block leading-none">{t('dashboard.health.weightKg')}</span>
+                    <span className="text-lg font-bold text-primary leading-none">{healthData.weekOfPregnancy || '—'}</span>
+                    <span className="text-[10px] text-muted-foreground block leading-none mt-0.5">{t('dashboard.health.weekOfPregnancy')}</span>
                   </div>
-                </div>
+                </motion.div>
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center gap-2 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl px-3.5 py-2.5 border border-primary/15 flex-1 shadow-sm"
+                >
+                  <div className="p-1.5 rounded-lg bg-primary/15">
+                    <Scale className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <span className="text-lg font-bold text-primary leading-none">{healthData.weight || '—'}<span className="text-[10px] font-normal"> kg</span></span>
+                    <span className="text-[10px] text-muted-foreground block leading-none mt-0.5">{t('dashboard.health.weightKg')}</span>
+                  </div>
+                </motion.div>
               </div>
-              <Link to="/settings" className="p-2 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+              <Link to="/settings" className="p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors shadow-sm border border-border/40">
                 <ChevronRight className="w-4 h-4 text-muted-foreground" />
               </Link>
-            </div>
+            </motion.div>
 
             {/* Daily Health Check-in Card */}
             <Card className="rounded-3xl overflow-hidden">
@@ -652,18 +680,20 @@ const SmartDashboard = () => {
                         { value: "Anxious", emoji: "😰" },
                         { value: "Bad", emoji: "😞" },
                       ].map(m => (
-                        <button
+                        <motion.button
                           key={m.value}
+                          whileTap={{ scale: 0.9 }}
+                          animate={healthData.mood === m.value ? { scale: 1.15 } : { scale: 1 }}
                           onClick={() => setHealthData(prev => ({ ...prev, mood: m.value }))}
-                          className={`flex-1 h-10 rounded-lg text-lg transition-all ${
+                          className={`flex-1 h-10 rounded-xl text-lg transition-all ${
                             healthData.mood === m.value
-                              ? "bg-primary/15 border-2 border-primary scale-110 shadow-sm"
+                              ? "bg-primary/15 border-2 border-primary shadow-md shadow-primary/10"
                               : "bg-muted/40 border border-transparent hover:bg-muted/70"
                           }`}
                           title={t(`dashboard.health.moods.${m.value.toLowerCase()}`)}
                         >
                           {m.emoji}
-                        </button>
+                        </motion.button>
                       ))}
                     </div>
                   </div>
@@ -816,41 +846,54 @@ const SmartDashboard = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Card className="rounded-3xl">
-              <CardContent className="p-4">
-                <h2 className="text-base font-bold mb-1 flex items-center gap-2">
+            <Card className="rounded-3xl overflow-hidden">
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 px-4 py-3 border-b border-border/30">
+                <h2 className="text-base font-bold flex items-center gap-2">
                   <Utensils className="w-5 h-5 text-primary" />
                   {t('dashboard.nutrition.title')}
                 </h2>
-                <p className="text-xs text-muted-foreground mb-4">
+                <p className="text-xs text-muted-foreground mt-0.5">
                   {t('dashboard.nutrition.planForWeek', { week: healthData.weekOfPregnancy })}
                 </p>
-
-                <div className="space-y-3">
+              </div>
+              <CardContent className="p-4">
+                <div className="space-y-2.5">
                   {nutritionKeys.map((meal, i) => (
-                    <div key={i} className="flex items-center gap-3 p-3 bg-primary/5 rounded-xl">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.08 }}
+                      className="flex items-center gap-3 p-3.5 bg-gradient-to-r from-primary/5 to-transparent rounded-2xl border border-border/30 hover:border-primary/20 hover:shadow-sm transition-all"
+                    >
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center shadow-sm">
                         <Salad className="w-5 h-5 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-sm font-semibold text-foreground">{t(`dashboard.nutrition.meals.${meal.key}`)}</h3>
                         <p className="text-xs text-muted-foreground truncate">{t(`dashboard.nutrition.meals.${meal.key}Suggestion`)}</p>
                       </div>
-                      <div className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-bold shrink-0">
+                      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-2.5 py-1 rounded-full text-xs font-bold shrink-0 shadow-sm">
                         {meal.calories} cal
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
-                <div className="mt-4 p-3 bg-primary/10 rounded-xl text-center">
-                  <p className="text-sm font-semibold text-foreground">
+                <motion.div 
+                  className="mt-4 p-3.5 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl text-center border border-primary/15"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <p className="text-sm font-bold text-foreground">
                     {t('dashboard.nutrition.totalCalories', { calories: nutritionKeys.reduce((a, b) => a + b.calories, 0) })}
                   </p>
-                </div>
+                </motion.div>
 
                 <Link to="/tools/ai-meal-suggestion">
-                  <Button className="w-full mt-4" variant="outline">
+                  <Button className="w-full mt-4 rounded-xl h-11" variant="outline">
+                    <Sparkles className="w-4 h-4 me-2 text-primary" />
                     {t('dashboard.nutrition.moreAiSuggestions')}
                     <ChevronRight className="w-4 h-4 ms-2" />
                   </Button>
@@ -866,30 +909,41 @@ const SmartDashboard = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Card className="rounded-3xl">
-              <CardContent className="p-4">
-                <h2 className="text-base font-bold mb-4 flex items-center gap-2">
+            <Card className="rounded-3xl overflow-hidden">
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 px-4 py-3 border-b border-border/30">
+                <h2 className="text-base font-bold flex items-center gap-2">
                   <Dumbbell className="w-5 h-5 text-primary" />
                   {t('dashboard.exercise.title')}
                 </h2>
-
-                <div className="grid grid-cols-2 gap-3">
+              </div>
+              <CardContent className="p-4">
+                <div className="space-y-3">
                   {exerciseKeys.map((ex, i) => (
                     <Link key={i} to={ex.href}>
-                      <div className="bg-primary/5 hover:bg-primary/10 p-4 rounded-xl text-center transition-all">
-                        <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center">
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-gradient-to-r from-primary/5 to-transparent border border-border/30 hover:border-primary/20 hover:shadow-md transition-all"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center shadow-sm">
                           <Activity className="w-5 h-5 text-primary" />
                         </div>
-                        <h3 className="text-sm font-semibold text-foreground">{t(`dashboard.exercise.exercises.${ex.key}`)}</h3>
-                        <p className="text-xs text-muted-foreground mt-1">{t(`dashboard.exercise.exercises.${ex.key}Duration`)}</p>
-                        <p className="text-[10px] text-primary mt-1">{t(`dashboard.exercise.exercises.${ex.key}Benefit`)}</p>
-                      </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-semibold text-foreground">{t(`dashboard.exercise.exercises.${ex.key}`)}</h3>
+                          <p className="text-xs text-muted-foreground mt-0.5">{t(`dashboard.exercise.exercises.${ex.key}Duration`)}</p>
+                          <p className="text-[10px] text-primary font-medium mt-0.5">{t(`dashboard.exercise.exercises.${ex.key}Benefit`)}</p>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-muted-foreground/50 shrink-0" />
+                      </motion.div>
                     </Link>
                   ))}
                 </div>
 
                 <Link to="/tools/ai-fitness-coach">
-                  <Button className="w-full mt-4" variant="outline">
+                  <Button className="w-full mt-4 rounded-xl h-11" variant="outline">
+                    <Sparkles className="w-4 h-4 me-2 text-primary" />
                     {t('dashboard.exercise.moreExercises')}
                     <ChevronRight className="w-4 h-4 ms-2" />
                   </Button>
