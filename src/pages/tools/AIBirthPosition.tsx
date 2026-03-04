@@ -86,7 +86,7 @@ const AIBirthPosition = () => {
 
     const prompt = `${langInstruction}
 
-As a certified doula and birth position specialist, recommend optimal birthing positions:
+As a birth preparation guide, recommend optimal birthing positions:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Birth Preference:** ${t(birthPreferences.find(b => b.id === birthPlan)?.labelKey || '')}

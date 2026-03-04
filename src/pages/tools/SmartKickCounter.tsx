@@ -204,7 +204,7 @@ const SmartKickCounter: React.FC = () => {
     const avgKicks = sessions.reduce((sum, s) => sum + s.total_kicks, 0) / sessions.length;
     const avgDuration = sessions.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / sessions.length;
 
-    const prompt = `As a pregnancy wellness educator, review this baby movement diary for a pregnancy at week ${currentWeek}. Use supportive, non-clinical language. Do NOT use words like "danger", "high risk", "go to hospital", or provide any medical diagnoses.
+    const prompt = `As a pregnancy wellness guide, review this baby movement diary for a pregnancy at week ${currentWeek}. Use supportive, non-clinical language. Do NOT use words like "danger", "high risk", "go to hospital", or provide any medical diagnoses.
 
 **Journal Entries (Last ${sessions.length} entries):**
 ${sessionData.map(s => `- ${s.date} at ${s.time}: ${s.kicks} movements in ${s.duration} minutes`).join('\n')}
@@ -251,7 +251,7 @@ Keep the tone warm, supportive, and educational. Avoid any clinical or diagnosti
     const avgKicks = getAverageKicks();
     const movementScore = getMovementScore();
 
-    const prompt = `As a pregnancy wellness educator, provide supportive guidance based on baby movement diary data. Do NOT use clinical or diagnostic language. Avoid words like "danger", "high risk", "warning signs", or "go to hospital".
+    const prompt = `As a pregnancy wellness guide, provide supportive guidance based on baby movement diary data. Do NOT use clinical or diagnostic language. Avoid words like "danger", "high risk", "warning signs", or "go to hospital".
 
 **Pregnancy Week:** ${currentWeek}
 **Activity Level:** ${movementScore}/100
@@ -292,7 +292,7 @@ Be warm, supportive, and educational. Always suggest consulting with a healthcar
     setAiActiveTab('tips');
     setAiTips('');
 
-    const prompt = `As a pregnancy wellness educator, provide practical journaling tips for baby movement at week ${currentWeek}. Use warm, encouraging language. Avoid clinical or diagnostic terminology.
+    const prompt = `As a pregnancy wellness guide, provide practical journaling tips for baby movement at week ${currentWeek}. Use warm, encouraging language. Avoid clinical or diagnostic terminology.
 
 **Current Journal:**
 - Entries logged: ${history.length}

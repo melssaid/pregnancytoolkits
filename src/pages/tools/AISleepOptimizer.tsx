@@ -62,7 +62,7 @@ const AISleepOptimizer = () => {
       return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
     }).filter(Boolean);
 
-    const prompt = `As a pregnancy sleep specialist, analyze this sleep profile and provide personalized recommendations:
+    const prompt = `As a pregnancy sleep wellness guide, analyze this sleep profile and provide personalized recommendations:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Sleep:** ${sleepHours[0]} hours/night
@@ -95,7 +95,7 @@ Include specific product recommendations (pillows, white noise) and YouTube link
       return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
     }).filter(Boolean);
 
-    const prompt = `As a sleep meditation specialist for pregnant women, create a calming bedtime meditation script:
+    const prompt = `As a pregnancy relaxation guide, create a calming bedtime meditation script:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Sleep Issues:** ${issueLabels.join(", ") || "General sleep difficulty"}
@@ -128,7 +128,7 @@ Write it as a script that can be read aloud or followed along. Use calm, soothin
       return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
     }).filter(Boolean);
 
-    const prompt = `As a pregnancy sleep specialist, create a complete evening routine:
+    const prompt = `As a pregnancy sleep wellness guide, create a complete evening routine:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Bedtime:** ${bedtime}

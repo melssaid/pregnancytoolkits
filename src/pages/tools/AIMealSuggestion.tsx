@@ -87,16 +87,15 @@ export default function AIMealSuggestion() {
       .join(", ");
     const prepTimeText = t(`toolsInternal.mealSuggestion.prepTimes.${prepTime}`);
 
-    const prompt = `I am pregnant in the ${
+    const prompt = `As a prenatal nutrition guide, suggest a healthy ${mealLabel} for a woman in the ${
       trimester === "1" ? "first" : trimester === "2" ? "second" : "third"
-    } trimester.
-I want a healthy ${mealLabel} suggestion.
-${prefsText ? `My dietary preferences: ${prefsText}.` : ""}
-${cravingText ? `I'm craving something ${cravingText.toLowerCase()}.` : ""}
-${allergyText ? `I have these allergies/intolerances: ${allergyText}. Please avoid these completely.` : ""}
-Preparation time: ${prepTimeText}.
+    } trimester of pregnancy.
+${prefsText ? `**Dietary Preferences:** ${prefsText}.` : ""}
+${cravingText ? `**Craving:** Something ${cravingText.toLowerCase()}.` : ""}
+${allergyText ? `**Allergies/Intolerances:** ${allergyText}. Please avoid these completely.` : ""}
+**Preparation Time:** ${prepTimeText}.
 
-Please provide an easy recipe with ingredients, preparation steps, and nutritional values.`;
+Provide an easy recipe with ingredients, preparation steps, and nutritional values.`;
 
     await streamChat({
       type: "meal-suggestion",

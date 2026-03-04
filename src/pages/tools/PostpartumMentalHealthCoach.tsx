@@ -95,13 +95,13 @@ export default function PostpartumMentalHealthCoach() {
     const score = getScore();
     const level = getRiskLevel(score);
     const prompts: Record<string, string> = {
-      en: `Based on Edinburgh Postnatal Depression Scale score ${score}/${maxScore} (${level} risk), create a personalized coping plan. Include daily routines, self-care tips, breathing exercises, when to seek help, and partner support suggestions.`,
-      ar: `بناءً على نتيجة مقياس إدنبرة لاكتئاب ما بعد الولادة ${score}/${maxScore} (خطر ${level === 'low' ? 'منخفض' : level === 'moderate' ? 'متوسط' : 'عالي'})، أنشئ خطة تكيف مخصصة. تشمل روتين يومي، نصائح العناية الذاتية، تمارين التنفس، متى تطلب المساعدة، واقتراحات دعم الشريك.`,
-      de: `Basierend auf dem Edinburgh Postnatal Depression Scale Score ${score}/${maxScore} (${level} Risiko), erstelle einen personalisierten Bewältigungsplan.`,
-      fr: `Sur la base du score Edinburgh ${score}/${maxScore} (risque ${level}), créez un plan personnalisé.`,
-      es: `Basándose en la puntuación Edinburgh ${score}/${maxScore} (riesgo ${level}), cree un plan personalizado.`,
-      pt: `Com base na pontuação Edinburgh ${score}/${maxScore} (risco ${level}), crie um plano personalizado.`,
-      tr: `Edinburgh Doğum Sonrası Depresyon Ölçeği puanı ${score}/${maxScore} (${level} risk) temelinde kişiselleştirilmiş bir başa çıkma planı oluşturun.`,
+      en: `As a postpartum wellness guide, create a personalized coping plan based on a wellness assessment score of ${score}/${maxScore} (${level} level). Include daily routines, self-care tips, breathing exercises, when to seek support, and partner support suggestions.`,
+      ar: `بصفتك مرشدة صحية لما بعد الولادة، أنشئي خطة تكيف مخصصة بناءً على تقييم الصحة النفسية ${score}/${maxScore} (مستوى ${level === 'low' ? 'منخفض' : level === 'moderate' ? 'متوسط' : 'عالي'}). تشمل روتين يومي، نصائح العناية الذاتية، تمارين التنفس، متى تطلبين الدعم، واقتراحات دعم الشريك.`,
+      de: `Als postpartale Wellness-Beraterin, erstelle einen personalisierten Bewältigungsplan basierend auf einem Wellness-Score von ${score}/${maxScore} (${level} Stufe).`,
+      fr: `En tant que guide bien-être postnatal, créez un plan personnalisé basé sur un score de bien-être de ${score}/${maxScore} (niveau ${level}).`,
+      es: `Como guía de bienestar posparto, crea un plan personalizado basado en una evaluación de bienestar de ${score}/${maxScore} (nivel ${level}).`,
+      pt: `Como guia de bem-estar pós-parto, crie um plano personalizado baseado em uma avaliação de bem-estar de ${score}/${maxScore} (nível ${level}).`,
+      tr: `Doğum sonrası sağlık rehberi olarak, ${score}/${maxScore} (${level} seviye) sağlık değerlendirmesine dayalı kişiselleştirilmiş bir başa çıkma planı oluşturun.`,
     };
 
     await streamChat({

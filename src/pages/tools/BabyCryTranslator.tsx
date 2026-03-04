@@ -75,12 +75,14 @@ export default function BabyCryTranslator() {
     const durationText = duration ? t(`toolsInternal.babyCryTranslator.durations.${duration}`) : "";
     const contextText = context ? t(`toolsInternal.babyCryTranslator.contexts.${context}`) : "";
 
-    const prompt = `My baby is ${babyAgeWeeks} weeks old.
-The baby is crying with these patterns: ${patternsText}.
-${durationText ? `Duration: ${durationText}.` : ""}
-${contextText ? `Context: ${contextText}.` : ""}
+    const prompt = `As a newborn care specialist, analyze the following baby cry patterns and provide soothing strategies:
 
-Please analyze what the baby might be communicating and provide soothing strategies.`;
+**Baby Age:** ${babyAgeWeeks} weeks
+**Cry Patterns:** ${patternsText}
+${durationText ? `**Duration:** ${durationText}` : ""}
+${contextText ? `**Context:** ${contextText}` : ""}
+
+Provide insights on what the baby might be communicating and practical soothing techniques.`;
 
     let fullAnalysis = "";
 

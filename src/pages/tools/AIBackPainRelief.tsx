@@ -108,7 +108,17 @@ export default function AIBackPainRelief() {
       type: 'back-pain-relief',
       messages: [{
         role: 'user',
-        content: `I'm pregnant and experiencing ${painLocation} pain. I've completed these exercises today: ${completedNames.join(', ') || 'none yet'}. Please give me personalized back pain relief advice and additional exercises I should try.`,
+        content: `As a prenatal physiotherapy guide, provide personalized back pain relief advice:
+
+**Pain Location:** ${painLocation}
+**Completed Exercises Today:** ${completedNames.join(', ') || 'None yet'}
+
+Provide:
+1. **Assessment** - Understanding the pain at this location during pregnancy
+2. **Relief Techniques** - Immediate comfort measures
+3. **Additional Exercises** - Safe exercises to try next
+4. **Prevention Tips** - Posture and daily habit recommendations
+5. **When to Consult** - Signs to share with a healthcare provider`,
       }],
       onDelta: (text) => setAiResponse(prev => prev + text),
       onDone: () => {},

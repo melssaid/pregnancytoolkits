@@ -64,9 +64,11 @@ const AICravingAlternatives: React.FC = () => {
     setResult('');
     abortRef.current = false;
 
-    const prompt = `I'm in week ${week} of pregnancy and I'm craving: "${craving}"
+    const prompt = `As a prenatal nutrition specialist, provide healthy alternatives for a pregnancy craving at week ${week}:
 
-Please provide:
+**Craving:** "${craving}"
+
+Provide:
 
 ## Understanding Your Craving
 - What nutrient deficiency might this craving indicate?

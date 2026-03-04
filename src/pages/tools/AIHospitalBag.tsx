@@ -335,7 +335,7 @@ const AIHospitalBag = () => {
 
     const prompt = `${langInstruction}
 
-As a hospital bag expert for expectant mothers, create a personalized packing list:
+As a birth preparation guide, create a personalized hospital bag packing list:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Due Date:** ${settings.dueDate || "Not set"}

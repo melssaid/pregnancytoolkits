@@ -101,13 +101,13 @@ export default function PostpartumRecoveryGuide() {
     const phaseLabel = t(`toolsInternal.postpartumRecovery.phases.${phase}.title`);
     const birthLabel = t(`toolsInternal.postpartumRecovery.birthTypes.${birthType}`);
 
-    const prompt = `I had a ${birthType} delivery. I'm currently in the "${phaseLabel}" phase of postpartum recovery.
-Please provide detailed recovery advice for this phase including:
-- Physical recovery tips specific to ${birthType} delivery
-- Emotional wellness guidance
-- Exercise recommendations (if appropriate for this phase)
-- Nutrition tips for recovery and breastfeeding
-- Warning signs to watch for`;
+    const prompt = `As a postpartum wellness specialist, provide detailed recovery guidance for a woman who had a ${birthLabel} delivery, currently in the "${phaseLabel}" phase:
+
+1. **Physical Recovery** - Tips specific to ${birthLabel} delivery
+2. **Emotional Wellness** - Mental health and adjustment guidance
+3. **Exercise Recommendations** - Safe activities for this phase
+4. **Nutrition** - Recovery and breastfeeding nutrition tips
+5. **Signs to Share with Provider** - What to watch for`;
 
     await streamChat({
       type: "postpartum-recovery",

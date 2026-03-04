@@ -176,15 +176,21 @@ export default function AILaborProgressTracker() {
       messages: [
         {
           role: 'user',
-          content: `Here is my contraction journal data:
-- Recent entries: ${JSON.stringify(recentContractions)}
-- Average interval between contractions: ${avgInterval} minutes
-- Average contraction duration: ${avgDuration} seconds
-- Total contractions logged: ${contractions.length}
-- Current estimated phase: ${phase}
-- Time since first entry: ${contractions.length > 0 ? Math.round((Date.now() - new Date(contractions[contractions.length - 1].startTime).getTime()) / 60000) : 0} minutes
+          content: `As a certified doula and labor wellness guide, provide supportive guidance based on this contraction journal:
 
-Please provide a comprehensive wellness analysis with breathing techniques, comfort measures, and encouragement based on my current phase.`
+**Recent Entries:** ${JSON.stringify(recentContractions)}
+**Average Interval:** ${avgInterval} minutes
+**Average Duration:** ${avgDuration} seconds
+**Total Logged:** ${contractions.length}
+**Estimated Phase:** ${phase}
+**Time Since First Entry:** ${contractions.length > 0 ? Math.round((Date.now() - new Date(contractions[contractions.length - 1].startTime).getTime()) / 60000) : 0} minutes
+
+Provide:
+1. **Phase Assessment** - Understanding of the current stage
+2. **Breathing Techniques** - Specific to this phase
+3. **Comfort Measures** - Positions, massage, and relief methods
+4. **Encouragement** - Supportive guidance for the current moment
+5. **What to Expect Next** - Preparing for the next phase`
         }
       ],
       context: { contractionData: recentContractions },

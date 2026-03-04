@@ -80,7 +80,7 @@ const AILactationPrep = () => {
 
     const goalLabel = goal ? t(goal.labelKey) : t('toolsInternal.lactationPrep.notSpecified');
     
-    const prompt = `As a certified lactation consultant (IBCLC), create a breastfeeding preparation guide:
+    const prompt = `As a breastfeeding preparation guide, create a comprehensive breastfeeding preparation plan:
 **Feeding Goal:** ${goalLabel}
 **First-Time Mom:** ${firstTimeMom ? t('common.yes') : t('common.no')}
 **Concerns:** ${concernLabels.join(", ") || t('toolsInternal.lactationPrep.noneSpecified')}

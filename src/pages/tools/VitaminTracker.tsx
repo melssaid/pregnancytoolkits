@@ -130,7 +130,7 @@ const VitaminTracker: React.FC = () => {
     const takenVitamins = VITAMINS.filter(v => isVitaminTakenToday(v.name)).map(v => v.name);
     const missedVitamins = VITAMINS.filter(v => !isVitaminTakenToday(v.name)).map(v => v.name);
     const weeklyData = Object.entries(weeklyStats).map(([name, count]) => `${name}: ${count}/7 days`).join(', ');
-    const prompt = `As a prenatal nutrition specialist, analyze this vitamin intake data for a woman in week ${currentWeek} of pregnancy:\n\nToday: Taken: ${takenVitamins.join(', ') || 'None'}, Missed: ${missedVitamins.join(', ') || 'All taken!'}, Progress: ${getTodayProgress()}%\nWeekly: ${weeklyData}\n\nProvide:\n1. Intake assessment and score\n2. Priority vitamins for week ${currentWeek}\n3. Interaction warnings\n4. Absorption tips\n5. 3 weekly goals`;
+    const prompt = `As a prenatal nutrition guide, analyze this vitamin intake data for a woman in week ${currentWeek} of pregnancy:\n\n**Today:** Taken: ${takenVitamins.join(', ') || 'None'}, Missed: ${missedVitamins.join(', ') || 'All taken!'}, Progress: ${getTodayProgress()}%\n**Weekly:** ${weeklyData}\n\nProvide:\n1. **Intake Assessment** - Score and overview\n2. **Priority Vitamins** - Most important for week ${currentWeek}\n3. **Interaction Notes** - Important combinations\n4. **Absorption Tips** - How to maximize benefits\n5. **Weekly Goals** - 3 actionable goals`;
 
     await streamChat({
       type: 'pregnancy-assistant',

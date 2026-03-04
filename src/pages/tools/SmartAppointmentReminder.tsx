@@ -198,15 +198,15 @@ const SmartAppointmentReminder: React.FC = () => {
       
       let fullResponse = '';
       
-      const prompt = `I am in week ${currentWeek} of pregnancy and I have a "${formData.title}" appointment.
+      const prompt = `As a prenatal appointment preparation guide, suggest 5 important questions for a "${formData.title}" appointment at week ${currentWeek} of pregnancy.
 
-Suggest 5 highly specific, actionable questions I should ask my doctor. Focus on:
-- Questions specific to week ${currentWeek} concerns
-- Red flags I should mention
-- Tests or screenings relevant at this stage
-- Practical advice I need right now
+Focus on:
+- Questions specific to week ${currentWeek} developments
+- Important topics to discuss with the provider
+- Relevant screenings for this stage
+- Practical guidance needed at this point
 
-Respond in the same language the user is using. Format as a numbered list (1-5), one question per line. Be concise but medically relevant.`;
+Format as a numbered list (1-5), one question per line. Be concise and relevant.`;
 
       await streamChat({
         type: 'pregnancy-assistant',
