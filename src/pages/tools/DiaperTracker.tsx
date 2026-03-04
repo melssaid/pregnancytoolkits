@@ -26,19 +26,31 @@ const DiaperTracker = () => {
   const [lastAdded, setLastAdded] = useState<DiaperType | null>(null);
   const [elapsed, setElapsed] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [showHint, setShowHint] = useState(true);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     const saved = localStorage.getItem("diaperEntries");
-    if (saved) setEntries(JSON.parse(saved));
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setEntries(parsed);
+      // Check if today has entries - if not, show hint
+      const today = new Date().toDateString();
+      const hasTodayEntries = parsed.some((e: DiaperEntry) => new Date(e.time).toDateString() === today);
+      if (hasTodayEntries) setShowHint(false);
+    }
+    setInitialLoad(false);
   }, []);
 
-  // Hide hint after first interaction
+  // Hide hint after first tap today
   useEffect(() => {
-    if (entries.length > 0) {
-      const timer = setTimeout(() => setShowHint(false), 3000);
+    if (!showHint) return;
+    const today = new Date().toDateString();
+    const todayCount = entries.filter(e => new Date(e.time).toDateString() === today).length;
+    if (todayCount > 0) {
+      const timer = setTimeout(() => setShowHint(false), 2000);
       return () => clearTimeout(timer);
     }
-  }, [entries.length]);
+  }, [entries, showHint]);
 
   // Live timer
   const lastChangeTime = entries.length > 0 ? entries[0].time : null;
@@ -183,7 +195,7 @@ const DiaperTracker = () => {
               <div className="p-5">
                 {/* Gesture hint */}
                 <AnimatePresence>
-                  {(showHint && stats.total === 0) && (
+                  {(showHint && !initialLoad) && (
                     <motion.div
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
