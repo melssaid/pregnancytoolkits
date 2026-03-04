@@ -123,15 +123,31 @@ export function ToolFrame({
                 animate={{ scale: [0.8, 1.08, 0.97, 1], opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                <div className="absolute -inset-1.5 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-accent/15 blur-md opacity-70 group-hover:opacity-100 transition-opacity" />
+                {/* Heartbeat pulse rings */}
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute inset-0 rounded-full border-2 border-primary/30"
+                    initial={{ scale: 1, opacity: 0.6 }}
+                    animate={{ scale: [1, 1.8, 2.4], opacity: [0.5, 0.2, 0] }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      delay: i * 0.8,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
+                {/* Soft glow behind */}
+                <div className="absolute -inset-2.5 rounded-full bg-gradient-to-br from-primary/25 via-primary/10 to-accent/15 blur-lg opacity-70 group-hover:opacity-100 transition-opacity" />
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
-                  width={44}
-                  height={44}
+                  width={64}
+                  height={64}
                   loading="eager"
                   decoding="async"
-                  className="relative h-11 w-11 rounded-full shadow-md ring-2 ring-primary/15 object-cover"
+                  className="relative h-16 w-16 rounded-full shadow-lg ring-2 ring-primary/20 object-cover"
                 />
               </motion.div>
             </Link>
