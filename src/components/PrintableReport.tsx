@@ -29,6 +29,16 @@ const profileLabels: Record<string, Record<string, string>> = {
   tr: { week: 'Gebelik Haftası', weight: 'Kilo', height: 'Boy', preWeight: 'Gebelik öncesi kilo', bloodType: 'Kan grubu', dueDate: 'Tahmini doğum', lmp: 'Son adet', mood: 'Ruh hali', status: 'Durum', pregnant: 'Hamile', planning: 'Planlama', patientInfo: 'Hasta Bilgileri', kg: 'kg', cm: 'cm' },
 };
 
+const footerMessages: Record<string, string> = {
+  en: 'We wish you a safe and healthy pregnancy 💕 For any questions, contact us at',
+  ar: 'نتمنى لكِ حملاً آمناً وصحة دائمة 💕 لأي استفسار، تواصلي معنا عبر',
+  de: 'Wir wünschen Ihnen eine sichere und gesunde Schwangerschaft 💕 Bei Fragen kontaktieren Sie uns unter',
+  fr: 'Nous vous souhaitons une grossesse sûre et en bonne santé 💕 Pour toute question, contactez-nous à',
+  es: 'Le deseamos un embarazo seguro y saludable 💕 Para cualquier consulta, contáctenos en',
+  pt: 'Desejamos uma gravidez segura e saudável 💕 Para dúvidas, entre em contato pelo',
+  tr: 'Size sağlıklı ve güvenli bir gebelik diliyoruz 💕 Sorularınız için bize ulaşın',
+};
+
 function escapeHtml(text: string): string {
   const div = document.createElement('div');
   div.textContent = String(text);
@@ -115,9 +125,16 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     
     .print-header {
       text-align: center;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
       border-bottom: 2px solid #ec4899;
+    }
+    .print-header img.logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: 0 auto 8px;
+      display: block;
     }
     .print-header h1 { font-size: 22px; font-weight: 700; color: #ec4899; margin-bottom: 4px; }
     .print-header .brand { font-size: 11px; color: #94a3b8; }
@@ -171,8 +188,17 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     .print-content th { background: #f8fafc; font-weight: 600; }
     
     .print-footer {
-      margin-top: 30px; padding-top: 15px; border-top: 1px solid #e2e8f0;
-      text-align: center; font-size: 10px; color: #94a3b8;
+      margin-top: 30px; padding-top: 15px; border-top: 2px solid #ec4899;
+      text-align: center; color: #64748b;
+    }
+    .print-footer .footer-message {
+      font-size: 13px; margin-bottom: 6px; line-height: 1.6;
+    }
+    .print-footer .footer-email {
+      font-size: 13px; color: #ec4899; font-weight: 600; text-decoration: none;
+    }
+    .print-footer .footer-brand {
+      font-size: 10px; color: #94a3b8; margin-top: 10px;
     }
 
     button, .no-print, [data-no-print] { display: none !important; }
@@ -189,13 +215,18 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
 </head>
 <body>
   <div class="print-header">
+    <img class="logo" src="${window.location.origin}/logo.png" alt="Logo" />
     <h1>${title || brand}</h1>
     <div class="brand">${brand}</div>
     <div class="date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : lang === 'de' ? 'de-DE' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : lang === 'pt' ? 'pt-BR' : lang === 'tr' ? 'tr-TR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
   </div>
   ${patientHTML}
   <div class="print-content">${content}</div>
-  <div class="print-footer">${brand} &mdash; ${new Date().getFullYear()}</div>
+  <div class="print-footer">
+    <div class="footer-message">${footerMessages[lang] || footerMessages.en}</div>
+    <a class="footer-email" href="mailto:Melssaid@gmail.com">Melssaid@gmail.com</a>
+    <div class="footer-brand">${brand} &mdash; ${new Date().getFullYear()}</div>
+  </div>
 </body>
 </html>`);
     doc.close();
