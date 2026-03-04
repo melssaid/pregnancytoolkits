@@ -153,7 +153,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
                       >
                         <span className="text-lg">👇</span>
                         <span className="text-xs font-medium text-muted-foreground">
-                          {t('toolsInternal.skincare.selectConcernsHint', 'اختاري مشاكل البشرة')}
+                          {t('toolsInternal.skincare.selectConcernsHint')}
                         </span>
                       </motion.div>
                     </motion.div>

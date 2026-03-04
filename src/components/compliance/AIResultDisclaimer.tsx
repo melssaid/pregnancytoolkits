@@ -13,7 +13,7 @@ export const AIResultDisclaimer = ({ className = '' }: AIResultDisclaimerProps) 
   
   return (
     <p className={`mt-3 text-center text-[8px] text-muted-foreground/35 tracking-wide ${className}`}>
-      {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
+      {t('ai.resultDisclaimer')}
     </p>
   );
 };
