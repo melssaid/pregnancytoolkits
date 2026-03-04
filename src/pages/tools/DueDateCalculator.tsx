@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Baby, Info, Calendar, Save, Bell, Trash2, CalendarIcon } from "lucide-react";
+import { Info, Calendar, Save, Bell, Trash2, CalendarIcon } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 import { addDays, addWeeks, differenceInDays, format } from "date-fns";
 import { formatLocalized } from "@/lib/dateLocale";
@@ -152,19 +152,10 @@ export default function DueDateCalculator() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="space-y-4"
+        className="space-y-3"
       >
             <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center gap-2 text-sm">
-                  <Baby className="h-4 w-4 text-primary" />
-                  {t('toolsInternal.dueDate.calculateTitle')}
-                </CardTitle>
-                <CardDescription className="text-xs">
-                  {t('toolsInternal.dueDate.calculateDesc')}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="pt-5 space-y-4">
                     <div className="space-y-2">
                       <Label className="text-xs">{t('toolsInternal.dueDate.lmpLabel')}</Label>
                       <div className="flex gap-2">
@@ -212,64 +203,41 @@ export default function DueDateCalculator() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="space-y-4"
+                className="space-y-3"
               >
-                <Card className="border-primary/20 bg-secondary/30">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-xs flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-primary" />
-                      {t('toolsInternal.dueDate.timeline')}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    {/* Due date highlight */}
-                    <div className="rounded-xl bg-primary p-4 text-center shadow-sm">
-                       <p className="text-[10px] text-primary-foreground/80 mb-0.5 uppercase tracking-wider font-medium">{t('toolsInternal.dueDate.estimatedDueDate')}</p>
-                       <p className="text-base font-bold text-primary-foreground">
-                        {formatLocalized(result.dueDate, "MMMM d, yyyy", currentLanguage)}
+                {/* Due date — hero display */}
+                <div className="rounded-2xl bg-primary p-5 text-center shadow-md">
+                  <p className="text-lg font-bold text-primary-foreground">
+                    {formatLocalized(result.dueDate, "d MMMM yyyy", currentLanguage)}
+                  </p>
+                  <p className="text-[11px] text-primary-foreground/70 mt-1 font-medium">
+                    {t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })} • {t('toolsInternal.dueDate.trimester', { number: result.trimester })}
+                  </p>
+                </div>
+
+                {/* Milestones — compact grid */}
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { label: t('toolsInternal.dueDate.conception'), date: result.conception },
+                    { label: t('toolsInternal.dueDate.secondTrimester'), date: result.firstTrimesterEnd },
+                    { label: t('toolsInternal.dueDate.thirdTrimester'), date: result.secondTrimesterEnd },
+                  ].map(({ label, date }) => (
+                    <div key={label} className="rounded-xl bg-card p-2.5 border border-border/30 text-center">
+                      <p className="text-[10px] text-muted-foreground leading-tight">{label}</p>
+                      <p className="text-xs font-semibold text-foreground mt-1">
+                        {formatLocalized(date, "d MMM", currentLanguage)}
                       </p>
                     </div>
+                  ))}
+                </div>
 
-                    {/* Current progress */}
-                    {result.currentWeeks >= 0 && (
-                      <div className="rounded-xl bg-card p-3 shadow-sm border border-border/40 text-center">
-                         <p className="text-[10px] text-muted-foreground">{t('toolsInternal.dueDate.currentlyAt')}</p>
-                         <p className="text-sm font-semibold text-foreground mt-0.5">
-                           {t('toolsInternal.dueDate.weeksAndDays', { weeks: result.currentWeeks, days: result.currentDays })}
-                         </p>
-                         <p className="text-[11px] text-primary mt-0.5 font-medium">
-                          {t('toolsInternal.dueDate.trimester', { number: result.trimester })}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Milestone dates - vertical list for better readability */}
-                    <div className="space-y-1.5">
-                      {[
-                        { label: t('toolsInternal.dueDate.conception'), date: result.conception },
-                        { label: t('toolsInternal.dueDate.secondTrimester'), date: result.firstTrimesterEnd },
-                        { label: t('toolsInternal.dueDate.thirdTrimester'), date: result.secondTrimesterEnd },
-                      ].map(({ label, date }) => (
-                        <div key={label} className="flex items-center justify-between rounded-lg bg-card px-3 py-2 border border-border/30">
-                          <span className="text-[11px] text-muted-foreground">{label}</span>
-                          <span className="text-xs font-semibold text-foreground">
-                            {formatLocalized(date, "MMM d, yyyy", currentLanguage)}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Actions */}
-                    <div className="pt-1">
-                      <motion.div whileTap={{ scale: 0.95 }}>
-                        <Button onClick={saveResult} variant="outline" className="w-full gap-1.5 text-[11px] h-9">
-                          <Save className="h-3.5 w-3.5 shrink-0" />
-                          {t('toolsInternal.dueDate.save')}
-                        </Button>
-                      </motion.div>
-                    </div>
-                  </CardContent>
-                </Card>
+                {/* Save button — inline */}
+                <motion.div whileTap={{ scale: 0.95 }}>
+                  <Button onClick={saveResult} variant="outline" className="w-full gap-1.5 text-[11px] h-9">
+                    <Save className="h-3.5 w-3.5 shrink-0" />
+                    {t('toolsInternal.dueDate.save')}
+                  </Button>
+                </motion.div>
 
                 {/* AI Weekly Insights */}
                 <AIInsightCard
@@ -304,13 +272,11 @@ A supportive message for this stage of pregnancy`}
 
             {savedDates.length > 0 && (
               <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-xs flex items-center gap-2">
-                    <Save className="h-3.5 w-3.5 text-muted-foreground" />
+                <CardContent className="pt-4">
+                  <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1.5">
+                    <Save className="h-3.5 w-3.5" />
                     {t('toolsInternal.dueDate.savedDueDates')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
+                  </p>
                   <div className="space-y-2">
                     {savedDates.map((saved) => (
                       <div
