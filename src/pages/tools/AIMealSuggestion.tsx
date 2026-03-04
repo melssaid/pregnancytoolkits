@@ -32,7 +32,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nutritionVideosByLang } from "@/data/videoData";
-import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+
 import { ToolHubNav, NUTRITION_HUB_TABS } from "@/components/ToolHubNav";
 
 const MEAL_TYPE_IDS = ["breakfast", "lunch", "dinner", "snack"] as const;
@@ -346,11 +346,6 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
           subtitle={t("toolsInternal.mealSuggestion.nutritionVideosSubtitle")}
           accentColor="emerald"
         />
-
-        {/* Related Nutrition Tools */}
-        <RelatedToolLinks links={[
-          { to: "/tools/vitamin-tracker", titleKey: "nutritionLinks.vitaminTrackerLink", titleFallback: "Vitamin Tracker", descKey: "nutritionLinks.vitaminTrackerLinkDesc", descFallback: "Track daily supplement intake", icon: "pill" },
-        ]} />
       </div>
     </ToolFrame>
   );

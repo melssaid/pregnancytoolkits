@@ -26,7 +26,7 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { WeekSlider } from "@/components/WeekSlider";
 import { useUserProfile } from "@/hooks/useUserProfile";
-import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+
 
 const STORAGE_KEY = "weekly-summary-data";
 
@@ -374,12 +374,6 @@ export default function WeeklySummary() {
             {t("toolsInternal.weeklySummary.localStorageNote", "البيانات محفوظة محلياً على جهازك")}
           </span>
         </div>
-
-        {/* Related Tools */}
-        <RelatedToolLinks links={[
-          { to: "/tools/pregnancy-assistant", titleKey: "toolsInternal.weeklySummary.assistantLink", titleFallback: "Pregnancy Assistant", descKey: "toolsInternal.weeklySummary.assistantLinkDesc", descFallback: "Chat with your AI pregnancy assistant", icon: "heart" },
-          { to: "/tools/smart-plan", titleKey: "toolsInternal.weeklySummary.smartPlanLink", titleFallback: "Smart Pregnancy Plan", descKey: "toolsInternal.weeklySummary.smartPlanLinkDesc", descFallback: "Personalized pregnancy planning", icon: "fileText" },
-        ]} />
 
         {/* Tips */}
         <Card>

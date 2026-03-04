@@ -14,7 +14,7 @@ import { AIActionButton } from '@/components/ai/AIActionButton';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RelatedToolLinks } from '@/components/RelatedToolLinks';
+
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useUserProfile } from '@/hooks/useUserProfile';
 
@@ -655,13 +655,6 @@ Keep the tone warm, supportive. Avoid clinical or diagnostic language.`;
             </div>
           </CardContent>
         </Card>
-
-        {/* Related Tools */}
-        <RelatedToolLinks links={[
-          { to: "/tools/fetal-growth", titleKey: "toolsInternal.kickCounter.fetalDevLink", titleFallback: "Fetal Development", descKey: "toolsInternal.kickCounter.fetalDevLinkDesc", descFallback: "Track your baby's growth week by week", icon: "ruler" },
-          { to: "/tools/weight-gain", titleKey: "toolsInternal.kickCounter.weightGainLink", titleFallback: "Weight Gain Analyzer", descKey: "toolsInternal.kickCounter.weightGainLinkDesc", descFallback: "Monitor healthy weight gain", icon: "trending" },
-          { to: "/tools/ai-bump-photos", titleKey: "toolsInternal.kickCounter.bumpPhotosLink", titleFallback: "Bump Photos", descKey: "toolsInternal.kickCounter.bumpPhotosLinkDesc", descFallback: "AI-powered ultrasound analysis", icon: "baby" },
-        ]} />
 
         {/* Educational Note */}
         <div className="bg-muted/30 rounded-xl p-4 text-center">

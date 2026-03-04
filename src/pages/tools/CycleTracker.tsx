@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ToolFrame } from "@/components/ToolFrame";
-import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+
 
 
 import { Button } from "@/components/ui/button";
@@ -174,11 +174,6 @@ Any patterns that might be worth discussing with a doctor`;
               title={t('toolsInternal.cycleTracker.videosTitle')}
               subtitle={t('toolsInternal.cycleTracker.videosSubtitle')}
             />
-
-            <RelatedToolLinks links={[
-              { to: "/tools/due-date-calculator", titleKey: "toolsInternal.cycleTracker.dueDateLink", titleFallback: "Due Date Calculator", descKey: "toolsInternal.cycleTracker.dueDateLinkDesc", descFallback: "Calculate your expected due date", icon: "calendar" },
-              { to: "/tools/fertility-academy", titleKey: "toolsInternal.cycleTracker.fertilityAcademyLink", titleFallback: "Fertility Academy", descKey: "toolsInternal.cycleTracker.fertilityAcademyLinkDesc", descFallback: "Comprehensive fertility education", icon: "heart" },
-            ]} />
 
             {/* Tip */}
             <div className="flex items-start gap-2.5 rounded-2xl bg-muted/40 p-4">

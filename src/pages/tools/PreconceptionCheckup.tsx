@@ -9,7 +9,7 @@ import {
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
-import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+
 
 // ── Category definitions with themed icons ─────────────────────────────
 const CATEGORIES = [
@@ -295,12 +295,6 @@ Important: Frame all advice as general educational information, not medical dire
             buttonText={t('toolsInternal.preconceptionCheckup.ai.analyze', 'Analyze My Preparation')}
           />
         )}
-
-        {/* ── Related Tools ──────────────────────────────────────── */}
-        <RelatedToolLinks links={[
-          { to: "/tools/fertility-academy", titleKey: "toolsInternal.preconceptionCheckup.related.academy", titleFallback: "Fertility Academy", descKey: "toolsInternal.preconceptionCheckup.related.academyDesc", descFallback: "Comprehensive fertility education", icon: "book-open" },
-          { to: "/tools/nutrition-supplements", titleKey: "toolsInternal.preconceptionCheckup.related.nutrition", titleFallback: "Nutrition Guide", descKey: "toolsInternal.preconceptionCheckup.related.nutritionDesc", descFallback: "Preconception nutrition & supplements", icon: "apple" },
-        ]} />
 
         {/* ── Professional Compliance Notice ──────────────────────── */}
         <div className="flex items-start gap-2.5 rounded-xl bg-muted/40 border border-border/30 p-3.5">

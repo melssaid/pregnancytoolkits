@@ -17,7 +17,7 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { lactationVideosByLang } from "@/data/videoData";
-import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+
 
 const feedingGoals = [
   { id: "exclusive", labelKey: "toolsInternal.lactationPrep.feedingGoals.exclusive", icon: "🤱" },
@@ -258,11 +258,6 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
           subtitle={t('toolsInternal.lactationPrep.videosSubtitle')}
           accentColor="rose"
         />
-
-        <RelatedToolLinks links={[
-          { to: "/tools/postpartum-recovery", titleKey: "postpartumLinks.recoveryLink", titleFallback: "Postpartum Recovery", descKey: "postpartumLinks.recoveryLinkDesc", descFallback: "6-week recovery plan after birth", icon: "heart" },
-          { to: "/tools/baby-sleep-tracker", titleKey: "postpartumLinks.babySleepLink", titleFallback: "Baby Sleep Tracker", descKey: "postpartumLinks.babySleepLinkDesc", descFallback: "Track and optimize your baby's sleep", icon: "moon" },
-        ]} />
       </div>
     </ToolFrame>
   );

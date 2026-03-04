@@ -14,7 +14,7 @@ import { WeekSlider } from '@/components/WeekSlider';
 import { useTranslation } from 'react-i18next';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { AILoadingDots } from '@/components/ai/AILoadingDots';
-import { RelatedToolLinks } from '@/components/RelatedToolLinks';
+
 
 interface VitaminDef {
   id: string;
@@ -337,13 +337,6 @@ const VitaminTracker: React.FC = () => {
             </CardContent>
           </Card>
         )}
-
-        {/* Related Nutrition Tools */}
-        <RelatedToolLinks links={[
-          { to: "/tools/ai-meal-suggestion", titleKey: "nutritionLinks.mealSuggestionLink", titleFallback: "AI Meal Planner", descKey: "nutritionLinks.mealSuggestionLinkDesc", descFallback: "Get personalized meal suggestions", icon: "utensils" },
-          { to: "/tools/smart-grocery-list", titleKey: "nutritionLinks.groceryListLink", titleFallback: "Smart Grocery List", descKey: "nutritionLinks.groceryListLinkDesc", descFallback: "Build a pregnancy-optimized shopping list", icon: "cart" },
-          { to: "/tools/ai-craving-alternatives", titleKey: "nutritionLinks.cravingLink", titleFallback: "Craving Alternatives", descKey: "nutritionLinks.cravingLinkDesc", descFallback: "Find healthy swaps for your cravings", icon: "utensils" },
-        ]} />
       </div>
     </ToolFrame>
   );

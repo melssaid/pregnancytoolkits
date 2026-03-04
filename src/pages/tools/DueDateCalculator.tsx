@@ -20,7 +20,7 @@ import { dueDateVideosByLang } from "@/data/videoData";
 import { Calendar as CalendarUI } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+
 
 interface SavedDueDate {
   id: string;
@@ -363,10 +363,6 @@ A supportive message for this stage of pregnancy`}
               title={t('toolsInternal.dueDate.videosTitle')}
               subtitle={t('toolsInternal.dueDate.videosSubtitle')}
             />
-            <RelatedToolLinks links={[
-              { to: "/tools/cycle-tracker", titleKey: "toolsInternal.dueDate.cycleTrackerLink", titleFallback: "Cycle Tracker", descKey: "toolsInternal.dueDate.cycleTrackerLinkDesc", descFallback: "Track your menstrual cycle", icon: "droplets" },
-              { to: "/tools/fertility-academy", titleKey: "toolsInternal.dueDate.fertilityAcademyLink", titleFallback: "Fertility Academy", descKey: "toolsInternal.dueDate.fertilityAcademyLinkDesc", descFallback: "Comprehensive fertility education", icon: "heart" },
-            ]} />
 
             <div className="flex items-start gap-2 rounded-lg bg-muted p-3">
               <Info className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />

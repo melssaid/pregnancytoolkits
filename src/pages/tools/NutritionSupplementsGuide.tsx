@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, CheckCircle } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
-import { RelatedToolLinks } from "@/components/RelatedToolLinks";
+
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nutritionSupplementsVideosByLang } from "@/data/videoData";
 
@@ -167,11 +167,6 @@ export default function NutritionSupplementsGuide() {
         title={t('tools.nutritionSupplements.videosTitle', 'Educational Videos')}
         subtitle={t('tools.nutritionSupplements.videosSubtitle', 'Learn about prenatal nutrition and supplements')}
       />
-
-      <RelatedToolLinks links={[
-        { to: "/tools/fertility-academy", titleKey: "toolsInternal.nutritionSupplements.related.academy", titleFallback: "Fertility Academy", descKey: "toolsInternal.nutritionSupplements.related.academyDesc", descFallback: "Comprehensive fertility education", icon: "heart" },
-        { to: "/tools/preconception-checkup", titleKey: "toolsInternal.nutritionSupplements.related.preconception", titleFallback: "Preconception Checkup", descKey: "toolsInternal.nutritionSupplements.related.preconceptionDesc", descFallback: "Prepare for a healthy pregnancy", icon: "activity" },
-      ]} />
       
     </ToolFrame>
   );
