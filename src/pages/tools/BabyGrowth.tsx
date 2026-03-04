@@ -4,12 +4,16 @@ import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Baby, Plus, Trash2, ChevronDown, ChevronUp, Ruler, Scale, CircleDot } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Baby, Plus, Trash2, ChevronDown, ChevronUp, Ruler, Scale, CircleDot, Brain, TrendingUp, Sparkles, Loader2, RefreshCw, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BabyGrowthChart } from "@/components/charts/BabyGrowthChart";
 import { toast } from "sonner";
+import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 
 interface GrowthEntry {
   id: string;
@@ -56,12 +60,54 @@ const BabyGrowth = () => {
   const [showHistory, setShowHistory] = useState(false);
   const [showOptional, setShowOptional] = useState(false);
 
+  // AI States
+  const [aiGrowthAnalysis, setAiGrowthAnalysis] = useState('');
+  const [aiNutritionTips, setAiNutritionTips] = useState('');
+  const [aiMilestones, setAiMilestones] = useState('');
+  const [aiActiveTab, setAiActiveTab] = useState<'growth' | 'nutrition' | 'milestones' | null>(null);
+  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+
+  useResetOnLanguageChange(() => {
+    setAiGrowthAnalysis('');
+    setAiNutritionTips('');
+    setAiMilestones('');
+    setAiActiveTab(null);
+  });
+
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try { setEntries(JSON.parse(saved)); } catch { /* */ }
     }
   }, []);
+
+  const lang = currentLanguage?.split("-")[0] || "en";
+
+  const analyzeGrowth = async () => {
+    setAiActiveTab('growth');
+    setAiGrowthAnalysis('');
+    const data = entries.slice(0, 10).map(e => ({
+      age: e.ageMonths, weight: e.weight, height: e.height, head: e.headCirc, gender: e.gender
+    }));
+    const prompt = `As a pediatric wellness guide, analyze this baby's growth data. Use warm, supportive language. Do NOT use clinical or diagnostic terms.\n\n**Growth Entries:**\n${data.map(d => `- ${d.age} months: ${d.weight}kg${d.height ? `, ${d.height}cm` : ''}${d.head ? `, head ${d.head}cm` : ''} (${d.gender})`).join('\n')}\n\nProvide:\n1. **📊 Growth Pattern** - Overall trend\n2. **📈 Comparison** - How this compares to typical growth\n3. **✅ Positive Notes** - Encouraging observations\n4. **💡 Suggestions** - Tips for healthy growth\n\nWrite in ${lang}. Be warm and encouraging.`;
+    await streamChat({ type: 'baby-growth-analysis', messages: [{ role: 'user', content: prompt }], context: { language: lang }, onDelta: (text) => setAiGrowthAnalysis(prev => prev + text), onDone: () => {} });
+  };
+
+  const getNutritionTips = async () => {
+    setAiActiveTab('nutrition');
+    setAiNutritionTips('');
+    const ageM = entries.length > 0 ? entries[entries.length - 1].ageMonths : 6;
+    const prompt = `As a pediatric nutrition guide, provide feeding tips for a ${ageM}-month-old baby. Use warm, practical language.\n\nProvide:\n1. **🍼 Feeding Guide** - Appropriate foods and portions\n2. **🥦 Nutrient Focus** - Key nutrients needed\n3. **🍎 Meal Ideas** - Simple meal suggestions\n4. **⚠️ Foods to Avoid** - Age-appropriate cautions\n\nWrite in ${lang}. Be practical.`;
+    await streamChat({ type: 'baby-growth-analysis', messages: [{ role: 'user', content: prompt }], context: { language: lang }, onDelta: (text) => setAiNutritionTips(prev => prev + text), onDone: () => {} });
+  };
+
+  const getMilestones = async () => {
+    setAiActiveTab('milestones');
+    setAiMilestones('');
+    const ageM = entries.length > 0 ? entries[entries.length - 1].ageMonths : 6;
+    const prompt = `As a child development guide, describe developmental milestones for a ${ageM}-month-old baby. Use warm, encouraging language.\n\nProvide:\n1. **🧒 Motor Skills** - Physical milestones\n2. **🗣️ Communication** - Language and social development\n3. **🧠 Cognitive** - Learning milestones\n4. **🎯 Activities** - Fun activities to support development\n\nWrite in ${lang}. Be encouraging.`;
+    await streamChat({ type: 'baby-growth-analysis', messages: [{ role: 'user', content: prompt }], context: { language: lang }, onDelta: (text) => setAiMilestones(prev => prev + text), onDone: () => {} });
+  };
 
   const getPercentileInfo = useCallback((age: number, w: number, g: "boy" | "girl") => {
     const standards = g === "boy" ? WHO_WEIGHT_BOYS : WHO_WEIGHT_GIRLS;
@@ -338,6 +384,104 @@ const BabyGrowth = () => {
             transition={{ delay: 0.1 }}
           >
             <BabyGrowthChart entries={entries} gender={gender} />
+          </motion.div>
+        )}
+
+        {/* ── AI Analysis Section ── */}
+        {entries.length >= 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(330 70% 55% / 0.1))' }}>
+                <Brain className="w-3.5 h-3.5 text-primary" />
+              </div>
+              <h3 className="text-sm font-bold text-foreground">{t('toolsInternal.babyGrowth.aiAnalysis', 'AI Growth Analysis')}</h3>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2 mb-3">
+              {[
+                { tab: 'growth' as const, onClick: analyzeGrowth, icon: TrendingUp, label: t('toolsInternal.babyGrowth.aiGrowth', 'Growth'), color: 'from-primary/10 to-primary/5' },
+                { tab: 'nutrition' as const, onClick: getNutritionTips, icon: Heart, label: t('toolsInternal.babyGrowth.aiNutrition', 'Nutrition'), color: 'from-pink-500/10 to-pink-500/5' },
+                { tab: 'milestones' as const, onClick: getMilestones, icon: Sparkles, label: t('toolsInternal.babyGrowth.aiMilestones', 'Milestones'), color: 'from-purple-500/10 to-purple-500/5' },
+              ].map(({ tab, onClick, icon: Icon, label, color }) => {
+                const isSelected = aiActiveTab === tab;
+                return (
+                  <motion.button
+                    key={tab}
+                    whileTap={{ scale: 0.95 }}
+                    disabled={aiLoading}
+                    onClick={() => { setAiActiveTab(tab); onClick(); }}
+                    className={`relative rounded-xl p-3 text-center transition-all border disabled:opacity-40 ${
+                      isSelected ? 'border-primary/30 shadow-sm' : 'border-border/40 hover:border-primary/20'
+                    } bg-gradient-to-b ${color}`}
+                  >
+                    <div className={`w-8 h-8 rounded-full mx-auto mb-1.5 flex items-center justify-center ${isSelected ? 'bg-primary/15' : 'bg-muted/50'}`}>
+                      {aiLoading && isSelected ? (
+                        <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                      ) : (
+                        <Icon className={`w-4 h-4 ${isSelected ? 'text-primary' : 'text-muted-foreground'}`} />
+                      )}
+                    </div>
+                    <span className={`text-[11px] font-medium ${isSelected ? 'text-foreground' : 'text-muted-foreground'}`}>{label}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            <AnimatePresence mode="wait">
+              {aiActiveTab && (aiGrowthAnalysis || aiNutritionTips || aiMilestones || aiLoading) && (
+                <motion.div
+                  key={aiActiveTab}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <Card className="overflow-hidden border-border/40">
+                    <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
+                    <CardContent className="p-4">
+                      {aiLoading && !aiGrowthAnalysis && !aiNutritionTips && !aiMilestones ? (
+                        <div className="flex items-center justify-center py-8 gap-2 text-muted-foreground">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span className="text-xs">{t('toolsInternal.babyGrowth.analyzing', 'Analyzing...')}</span>
+                        </div>
+                      ) : (
+                        <>
+                          <MarkdownRenderer
+                            content={aiActiveTab === 'growth' ? aiGrowthAnalysis : aiActiveTab === 'nutrition' ? aiNutritionTips : aiMilestones}
+                            isLoading={aiLoading}
+                          />
+                          {!aiLoading && (
+                            <div className="flex justify-end mt-3">
+                              <Button variant="ghost" size="sm" className="h-7 text-[10px] text-muted-foreground" onClick={() => {
+                                if (aiActiveTab === 'growth') analyzeGrowth();
+                                else if (aiActiveTab === 'nutrition') getNutritionTips();
+                                else getMilestones();
+                              }}>
+                                <RefreshCw className="w-3 h-3 me-1" />
+                                {t('common.refresh', 'Refresh')}
+                              </Button>
+                            </div>
+                          )}
+                        </>
+                      )}
+                      <div className="mt-3 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
+                        <p className="text-[9px] text-muted-foreground/60 tracking-wide">{t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {!aiActiveTab && !aiLoading && (
+              <div className="text-center py-4 bg-muted/20 rounded-xl border border-border/30">
+                <p className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.tapForAI', 'Tap a category above for AI insights')}</p>
+              </div>
+            )}
           </motion.div>
         )}
 

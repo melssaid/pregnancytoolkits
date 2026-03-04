@@ -11,7 +11,7 @@ type AIType =
   | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
   | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
-  | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan";
+  | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis";
 
 export type AIErrorType = "rate_limit" | "payment" | "network" | "auth" | "unknown";
 
