@@ -43,7 +43,7 @@
     
     /* Muted - Warm beige */
     --muted: 30 20% 93%;
-    --muted-foreground: 25 15% 42%;
+    --muted-foreground: 25 15% 36%;
     
     /* Accent - Soft sage green for lifestyle */
     --accent: 150 35% 55%;
@@ -66,8 +66,8 @@
     --popover-foreground: 25 20% 18%;
     
     /* Border */
-    --border: 30 25% 89%;
-    --input: 30 25% 89%;
+    --border: 30 20% 83%;
+    --input: 30 20% 83%;
     --ring: 340 65% 52%;
     
     --radius: 1rem;
@@ -106,13 +106,13 @@
     --secondary: 25 12% 18%;
     --secondary-foreground: 340 50% 68%;
     --muted: 25 12% 16%;
-    --muted-foreground: 25 10% 58%;
+    --muted-foreground: 25 10% 52%;
     --accent: 150 35% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 12 55% 48%;
     --destructive-foreground: 0 0% 100%;
-    --border: 25 12% 18%;
-    --input: 25 12% 18%;
+    --border: 25 12% 22%;
+    --input: 25 12% 22%;
     --ring: 340 60% 62%;
     --sidebar-background: 25 15% 9%;
     --sidebar-foreground: 30 15% 88%;
@@ -129,6 +129,15 @@
   * {
     @apply border-border;
     box-sizing: border-box;
+  }
+
+  /* Enforce minimum readable font size globally */
+  /* Converts text-[9px] → 11px, text-[10px] → 11px */
+  p, span, h1, h2, h3, h4, h5, h6, li, td, th, label, a, div, blockquote, button {
+    min-font-size: 11px;
+  }
+  .text-\[9px\], .text-\[10px\] {
+    font-size: 11px !important;
   }
 
   /* Global text containment for all languages */
