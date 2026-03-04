@@ -1,41 +1,23 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { Brain, Loader2, Sparkles, Droplet, Sun, Moon as MoonIcon, AlertTriangle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Droplet, Sun, Moon as MoonIcon, AlertTriangle, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
-import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { skincareVideosByLang } from "@/data/videoData";
-const CONCERN_KEYS = [
-  "acne",
-  "melasma",
-  "stretchMarks",
-  "dryness",
-  "oiliness",
-  "sensitivity",
-  "itching",
-  "glow",
-] as const;
-
-const UNSAFE_INGREDIENT_KEYS = [
-  "retinol",
-  "salicylic",
-  "hydroquinone",
-  "formaldehyde",
-  "chemicalSunscreens",
-  "essentialOils",
-] as const;
+import { SkincareConcernGrid } from "@/components/skincare/SkincareConcernGrid";
+import { SkincareUnsafeCard } from "@/components/skincare/SkincareUnsafeCard";
+import { SkincareRoutinePreview } from "@/components/skincare/SkincareRoutinePreview";
 
 const AIPregnancySkincare = () => {
   const { t, i18n } = useTranslation();
@@ -47,16 +29,23 @@ const AIPregnancySkincare = () => {
   const [concerns, setConcerns] = useState<string[]>([]);
   const [budget, setBudget] = useState("medium");
   const [response, setResponse] = useState("");
+  const [showHint, setShowHint] = useState(true);
 
   const currentLang = i18n.language;
+
+  useResetOnLanguageChange(() => {
+    setResponse("");
+  });
 
   const toggleConcern = (id: string) => {
     setConcerns(prev =>
       prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
     );
+    if (showHint) setShowHint(false);
   };
 
   const getSkincareRoutine = async () => {
+    setShowHint(false);
     const concernLabels = concerns.map(id => 
       t(`toolsInternal.skincare.concerns.${id}.label`)
     ).filter(Boolean);
@@ -116,111 +105,136 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
       toolId="ai-pregnancy-skincare"
     >
       <div className="space-y-4">
-        {/* Unsafe Ingredients Warning */}
-        <Card className="p-3 bg-destructive/5 border-destructive/20">
-          <h3 className="font-semibold flex items-center gap-2 text-destructive mb-2 text-xs">
-            <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
-            <span className="leading-snug">{t('toolsInternal.skincare.ingredientsToAvoid')}</span>
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-            {UNSAFE_INGREDIENT_KEYS.map((key) => (
-              <div key={key} className="flex items-center gap-2 text-[10px] sm:text-xs min-w-0">
-                <span className="shrink-0">{t(`toolsInternal.skincare.unsafeIngredients.${key}.icon`)}</span>
-                <span className="leading-snug">{t(`toolsInternal.skincare.unsafeIngredients.${key}.name`)}</span>
-              </div>
-            ))}
-          </div>
-        </Card>
-
-        {/* Skin Type */}
-        <div className="space-y-1.5">
-          <Label className="text-xs">{t('toolsInternal.skincare.skinType')}</Label>
-          <Select value={skinType} onValueChange={setSkinType}>
-            <SelectTrigger className="w-full text-xs">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-popover z-50">
-              <SelectItem value="dry">{t('toolsInternal.skincare.dry')}</SelectItem>
-              <SelectItem value="oily">{t('toolsInternal.skincare.oily')}</SelectItem>
-              <SelectItem value="combination">{t('toolsInternal.skincare.combination')}</SelectItem>
-              <SelectItem value="sensitive">{t('toolsInternal.skincare.sensitive')}</SelectItem>
-              <SelectItem value="normal">{t('toolsInternal.skincare.normal')}</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Budget */}
-        <div className="space-y-1.5">
-          <Label className="text-xs">{t('toolsInternal.skincare.budgetPreference')}</Label>
-          <Select value={budget} onValueChange={setBudget}>
-            <SelectTrigger className="w-full text-xs">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-popover z-50">
-              <SelectItem value="low">{t('toolsInternal.skincare.budgetLow')}</SelectItem>
-              <SelectItem value="medium">{t('toolsInternal.skincare.budgetMedium')}</SelectItem>
-              <SelectItem value="high">{t('toolsInternal.skincare.budgetHigh')}</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Skin Concerns */}
-        <div className="space-y-2">
-          <Label className="text-xs">{t('toolsInternal.skincare.skinConcerns')}</Label>
-          <div className="grid grid-cols-1 gap-1.5">
-            {CONCERN_KEYS.map((concernKey) => (
-              <div
-                key={concernKey}
-                onClick={() => toggleConcern(concernKey)}
-                className={`p-2.5 rounded-lg border cursor-pointer transition-all ${
-                  concerns.includes(concernKey)
-                    ? "bg-primary/10 border-primary"
-                    : "bg-card hover:bg-muted"
-                }`}
-              >
+        {/* ═══ Hero Card ═══ */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+        >
+          <Card className="overflow-hidden border-primary/15 shadow-xl">
+            <CardContent className="p-0">
+              {/* Status strip */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-border/30 bg-gradient-to-r from-primary/8 to-primary/3">
                 <div className="flex items-center gap-2 min-w-0">
-                  <Checkbox checked={concerns.includes(concernKey)} className="shrink-0" />
-                  <span className="text-sm shrink-0">{t(`toolsInternal.skincare.concerns.${concernKey}.icon`)}</span>
-                  <span className="text-xs leading-snug">{t(`toolsInternal.skincare.concerns.${concernKey}.label`)}</span>
+                  <div className="p-1.5 rounded-lg bg-primary/10">
+                    <Droplet className="h-3.5 w-3.5 text-primary" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-muted-foreground leading-none">
+                      {t('toolsInternal.skincare.skinType')}
+                    </span>
+                    <span className="text-xs font-semibold text-foreground mt-0.5">
+                      {t(`toolsInternal.skincare.${skinType}`)}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="px-2 py-0.5 rounded-full bg-muted text-[10px] font-medium">
+                    {concerns.length > 0 ? `${concerns.length} ✓` : '0'}
+                  </span>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Get Routine */}
-        <AIActionButton
-          onClick={getSkincareRoutine}
-          isLoading={isLoading}
-          label={t('toolsInternal.skincare.getRoutine')}
-          loadingLabel={t('toolsInternal.skincare.creatingRoutine')}
-        />
+              {/* Main action area */}
+              <div className="p-5">
+                {/* Gesture hint */}
+                <AnimatePresence>
+                  {showHint && concerns.length === 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      className="text-center mb-4"
+                    >
+                      <motion.div
+                        animate={{ y: [0, -3, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="inline-flex items-center gap-1.5 text-primary"
+                      >
+                        <span className="text-lg">👇</span>
+                        <span className="text-xs font-medium text-muted-foreground">
+                          {t('toolsInternal.skincare.selectConcernsHint', 'اختاري مشاكل البشرة')}
+                        </span>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Skin Type Selector */}
+                <div className="space-y-1.5 mb-4">
+                  <Label className="text-xs text-muted-foreground">{t('toolsInternal.skincare.skinType')}</Label>
+                  <Select value={skinType} onValueChange={setSkinType}>
+                    <SelectTrigger className="w-full text-xs h-9">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50">
+                      <SelectItem value="dry">{t('toolsInternal.skincare.dry')}</SelectItem>
+                      <SelectItem value="oily">{t('toolsInternal.skincare.oily')}</SelectItem>
+                      <SelectItem value="combination">{t('toolsInternal.skincare.combination')}</SelectItem>
+                      <SelectItem value="sensitive">{t('toolsInternal.skincare.sensitive')}</SelectItem>
+                      <SelectItem value="normal">{t('toolsInternal.skincare.normal')}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Budget Selector */}
+                <div className="space-y-1.5 mb-4">
+                  <Label className="text-xs text-muted-foreground">{t('toolsInternal.skincare.budgetPreference')}</Label>
+                  <Select value={budget} onValueChange={setBudget}>
+                    <SelectTrigger className="w-full text-xs h-9">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover z-50">
+                      <SelectItem value="low">{t('toolsInternal.skincare.budgetLow')}</SelectItem>
+                      <SelectItem value="medium">{t('toolsInternal.skincare.budgetMedium')}</SelectItem>
+                      <SelectItem value="high">{t('toolsInternal.skincare.budgetHigh')}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Skin Concerns Grid */}
+                <SkincareConcernGrid
+                  concerns={concerns}
+                  onToggle={toggleConcern}
+                />
+              </div>
+
+              {/* Action footer */}
+              <div className="px-5 pb-5">
+                <AIActionButton
+                  onClick={getSkincareRoutine}
+                  isLoading={isLoading}
+                  label={t('toolsInternal.skincare.getRoutine')}
+                  loadingLabel={t('toolsInternal.skincare.creatingRoutine')}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
         {/* AI Response */}
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.skincare.yourRoutine')}
-            icon={Sparkles}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.skincare.yourRoutine')}
+              icon={Sparkles}
+            />
+          </motion.div>
         )}
 
-        {/* Daily/Nightly Quick Reference */}
-        <div className="grid grid-cols-2 gap-1.5">
-          <Card className="p-2.5 text-center bg-muted/30">
-            <Sun className="w-5 h-5 text-primary mx-auto mb-1 shrink-0" />
-            <h4 className="font-medium text-xs">{t('toolsInternal.skincare.morning')}</h4>
-            <p className="text-[10px] text-muted-foreground leading-tight">{t('toolsInternal.skincare.morningSteps')}</p>
-          </Card>
-          <Card className="p-2.5 text-center bg-muted/30">
-            <MoonIcon className="w-5 h-5 text-primary mx-auto mb-1 shrink-0" />
-            <h4 className="font-medium text-xs">{t('toolsInternal.skincare.evening')}</h4>
-            <p className="text-[10px] text-muted-foreground leading-tight">{t('toolsInternal.skincare.eveningSteps')}</p>
-          </Card>
-        </div>
+        {/* Routine Quick Reference */}
+        <SkincareRoutinePreview />
 
-        {/* Educational Videos with Thumbnails */}
+        {/* Unsafe Ingredients Warning */}
+        <SkincareUnsafeCard />
+
+        {/* Educational Videos */}
         <VideoLibrary
           videosByLang={skincareVideosByLang(t)}
           title={t('toolsInternal.skincare.skincareVideos')}
