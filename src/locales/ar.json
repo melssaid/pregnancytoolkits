@@ -184,7 +184,7 @@
     "babySleepTracker": {"title": "متتبع نوم الطفل", "description": "تتبع أنماط نوم الطفل"},
     "babyGrowth": {"title": "النمو الذكي للطفل", "description": "تتبع النمو بمخططات WHO"},
     "diaperTracker": {"title": "متتبع الحفاضات الذكي", "description": "سجّلي تغييرات الحفاضات اليومية"},
-    "babyCryTranslator": {"title": "دليل بكاء الطفل", "description": "رؤى ذكية لأنماط بكاء طفلك"},
+    "babyCryTranslator": {"title": "مترجم بكاء الطفل", "description": "رؤى ذكية لأنماط بكاء طفلك"},
     "postpartumRecovery": {"title": "دليل التعافي بعد الولادة", "description": "خطة تعافي لمدة 6 أسابيع بعد الولادة"},
     "smartPregnancyPlan": {"title": "خطة الحمل الذكية", "description": "خطتك اليومية المخصصة مع التمارين والوجبات"},
     "smartWalkingCoach": {"title": "دليل المشي", "description": "برامج مشي آمنة حسب مرحلة الحمل"},
@@ -241,7 +241,7 @@
       "babySleepDesc": "أنماط النوم",
       "diaperTracker": "متتبع الحفاضات الذكي",
       "diaperTrackerDesc": "التغييرات اليومية",
-      "babyCry": "دليل بكاء الطفل",
+      "babyCry": "مترجم بكاء الطفل",
       "babyCryDesc": "فهم أنماط البكاء",
       "groceryList": "قائمة التسوق",
       "groceryListDesc": "مخطط التسوق"
