@@ -4,13 +4,17 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+// Global in-app navigation depth tracker (immune to iframe/sandbox quirks)
+let navDepth = 0;
+export function incrementNavDepth() { navDepth++; }
+
 interface BackButtonProps {
   className?: string;
   fallbackPath?: string;
 }
 
 export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
-  ({ className = "", fallbackPath = "/" }, ref) => {
+  ({ className = "", fallbackPath }, ref) => {
     const { i18n } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
@@ -18,17 +22,19 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
     const Icon = isRTL ? ArrowRight : ArrowLeft;
 
     const handleBack = useCallback(() => {
-      // Only use React Router's history index — it's the only reliable indicator
-      // window.history.length is unreliable (always > 1 in iframes/sandboxes)
+      // Smart fallback: tools → dashboard, else → home
+      const smartFallback = fallbackPath
+        ?? (location.pathname.startsWith("/tools/") ? "/dashboard" : "/");
+
       const routerIdx = window.history.state?.idx ?? 0;
 
-      if (routerIdx > 0) {
+      if (navDepth > 0 || routerIdx > 0) {
+        navDepth = Math.max(0, navDepth - 1);
         navigate(-1);
       } else {
-        // No in-app history — go to home
-        navigate("/", { replace: true });
+        navigate(smartFallback, { replace: true });
       }
-    }, [navigate, fallbackPath]);
+    }, [navigate, location.pathname, fallbackPath]);
 
     return (
       <button
@@ -51,5 +57,4 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
 );
 
 BackButton.displayName = "BackButton";
-
 export default BackButton;
