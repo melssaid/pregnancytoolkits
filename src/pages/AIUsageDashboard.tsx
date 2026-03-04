@@ -39,7 +39,11 @@ export default function AIUsageDashboard() {
     setError(null);
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      const token = session?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+      if (!session?.access_token) {
+        setError("Authentication required. Please sign in to view analytics.");
+        return;
+      }
+      const token = session.access_token;
 
       const res = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-usage-stats`,
