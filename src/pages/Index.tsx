@@ -231,7 +231,7 @@ const Index = () => {
       <SEOHead />
       <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-primary/10 via-primary/5 to-transparent z-30" />
 
-      <section className="pt-4 pb-0 relative z-10">
+      <section className="pt-2 pb-0 relative z-10">
         <div className="container space-y-4">
           {journeyConfigs.map((config, index) => (
             <JourneyCard key={config.key} config={config} index={index} />
