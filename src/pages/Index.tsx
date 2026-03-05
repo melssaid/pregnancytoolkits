@@ -78,15 +78,15 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
 
   return (
     <Link to={tool.href} className="block">
-      <div className={`group flex items-center gap-2.5 p-2.5 rounded-xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px]`}>
-        <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-white/90 dark:bg-white/10 border border-border/20 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105">
-          <ToolIcon className={`w-4 h-4 ${style.iconColor} opacity-70 group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.75} />
+      <div className={`group flex items-center gap-3.5 p-3.5 rounded-2xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px]`}>
+        <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white/90 dark:bg-white/10 border border-border/20 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105">
+          <ToolIcon className={`w-5 h-5 ${style.iconColor} opacity-70 group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.75} />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xs font-semibold text-foreground truncate leading-snug">{t(tool.titleKey)}</h3>
-          <p className="text-[10px] text-muted-foreground truncate mt-0.5">{t(tool.descriptionKey)}</p>
+          <h3 className="text-sm font-semibold text-foreground leading-snug">{t(tool.titleKey)}</h3>
+          <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{t(tool.descriptionKey)}</p>
         </div>
-        <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
+        <ChevronIcon className="flex-shrink-0 w-4 h-4 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
       </div>
     </Link>
   );
@@ -148,19 +148,19 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
       {/* Gradient Header — clickable to toggle */}
       <button
         onClick={toggle}
-        className={`${config.headerGradient} px-4 py-4 relative overflow-hidden w-full text-start`}
+        className={`${config.headerGradient} px-5 py-5 relative overflow-hidden w-full text-start`}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
         <div className="absolute -top-6 -end-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
         
         <div className="relative flex items-center gap-3">
-          <div className={`w-11 h-11 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
+          <div className={`w-13 h-13 rounded-2xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg`}>
             {config.customIcon === "footprints" ? (
-              <BabyFootprintsIcon className="w-7 h-7" />
+              <BabyFootprintsIcon className="w-8 h-8" />
             ) : config.customIcon === "rockingBaby" ? (
-              <RockingBabyIcon className="w-7 h-7" />
+              <RockingBabyIcon className="w-8 h-8" />
             ) : config.customIcon === "pregnancyHeart" ? (
-              <PregnancyHeartIcon className="w-7 h-7" />
+              <PregnancyHeartIcon className="w-8 h-8" />
             ) : Icon ? (
               <motion.div
                 animate={{ scale: [1, 1.12, 1] }}
@@ -171,10 +171,10 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className={`text-xl font-extrabold ${config.headerText} tracking-tight truncate`}>
+            <h2 className={`text-2xl font-extrabold ${config.headerText} tracking-tight`}>
               {t(`journeys.${config.key}`)}
             </h2>
-            <p className={`text-[11px] ${config.headerText} opacity-80 mt-0.5 truncate`}>
+            <p className={`text-xs ${config.headerText} opacity-80 mt-1`}>
               {t(`journeys.${config.key}Desc`)}
             </p>
           </div>
@@ -198,10 +198,10 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <div className="px-2 pb-3 pt-1">
+            <div className="px-3 pb-4 pt-2 space-y-1.5">
               {toolsByCategory.map(({ catKey, tools }) => (
                 <div key={catKey}>
-                  <div className="space-y-1">
+                  <div className="space-y-2">
                     {tools.map((tool, toolIdx) => (
                       <motion.div
                         key={tool.id}
@@ -232,7 +232,7 @@ const Index = () => {
       <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-primary/10 via-primary/5 to-transparent z-30" />
 
       <section className="pt-2 pb-0 relative z-10">
-        <div className="container space-y-4">
+        <div className="container space-y-5 pb-6">
           {journeyConfigs.map((config, index) => (
             <JourneyCard key={config.key} config={config} index={index} />
           ))}

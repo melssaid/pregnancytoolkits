@@ -77,6 +77,34 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
 
+  const cleanHTMLForPrint = useCallback((html: string): string => {
+    // Create a temporary container to manipulate the DOM
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    
+    // Remove all inline styles that framer-motion adds (opacity, transform, etc.)
+    const allElements = temp.querySelectorAll('*');
+    allElements.forEach(el => {
+      const htmlEl = el as HTMLElement;
+      // Remove framer-motion inline styles that hide content
+      htmlEl.style.removeProperty('opacity');
+      htmlEl.style.removeProperty('transform');
+      htmlEl.style.removeProperty('will-change');
+      htmlEl.style.removeProperty('translate');
+      htmlEl.style.removeProperty('scale');
+      htmlEl.style.removeProperty('rotate');
+      // If style attribute is now empty, remove it entirely
+      if (htmlEl.getAttribute('style')?.trim() === '') {
+        htmlEl.removeAttribute('style');
+      }
+    });
+    
+    // Remove elements marked as no-print
+    temp.querySelectorAll('[data-no-print], .no-print, button').forEach(el => el.remove());
+    
+    return temp.innerHTML;
+  }, []);
+
   const handlePrint = useCallback(() => {
     if (!reportRef.current) return;
 
@@ -85,7 +113,7 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       es: 'Herramientas de Embarazo', pt: 'Ferramentas de Gravidez', tr: 'Gebelik Araçları', en: 'Pregnancy Toolkits',
     };
 
-    const content = reportRef.current.innerHTML;
+    const content = cleanHTMLForPrint(reportRef.current.innerHTML);
     const brand = brandNames[lang] || brandNames.en;
     const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
 
@@ -241,7 +269,7 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       }
       setTimeout(() => iframe.remove(), 2000);
     }, 800);
-  }, [lang, isRTL, title, profile]);
+  }, [lang, isRTL, title, profile, cleanHTMLForPrint]);
 
   return (
     <div>
