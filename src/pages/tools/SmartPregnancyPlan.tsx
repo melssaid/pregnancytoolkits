@@ -24,7 +24,7 @@ import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { motion } from "framer-motion";
-import { PrintableReport } from "@/components/PrintableReport";
+
 
 const STORAGE_KEY = 'smart-plan-health-data';
 
@@ -395,8 +395,7 @@ const SmartPregnancyPlan = () => {
           {/* AI Plan Tab */}
           <TabsContent value="aiplan" className="space-y-3 mt-3">
             {aiResponse ? (
-              <PrintableReport title={t("smartPlan.aiPlan", "AI Plan")}>
-                <motion.div
+              <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
@@ -436,7 +435,6 @@ const SmartPregnancyPlan = () => {
                     </div>
                   </div>
                 </motion.div>
-              </PrintableReport>
             ) : (
               <motion.div
                 initial={{ opacity: 0, scale: 0.97 }}
@@ -466,7 +464,6 @@ const SmartPregnancyPlan = () => {
           <TabsContent value="report" className="space-y-3 mt-3">
             {reportContent ? (
               <div className="space-y-3">
-                <PrintableReport title={`${t("smartPlan.weeklyReport")} — ${t("common.week", "Week")} ${health.week}`}>
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -532,7 +529,6 @@ const SmartPregnancyPlan = () => {
                       </div>
                     </div>
                   </motion.div>
-                </PrintableReport>
 
                 <motion.button
                   whileTap={{ scale: 0.92 }}
