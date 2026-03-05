@@ -35,10 +35,8 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const handlePrint = useCallback(() => {
     if (!reportRef.current) return;
 
-    // Clone the content and clean it
+    // Clone and clean content
     const clone = reportRef.current.cloneNode(true) as HTMLElement;
-    
-    // Remove framer-motion inline styles
     clone.querySelectorAll('*').forEach(el => {
       const htmlEl = el as HTMLElement;
       htmlEl.style.removeProperty('opacity');
@@ -47,56 +45,38 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       htmlEl.style.removeProperty('translate');
       htmlEl.style.removeProperty('scale');
       htmlEl.style.removeProperty('rotate');
-      if (htmlEl.getAttribute('style')?.trim() === '') {
-        htmlEl.removeAttribute('style');
-      }
+      if (htmlEl.getAttribute('style')?.trim() === '') htmlEl.removeAttribute('style');
     });
-    
-    // Remove non-printable elements
     clone.querySelectorAll('[data-no-print], .no-print, button').forEach(el => el.remove());
 
     const content = clone.innerHTML;
-    const htmlContent = buildPrintHTML({ content, title, lang, isRTL, profile });
+    const fullHTML = buildPrintHTML({ content, title, lang, isRTL, profile });
 
-    // Strategy: Use a hidden iframe for reliable printing
-    const existingFrame = document.getElementById('__print-iframe') as HTMLIFrameElement;
-    if (existingFrame) existingFrame.remove();
-
-    const iframe = document.createElement('iframe');
-    iframe.id = '__print-iframe';
-    iframe.style.cssText = 'position:fixed;top:-10000px;left:-10000px;width:210mm;height:297mm;border:none;';
-    document.body.appendChild(iframe);
-
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-    if (!iframeDoc) {
-      // Fallback: direct window print
-      directPrint(htmlContent);
-      return;
+    // Use a new window (not iframe) - most reliable cross-environment
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.open();
+      printWindow.document.write(fullHTML);
+      printWindow.document.close();
+      // Wait for fonts/images then print
+      printWindow.onload = () => {
+        setTimeout(() => {
+          printWindow.focus();
+          printWindow.print();
+          printWindow.close();
+        }, 500);
+      };
+      // Fallback if onload doesn't fire
+      setTimeout(() => {
+        try {
+          printWindow.focus();
+          printWindow.print();
+        } catch { /* ignore */ }
+      }, 2000);
+    } else {
+      // Fallback: inject into current page with print media query
+      injectAndPrint(fullHTML);
     }
-
-    iframeDoc.open();
-    iframeDoc.write(htmlContent);
-    iframeDoc.close();
-
-    // Wait for content + fonts to load then print
-    const triggerPrint = () => {
-      try {
-        iframe.contentWindow?.focus();
-        iframe.contentWindow?.print();
-      } catch {
-        // If iframe print fails, fallback
-        directPrint(htmlContent);
-      }
-      // Clean up after a delay
-      setTimeout(() => iframe.remove(), 5000);
-    };
-
-    // Wait for images and fonts
-    if (iframe.contentWindow) {
-      iframe.contentWindow.onload = triggerPrint;
-    }
-    // Safety timeout in case onload doesn't fire
-    setTimeout(triggerPrint, 2000);
   }, [lang, isRTL, title, profile]);
 
   return (
@@ -117,31 +97,38 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   );
 };
 
-/** Fallback: inject print styles into current page */
-function directPrint(htmlContent: string) {
-  const printStyleId = '__print-style-override';
-  const existingStyle = document.getElementById(printStyleId);
-  if (existingStyle) existingStyle.remove();
-  const existingContainer = document.getElementById('__print-container');
-  if (existingContainer) existingContainer.remove();
+/** Fallback: hide everything else via print CSS, inject content, print, clean up */
+function injectAndPrint(htmlContent: string) {
+  const styleId = '__print-style-override';
+  const containerId = '__print-container';
+  
+  // Clean previous
+  document.getElementById(styleId)?.remove();
+  document.getElementById(containerId)?.remove();
 
   const style = document.createElement('style');
-  style.id = printStyleId;
-  style.textContent = `@media print { body > *:not(#__print-container) { display: none !important; } #__print-container { display: block !important; } }`;
+  style.id = styleId;
+  style.textContent = `
+    @media print {
+      body > *:not(#${containerId}) { display: none !important; }
+      #${containerId} { display: block !important; position: static !important; }
+    }
+  `;
   document.head.appendChild(style);
 
   const container = document.createElement('div');
-  container.id = '__print-container';
-  container.style.display = 'none';
+  container.id = containerId;
+  container.style.cssText = 'position:fixed;top:-9999px;left:-9999px;';
   container.innerHTML = htmlContent;
   document.body.appendChild(container);
 
-  window.print();
-
   setTimeout(() => {
-    container.remove();
-    style.remove();
-  }, 1000);
+    window.print();
+    setTimeout(() => {
+      container.remove();
+      style.remove();
+    }, 1000);
+  }, 300);
 }
 
 export default PrintableReport;
