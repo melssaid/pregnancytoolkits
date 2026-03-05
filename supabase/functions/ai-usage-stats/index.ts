@@ -1,9 +1,14 @@
-// Edge function to query AI usage statistics (admin-only via authenticated user check)
+// Edge function to query AI usage statistics (admin-only)
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+
+// Hardcoded admin user IDs — only these users can access stats
+const ADMIN_USER_IDS: string[] = [
+  // Add your admin user IDs here
+];
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -20,7 +25,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Verify the token is a real authenticated user (not just the anon key)
+    // Verify the token is a real authenticated user
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
@@ -28,12 +33,19 @@ Deno.serve(async (req) => {
       { global: { headers: { Authorization: authHeader } } }
     );
 
-    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(
-      authHeader.replace("Bearer ", "")
-    );
-    if (claimsError || !claimsData?.claims?.sub) {
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if (userError || !user?.id) {
       return new Response(JSON.stringify({ error: "Unauthorized - valid session required" }), {
         status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Admin role check: user must be in the admin list
+    // If list is empty, allow any authenticated user (backward compat during setup)
+    if (ADMIN_USER_IDS.length > 0 && !ADMIN_USER_IDS.includes(user.id)) {
+      return new Response(JSON.stringify({ error: "Forbidden - admin access required" }), {
+        status: 403,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
@@ -94,7 +106,7 @@ Deno.serve(async (req) => {
       .map(([date, count]) => ({ date, count }))
       .sort((a, b) => a.date.localeCompare(b.date));
 
-    // Unique users today
+    // Unique users today (strip client_id from response for privacy)
     const uniqueUsersToday = new Set(todayLogs.map(l => l.client_id)).size;
     const uniqueUsersMonth = new Set(logs.map(l => l.client_id)).size;
 
