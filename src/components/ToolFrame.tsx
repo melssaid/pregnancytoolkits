@@ -103,80 +103,32 @@ export function ToolFrame({
       {/* Content */}
       <div className="relative z-10">
         {/* Sticky Header */}
-        <motion.header 
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-primary/10 shadow-sm overflow-hidden"
-        >
+        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-primary/10 shadow-sm overflow-hidden">
           {/* Subtle top accent line */}
           <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
           
-          <div className="px-4 sm:px-6 py-2.5 flex items-center justify-between">
+          <div className="px-4 sm:px-6 h-12 flex items-center justify-between">
             <div className="flex items-center min-w-0">
               <BackButton />
             </div>
             <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
-              <motion.div 
-                className="relative group"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: [0.8, 1.08, 0.97, 1], opacity: 1 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-              >
-                {/* Orbital ring */}
-                <motion.div
-                  className="absolute inset-[-6px] rounded-full border border-rose-300/15"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              <div className="relative h-8 w-8 rounded-full overflow-hidden shadow-md ring-2 ring-white/90 bg-white">
+                <img 
+                  src={logoImage} 
+                  alt="Pregnancy Toolkits" 
+                  width={32}
+                  height={32}
+                  loading="eager"
+                  decoding="async"
+                  className="h-full w-full object-cover scale-[1.3]"
                 />
-                {/* Orbital particles */}
-                {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute"
-                    style={{ top: "50%", left: "50%" }}
-                    animate={{
-                      x: [
-                        Math.cos((i / 6) * Math.PI * 2) * 28,
-                        Math.cos(((i + 1) / 6) * Math.PI * 2) * 28,
-                        Math.cos(((i + 2) / 6) * Math.PI * 2) * 28,
-                      ],
-                      y: [
-                        Math.sin((i / 6) * Math.PI * 2) * 28,
-                        Math.sin(((i + 1) / 6) * Math.PI * 2) * 28,
-                        Math.sin(((i + 2) / 6) * Math.PI * 2) * 28,
-                      ],
-                      opacity: [0.3, 0.8, 0.3],
-                      scale: [0.8, 1.2, 0.8],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      delay: (i / 6) * 6,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <div className="w-[4px] h-[4px] rounded-full bg-gradient-to-br from-rose-400 to-pink-400 shadow-sm shadow-rose-400/50" />
-                  </motion.div>
-                ))}
-                <div className="relative h-11 w-11 rounded-full overflow-hidden shadow-lg ring-[2.5px] ring-white/90 bg-white">
-                  <img 
-                    src={logoImage} 
-                    alt="Pregnancy Toolkits" 
-                    width={44}
-                    height={44}
-                    loading="eager"
-                    decoding="async"
-                    className="h-full w-full object-cover scale-[1.35]"
-                  />
-                </div>
-              </motion.div>
+              </div>
             </Link>
             <div className="flex-shrink-0">
               <LanguageDropdown />
             </div>
           </div>
-        </motion.header>
+        </header>
 
         {/* Title + Benefit — Unified Hero Strip */}
         <motion.section 
@@ -186,7 +138,7 @@ export function ToolFrame({
           className="px-4 sm:px-6 pt-4 pb-2"
         >
           {/* Title */}
-          <h1 className="text-[15px] font-extrabold text-foreground tracking-tight leading-snug mb-3">
+          <h1 className="text-[13px] font-extrabold text-foreground tracking-tight leading-snug mb-3">
             {title}
           </h1>
 
