@@ -3,6 +3,7 @@ import { Brain } from 'lucide-react';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useTranslation } from 'react-i18next';
 import { useMemo, useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { SaveResultButton } from './SaveResultButton';
 
 interface AIResponseFrameProps {
@@ -30,6 +31,7 @@ export const AIResponseFrame = ({
   toolId,
 }: AIResponseFrameProps) => {
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
 
   const rawProgress = useMemo(() => {
     if (!isLoading && content.length > 0) return 100;
@@ -52,15 +54,18 @@ export const AIResponseFrame = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       className="relative rounded-2xl overflow-hidden border border-primary/15 shadow-sm"
+      dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Progress bar */}
       <div className="h-1.5 w-full bg-muted/30 relative overflow-hidden">
         {showProgress ? (
           <motion.div
-            className="absolute inset-y-0 start-0 rounded-full"
+            className={`absolute inset-y-0 rounded-full ${isRTL ? 'end-0' : 'start-0'}`}
             style={{
               width: springProgress.get() + '%',
-              background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+              background: isRTL
+                ? 'linear-gradient(270deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))'
+                : 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
             }}
             animate={{ width: rawProgress + '%' }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -71,7 +76,7 @@ export const AIResponseFrame = ({
         {isLoading && (
           <motion.div
             className="absolute inset-y-0 w-20 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-            animate={{ x: ['-80px', '400px'] }}
+            animate={{ x: isRTL ? ['400px', '-80px'] : ['-80px', '400px'] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
           />
         )}

@@ -74,7 +74,7 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
         dir={isRTL ? 'rtl' : 'ltr'}
         lang={lang}
       >
-        <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
+        <div className="h-1.5 w-full" style={{ background: isRTL ? 'linear-gradient(270deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' : 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
 
         {/* Header */}
         <div className="px-4 pt-4 pb-2 space-y-3">
@@ -142,7 +142,7 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
           onClick={onGenerate}
           disabled={isLoading}
           className="relative w-full overflow-hidden rounded-2xl h-10 flex items-center justify-center gap-2 text-white text-sm font-semibold disabled:opacity-60 disabled:pointer-events-none"
-          style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
+          style={{ background: isRTL ? 'linear-gradient(225deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' : 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}
         >
           {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
           {t("smartPlan.regenerate", "Regenerate")}

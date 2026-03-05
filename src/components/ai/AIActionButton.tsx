@@ -76,7 +76,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
 
       {/* Shimmer sweep on hover */}
       <span
-        className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
+        className="absolute inset-0 -translate-x-full group-hover:translate-x-full rtl:translate-x-full rtl:group-hover:-translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
         aria-hidden
       />
     </motion.button>
