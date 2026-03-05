@@ -2,7 +2,7 @@
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
 // Hardcoded admin user IDs — only these users can access stats
@@ -10,58 +10,54 @@ const ADMIN_USER_IDS: string[] = [
   // Add your admin user IDs here
 ];
 
+function jsonError(msg: string, status: number): Response {
+  return new Response(JSON.stringify({ error: msg }), {
+    status,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // Require a valid Bearer token
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return jsonError("Unauthorized", 401);
     }
 
-    // Verify the token is a real authenticated user
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+
+    // Verify the user via getUser() (correct supabase-js v2 method)
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_ANON_KEY") ?? "",
       { global: { headers: { Authorization: authHeader } } }
     );
 
-    const token = authHeader.replace("Bearer ", "");
-    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
-    if (claimsError || !claimsData?.claims?.sub) {
-      return new Response(JSON.stringify({ error: "Unauthorized - valid session required" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if (userError || !user?.id) {
+      return jsonError("Unauthorized - valid session required", 401);
     }
 
-    const userId = claimsData.claims.sub as string;
+    const userId = user.id;
 
-    // Admin role check: user must be in the admin list
-    // If list is empty, allow any authenticated user (backward compat during setup)
+    // Admin role check
     if (ADMIN_USER_IDS.length > 0 && !ADMIN_USER_IDS.includes(userId)) {
-      return new Response(JSON.stringify({ error: "Forbidden - admin access required" }), {
-        status: 403,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return jsonError("Forbidden - admin access required", 403);
     }
 
-    // Use service_role to bypass RLS for reading stats
+    // Use service_role to bypass RLS
     const adminClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
     );
 
     const now = new Date();
-    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
-    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+    const todayStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).toISOString();
+    const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString();
 
     // Fetch all logs for this month (max 1000)
     const { data: monthLogs, error } = await adminClient
@@ -99,7 +95,7 @@ Deno.serve(async (req) => {
       byLanguage[l.language] = (byLanguage[l.language] || 0) + 1;
     }
 
-    // Daily breakdown (last 30 days)
+    // Daily breakdown
     const dailyMap: Record<string, number> = {};
     for (const l of logs) {
       const day = l.created_at.split("T")[0];
@@ -109,7 +105,7 @@ Deno.serve(async (req) => {
       .map(([date, count]) => ({ date, count }))
       .sort((a, b) => a.date.localeCompare(b.date));
 
-    // Unique users today (strip client_id from response for privacy)
+    // Unique users
     const uniqueUsersToday = new Set(todayLogs.map(l => l.client_id)).size;
     const uniqueUsersMonth = new Set(logs.map(l => l.client_id)).size;
 
@@ -136,9 +132,6 @@ Deno.serve(async (req) => {
     });
   } catch (error) {
     console.error("[AI Stats] Error:", error);
-    return new Response(JSON.stringify({ error: "Failed to fetch stats" }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return jsonError("Failed to fetch stats", 500);
   }
 });
