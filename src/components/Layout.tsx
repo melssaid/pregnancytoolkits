@@ -29,39 +29,36 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div className="flex items-center justify-center gap-3 sm:gap-5 py-1.5 px-4">
-          <motion.div 
-            className="flex items-center gap-1.5 text-[8px] font-semibold tracking-wider uppercase"
+          <motion.span 
+            className="text-[8px] font-semibold tracking-wider uppercase"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ delay: 0.3, duration: 0.4 }}
           >
-            <Shield className="h-2.5 w-2.5 flex-shrink-0" />
-            <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
-          </motion.div>
+            {t('layout.trustBar.scienceBacked', 'Science-Backed')}
+          </motion.span>
           <span className="w-[3px] h-[3px] rounded-full bg-primary-foreground/30 flex-shrink-0" />
-          <motion.div 
-            className="flex items-center gap-1.5 text-[8px] font-semibold tracking-wider uppercase"
+          <motion.span 
+            className="text-[8px] font-semibold tracking-wider uppercase"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ delay: 0.45, duration: 0.4 }}
           >
-            <Heart className="h-2.5 w-2.5 flex-shrink-0" />
-            <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
-          </motion.div>
+            {t('layout.trustBar.aiTools', '42+ AI Tools')}
+          </motion.span>
           <span className="hidden sm:block w-[3px] h-[3px] rounded-full bg-primary-foreground/30 flex-shrink-0" />
-          <motion.div 
-            className="hidden sm:flex items-center gap-1.5 text-[8px] font-semibold tracking-wider uppercase"
+          <motion.span 
+            className="hidden sm:inline text-[8px] font-semibold tracking-wider uppercase"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ delay: 0.6, duration: 0.4 }}
           >
-            <Shield className="h-2.5 w-2.5 flex-shrink-0" />
-            <span>{t('layout.trustBar.premium')}</span>
-          </motion.div>
+            {t('layout.trustBar.premium')}
+          </motion.span>
         </div>
         {/* Curved bottom edge */}
-        <svg className="absolute bottom-0 left-0 w-full translate-y-[99%]" viewBox="0 0 1440 16" preserveAspectRatio="none" style={{ height: '10px' }}>
-          <path d="M0,0 Q720,16 1440,0 L1440,0 L0,0 Z" className="fill-primary" />
+        <svg className="absolute bottom-0 left-0 w-full translate-y-[99%]" viewBox="0 0 1440 28" preserveAspectRatio="none" style={{ height: '14px' }}>
+          <path d="M0,0 L0,6 Q720,28 1440,6 L1440,0 Z" className="fill-primary" />
         </svg>
       </motion.div>
 
