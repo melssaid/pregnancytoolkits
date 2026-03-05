@@ -117,17 +117,14 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     const brand = brandNames[lang] || brandNames.en;
     const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
 
-    // Remove any previous hidden iframe
-    const existingFrame = document.getElementById('__print-frame');
-    if (existingFrame) existingFrame.remove();
+    // Use a new window instead of iframe to avoid sandbox restrictions
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+    if (!printWindow) {
+      console.error('Print window blocked by browser');
+      return;
+    }
 
-    const iframe = document.createElement('iframe');
-    iframe.id = '__print-frame';
-    iframe.style.cssText = 'position:fixed;width:0;height:0;border:none;left:-9999px;top:-9999px;';
-    document.body.appendChild(iframe);
-
-    const doc = iframe.contentDocument || iframe.contentWindow?.document;
-    if (!doc) return;
+    const doc = printWindow.document;
 
     doc.open();
     doc.write(`<!DOCTYPE html>
@@ -259,15 +256,15 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
 </html>`);
     doc.close();
 
-    // Use setTimeout instead of onload — onload is unreliable with doc.write()
+    // Wait for fonts to load, then print
     setTimeout(() => {
       try {
-        iframe.contentWindow?.focus();
-        iframe.contentWindow?.print();
+        printWindow.focus();
+        printWindow.print();
       } catch (e) {
         console.error('Print failed:', e);
       }
-      setTimeout(() => iframe.remove(), 2000);
+      setTimeout(() => printWindow.close(), 2000);
     }, 800);
   }, [lang, isRTL, title, profile, cleanHTMLForPrint]);
 
