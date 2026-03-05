@@ -36,7 +36,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
         />
         
-        <div className="relative flex items-center justify-center gap-4 sm:gap-6 py-1 px-4">
+        <div className="relative flex items-center justify-center gap-4 sm:gap-6 py-1.5 px-4">
           <motion.span 
             className="text-[9.5px] font-bold tracking-widest uppercase drop-shadow-sm"
             initial={{ opacity: 0, y: 8 }}
@@ -78,6 +78,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             {t('layout.trustBar.premium')}
           </motion.span>
         </div>
+        {/* Gradient bottom line */}
+        <div className="h-[2px] bg-gradient-to-r from-transparent via-primary-foreground/30 to-transparent" />
       </motion.div>
 
       {/* Header */}
