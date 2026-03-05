@@ -107,7 +107,7 @@ export function ToolFrame({
           {/* Subtle top accent line */}
           <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
           
-          <div className="px-4 sm:px-6 h-12 flex items-center justify-between">
+          <div className="px-4 sm:px-6 h-14 flex items-center justify-between">
             <div className="flex items-center min-w-0">
               <BackButton />
             </div>
@@ -154,12 +154,12 @@ export function ToolFrame({
                     <div className="w-[3px] h-[3px] rounded-full bg-gradient-to-br from-rose-400 to-pink-400 shadow-sm shadow-rose-400/50" />
                   </motion.div>
                 ))}
-                <div className="relative h-8 w-8 rounded-full overflow-hidden shadow-md ring-2 ring-white/90 bg-white">
+                <div className="relative h-9 w-9 rounded-full overflow-hidden shadow-md ring-2 ring-white/90 bg-white">
                   <img 
                     src={logoImage} 
                     alt="Pregnancy Toolkits" 
-                    width={32}
-                    height={32}
+                    width={36}
+                    height={36}
                     loading="eager"
                     decoding="async"
                     className="h-full w-full object-cover scale-[1.35]"
