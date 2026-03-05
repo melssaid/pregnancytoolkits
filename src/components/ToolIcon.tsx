@@ -34,7 +34,7 @@ const toolIconMap: Record<string, string> = {
   'smart-walking-coach': 'mobility-coach',
   'smart-nutrition-optimizer': 'meal-suggestion',
   'smart-snack-planner': 'smoothie',
-  'ai-labor-progress': 'labor-progress',
+  
   'contraction-timer': 'contraction-timer',
   'labor-breathing': 'breathing',
   'ovulation-calculator': 'ovulation',

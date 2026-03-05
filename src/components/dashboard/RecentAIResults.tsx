@@ -76,23 +76,6 @@ function getRecentAIResults(t: (key: string) => string): AIResult[] {
     }
   } catch {}
 
-  // 4. Labor Progress
-  try {
-    const contractions = safeParseLocalStorage<{ startTime: string }[]>(
-      "laborContractions", [], (d): d is any[] => Array.isArray(d)
-    );
-    if (contractions.length > 0) {
-      results.push({
-        id: "labor-" + contractions[0].startTime,
-        toolName: t('dashboard.recentResults.laborProgress'),
-        toolIcon: Activity,
-        preview: `${contractions.length} ${t('dashboard.recentResults.contractions')}`,
-        date: contractions[0].startTime,
-        href: "/tools/labor-progress",
-      });
-    }
-  } catch {}
-
   // 5. Baby Growth
   try {
     const entries = safeParseLocalStorage<{ id: string; date: string; weight: number; height: number; ageMonths: number }[]>(

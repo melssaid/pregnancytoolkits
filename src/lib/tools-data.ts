@@ -100,7 +100,6 @@ export const toolsData: Tool[] = [
   // LABOR & BIRTH
   // ═══════════════════════════════════════════════════════════════
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.labor", href: "/tools/ai-birth-plan", priority: 27, hasAI: true },
-  { id: "ai-labor-progress", titleKey: "tools.aiLaborProgress.title", descriptionKey: "tools.aiLaborProgress.description", icon: Activity, categoryKey: "categories.labor", href: "/tools/labor-progress", priority: 28, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // PREPARATION
@@ -174,14 +173,13 @@ const toolRelationships: Record<string, string[]> = {
 
   // Pregnancy Tracking
   "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
-  "kick-counter": ["fetal-growth", "wellness-diary", "ai-labor-progress"],
+  "kick-counter": ["fetal-growth", "wellness-diary", "ai-birth-plan"],
   "weight-gain": ["ai-meal-suggestion", "ai-fitness-coach", "weekly-summary"],
   "ai-bump-photos": ["weekly-summary", "fetal-growth", "baby-growth"],
   "smart-pregnancy-plan": ["weekly-summary", "smart-appointment-reminder", "ai-meal-suggestion"],
 
   // Labor & Birth
-  "ai-labor-progress": ["ai-birth-plan", "ai-hospital-bag", "ai-fitness-coach"],
-  "ai-birth-plan": ["ai-hospital-bag", "ai-labor-progress", "ai-partner-guide"],
+  "ai-birth-plan": ["ai-hospital-bag", "ai-partner-guide", "ai-fitness-coach"],
 
   // Wellness
   "wellness-diary": ["pregnancy-assistant", "ai-fitness-coach", "pregnancy-comfort"],
@@ -198,7 +196,7 @@ const toolRelationships: Record<string, string[]> = {
 
   // Preparation
   "ai-hospital-bag": ["ai-birth-plan", "ai-partner-guide", "baby-gear-recommender"],
-  "ai-partner-guide": ["ai-birth-plan", "ai-hospital-bag", "ai-labor-progress"],
+  "ai-partner-guide": ["ai-birth-plan", "ai-hospital-bag", "ai-fitness-coach"],
   "baby-gear-recommender": ["ai-hospital-bag", "ai-lactation-prep", "baby-growth"],
   "smart-appointment-reminder": ["pregnancy-assistant", "wellness-diary", "weekly-summary"],
 
