@@ -99,8 +99,8 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // LABOR & BIRTH
   // ═══════════════════════════════════════════════════════════════
+  { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.labor", href: "/tools/ai-birth-plan", priority: 27, hasAI: true },
   { id: "ai-labor-progress", titleKey: "tools.aiLaborProgress.title", descriptionKey: "tools.aiLaborProgress.description", icon: Activity, categoryKey: "categories.labor", href: "/tools/labor-progress", priority: 28, hasAI: true },
-  { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.labor", href: "/tools/ai-birth-plan", priority: 29, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // PREPARATION
