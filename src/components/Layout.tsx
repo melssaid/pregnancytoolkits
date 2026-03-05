@@ -21,28 +21,49 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Trust Bar - Above header */}
-      <div className="relative bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-primary-foreground" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-        <div className="flex items-center justify-center gap-4 sm:gap-6 py-1.5 px-4 text-[8px] font-semibold tracking-wider uppercase opacity-90">
-          <div className="flex items-center gap-1.5">
-            <Shield className="h-2.5 w-2.5 opacity-80" />
-            <span className="opacity-90">{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
-          </div>
-          <span className="w-[3px] h-[3px] rounded-full bg-primary-foreground/30" />
-          <div className="flex items-center gap-1.5">
-            <Heart className="h-2.5 w-2.5 opacity-80" />
-            <span className="opacity-90">{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
-          </div>
-          <span className="hidden sm:block w-[3px] h-[3px] rounded-full bg-primary-foreground/30" />
-          <div className="hidden sm:flex items-center gap-1.5">
-            <Shield className="h-2.5 w-2.5 opacity-80" />
-            <span className="opacity-90">{t('layout.trustBar.premium')}</span>
-          </div>
+      <motion.div 
+        className="relative bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-primary-foreground"
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        <div className="flex items-center justify-center gap-3 sm:gap-5 py-1.5 px-4">
+          <motion.div 
+            className="flex items-center gap-1.5 text-[8px] font-semibold tracking-wider uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.85 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+          >
+            <Shield className="h-2.5 w-2.5 flex-shrink-0" />
+            <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
+          </motion.div>
+          <span className="w-[3px] h-[3px] rounded-full bg-primary-foreground/30 flex-shrink-0" />
+          <motion.div 
+            className="flex items-center gap-1.5 text-[8px] font-semibold tracking-wider uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.85 }}
+            transition={{ delay: 0.45, duration: 0.4 }}
+          >
+            <Heart className="h-2.5 w-2.5 flex-shrink-0" />
+            <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
+          </motion.div>
+          <span className="hidden sm:block w-[3px] h-[3px] rounded-full bg-primary-foreground/30 flex-shrink-0" />
+          <motion.div 
+            className="hidden sm:flex items-center gap-1.5 text-[8px] font-semibold tracking-wider uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.85 }}
+            transition={{ delay: 0.6, duration: 0.4 }}
+          >
+            <Shield className="h-2.5 w-2.5 flex-shrink-0" />
+            <span>{t('layout.trustBar.premium')}</span>
+          </motion.div>
         </div>
         {/* Curved bottom edge */}
         <svg className="absolute bottom-0 left-0 w-full translate-y-[99%]" viewBox="0 0 1440 16" preserveAspectRatio="none" style={{ height: '10px' }}>
           <path d="M0,0 Q720,16 1440,0 L1440,0 L0,0 Z" className="fill-primary" />
         </svg>
-      </div>
+      </motion.div>
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30">
