@@ -30,7 +30,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       >
         <div className="flex items-center justify-center gap-3 sm:gap-5 py-1.5 px-4">
           <motion.span 
-            className="text-[8px] font-semibold tracking-wider uppercase"
+            className="text-[9.5px] font-semibold tracking-wider uppercase"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ delay: 0.3, duration: 0.4 }}
@@ -39,7 +39,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </motion.span>
           <span className="w-[3px] h-[3px] rounded-full bg-primary-foreground/30 flex-shrink-0" />
           <motion.span 
-            className="text-[8px] font-semibold tracking-wider uppercase"
+            className="text-[9.5px] font-semibold tracking-wider uppercase"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ delay: 0.45, duration: 0.4 }}
@@ -48,7 +48,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </motion.span>
           <span className="hidden sm:block w-[3px] h-[3px] rounded-full bg-primary-foreground/30 flex-shrink-0" />
           <motion.span 
-            className="hidden sm:inline text-[8px] font-semibold tracking-wider uppercase"
+            className="hidden sm:inline text-[9.5px] font-semibold tracking-wider uppercase"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ delay: 0.6, duration: 0.4 }}
@@ -56,14 +56,14 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             {t('layout.trustBar.premium')}
           </motion.span>
         </div>
-        {/* Curved bottom edge */}
-        <svg className="absolute bottom-0 left-0 w-full translate-y-[99%]" viewBox="0 0 1440 28" preserveAspectRatio="none" style={{ height: '14px' }}>
-          <path d="M0,0 L0,6 Q720,28 1440,6 L1440,0 Z" className="fill-primary" />
+        {/* Curved bottom edge - overlaps header */}
+        <svg className="absolute bottom-0 left-0 w-full translate-y-[60%] z-10" viewBox="0 0 1440 32" preserveAspectRatio="none" style={{ height: '18px' }}>
+          <path d="M0,0 L0,8 Q720,32 1440,8 L1440,0 Z" className="fill-primary" />
         </svg>
       </motion.div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30 pt-2">
         <div className="flex h-[4.5rem] items-center justify-between px-4">
           <div className="flex items-center gap-2.5">
             {showBack && <BackButton />}
