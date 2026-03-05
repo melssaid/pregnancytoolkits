@@ -21,7 +21,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Trust Bar - Above header */}
-      <div className="bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-primary-foreground rounded-b-2xl shadow-md" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
+      <div className="relative bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-primary-foreground" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
         <div className="flex items-center justify-center gap-4 sm:gap-6 py-1.5 px-4 text-[8px] font-semibold tracking-wider uppercase opacity-90">
           <div className="flex items-center gap-1.5">
             <Shield className="h-2.5 w-2.5 opacity-80" />
@@ -38,6 +38,10 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             <span className="opacity-90">{t('layout.trustBar.premium')}</span>
           </div>
         </div>
+        {/* Curved bottom edge */}
+        <svg className="absolute bottom-0 left-0 w-full translate-y-[99%]" viewBox="0 0 1440 16" preserveAspectRatio="none" style={{ height: '10px' }}>
+          <path d="M0,0 Q720,16 1440,0 L1440,0 L0,0 Z" className="fill-primary" />
+        </svg>
       </div>
 
       {/* Header */}
