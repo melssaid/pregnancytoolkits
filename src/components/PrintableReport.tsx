@@ -54,19 +54,30 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     if (!reportRef.current) return null;
 
     const clone = reportRef.current.cloneNode(true) as HTMLElement;
-    // Strip framer-motion artifacts
+
+    // Remove non-printable elements first
+    clone.querySelectorAll('[data-no-print], .no-print, button, svg, canvas').forEach(el => el.remove());
+
+    // Remove decorative elements: gradient bars, progress bars, stat grids, badges, loading dots
+    clone.querySelectorAll('[class*="h-1"], [class*="h-1.5"], [class*="progress"], [class*="Progress"]').forEach(el => {
+      // Only remove thin decorative bars (height ≤ 6px)
+      const h = el as HTMLElement;
+      if (h.offsetHeight <= 6 || h.className?.includes('h-1')) el.remove();
+    });
+
+    // Strip ALL inline styles and class attributes to prevent background leaking
     clone.querySelectorAll('*').forEach(el => {
       const h = el as HTMLElement;
-      h.style.removeProperty('opacity');
-      h.style.removeProperty('transform');
-      h.style.removeProperty('will-change');
-      h.style.removeProperty('translate');
-      h.style.removeProperty('scale');
-      h.style.removeProperty('rotate');
-      if (h.getAttribute('style')?.trim() === '') h.removeAttribute('style');
+      h.removeAttribute('style');
+      h.removeAttribute('class');
+      // Keep semantic attributes
+      h.removeAttribute('data-state');
+      h.removeAttribute('data-orientation');
     });
-    clone.querySelectorAll('[data-no-print], .no-print, button').forEach(el => el.remove());
 
+    // Remove empty wrapper divs (decorative containers) but keep content
+    // This flattens the DOM to just text content
+    
     return buildPrintHTML({ content: clone.innerHTML, title, lang, isRTL, profile });
   }, [lang, isRTL, title, profile]);
 
