@@ -107,34 +107,35 @@ function getClientId(req: Request): string {
 // ── Per-type model tuning (temperature & max_tokens) ──
 // Lower temperature → more factual; higher → more creative
 const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> = {
-  "symptom-analysis":     { temperature: 0.3, max_tokens: 4000 },
+  "symptom-analysis":     { temperature: 0.3, max_tokens: 3000 },
   "meal-suggestion":      { temperature: 0.7, max_tokens: 2000 },
   "pregnancy-assistant":  { temperature: 0.4, max_tokens: 3000 },
   "weekly-summary":       { temperature: 0.5, max_tokens: 2500 },
-  "posture-coach":        { temperature: 0.4, max_tokens: 1500 },
-  "walking-coach":        { temperature: 0.4, max_tokens: 1500 },
-  "stretch-reminder":     { temperature: 0.4, max_tokens: 1500 },
-  "back-pain-relief":     { temperature: 0.3, max_tokens: 2000 },
-  "leg-cramp-preventer":  { temperature: 0.3, max_tokens: 1500 },
-  "smoothie-generator":   { temperature: 0.8, max_tokens: 1500 },
-  "daily-tips":           { temperature: 0.6, max_tokens: 1200 },
+  "posture-coach":        { temperature: 0.4, max_tokens: 2000 },
+  "walking-coach":        { temperature: 0.4, max_tokens: 2000 },
+  "stretch-reminder":     { temperature: 0.4, max_tokens: 2000 },
+  "back-pain-relief":     { temperature: 0.3, max_tokens: 2500 },
+  "leg-cramp-preventer":  { temperature: 0.3, max_tokens: 2000 },
+  "smoothie-generator":   { temperature: 0.8, max_tokens: 2000 },
+  "daily-tips":           { temperature: 0.6, max_tokens: 1500 },
   "labor-tracker":        { temperature: 0.2, max_tokens: 3000 },
-  "appointment-prep":     { temperature: 0.4, max_tokens: 2000 },
-  "kick-analysis":        { temperature: 0.2, max_tokens: 2000 },
-  "sleep-analysis":       { temperature: 0.3, max_tokens: 2000 },
-  "vitamin-advice":       { temperature: 0.3, max_tokens: 2000 },
-  "bump-photos":          { temperature: 0.5, max_tokens: 2000 },
+  "appointment-prep":     { temperature: 0.4, max_tokens: 2500 },
+  "kick-analysis":        { temperature: 0.2, max_tokens: 2500 },
+  "sleep-analysis":       { temperature: 0.3, max_tokens: 2500 },
+  "vitamin-advice":       { temperature: 0.3, max_tokens: 2500 },
+  "bump-photos":          { temperature: 0.5, max_tokens: 2500 },
   "baby-cry-analysis":    { temperature: 0.3, max_tokens: 2500 },
   "postpartum-recovery":  { temperature: 0.3, max_tokens: 3000 },
-  "hospital-bag":         { temperature: 0.5, max_tokens: 2500 },
-  "birth-position":       { temperature: 0.4, max_tokens: 2000 },
+  "hospital-bag":         { temperature: 0.5, max_tokens: 3000 },
+  "birth-position":       { temperature: 0.4, max_tokens: 2500 },
   "partner-guide":        { temperature: 0.5, max_tokens: 3000 },
   "lactation-prep":       { temperature: 0.4, max_tokens: 2500 },
-  "nausea-relief":        { temperature: 0.4, max_tokens: 2000 },
-  "skincare-advice":      { temperature: 0.5, max_tokens: 2000 },
+  "nausea-relief":        { temperature: 0.4, max_tokens: 2500 },
+  "skincare-advice":      { temperature: 0.5, max_tokens: 2500 },
   "birth-plan":           { temperature: 0.5, max_tokens: 3000 },
   "mental-health":        { temperature: 0.3, max_tokens: 3000 },
   "pregnancy-plan":       { temperature: 0.4, max_tokens: 3000 },
+  "baby-growth-analysis": { temperature: 0.3, max_tokens: 2500 },
 };
 
 // ── Language configuration ──
@@ -171,6 +172,15 @@ IDENTITY RULES (CRITICAL):
 • NEVER mention what technology, model, or platform you use
 • Just answer the user's question directly without any self-introduction
 • Start your response with relevant content immediately
+
+CONCISENESS RULES (CRITICAL):
+• Keep responses focused and concise — aim for 400-500 words maximum
+• Use short bullet points instead of long paragraphs
+• Limit each section to 2-4 bullet points maximum
+• Do NOT add filler text or repeat the same advice in different words
+• Prioritize actionable, practical advice over lengthy explanations
+• ALWAYS complete your response with a proper ending — never stop mid-sentence
+• End with a brief encouraging note and medical disclaimer
 
 COMPLIANCE RULES (MUST FOLLOW):
 1. NEVER provide a definitive medical diagnosis
