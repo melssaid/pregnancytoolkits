@@ -22,48 +22,66 @@ export function Layout({ children, showBack = false }: LayoutProps) {
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Trust Bar - Above header */}
       <motion.div 
-        className="relative bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-primary-foreground"
+        className="relative overflow-hidden bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-primary-foreground"
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
-        initial={{ opacity: 0, y: -10 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="flex items-center justify-center gap-3 sm:gap-5 py-1.5 px-4">
+        {/* Animated shimmer overlay */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+          initial={{ x: '-100%' }}
+          animate={{ x: '200%' }}
+          transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
+        />
+        
+        <div className="relative flex items-center justify-center gap-4 sm:gap-6 py-2 px-4">
           <motion.span 
-            className="text-[9.5px] font-semibold tracking-wider uppercase"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.85 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
+            className="text-[9.5px] font-bold tracking-widest uppercase drop-shadow-sm"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 0.95, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5, ease: 'easeOut' }}
           >
             {t('layout.trustBar.scienceBacked', 'Science-Backed')}
           </motion.span>
-          <span className="w-[3px] h-[3px] rounded-full bg-primary-foreground/30 flex-shrink-0" />
+          
           <motion.span 
-            className="text-[9.5px] font-semibold tracking-wider uppercase"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.85 }}
-            transition={{ delay: 0.45, duration: 0.4 }}
+            className="w-1 h-1 rounded-full bg-primary-foreground/50 flex-shrink-0"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
+          />
+          
+          <motion.span 
+            className="text-[9.5px] font-bold tracking-widest uppercase drop-shadow-sm"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 0.95, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.5, ease: 'easeOut' }}
           >
             {t('layout.trustBar.aiTools', '42+ AI Tools')}
           </motion.span>
-          <span className="hidden sm:block w-[3px] h-[3px] rounded-full bg-primary-foreground/30 flex-shrink-0" />
+          
           <motion.span 
-            className="hidden sm:inline text-[9.5px] font-semibold tracking-wider uppercase"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.85 }}
-            transition={{ delay: 0.6, duration: 0.4 }}
+            className="hidden sm:block w-1 h-1 rounded-full bg-primary-foreground/50 flex-shrink-0"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.65, type: 'spring', stiffness: 300 }}
+          />
+          
+          <motion.span 
+            className="hidden sm:inline text-[9.5px] font-bold tracking-widest uppercase drop-shadow-sm"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 0.95, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
           >
             {t('layout.trustBar.premium')}
           </motion.span>
         </div>
-        {/* Curved bottom edge - overlaps header */}
-        <svg className="absolute bottom-0 left-0 w-full translate-y-[75%] z-10" viewBox="0 0 1440 40" preserveAspectRatio="none" style={{ height: '24px' }}>
-          <path d="M0,0 L0,12 Q720,40 1440,12 L1440,0 Z" className="fill-primary" />
-        </svg>
       </motion.div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30 pt-2">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30">
         <div className="flex h-[4.5rem] items-center justify-between px-4">
           <div className="flex items-center gap-2.5">
             {showBack && <BackButton />}
