@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
 import { useScrollRestoration } from "@/hooks/useScrollRestoration";
-import { incrementNavDepth } from "@/components/BackButton";
+import { handleNavigationAction } from "@/lib/navigationTracker";
 
 /**
  * Single source of truth for scroll management + navigation depth tracking.
@@ -14,16 +14,13 @@ export function SmartScrollRestoration() {
   const isFirst = useRef(true);
 
   useEffect(() => {
-    // Skip the initial mount (not a real navigation)
     if (isFirst.current) {
       isFirst.current = false;
       return;
     }
-    // Only count PUSH navigations (user clicking links/navigating forward)
-    if (navType === "PUSH") {
-      incrementNavDepth();
-    }
-  }, [location.pathname, navType]);
+    // Track ALL navigation types (PUSH, POP, REPLACE) for accurate depth
+    handleNavigationAction(navType);
+  }, [location.key, navType]);
 
   return null;
 }

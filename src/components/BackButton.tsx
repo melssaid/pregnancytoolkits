@@ -1,12 +1,9 @@
 import { forwardRef, useCallback } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
-// Global in-app navigation depth tracker (immune to iframe/sandbox quirks)
-let navDepth = 0;
-export function incrementNavDepth() { navDepth++; }
+import { getNavDepth } from "@/lib/navigationTracker";
 
 interface BackButtonProps {
   className?: string;
@@ -17,16 +14,15 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
   ({ className = "", fallbackPath }, ref) => {
     const { i18n } = useTranslation();
     const navigate = useNavigate();
-    const location = useLocation();
     const isRTL = i18n.language === "ar";
     const Icon = isRTL ? ArrowRight : ArrowLeft;
 
     const handleBack = useCallback(() => {
-      // Always try real browser back if there's history
-      if (window.history.length > 1) {
+      // Use our reliable in-app navigation depth tracker
+      if (getNavDepth() > 0) {
         navigate(-1);
       } else {
-        // Truly no history (direct link access) → go home
+        // No in-app history — go to home
         navigate(fallbackPath ?? "/", { replace: true });
       }
     }, [navigate, fallbackPath]);
