@@ -10,7 +10,7 @@ const definedRoutes = [
   "/tools/ai-hospital-bag", "/tools/ai-partner-guide", "/tools/ai-birth-position",
   "/tools/ai-skincare", "/tools/ai-bump-photos",
   "/tools/ai-fitness-coach", "/tools/ai-back-pain-relief", "/tools/vitamin-tracker",
-  "/tools/labor-progress", "/tools/ai-birth-plan",
+  "/tools/ai-birth-plan",
   "/tools/cycle-tracker", "/tools/due-date-calculator", "/tools/fetal-growth",
   "/tools/kick-counter", "/tools/weight-gain", "/tools/mental-health-coach",
   "/tools/maternal-health", "/tools/baby-gear-recommender",

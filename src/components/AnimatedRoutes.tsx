@@ -41,7 +41,6 @@ const VitaminTracker = lazy(() => import("@/pages/tools/VitaminTracker"));
 
 
 // AI LABOR
-const AILaborProgressTracker = lazy(() => import("@/pages/tools/AILaborProgressTracker"));
 const AIBirthPlanGenerator = lazy(() => import("@/pages/tools/AIBirthPlanGenerator"));
 
 // FERTILITY & PLANNING
@@ -125,8 +124,8 @@ export function AnimatedRoutes() {
         
 
         {/* AI LABOR */}
-        <Route path="/tools/labor-progress" element={<PageTransition variant="tool"><AILaborProgressTracker /></PageTransition>} />
         <Route path="/tools/ai-birth-plan" element={<PageTransition variant="tool"><AIBirthPlanGenerator /></PageTransition>} />
+        <Route path="/tools/labor-progress" element={<Navigate to="/tools/ai-birth-plan" replace />} />
 
         {/* FERTILITY & PLANNING */}
         <Route path="/tools/cycle-tracker" element={<PageTransition variant="tool"><CycleTracker /></PageTransition>} />

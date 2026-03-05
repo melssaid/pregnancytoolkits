@@ -14,7 +14,7 @@ const tools = [
   { icon: Baby, title: "Baby Growth Tracker", desc: "Follow your baby's week-by-week development with size comparisons and milestones.", link: "/tools/baby-growth", keyword: "baby growth tracker" },
   { icon: Brain, title: "AI Pregnancy Assistant", desc: "Get instant, evidence-based answers to your pregnancy questions from our AI companion.", link: "/tools/pregnancy-assistant", keyword: "pregnancy assistant" },
   { icon: Apple, title: "Pregnancy Meal Planner", desc: "Personalized nutrition plans and safe food guides for every trimester.", link: "/tools/ai-meal-suggestion", keyword: "pregnancy nutrition" },
-  { icon: Heart, title: "Contraction Timer", desc: "Time your contractions accurately and know when it's time to head to the hospital.", link: "/tools/labor-progress", keyword: "contraction timer" },
+  { icon: Heart, title: "AI Birth Plan Generator", desc: "Create a comprehensive, personalized birth plan with AI guidance.", link: "/tools/ai-birth-plan", keyword: "birth plan generator" },
   { icon: Activity, title: "Weight Gain Tracker", desc: "Monitor healthy pregnancy weight gain with BMI-based guidelines from ACOG.", link: "/tools/weight-gain", keyword: "pregnancy weight gain" },
   { icon: Calendar, title: "Cycle & Ovulation Tracker", desc: "Track your menstrual cycle, predict ovulation, and identify your fertile window.", link: "/tools/cycle-tracker", keyword: "ovulation tracker" },
 ];
@@ -249,9 +249,7 @@ export default function LandingEN() {
             <p>
               As you approach your due date, preparation becomes key. Our{" "}
               <Link to="/tools/ai-hospital-bag" className="text-primary hover:underline">hospital bag checklist</Link>{" "}
-              ensures you're packed and ready. The{" "}
-              <Link to="/tools/labor-progress" className="text-primary hover:underline">contraction timer</Link>{" "}
-              helps you determine when it's time to go to the hospital. And our{" "}
+              ensures you're packed and ready. Our{" "}
               <Link to="/tools/ai-birth-plan" className="text-primary hover:underline">AI birth plan generator</Link>{" "}
               helps you create a comprehensive plan for your delivery.
             </p>
