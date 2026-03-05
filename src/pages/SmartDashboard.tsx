@@ -27,6 +27,7 @@ import { Link } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
+import { SavedFavorites } from "@/components/dashboard/SavedFavorites";
 import { toast } from "sonner";
 import { safeSaveToLocalStorage, safeParseLocalStorage } from "@/lib/safeStorage";
 
@@ -326,6 +327,9 @@ const SmartDashboard = () => {
 
             {/* 4. Recent AI Results */}
             <RecentAIResults />
+
+            {/* 4b. Saved Favorites */}
+            <SavedFavorites />
 
             {/* 5. Data Tracking Tools - Organized by Category */}
             <Card className="overflow-hidden rounded-3xl card-pink-top">
