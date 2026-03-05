@@ -42,17 +42,17 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30">
-        <div className="flex h-12 items-center justify-between px-3">
-          <div className="flex items-center gap-2.5">
+        <div className="flex h-14 items-center justify-between px-4">
+          <div className="flex items-center gap-3">
             {showBack && <BackButton />}
             
-              <Link to="/" className="flex items-center gap-2">
-              <div className={`rounded-full overflow-hidden flex-shrink-0 ${showBack ? 'h-8 w-8' : 'h-9 w-9'}`}>
+              <Link to="/" className="flex items-center gap-2.5">
+              <div className={`rounded-full overflow-hidden flex-shrink-0 ${showBack ? 'h-9 w-9' : 'h-10 w-10'}`}>
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
-                  width={showBack ? 32 : 36}
-                  height={showBack ? 32 : 36}
+                  width={showBack ? 36 : 40}
+                  height={showBack ? 36 : 40}
                   loading="eager"
                   decoding="async"
                   className="w-full h-full object-cover scale-[1.3]"
@@ -64,10 +64,10 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                 </span>
               ) : (
                 <div className="flex flex-col min-w-0">
-                  <span className="text-xs sm:text-sm font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
+                  <span className="text-sm font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
                     {t('app.name')}
                   </span>
-                  <span className="text-[9px] sm:text-[10px] text-muted-foreground font-medium mt-0.5 whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
+                  <span className="text-[10px] text-muted-foreground font-medium mt-0.5 whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
                     {t('app.tagline')}
                   </span>
                 </div>
@@ -75,7 +75,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             </Link>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <LanguageDropdown variant="compact" />
 
             <div className="hidden md:flex">
