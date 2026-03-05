@@ -209,13 +209,6 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
           <span className={`inline-block w-2 h-4 bg-primary/50 animate-pulse ${isRTL ? 'me-1' : 'ms-1'} rounded`} />
         )}
       </div>
-      {disclaimerContent && (
-        <div className="mt-3 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
-          <p className="text-[9px] text-muted-foreground/60 tracking-wide">
-            {t('ai.resultDisclaimer')}
-          </p>
-        </div>
-      )}
     </div>
   );
 }
