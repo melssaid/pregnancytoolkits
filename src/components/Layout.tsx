@@ -22,19 +22,19 @@ export function Layout({ children, showBack = false }: LayoutProps) {
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Trust Bar - Above header */}
       <div className="bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-primary-foreground" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-        <div className="flex items-center justify-center gap-4 sm:gap-6 py-1 px-4 text-[9px] font-medium tracking-wider uppercase">
-          <div className="flex items-center gap-1.5 opacity-80">
-            <Shield className="h-2.5 w-2.5" />
+        <div className="flex items-center justify-center gap-3 sm:gap-5 py-0.5 px-3 text-[7.5px] font-medium tracking-widest uppercase">
+          <div className="flex items-center gap-1 opacity-75">
+            <Shield className="h-2 w-2" />
             <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
           </div>
-          <span className="w-px h-2.5 bg-primary-foreground/25" />
-          <div className="flex items-center gap-1.5 opacity-80">
-            <Heart className="h-2.5 w-2.5" />
+          <span className="w-px h-2 bg-primary-foreground/20" />
+          <div className="flex items-center gap-1 opacity-75">
+            <Heart className="h-2 w-2" />
             <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
           </div>
-          <span className="hidden sm:block w-px h-2.5 bg-primary-foreground/25" />
-          <div className="hidden sm:flex items-center gap-1.5 opacity-80">
-            <Shield className="h-2.5 w-2.5" />
+          <span className="hidden sm:block w-px h-2 bg-primary-foreground/20" />
+          <div className="hidden sm:flex items-center gap-1 opacity-75">
+            <Shield className="h-2 w-2" />
             <span>{t('layout.trustBar.premium')}</span>
           </div>
         </div>
@@ -42,32 +42,32 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30">
-        <div className="flex h-14 items-center justify-between px-4">
-          <div className="flex items-center gap-3">
+        <div className="flex h-12 items-center justify-between px-4">
+          <div className="flex items-center gap-2.5">
             {showBack && <BackButton />}
             
-              <Link to="/" className="flex items-center gap-2.5">
-              <div className={`rounded-full overflow-hidden flex-shrink-0 ${showBack ? 'h-9 w-9' : 'h-10 w-10'}`}>
+              <Link to="/" className="flex items-center gap-2">
+              <div className="rounded-full overflow-hidden flex-shrink-0 h-8 w-8">
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
-                  width={showBack ? 36 : 40}
-                  height={showBack ? 36 : 40}
+                  width={32}
+                  height={32}
                   loading="eager"
                   decoding="async"
                   className="w-full h-full object-cover scale-[1.3]"
                 />
               </div>
               {showBack ? (
-                <span className="text-sm font-bold text-foreground tracking-tight truncate max-w-[120px] sm:max-w-none">
+                <span className="text-[13px] font-bold text-foreground tracking-tight truncate max-w-[120px] sm:max-w-none">
                   {t('app.name')}
                 </span>
               ) : (
                 <div className="flex flex-col min-w-0">
-                  <span className="text-sm font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
+                  <span className="text-[13px] font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
                     {t('app.name')}
                   </span>
-                  <span className="text-[10px] text-muted-foreground font-medium mt-0.5 whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
+                  <span className="text-[9.5px] text-muted-foreground font-medium mt-0 whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
                     {t('app.tagline')}
                   </span>
                 </div>
@@ -87,7 +87,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               className="hidden md:flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
               title="Settings"
             >
-              <Settings className="h-5 w-5" />
+              <Settings className="h-4.5 w-4.5" />
             </Link>
           </div>
         </div>
