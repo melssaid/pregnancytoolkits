@@ -79,18 +79,18 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </motion.span>
         </div>
         {/* Animated glowing bottom line */}
-        <div className="relative h-[2px] overflow-hidden">
+        <div className="relative h-[3px] overflow-hidden">
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-primary-foreground/10 via-primary-foreground/50 to-primary-foreground/10"
+            className="absolute inset-0 bg-gradient-to-r from-primary-foreground/15 via-primary-foreground/60 to-primary-foreground/15"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           />
           <motion.div
-            className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full blur-[1px]"
+            className="absolute h-full w-1/4 bg-gradient-to-r from-transparent via-white/90 to-transparent rounded-full blur-[2px]"
             initial={{ x: '-100%' }}
-            animate={{ x: '400%' }}
-            transition={{ delay: 1, duration: 2, repeat: Infinity, repeatDelay: 3, ease: 'easeInOut' }}
+            animate={{ x: '500%' }}
+            transition={{ delay: 0.8, duration: 1.8, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
           />
         </div>
       </motion.div>
