@@ -117,17 +117,7 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     const brand = brandNames[lang] || brandNames.en;
     const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
 
-    // Use a new window instead of iframe to avoid sandbox restrictions
-    const printWindow = window.open('', '_blank', 'width=800,height=600');
-    if (!printWindow) {
-      console.error('Print window blocked by browser');
-      return;
-    }
-
-    const doc = printWindow.document;
-
-    doc.open();
-    doc.write(`<!DOCTYPE html>
+    const htmlContent = `<!DOCTYPE html>
 <html dir="${isRTL ? 'rtl' : 'ltr'}" lang="${lang}">
 <head>
   <meta charset="utf-8" />
@@ -240,7 +230,7 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
 </head>
 <body>
   <div class="print-header">
-    <img class="logo" src="${window.location.origin}/logo.png" alt="Logo" />
+    <img class="logo" src="${window.location.origin}/logo.png" alt="Logo" crossorigin="anonymous" />
     <h1>${title || brand}</h1>
     <div class="brand">${brand}</div>
     <div class="date">${new Date().toLocaleDateString(isRTL ? 'ar-SA' : lang === 'de' ? 'de-DE' : lang === 'fr' ? 'fr-FR' : lang === 'es' ? 'es-ES' : lang === 'pt' ? 'pt-BR' : lang === 'tr' ? 'tr-TR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
@@ -252,20 +242,62 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     <a class="footer-email" href="mailto:Melssaid@gmail.com">Melssaid@gmail.com</a>
     <div class="footer-brand">${brand} &mdash; ${new Date().getFullYear()}</div>
   </div>
+  <script>
+    // Auto-print when the page loads, then close
+    window.onload = function() {
+      setTimeout(function() {
+        window.print();
+      }, 500);
+    };
+    window.onafterprint = function() {
+      window.close();
+    };
+  </script>
 </body>
-</html>`);
-    doc.close();
+</html>`;
 
-    // Wait for fonts to load, then print
-    setTimeout(() => {
-      try {
-        printWindow.focus();
-        printWindow.print();
-      } catch (e) {
-        console.error('Print failed:', e);
-      }
-      setTimeout(() => printWindow.close(), 2000);
-    }, 800);
+    // Create a Blob URL - this bypasses popup blockers and sandbox restrictions
+    const blob = new Blob([htmlContent], { type: 'text/html; charset=utf-8' });
+    const blobUrl = URL.createObjectURL(blob);
+    
+    const printTab = window.open(blobUrl, '_blank');
+    
+    if (!printTab) {
+      // Fallback: use current window print with injected styles
+      const printStyleId = '__print-style-override';
+      const existingStyle = document.getElementById(printStyleId);
+      if (existingStyle) existingStyle.remove();
+
+      const style = document.createElement('style');
+      style.id = printStyleId;
+      style.textContent = `
+        @media print {
+          body > *:not(#__print-container) { display: none !important; }
+          #__print-container { display: block !important; }
+        }
+      `;
+      document.head.appendChild(style);
+
+      const container = document.createElement('div');
+      container.id = '__print-container';
+      container.style.display = 'none';
+      container.innerHTML = `<div style="font-family: Cairo, Tajawal, sans-serif; direction: ${isRTL ? 'rtl' : 'ltr'}; padding: 20px;">
+        <h1 style="color: #ec4899; text-align: center; margin-bottom: 16px;">${title || brand}</h1>
+        ${patientHTML}
+        <div>${content}</div>
+      </div>`;
+      document.body.appendChild(container);
+
+      window.print();
+
+      setTimeout(() => {
+        container.remove();
+        style.remove();
+      }, 1000);
+    }
+
+    // Clean up blob URL after a delay
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
   }, [lang, isRTL, title, profile, cleanHTMLForPrint]);
 
   const printHints: Record<string, string> = {
