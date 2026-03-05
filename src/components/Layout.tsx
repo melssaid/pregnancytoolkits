@@ -21,7 +21,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Trust Bar - Above header */}
-      <div className="bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-primary-foreground">
+      <div className="bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-primary-foreground" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
         <div className="flex items-center justify-center gap-4 sm:gap-6 py-1 px-4 text-[9px] font-medium tracking-wider uppercase">
           <div className="flex items-center gap-1.5 opacity-80">
             <Shield className="h-2.5 w-2.5" />
