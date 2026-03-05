@@ -43,7 +43,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5, ease: 'easeOut' }}
           >
-            ✦ {t('layout.trustBar.scienceBacked', 'Science-Backed')}
+            {t('layout.trustBar.scienceBacked', 'Science-Backed')}
           </motion.span>
           
           <motion.span 
@@ -59,7 +59,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5, ease: 'easeOut' }}
           >
-            ✦ {t('layout.trustBar.aiTools', '42+ AI Tools')}
+            {t('layout.trustBar.aiTools', '42+ AI Tools')}
           </motion.span>
           
           <motion.span 
@@ -75,11 +75,16 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
           >
-            ✦ {t('layout.trustBar.premium')}
+            {t('layout.trustBar.premium')}
           </motion.span>
         </div>
-        {/* Gradient bottom line */}
-        <div className="h-[2px] bg-gradient-to-r from-transparent via-primary-foreground/30 to-transparent" />
+        {/* Animated gradient bottom line */}
+        <motion.div
+          className="h-[2px] bg-gradient-to-r from-transparent via-primary-foreground/40 to-transparent"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.7, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        />
       </motion.div>
 
       {/* Header */}
