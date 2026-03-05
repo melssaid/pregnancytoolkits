@@ -38,12 +38,12 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         
         <div className="relative flex items-center justify-center gap-4 sm:gap-6 py-1.5 px-4">
           <motion.span 
-            className="text-[9.5px] font-bold tracking-widest uppercase drop-shadow-sm"
+            className="text-[9.5px] font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground"
             initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 0.95, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5, ease: 'easeOut' }}
           >
-            {t('layout.trustBar.scienceBacked', 'Science-Backed')}
+            ✦ {t('layout.trustBar.scienceBacked', 'Science-Backed')}
           </motion.span>
           
           <motion.span 
@@ -54,12 +54,12 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           />
           
           <motion.span 
-            className="text-[9.5px] font-bold tracking-widest uppercase drop-shadow-sm"
+            className="text-[9.5px] font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground"
             initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 0.95, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5, ease: 'easeOut' }}
           >
-            {t('layout.trustBar.aiTools', '42+ AI Tools')}
+            ✦ {t('layout.trustBar.aiTools', '42+ AI Tools')}
           </motion.span>
           
           <motion.span 
@@ -70,12 +70,12 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           />
           
           <motion.span 
-            className="hidden sm:inline text-[9.5px] font-bold tracking-widest uppercase drop-shadow-sm"
+            className="hidden sm:inline text-[9.5px] font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground"
             initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 0.95, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
           >
-            {t('layout.trustBar.premium')}
+            ✦ {t('layout.trustBar.premium')}
           </motion.span>
         </div>
         {/* Gradient bottom line */}
