@@ -21,18 +21,18 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Trust Bar - Above header */}
-      <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-1 px-3">
-        <div className="flex items-center justify-center gap-3 sm:gap-5 text-[10px] font-medium tracking-wide">
+      <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-0.5 px-3">
+        <div className="flex items-center justify-center gap-3 sm:gap-5 text-[8px] font-medium tracking-wide opacity-90">
           <div className="flex items-center gap-1">
-            <Shield className="h-3 w-3" />
+            <Shield className="h-2.5 w-2.5" />
             <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
           </div>
           <div className="hidden sm:flex items-center gap-1">
-            <Heart className="h-3 w-3" />
+            <Heart className="h-2.5 w-2.5" />
             <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
           </div>
           <div className="flex items-center gap-1">
-            <Shield className="h-3 w-3" />
+            <Shield className="h-2.5 w-2.5" />
             <span>{t('layout.trustBar.premium')}</span>
           </div>
         </div>
@@ -106,7 +106,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
 
       {/* Footer */}
-      <footer className="border-t border-border bg-card py-5 pb-24 md:pb-5 rounded-t-[2rem]">
+      <footer className="border-t border-border border-b-4 border-b-primary/20 bg-card py-5 pb-24 md:pb-5 rounded-t-[2rem]">
         <div className="container">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2.5">
