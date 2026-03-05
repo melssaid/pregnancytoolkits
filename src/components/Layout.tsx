@@ -78,13 +78,21 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             {t('layout.trustBar.premium')}
           </motion.span>
         </div>
-        {/* Animated gradient bottom line */}
-        <motion.div
-          className="h-[2px] bg-gradient-to-r from-transparent via-primary-foreground/40 to-transparent"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 0.7, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        />
+        {/* Animated glowing bottom line */}
+        <div className="relative h-[2px] overflow-hidden">
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-primary-foreground/10 via-primary-foreground/50 to-primary-foreground/10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          />
+          <motion.div
+            className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full blur-[1px]"
+            initial={{ x: '-100%' }}
+            animate={{ x: '400%' }}
+            transition={{ delay: 1, duration: 2, repeat: Infinity, repeatDelay: 3, ease: 'easeInOut' }}
+          />
+        </div>
       </motion.div>
 
       {/* Header */}
