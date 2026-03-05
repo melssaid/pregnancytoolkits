@@ -342,6 +342,7 @@
     "smartPlanDesc": "Mi plan diario e informe PDF",
     "myTrackingData": "Mis datos de seguimiento",
     "tools": "herramientas",
+    "dataHint": "Las estadísticas y análisis aparecen automáticamente al usar las herramientas y agregar tus datos",
     "categories": {
       "dailyTracking": "Seguimiento diario",
       "planning": "Planificación",

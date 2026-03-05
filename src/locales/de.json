@@ -342,6 +342,7 @@
     "smartPlanDesc": "Mein Tagesplan & PDF-Bericht",
     "myTrackingData": "Meine Tracking-Daten",
     "tools": "Tools",
+    "dataHint": "Statistiken und Erkenntnisse erscheinen automatisch, wenn Sie die Tools nutzen und Ihre Daten hinzufügen",
     "categories": {
       "dailyTracking": "Tägliches Tracking",
       "planning": "Planung",

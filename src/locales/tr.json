@@ -342,6 +342,7 @@
     "smartPlanDesc": "Günlük Planım ve PDF Raporu",
     "myTrackingData": "Takip Verilerim",
     "tools": "araç",
+    "dataHint": "Araçları kullandıkça ve verilerinizi ekledikçe istatistikler ve analizler otomatik olarak görünür",
     "categories": {
       "dailyTracking": "Günlük Takip",
       "planning": "Planlama",
