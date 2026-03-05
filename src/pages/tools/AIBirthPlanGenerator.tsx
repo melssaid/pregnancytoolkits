@@ -218,6 +218,7 @@ export default function AIBirthPlanGenerator() {
                 content={generatedPlan}
                 title={t('toolsInternal.birthPlan.yourBirthPlan')}
                 icon={FileText}
+                toolId="ai-birth-plan"
               />
             </PrintableReport>
           </div>

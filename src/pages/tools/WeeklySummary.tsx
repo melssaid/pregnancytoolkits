@@ -232,6 +232,7 @@ export default function WeeklySummary() {
               content={summary}
               isLoading={isLoading}
               icon={Baby}
+              toolId="weekly-summary"
             />
 
             {/* Saved date indicator */}

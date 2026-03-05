@@ -197,6 +197,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
               isLoading={isLoading}
               title={t('toolsInternal.skincare.yourRoutine')}
               icon={Sparkles}
+              toolId="ai-skincare"
             />
           </motion.div>
         )}

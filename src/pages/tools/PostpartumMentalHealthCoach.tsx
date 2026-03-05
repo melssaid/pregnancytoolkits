@@ -196,6 +196,7 @@ export default function PostpartumMentalHealthCoach() {
                         content={aiCopingPlan}
                         title={t('toolsInternal.mentalHealthCoach.title')}
                         icon={Brain}
+                        toolId="postpartum-mental-health"
                       />
                     </PrintableReport>
                   ) : (
