@@ -284,6 +284,7 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
               title={t("toolsInternal.mealSuggestion.mealSuggestion")}
               subtitle={t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
               icon={Utensils}
+              toolId="ai-meal-suggestion"
             />
 
             {/* Actions */}

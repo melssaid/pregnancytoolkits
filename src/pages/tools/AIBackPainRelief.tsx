@@ -216,6 +216,7 @@ Provide:
             isLoading={isLoading}
             title={t('toolsInternal.backPainRelief.aiCoach')}
             icon={Brain}
+            toolId="ai-back-pain"
           />
         )}
 

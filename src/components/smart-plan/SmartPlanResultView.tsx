@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Brain, Globe, Loader2, RefreshCw, Sparkles } from "lucide-react";
+import { SaveResultButton } from "@/components/ai/SaveResultButton";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
@@ -87,7 +88,10 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
                 <p className="text-[10px] text-muted-foreground">{new Date().toLocaleDateString(isRTL ? 'ar-SA' : undefined)}</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
+              {!isLoading && content && (
+                <SaveResultButton toolId="smart-pregnancy-plan" title={`${t("smartPlan.title")} — ${t("common.week", "Week")} ${week}`} content={content} />
+              )}
               {researchEnhanced && (
                 <Badge variant="outline" className="text-[8px] gap-0.5 border-emerald-500/30 text-emerald-600 bg-emerald-500/10 shrink-0">
                   <Globe className="w-2 h-2" />

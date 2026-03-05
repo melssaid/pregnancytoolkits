@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Brain } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
+import { SavedResultsViewer } from "@/components/ai/SavedResultsViewer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { HealthStatsGrid } from "@/components/smart-plan/HealthStatsGrid";
@@ -130,6 +131,8 @@ const SmartPregnancyPlan = () => {
           lang={lang}
           onGenerate={generatePlan}
         />
+
+        <SavedResultsViewer toolId="smart-pregnancy-plan" onLoad={(r) => setPlanContent(r.content)} />
 
         {error && (
           <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{error}</div>

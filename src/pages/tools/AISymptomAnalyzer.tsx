@@ -282,6 +282,7 @@ Provide brief, supportive wellness insights about these feelings during week ${c
             isLoading={isGettingInsight}
             title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}
             icon={Brain}
+            toolId="ai-symptom-analyzer"
           />
         )}
 
