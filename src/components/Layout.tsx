@@ -21,21 +21,21 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Trust Bar - Above header */}
-      <div className="bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-primary-foreground" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-        <div className="flex items-center justify-center gap-3 sm:gap-5 py-1 px-3 text-[9px] font-medium tracking-widest uppercase">
-          <div className="flex items-center gap-1 opacity-75">
-            <Shield className="h-2.5 w-2.5" />
-            <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
+      <div className="bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-primary-foreground rounded-b-2xl shadow-md" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
+        <div className="flex items-center justify-center gap-4 sm:gap-6 py-1.5 px-4 text-[8px] font-semibold tracking-wider uppercase opacity-90">
+          <div className="flex items-center gap-1.5">
+            <Shield className="h-2.5 w-2.5 opacity-80" />
+            <span className="opacity-90">{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
           </div>
-          <span className="w-px h-2.5 bg-primary-foreground/20" />
-          <div className="flex items-center gap-1.5 opacity-75">
-            <Heart className="h-2.5 w-2.5" />
-            <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
+          <span className="w-[3px] h-[3px] rounded-full bg-primary-foreground/30" />
+          <div className="flex items-center gap-1.5">
+            <Heart className="h-2.5 w-2.5 opacity-80" />
+            <span className="opacity-90">{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
           </div>
-          <span className="hidden sm:block w-px h-2.5 bg-primary-foreground/20" />
-          <div className="hidden sm:flex items-center gap-1.5 opacity-75">
-            <Shield className="h-2.5 w-2.5" />
-            <span>{t('layout.trustBar.premium')}</span>
+          <span className="hidden sm:block w-[3px] h-[3px] rounded-full bg-primary-foreground/30" />
+          <div className="hidden sm:flex items-center gap-1.5">
+            <Shield className="h-2.5 w-2.5 opacity-80" />
+            <span className="opacity-90">{t('layout.trustBar.premium')}</span>
           </div>
         </div>
       </div>
