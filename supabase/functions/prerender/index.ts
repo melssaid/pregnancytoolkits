@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+// Prerender edge function for SEO bots
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -9,7 +9,6 @@ const BASE_URL = "https://pregnancytoolkits.lovable.app";
 const OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/jo6UX4DMdye2RhsGMYck0XjWOvR2/social-images/social-1770674585393-1000140907.jpg";
 const BRAND = "Pregnancy Toolkits";
 
-// HTML escape to prevent injection
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, '&amp;')
@@ -19,10 +18,8 @@ function escapeHtml(str: string): string {
     .replace(/>/g, '&gt;');
 }
 
-// Validate path is a known route or a safe pattern
 const VALID_PATH_PATTERN = /^\/[a-z0-9\-\/]*$/;
 
-// SEO metadata for each route
 const routeMeta: Record<string, { title: string; description: string }> = {
   "/": { title: "Free Pregnancy Tracker & AI Companion | 42+ Tools", description: "Free pregnancy tracker app with 42+ AI-powered tools: due date calculator, kick counter, contraction timer, baby growth tracker, safe foods guide & more." },
   "/dashboard": { title: "Pregnancy Dashboard", description: "Your personalized pregnancy dashboard with AI assistant, health tracking, nutrition & exercise tools." },
@@ -70,7 +67,7 @@ const routeMeta: Record<string, { title: string; description: string }> = {
   "/contact": { title: "Contact Us", description: "Contact the Pregnancy Toolkits team for support, feedback, or questions." },
 };
 
-serve(async (req: Request) => {
+Deno.serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -79,7 +76,6 @@ serve(async (req: Request) => {
     const url = new URL(req.url);
     const rawPath = url.searchParams.get("path") || "/";
     
-    // Validate path: must match safe pattern and be a known route (fallback to /)
     const path = (VALID_PATH_PATTERN.test(rawPath) && routeMeta[rawPath]) ? rawPath : "/";
     const meta = routeMeta[path] || routeMeta["/"];
     const fullTitle = escapeHtml(path === "/" ? `${BRAND} – ${meta.title}` : `${meta.title} | ${BRAND}`);
