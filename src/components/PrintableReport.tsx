@@ -55,30 +55,67 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
 
     const clone = reportRef.current.cloneNode(true) as HTMLElement;
 
-    // Remove non-printable elements first
-    clone.querySelectorAll('[data-no-print], .no-print, button, svg, canvas').forEach(el => el.remove());
+    // 1. Remove non-printable elements
+    clone.querySelectorAll(
+      '[data-no-print], .no-print, button, svg, canvas, video, audio, iframe, [role="progressbar"], [data-radix-collection-item]'
+    ).forEach(el => el.remove());
 
-    // Remove decorative elements: gradient bars, progress bars, stat grids, badges, loading dots
-    clone.querySelectorAll('[class*="h-1"], [class*="h-1.5"], [class*="progress"], [class*="Progress"]').forEach(el => {
-      // Only remove thin decorative bars (height ≤ 6px)
+    // 2. Remove stat grids, badges, decorative cards, icons, progress bars
+    clone.querySelectorAll('*').forEach(el => {
       const h = el as HTMLElement;
-      if (h.offsetHeight <= 6 || h.className?.includes('h-1')) el.remove();
+      const cls = h.getAttribute('class') || '';
+      const tag = h.tagName.toLowerCase();
+
+      // Remove thin decorative bars
+      if (/\bh-\[?[0-3]/.test(cls) || /\bh-1\b/.test(cls) || /\bh-0\.5\b/.test(cls)) {
+        el.remove();
+        return;
+      }
+
+      // Remove progress/badge/icon elements
+      if (/progress|badge|ring|spinner|loading|skeleton/i.test(cls)) {
+        el.remove();
+        return;
+      }
+
+      // Remove empty divs with only gradient/bg classes (decorative wrappers)
+      if (tag === 'div' && h.children.length === 0 && !h.textContent?.trim()) {
+        el.remove();
+        return;
+      }
     });
 
-    // Strip ALL inline styles and class attributes to prevent background leaking
-    clone.querySelectorAll('*').forEach(el => {
+    // 3. Try to find the actual AI response content (markdown rendered area)
+    const markdownEl = clone.querySelector('.markdown-content, .prose, [class*="markdown"], [class*="Markdown"]');
+    let printContent: string;
+
+    if (markdownEl) {
+      // Use only the markdown content — this is the actual report
+      printContent = markdownEl.innerHTML;
+    } else {
+      // Fallback: use the entire clone
+      printContent = clone.innerHTML;
+    }
+
+    // 4. Strip ALL inline styles and classes from the final content
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = printContent;
+    tempDiv.querySelectorAll('*').forEach(el => {
       const h = el as HTMLElement;
       h.removeAttribute('style');
       h.removeAttribute('class');
-      // Keep semantic attributes
       h.removeAttribute('data-state');
       h.removeAttribute('data-orientation');
     });
 
-    // Remove empty wrapper divs (decorative containers) but keep content
-    // This flattens the DOM to just text content
-    
-    return buildPrintHTML({ content: clone.innerHTML, title, lang, isRTL, profile });
+    // 5. Remove any remaining empty elements (divs with no text)
+    tempDiv.querySelectorAll('div, span').forEach(el => {
+      if (!el.textContent?.trim() && el.children.length === 0) {
+        el.remove();
+      }
+    });
+
+    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile });
   }, [lang, isRTL, title, profile]);
 
   /** Primary: Open report as a Blob URL in a new tab (works in sandboxed iframes) */
