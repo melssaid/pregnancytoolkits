@@ -119,81 +119,63 @@ COMPLIANCE:
   if (req.mode === "plan") {
     return {
       system: langInstruction + basePersona + researchSection + `
-Generate a comprehensive, personalized weekly pregnancy plan. Structure:
+Generate a concise, personalized weekly pregnancy plan. Keep it focused and practical — avoid lengthy explanations. Use short bullet points. Structure:
 
 ## 📋 Week ${req.week} Overview
-Brief summary of this stage
+1-2 sentences only
 
 ## 🏋️ Exercise Plan
-- Safe exercises for trimester ${trimester}
-- Duration and frequency
-- Modifications based on pain level (${req.painLevel}/10) and activity level (${req.activityLevel})
+3-5 bullet points with safe exercises for trimester ${trimester}, considering pain level (${req.painLevel}/10)
 
 ## 🥗 Nutrition Guide
-| Meal | Suggestion | Key Nutrients |
-Tailored to week ${req.week} needs and any conditions
+5-7 key food recommendations in a simple list (no table)
 
-## 💊 Supplements & Vitamins
-What's recommended at this stage
+## 💊 Supplements
+Brief list of what's recommended
 
-## 🧘 Wellness & Self-Care
-- Sleep optimization (currently ${req.sleepHours}hrs)
-- Stress management for mood: ${req.mood}
-- Pain management strategies
+## 🧘 Wellness Tips
+3-4 practical tips for sleep (${req.sleepHours}hrs) and mood (${req.mood})
 
 ## 📅 This Week's Checklist
-Actionable items for the week
-
-## 🔬 Latest Research Insights
-Incorporate any relevant findings from recent studies
+4-6 actionable items
 
 ## ⚠️ Warning Signs
-What to watch for at week ${req.week}
+3-5 key signs to watch for
 
 ## 💝 Encouragement
-Warm, supportive closing message
+1-2 warm sentences
 
-Be specific, practical, and evidence-based.`,
+IMPORTANT: Keep the TOTAL response under 600 words. Be concise.`,
       user: `Week ${req.week}, Trimester ${trimester}. Weight: ${req.weight}kg, Height: ${req.height}cm, Age: ${req.age}. Pain: ${req.painLevel}/10, BP: ${req.bloodPressureSys}/${req.bloodPressureDia}, Sleep: ${req.sleepHours}hrs, Mood: ${req.mood}, Activity: ${req.activityLevel}. Conditions: ${conditionsText}.`,
     };
   } else {
     return {
       system: langInstruction + basePersona + researchSection + `
-Generate a comprehensive medical-style health report. Structure:
+Generate a concise health report. Use short bullet points, avoid lengthy paragraphs. Structure:
 
-## 📊 Health Assessment Summary
-Overview with risk level indicators
+## 📊 Health Summary
+2-3 sentences with key findings
 
-## 🩺 Vital Signs Analysis
-- BP: ${req.bloodPressureSys}/${req.bloodPressureDia} — interpretation
-- BMI analysis
-- Pain level assessment
+## 🩺 Vital Signs
+- BP: ${req.bloodPressureSys}/${req.bloodPressureDia} — brief interpretation
+- BMI and weight assessment (1 line each)
 
-## 🔬 Recommended Tests & Screenings
-Tests appropriate for week ${req.week}, especially with conditions: ${conditionsText}
+## 🔬 Recommended Tests
+3-5 tests appropriate for week ${req.week}
 
-## ⚡ Risk Factor Analysis
-Based on patient data and latest guidelines
+## ⚡ Risk Factors
+Brief list based on patient data
 
-## 🥗 Nutrition Assessment
-Caloric needs, key nutrients for week ${req.week}
+## 🥗 Nutrition & Activity
+Key recommendations in bullet points
 
-## 🏃 Physical Activity Recommendations
-Based on current activity: ${req.activityLevel}
-
-## 😴 Sleep & Wellness Analysis
-Current: ${req.sleepHours}hrs, mood: ${req.mood}
-
-## 🔬 Latest Research Relevant to You
-Synthesize recent findings applicable to this patient
-
-## ⚠️ Warning Signs to Monitor
-Week-specific red flags
+## ⚠️ Warning Signs
+3-5 specific signs to monitor
 
 ## 📋 Action Items
-Priority-ordered next steps
+4-6 priority next steps
 
-Be thorough, evidence-based, and professional.`,
+IMPORTANT: Keep the TOTAL response under 500 words. Be concise and practical.`,
       user: `Patient data — Week ${req.week}, Age: ${req.age}, Weight: ${req.weight}kg, Height: ${req.height}cm, BP: ${req.bloodPressureSys}/${req.bloodPressureDia}, Pain: ${req.painLevel}/10, Sleep: ${req.sleepHours}hrs, Mood: ${req.mood}, Activity: ${req.activityLevel}, Conditions: ${conditionsText}.`,
     };
   }
@@ -255,7 +237,7 @@ Deno.serve(async (req) => {
         ],
         stream: true,
         temperature: mode === "plan" ? 0.4 : 0.3,
-        max_tokens: 4000,
+        max_tokens: 2000,
       }),
     });
 
