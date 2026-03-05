@@ -57,8 +57,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </motion.span>
         </div>
         {/* Curved bottom edge - overlaps header */}
-        <svg className="absolute bottom-0 left-0 w-full translate-y-[60%] z-10" viewBox="0 0 1440 32" preserveAspectRatio="none" style={{ height: '18px' }}>
-          <path d="M0,0 L0,8 Q720,32 1440,8 L1440,0 Z" className="fill-primary" />
+        <svg className="absolute bottom-0 left-0 w-full translate-y-[75%] z-10" viewBox="0 0 1440 40" preserveAspectRatio="none" style={{ height: '24px' }}>
+          <path d="M0,0 L0,12 Q720,40 1440,12 L1440,0 Z" className="fill-primary" />
         </svg>
       </motion.div>
 
