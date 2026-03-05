@@ -22,19 +22,19 @@ export function Layout({ children, showBack = false }: LayoutProps) {
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Trust Bar - Above header */}
       <div className="bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-primary-foreground" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-        <div className="flex items-center justify-center gap-3 sm:gap-5 py-0.5 px-3 text-[7.5px] font-medium tracking-widest uppercase">
+        <div className="flex items-center justify-center gap-3 sm:gap-5 py-1 px-3 text-[9px] font-medium tracking-widest uppercase">
           <div className="flex items-center gap-1 opacity-75">
-            <Shield className="h-2 w-2" />
+            <Shield className="h-2.5 w-2.5" />
             <span>{t('layout.trustBar.scienceBacked', 'Science-Backed')}</span>
           </div>
-          <span className="w-px h-2 bg-primary-foreground/20" />
-          <div className="flex items-center gap-1 opacity-75">
-            <Heart className="h-2 w-2" />
+          <span className="w-px h-2.5 bg-primary-foreground/20" />
+          <div className="flex items-center gap-1.5 opacity-75">
+            <Heart className="h-2.5 w-2.5" />
             <span>{t('layout.trustBar.aiTools', '42+ AI Tools')}</span>
           </div>
-          <span className="hidden sm:block w-px h-2 bg-primary-foreground/20" />
-          <div className="hidden sm:flex items-center gap-1 opacity-75">
-            <Shield className="h-2 w-2" />
+          <span className="hidden sm:block w-px h-2.5 bg-primary-foreground/20" />
+          <div className="hidden sm:flex items-center gap-1.5 opacity-75">
+            <Shield className="h-2.5 w-2.5" />
             <span>{t('layout.trustBar.premium')}</span>
           </div>
         </div>
@@ -42,32 +42,32 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30">
-        <div className="flex h-16 items-center justify-between px-4">
+        <div className="flex h-[4.5rem] items-center justify-between px-4">
           <div className="flex items-center gap-2.5">
             {showBack && <BackButton />}
             
               <Link to="/" className="flex items-center gap-2.5">
-              <div className="rounded-full overflow-hidden flex-shrink-0 h-10 w-10">
+              <div className="rounded-full overflow-hidden flex-shrink-0 h-11 w-11">
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
-                  width={40}
-                  height={40}
+                  width={44}
+                  height={44}
                   loading="eager"
                   decoding="async"
                   className="w-full h-full object-cover scale-[1.3]"
                 />
               </div>
               {showBack ? (
-                <span className="text-[13px] font-bold text-foreground tracking-tight truncate max-w-[120px] sm:max-w-none">
+                <span className="text-[14px] font-bold text-foreground tracking-tight truncate max-w-[120px] sm:max-w-none">
                   {t('app.name')}
                 </span>
               ) : (
                 <div className="flex flex-col min-w-0">
-                  <span className="text-[13px] font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
+                  <span className="text-[14.5px] font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
                     {t('app.name')}
                   </span>
-                  <span className="text-[9.5px] text-muted-foreground font-medium mt-0 whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
+                  <span className="text-[10.5px] text-muted-foreground font-medium mt-0.5 whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
                     {t('app.tagline')}
                   </span>
                 </div>
