@@ -103,11 +103,29 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(() => {
+    try {
+      const saved = localStorage.getItem("journey-states");
+      if (saved) {
+        const states = JSON.parse(saved);
+        return !!states[config.key];
+      }
+    } catch {}
+    return false;
+  });
 
   const toggle = useCallback(() => {
-    setIsOpen(prev => !prev);
-  }, []);
+    setIsOpen(prev => {
+      const next = !prev;
+      try {
+        const saved = localStorage.getItem("journey-states");
+        const states = saved ? JSON.parse(saved) : {};
+        states[config.key] = next;
+        localStorage.setItem("journey-states", JSON.stringify(states));
+      } catch {}
+      return next;
+    });
+  }, [config.key]);
 
   const categories = useMemo(() => getJourneyCategories(config.key), [config.key]);
   const toolsByCategory = useMemo(() => {
