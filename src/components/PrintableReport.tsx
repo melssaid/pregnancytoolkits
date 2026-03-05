@@ -271,20 +271,34 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     }, 800);
   }, [lang, isRTL, title, profile, cleanHTMLForPrint]);
 
+  const printHints: Record<string, string> = {
+    ar: '📄 احفظي نسخة لمشاركتها مع طبيبتك',
+    en: '📄 Save a copy to share with your doctor',
+    fr: '📄 Enregistrez une copie pour votre médecin',
+    de: '📄 Speichern Sie eine Kopie für Ihren Arzt',
+    es: '📄 Guarda una copia para tu médico',
+    pt: '📄 Salve uma cópia para seu médico',
+    tr: '📄 Doktorunuzla paylaşmak için bir kopya kaydedin',
+  };
+
   return (
     <div>
       <div ref={reportRef}>
         {children}
       </div>
-      <Button
-        variant="outline"
-        onClick={handlePrint}
-        className="w-full mt-3 gap-2"
-        data-no-print
-      >
-        <Printer className="w-4 h-4" />
-        {printLabels[lang] || printLabels.en}
-      </Button>
+      <div className="mt-3 space-y-1.5" data-no-print>
+        <Button
+          variant="outline"
+          onClick={handlePrint}
+          className="w-full gap-2"
+        >
+          <Printer className="w-4 h-4" />
+          {printLabels[lang] || printLabels.en}
+        </Button>
+        <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
+          {printHints[lang] || printHints.en}
+        </p>
+      </div>
     </div>
   );
 };
