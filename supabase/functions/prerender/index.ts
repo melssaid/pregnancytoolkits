@@ -9,6 +9,19 @@ const BASE_URL = "https://pregnancytoolkits.lovable.app";
 const OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/jo6UX4DMdye2RhsGMYck0XjWOvR2/social-images/social-1770674585393-1000140907.jpg";
 const BRAND = "Pregnancy Toolkits";
 
+// HTML escape to prevent injection
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// Validate path is a known route or a safe pattern
+const VALID_PATH_PATTERN = /^\/[a-z0-9\-\/]*$/;
+
 // SEO metadata for each route
 const routeMeta: Record<string, { title: string; description: string }> = {
   "/": { title: "Free Pregnancy Tracker & AI Companion | 42+ Tools", description: "Free pregnancy tracker app with 42+ AI-powered tools: due date calculator, kick counter, contraction timer, baby growth tracker, safe foods guide & more." },
@@ -64,10 +77,15 @@ serve(async (req: Request) => {
 
   try {
     const url = new URL(req.url);
-    const path = url.searchParams.get("path") || "/";
+    const rawPath = url.searchParams.get("path") || "/";
+    
+    // Validate path: must match safe pattern and be a known route (fallback to /)
+    const path = (VALID_PATH_PATTERN.test(rawPath) && routeMeta[rawPath]) ? rawPath : "/";
     const meta = routeMeta[path] || routeMeta["/"];
-    const fullTitle = path === "/" ? `${BRAND} – ${meta.title}` : `${meta.title} | ${BRAND}`;
-    const canonical = `${BASE_URL}${path}`;
+    const fullTitle = escapeHtml(path === "/" ? `${BRAND} – ${meta.title}` : `${meta.title} | ${BRAND}`);
+    const escapedDescription = escapeHtml(meta.description);
+    const canonical = escapeHtml(`${BASE_URL}${path}`);
+    const escapedOgImage = escapeHtml(OG_IMAGE);
 
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -75,33 +93,33 @@ serve(async (req: Request) => {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${fullTitle}</title>
-  <meta name="description" content="${meta.description}" />
+  <meta name="description" content="${escapedDescription}" />
   <link rel="canonical" href="${canonical}" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="${fullTitle}" />
-  <meta property="og:description" content="${meta.description}" />
+  <meta property="og:description" content="${escapedDescription}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${canonical}" />
-  <meta property="og:image" content="${OG_IMAGE}" />
+  <meta property="og:image" content="${escapedOgImage}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="${BRAND}" />
+  <meta property="og:site_name" content="${escapeHtml(BRAND)}" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${fullTitle}" />
-  <meta name="twitter:description" content="${meta.description}" />
-  <meta name="twitter:image" content="${OG_IMAGE}" />
+  <meta name="twitter:description" content="${escapedDescription}" />
+  <meta name="twitter:image" content="${escapedOgImage}" />
 
   <!-- Redirect to actual app -->
   <meta http-equiv="refresh" content="0;url=${canonical}" />
 </head>
 <body>
   <h1>${fullTitle}</h1>
-  <p>${meta.description}</p>
+  <p>${escapedDescription}</p>
   <p>Not a medical device. For educational and informational purposes only.</p>
-  <a href="${canonical}">Open ${BRAND}</a>
+  <a href="${canonical}">Open ${escapeHtml(BRAND)}</a>
 </body>
 </html>`;
 
@@ -112,8 +130,8 @@ serve(async (req: Request) => {
         'Cache-Control': 'public, max-age=3600',
       },
     });
-  } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
+  } catch {
+    return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
