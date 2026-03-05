@@ -1,9 +1,10 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Printer, Check } from 'lucide-react';
+import { Printer, Download } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { buildPrintHTML } from '@/lib/printUtils';
+import { toast } from 'sonner';
 
 interface PrintableReportProps {
   children: React.ReactNode;
@@ -13,6 +14,11 @@ interface PrintableReportProps {
 const printLabels: Record<string, string> = {
   en: 'Print Report', ar: 'طباعة التقرير', de: 'Bericht drucken',
   fr: 'Imprimer le rapport', es: 'Imprimir informe', pt: 'Imprimir relatório', tr: 'Raporu yazdır',
+};
+
+const downloadLabels: Record<string, string> = {
+  en: 'Download Report', ar: 'تحميل التقرير', de: 'Bericht herunterladen',
+  fr: 'Télécharger le rapport', es: 'Descargar informe', pt: 'Baixar relatório', tr: 'Raporu indir',
 };
 
 const printHints: Record<string, string> = {
@@ -25,105 +31,114 @@ const printHints: Record<string, string> = {
   tr: '📄 Doktorunuzla paylaşmak için bir kopya kaydedin',
 };
 
+const successMessages: Record<string, string> = {
+  ar: 'تم فتح التقرير! اضغطي Ctrl+P للطباعة',
+  en: 'Report opened! Press Ctrl+P to print',
+  de: 'Bericht geöffnet! Drücken Sie Strg+P zum Drucken',
+  fr: 'Rapport ouvert ! Appuyez sur Ctrl+P pour imprimer',
+  es: '¡Informe abierto! Presiona Ctrl+P para imprimir',
+  pt: 'Relatório aberto! Pressione Ctrl+P para imprimir',
+  tr: 'Rapor açıldı! Ctrl+P ile yazdırın',
+};
+
 export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title }) => {
   const { i18n } = useTranslation();
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
-  const [printing, setPrinting] = useState(false);
+  const [busy, setBusy] = useState(false);
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
 
+  /** Build clean HTML from the report content */
+  const buildCleanHTML = useCallback(() => {
+    if (!reportRef.current) return null;
+
+    const clone = reportRef.current.cloneNode(true) as HTMLElement;
+    // Strip framer-motion artifacts
+    clone.querySelectorAll('*').forEach(el => {
+      const h = el as HTMLElement;
+      h.style.removeProperty('opacity');
+      h.style.removeProperty('transform');
+      h.style.removeProperty('will-change');
+      h.style.removeProperty('translate');
+      h.style.removeProperty('scale');
+      h.style.removeProperty('rotate');
+      if (h.getAttribute('style')?.trim() === '') h.removeAttribute('style');
+    });
+    clone.querySelectorAll('[data-no-print], .no-print, button').forEach(el => el.remove());
+
+    return buildPrintHTML({ content: clone.innerHTML, title, lang, isRTL, profile });
+  }, [lang, isRTL, title, profile]);
+
+  /** Primary: Open report as a Blob URL in a new tab (works in sandboxed iframes) */
   const handlePrint = useCallback(() => {
-    if (!reportRef.current || printing) return;
-    setPrinting(true);
+    if (busy) return;
+    setBusy(true);
 
     try {
-      // Clone and clean content (strip framer-motion artifacts)
-      const clone = reportRef.current.cloneNode(true) as HTMLElement;
-      clone.querySelectorAll('*').forEach(el => {
-        const h = el as HTMLElement;
-        h.style.removeProperty('opacity');
-        h.style.removeProperty('transform');
-        h.style.removeProperty('will-change');
-        h.style.removeProperty('translate');
-        h.style.removeProperty('scale');
-        h.style.removeProperty('rotate');
-        if (h.getAttribute('style')?.trim() === '') h.removeAttribute('style');
-      });
-      clone.querySelectorAll('[data-no-print], .no-print, button').forEach(el => el.remove());
+      const fullHTML = buildCleanHTML();
+      if (!fullHTML) { setBusy(false); return; }
 
-      const content = clone.innerHTML;
-      const fullHTML = buildPrintHTML({ content, title, lang, isRTL, profile });
+      // Add auto-print script to the HTML — triggers print dialog when opened
+      const htmlWithAutoPrint = fullHTML.replace(
+        '</body>',
+        `<script>window.onload=function(){setTimeout(function(){window.print()},600)}<\/script></body>`
+      );
 
-      // === Strategy: Inject a hidden iframe, write content, and print from it ===
-      // This works in sandboxed environments where window.open is blocked
-      const printFrame = document.createElement('iframe');
-      printFrame.id = '__print-frame';
-      printFrame.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:999999;opacity:0;pointer-events:none;';
-      
-      // Remove any previous print frame
-      document.getElementById('__print-frame')?.remove();
-      document.body.appendChild(printFrame);
+      const blob = new Blob([htmlWithAutoPrint], { type: 'text/html; charset=utf-8' });
+      const blobUrl = URL.createObjectURL(blob);
 
-      const frameDoc = printFrame.contentDocument || printFrame.contentWindow?.document;
-      if (!frameDoc) {
-        // Absolute fallback: inject into current page
-        fallbackPrint(fullHTML);
-        setPrinting(false);
-        return;
+      // Open in new tab — this works even in sandboxed iframes
+      const newTab = window.open(blobUrl, '_blank');
+
+      if (newTab) {
+        // Clean up blob URL after a delay
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 60_000);
+        toast.success(successMessages[lang] || successMessages.en);
+      } else {
+        // If popup blocked, fall back to download
+        downloadAsFile(fullHTML);
       }
-
-      frameDoc.open();
-      frameDoc.write(fullHTML);
-      frameDoc.close();
-
-      // Wait for content to render, then print
-      const triggerPrint = () => {
-        try {
-          printFrame.contentWindow?.focus();
-          printFrame.contentWindow?.print();
-        } catch {
-          // If iframe print fails, use fallback
-          fallbackPrint(fullHTML);
-        }
-        // Clean up after printing
-        setTimeout(() => {
-          printFrame.remove();
-          setPrinting(false);
-        }, 1000);
-      };
-
-      // Use load event with timeout fallback
-      if (printFrame.contentWindow) {
-        printFrame.contentWindow.onafterprint = () => {
-          printFrame.remove();
-          setPrinting(false);
-        };
-      }
-
-      // Give fonts/images time to load
-      setTimeout(triggerPrint, 800);
-
     } catch (e) {
       console.error('[Print] Error:', e);
-      setPrinting(false);
+      // Last resort: download
+      const html = buildCleanHTML();
+      if (html) downloadAsFile(html);
+    } finally {
+      setTimeout(() => setBusy(false), 1000);
     }
-  }, [lang, isRTL, title, profile, printing]);
+  }, [busy, buildCleanHTML, lang]);
+
+  /** Fallback: Download the report as an HTML file */
+  const handleDownload = useCallback(() => {
+    const fullHTML = buildCleanHTML();
+    if (!fullHTML) return;
+    downloadAsFile(fullHTML);
+  }, [buildCleanHTML]);
 
   return (
     <div>
       <div ref={reportRef}>
         {children}
       </div>
-      <div className="mt-3 space-y-1.5" data-no-print>
-        <Button 
-          variant="outline" 
-          onClick={handlePrint} 
-          disabled={printing}
+      <div className="mt-3 space-y-2" data-no-print>
+        <Button
+          variant="outline"
+          onClick={handlePrint}
+          disabled={busy}
           className="w-full gap-2"
         >
-          {printing ? <Check className="w-4 h-4 animate-pulse" /> : <Printer className="w-4 h-4" />}
+          <Printer className="w-4 h-4" />
           {printLabels[lang] || printLabels.en}
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleDownload}
+          className="w-full gap-2 text-xs text-muted-foreground"
+        >
+          <Download className="w-3 h-3" />
+          {downloadLabels[lang] || downloadLabels.en}
         </Button>
         <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
           {printHints[lang] || printHints.en}
@@ -133,45 +148,17 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   );
 };
 
-/** Last-resort fallback: inject into current page and use window.print() */
-function fallbackPrint(htmlContent: string) {
-  const styleId = '__print-style-override';
-  const containerId = '__print-container';
-
-  document.getElementById(styleId)?.remove();
-  document.getElementById(containerId)?.remove();
-
-  // Create a container with the full HTML content
-  const container = document.createElement('div');
-  container.id = containerId;
-  container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:999998;background:white;overflow:auto;';
-  
-  // Extract body content from the full HTML
-  const bodyMatch = htmlContent.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-  const styleMatch = htmlContent.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
-  
-  if (styleMatch) {
-    const style = document.createElement('style');
-    style.id = styleId;
-    style.textContent = styleMatch[1] + `
-      @media print {
-        body > *:not(#${containerId}) { display: none !important; }
-        #${containerId} { display: block !important; position: static !important; }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  container.innerHTML = bodyMatch ? bodyMatch[1] : htmlContent;
-  document.body.appendChild(container);
-
-  setTimeout(() => {
-    window.print();
-    setTimeout(() => {
-      container.remove();
-      document.getElementById(styleId)?.remove();
-    }, 1000);
-  }, 500);
+/** Download HTML content as a file */
+function downloadAsFile(htmlContent: string) {
+  const blob = new Blob([htmlContent], { type: 'text/html; charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `pregnancy-report-${new Date().toISOString().split('T')[0]}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
 }
 
 export default PrintableReport;
