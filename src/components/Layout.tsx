@@ -162,7 +162,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       <div className="hidden lg:block fixed right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/30 via-primary/50 to-primary/30 z-40" />
 
       {/* Main Content */}
-      <main>
+      <main className="pt-5">
         {children}
 
         {/* Bottom Navigation for Mobile */}
