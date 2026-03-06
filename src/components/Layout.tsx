@@ -96,7 +96,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       </motion.div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-sm border-b border-border/30">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-[0_-8px_20px_-4px_hsl(340_65%_52%/0.15)] border-b border-border/30">
         <div className="flex h-[4.5rem] items-center justify-between px-4">
           <div className="flex items-center gap-2.5">
             {showBack && <BackButton />}
