@@ -1,4 +1,5 @@
 import { useMemo, memo, useState, useCallback } from "react";
+import { PricingBanner } from "@/components/PricingBanner";
 import { ChevronRight, ChevronLeft, ChevronDown } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
