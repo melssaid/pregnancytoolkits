@@ -80,6 +80,7 @@ const Splash = lazy(() => import("@/pages/Splash"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const LogoPulseDemo = lazy(() => import("@/pages/LogoPulseDemo"));
+const CurveDemo = lazy(() => import("@/pages/CurveDemo"));
 
 export function AnimatedRoutes() {
   return (
@@ -93,6 +94,7 @@ export function AnimatedRoutes() {
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="/curve-demo" element={<PageTransition><CurveDemo /></PageTransition>} />
         
         {/* AI-POWERED CORE TOOLS */}
         <Route path="/tools/pregnancy-assistant" element={<PageTransition variant="tool"><PregnancyAssistant /></PageTransition>} />
