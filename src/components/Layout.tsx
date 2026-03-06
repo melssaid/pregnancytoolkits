@@ -98,9 +98,13 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       </motion.div>
 
       {/* Header - flush with trust bar */}
-      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/30">
-        {/* Soft gradient shadow below header */}
-        <div className="absolute -bottom-3 left-0 right-0 h-3 bg-gradient-to-b from-foreground/[0.06] to-transparent pointer-events-none" />
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b-0">
+        {/* Curved bottom edge */}
+        <div className="absolute -bottom-[14px] left-0 right-0 h-[14px] overflow-hidden pointer-events-none z-10">
+          <svg viewBox="0 0 1440 90" fill="none" className="w-full h-full" preserveAspectRatio="none">
+            <path d="M0,0 L0,5 C200,90 400,90 720,90 C1040,90 1240,90 1440,5 L1440,0 Z" fill="hsl(var(--card) / 0.95)" />
+          </svg>
+        </div>
         <div className="flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2.5">
             {showBack && <BackButton />}
