@@ -140,6 +140,10 @@
   .text-\[9px\], .text-\[10px\] {
     font-size: 11px !important;
   }
+  /* Trust bar text exemption - allow smaller sizes */
+  .trust-bar-text {
+    min-font-size: unset !important;
+  }
 
   /* Global text containment for all languages */
   p, span, h1, h2, h3, h4, h5, h6, li, td, th, label, a, div, blockquote {

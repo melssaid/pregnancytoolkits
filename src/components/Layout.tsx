@@ -16,7 +16,9 @@ interface LayoutProps {
 }
 
 export function Layout({ children, showBack = false }: LayoutProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.dir() === 'rtl';
+  const trustTextSize = isRtl ? 'text-[9.5px]' : 'text-[8px]';
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
@@ -38,7 +40,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         
         <div className="relative flex items-center justify-center gap-4 sm:gap-6 pt-2 pb-2 px-4">
           <motion.span 
-            className="text-[9.5px] font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground"
+            className={`${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5, ease: 'easeOut' }}
@@ -54,7 +56,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           />
           
           <motion.span 
-            className="text-[9.5px] font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground"
+            className={`${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5, ease: 'easeOut' }}
@@ -70,7 +72,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           />
           
           <motion.span 
-            className="hidden sm:inline text-[9.5px] font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground"
+            className={`hidden sm:inline ${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
