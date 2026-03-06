@@ -102,7 +102,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         {/* Curved bottom edge */}
         <div className="absolute -bottom-[14px] left-0 right-0 h-[14px] overflow-hidden pointer-events-none z-10">
           <svg viewBox="0 0 1440 90" fill="none" className="w-full h-full" preserveAspectRatio="none">
-            <path d="M0,0 L0,5 C200,90 400,90 720,90 C1040,90 1240,90 1440,5 L1440,0 Z" fill="hsl(var(--card) / 0.95)" />
+            <path d="M0,0 L0,5 C200,90 400,90 720,90 C1040,90 1240,90 1440,5 L1440,0 Z" className="fill-card/95" />
           </svg>
         </div>
         <div className="flex h-16 items-center justify-between px-4">
