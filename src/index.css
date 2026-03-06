@@ -33,12 +33,12 @@
     --secondary: 300 25% 95%;
     --secondary-foreground: 340 50% 32%;
     
-    /* Background - Warm rose blush */
-    --background: 338 22% 92%;
+    /* Background - Soft lavender blush */
+    --background: 310 18% 93%;
     --foreground: 25 20% 18%;
     
-    /* Cards - Soft rose petal */
-    --card: 338 20% 95%;
+    /* Cards - Warm pearl */
+    --card: 315 15% 96.5%;
     --card-foreground: 25 20% 18%;
     
     /* Muted - Warm beige */
@@ -62,7 +62,7 @@
     --destructive-foreground: 0 0% 100%;
     
     /* Popover */
-    --popover: 338 20% 95%;
+    --popover: 315 15% 96.5%;
     --popover-foreground: 25 20% 18%;
     
     /* Border */
@@ -73,7 +73,7 @@
     --radius: 1rem;
     
     /* Sidebar */
-    --sidebar-background: 338 20% 95%;
+    --sidebar-background: 315 15% 96.5%;
     --sidebar-foreground: 25 20% 28%;
     --sidebar-primary: 340 65% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -173,10 +173,10 @@
     overflow-x: hidden;
     background: linear-gradient(
       180deg,
-      hsl(338 28% 88%) 0%,
-      hsl(338 24% 90%) 25%,
-      hsl(var(--background)) 55%,
-      hsl(338 20% 91%) 100%
+      hsl(320 20% 89%) 0%,
+      hsl(315 18% 91%) 30%,
+      hsl(var(--background)) 60%,
+      hsl(310 15% 92%) 100%
     );
   }
 
@@ -184,10 +184,10 @@
     font-family: 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     background: linear-gradient(
       180deg,
-      hsl(338 28% 88%) 0%,
-      hsl(338 24% 90%) 25%,
-      hsl(var(--background)) 55%,
-      hsl(338 20% 91%) 100%
+      hsl(320 20% 89%) 0%,
+      hsl(315 18% 91%) 30%,
+      hsl(var(--background)) 60%,
+      hsl(310 15% 92%) 100%
     );
   }
 
