@@ -89,19 +89,61 @@ export default function PostpartumMentalHealthCoach() {
     }
   };
 
+  const buildAnswersSummary = () => {
+    return questions.map((q, i) => {
+      const answerValue = answers[q.id];
+      const selectedOption = q.options.find(o => o.value === answerValue);
+      const questionText = t(q.questionKey);
+      const answerText = selectedOption ? t(selectedOption.labelKey) : '—';
+      return `Q${i + 1}: ${questionText} → ${answerText} (${answerValue}/3)`;
+    }).join('\n');
+  };
+
   const getAICopingPlan = async () => {
     setShowAICoping(true);
     setAiCopingPlan('');
     const score = getScore();
     const level = getRiskLevel(score);
+    const answersSummary = buildAnswersSummary();
+
+    const detailedContext = `
+Postpartum Mental Health Screening Results (EPDS-based):
+Total Score: ${score}/${maxScore} (${level} risk level)
+
+Individual Answers:
+${answersSummary}
+`;
+
     const prompts: Record<string, string> = {
-      en: `As a postpartum wellness guide, create a personalized coping plan based on a wellness assessment score of ${score}/${maxScore} (${level} level). Include daily routines, self-care tips, breathing exercises, when to seek support, and partner support suggestions.`,
-      ar: `بصفتك مرشدة صحية لما بعد الولادة، أنشئي خطة تكيف مخصصة بناءً على تقييم الصحة النفسية ${score}/${maxScore} (مستوى ${level === 'low' ? 'منخفض' : level === 'moderate' ? 'متوسط' : 'عالي'}). تشمل روتين يومي، نصائح العناية الذاتية، تمارين التنفس، متى تطلبين الدعم، واقتراحات دعم الشريك.`,
-      de: `Als postpartale Wellness-Beraterin, erstelle einen personalisierten Bewältigungsplan basierend auf einem Wellness-Score von ${score}/${maxScore} (${level} Stufe).`,
-      fr: `En tant que guide bien-être postnatal, créez un plan personnalisé basé sur un score de bien-être de ${score}/${maxScore} (niveau ${level}).`,
-      es: `Como guía de bienestar posparto, crea un plan personalizado basado en una evaluación de bienestar de ${score}/${maxScore} (nivel ${level}).`,
-      pt: `Como guia de bem-estar pós-parto, crie um plano personalizado baseado em uma avaliação de bem-estar de ${score}/${maxScore} (nível ${level}).`,
-      tr: `Doğum sonrası sağlık rehberi olarak, ${score}/${maxScore} (${level} seviye) sağlık değerlendirmesine dayalı kişiselleştirilmiş bir başa çıkma planı oluşturun.`,
+      en: `As a postpartum wellness guide, analyze these detailed screening results and create a personalized coping plan:
+
+${detailedContext}
+
+Based on the specific areas where the mother scored higher, provide targeted advice. Include:
+1. Analysis of the key concern areas based on her specific answers
+2. Daily routines tailored to her struggles
+3. Self-care tips for her specific symptoms
+4. Breathing and relaxation exercises
+5. When to seek professional support
+6. Partner/family support suggestions
+7. Baby bonding activities that may help`,
+      ar: `بصفتك مرشدة صحية متخصصة في فترة ما بعد الولادة، حللي نتائج الفحص التالية وأنشئي خطة تكيف مخصصة:
+
+${detailedContext}
+
+بناءً على المجالات التي سجلت فيها الأم درجات أعلى، قدمي نصائح موجهة. تشمل:
+1. تحليل المجالات الرئيسية المثيرة للقلق بناءً على إجاباتها المحددة
+2. روتين يومي مصمم لمعالجة مشاكلها الخاصة
+3. نصائح عناية ذاتية لأعراضها المحددة
+4. تمارين تنفس واسترخاء
+5. متى يجب طلب الدعم المهني
+6. اقتراحات لدعم الشريك والعائلة
+7. أنشطة ترابط مع الطفل قد تساعدها`,
+      de: `Als postpartale Wellness-Beraterin, analysiere diese Screening-Ergebnisse und erstelle einen personalisierten Bewältigungsplan:\n\n${detailedContext}`,
+      fr: `En tant que guide bien-être postnatal, analysez ces résultats de dépistage et créez un plan personnalisé:\n\n${detailedContext}`,
+      es: `Como guía de bienestar posparto, analiza estos resultados de evaluación y crea un plan personalizado:\n\n${detailedContext}`,
+      pt: `Como guia de bem-estar pós-parto, analise estes resultados de rastreio e crie um plano personalizado:\n\n${detailedContext}`,
+      tr: `Doğum sonrası sağlık rehberi olarak, bu tarama sonuçlarını analiz edin ve kişiselleştirilmiş bir başa çıkma planı oluşturun:\n\n${detailedContext}`,
     };
 
     await streamChat({
