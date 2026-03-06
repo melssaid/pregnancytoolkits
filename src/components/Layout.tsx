@@ -101,7 +101,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/30">
         {/* Soft gradient shadow below header */}
         <div className="absolute -bottom-3 left-0 right-0 h-3 bg-gradient-to-b from-foreground/[0.06] to-transparent pointer-events-none" />
-        <div className="flex h-[4.5rem] items-center justify-between px-4">
+        <div className="flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2.5">
             {showBack && <BackButton />}
             
