@@ -148,19 +148,19 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
       {/* Gradient Header — clickable to toggle */}
       <button
         onClick={toggle}
-        className={`${config.headerGradient} px-5 py-5 relative overflow-hidden w-full text-start min-h-[88px] flex items-center`}
+        className={`${config.headerGradient} px-4 py-3.5 relative overflow-hidden w-full text-start min-h-[68px] flex items-center`}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
         <div className="absolute -top-6 -end-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
         
-        <div className="relative flex items-center gap-3 w-full">
-          <div className={`w-13 h-13 rounded-2xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg flex-shrink-0`}>
+        <div className="relative flex items-center gap-2.5 w-full">
+          <div className={`w-10 h-10 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg flex-shrink-0`}>
             {config.customIcon === "footprints" ? (
-              <BabyFootprintsIcon className="w-8 h-8" />
+              <BabyFootprintsIcon className="w-6 h-6" />
             ) : config.customIcon === "rockingBaby" ? (
-              <RockingBabyIcon className="w-8 h-8" />
+              <RockingBabyIcon className="w-6 h-6" />
             ) : config.customIcon === "pregnancyHeart" ? (
-              <PregnancyHeartIcon className="w-8 h-8" />
+              <PregnancyHeartIcon className="w-6 h-6" />
             ) : Icon ? (
               <motion.div
                 animate={{ scale: [1, 1.12, 1] }}
@@ -171,10 +171,10 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className={`text-2xl font-extrabold ${config.headerText} tracking-tight leading-tight`}>
+            <h2 className={`text-base font-bold ${config.headerText} tracking-tight leading-tight`}>
               {t(`journeys.${config.key}`)}
             </h2>
-            <p className={`text-xs ${config.headerText} opacity-80 mt-1 line-clamp-1`}>
+            <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 line-clamp-1`}>
               {t(`journeys.${config.key}Desc`)}
             </p>
           </div>
