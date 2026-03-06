@@ -1,4 +1,4 @@
-import { forwardRef, useState, memo } from "react";
+import { forwardRef, useState, memo, useMemo } from "react";
 import { Home, LayoutDashboard, Sparkles, Menu, Search, Bell, Settings, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -6,11 +6,12 @@ import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { SearchDialog } from "./SearchDialog";
 import { NotificationsPanel } from "./dashboard/NotificationsPanel";
 import { useNotifications } from "@/hooks/useNotifications";
+import { toolsData } from "@/lib/tools-data";
 
 const NAV_ITEMS = [
   { id: "home", icon: Home, labelKey: "nav.home", href: "/" },
   { id: "dashboard", icon: LayoutDashboard, labelKey: "nav.dashboard", href: "/dashboard" },
-  { id: "ai-tools", icon: Sparkles, labelKey: "nav.aiTools", href: "/tools/pregnancy-assistant" },
+  { id: "ai-tools", icon: Sparkles, labelKey: "nav.aiTools", href: null },
   { id: "more", icon: Menu, labelKey: "nav.more", href: null },
 ] as const;
 
@@ -21,7 +22,10 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
     const [searchOpen, setSearchOpen] = useState(false);
     const [notificationsOpen, setNotificationsOpen] = useState(false);
     const [moreOpen, setMoreOpen] = useState(false);
+    const [aiToolsOpen, setAiToolsOpen] = useState(false);
     const { unreadCount } = useNotifications();
+
+    const aiTools = useMemo(() => toolsData.filter(tool => tool.hasAI), []);
 
     const isActive = (href: string | null) => {
       if (!href) return false;
@@ -29,6 +33,8 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
       if (href.startsWith("/#")) return location.pathname === "/" && location.hash === href.slice(1);
       return location.pathname.startsWith(href);
     };
+
+    const isAiToolActive = aiToolsOpen || aiTools.some(tool => location.pathname.startsWith(tool.href));
 
     const handleMoreAction = (action: "search" | "notifications" | "settings") => {
       setMoreOpen(false);
@@ -80,6 +86,73 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
               <div className="p-4">
                 <div className="w-10 h-1 bg-muted-foreground/20 rounded-full mx-auto mb-4 cursor-grab active:cursor-grabbing" />
                 <NotificationsPanel />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* AI Tools Panel */}
+        <AnimatePresence>
+          {aiToolsOpen && (
+            <motion.div
+              key="ai-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setAiToolsOpen(false)}
+              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {aiToolsOpen && (
+            <motion.div
+              key="ai-panel"
+              initial={{ y: 80, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 80, opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              drag="y"
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0, bottom: 0.6 }}
+              onDragEnd={(_: any, info: PanInfo) => {
+                if (info.offset.y > 80) setAiToolsOpen(false);
+              }}
+              className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[65vh] rounded-2xl bg-card border border-border/50 shadow-2xl md:hidden overflow-hidden"
+            >
+              <div className="p-3">
+                <div className="w-10 h-1 bg-muted-foreground/20 rounded-full mx-auto mb-3 cursor-grab active:cursor-grabbing" />
+                <h3 className="text-sm font-bold text-foreground px-2 mb-2 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-primary" strokeWidth={2} />
+                  {t("nav.aiTools")}
+                </h3>
+                <div className="overflow-y-auto max-h-[calc(65vh-5rem)] space-y-0.5 scrollbar-hide">
+                  {aiTools.map((tool) => {
+                    const ToolIcon = tool.icon;
+                    const isToolActive = location.pathname.startsWith(tool.href);
+                    return (
+                      <Link
+                        key={tool.id}
+                        to={tool.href}
+                        onClick={() => setAiToolsOpen(false)}
+                        className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors active:scale-[0.97] ${
+                          isToolActive 
+                            ? 'bg-primary/10 text-primary' 
+                            : 'text-foreground/80 hover:bg-muted/60'
+                        }`}
+                      >
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                          isToolActive 
+                            ? 'bg-primary/20' 
+                            : 'bg-muted/50'
+                        }`}>
+                          <ToolIcon className={`w-4 h-4 ${isToolActive ? 'text-primary' : 'text-muted-foreground'}`} strokeWidth={1.8} />
+                        </div>
+                        <span className="break-words leading-snug">{t(tool.titleKey)}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
             </motion.div>
           )}
@@ -163,7 +236,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
               {NAV_ITEMS.map((item, idx) => {
-                const active = item.id === "more" ? moreOpen : isActive(item.href);
+                const active = item.id === "more" ? moreOpen : item.id === "ai-tools" ? isAiToolActive : isActive(item.href);
                 const Icon = item.icon;
                 const isLast = idx === NAV_ITEMS.length - 1;
 
@@ -174,6 +247,8 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 const iconContent = (
                   <div className={`relative p-2.5 rounded-xl transition-all duration-200 active:scale-[0.92] ${active ? 'bg-primary/10' : ''}`}>
                     {item.id === "more" && moreOpen ? (
+                      <X className="w-5 h-5 relative z-10 text-primary transition-colors duration-200" strokeWidth={2.2} />
+                    ) : item.id === "ai-tools" && aiToolsOpen ? (
                       <X className="w-5 h-5 relative z-10 text-primary transition-colors duration-200" strokeWidth={2.2} />
                     ) : (
                       <Icon 
@@ -210,6 +285,22 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                       key={item.id}
                       onClick={() => {
                         setMoreOpen(!moreOpen);
+                        setAiToolsOpen(false);
+                        setNotificationsOpen(false);
+                      }}
+                      className="flex flex-col items-center gap-0 px-3 py-0.5 transition-all relative"
+                    >
+                      {iconContent}
+                      <span className={labelClass}>{t(item.labelKey)}</span>
+                    </button>
+                  );
+                } else if (item.id === "ai-tools") {
+                  navElement = (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setAiToolsOpen(!aiToolsOpen);
+                        setMoreOpen(false);
                         setNotificationsOpen(false);
                       }}
                       className="flex flex-col items-center gap-0 px-3 py-0.5 transition-all relative"
@@ -225,6 +316,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                       to={item.href}
                       onClick={() => {
                         setMoreOpen(false);
+                        setAiToolsOpen(false);
                         setNotificationsOpen(false);
                         // Scroll to section if already on home
                         if (location.pathname === "/") {
@@ -246,6 +338,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                       to={item.href!}
                       onClick={() => {
                         setMoreOpen(false);
+                        setAiToolsOpen(false);
                         setNotificationsOpen(false);
                       }}
                       className="flex flex-col items-center gap-0 px-3 py-0.5 transition-all"
