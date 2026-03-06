@@ -36,7 +36,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
         />
         
-        <div className="relative flex items-center justify-center gap-4 sm:gap-6 pt-0.5 pb-2 px-4">
+        <div className="relative flex items-center justify-center gap-4 sm:gap-6 pt-2 pb-2 px-4">
           <motion.span 
             className="text-[9.5px] font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground"
             initial={{ opacity: 0, y: 8 }}
@@ -93,11 +93,9 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             transition={{ delay: 0.8, duration: 1.8, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
           />
         </div>
-        {/* Soft glow shadow below trust bar */}
-        <div className="h-[6px] bg-gradient-to-b from-primary/20 to-transparent" />
       </motion.div>
 
-      {/* Header */}
+      {/* Header - flush with trust bar */}
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/30">
         {/* Soft gradient shadow below header */}
         <div className="absolute -bottom-3 left-0 right-0 h-3 bg-gradient-to-b from-foreground/[0.06] to-transparent pointer-events-none" />
