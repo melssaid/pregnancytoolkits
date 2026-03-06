@@ -118,6 +118,20 @@
     "pregnantDesc": "Tu compañero completo del embarazo",
     "postpartumDesc": "Cuidado del bebé y recuperación"
   },
+  "pricing": {
+    "title": "Acceso Premium",
+    "badge": "3 días gratis",
+    "subtitle": "Desbloquea todas las herramientas IA y funciones premium",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "mo": "mes",
+    "yr": "año",
+    "save": "Ahorra 44%",
+    "feature1": "Todas las herramientas IA desbloqueadas",
+    "feature2": "Uso diario ilimitado",
+    "feature3": "Experiencia premium sin anuncios",
+    "trialNote": "Comienza con 3 días gratis · Cancela en cualquier momento"
+  },
   "onboarding": {
     "title": "Bienvenida a tu viaje",
     "subtitle": "Tu compañero de estilo de vida y educación",

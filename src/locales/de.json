@@ -118,6 +118,20 @@
     "pregnantDesc": "Ihr Begleiter durch die Schwangerschaft",
     "postpartumDesc": "Babypflege & Erholung"
   },
+  "pricing": {
+    "title": "Premium-Zugang",
+    "badge": "3 Tage gratis",
+    "subtitle": "Alle KI-Tools und Premium-Funktionen freischalten",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "mo": "Mo.",
+    "yr": "Jahr",
+    "save": "44% sparen",
+    "feature1": "Alle KI-gestützten Tools freigeschaltet",
+    "feature2": "Unbegrenzte tägliche Nutzung",
+    "feature3": "Werbefreies Premium-Erlebnis",
+    "trialNote": "Starten Sie mit 3 kostenlosen Tagen · Jederzeit kündbar"
+  },
   "onboarding": {
     "title": "Willkommen auf Ihrer Reise",
     "subtitle": "Ihr Lifestyle- & Bildungsbegleiter",
