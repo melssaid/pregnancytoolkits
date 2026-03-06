@@ -93,10 +93,14 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             transition={{ delay: 0.8, duration: 1.8, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
           />
         </div>
+        {/* Soft glow shadow below trust bar */}
+        <div className="h-[6px] bg-gradient-to-b from-primary/20 to-transparent" />
       </motion.div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-[0_-8px_20px_-4px_hsl(340_65%_52%/0.15)] border-b border-border/30">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/30">
+        {/* Soft gradient shadow below header */}
+        <div className="absolute -bottom-3 left-0 right-0 h-3 bg-gradient-to-b from-foreground/[0.06] to-transparent pointer-events-none" />
         <div className="flex h-[4.5rem] items-center justify-between px-4">
           <div className="flex items-center gap-2.5">
             {showBack && <BackButton />}
