@@ -1,5 +1,4 @@
 import { useMemo, memo, useState, useCallback } from "react";
-import { PricingBanner } from "@/components/PricingBanner";
 import { ChevronRight, ChevronLeft, ChevronDown } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
@@ -242,7 +241,6 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} />
           ))}
           
-          <PricingBanner />
         </div>
       </section>
     </Layout>
