@@ -97,14 +97,10 @@ export const toolsData: Tool[] = [
   // Self-check tools merged into preparation section below
 
   // ═══════════════════════════════════════════════════════════════
-  // LABOR & BIRTH
-  // ═══════════════════════════════════════════════════════════════
-  { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.labor", href: "/tools/ai-birth-plan", priority: 27, hasAI: true },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PREPARATION
+  // PREPARATION & BIRTH
   // ═══════════════════════════════════════════════════════════════
   { id: "maternal-health-awareness", titleKey: "tools.maternalHealth.title", descriptionKey: "tools.maternalHealth.description", icon: AlertTriangle, categoryKey: "categories.preparation", href: "/tools/maternal-health", priority: 30 },
+  { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, categoryKey: "categories.preparation", href: "/tools/ai-birth-plan", priority: 31, hasAI: true },
   { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, categoryKey: "categories.preparation", href: "/tools/ai-hospital-bag", priority: 32, hasAI: true },
   { id: "baby-gear-recommender", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, categoryKey: "categories.preparation", href: "/tools/baby-gear-recommender", priority: 33, hasAI: true },
   { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, categoryKey: "categories.preparation", href: "/tools/smart-appointment-reminder", priority: 34, hasAI: true },
