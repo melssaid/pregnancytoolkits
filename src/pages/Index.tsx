@@ -241,7 +241,6 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} />
           ))}
           
-          <PricingBanner />
         </div>
       </section>
     </Layout>
