@@ -36,7 +36,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
         />
         
-        <div className="relative flex items-center justify-center gap-4 sm:gap-6 py-1.5 px-4">
+        <div className="relative flex items-center justify-center gap-4 sm:gap-6 py-2.5 px-4">
           <motion.span 
             className="text-[9.5px] font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground"
             initial={{ opacity: 0, y: 8 }}
