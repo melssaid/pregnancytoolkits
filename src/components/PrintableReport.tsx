@@ -118,7 +118,7 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile });
   }, [lang, isRTL, title, profile]);
 
-  /** Primary: Open report as a Blob URL in a new tab (works in sandboxed iframes) */
+  /** Primary: Print via hidden iframe — no navigation, just the print dialog */
   const handlePrint = useCallback(() => {
     if (busy) return;
     setBusy(true);
@@ -127,33 +127,47 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       const fullHTML = buildCleanHTML();
       if (!fullHTML) { setBusy(false); return; }
 
-      // Add auto-print script to the HTML — triggers print dialog when opened
-      const htmlWithAutoPrint = fullHTML.replace(
-        '</body>',
-        `<script>window.onload=function(){setTimeout(function(){window.print()},600)}<\/script></body>`
-      );
+      // Create a hidden iframe for printing
+      const iframe = document.createElement('iframe');
+      iframe.style.position = 'fixed';
+      iframe.style.top = '-10000px';
+      iframe.style.left = '-10000px';
+      iframe.style.width = '0';
+      iframe.style.height = '0';
+      iframe.style.border = 'none';
+      document.body.appendChild(iframe);
 
-      const blob = new Blob([htmlWithAutoPrint], { type: 'text/html; charset=utf-8' });
-      const blobUrl = URL.createObjectURL(blob);
-
-      // Open in new tab — this works even in sandboxed iframes
-      const newTab = window.open(blobUrl, '_blank');
-
-      if (newTab) {
-        // Clean up blob URL after a delay
-        setTimeout(() => URL.revokeObjectURL(blobUrl), 60_000);
-        toast.success(successMessages[lang] || successMessages.en);
-      } else {
-        // If popup blocked, fall back to download
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (!iframeDoc) {
+        // Fallback to download if iframe not accessible
         downloadAsFile(fullHTML);
+        setBusy(false);
+        return;
       }
+
+      iframeDoc.open();
+      iframeDoc.write(fullHTML);
+      iframeDoc.close();
+
+      // Wait for content to render, then trigger print
+      setTimeout(() => {
+        try {
+          iframe.contentWindow?.print();
+        } catch {
+          // If print fails (e.g. cross-origin), fallback to download
+          downloadAsFile(fullHTML);
+        }
+        // Clean up iframe after printing
+        setTimeout(() => {
+          document.body.removeChild(iframe);
+        }, 2000);
+      }, 500);
     } catch (e) {
       console.error('[Print] Error:', e);
-      // Last resort: download
       const html = buildCleanHTML();
       if (html) downloadAsFile(html);
     } finally {
-      setTimeout(() => setBusy(false), 1000);
+      setTimeout(() => setBusy(false), 1500);
     }
   }, [busy, buildCleanHTML, lang]);
 
