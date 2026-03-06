@@ -98,7 +98,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       </motion.div>
 
       {/* Header - flush with trust bar */}
-      <header className="sticky top-0 z-50 bg-card backdrop-blur-md border-b-0" style={{ boxShadow: '0 4px 20px -2px hsl(340 40% 30% / 0.15), 0 2px 8px -2px hsl(0 0% 0% / 0.08)' }}>
+      <header className="sticky top-0 z-50 bg-card backdrop-blur-md border-b-0" style={{ boxShadow: '0 6px 30px -2px hsl(340 40% 25% / 0.25), 0 3px 12px -2px hsl(0 0% 0% / 0.15)' }}>
         {/* Curved bottom edge */}
         <div className="absolute -bottom-[14px] left-0 right-0 h-[14px] overflow-hidden pointer-events-none z-10">
           <svg viewBox="0 0 1440 90" fill="none" className="w-full h-full" preserveAspectRatio="none">
