@@ -83,8 +83,8 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
           <ToolIcon className={`w-4 h-4 ${style.iconColor} opacity-70 group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.75} />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xs font-semibold text-foreground leading-snug">{t(tool.titleKey)}</h3>
-          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">{t(tool.descriptionKey)}</p>
+          <h3 className="text-xs font-semibold text-foreground leading-snug break-words">{t(tool.titleKey)}</h3>
+          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">{t(tool.descriptionKey)}</p>
         </div>
         <ChevronIcon className="flex-shrink-0 w-4 h-4 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
       </div>
@@ -171,10 +171,10 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className={`text-lg font-bold ${config.headerText} tracking-tight leading-tight`}>
+            <h2 className={`text-lg font-bold ${config.headerText} tracking-tight leading-snug break-words`}>
               {t(`journeys.${config.key}`)}
             </h2>
-            <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 line-clamp-1`}>
+            <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 leading-snug break-words`}>
               {t(`journeys.${config.key}Desc`)}
             </p>
           </div>
