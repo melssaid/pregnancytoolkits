@@ -58,7 +58,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, va
             <h3 className="text-sm font-semibold text-foreground leading-snug">
               {t(titleKey)}
             </h3>
-            <p className="text-xs text-foreground/70 line-clamp-2 mt-0.5 leading-relaxed">
+            <p className="text-xs text-foreground/70 break-words mt-0.5 leading-relaxed">
               {t(descriptionKey)}
             </p>
           </div>
