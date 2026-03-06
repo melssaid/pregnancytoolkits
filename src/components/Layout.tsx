@@ -122,15 +122,15 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                 />
               </div>
               {showBack ? (
-                <span className="text-[14px] font-bold text-foreground tracking-tight truncate max-w-[120px] sm:max-w-none">
+                <span className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words">
                   {t('app.name')}
                 </span>
               ) : (
                 <div className="flex flex-col min-w-0">
-                  <span className="text-[14.5px] font-bold text-foreground tracking-tight whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
+                  <span className="text-[13.5px] font-bold text-foreground tracking-tight leading-snug break-words">
                     {t('app.name')}
                   </span>
-                  <span className="text-[10.5px] text-muted-foreground font-medium mt-0.5 whitespace-nowrap truncate max-w-[180px] sm:max-w-[240px] md:max-w-none">
+                  <span className="text-[10.5px] text-muted-foreground font-medium mt-0.5 leading-snug break-words">
                     {t('app.tagline')}
                   </span>
                 </div>
