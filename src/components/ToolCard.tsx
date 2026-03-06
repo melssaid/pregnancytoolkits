@@ -34,7 +34,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, va
               <Icon className="w-6 h-6 text-primary group-hover:text-primary transition-colors duration-300" strokeWidth={1.75} />
             </div>
             {/* Title */}
-            <h3 className="text-[11px] font-semibold text-foreground text-center leading-tight line-clamp-2 min-h-[28px]">
+            <h3 className="text-[11px] font-semibold text-foreground text-center leading-snug break-words min-h-[28px]">
               {t(titleKey)}
             </h3>
           </div>
