@@ -118,6 +118,20 @@
     "pregnantDesc": "Your complete pregnancy companion",
     "postpartumDesc": "Baby care & recovery support"
   },
+  "pricing": {
+    "title": "Premium Access",
+    "badge": "3 Days Free",
+    "subtitle": "Unlock all AI tools & premium features",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "mo": "mo",
+    "yr": "yr",
+    "save": "Save 44%",
+    "feature1": "All AI-powered tools unlocked",
+    "feature2": "Unlimited daily usage",
+    "feature3": "Ad-free premium experience",
+    "trialNote": "Start with 3 free days · Cancel anytime"
+  },
   "onboarding": {
     "title": "Welcome to Your Journey",
     "subtitle": "Your lifestyle & educational companion",

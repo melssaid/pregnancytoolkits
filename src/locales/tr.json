@@ -118,6 +118,20 @@
     "pregnantDesc": "Hamilelik boyunca eksiksiz rehberiniz",
     "postpartumDesc": "Bebek bakımı ve iyileşme desteği"
   },
+  "pricing": {
+    "title": "Premium Erişim",
+    "badge": "3 Gün Ücretsiz",
+    "subtitle": "Tüm yapay zeka araçlarını ve premium özellikleri açın",
+    "monthly": "Aylık",
+    "yearly": "Yıllık",
+    "mo": "ay",
+    "yr": "yıl",
+    "save": "%44 Tasarruf",
+    "feature1": "Tüm yapay zeka araçları açık",
+    "feature2": "Sınırsız günlük kullanım",
+    "feature3": "Reklamsız premium deneyim",
+    "trialNote": "3 ücretsiz gün ile başlayın · İstediğiniz zaman iptal edin"
+  },
   "onboarding": {
     "title": "Yolculuğunuza hoş geldiniz",
     "subtitle": "Yaşam tarzı ve eğitim rehberiniz",
