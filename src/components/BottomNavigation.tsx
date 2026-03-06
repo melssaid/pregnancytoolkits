@@ -179,13 +179,13 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                           }`}>
                             <ToolIcon
                               className={`w-5 h-5 transition-colors duration-200 ${
-                                isToolActive ? 'text-primary' : 'text-foreground/60'
+                                isToolActive ? 'text-primary' : 'text-foreground'
                               }`}
-                              strokeWidth={1.7}
+                              strokeWidth={1.8}
                             />
                           </div>
-                          <span className={`text-[10px] font-medium leading-tight break-words ${
-                            isToolActive ? 'text-primary' : 'text-foreground/70'
+                          <span className={`text-[11px] font-semibold leading-tight break-words ${
+                            isToolActive ? 'text-primary' : 'text-foreground'
                           }`}>
                             {t(tool.titleKey)}
                           </span>
