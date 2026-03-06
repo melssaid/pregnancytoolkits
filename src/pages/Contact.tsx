@@ -9,7 +9,7 @@ export default function Contact() {
   
   return (
     <Layout showBack>
-      <SEOHead title={t('layout.contact.title')} description="Contact the Pregnancy Toolkits team for support, feedback, or questions" />
+      <SEOHead title={t('layout.contactPage.title')} description="Contact the Pregnancy Toolkits team for support, feedback, or questions" />
       <div className="container py-8 max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ export default function Contact() {
           className="space-y-6"
         >
           <div className="text-center space-y-2 mb-6">
-            <h1 className="text-xl font-bold text-foreground">{t('layout.contact.title')}</h1>
+            <h1 className="text-xl font-bold text-foreground">{t('layout.contactPage.title')}</h1>
             <p className="text-sm text-muted-foreground">
               {t('layout.contactPage.subtitle')}
             </p>
