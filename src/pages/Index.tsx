@@ -171,7 +171,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className={`text-base font-bold ${config.headerText} tracking-tight leading-tight`}>
+            <h2 className={`text-lg font-bold ${config.headerText} tracking-tight leading-tight`}>
               {t(`journeys.${config.key}`)}
             </h2>
             <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 line-clamp-1`}>
