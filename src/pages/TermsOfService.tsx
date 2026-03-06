@@ -118,7 +118,7 @@ export default function TermsOfService() {
               <FileCheck className="w-4 h-4" />
               <span>{t('layout.termsOfService.lastUpdated')}</span>
             </div>
-            <h1 className="text-2xl font-bold text-foreground">{t('layout.termsOfService.title')}</h1>
+            <h1 className="text-xl font-bold text-foreground">{t('layout.termsOfService.title')}</h1>
             <p className="text-muted-foreground text-sm max-w-xl mx-auto">
               {t('layout.termsOfService.subtitle')}
             </p>
@@ -138,7 +138,7 @@ export default function TermsOfService() {
                 className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${section.bgColor} ${section.color} border ${section.borderColor} hover:scale-105 transition-transform`}
               >
                 <section.icon className="w-3 h-3" />
-                <span className="truncate max-w-[100px]">
+                <span className="break-words">
                   {t(`layout.termsOfService.sections.${section.titleKey}.title`)}
                 </span>
               </a>

@@ -313,7 +313,7 @@ export default function PrivacyPolicy() {
               <Shield className="w-4 h-4" />
               <span>{t('layout.privacyPolicy.lastUpdated')}</span>
             </div>
-            <h1 className="text-2xl font-bold text-foreground">{t('layout.privacyPolicy.title')}</h1>
+            <h1 className="text-xl font-bold text-foreground">{t('layout.privacyPolicy.title')}</h1>
             <p className="text-muted-foreground text-sm max-w-xl mx-auto">
               {t('layout.privacyPolicy.subtitle')}
             </p>
