@@ -100,7 +100,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setAiToolsOpen(false)}
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md md:hidden"
             />
           )}
         </AnimatePresence>
@@ -108,48 +108,89 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
           {aiToolsOpen && (
             <motion.div
               key="ai-panel"
-              initial={{ y: 80, opacity: 0, scale: 0.95 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: 80, opacity: 0, scale: 0.95 }}
-              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 32, stiffness: 400, mass: 0.8 }}
               drag="y"
               dragConstraints={{ top: 0, bottom: 0 }}
-              dragElastic={{ top: 0, bottom: 0.6 }}
+              dragElastic={{ top: 0.05, bottom: 0.4 }}
               onDragEnd={(_: any, info: PanInfo) => {
-                if (info.offset.y > 80) setAiToolsOpen(false);
+                if (info.offset.y > 100 || info.velocity.y > 500) setAiToolsOpen(false);
               }}
-              className="fixed bottom-[4.5rem] left-2 right-2 z-50 max-h-[65vh] rounded-2xl bg-card border border-border/50 shadow-2xl md:hidden overflow-hidden"
+              className="fixed bottom-[4.5rem] left-0 right-0 z-50 max-h-[70vh] rounded-t-3xl bg-card border-t border-border/30 md:hidden overflow-hidden"
+              style={{
+                boxShadow: '0 -8px 40px -10px hsl(340 65% 52% / 0.25), 0 -2px 15px -5px hsl(25 20% 18% / 0.1)',
+              }}
             >
-              <div className="p-3">
-                <div className="w-10 h-1 bg-muted-foreground/20 rounded-full mx-auto mb-3 cursor-grab active:cursor-grabbing" />
-                <h3 className="text-sm font-bold text-foreground px-2 mb-2 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-primary" strokeWidth={2} />
-                  {t("nav.aiTools")}
-                </h3>
-                <div className="overflow-y-auto max-h-[calc(65vh-5rem)] space-y-0.5 scrollbar-hide">
-                  {aiTools.map((tool) => {
+              {/* Decorative top gradient bar */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary/0 via-primary/60 to-primary/0" />
+              
+              <div className="p-4 pb-2">
+                {/* Drag handle */}
+                <div className="w-12 h-1.5 bg-muted-foreground/15 rounded-full mx-auto mb-4 cursor-grab active:cursor-grabbing" />
+                
+                {/* Header with sparkle animation */}
+                <div className="flex items-center gap-2.5 px-1 mb-4">
+                  <motion.div
+                    className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/15 flex items-center justify-center"
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <Sparkles className="w-4.5 h-4.5 text-primary" strokeWidth={2} />
+                  </motion.div>
+                  <div>
+                    <h3 className="text-base font-bold text-foreground leading-tight">
+                      {t("nav.aiTools")}
+                    </h3>
+                    <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">
+                      {aiTools.length} {t("nav.aiTools")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Tools grid */}
+              <div className="overflow-y-auto max-h-[calc(70vh-7.5rem)] px-3 pb-4 scrollbar-hide">
+                <div className="grid grid-cols-3 gap-2">
+                  {aiTools.map((tool, idx) => {
                     const ToolIcon = tool.icon;
                     const isToolActive = location.pathname.startsWith(tool.href);
                     return (
-                      <Link
+                      <motion.div
                         key={tool.id}
-                        to={tool.href}
-                        onClick={() => setAiToolsOpen(false)}
-                        className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors active:scale-[0.97] ${
-                          isToolActive 
-                            ? 'bg-primary/10 text-primary' 
-                            : 'text-foreground/80 hover:bg-muted/60'
-                        }`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: Math.min(idx * 0.03, 0.4), duration: 0.25 }}
                       >
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                          isToolActive 
-                            ? 'bg-primary/20' 
-                            : 'bg-muted/50'
-                        }`}>
-                          <ToolIcon className={`w-4 h-4 ${isToolActive ? 'text-primary' : 'text-muted-foreground'}`} strokeWidth={1.8} />
-                        </div>
-                        <span className="break-words leading-snug">{t(tool.titleKey)}</span>
-                      </Link>
+                        <Link
+                          to={tool.href}
+                          onClick={() => setAiToolsOpen(false)}
+                          className={`flex flex-col items-center gap-1.5 p-3 rounded-2xl text-center transition-all duration-200 active:scale-[0.94] ${
+                            isToolActive
+                              ? 'bg-primary/12 border border-primary/25 shadow-sm'
+                              : 'bg-muted/30 border border-transparent hover:bg-muted/60 hover:border-border/40'
+                          }`}
+                        >
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 ${
+                            isToolActive
+                              ? 'bg-gradient-to-br from-primary/25 to-primary/10 shadow-sm'
+                              : 'bg-card border border-border/40'
+                          }`}>
+                            <ToolIcon
+                              className={`w-5 h-5 transition-colors duration-200 ${
+                                isToolActive ? 'text-primary' : 'text-foreground/60'
+                              }`}
+                              strokeWidth={1.7}
+                            />
+                          </div>
+                          <span className={`text-[10px] font-medium leading-tight break-words ${
+                            isToolActive ? 'text-primary' : 'text-foreground/70'
+                          }`}>
+                            {t(tool.titleKey)}
+                          </span>
+                        </Link>
+                      </motion.div>
                     );
                   })}
                 </div>
