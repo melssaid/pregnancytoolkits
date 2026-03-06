@@ -104,12 +104,12 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             {showBack && <BackButton />}
             
               <Link to="/" className="flex items-center gap-2.5">
-              <div className="rounded-full overflow-hidden flex-shrink-0 h-11 w-11">
+              <div className={`rounded-full overflow-hidden flex-shrink-0 ${showBack ? 'h-11 w-11' : 'h-[3.2rem] w-[3.2rem]'}`}>
                 <img 
                   src={logoImage} 
                   alt="Pregnancy Toolkits" 
-                  width={44}
-                  height={44}
+                  width={showBack ? 44 : 52}
+                  height={showBack ? 44 : 52}
                   loading="eager"
                   decoding="async"
                   className="w-full h-full object-cover scale-[1.3]"
