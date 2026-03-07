@@ -130,7 +130,16 @@
     "feature1": "All AI-powered tools unlocked",
     "feature2": "Unlimited daily usage",
     "feature3": "Ad-free premium experience",
-    "trialNote": "Start with 3 free days · Cancel anytime"
+    "feature4": "Priority AI responses",
+    "feature5": "Personalized health insights",
+    "trialNote": "Start with 3 free days · Cancel anytime",
+    "cta": "Try Free for 3 Days",
+    "ctaSub": "then {{price}}/{{period}}",
+    "bestValue": "Best Value",
+    "autoRenew": "Auto-renews after trial. Cancel anytime in Google Play.",
+    "restore": "Restore Purchase",
+    "termsPrefix": "By continuing, you agree to our",
+    "and": "and"
   },
   "onboarding": {
     "title": "Welcome to Your Journey",
