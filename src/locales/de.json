@@ -111,7 +111,7 @@
     "preparation": "Ausstattung"
   },
   "journeys": {
-    "planning": "Fruchtbarkeitsreise",
+    "planning": "Kinderwunsch",
     "pregnant": "Meine Schwangerschaft",
     "postpartum": "Mein Baby",
     "planningDesc": "Fruchtbarkeit & Empfängnisplanung",
@@ -208,8 +208,8 @@
       "description": "Umfassende Packliste für den Entbindungstag."
     },
     "aiPartnerGuide": {
-      "title": "Der logische Papa-Ratgeber",
-      "description": "Unterstützungstipps für Partner und Ehepartner."
+      "title": "Partner-Ratgeber",
+      "description": "Unterstützungstipps für werdende Väter und Partner."
     },
     "aiBirthPosition": {
       "title": "KI-Geburtspositionen",
@@ -249,11 +249,11 @@
     },
     "smartPregnancyPlan": {
       "title": "Intelligenter Schwangerschaftsplan",
-      "description": "Dein personalisierter Tagesplan mit Übungen und Mahlzeiten."
+      "description": "Ihr personalisierter Tagesplan mit Übungen und Mahlzeiten."
     },
     "smartWalkingCoach": {
       "title": "Geh-Ratgeber",
-      "description": "Sichere Gehprogramme für dein Trimester."
+      "description": "Sichere Gehprogramme für Ihr Trimester."
     },
     "smartSnackPlanner": {
       "title": "Snack-Planer",
@@ -263,7 +263,7 @@
       "title": "Kegel-Übung",
       "description": "Tägliche Beckenbodenübungen mit Timer und Wiederholungszähler."
     },
-    "smartStretchReminder": {"title": "Dehn-Erinnerung", "description": "Personalisierte Dehnübungen für dein Wohlbefinden."},
+    "smartStretchReminder": {"title": "Dehn-Erinnerung", "description": "Personalisierte Dehnübungen für Ihr Wohlbefinden."},
     "fertileWindow": {"title": "Fruchtbarkeitsfenster", "description": "Bestimmen Sie Ihre fruchtbarsten Tage."},
     "fertilityAcademy": {"title": "Fruchtbarkeitsakademie", "description": "Umfassende Fruchtbarkeitsbildung: Lektionen, Körperzeichen und Stressbewältigung.", "lessonsTab": "Lektionen", "signsTab": "Körperzeichen", "stressTab": "Stress & Ruhe", "twwTab": "Wartezeit"},
     "nutritionSupplements": {"title": "Ratgeber für Nahrungsergänzungsmittel", "description": "Umfassender Leitfaden für Ernährung und pränatale Nahrungsergänzung.", "nutritionTab": "Ernährung", "supplementsTab": "Ergänzungen", "videosTitle": "Lehrvideos", "videosSubtitle": "Erfahren Sie mehr über pränatale Ernährung und Nahrungsergänzung"},
@@ -274,7 +274,7 @@
       "description": "Protokollieren Sie Ihre Kontraktionsmuster."
     },
     "cycleTracker": {
-      "title": "Der fantastische Zyklus-Tracker",
+      "title": "Zyklus-Tracker",
       "description": "Verfolgen Sie Ihren Zyklus und finden Sie Ihre fruchtbaren Tage."
     },
     "dueDateCalculator": {
@@ -334,7 +334,7 @@
       "description": "Tägliche Windelwechsel protokollieren."
     },
     "babyCryTranslator": {
-      "title": "Baby-Wein-Ratgeber",
+      "title": "Baby-Weinen-Ratgeber",
       "description": "KI-Einblicke in die Weinmuster Ihres Babys."
     },
     "postpartumRecovery": {
