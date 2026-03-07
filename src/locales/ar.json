@@ -188,7 +188,7 @@
     "vitaminTracker": {"title": "المتتبع الذكي للفيتامينات", "description": "لا تنسَي فيتاميناتك"},
     "forbiddenFoods": {"title": "الأطعمة الممنوعة", "description": "اعرفي ما هو آمن للأكل"},
     "aiLaborProgress": {"title": "سجل الانقباضات", "description": "سجّلي أنماط الانقباضات في يومياتك"},
-    "cycleTracker": {"title": "متتبع الدورة المذهل", "description": "تتبع الدورة وأيام الخصوبة"},
+    "cycleTracker": {"title": "متتبع الدورة", "description": "تتبع الدورة وأيام الخصوبة"},
     "dueDateCalculator": {"title": "العد التنازلي لوصول الطفل", "description": "اكتشفي متى سيصل الطفل"},
     "fetalGrowth": {"title": "تتبع نمو الجنين", "description": "شاهدي حجم الطفل هذا الأسبوع!"},
     "kickCounter": {"title": "تتبع ركلات الجنين", "description": "سجّلي حركات الطفل في يومياتك"},
