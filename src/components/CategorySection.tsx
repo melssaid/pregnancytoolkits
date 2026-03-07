@@ -12,6 +12,7 @@ interface CategorySectionProps {
   gradient?: string;
   isExpanded?: boolean;
   onToggle?: () => void;
+  isSubscriptionActive?: boolean;
 }
 
 export function CategorySection({ 
