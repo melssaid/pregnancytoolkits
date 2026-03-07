@@ -3,6 +3,7 @@ import { ChevronRight, LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ToolCard } from "./ToolCard";
 import { Tool } from "@/lib/tools-data";
+import { isToolPremium } from "@/hooks/useSubscriptionStatus";
 
 interface CategorySectionProps {
   categoryKey: string;
@@ -11,6 +12,7 @@ interface CategorySectionProps {
   gradient?: string;
   isExpanded?: boolean;
   onToggle?: () => void;
+  isSubscriptionActive?: boolean;
 }
 
 export function CategorySection({ 
@@ -19,7 +21,8 @@ export function CategorySection({
   icon: Icon,
   gradient = "from-primary to-accent",
   isExpanded = true,
-  onToggle 
+  onToggle,
+  isSubscriptionActive = false
 }: CategorySectionProps) {
   const { t } = useTranslation();
   
@@ -83,6 +86,7 @@ export function CategorySection({
                   href={tool.href}
                   categoryKey={tool.categoryKey}
                   index={index}
+                  isLocked={!isSubscriptionActive && isToolPremium(tool.id)}
                 />
               </motion.div>
             ))}

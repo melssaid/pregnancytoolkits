@@ -1,5 +1,6 @@
 import { useMemo, memo, useState, useCallback } from "react";
-import { ChevronRight, ChevronLeft, ChevronDown } from "lucide-react";
+import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { ChevronRight, ChevronLeft, ChevronDown, Lock } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
@@ -70,23 +71,33 @@ const journeyConfigs: JourneyConfig[] = [
 ];
 
 // ── Tool row component ──────────────────────────────────────────────────
-const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: boolean }) {
+const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
   const { t } = useTranslation();
   const ToolIcon = tool.icon;
   const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (isLocked) {
+      e.preventDefault();
+    }
+  };
+
   return (
-    <Link to={tool.href} className="block">
-      <div className={`group flex items-center gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px]`}>
-        <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-white/90 dark:bg-white/10 border border-border/20 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105">
+    <Link to={isLocked ? "/pricing-demo" : tool.href} onClick={handleClick} className="block">
+      <div className={`group flex items-center gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px] ${isLocked ? "opacity-50" : ""}`}>
+        <div className={`flex-shrink-0 w-9 h-9 rounded-xl bg-white/90 dark:bg-white/10 border border-border/20 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
           <ToolIcon className={`w-4 h-4 ${style.iconColor} opacity-70 group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.75} />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-xs font-semibold text-foreground leading-snug break-words">{t(tool.titleKey)}</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">{t(tool.descriptionKey)}</p>
         </div>
-        <ChevronIcon className="flex-shrink-0 w-4 h-4 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
+        {isLocked ? (
+          <Lock className="flex-shrink-0 w-4 h-4 text-muted-foreground/40" />
+        ) : (
+          <ChevronIcon className="flex-shrink-0 w-4 h-4 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
+        )}
       </div>
     </Link>
   );
@@ -98,7 +109,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL }: { tool: Tool; isRTL: bool
 // ── Journey card ────────────────────────────────────────────────────────
 
 
-const JourneyCard = memo(function JourneyCard({ config, index }: { config: JourneyConfig; index: number }) {
+const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
@@ -213,7 +224,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: toolIdx * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
                       >
-                        <ToolRow tool={tool} isRTL={isRTL} />
+                        <ToolRow tool={tool} isRTL={isRTL} isLocked={!isSubscriptionActive && isToolPremium(tool.id)} />
                       </motion.div>
                     ))}
                   </div>
@@ -230,6 +241,7 @@ const JourneyCard = memo(function JourneyCard({ config, index }: { config: Journ
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
+  const { isUnlocked } = useSubscriptionStatus();
   return (
     <Layout>
       <SEOHead />
@@ -238,7 +250,7 @@ const Index = () => {
       <section className="pt-5 pb-0 relative z-10">
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
           {journeyConfigs.map((config, index) => (
-            <JourneyCard key={config.key} config={config} index={index} />
+            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={isUnlocked} />
           ))}
           
         </div>
