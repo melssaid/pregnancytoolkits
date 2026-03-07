@@ -130,7 +130,16 @@
     "feature1": "Todas las herramientas IA desbloqueadas",
     "feature2": "Uso diario ilimitado",
     "feature3": "Experiencia premium sin anuncios",
-    "trialNote": "Comienza con 3 días gratis · Cancela en cualquier momento"
+    "feature4": "Respuestas IA prioritarias",
+    "feature5": "Análisis de salud personalizados",
+    "trialNote": "Comienza con 3 días gratis · Cancela en cualquier momento",
+    "cta": "Prueba gratis 3 días",
+    "ctaSub": "luego {{price}}/{{period}}",
+    "bestValue": "Mejor valor",
+    "autoRenew": "Se renueva automáticamente tras el periodo de prueba. Cancela en cualquier momento en Google Play.",
+    "restore": "Restaurar compra",
+    "termsPrefix": "Al continuar, aceptas nuestros",
+    "and": "y"
   },
   "onboarding": {
     "title": "Bienvenida a tu viaje",

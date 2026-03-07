@@ -130,7 +130,16 @@
     "feature1": "Alle KI-gestützten Tools freigeschaltet",
     "feature2": "Unbegrenzte tägliche Nutzung",
     "feature3": "Werbefreies Premium-Erlebnis",
-    "trialNote": "Starten Sie mit 3 kostenlosen Tagen · Jederzeit kündbar"
+    "feature4": "Priorisierte KI-Antworten",
+    "feature5": "Personalisierte Gesundheitsanalysen",
+    "trialNote": "Starten Sie mit 3 kostenlosen Tagen · Jederzeit kündbar",
+    "cta": "3 Tage kostenlos testen",
+    "ctaSub": "dann {{price}}/{{period}}",
+    "bestValue": "Bestes Angebot",
+    "autoRenew": "Automatische Verlängerung nach der Testphase. Jederzeit in Google Play kündbar.",
+    "restore": "Kauf wiederherstellen",
+    "termsPrefix": "Mit der Fortsetzung akzeptieren Sie unsere",
+    "and": "und"
   },
   "onboarding": {
     "title": "Willkommen auf Ihrer Reise",

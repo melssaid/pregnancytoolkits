@@ -130,7 +130,16 @@
     "feature1": "Tüm yapay zeka araçları açık",
     "feature2": "Sınırsız günlük kullanım",
     "feature3": "Reklamsız premium deneyim",
-    "trialNote": "3 ücretsiz gün ile başlayın · İstediğiniz zaman iptal edin"
+    "feature4": "Öncelikli AI yanıtları",
+    "feature5": "Kişiselleştirilmiş sağlık analizleri",
+    "trialNote": "3 ücretsiz gün ile başlayın · İstediğiniz zaman iptal edin",
+    "cta": "3 Gün Ücretsiz Dene",
+    "ctaSub": "sonra {{price}}/{{period}}",
+    "bestValue": "En İyi Değer",
+    "autoRenew": "Deneme sonrası otomatik yenilenir. Google Play'den istediğiniz zaman iptal edin.",
+    "restore": "Satın almayı geri yükle",
+    "termsPrefix": "Devam ederek kabul etmiş olursunuz",
+    "and": "ve"
   },
   "onboarding": {
     "title": "Yolculuğunuza hoş geldiniz",
