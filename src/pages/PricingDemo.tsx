@@ -1,224 +1,158 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BackButton } from "@/components/BackButton";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Check, Crown, Sparkles, Star, Zap } from "lucide-react";
+import { Check, Shield } from "lucide-react";
+import { motion } from "framer-motion";
 import { toast } from "sonner";
+import { requestPurchase, isNativeApp, type PlanType } from "@/lib/googlePlayBilling";
 
-const plans = {
-  trial: { days: 3 },
-  monthly: { price: "$2.99", period: "/mo" },
-  yearly: { price: "$19.99", period: "/yr", save: "44%" },
-};
-
-const features = [
-  "AI Pregnancy Assistant",
-  "Smart Meal Plans",
-  "Kick Counter & Tracking",
-  "Weekly Summary Reports",
-  "Birth Plan Generator",
-  "Unlimited AI Analyses",
-];
-
-const handleSelect = (model: string, plan: string) => {
-  toast.success(`Selected: Model ${model} — ${plan}`);
-};
-
-// ─── MODEL A: Elegant Compact Cards ───────────────────────────
-function ModelA() {
-  return (
-    <div className="space-y-4">
-      <div className="text-center space-y-1">
-        <Badge className="bg-primary/10 text-primary border-0 text-xs">Model A</Badge>
-        <h3 className="text-base font-bold text-foreground">Elegant Cards</h3>
-      </div>
-
-      <div className="grid grid-cols-2 gap-3">
-        {/* Monthly */}
-        <Card className="border-border/50 hover:border-primary/30 transition-colors">
-          <CardHeader className="p-3 pb-1">
-            <CardTitle className="text-xs text-muted-foreground">Monthly</CardTitle>
-            <div className="flex items-baseline gap-0.5">
-              <span className="text-xl font-bold text-foreground">{plans.monthly.price}</span>
-              <span className="text-[10px] text-muted-foreground">{plans.monthly.period}</span>
-            </div>
-          </CardHeader>
-          <CardContent className="p-3 pt-1">
-            <Button size="sm" variant="outline" className="w-full text-xs h-8" onClick={() => handleSelect("A", "monthly")}>
-              Choose
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Yearly */}
-        <Card className="border-primary/40 bg-primary/[0.03] relative">
-          <div className="absolute -top-2 right-2">
-            <Badge className="text-[9px] px-1.5 py-0 bg-accent text-accent-foreground border-0">
-              Save {plans.yearly.save}
-            </Badge>
-          </div>
-          <CardHeader className="p-3 pb-1">
-            <CardTitle className="text-xs text-muted-foreground">Yearly</CardTitle>
-            <div className="flex items-baseline gap-0.5">
-              <span className="text-xl font-bold text-primary">{plans.yearly.price}</span>
-              <span className="text-[10px] text-muted-foreground">{plans.yearly.period}</span>
-            </div>
-          </CardHeader>
-          <CardContent className="p-3 pt-1">
-            <Button size="sm" className="w-full text-xs h-8" onClick={() => handleSelect("A", "yearly")}>
-              Best Value
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-
-      <p className="text-center text-[10px] text-muted-foreground">
-        {plans.trial.days}-day free trial • Cancel anytime
-      </p>
-
-      <ul className="space-y-1.5">
-        {features.slice(0, 4).map((f) => (
-          <li key={f} className="flex items-center gap-1.5 text-[11px] text-foreground">
-            <Check className="w-3 h-3 text-accent shrink-0" />
-            {f}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-// ─── MODEL B: Glassmorphism with Bold CTA ─────────────────────
-function ModelB() {
-  return (
-    <div className="space-y-4">
-      <div className="text-center space-y-1">
-        <Badge className="bg-primary/10 text-primary border-0 text-xs">Model B</Badge>
-        <h3 className="text-base font-bold text-foreground">Glassmorphism</h3>
-      </div>
-
-      <div className="rounded-2xl p-4 space-y-4"
-        style={{
-          background: "linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.08))",
-          backdropFilter: "blur(12px)",
-          border: "1px solid hsl(var(--primary) / 0.15)",
-        }}
-      >
-        <div className="flex items-center justify-center gap-1.5">
-          <Crown className="w-4 h-4 text-primary" />
-          <span className="font-bold text-sm text-foreground">Premium</span>
-        </div>
-
-        <div className="text-center">
-          <div className="flex items-baseline justify-center gap-0.5">
-            <span className="text-3xl font-bold text-foreground">{plans.yearly.price}</span>
-            <span className="text-xs text-muted-foreground">{plans.yearly.period}</span>
-          </div>
-          <p className="text-[10px] text-muted-foreground mt-0.5">
-            or {plans.monthly.price}/month
-          </p>
-        </div>
-
-        <ul className="space-y-1.5">
-          {features.map((f) => (
-            <li key={f} className="flex items-center gap-1.5 text-[11px] text-foreground">
-              <Sparkles className="w-3 h-3 text-primary shrink-0" />
-              {f}
-            </li>
-          ))}
-        </ul>
-
-        <Button className="w-full h-10 text-sm font-semibold rounded-xl" onClick={() => handleSelect("B", "yearly")}>
-          <Zap className="w-4 h-4" />
-          Start Free Trial
-        </Button>
-
-        <p className="text-center text-[10px] text-muted-foreground">
-          {plans.trial.days} days free • Then {plans.yearly.price}/year
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// ─── MODEL C: Gradient Header with Toggle ─────────────────────
-function ModelC() {
-  return (
-    <div className="space-y-4">
-      <div className="text-center space-y-1">
-        <Badge className="bg-primary/10 text-primary border-0 text-xs">Model C</Badge>
-        <h3 className="text-base font-bold text-foreground">Gradient Header</h3>
-      </div>
-
-      <Card className="overflow-hidden border-border/50">
-        {/* Gradient header */}
-        <div className="p-4 text-center"
-          style={{
-            background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7))",
-          }}
-        >
-          <Star className="w-5 h-5 text-primary-foreground mx-auto mb-1" />
-          <h4 className="text-sm font-bold text-primary-foreground">Go Premium</h4>
-          <p className="text-[10px] text-primary-foreground/80 mt-0.5">
-            Unlock all {features.length} tools
-          </p>
-        </div>
-
-        <CardContent className="p-4 space-y-3">
-          <ul className="space-y-1.5">
-            {features.slice(0, 5).map((f) => (
-              <li key={f} className="flex items-center gap-1.5 text-[11px] text-foreground">
-                <Check className="w-3 h-3 text-accent shrink-0" />
-                {f}
-              </li>
-            ))}
-          </ul>
-
-          <div className="space-y-2">
-            <Button className="w-full h-9 text-xs" onClick={() => handleSelect("C", "yearly")}>
-              Yearly — {plans.yearly.price}
-              <Badge className="ms-1 text-[8px] px-1 py-0 bg-primary-foreground/20 text-primary-foreground border-0">
-                -{plans.yearly.save}
-              </Badge>
-            </Button>
-            <Button variant="outline" className="w-full h-9 text-xs" onClick={() => handleSelect("C", "monthly")}>
-              Monthly — {plans.monthly.price}
-            </Button>
-          </div>
-
-          <p className="text-center text-[10px] text-muted-foreground">
-            {plans.trial.days}-day free trial included
-          </p>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
-
-// ─── MAIN PAGE ────────────────────────────────────────────────
 export default function PricingDemo() {
+  const { t } = useTranslation();
   const { isRTL } = useLanguage();
+  const [selected, setSelected] = useState<PlanType>("yearly");
+
+  const handleSubscribe = () => {
+    const sent = requestPurchase(selected);
+    if (!sent) {
+      toast.info(t("pricing.trialNote"));
+    }
+  };
+
+  const features = [
+    t("pricing.feature1"),
+    t("pricing.feature2"),
+    t("pricing.feature3"),
+  ];
 
   return (
-    <div className="min-h-screen bg-background pb-24" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="min-h-screen bg-background" dir={isRTL ? "rtl" : "ltr"}>
+      {/* Header */}
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border/30 px-4 py-3">
         <div className="flex items-center gap-2">
           <BackButton />
-          <h1 className="text-sm font-bold text-foreground">Pricing Models</h1>
+          <h1 className="text-sm font-bold text-foreground">{t("pricing.title")}</h1>
         </div>
       </div>
 
-      <div className="px-4 py-6 space-y-8 max-w-lg mx-auto">
-        <p className="text-xs text-center text-muted-foreground">
-          Compare 3 design models — tap a button to select your preferred style
-        </p>
+      <div className="px-5 py-8 max-w-md mx-auto space-y-8">
+        {/* Hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center space-y-2"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
+            <Shield className="w-7 h-7 text-primary" />
+          </div>
+          <h2 className="text-xl font-bold text-foreground">{t("pricing.title")}</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">{t("pricing.subtitle")}</p>
+        </motion.div>
 
-        <ModelA />
-        <div className="border-t border-border/30" />
-        <ModelB />
-        <div className="border-t border-border/30" />
-        <ModelC />
+        {/* Plan Selector */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="space-y-3"
+        >
+          {/* Yearly */}
+          <button
+            onClick={() => setSelected("yearly")}
+            className={`w-full p-4 rounded-2xl border-2 transition-all duration-300 text-start ${
+              selected === "yearly"
+                ? "border-primary bg-primary/[0.04] shadow-[0_0_0_1px_hsl(var(--primary)/0.1)]"
+                : "border-border/40 bg-card/50 hover:border-border/60"
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-foreground">{t("pricing.yearly")}</span>
+                  <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-accent/15 text-accent-foreground">
+                    {t("pricing.save")}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  $1.67/{t("pricing.mo")}
+                </p>
+              </div>
+              <div className="text-end">
+                <span className="text-lg font-bold text-foreground">$19.99</span>
+                <span className="text-xs text-muted-foreground">/{t("pricing.yr")}</span>
+              </div>
+            </div>
+            {/* Selection indicator */}
+            <div className={`mt-2 flex items-center justify-center w-5 h-5 rounded-full border-2 ms-auto transition-colors ${
+              selected === "yearly" ? "border-primary bg-primary" : "border-muted-foreground/30"
+            }`}>
+              {selected === "yearly" && <Check className="w-3 h-3 text-primary-foreground" strokeWidth={3} />}
+            </div>
+          </button>
+
+          {/* Monthly */}
+          <button
+            onClick={() => setSelected("monthly")}
+            className={`w-full p-4 rounded-2xl border-2 transition-all duration-300 text-start ${
+              selected === "monthly"
+                ? "border-primary bg-primary/[0.04] shadow-[0_0_0_1px_hsl(var(--primary)/0.1)]"
+                : "border-border/40 bg-card/50 hover:border-border/60"
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-sm font-semibold text-foreground">{t("pricing.monthly")}</span>
+              </div>
+              <div className="text-end">
+                <span className="text-lg font-bold text-foreground">$2.99</span>
+                <span className="text-xs text-muted-foreground">/{t("pricing.mo")}</span>
+              </div>
+            </div>
+            <div className={`mt-2 flex items-center justify-center w-5 h-5 rounded-full border-2 ms-auto transition-colors ${
+              selected === "monthly" ? "border-primary bg-primary" : "border-muted-foreground/30"
+            }`}>
+              {selected === "monthly" && <Check className="w-3 h-3 text-primary-foreground" strokeWidth={3} />}
+            </div>
+          </button>
+        </motion.div>
+
+        {/* Features */}
+        <motion.ul
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="space-y-3 px-1"
+        >
+          {features.map((f, i) => (
+            <li key={i} className="flex items-center gap-2.5 text-sm text-foreground">
+              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <Check className="w-3 h-3 text-primary" strokeWidth={2.5} />
+              </div>
+              {f}
+            </li>
+          ))}
+        </motion.ul>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="space-y-3"
+        >
+          <Button
+            onClick={handleSubscribe}
+            className="w-full h-12 text-sm font-semibold rounded-2xl whitespace-normal leading-normal"
+          >
+            {t("pricing.badge")}
+          </Button>
+
+          <p className="text-center text-[11px] text-muted-foreground leading-relaxed">
+            {t("pricing.trialNote")}
+          </p>
+        </motion.div>
       </div>
     </div>
   );
