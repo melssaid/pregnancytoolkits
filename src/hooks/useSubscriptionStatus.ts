@@ -2,31 +2,26 @@
  * useSubscriptionStatus
  * 
  * Checks the user's subscription/trial status from the database.
- * Returns whether the user has active access (trial or paid subscription).
+ * Auto-creates a 3-day free trial on first app open.
  * 
  * Status logic:
  * - Active trial (trial_end > now) → unlocked
- * - Active subscription (status = 'active') → unlocked
- * - Otherwise → locked
+ * - Active paid subscription (status = 'active') → unlocked
+ * - Trial expired & no paid sub → locked → redirect to paywall
  */
 
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { ensureAuthenticated } from "@/lib/auth";
 
 export type SubscriptionTier = "free" | "trial" | "premium";
 
 interface SubscriptionStatus {
-  /** Current tier */
   tier: SubscriptionTier;
-  /** Whether premium features are unlocked */
   isUnlocked: boolean;
-  /** Whether we're still loading */
   isLoading: boolean;
-  /** Days remaining in trial (0 if not on trial) */
   trialDaysLeft: number;
-  /** Subscription type if active */
   subscriptionType: string | null;
-  /** Re-check subscription status */
   refresh: () => Promise<void>;
 }
 
@@ -42,6 +37,32 @@ const FREE_TOOL_IDS = new Set([
   "maternal-health-awareness",
 ]);
 
+// Prevent multiple simultaneous trial creations
+let trialCreationInProgress = false;
+
+async function createTrialSubscription(userId: string): Promise<boolean> {
+  if (trialCreationInProgress) return false;
+  trialCreationInProgress = true;
+
+  try {
+    const { error } = await supabase.from("subscriptions").insert({
+      user_id: userId,
+      subscription_type: "trial",
+      status: "active",
+    });
+
+    if (error) {
+      // Unique constraint violation = trial already exists
+      if (error.code === "23505") return false;
+      console.error("Trial creation failed:", error.message);
+      return false;
+    }
+    return true;
+  } finally {
+    trialCreationInProgress = false;
+  }
+}
+
 export function useSubscriptionStatus(): SubscriptionStatus {
   const [tier, setTier] = useState<SubscriptionTier>("free");
   const [isLoading, setIsLoading] = useState(true);
@@ -50,13 +71,15 @@ export function useSubscriptionStatus(): SubscriptionStatus {
 
   const checkStatus = useCallback(async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
+      // Ensure user is authenticated (anonymous auth)
+      const user = await ensureAuthenticated();
       if (!user) {
         setTier("free");
         setIsLoading(false);
         return;
       }
 
+      // Query existing subscription
       const { data: sub, error } = await supabase
         .from("subscriptions")
         .select("*")
@@ -65,12 +88,28 @@ export function useSubscriptionStatus(): SubscriptionStatus {
         .limit(1)
         .maybeSingle();
 
-      if (error || !sub) {
+      if (error) {
         setTier("free");
         setIsLoading(false);
         return;
       }
 
+      // No subscription exists → auto-create 3-day trial
+      if (!sub) {
+        const created = await createTrialSubscription(user.id);
+        if (created) {
+          setTier("trial");
+          setTrialDaysLeft(3);
+          setSubscriptionType("trial");
+          setIsLoading(false);
+          return;
+        }
+        setTier("free");
+        setIsLoading(false);
+        return;
+      }
+
+      // Evaluate existing subscription
       const now = new Date();
       const trialEnd = new Date(sub.trial_end);
       const isTrialActive = sub.status === "active" && trialEnd > now && sub.subscription_type === "trial";
@@ -85,6 +124,7 @@ export function useSubscriptionStatus(): SubscriptionStatus {
         setSubscriptionType(sub.subscription_type);
         setTrialDaysLeft(0);
       } else {
+        // Trial expired, no paid subscription
         setTier("free");
         setSubscriptionType(null);
         setTrialDaysLeft(0);
@@ -99,7 +139,6 @@ export function useSubscriptionStatus(): SubscriptionStatus {
   useEffect(() => {
     checkStatus();
 
-    // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
       checkStatus();
     });
