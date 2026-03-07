@@ -24,13 +24,7 @@ export default function PricingDemo() {
   const price = selected === "yearly" ? "$19.99" : "$2.99";
   const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
 
-  const features = [
-    { icon: Sparkles, text: t("pricing.feature1") },
-    { icon: Zap, text: t("pricing.feature2") },
-    { icon: Shield, text: t("pricing.feature3") },
-    { icon: Crown, text: t("pricing.feature4") },
-    { icon: Check, text: t("pricing.feature5") },
-  ];
+  const feature = { icon: Crown, text: t("pricing.feature1") };
 
   return (
     <div
