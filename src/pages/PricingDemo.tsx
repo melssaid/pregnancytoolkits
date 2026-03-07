@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, Crown, Sparkles, X, Shield, Zap } from "lucide-react";
+import { Check, Crown, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
