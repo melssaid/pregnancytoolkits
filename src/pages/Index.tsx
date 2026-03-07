@@ -1,13 +1,15 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
-import { ChevronRight, ChevronLeft, ChevronDown, Lock } from "lucide-react";
+import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
+import { ChevronRight, ChevronLeft, ChevronDown, Lock, Crown } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { getJourneyCategories, getToolsByCategory, JourneyKey, Tool } from "@/lib/tools-data";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
@@ -238,6 +240,39 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   );
 });
 
+// ── Premium CTA Banner ──────────────────────────────────────────────────
+const PremiumBanner = memo(function PremiumBanner() {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleTap = () => {
+    const sent = requestPurchase("yearly");
+    if (!sent) {
+      // Not in native app — go to pricing page
+      navigate("/pricing-demo");
+    }
+  };
+
+  return (
+    <motion.button
+      onClick={handleTap}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.2 }}
+      className="w-full rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/15 p-4 flex items-center gap-3 text-start hover:border-primary/30 transition-all duration-300 group"
+    >
+      <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+        <Crown className="w-5 h-5 text-primary" strokeWidth={1.75} />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-xs font-semibold text-foreground">{t("pricing.badge")}</p>
+        <p className="text-[11px] text-muted-foreground mt-0.5">{t("pricing.trialNote")}</p>
+      </div>
+      <ChevronRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary/60 rtl:rotate-180 transition-colors shrink-0" />
+    </motion.button>
+  );
+});
+
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
@@ -253,6 +288,7 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={isUnlocked} />
           ))}
           
+          {!isUnlocked && <PremiumBanner />}
         </div>
       </section>
     </Layout>
