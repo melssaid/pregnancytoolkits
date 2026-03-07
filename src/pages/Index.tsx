@@ -1,7 +1,7 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
-import { ChevronRight, ChevronLeft, ChevronDown, Lock } from "lucide-react";
+import { ChevronRight, ChevronLeft, ChevronDown, Lock, Crown } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
