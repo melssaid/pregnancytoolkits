@@ -208,8 +208,8 @@
       "description": "Doğum günü için kapsamlı paketleme listesi."
     },
     "aiPartnerGuide": {
-      "title": "Babanın Mantıksal Rehberi",
-      "description": "Partnerler ve eşler için destek ipuçları."
+      "title": "Partner Rehberi",
+      "description": "Baba adayları ve eşler için destek ipuçları."
     },
     "aiBirthPosition": {
       "title": "AI Doğum Pozisyonları",
@@ -274,7 +274,7 @@
       "description": "Kasılma düzenlerinizi kaydedin."
     },
     "cycleTracker": {
-      "title": "Muhteşem Döngü Takipçisi",
+      "title": "Döngü Takipçisi",
       "description": "Döngünüzü takip edin ve verimli günlerinizi bulun."
     },
     "dueDateCalculator": {

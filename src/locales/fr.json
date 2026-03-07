@@ -208,8 +208,8 @@
       "description": "Liste de préparation intégrale pour le jour J."
     },
     "aiPartnerGuide": {
-      "title": "Le guide logique du papa",
-      "description": "Conseils de soutien pour les partenaires et conjoints."
+      "title": "Guide du partenaire",
+      "description": "Conseils de soutien pour les futurs pères et partenaires."
     },
     "aiBirthPosition": {
       "title": "Positions d'accouchement IA",
@@ -274,7 +274,7 @@
       "description": "Consignez vos schémas de contractions."
     },
     "cycleTracker": {
-      "title": "Tracker de cycle exceptionnel",
+      "title": "Tracker de cycle",
       "description": "Suivez votre cycle et trouvez vos jours fertiles."
     },
     "dueDateCalculator": {

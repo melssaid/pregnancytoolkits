@@ -208,8 +208,8 @@
       "description": "Complete packing list for delivery day."
     },
     "aiPartnerGuide": {
-      "title": "The Logical Dad's Guide",
-      "description": "Support tips for partners and spouses."
+      "title": "Partner's Guide",
+      "description": "Support tips for expecting fathers and partners."
     },
     "aiBirthPosition": {
       "title": "AI Birth Positions",
@@ -272,7 +272,7 @@
       "description": "Log and journal your contraction patterns."
     },
     "cycleTracker": {
-      "title": "Amazing Cycle Tracker",
+      "title": "Cycle Tracker",
       "description": "Track your cycle and find your fertile days."
     },
     "dueDateCalculator": {
