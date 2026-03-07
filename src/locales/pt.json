@@ -137,6 +137,7 @@
     "ctaSub": "depois {{price}}/{{period}}",
     "bestValue": "Melhor valor",
     "autoRenew": "Renovação automática após o período de teste. Cancele a qualquer momento no Google Play.",
+    "trialDaysLeft": "{{count}} dias restantes do teste grátis",
     "restore": "Restaurar compra",
     "termsPrefix": "Ao continuar, você concorda com nossos",
     "and": "e"
