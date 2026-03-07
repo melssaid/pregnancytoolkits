@@ -288,7 +288,7 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={isUnlocked} />
           ))}
           
-          {!isUnlocked && <PremiumBanner />}
+          <PremiumBanner />
         </div>
       </section>
     </Layout>
