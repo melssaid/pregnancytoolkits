@@ -246,7 +246,6 @@ const PremiumBanner = memo(function PremiumBanner() {
   const navigate = useNavigate();
   const { tier, trialDaysLeft } = useSubscriptionStatus();
 
-  // Don't show for already premium users
   if (tier === "premium") return null;
 
   const handleTap = () => {
@@ -257,7 +256,7 @@ const PremiumBanner = memo(function PremiumBanner() {
   };
 
   const subtitle = tier === "trial"
-    ? t("pricing.trialNote")
+    ? t("pricing.trialDaysLeft", { count: trialDaysLeft })
     : t("pricing.cta");
 
   return (
@@ -275,6 +274,11 @@ const PremiumBanner = memo(function PremiumBanner() {
         <p className="text-xs font-semibold text-foreground">{t("pricing.badge")}</p>
         <p className="text-[11px] text-muted-foreground mt-0.5 break-words">{subtitle}</p>
       </div>
+      {tier === "trial" && trialDaysLeft > 0 && (
+        <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
+          <span className="text-sm font-bold text-primary">{trialDaysLeft}</span>
+        </div>
+      )}
       <ChevronRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary/60 rtl:rotate-180 transition-colors shrink-0" />
     </motion.button>
   );
