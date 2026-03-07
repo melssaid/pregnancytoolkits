@@ -200,11 +200,11 @@ export default function PricingDemo() {
             <span className="text-[11px] text-muted-foreground/60">
               {t("pricing.termsPrefix")}{" "}
               <Link to="/terms" className="underline hover:text-foreground transition-colors">
-                {t("layout.terms")}
+                {t("layout.footer.terms")}
               </Link>{" "}
               {t("pricing.and")}{" "}
               <Link to="/privacy" className="underline hover:text-foreground transition-colors">
-                {t("layout.privacy")}
+                {t("layout.footer.privacy")}
               </Link>
             </span>
           </div>
