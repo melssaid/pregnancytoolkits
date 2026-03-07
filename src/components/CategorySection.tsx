@@ -3,6 +3,7 @@ import { ChevronRight, LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ToolCard } from "./ToolCard";
 import { Tool } from "@/lib/tools-data";
+import { isToolPremium } from "@/hooks/useSubscriptionStatus";
 
 interface CategorySectionProps {
   categoryKey: string;
