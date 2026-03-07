@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, Crown, Sparkles, X, Shield, Zap } from "lucide-react";
+import { Check, Crown, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
@@ -24,13 +24,7 @@ export default function PricingDemo() {
   const price = selected === "yearly" ? "$19.99" : "$2.99";
   const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
 
-  const features = [
-    { icon: Sparkles, text: t("pricing.feature1") },
-    { icon: Zap, text: t("pricing.feature2") },
-    { icon: Shield, text: t("pricing.feature3") },
-    { icon: Crown, text: t("pricing.feature4") },
-    { icon: Check, text: t("pricing.feature5") },
-  ];
+  const feature = { icon: Crown, text: t("pricing.feature1") };
 
   return (
     <div
@@ -66,21 +60,17 @@ export default function PricingDemo() {
           </p>
         </motion.div>
 
-        {/* Features — compact grid */}
+        {/* Single feature */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.08 }}
-          className="space-y-2 mb-5"
+          className="flex items-center justify-center gap-2.5 mb-5"
         >
-          {features.map((f, i) => (
-            <div key={i} className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <f.icon className="w-3.5 h-3.5 text-primary" strokeWidth={2} />
-              </div>
-              <span className="text-xs text-foreground leading-snug break-words">{f.text}</span>
-            </div>
-          ))}
+          <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <feature.icon className="w-3.5 h-3.5 text-primary" strokeWidth={2} />
+          </div>
+          <span className="text-xs text-foreground leading-snug break-words">{feature.text}</span>
         </motion.div>
 
         {/* Plan Selector — fixed height cards */}
