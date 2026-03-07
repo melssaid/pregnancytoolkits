@@ -244,14 +244,21 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
 const PremiumBanner = memo(function PremiumBanner() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { tier, trialDaysLeft } = useSubscriptionStatus();
+
+  // Don't show for already premium users
+  if (tier === "premium") return null;
 
   const handleTap = () => {
     const sent = requestPurchase("yearly");
     if (!sent) {
-      // Not in native app — go to pricing page
       navigate("/pricing-demo");
     }
   };
+
+  const subtitle = tier === "trial"
+    ? t("pricing.trialNote")
+    : t("pricing.cta");
 
   return (
     <motion.button
@@ -259,14 +266,14 @@ const PremiumBanner = memo(function PremiumBanner() {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.2 }}
-      className="w-full rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/15 p-4 flex items-center gap-3 text-start hover:border-primary/30 transition-all duration-300 group"
+      className="w-full rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/15 p-3.5 flex items-center gap-3 text-start hover:border-primary/30 transition-all duration-300 group"
     >
-      <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-        <Crown className="w-5 h-5 text-primary" strokeWidth={1.75} />
+      <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+        <Crown className="w-4.5 h-4.5 text-primary" strokeWidth={1.75} />
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-xs font-semibold text-foreground">{t("pricing.badge")}</p>
-        <p className="text-[11px] text-muted-foreground mt-0.5">{t("pricing.trialNote")}</p>
+        <p className="text-[11px] text-muted-foreground mt-0.5 break-words">{subtitle}</p>
       </div>
       <ChevronRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary/60 rtl:rotate-180 transition-colors shrink-0" />
     </motion.button>
