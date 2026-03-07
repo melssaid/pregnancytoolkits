@@ -21,7 +21,8 @@ export function CategorySection({
   icon: Icon,
   gradient = "from-primary to-accent",
   isExpanded = true,
-  onToggle 
+  onToggle,
+  isSubscriptionActive = false
 }: CategorySectionProps) {
   const { t } = useTranslation();
   
