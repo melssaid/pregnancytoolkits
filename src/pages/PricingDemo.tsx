@@ -60,21 +60,17 @@ export default function PricingDemo() {
           </p>
         </motion.div>
 
-        {/* Features — compact grid */}
+        {/* Single feature */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.08 }}
-          className="space-y-2 mb-5"
+          className="flex items-center justify-center gap-2.5 mb-5"
         >
-          {features.map((f, i) => (
-            <div key={i} className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <f.icon className="w-3.5 h-3.5 text-primary" strokeWidth={2} />
-              </div>
-              <span className="text-xs text-foreground leading-snug break-words">{f.text}</span>
-            </div>
-          ))}
+          <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <feature.icon className="w-3.5 h-3.5 text-primary" strokeWidth={2} />
+          </div>
+          <span className="text-xs text-foreground leading-snug break-words">{feature.text}</span>
         </motion.div>
 
         {/* Plan Selector — fixed height cards */}
