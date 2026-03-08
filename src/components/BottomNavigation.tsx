@@ -377,10 +377,15 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                     <Link
                       key={item.id}
                       to={item.href!}
-                      onClick={() => {
+                      onClick={(e) => {
                         setMoreOpen(false);
                         setAiToolsOpen(false);
                         setNotificationsOpen(false);
+                        // If already on home, scroll to top instead of navigating
+                        if (item.href === "/" && location.pathname === "/") {
+                          e.preventDefault();
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
                       }}
                       className="flex flex-col items-center gap-0 px-3 py-0.5 transition-all"
                     >
