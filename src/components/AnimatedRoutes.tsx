@@ -77,7 +77,6 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 // VIDEO LIBRARY
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
-const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
 
