@@ -362,7 +362,9 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={isUnlocked} />
           ))}
           
-          <PremiumBanner />
+          <div className="mt-6">
+            <PremiumBanner />
+          </div>
         </div>
       </section>
     </Layout>
