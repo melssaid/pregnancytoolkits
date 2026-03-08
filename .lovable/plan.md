@@ -1,17 +1,33 @@
 
 
-## خطة التعديل
+## الوضع الحالي — كل شيء جاهز تقريباً
 
-### 1. تداخل المنحنى مع الهيدر بسلاسة
-- إزالة `translate-y-[99%]` من SVG واستبداله بموضع يتداخل مع الهيدر
-- زيادة عمق المنحنى وجعل z-index أعلى ليظهر فوق الهيدر
-- إضافة `mt-[-14px]` أو padding-top للهيدر لاستيعاب المنحنى المتداخل
+### ما تم إنشاؤه بالفعل:
 
-### 2. تكبير جمل شريط الثقة
-- زيادة حجم الخط من `8px` إلى `9px` أو `9.5px`
+1. **Edge Function** (`supabase/functions/google-play-webhook/index.ts`) — موجودة وتعالج جميع أنواع إشعارات Google Play:
+   - `SUBSCRIPTION_PURCHASED` → active
+   - `SUBSCRIPTION_RENEWED/RECOVERED/RESTARTED` → تمديد
+   - `SUBSCRIPTION_CANCELED` → canceled
+   - `SUBSCRIPTION_EXPIRED` → expired
+   - `SUBSCRIPTION_REVOKED` → revoked + إنهاء فوري
+   - `ON_HOLD/GRACE_PERIOD/PAUSED` → on_hold
 
-### التفاصيل التقنية
-- SVG: تغيير `translate-y-[99%]` إلى `translate-y-[50%]` مع `z-10` ليتداخل مع الهيدر
-- الهيدر: إضافة `pt-2` لإعطاء مساحة للمنحنى المتداخل
-- النصوص: `text-[8px]` → `text-[9.5px]`
+2. **RLS Policy** — سياسة "Service role can update subscriptions" مفعّلة على جدول `subscriptions`
+
+3. **Config** — `verify_jwt = false` مضاف في `config.toml` (مطلوب لاستقبال طلبات خارجية)
+
+### ما يحتاج إضافته:
+
+| # | العنصر | التفاصيل |
+|---|--------|----------|
+| 1 | **Secret: `GOOGLE_PLAY_WEBHOOK_SECRET`** | مفتاح سري تختاره أنت (مثل سلسلة عشوائية 32+ حرف). يُرسل كـ header `x-webhook-secret` من Google Pub/Sub لتأمين الـ endpoint |
+
+### خطوات ما بعد النشر (إعداد Google Cloud):
+1. إنشاء Pub/Sub Topic في Google Cloud Console
+2. إنشاء Push Subscription يشير إلى: `https://frlrngdogjzqpqpjhjvq.supabase.co/functions/v1/google-play-webhook`
+3. إضافة header مخصص `x-webhook-secret` بنفس القيمة المخزنة في الـ secret
+4. ربط الـ Topic في Google Play Console → Monetization Settings
+
+### الخطة:
+- إضافة الـ secret `GOOGLE_PLAY_WEBHOOK_SECRET` فقط — باقي المكونات جاهزة ولا تحتاج تعديل
 
