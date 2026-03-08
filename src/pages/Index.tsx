@@ -290,8 +290,8 @@ const PremiumBanner = memo(function PremiumBanner() {
         </div>
 
         {/* Text */}
-        <div className="flex-1 min-w-0">
-          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest mb-1">
+        <div className="flex-1 min-w-0 space-y-1.5">
+          <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest">
             PRO
           </span>
           <p className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>
