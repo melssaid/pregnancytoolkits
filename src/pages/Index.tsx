@@ -301,7 +301,7 @@ const PremiumBanner = memo(function PremiumBanner() {
               </span>
             )}
           </div>
-          <p className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+          <p className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>
             {t("pricing.badge")}
           </p>
           <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">
