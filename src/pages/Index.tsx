@@ -276,30 +276,30 @@ const PremiumBanner = memo(function PremiumBanner() {
 
       {/* Shimmer animation */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent -skew-x-12"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -skew-x-12"
         animate={{ x: ["-100%", "200%"] }}
         transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
       />
 
       <div className="relative px-4 py-4 flex items-center gap-3.5">
-        {/* Icon with pulsing ring — urgency trigger */}
+        {/* Icon with pulsing ring */}
         <div className="relative shrink-0">
           <motion.div
-            className="absolute inset-0 rounded-2xl bg-white/20"
+            className="absolute inset-0 rounded-2xl bg-primary/15"
             animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0, 0.4] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
           />
-          <div className="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
-            <Crown className="w-5.5 h-5.5 text-white drop-shadow-sm" strokeWidth={1.75} />
+          <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center shadow-sm">
+            <Crown className="w-5.5 h-5.5 text-primary drop-shadow-sm" strokeWidth={1.75} />
           </div>
         </div>
 
-        {/* Text content — emotional copy */}
+        {/* Text content */}
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-extrabold text-white tracking-tight leading-snug drop-shadow-sm">
+          <p className="text-sm font-extrabold text-foreground tracking-tight leading-snug">
             {t("pricing.badge")}
           </p>
-          <p className="text-[11px] text-white/80 mt-0.5 leading-relaxed break-words">
+          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">
             {isTrial 
               ? t("pricing.trialDaysLeft", { count: trialDaysLeft })
               : t("pricing.cta")
@@ -307,26 +307,26 @@ const PremiumBanner = memo(function PremiumBanner() {
           </p>
         </div>
 
-        {/* Trial countdown — scarcity principle */}
+        {/* Trial countdown */}
         {isTrial && (
           <div className="shrink-0 flex flex-col items-center">
             <motion.div
-              className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/25 shadow-lg"
+              className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 shadow-sm"
               animate={{ scale: [1, 1.06, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="text-base font-extrabold text-white drop-shadow-sm">{trialDaysLeft}</span>
+              <span className="text-base font-extrabold text-primary">{trialDaysLeft}</span>
             </motion.div>
           </div>
         )}
 
-        {/* Arrow — directional cue */}
+        {/* Arrow */}
         <motion.div
           animate={{ x: isRTL ? [-2, 2, -2] : [0, 4, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="shrink-0"
         >
-          <ChevronRight className="w-5 h-5 text-white/70 rtl:rotate-180 drop-shadow-sm" />
+          <ChevronRight className="w-5 h-5 text-muted-foreground/50 rtl:rotate-180" />
         </motion.div>
       </div>
     </motion.button>
