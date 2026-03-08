@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Printer, Download } from 'lucide-react';
+import { Printer, Download, Loader2 } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { buildPrintHTML } from '@/lib/printUtils';
 import { toast } from 'sonner';
@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 interface PrintableReportProps {
   children: React.ReactNode;
   title?: string;
+  isLoading?: boolean;
 }
 
 const printLabels: Record<string, string> = {
@@ -41,7 +42,7 @@ const successMessages: Record<string, string> = {
   tr: 'Rapor açıldı! Ctrl+P ile yazdırın',
 };
 
-export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title }) => {
+export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading }) => {
   const { i18n } = useTranslation();
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
@@ -187,19 +188,20 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
         <Button
           variant="outline"
           onClick={handlePrint}
-          disabled={busy}
+          disabled={busy || contentLoading}
           className="w-full gap-2"
         >
-          <Printer className="w-4 h-4" />
+          {contentLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Printer className="w-4 h-4" />}
           {printLabels[lang] || printLabels.en}
         </Button>
         <Button
           variant="ghost"
           size="sm"
           onClick={handleDownload}
+          disabled={contentLoading}
           className="w-full gap-2 text-xs text-muted-foreground"
         >
-          <Download className="w-3 h-3" />
+          {contentLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
           {downloadLabels[lang] || downloadLabels.en}
         </Button>
         <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
