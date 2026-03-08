@@ -76,7 +76,6 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 
 // VIDEO LIBRARY
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
-const Splash = lazy(() => import("@/pages/Splash"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
@@ -174,8 +173,7 @@ export function AnimatedRoutes() {
         {/* VIDEO LIBRARY */}
         <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />
 
-        {/* SPLASH SCREEN */}
-        <Route path="/splash" element={<Splash />} />
+        {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
         
 

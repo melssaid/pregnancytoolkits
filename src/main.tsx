@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { i18nReady, updateDocumentDirection } from "./i18n";
+import { updateDocumentDirection } from "./i18n";
 import i18n from "./i18n";
 import { SettingsProvider } from "@/providers/SettingsProvider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -32,9 +32,9 @@ createRoot(document.getElementById("root")!).render(
   </SettingsProvider>
 );
 
-// Dismiss splash once i18n is ready (or after timeout as safety net)
-i18nReady.then(dismissNativeSplash);
-setTimeout(dismissNativeSplash, 3000);
+// Dismiss splash immediately after render
+dismissNativeSplash();
+setTimeout(dismissNativeSplash, 500);
 
 // Register Service Worker after render
 registerServiceWorker().then(() => {
