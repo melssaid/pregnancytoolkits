@@ -212,7 +212,7 @@
     "aiLactationPrep": {"title": "دليل الرضاعة الذكي", "description": "دليل تحضير الرضاعة الطبيعية"},
     "babySleepTracker": {"title": "متتبع نوم الطفل", "description": "تحليل أنماط النوم مع إحصائيات يومية وأسبوعية"},
     "babyGrowth": {"title": "النمو الذكي للطفل", "description": "تتبع النمو بمخططات WHO"},
-    "diaperTracker": {"title": "متتبع الحفاضات الذكي", "description": "سجّلي تغييرات الحفاضات اليومية"},
+    "diaperTracker": {"title": "متتبع الحفاضات الذكي", "description": "سجل يومي ذكي للحفاضات مع إحصائيات وتنبيهات"},
     "babyCryTranslator": {"title": "مترجم بكاء الطفل", "description": "رؤى ذكية لأنماط بكاء طفلك"},
     "postpartumRecovery": {"title": "دليل التعافي بعد الولادة", "description": "خطة تعافي لمدة 6 أسابيع بعد الولادة"},
     "smartPregnancyPlan": {"title": "خطة الحمل الذكية", "description": "خطتك اليومية المخصصة مع التمارين والوجبات"},
