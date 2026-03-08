@@ -293,7 +293,7 @@
     },
     "fetalGrowth": {
       "title": "Seguimiento del crecimiento fetal",
-      "description": "¡Mira el tamaño de tu bebé esta semana!"
+      "description": "Gráfico interactivo de crecimiento fetal con comparaciones semanales."
     },
     "kickCounter": {
       "title": "Seguimiento de patadas fetales",
