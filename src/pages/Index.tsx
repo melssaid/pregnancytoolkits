@@ -299,7 +299,7 @@ const PremiumBanner = memo(function PremiumBanner() {
         {/* Text + Badge column */}
         <div className="flex-1 min-w-0 space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest">
+            <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
               PRO
             </span>
             {isTrial && (
