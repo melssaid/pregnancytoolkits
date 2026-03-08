@@ -188,19 +188,20 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
         <Button
           variant="outline"
           onClick={handlePrint}
-          disabled={busy}
+          disabled={busy || contentLoading}
           className="w-full gap-2"
         >
-          <Printer className="w-4 h-4" />
+          {contentLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Printer className="w-4 h-4" />}
           {printLabels[lang] || printLabels.en}
         </Button>
         <Button
           variant="ghost"
           size="sm"
           onClick={handleDownload}
+          disabled={contentLoading}
           className="w-full gap-2 text-xs text-muted-foreground"
         >
-          <Download className="w-3 h-3" />
+          {contentLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Download className="w-3 h-3" />}
           {downloadLabels[lang] || downloadLabels.en}
         </Button>
         <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
