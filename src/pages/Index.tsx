@@ -1,7 +1,7 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
-import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck } from "lucide-react";
+import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
@@ -296,7 +296,12 @@ const PremiumBanner = memo(function PremiumBanner() {
               PRO
             </span>
             {isTrial && (
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-destructive text-destructive-foreground text-[10px] font-bold tracking-wide shadow-sm">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-extrabold tracking-wide shadow-[0_2px_8px_-2px_hsl(0,70%,45%,0.4)]">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/60" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+                </span>
+                <Clock className="w-3 h-3" strokeWidth={2.5} />
                 {t("pricing.trialBadge", { count: trialDaysLeft })}
               </span>
             )}
