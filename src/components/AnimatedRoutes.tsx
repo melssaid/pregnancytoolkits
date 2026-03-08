@@ -79,10 +79,6 @@ const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const Splash = lazy(() => import("@/pages/Splash"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
-const LogoPulseDemo = lazy(() => import("@/pages/LogoPulseDemo"));
-const CurveDemo = lazy(() => import("@/pages/CurveDemo"));
-const CardStylesDemo = lazy(() => import("@/pages/CardStylesDemo"));
-const PremiumCardsDemo = lazy(() => import("@/pages/PremiumCardsDemo"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
 
 
@@ -98,9 +94,6 @@ export function AnimatedRoutes() {
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-        <Route path="/curve-demo" element={<PageTransition><CurveDemo /></PageTransition>} />
-        <Route path="/card-styles" element={<PageTransition><CardStylesDemo /></PageTransition>} />
-        <Route path="/premium-cards" element={<PageTransition><PremiumCardsDemo /></PageTransition>} />
         <Route path="/pricing-demo" element={<PageTransition><PricingDemo /></PageTransition>} />
         
         
@@ -182,7 +175,7 @@ export function AnimatedRoutes() {
         {/* SPLASH SCREEN */}
         <Route path="/splash" element={<Splash />} />
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
-        <Route path="/admin/pulse-demo" element={<PageTransition><LogoPulseDemo /></PageTransition>} />
+        
 
         {/* LEGACY REDIRECTS — deleted tools */}
         <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
