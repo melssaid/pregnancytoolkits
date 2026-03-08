@@ -296,7 +296,7 @@ const PremiumBanner = memo(function PremiumBanner() {
 
         {/* Text content — emotional copy */}
         <div className="flex-1 min-w-0">
-          <p className="text-[13px] font-bold text-white tracking-tight leading-snug drop-shadow-sm">
+          <p className="text-sm font-extrabold text-white tracking-tight leading-snug drop-shadow-sm">
             {t("pricing.badge")}
           </p>
           <p className="text-[11px] text-white/80 mt-0.5 leading-relaxed break-words">
