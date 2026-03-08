@@ -92,7 +92,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
           <ToolIcon className={`w-4 h-4 ${style.iconColor} opacity-70 group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.75} />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xs font-semibold text-foreground leading-snug break-words">{t(tool.titleKey)}</h3>
+          <h3 className="text-xs font-semibold text-foreground leading-snug break-words ar-heading">{t(tool.titleKey)}</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">{t(tool.descriptionKey)}</p>
         </div>
         {isLocked ? (
