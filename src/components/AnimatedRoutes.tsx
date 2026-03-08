@@ -96,7 +96,7 @@ export function AnimatedRoutes() {
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/pricing-demo" element={<PageTransition><PricingDemo /></PageTransition>} />
-        <Route path="/badge-demo" element={<PageTransition><BadgeDemo /></PageTransition>} />
+        
         
         
         {/* AI-POWERED CORE TOOLS */}
