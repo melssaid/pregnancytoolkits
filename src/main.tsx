@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { i18nReady, updateDocumentDirection } from "./i18n";
+import { updateDocumentDirection } from "./i18n";
 import i18n from "./i18n";
 import { SettingsProvider } from "@/providers/SettingsProvider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
