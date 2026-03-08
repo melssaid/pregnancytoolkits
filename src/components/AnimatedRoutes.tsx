@@ -173,8 +173,7 @@ export function AnimatedRoutes() {
         {/* VIDEO LIBRARY */}
         <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />
 
-        {/* SPLASH SCREEN */}
-        <Route path="/splash" element={<Splash />} />
+        {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
         
 
