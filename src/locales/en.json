@@ -138,6 +138,7 @@
     "bestValue": "Best Value",
     "autoRenew": "Auto-renews after trial. Cancel anytime in Google Play.",
     "trialDaysLeft": "{{count}} days left in your free trial",
+    "trialBadge": "{{count}} Days",
     "restore": "Restore Purchase",
     "termsPrefix": "By continuing, you agree to our",
     "and": "and"
