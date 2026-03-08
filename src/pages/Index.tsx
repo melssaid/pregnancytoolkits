@@ -291,21 +291,9 @@ const PremiumBanner = memo(function PremiumBanner() {
 
         {/* Text */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5 mb-0.5">
-            <span className="inline-flex items-center px-1.5 py-px rounded-md bg-primary/10 text-[9px] font-bold text-primary uppercase tracking-wider">
-              PRO
-            </span>
-            {isTrial && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-extrabold tracking-wide shadow-[0_2px_8px_-2px_hsl(0,70%,45%,0.4)]">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/60" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-                </span>
-                <Clock className="w-3 h-3" strokeWidth={2.5} />
-                {t("pricing.trialBadge", { count: trialDaysLeft })}
-              </span>
-            )}
-          </div>
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest mb-1">
+            PRO
+          </span>
           <p className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>
             {t("pricing.badge")}
           </p>
@@ -313,6 +301,18 @@ const PremiumBanner = memo(function PremiumBanner() {
             {t("pricing.cta")}
           </p>
         </div>
+
+        {/* Trial badge */}
+        {isTrial && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-extrabold tracking-wide shadow-[0_2px_8px_-2px_hsl(0,70%,45%,0.4)] shrink-0">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/60" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
+            </span>
+            <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
+            {t("pricing.trialBadge", { count: trialDaysLeft })}
+          </span>
+        )}
 
         {/* Arrow */}
         <motion.div
