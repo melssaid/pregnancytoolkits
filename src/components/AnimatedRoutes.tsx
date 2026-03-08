@@ -94,9 +94,6 @@ export function AnimatedRoutes() {
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-        <Route path="/curve-demo" element={<PageTransition><CurveDemo /></PageTransition>} />
-        <Route path="/card-styles" element={<PageTransition><CardStylesDemo /></PageTransition>} />
-        <Route path="/premium-cards" element={<PageTransition><PremiumCardsDemo /></PageTransition>} />
         <Route path="/pricing-demo" element={<PageTransition><PricingDemo /></PageTransition>} />
         
         
