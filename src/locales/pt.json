@@ -251,7 +251,7 @@
     },
     "vitaminTracker": {
       "title": "Rastreador inteligente de vitaminas",
-      "description": "Nunca esqueça suas vitaminas pré-natais."
+      "description": "Calendário de vitaminas e suplementos com análise de adesão diária."
     },
     "forbiddenFoods": {
       "title": "Alimentos a evitar",
@@ -285,7 +285,7 @@
     },
     "cycleTracker": {
       "title": "Rastreador de ciclo",
-      "description": "Acompanhe seu ciclo e encontre seus dias férteis."
+      "description": "Análise inteligente do ciclo com previsões precisas de fertilidade."
     },
     "dueDateCalculator": {
       "title": "Contagem regressiva do bebê",
@@ -293,11 +293,11 @@
     },
     "fetalGrowth": {
       "title": "Rastreamento do crescimento fetal",
-      "description": "Veja o tamanho do seu bebê esta semana!"
+      "description": "Gráfico interativo de crescimento fetal com comparações semanais."
     },
     "kickCounter": {
       "title": "Rastreamento de chutes fetais",
-      "description": "Registre os preciosos movimentos do seu bebê."
+      "description": "Contador inteligente de chutes com análise diária da atividade fetal."
     },
     "weightGain": {
       "title": "Análise de peso na gravidez",
@@ -333,7 +333,7 @@
     },
     "babySleepTracker": {
       "title": "Rastreador de sono do bebê",
-      "description": "Acompanhe os padrões de sono do seu bebê."
+      "description": "Análise de padrões de sono com estatísticas diárias e semanais."
     },
     "babyGrowth": {
       "title": "Crescimento inteligente do bebê",
@@ -341,7 +341,7 @@
     },
     "diaperTracker": {
       "title": "Rastreador inteligente de fraldas",
-      "description": "Registre as trocas diárias."
+      "description": "Registro diário inteligente de fraldas com estatísticas e alertas."
     },
     "babyCryTranslator": {
       "title": "Guia de choro do bebê",

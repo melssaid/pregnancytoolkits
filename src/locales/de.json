@@ -251,7 +251,7 @@
     },
     "vitaminTracker": {
       "title": "Intelligenter Vitamin-Tracker",
-      "description": "Vergessen Sie nie Ihre pränatalen Vitamine."
+      "description": "Vitamin- und Nahrungsergänzungsplan mit täglicher Einnahmeanalyse."
     },
     "forbiddenFoods": {
       "title": "Verbotene Lebensmittel",
@@ -285,7 +285,7 @@
     },
     "cycleTracker": {
       "title": "Zyklus-Tracker",
-      "description": "Verfolgen Sie Ihren Zyklus und finden Sie Ihre fruchtbaren Tage."
+      "description": "Intelligente Zyklusanalyse mit präzisen Fruchtbarkeitsprognosen."
     },
     "dueDateCalculator": {
       "title": "Baby-Ankunfts-Countdown",
@@ -293,11 +293,11 @@
     },
     "fetalGrowth": {
       "title": "Fetales Wachstum verfolgen",
-      "description": "Sehen Sie, wie groß Ihr Baby diese Woche ist!"
+      "description": "Interaktives Wachstumsdiagramm mit wöchentlichen Größenvergleichen."
     },
     "kickCounter": {
       "title": "Fetale Tritte verfolgen",
-      "description": "Halten Sie die wertvollen Bewegungen Ihres Babys fest."
+      "description": "Intelligenter Trittzähler mit täglicher Aktivitätsanalyse."
     },
     "weightGain": {
       "title": "Schwangerschafts-Gewichtsanalyse",
@@ -333,7 +333,7 @@
     },
     "babySleepTracker": {
       "title": "Baby-Schlaf-Tracker",
-      "description": "Verfolgen Sie die Schlafmuster Ihres Babys."
+      "description": "Schlafmusteranalyse mit täglichen und wöchentlichen Statistiken."
     },
     "babyGrowth": {
       "title": "Intelligentes Baby-Wachstum",
@@ -341,7 +341,7 @@
     },
     "diaperTracker": {
       "title": "Intelligenter Windel-Tracker",
-      "description": "Tägliche Windelwechsel protokollieren."
+      "description": "Intelligentes Windelprotokoll mit Statistiken und Benachrichtigungen."
     },
     "babyCryTranslator": {
       "title": "Baby-Weinen-Ratgeber",

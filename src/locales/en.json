@@ -251,7 +251,7 @@
     },
     "vitaminTracker": {
       "title": "Smart Vitamin Tracker",
-      "description": "Never miss your prenatal vitamins."
+      "description": "Vitamin & supplement schedule with daily compliance analytics."
     },
     "forbiddenFoods": {
       "title": "Foods to Avoid",
@@ -283,7 +283,7 @@
     },
     "cycleTracker": {
       "title": "Cycle Tracker",
-      "description": "Track your cycle and find your fertile days."
+      "description": "Smart cycle analysis with precise fertility window predictions."
     },
     "dueDateCalculator": {
       "title": "Baby Arrival Countdown",
@@ -291,11 +291,11 @@
     },
     "fetalGrowth": {
       "title": "Fetal Growth Tracking",
-      "description": "See how big your baby is this week!"
+      "description": "Interactive fetal growth chart with weekly size comparisons."
     },
     "kickCounter": {
       "title": "Fetal Kick Tracking",
-      "description": "Log and journal your baby's precious movements."
+      "description": "Smart kick counter with daily fetal activity analysis."
     },
     "weightGain": {
       "title": "Pregnancy Weight Analysis",
@@ -331,7 +331,7 @@
     },
     "babySleepTracker": {
       "title": "Baby Sleep Tracker",
-      "description": "Track your baby's sleep patterns."
+      "description": "Sleep pattern analysis with daily and weekly statistics."
     },
     "babyGrowth": {
       "title": "Smart Baby Growth",
@@ -339,7 +339,7 @@
     },
     "diaperTracker": {
       "title": "Smart Diaper Tracker",
-      "description": "Log daily diaper changes."
+      "description": "Smart daily diaper log with statistics and alerts."
     },
     "babyCryTranslator": {
       "title": "Baby Cry Guide",

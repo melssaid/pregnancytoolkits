@@ -251,7 +251,7 @@
     },
     "vitaminTracker": {
       "title": "Suivi intelligent des vitamines",
-      "description": "N'oubliez jamais vos vitamines prénatales."
+      "description": "Calendrier des vitamines et suppléments avec analyse de l'observance quotidienne."
     },
     "forbiddenFoods": {
       "title": "Aliments à éviter",
@@ -285,7 +285,7 @@
     },
     "cycleTracker": {
       "title": "Tracker de cycle",
-      "description": "Suivez votre cycle et trouvez vos jours fertiles."
+      "description": "Analyse intelligente du cycle avec prédictions précises de fertilité."
     },
     "dueDateCalculator": {
       "title": "Compte à rebours bébé",
@@ -293,11 +293,11 @@
     },
     "fetalGrowth": {
       "title": "Suivi de la croissance fœtale",
-      "description": "Voyez la taille de votre bébé cette semaine !"
+      "description": "Graphique interactif de croissance fœtale avec comparaisons hebdomadaires."
     },
     "kickCounter": {
       "title": "Suivi des coups de pied fœtaux",
-      "description": "Consignez les précieux mouvements de votre bébé."
+      "description": "Compteur intelligent avec analyse quotidienne de l'activité fœtale."
     },
     "weightGain": {
       "title": "Analyse du poids de grossesse",
@@ -333,7 +333,7 @@
     },
     "babySleepTracker": {
       "title": "Suivi du sommeil bébé",
-      "description": "Suivez les habitudes de sommeil de votre bébé."
+      "description": "Analyse des habitudes de sommeil avec statistiques quotidiennes et hebdomadaires."
     },
     "babyGrowth": {
       "title": "Croissance intelligente du bébé",
@@ -341,7 +341,7 @@
     },
     "diaperTracker": {
       "title": "Suivi intelligent des couches",
-      "description": "Enregistrez les changements quotidiens."
+      "description": "Journal quotidien intelligent des couches avec statistiques et alertes."
     },
     "babyCryTranslator": {
       "title": "Guide des pleurs de bébé",
