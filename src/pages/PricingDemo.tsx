@@ -28,6 +28,7 @@ export default function PricingDemo() {
     <div
       className="min-h-[100dvh] bg-gradient-to-b from-background via-background to-primary/5 flex flex-col"
       dir={isRTL ? "rtl" : "ltr"}
+      style={{ fontFamily: "'Montserrat', sans-serif" }}
     >
       {/* Close */}
       <div className="sticky top-0 z-30 px-4 py-3 flex justify-end">
