@@ -339,7 +339,7 @@
     },
     "diaperTracker": {
       "title": "Smart Diaper Tracker",
-      "description": "Log daily diaper changes."
+      "description": "Smart daily diaper log with statistics and alerts."
     },
     "babyCryTranslator": {
       "title": "Baby Cry Guide",
