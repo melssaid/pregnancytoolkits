@@ -312,7 +312,7 @@ const PremiumBanner = memo(function PremiumBanner() {
             <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
             {t("pricing.trialBadge", { count: trialDaysLeft })}
           </span>
-        )
+        )}
 
         {/* Arrow */}
         <motion.div
