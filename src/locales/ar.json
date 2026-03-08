@@ -195,7 +195,7 @@
     "aiBumpPhotos": {"title": "تحليل صور السونار", "description": "حللي صور السونار واحصلي على رؤى تعليمية بالذكاء الاصطناعي"},
     "aiFitnessCoach": {"title": "مدرب اللياقة والمرونة", "description": "تمارين آمنة مخصصة لمرحلة الحمل"},
     "aiBackPainRelief": {"title": "دليل راحة الظهر", "description": "تمارين مخصصة لراحة الظهر أثناء الحمل"},
-    "vitaminTracker": {"title": "المتتبع الذكي للفيتامينات", "description": "لا تنسَي فيتاميناتك"},
+    "vitaminTracker": {"title": "المتتبع الذكي للفيتامينات", "description": "جدول الفيتامينات والمكملات مع تحليل الالتزام اليومي"},
     "forbiddenFoods": {"title": "الأطعمة الممنوعة", "description": "اعرفي ما هو آمن للأكل"},
     "aiLaborProgress": {"title": "سجل الانقباضات", "description": "سجّلي أنماط الانقباضات في يومياتك"},
     "cycleTracker": {"title": "متتبع الدورة", "description": "تتبع الدورة وأيام الخصوبة"},
