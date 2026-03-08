@@ -79,10 +79,6 @@ const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const Splash = lazy(() => import("@/pages/Splash"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
-const LogoPulseDemo = lazy(() => import("@/pages/LogoPulseDemo"));
-const CurveDemo = lazy(() => import("@/pages/CurveDemo"));
-const CardStylesDemo = lazy(() => import("@/pages/CardStylesDemo"));
-const PremiumCardsDemo = lazy(() => import("@/pages/PremiumCardsDemo"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
 
 
