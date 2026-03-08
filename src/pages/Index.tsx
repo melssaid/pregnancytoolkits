@@ -266,6 +266,13 @@ const PremiumBanner = memo(function PremiumBanner() {
       transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
       className="w-full rounded-2xl overflow-hidden text-start group relative mt-3 bg-card border border-primary/15 shadow-[0_2px_16px_-4px_hsl(340,50%,55%,0.1)] hover:shadow-[0_4px_24px_-4px_hsl(340,50%,55%,0.18)] hover:border-primary/25 transition-all duration-300"
     >
+      {/* Breathing Glow — halo around the card */}
+      <motion.div
+        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-md -z-10"
+        animate={{ opacity: [0, 0.6, 0], scale: [0.98, 1.02, 0.98] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       {/* Subtle accent glow */}
       <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/5 blur-3xl" />
 
