@@ -201,7 +201,7 @@
     "cycleTracker": {"title": "متتبع الدورة", "description": "تحليل ذكي للدورة مع توقعات دقيقة لأيام الخصوبة"},
     "dueDateCalculator": {"title": "العد التنازلي لوصول الطفل", "description": "اكتشفي متى سيصل الطفل"},
     "fetalGrowth": {"title": "تتبع نمو الجنين", "description": "مخطط تفاعلي لنمو الجنين مع مقارنات أسبوعية"},
-    "kickCounter": {"title": "تتبع ركلات الجنين", "description": "سجّلي حركات الطفل في يومياتك"},
+    "kickCounter": {"title": "تتبع ركلات الجنين", "description": "عدّاد ذكي للركلات مع تحليل يومي لنشاط الجنين"},
     "weightGain": {"title": "تحليل وزن الحامل", "description": "تابعي تغيرات الوزن خلال الحمل"},
     "postpartumMentalHealth": {"title": "الصحة النفسية بعد الحمل", "description": "أداة توعوية لملاحظة مزاجك وتشجيعك على طلب المساعدة"},
     "gestationalDiabetes": {"title": "سكري الحمل", "description": "معلومات مبسّطة عن سكّري الحمل والعوامل الشائعة"},
