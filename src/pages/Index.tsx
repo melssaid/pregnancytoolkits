@@ -350,7 +350,7 @@ const PremiumBanner = memo(function PremiumBanner() {
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
-  const { isUnlocked } = useSubscriptionStatus();
+  const { isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
   return (
     <Layout>
       <SEOHead />
