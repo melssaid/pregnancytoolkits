@@ -120,7 +120,7 @@
   },
   "pricing": {
     "title": "Accès Premium",
-    "badge": "3 jours gratuits",
+    "badge": "Votre bébé mérite le meilleur",
     "subtitle": "Débloquez tous les outils IA et fonctionnalités premium",
     "monthly": "Mensuel",
     "yearly": "Annuel",
@@ -133,7 +133,7 @@
     "feature4": "Réponses IA prioritaires",
     "feature5": "Analyses de santé personnalisées",
     "trialNote": "Commencez avec 3 jours gratuits · Annulez à tout moment",
-    "cta": "Essayer gratuitement 3 jours",
+    "cta": "Commencez votre parcours — 3 jours gratuits",
     "ctaSub": "puis {{price}}/{{period}}",
     "bestValue": "Meilleure offre",
     "autoRenew": "Renouvellement auto après l'essai. Annulez à tout moment sur Google Play.",
