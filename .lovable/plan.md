@@ -1,17 +1,26 @@
 
 
-## خطة التعديل
+## اصلاح الطباعة أثناء التحميل
 
-### 1. تداخل المنحنى مع الهيدر بسلاسة
-- إزالة `translate-y-[99%]` من SVG واستبداله بموضع يتداخل مع الهيدر
-- زيادة عمق المنحنى وجعل z-index أعلى ليظهر فوق الهيدر
-- إضافة `mt-[-14px]` أو padding-top للهيدر لاستيعاب المنحنى المتداخل
+### المشكلة
+أزرار الطباعة والتحميل متاحة أثناء تحميل المحتوى (streaming). عند الضغط عليها قبل اكتمال التحميل، يتم طباعة تقرير ناقص أو فارغ.
 
-### 2. تكبير جمل شريط الثقة
-- زيادة حجم الخط من `8px` إلى `9px` أو `9.5px`
+### الحل
+إضافة prop جديد `isLoading` لمكون `PrintableReport` لتعطيل أزرار الطباعة والتحميل أثناء التحميل.
 
-### التفاصيل التقنية
-- SVG: تغيير `translate-y-[99%]` إلى `translate-y-[50%]` مع `z-10` ليتداخل مع الهيدر
-- الهيدر: إضافة `pt-2` لإعطاء مساحة للمنحنى المتداخل
-- النصوص: `text-[8px]` → `text-[9.5px]`
+### التغييرات
+
+**1. `src/components/PrintableReport.tsx`**
+- إضافة `isLoading?: boolean` للـ props
+- تعطيل زري الطباعة والتحميل عندما `isLoading === true`
+- إضافة نص توضيحي بأن التقرير لا يزال يُحمّل
+
+**2. `src/components/smart-plan/SmartPlanResultView.tsx`**
+- تمرير `isLoading` للـ `PrintableReport`
+
+**3. `src/pages/tools/AIBirthPlanGenerator.tsx`**
+- تمرير `isLoading` للـ `PrintableReport`
+
+**4. `src/pages/tools/PostpartumMentalHealthCoach.tsx`**
+- تمرير `isLoading` للـ `PrintableReport`
 
