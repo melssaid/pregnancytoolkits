@@ -293,7 +293,7 @@
     },
     "fetalGrowth": {
       "title": "Fetal Büyüme Takibi",
-      "description": "Bu hafta bebeğinizin ne kadar büyük olduğunu görün!"
+      "description": "Haftalık boyut karşılaştırmalarıyla interaktif fetal büyüme grafiği."
     },
     "kickCounter": {
       "title": "Fetal Tekme Takibi",
