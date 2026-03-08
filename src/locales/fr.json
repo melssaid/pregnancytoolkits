@@ -293,7 +293,7 @@
     },
     "fetalGrowth": {
       "title": "Suivi de la croissance fœtale",
-      "description": "Voyez la taille de votre bébé cette semaine !"
+      "description": "Graphique interactif de croissance fœtale avec comparaisons hebdomadaires."
     },
     "kickCounter": {
       "title": "Suivi des coups de pied fœtaux",
