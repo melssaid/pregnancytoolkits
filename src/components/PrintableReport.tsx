@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 interface PrintableReportProps {
   children: React.ReactNode;
   title?: string;
+  isLoading?: boolean;
 }
 
 const printLabels: Record<string, string> = {
