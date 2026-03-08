@@ -8,16 +8,16 @@ interface PageTransitionProps {
 
 const variants = {
   default: {
-    initial: { opacity: 0, y: 8 },
+    initial: { opacity: 0, y: 4 },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -4 },
-    transition: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    exit: { opacity: 0, y: -2 },
+    transition: { duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
   tool: {
-    initial: { opacity: 0, y: 6 },
+    initial: { opacity: 0, y: 3 },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -4 },
-    transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] as const },
+    exit: { opacity: 0, y: -2 },
+    transition: { duration: 0.15, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 
