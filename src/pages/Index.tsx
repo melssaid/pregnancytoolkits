@@ -290,7 +290,7 @@ const PremiumBanner = memo(function PremiumBanner() {
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
           />
           <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center shadow-sm">
-            <Crown className="w-5.5 h-5.5 text-primary drop-shadow-sm" strokeWidth={1.75} />
+            <ShieldCheck className="w-5.5 h-5.5 text-primary drop-shadow-sm" strokeWidth={1.75} />
           </div>
         </div>
 
