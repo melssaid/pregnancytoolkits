@@ -233,7 +233,7 @@ ${detailedContext}
               ) : (
                 <div className="max-h-[500px] overflow-y-auto">
                   {aiCopingPlan ? (
-                    <PrintableReport title={t('toolsInternal.mentalHealthCoach.title')}>
+                    <PrintableReport title={t('toolsInternal.mentalHealthCoach.title')} isLoading={aiLoading}>
                       <AIResponseFrame
                         content={aiCopingPlan}
                         title={t('toolsInternal.mentalHealthCoach.title')}

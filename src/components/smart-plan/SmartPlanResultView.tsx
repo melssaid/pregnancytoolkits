@@ -63,7 +63,7 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
   }
 
   return (
-    <PrintableReport title={t("smartPlan.title")}>
+    <PrintableReport title={t("smartPlan.title")} isLoading={isLoading}>
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}

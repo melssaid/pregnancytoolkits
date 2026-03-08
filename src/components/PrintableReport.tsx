@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Printer, Download } from 'lucide-react';
+import { Printer, Download, Loader2 } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { buildPrintHTML } from '@/lib/printUtils';
 import { toast } from 'sonner';

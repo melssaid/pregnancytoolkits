@@ -213,7 +213,7 @@ export default function AIBirthPlanGenerator() {
                 {t('common.save')}
               </Button>
             </div>
-            <PrintableReport title={t('toolsInternal.birthPlan.title')}>
+            <PrintableReport title={t('toolsInternal.birthPlan.title')} isLoading={isLoading}>
               <AIResponseFrame
                 content={generatedPlan}
                 title={t('toolsInternal.birthPlan.yourBirthPlan')}
