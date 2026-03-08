@@ -331,7 +331,7 @@
     },
     "babySleepTracker": {
       "title": "Baby Sleep Tracker",
-      "description": "Track your baby's sleep patterns."
+      "description": "Sleep pattern analysis with daily and weekly statistics."
     },
     "babyGrowth": {
       "title": "Smart Baby Growth",
