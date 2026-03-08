@@ -261,66 +261,61 @@ const PremiumBanner = memo(function PremiumBanner() {
   return (
     <motion.button
       onClick={handleTap}
-      initial={{ opacity: 0, y: 16, scale: 0.96 }}
+      initial={{ opacity: 0, y: 14, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="w-full rounded-[1.5rem] overflow-hidden text-start group relative mt-4"
+      transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="w-full rounded-2xl overflow-hidden text-start group relative mt-3 bg-card border border-primary/15 shadow-[0_2px_16px_-4px_hsl(340,50%,55%,0.1)] hover:shadow-[0_4px_24px_-4px_hsl(340,50%,55%,0.18)] hover:border-primary/25 transition-all duration-300"
     >
-      {/* Gradient background — distinct from journey cards */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary to-[hsl(340,65%,42%)] dark:from-primary/80 dark:via-primary/90 dark:to-[hsl(340,55%,35%)]" />
-      
-      {/* Decorative circles */}
-      <div className="absolute -top-10 -end-10 w-36 h-36 rounded-full bg-white/10 blur-2xl" />
-      <div className="absolute -bottom-8 -start-8 w-28 h-28 rounded-full bg-white/8 blur-2xl" />
+      {/* Subtle accent glow */}
+      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/5 blur-3xl" />
 
       {/* Shimmer */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/[0.04] to-transparent -skew-x-12"
         animate={{ x: ["-100%", "200%"] }}
         transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" }}
       />
 
-      <div className="relative px-4 py-5 flex items-center gap-3.5">
+      <div className="relative px-4 py-3.5 flex items-center gap-3">
         {/* Icon */}
         <div className="relative shrink-0">
           <motion.div
-            className="absolute inset-0 rounded-2xl bg-white/20"
-            animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
+            className="absolute inset-0 rounded-xl bg-primary/10"
+            animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0, 0.4] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
           />
-          <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/10">
-            <ShieldCheck className="w-6 h-6 text-white drop-shadow-sm" strokeWidth={1.75} />
+          <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center">
+            <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
           </div>
         </div>
 
-        {/* Text content */}
+        {/* Text */}
         <div className="flex-1 min-w-0">
-          {/* PRO pill badge */}
-          <div className="flex items-center gap-2 mb-1">
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-sm text-[10px] font-bold text-white uppercase tracking-wider border border-white/15">
+          <div className="flex items-center gap-1.5 mb-0.5">
+            <span className="inline-flex items-center px-1.5 py-px rounded-md bg-primary/10 text-[9px] font-bold text-primary uppercase tracking-wider">
               PRO
             </span>
             {isTrial && (
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/15 text-[10px] font-semibold text-white/90">
+              <span className="text-[10px] font-medium text-primary/70">
                 {t("pricing.trialDaysLeft", { count: trialDaysLeft })}
               </span>
             )}
           </div>
-          <p className="text-[13px] font-bold text-white tracking-tight leading-snug break-words" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+          <p className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Montserrat', sans-serif" }}>
             {t("pricing.badge")}
           </p>
-          <p className="text-[11px] text-white/75 mt-0.5 leading-relaxed break-words" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">
             {t("pricing.cta")}
           </p>
         </div>
 
         {/* Arrow */}
         <motion.div
-          animate={{ x: isRTL ? [-2, 3, -2] : [0, 5, 0] }}
+          animate={{ x: isRTL ? [-2, 3, -2] : [0, 4, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="shrink-0"
         >
-          <ChevronRight className="w-5 h-5 text-white/60 rtl:rotate-180" />
+          <ChevronRight className="w-4.5 h-4.5 text-primary/40 rtl:rotate-180" />
         </motion.div>
       </div>
     </motion.button>
