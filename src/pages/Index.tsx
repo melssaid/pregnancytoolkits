@@ -268,7 +268,7 @@ const PremiumBanner = memo(function PremiumBanner() {
     >
       {/* White background with subtle border */}
       <div className="absolute inset-0 bg-card" />
-      <div className="absolute inset-0 border border-border/40 rounded-[1.25rem]" />
+      <div className="absolute inset-0 border-2 border-primary/20 rounded-[1.25rem] transition-colors duration-300 group-hover:border-primary/30" />
       
       {/* Soft accent glow */}
       <div className="absolute -top-8 -end-8 w-32 h-32 rounded-full bg-primary/5 blur-3xl" />
