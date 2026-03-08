@@ -32,9 +32,14 @@ createRoot(document.getElementById("root")!).render(
   </SettingsProvider>
 );
 
-// Dismiss splash immediately after render
-dismissNativeSplash();
-setTimeout(dismissNativeSplash, 500);
+// Dismiss splash after first paint (double-rAF ensures pixels are on screen)
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    dismissNativeSplash();
+  });
+});
+// Safety net fallback
+setTimeout(dismissNativeSplash, 1500);
 
 // Register Service Worker after render
 registerServiceWorker().then(() => {
