@@ -210,7 +210,7 @@
     "pregnancyComfort": {"title": "الحمل المريح", "description": "نصائح متقدمة للنوم وتخفيف الغثيان أثناء الحمل"},
     "babyGearRecommender": {"title": "تجهيز مستلزمات الطفل", "description": "قائمة أساسيات لقدوم المولود"},
     "aiLactationPrep": {"title": "دليل الرضاعة الذكي", "description": "دليل تحضير الرضاعة الطبيعية"},
-    "babySleepTracker": {"title": "متتبع نوم الطفل", "description": "تتبع أنماط نوم الطفل"},
+    "babySleepTracker": {"title": "متتبع نوم الطفل", "description": "تحليل أنماط النوم مع إحصائيات يومية وأسبوعية"},
     "babyGrowth": {"title": "النمو الذكي للطفل", "description": "تتبع النمو بمخططات WHO"},
     "diaperTracker": {"title": "متتبع الحفاضات الذكي", "description": "سجّلي تغييرات الحفاضات اليومية"},
     "babyCryTranslator": {"title": "مترجم بكاء الطفل", "description": "رؤى ذكية لأنماط بكاء طفلك"},
