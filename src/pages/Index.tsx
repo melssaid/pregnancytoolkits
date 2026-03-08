@@ -312,14 +312,7 @@ const PremiumBanner = memo(function PremiumBanner() {
             <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
             {t("pricing.trialBadge", { count: trialDaysLeft })}
           </span>
-        )}
-          <p className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-            {t("pricing.badge")}
-          </p>
-          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">
-            {t("pricing.cta")}
-          </p>
-        </div>
+        )
 
         {/* Arrow */}
         <motion.div
