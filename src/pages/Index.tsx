@@ -264,7 +264,7 @@ const PremiumBanner = memo(function PremiumBanner() {
       initial={{ opacity: 0, y: 12, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-      className="w-full rounded-[1.25rem] overflow-hidden text-start group relative"
+      className="w-full rounded-[1.25rem] overflow-hidden text-start group relative shadow-[0_4px_20px_-4px_hsl(340,50%,55%,0.12)] hover:shadow-[0_6px_28px_-4px_hsl(340,50%,55%,0.2)] transition-shadow duration-300"
     >
       {/* White background with subtle border */}
       <div className="absolute inset-0 bg-card" />
