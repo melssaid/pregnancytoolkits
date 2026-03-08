@@ -296,10 +296,10 @@ const PremiumBanner = memo(function PremiumBanner() {
 
         {/* Text content */}
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-extrabold text-foreground tracking-tight leading-snug">
+          <p className="text-sm font-extrabold text-foreground tracking-tight leading-snug" style={{ fontFamily: "'Montserrat', sans-serif" }}>
             {t("pricing.badge")}
           </p>
-          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">
+          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words" style={{ fontFamily: "'Montserrat', sans-serif" }}>
             {isTrial 
               ? t("pricing.trialDaysLeft", { count: trialDaysLeft })
               : t("pricing.cta")
