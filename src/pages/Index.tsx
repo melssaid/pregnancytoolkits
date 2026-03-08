@@ -184,7 +184,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className={`text-xl sm:text-2xl font-bold ${config.headerText} tracking-tight leading-snug break-words`}>
+            <h2 className={`text-xl sm:text-2xl font-bold ${config.headerText} tracking-tight leading-snug break-words ar-heading`}>
               {t(`journeys.${config.key}`)}
             </h2>
             <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 leading-snug break-words`}>

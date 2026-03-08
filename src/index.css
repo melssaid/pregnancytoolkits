@@ -21,6 +21,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* IBM Plex Sans Arabic — for Arabic headings only */
+html[lang="ar"] .ar-heading {
+  font-family: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+}
+
 /* Lifestyle & Educational Companion - Warm Pastel Design System */
 
 @layer base {
