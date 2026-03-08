@@ -42,7 +42,7 @@ const successMessages: Record<string, string> = {
   tr: 'Rapor açıldı! Ctrl+P ile yazdırın',
 };
 
-export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title }) => {
+export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading }) => {
   const { i18n } = useTranslation();
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
