@@ -240,10 +240,11 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   );
 });
 
-// ── Premium CTA Banner ──────────────────────────────────────────────────
+// ── Premium CTA Banner — Psychologically optimized ──────────────────────
 const PremiumBanner = memo(function PremiumBanner() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const isRTL = i18n.language === 'ar';
   const { tier, trialDaysLeft } = useSubscriptionStatus();
 
   if (tier === "premium") return null;
@@ -255,31 +256,79 @@ const PremiumBanner = memo(function PremiumBanner() {
     }
   };
 
-  const subtitle = tier === "trial"
-    ? t("pricing.trialDaysLeft", { count: trialDaysLeft })
-    : t("pricing.cta");
+  const isTrial = tier === "trial" && trialDaysLeft > 0;
 
   return (
     <motion.button
       onClick={handleTap}
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.2 }}
-      className="w-full rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border border-primary/15 p-3.5 flex items-center gap-3 text-start hover:border-primary/30 transition-all duration-300 group"
+      initial={{ opacity: 0, y: 12, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.5, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+      className="w-full rounded-[1.25rem] overflow-hidden text-start group relative"
     >
-      <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-        <Crown className="w-4.5 h-4.5 text-primary" strokeWidth={1.75} />
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-xs font-semibold text-foreground">{t("pricing.badge")}</p>
-        <p className="text-[11px] text-muted-foreground mt-0.5 break-words">{subtitle}</p>
-      </div>
-      {tier === "trial" && trialDaysLeft > 0 && (
-        <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
-          <span className="text-sm font-bold text-primary">{trialDaysLeft}</span>
+      {/* Layered gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(340,70%,52%)] via-[hsl(350,65%,58%)] to-[hsl(20,70%,60%)] dark:from-[hsl(340,65%,42%)] dark:via-[hsl(350,60%,48%)] dark:to-[hsl(20,65%,50%)]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-white/10" />
+      
+      {/* Soft glow orb — draws eye subconsciously */}
+      <div className="absolute -top-8 -end-8 w-32 h-32 rounded-full bg-white/15 blur-3xl" />
+      <div className="absolute -bottom-6 -start-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
+
+      {/* Shimmer animation */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/12 to-transparent -skew-x-12"
+        animate={{ x: ["-100%", "200%"] }}
+        transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+      />
+
+      <div className="relative px-4 py-4 flex items-center gap-3.5">
+        {/* Icon with pulsing ring — urgency trigger */}
+        <div className="relative shrink-0">
+          <motion.div
+            className="absolute inset-0 rounded-2xl bg-white/20"
+            animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0, 0.4] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
+          />
+          <div className="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+            <Crown className="w-5.5 h-5.5 text-white drop-shadow-sm" strokeWidth={1.75} />
+          </div>
         </div>
-      )}
-      <ChevronRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary/60 rtl:rotate-180 transition-colors shrink-0" />
+
+        {/* Text content — emotional copy */}
+        <div className="flex-1 min-w-0">
+          <p className="text-[13px] font-bold text-white tracking-tight leading-snug drop-shadow-sm">
+            {t("pricing.badge")}
+          </p>
+          <p className="text-[11px] text-white/80 mt-0.5 leading-relaxed break-words">
+            {isTrial 
+              ? t("pricing.trialDaysLeft", { count: trialDaysLeft })
+              : t("pricing.cta")
+            }
+          </p>
+        </div>
+
+        {/* Trial countdown — scarcity principle */}
+        {isTrial && (
+          <div className="shrink-0 flex flex-col items-center">
+            <motion.div
+              className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/25 shadow-lg"
+              animate={{ scale: [1, 1.06, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <span className="text-base font-extrabold text-white drop-shadow-sm">{trialDaysLeft}</span>
+            </motion.div>
+          </div>
+        )}
+
+        {/* Arrow — directional cue */}
+        <motion.div
+          animate={{ x: isRTL ? [-2, 2, -2] : [0, 4, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="shrink-0"
+        >
+          <ChevronRight className="w-5 h-5 text-white/70 rtl:rotate-180 drop-shadow-sm" />
+        </motion.div>
+      </div>
     </motion.button>
   );
 });
