@@ -12,24 +12,33 @@ import { maybeRunCleanup } from "@/lib/storageCleanup";
 // Run periodic storage cleanup (non-blocking)
 maybeRunCleanup();
 
+// Dismiss native splash screen
+function dismissNativeSplash() {
+  const splash = document.getElementById("native-splash");
+  if (splash) {
+    splash.style.opacity = "0";
+    setTimeout(() => splash.remove(), 400);
+  }
+}
 
-// Wait for initial language to load, then render
-i18nReady.then(() => {
-  // Ensure direction is set
-  updateDocumentDirection(i18n.language);
+// Render immediately — don't block on i18n
+updateDocumentDirection(i18n.language);
 
-  createRoot(document.getElementById("root")!).render(
-    <SettingsProvider>
-      <LanguageProvider>
-        <App />
-      </LanguageProvider>
-    </SettingsProvider>
-  );
+createRoot(document.getElementById("root")!).render(
+  <SettingsProvider>
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
+  </SettingsProvider>
+);
 
-  // Register Service Worker after render
-  registerServiceWorker().then(() => {
-    setTimeout(() => {
-      sendDailyScheduleToSW();
-    }, 3000);
-  });
+// Dismiss splash once i18n is ready (or after timeout as safety net)
+i18nReady.then(dismissNativeSplash);
+setTimeout(dismissNativeSplash, 3000);
+
+// Register Service Worker after render
+registerServiceWorker().then(() => {
+  setTimeout(() => {
+    sendDailyScheduleToSW();
+  }, 3000);
 });
