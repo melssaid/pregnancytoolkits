@@ -138,6 +138,7 @@
     "bestValue": "En İyi Değer",
     "autoRenew": "Deneme sonrası otomatik yenilenir. Google Play'den istediğiniz zaman iptal edin.",
     "trialDaysLeft": "Ücretsiz denemenizden {{count}} gün kaldı",
+    "trialBadge": "{{count}} Gün",
     "restore": "Satın almayı geri yükle",
     "termsPrefix": "Devam ederek kabul etmiş olursunuz",
     "and": "ve"

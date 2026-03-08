@@ -138,6 +138,7 @@
     "bestValue": "Bestes Angebot",
     "autoRenew": "Automatische Verlängerung nach der Testphase. Jederzeit in Google Play kündbar.",
     "trialDaysLeft": "Noch {{count}} Tage kostenlos testen",
+    "trialBadge": "{{count}} Tage",
     "restore": "Kauf wiederherstellen",
     "termsPrefix": "Mit der Fortsetzung akzeptieren Sie unsere",
     "and": "und"
