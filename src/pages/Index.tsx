@@ -266,13 +266,13 @@ const PremiumBanner = memo(function PremiumBanner() {
       transition={{ duration: 0.5, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
       className="w-full rounded-[1.25rem] overflow-hidden text-start group relative"
     >
-      {/* Layered gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(340,70%,52%)] via-[hsl(350,65%,58%)] to-[hsl(20,70%,60%)] dark:from-[hsl(340,65%,42%)] dark:via-[hsl(350,60%,48%)] dark:to-[hsl(20,65%,50%)]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-white/10" />
+      {/* White background with subtle border */}
+      <div className="absolute inset-0 bg-card" />
+      <div className="absolute inset-0 border border-border/40 rounded-[1.25rem]" />
       
-      {/* Soft glow orb — draws eye subconsciously */}
-      <div className="absolute -top-8 -end-8 w-32 h-32 rounded-full bg-white/15 blur-3xl" />
-      <div className="absolute -bottom-6 -start-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
+      {/* Soft accent glow */}
+      <div className="absolute -top-8 -end-8 w-32 h-32 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute -bottom-6 -start-6 w-24 h-24 rounded-full bg-primary/3 blur-2xl" />
 
       {/* Shimmer animation */}
       <motion.div
