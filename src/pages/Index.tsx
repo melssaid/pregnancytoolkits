@@ -261,72 +261,66 @@ const PremiumBanner = memo(function PremiumBanner() {
   return (
     <motion.button
       onClick={handleTap}
-      initial={{ opacity: 0, y: 12, scale: 0.97 }}
+      initial={{ opacity: 0, y: 16, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-      className="w-full rounded-[1.25rem] overflow-hidden text-start group relative shadow-[0_4px_20px_-4px_hsl(340,50%,55%,0.12)] hover:shadow-[0_6px_28px_-4px_hsl(340,50%,55%,0.2)] transition-shadow duration-300"
+      transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="w-full rounded-[1.5rem] overflow-hidden text-start group relative mt-4"
     >
-      {/* White background with subtle border */}
-      <div className="absolute inset-0 bg-card" />
-      <div className="absolute inset-0 border-2 border-primary/20 rounded-[1.25rem] transition-colors duration-300 group-hover:border-primary/30" />
+      {/* Gradient background — distinct from journey cards */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary to-[hsl(340,65%,42%)] dark:from-primary/80 dark:via-primary/90 dark:to-[hsl(340,55%,35%)]" />
       
-      {/* Soft accent glow */}
-      <div className="absolute -top-8 -end-8 w-32 h-32 rounded-full bg-primary/5 blur-3xl" />
-      <div className="absolute -bottom-6 -start-6 w-24 h-24 rounded-full bg-primary/3 blur-2xl" />
+      {/* Decorative circles */}
+      <div className="absolute -top-10 -end-10 w-36 h-36 rounded-full bg-white/10 blur-2xl" />
+      <div className="absolute -bottom-8 -start-8 w-28 h-28 rounded-full bg-white/8 blur-2xl" />
 
-      {/* Shimmer animation */}
+      {/* Shimmer */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -skew-x-12"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
         animate={{ x: ["-100%", "200%"] }}
-        transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+        transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" }}
       />
 
-      <div className="relative px-4 py-4 flex items-center gap-3.5">
-        {/* Icon with pulsing ring */}
+      <div className="relative px-4 py-5 flex items-center gap-3.5">
+        {/* Icon */}
         <div className="relative shrink-0">
           <motion.div
-            className="absolute inset-0 rounded-2xl bg-primary/15"
-            animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0, 0.4] }}
+            className="absolute inset-0 rounded-2xl bg-white/20"
+            animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
           />
-          <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center shadow-sm">
-            <ShieldCheck className="w-5.5 h-5.5 text-primary drop-shadow-sm" strokeWidth={1.75} />
+          <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/10">
+            <ShieldCheck className="w-6 h-6 text-white drop-shadow-sm" strokeWidth={1.75} />
           </div>
         </div>
 
         {/* Text content */}
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-extrabold text-foreground tracking-tight leading-snug" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+          {/* PRO pill badge */}
+          <div className="flex items-center gap-2 mb-1">
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-sm text-[10px] font-bold text-white uppercase tracking-wider border border-white/15">
+              PRO
+            </span>
+            {isTrial && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/15 text-[10px] font-semibold text-white/90">
+                {t("pricing.trialDaysLeft", { count: trialDaysLeft })}
+              </span>
+            )}
+          </div>
+          <p className="text-[13px] font-bold text-white tracking-tight leading-snug break-words" style={{ fontFamily: "'Montserrat', sans-serif" }}>
             {t("pricing.badge")}
           </p>
-          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            {isTrial 
-              ? t("pricing.trialDaysLeft", { count: trialDaysLeft })
-              : t("pricing.cta")
-            }
+          <p className="text-[11px] text-white/75 mt-0.5 leading-relaxed break-words" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+            {t("pricing.cta")}
           </p>
         </div>
 
-        {/* Trial countdown */}
-        {isTrial && (
-          <div className="shrink-0 flex flex-col items-center">
-            <motion.div
-              className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 shadow-sm"
-              animate={{ scale: [1, 1.06, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span className="text-base font-extrabold text-primary">{trialDaysLeft}</span>
-            </motion.div>
-          </div>
-        )}
-
         {/* Arrow */}
         <motion.div
-          animate={{ x: isRTL ? [-2, 2, -2] : [0, 4, 0] }}
+          animate={{ x: isRTL ? [-2, 3, -2] : [0, 5, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="shrink-0"
         >
-          <ChevronRight className="w-5 h-5 text-muted-foreground/50 rtl:rotate-180" />
+          <ChevronRight className="w-5 h-5 text-white/60 rtl:rotate-180" />
         </motion.div>
       </div>
     </motion.button>
