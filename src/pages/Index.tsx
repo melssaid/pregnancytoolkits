@@ -296,8 +296,8 @@ const PremiumBanner = memo(function PremiumBanner() {
               PRO
             </span>
             {isTrial && (
-              <span className="text-[10px] font-medium text-primary/70">
-                {t("pricing.trialDaysLeft", { count: trialDaysLeft })}
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-destructive text-destructive-foreground text-[10px] font-bold shadow-sm animate-pulse">
+                {trialDaysLeft}d
               </span>
             )}
           </div>
