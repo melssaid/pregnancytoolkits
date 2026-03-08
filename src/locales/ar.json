@@ -200,7 +200,7 @@
     "aiLaborProgress": {"title": "سجل الانقباضات", "description": "سجّلي أنماط الانقباضات في يومياتك"},
     "cycleTracker": {"title": "متتبع الدورة", "description": "تحليل ذكي للدورة مع توقعات دقيقة لأيام الخصوبة"},
     "dueDateCalculator": {"title": "العد التنازلي لوصول الطفل", "description": "اكتشفي متى سيصل الطفل"},
-    "fetalGrowth": {"title": "تتبع نمو الجنين", "description": "شاهدي حجم الطفل هذا الأسبوع!"},
+    "fetalGrowth": {"title": "تتبع نمو الجنين", "description": "مخطط تفاعلي لنمو الجنين مع مقارنات أسبوعية"},
     "kickCounter": {"title": "تتبع ركلات الجنين", "description": "سجّلي حركات الطفل في يومياتك"},
     "weightGain": {"title": "تحليل وزن الحامل", "description": "تابعي تغيرات الوزن خلال الحمل"},
     "postpartumMentalHealth": {"title": "الصحة النفسية بعد الحمل", "description": "أداة توعوية لملاحظة مزاجك وتشجيعك على طلب المساعدة"},
