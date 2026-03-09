@@ -43,7 +43,7 @@ function getLocalUsage(): UsageData {
       if (parsed.date === getTodayKey()) return parsed;
     }
   } catch {}
-  return { date: getTodayKey(), count: 0, limit: DEFAULT_LIMIT, tier: 'free' };
+  return { date: getTodayKey(), count: 0, limit: FREE_LIMIT, tier: 'free' };
 }
 
 function setLocalUsage(data: Partial<UsageData>): void {
