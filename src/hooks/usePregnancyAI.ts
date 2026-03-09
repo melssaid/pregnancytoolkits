@@ -178,6 +178,7 @@ export function usePregnancyAI() {
                   const retryTier = retryResp.headers.get("X-Subscription-Tier");
                   if (retryLimit) syncLimit(parseInt(retryLimit, 10), retryTier === 'premium' ? 'premium' : 'free');
                   await processStream(retryResp.body, onDelta);
+                  incrementUsage();
                   onDone();
                   return;
                 }
