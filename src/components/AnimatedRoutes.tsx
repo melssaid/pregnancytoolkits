@@ -81,8 +81,7 @@ const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
-
-
+const LogoMotionPreview = lazy(() => import("@/pages/LogoMotionPreview"));
 
 export function AnimatedRoutes() {
   return (
@@ -177,7 +176,7 @@ export function AnimatedRoutes() {
 
         {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
-        
+        <Route path="/logo-preview" element={<PageTransition><LogoMotionPreview /></PageTransition>} />
 
         {/* LEGACY REDIRECTS — deleted tools */}
         <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
