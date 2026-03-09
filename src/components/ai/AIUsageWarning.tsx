@@ -46,6 +46,6 @@ export function AIUsageWarning() {
   );
 }
 
-const PREMIUM_LIMIT_DISPLAY = 30;
+const PREMIUM_LIMIT_DISPLAY = 200;
 
 export default AIUsageWarning;

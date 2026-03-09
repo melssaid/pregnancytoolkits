@@ -3,6 +3,7 @@
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+  "Access-Control-Expose-Headers": "X-Daily-Limit, X-Daily-Used, X-Daily-Remaining, X-Subscription-Tier",
 };
 
 type AIType =
@@ -45,8 +46,8 @@ const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
 
 // ── Daily usage limits by tier ──
-const FREE_DAILY_LIMIT = 5;
-const PREMIUM_DAILY_LIMIT = 30;
+const FREE_DAILY_LIMIT = 60;
+const PREMIUM_DAILY_LIMIT = 200;
 
 // ── Rate limiting (per-minute burst protection) ──
 const RATE_LIMIT_WINDOW_MS = 60_000;
