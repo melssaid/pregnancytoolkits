@@ -1,4 +1,5 @@
 import { useMemo, memo, useState, useCallback } from "react";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
 import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock } from "lucide-react";
