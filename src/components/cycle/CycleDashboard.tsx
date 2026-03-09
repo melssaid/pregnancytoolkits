@@ -95,7 +95,7 @@ export function CycleDashboard({ stats }: Props) {
         {/* Compact stats */}
         <div className="flex items-center justify-between text-center">
           <div className="flex-1">
-            <p className="text-base font-bold text-foreground">{stats.avgCycle}</p>
+            <p className="text-2xl font-extrabold text-foreground tabular-nums">{stats.avgCycle}</p>
             <p className="text-[10px] text-muted-foreground font-medium">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
           </div>
           <div className="flex-1">
