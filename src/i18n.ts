@@ -88,6 +88,14 @@ const getInitialLanguage = (): string => {
 
 const initialLang = getInitialLanguage();
 
+// Load initial language + fallback BEFORE i18n.init so resources are available immediately
+const initPromise = (async () => {
+  const toLoad = [initialLang];
+  if (initialLang !== 'en') toLoad.push('en');
+  await Promise.all(toLoad.map(loadLanguage));
+})();
+
+// i18n.init is called synchronously but resources are already added via addResourceBundle above
 i18n
   .use(initReactI18next)
   .init({
@@ -96,17 +104,10 @@ i18n
     fallbackLng: 'en',
     supportedLngs: SUPPORTED_LANGUAGES,
     interpolation: { escapeValue: false },
-    // Return key as fallback while loading
     returnNull: false,
+    partialBundledLanguages: true,
     react: { useSuspense: false },
   });
-
-// Load initial language + fallback
-const initPromise = (async () => {
-  const toLoad = [initialLang];
-  if (initialLang !== 'en') toLoad.push('en');
-  await Promise.all(toLoad.map(loadLanguage));
-})();
 
 // On language change, lazy-load the new locale
 i18n.on('languageChanged', (lng) => {
