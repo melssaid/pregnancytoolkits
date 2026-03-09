@@ -81,7 +81,7 @@ const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
-const LogoMotionPreview = lazy(() => import("@/pages/LogoMotionPreview"));
+
 
 export function AnimatedRoutes() {
   return (
