@@ -4527,7 +4527,12 @@
     "limitReached": "Limite quotidienne atteinte",
     "upgradeHint": "Abonnez-vous à Pro pour {{limit}} requêtes quotidiennes",
     "limitReachedFree": "Limite quotidienne atteinte ({{limit}} requêtes). Abonnez-vous pour plus",
-    "freeLabel": "• Gratuit"
+    "freeLabel": "• Gratuit",
+    "dailyRequests": "Requêtes IA quotidiennes",
+    "premiumPlan": "PRO",
+    "freePlan": "Gratuit",
+    "resetsDaily": "Réinitialisation quotidienne",
+    "usedOf": "{{used}} sur {{limit}} utilisées aujourd'hui"
   },
   "groceryList": {
     "title": "Liste de courses intelligente",
