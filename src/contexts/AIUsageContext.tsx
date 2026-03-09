@@ -69,7 +69,7 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
 
   const remaining = Math.max(0, limit - count);
   const isLimitReached = count >= limit;
-  const isNearLimit = remaining <= 10 && remaining > 0;
+  const isNearLimit = remaining <= 2 && remaining > 0;
 
   const incrementUsage = useCallback(() => {
     setCount(prev => {
