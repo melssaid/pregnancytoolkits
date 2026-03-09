@@ -301,9 +301,6 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
 
                 {/* Size visualization */}
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-pink-100/30 dark:to-pink-900/15 flex items-center justify-center shrink-0 border border-primary/10">
-                    <AnimatedBabyIcon className="w-12 h-12" />
-                  </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-foreground mb-2">
                       {t('toolsInternal.fetalDevelopment.sizeOf', {
