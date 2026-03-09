@@ -81,7 +81,10 @@ const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
-ageSkeleton />}>
+
+export function AnimatedRoutes() {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
       <Routes>
         {/* Main Pages */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
