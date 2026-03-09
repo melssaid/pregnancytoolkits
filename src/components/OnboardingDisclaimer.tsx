@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Check, Globe, Baby, CalendarIcon, ChevronRight, ChevronLeft, Sparkles, Lock, X, Ruler, Weight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +28,7 @@ const languages = [
 
 type Step = 'welcome' | 'profile';
 
-export const OnboardingDisclaimer: React.FC = () => {
+export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
   const [show, setShow] = useState(false);
   const [step, setStep] = useState<Step>('welcome');
   const { t, i18n } = useTranslation();
@@ -392,4 +392,6 @@ export const OnboardingDisclaimer: React.FC = () => {
       )}
     </AnimatePresence>
   );
-};
+});
+
+OnboardingDisclaimer.displayName = 'OnboardingDisclaimer';
