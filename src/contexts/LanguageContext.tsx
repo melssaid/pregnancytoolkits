@@ -16,7 +16,10 @@ const SUPPORTED_LANGUAGES = ['en', 'ar', 'de', 'tr', 'fr', 'es', 'pt'];
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { i18n } = useTranslation();
   const [isChanging, setIsChanging] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState(i18n.language?.split('-')[0] || 'en');
+  const resolvedLang = i18n.language?.split('-')[0];
+  const [currentLanguage, setCurrentLanguage] = useState(
+    resolvedLang && SUPPORTED_LANGUAGES.includes(resolvedLang) ? resolvedLang : 'en'
+  );
 
   // Update state when i18n language changes
   useEffect(() => {
