@@ -257,6 +257,9 @@ const PremiumBanner = memo(function PremiumBanner() {
   };
 
   const isTrial = tier === "trial" && trialDaysLeft > 0;
+  // Show badge for trial users (with actual days) or free users (as promo with 3 days)
+  const showTrialBadge = tier !== "premium";
+  const badgeDays = isTrial ? trialDaysLeft : 3;
 
   return (
     <motion.button
@@ -266,43 +269,13 @@ const PremiumBanner = memo(function PremiumBanner() {
       transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
       className="w-full rounded-2xl overflow-hidden text-start group relative mt-3 bg-card border border-primary/15 shadow-[0_2px_16px_-4px_hsl(340,50%,55%,0.1)] hover:shadow-[0_4px_24px_-4px_hsl(340,50%,55%,0.18)] hover:border-primary/25 transition-all duration-300"
     >
-      {/* Breathing Glow — halo around the card */}
-      <motion.div
-        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-md -z-10"
-        animate={{ opacity: [0, 0.6, 0], scale: [0.98, 1.02, 0.98] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Subtle accent glow */}
-      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/5 blur-3xl" />
-
-      {/* Shimmer */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/[0.04] to-transparent -skew-x-12"
-        animate={{ x: ["-100%", "200%"] }}
-        transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" }}
-      />
-
-      <div className="relative px-4 py-3.5 flex items-center gap-3">
-        {/* Icon */}
-        <div className="relative shrink-0">
-          <motion.div
-            className="absolute inset-0 rounded-xl bg-primary/10"
-            animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0, 0.4] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
-          />
-          <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center">
-            <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
-          </div>
-        </div>
-
-        {/* Text + Badge column */}
+...
         <div className="flex-1 min-w-0 space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
               PRO
             </span>
-            {isTrial && (
+            {showTrialBadge && (
               <motion.span
                 initial={{ opacity: 0, scale: 0.7, x: -10 }}
                 animate={{ 
@@ -322,7 +295,7 @@ const PremiumBanner = memo(function PremiumBanner() {
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
                 </span>
                 <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
-                {t("pricing.trialBadge", { count: trialDaysLeft })}
+                {t("pricing.trialBadge", { count: badgeDays })}
               </motion.span>
             )}
           </div>
