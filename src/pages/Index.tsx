@@ -370,6 +370,7 @@ const Index = () => {
             </div>
             <PremiumBanner />
             <AIUsageBar />
+          </div>
         </div>
       </section>
     </Layout>
