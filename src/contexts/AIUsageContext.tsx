@@ -112,14 +112,15 @@ export function useAIUsage(): AIUsageContextValue {
   if (!ctx) {
     // Fallback for components rendered outside provider
     const local = getLocalUsage();
-    const remaining = Math.max(0, (local.limit || DEFAULT_LIMIT) - local.count);
+    const lim = local.limit || FREE_LIMIT;
+    const remaining = Math.max(0, lim - local.count);
     return {
       remaining,
       used: local.count,
-      limit: local.limit || DEFAULT_LIMIT,
+      limit: lim,
       tier: local.tier || 'free',
-      isLimitReached: local.count >= (local.limit || DEFAULT_LIMIT),
-      isNearLimit: remaining <= 10 && remaining > 0,
+      isLimitReached: local.count >= lim,
+      isNearLimit: remaining <= 2 && remaining > 0,
       incrementUsage: () => {},
       syncFromServer: () => {},
       syncLimit: () => {},
