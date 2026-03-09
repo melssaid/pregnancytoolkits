@@ -81,11 +81,7 @@ const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
-
-
-export function AnimatedRoutes() {
-  return (
-    <Suspense fallback={<PageSkeleton />}>
+ageSkeleton />}>
       <Routes>
         {/* Main Pages */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
@@ -176,10 +172,7 @@ export function AnimatedRoutes() {
 
         {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
-        <Route path="/logo-preview" element={<PageTransition><LogoMotionPreview /></PageTransition>} />
-
-        {/* LEGACY REDIRECTS — deleted tools */}
-        <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
+        <Route path="/logo-preview" element={<PageTransition><LogoMotionPreview />/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
         <Route path="/tools/smart-stretch-reminder" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
         <Route path="/tools/kegel-exercise" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
         <Route path="/tools/smart-snack-planner" element={<Navigate to="/tools/ai-meal-suggestion" replace />} />
