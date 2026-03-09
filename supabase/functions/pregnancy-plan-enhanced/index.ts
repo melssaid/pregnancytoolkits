@@ -33,7 +33,8 @@ const LANG_CONFIG: Record<string, { name: string; native: string }> = {
 };
 
 // ── Rate limiting ──
-const DAILY_LIMIT = 30; // Matches premium limit (shared across all AI endpoints)
+const FREE_DAILY_LIMIT = 5;
+const PREMIUM_DAILY_LIMIT = 30;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const MAX_REQUESTS_PER_WINDOW = 5; // Stricter for this expensive endpoint
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
