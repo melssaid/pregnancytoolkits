@@ -110,16 +110,68 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             {showBack && <BackButton />}
             
               <Link to="/" className="flex items-center gap-2.5">
-              <div className={`rounded-full overflow-hidden flex-shrink-0 ${showBack ? 'h-[3.25rem] w-[3.25rem]' : 'h-[3.2rem] w-[3.2rem]'}`}>
-                <img 
-                  src={logoImage} 
-                  alt="Pregnancy Toolkits" 
-                  width={showBack ? 44 : 52}
-                  height={showBack ? 44 : 52}
-                  loading="eager"
-                  decoding="async"
-                  className="w-full h-full object-cover scale-[1.3]"
-                />
+              <div className="relative flex items-center justify-center flex-shrink-0" style={{ width: showBack ? 80 : 72, height: showBack ? 80 : 72 }}>
+                {/* Rotating ring */}
+                {showBack && (
+                  <>
+                    <motion.div
+                      className="absolute rounded-full border border-primary/15"
+                      style={{ width: 76, height: 76 }}
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    />
+                    {/* Heart particles */}
+                    {[0, 1, 2, 3, 4, 5].map((i) => {
+                      const angle = (i / 6) * 360;
+                      const radius = 34;
+                      return (
+                        <motion.span
+                          key={i}
+                          className="absolute text-primary drop-shadow-[0_0_6px_hsl(var(--primary)/0.5)]"
+                          style={{ fontSize: 10 }}
+                          animate={{
+                            x: [
+                              Math.cos((angle * Math.PI) / 180) * radius,
+                              Math.cos(((angle + 360) * Math.PI) / 180) * radius,
+                            ],
+                            y: [
+                              Math.sin((angle * Math.PI) / 180) * radius,
+                              Math.sin(((angle + 360) * Math.PI) / 180) * radius,
+                            ],
+                            scale: [0.8, 1.3, 0.8],
+                            opacity: [0.5, 1, 0.5],
+                          }}
+                          transition={{
+                            x: { duration: 8, repeat: Infinity, ease: "linear" },
+                            y: { duration: 8, repeat: Infinity, ease: "linear" },
+                            scale: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
+                            opacity: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
+                          }}
+                        >
+                          ♥
+                        </motion.span>
+                      );
+                    })}
+                    {/* Aura */}
+                    <motion.div
+                      className="absolute rounded-full bg-primary/8 blur-lg"
+                      style={{ width: 68, height: 68 }}
+                      animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  </>
+                )}
+                <div className={`rounded-full overflow-hidden shadow-lg ${showBack ? 'h-16 w-16' : 'h-[3.2rem] w-[3.2rem]'}`}>
+                  <img 
+                    src={logoImage} 
+                    alt="Pregnancy Toolkits" 
+                    width={showBack ? 64 : 52}
+                    height={showBack ? 64 : 52}
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover scale-[1.35]"
+                  />
+                </div>
               </div>
               {showBack ? (
                 <span className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words">
