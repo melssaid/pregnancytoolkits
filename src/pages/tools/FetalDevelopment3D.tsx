@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ChevronLeft, ChevronRight, Scale, Ruler, Calendar, Loader2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Scale, Ruler, Calendar, Loader2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -68,7 +68,7 @@ const FetalDevelopment3D: React.FC = () => {
   const [aiInsight, setAiInsight] = useState('');
   const [activeAITab, setActiveAITab] = useState<'development' | 'nutrition' | 'exercise' | null>(null);
   
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+  const { streamChat, isLoading: aiLoading, error: aiError, errorType } = usePregnancyAI();
 
   useResetOnLanguageChange(() => {
     setAiInsight('');
@@ -405,6 +405,28 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 );
               })}
             </div>
+
+            {/* AI Error */}
+            <AnimatePresence>
+              {aiError && !aiInsight && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  className="mt-4 rounded-2xl border border-destructive/20 bg-destructive/5 p-4 flex items-start gap-3"
+                >
+                  <AlertCircle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-semibold text-destructive">{aiError}</p>
+                    {errorType === 'rate_limit' && (
+                      <p className="text-[11px] text-muted-foreground mt-1">
+                        {t('aiUsage.tryAgainTomorrow', 'Try again tomorrow or upgrade to Pro')}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* AI Response */}
             <AnimatePresence>
