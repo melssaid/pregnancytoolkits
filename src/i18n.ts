@@ -88,26 +88,40 @@ const getInitialLanguage = (): string => {
 
 const initialLang = getInitialLanguage();
 
-// Load initial language + fallback BEFORE i18n.init so resources are available immediately
+// Pre-load initial locale files, then init i18n with resources ready
 const initPromise = (async () => {
   const toLoad = [initialLang];
   if (initialLang !== 'en') toLoad.push('en');
-  await Promise.all(toLoad.map(loadLanguage));
-})();
+  
+  // Load raw JSON before i18n.init
+  const bundles = await Promise.all(
+    toLoad.map(async (lng) => {
+      const loader = localeLoaders[lng];
+      if (!loader) return { lng, data: {} };
+      const data = await loader();
+      return { lng, data: expandDottedKeys(data) };
+    })
+  );
 
-// i18n.init is called synchronously but resources are already added via addResourceBundle above
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {},
-    lng: initialLang,
-    fallbackLng: 'en',
-    supportedLngs: SUPPORTED_LANGUAGES,
-    interpolation: { escapeValue: false },
-    returnNull: false,
-    partialBundledLanguages: true,
-    react: { useSuspense: false },
-  });
+  const resources: Record<string, { translation: Record<string, any> }> = {};
+  for (const { lng, data } of bundles) {
+    resources[lng] = { translation: data };
+    loadedLanguages.add(lng);
+  }
+
+  await i18n
+    .use(initReactI18next)
+    .init({
+      resources,
+      lng: initialLang,
+      fallbackLng: 'en',
+      supportedLngs: SUPPORTED_LANGUAGES,
+      interpolation: { escapeValue: false },
+      returnNull: false,
+      partialBundledLanguages: true,
+      react: { useSuspense: false },
+    });
+})();
 
 // On language change, lazy-load the new locale
 i18n.on('languageChanged', (lng) => {
