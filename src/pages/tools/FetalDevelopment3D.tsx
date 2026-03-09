@@ -337,7 +337,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                       transition={{ delay: i * 0.08 }}
                       className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/8 text-primary text-[10px] border border-primary/10"
                     >
-                      {organIcons[organ]}
+                      {organIconMap[organ]}
                       <span className="font-medium">
                         {t(organLabelKeys[organ] ?? '', { defaultValue: organ })}
                       </span>
