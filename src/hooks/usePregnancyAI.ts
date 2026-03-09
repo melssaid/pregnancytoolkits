@@ -174,6 +174,9 @@ export function usePregnancyAI() {
                 if (retryResp.ok && retryResp.body) {
                   const retryUsed = retryResp.headers.get("X-Daily-Used");
                   if (retryUsed) syncFromServer(parseInt(retryUsed, 10));
+                  const retryLimit = retryResp.headers.get("X-Daily-Limit");
+                  const retryTier = retryResp.headers.get("X-Subscription-Tier");
+                  if (retryLimit) syncLimit(parseInt(retryLimit, 10), retryTier === 'premium' ? 'premium' : 'free');
                   await processStream(retryResp.body, onDelta);
                   onDone();
                   return;
