@@ -57,7 +57,7 @@ export function CycleDashboard({ stats }: Props) {
             className="rounded-2xl border border-rose-200/50 dark:border-rose-800/30 bg-rose-500/5 p-3.5 text-center"
           >
             <Droplets className="w-5 h-5 text-rose-500 mx-auto mb-1.5" />
-            <p className="text-2xl font-bold text-foreground tabular-nums">{stats.daysToPeriod}</p>
+            <p className="text-4xl font-extrabold text-rose-600 dark:text-rose-400 tabular-nums tracking-tight">{stats.daysToPeriod}</p>
             <p className="text-[11px] text-muted-foreground mt-0.5 font-medium">
               {t('toolsInternal.cycleTracker.daysUntilPeriod')}
             </p>
