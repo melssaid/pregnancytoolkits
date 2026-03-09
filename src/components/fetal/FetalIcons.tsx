@@ -115,12 +115,24 @@ export const AnimatedHandOrgan = ({ className = "w-4 h-4" }: { className?: strin
       </linearGradient>
     </defs>
     <motion.g
-      animate={{ rotate: [0, 5, -3, 0] }}
+      animate={{ rotate: [0, 4, -2, 0] }}
       transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      style={{ transformOrigin: "12px 18px" }}
+      style={{ transformOrigin: "12px 14px" }}
     >
-      <path d="M18 11V6a1 1 0 0 0-2 0v4M14 10V4a1 1 0 0 0-2 0v6M10 10V5a1 1 0 0 0-2 0v5" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M18 11a4 4 0 0 1 0 4l-2 3a2 2 0 0 1-1.7 1H10a2 2 0 0 1-1.7-1L6 14v-3a1 1 0 0 1 2 0" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="url(#handGrad)" fillOpacity="0.15" />
+      {/* Palm */}
+      <path d="M8 14c0 3 1.5 5 4 6s4-1 4-4v-3" fill="url(#handGrad)" fillOpacity="0.25" stroke="url(#handGrad)" strokeWidth="1.2" strokeLinejoin="round" />
+      {/* Fingers — 5 clear digits */}
+      <line x1="8" y1="14" x2="6" y2="10" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="9.5" y1="13" x2="8.5" y2="6" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="12" y1="12.5" x2="12" y2="4.5" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="14.5" y1="13" x2="15.5" y2="6" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="16" y1="14" x2="18" y2="10" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      {/* Fingertips */}
+      <circle cx="6" cy="9.5" r="1" fill="url(#handGrad)" opacity="0.6" />
+      <circle cx="8.5" cy="5.5" r="1" fill="url(#handGrad)" opacity="0.6" />
+      <circle cx="12" cy="4" r="1" fill="url(#handGrad)" opacity="0.6" />
+      <circle cx="15.5" cy="5.5" r="1" fill="url(#handGrad)" opacity="0.6" />
+      <circle cx="18" cy="9.5" r="1" fill="url(#handGrad)" opacity="0.6" />
     </motion.g>
   </svg>
 );
