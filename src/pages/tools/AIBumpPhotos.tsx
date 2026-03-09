@@ -64,6 +64,7 @@ const AIBumpPhotos: React.FC = () => {
   const [editingPhotoId, setEditingPhotoId] = useState<string | null>(null);
   const [editCaption, setEditCaption] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef(false);
   const { toast } = useToast();
   const { streamChat } = usePregnancyAI();
@@ -477,53 +478,76 @@ const AIBumpPhotos: React.FC = () => {
             />
             
             {/* Upload Zone */}
-            <motion.div 
-              whileHover={canUploadToday ? { scale: 1.01 } : undefined}
-              whileTap={canUploadToday ? { scale: 0.99 } : undefined}
-              className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-6 transition-colors ${
-                canUploadToday 
-                  ? 'border-primary/30 bg-primary/5 hover:bg-primary/10 cursor-pointer' 
-                  : 'border-muted/30 bg-muted/5 opacity-50 cursor-not-allowed'
-              }`}
-              onClick={() => canUploadToday && fileInputRef.current?.click()}
-            >
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                capture="environment"
-                onChange={handleUpload}
-                className="hidden"
-              />
-              <AnimatePresence mode="wait">
-                {isUploading ? (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="text-center"
-                  >
-                    <Loader2 className="w-10 h-10 text-primary animate-spin mx-auto" />
-                    <span className="text-primary font-medium mt-2 block">{t('toolsInternal.bumpPhotos.compressing')}</span>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="text-center"
-                  >
-                    <div className="p-3 rounded-full bg-primary/10 mx-auto w-fit mb-2">
-                      <Camera className="w-8 h-8 text-primary" />
-                    </div>
-                    <span className="text-primary font-medium">{t('toolsInternal.bumpPhotos.takeOrUpload')}</span>
-                    <span className="text-xs text-muted-foreground block mt-1">
-                      {t('toolsInternal.bumpPhotos.autoCompressed')}
-                    </span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={handleUpload}
+              className="hidden"
+            />
+            <input
+              ref={galleryInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleUpload}
+              className="hidden"
+            />
+
+            {isUploading ? (
+              <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-6 border-primary/30 bg-primary/5">
+                <Loader2 className="w-10 h-10 text-primary animate-spin mx-auto" />
+                <span className="text-primary font-medium mt-2 block">{t('toolsInternal.bumpPhotos.compressing')}</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-3">
+                {/* Camera Button */}
+                <motion.div
+                  whileHover={canUploadToday ? { scale: 1.02 } : undefined}
+                  whileTap={canUploadToday ? { scale: 0.97 } : undefined}
+                  className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-5 transition-colors ${
+                    canUploadToday
+                      ? 'border-primary/30 bg-primary/5 hover:bg-primary/10 cursor-pointer'
+                      : 'border-muted/30 bg-muted/5 opacity-50 cursor-not-allowed'
+                  }`}
+                  onClick={() => canUploadToday && fileInputRef.current?.click()}
+                >
+                  <div className="p-3 rounded-full bg-primary/10 mb-2">
+                    <Camera className="w-7 h-7 text-primary" />
+                  </div>
+                  <span className="text-primary font-medium text-sm">{t('toolsInternal.bumpPhotos.takePhoto')}</span>
+                </motion.div>
+
+                {/* Gallery Upload Button */}
+                <motion.div
+                  whileHover={canUploadToday ? { scale: 1.02 } : undefined}
+                  whileTap={canUploadToday ? { scale: 0.97 } : undefined}
+                  className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-5 transition-colors ${
+                    canUploadToday
+                      ? 'border-accent/30 bg-accent/5 hover:bg-accent/10 cursor-pointer'
+                      : 'border-muted/30 bg-muted/5 opacity-50 cursor-not-allowed'
+                  }`}
+                  onClick={() => canUploadToday && galleryInputRef.current?.click()}
+                >
+                  <div className="p-3 rounded-full bg-accent/10 mb-2">
+                    <Upload className="w-7 h-7 text-accent-foreground" />
+                  </div>
+                  <span className="text-accent-foreground font-medium text-sm">{t('toolsInternal.bumpPhotos.uploadFromGallery')}</span>
+                </motion.div>
+              </div>
+            )}
+
+            {/* Hint message */}
+            <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/40 border border-border/50">
+              <Info className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {t('toolsInternal.bumpPhotos.uploadHint')}
+              </p>
+            </div>
+
+            <span className="text-[10px] text-muted-foreground text-center block">
+              {t('toolsInternal.bumpPhotos.autoCompressed')}
+            </span>
           </CardContent>
         </Card>
 
