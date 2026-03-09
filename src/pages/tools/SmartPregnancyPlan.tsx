@@ -17,7 +17,9 @@ const SmartPregnancyPlan = () => {
   const [researchEnhanced, setResearchEnhanced] = useState(false);
   const [enhancedLoading, setEnhancedLoading] = useState(false);
   const { streamChat, isLoading, error } = usePregnancyAI();
+  const { isLimitReached, incrementUsage, syncFromServer, syncLimit, limit } = useAIUsage();
   const reportRef = useRef<HTMLDivElement>(null);
+  const [limitError, setLimitError] = useState('');
 
   const { health, update, getBMI, getCalories, getTrimester, progress, daysRemaining } = useHealthData();
 
