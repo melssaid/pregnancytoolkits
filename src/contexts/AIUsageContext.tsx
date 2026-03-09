@@ -40,7 +40,13 @@ function getLocalUsage(): UsageData {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw) as UsageData;
-      if (parsed.date === getTodayKey()) return parsed;
+      if (parsed.date === getTodayKey()) {
+        // Fix stale limits from previous versions
+        if (parsed.limit !== FREE_LIMIT && parsed.limit !== PREMIUM_LIMIT) {
+          parsed.limit = parsed.tier === 'premium' ? PREMIUM_LIMIT : FREE_LIMIT;
+        }
+        return parsed;
+      }
     }
   } catch {}
   return { date: getTodayKey(), count: 0, limit: FREE_LIMIT, tier: 'free' };
