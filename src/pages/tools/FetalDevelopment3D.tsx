@@ -10,7 +10,6 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import {
   organIconMap,
-  AnimatedBabyIcon,
   AnimatedDevelopmentIcon,
   AnimatedNutritionIcon,
   AnimatedExerciseIcon,
