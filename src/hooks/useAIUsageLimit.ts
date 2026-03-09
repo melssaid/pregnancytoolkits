@@ -10,11 +10,15 @@
 import { useState, useCallback } from 'react';
 
 const STORAGE_KEY = 'ai_daily_usage';
-const DAILY_LIMIT = 60;
+const DEFAULT_LIMIT = 5; // Free tier default until server syncs
+
+export type SubscriptionTier = 'free' | 'premium';
 
 interface UsageData {
   date: string; // YYYY-MM-DD
   count: number;
+  limit: number;
+  tier: SubscriptionTier;
 }
 
 function getTodayKey(): string {
@@ -29,41 +33,57 @@ function getLocalUsage(): UsageData {
       if (parsed.date === getTodayKey()) return parsed;
     }
   } catch {}
-  return { date: getTodayKey(), count: 0 };
+  return { date: getTodayKey(), count: 0, limit: DEFAULT_LIMIT, tier: 'free' };
 }
 
-function setLocalUsage(count: number): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ date: getTodayKey(), count }));
+function setLocalUsage(data: Partial<UsageData>): void {
+  const current = getLocalUsage();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, ...data, date: getTodayKey() }));
 }
 
 export function useAIUsageLimit() {
   const [serverCount, setServerCount] = useState<number | null>(null);
+  const [serverLimit, setServerLimit] = useState<number | null>(null);
+  const [serverTier, setServerTier] = useState<SubscriptionTier | null>(null);
 
-  // Use server count if available, otherwise fall back to local
-  const used = serverCount ?? getLocalUsage().count;
-  const remaining = Math.max(0, DAILY_LIMIT - used);
-  const isLimitReached = used >= DAILY_LIMIT;
+  const local = getLocalUsage();
+  const used = serverCount ?? local.count;
+  const limit = serverLimit ?? local.limit ?? DEFAULT_LIMIT;
+  const tier: SubscriptionTier = serverTier ?? local.tier ?? 'free';
+  const remaining = Math.max(0, limit - used);
+  const isLimitReached = used >= limit;
+  const isNearLimit = remaining <= 5 && remaining > 0;
 
   /** Called after a successful AI request — optimistically increment local count */
   const incrementUsage = useCallback(() => {
     const current = serverCount ?? getLocalUsage().count;
     const newCount = current + 1;
     setServerCount(newCount);
-    setLocalUsage(newCount);
+    setLocalUsage({ count: newCount });
   }, [serverCount]);
 
   /** Sync local cache with server-reported usage (from X-Daily-Used header) */
   const syncFromServer = useCallback((serverUsed: number) => {
     setServerCount(serverUsed);
-    setLocalUsage(serverUsed);
+    setLocalUsage({ count: serverUsed });
+  }, []);
+
+  /** Sync limit and tier from server headers */
+  const syncLimit = useCallback((newLimit: number, newTier?: SubscriptionTier) => {
+    setServerLimit(newLimit);
+    if (newTier) setServerTier(newTier);
+    setLocalUsage({ limit: newLimit, tier: newTier || 'free' });
   }, []);
 
   return {
     remaining,
     used,
-    limit: DAILY_LIMIT,
+    limit,
+    tier,
     isLimitReached,
+    isNearLimit,
     incrementUsage,
     syncFromServer,
+    syncLimit,
   };
 }
