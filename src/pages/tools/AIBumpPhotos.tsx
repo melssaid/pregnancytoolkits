@@ -537,41 +537,48 @@ const AIBumpPhotos: React.FC = () => {
               </div>
             )}
 
-            {/* AI Analysis info + accepted formats */}
-            <div className="p-3.5 rounded-xl bg-gradient-to-br from-primary/[0.06] to-accent/[0.04] border border-primary/15 space-y-2">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-xs font-semibold text-foreground">{t('toolsInternal.bumpPhotos.aiAnalysisTitle')}</span>
+            {/* Combined info box */}
+            <div className="p-4 rounded-xl bg-gradient-to-br from-primary/[0.06] via-card to-accent/[0.04] border border-primary/15 space-y-3">
+              {/* AI Analysis */}
+              <div className="flex items-start gap-2.5">
+                <Sparkles className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                <div className="space-y-1.5">
+                  <span className="text-xs font-semibold text-foreground">{t('toolsInternal.bumpPhotos.aiAnalysisTitle')}</span>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">
+                    {t('toolsInternal.bumpPhotos.aiAnalysisDesc')}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['JPG', 'PNG', 'WEBP', 'HEIC'].map(fmt => (
+                      <Badge key={fmt} variant="secondary" className="text-[10px] px-2 py-0.5 font-mono">
+                        {fmt}
+                      </Badge>
+                    ))}
+                    <Badge variant="outline" className="text-[10px] px-2 py-0.5">
+                      {t('toolsInternal.bumpPhotos.maxSize')}
+                    </Badge>
+                  </div>
+                </div>
               </div>
-              <p className="text-[11px] text-muted-foreground leading-relaxed">
-                {t('toolsInternal.bumpPhotos.aiAnalysisDesc')}
-              </p>
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                {['JPG', 'PNG', 'WEBP', 'HEIC'].map(fmt => (
-                  <Badge key={fmt} variant="secondary" className="text-[10px] px-2 py-0.5 font-mono">
-                    {fmt}
-                  </Badge>
-                ))}
-                <Badge variant="outline" className="text-[10px] px-2 py-0.5">
-                  {t('toolsInternal.bumpPhotos.maxSize')}
-                </Badge>
+
+              <div className="border-t border-border/40" />
+
+              {/* Upload hint */}
+              <div className="flex items-start gap-2.5">
+                <Info className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+                <p className="text-[11px] text-muted-foreground leading-relaxed">
+                  {t('toolsInternal.bumpPhotos.uploadHint')}
+                </p>
               </div>
-            </div>
 
-            {/* Hint message */}
-            <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/40 border border-border/50">
-              <Info className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                {t('toolsInternal.bumpPhotos.uploadHint')}
-              </p>
-            </div>
+              <div className="border-t border-border/40" />
 
-            {/* Local storage warning */}
-            <div className="flex items-start gap-2 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200/60 dark:border-amber-800/40">
-              <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
-              <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">
-                {t('toolsInternal.bumpPhotos.localStorageWarning')}
-              </p>
+              {/* Local storage warning */}
+              <div className="flex items-start gap-2.5">
+                <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+                <p className="text-[11px] text-amber-700 dark:text-amber-300 leading-relaxed">
+                  {t('toolsInternal.bumpPhotos.localStorageWarning')}
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>
