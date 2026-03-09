@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 
 interface MarkdownRendererProps {
@@ -7,7 +7,7 @@ interface MarkdownRendererProps {
   accentColor?: string;
 }
 
-export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }: MarkdownRendererProps) {
+export const MarkdownRenderer = forwardRef<HTMLDivElement, MarkdownRendererProps>(function MarkdownRenderer({ content, isLoading, accentColor = "primary" }, ref) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language?.startsWith('ar');
 
@@ -202,7 +202,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
   }, [content]);
 
   return (
-    <div className="prose prose-sm max-w-none dark:prose-invert overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'} style={isRTL ? { textAlign: 'right' } : undefined}>
+    <div ref={ref} className="prose prose-sm max-w-none dark:prose-invert overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'} style={isRTL ? { textAlign: 'right' } : undefined}>
       <div className="space-y-1 break-words overflow-wrap-anywhere">
         {mainContent}
         {isLoading && (
@@ -211,4 +211,4 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
       </div>
     </div>
   );
-}
+});
