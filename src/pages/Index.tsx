@@ -258,7 +258,7 @@ const PremiumBanner = memo(function PremiumBanner() {
 
   const isTrial = tier === "trial" && trialDaysLeft > 0;
   // Show badge for trial users (with actual days) or free users (as promo with 3 days)
-  const showTrialBadge = tier !== "premium";
+  const showTrialBadge = true; // Always show for non-premium users (premium returns null above)
   const badgeDays = isTrial ? trialDaysLeft : 3;
 
   return (
