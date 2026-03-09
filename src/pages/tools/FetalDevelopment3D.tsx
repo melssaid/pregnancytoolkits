@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Baby, ChevronLeft, ChevronRight, Heart, Brain, Ear, Eye, Hand, Footprints, Scale, Ruler, Calendar, Loader2, Stethoscope, Apple, Dumbbell } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Scale, Ruler, Calendar, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import {
+  organIconMap,
+  AnimatedBabyIcon,
+  AnimatedDevelopmentIcon,
+  AnimatedNutritionIcon,
+  AnimatedExerciseIcon,
+} from '@/components/fetal/FetalIcons';
 
 
 interface WeekData {
