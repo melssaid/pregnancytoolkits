@@ -9,6 +9,7 @@ import { HealthStatsGrid } from "@/components/smart-plan/HealthStatsGrid";
 import { HealthInputForm } from "@/components/smart-plan/HealthInputForm";
 import { SmartPlanResultView } from "@/components/smart-plan/SmartPlanResultView";
 import { useHealthData } from "@/components/smart-plan/useHealthData";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 
 const SmartPregnancyPlan = () => {
   const { t, i18n } = useTranslation();
@@ -16,7 +17,9 @@ const SmartPregnancyPlan = () => {
   const [researchEnhanced, setResearchEnhanced] = useState(false);
   const [enhancedLoading, setEnhancedLoading] = useState(false);
   const { streamChat, isLoading, error } = usePregnancyAI();
+  const { isLimitReached, incrementUsage, syncFromServer, syncLimit, limit } = useAIUsage();
   const reportRef = useRef<HTMLDivElement>(null);
+  const [limitError, setLimitError] = useState('');
 
   const { health, update, getBMI, getCalories, getTrimester, progress, daysRemaining } = useHealthData();
 
@@ -58,7 +61,29 @@ const SmartPregnancyPlan = () => {
         }
       );
 
-      if (!response.ok || !response.body) throw new Error("Enhanced endpoint failed");
+      if (!response.ok) {
+        // Check for daily limit
+        if (response.status === 429) {
+          try {
+            const errBody = await response.json();
+            if (errBody?.error === "daily_limit_reached") {
+              const serverUsed = parseInt(response.headers.get("X-Daily-Used") || "0", 10);
+              if (serverUsed) syncFromServer(serverUsed);
+              setLimitError(t('aiErrors.dailyLimitMsg', { limit, remaining: 0 }));
+              return;
+            }
+          } catch { /* ignore */ }
+        }
+        throw new Error("Enhanced endpoint failed");
+      }
+      if (!response.body) throw new Error("No response body");
+      
+      // Sync usage headers
+      const serverUsed = response.headers.get("X-Daily-Used");
+      if (serverUsed) syncFromServer(parseInt(serverUsed, 10));
+      const serverLimit = response.headers.get("X-Daily-Limit");
+      if (serverLimit) syncLimit(parseInt(serverLimit, 10));
+
       setResearchEnhanced(response.headers.get("X-Research-Enhanced") === "true");
 
       const reader = response.body.getReader();
@@ -92,9 +117,15 @@ const SmartPregnancyPlan = () => {
   }, [health, lang]);
 
   const generatePlan = useCallback(async () => {
+    if (isLimitReached) {
+      setLimitError(t('aiErrors.dailyLimitMsg', { limit, remaining: 0 }));
+      return;
+    }
     setPlanContent('');
+    setLimitError('');
     try {
       await streamEnhanced((text) => setPlanContent(prev => prev + text));
+      incrementUsage();
     } catch {
       const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
       const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
@@ -106,7 +137,7 @@ const SmartPregnancyPlan = () => {
         onDone: () => {},
       });
     }
-  }, [streamEnhanced, streamChat, health, lang]);
+  }, [streamEnhanced, streamChat, health, lang, isLimitReached, incrementUsage, limit, t]);
 
   return (
     <ToolFrame title={t("smartPlan.title")} subtitle={t("smartPlan.subtitle")} icon={Brain} mood="nurturing" toolId="smart-pregnancy-plan">
@@ -134,8 +165,8 @@ const SmartPregnancyPlan = () => {
 
         <SavedResultsViewer toolId="smart-pregnancy-plan" onLoad={(r) => setPlanContent(r.content)} />
 
-        {error && (
-          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{error}</div>
+        {(error || limitError) && (
+          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{limitError || error}</div>
         )}
       </div>
     </ToolFrame>
