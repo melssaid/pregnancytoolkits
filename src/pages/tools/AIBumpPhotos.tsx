@@ -47,6 +47,7 @@ function getTodayUploadCount(photos: BumpPhoto[]): number {
 
 const AIBumpPhotos: React.FC = () => {
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   const { profile: userProfile } = useUserProfile();
   const [photos, setPhotos] = useState<BumpPhoto[]>([]);
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
