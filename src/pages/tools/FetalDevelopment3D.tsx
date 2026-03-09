@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import {
   organIconMap,
   AnimatedDevelopmentIcon,
@@ -407,26 +408,16 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
             </div>
 
             {/* AI Error */}
-            <AnimatePresence>
-              {aiError && !aiInsight && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  className="mt-4 rounded-2xl border border-destructive/20 bg-destructive/5 p-4 flex items-start gap-3"
-                >
-                  <AlertCircle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-semibold text-destructive">{aiError}</p>
-                    {errorType === 'rate_limit' && (
-                      <p className="text-[11px] text-muted-foreground mt-1">
-                        {t('aiUsage.tryAgainTomorrow', 'Try again tomorrow or upgrade to Pro')}
-                      </p>
-                    )}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {aiError && !aiInsight && (
+              <div className="mt-4">
+                <AIErrorBanner
+                  errorType={errorType}
+                  message={aiError}
+                  onRetry={() => activeAITab && getAIInsight(activeAITab)}
+                  onDismiss={() => { setActiveAITab(null); }}
+                />
+              </div>
+            )}
 
             {/* AI Response */}
             <AnimatePresence>
