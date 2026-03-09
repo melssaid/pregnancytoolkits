@@ -7,7 +7,8 @@
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 
 const STORAGE_KEY = 'ai_daily_usage';
-const DEFAULT_LIMIT = 60;
+const FREE_LIMIT = 5;
+const PREMIUM_LIMIT = 30;
 
 export type SubscriptionTier = 'free' | 'premium';
 
@@ -42,7 +43,7 @@ function getLocalUsage(): UsageData {
       if (parsed.date === getTodayKey()) return parsed;
     }
   } catch {}
-  return { date: getTodayKey(), count: 0, limit: DEFAULT_LIMIT, tier: 'free' };
+  return { date: getTodayKey(), count: 0, limit: FREE_LIMIT, tier: 'free' };
 }
 
 function setLocalUsage(data: Partial<UsageData>): void {
@@ -55,20 +56,20 @@ const AIUsageContext = createContext<AIUsageContextValue | null>(null);
 export function AIUsageProvider({ children }: { children: ReactNode }) {
   const local = getLocalUsage();
   const [count, setCount] = useState(local.count);
-  const [limit, setLimit] = useState(local.limit || DEFAULT_LIMIT);
+  const [limit, setLimit] = useState(local.limit || FREE_LIMIT);
   const [tier, setTier] = useState<SubscriptionTier>(local.tier || 'free');
 
   // Reset at midnight
   useEffect(() => {
     const stored = getLocalUsage();
     setCount(stored.count);
-    setLimit(stored.limit || DEFAULT_LIMIT);
+    setLimit(stored.limit || FREE_LIMIT);
     setTier(stored.tier || 'free');
   }, []);
 
   const remaining = Math.max(0, limit - count);
   const isLimitReached = count >= limit;
-  const isNearLimit = remaining <= 10 && remaining > 0;
+  const isNearLimit = remaining <= 2 && remaining > 0;
 
   const incrementUsage = useCallback(() => {
     setCount(prev => {
@@ -111,14 +112,15 @@ export function useAIUsage(): AIUsageContextValue {
   if (!ctx) {
     // Fallback for components rendered outside provider
     const local = getLocalUsage();
-    const remaining = Math.max(0, (local.limit || DEFAULT_LIMIT) - local.count);
+    const lim = local.limit || FREE_LIMIT;
+    const remaining = Math.max(0, lim - local.count);
     return {
       remaining,
       used: local.count,
-      limit: local.limit || DEFAULT_LIMIT,
+      limit: lim,
       tier: local.tier || 'free',
-      isLimitReached: local.count >= (local.limit || DEFAULT_LIMIT),
-      isNearLimit: remaining <= 10 && remaining > 0,
+      isLimitReached: local.count >= lim,
+      isNearLimit: remaining <= 2 && remaining > 0,
       incrementUsage: () => {},
       syncFromServer: () => {},
       syncLimit: () => {},
