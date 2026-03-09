@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { SmartScrollRestoration } from "@/components/SmartScrollRestoration";
 import { AnimatedRoutes } from "@/components/AnimatedRoutes";
 import { OnboardingDisclaimer } from "@/components/OnboardingDisclaimer";
+import { AIUsageProvider } from "@/contexts/AIUsageContext";
 import { useEffect } from "react";
 import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
