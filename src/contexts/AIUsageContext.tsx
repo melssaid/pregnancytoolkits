@@ -56,7 +56,7 @@ const AIUsageContext = createContext<AIUsageContextValue | null>(null);
 export function AIUsageProvider({ children }: { children: ReactNode }) {
   const local = getLocalUsage();
   const [count, setCount] = useState(local.count);
-  const [limit, setLimit] = useState(local.limit || DEFAULT_LIMIT);
+  const [limit, setLimit] = useState(local.limit || FREE_LIMIT);
   const [tier, setTier] = useState<SubscriptionTier>(local.tier || 'free');
 
   // Reset at midnight
