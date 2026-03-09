@@ -87,7 +87,7 @@ const DiaperTracker = () => {
   const undoLast = (type: DiaperType) => {
     const today = new Date().toDateString();
     const idx = entries.findIndex(
-      (e) => (e.type === type || e.type === "both") && new Date(e.time).toDateString() === today
+      (e) => e.type === type && new Date(e.time).toDateString() === today
     );
     if (idx !== -1) {
       const updated = entries.filter((_, i) => i !== idx);
@@ -258,8 +258,7 @@ const DiaperTracker = () => {
                     textColor="text-primary"
                     isActive={lastAdded === "both"}
                     onAdd={() => addEntry("both")}
-                    onUndo={() => {}}
-                    isTotalButton
+                    onUndo={() => undoLast("both")}
                   />
                 </div>
               </div>
