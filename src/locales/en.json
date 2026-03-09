@@ -2241,6 +2241,7 @@
       "takePhoto": "Take Photo",
       "uploadFromGallery": "Upload from Gallery",
       "uploadHint": "📸 You can take a photo of the ultrasound during your doctor's visit, or ask for a copy and upload it later from your gallery.",
+      "localStorageWarning": "⚠️ Photos are stored on your device only. If you clear app data or uninstall the app, all photos will be permanently deleted. We recommend keeping a backup.",
       "autoCompressed": "Auto-compressed for optimal storage • Max 10MB",
       "comparePhotos": "Compare Scans",
       "sideBySide": "Side-by-Side Comparison",

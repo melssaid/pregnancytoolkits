@@ -545,6 +545,14 @@ const AIBumpPhotos: React.FC = () => {
               </p>
             </div>
 
+            {/* Local storage warning */}
+            <div className="flex items-start gap-2 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200/60 dark:border-amber-800/40">
+              <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+              <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">
+                {t('toolsInternal.bumpPhotos.localStorageWarning')}
+              </p>
+            </div>
+
             <span className="text-[10px] text-muted-foreground text-center block">
               {t('toolsInternal.bumpPhotos.autoCompressed')}
             </span>
