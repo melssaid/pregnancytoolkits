@@ -46,8 +46,8 @@ const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
 
 // ── Daily usage limits by tier ──
-const FREE_DAILY_LIMIT = 60;
-const PREMIUM_DAILY_LIMIT = 200;
+const FREE_DAILY_LIMIT = 999;
+const PREMIUM_DAILY_LIMIT = 999;
 
 // ── Rate limiting (per-minute burst protection) ──
 const RATE_LIMIT_WINDOW_MS = 60_000;
