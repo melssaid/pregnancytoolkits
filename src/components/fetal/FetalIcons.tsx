@@ -38,15 +38,25 @@ export const AnimatedBrainOrgan = ({ className = "w-4 h-4" }: { className?: stri
       animate={{ opacity: [0.85, 1, 0.85] }}
       transition={{ duration: 2.5, repeat: Infinity }}
     >
-      <path d="M12 2C9.5 2 7.5 3.5 7 5.5C5.5 5 4 6 3.5 7.5C3 9 3.5 10.5 5 11.5C4 12.5 4 14 5 15.5C6 17 7.5 17 9 16.5C9 18 10.5 19.5 12 19.5" fill="url(#brainGrad)" opacity="0.85" />
-      <path d="M12 2C14.5 2 16.5 3.5 17 5.5C18.5 5 20 6 20.5 7.5C21 9 20.5 10.5 19 11.5C20 12.5 20 14 19 15.5C18 17 16.5 17 15 16.5C15 18 13.5 19.5 12 19.5" fill="url(#brainGrad)" opacity="0.7" />
+      {/* Clear brain shape — left hemisphere */}
+      <path d="M12 4C9.8 4 8 5.2 7.2 7C6.2 6.8 5 7.5 5 9c0 1-.2 1.8.5 2.8C4.8 12.5 4.5 14 5.5 15.2c.8 1 2 1.5 3 1.3.5 1.5 2 2.5 3.5 2.5" fill="url(#brainGrad)" opacity="0.9" />
+      {/* Right hemisphere */}
+      <path d="M12 4c2.2 0 4 1.2 4.8 3 1-.2 2.2.5 2.2 2 0 1 .2 1.8-.5 2.8.7.7 1 2.2 0 3.4-.8 1-2 1.5-3 1.3-.5 1.5-2 2.5-3.5 2.5" fill="url(#brainGrad)" opacity="0.7" />
+      {/* Center line */}
+      <line x1="12" y1="4" x2="12" y2="19" stroke="white" strokeWidth="0.6" opacity="0.4" />
+      {/* Brain folds — left */}
+      <path d="M7 9.5c1.5.3 3 .5 5 0" stroke="white" strokeWidth="0.5" opacity="0.35" fill="none" strokeLinecap="round" />
+      <path d="M6.5 12.5c2 .3 3.5.2 5.5-.2" stroke="white" strokeWidth="0.5" opacity="0.3" fill="none" strokeLinecap="round" />
+      {/* Brain folds — right */}
+      <path d="M12 9.5c2-.5 3.5-.3 5 0" stroke="white" strokeWidth="0.5" opacity="0.35" fill="none" strokeLinecap="round" />
+      <path d="M12 12.3c2 .5 3.5.5 5.5.2" stroke="white" strokeWidth="0.5" opacity="0.3" fill="none" strokeLinecap="round" />
       {/* Neural pulse */}
       <motion.circle
-        cx="12" cy="10" r="1.5"
+        cx="12" cy="11" r="1.5"
         fill="white"
-        opacity="0.6"
-        animate={{ r: [1, 2.5, 1], opacity: [0.6, 0, 0.6] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+        opacity="0.5"
+        animate={{ r: [1, 3, 1], opacity: [0.5, 0, 0.5] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
       />
     </motion.g>
   </svg>
