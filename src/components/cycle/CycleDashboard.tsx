@@ -46,7 +46,7 @@ export function CycleDashboard({ stats }: Props) {
             className="rounded-2xl border border-violet-200/50 dark:border-violet-800/30 bg-violet-500/5 p-3.5 text-center"
           >
             <Target className="w-5 h-5 text-violet-500 mx-auto mb-1.5" />
-            <p className="text-2xl font-bold text-foreground tabular-nums">{stats.daysToOv}</p>
+            <p className="text-4xl font-extrabold text-violet-600 dark:text-violet-400 tabular-nums tracking-tight">{stats.daysToOv}</p>
             <p className="text-[11px] text-muted-foreground mt-0.5 font-medium">
               {t('toolsInternal.cycleTracker.daysUntilOvulation')}
             </p>
@@ -57,7 +57,7 @@ export function CycleDashboard({ stats }: Props) {
             className="rounded-2xl border border-rose-200/50 dark:border-rose-800/30 bg-rose-500/5 p-3.5 text-center"
           >
             <Droplets className="w-5 h-5 text-rose-500 mx-auto mb-1.5" />
-            <p className="text-2xl font-bold text-foreground tabular-nums">{stats.daysToPeriod}</p>
+            <p className="text-4xl font-extrabold text-rose-600 dark:text-rose-400 tabular-nums tracking-tight">{stats.daysToPeriod}</p>
             <p className="text-[11px] text-muted-foreground mt-0.5 font-medium">
               {t('toolsInternal.cycleTracker.daysUntilPeriod')}
             </p>
@@ -95,11 +95,11 @@ export function CycleDashboard({ stats }: Props) {
         {/* Compact stats */}
         <div className="flex items-center justify-between text-center">
           <div className="flex-1">
-            <p className="text-base font-bold text-foreground">{stats.avgCycle}</p>
+            <p className="text-2xl font-extrabold text-foreground tabular-nums">{stats.avgCycle}</p>
             <p className="text-[10px] text-muted-foreground font-medium">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
           </div>
           <div className="flex-1">
-            <p className="text-base font-bold text-foreground">{stats.avgPeriod}</p>
+            <p className="text-2xl font-extrabold text-foreground tabular-nums">{stats.avgPeriod}</p>
             <p className="text-[10px] text-muted-foreground font-medium">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
           </div>
           <div className="flex-1">
