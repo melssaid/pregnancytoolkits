@@ -7,8 +7,8 @@
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 
 const STORAGE_KEY = 'ai_daily_usage';
-const FREE_LIMIT = 60;
-const PREMIUM_LIMIT = 200;
+const FREE_LIMIT = 999;
+const PREMIUM_LIMIT = 999;
 
 export type SubscriptionTier = 'free' | 'premium';
 
