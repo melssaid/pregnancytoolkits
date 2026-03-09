@@ -200,6 +200,7 @@ export function usePregnancyAI() {
         }
 
         await processStream(response.body, onDelta);
+        incrementUsage();
         onDone();
       } catch (err) {
         console.error("[AI] streamChat error:", err);
