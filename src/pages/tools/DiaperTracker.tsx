@@ -248,7 +248,7 @@ const DiaperTracker = () => {
 
                   {/* Both */}
                   <DiaperActionButton
-                    count={stats.wet + stats.dirty}
+                    count={stats.both}
                     label={t('diaperPage.both')}
                     emoji="👶"
                     gradientFrom="from-primary/15"
