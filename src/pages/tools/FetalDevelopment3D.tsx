@@ -68,7 +68,7 @@ const FetalDevelopment3D: React.FC = () => {
   const [aiInsight, setAiInsight] = useState('');
   const [activeAITab, setActiveAITab] = useState<'development' | 'nutrition' | 'exercise' | null>(null);
   
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+  const { streamChat, isLoading: aiLoading, error: aiError, errorType } = usePregnancyAI();
 
   useResetOnLanguageChange(() => {
     setAiInsight('');
