@@ -4699,6 +4699,14 @@
     "dailyLimitTitle": "Limite diário atingido",
     "remainingHint": "{{remaining}} de {{limit}} solicitações restantes hoje"
   },
+  "aiUsage": {
+    "remaining": "{{remaining}}/{{limit}} solicitações restantes hoje",
+    "nearLimit": "Aproximando-se do limite diário",
+    "limitReached": "Limite diário atingido",
+    "upgradeHint": "Assine o Pro para {{limit}} solicitações diárias",
+    "limitReachedFree": "Limite diário atingido ({{limit}} solicitações). Assine para mais",
+    "freeLabel": "• Grátis"
+  },
   "groceryList": {
     "title": "Lista de compras inteligente",
     "subtitle": "Lista de compras IA para nutrição na gravidez",

@@ -39,7 +39,7 @@ export function usePregnancyAI() {
   const [error, setError] = useState<string | null>(null);
   const [errorType, setErrorType] = useState<AIErrorType | null>(null);
   const { i18n, t } = useTranslation();
-  const { isLimitReached, remaining, incrementUsage, syncFromServer, limit } = useAIUsageLimit();
+  const { isLimitReached, remaining, incrementUsage, syncFromServer, syncLimit, limit, tier } = useAIUsageLimit();
 
   const languageRef = useRef(i18n.language);
   languageRef.current = i18n.language;
@@ -131,9 +131,10 @@ export function usePregnancyAI() {
 
         // Sync server-reported usage from headers
         const serverUsed = response.headers.get("X-Daily-Used");
-        if (serverUsed) {
-          syncFromServer(parseInt(serverUsed, 10));
-        }
+        if (serverUsed) syncFromServer(parseInt(serverUsed, 10));
+        const serverLimit = response.headers.get("X-Daily-Limit");
+        const serverTier = response.headers.get("X-Subscription-Tier");
+        if (serverLimit) syncLimit(parseInt(serverLimit, 10), serverTier === 'premium' ? 'premium' : 'free');
 
         if (!response.ok) {
           // Read server error for better diagnostics
@@ -173,6 +174,9 @@ export function usePregnancyAI() {
                 if (retryResp.ok && retryResp.body) {
                   const retryUsed = retryResp.headers.get("X-Daily-Used");
                   if (retryUsed) syncFromServer(parseInt(retryUsed, 10));
+                  const retryLimit = retryResp.headers.get("X-Daily-Limit");
+                  const retryTier = retryResp.headers.get("X-Subscription-Tier");
+                  if (retryLimit) syncLimit(parseInt(retryLimit, 10), retryTier === 'premium' ? 'premium' : 'free');
                   await processStream(retryResp.body, onDelta);
                   onDone();
                   return;
@@ -208,7 +212,7 @@ export function usePregnancyAI() {
         setIsLoading(false);
       }
     },
-    [resolveError, isLimitReached, syncFromServer, limit, t, getAuthHeader]
+    [resolveError, isLimitReached, syncFromServer, syncLimit, limit, t, getAuthHeader]
   );
 
   const generateContent = useCallback(
@@ -244,7 +248,7 @@ export function usePregnancyAI() {
     setErrorType(null);
   }, []);
 
-  return { streamChat, generateContent, isLoading, error, errorType, clearError, aiRemaining: remaining, aiLimit: limit };
+  return { streamChat, generateContent, isLoading, error, errorType, clearError, aiRemaining: remaining, aiLimit: limit, aiTier: tier };
 }
 
 /** Parse SSE stream and emit deltas */

@@ -5175,6 +5175,14 @@
     "dailyLimitTitle": "Daily Limit Reached",
     "remainingHint": "{{remaining}} of {{limit}} requests remaining today"
   },
+  "aiUsage": {
+    "remaining": "{{remaining}}/{{limit}} requests remaining today",
+    "nearLimit": "Approaching daily limit",
+    "limitReached": "Daily limit reached",
+    "upgradeHint": "Subscribe to Pro for {{limit}} daily requests",
+    "limitReachedFree": "You've reached the daily limit ({{limit}} requests). Subscribe for more",
+    "freeLabel": "• Free"
+  },
   "settings.deleteAccount": {
     "title": "Delete All Data",
     "description": "Permanently delete all your data stored on this device",

@@ -44,8 +44,9 @@ const VALID_TYPES: AIType[] = [
 const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
 
-// ── Daily usage limit ──
-const DAILY_LIMIT = 60;
+// ── Daily usage limits by tier ──
+const FREE_DAILY_LIMIT = 5;
+const PREMIUM_DAILY_LIMIT = 30;
 
 // ── Rate limiting (per-minute burst protection) ──
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -596,10 +597,11 @@ Deno.serve(async (req) => {
     }
 
     let rateLimitId = getClientId(req);
+    let authenticatedUserId: string | null = null;
 
     // Try to verify JWT for user-level rate limiting
+    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
     try {
-      const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
       const supabaseClient = createClient(
         Deno.env.get("SUPABASE_URL") ?? "",
         Deno.env.get("SUPABASE_ANON_KEY") ?? "",
@@ -609,6 +611,7 @@ Deno.serve(async (req) => {
       const { data: { user } } = await supabaseClient.auth.getUser();
       if (user?.id) {
         rateLimitId = user.id;
+        authenticatedUserId = user.id;
       }
     } catch {
       // Auth verification failed — continue with IP-based rate limiting
@@ -619,8 +622,44 @@ Deno.serve(async (req) => {
       return jsonError("Rate limit exceeded. Please wait a minute before trying again.", 429);
     }
 
+    // ── Determine subscription tier ──
+    let isPremium = false;
+    let subscriptionTier = "free";
+    if (authenticatedUserId) {
+      try {
+        const adminClient = createClient(
+          Deno.env.get("SUPABASE_URL") ?? "",
+          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+        );
+        const { data: sub } = await adminClient
+          .from("subscriptions")
+          .select("status, subscription_type, trial_end, subscription_end")
+          .eq("user_id", authenticatedUserId)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        if (sub) {
+          const now = new Date();
+          const isActiveSub = sub.status === "active" && sub.subscription_type !== "trial";
+          const isActiveTrial = sub.status === "active" && sub.subscription_type === "trial" && new Date(sub.trial_end) > now;
+          // Premium = active paid subscription (not trial)
+          if (isActiveSub) {
+            isPremium = true;
+            subscriptionTier = "premium";
+          } else if (isActiveTrial) {
+            subscriptionTier = "trial";
+          }
+        }
+      } catch (e) {
+        console.error("[AI] subscription check failed:", String(e).substring(0, 100));
+      }
+    }
+
+    const DAILY_LIMIT = isPremium ? PREMIUM_DAILY_LIMIT : FREE_DAILY_LIMIT;
+
     // ── Server-side daily limit check ──
-    const userId = rateLimitId !== getClientId(req) ? rateLimitId : null;
+    const userId = authenticatedUserId;
     const dailyUsed = await getDailyUsageCount(rateLimitId, userId);
     const dailyRemaining = Math.max(0, DAILY_LIMIT - dailyUsed);
     
@@ -635,6 +674,7 @@ Deno.serve(async (req) => {
             "X-Daily-Limit": String(DAILY_LIMIT),
             "X-Daily-Used": String(dailyUsed),
             "X-Daily-Remaining": "0",
+            "X-Subscription-Tier": subscriptionTier,
           },
         }
       );
@@ -665,7 +705,7 @@ Deno.serve(async (req) => {
     const systemPrompt = buildSystemPrompt(type, context, lang);
     const tuning = MODEL_TUNING[type];
 
-    console.log(`[AI] type=${type} lang=${lang} used=${dailyUsed}/${DAILY_LIMIT} temp=${tuning.temperature}`);
+    console.log(`[AI] type=${type} lang=${lang} tier=${subscriptionTier} used=${dailyUsed}/${DAILY_LIMIT} temp=${tuning.temperature}`);
 
     // ── Call Lovable AI (Gemini) ──
     const MAX_RETRIES = 2;
@@ -676,6 +716,7 @@ Deno.serve(async (req) => {
       "X-Daily-Limit": String(DAILY_LIMIT),
       "X-Daily-Used": String(dailyUsed + 1),
       "X-Daily-Remaining": String(Math.max(0, dailyRemaining - 1)),
+      "X-Subscription-Tier": subscriptionTier,
     };
 
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
