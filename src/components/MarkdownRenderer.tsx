@@ -202,7 +202,7 @@ export const MarkdownRenderer = forwardRef<HTMLDivElement, MarkdownRendererProps
   }, [content]);
 
   return (
-    <div className="prose prose-sm max-w-none dark:prose-invert overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'} style={isRTL ? { textAlign: 'right' } : undefined}>
+    <div ref={ref} className="prose prose-sm max-w-none dark:prose-invert overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'} style={isRTL ? { textAlign: 'right' } : undefined}>
       <div className="space-y-1 break-words overflow-wrap-anywhere">
         {mainContent}
         {isLoading && (
@@ -211,4 +211,4 @@ export const MarkdownRenderer = forwardRef<HTMLDivElement, MarkdownRendererProps
       </div>
     </div>
   );
-}
+});

@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import { Bookmark, BookmarkCheck } from 'lucide-react';
 import { useSavedResults } from '@/hooks/useSavedResults';
@@ -10,7 +11,7 @@ interface SaveResultButtonProps {
   className?: string;
 }
 
-export function SaveResultButton({ toolId, title, content, meta, className = '' }: SaveResultButtonProps) {
+export const SaveResultButton = forwardRef<HTMLButtonElement, SaveResultButtonProps>(function SaveResultButton({ toolId, title, content, meta, className = '' }, ref) {
   const { save, isSaved, unsaveByContent } = useSavedResults();
   const saved = isSaved(content);
 
@@ -24,6 +25,7 @@ export function SaveResultButton({ toolId, title, content, meta, className = '' 
 
   return (
     <motion.button
+      ref={ref}
       whileTap={{ scale: 0.85 }}
       onClick={handleToggle}
       className={`p-2 rounded-xl transition-colors ${saved ? 'text-primary bg-primary/10' : 'text-muted-foreground hover:text-primary hover:bg-primary/5'} ${className}`}
@@ -32,4 +34,4 @@ export function SaveResultButton({ toolId, title, content, meta, className = '' 
       {saved ? <BookmarkCheck className="w-4.5 h-4.5" /> : <Bookmark className="w-4.5 h-4.5" />}
     </motion.button>
   );
-}
+});
