@@ -1,7 +1,8 @@
 import { useMemo, memo, useState, useCallback } from "react";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
-import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock } from "lucide-react";
+import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock, Sparkles } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
@@ -346,6 +347,65 @@ const PremiumBanner = memo(function PremiumBanner() {
   );
 });
 
+// ── AI Usage Bar ────────────────────────────────────────────────────────
+const AIUsageBar = memo(function AIUsageBar() {
+  const { t } = useTranslation();
+  const { remaining, used, limit, tier } = useAIUsage();
+  const percent = Math.max(0, Math.min(100, (remaining / limit) * 100));
+
+  // Color based on remaining
+  const barColor = percent > 40
+    ? 'bg-emerald-500'
+    : percent > 15
+      ? 'bg-amber-500'
+      : 'bg-red-500';
+
+  const textColor = percent > 40
+    ? 'text-emerald-600 dark:text-emerald-400'
+    : percent > 15
+      ? 'text-amber-600 dark:text-amber-400'
+      : 'text-red-600 dark:text-red-400';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.6 }}
+      className="mt-3 rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm px-4 py-3"
+    >
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-3.5 h-3.5 text-primary" />
+          <span className="text-[11px] font-semibold text-foreground">
+            {t('aiUsage.dailyRequests', 'طلبات الذكاء الاصطناعي اليومية')}
+          </span>
+        </div>
+        <span className={`text-[11px] font-bold tabular-nums ${textColor}`}>
+          {remaining}/{limit}
+        </span>
+      </div>
+      <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
+        <motion.div
+          className={`h-full rounded-full ${barColor}`}
+          initial={{ width: 0 }}
+          animate={{ width: `${percent}%` }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+        />
+      </div>
+      <div className="flex items-center justify-between mt-1.5">
+        <span className="text-[9px] text-muted-foreground">
+          {tier === 'premium'
+            ? t('aiUsage.premiumPlan', 'PRO')
+            : t('aiUsage.freePlan', 'مجاني')}
+        </span>
+        <span className="text-[9px] text-muted-foreground">
+          {t('aiUsage.resetsDaily', 'يتجدد يومياً')}
+        </span>
+      </div>
+    </motion.div>
+  );
+});
+
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
@@ -368,6 +428,7 @@ const Index = () => {
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
             </div>
             <PremiumBanner />
+            <AIUsageBar />
           </div>
         </div>
       </section>
