@@ -60,15 +60,15 @@ export const organIconMap: Record<string, React.ReactNode> = {
 // ── AI Tab Icons ──
 
 export const AnimatedDevelopmentIcon = ({ className = "w-5 h-5", active = false }: { className?: string; active?: boolean }) => (
-  <Stethoscope size={20} weight="duotone" className={active ? 'text-white' : 'text-violet-500'} />
+  <Stethoscope size={20} weight="fill" className={active ? 'text-white' : 'text-violet-500'} />
 );
 
 export const AnimatedNutritionIcon = ({ className = "w-5 h-5", active = false }: { className?: string; active?: boolean }) => (
-  <Leaf size={20} weight="duotone" className={active ? 'text-white' : 'text-emerald-500'} />
+  <Leaf size={20} weight="fill" className={active ? 'text-white' : 'text-emerald-500'} />
 );
 
 export const AnimatedExerciseIcon = ({ className = "w-5 h-5", active = false }: { className?: string; active?: boolean }) => (
-  <PersonSimpleRun size={20} weight="duotone" className={active ? 'text-white' : 'text-amber-500'} />
+  <PersonSimpleRun size={20} weight="fill" className={active ? 'text-white' : 'text-amber-500'} />
 );
 
 // ── Baby Visualization Icon ──
