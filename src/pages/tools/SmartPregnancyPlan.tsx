@@ -95,9 +95,15 @@ const SmartPregnancyPlan = () => {
   }, [health, lang]);
 
   const generatePlan = useCallback(async () => {
+    if (isLimitReached) {
+      setLimitError(t('aiErrors.dailyLimitMsg', { limit, remaining: 0 }));
+      return;
+    }
     setPlanContent('');
+    setLimitError('');
     try {
       await streamEnhanced((text) => setPlanContent(prev => prev + text));
+      incrementUsage();
     } catch {
       const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
       const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
@@ -109,7 +115,7 @@ const SmartPregnancyPlan = () => {
         onDone: () => {},
       });
     }
-  }, [streamEnhanced, streamChat, health, lang]);
+  }, [streamEnhanced, streamChat, health, lang, isLimitReached, incrementUsage, limit, t]);
 
   return (
     <ToolFrame title={t("smartPlan.title")} subtitle={t("smartPlan.subtitle")} icon={Brain} mood="nurturing" toolId="smart-pregnancy-plan">
