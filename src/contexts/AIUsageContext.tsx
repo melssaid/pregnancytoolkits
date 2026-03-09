@@ -63,7 +63,7 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const stored = getLocalUsage();
     setCount(stored.count);
-    setLimit(stored.limit || DEFAULT_LIMIT);
+    setLimit(stored.limit || FREE_LIMIT);
     setTier(stored.tier || 'free');
   }, []);
 
