@@ -12,14 +12,6 @@ import { maybeRunCleanup } from "@/lib/storageCleanup";
 // Run periodic storage cleanup (non-blocking)
 maybeRunCleanup();
 
-// Dismiss native splash screen
-function dismissNativeSplash() {
-  const splash = document.getElementById("native-splash");
-  if (splash) {
-    splash.style.opacity = "0";
-    setTimeout(() => splash.remove(), 400);
-  }
-}
 
 // Render immediately — don't block on i18n
 updateDocumentDirection(i18n.language);
