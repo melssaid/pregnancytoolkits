@@ -113,56 +113,67 @@ export function ToolFrame({
             </div>
             <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
               <motion.div 
-                className="relative group"
+                className="relative flex items-center justify-center"
+                style={{ width: 80, height: 80 }}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: [0.8, 1.08, 0.97, 1], opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                {/* Orbital ring */}
+                {/* Rotating ring */}
                 <motion.div
-                  className="absolute inset-[-5px] rounded-full border border-rose-300/15"
+                  className="absolute rounded-full border border-primary/15"
+                  style={{ width: 76, height: 76 }}
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 />
-                {/* Orbital particles */}
-                {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute"
-                    style={{ top: "50%", left: "50%" }}
-                    animate={{
-                      x: [
-                        Math.cos((i / 6) * Math.PI * 2) * 22,
-                        Math.cos(((i + 1) / 6) * Math.PI * 2) * 22,
-                        Math.cos(((i + 2) / 6) * Math.PI * 2) * 22,
-                      ],
-                      y: [
-                        Math.sin((i / 6) * Math.PI * 2) * 22,
-                        Math.sin(((i + 1) / 6) * Math.PI * 2) * 22,
-                        Math.sin(((i + 2) / 6) * Math.PI * 2) * 22,
-                      ],
-                      opacity: [0.3, 0.8, 0.3],
-                      scale: [0.8, 1.2, 0.8],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      delay: (i / 6) * 6,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <div className="w-[3px] h-[3px] rounded-full bg-gradient-to-br from-rose-400 to-pink-400 shadow-sm shadow-rose-400/50" />
-                  </motion.div>
-                ))}
-                <div className="relative h-9 w-9 rounded-full overflow-hidden shadow-md ring-2 ring-white/90 bg-white">
+                {/* Heart particles */}
+                {[0, 1, 2, 3, 4, 5].map((i) => {
+                  const angle = (i / 6) * 360;
+                  const radius = 34;
+                  return (
+                    <motion.span
+                      key={i}
+                      className="absolute text-primary drop-shadow-[0_0_6px_hsl(var(--primary)/0.5)]"
+                      style={{ fontSize: 10 }}
+                      animate={{
+                        x: [
+                          Math.cos((angle * Math.PI) / 180) * radius,
+                          Math.cos(((angle + 360) * Math.PI) / 180) * radius,
+                        ],
+                        y: [
+                          Math.sin((angle * Math.PI) / 180) * radius,
+                          Math.sin(((angle + 360) * Math.PI) / 180) * radius,
+                        ],
+                        scale: [0.8, 1.3, 0.8],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        x: { duration: 8, repeat: Infinity, ease: "linear" },
+                        y: { duration: 8, repeat: Infinity, ease: "linear" },
+                        scale: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
+                        opacity: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
+                      }}
+                    >
+                      ♥
+                    </motion.span>
+                  );
+                })}
+                {/* Aura */}
+                <motion.div
+                  className="absolute rounded-full bg-primary/8 blur-lg"
+                  style={{ width: 68, height: 68 }}
+                  animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <div className="h-16 w-16 rounded-full overflow-hidden shadow-lg">
                   <img 
                     src={logoImage} 
                     alt="Pregnancy Toolkits" 
-                    width={36}
-                    height={36}
+                    width={64}
+                    height={64}
                     loading="eager"
                     decoding="async"
-                    className="h-full w-full object-cover scale-[1.35]"
+                    className="w-full h-full object-cover scale-[1.35]"
                   />
                 </div>
               </motion.div>
