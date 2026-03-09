@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import {
   organIconMap,
   AnimatedDevelopmentIcon,
