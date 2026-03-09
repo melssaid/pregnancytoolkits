@@ -19,6 +19,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.dir() === 'rtl';
   const trustTextSize = isRtl ? 'text-[9.5px]' : 'text-[8px]';
+  const { remaining, limit, isLimitReached, isNearLimit } = useAIUsageLimit();
+  const pct = limit > 0 ? Math.round((remaining / limit) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
