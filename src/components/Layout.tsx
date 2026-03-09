@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Shield, Heart, Settings } from "lucide-react";
+import { Shield, Heart, Settings, Sparkles } from "lucide-react";
 import logoImage from "@/assets/logo.webp";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
-
+import { useAIUsageLimit } from "@/hooks/useAIUsageLimit";
 
 
 interface LayoutProps {
