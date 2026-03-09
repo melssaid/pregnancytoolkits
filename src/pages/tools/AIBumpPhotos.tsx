@@ -468,43 +468,17 @@ const AIBumpPhotos: React.FC = () => {
               </div>
             )}
 
-            {/* Compact daily progress + supported formats */}
-            <div className="flex items-center justify-between gap-3 pt-1">
-              <div className="flex items-center gap-2">
-                <div className="flex gap-1">
-                  {[0, 1].map((i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: i * 0.1 }}
-                      className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
-                        i < todayUploads
-                          ? 'bg-primary text-primary-foreground shadow-sm'
-                          : 'bg-muted/50 text-muted-foreground/40 border border-border/50'
-                      }`}
-                    >
-                      {i < todayUploads ? (
-                        <Check className="w-3.5 h-3.5" />
-                      ) : (
-                        <Camera className="w-3 h-3" />
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-                <span className={`text-xs font-medium ${canUploadToday ? 'text-primary' : 'text-destructive'}`}>
+            {/* Compact daily progress bar */}
+            <div className="pt-1 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className={`text-xs font-medium ${canUploadToday ? 'text-foreground' : 'text-destructive'}`}>
                   {canUploadToday 
                     ? t('toolsInternal.bumpPhotos.dailyLimitRemaining', { remaining: remainingToday })
                     : t('toolsInternal.bumpPhotos.dailyLimitReached')}
                 </span>
+                <span className="text-[10px] text-muted-foreground">{todayUploads}/{MAX_DAILY_PHOTOS}</span>
               </div>
-              <div className="flex gap-1">
-                {['JPG', 'PNG', 'HEIC'].map(fmt => (
-                  <Badge key={fmt} variant="secondary" className="text-[9px] px-1.5 py-0 font-mono">
-                    {fmt}
-                  </Badge>
-                ))}
-              </div>
+              <Progress value={(todayUploads / MAX_DAILY_PHOTOS) * 100} className="h-1.5" />
             </div>
           </CardContent>
         </Card>
