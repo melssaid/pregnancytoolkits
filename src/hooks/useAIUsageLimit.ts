@@ -10,7 +10,7 @@
 import { useState, useCallback } from 'react';
 
 const STORAGE_KEY = 'ai_daily_usage';
-const DEFAULT_LIMIT = 5; // Free tier default until server syncs
+const DEFAULT_LIMIT = 60; // Free tier default until server syncs
 
 export type SubscriptionTier = 'free' | 'premium';
 
