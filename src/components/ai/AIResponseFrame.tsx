@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useMemo, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { SaveResultButton } from './SaveResultButton';
+import { AIUsageWarning } from './AIUsageWarning';
+import { useAIUsageLimit } from '@/hooks/useAIUsageLimit';
 
 interface AIResponseFrameProps {
   content: string;
