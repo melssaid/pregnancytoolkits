@@ -108,8 +108,9 @@ const DiaperTracker = () => {
       (e) => new Date(e.time).toDateString() === today
     );
     return {
-      wet: todayEntries.filter((e) => e.type === "wet" || e.type === "both").length,
-      dirty: todayEntries.filter((e) => e.type === "dirty" || e.type === "both").length,
+      wet: todayEntries.filter((e) => e.type === "wet").length,
+      dirty: todayEntries.filter((e) => e.type === "dirty").length,
+      both: todayEntries.filter((e) => e.type === "both").length,
       total: todayEntries.length,
     };
   };
@@ -248,7 +249,7 @@ const DiaperTracker = () => {
 
                   {/* Both */}
                   <DiaperActionButton
-                    count={stats.wet + stats.dirty}
+                    count={stats.both}
                     label={t('diaperPage.both')}
                     emoji="👶"
                     gradientFrom="from-primary/15"
