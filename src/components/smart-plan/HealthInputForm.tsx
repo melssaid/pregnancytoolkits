@@ -76,7 +76,19 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
       </div>
 
       <div>
-        <Label className="text-xs">{t("smartPlan.painLevel", "Pain Level")}: {health.painLevel}/10</Label>
+        <div className="flex items-center gap-1.5 mb-1">
+          <Label className="text-xs">{t("smartPlan.painLevel", "Pain Level")}: {health.painLevel}/10</Label>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button type="button" className="inline-flex items-center justify-center rounded-full w-4 h-4 bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                <Info className="w-3 h-3" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="max-w-[240px] text-xs leading-relaxed">
+              {t("smartPlan.painLevelHint", "0 = No pain, 1-3 = Mild, 4-6 = Moderate, 7-9 = Severe, 10 = Worst pain")}
+            </TooltipContent>
+          </Tooltip>
+        </div>
         <Slider value={[health.painLevel]} max={10} step={1} onValueChange={([v]) => onUpdate('painLevel', v)} />
       </div>
 
