@@ -13,16 +13,20 @@ import { maybeRunCleanup } from "@/lib/storageCleanup";
 maybeRunCleanup();
 
 
-// Render immediately — don't block on i18n
+// Wait for translations before rendering to avoid showing raw keys
 updateDocumentDirection(i18n.language);
 
-createRoot(document.getElementById("root")!).render(
-  <SettingsProvider>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
-  </SettingsProvider>
-);
+import { i18nReady } from "./i18n";
+
+i18nReady.then(() => {
+  createRoot(document.getElementById("root")!).render(
+    <SettingsProvider>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </SettingsProvider>
+  );
+});
 
 // Register Service Worker after render (deferred)
 
