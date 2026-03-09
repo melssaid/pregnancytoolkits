@@ -33,7 +33,7 @@ export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }
     'sun': '☀️', 'moon': '🌙', 'cloud': '☁️', 'rain': '🌧️',
     'thermometer': '🌡️', 'clock': '⏰', 'calendar': '📅',
     'notebook': '📓', 'book': '📖', 'pen': '🖊️', 'phone': '📞',
-    'bulb': '💡', 'light_bulb': '💡', 'key': '🔑', 'lock': '🔒',
+    'bulb': '💡', 'light_bulb': '💡',
     'shield': '🛡️', 'bell': '🔔', 'megaphone': '📣',
     'running': '🏃', 'walking': '🚶', 'yoga': '🧘', 'swimming': '🏊',
     'bath': '🛁', 'bed': '🛏️', 'house': '🏠',
