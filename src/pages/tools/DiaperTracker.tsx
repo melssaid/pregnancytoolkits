@@ -258,8 +258,7 @@ const DiaperTracker = () => {
                     textColor="text-primary"
                     isActive={lastAdded === "both"}
                     onAdd={() => addEntry("both")}
-                    onUndo={() => {}}
-                    isTotalButton
+                    onUndo={() => undoLast("both")}
                   />
                 </div>
               </div>
