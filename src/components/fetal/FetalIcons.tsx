@@ -38,15 +38,25 @@ export const AnimatedBrainOrgan = ({ className = "w-4 h-4" }: { className?: stri
       animate={{ opacity: [0.85, 1, 0.85] }}
       transition={{ duration: 2.5, repeat: Infinity }}
     >
-      <path d="M12 2C9.5 2 7.5 3.5 7 5.5C5.5 5 4 6 3.5 7.5C3 9 3.5 10.5 5 11.5C4 12.5 4 14 5 15.5C6 17 7.5 17 9 16.5C9 18 10.5 19.5 12 19.5" fill="url(#brainGrad)" opacity="0.85" />
-      <path d="M12 2C14.5 2 16.5 3.5 17 5.5C18.5 5 20 6 20.5 7.5C21 9 20.5 10.5 19 11.5C20 12.5 20 14 19 15.5C18 17 16.5 17 15 16.5C15 18 13.5 19.5 12 19.5" fill="url(#brainGrad)" opacity="0.7" />
+      {/* Clear brain shape — left hemisphere */}
+      <path d="M12 4C9.8 4 8 5.2 7.2 7C6.2 6.8 5 7.5 5 9c0 1-.2 1.8.5 2.8C4.8 12.5 4.5 14 5.5 15.2c.8 1 2 1.5 3 1.3.5 1.5 2 2.5 3.5 2.5" fill="url(#brainGrad)" opacity="0.9" />
+      {/* Right hemisphere */}
+      <path d="M12 4c2.2 0 4 1.2 4.8 3 1-.2 2.2.5 2.2 2 0 1 .2 1.8-.5 2.8.7.7 1 2.2 0 3.4-.8 1-2 1.5-3 1.3-.5 1.5-2 2.5-3.5 2.5" fill="url(#brainGrad)" opacity="0.7" />
+      {/* Center line */}
+      <line x1="12" y1="4" x2="12" y2="19" stroke="white" strokeWidth="0.6" opacity="0.4" />
+      {/* Brain folds — left */}
+      <path d="M7 9.5c1.5.3 3 .5 5 0" stroke="white" strokeWidth="0.5" opacity="0.35" fill="none" strokeLinecap="round" />
+      <path d="M6.5 12.5c2 .3 3.5.2 5.5-.2" stroke="white" strokeWidth="0.5" opacity="0.3" fill="none" strokeLinecap="round" />
+      {/* Brain folds — right */}
+      <path d="M12 9.5c2-.5 3.5-.3 5 0" stroke="white" strokeWidth="0.5" opacity="0.35" fill="none" strokeLinecap="round" />
+      <path d="M12 12.3c2 .5 3.5.5 5.5.2" stroke="white" strokeWidth="0.5" opacity="0.3" fill="none" strokeLinecap="round" />
       {/* Neural pulse */}
       <motion.circle
-        cx="12" cy="10" r="1.5"
+        cx="12" cy="11" r="1.5"
         fill="white"
-        opacity="0.6"
-        animate={{ r: [1, 2.5, 1], opacity: [0.6, 0, 0.6] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+        opacity="0.5"
+        animate={{ r: [1, 3, 1], opacity: [0.5, 0, 0.5] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
       />
     </motion.g>
   </svg>
@@ -105,12 +115,24 @@ export const AnimatedHandOrgan = ({ className = "w-4 h-4" }: { className?: strin
       </linearGradient>
     </defs>
     <motion.g
-      animate={{ rotate: [0, 5, -3, 0] }}
+      animate={{ rotate: [0, 4, -2, 0] }}
       transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      style={{ transformOrigin: "12px 18px" }}
+      style={{ transformOrigin: "12px 14px" }}
     >
-      <path d="M18 11V6a1 1 0 0 0-2 0v4M14 10V4a1 1 0 0 0-2 0v6M10 10V5a1 1 0 0 0-2 0v5" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M18 11a4 4 0 0 1 0 4l-2 3a2 2 0 0 1-1.7 1H10a2 2 0 0 1-1.7-1L6 14v-3a1 1 0 0 1 2 0" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="url(#handGrad)" fillOpacity="0.15" />
+      {/* Palm */}
+      <path d="M8 14c0 3 1.5 5 4 6s4-1 4-4v-3" fill="url(#handGrad)" fillOpacity="0.25" stroke="url(#handGrad)" strokeWidth="1.2" strokeLinejoin="round" />
+      {/* Fingers — 5 clear digits */}
+      <line x1="8" y1="14" x2="6" y2="10" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="9.5" y1="13" x2="8.5" y2="6" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="12" y1="12.5" x2="12" y2="4.5" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="14.5" y1="13" x2="15.5" y2="6" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="16" y1="14" x2="18" y2="10" stroke="url(#handGrad)" strokeWidth="1.8" strokeLinecap="round" />
+      {/* Fingertips */}
+      <circle cx="6" cy="9.5" r="1" fill="url(#handGrad)" opacity="0.6" />
+      <circle cx="8.5" cy="5.5" r="1" fill="url(#handGrad)" opacity="0.6" />
+      <circle cx="12" cy="4" r="1" fill="url(#handGrad)" opacity="0.6" />
+      <circle cx="15.5" cy="5.5" r="1" fill="url(#handGrad)" opacity="0.6" />
+      <circle cx="18" cy="9.5" r="1" fill="url(#handGrad)" opacity="0.6" />
     </motion.g>
   </svg>
 );
