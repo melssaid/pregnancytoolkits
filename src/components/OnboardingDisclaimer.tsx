@@ -392,4 +392,6 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
       )}
     </AnimatePresence>
   );
-};
+});
+
+OnboardingDisclaimer.displayName = 'OnboardingDisclaimer';
