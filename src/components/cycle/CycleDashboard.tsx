@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Target, Droplets, Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatLocalized } from "@/lib/dateLocale";
@@ -7,6 +7,30 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
 import { CyclePhaseRing } from "./CyclePhaseRing";
 import type { CycleStats } from "@/hooks/useCycleData";
+import { useEffect, useRef } from "react";
+
+function CountUpNumber({ value, className }: { value: number; className?: string }) {
+  const motionVal = useMotionValue(0);
+  const rounded = useTransform(motionVal, (v) => Math.round(v));
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const controls = animate(motionVal, value, {
+      duration: 1.2,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    });
+    return controls.stop;
+  }, [value, motionVal]);
+
+  useEffect(() => {
+    const unsub = rounded.on("change", (v) => {
+      if (ref.current) ref.current.textContent = String(v);
+    });
+    return unsub;
+  }, [rounded]);
+
+  return <span ref={ref} className={className}>0</span>;
+}
 
 interface Props {
   stats: CycleStats;
