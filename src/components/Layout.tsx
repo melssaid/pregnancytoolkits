@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Shield, Heart, Settings } from "lucide-react";
+import { Shield, Heart, Settings, Sparkles } from "lucide-react";
 import logoImage from "@/assets/logo.webp";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
-
+import { useAIUsageLimit } from "@/hooks/useAIUsageLimit";
 
 
 interface LayoutProps {
@@ -19,6 +19,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.dir() === 'rtl';
   const trustTextSize = isRtl ? 'text-[9.5px]' : 'text-[8px]';
+  const { remaining, limit, isLimitReached, isNearLimit } = useAIUsageLimit();
+  const pct = limit > 0 ? Math.round((remaining / limit) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
@@ -212,6 +214,18 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </div>
 
           <div className="flex items-center gap-1.5">
+            {/* AI Usage Badge */}
+            <div className={`flex items-center gap-1 px-2 py-1 rounded-full border text-[10px] font-semibold tabular-nums transition-colors ${
+              isLimitReached
+                ? 'bg-destructive/10 border-destructive/30 text-destructive'
+                : isNearLimit
+                  ? 'bg-amber-50 border-amber-200/50 text-amber-600 dark:bg-amber-950/20 dark:border-amber-800/30 dark:text-amber-400'
+                  : 'bg-primary/5 border-primary/15 text-primary'
+            }`}>
+              <Sparkles className="w-3 h-3" />
+              <span>{remaining}/{limit}</span>
+            </div>
+
             <LanguageDropdown variant="compact" />
 
             <div className="hidden md:flex">
