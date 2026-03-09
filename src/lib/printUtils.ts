@@ -100,7 +100,7 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile }: BuildPr
       text-align: center; margin-bottom: 20px; padding-bottom: 16px;
       border-bottom: 2px solid #ec4899;
     }
-    .print-header img.logo { width: 80px; height: 80px; object-fit: contain; margin: 0 auto 8px; display: block; }
+    .print-header img.logo { width: 80px; height: 80px; object-fit: contain; margin: 0 auto 8px; display: block; border-radius: 50%; }
     .print-header h1 { font-size: 22px; font-weight: 700; color: #ec4899; margin-bottom: 4px; }
     .print-header .brand { font-size: 11px; color: #94a3b8; }
     .print-header .date { font-size: 11px; color: #64748b; margin-top: 4px; }
