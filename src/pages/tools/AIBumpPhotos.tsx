@@ -452,7 +452,7 @@ const AIBumpPhotos: React.FC = () => {
                   className="h-8 w-8"
                   onClick={() => setCurrentWeek(w => Math.max(1, w - 1))}
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  {isRTL ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
                 </Button>
                 <span className="text-base font-bold text-primary min-w-[60px] text-center">
                   {currentWeek}
