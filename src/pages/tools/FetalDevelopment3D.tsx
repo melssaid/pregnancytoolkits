@@ -11,6 +11,7 @@ import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import {
   organIconMap,
   AnimatedBabyIcon,
+  AnimatedBrainOrgan,
   AnimatedDevelopmentIcon,
   AnimatedNutritionIcon,
   AnimatedExerciseIcon,
