@@ -11,11 +11,11 @@ import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import {
   organIconMap,
   AnimatedBabyIcon,
-  AnimatedBrainOrgan,
   AnimatedDevelopmentIcon,
   AnimatedNutritionIcon,
   AnimatedExerciseIcon,
 } from '@/components/fetal/FetalIcons';
+import { Brain } from '@phosphor-icons/react';
 
 
 interface WeekData {
