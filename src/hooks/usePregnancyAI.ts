@@ -39,7 +39,7 @@ export function usePregnancyAI() {
   const [error, setError] = useState<string | null>(null);
   const [errorType, setErrorType] = useState<AIErrorType | null>(null);
   const { i18n, t } = useTranslation();
-  const { isLimitReached, remaining, incrementUsage, syncFromServer, limit } = useAIUsageLimit();
+  const { isLimitReached, remaining, incrementUsage, syncFromServer, syncLimit, limit, tier } = useAIUsageLimit();
 
   const languageRef = useRef(i18n.language);
   languageRef.current = i18n.language;
