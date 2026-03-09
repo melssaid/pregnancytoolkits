@@ -123,7 +123,7 @@ export function CycleDashboard({ stats }: Props) {
             <p className="text-[10px] text-muted-foreground font-medium">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
           </div>
           <div className="flex-1">
-            <p className="text-2xl font-extrabold text-foreground tabular-nums">{stats.avgPeriod}</p>
+            <p className="text-2xl font-extrabold text-foreground tabular-nums"><CountUpNumber value={stats.avgPeriod} /></p>
             <p className="text-[10px] text-muted-foreground font-medium">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
           </div>
           <div className="flex-1">
