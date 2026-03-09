@@ -62,7 +62,6 @@ const App = () => {
         <BrowserRouter>
           <SmartScrollRestoration />
           <AnimatedRoutes />
-          <FirstVisitLanguageSelector />
           <OnboardingDisclaimer />
         </BrowserRouter>
       </TooltipProvider>
