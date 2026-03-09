@@ -359,8 +359,8 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
         <div className="rounded-2xl bg-card border border-border/60 overflow-hidden shadow-sm">
           <div className="p-4">
             <h3 className="font-bold text-foreground mb-3 flex items-center gap-2 text-[13px]">
-              <div className="p-1.5 rounded-xl bg-gradient-to-br from-primary to-pink-500 shadow-sm">
-                <AnimatedBrainOrgan className="w-4 h-4 [&_*]:!fill-white [&_*]:!stroke-white" />
+              <div className="p-1.5 rounded-xl bg-gradient-to-br from-primary to-pink-500 shadow-sm text-white">
+                <Brain size={14} weight="fill" />
               </div>
               {t('toolsInternal.fetalDevelopment.aiWeeklyInsights')}
             </h3>
