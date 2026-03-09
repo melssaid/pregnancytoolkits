@@ -34,6 +34,7 @@ export const AIResponseFrame = ({
 }: AIResponseFrameProps) => {
   const { t } = useTranslation();
   const { isRTL } = useLanguage();
+  const { remaining, limit, tier, isNearLimit, isLimitReached } = useAIUsageLimit();
 
   const rawProgress = useMemo(() => {
     if (!isLoading && content.length > 0) return 100;
