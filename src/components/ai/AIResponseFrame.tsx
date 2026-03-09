@@ -118,11 +118,27 @@ export const AIResponseFrame = ({
 
       {/* Content */}
       <div className="px-4 pb-4 pt-1">
+        {/* Usage warning */}
+        {(isNearLimit || isLimitReached) && <AIUsageWarning />}
+
         <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
           {children || <MarkdownRenderer content={content} isLoading={isLoading} />}
         </div>
         {footer}
-        <div className="mt-3 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
+
+        {/* Usage counter */}
+        <div className="mt-2 flex items-center justify-center gap-1.5">
+          <span className="text-[9px] text-muted-foreground/50 tabular-nums">
+            {t('aiUsage.remaining', { remaining, limit, defaultValue: '{{remaining}}/{{limit}}' })}
+          </span>
+          {tier === 'free' && (
+            <span className="text-[8px] text-primary/50">
+              {t('aiUsage.freeLabel', '• Free')}
+            </span>
+          )}
+        </div>
+
+        <div className="mt-1.5 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
           <p className="text-[9px] text-muted-foreground/60 tracking-wide">
             {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
           </p>
