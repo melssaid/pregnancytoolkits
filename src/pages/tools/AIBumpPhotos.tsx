@@ -18,6 +18,7 @@ import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { ToolFrame } from '@/components/ToolFrame';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { compressImage, estimateDataUrlSize, formatBytes } from '@/lib/imageCompression';
 
 interface BumpPhoto {
@@ -46,6 +47,7 @@ function getTodayUploadCount(photos: BumpPhoto[]): number {
 
 const AIBumpPhotos: React.FC = () => {
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   const { profile: userProfile } = useUserProfile();
   const [photos, setPhotos] = useState<BumpPhoto[]>([]);
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
@@ -450,7 +452,7 @@ const AIBumpPhotos: React.FC = () => {
                   className="h-8 w-8"
                   onClick={() => setCurrentWeek(w => Math.max(1, w - 1))}
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  {isRTL ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
                 </Button>
                 <span className="text-base font-bold text-primary min-w-[60px] text-center">
                   {currentWeek}
@@ -461,7 +463,7 @@ const AIBumpPhotos: React.FC = () => {
                   className="h-8 w-8"
                   onClick={() => setCurrentWeek(w => Math.min(42, w + 1))}
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  {isRTL ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                 </Button>
               </div>
             </div>
