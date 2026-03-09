@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 
 interface MarkdownRendererProps {
@@ -7,7 +7,7 @@ interface MarkdownRendererProps {
   accentColor?: string;
 }
 
-export function MarkdownRenderer({ content, isLoading, accentColor = "primary" }: MarkdownRendererProps) {
+export const MarkdownRenderer = forwardRef<HTMLDivElement, MarkdownRendererProps>(function MarkdownRenderer({ content, isLoading, accentColor = "primary" }, ref) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language?.startsWith('ar');
 
