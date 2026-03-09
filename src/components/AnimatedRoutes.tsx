@@ -3,10 +3,12 @@ import { PageTransition } from "./PageTransition";
 import { Suspense, lazy } from "react";
 import { PageSkeleton } from "./PageSkeleton";
 
+// EAGER LOADED - Main page for instant display
+import Index from "@/pages/Index";
+
 // ═══════════════════════════════════════════════════════════════
 // LAZY LOADED PAGES - 35 Curated Professional Tools
 // ═══════════════════════════════════════════════════════════════
-const Index = lazy(() => import("@/pages/Index"));
 const SmartDashboard = lazy(() => import("@/pages/SmartDashboard"));
 const Settings = lazy(() => import("@/pages/Settings"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
