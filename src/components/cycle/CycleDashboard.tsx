@@ -70,7 +70,7 @@ export function CycleDashboard({ stats }: Props) {
             className="rounded-2xl border border-violet-200/50 dark:border-violet-800/30 bg-violet-500/5 p-3.5 text-center"
           >
             <Target className="w-5 h-5 text-violet-500 mx-auto mb-1.5" />
-            <p className="text-4xl font-extrabold text-violet-600 dark:text-violet-400 tabular-nums tracking-tight">{stats.daysToOv}</p>
+            <p className="text-4xl font-extrabold text-violet-600 dark:text-violet-400 tabular-nums tracking-tight"><CountUpNumber value={stats.daysToOv} /></p>
             <p className="text-[11px] text-muted-foreground mt-0.5 font-medium">
               {t('toolsInternal.cycleTracker.daysUntilOvulation')}
             </p>
