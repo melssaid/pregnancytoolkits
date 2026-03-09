@@ -28,7 +28,7 @@ const languages = [
 
 type Step = 'welcome' | 'profile';
 
-export const OnboardingDisclaimer: React.FC = () => {
+export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
   const [show, setShow] = useState(false);
   const [step, setStep] = useState<Step>('welcome');
   const { t, i18n } = useTranslation();
