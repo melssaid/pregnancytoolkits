@@ -9,6 +9,7 @@ import { HealthStatsGrid } from "@/components/smart-plan/HealthStatsGrid";
 import { HealthInputForm } from "@/components/smart-plan/HealthInputForm";
 import { SmartPlanResultView } from "@/components/smart-plan/SmartPlanResultView";
 import { useHealthData } from "@/components/smart-plan/useHealthData";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 
 const SmartPregnancyPlan = () => {
   const { t, i18n } = useTranslation();

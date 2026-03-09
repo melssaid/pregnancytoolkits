@@ -315,6 +315,36 @@ Deno.serve(async (req) => {
       // Continue with IP-based rate limiting
     }
 
+    // ── Check subscription tier ──
+    let isPremium = false;
+    if (userId) {
+      try {
+        const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+        const adminClient = createClient(
+          Deno.env.get("SUPABASE_URL") ?? "",
+          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+        );
+        const { data: subs } = await adminClient
+          .from("subscriptions")
+          .select("subscription_type, status, trial_end, subscription_end")
+          .eq("user_id", userId)
+          .order("created_at", { ascending: false })
+          .limit(1);
+        if (subs && subs.length > 0) {
+          const sub = subs[0];
+          if (sub.status === "active") {
+            if (sub.subscription_type === "premium" || sub.subscription_type === "yearly" || sub.subscription_type === "monthly") {
+              isPremium = true;
+            } else if (sub.subscription_type === "trial" && sub.trial_end) {
+              isPremium = new Date(sub.trial_end) > new Date();
+            }
+          }
+        }
+      } catch { /* fail open */ }
+    }
+
+    const DAILY_LIMIT = isPremium ? PREMIUM_DAILY_LIMIT : FREE_DAILY_LIMIT;
+
     // ── Per-minute burst rate limit ──
     if (!checkRateLimit(rateLimitId)) {
       return jsonError("Rate limit exceeded. Please wait a minute before trying again.", 429);
