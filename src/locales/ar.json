@@ -2009,7 +2009,7 @@
       "dailyLimitTitle": "حدود الاستخدام اليومي",
       "dailyLimitDesc": "للحفاظ على أداء التطبيق وتجربة سلسة، يمكنكِ رفع حتى <strong>صورتين يومياً</strong> بحجم أقصى <strong>2MB</strong> لكل صورة. يتم ضغط الصور تلقائياً للحفاظ على جودة ممتازة مع توفير المساحة 💜",
       "dailyLimitRemaining": "متبقي اليوم: {{remaining}} من صورتين",
-      "dailyLimitReached": "لقد استنفدتِ صور اليوم 🌙 عودي غداً لرفع المزيد!",
+      "dailyLimitReached": "لقد استنفدتِ صور اليوم، عودي غداً لرفع المزيد!",
       "dailyLimitReachedTitle": "انتهت صور اليوم",
       "dailyLimitReachedDesc": "يمكنكِ رفع صورتين جديدتين غداً إن شاء الله ☀️",
       "lastPhotoReminderTitle": "تبقّت لكِ صورة واحدة اليوم 📸",
