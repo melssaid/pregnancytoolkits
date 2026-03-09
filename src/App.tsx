@@ -57,6 +57,7 @@ const App = () => {
   return (
     <HelmetProvider>
     <QueryClientProvider client={queryClient}>
+      <AIUsageProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -66,6 +67,7 @@ const App = () => {
           <OnboardingDisclaimer />
         </BrowserRouter>
       </TooltipProvider>
+      </AIUsageProvider>
     </QueryClientProvider>
     </HelmetProvider>
   );
