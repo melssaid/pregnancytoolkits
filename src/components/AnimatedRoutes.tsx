@@ -172,7 +172,9 @@ ageSkeleton />}>
 
         {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
-        <Route path="/logo-preview" element={<PageTransition><LogoMotionPreview />/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
+
+        {/* LEGACY REDIRECTS — deleted tools */}
+        <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
         <Route path="/tools/smart-stretch-reminder" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
         <Route path="/tools/kegel-exercise" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
         <Route path="/tools/smart-snack-planner" element={<Navigate to="/tools/ai-meal-suggestion" replace />} />
