@@ -8,7 +8,6 @@ import { Baby, ChevronLeft, ChevronRight, Heart, Brain, Ear, Eye, Hand, Footprin
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 
 
@@ -103,9 +102,9 @@ const FetalDevelopment3D: React.FC = () => {
   };
 
   const getTrimester = (week: number) => {
-    if (week <= 12) return { nameKey: 'trimesters.first', color: 'bg-accent/20 text-accent-foreground' };
+    if (week <= 12) return { nameKey: 'trimesters.first', color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' };
     if (week <= 27) return { nameKey: 'trimesters.second', color: 'bg-primary/15 text-primary' };
-    return { nameKey: 'trimesters.third', color: 'bg-secondary text-secondary-foreground' };
+    return { nameKey: 'trimesters.third', color: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400' };
   };
 
   if (!currentData) return null;
@@ -189,6 +188,12 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
   const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
   const NextIcon = isRTL ? ChevronLeft : ChevronRight;
 
+  const aiTabs = [
+    { key: 'development' as const, icon: Stethoscope, labelKey: 'toolsInternal.fetalDevelopment.development', gradient: 'from-violet-500 to-purple-600', lightBg: 'bg-violet-50 dark:bg-violet-950/20', lightText: 'text-violet-600 dark:text-violet-400', border: 'border-violet-200 dark:border-violet-800/40' },
+    { key: 'nutrition' as const, icon: Apple, labelKey: 'toolsInternal.fetalDevelopment.nutrition', gradient: 'from-emerald-500 to-green-600', lightBg: 'bg-emerald-50 dark:bg-emerald-950/20', lightText: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-200 dark:border-emerald-800/40' },
+    { key: 'exercise' as const, icon: Dumbbell, labelKey: 'toolsInternal.fetalDevelopment.exercise', gradient: 'from-amber-500 to-orange-600', lightBg: 'bg-amber-50 dark:bg-amber-950/20', lightText: 'text-amber-600 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800/40' },
+  ];
+
   return (
     <ToolFrame
       title={t('toolsInternal.fetalDevelopment.title')}
@@ -198,65 +203,69 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
       toolId="fetal-development"
     >
       <div className="space-y-4">
-        {/* Week selector strip */}
-        <Card className="overflow-hidden border-border">
-          <CardContent className="py-3 px-2">
+        {/* Week Navigator */}
+        <div className="rounded-2xl bg-card border border-border/60 overflow-hidden shadow-sm">
+          <div className="p-3">
             <div className="flex items-center gap-1.5">
               <Button
-                variant="ghost"
+                variant="outline"
                 size="icon"
                 onClick={goToPrevious}
                 disabled={currentIndex === 0}
-                className="rounded-full h-8 w-8 shrink-0"
+                className="rounded-xl h-9 w-9 shrink-0 border-border/60 hover:bg-primary/10 hover:border-primary/30 disabled:opacity-30"
               >
                 <PrevIcon className="w-4 h-4" />
               </Button>
 
               <div className="flex-1 overflow-x-auto scrollbar-hide">
                 <div className="flex gap-1" dir={isRTL ? 'rtl' : 'ltr'}>
-                  {weeklyData.map((wd, idx) => (
-                    <button
-                      key={wd.week}
-                      onClick={() => setCurrentIndex(idx)}
-                      className={`shrink-0 px-2.5 py-1.5 rounded-lg text-[10px] font-medium transition-all ${
-                        idx === currentIndex
-                          ? 'bg-primary text-primary-foreground shadow-sm'
-                          : userWeek === wd.week
-                            ? 'bg-primary/15 text-primary'
-                            : 'text-muted-foreground hover:bg-muted/60'
-                      }`}
-                    >
-                      {wd.week}
-                    </button>
-                  ))}
+                  {weeklyData.map((wd, idx) => {
+                    const isSelected = idx === currentIndex;
+                    const isUserWeek = userWeek === wd.week && !isSelected;
+                    return (
+                      <button
+                        key={wd.week}
+                        onClick={() => setCurrentIndex(idx)}
+                        className={`shrink-0 w-8 h-8 rounded-xl text-[11px] font-semibold transition-all duration-200 ${
+                          isSelected
+                            ? 'bg-primary text-primary-foreground shadow-md shadow-primary/25 scale-105'
+                            : isUserWeek
+                              ? 'bg-primary/15 text-primary border border-primary/20'
+                              : 'text-foreground/60 hover:bg-muted hover:text-foreground'
+                        }`}
+                      >
+                        {wd.week}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
               <Button
-                variant="ghost"
+                variant="outline"
                 size="icon"
                 onClick={goToNext}
                 disabled={currentIndex === weeklyData.length - 1}
-                className="rounded-full h-8 w-8 shrink-0"
+                className="rounded-xl h-9 w-9 shrink-0 border-border/60 hover:bg-primary/10 hover:border-primary/30 disabled:opacity-30"
               >
                 <NextIcon className="w-4 h-4" />
               </Button>
             </div>
 
-            {/* Progress + trimester label */}
-            <div className="mt-2.5 px-1">
-              <div className="flex items-center justify-between mb-1">
-                <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${trimester.color}`}>
+            {/* Progress bar */}
+            <div className="mt-3 px-0.5">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-semibold ${trimester.color}`}>
                   {t(`toolsInternal.fetalDevelopment.${trimester.nameKey}`)}
                 </span>
-                <span className="text-[10px] text-muted-foreground tabular-nums">{Math.round(progressPercent)}%</span>
+                <span className="text-[10px] text-muted-foreground font-medium tabular-nums">{Math.round(progressPercent)}%</span>
               </div>
               <Progress value={progressPercent} className="h-1.5" />
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        {/* Baby Visualization Card */}
+        {/* Baby Info Card */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentData.week}
@@ -265,14 +274,26 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
           >
-            <Card className="border-primary/15 overflow-hidden">
-              <CardContent className="py-5">
+            <div className="rounded-2xl bg-card border border-border/60 overflow-hidden shadow-sm">
+              {/* Header strip */}
+              <div className="h-1 bg-gradient-to-r from-primary via-pink-400 to-primary/60" />
+              
+              <div className="p-4">
                 {/* Week title + set as my week */}
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-base font-bold text-foreground">
                     {t('toolsInternal.common.week')} {currentData.week}
                   </h2>
-                  <Button variant="ghost" size="sm" onClick={saveCurrentWeek} className="text-[10px] h-7 px-2 text-muted-foreground">
+                  <Button
+                    variant={userWeek === currentData.week ? "secondary" : "outline"}
+                    size="sm"
+                    onClick={saveCurrentWeek}
+                    className={`text-[10px] h-7 px-3 rounded-xl transition-all ${
+                      userWeek === currentData.week
+                        ? 'bg-primary/10 text-primary border-primary/20 font-semibold'
+                        : 'border-border/60 text-foreground/70 hover:bg-primary/5 hover:text-primary hover:border-primary/30'
+                    }`}
+                  >
                     <Calendar className="w-3 h-3 me-1" />
                     {userWeek === currentData.week
                       ? t('toolsInternal.fetalDevelopment.yourCurrentWeek')
@@ -280,32 +301,32 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                   </Button>
                 </div>
 
-                {/* Size comparison + measurements */}
+                {/* Size visualization */}
                 <div className="flex items-center gap-4">
                   <motion.div
-                    className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0"
+                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/15 to-pink-100/50 dark:to-pink-900/20 flex items-center justify-center shrink-0 border border-primary/10"
                     animate={{ scale: [1, 1.04, 1] }}
                     transition={{ duration: 2.5, repeat: Infinity }}
                   >
                     <Baby className="w-8 h-8 text-primary" />
                   </motion.div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-foreground">
+                    <p className="text-sm font-semibold text-foreground mb-2">
                       {t('toolsInternal.fetalDevelopment.sizeOf', {
                         size: t(`toolsInternal.fetalDevelopment.sizes.${currentData.sizeKey}`)
                       })}
                     </p>
-                    <div className="flex items-center gap-3 mt-1.5">
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Ruler className="w-3 h-3 text-primary" />
-                        <span className="font-medium" dir="ltr">
+                    {/* Measurement pills */}
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/30">
+                        <Ruler className="w-3 h-3 text-blue-500" />
+                        <span className="text-[11px] font-semibold text-blue-700 dark:text-blue-400 tabular-nums" dir="ltr">
                           {formatMeasurement(currentData.lengthValue, currentData.lengthUnit)}
                         </span>
                       </div>
-                      <div className="w-px h-3 bg-border" />
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Scale className="w-3 h-3" />
-                        <span className="font-medium" dir="ltr">
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-pink-50 dark:bg-pink-950/20 border border-pink-100 dark:border-pink-900/30">
+                        <Scale className="w-3 h-3 text-pink-500" />
+                        <span className="text-[11px] font-semibold text-pink-700 dark:text-pink-400 tabular-nums" dir="ltr">
                           {formatMeasurement(currentData.weightValue, currentData.weightUnit)}
                         </span>
                       </div>
@@ -321,7 +342,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: i * 0.08 }}
-                      className="flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-[10px]"
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/8 text-primary text-[10px] border border-primary/10"
                     >
                       {organIcons[organ]}
                       <span className="font-medium">
@@ -332,63 +353,67 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 </div>
 
                 {/* Development description */}
-                <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
+                <p className="text-[11px] text-muted-foreground mt-3 leading-relaxed">
                   {t(`toolsInternal.fetalDevelopment.developments.${currentData.developmentKey}`)}
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </motion.div>
         </AnimatePresence>
 
-
-
-        {/* AI Insights Section */}
-        <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
-          <CardContent className="py-3">
-            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2 text-sm">
-              <div className="p-1.5 rounded-lg" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }}>
+        {/* AI Insights — Clear, Colorful Buttons */}
+        <div className="rounded-2xl bg-card border border-border/60 overflow-hidden shadow-sm">
+          <div className="p-4">
+            <h3 className="font-bold text-foreground mb-3 flex items-center gap-2 text-[13px]">
+              <div className="p-1.5 rounded-xl bg-gradient-to-br from-primary to-pink-500 shadow-sm">
                 <Brain className="w-3.5 h-3.5 text-white" />
               </div>
               {t('toolsInternal.fetalDevelopment.aiWeeklyInsights')}
             </h3>
             
-            {/* AI Tab Buttons */}
-            <div className="grid grid-cols-3 gap-2 mb-3">
-              {([
-                { key: 'development' as const, icon: Stethoscope, labelKey: 'toolsInternal.fetalDevelopment.development' },
-                { key: 'nutrition' as const, icon: Apple, labelKey: 'toolsInternal.fetalDevelopment.nutrition' },
-                { key: 'exercise' as const, icon: Dumbbell, labelKey: 'toolsInternal.fetalDevelopment.exercise' },
-              ]).map(({ key, icon: TabIcon, labelKey }) => {
+            {/* AI Action Buttons — Bold & Clear */}
+            <div className="grid grid-cols-3 gap-2.5">
+              {aiTabs.map(({ key, icon: TabIcon, labelKey, gradient, lightBg, lightText, border }) => {
                 const isActive = activeAITab === key;
                 return (
                   <motion.button
                     key={key}
                     onClick={() => getAIInsight(key)}
-                    disabled={aiLoading}
-                    whileTap={{ scale: 0.92 }}
-                    className="relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                    disabled={aiLoading && !isActive}
+                    whileTap={{ scale: 0.95 }}
+                    className={`relative rounded-2xl overflow-hidden transition-all duration-200 ${
+                      aiLoading && !isActive ? 'opacity-40 cursor-not-allowed' : ''
+                    }`}
                   >
                     <div
-                      className={`flex flex-col items-center gap-1 px-2 py-2.5 rounded-xl transition-all duration-200 ${
+                      className={`flex flex-col items-center gap-1.5 px-2 py-3 rounded-2xl transition-all duration-200 ${
                         isActive
-                          ? 'text-white font-semibold'
-                          : 'bg-card border border-primary/20 text-foreground hover:border-primary/40'
+                          ? 'text-white font-bold shadow-lg'
+                          : `${lightBg} border ${border} ${lightText} hover:shadow-md`
                       }`}
                       style={isActive ? {
-                        background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
-                        boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.45)',
+                        background: `linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to))`,
                       } : undefined}
                     >
-                      {aiLoading && isActive ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      ) : (
-                        <TabIcon className={`w-4 h-4 ${isActive ? '' : 'text-primary'}`} />
+                      {/* Use a wrapper div with the gradient for active state */}
+                      {isActive && (
+                        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl`} />
                       )}
-                      <span className="text-[10px] font-medium leading-tight">{t(labelKey)}</span>
+                      <div className="relative z-10 flex flex-col items-center gap-1.5">
+                        {aiLoading && isActive ? (
+                          <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          </div>
+                        ) : (
+                          <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
+                            isActive ? 'bg-white/20' : 'bg-white dark:bg-white/10 shadow-sm'
+                          }`}>
+                            <TabIcon className={`w-4 h-4 ${isActive ? 'text-white' : ''}`} />
+                          </div>
+                        )}
+                        <span className="text-[10px] font-semibold leading-tight">{t(labelKey)}</span>
+                      </div>
                     </div>
-                    {!isActive && (
-                      <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/10 to-transparent pointer-events-none" aria-hidden />
-                    )}
                   </motion.button>
                 );
               })}
@@ -401,7 +426,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-3"
+                  className="mt-4"
                 >
                   <AIResponseFrame
                     content={aiInsight}
@@ -410,17 +435,15 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                 </motion.div>
               )}
             </AnimatePresence>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Week Tip */}
-        <Card className="bg-muted/30 border-border">
-          <CardContent className="py-3">
-            <p className="text-sm text-center text-muted-foreground">
-              {t(`toolsInternal.fetalDevelopment.tips.${currentData.tipKey}`)}
-            </p>
-          </CardContent>
-        </Card>
+        <div className="rounded-2xl bg-gradient-to-br from-primary/5 to-pink-50/50 dark:to-pink-950/10 border border-primary/10 p-3.5">
+          <p className="text-[11px] text-center text-muted-foreground leading-relaxed">
+            {t(`toolsInternal.fetalDevelopment.tips.${currentData.tipKey}`)}
+          </p>
+        </div>
       </div>
     </ToolFrame>
   );
