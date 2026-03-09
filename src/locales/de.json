@@ -2997,6 +2997,7 @@
     "takePhoto": "Foto aufnehmen",
     "uploadFromGallery": "Aus Galerie hochladen",
     "uploadHint": "📸 Sie können während Ihres Arztbesuchs ein Foto des Ultraschalls machen oder eine Kopie anfordern und später aus Ihrer Galerie hochladen.",
+    "localStorageWarning": "⚠️ Fotos werden nur auf Ihrem Gerät gespeichert. Wenn Sie die App-Daten löschen oder die App deinstallieren, werden alle Fotos dauerhaft gelöscht. Wir empfehlen ein Backup.",
     "autoCompressed": "Automatisch komprimiert für optimalen Speicher • Max 10MB",
     "comparePhotos": "Fotos vergleichen",
     "sideBySide": "Vergleich nebeneinander",

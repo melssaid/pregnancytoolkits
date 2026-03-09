@@ -2307,6 +2307,7 @@
       "takePhoto": "Fotoğraf Çek",
       "uploadFromGallery": "Galeriden Yükle",
       "uploadHint": "📸 Doktor ziyaretiniz sırasında ultrason fotoğrafı çekebilir veya doktorunuzdan bir kopya isteyip daha sonra galeriden yükleyebilirsiniz.",
+      "localStorageWarning": "⚠️ Fotoğraflar yalnızca cihazınızda saklanır. Uygulama verilerini silerseniz veya uygulamayı kaldırırsanız, tüm fotoğraflar kalıcı olarak silinir. Yedek almanızı öneririz.",
       "autoCompressed": "Optimum depolama için otomatik sıkıştırma • Maks 10MB",
       "comparePhotos": "Fotoğrafları Karşılaştır",
       "sideBySide": "Yan Yana Karşılaştırma",
