@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Baby, ChevronLeft, ChevronRight, Heart, Brain, Ear, Eye, Hand, Footprints, Scale, Ruler, Calendar, Loader2, Stethoscope, Apple, Dumbbell } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Scale, Ruler, Calendar, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import {
+  organIconMap,
+  AnimatedBabyIcon,
+  AnimatedBrainOrgan,
+  AnimatedDevelopmentIcon,
+  AnimatedNutritionIcon,
+  AnimatedExerciseIcon,
+} from '@/components/fetal/FetalIcons';
 
 
 interface WeekData {
@@ -44,15 +51,6 @@ const weeklyData: WeekData[] = [
   { week: 38, sizeKey: 'pumpkin', lengthValue: 49.8, lengthUnit: 'cm', weightValue: '3', weightUnit: 'kg', developmentKey: 'week38', organs: ['heart', 'brain'], tipKey: 'week38' },
   { week: 40, sizeKey: 'watermelon', lengthValue: 51.2, lengthUnit: 'cm', weightValue: '3.4', weightUnit: 'kg', developmentKey: 'week40', organs: ['heart', 'brain', 'eyes', 'ears', 'hands', 'feet'], tipKey: 'week40' },
 ];
-
-const organIcons: Record<string, React.ReactNode> = {
-  heart: <Heart className="w-3.5 h-3.5" />,
-  brain: <Brain className="w-3.5 h-3.5" />,
-  ears: <Ear className="w-3.5 h-3.5" />,
-  eyes: <Eye className="w-3.5 h-3.5" />,
-  hands: <Hand className="w-3.5 h-3.5" />,
-  feet: <Footprints className="w-3.5 h-3.5" />,
-};
 
 const organLabelKeys: Record<string, string> = {
   heart: 'toolsInternal.fetalDevelopment.organs.heart',
@@ -188,10 +186,10 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
   const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
   const NextIcon = isRTL ? ChevronLeft : ChevronRight;
 
-  const aiTabs = [
-    { key: 'development' as const, icon: Stethoscope, labelKey: 'toolsInternal.fetalDevelopment.development', gradient: 'from-violet-500 to-purple-600', lightBg: 'bg-violet-50 dark:bg-violet-950/20', lightText: 'text-violet-600 dark:text-violet-400', border: 'border-violet-200 dark:border-violet-800/40' },
-    { key: 'nutrition' as const, icon: Apple, labelKey: 'toolsInternal.fetalDevelopment.nutrition', gradient: 'from-emerald-500 to-green-600', lightBg: 'bg-emerald-50 dark:bg-emerald-950/20', lightText: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-200 dark:border-emerald-800/40' },
-    { key: 'exercise' as const, icon: Dumbbell, labelKey: 'toolsInternal.fetalDevelopment.exercise', gradient: 'from-amber-500 to-orange-600', lightBg: 'bg-amber-50 dark:bg-amber-950/20', lightText: 'text-amber-600 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800/40' },
+  const aiTabsConfig = [
+    { key: 'development' as const, labelKey: 'toolsInternal.fetalDevelopment.development', gradient: 'from-violet-500 to-purple-600', lightBg: 'bg-violet-50 dark:bg-violet-950/20', lightText: 'text-violet-600 dark:text-violet-400', border: 'border-violet-200 dark:border-violet-800/40' },
+    { key: 'nutrition' as const, labelKey: 'toolsInternal.fetalDevelopment.nutrition', gradient: 'from-emerald-500 to-green-600', lightBg: 'bg-emerald-50 dark:bg-emerald-950/20', lightText: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-200 dark:border-emerald-800/40' },
+    { key: 'exercise' as const, labelKey: 'toolsInternal.fetalDevelopment.exercise', gradient: 'from-amber-500 to-orange-600', lightBg: 'bg-amber-50 dark:bg-amber-950/20', lightText: 'text-amber-600 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800/40' },
   ];
 
   return (
@@ -303,13 +301,9 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
 
                 {/* Size visualization */}
                 <div className="flex items-center gap-4">
-                  <motion.div
-                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/15 to-pink-100/50 dark:to-pink-900/20 flex items-center justify-center shrink-0 border border-primary/10"
-                    animate={{ scale: [1, 1.04, 1] }}
-                    transition={{ duration: 2.5, repeat: Infinity }}
-                  >
-                    <Baby className="w-8 h-8 text-primary" />
-                  </motion.div>
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-pink-100/30 dark:to-pink-900/15 flex items-center justify-center shrink-0 border border-primary/10">
+                    <AnimatedBabyIcon className="w-12 h-12" />
+                  </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-foreground mb-2">
                       {t('toolsInternal.fetalDevelopment.sizeOf', {
@@ -344,7 +338,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                       transition={{ delay: i * 0.08 }}
                       className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/8 text-primary text-[10px] border border-primary/10"
                     >
-                      {organIcons[organ]}
+                      {organIconMap[organ]}
                       <span className="font-medium">
                         {t(organLabelKeys[organ] ?? '', { defaultValue: organ })}
                       </span>
@@ -366,15 +360,18 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
           <div className="p-4">
             <h3 className="font-bold text-foreground mb-3 flex items-center gap-2 text-[13px]">
               <div className="p-1.5 rounded-xl bg-gradient-to-br from-primary to-pink-500 shadow-sm">
-                <Brain className="w-3.5 h-3.5 text-white" />
+                <AnimatedBrainOrgan className="w-4 h-4 [&_*]:!fill-white [&_*]:!stroke-white" />
               </div>
               {t('toolsInternal.fetalDevelopment.aiWeeklyInsights')}
             </h3>
             
-            {/* AI Action Buttons — Bold & Clear */}
+            {/* AI Action Buttons — Premium animated icons */}
             <div className="grid grid-cols-3 gap-2.5">
-              {aiTabs.map(({ key, icon: TabIcon, labelKey, gradient, lightBg, lightText, border }) => {
+              {aiTabsConfig.map(({ key, labelKey, gradient, lightBg, lightText, border }) => {
                 const isActive = activeAITab === key;
+                const IconComponent = key === 'development' ? AnimatedDevelopmentIcon 
+                  : key === 'nutrition' ? AnimatedNutritionIcon 
+                  : AnimatedExerciseIcon;
                 return (
                   <motion.button
                     key={key}
@@ -385,34 +382,28 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                       aiLoading && !isActive ? 'opacity-40 cursor-not-allowed' : ''
                     }`}
                   >
+                    {isActive && (
+                      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl`} />
+                    )}
                     <div
-                      className={`flex flex-col items-center gap-1.5 px-2 py-3 rounded-2xl transition-all duration-200 ${
+                      className={`relative z-10 flex flex-col items-center gap-1.5 px-2 py-3 rounded-2xl transition-all duration-200 ${
                         isActive
                           ? 'text-white font-bold shadow-lg'
                           : `${lightBg} border ${border} ${lightText} hover:shadow-md`
                       }`}
-                      style={isActive ? {
-                        background: `linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to))`,
-                      } : undefined}
                     >
-                      {/* Use a wrapper div with the gradient for active state */}
-                      {isActive && (
-                        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl`} />
+                      {aiLoading && isActive ? (
+                        <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
+                          <Loader2 className="w-5 h-5 animate-spin text-white" />
+                        </div>
+                      ) : (
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                          isActive ? 'bg-white/20' : 'bg-white dark:bg-white/10 shadow-sm'
+                        }`}>
+                          <IconComponent className="w-5 h-5" active={isActive} />
+                        </div>
                       )}
-                      <div className="relative z-10 flex flex-col items-center gap-1.5">
-                        {aiLoading && isActive ? (
-                          <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                          </div>
-                        ) : (
-                          <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
-                            isActive ? 'bg-white/20' : 'bg-white dark:bg-white/10 shadow-sm'
-                          }`}>
-                            <TabIcon className={`w-4 h-4 ${isActive ? 'text-white' : ''}`} />
-                          </div>
-                        )}
-                        <span className="text-[10px] font-semibold leading-tight">{t(labelKey)}</span>
-                      </div>
+                      <span className="text-[10px] font-semibold leading-tight">{t(labelKey)}</span>
                     </div>
                   </motion.button>
                 );
