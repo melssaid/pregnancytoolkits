@@ -64,6 +64,7 @@ const AIBumpPhotos: React.FC = () => {
   const [editingPhotoId, setEditingPhotoId] = useState<string | null>(null);
   const [editCaption, setEditCaption] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef(false);
   const { toast } = useToast();
   const { streamChat } = usePregnancyAI();
