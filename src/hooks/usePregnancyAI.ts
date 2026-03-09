@@ -178,6 +178,7 @@ export function usePregnancyAI() {
                   const retryTier = retryResp.headers.get("X-Subscription-Tier");
                   if (retryLimit) syncLimit(parseInt(retryLimit, 10), retryTier === 'premium' ? 'premium' : 'free');
                   await processStream(retryResp.body, onDelta);
+                  incrementUsage();
                   onDone();
                   return;
                 }
@@ -200,6 +201,7 @@ export function usePregnancyAI() {
         }
 
         await processStream(response.body, onDelta);
+        incrementUsage();
         onDone();
       } catch (err) {
         console.error("[AI] streamChat error:", err);
@@ -212,7 +214,7 @@ export function usePregnancyAI() {
         setIsLoading(false);
       }
     },
-    [resolveError, isLimitReached, syncFromServer, syncLimit, limit, t, getAuthHeader]
+    [resolveError, isLimitReached, incrementUsage, syncFromServer, syncLimit, limit, t, getAuthHeader]
   );
 
   const generateContent = useCallback(
