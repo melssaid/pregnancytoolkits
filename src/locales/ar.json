@@ -4743,6 +4743,14 @@
     "dailyLimitTitle": "تم الوصول للحد اليومي",
     "remainingHint": "متبقي {{remaining}} من {{limit}} طلب اليوم"
   },
+  "aiUsage": {
+    "remaining": "متبقي {{remaining}} من {{limit}} طلب يومي",
+    "nearLimit": "أنتِ على وشك الوصول للحد اليومي",
+    "limitReached": "تم الوصول للحد اليومي",
+    "upgradeHint": "اشتركي في Pro للحصول على {{limit}} طلب يومياً",
+    "limitReachedFree": "وصلتِ للحد اليومي ({{limit}} طلب). اشتركي للحصول على المزيد",
+    "freeLabel": "• مجاني"
+  },
   "settings.deleteAccount": {
     "title": "حذف جميع البيانات",
     "description": "حذف جميع بياناتك المخزنة على هذا الجهاز نهائياً",

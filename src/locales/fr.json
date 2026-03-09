@@ -4521,6 +4521,14 @@
     "dailyLimitTitle": "Limite quotidienne atteinte",
     "remainingHint": "{{remaining}} sur {{limit}} requêtes restantes aujourd'hui"
   },
+  "aiUsage": {
+    "remaining": "{{remaining}}/{{limit}} requêtes restantes aujourd'hui",
+    "nearLimit": "Vous approchez de la limite quotidienne",
+    "limitReached": "Limite quotidienne atteinte",
+    "upgradeHint": "Abonnez-vous à Pro pour {{limit}} requêtes quotidiennes",
+    "limitReachedFree": "Limite quotidienne atteinte ({{limit}} requêtes). Abonnez-vous pour plus",
+    "freeLabel": "• Gratuit"
+  },
   "groceryList": {
     "title": "Liste de courses intelligente",
     "subtitle": "Liste de courses IA pour la nutrition de grossesse",

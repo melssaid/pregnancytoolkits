@@ -4699,6 +4699,14 @@
     "dailyLimitTitle": "Günlük limite ulaşıldı",
     "remainingHint": "Bugün {{remaining}}/{{limit}} istek kaldı"
   },
+  "aiUsage": {
+    "remaining": "Bugün {{remaining}}/{{limit}} istek kaldı",
+    "nearLimit": "Günlük limite yaklaşıyorsunuz",
+    "limitReached": "Günlük limite ulaşıldı",
+    "upgradeHint": "Günlük {{limit}} istek için Pro'ya abone olun",
+    "limitReachedFree": "Günlük limite ulaşıldı ({{limit}} istek). Daha fazlası için abone olun",
+    "freeLabel": "• Ücretsiz"
+  },
   "groceryList": {
     "title": "Akıllı Alışveriş Listesi",
     "subtitle": "Hamilelik beslenmesi için AI destekli alışveriş listesi",

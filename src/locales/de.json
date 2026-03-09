@@ -4496,6 +4496,14 @@
     "dailyLimitTitle": "Tageslimit erreicht",
     "remainingHint": "{{remaining}} von {{limit}} Anfragen heute übrig"
   },
+  "aiUsage": {
+    "remaining": "{{remaining}}/{{limit}} Anfragen heute übrig",
+    "nearLimit": "Tageslimit fast erreicht",
+    "limitReached": "Tageslimit erreicht",
+    "upgradeHint": "Abonnieren Sie Pro für {{limit}} tägliche Anfragen",
+    "limitReachedFree": "Tageslimit erreicht ({{limit}} Anfragen). Abonnieren für mehr",
+    "freeLabel": "• Kostenlos"
+  },
   "groceryList": {
     "title": "Intelligente Einkaufsliste",
     "subtitle": "KI-gestützte Einkaufsliste für Schwangerschaftsernährung",
