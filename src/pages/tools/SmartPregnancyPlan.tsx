@@ -61,7 +61,29 @@ const SmartPregnancyPlan = () => {
         }
       );
 
-      if (!response.ok || !response.body) throw new Error("Enhanced endpoint failed");
+      if (!response.ok) {
+        // Check for daily limit
+        if (response.status === 429) {
+          try {
+            const errBody = await response.json();
+            if (errBody?.error === "daily_limit_reached") {
+              const serverUsed = parseInt(response.headers.get("X-Daily-Used") || "0", 10);
+              if (serverUsed) syncFromServer(serverUsed);
+              setLimitError(t('aiErrors.dailyLimitMsg', { limit, remaining: 0 }));
+              return;
+            }
+          } catch { /* ignore */ }
+        }
+        throw new Error("Enhanced endpoint failed");
+      }
+      if (!response.body) throw new Error("No response body");
+      
+      // Sync usage headers
+      const serverUsed = response.headers.get("X-Daily-Used");
+      if (serverUsed) syncFromServer(parseInt(serverUsed, 10));
+      const serverLimit = response.headers.get("X-Daily-Limit");
+      if (serverLimit) syncLimit(parseInt(serverLimit, 10));
+
       setResearchEnhanced(response.headers.get("X-Research-Enhanced") === "true");
 
       const reader = response.body.getReader();
