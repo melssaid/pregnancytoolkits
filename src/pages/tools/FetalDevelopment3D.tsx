@@ -365,10 +365,13 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
               {t('toolsInternal.fetalDevelopment.aiWeeklyInsights')}
             </h3>
             
-            {/* AI Action Buttons — Bold & Clear */}
+            {/* AI Action Buttons — Premium animated icons */}
             <div className="grid grid-cols-3 gap-2.5">
-              {aiTabs.map(({ key, icon: TabIcon, labelKey, gradient, lightBg, lightText, border }) => {
+              {aiTabsConfig.map(({ key, labelKey, gradient, lightBg, lightText, border }) => {
                 const isActive = activeAITab === key;
+                const IconComponent = key === 'development' ? AnimatedDevelopmentIcon 
+                  : key === 'nutrition' ? AnimatedNutritionIcon 
+                  : AnimatedExerciseIcon;
                 return (
                   <motion.button
                     key={key}
@@ -379,34 +382,28 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                       aiLoading && !isActive ? 'opacity-40 cursor-not-allowed' : ''
                     }`}
                   >
+                    {isActive && (
+                      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl`} />
+                    )}
                     <div
-                      className={`flex flex-col items-center gap-1.5 px-2 py-3 rounded-2xl transition-all duration-200 ${
+                      className={`relative z-10 flex flex-col items-center gap-1.5 px-2 py-3 rounded-2xl transition-all duration-200 ${
                         isActive
                           ? 'text-white font-bold shadow-lg'
                           : `${lightBg} border ${border} ${lightText} hover:shadow-md`
                       }`}
-                      style={isActive ? {
-                        background: `linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to))`,
-                      } : undefined}
                     >
-                      {/* Use a wrapper div with the gradient for active state */}
-                      {isActive && (
-                        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl`} />
+                      {aiLoading && isActive ? (
+                        <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
+                          <Loader2 className="w-5 h-5 animate-spin text-white" />
+                        </div>
+                      ) : (
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                          isActive ? 'bg-white/20' : 'bg-white dark:bg-white/10 shadow-sm'
+                        }`}>
+                          <IconComponent className="w-5 h-5" active={isActive} />
+                        </div>
                       )}
-                      <div className="relative z-10 flex flex-col items-center gap-1.5">
-                        {aiLoading && isActive ? (
-                          <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                          </div>
-                        ) : (
-                          <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
-                            isActive ? 'bg-white/20' : 'bg-white dark:bg-white/10 shadow-sm'
-                          }`}>
-                            <TabIcon className={`w-4 h-4 ${isActive ? 'text-white' : ''}`} />
-                          </div>
-                        )}
-                        <span className="text-[10px] font-semibold leading-tight">{t(labelKey)}</span>
-                      </div>
+                      <span className="text-[10px] font-semibold leading-tight">{t(labelKey)}</span>
                     </div>
                   </motion.button>
                 );
