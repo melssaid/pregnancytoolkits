@@ -185,10 +185,10 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
   const PrevIcon = isRTL ? ChevronRight : ChevronLeft;
   const NextIcon = isRTL ? ChevronLeft : ChevronRight;
 
-  const aiTabs = [
-    { key: 'development' as const, icon: Stethoscope, labelKey: 'toolsInternal.fetalDevelopment.development', gradient: 'from-violet-500 to-purple-600', lightBg: 'bg-violet-50 dark:bg-violet-950/20', lightText: 'text-violet-600 dark:text-violet-400', border: 'border-violet-200 dark:border-violet-800/40' },
-    { key: 'nutrition' as const, icon: Apple, labelKey: 'toolsInternal.fetalDevelopment.nutrition', gradient: 'from-emerald-500 to-green-600', lightBg: 'bg-emerald-50 dark:bg-emerald-950/20', lightText: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-200 dark:border-emerald-800/40' },
-    { key: 'exercise' as const, icon: Dumbbell, labelKey: 'toolsInternal.fetalDevelopment.exercise', gradient: 'from-amber-500 to-orange-600', lightBg: 'bg-amber-50 dark:bg-amber-950/20', lightText: 'text-amber-600 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800/40' },
+  const aiTabsConfig = [
+    { key: 'development' as const, labelKey: 'toolsInternal.fetalDevelopment.development', gradient: 'from-violet-500 to-purple-600', lightBg: 'bg-violet-50 dark:bg-violet-950/20', lightText: 'text-violet-600 dark:text-violet-400', border: 'border-violet-200 dark:border-violet-800/40' },
+    { key: 'nutrition' as const, labelKey: 'toolsInternal.fetalDevelopment.nutrition', gradient: 'from-emerald-500 to-green-600', lightBg: 'bg-emerald-50 dark:bg-emerald-950/20', lightText: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-200 dark:border-emerald-800/40' },
+    { key: 'exercise' as const, labelKey: 'toolsInternal.fetalDevelopment.exercise', gradient: 'from-amber-500 to-orange-600', lightBg: 'bg-amber-50 dark:bg-amber-950/20', lightText: 'text-amber-600 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800/40' },
   ];
 
   return (
