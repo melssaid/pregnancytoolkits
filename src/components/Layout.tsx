@@ -124,12 +124,27 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                     {[0, 1, 2, 3, 4, 5].map((i) => {
                       const angle = (i / 6) * 360;
                       const radius = 34;
+                      const isPink = i % 2 === 1;
                       return (
                         <motion.span
                           key={i}
-                          className="absolute text-primary drop-shadow-[0_0_6px_hsl(var(--primary)/0.5)]"
-                          style={{ fontSize: 10 }}
-                          animate={{
+                          className={`absolute ${isPink ? 'text-pink-400 drop-shadow-[0_0_8px_rgba(244,114,182,0.6)]' : 'text-primary drop-shadow-[0_0_6px_hsl(var(--primary)/0.5)]'}`}
+                          style={{ fontSize: isPink ? 11 : 10 }}
+                          animate={isPink ? {
+                            x: [
+                              Math.cos((angle * Math.PI) / 180) * radius,
+                              Math.cos(((angle + 180) * Math.PI) / 180) * (radius * 0.7),
+                              Math.cos(((angle + 360) * Math.PI) / 180) * radius,
+                            ],
+                            y: [
+                              Math.sin((angle * Math.PI) / 180) * radius,
+                              Math.sin(((angle + 180) * Math.PI) / 180) * (radius * 0.7),
+                              Math.sin(((angle + 360) * Math.PI) / 180) * radius,
+                            ],
+                            scale: [0.6, 1.5, 0.6],
+                            opacity: [0.3, 0.9, 0.3],
+                            rotate: [0, 20, -20, 0],
+                          } : {
                             x: [
                               Math.cos((angle * Math.PI) / 180) * radius,
                               Math.cos(((angle + 360) * Math.PI) / 180) * radius,
@@ -141,7 +156,13 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                             scale: [0.8, 1.3, 0.8],
                             opacity: [0.5, 1, 0.5],
                           }}
-                          transition={{
+                          transition={isPink ? {
+                            x: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+                            y: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+                            scale: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 },
+                            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 },
+                            rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                          } : {
                             x: { duration: 8, repeat: Infinity, ease: "linear" },
                             y: { duration: 8, repeat: Infinity, ease: "linear" },
                             scale: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
