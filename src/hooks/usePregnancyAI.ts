@@ -131,9 +131,10 @@ export function usePregnancyAI() {
 
         // Sync server-reported usage from headers
         const serverUsed = response.headers.get("X-Daily-Used");
-        if (serverUsed) {
-          syncFromServer(parseInt(serverUsed, 10));
-        }
+        if (serverUsed) syncFromServer(parseInt(serverUsed, 10));
+        const serverLimit = response.headers.get("X-Daily-Limit");
+        const serverTier = response.headers.get("X-Subscription-Tier");
+        if (serverLimit) syncLimit(parseInt(serverLimit, 10), serverTier === 'premium' ? 'premium' : 'free');
 
         if (!response.ok) {
           // Read server error for better diagnostics
