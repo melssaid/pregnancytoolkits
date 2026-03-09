@@ -363,84 +363,14 @@ const AIBumpPhotos: React.FC = () => {
       toolId="ai-bump-photos"
     >
       <div className="space-y-6">
-        {/* Daily Usage & Limits — Friendly Explanation */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/[0.06] via-card to-accent/[0.04]"
-        >
-          {/* Decorative accent */}
-          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary/40 via-primary/60 to-primary/40" />
+
+        {/* ──────────── 1. UPLOAD SECTION ──────────── */}
+        <Card className="border-primary/20 overflow-hidden">
+          {/* Decorative accent bar */}
+          <div className="h-1 bg-gradient-to-r from-primary/40 via-primary/60 to-primary/40" />
           
-          <div className="p-4 space-y-3">
-            {/* Title row */}
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-primary/10">
-                <Shield className="w-4.5 h-4.5 text-primary" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-foreground">{t('toolsInternal.bumpPhotos.dailyLimitTitle')}</h4>
-              </div>
-            </div>
-
-            {/* Description */}
-            <p 
-              className="text-xs text-muted-foreground leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: t('toolsInternal.bumpPhotos.dailyLimitDesc') }}
-            />
-
-            {/* Daily progress indicator */}
-            <div className="flex items-center gap-3">
-              <div className="flex gap-1.5">
-                {[0, 1].map((i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: i * 0.1 }}
-                    className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${
-                      i < todayUploads
-                        ? 'bg-primary text-primary-foreground shadow-sm'
-                        : 'bg-muted/50 text-muted-foreground/40 border border-border/50'
-                    }`}
-                  >
-                    {i < todayUploads ? (
-                      <Check className="w-4 h-4" />
-                    ) : (
-                      <Camera className="w-3.5 h-3.5" />
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-              <span className={`text-xs font-medium ${canUploadToday ? 'text-primary' : 'text-destructive'}`}>
-                {canUploadToday 
-                  ? t('toolsInternal.bumpPhotos.dailyLimitRemaining', { remaining: remainingToday })
-                  : t('toolsInternal.bumpPhotos.dailyLimitReached')}
-              </span>
-            </div>
-
-            {/* Storage bar — compact */}
-            <div className="pt-1 space-y-1">
-              <div className="flex justify-between text-[10px]">
-                <span className="text-muted-foreground">{t('toolsInternal.bumpPhotos.storageUsed')}</span>
-                <span className={`font-medium ${
-                  storageInfo.isCritical ? 'text-destructive' : 
-                  storageInfo.isWarning ? 'text-amber-600' : 'text-primary'
-                }`}>
-                  {storageInfo.used} / 5 MB
-                </span>
-              </div>
-              <Progress 
-                value={storageInfo.percentage} 
-                className="h-1.5"
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Week Selector & Upload */}
-        <Card className="border-primary/20">
           <CardContent className="p-4 space-y-4">
+            {/* Week Selector */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-primary" />
@@ -469,6 +399,7 @@ const AIBumpPhotos: React.FC = () => {
               </div>
             </div>
             
+            {/* Caption */}
             <Textarea
               placeholder={t('toolsInternal.bumpPhotos.captionPlaceholder')}
               value={caption}
@@ -537,142 +468,48 @@ const AIBumpPhotos: React.FC = () => {
               </div>
             )}
 
-            {/* Combined info box */}
-            <div className="p-4 rounded-xl bg-gradient-to-br from-primary/[0.06] via-card to-accent/[0.04] border border-primary/15 space-y-3">
-              {/* AI Analysis */}
-              <div className="flex items-start gap-2.5">
-                <Sparkles className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                <div className="space-y-1.5">
-                  <span className="text-xs font-semibold text-foreground">{t('toolsInternal.bumpPhotos.aiAnalysisTitle')}</span>
-                  <p className="text-[11px] text-muted-foreground leading-relaxed">
-                    {t('toolsInternal.bumpPhotos.aiAnalysisDesc')}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {['JPG', 'PNG', 'WEBP', 'HEIC'].map(fmt => (
-                      <Badge key={fmt} variant="secondary" className="text-[10px] px-2 py-0.5 font-mono">
-                        {fmt}
-                      </Badge>
-                    ))}
-                    <Badge variant="outline" className="text-[10px] px-2 py-0.5">
-                      {t('toolsInternal.bumpPhotos.maxSize')}
-                    </Badge>
-                  </div>
+            {/* Compact daily progress + supported formats */}
+            <div className="flex items-center justify-between gap-3 pt-1">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1">
+                  {[0, 1].map((i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: i * 0.1 }}
+                      className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
+                        i < todayUploads
+                          ? 'bg-primary text-primary-foreground shadow-sm'
+                          : 'bg-muted/50 text-muted-foreground/40 border border-border/50'
+                      }`}
+                    >
+                      {i < todayUploads ? (
+                        <Check className="w-3.5 h-3.5" />
+                      ) : (
+                        <Camera className="w-3 h-3" />
+                      )}
+                    </motion.div>
+                  ))}
                 </div>
+                <span className={`text-xs font-medium ${canUploadToday ? 'text-primary' : 'text-destructive'}`}>
+                  {canUploadToday 
+                    ? t('toolsInternal.bumpPhotos.dailyLimitRemaining', { remaining: remainingToday })
+                    : t('toolsInternal.bumpPhotos.dailyLimitReached')}
+                </span>
               </div>
-
-              <div className="border-t border-border/40" />
-
-              {/* Upload hint */}
-              <div className="flex items-start gap-2.5">
-                <Info className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
-                <p className="text-[11px] text-muted-foreground leading-relaxed">
-                  {t('toolsInternal.bumpPhotos.uploadHint')}
-                </p>
-              </div>
-
-              <div className="border-t border-border/40" />
-
-              {/* Local storage warning */}
-              <div className="flex items-start gap-2.5">
-                <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
-                <p className="text-[11px] text-amber-700 dark:text-amber-300 leading-relaxed">
-                  {t('toolsInternal.bumpPhotos.localStorageWarning')}
-                </p>
+              <div className="flex gap-1">
+                {['JPG', 'PNG', 'HEIC'].map(fmt => (
+                  <Badge key={fmt} variant="secondary" className="text-[9px] px-1.5 py-0 font-mono">
+                    {fmt}
+                  </Badge>
+                ))}
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Action Buttons */}
-        {photos.length > 1 && (
-          <div className="flex gap-2">
-            <Button
-              variant={showCompare ? "default" : "outline"}
-              className="flex-1"
-              onClick={() => setShowCompare(!showCompare)}
-            >
-              <Columns className="w-4 h-4 mr-2" />
-              {t('toolsInternal.bumpPhotos.comparePhotos')}
-            </Button>
-          </div>
-        )}
-
-        {/* Photo Comparison Mode */}
-        <AnimatePresence>
-          {showCompare && photos.length > 1 && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              <Card className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/30 dark:to-purple-950/30">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <Columns className="w-5 h-5 text-primary" />
-                    {t('toolsInternal.bumpPhotos.sideBySide')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-2">{t('toolsInternal.bumpPhotos.earlierPhoto')}</p>
-                      <select
-                        className="w-full p-2 rounded-lg border border-border bg-background mb-2"
-                        value={comparePhoto?.id || ''}
-                        onChange={(e) => {
-                          const photo = photos.find(p => p.id === e.target.value);
-                          setComparePhoto(photo || null);
-                        }}
-                      >
-                        <option value="">{t('toolsInternal.bumpPhotos.selectWeekOption')}</option>
-                        {photos.map(p => (
-                          <option key={p.id} value={p.id}>{t('toolsInternal.bumpPhotos.week')} {p.week}</option>
-                        ))}
-                      </select>
-                      {comparePhoto && (
-                        <img
-                          src={comparePhoto.image_ref}
-                          alt={`Week ${comparePhoto.week}`}
-                          className="w-full aspect-[3/4] object-cover rounded-lg"
-                        />
-                      )}
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-2">{t('toolsInternal.bumpPhotos.laterPhoto')}</p>
-                      <select
-                        className="w-full p-2 rounded-lg border border-border bg-background mb-2"
-                        value={selectedPhoto?.id || ''}
-                        onChange={(e) => {
-                          const photo = photos.find(p => p.id === e.target.value);
-                          setSelectedPhoto(photo || null);
-                        }}
-                      >
-                        <option value="">{t('toolsInternal.bumpPhotos.selectWeekOption')}</option>
-                        {photos.map(p => (
-                          <option key={p.id} value={p.id}>{t('toolsInternal.bumpPhotos.week')} {p.week}</option>
-                        ))}
-                      </select>
-                      {selectedPhoto && (
-                        <img
-                          src={selectedPhoto.image_ref}
-                          alt={`Week ${selectedPhoto.week}`}
-                          className="w-full aspect-[3/4] object-cover rounded-lg"
-                        />
-                      )}
-                    </div>
-                  </div>
-                  {comparePhoto && selectedPhoto && (
-                    <p className="text-center text-sm text-muted-foreground mt-3">
-                      {t('toolsInternal.bumpPhotos.weeksProgress', { weeks: Math.abs(selectedPhoto.week - comparePhoto.week) })}
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Photos Grid */}
+        {/* ──────────── 2. PHOTOS GRID ──────────── */}
         {photos.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {photos.map((photo, index) => (
@@ -814,7 +651,7 @@ const AIBumpPhotos: React.FC = () => {
           </Card>
         )}
 
-        {/* AI Analysis Panel */}
+        {/* ──────────── 3. AI ANALYSIS PANEL ──────────── */}
         <AnimatePresence>
           {selectedPhoto && (
             <motion.div
@@ -867,7 +704,95 @@ const AIBumpPhotos: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* Progress Timeline */}
+        {/* ──────────── 4. COMPARE PHOTOS ──────────── */}
+        {photos.length > 1 && (
+          <div className="space-y-3">
+            <Button
+              variant={showCompare ? "default" : "outline"}
+              className="w-full"
+              onClick={() => setShowCompare(!showCompare)}
+            >
+              <Columns className="w-4 h-4 mr-2" />
+              {t('toolsInternal.bumpPhotos.comparePhotos')}
+            </Button>
+
+            <AnimatePresence>
+              {showCompare && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                >
+                  <Card className="border-primary/15">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-base flex items-center gap-2">
+                        <Columns className="w-5 h-5 text-primary" />
+                        {t('toolsInternal.bumpPhotos.sideBySide')}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-sm text-muted-foreground mb-2">{t('toolsInternal.bumpPhotos.earlierPhoto')}</p>
+                          <select
+                            className="w-full p-2 rounded-lg border border-border bg-background mb-2"
+                            value={comparePhoto?.id || ''}
+                            onChange={(e) => {
+                              const photo = photos.find(p => p.id === e.target.value);
+                              setComparePhoto(photo || null);
+                            }}
+                          >
+                            <option value="">{t('toolsInternal.bumpPhotos.selectWeekOption')}</option>
+                            {photos.map(p => (
+                              <option key={p.id} value={p.id}>{t('toolsInternal.bumpPhotos.week')} {p.week}</option>
+                            ))}
+                          </select>
+                          {comparePhoto && (
+                            <img
+                              src={comparePhoto.image_ref}
+                              alt={`Week ${comparePhoto.week}`}
+                              className="w-full aspect-[3/4] object-cover rounded-lg"
+                            />
+                          )}
+                        </div>
+                        <div>
+                          <p className="text-sm text-muted-foreground mb-2">{t('toolsInternal.bumpPhotos.laterPhoto')}</p>
+                          <select
+                            className="w-full p-2 rounded-lg border border-border bg-background mb-2"
+                            value={selectedPhoto?.id || ''}
+                            onChange={(e) => {
+                              const photo = photos.find(p => p.id === e.target.value);
+                              setSelectedPhoto(photo || null);
+                            }}
+                          >
+                            <option value="">{t('toolsInternal.bumpPhotos.selectWeekOption')}</option>
+                            {photos.map(p => (
+                              <option key={p.id} value={p.id}>{t('toolsInternal.bumpPhotos.week')} {p.week}</option>
+                            ))}
+                          </select>
+                          {selectedPhoto && (
+                            <img
+                              src={selectedPhoto.image_ref}
+                              alt={`Week ${selectedPhoto.week}`}
+                              className="w-full aspect-[3/4] object-cover rounded-lg"
+                            />
+                          )}
+                        </div>
+                      </div>
+                      {comparePhoto && selectedPhoto && (
+                        <p className="text-center text-sm text-muted-foreground mt-3">
+                          {t('toolsInternal.bumpPhotos.weeksProgress', { weeks: Math.abs(selectedPhoto.week - comparePhoto.week) })}
+                        </p>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
+
+        {/* ──────────── 5. PROGRESS TIMELINE ──────────── */}
         {photos.length > 1 && (
           <Card>
             <CardHeader className="pb-2">
@@ -914,14 +839,53 @@ const AIBumpPhotos: React.FC = () => {
           </Card>
         )}
 
-        {/* Tips Card */}
-        <Card className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 border-amber-200/50">
-          <CardContent className="p-4">
+        {/* ──────────── 6. INFO & TIPS ──────────── */}
+        <div className="space-y-3">
+          {/* Usage info */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="p-4 rounded-2xl bg-gradient-to-br from-primary/[0.04] via-card to-accent/[0.03] border border-border/60 space-y-3"
+          >
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4 text-primary" />
+              <span className="text-xs font-semibold text-foreground">{t('toolsInternal.bumpPhotos.dailyLimitTitle')}</span>
+            </div>
+            <p 
+              className="text-[11px] text-muted-foreground leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: t('toolsInternal.bumpPhotos.dailyLimitDesc') }}
+            />
+            {/* Storage bar */}
+            <div className="space-y-1">
+              <div className="flex justify-between text-[10px]">
+                <span className="text-muted-foreground">{t('toolsInternal.bumpPhotos.storageUsed')}</span>
+                <span className={`font-medium ${
+                  storageInfo.isCritical ? 'text-destructive' : 
+                  storageInfo.isWarning ? 'text-amber-600' : 'text-primary'
+                }`}>
+                  {storageInfo.used} / 5 MB
+                </span>
+              </div>
+              <Progress value={storageInfo.percentage} className="h-1.5" />
+            </div>
+            
+            <div className="border-t border-border/40" />
+            
+            <div className="flex items-start gap-2">
+              <AlertTriangle className="w-3.5 h-3.5 text-muted-foreground mt-0.5 shrink-0" />
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                {t('toolsInternal.bumpPhotos.localStorageWarning')}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Tips */}
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border border-amber-200/40">
             <div className="flex items-start gap-3">
-              <Info className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+              <Info className="w-4.5 h-4.5 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-medium text-amber-800 dark:text-amber-300 mb-1">{t('toolsInternal.bumpPhotos.photoTipsTitle')}</h4>
-                <ul className="text-sm text-amber-700 dark:text-amber-400 space-y-1">
+                <h4 className="font-medium text-amber-800 dark:text-amber-300 text-sm mb-1">{t('toolsInternal.bumpPhotos.photoTipsTitle')}</h4>
+                <ul className="text-xs text-amber-700 dark:text-amber-400 space-y-0.5">
                   <li>• {t('toolsInternal.bumpPhotos.photoTip1')}</li>
                   <li>• {t('toolsInternal.bumpPhotos.photoTip2')}</li>
                   <li>• {t('toolsInternal.bumpPhotos.photoTip3')}</li>
@@ -929,8 +893,8 @@ const AIBumpPhotos: React.FC = () => {
                 </ul>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
 
       {/* Fullscreen Viewer */}
