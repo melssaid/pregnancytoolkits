@@ -4705,7 +4705,12 @@
     "limitReached": "Günlük limite ulaşıldı",
     "upgradeHint": "Günlük {{limit}} istek için Pro'ya abone olun",
     "limitReachedFree": "Günlük limite ulaşıldı ({{limit}} istek). Daha fazlası için abone olun",
-    "freeLabel": "• Ücretsiz"
+    "freeLabel": "• Ücretsiz",
+    "dailyRequests": "Günlük yapay zeka istekleri",
+    "premiumPlan": "PRO",
+    "freePlan": "Ücretsiz",
+    "resetsDaily": "Günlük sıfırlanır",
+    "usedOf": "Bugün {{used}}/{{limit}} kullanıldı"
   },
   "groceryList": {
     "title": "Akıllı Alışveriş Listesi",

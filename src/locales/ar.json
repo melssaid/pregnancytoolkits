@@ -4749,7 +4749,12 @@
     "limitReached": "تم الوصول للحد اليومي",
     "upgradeHint": "اشتركي في Pro للحصول على {{limit}} طلب يومياً",
     "limitReachedFree": "وصلتِ للحد اليومي ({{limit}} طلب). اشتركي للحصول على المزيد",
-    "freeLabel": "• مجاني"
+    "freeLabel": "• مجاني",
+    "dailyRequests": "طلبات الذكاء الاصطناعي اليومية",
+    "premiumPlan": "PRO",
+    "freePlan": "مجاني",
+    "resetsDaily": "يتجدد يومياً",
+    "usedOf": "{{used}} من {{limit}} مستخدم اليوم"
   },
   "settings.deleteAccount": {
     "title": "حذف جميع البيانات",

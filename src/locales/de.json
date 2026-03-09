@@ -4502,7 +4502,12 @@
     "limitReached": "Tageslimit erreicht",
     "upgradeHint": "Abonnieren Sie Pro für {{limit}} tägliche Anfragen",
     "limitReachedFree": "Tageslimit erreicht ({{limit}} Anfragen). Abonnieren für mehr",
-    "freeLabel": "• Kostenlos"
+    "freeLabel": "• Kostenlos",
+    "dailyRequests": "Tägliche KI-Anfragen",
+    "premiumPlan": "PRO",
+    "freePlan": "Kostenlos",
+    "resetsDaily": "Wird täglich zurückgesetzt",
+    "usedOf": "{{used}} von {{limit}} heute verwendet"
   },
   "groceryList": {
     "title": "Intelligente Einkaufsliste",

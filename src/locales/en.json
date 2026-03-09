@@ -5181,7 +5181,12 @@
     "limitReached": "Daily limit reached",
     "upgradeHint": "Subscribe to Pro for {{limit}} daily requests",
     "limitReachedFree": "You've reached the daily limit ({{limit}} requests). Subscribe for more",
-    "freeLabel": "• Free"
+    "freeLabel": "• Free",
+    "dailyRequests": "Daily AI Requests",
+    "premiumPlan": "PRO",
+    "freePlan": "Free",
+    "resetsDaily": "Resets daily",
+    "usedOf": "{{used}} of {{limit}} used today"
   },
   "settings.deleteAccount": {
     "title": "Delete All Data",
