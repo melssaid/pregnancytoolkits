@@ -524,18 +524,39 @@ const AIBumpPhotos: React.FC = () => {
                   whileTap={canUploadToday ? { scale: 0.97 } : undefined}
                   className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-5 transition-colors ${
                     canUploadToday
-                      ? 'border-accent/30 bg-accent/5 hover:bg-accent/10 cursor-pointer'
+                      ? 'border-primary/30 bg-primary/5 hover:bg-primary/10 cursor-pointer'
                       : 'border-muted/30 bg-muted/5 opacity-50 cursor-not-allowed'
                   }`}
                   onClick={() => canUploadToday && galleryInputRef.current?.click()}
                 >
-                  <div className="p-3 rounded-full bg-accent/10 mb-2">
-                    <Upload className="w-7 h-7 text-accent-foreground" />
+                  <div className="p-3 rounded-full bg-primary/10 mb-2">
+                    <ImageIcon className="w-7 h-7 text-primary" />
                   </div>
-                  <span className="text-accent-foreground font-medium text-sm">{t('toolsInternal.bumpPhotos.uploadFromGallery')}</span>
+                  <span className="text-primary font-medium text-sm">{t('toolsInternal.bumpPhotos.uploadFromGallery')}</span>
                 </motion.div>
               </div>
             )}
+
+            {/* AI Analysis info + accepted formats */}
+            <div className="p-3.5 rounded-xl bg-gradient-to-br from-primary/[0.06] to-accent/[0.04] border border-primary/15 space-y-2">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-primary shrink-0" />
+                <span className="text-xs font-semibold text-foreground">{t('toolsInternal.bumpPhotos.aiAnalysisTitle')}</span>
+              </div>
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                {t('toolsInternal.bumpPhotos.aiAnalysisDesc')}
+              </p>
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {['JPG', 'PNG', 'WEBP', 'HEIC'].map(fmt => (
+                  <Badge key={fmt} variant="secondary" className="text-[10px] px-2 py-0.5 font-mono">
+                    {fmt}
+                  </Badge>
+                ))}
+                <Badge variant="outline" className="text-[10px] px-2 py-0.5">
+                  {t('toolsInternal.bumpPhotos.maxSize')}
+                </Badge>
+              </div>
+            </div>
 
             {/* Hint message */}
             <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/40 border border-border/50">
@@ -552,10 +573,6 @@ const AIBumpPhotos: React.FC = () => {
                 {t('toolsInternal.bumpPhotos.localStorageWarning')}
               </p>
             </div>
-
-            <span className="text-[10px] text-muted-foreground text-center block">
-              {t('toolsInternal.bumpPhotos.autoCompressed')}
-            </span>
           </CardContent>
         </Card>
 
