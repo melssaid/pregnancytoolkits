@@ -214,6 +214,18 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </div>
 
           <div className="flex items-center gap-1.5">
+            {/* AI Usage Badge */}
+            <div className={`flex items-center gap-1 px-2 py-1 rounded-full border text-[10px] font-semibold tabular-nums transition-colors ${
+              isLimitReached
+                ? 'bg-destructive/10 border-destructive/30 text-destructive'
+                : isNearLimit
+                  ? 'bg-amber-50 border-amber-200/50 text-amber-600 dark:bg-amber-950/20 dark:border-amber-800/30 dark:text-amber-400'
+                  : 'bg-primary/5 border-primary/15 text-primary'
+            }`}>
+              <Sparkles className="w-3 h-3" />
+              <span>{remaining}/{limit}</span>
+            </div>
+
             <LanguageDropdown variant="compact" />
 
             <div className="hidden md:flex">
