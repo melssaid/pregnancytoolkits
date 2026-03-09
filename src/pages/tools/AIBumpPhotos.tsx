@@ -392,7 +392,7 @@ const AIBumpPhotos: React.FC = () => {
             {/* Daily progress indicator */}
             <div className="flex items-center gap-3">
               <div className="flex gap-1.5">
-                {[0, 1, 2].map((i) => (
+                {[0, 1].map((i) => (
                   <motion.div
                     key={i}
                     initial={{ scale: 0 }}
