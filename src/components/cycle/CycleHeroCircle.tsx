@@ -284,14 +284,14 @@ export function CycleHeroCircle({ phase, day, avgCycle, daysUntilPeriod, daysUnt
       >
         <div className="flex items-center gap-2">
           <div className="flex-1 rounded-xl bg-violet-500/8 border border-violet-200/30 dark:border-violet-800/20 px-3 py-2.5 text-center">
-            <p className="text-3xl font-extrabold text-violet-600 dark:text-violet-400 tabular-nums">{daysUntilOvulation}</p>
+            <p className="text-3xl font-extrabold text-violet-600 dark:text-violet-400 tabular-nums"><CountUpNumber value={daysUntilOvulation} /></p>
             <p className="text-[9px] text-muted-foreground font-medium leading-tight">
               {t('toolsInternal.cycleTracker.daysUntilOvulation')}
             </p>
             {ovulationLabel && <p className="text-[9px] text-violet-500/70 mt-0.5">{ovulationLabel}</p>}
           </div>
           <div className="flex-1 rounded-xl bg-rose-500/8 border border-rose-200/30 dark:border-rose-800/20 px-3 py-2.5 text-center">
-            <p className="text-3xl font-extrabold text-rose-600 dark:text-rose-400 tabular-nums">{daysUntilPeriod}</p>
+            <p className="text-3xl font-extrabold text-rose-600 dark:text-rose-400 tabular-nums"><CountUpNumber value={daysUntilPeriod} /></p>
             <p className="text-[9px] text-muted-foreground font-medium leading-tight">
               {t('toolsInternal.cycleTracker.daysUntilPeriod')}
             </p>
