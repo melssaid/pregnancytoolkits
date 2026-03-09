@@ -369,7 +369,7 @@ const Index = () => {
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
             </div>
             <PremiumBanner />
-          </div>
+            <AIUsageBar />
         </div>
       </section>
     </Layout>
