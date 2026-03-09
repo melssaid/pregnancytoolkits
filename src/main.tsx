@@ -24,10 +24,7 @@ createRoot(document.getElementById("root")!).render(
   </SettingsProvider>
 );
 
-// Dismiss splash after first paint
-requestAnimationFrame(dismissNativeSplash);
-// Safety net fallback
-setTimeout(dismissNativeSplash, 800);
+// Register Service Worker after render (deferred)
 
 // Register Service Worker after render
 registerServiceWorker().then(() => {
