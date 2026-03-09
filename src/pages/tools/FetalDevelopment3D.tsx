@@ -51,15 +51,6 @@ const weeklyData: WeekData[] = [
   { week: 40, sizeKey: 'watermelon', lengthValue: 51.2, lengthUnit: 'cm', weightValue: '3.4', weightUnit: 'kg', developmentKey: 'week40', organs: ['heart', 'brain', 'eyes', 'ears', 'hands', 'feet'], tipKey: 'week40' },
 ];
 
-const organIcons: Record<string, React.ReactNode> = {
-  heart: <Heart className="w-3.5 h-3.5" />,
-  brain: <Brain className="w-3.5 h-3.5" />,
-  ears: <Ear className="w-3.5 h-3.5" />,
-  eyes: <Eye className="w-3.5 h-3.5" />,
-  hands: <Hand className="w-3.5 h-3.5" />,
-  feet: <Footprints className="w-3.5 h-3.5" />,
-};
-
 const organLabelKeys: Record<string, string> = {
   heart: 'toolsInternal.fetalDevelopment.organs.heart',
   brain: 'toolsInternal.fetalDevelopment.organs.brain',
