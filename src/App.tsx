@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { SmartScrollRestoration } from "@/components/SmartScrollRestoration";
 import { AnimatedRoutes } from "@/components/AnimatedRoutes";
-import { FirstVisitLanguageSelector } from "@/components/FirstVisitLanguageSelector";
 import { OnboardingDisclaimer } from "@/components/OnboardingDisclaimer";
 import { useEffect } from "react";
 import { initializeAuth } from "@/lib/auth";
