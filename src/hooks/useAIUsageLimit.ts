@@ -52,7 +52,7 @@ export function useAIUsageLimit() {
   const tier: SubscriptionTier = serverTier ?? local.tier ?? 'free';
   const remaining = Math.max(0, limit - used);
   const isLimitReached = used >= limit;
-  const isNearLimit = remaining <= 5 && remaining > 0;
+  const isNearLimit = remaining <= 10 && remaining > 0;
 
   /** Called after a successful AI request — optimistically increment local count */
   const incrementUsage = useCallback(() => {
