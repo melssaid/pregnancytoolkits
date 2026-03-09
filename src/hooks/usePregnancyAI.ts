@@ -248,7 +248,7 @@ export function usePregnancyAI() {
     setErrorType(null);
   }, []);
 
-  return { streamChat, generateContent, isLoading, error, errorType, clearError, aiRemaining: remaining, aiLimit: limit };
+  return { streamChat, generateContent, isLoading, error, errorType, clearError, aiRemaining: remaining, aiLimit: limit, aiTier: tier };
 }
 
 /** Parse SSE stream and emit deltas */
