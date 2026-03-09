@@ -165,8 +165,8 @@ const SmartPregnancyPlan = () => {
 
         <SavedResultsViewer toolId="smart-pregnancy-plan" onLoad={(r) => setPlanContent(r.content)} />
 
-        {error && (
-          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{error}</div>
+        {(error || limitError) && (
+          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{limitError || error}</div>
         )}
       </div>
     </ToolFrame>
