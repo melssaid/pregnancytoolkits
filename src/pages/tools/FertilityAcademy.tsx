@@ -164,7 +164,7 @@ export default function FertilityAcademy() {
   const isRTL = i18n.dir() === "rtl";
   const dir = isRTL ? "rtl" : "ltr";
   const [activeTab, setActiveTab] = useState("lessons");
-  const [expandedLesson, setExpandedLesson] = useState<string | null>(LESSON_KEYS[0]);
+  const [expandedLesson, setExpandedLesson] = useState<string | null>(null);
   const [expandedSign, setExpandedSign] = useState<string | null>(null);
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
