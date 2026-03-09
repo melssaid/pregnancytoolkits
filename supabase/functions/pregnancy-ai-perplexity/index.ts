@@ -44,8 +44,9 @@ const VALID_TYPES: AIType[] = [
 const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
 
-// ── Daily usage limit ──
-const DAILY_LIMIT = 60;
+// ── Daily usage limits by tier ──
+const FREE_DAILY_LIMIT = 5;
+const PREMIUM_DAILY_LIMIT = 30;
 
 // ── Rate limiting (per-minute burst protection) ──
 const RATE_LIMIT_WINDOW_MS = 60_000;
