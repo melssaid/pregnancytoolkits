@@ -7,7 +7,7 @@ import { BackButton } from "./BackButton";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
-import { useAIUsageLimit } from "@/hooks/useAIUsageLimit";
+
 
 
 interface LayoutProps {
