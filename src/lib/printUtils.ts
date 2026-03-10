@@ -3,12 +3,35 @@
  * Extracted from PrintableReport to keep components small.
  */
 
+// Cache for logo as base64 data URL
+let logoBase64Cache: string | null = null;
+
+export async function loadLogoBase64(): Promise<string> {
+  if (logoBase64Cache) return logoBase64Cache;
+  try {
+    const response = await fetch('/logo.png');
+    const blob = await response.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        logoBase64Cache = reader.result as string;
+        resolve(logoBase64Cache);
+      };
+      reader.onerror = () => resolve('');
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return '';
+  }
+}
+
 interface BuildPrintHTMLOptions {
   content: string;
   title?: string;
   lang: string;
   isRTL: boolean;
   profile: any;
+  logoDataUrl?: string;
 }
 
 const brandNames: Record<string, string> = {
@@ -72,7 +95,7 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   </div>`;
 }
 
-export function buildPrintHTML({ content, title, lang, isRTL, profile }: BuildPrintHTMLOptions): string {
+export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataUrl }: BuildPrintHTMLOptions): string {
   const brand = brandNames[lang] || brandNames.en;
   const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
   const locale = getLocaleString(lang, isRTL);
@@ -150,7 +173,7 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile }: BuildPr
 </head>
 <body>
   <div class="print-header">
-    <img class="logo" src="${window.location.origin}/logo.png" alt="Logo" />
+    <img class="logo" src="${logoDataUrl || `${window.location.origin}/logo.png`}" alt="Logo" onerror="this.style.display='none'" />
     <h1>${escapeHtml(title || brand)}</h1>
     <div class="brand">${escapeHtml(brand)}</div>
     <div class="date">${dateStr}</div>

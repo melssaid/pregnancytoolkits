@@ -1,9 +1,9 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Printer, Download, Loader2 } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { buildPrintHTML } from '@/lib/printUtils';
+import { buildPrintHTML, loadLogoBase64 } from '@/lib/printUtils';
 import { toast } from 'sonner';
 
 interface PrintableReportProps {
@@ -47,8 +47,13 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
+  const [logoDataUrl, setLogoDataUrl] = useState<string>('');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
+
+  useEffect(() => {
+    loadLogoBase64().then(setLogoDataUrl);
+  }, []);
 
   /** Build clean HTML from the report content */
   const buildCleanHTML = useCallback(() => {
@@ -116,8 +121,8 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       }
     });
 
-    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile });
-  }, [lang, isRTL, title, profile]);
+    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile, logoDataUrl });
+  }, [lang, isRTL, title, profile, logoDataUrl]);
 
   /** Primary: Print via hidden iframe — no navigation, just the print dialog */
   const handlePrint = useCallback(() => {
