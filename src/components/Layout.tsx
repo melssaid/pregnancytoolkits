@@ -213,30 +213,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </div>
 
           <div className="flex items-center gap-1.5">
-            {/* AI Usage Badge */}
-            <div className={`relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border text-[10px] font-bold tabular-nums transition-all duration-300 ${
-              isLimitReached
-                ? 'bg-destructive/8 border-destructive/25 text-destructive shadow-[0_0_12px_-3px_hsl(var(--destructive)/0.3)]'
-                : isNearLimit
-                  ? 'bg-amber-50 border-amber-300/40 text-amber-600 dark:bg-amber-950/20 dark:border-amber-700/30 dark:text-amber-400 shadow-[0_0_10px_-3px_rgba(245,158,11,0.25)]'
-                  : 'bg-primary/6 border-primary/20 text-primary shadow-sm'
-            }`}>
-              {/* Progress ring */}
-              <svg className="w-4 h-4 -rotate-90 shrink-0" viewBox="0 0 20 20">
-                <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" strokeWidth="2.5" opacity="0.15" />
-                <circle
-                  cx="10" cy="10" r="8" fill="none" stroke="currentColor" strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeDasharray={`${(remaining / limit) * 50.27} 50.27`}
-                  className="transition-all duration-500"
-                />
-              </svg>
-              <span>{remaining}<span className="opacity-50">/{limit}</span></span>
-              {tier === 'premium' && (
-                <span className="text-[7px] bg-primary/15 text-primary px-1 py-0.5 rounded font-extrabold tracking-wider">PRO</span>
-              )}
-            </div>
-
             <LanguageDropdown variant="compact" />
 
             <div className="hidden md:flex">
