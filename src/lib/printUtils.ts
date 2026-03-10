@@ -95,7 +95,7 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   </div>`;
 }
 
-export function buildPrintHTML({ content, title, lang, isRTL, profile }: BuildPrintHTMLOptions): string {
+export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataUrl }: BuildPrintHTMLOptions): string {
   const brand = brandNames[lang] || brandNames.en;
   const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
   const locale = getLocaleString(lang, isRTL);
