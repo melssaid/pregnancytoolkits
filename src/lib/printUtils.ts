@@ -173,7 +173,7 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataU
 </head>
 <body>
   <div class="print-header">
-    <img class="logo" src="${window.location.origin}/logo.png" alt="Logo" />
+    <img class="logo" src="${logoDataUrl || `${window.location.origin}/logo.png`}" alt="Logo" onerror="this.style.display='none'" />
     <h1>${escapeHtml(title || brand)}</h1>
     <div class="brand">${escapeHtml(brand)}</div>
     <div class="date">${dateStr}</div>
