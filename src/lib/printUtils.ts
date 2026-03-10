@@ -3,12 +3,35 @@
  * Extracted from PrintableReport to keep components small.
  */
 
+// Cache for logo as base64 data URL
+let logoBase64Cache: string | null = null;
+
+export async function loadLogoBase64(): Promise<string> {
+  if (logoBase64Cache) return logoBase64Cache;
+  try {
+    const response = await fetch('/logo.png');
+    const blob = await response.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        logoBase64Cache = reader.result as string;
+        resolve(logoBase64Cache);
+      };
+      reader.onerror = () => resolve('');
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return '';
+  }
+}
+
 interface BuildPrintHTMLOptions {
   content: string;
   title?: string;
   lang: string;
   isRTL: boolean;
   profile: any;
+  logoDataUrl?: string;
 }
 
 const brandNames: Record<string, string> = {
