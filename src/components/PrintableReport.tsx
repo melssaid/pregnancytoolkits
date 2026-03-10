@@ -1,9 +1,9 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Printer, Download, Loader2 } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { buildPrintHTML } from '@/lib/printUtils';
+import { buildPrintHTML, loadLogoBase64 } from '@/lib/printUtils';
 import { toast } from 'sonner';
 
 interface PrintableReportProps {
