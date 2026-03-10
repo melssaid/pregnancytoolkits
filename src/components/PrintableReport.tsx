@@ -121,8 +121,8 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       }
     });
 
-    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile });
-  }, [lang, isRTL, title, profile]);
+    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile, logoDataUrl });
+  }, [lang, isRTL, title, profile, logoDataUrl]);
 
   /** Primary: Print via hidden iframe — no navigation, just the print dialog */
   const handlePrint = useCallback(() => {
