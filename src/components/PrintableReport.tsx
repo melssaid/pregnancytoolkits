@@ -47,8 +47,13 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
+  const [logoDataUrl, setLogoDataUrl] = useState<string>('');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
+
+  useEffect(() => {
+    loadLogoBase64().then(setLogoDataUrl);
+  }, []);
 
   /** Build clean HTML from the report content */
   const buildCleanHTML = useCallback(() => {
