@@ -44,6 +44,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
   showUsage = true,
 }) => {
   const Icon = CustomIcon || Brain;
+  const navigate = useNavigate();
   const isCompact = variant === 'compact';
   const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
   const { i18n } = useTranslation();
