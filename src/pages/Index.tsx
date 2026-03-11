@@ -426,7 +426,9 @@ const FooterCard = memo(function FooterCard() {
                   : 'bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/15 cursor-pointer'
               }`}
             >
-              {PRO_LIMIT} {labels.daily} · {labels.pro}
+              <Link to="/pricing-demo" className="block w-full">
+                {PRO_LIMIT} {labels.daily} · {labels.pro}
+              </Link>
             </motion.button>
           </div>
         </div>
