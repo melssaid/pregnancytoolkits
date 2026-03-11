@@ -54,9 +54,9 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // SMART ASSISTANT — Flagship AI tools
   // ═══════════════════════════════════════════════════════════════
-  { id: "smart-pregnancy-plan", titleKey: "tools.smartPregnancyPlan.title", descriptionKey: "tools.smartPregnancyPlan.description", icon: ClipboardList, pngIcon: "/icons/pregnancy-tips.png", categoryKey: "categories.smartAssistant", href: "/tools/smart-plan", priority: 1, hasAI: true },
-  { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, pngIcon: "/icons/chat-assistant.png", categoryKey: "categories.smartAssistant", href: "/tools/pregnancy-assistant", priority: 2, hasAI: true },
-  { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, pngIcon: "/icons/weekly-summary.png", categoryKey: "categories.smartAssistant", href: "/tools/weekly-summary", priority: 3, hasAI: true },
+  { id: "smart-pregnancy-plan", titleKey: "tools.smartPregnancyPlan.title", descriptionKey: "tools.smartPregnancyPlan.description", icon: ClipboardList, pngIcon: "https://img.icons8.com/3d-fluency/94/checklist.png", categoryKey: "categories.smartAssistant", href: "/tools/smart-plan", priority: 1, hasAI: true },
+  { id: "pregnancy-assistant", titleKey: "tools.pregnancyAssistant.title", descriptionKey: "tools.pregnancyAssistant.description", icon: MessageCircle, pngIcon: "https://img.icons8.com/3d-fluency/94/chat.png", categoryKey: "categories.smartAssistant", href: "/tools/pregnancy-assistant", priority: 2, hasAI: true },
+  { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, pngIcon: "https://img.icons8.com/3d-fluency/94/star.png", categoryKey: "categories.smartAssistant", href: "/tools/weekly-summary", priority: 3, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // FERTILITY & PLANNING — "أحلم بطفل" Journey
