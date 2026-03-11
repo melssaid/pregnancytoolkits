@@ -88,10 +88,10 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // WELLNESS & FITNESS (Hub)
   // ═══════════════════════════════════════════════════════════════
-  { id: "wellness-diary", titleKey: "tools.wellnessDiary.title", descriptionKey: "tools.wellnessDiary.description", icon: Heart, pngIcon: "/icons/mental-health.png", categoryKey: "categories.wellness", href: "/tools/wellness-diary", priority: 16 },
-  { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, pngIcon: "/icons/fitness-coach.png", categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 17, hasAI: true },
-  { id: "pregnancy-comfort", titleKey: "tools.pregnancyComfort.title", descriptionKey: "tools.pregnancyComfort.description", icon: Bed, pngIcon: "/icons/sleep-optimizer.png", categoryKey: "categories.wellness", href: "/tools/pregnancy-comfort", priority: 19, hasAI: true },
-  { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, pngIcon: "/icons/skincare.png", categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
+  { id: "wellness-diary", titleKey: "tools.wellnessDiary.title", descriptionKey: "tools.wellnessDiary.description", icon: Heart, pngIcon: "https://img.icons8.com/3d-fluency/94/heart-with-pulse.png", categoryKey: "categories.wellness", href: "/tools/wellness-diary", priority: 16 },
+  { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, pngIcon: "https://img.icons8.com/3d-fluency/94/dumbbell.png", categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 17, hasAI: true },
+  { id: "pregnancy-comfort", titleKey: "tools.pregnancyComfort.title", descriptionKey: "tools.pregnancyComfort.description", icon: Bed, pngIcon: "https://img.icons8.com/3d-fluency/94/moon-and-stars.png", categoryKey: "categories.wellness", href: "/tools/pregnancy-comfort", priority: 19, hasAI: true },
+  { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, pngIcon: "https://img.icons8.com/3d-fluency/94/spa-flower.png", categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
   
 
   // Mental health moved to postpartum section
