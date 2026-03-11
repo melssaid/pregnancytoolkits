@@ -14,6 +14,10 @@ import { toast } from "sonner";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
+import { lazy, Suspense } from "react";
+
+const WeeklyHeroCard = lazy(() => import("@/components/WeeklyHeroCard"));
+const QuickSymptomLogger = lazy(() => import("@/components/QuickSymptomLogger"));
 
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
