@@ -258,13 +258,13 @@ const footerI18n: Record<string, {
   aiTitle: string; aiDesc: string; free: string; pro: string; daily: string;
   upgrade: string; unlockAll: string;
 }> = {
-  en: { aiTitle: 'AI Analysis', aiDesc: 'Daily AI insights are limited — unlock more with a subscription', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
-  ar: { aiTitle: 'تحليلات الذكاء', aiDesc: 'تحليل العقل الداخلي والذكاء الاصطناعي محدود يومياً · متاح بشكل كافٍ عند الاشتراك', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
-  de: { aiTitle: 'KI-Analyse', aiDesc: 'Tägliche KI-Einblicke sind begrenzt — mehr mit Abo verfügbar', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
-  fr: { aiTitle: 'Analyse IA', aiDesc: 'Les analyses IA quotidiennes sont limitées — débloquez-en plus avec un abonnement', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
-  es: { aiTitle: 'Análisis IA', aiDesc: 'Los análisis diarios de IA son limitados — desbloquea más con una suscripción', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
-  pt: { aiTitle: 'Análise IA', aiDesc: 'Análises diárias de IA são limitadas — desbloqueie mais com uma assinatura', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
-  tr: { aiTitle: 'AI Analiz', aiDesc: 'Günlük AI analizleri sınırlıdır — abonelikle daha fazlasını açın', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
+  en: { aiTitle: 'Inner Mind', aiDesc: 'Daily AI analysis limited — unlock more with PRO', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
+  ar: { aiTitle: 'العقل الداخلي', aiDesc: 'حدود استخدام العقل الداخلي محدودة يومياً', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
+  de: { aiTitle: 'Innerer Geist', aiDesc: 'Tägliche KI-Analysen sind begrenzt', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
+  fr: { aiTitle: 'Esprit Interne', aiDesc: 'Analyses IA quotidiennes limitées', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
+  es: { aiTitle: 'Mente Interna', aiDesc: 'Análisis IA diarios limitados', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
+  pt: { aiTitle: 'Mente Interna', aiDesc: 'Análises IA diárias limitadas', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
+  tr: { aiTitle: 'İç Zihin', aiDesc: 'Günlük AI analizleri sınırlıdır', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
 };
 
 const FooterCard = memo(function FooterCard() {
@@ -349,9 +349,23 @@ const FooterCard = memo(function FooterCard() {
 
           {/* ─── Bottom: AI Usage section ─── */}
           <div className="p-5 pt-4">
-            <div className="flex items-center gap-2.5 mb-3">
-              <Brain className="w-4.5 h-4.5 text-primary/70" />
-              <span className="text-[13px] font-bold text-foreground/80">{labels.aiTitle}</span>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="relative shrink-0">
+                <motion.div
+                  className="absolute inset-0 rounded-xl bg-primary/15"
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
+                  transition={{ duration: 2.5, repeat: Infinity }}
+                />
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Brain className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="text-[15px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {labels.aiTitle}
+                </span>
+                <p className="text-[11px] text-muted-foreground leading-snug mt-0.5">{labels.aiDesc}</p>
+              </div>
             </div>
 
             <div className="flex items-center gap-4">
