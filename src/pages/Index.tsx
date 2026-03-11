@@ -347,119 +347,118 @@ const PremiumBanner = memo(function PremiumBanner() {
   );
 });
 
-// ── AI Usage Bar with Free vs Premium comparison ────────────────────────
-const usageI18n: Record<string, { title: string; free: string; pro: string; remaining: string; daily: string; resets: string; current: string; upgradeFor: string }> = {
-  en: { title: 'AI Requests', free: 'Free', pro: 'PRO', remaining: 'remaining', daily: 'daily', resets: 'Resets daily', current: 'Your plan', upgradeFor: 'Upgrade for' },
-  ar: { title: 'طلبات الذكاء الاصطناعي', free: 'مجاني', pro: 'PRO', remaining: 'متبقي', daily: 'يومياً', resets: 'يتجدد يومياً', current: 'خطتك', upgradeFor: 'ترقية لـ' },
-  de: { title: 'KI-Anfragen', free: 'Gratis', pro: 'PRO', remaining: 'übrig', daily: 'täglich', resets: 'Täglich zurückgesetzt', current: 'Ihr Plan', upgradeFor: 'Upgrade für' },
-  fr: { title: 'Requêtes IA', free: 'Gratuit', pro: 'PRO', remaining: 'restants', daily: 'par jour', resets: 'Réinitialisation quotidienne', current: 'Votre plan', upgradeFor: 'Passer à' },
-  es: { title: 'Solicitudes IA', free: 'Gratis', pro: 'PRO', remaining: 'restantes', daily: 'diarios', resets: 'Se renueva diariamente', current: 'Tu plan', upgradeFor: 'Mejora a' },
-  pt: { title: 'Pedidos IA', free: 'Grátis', pro: 'PRO', remaining: 'restantes', daily: 'diários', resets: 'Renova diariamente', current: 'Seu plano', upgradeFor: 'Upgrade para' },
-  tr: { title: 'AI İstekleri', free: 'Ücretsiz', pro: 'PRO', remaining: 'kalan', daily: 'günlük', resets: 'Günlük sıfırlanır', current: 'Planınız', upgradeFor: 'Yükseltme:' },
+// ── AI Usage Bar — minimal & elegant ────────────────────────────────────
+const usageI18n: Record<string, { ai: string; free: string; pro: string; of: string; resets: string }> = {
+  en: { ai: 'AI', free: 'Free', pro: 'PRO', of: '/', resets: 'Resets daily' },
+  ar: { ai: 'AI', free: 'مجاني', pro: 'PRO', of: '/', resets: 'يتجدد يومياً' },
+  de: { ai: 'KI', free: 'Gratis', pro: 'PRO', of: '/', resets: 'Täglich' },
+  fr: { ai: 'IA', free: 'Gratuit', pro: 'PRO', of: '/', resets: 'Quotidien' },
+  es: { ai: 'IA', free: 'Gratis', pro: 'PRO', of: '/', resets: 'Diario' },
+  pt: { ai: 'IA', free: 'Grátis', pro: 'PRO', of: '/', resets: 'Diário' },
+  tr: { ai: 'AI', free: 'Ücretsiz', pro: 'PRO', of: '/', resets: 'Günlük' },
 };
 
 const AIUsageBar = memo(function AIUsageBar() {
   const { i18n } = useTranslation();
   const lang = i18n.language?.split('-')[0] || 'en';
   const labels = usageI18n[lang] || usageI18n.en;
-  const { remaining, used, limit, tier } = useAIUsage();
+  const { remaining, limit, tier } = useAIUsage();
   const navigate = useNavigate();
   const isFree = tier === 'free';
   const percent = limit > 0 ? Math.max(0, Math.min(100, (remaining / limit) * 100)) : 0;
 
-  const barColor = percent > 40 ? 'bg-emerald-500' : percent > 15 ? 'bg-amber-500' : 'bg-destructive';
-  const textColor = percent > 40
-    ? 'text-emerald-600 dark:text-emerald-400'
-    : percent > 15
-      ? 'text-amber-600 dark:text-amber-400'
-      : 'text-destructive';
-
   const FREE_LIMIT = 5;
   const PRO_LIMIT = 30;
+
+  const arcColor = percent > 40
+    ? 'hsl(152, 60%, 48%)'
+    : percent > 15
+      ? 'hsl(38, 92%, 55%)'
+      : 'hsl(0, 72%, 51%)';
+
+  // SVG arc for the ring
+  const radius = 28;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDash = circumference * (percent / 100);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.6 }}
-      className="mt-3 rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm px-4 py-3.5 space-y-3"
+      transition={{ duration: 0.4, delay: 0.5 }}
+      className="mt-3 rounded-2xl border border-border/40 bg-card/70 backdrop-blur-sm px-4 py-4"
     >
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-3.5 h-3.5 text-primary" />
-          <span className="text-[11px] font-bold text-foreground">{labels.title}</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-md ${
-            isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
-          }`}>
-            {isFree ? labels.free : labels.pro}
-          </span>
-          <span className={`text-xs font-bold tabular-nums ${textColor}`}>
-            {remaining}/{limit}
-          </span>
-        </div>
-      </div>
-
-      {/* Current usage progress */}
-      <div>
-        <div className="w-full h-2 rounded-full bg-muted/60 overflow-hidden">
-          <motion.div
-            className={`h-full rounded-full ${barColor}`}
-            initial={{ width: 0 }}
-            animate={{ width: `${percent}%` }}
-            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-          />
-        </div>
-        <div className="flex items-center justify-between mt-1">
-          <span className="text-[9px] text-muted-foreground">{remaining} {labels.remaining}</span>
-          <span className="text-[9px] text-muted-foreground">{labels.resets}</span>
-        </div>
-      </div>
-
-      {/* Free vs PRO comparison */}
-      <div className="grid grid-cols-2 gap-2">
-        {/* Free plan card */}
-        <div className={`rounded-xl border px-3 py-2 ${
-          isFree 
-            ? 'border-primary/20 bg-primary/[0.03] ring-1 ring-primary/10' 
-            : 'border-border/30 bg-muted/20'
-        }`}>
-          <div className="flex items-center gap-1.5 mb-1">
-            <div className={`w-1.5 h-1.5 rounded-full ${isFree ? 'bg-primary' : 'bg-muted-foreground/30'}`} />
-            <span className="text-[10px] font-bold text-foreground">{labels.free}</span>
-            {isFree && <span className="text-[8px] text-primary font-bold">← {labels.current}</span>}
+      <div className="flex items-center gap-4">
+        {/* Circular ring */}
+        <div className="relative shrink-0">
+          <svg width="68" height="68" viewBox="0 0 68 68" className="-rotate-90">
+            {/* Track */}
+            <circle cx="34" cy="34" r={radius} fill="none" stroke="hsl(var(--muted))" strokeWidth="4" opacity="0.4" />
+            {/* Progress */}
+            <motion.circle
+              cx="34" cy="34" r={radius}
+              fill="none"
+              stroke={arcColor}
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              initial={{ strokeDashoffset: circumference }}
+              animate={{ strokeDashoffset: circumference - strokeDash }}
+              transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+            />
+          </svg>
+          {/* Center number */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-lg font-extrabold tabular-nums text-foreground leading-none">{remaining}</span>
+            <span className="text-[7px] text-muted-foreground font-medium mt-0.5">{labels.of}{limit}</span>
           </div>
-          <div className="text-lg font-extrabold text-foreground tabular-nums leading-none">{FREE_LIMIT}</div>
-          <span className="text-[9px] text-muted-foreground">{labels.daily}</span>
         </div>
 
-        {/* PRO plan card */}
-        <button
-          onClick={() => { if (isFree) navigate('/pricing-demo'); }}
-          className={`rounded-xl border px-3 py-2 text-start transition-all ${
-            !isFree 
-              ? 'border-primary/20 bg-primary/[0.03] ring-1 ring-primary/10' 
-              : 'border-primary/15 bg-gradient-to-br from-primary/[0.04] to-primary/[0.08] hover:border-primary/30 hover:shadow-sm cursor-pointer'
-          }`}
-        >
-          <div className="flex items-center gap-1.5 mb-1">
-            <div className={`w-1.5 h-1.5 rounded-full ${!isFree ? 'bg-primary' : 'bg-primary/50'}`} />
-            <span className="text-[10px] font-bold text-primary">{labels.pro}</span>
-            {!isFree && <span className="text-[8px] text-primary font-bold">← {labels.current}</span>}
+        {/* Info */}
+        <div className="flex-1 min-w-0 space-y-2">
+          {/* Title row */}
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
+            <span className="text-xs font-bold text-foreground">{labels.ai}</span>
+            <span className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded-full ${
+              isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
+            }`}>
+              {isFree ? labels.free : labels.pro}
+            </span>
           </div>
-          <div className="text-lg font-extrabold text-primary tabular-nums leading-none">{PRO_LIMIT}</div>
-          <div className="flex items-center justify-between">
-            <span className="text-[9px] text-muted-foreground">{labels.daily}</span>
-            {isFree && <span className="text-[8px] text-primary font-semibold">6x</span>}
+
+          {/* Plan pills */}
+          <div className="flex items-center gap-1.5">
+            <div className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all ${
+              isFree
+                ? 'bg-foreground/5 text-foreground ring-1 ring-foreground/10'
+                : 'bg-muted/30 text-muted-foreground'
+            }`}>
+              <span>{FREE_LIMIT}</span>
+              <span className="font-normal text-[9px] opacity-70">{labels.free}</span>
+            </div>
+
+            <motion.button
+              onClick={() => isFree && navigate('/pricing-demo')}
+              whileHover={isFree ? { scale: 1.03 } : {}}
+              whileTap={isFree ? { scale: 0.97 } : {}}
+              className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all ${
+                !isFree
+                  ? 'bg-primary/10 text-primary ring-1 ring-primary/15'
+                  : 'bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/15 hover:to-primary/10 cursor-pointer'
+              }`}
+            >
+              <span>{PRO_LIMIT}</span>
+              <span className="font-normal text-[9px] opacity-70">{labels.pro}</span>
+            </motion.button>
           </div>
-        </button>
+
+          <span className="text-[8px] text-muted-foreground block">{labels.resets}</span>
+        </div>
       </div>
     </motion.div>
   );
 });
-
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
