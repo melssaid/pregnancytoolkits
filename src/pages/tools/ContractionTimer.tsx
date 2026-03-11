@@ -5,7 +5,7 @@ import { BackButton } from "@/components/BackButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Square, Trash2, Clock, Activity, AlertTriangle, Download, RotateCcw } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
-import { MedicalDisclaimer } from "@/components/compliance";
+import { InlineDisclaimer } from "@/components/compliance";
 
 interface Contraction {
   id: string;
