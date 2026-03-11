@@ -183,6 +183,7 @@
     "aiMealSuggestion": {"title": "الاقتراحات الذكية للوجبات", "description": "اقتراحات وجبات مخصصة لمرحلة الحمل"},
     "weeklySummary": {"title": "ملخص الحمل الأسبوعي", "description": "تحديثات أسبوعية عن نمو الطفل"},
     "aiBirthPlan": {"title": "خطة الولادة الذكية", "description": "أنشئي خطة ولادة مخصصة بمساعدة الذكاء الاصطناعي"},
+    "contractionTimer": {"title": "عداد الانقباضات", "description": "تتبعي مدة وفترات الانقباضات بدقة"},
     "smartAppointmentReminder": {"title": "المخطط الذكي للمواعيد", "description": "لا تفوّتي أي موعد متابعة"},
     "aiCravingAlternatives": {"title": "بدائل الرغبات الصحية", "description": "بدائل صحية للرغبات الغذائية أثناء الحمل"},
     "smartGroceryList": {"title": "قائمة التسوق الاحترافية", "description": "قائمة تسوق ذكية لتغذية الحمل"},

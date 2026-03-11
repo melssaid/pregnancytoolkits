@@ -57,6 +57,7 @@ const PreconceptionCheckup = lazy(() => import("@/pages/tools/PreconceptionCheck
 // PREGNANCY TRACKING
 const FetalDevelopment3D = lazy(() => import("@/pages/tools/FetalDevelopment3D"));
 const SmartKickCounter = lazy(() => import("@/pages/tools/SmartKickCounter"));
+const ContractionTimer = lazy(() => import("@/pages/tools/ContractionTimer"));
 const SmartWeightGainAnalyzer = lazy(() => import("@/pages/tools/SmartWeightGainAnalyzer"));
 
 // MENTAL HEALTH
@@ -149,6 +150,7 @@ export function AnimatedRoutes() {
         {/* PREGNANCY TRACKING */}
         <Route path="/tools/fetal-growth" element={<PageTransition variant="tool"><FetalDevelopment3D /></PageTransition>} />
         <Route path="/tools/kick-counter" element={<PageTransition variant="tool"><SmartKickCounter /></PageTransition>} />
+        <Route path="/tools/contraction-timer" element={<PageTransition variant="tool"><ContractionTimer /></PageTransition>} />
         <Route path="/tools/weight-gain" element={<PageTransition variant="tool"><SmartWeightGainAnalyzer /></PageTransition>} />
 
         {/* MENTAL HEALTH */}

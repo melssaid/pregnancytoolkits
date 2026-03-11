@@ -14,6 +14,10 @@ import { toast } from "sonner";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
+import { lazy, Suspense } from "react";
+
+const WeeklyHeroCard = lazy(() => import("@/components/WeeklyHeroCard"));
+const QuickSymptomLogger = lazy(() => import("@/components/QuickSymptomLogger"));
 
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
@@ -448,6 +452,16 @@ const Index = () => {
 
       <section className="pt-5 pb-0 relative z-10">
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
+          {/* Weekly Hero Card */}
+          <Suspense fallback={null}>
+            <WeeklyHeroCard />
+          </Suspense>
+
+          {/* Quick Symptom Logger */}
+          <Suspense fallback={null}>
+            <QuickSymptomLogger />
+          </Suspense>
+
           {journeyConfigs.map((config, index) => (
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} />
           ))}
