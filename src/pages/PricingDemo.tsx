@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, Crown, X, Sparkles, Brain, Shield, Zap, Heart } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
@@ -11,8 +11,8 @@ import { useNavigate, Link } from "react-router-dom";
 const features = [
   { icon: Brain, key: "feature1" },
   { icon: Zap, key: "feature2" },
-  { icon: Shield, key: "feature3" },
-  { icon: Heart, key: "feature4" },
+  { icon: Heart, key: "feature3" },
+  { icon: Shield, key: "feature4" },
   { icon: Sparkles, key: "feature5" },
 ];
 
@@ -66,14 +66,39 @@ export default function PricingDemo() {
             className="text-center mb-5"
           >
             <motion.div
-              className="relative w-[72px] h-[72px] mx-auto mb-4"
+              className="relative w-[88px] h-[88px] mx-auto mb-4 flex items-center justify-center"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
             >
-              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-primary/20 to-primary/5 blur-xl" />
-              <div className="relative w-full h-full rounded-[20px] bg-gradient-to-br from-primary via-primary/85 to-primary/70 flex items-center justify-center shadow-xl shadow-primary/20">
-                <Crown className="w-9 h-9 text-primary-foreground" strokeWidth={1.4} />
+              {/* Ripple rings */}
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  className="absolute inset-0 rounded-full border border-primary/20"
+                  initial={{ scale: 0.5, opacity: 0.6 }}
+                  animate={{ scale: [0.5, 1.4], opacity: [0.5, 0] }}
+                  transition={{
+                    duration: 2.5,
+                    delay: i * 0.7,
+                    repeat: Infinity,
+                    ease: "easeOut",
+                  }}
+                />
+              ))}
+              {/* Breathing aura */}
+              <motion.div
+                className="absolute w-16 h-16 rounded-full bg-primary/10 blur-lg"
+                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              {/* Logo */}
+              <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-2 ring-primary/15">
+                <img
+                  src="/logo.webp"
+                  alt="Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </motion.div>
 
