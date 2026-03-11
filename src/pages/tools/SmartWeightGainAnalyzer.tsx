@@ -479,6 +479,7 @@ export default function SmartWeightGainAnalyzer() {
               {entries.length > 0 && (
                 <AIInsightCard
                   title={t('toolsInternal.weightGain.aiAnalysisTitle')}
+                  aiType="weight-analysis"
                   prompt={`Analyze my pregnancy weight data:
 - Pre-pregnancy weight: ${prePregnancyWeight} kg
 - Height: ${height} cm
