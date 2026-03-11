@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Brain, Zap, Shield, Clock, Activity, ChevronRight } from 'lucide-react';
+import { Sparkles, Brain, Zap, Shield, Clock, Activity, ChevronRight, Crown } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useAIUsage } from '@/contexts/AIUsageContext';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 interface KickSession {
   date: string;
