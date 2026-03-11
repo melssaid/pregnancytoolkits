@@ -103,39 +103,39 @@ export default function PricingDemo() {
             </motion.div>
 
             <h1
-              className="text-[22px] font-extrabold text-foreground tracking-tight mb-1.5 leading-tight"
+              className="text-[20px] font-extrabold text-foreground tracking-tight mb-1 leading-tight"
               style={{ fontFamily: isAr ? "'Almarai', 'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
             >
               {t("pricing.title")}
             </h1>
             <p
-              className="text-[13px] text-muted-foreground leading-relaxed max-w-[280px] mx-auto"
+              className="text-[11px] text-muted-foreground leading-relaxed max-w-[240px] mx-auto"
               style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
             >
               {t("pricing.subtitle")}
             </p>
           </motion.div>
 
-          {/* Features grid */}
+          {/* Features */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.12 }}
-            className="grid grid-cols-1 gap-2 mb-5"
+            transition={{ duration: 0.35, delay: 0.12 }}
+            className="grid grid-cols-1 gap-1.5 mb-4"
           >
             {features.map(({ icon: Icon, key }, idx) => (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, x: isRTL ? 12 : -12 }}
+                initial={{ opacity: 0, x: isRTL ? 8 : -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.15 + idx * 0.05 }}
-                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-card/80 border border-border/10"
+                transition={{ duration: 0.25, delay: 0.12 + idx * 0.04 }}
+                className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-card/60 border border-border/5"
               >
-                <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
-                  <Icon className="w-4 h-4 text-primary" strokeWidth={1.8} />
+                <div className="w-7 h-7 rounded-md bg-primary/[0.08] flex items-center justify-center shrink-0">
+                  <Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
                 </div>
                 <span
-                  className="text-[12px] font-semibold text-foreground leading-snug"
+                  className="text-[11px] font-medium text-foreground leading-tight"
                   style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
                 >
                   {t(`pricing.${key}`)}
@@ -145,10 +145,10 @@ export default function PricingDemo() {
           </motion.div>
 
           {/* Divider */}
-          <div className="flex items-center gap-2.5 mb-5">
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-            <Sparkles className="w-3 h-3 text-primary/25" />
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+          <div className="flex items-center gap-2 mb-3">
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/40 to-transparent" />
+            <Sparkles className="w-2.5 h-2.5 text-primary/20" />
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/40 to-transparent" />
           </div>
 
           {/* Plan cards */}
