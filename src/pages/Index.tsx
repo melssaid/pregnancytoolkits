@@ -241,132 +241,35 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   );
 });
 
-// ── Premium CTA Banner — Psychologically optimized ──────────────────────
-const PremiumBanner = memo(function PremiumBanner() {
+// ── Unified Footer Card — Premium + AI Usage ───────────────────────────
+const footerI18n: Record<string, {
+  aiTitle: string; aiDesc: string; free: string; pro: string; daily: string;
+  upgrade: string; unlockAll: string;
+}> = {
+  en: { aiTitle: 'AI Analysis', aiDesc: 'Mind analytics & AI insights across all tools', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
+  ar: { aiTitle: 'تحليلات الذكاء', aiDesc: 'تحليلات العقل والرؤى الذكية في جميع الأدوات', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
+  de: { aiTitle: 'KI-Analyse', aiDesc: 'KI-gestützte Einblicke in allen Tools', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
+  fr: { aiTitle: 'Analyse IA', aiDesc: 'Analyses et insights IA dans tous les outils', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
+  es: { aiTitle: 'Análisis IA', aiDesc: 'Análisis e insights de IA en todas las herramientas', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
+  pt: { aiTitle: 'Análise IA', aiDesc: 'Análises e insights de IA em todas as ferramentas', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
+  tr: { aiTitle: 'AI Analiz', aiDesc: 'Tüm araçlarda AI destekli içgörüler', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
+};
+
+const FooterCard = memo(function FooterCard() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const isRTL = i18n.language === 'ar';
+  const lang = i18n.language?.split('-')[0] || 'en';
+  const labels = footerI18n[lang] || footerI18n.en;
   const { tier, trialDaysLeft } = useSubscriptionStatus();
+  const { remaining, limit } = useAIUsage();
 
   if (tier === "premium") return null;
 
-  const handleTap = () => {
-    const sent = requestPurchase("yearly");
-    if (!sent) {
-      navigate("/pricing-demo");
-    }
-  };
-
   const isTrial = tier === "trial" && trialDaysLeft > 0;
-  // Show badge for trial users (with actual days) or free users (as promo with 3 days)
-  const showTrialBadge = true; // Always show for non-premium users (premium returns null above)
   const badgeDays = isTrial ? trialDaysLeft : 3;
-
-  return (
-    <motion.button
-      onClick={handleTap}
-      initial={{ opacity: 0, y: 14, scale: 0.97 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="w-full rounded-2xl overflow-hidden text-start group relative mt-3 bg-card border border-primary/15 shadow-[0_2px_16px_-4px_hsl(340,50%,55%,0.1)] hover:shadow-[0_4px_24px_-4px_hsl(340,50%,55%,0.18)] hover:border-primary/25 transition-all duration-300"
-    >
-      {/* Breathing Glow */}
-      <motion.div
-        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-md -z-10"
-        animate={{ opacity: [0, 0.6, 0], scale: [0.98, 1.02, 0.98] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/5 blur-3xl" />
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/[0.04] to-transparent -skew-x-12"
-        animate={{ x: ["-100%", "200%"] }}
-        transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" }}
-      />
-
-      <div className="relative px-4 py-3.5 flex items-center gap-3">
-        {/* Icon */}
-        <div className="relative shrink-0">
-          <motion.div
-            className="absolute inset-0 rounded-xl bg-primary/10"
-            animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0, 0.4] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
-          />
-          <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center">
-            <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
-          </div>
-        </div>
-
-        {/* Text + Badge column */}
-        <div className="flex-1 min-w-0 space-y-1.5">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              PRO
-            </span>
-            {showTrialBadge && (
-              <motion.span
-                initial={{ opacity: 0, scale: 0.7, x: -10 }}
-                animate={{ 
-                  opacity: 1, scale: 1, x: 0,
-                  rotate: [0, 0, -2, 2, -1, 1, 0],
-                }}
-                transition={{ 
-                  opacity: { duration: 0.5, delay: 0.6 },
-                  scale: { duration: 0.5, delay: 0.6 },
-                  x: { duration: 0.5, delay: 0.6 },
-                  rotate: { duration: 0.5, delay: 5, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" },
-                }}
-                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-extrabold tracking-wide shadow-[0_2px_8px_-2px_hsl(0,70%,45%,0.4)]"
-              >
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/60" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
-                </span>
-                <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
-                {t("pricing.trialBadge", { count: badgeDays })}
-              </motion.span>
-            )}
-          </div>
-          <p className="text-[13px] font-bold text-muted-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-            {t("pricing.badge")}
-          </p>
-          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">
-            {t("pricing.cta")}
-          </p>
-        </div>
-
-        {/* Arrow */}
-        <motion.div
-          animate={{ x: isRTL ? [-2, 3, -2] : [0, 4, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="shrink-0"
-        >
-          <ChevronRight className="w-4.5 h-4.5 text-primary/40 rtl:rotate-180" />
-        </motion.div>
-      </div>
-    </motion.button>
-  );
-});
-
-// ── AI Usage Bar — minimal & elegant ────────────────────────────────────
-const usageI18n: Record<string, { title: string; desc: string; free: string; pro: string; daily: string; upgrade: string }> = {
-  en: { title: 'AI Analysis', desc: 'For internal mind analytics & AI-powered insights across all tools', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade' },
-  ar: { title: 'تحليلات الذكاء', desc: 'لتحليلات العقل الداخلي والرؤى المدعومة بالذكاء الاصطناعي في جميع الأدوات', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية' },
-  de: { title: 'KI-Analyse', desc: 'Für interne Analysen und KI-gestützte Einblicke in allen Tools', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade' },
-  fr: { title: 'Analyse IA', desc: "Pour les analyses internes et les insights IA dans tous les outils", free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro' },
-  es: { title: 'Análisis IA', desc: 'Para análisis internos e insights de IA en todas las herramientas', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar' },
-  pt: { title: 'Análise IA', desc: 'Para análises internas e insights de IA em todas as ferramentas', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade' },
-  tr: { title: 'AI Analiz', desc: 'Tüm araçlarda dahili analiz ve AI destekli içgörüler için', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt' },
-};
-
-const AIUsageBar = memo(function AIUsageBar() {
-  const { i18n } = useTranslation();
-  const lang = i18n.language?.split('-')[0] || 'en';
-  const labels = usageI18n[lang] || usageI18n.en;
-  const { remaining, used, limit, tier } = useAIUsage();
-  const navigate = useNavigate();
   const isFree = tier === 'free';
   const percent = limit > 0 ? Math.max(0, Math.min(100, (remaining / limit) * 100)) : 0;
-
   const FREE_LIMIT = 5;
   const PRO_LIMIT = 30;
 
@@ -376,76 +279,146 @@ const AIUsageBar = memo(function AIUsageBar() {
       ? 'bg-amber-500'
       : 'bg-destructive';
 
+  const handleTap = () => {
+    const sent = requestPurchase("yearly");
+    if (!sent) navigate("/pricing-demo");
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.5 }}
-      className="mt-3 rounded-2xl border border-border/30 bg-card/60 backdrop-blur-sm p-4 space-y-3"
+      initial={{ opacity: 0, y: 14, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      className="mt-3 rounded-2xl overflow-hidden bg-card border border-primary/15 shadow-[0_2px_16px_-4px_hsl(340,50%,55%,0.1)] relative"
     >
-      {/* Header with title & description */}
-      <div className="space-y-1">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
-            <Brain className="w-3.5 h-3.5 text-primary" />
+      {/* Breathing Glow */}
+      <motion.div
+        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-md -z-10"
+        animate={{ opacity: [0, 0.5, 0], scale: [0.98, 1.02, 0.98] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/5 blur-3xl" />
+
+      <div className="relative p-4 space-y-0">
+        {/* ─── Premium Section ─── */}
+        <button onClick={handleTap} className="w-full text-start group">
+          <div className="flex items-center gap-3">
+            <div className="relative shrink-0">
+              <motion.div
+                className="absolute inset-0 rounded-xl bg-primary/10"
+                animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0, 0.4] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
+              />
+              <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
+              </div>
+            </div>
+
+            <div className="flex-1 min-w-0 space-y-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  PRO
+                </span>
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.7 }}
+                  animate={{ opacity: 1, scale: 1, rotate: [0, 0, -2, 2, -1, 1, 0] }}
+                  transition={{
+                    opacity: { duration: 0.5, delay: 0.6 },
+                    scale: { duration: 0.5, delay: 0.6 },
+                    rotate: { duration: 0.5, delay: 5, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" },
+                  }}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-extrabold tracking-wide shadow-[0_2px_8px_-2px_hsl(0,70%,45%,0.4)]"
+                >
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/60" />
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
+                  </span>
+                  <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
+                  {t("pricing.trialBadge", { count: badgeDays })}
+                </motion.span>
+              </div>
+              <p className="text-[12px] font-bold text-muted-foreground leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                {t("pricing.badge")}
+              </p>
+            </div>
+
+            <motion.div
+              animate={{ x: isRTL ? [-2, 3, -2] : [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="shrink-0"
+            >
+              <ChevronRight className="w-4.5 h-4.5 text-primary/40 rtl:rotate-180" />
+            </motion.div>
           </div>
-          <span className="text-[13px] font-bold text-foreground">{labels.title}</span>
-          <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ms-auto ${
-            isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
-          }`}>
-            {isFree ? labels.free : labels.pro}
-          </span>
-        </div>
-        <p className="text-[10px] text-muted-foreground leading-relaxed ps-8">
-          {labels.desc}
-        </p>
-      </div>
+        </button>
 
-      {/* Progress bar */}
-      <div className="space-y-1.5">
-        <div className="flex items-center justify-between">
-          <span className="text-[10px] font-semibold text-foreground tabular-nums">
-            {remaining}/{limit}
-          </span>
-          <span className="text-[9px] text-muted-foreground">{labels.daily}</span>
-        </div>
-        <div className="h-2 w-full rounded-full bg-muted/40 overflow-hidden">
-          <motion.div
-            className={`h-full rounded-full ${barColor}`}
-            initial={{ width: 0 }}
-            animate={{ width: `${percent}%` }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          />
-        </div>
-      </div>
-
-      {/* Plan comparison */}
-      <div className="flex items-center gap-2">
-        <div className={`flex-1 text-center py-1.5 rounded-lg text-[10px] font-bold ${
-          isFree
-            ? 'bg-foreground/5 ring-1 ring-foreground/10 text-foreground'
-            : 'bg-muted/20 text-muted-foreground'
-        }`}>
-          {FREE_LIMIT} {labels.daily} · {labels.free}
+        {/* ─── Vertical Divider ─── */}
+        <div className="flex items-center gap-3 py-3">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent" />
+          <div className="w-1 h-1 rounded-full bg-primary/25" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent" />
         </div>
 
-        <motion.button
-          onClick={() => isFree && navigate('/pricing-demo')}
-          whileHover={isFree ? { scale: 1.02 } : {}}
-          whileTap={isFree ? { scale: 0.98 } : {}}
-          className={`flex-1 text-center py-1.5 rounded-lg text-[10px] font-bold transition-all ${
-            !isFree
-              ? 'bg-primary/10 ring-1 ring-primary/15 text-primary'
-              : 'bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/15 cursor-pointer'
-          }`}
-        >
-          {PRO_LIMIT} {labels.daily} · {labels.pro}
-        </motion.button>
+        {/* ─── AI Usage Section ─── */}
+        <div className="space-y-2.5">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Brain className="w-3.5 h-3.5 text-primary" />
+            </div>
+            <span className="text-[12px] font-bold text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>{labels.aiTitle}</span>
+            <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ms-auto ${
+              isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
+            }`}>
+              {isFree ? labels.free : labels.pro}
+            </span>
+          </div>
+          <p className="text-[10px] text-muted-foreground leading-relaxed ps-8 -mt-1">
+            {labels.aiDesc}
+          </p>
+
+          {/* Progress */}
+          <div className="space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-semibold text-foreground tabular-nums">{remaining}/{limit}</span>
+              <span className="text-[9px] text-muted-foreground">{labels.daily}</span>
+            </div>
+            <div className="h-1.5 w-full rounded-full bg-muted/40 overflow-hidden">
+              <motion.div
+                className={`h-full rounded-full ${barColor}`}
+                initial={{ width: 0 }}
+                animate={{ width: `${percent}%` }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              />
+            </div>
+          </div>
+
+          {/* Plan pills */}
+          <div className="flex items-center gap-2">
+            <div className={`flex-1 text-center py-1.5 rounded-lg text-[10px] font-bold ${
+              isFree
+                ? 'bg-foreground/5 ring-1 ring-foreground/10 text-foreground'
+                : 'bg-muted/20 text-muted-foreground'
+            }`}>
+              {FREE_LIMIT} {labels.daily} · {labels.free}
+            </div>
+            <motion.button
+              onClick={() => isFree && navigate('/pricing-demo')}
+              whileHover={isFree ? { scale: 1.02 } : {}}
+              whileTap={isFree ? { scale: 0.98 } : {}}
+              className={`flex-1 text-center py-1.5 rounded-lg text-[10px] font-bold transition-all ${
+                !isFree
+                  ? 'bg-primary/10 ring-1 ring-primary/15 text-primary'
+                  : 'bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/15 cursor-pointer'
+              }`}
+            >
+              {PRO_LIMIT} {labels.daily} · {labels.pro}
+            </motion.button>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
 });
-
 
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
@@ -468,8 +441,7 @@ const Index = () => {
               <div className="w-1.5 h-1.5 rounded-full bg-primary/30" />
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
             </div>
-            <PremiumBanner />
-            <AIUsageBar />
+            <FooterCard />
           </div>
         </div>
       </section>
