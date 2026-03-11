@@ -445,12 +445,8 @@ const AIUsageBar = memo(function AIUsageBar() {
     </motion.div>
   );
 });
-          <span className="text-[8px] text-muted-foreground block">{labels.resets}</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-});
+
+
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
