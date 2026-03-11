@@ -88,7 +88,7 @@ export default function PricingDemo() {
               ))}
               {/* Breathing aura */}
               <motion.div
-                className="absolute w-16 h-16 rounded-full bg-primary/10 blur-lg"
+                className="absolute w-12 h-12 rounded-full bg-primary/10 blur-lg"
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
