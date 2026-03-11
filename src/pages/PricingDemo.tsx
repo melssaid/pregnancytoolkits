@@ -153,10 +153,10 @@ export default function PricingDemo() {
 
           {/* Plan cards */}
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="space-y-3"
+            transition={{ duration: 0.35, delay: 0.18 }}
+            className="space-y-2.5"
           >
             {/* Yearly */}
             <button
