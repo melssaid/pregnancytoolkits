@@ -258,13 +258,13 @@ const footerI18n: Record<string, {
   aiTitle: string; aiDesc: string; free: string; pro: string; daily: string;
   upgrade: string; unlockAll: string;
 }> = {
-  en: { aiTitle: 'AI Analysis', aiDesc: 'Daily AI insights are limited — unlock more with a subscription', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
-  ar: { aiTitle: 'تحليلات الذكاء', aiDesc: 'تحليل العقل الداخلي والذكاء الاصطناعي محدود يومياً · متاح بشكل كافٍ عند الاشتراك', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
-  de: { aiTitle: 'KI-Analyse', aiDesc: 'Tägliche KI-Einblicke sind begrenzt — mehr mit Abo verfügbar', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
-  fr: { aiTitle: 'Analyse IA', aiDesc: 'Les analyses IA quotidiennes sont limitées — débloquez-en plus avec un abonnement', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
-  es: { aiTitle: 'Análisis IA', aiDesc: 'Los análisis diarios de IA son limitados — desbloquea más con una suscripción', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
-  pt: { aiTitle: 'Análise IA', aiDesc: 'Análises diárias de IA são limitadas — desbloqueie mais com uma assinatura', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
-  tr: { aiTitle: 'AI Analiz', aiDesc: 'Günlük AI analizleri sınırlıdır — abonelikle daha fazlasını açın', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
+  en: { aiTitle: 'Inner Mind', aiDesc: 'Daily AI analysis limited — unlock more with PRO', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
+  ar: { aiTitle: 'العقل الداخلي', aiDesc: 'حدود استخدام العقل الداخلي محدودة يومياً', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
+  de: { aiTitle: 'Innerer Geist', aiDesc: 'Tägliche KI-Analysen sind begrenzt', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
+  fr: { aiTitle: 'Esprit Interne', aiDesc: 'Analyses IA quotidiennes limitées', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
+  es: { aiTitle: 'Mente Interna', aiDesc: 'Análisis IA diarios limitados', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
+  pt: { aiTitle: 'Mente Interna', aiDesc: 'Análises IA diárias limitadas', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
+  tr: { aiTitle: 'İç Zihin', aiDesc: 'Günlük AI analizleri sınırlıdır', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
 };
 
 const FooterCard = memo(function FooterCard() {
