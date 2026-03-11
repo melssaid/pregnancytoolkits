@@ -7,9 +7,9 @@ import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
-import { motion } from "framer-motion";
-import { differenceInHours } from "date-fns";
+import { AIActionButton } from "@/components/ai/AIActionButton";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
+import { differenceInHours } from "date-fns";
 
 interface DiaperEntry {
   id: string;
@@ -85,28 +85,18 @@ Helpful tips for diaper changes and tracking`
   if (entries.length < 3) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.25 }}
-      className="space-y-3"
-    >
-      <Card className="overflow-hidden border-primary/20 bg-primary/5">
-        <CardContent className="py-3">
-          {!showAiInsight ? (
-            <motion.button
-              onClick={analyzeWithAI}
-              disabled={aiLoading}
-              whileTap={{ scale: 0.92 }}
-              className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-                {aiLoading ? <AILoadingDots size="sm" /> : <Brain className="h-4 w-4 shrink-0" />}
-                <span>{t('diaperPage.analyzeWithAI')}</span>
-              </div>
-              <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
-            </motion.button>
-          ) : (
+    <div className="space-y-3">
+      {!showAiInsight ? (
+        <AIActionButton
+          onClick={analyzeWithAI}
+          isLoading={aiLoading}
+          label={t('diaperPage.analyzeWithAI')}
+          loadingLabel={t('diaperPage.analyzingPatterns')}
+          icon={Brain}
+        />
+      ) : (
+        <Card className="overflow-hidden border-primary/20 bg-primary/5">
+          <CardContent className="py-3">
             <div className="overflow-hidden">
               <div className="flex items-center justify-between mb-2 gap-2">
                 <div className="flex items-center gap-2 min-w-0">
@@ -131,9 +121,9 @@ Helpful tips for diaper changes and tracking`
                 </div>
               )}
             </div>
-          )}
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
 
       <AIErrorBanner
         errorType={errorType}
@@ -141,6 +131,6 @@ Helpful tips for diaper changes and tracking`
         onRetry={() => { setShowAiInsight(false); analyzeWithAI(); }}
         onDismiss={clearError}
       />
-    </motion.div>
+    </div>
   );
 };

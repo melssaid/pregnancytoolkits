@@ -5,6 +5,7 @@ import { Brain, Loader2, RefreshCw } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { toolTopicMap, genericTopics } from "@/data/toolTipTopics";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
@@ -53,6 +54,7 @@ function clearCache(toolId: string) {
 export function ToolInsightTabs({ toolId }: ToolInsightTabsProps) {
   const { t, i18n } = useTranslation();
   const { streamChat, isLoading, error, errorType, clearError } = usePregnancyAI();
+  const { isLimitReached } = useAIUsage();
 
   const [tipContent, setTipContent] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -142,7 +144,7 @@ Write in ${lang}. No title, no heading, just the tip.`;
   }, [toolId, lang, t, streamChat]);
 
   useEffect(() => {
-    if (isVisible && !loaded && !isLoading) {
+    if (isVisible && !loaded && !isLoading && !isLimitReached) {
       generateTip();
     }
   }, [isVisible, loaded, isLoading, generateTip]);

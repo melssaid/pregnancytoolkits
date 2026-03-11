@@ -1,12 +1,14 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, ChevronDown, ChevronUp, RefreshCw, Brain } from 'lucide-react';
+import { Loader2, ChevronDown, ChevronUp, RefreshCw, Brain, Zap, Crown } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useAIUsage } from '@/contexts/AIUsageContext';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
+import { useNavigate } from 'react-router-dom';
 
 interface AIInsightCardProps {
   title?: string;
@@ -18,12 +20,37 @@ interface AIInsightCardProps {
   autoExpand?: boolean;
 }
 
+/** Mini usage bar shown inline with AI buttons in insight cards */
+const MiniUsageBar: React.FC = () => {
+  const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
+  const navigate = useNavigate();
+  const isFree = tier === 'free';
+  const pct = limit > 0 ? Math.round((used / limit) * 100) : 0;
+  const barColor = isLimitReached ? 'bg-destructive' : (remaining / limit) * 100 <= 15 ? 'bg-destructive' : (remaining / limit) * 100 <= 40 ? 'bg-amber-500' : 'bg-emerald-500';
+
+  return (
+    <div className="flex items-center gap-2 px-1 mt-2">
+      <Zap className={`w-2.5 h-2.5 shrink-0 ${isLimitReached ? 'text-destructive' : 'text-primary'}`} />
+      <div className="flex-1 h-1 rounded-full bg-muted/40 overflow-hidden">
+        <div className={`h-full rounded-full ${barColor} transition-all`} style={{ width: `${Math.min(pct, 100)}%` }} />
+      </div>
+      <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">{remaining}/{limit}</span>
+      {isFree && (
+        <button onClick={() => navigate('/pricing-demo')} className="shrink-0">
+          <Crown className="w-2.5 h-2.5 text-primary" />
+        </button>
+      )}
+    </div>
+  );
+};
+
 export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false,
 }) => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language?.split('-')[0] || 'en';
   const { streamChat, isLoading, error, errorType, clearError } = usePregnancyAI();
+  const { isLimitReached } = useAIUsage();
   const [insight, setInsight] = useState('');
   const [isExpanded, setIsExpanded] = useState(autoExpand);
   const [hasGenerated, setHasGenerated] = useState(false);
@@ -50,7 +77,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   const displayButtonText = buttonText || t('toolsInternal.aiInsights.getInsights');
 
   const generateInsight = async () => {
-    if (isLoading) return;
+    if (isLoading || isLimitReached) return;
     setInsight('');
     clearError();
     setIsExpanded(true);
@@ -64,23 +91,35 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     });
   };
 
+  const effectiveDisabled = isLoading || isLimitReached;
+
   /* ── COMPACT ── */
   if (variant === 'compact') {
     return (
       <div className="space-y-3">
         {!hasGenerated && (
-          <motion.button
-            onClick={generateInsight}
-            disabled={isLoading}
-            whileTap={{ scale: 0.92 }}
-            className="w-full relative overflow-hidden rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)' }}>
-              {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : (icon || <Brain className="h-4 w-4 shrink-0" />)}
-              <span className="truncate">{displayButtonText}</span>
-            </div>
-            <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
-          </motion.button>
+          <div>
+            <motion.button
+              onClick={generateInsight}
+              disabled={effectiveDisabled}
+              whileTap={{ scale: 0.92 }}
+              className="w-full relative overflow-hidden rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{
+                background: isLimitReached
+                  ? 'linear-gradient(135deg, hsl(var(--muted-foreground)), hsl(var(--muted-foreground)))'
+                  : 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                boxShadow: isLimitReached ? 'none' : '0 4px 20px -4px hsl(var(--primary) / 0.5)',
+              }}>
+                {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : (icon || <Brain className="h-4 w-4 shrink-0" />)}
+                <span className="truncate">{displayButtonText}</span>
+              </div>
+              {!isLimitReached && (
+                <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+              )}
+            </motion.button>
+            <MiniUsageBar />
+          </div>
         )}
 
         <AIErrorBanner errorType={errorType} message={error} onRetry={generateInsight} onDismiss={clearError} />
@@ -96,22 +135,13 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               <Card className="border-primary/20 bg-primary/5 overflow-hidden">
                 <CardContent className="pt-4 pb-4">
                   {isLoading && !insight && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                      className="flex items-center gap-2 text-primary"
-                    >
+                    <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center gap-2 text-primary">
                       <Loader2 className="h-4 w-4 animate-spin shrink-0" />
                       <span className="text-sm">{t('toolsInternal.aiInsights.analyzing')}</span>
                     </motion.div>
                   )}
                   {insight && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeOut' }}
-                    >
+                    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, ease: 'easeOut' }}>
                       <MarkdownRenderer content={insight} />
                     </motion.div>
                   )}
@@ -142,17 +172,26 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               </div>
               <motion.button
                 onClick={generateInsight}
-                disabled={isLoading}
+                disabled={effectiveDisabled}
                 whileTap={{ scale: 0.92 }}
-                className="relative shrink-0 overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                className="relative shrink-0 overflow-hidden rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <div className="flex items-center gap-1.5 px-3.5 py-2 font-semibold text-white text-[13px] rounded-xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.45)' }}>
+                <div className="flex items-center gap-1.5 px-3.5 py-2 font-semibold text-white text-[13px] rounded-xl" style={{
+                  background: isLimitReached
+                    ? 'linear-gradient(135deg, hsl(var(--muted-foreground)), hsl(var(--muted-foreground)))'
+                    : 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                  boxShadow: isLimitReached ? 'none' : '0 4px 16px -4px hsl(var(--primary) / 0.45)',
+                }}>
                   {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" /> : <Brain className="h-3.5 w-3.5 shrink-0" />}
                   <span className="truncate">{t('toolsInternal.aiInsights.analyze')}</span>
                 </div>
-                <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+                {!isLimitReached && (
+                  <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+                )}
               </motion.button>
             </div>
+
+            <MiniUsageBar />
 
             <AnimatePresence>
               {insight && !error && (
@@ -162,11 +201,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                   transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="mt-4 pt-4 border-t border-primary/15"
                 >
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.15, duration: 0.25 }}
-                  >
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15, duration: 0.25 }}>
                     <MarkdownRenderer content={insight} />
                   </motion.div>
                 </motion.div>
@@ -205,15 +240,22 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
           {!hasGenerated ? (
             <motion.button
               onClick={(e) => { e.stopPropagation(); generateInsight(); }}
-              disabled={isLoading}
+              disabled={effectiveDisabled}
               whileTap={{ scale: 0.92 }}
-              className="relative shrink-0 overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+              className="relative shrink-0 overflow-hidden rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <div className="flex items-center gap-1.5 px-3.5 py-2 font-semibold text-white text-[13px] rounded-xl" style={{ background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))', boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.45)' }}>
+              <div className="flex items-center gap-1.5 px-3.5 py-2 font-semibold text-white text-[13px] rounded-xl" style={{
+                background: isLimitReached
+                  ? 'linear-gradient(135deg, hsl(var(--muted-foreground)), hsl(var(--muted-foreground)))'
+                  : 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                boxShadow: isLimitReached ? 'none' : '0 4px 16px -4px hsl(var(--primary) / 0.45)',
+              }}>
                 {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" /> : <Brain className="h-3.5 w-3.5 shrink-0" />}
                 <span className="truncate">{t('toolsInternal.aiInsights.analyze')}</span>
               </div>
-              <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+              {!isLimitReached && (
+                <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+              )}
             </motion.button>
           ) : (
             <Button variant="ghost" size="sm" className="shrink-0 h-8 w-8 p-0 rounded-lg">
@@ -221,6 +263,9 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
             </Button>
           )}
         </div>
+
+        {/* Mini usage bar */}
+        {!hasGenerated && <MiniUsageBar />}
 
         {/* Error banner */}
         {error && (
@@ -240,32 +285,19 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               className="mt-4 pt-4 border-t border-primary/15 overflow-hidden"
             >
               {isLoading && !insight && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="flex items-center gap-2 text-primary"
-                >
+                <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center gap-2 text-primary">
                   <Loader2 className="h-4 w-4 animate-spin shrink-0" />
                   <span className="text-sm">{t('toolsInternal.aiInsights.generatingInsights')}</span>
                 </motion.div>
               )}
               {insight && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
-                >
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, ease: 'easeOut' }}>
                   <MarkdownRenderer content={insight} />
                 </motion.div>
               )}
 
               {hasGenerated && !isLoading && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                >
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
                   <Button
                     onClick={generateInsight}
                     variant="ghost"

@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Brain, Zap, Shield, Clock, Activity, ChevronRight } from 'lucide-react';
+import { Sparkles, Brain, Zap, Shield, Clock, Activity, ChevronRight, Crown } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useAIUsage } from '@/contexts/AIUsageContext';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 interface KickSession {
   date: string;
@@ -28,6 +30,9 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
 }) => {
   const { streamChat, isLoading } = usePregnancyAI();
   const { currentLanguage } = useLanguage();
+  const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
+  const navigate = useNavigate();
+  const isFree = tier === 'free';
   const [analysis, setAnalysis] = useState('');
   const [phase, setPhase] = useState<AnalysisPhase>('idle');
   const [progress, setProgress] = useState(0);
@@ -215,7 +220,7 @@ Use markdown formatting with headers, bullet points, and **bold** for emphasis. 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Card className="bg-gradient-to-br from-violet-500 to-purple-600 border-0 text-white overflow-hidden">
+          <Card className="bg-gradient-to-br from-primary/90 to-primary/70 border-0 text-white overflow-hidden">
             <CardContent className="pt-5 pb-5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -238,11 +243,25 @@ Use markdown formatting with headers, bullet points, and **bold** for emphasis. 
                 <Button
                   onClick={runAnalysis}
                   variant="secondary"
-                  className="bg-white text-violet-600 hover:bg-white/90"
+                  disabled={isLimitReached}
+                  className="bg-white text-primary hover:bg-white/90 disabled:opacity-50"
                 >
                   Analyze
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
+              </div>
+              {/* Usage bar */}
+              <div className="flex items-center gap-2 mt-3 pt-3 border-t border-white/20">
+                <Zap className="w-3 h-3 text-white/70 shrink-0" />
+                <div className="flex-1 h-1 rounded-full bg-white/20 overflow-hidden">
+                  <div className="h-full rounded-full bg-white/70 transition-all" style={{ width: `${limit > 0 ? Math.min((used / limit) * 100, 100) : 0}%` }} />
+                </div>
+                <span className="text-[10px] text-white/80 font-medium tabular-nums shrink-0">{remaining}/{limit}</span>
+                {isFree && (
+                  <button onClick={() => navigate('/pricing-demo')} className="shrink-0">
+                    <Crown className="w-3 h-3 text-yellow-300" />
+                  </button>
+                )}
               </div>
             </CardContent>
           </Card>
