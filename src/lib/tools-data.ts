@@ -101,11 +101,11 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // PREPARATION & BIRTH
   // ═══════════════════════════════════════════════════════════════
-  { id: "maternal-health-awareness", titleKey: "tools.maternalHealth.title", descriptionKey: "tools.maternalHealth.description", icon: AlertTriangle, pngIcon: "/icons/diabetes.png", categoryKey: "categories.preparation", href: "/tools/maternal-health", priority: 30 },
-  { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, pngIcon: "/icons/hospital-bag.png", categoryKey: "categories.preparation", href: "/tools/ai-hospital-bag", priority: 32, hasAI: true },
-  { id: "baby-gear-recommender", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, pngIcon: "/icons/birth-prep.png", categoryKey: "categories.preparation", href: "/tools/baby-gear-recommender", priority: 33, hasAI: true },
-  { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, pngIcon: "/icons/appointment-reminder.png", categoryKey: "categories.preparation", href: "/tools/smart-appointment-reminder", priority: 34, hasAI: true },
-  { id: "ai-partner-guide", titleKey: "tools.aiPartnerGuide.title", descriptionKey: "tools.aiPartnerGuide.description", icon: HeartHandshake, pngIcon: "/icons/partner-guide.png", categoryKey: "categories.preparation", href: "/tools/ai-partner-guide", priority: 35, hasAI: true },
+  { id: "maternal-health-awareness", titleKey: "tools.maternalHealth.title", descriptionKey: "tools.maternalHealth.description", icon: AlertTriangle, pngIcon: "https://img.icons8.com/3d-fluency/94/heart-monitor.png", categoryKey: "categories.preparation", href: "/tools/maternal-health", priority: 30 },
+  { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, pngIcon: "https://img.icons8.com/3d-fluency/94/briefcase.png", categoryKey: "categories.preparation", href: "/tools/ai-hospital-bag", priority: 32, hasAI: true },
+  { id: "baby-gear-recommender", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, pngIcon: "https://img.icons8.com/3d-fluency/94/shopping-cart.png", categoryKey: "categories.preparation", href: "/tools/baby-gear-recommender", priority: 33, hasAI: true },
+  { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, pngIcon: "https://img.icons8.com/3d-fluency/94/alarm-clock.png", categoryKey: "categories.preparation", href: "/tools/smart-appointment-reminder", priority: 34, hasAI: true },
+  { id: "ai-partner-guide", titleKey: "tools.aiPartnerGuide.title", descriptionKey: "tools.aiPartnerGuide.description", icon: HeartHandshake, pngIcon: "https://img.icons8.com/3d-fluency/94/handshake.png", categoryKey: "categories.preparation", href: "/tools/ai-partner-guide", priority: 35, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // POSTPARTUM & BABY
