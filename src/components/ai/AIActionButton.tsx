@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Brain, Loader2, Sparkles, Crown, Zap } from 'lucide-react';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 interface AIActionButtonProps {
   onClick: () => void;
@@ -43,6 +44,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
   showUsage = true,
 }) => {
   const Icon = CustomIcon || Brain;
+  const navigate = useNavigate();
   const isCompact = variant === 'compact';
   const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
   const { i18n } = useTranslation();
@@ -162,10 +164,14 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
           <div className="flex items-center justify-between mt-1.5">
             <span className="text-[8px] text-muted-foreground">{labels.resetsDaily}</span>
             {isFree && !isLimitReached && (
-              <div className="flex items-center gap-1">
+              <motion.button
+                onClick={() => navigate('/pricing-demo')}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-1 cursor-pointer"
+              >
                 <Crown className="w-2.5 h-2.5 text-primary" />
-                <span className="text-[8px] text-primary font-semibold">{labels.upgrade}</span>
-              </div>
+                <span className="text-[8px] text-primary font-semibold underline underline-offset-2">{labels.upgrade}</span>
+              </motion.button>
             )}
           </div>
         </motion.div>
