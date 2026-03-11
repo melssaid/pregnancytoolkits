@@ -256,13 +256,13 @@ const footerI18n: Record<string, {
   aiTitle: string; aiDesc: string; free: string; pro: string; daily: string;
   upgrade: string; unlockAll: string;
 }> = {
-  en: { aiTitle: 'AI Analysis', aiDesc: 'Mind analytics & AI insights across all tools', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
-  ar: { aiTitle: 'تحليلات الذكاء', aiDesc: 'تحليلات العقل والرؤى الذكية في جميع الأدوات', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
-  de: { aiTitle: 'KI-Analyse', aiDesc: 'KI-gestützte Einblicke in allen Tools', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
-  fr: { aiTitle: 'Analyse IA', aiDesc: 'Analyses et insights IA dans tous les outils', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
-  es: { aiTitle: 'Análisis IA', aiDesc: 'Análisis e insights de IA en todas las herramientas', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
-  pt: { aiTitle: 'Análise IA', aiDesc: 'Análises e insights de IA em todas as ferramentas', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
-  tr: { aiTitle: 'AI Analiz', aiDesc: 'Tüm araçlarda AI destekli içgörüler', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
+  en: { aiTitle: 'AI Analysis', aiDesc: 'Daily AI insights are limited — unlock more with a subscription', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
+  ar: { aiTitle: 'تحليلات الذكاء', aiDesc: 'تحليل العقل الداخلي والذكاء الاصطناعي محدود يومياً · متاح بشكل كافٍ عند الاشتراك', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
+  de: { aiTitle: 'KI-Analyse', aiDesc: 'Tägliche KI-Einblicke sind begrenzt — mehr mit Abo verfügbar', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
+  fr: { aiTitle: 'Analyse IA', aiDesc: 'Les analyses IA quotidiennes sont limitées — débloquez-en plus avec un abonnement', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
+  es: { aiTitle: 'Análisis IA', aiDesc: 'Los análisis diarios de IA son limitados — desbloquea más con una suscripción', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
+  pt: { aiTitle: 'Análise IA', aiDesc: 'Análises diárias de IA são limitadas — desbloqueie mais com uma assinatura', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
+  tr: { aiTitle: 'AI Analiz', aiDesc: 'Günlük AI analizleri sınırlıdır — abonelikle daha fazlasını açın', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
 };
 
 const FooterCard = memo(function FooterCard() {
@@ -363,29 +363,33 @@ const FooterCard = memo(function FooterCard() {
           </div>
         </button>
 
-        {/* ─── Vertical Divider ─── */}
-        <div className="flex items-center gap-3 py-3">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent" />
-          <div className="w-1 h-1 rounded-full bg-primary/25" />
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent" />
+        {/* ─── Strong Divider ─── */}
+        <div className="flex items-center gap-2.5 py-4">
+          <div className="flex-1 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
+          <Sparkles className="w-3.5 h-3.5 text-primary/30" />
+          <div className="flex-1 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
         </div>
 
         {/* ─── AI Usage Section ─── */}
         <div className="space-y-2.5">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Brain className="w-3.5 h-3.5 text-primary" />
+          <div className="flex items-start gap-2.5">
+            <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center shrink-0">
+              <Brain className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-[12px] font-bold text-foreground">{labels.aiTitle}</span>
-            <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ms-auto ${
-              isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
-            }`}>
-              {isFree ? labels.free : labels.pro}
-            </span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-[12px] font-bold text-foreground">{labels.aiTitle}</span>
+                <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ms-auto shrink-0 ${
+                  isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
+                }`}>
+                  {isFree ? labels.free : labels.pro}
+                </span>
+              </div>
+              <p className="text-[10px] text-muted-foreground leading-relaxed mt-0.5">
+                {labels.aiDesc}
+              </p>
+            </div>
           </div>
-          <p className="text-[10px] text-muted-foreground leading-relaxed ps-8 -mt-1">
-            {labels.aiDesc}
-          </p>
 
           {/* Progress */}
           <div className="space-y-1">
