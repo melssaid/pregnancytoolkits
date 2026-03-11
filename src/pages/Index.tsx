@@ -347,60 +347,114 @@ const PremiumBanner = memo(function PremiumBanner() {
   );
 });
 
-// ── AI Usage Bar ────────────────────────────────────────────────────────
+// ── AI Usage Bar with Free vs Premium comparison ────────────────────────
+const usageI18n: Record<string, { title: string; free: string; pro: string; remaining: string; daily: string; resets: string; current: string; upgradeFor: string }> = {
+  en: { title: 'AI Requests', free: 'Free', pro: 'PRO', remaining: 'remaining', daily: 'daily', resets: 'Resets daily', current: 'Your plan', upgradeFor: 'Upgrade for' },
+  ar: { title: 'طلبات الذكاء الاصطناعي', free: 'مجاني', pro: 'PRO', remaining: 'متبقي', daily: 'يومياً', resets: 'يتجدد يومياً', current: 'خطتك', upgradeFor: 'ترقية لـ' },
+  de: { title: 'KI-Anfragen', free: 'Gratis', pro: 'PRO', remaining: 'übrig', daily: 'täglich', resets: 'Täglich zurückgesetzt', current: 'Ihr Plan', upgradeFor: 'Upgrade für' },
+  fr: { title: 'Requêtes IA', free: 'Gratuit', pro: 'PRO', remaining: 'restants', daily: 'par jour', resets: 'Réinitialisation quotidienne', current: 'Votre plan', upgradeFor: 'Passer à' },
+  es: { title: 'Solicitudes IA', free: 'Gratis', pro: 'PRO', remaining: 'restantes', daily: 'diarios', resets: 'Se renueva diariamente', current: 'Tu plan', upgradeFor: 'Mejora a' },
+  pt: { title: 'Pedidos IA', free: 'Grátis', pro: 'PRO', remaining: 'restantes', daily: 'diários', resets: 'Renova diariamente', current: 'Seu plano', upgradeFor: 'Upgrade para' },
+  tr: { title: 'AI İstekleri', free: 'Ücretsiz', pro: 'PRO', remaining: 'kalan', daily: 'günlük', resets: 'Günlük sıfırlanır', current: 'Planınız', upgradeFor: 'Yükseltme:' },
+};
+
 const AIUsageBar = memo(function AIUsageBar() {
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const lang = i18n.language?.split('-')[0] || 'en';
+  const labels = usageI18n[lang] || usageI18n.en;
   const { remaining, used, limit, tier } = useAIUsage();
-  const percent = Math.max(0, Math.min(100, (remaining / limit) * 100));
+  const navigate = useNavigate();
+  const isFree = tier === 'free';
+  const percent = limit > 0 ? Math.max(0, Math.min(100, (remaining / limit) * 100)) : 0;
 
-  // Color based on remaining
-  const barColor = percent > 40
-    ? 'bg-emerald-500'
-    : percent > 15
-      ? 'bg-amber-500'
-      : 'bg-red-500';
-
+  const barColor = percent > 40 ? 'bg-emerald-500' : percent > 15 ? 'bg-amber-500' : 'bg-destructive';
   const textColor = percent > 40
     ? 'text-emerald-600 dark:text-emerald-400'
     : percent > 15
       ? 'text-amber-600 dark:text-amber-400'
-      : 'text-red-600 dark:text-red-400';
+      : 'text-destructive';
+
+  const FREE_LIMIT = 5;
+  const PRO_LIMIT = 30;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.6 }}
-      className="mt-3 rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm px-4 py-3"
+      className="mt-3 rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm px-4 py-3.5 space-y-3"
     >
-      <div className="flex items-center justify-between mb-2">
+      {/* Header */}
+      <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Sparkles className="w-3.5 h-3.5 text-primary" />
-          <span className="text-[11px] font-semibold text-foreground">
-            {t('aiUsage.dailyRequests', 'طلبات الذكاء الاصطناعي اليومية')}
+          <span className="text-[11px] font-bold text-foreground">{labels.title}</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-md ${
+            isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
+          }`}>
+            {isFree ? labels.free : labels.pro}
+          </span>
+          <span className={`text-xs font-bold tabular-nums ${textColor}`}>
+            {remaining}/{limit}
           </span>
         </div>
-        <span className={`text-[11px] font-bold tabular-nums ${textColor}`}>
-          {remaining}/{limit}
-        </span>
       </div>
-      <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
-        <motion.div
-          className={`h-full rounded-full ${barColor}`}
-          initial={{ width: 0 }}
-          animate={{ width: `${percent}%` }}
-          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-        />
+
+      {/* Current usage progress */}
+      <div>
+        <div className="w-full h-2 rounded-full bg-muted/60 overflow-hidden">
+          <motion.div
+            className={`h-full rounded-full ${barColor}`}
+            initial={{ width: 0 }}
+            animate={{ width: `${percent}%` }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+          />
+        </div>
+        <div className="flex items-center justify-between mt-1">
+          <span className="text-[9px] text-muted-foreground">{remaining} {labels.remaining}</span>
+          <span className="text-[9px] text-muted-foreground">{labels.resets}</span>
+        </div>
       </div>
-      <div className="flex items-center justify-between mt-1.5">
-        <span className="text-[9px] text-muted-foreground">
-          {tier === 'premium'
-            ? t('aiUsage.premiumPlan', 'PRO')
-            : t('aiUsage.freePlan', 'مجاني')}
-        </span>
-        <span className="text-[9px] text-muted-foreground">
-          {t('aiUsage.resetsDaily', 'يتجدد يومياً')}
-        </span>
+
+      {/* Free vs PRO comparison */}
+      <div className="grid grid-cols-2 gap-2">
+        {/* Free plan card */}
+        <div className={`rounded-xl border px-3 py-2 ${
+          isFree 
+            ? 'border-primary/20 bg-primary/[0.03] ring-1 ring-primary/10' 
+            : 'border-border/30 bg-muted/20'
+        }`}>
+          <div className="flex items-center gap-1.5 mb-1">
+            <div className={`w-1.5 h-1.5 rounded-full ${isFree ? 'bg-primary' : 'bg-muted-foreground/30'}`} />
+            <span className="text-[10px] font-bold text-foreground">{labels.free}</span>
+            {isFree && <span className="text-[8px] text-primary font-bold">← {labels.current}</span>}
+          </div>
+          <div className="text-lg font-extrabold text-foreground tabular-nums leading-none">{FREE_LIMIT}</div>
+          <span className="text-[9px] text-muted-foreground">{labels.daily}</span>
+        </div>
+
+        {/* PRO plan card */}
+        <button
+          onClick={() => { if (isFree) navigate('/pricing-demo'); }}
+          className={`rounded-xl border px-3 py-2 text-start transition-all ${
+            !isFree 
+              ? 'border-primary/20 bg-primary/[0.03] ring-1 ring-primary/10' 
+              : 'border-primary/15 bg-gradient-to-br from-primary/[0.04] to-primary/[0.08] hover:border-primary/30 hover:shadow-sm cursor-pointer'
+          }`}
+        >
+          <div className="flex items-center gap-1.5 mb-1">
+            <div className={`w-1.5 h-1.5 rounded-full ${!isFree ? 'bg-primary' : 'bg-primary/50'}`} />
+            <span className="text-[10px] font-bold text-primary">{labels.pro}</span>
+            {!isFree && <span className="text-[8px] text-primary font-bold">← {labels.current}</span>}
+          </div>
+          <div className="text-lg font-extrabold text-primary tabular-nums leading-none">{PRO_LIMIT}</div>
+          <div className="flex items-center justify-between">
+            <span className="text-[9px] text-muted-foreground">{labels.daily}</span>
+            {isFree && <span className="text-[8px] text-primary font-semibold">6x</span>}
+          </div>
+        </button>
       </div>
     </motion.div>
   );
