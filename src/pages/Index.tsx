@@ -348,21 +348,21 @@ const PremiumBanner = memo(function PremiumBanner() {
 });
 
 // ── AI Usage Bar — minimal & elegant ────────────────────────────────────
-const usageI18n: Record<string, { ai: string; free: string; pro: string; of: string; resets: string }> = {
-  en: { ai: 'AI', free: 'Free', pro: 'PRO', of: '/', resets: 'Resets daily' },
-  ar: { ai: 'AI', free: 'مجاني', pro: 'PRO', of: '/', resets: 'يتجدد يومياً' },
-  de: { ai: 'KI', free: 'Gratis', pro: 'PRO', of: '/', resets: 'Täglich' },
-  fr: { ai: 'IA', free: 'Gratuit', pro: 'PRO', of: '/', resets: 'Quotidien' },
-  es: { ai: 'IA', free: 'Gratis', pro: 'PRO', of: '/', resets: 'Diario' },
-  pt: { ai: 'IA', free: 'Grátis', pro: 'PRO', of: '/', resets: 'Diário' },
-  tr: { ai: 'AI', free: 'Ücretsiz', pro: 'PRO', of: '/', resets: 'Günlük' },
+const usageI18n: Record<string, { title: string; desc: string; free: string; pro: string; daily: string; upgrade: string }> = {
+  en: { title: 'AI Analysis', desc: 'For internal mind analytics & AI-powered insights across all tools', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade' },
+  ar: { title: 'تحليلات الذكاء', desc: 'لتحليلات العقل الداخلي والرؤى المدعومة بالذكاء الاصطناعي في جميع الأدوات', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية' },
+  de: { title: 'KI-Analyse', desc: 'Für interne Analysen und KI-gestützte Einblicke in allen Tools', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade' },
+  fr: { title: 'Analyse IA', desc: "Pour les analyses internes et les insights IA dans tous les outils", free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro' },
+  es: { title: 'Análisis IA', desc: 'Para análisis internos e insights de IA en todas las herramientas', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar' },
+  pt: { title: 'Análise IA', desc: 'Para análises internas e insights de IA em todas as ferramentas', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade' },
+  tr: { title: 'AI Analiz', desc: 'Tüm araçlarda dahili analiz ve AI destekli içgörüler için', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt' },
 };
 
 const AIUsageBar = memo(function AIUsageBar() {
   const { i18n } = useTranslation();
   const lang = i18n.language?.split('-')[0] || 'en';
   const labels = usageI18n[lang] || usageI18n.en;
-  const { remaining, limit, tier } = useAIUsage();
+  const { remaining, used, limit, tier } = useAIUsage();
   const navigate = useNavigate();
   const isFree = tier === 'free';
   const percent = limit > 0 ? Math.max(0, Math.min(100, (remaining / limit) * 100)) : 0;
@@ -370,89 +370,81 @@ const AIUsageBar = memo(function AIUsageBar() {
   const FREE_LIMIT = 5;
   const PRO_LIMIT = 30;
 
-  const arcColor = percent > 40
-    ? 'hsl(152, 60%, 48%)'
+  const barColor = percent > 40
+    ? 'bg-emerald-500'
     : percent > 15
-      ? 'hsl(38, 92%, 55%)'
-      : 'hsl(0, 72%, 51%)';
-
-  // SVG arc for the ring
-  const radius = 28;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDash = circumference * (percent / 100);
+      ? 'bg-amber-500'
+      : 'bg-destructive';
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.5 }}
-      className="mt-3 rounded-2xl border border-border/40 bg-card/70 backdrop-blur-sm px-4 py-4"
+      className="mt-3 rounded-2xl border border-border/30 bg-card/60 backdrop-blur-sm p-4 space-y-3"
     >
-      <div className="flex items-center gap-4">
-        {/* Circular ring */}
-        <div className="relative shrink-0">
-          <svg width="68" height="68" viewBox="0 0 68 68" className="-rotate-90">
-            {/* Track */}
-            <circle cx="34" cy="34" r={radius} fill="none" stroke="hsl(var(--muted))" strokeWidth="4" opacity="0.4" />
-            {/* Progress */}
-            <motion.circle
-              cx="34" cy="34" r={radius}
-              fill="none"
-              stroke={arcColor}
-              strokeWidth="4.5"
-              strokeLinecap="round"
-              strokeDasharray={circumference}
-              initial={{ strokeDashoffset: circumference }}
-              animate={{ strokeDashoffset: circumference - strokeDash }}
-              transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
-            />
-          </svg>
-          {/* Center number */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-lg font-extrabold tabular-nums text-foreground leading-none">{remaining}</span>
-            <span className="text-[7px] text-muted-foreground font-medium mt-0.5">{labels.of}{limit}</span>
+      {/* Header with title & description */}
+      <div className="space-y-1">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+            <Brain className="w-3.5 h-3.5 text-primary" />
           </div>
+          <span className="text-[13px] font-bold text-foreground">{labels.title}</span>
+          <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ms-auto ${
+            isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
+          }`}>
+            {isFree ? labels.free : labels.pro}
+          </span>
+        </div>
+        <p className="text-[10px] text-muted-foreground leading-relaxed ps-8">
+          {labels.desc}
+        </p>
+      </div>
+
+      {/* Progress bar */}
+      <div className="space-y-1.5">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-semibold text-foreground tabular-nums">
+            {remaining}/{limit}
+          </span>
+          <span className="text-[9px] text-muted-foreground">{labels.daily}</span>
+        </div>
+        <div className="h-2 w-full rounded-full bg-muted/40 overflow-hidden">
+          <motion.div
+            className={`h-full rounded-full ${barColor}`}
+            initial={{ width: 0 }}
+            animate={{ width: `${percent}%` }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          />
+        </div>
+      </div>
+
+      {/* Plan comparison */}
+      <div className="flex items-center gap-2">
+        <div className={`flex-1 text-center py-1.5 rounded-lg text-[10px] font-bold ${
+          isFree
+            ? 'bg-foreground/5 ring-1 ring-foreground/10 text-foreground'
+            : 'bg-muted/20 text-muted-foreground'
+        }`}>
+          {FREE_LIMIT} {labels.daily} · {labels.free}
         </div>
 
-        {/* Info */}
-        <div className="flex-1 min-w-0 space-y-2">
-          {/* Title row */}
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-bold text-foreground">{labels.ai}</span>
-            <span className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded-full ${
-              isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
-            }`}>
-              {isFree ? labels.free : labels.pro}
-            </span>
-          </div>
-
-          {/* Plan pills */}
-          <div className="flex items-center gap-1.5">
-            <div className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all ${
-              isFree
-                ? 'bg-foreground/5 text-foreground ring-1 ring-foreground/10'
-                : 'bg-muted/30 text-muted-foreground'
-            }`}>
-              <span>{FREE_LIMIT}</span>
-              <span className="font-normal text-[9px] opacity-70">{labels.free}</span>
-            </div>
-
-            <motion.button
-              onClick={() => isFree && navigate('/pricing-demo')}
-              whileHover={isFree ? { scale: 1.03 } : {}}
-              whileTap={isFree ? { scale: 0.97 } : {}}
-              className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all ${
-                !isFree
-                  ? 'bg-primary/10 text-primary ring-1 ring-primary/15'
-                  : 'bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/15 hover:to-primary/10 cursor-pointer'
-              }`}
-            >
-              <span>{PRO_LIMIT}</span>
-              <span className="font-normal text-[9px] opacity-70">{labels.pro}</span>
-            </motion.button>
-          </div>
-
+        <motion.button
+          onClick={() => isFree && navigate('/pricing-demo')}
+          whileHover={isFree ? { scale: 1.02 } : {}}
+          whileTap={isFree ? { scale: 0.98 } : {}}
+          className={`flex-1 text-center py-1.5 rounded-lg text-[10px] font-bold transition-all ${
+            !isFree
+              ? 'bg-primary/10 ring-1 ring-primary/15 text-primary'
+              : 'bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/15 cursor-pointer'
+          }`}
+        >
+          {PRO_LIMIT} {labels.daily} · {labels.pro}
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+});
           <span className="text-[8px] text-muted-foreground block">{labels.resets}</span>
         </div>
       </div>
