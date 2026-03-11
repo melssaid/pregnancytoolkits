@@ -3168,7 +3168,9 @@
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Track your baby's movements",
       "mealSuggestionLink": "Meal Suggestions",
-      "mealSuggestionLinkDesc": "Get healthy meal ideas"
+      "mealSuggestionLinkDesc": "Get healthy meal ideas",
+      "aiAnalysisTitle": "AI Weight Analysis",
+      "aiAnalysisButton": "Analyze with AI"
     },
     "bloodType": {
       "title": "Blood Type Calculator",
