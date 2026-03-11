@@ -84,7 +84,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     setIsExpanded(true);
     setHasGenerated(true);
     await streamChat({
-      type: 'pregnancy-assistant',
+      type: (aiType as any) || 'pregnancy-assistant',
       messages: [{ role: 'user', content: prompt }],
       context: contextWithLanguage,
       onDelta: (text) => setInsight(prev => prev + text),
