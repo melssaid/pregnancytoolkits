@@ -306,7 +306,7 @@ const FooterCard = memo(function FooterCard() {
     >
       {/* Breathing Glow */}
       <motion.div
-        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-md -z-10"
+        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-muted/20 via-muted/10 to-muted/20 blur-md -z-10"
         animate={{ opacity: [0, 0.5, 0], scale: [0.98, 1.02, 0.98] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />
