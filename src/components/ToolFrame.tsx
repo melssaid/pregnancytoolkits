@@ -11,7 +11,7 @@ import { ToolInsightTabs } from "./ToolInsightTabs";
 import { FertilityDailyTip } from "./FertilityDailyTip";
 
 import { SEOHead } from "./SEOHead";
-import logoImage from "@/assets/logo.webp";
+const logoImage = "/logo.webp";
 
 const FERTILITY_TOOL_IDS = new Set([
   "cycle-tracker", "due-date-calculator", "fertility-academy",

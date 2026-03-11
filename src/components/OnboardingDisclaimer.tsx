@@ -10,7 +10,7 @@ import { formatLocalized } from '@/lib/dateLocale';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-import logoImage from '@/assets/logo.webp';
+const logoImage = "/logo.webp";
 import { preloadAllLanguages } from '@/i18n';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
