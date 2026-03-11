@@ -372,20 +372,24 @@ const FooterCard = memo(function FooterCard() {
 
         {/* ─── AI Usage Section ─── */}
         <div className="space-y-2.5">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Brain className="w-3.5 h-3.5 text-primary" />
+          <div className="flex items-start gap-2.5">
+            <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center shrink-0">
+              <Brain className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-[12px] font-bold text-foreground">{labels.aiTitle}</span>
-            <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ms-auto ${
-              isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
-            }`}>
-              {isFree ? labels.free : labels.pro}
-            </span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-[12px] font-bold text-foreground">{labels.aiTitle}</span>
+                <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ms-auto shrink-0 ${
+                  isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
+                }`}>
+                  {isFree ? labels.free : labels.pro}
+                </span>
+              </div>
+              <p className="text-[10px] text-muted-foreground leading-relaxed mt-0.5">
+                {labels.aiDesc}
+              </p>
+            </div>
           </div>
-          <p className="text-[10px] text-muted-foreground leading-relaxed ps-8 -mt-1">
-            {labels.aiDesc}
-          </p>
 
           {/* Progress */}
           <div className="space-y-1">
