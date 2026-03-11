@@ -39,6 +39,7 @@ export interface Tool {
   titleKey: string;
   descriptionKey: string;
   icon: LucideIcon;
+  pngIcon?: string;
   categoryKey: string;
   href: string;
   priority: number;
