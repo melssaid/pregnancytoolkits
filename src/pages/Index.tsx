@@ -103,8 +103,8 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-[13px] font-bold text-foreground leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>{t(tool.titleKey)}</h3>
-          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed break-words">{t(tool.descriptionKey)}</p>
+          <h3 className="text-[13px] font-bold text-foreground leading-snug" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>{t(tool.titleKey)}</h3>
+          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed line-clamp-2">{t(tool.descriptionKey)}</p>
         </div>
         {isLocked ? (
           <Lock className="flex-shrink-0 w-4 h-4 text-muted-foreground/40" />
