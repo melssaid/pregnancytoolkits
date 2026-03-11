@@ -297,133 +297,127 @@ const FooterCard = memo(function FooterCard() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.3 }}
-      className="mt-3 space-y-3"
+      className="mt-3"
       style={{ fontFamily: "'Almarai', 'Tajawal', sans-serif" }}
     >
-      {/* ─── PRO Card ─── */}
-      <button onClick={handleTap} className="w-full text-start group">
-        <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/[0.06] to-primary/[0.01] p-5 relative overflow-hidden">
+      <button onClick={handleTap} className="w-full text-start">
+        <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/[0.04] to-card relative overflow-hidden">
+          {/* Shared glow */}
           <motion.div
-            className="absolute -inset-1 rounded-2xl bg-primary/5 blur-xl -z-10"
-            animate={{ opacity: [0.2, 0.5, 0.2] }}
+            className="absolute -inset-2 rounded-3xl bg-primary/5 blur-2xl -z-10"
+            animate={{ opacity: [0.15, 0.4, 0.15] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
           />
-          
-          <div className="flex items-center gap-3">
-            <div className="relative shrink-0">
-              <motion.div
-                className="absolute inset-0 rounded-xl bg-primary/15"
-                animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
-                transition={{ duration: 2.5, repeat: Infinity }}
-              />
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                <ShieldCheck className="w-6 h-6 text-primary" strokeWidth={1.75} />
-              </div>
-            </div>
 
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-[15px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                  PRO
-                </span>
-                <motion.span
-                  className="inline-flex items-center gap-1 px-2 py-[3px] rounded-md bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-bold shadow-sm"
-                  animate={{ scale: [1, 1.04, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Clock className="w-3 h-3" strokeWidth={2.5} />
-                  {t("pricing.trialBadge", { count: badgeDays })}
-                </motion.span>
-              </div>
-              <p className="text-[12px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
-            </div>
-
-            <ChevronRight className="w-5 h-5 text-primary/30 rtl:rotate-180 shrink-0" />
-          </div>
-        </div>
-      </button>
-
-      {/* ─── AI Usage — Unified style ─── */}
-      <button onClick={() => isFree && navigate('/pricing-demo')} className="w-full text-start">
-        <div className="rounded-2xl border border-border/20 bg-gradient-to-br from-card to-muted/10 p-5 relative overflow-hidden">
-          {/* Subtle glow */}
-          <motion.div
-            className="absolute -inset-1 rounded-2xl bg-primary/3 blur-xl -z-10"
-            animate={{ opacity: [0.15, 0.35, 0.15] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
-
-          <div className="flex items-center gap-2.5 mb-4">
-            <Brain className="w-5 h-5 text-primary" />
-            <span className="text-[14px] font-bold text-foreground">{labels.aiTitle}</span>
-          </div>
-
-          {/* Usage arc display */}
-          <div className="flex items-center gap-5">
-            {/* Circular progress */}
-            <div className="relative w-[72px] h-[72px] shrink-0">
-              <svg viewBox="0 0 72 72" className="w-full h-full -rotate-90">
-                <circle cx="36" cy="36" r="30" fill="none" stroke="hsl(var(--muted) / 0.25)" strokeWidth="5" />
-                <motion.circle
-                  cx="36" cy="36" r="30" fill="none"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 30}`}
-                  initial={{ strokeDashoffset: 2 * Math.PI * 30 }}
-                  animate={{ strokeDashoffset: 2 * Math.PI * 30 * (1 - percent / 100) }}
-                  transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
+          {/* ─── Top: PRO section ─── */}
+          <div className="p-5 pb-4">
+            <div className="flex items-center gap-3">
+              <div className="relative shrink-0">
+                <motion.div
+                  className="absolute inset-0 rounded-xl bg-primary/15"
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
+                  transition={{ duration: 2.5, repeat: Infinity }}
                 />
-              </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <motion.span
-                  className="text-[22px] font-black text-foreground tabular-nums leading-none"
-                  style={{ fontFamily: "'Cairo', sans-serif" }}
-                  key={remaining}
-                  initial={{ scale: 1.2, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                >
-                  {remaining}
-                </motion.span>
-                <span className="text-[8px] text-muted-foreground font-medium mt-0.5">/ {limit}</span>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <ShieldCheck className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                </div>
               </div>
+
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[15px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                    PRO
+                  </span>
+                  <motion.span
+                    className="inline-flex items-center gap-1 px-2 py-[3px] rounded-md bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-bold shadow-sm"
+                    animate={{ scale: [1, 1.04, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Clock className="w-3 h-3" strokeWidth={2.5} />
+                    {t("pricing.trialBadge", { count: badgeDays })}
+                  </motion.span>
+                </div>
+                <p className="text-[12px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
+              </div>
+
+              <ChevronRight className="w-5 h-5 text-primary/30 rtl:rotate-180 shrink-0" />
+            </div>
+          </div>
+
+          {/* ─── Divider ─── */}
+          <div className="mx-5 h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent" />
+
+          {/* ─── Bottom: AI Usage section ─── */}
+          <div className="p-5 pt-4">
+            <div className="flex items-center gap-2.5 mb-3">
+              <Brain className="w-4.5 h-4.5 text-primary/70" />
+              <span className="text-[13px] font-bold text-foreground/80">{labels.aiTitle}</span>
             </div>
 
-            {/* Plan comparison — inline */}
-            <div className="flex-1 space-y-2">
-              {/* Free tier row */}
-              <div className={`flex items-center justify-between px-3 py-2 rounded-lg border ${
-                isFree ? 'border-foreground/10 bg-muted/15' : 'border-border/15 bg-muted/5'
-              }`}>
-                <span className="text-[11px] font-semibold text-muted-foreground">{labels.free}</span>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[16px] font-black text-muted-foreground tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>{FREE_LIMIT}</span>
-                  <span className="text-[9px] text-muted-foreground/60">{labels.daily}</span>
-                  {isFree && <span className="text-[9px] text-primary ml-1">●</span>}
+            <div className="flex items-center gap-4">
+              {/* Circular progress */}
+              <div className="relative w-[68px] h-[68px] shrink-0">
+                <svg viewBox="0 0 68 68" className="w-full h-full -rotate-90">
+                  <circle cx="34" cy="34" r="28" fill="none" stroke="hsl(var(--primary) / 0.08)" strokeWidth="4.5" />
+                  <motion.circle
+                    cx="34" cy="34" r="28" fill="none"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth="4.5"
+                    strokeLinecap="round"
+                    strokeDasharray={`${2 * Math.PI * 28}`}
+                    initial={{ strokeDashoffset: 2 * Math.PI * 28 }}
+                    animate={{ strokeDashoffset: 2 * Math.PI * 28 * (1 - percent / 100) }}
+                    transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <motion.span
+                    className="text-[20px] font-black text-foreground tabular-nums leading-none"
+                    style={{ fontFamily: "'Cairo', sans-serif" }}
+                    key={remaining}
+                    initial={{ scale: 1.2, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                  >
+                    {remaining}
+                  </motion.span>
+                  <span className="text-[8px] text-muted-foreground font-medium mt-0.5">/ {limit}</span>
                 </div>
               </div>
 
-              {/* Pro tier row */}
-              <div className={`flex items-center justify-between px-3 py-2 rounded-lg border ${
-                !isFree ? 'border-primary/15 bg-primary/5' : 'border-primary/10 bg-primary/[0.02]'
-              }`}>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[11px] font-semibold text-primary">{labels.pro}</span>
-                  {isFree && (
-                    <motion.span
-                      className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary"
-                      animate={{ opacity: [0.7, 1, 0.7] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      {labels.upgrade}
-                    </motion.span>
-                  )}
+              {/* Plan rows */}
+              <div className="flex-1 space-y-1.5">
+                <div className={`flex items-center justify-between px-3 py-2 rounded-lg ${
+                  isFree ? 'bg-muted/15' : 'bg-muted/5'
+                }`}>
+                  <span className="text-[11px] font-semibold text-muted-foreground">{labels.free}</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[15px] font-black text-muted-foreground tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>{FREE_LIMIT}</span>
+                    <span className="text-[9px] text-muted-foreground/50">{labels.daily}</span>
+                    {isFree && <span className="text-[8px] text-primary">●</span>}
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[16px] font-black text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>{PRO_LIMIT}</span>
-                  <span className="text-[9px] text-primary/60">{labels.daily}</span>
-                  {!isFree && <span className="text-[9px] text-primary ml-1">●</span>}
+
+                <div className={`flex items-center justify-between px-3 py-2 rounded-lg ${
+                  !isFree ? 'bg-primary/5' : 'bg-primary/[0.02]'
+                }`}>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[11px] font-semibold text-primary">{labels.pro}</span>
+                    {isFree && (
+                      <motion.span
+                        className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary"
+                        animate={{ opacity: [0.6, 1, 0.6] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        {labels.upgrade}
+                      </motion.span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[15px] font-black text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>{PRO_LIMIT}</span>
+                    <span className="text-[9px] text-primary/50">{labels.daily}</span>
+                    {!isFree && <span className="text-[8px] text-primary">●</span>}
+                  </div>
                 </div>
               </div>
             </div>
