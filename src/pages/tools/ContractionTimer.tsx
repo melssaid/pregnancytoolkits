@@ -292,7 +292,7 @@ export default function ContractionTimer() {
           </div>
         )}
 
-        <MedicalDisclaimer />
+        <InlineDisclaimer />
       </div>
     </Layout>
   );

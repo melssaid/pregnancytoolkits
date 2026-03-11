@@ -150,6 +150,7 @@ export function AnimatedRoutes() {
         {/* PREGNANCY TRACKING */}
         <Route path="/tools/fetal-growth" element={<PageTransition variant="tool"><FetalDevelopment3D /></PageTransition>} />
         <Route path="/tools/kick-counter" element={<PageTransition variant="tool"><SmartKickCounter /></PageTransition>} />
+        <Route path="/tools/contraction-timer" element={<PageTransition variant="tool"><ContractionTimer /></PageTransition>} />
         <Route path="/tools/weight-gain" element={<PageTransition variant="tool"><SmartWeightGainAnalyzer /></PageTransition>} />
 
         {/* MENTAL HEALTH */}
