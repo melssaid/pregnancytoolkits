@@ -77,6 +77,8 @@ export default function SmartWeightGainAnalyzer() {
       else if (bmi < 25) setBmiCategory('normal');
       else if (bmi < 30) setBmiCategory('overweight');
       else setBmiCategory('obese');
+      // Auto-show analysis when profile is complete
+      setShowAnalysis(true);
     }
   }, [prePregnancyWeight, height]);
 
@@ -299,13 +301,7 @@ export default function SmartWeightGainAnalyzer() {
                     {/* BMI Scale Bar */}
                     <BMIScaleBar bmi={bmi} t={t} />
 
-                    {/* Start Analysis Button */}
-                    {!showAnalysis && (
-                      <Button onClick={handleStartAnalysis} className="w-full h-11 text-sm font-bold gap-2" size="lg">
-                        <TrendingUp className="w-4 h-4" />
-                        {t('toolsInternal.weightGain.startAnalysis')}
-                      </Button>
-                    )}
+                    {/* Profile complete - analysis auto-shows */}
                   </motion.div>
                 )}
               </AnimatePresence>
