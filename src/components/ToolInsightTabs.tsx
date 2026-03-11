@@ -54,6 +54,7 @@ function clearCache(toolId: string) {
 export function ToolInsightTabs({ toolId }: ToolInsightTabsProps) {
   const { t, i18n } = useTranslation();
   const { streamChat, isLoading, error, errorType, clearError } = usePregnancyAI();
+  const { isLimitReached } = useAIUsage();
 
   const [tipContent, setTipContent] = useState("");
   const [loaded, setLoaded] = useState(false);
