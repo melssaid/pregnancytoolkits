@@ -190,6 +190,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                     height={showBack ? 64 : 52}
                     loading="eager"
                     decoding="async"
+                    fetchPriority="high"
                     className="w-full h-full object-cover scale-[1.35]"
                   />
                 </div>
