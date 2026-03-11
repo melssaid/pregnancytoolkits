@@ -15,6 +15,7 @@ import { WeightGainChart } from '@/components/weight-gain/WeightGainChart';
 import { BMIScaleBar } from '@/components/weight-gain/BMIScaleBar';
 import { WeightDistributionCard } from '@/components/weight-gain/WeightDistributionCard';
 import { MedicalTipCard } from '@/components/weight-gain/MedicalTipCard';
+import { AIInsightCard } from '@/components/ai/AIInsightCard';
 
 interface WeightEntry {
   id: string;
