@@ -175,7 +175,7 @@ html[lang="ar"] .ar-heading {
 
   /* RTL Support */
   html[dir="rtl"] {
-    font-family: 'Almarai', 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   body {
