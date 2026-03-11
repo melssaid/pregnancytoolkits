@@ -349,9 +349,23 @@ const FooterCard = memo(function FooterCard() {
 
           {/* ─── Bottom: AI Usage section ─── */}
           <div className="p-5 pt-4">
-            <div className="flex items-center gap-2.5 mb-3">
-              <Brain className="w-4.5 h-4.5 text-primary/70" />
-              <span className="text-[13px] font-bold text-foreground/80">{labels.aiTitle}</span>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="relative shrink-0">
+                <motion.div
+                  className="absolute inset-0 rounded-xl bg-primary/15"
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
+                  transition={{ duration: 2.5, repeat: Infinity }}
+                />
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Brain className="w-6 h-6 text-primary" strokeWidth={1.75} />
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="text-[15px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {labels.aiTitle}
+                </span>
+                <p className="text-[11px] text-muted-foreground leading-snug mt-0.5">{labels.aiDesc}</p>
+              </div>
             </div>
 
             <div className="flex items-center gap-4">
