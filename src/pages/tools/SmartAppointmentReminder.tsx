@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check, Sparkles, Stethoscope, TestTube, Baby, Activity, ChevronDown, ChevronUp, ArrowLeft, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, Plus, Bell, MapPin, User, Clock, Trash2, Edit2, Loader2, MessageSquare, Check, Sparkles, Stethoscope, TestTube, Baby, Activity, ChevronDown, ChevronUp, BellRing, FileText, Clipboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
@@ -17,6 +17,7 @@ import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { ToolFrame } from '@/components/ToolFrame';
 import { WeekSlider } from '@/components/WeekSlider';
 import { MedicalDisclaimer } from '@/components/compliance';
+import { AIActionButton } from '@/components/ai/AIActionButton';
 
 interface Appointment {
   id: string;
@@ -37,6 +38,34 @@ const APPOINTMENT_TYPES = [
   { key: 'other',       icon: Calendar,    color: 'bg-muted text-muted-foreground' },
 ];
 
+/** Auto-enable appointment notifications after saving */
+const enableAppointmentNotifications = () => {
+  try {
+    const raw = localStorage.getItem('notificationSettings');
+    if (raw) {
+      const settings = JSON.parse(raw);
+      if (!settings.appointmentReminders || !settings.masterEnabled) {
+        settings.appointmentReminders = true;
+        settings.masterEnabled = true;
+        localStorage.setItem('notificationSettings', JSON.stringify(settings));
+      }
+    } else {
+      // First time — create settings with appointment enabled
+      localStorage.setItem('notificationSettings', JSON.stringify({
+        masterEnabled: true,
+        appointmentReminders: true,
+        vitaminReminders: false,
+        waterReminders: false,
+        cycleReminders: false,
+        weeklyTipReminders: false,
+        kickReminders: false,
+        milestoneReminders: false,
+        diaperReminders: false,
+      }));
+    }
+  } catch {}
+};
+
 const SmartAppointmentReminder: React.FC = () => {
   const { t } = useTranslation();
   const { profile: userProfile } = useUserProfile();
@@ -50,12 +79,12 @@ const SmartAppointmentReminder: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
   const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
+  const [formStep, setFormStep] = useState(0); // 0: type+date, 1: details, 2: questions
   const { streamChat, error: aiError } = usePregnancyAI();
 
   useResetOnLanguageChange(() => { setSuggestedQuestions([]); });
   const abortRef = useRef(false);
 
-  // Sync week from central profile
   useEffect(() => {
     if (userProfile.pregnancyWeek) setCurrentWeek(userProfile.pregnancyWeek);
   }, [userProfile.pregnancyWeek]);
@@ -88,8 +117,8 @@ const SmartAppointmentReminder: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
     
     if (!formData.title || !formData.appointment_date) {
       toast({
@@ -121,12 +150,23 @@ const SmartAppointmentReminder: React.FC = () => {
         setAppointments(prev => prev.map(a => 
           a.id === editingId ? { ...a, ...appointmentData } : a
         ));
-        toast({ title: t('common.success') + ' ✅' });
       } else {
         const newAppointment = await AppointmentService.add(appointmentData);
         setAppointments(prev => [...prev, newAppointment]);
-        toast({ title: t('common.success') + ' ✅' });
       }
+
+      // Auto-enable notifications
+      enableAppointmentNotifications();
+
+      toast({
+        title: t('common.success') + ' ✅',
+        description: formData.questions.length > 0
+          ? t('toolsInternal.appointmentReminder.savedWithQuestions', {
+              count: formData.questions.length,
+              defaultValue: 'Saved with {{count}} questions for the doctor'
+            })
+          : undefined,
+      });
 
       resetForm();
       
@@ -173,6 +213,7 @@ const SmartAppointmentReminder: React.FC = () => {
     });
     setEditingId(appointment.id);
     setShowForm(true);
+    setFormStep(0);
   };
 
   const resetForm = () => {
@@ -188,6 +229,7 @@ const SmartAppointmentReminder: React.FC = () => {
     setEditingId(null);
     setShowForm(false);
     setSuggestedQuestions([]);
+    setFormStep(0);
   };
 
   const generateQuestions = async () => {
@@ -311,6 +353,8 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
     return APPOINTMENT_TYPES[4];
   };
 
+  const canProceedStep0 = formData.title && formData.appointment_date;
+
   if (showDisclaimer) {
     return (
       <MedicalDisclaimer
@@ -338,6 +382,13 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
   const upcoming = getUpcomingAppointments();
   const past = getPastAppointments();
 
+  // Step indicators for form
+  const steps = [
+    { icon: Calendar, label: t('toolsInternal.appointmentReminder.appointmentType', 'Type & Date') },
+    { icon: FileText, label: t('toolsInternal.appointmentReminder.details', 'Details') },
+    { icon: MessageSquare, label: t('toolsInternal.appointmentReminder.questionsForDoctor', 'Questions') },
+  ];
+
   return (
     <ToolFrame
       title={t('toolsInternal.appointmentReminder.title')}
@@ -346,7 +397,6 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
       toolId="appointment-reminder"
     >
       <div className="space-y-5">
-        {/* Week Slider */}
         <WeekSlider week={currentWeek} onChange={setCurrentWeek} />
 
         {/* Quick Stats */}
@@ -385,211 +435,366 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
           </Button>
         )}
 
-        {/* Form */}
-        {showForm && (
-          <Card className="shadow-lg border-primary/20">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-base flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-primary" />
-                {editingId ? t('common.edit') : t('toolsInternal.appointmentReminder.addAppointment')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Appointment Type Quick Select */}
-                <div>
-                  <label className="block text-xs font-medium mb-2">{t('toolsInternal.appointmentReminder.appointmentType')} *</label>
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {APPOINTMENT_TYPES.map(type => {
-                      const Icon = type.icon;
-                      const isSelected = formData.title.toLowerCase().includes(t(`toolsInternal.appointmentReminder.${type.key}`).toLowerCase());
-                      return (
-                        <button
-                          key={type.key}
-                          type="button"
-                          onClick={() => setFormData(prev => ({ ...prev, title: t(`toolsInternal.appointmentReminder.${type.key}`) }))}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                            isSelected 
-                              ? 'bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2' 
-                              : type.color
-                          }`}
-                        >
-                          <Icon className="w-3.5 h-3.5" />
-                          {t(`toolsInternal.appointmentReminder.${type.key}`)}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <Input
-                    placeholder={t('toolsInternal.appointmentReminder.customType')}
-                    value={formData.title}
-                    onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                    className="text-sm"
-                    required
-                  />
-                </div>
-                
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.date')} *</label>
-                    <Input
-                      type="date"
-                      value={formData.appointment_date}
-                      onChange={(e) => setFormData(prev => ({ ...prev, appointment_date: e.target.value }))}
-                      className="text-sm"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.time')}</label>
-                    <TimePicker
-                      value={formData.appointment_time}
-                      onChange={(value) => setFormData(prev => ({ ...prev, appointment_time: value }))}
-                      placeholder={t('toolsInternal.appointmentReminder.selectTime')}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.doctorName')}</label>
-                  <Input
-                    placeholder="Dr. ..."
-                    value={formData.doctor_name}
-                    onChange={(e) => setFormData(prev => ({ ...prev, doctor_name: e.target.value }))}
-                    className="text-sm"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.location')}</label>
-                  <Input
-                    placeholder={t('toolsInternal.appointmentReminder.locationPlaceholder')}
-                    value={formData.location}
-                    onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
-                    className="text-sm"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium mb-1">{t('toolsInternal.appointmentReminder.notes')}</label>
-                  <Textarea
-                    placeholder={t('toolsInternal.appointmentReminder.notesPlaceholder')}
-                    value={formData.notes}
-                    onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
-                    rows={2}
-                    className="text-sm"
-                  />
-                </div>
-
-                {/* AI Questions */}
-                <div className="border-t pt-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <label className="text-xs font-medium flex items-center gap-1.5">
-                      <MessageSquare className="w-3.5 h-3.5 text-primary" />
-                      {t('toolsInternal.appointmentReminder.questionsForDoctor')}
-                      <motion.span
-                        className="inline-flex items-center text-primary"
-                        animate={{ x: [0, 6, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        {/* ─── Multi-Step Form ─── */}
+        <AnimatePresence mode="wait">
+          {showForm && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+            >
+              <Card className="shadow-lg border-primary/20 overflow-hidden">
+                {/* Step Indicator */}
+                <div className="flex items-center gap-0 border-b border-border/50 bg-muted/20">
+                  {steps.map((step, i) => {
+                    const StepIcon = step.icon;
+                    const isActive = formStep === i;
+                    const isDone = formStep > i;
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setFormStep(i)}
+                        className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-[11px] font-semibold transition-all relative ${
+                          isActive
+                            ? 'text-primary bg-primary/5'
+                            : isDone
+                              ? 'text-primary/60'
+                              : 'text-muted-foreground'
+                        }`}
                       >
-                        <ArrowLeft className="w-3.5 h-3.5 rtl:hidden" />
-                        <ArrowRight className="w-3.5 h-3.5 ltr:hidden" />
-                      </motion.span>
-                    </label>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={generateQuestions}
-                      disabled={isGeneratingQuestions || !formData.title}
-                      className="h-7 text-xs gap-1"
-                    >
-                      {isGeneratingQuestions ? (
-                        <Loader2 className="w-3 h-3 animate-spin" />
-                      ) : (
-                        <Sparkles className="w-3 h-3 text-primary" />
-                      )}
-                      {t('toolsInternal.appointmentReminder.aiSuggestions')}
-                    </Button>
-                  </div>
+                        <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold ${
+                          isActive
+                            ? 'bg-primary text-primary-foreground'
+                            : isDone
+                              ? 'bg-primary/20 text-primary'
+                              : 'bg-muted text-muted-foreground'
+                        }`}>
+                          {isDone ? <Check className="w-3 h-3" /> : i + 1}
+                        </div>
+                        <span className="hidden sm:inline">{step.label}</span>
+                        {isActive && (
+                          <motion.div
+                            layoutId="stepIndicator"
+                            className="absolute bottom-0 inset-x-0 h-[2px] bg-primary"
+                          />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
 
-                  {/* Selected Questions */}
-                  {formData.questions.length > 0 && (
-                    <div className="space-y-1.5 mb-3">
-                      {formData.questions.map((q, i) => (
-                        <div key={i} className="flex items-center gap-2 bg-primary/5 p-2 rounded-lg">
-                          <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                          <span className="text-xs flex-1">{q}</span>
+                <CardContent className="p-4">
+                  <form onSubmit={(e) => { e.preventDefault(); if (formStep < 2) { setFormStep(f => f + 1); } else { handleSubmit(); } }}>
+                    <AnimatePresence mode="wait">
+                      {/* ── Step 0: Type & Date ── */}
+                      {formStep === 0 && (
+                        <motion.div
+                          key="step0"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-4"
+                        >
+                          <div>
+                            <label className="block text-xs font-semibold mb-2.5 text-foreground">
+                              {t('toolsInternal.appointmentReminder.appointmentType')} *
+                            </label>
+                            <div className="grid grid-cols-2 gap-2 mb-3">
+                              {APPOINTMENT_TYPES.map(type => {
+                                const Icon = type.icon;
+                                const typeName = t(`toolsInternal.appointmentReminder.${type.key}`);
+                                const isSelected = formData.title === typeName;
+                                return (
+                                  <button
+                                    key={type.key}
+                                    type="button"
+                                    onClick={() => setFormData(prev => ({ ...prev, title: typeName }))}
+                                    className={`flex items-center gap-2 p-3 rounded-xl text-xs font-semibold transition-all border ${
+                                      isSelected
+                                        ? 'bg-primary/10 border-primary/30 text-primary ring-2 ring-primary/20'
+                                        : 'bg-card border-border/40 hover:border-primary/20 hover:bg-muted/30'
+                                    }`}
+                                  >
+                                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isSelected ? 'bg-primary/15' : type.color}`}>
+                                      <Icon className="w-4 h-4" />
+                                    </div>
+                                    <span className="text-start leading-tight">{typeName}</span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                            <Input
+                              placeholder={t('toolsInternal.appointmentReminder.customType')}
+                              value={formData.title}
+                              onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                              className="text-sm"
+                              required
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-xs font-semibold mb-1.5 text-foreground">
+                                {t('toolsInternal.appointmentReminder.date')} *
+                              </label>
+                              <Input
+                                type="date"
+                                value={formData.appointment_date}
+                                onChange={(e) => setFormData(prev => ({ ...prev, appointment_date: e.target.value }))}
+                                className="text-sm"
+                                required
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-xs font-semibold mb-1.5 text-foreground">
+                                {t('toolsInternal.appointmentReminder.time')}
+                              </label>
+                              <TimePicker
+                                value={formData.appointment_time}
+                                onChange={(value) => setFormData(prev => ({ ...prev, appointment_time: value }))}
+                                placeholder={t('toolsInternal.appointmentReminder.selectTime')}
+                              />
+                            </div>
+                          </div>
+
                           <Button
                             type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="h-5 w-5"
-                            onClick={() => removeQuestion(i)}
+                            className="w-full"
+                            disabled={!canProceedStep0}
+                            onClick={() => setFormStep(1)}
                           >
-                            <Trash2 className="w-3 h-3 text-destructive" />
+                            {t('common.next', 'Next')}
                           </Button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                        </motion.div>
+                      )}
 
-                  {/* Suggested Questions */}
-                  {suggestedQuestions.length > 0 && (
-                    <div className="space-y-2 bg-gradient-to-br from-primary/5 to-accent/5 p-4 rounded-xl border border-primary/20">
-                      <p className="text-sm text-primary font-semibold flex items-center gap-1.5 mb-3">
-                        <Sparkles className="w-4 h-4" />
-                        {t('toolsInternal.appointmentReminder.aiSuggestionsLabel')}
-                      </p>
-                      <div className="flex flex-col gap-2">
-                        {suggestedQuestions.map((q, i) => {
-                          const isAdded = formData.questions.includes(q);
-                          return (
-                            <button
-                              key={i}
-                              type="button"
-                              onClick={() => !isAdded && addQuestion(q)}
-                              disabled={isAdded}
-                              className={`flex items-start gap-3 w-full text-start p-3 rounded-lg border transition-all duration-200 ${
-                                isAdded
-                                  ? 'bg-primary/10 border-primary/30 opacity-70'
-                                  : 'bg-card border-border hover:border-primary/40 hover:shadow-sm active:scale-[0.98]'
-                              }`}
-                            >
-                              <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                                isAdded ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
-                              }`}>
-                                {isAdded ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
+                      {/* ── Step 1: Details ── */}
+                      {formStep === 1 && (
+                        <motion.div
+                          key="step1"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-4"
+                        >
+                          <div>
+                            <label className="block text-xs font-semibold mb-1.5 text-foreground flex items-center gap-1.5">
+                              <User className="w-3.5 h-3.5 text-primary" />
+                              {t('toolsInternal.appointmentReminder.doctorName')}
+                            </label>
+                            <Input
+                              placeholder="Dr. ..."
+                              value={formData.doctor_name}
+                              onChange={(e) => setFormData(prev => ({ ...prev, doctor_name: e.target.value }))}
+                              className="text-sm"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-semibold mb-1.5 text-foreground flex items-center gap-1.5">
+                              <MapPin className="w-3.5 h-3.5 text-primary" />
+                              {t('toolsInternal.appointmentReminder.location')}
+                            </label>
+                            <Input
+                              placeholder={t('toolsInternal.appointmentReminder.locationPlaceholder')}
+                              value={formData.location}
+                              onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
+                              className="text-sm"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-semibold mb-1.5 text-foreground flex items-center gap-1.5">
+                              <Clipboard className="w-3.5 h-3.5 text-primary" />
+                              {t('toolsInternal.appointmentReminder.notes')}
+                            </label>
+                            <Textarea
+                              placeholder={t('toolsInternal.appointmentReminder.notesPlaceholder')}
+                              value={formData.notes}
+                              onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                              rows={2}
+                              className="text-sm"
+                            />
+                          </div>
+
+                          {/* Notification hint */}
+                          <div className="flex items-center gap-2.5 p-3 rounded-xl bg-primary/5 border border-primary/15">
+                            <BellRing className="w-4 h-4 text-primary shrink-0" />
+                            <p className="text-[11px] text-muted-foreground leading-snug">
+                              {t('toolsInternal.appointmentReminder.notificationHint', 'Reminders will be sent automatically: 1 day before, the morning of, and 2 hours before your appointment.')}
+                            </p>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <Button type="button" variant="outline" className="flex-1" onClick={() => setFormStep(0)}>
+                              {t('common.back', 'Back')}
+                            </Button>
+                            <Button type="button" className="flex-1" onClick={() => setFormStep(2)}>
+                              {t('common.next', 'Next')}
+                            </Button>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {/* ── Step 2: AI Questions ── */}
+                      {formStep === 2 && (
+                        <motion.div
+                          key="step2"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.2 }}
+                          className="space-y-4"
+                        >
+                          <div className="text-center py-2">
+                            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
+                              <MessageSquare className="w-5 h-5 text-primary" />
+                            </div>
+                            <p className="text-sm font-bold text-foreground">
+                              {t('toolsInternal.appointmentReminder.questionsForDoctor')}
+                            </p>
+                            <p className="text-[11px] text-muted-foreground mt-1">
+                              {t('toolsInternal.appointmentReminder.questionsHint', 'AI can suggest relevant questions for week {{week}}', { week: currentWeek })}
+                            </p>
+                          </div>
+
+                          {/* Generate button */}
+                          <AIActionButton
+                            onClick={generateQuestions}
+                            isLoading={isGeneratingQuestions}
+                            label={t('toolsInternal.appointmentReminder.aiSuggestions')}
+                            loadingLabel={t('common.analyzing', 'Analyzing...')}
+                            disabled={!formData.title}
+                            icon={Sparkles}
+                            variant="compact"
+                            showUsage={true}
+                          />
+
+                          {/* Selected Questions */}
+                          {formData.questions.length > 0 && (
+                            <div className="space-y-1.5">
+                              <p className="text-[11px] font-semibold text-foreground/70 px-1">
+                                {t('toolsInternal.appointmentReminder.yourQuestions', 'Your questions')} ({formData.questions.length})
+                              </p>
+                              {formData.questions.map((q, i) => (
+                                <motion.div
+                                  key={i}
+                                  initial={{ opacity: 0, scale: 0.95 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  className="flex items-center gap-2 bg-primary/5 border border-primary/15 p-2.5 rounded-xl"
+                                >
+                                  <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                                  <span className="text-xs flex-1 leading-relaxed">{q}</span>
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-6 w-6 shrink-0"
+                                    onClick={() => removeQuestion(i)}
+                                  >
+                                    <Trash2 className="w-3 h-3 text-destructive" />
+                                  </Button>
+                                </motion.div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Suggested Questions */}
+                          {suggestedQuestions.length > 0 && (
+                            <div className="space-y-2 bg-gradient-to-br from-primary/5 to-accent/5 p-4 rounded-xl border border-primary/15">
+                              <p className="text-[11px] text-primary font-semibold flex items-center gap-1.5">
+                                <Sparkles className="w-3.5 h-3.5" />
+                                {t('toolsInternal.appointmentReminder.aiSuggestionsLabel')}
+                              </p>
+                              <div className="flex flex-col gap-2">
+                                {suggestedQuestions.map((q, i) => {
+                                  const isAdded = formData.questions.includes(q);
+                                  return (
+                                    <motion.button
+                                      key={i}
+                                      type="button"
+                                      onClick={() => !isAdded && addQuestion(q)}
+                                      disabled={isAdded}
+                                      initial={{ opacity: 0, y: 8 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      transition={{ delay: i * 0.08 }}
+                                      className={`flex items-start gap-2.5 w-full text-start p-3 rounded-xl border transition-all duration-200 ${
+                                        isAdded
+                                          ? 'bg-primary/10 border-primary/25 opacity-70'
+                                          : 'bg-card border-border/40 hover:border-primary/30 hover:shadow-sm active:scale-[0.98]'
+                                      }`}
+                                    >
+                                      <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
+                                        isAdded ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
+                                      }`}>
+                                        {isAdded ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
+                                      </div>
+                                      <span className="text-xs leading-relaxed flex-1">{q}</span>
+                                    </motion.button>
+                                  );
+                                })}
                               </div>
-                              <span className="text-xs leading-relaxed flex-1">{q}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                      <AIResultDisclaimer />
-                    </div>
-                  )}
-                  
-                  {aiError && (
-                    <div className="bg-destructive/10 text-destructive p-2 rounded-lg text-xs">
-                      ⚠️ {aiError}
-                    </div>
-                  )}
-                </div>
+                              <AIResultDisclaimer />
+                            </div>
+                          )}
+                          
+                          {aiError && (
+                            <div className="bg-destructive/10 text-destructive p-2.5 rounded-xl text-xs">
+                              ⚠️ {aiError}
+                            </div>
+                          )}
 
-                <div className="flex gap-2 pt-2">
-                  <Button type="submit" className="flex-1" size="sm" disabled={isSaving}>
-                    {isSaving && <Loader2 className="w-3 h-3 animate-spin mr-1" />}
-                    {editingId ? t('common.save') : t('common.add')}
-                  </Button>
-                  <Button type="button" variant="outline" size="sm" onClick={resetForm}>
+                          <div className="flex gap-2 pt-1">
+                            <Button type="button" variant="outline" className="flex-1" onClick={() => setFormStep(1)}>
+                              {t('common.back', 'Back')}
+                            </Button>
+                            <Button
+                              type="button"
+                              className="flex-1 bg-gradient-to-r from-primary to-primary/80"
+                              disabled={isSaving}
+                              onClick={() => handleSubmit()}
+                            >
+                              {isSaving && <Loader2 className="w-3 h-3 animate-spin mr-1" />}
+                              {editingId ? t('common.save') : t('common.add')}
+                              {formData.questions.length > 0 && (
+                                <Badge variant="secondary" className="ms-1.5 text-[9px] h-4 px-1.5">
+                                  {formData.questions.length}
+                                </Badge>
+                              )}
+                            </Button>
+                          </div>
+
+                          {/* Skip questions option */}
+                          {formData.questions.length === 0 && suggestedQuestions.length === 0 && !isGeneratingQuestions && (
+                            <button
+                              type="button"
+                              onClick={() => handleSubmit()}
+                              className="w-full text-center text-[11px] text-muted-foreground hover:text-foreground py-1 transition-colors"
+                            >
+                              {t('toolsInternal.appointmentReminder.skipQuestions', 'Skip — save without questions')}
+                            </button>
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </form>
+
+                  {/* Cancel */}
+                  <button
+                    type="button"
+                    onClick={resetForm}
+                    className="w-full text-center text-[11px] text-muted-foreground hover:text-destructive mt-3 py-1 transition-colors"
+                  >
                     {t('common.cancel')}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        )}
+                  </button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Upcoming Appointments */}
         {upcoming.length > 0 && (
@@ -646,18 +851,20 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
                             )}
                           </div>
 
+                          {/* Questions saved with appointment */}
                           {appointment.questions && appointment.questions.length > 0 && (
-                            <div className="mt-2 bg-muted/50 p-2 rounded-lg">
-                              <p className="text-[10px] font-medium text-muted-foreground mb-1">
-                                {t('toolsInternal.appointmentReminder.yourQuestions')}:
+                            <div className="mt-2.5 bg-primary/5 border border-primary/10 p-2.5 rounded-xl">
+                              <p className="text-[10px] font-semibold text-primary mb-1.5 flex items-center gap-1">
+                                <MessageSquare className="w-3 h-3" />
+                                {t('toolsInternal.appointmentReminder.yourQuestions')} ({appointment.questions.length})
                               </p>
-                              <ul className="text-xs space-y-0.5">
-                                {appointment.questions.slice(0, 2).map((q: string, i: number) => (
-                                  <li key={i} className="text-foreground/80">• {q}</li>
+                              <ul className="text-xs space-y-1">
+                                {appointment.questions.map((q: string, i: number) => (
+                                  <li key={i} className="flex items-start gap-1.5 text-foreground/80">
+                                    <Check className="w-3 h-3 text-primary shrink-0 mt-0.5" />
+                                    <span>{q}</span>
+                                  </li>
                                 ))}
-                                {appointment.questions.length > 2 && (
-                                  <li className="text-muted-foreground">+{appointment.questions.length - 2} {t('common.moreItems', { count: appointment.questions.length - 2 })}</li>
-                                )}
                               </ul>
                             </div>
                           )}
@@ -724,7 +931,7 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
                               </p>
                             )}
                             {appointment.questions && appointment.questions.length > 0 && (
-                              <div className="mt-1.5 bg-muted/50 p-1.5 rounded">
+                              <div className="mt-1.5 bg-muted/50 p-2 rounded-lg">
                                 <ul className="text-[10px] space-y-0.5">
                                   {appointment.questions.map((q: string, i: number) => (
                                     <li key={i} className="text-foreground/70">• {q}</li>
