@@ -408,7 +408,13 @@ const FooterCard = memo(function FooterCard() {
                     <span className="text-[11px] font-semibold text-muted-foreground">{labels.free}</span>
                   </div>
                   <div className="flex-1 h-[6px] rounded-full bg-muted/20 overflow-hidden">
-                    <div className="h-full rounded-full bg-muted-foreground/30" style={{ width: `${(FREE_LIMIT / PRO_LIMIT) * 100}%` }} />
+                    <motion.div
+                      className="h-full rounded-full bg-muted-foreground/30"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${(FREE_LIMIT / PRO_LIMIT) * 100}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+                    />
                   </div>
                   <span className="text-[12px] font-black text-muted-foreground tabular-nums min-w-[18px] text-end" style={{ fontFamily: "'Cairo', sans-serif" }}>{FREE_LIMIT}</span>
                   <span className="text-[8px] text-muted-foreground/50">{labels.daily}</span>
