@@ -77,6 +77,8 @@ export default function SmartWeightGainAnalyzer() {
       else if (bmi < 25) setBmiCategory('normal');
       else if (bmi < 30) setBmiCategory('overweight');
       else setBmiCategory('obese');
+      // Auto-show analysis when profile is complete
+      setShowAnalysis(true);
     }
   }, [prePregnancyWeight, height]);
 
