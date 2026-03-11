@@ -63,10 +63,10 @@ export default function PricingDemo() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-center mb-5"
+            className="text-center mb-3"
           >
             <motion.div
-              className="relative w-[88px] h-[88px] mx-auto mb-4 flex items-center justify-center"
+              className="relative w-[72px] h-[72px] mx-auto mb-3 flex items-center justify-center"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
@@ -88,12 +88,12 @@ export default function PricingDemo() {
               ))}
               {/* Breathing aura */}
               <motion.div
-                className="absolute w-16 h-16 rounded-full bg-primary/10 blur-lg"
+                className="absolute w-12 h-12 rounded-full bg-primary/10 blur-lg"
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
               {/* Logo */}
-              <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-2 ring-primary/15">
+              <div className="relative w-13 h-13 rounded-full overflow-hidden shadow-lg shadow-primary/15 ring-2 ring-primary/15">
                 <img
                   src="/logo.webp"
                   alt="Logo"
@@ -103,39 +103,39 @@ export default function PricingDemo() {
             </motion.div>
 
             <h1
-              className="text-[22px] font-extrabold text-foreground tracking-tight mb-1.5 leading-tight"
+              className="text-[20px] font-extrabold text-foreground tracking-tight mb-1 leading-tight"
               style={{ fontFamily: isAr ? "'Almarai', 'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
             >
               {t("pricing.title")}
             </h1>
             <p
-              className="text-[13px] text-muted-foreground leading-relaxed max-w-[280px] mx-auto"
+              className="text-[11px] text-muted-foreground leading-relaxed max-w-[240px] mx-auto"
               style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
             >
               {t("pricing.subtitle")}
             </p>
           </motion.div>
 
-          {/* Features grid */}
+          {/* Features */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.12 }}
-            className="grid grid-cols-1 gap-2 mb-5"
+            transition={{ duration: 0.35, delay: 0.12 }}
+            className="grid grid-cols-1 gap-1.5 mb-4"
           >
             {features.map(({ icon: Icon, key }, idx) => (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, x: isRTL ? 12 : -12 }}
+                initial={{ opacity: 0, x: isRTL ? 8 : -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: 0.15 + idx * 0.05 }}
-                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-card/80 border border-border/10"
+                transition={{ duration: 0.25, delay: 0.12 + idx * 0.04 }}
+                className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-card/60 border border-border/5"
               >
-                <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
-                  <Icon className="w-4 h-4 text-primary" strokeWidth={1.8} />
+                <div className="w-7 h-7 rounded-md bg-primary/[0.08] flex items-center justify-center shrink-0">
+                  <Icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.8} />
                 </div>
                 <span
-                  className="text-[12px] font-semibold text-foreground leading-snug"
+                  className="text-[11px] font-medium text-foreground leading-tight"
                   style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
                 >
                   {t(`pricing.${key}`)}
@@ -145,23 +145,23 @@ export default function PricingDemo() {
           </motion.div>
 
           {/* Divider */}
-          <div className="flex items-center gap-2.5 mb-5">
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-            <Sparkles className="w-3 h-3 text-primary/25" />
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+          <div className="flex items-center gap-2 mb-3">
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/40 to-transparent" />
+            <Sparkles className="w-2.5 h-2.5 text-primary/20" />
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/40 to-transparent" />
           </div>
 
           {/* Plan cards */}
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="space-y-3"
+            transition={{ duration: 0.35, delay: 0.18 }}
+            className="space-y-2.5"
           >
             {/* Yearly */}
             <button
               onClick={() => setSelected("yearly")}
-              className={`w-full px-4 py-4 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 relative overflow-hidden ${
+              className={`w-full px-3.5 py-3 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 relative overflow-hidden ${
                 selected === "yearly"
                   ? "border-primary bg-primary/[0.04] shadow-[0_0_24px_-6px_hsl(var(--primary)/0.18)]"
                   : "border-border/30 bg-card/60 hover:border-border/50"
@@ -215,7 +215,7 @@ export default function PricingDemo() {
             {/* Monthly */}
             <button
               onClick={() => setSelected("monthly")}
-              className={`w-full px-4 py-4 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 ${
+              className={`w-full px-3.5 py-3 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 ${
                 selected === "monthly"
                   ? "border-primary bg-primary/[0.04] shadow-[0_0_24px_-6px_hsl(var(--primary)/0.18)]"
                   : "border-border/30 bg-card/60 hover:border-border/50"
@@ -254,12 +254,12 @@ export default function PricingDemo() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.28 }}
-          className="mt-8 space-y-3"
+          className="mt-5 space-y-2"
         >
           <Button
             onClick={handleSubscribe}
             size="lg"
-            className="w-full h-[52px] text-[14px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
+            className="w-full h-[48px] text-[13px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
             style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
           >
             {t("pricing.cta")}
