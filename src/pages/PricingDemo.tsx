@@ -93,7 +93,7 @@ export default function PricingDemo() {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
               {/* Logo */}
-              <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-2 ring-primary/15">
+              <div className="relative w-13 h-13 rounded-full overflow-hidden shadow-lg shadow-primary/15 ring-2 ring-primary/15">
                 <img
                   src="/logo.webp"
                   alt="Logo"
