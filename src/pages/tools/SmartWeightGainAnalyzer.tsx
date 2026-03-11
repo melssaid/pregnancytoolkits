@@ -299,7 +299,15 @@ export default function SmartWeightGainAnalyzer() {
                     {/* BMI Scale Bar */}
                     <BMIScaleBar bmi={bmi} t={t} />
 
-                    {/* Profile complete - analysis auto-shows */}
+                    {/* Start Analysis Button */}
+                    {!showAnalysis && (
+                      <Button onClick={handleStartAnalysis} className="w-full h-11 text-sm font-bold gap-2" size="lg" disabled={!profileComplete}>
+                        <TrendingUp className="w-4 h-4" />
+                        {profileComplete
+                          ? t('toolsInternal.weightGain.startAnalysis')
+                          : t('toolsInternal.weightGain.profileSetupDesc')}
+                      </Button>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
