@@ -144,7 +144,7 @@ Write in ${lang}. No title, no heading, just the tip.`;
   }, [toolId, lang, t, streamChat]);
 
   useEffect(() => {
-    if (isVisible && !loaded && !isLoading) {
+    if (isVisible && !loaded && !isLoading && !isLimitReached) {
       generateTip();
     }
   }, [isVisible, loaded, isLoading, generateTip]);
