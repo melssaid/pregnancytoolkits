@@ -18,6 +18,7 @@ interface AIInsightCardProps {
   icon?: React.ReactNode;
   variant?: 'default' | 'compact' | 'banner';
   autoExpand?: boolean;
+  aiType?: string;
 }
 
 /** Mini usage bar shown inline with AI buttons in insight cards */
