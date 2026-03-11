@@ -15,6 +15,7 @@ import { WeightGainChart } from '@/components/weight-gain/WeightGainChart';
 import { BMIScaleBar } from '@/components/weight-gain/BMIScaleBar';
 import { WeightDistributionCard } from '@/components/weight-gain/WeightDistributionCard';
 import { MedicalTipCard } from '@/components/weight-gain/MedicalTipCard';
+import { AIInsightCard } from '@/components/ai/AIInsightCard';
 
 interface WeightEntry {
   id: string;
@@ -472,6 +473,30 @@ export default function SmartWeightGainAnalyzer() {
                     })}
                   </div>
                 </motion.div>
+              )}
+
+              {/* AI Weight Analysis */}
+              {entries.length > 0 && (
+                <AIInsightCard
+                  title={t('toolsInternal.weightGain.aiAnalysisTitle')}
+                  aiType="weight-analysis"
+                  prompt={`Analyze my pregnancy weight data:
+- Pre-pregnancy weight: ${prePregnancyWeight} kg
+- Height: ${height} cm
+- BMI: ${bmi.toFixed(1)} (${bmiCategory})
+- Current pregnancy week: ${lastEntry?.week || currentWeek}
+- Total weight gain so far: ${totalGain.toFixed(1)} kg
+- Recommended range: ${range.min}-${range.max} kg total
+- Current status: ${status || 'not enough data'}
+- Number of entries: ${entries.length}
+- Latest weight: ${lastEntry?.weight || 'N/A'} kg
+- Weight entries: ${entries.slice(-5).map(e => `Week ${e.week}: ${e.weight}kg`).join(', ')}
+
+Provide personalized weight management advice based on this data.`}
+                  context={{ week: lastEntry?.week || parseInt(currentWeek), trimester: currentTrimester === 'first' ? 1 : currentTrimester === 'second' ? 2 : 3 }}
+                  buttonText={t('toolsInternal.weightGain.aiAnalysisButton')}
+                  icon={<Scale className="w-4 h-4" />}
+                />
               )}
 
               {/* Weight Distribution */}

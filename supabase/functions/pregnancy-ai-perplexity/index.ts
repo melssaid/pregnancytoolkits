@@ -13,7 +13,8 @@ type AIType =
   | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
   | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
-  | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis";
+  | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis"
+  | "weight-analysis";
 
 interface AIRequest {
   type: AIType;
@@ -39,6 +40,7 @@ const VALID_TYPES: AIType[] = [
   "bump-photos", "baby-cry-analysis", "postpartum-recovery",
   "hospital-bag", "birth-position", "partner-guide", "lactation-prep",
   "nausea-relief", "skincare-advice", "birth-plan", "mental-health", "pregnancy-plan", "baby-growth-analysis",
+  "weight-analysis",
 ];
 
 // ── Validation constants ──
@@ -138,6 +140,7 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "mental-health":        { temperature: 0.3, max_tokens: 3000 },
   "pregnancy-plan":       { temperature: 0.4, max_tokens: 3000 },
   "baby-growth-analysis": { temperature: 0.3, max_tokens: 2500 },
+  "weight-analysis":      { temperature: 0.3, max_tokens: 2500 },
 };
 
 // ── Language configuration ──
@@ -507,6 +510,34 @@ IMPORTANT: Recovery varies for every woman. Always recommend following up with t
 ## 💕 Words of Encouragement
 
 Be compassionate, practical, and empowering.`;
+
+    case "weight-analysis":
+      return persona + `You are a pregnancy weight management specialist. Analyze the user's weight data and provide personalized, evidence-based guidance.
+
+Structure your response using this format:
+
+## ⚖️ Weight Analysis Summary
+- Current status assessment (on track / below / above recommended range)
+- Brief explanation of what this means for this stage of pregnancy
+
+## 📊 Personalized Insights
+- 3-4 insights specific to their BMI category, current week, and weight trend
+- Compare their rate of gain to medical guidelines (IOM/WHO)
+
+## 🍎 Nutrition Recommendations
+- 3-4 specific dietary adjustments based on their current status
+- Include calorie guidance appropriate for their BMI category
+
+## 🏃‍♀️ Activity Tips
+- 2-3 safe physical activity suggestions for their trimester
+
+## ⚠️ Watch For
+- 2-3 weight-related warning signs specific to their situation
+
+## 💝 Encouragement
+- Brief motivational note
+
+Be specific to their data. Reference their actual numbers. Keep advice practical and actionable.`;
 
     default:
       return persona + "Provide helpful, well-organized pregnancy guidance.";

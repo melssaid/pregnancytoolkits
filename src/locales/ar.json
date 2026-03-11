@@ -2862,7 +2862,9 @@
       "kickCounterLink": "تتبع ركلات الجنين",
       "kickCounterLinkDesc": "تتبعي حركات طفلك وأنماط نشاطه",
       "mealSuggestionLink": "اقتراحات الوجبات",
-      "mealSuggestionLinkDesc": "احصلي على أفكار وجبات صحية"
+      "mealSuggestionLinkDesc": "احصلي على أفكار وجبات صحية",
+      "aiAnalysisTitle": "تحليل الوزن بالذكاء الاصطناعي",
+      "aiAnalysisButton": "حللي وزنك بالذكاء الاصطناعي"
     },
     "stressRelief": {
       "title": "دليل تخفيف التوتر الذكي",
