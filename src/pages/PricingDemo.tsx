@@ -2,17 +2,26 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, Crown, X, Sparkles } from "lucide-react";
+import { Check, Crown, X, Sparkles, Brain, Shield, Zap, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
 
+const features = [
+  { icon: Brain, key: "feature1" },
+  { icon: Zap, key: "feature2" },
+  { icon: Shield, key: "feature3" },
+  { icon: Heart, key: "feature4" },
+  { icon: Sparkles, key: "feature5" },
+];
+
 export default function PricingDemo() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PlanType>("yearly");
+  const isAr = i18n.language === "ar";
 
   const handleSubscribe = () => {
     const sent = requestPurchase(selected);
@@ -26,88 +35,154 @@ export default function PricingDemo() {
 
   return (
     <div
-      className="min-h-[100dvh] bg-gradient-to-b from-background via-background to-primary/5 flex flex-col"
+      className="min-h-[100dvh] bg-background flex flex-col relative overflow-hidden"
       dir={isRTL ? "rtl" : "ltr"}
-      style={{ fontFamily: "'Montserrat', sans-serif" }}
     >
+      {/* Subtle background accent */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 inset-x-0 h-[45vh] bg-gradient-to-b from-primary/[0.04] to-transparent" />
+        <div className="absolute -top-20 -end-20 w-60 h-60 rounded-full bg-primary/[0.06] blur-[80px]" />
+        <div className="absolute bottom-0 -start-20 w-40 h-40 rounded-full bg-primary/[0.04] blur-[60px]" />
+      </div>
+
       {/* Close */}
       <div className="sticky top-0 z-30 px-4 py-3 flex justify-end">
         <button
           onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded-full bg-muted/80 backdrop-blur-sm flex items-center justify-center hover:bg-muted transition-colors"
+          className="w-8 h-8 rounded-full bg-muted/60 backdrop-blur-sm flex items-center justify-center hover:bg-muted transition-colors"
         >
           <X className="w-4 h-4 text-muted-foreground" />
         </button>
       </div>
 
-      <div className="flex-1 px-5 pb-6 max-w-md mx-auto w-full flex flex-col justify-between">
+      <div className="flex-1 px-5 pb-6 max-w-md mx-auto w-full flex flex-col justify-between relative z-10">
         {/* Top content */}
         <div>
           {/* Hero */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-6"
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-center mb-5"
           >
-            <div className="w-16 h-16 rounded-[18px] bg-gradient-to-br from-primary via-primary/80 to-primary/60 flex items-center justify-center mx-auto mb-3 shadow-lg shadow-primary/25">
-              <Crown className="w-8 h-8 text-primary-foreground" strokeWidth={1.5} />
-            </div>
-            <h1 className="text-xl font-extrabold text-foreground tracking-tight mb-1.5">
+            <motion.div
+              className="relative w-[72px] h-[72px] mx-auto mb-4"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
+            >
+              <div className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-primary/20 to-primary/5 blur-xl" />
+              <div className="relative w-full h-full rounded-[20px] bg-gradient-to-br from-primary via-primary/85 to-primary/70 flex items-center justify-center shadow-xl shadow-primary/20">
+                <Crown className="w-9 h-9 text-primary-foreground" strokeWidth={1.4} />
+              </div>
+            </motion.div>
+
+            <h1
+              className="text-[22px] font-extrabold text-foreground tracking-tight mb-1.5 leading-tight"
+              style={{ fontFamily: isAr ? "'Almarai', 'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+            >
               {t("pricing.title")}
             </h1>
-            <p className="text-[13px] text-muted-foreground leading-relaxed max-w-[260px] mx-auto break-words">
+            <p
+              className="text-[13px] text-muted-foreground leading-relaxed max-w-[280px] mx-auto"
+              style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+            >
               {t("pricing.subtitle")}
             </p>
           </motion.div>
 
-          {/* Feature badge */}
+          {/* Features grid */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            className="flex items-center justify-center gap-2 mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.12 }}
+            className="grid grid-cols-1 gap-2 mb-5"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/8 border border-primary/15">
-              <Sparkles className="w-3.5 h-3.5 text-primary" strokeWidth={2} />
-              <span className="text-[12px] font-semibold text-foreground break-words">{t("pricing.feature1")}</span>
-            </div>
+            {features.map(({ icon: Icon, key }, idx) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, x: isRTL ? 12 : -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.15 + idx * 0.05 }}
+                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-card/80 border border-border/10"
+              >
+                <div className="w-8 h-8 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
+                  <Icon className="w-4 h-4 text-primary" strokeWidth={1.8} />
+                </div>
+                <span
+                  className="text-[12px] font-semibold text-foreground leading-snug"
+                  style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+                >
+                  {t(`pricing.${key}`)}
+                </span>
+              </motion.div>
+            ))}
           </motion.div>
+
+          {/* Divider */}
+          <div className="flex items-center gap-2.5 mb-5">
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+            <Sparkles className="w-3 h-3 text-primary/25" />
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+          </div>
 
           {/* Plan cards */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.14 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
             className="space-y-3"
           >
             {/* Yearly */}
             <button
               onClick={() => setSelected("yearly")}
-              className={`w-full px-4 py-4 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 ${
+              className={`w-full px-4 py-4 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 relative overflow-hidden ${
                 selected === "yearly"
-                  ? "border-primary bg-primary/[0.06] shadow-[0_0_20px_-4px_hsl(var(--primary)/0.2)]"
-                  : "border-border/40 bg-card/60 hover:border-border/60"
+                  ? "border-primary bg-primary/[0.04] shadow-[0_0_24px_-6px_hsl(var(--primary)/0.18)]"
+                  : "border-border/30 bg-card/60 hover:border-border/50"
               }`}
             >
+              {selected === "yearly" && (
+                <div className="absolute top-0 end-0 px-2 py-0.5 rounded-es-lg bg-primary">
+                  <span
+                    className="text-[9px] font-bold text-primary-foreground"
+                    style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+                  >
+                    {t("pricing.bestValue")}
+                  </span>
+                </div>
+              )}
+
               <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
-                selected === "yearly" ? "border-primary bg-primary" : "border-muted-foreground/30"
+                selected === "yearly" ? "border-primary bg-primary" : "border-muted-foreground/25"
               }`}>
                 {selected === "yearly" && <Check className="w-3 h-3 text-primary-foreground" strokeWidth={3} />}
               </div>
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[13px] font-bold text-foreground">{t("pricing.yearly")}</span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary text-primary-foreground leading-tight">
+                  <span
+                    className="text-[13px] font-bold text-foreground"
+                    style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
+                  >
+                    {t("pricing.yearly")}
+                  </span>
+                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 leading-tight">
                     {t("pricing.save")}
                   </span>
                 </div>
-                <span className="text-[12px] text-muted-foreground mt-0.5 block">$1.67/{t("pricing.mo")}</span>
+                <span className="text-[11px] text-muted-foreground mt-0.5 block">
+                  $1.67/{t("pricing.mo")}
+                </span>
               </div>
 
               <div className="text-end shrink-0">
-                <span className="text-[20px] font-extrabold text-foreground tabular-nums">$19.99</span>
+                <span
+                  className="text-[20px] font-extrabold text-foreground tabular-nums"
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  $19.99
+                </span>
                 <span className="text-[11px] text-muted-foreground">/{t("pricing.yr")}</span>
               </div>
             </button>
@@ -117,22 +192,32 @@ export default function PricingDemo() {
               onClick={() => setSelected("monthly")}
               className={`w-full px-4 py-4 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 ${
                 selected === "monthly"
-                  ? "border-primary bg-primary/[0.06] shadow-[0_0_20px_-4px_hsl(var(--primary)/0.2)]"
-                  : "border-border/40 bg-card/60 hover:border-border/60"
+                  ? "border-primary bg-primary/[0.04] shadow-[0_0_24px_-6px_hsl(var(--primary)/0.18)]"
+                  : "border-border/30 bg-card/60 hover:border-border/50"
               }`}
             >
               <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
-                selected === "monthly" ? "border-primary bg-primary" : "border-muted-foreground/30"
+                selected === "monthly" ? "border-primary bg-primary" : "border-muted-foreground/25"
               }`}>
                 {selected === "monthly" && <Check className="w-3 h-3 text-primary-foreground" strokeWidth={3} />}
               </div>
 
               <div className="flex-1 min-w-0">
-                <span className="text-[13px] font-bold text-foreground">{t("pricing.monthly")}</span>
+                <span
+                  className="text-[13px] font-bold text-foreground"
+                  style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
+                >
+                  {t("pricing.monthly")}
+                </span>
               </div>
 
               <div className="text-end shrink-0">
-                <span className="text-[20px] font-extrabold text-foreground tabular-nums">$2.99</span>
+                <span
+                  className="text-[20px] font-extrabold text-foreground tabular-nums"
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  $2.99
+                </span>
                 <span className="text-[11px] text-muted-foreground">/{t("pricing.mo")}</span>
               </div>
             </button>
@@ -141,24 +226,28 @@ export default function PricingDemo() {
 
         {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.22 }}
-          className="mt-8 space-y-2.5"
+          transition={{ duration: 0.45, delay: 0.28 }}
+          className="mt-8 space-y-3"
         >
           <Button
             onClick={handleSubscribe}
             size="lg"
-            className="w-full h-[52px] text-[14px] font-bold rounded-2xl shadow-lg shadow-primary/25 whitespace-normal leading-snug"
+            className="w-full h-[52px] text-[14px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
+            style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
           >
             {t("pricing.cta")}
           </Button>
 
-          <p className="text-center text-[11px] text-muted-foreground leading-snug">
+          <p
+            className="text-center text-[11px] text-muted-foreground leading-snug"
+            style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+          >
             {t("pricing.ctaSub", { price, period })}
           </p>
 
-          <p className="text-center text-[10px] text-muted-foreground/60 leading-relaxed break-words">
+          <p className="text-center text-[10px] text-muted-foreground/50 leading-relaxed">
             {t("pricing.autoRenew")}
           </p>
 
@@ -169,8 +258,8 @@ export default function PricingDemo() {
             >
               {t("pricing.restore")}
             </button>
-            <span className="text-muted-foreground/30">·</span>
-            <span className="text-[11px] text-muted-foreground/60 break-words text-center">
+            <span className="text-muted-foreground/20">·</span>
+            <span className="text-[10px] text-muted-foreground/50 text-center">
               {t("pricing.termsPrefix")}{" "}
               <Link to="/terms" className="underline hover:text-foreground transition-colors">
                 {t("layout.footer.terms")}
