@@ -161,7 +161,7 @@ export default function PricingDemo() {
             {/* Yearly */}
             <button
               onClick={() => setSelected("yearly")}
-              className={`w-full px-4 py-4 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 relative overflow-hidden ${
+              className={`w-full px-3.5 py-3 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 relative overflow-hidden ${
                 selected === "yearly"
                   ? "border-primary bg-primary/[0.04] shadow-[0_0_24px_-6px_hsl(var(--primary)/0.18)]"
                   : "border-border/30 bg-card/60 hover:border-border/50"
