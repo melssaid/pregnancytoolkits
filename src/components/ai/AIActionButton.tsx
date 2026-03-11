@@ -120,38 +120,11 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
         )}
       </motion.button>
 
-      {/* Usage indicator */}
+      {/* Usage indicator — minimal single line */}
       {showUsage && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="rounded-xl border border-border/40 bg-card/60 backdrop-blur-sm px-3.5 py-2.5"
-        >
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center gap-1.5">
-              <Zap className={`w-3 h-3 ${isLimitReached ? 'text-destructive' : 'text-primary'}`} />
-              <span className="text-[10px] font-semibold text-foreground">
-                {isLimitReached
-                  ? labels.limitReached
-                  : `${remaining} ${labels.remaining}`}
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
-                isFree 
-                  ? 'bg-muted text-muted-foreground' 
-                  : 'bg-primary/10 text-primary'
-              }`}>
-                {isFree ? labels.free : labels.pro}
-              </span>
-              <span className="text-[10px] text-muted-foreground font-medium">
-                {used}{labels.of === '/' ? '/' : ` ${labels.of} `}{limit}
-              </span>
-            </div>
-          </div>
-
-          {/* Progress bar */}
-          <div className="h-1.5 w-full rounded-full bg-muted/50 overflow-hidden">
+        <div className="flex items-center gap-2 px-1">
+          <Zap className={`w-2.5 h-2.5 shrink-0 ${isLimitReached ? 'text-destructive' : 'text-primary'}`} />
+          <div className="flex-1 h-1 rounded-full bg-muted/40 overflow-hidden">
             <motion.div
               className={`h-full rounded-full ${getBarColor()}`}
               initial={{ width: 0 }}
@@ -159,22 +132,15 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
               transition={{ duration: 0.6, ease: 'easeOut' }}
             />
           </div>
-
-          {/* Upgrade hint for free users or daily reset note */}
-          <div className="flex items-center justify-between mt-1.5">
-            <span className="text-[8px] text-muted-foreground">{labels.resetsDaily}</span>
-            {isFree && !isLimitReached && (
-              <motion.button
-                onClick={() => navigate('/pricing-demo')}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-1 cursor-pointer"
-              >
-                <Crown className="w-2.5 h-2.5 text-primary" />
-                <span className="text-[8px] text-primary font-semibold underline underline-offset-2">{labels.upgrade}</span>
-              </motion.button>
-            )}
-          </div>
-        </motion.div>
+          <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">
+            {remaining}/{limit}
+          </span>
+          {isFree && (
+            <button onClick={() => navigate('/pricing-demo')} className="shrink-0">
+              <Crown className="w-2.5 h-2.5 text-primary" />
+            </button>
+          )}
+        </div>
       )}
     </div>
   );
