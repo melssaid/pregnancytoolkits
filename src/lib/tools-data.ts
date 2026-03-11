@@ -72,11 +72,11 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // PREGNANCY TRACKING
   // ═══════════════════════════════════════════════════════════════
-  { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, pngIcon: "/icons/fetal-growth.png", categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 6, hasAI: true },
-  { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, pngIcon: "/icons/birth-plan.png", categoryKey: "categories.pregnancy", href: "/tools/ai-birth-plan", priority: 6.5, hasAI: true },
-  { id: "kick-counter", titleKey: "tools.kickCounter.title", descriptionKey: "tools.kickCounter.description", icon: Hand, pngIcon: "/icons/kick-counter.png", categoryKey: "categories.pregnancy", href: "/tools/kick-counter", priority: 7, hasAI: true },
-  { id: "weight-gain", titleKey: "tools.weightGain.title", descriptionKey: "tools.weightGain.description", icon: Scale, pngIcon: "/icons/weight-gain.png", categoryKey: "categories.pregnancy", href: "/tools/weight-gain", priority: 8, hasAI: true },
-  { id: "ai-bump-photos", titleKey: "tools.aiBumpPhotos.title", descriptionKey: "tools.aiBumpPhotos.description", icon: ScanLine, pngIcon: "/icons/bump-photos.png", categoryKey: "categories.pregnancy", href: "/tools/ai-bump-photos", priority: 9, hasAI: true },
+  { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, pngIcon: "https://img.icons8.com/3d-fluency/94/ultrasound.png", categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 6, hasAI: true },
+  { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, pngIcon: "https://img.icons8.com/3d-fluency/94/document.png", categoryKey: "categories.pregnancy", href: "/tools/ai-birth-plan", priority: 6.5, hasAI: true },
+  { id: "kick-counter", titleKey: "tools.kickCounter.title", descriptionKey: "tools.kickCounter.description", icon: Hand, pngIcon: "https://img.icons8.com/3d-fluency/94/baby-feet.png", categoryKey: "categories.pregnancy", href: "/tools/kick-counter", priority: 7, hasAI: true },
+  { id: "weight-gain", titleKey: "tools.weightGain.title", descriptionKey: "tools.weightGain.description", icon: Scale, pngIcon: "https://img.icons8.com/3d-fluency/94/scale.png", categoryKey: "categories.pregnancy", href: "/tools/weight-gain", priority: 8, hasAI: true },
+  { id: "ai-bump-photos", titleKey: "tools.aiBumpPhotos.title", descriptionKey: "tools.aiBumpPhotos.description", icon: ScanLine, pngIcon: "https://img.icons8.com/3d-fluency/94/camera.png", categoryKey: "categories.pregnancy", href: "/tools/ai-bump-photos", priority: 9, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // NUTRITION & DIET
