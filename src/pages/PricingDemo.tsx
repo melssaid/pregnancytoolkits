@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, Crown, X, Sparkles, Brain, Shield, Zap, Heart } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
@@ -11,8 +11,8 @@ import { useNavigate, Link } from "react-router-dom";
 const features = [
   { icon: Brain, key: "feature1" },
   { icon: Zap, key: "feature2" },
-  { icon: Shield, key: "feature3" },
-  { icon: Heart, key: "feature4" },
+  { icon: Heart, key: "feature3" },
+  { icon: Shield, key: "feature4" },
   { icon: Sparkles, key: "feature5" },
 ];
 
