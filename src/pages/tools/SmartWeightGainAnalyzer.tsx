@@ -301,13 +301,7 @@ export default function SmartWeightGainAnalyzer() {
                     {/* BMI Scale Bar */}
                     <BMIScaleBar bmi={bmi} t={t} />
 
-                    {/* Start Analysis Button */}
-                    {!showAnalysis && (
-                      <Button onClick={handleStartAnalysis} className="w-full h-11 text-sm font-bold gap-2" size="lg">
-                        <TrendingUp className="w-4 h-4" />
-                        {t('toolsInternal.weightGain.startAnalysis')}
-                      </Button>
-                    )}
+                    {/* Profile complete - analysis auto-shows */}
                   </motion.div>
                 )}
               </AnimatePresence>
