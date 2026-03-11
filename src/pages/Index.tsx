@@ -274,7 +274,7 @@ const FooterCard = memo(function FooterCard() {
   const lang = i18n.language?.split('-')[0] || 'en';
   const labels = footerI18n[lang] || footerI18n.en;
   const { tier, trialDaysLeft } = useSubscriptionStatus();
-  const { remaining, limit } = useAIUsage();
+  const { remaining, limit, used } = useAIUsage();
 
   if (tier === "premium") return null;
 
@@ -301,45 +301,41 @@ const FooterCard = memo(function FooterCard() {
       initial={{ opacity: 0, y: 14, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="mt-3 rounded-2xl overflow-hidden bg-gradient-to-r from-muted/80 via-muted/40 to-muted/15 border border-border/50 shadow-[0_2px_16px_-4px_hsl(0,0%,35%,0.15)] relative"
+      className="mt-3 rounded-3xl overflow-hidden border border-border/40 shadow-[0_4px_24px_-6px_hsl(0,0%,30%,0.12)] relative"
       style={{ fontFamily: "'Almarai', 'Tajawal', sans-serif" }}
     >
-      {/* Breathing Glow */}
+      {/* Premium gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-card via-card to-muted/30" />
       <motion.div
-        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-muted/20 via-muted/10 to-muted/20 blur-md -z-10"
-        animate={{ opacity: [0, 0.5, 0], scale: [0.98, 1.02, 0.98] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -inset-[2px] rounded-3xl bg-gradient-to-r from-primary/10 via-transparent to-primary/10 blur-lg -z-10"
+        animate={{ opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-muted/10 blur-3xl" />
 
-      <div className="relative p-4 space-y-0">
-        {/* ─── Premium Section ─── */}
-        <button onClick={handleTap} className="w-full text-start group">
-          <div className="flex items-center gap-3">
+      <div className="relative">
+        {/* ─── Premium CTA Header ─── */}
+        <button onClick={handleTap} className="w-full text-start group p-5 pb-4">
+          <div className="flex items-center gap-3.5">
             <div className="relative shrink-0">
               <motion.div
-                className="absolute inset-0 rounded-xl bg-primary/10"
-                animate={{ scale: [1, 1.35, 1], opacity: [0.4, 0, 0.4] }}
+                className="absolute inset-0 rounded-2xl bg-primary/12"
+                animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
               />
-              <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
+              <div className="w-12 h-12 rounded-2xl bg-primary/8 flex items-center justify-center border border-primary/10">
+                <ShieldCheck className="w-6 h-6 text-primary" strokeWidth={1.75} />
               </div>
             </div>
 
-            <div className="flex-1 min-w-0 space-y-1">
+            <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="inline-block px-2 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                <span className="inline-block px-2.5 py-0.5 rounded-md bg-primary/10 text-[11px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
                   PRO
                 </span>
                 <motion.span
                   initial={{ opacity: 0, scale: 0.7 }}
-                  animate={{ opacity: 1, scale: 1, rotate: [0, 0, -2, 2, -1, 1, 0] }}
-                  transition={{
-                    opacity: { duration: 0.5, delay: 0.6 },
-                    scale: { duration: 0.5, delay: 0.6 },
-                    rotate: { duration: 0.5, delay: 5, repeat: Infinity, repeatDelay: 5, ease: "easeInOut" },
-                  }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
                   className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-extrabold tracking-wide shadow-[0_2px_8px_-2px_hsl(0,70%,45%,0.4)]"
                 >
                   <span className="relative flex h-1.5 w-1.5">
@@ -350,7 +346,7 @@ const FooterCard = memo(function FooterCard() {
                   {t("pricing.trialBadge", { count: badgeDays })}
                 </motion.span>
               </div>
-              <p className="text-[12px] font-bold text-muted-foreground leading-snug break-words">
+              <p className="text-[12px] font-bold text-muted-foreground leading-snug mt-1 break-words">
                 {t("pricing.badge")}
               </p>
             </div>
@@ -360,77 +356,122 @@ const FooterCard = memo(function FooterCard() {
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               className="shrink-0"
             >
-              <ChevronRight className="w-4.5 h-4.5 text-primary/40 rtl:rotate-180" />
+              <ChevronRight className="w-5 h-5 text-primary/40 rtl:rotate-180" />
             </motion.div>
           </div>
         </button>
 
-        {/* ─── Strong Divider ─── */}
-        <div className="flex items-center gap-2.5 py-4">
-          <div className="flex-1 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
-          <Sparkles className="w-3.5 h-3.5 text-primary/30" />
-          <div className="flex-1 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
+        {/* ─── Elegant Divider ─── */}
+        <div className="px-5">
+          <div className="flex items-center gap-3">
+            <div className="flex-1 h-[1px] rounded-full bg-gradient-to-r from-transparent via-border to-transparent" />
+            <Sparkles className="w-3 h-3 text-primary/25" />
+            <div className="flex-1 h-[1px] rounded-full bg-gradient-to-r from-transparent via-border to-transparent" />
+          </div>
         </div>
 
-        {/* ─── AI Usage Section ─── */}
-        <div className="space-y-2.5">
-          <div className="flex items-start gap-2.5">
+        {/* ─── AI Usage Section — Vertical Layout ─── */}
+        <div className="p-5 pt-4 space-y-4">
+          {/* Title row */}
+          <div className="flex items-center gap-2.5">
             <div className="w-10 h-10 rounded-xl bg-primary/8 flex items-center justify-center shrink-0">
               <Brain className="w-5 h-5 text-primary" />
             </div>
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="text-[12px] font-bold text-foreground">{labels.aiTitle}</span>
-                <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded-full ms-auto shrink-0 ${
-                  isFree ? 'bg-muted text-muted-foreground' : 'bg-primary/10 text-primary'
-                }`}>
-                  {isFree ? labels.free : labels.pro}
-                </span>
-              </div>
-              <p className="text-[10px] text-muted-foreground leading-relaxed mt-0.5">
+              <span className="text-[13px] font-bold text-foreground">{labels.aiTitle}</span>
+              <p className="text-[10px] text-muted-foreground leading-snug mt-0.5">
                 {labels.aiDesc}
               </p>
             </div>
           </div>
 
-          {/* Progress */}
-          <div className="space-y-1">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-semibold text-foreground tabular-nums">{remaining}/{limit}</span>
-              <span className="text-[9px] text-muted-foreground">{labels.daily}</span>
+          {/* Big number + progress */}
+          <div className="rounded-2xl bg-muted/20 border border-border/30 p-4">
+            <div className="flex items-end justify-center gap-1 mb-3">
+              <motion.span
+                className="text-[36px] font-extrabold text-foreground leading-none tabular-nums"
+                style={{ fontFamily: "'Cairo', sans-serif" }}
+                key={remaining}
+                initial={{ scale: 1.15, opacity: 0.6 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
+                {remaining}
+              </motion.span>
+              <span className="text-[14px] text-muted-foreground font-semibold pb-1">/ {limit}</span>
             </div>
-            <div className="h-1.5 w-full rounded-full bg-muted/40 overflow-hidden">
+
+            {/* Progress bar */}
+            <div className="h-2.5 w-full rounded-full bg-muted/40 overflow-hidden relative">
               <motion.div
                 className={`h-full rounded-full ${barColor}`}
                 initial={{ width: 0 }}
                 animate={{ width: `${percent}%` }}
-                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+              />
+              <motion.div
+                className="absolute inset-y-0 w-10 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                animate={{ x: ['-2.5rem', '24rem'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'linear', delay: 1.5 }}
               />
             </div>
+
+            <p className="text-[10px] text-muted-foreground text-center mt-2">
+              {labels.daily}
+            </p>
           </div>
 
-          {/* Plan pills */}
-          <div className="flex items-center gap-2">
-            <div className={`flex-1 text-center py-1.5 rounded-lg text-[10px] font-bold ${
+          {/* Vertical plan cards */}
+          <div className="space-y-2.5">
+            {/* Free plan */}
+            <div className={`flex items-center gap-3 p-3.5 rounded-2xl border transition-all ${
               isFree
-                ? 'bg-foreground/5 ring-1 ring-foreground/10 text-foreground'
-                : 'bg-muted/20 text-muted-foreground'
+                ? 'bg-foreground/[0.03] border-foreground/10 ring-1 ring-foreground/5'
+                : 'bg-muted/10 border-border/20'
             }`}>
-              {FREE_LIMIT} {labels.daily} · {labels.free}
+              <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                isFree ? 'bg-muted/40' : 'bg-muted/20'
+              }`}>
+                <span className="text-[15px] font-extrabold text-muted-foreground" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {FREE_LIMIT}
+                </span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="text-[12px] font-bold text-foreground">{labels.free}</span>
+                <p className="text-[10px] text-muted-foreground">{FREE_LIMIT} {labels.aiTitle} {labels.daily}</p>
+              </div>
+              {isFree && (
+                <span className="text-[9px] font-bold text-muted-foreground bg-muted/40 px-2 py-0.5 rounded-full shrink-0">
+                  ✓
+                </span>
+              )}
             </div>
+
+            {/* Pro plan */}
             <motion.button
               onClick={() => isFree && navigate('/pricing-demo')}
-              whileHover={isFree ? { scale: 1.02 } : {}}
+              whileHover={isFree ? { scale: 1.01 } : {}}
               whileTap={isFree ? { scale: 0.98 } : {}}
-              className={`flex-1 text-center py-1.5 rounded-lg text-[10px] font-bold transition-all ${
+              className={`w-full flex items-center gap-3 p-3.5 rounded-2xl border transition-all ${
                 !isFree
-                  ? 'bg-primary/10 ring-1 ring-primary/15 text-primary'
-                  : 'bg-gradient-to-r from-primary/10 to-primary/5 text-primary hover:from-primary/15 cursor-pointer'
+                  ? 'bg-primary/5 border-primary/15 ring-1 ring-primary/10'
+                  : 'bg-gradient-to-r from-primary/5 to-primary/[0.02] border-primary/20 hover:border-primary/30 cursor-pointer'
               }`}
             >
-              <Link to="/pricing-demo" className="block w-full">
-                {PRO_LIMIT} {labels.daily} · {labels.pro}
-              </Link>
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <span className="text-[15px] font-extrabold text-primary" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {PRO_LIMIT}
+                </span>
+              </div>
+              <div className="flex-1 min-w-0 text-start">
+                <span className="text-[12px] font-bold text-primary">{labels.pro}</span>
+                <p className="text-[10px] text-muted-foreground">{PRO_LIMIT} {labels.aiTitle} {labels.daily}</p>
+              </div>
+              {isFree && (
+                <span className="text-[9px] font-bold text-white bg-primary px-2.5 py-1 rounded-full shrink-0">
+                  {labels.upgrade}
+                </span>
+              )}
             </motion.button>
           </div>
         </div>
@@ -438,7 +479,6 @@ const FooterCard = memo(function FooterCard() {
     </motion.div>
   );
 });
-
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
