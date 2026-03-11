@@ -343,103 +343,93 @@ const FooterCard = memo(function FooterCard() {
         </div>
       </button>
 
-      {/* ─── AI Usage ─── */}
-      <div className="rounded-2xl border border-border/30 bg-card p-5">
-        <div className="flex items-center gap-2.5 mb-4">
-          <Brain className="w-5 h-5 text-primary" />
-          <span className="text-[14px] font-bold text-foreground">{labels.aiTitle}</span>
-        </div>
+      {/* ─── AI Usage — Unified style ─── */}
+      <button onClick={() => isFree && navigate('/pricing-demo')} className="w-full text-start">
+        <div className="rounded-2xl border border-border/20 bg-gradient-to-br from-card to-muted/10 p-5 relative overflow-hidden">
+          {/* Subtle glow */}
+          <motion.div
+            className="absolute -inset-1 rounded-2xl bg-primary/3 blur-xl -z-10"
+            animate={{ opacity: [0.15, 0.35, 0.15] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
 
-        {/* Progress row */}
-        <div className="flex items-center gap-4 mb-4">
-          <div className="relative">
-            <motion.span
-              className="text-[42px] font-black text-foreground leading-none tabular-nums block"
-              style={{ fontFamily: "'Cairo', sans-serif", letterSpacing: '-0.02em' }}
-              key={remaining}
-              initial={{ scale: 1.3, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-            >
-              {remaining}
-            </motion.span>
-            <motion.div
-              className="absolute -inset-2 rounded-xl bg-primary/5 -z-10"
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2.5, repeat: Infinity }}
-            />
+          <div className="flex items-center gap-2.5 mb-4">
+            <Brain className="w-5 h-5 text-primary" />
+            <span className="text-[14px] font-bold text-foreground">{labels.aiTitle}</span>
           </div>
-          <div className="flex-1">
-            <p className="text-[11px] text-muted-foreground mb-2 font-medium">/ {limit} {labels.daily}</p>
-            <div className="h-2.5 w-full rounded-full bg-muted/30 overflow-hidden relative">
-              <motion.div
-                className={`h-full rounded-full ${barColor}`}
-                initial={{ width: 0 }}
-                animate={{ width: `${percent}%` }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              />
-              <motion.div
-                className="absolute inset-y-0 w-8 bg-gradient-to-r from-transparent via-white/25 to-transparent rounded-full"
-                animate={{ x: ['-2rem', '20rem'] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: 'linear', delay: 1.2 }}
-              />
+
+          {/* Usage arc display */}
+          <div className="flex items-center gap-5">
+            {/* Circular progress */}
+            <div className="relative w-[72px] h-[72px] shrink-0">
+              <svg viewBox="0 0 72 72" className="w-full h-full -rotate-90">
+                <circle cx="36" cy="36" r="30" fill="none" stroke="hsl(var(--muted) / 0.25)" strokeWidth="5" />
+                <motion.circle
+                  cx="36" cy="36" r="30" fill="none"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 30}`}
+                  initial={{ strokeDashoffset: 2 * Math.PI * 30 }}
+                  animate={{ strokeDashoffset: 2 * Math.PI * 30 * (1 - percent / 100) }}
+                  transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <motion.span
+                  className="text-[22px] font-black text-foreground tabular-nums leading-none"
+                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                  key={remaining}
+                  initial={{ scale: 1.2, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                >
+                  {remaining}
+                </motion.span>
+                <span className="text-[8px] text-muted-foreground font-medium mt-0.5">/ {limit}</span>
+              </div>
             </div>
-          </div>
-        </div>
 
-        {/* Plans side by side */}
-        <div className="grid grid-cols-2 gap-2.5">
-          <div className={`text-center p-3 rounded-xl border ${
-            isFree
-              ? 'bg-muted/20 border-foreground/8'
-              : 'bg-muted/10 border-border/20'
-          }`}>
-            <motion.span
-              className="text-[26px] font-black text-muted-foreground block tabular-nums leading-none"
-              style={{ fontFamily: "'Cairo', sans-serif" }}
-              initial={{ y: 8, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              {FREE_LIMIT}
-            </motion.span>
-            <span className="text-[11px] text-muted-foreground font-medium mt-1 block">{labels.daily}</span>
-            <div className="mt-1.5">
-              <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
-                isFree ? 'bg-foreground/8 text-foreground/60' : 'bg-muted/30 text-muted-foreground/50'
+            {/* Plan comparison — inline */}
+            <div className="flex-1 space-y-2">
+              {/* Free tier row */}
+              <div className={`flex items-center justify-between px-3 py-2 rounded-lg border ${
+                isFree ? 'border-foreground/10 bg-muted/15' : 'border-border/15 bg-muted/5'
               }`}>
-                {labels.free} {isFree ? '✓' : ''}
-              </span>
+                <span className="text-[11px] font-semibold text-muted-foreground">{labels.free}</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[16px] font-black text-muted-foreground tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>{FREE_LIMIT}</span>
+                  <span className="text-[9px] text-muted-foreground/60">{labels.daily}</span>
+                  {isFree && <span className="text-[9px] text-primary ml-1">●</span>}
+                </div>
+              </div>
+
+              {/* Pro tier row */}
+              <div className={`flex items-center justify-between px-3 py-2 rounded-lg border ${
+                !isFree ? 'border-primary/15 bg-primary/5' : 'border-primary/10 bg-primary/[0.02]'
+              }`}>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[11px] font-semibold text-primary">{labels.pro}</span>
+                  {isFree && (
+                    <motion.span
+                      className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary"
+                      animate={{ opacity: [0.7, 1, 0.7] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      {labels.upgrade}
+                    </motion.span>
+                  )}
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[16px] font-black text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>{PRO_LIMIT}</span>
+                  <span className="text-[9px] text-primary/60">{labels.daily}</span>
+                  {!isFree && <span className="text-[9px] text-primary ml-1">●</span>}
+                </div>
+              </div>
             </div>
           </div>
-
-          <motion.button
-            onClick={() => isFree && navigate('/pricing-demo')}
-            whileTap={isFree ? { scale: 0.97 } : {}}
-            className={`text-center p-3 rounded-xl border transition-all ${
-              !isFree
-                ? 'bg-primary/5 border-primary/15'
-                : 'bg-primary/[0.03] border-primary/20 hover:border-primary/30 cursor-pointer'
-            }`}
-          >
-            <motion.span
-              className="text-[26px] font-black text-primary block tabular-nums leading-none"
-              style={{ fontFamily: "'Cairo', sans-serif" }}
-              initial={{ y: 8, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              {PRO_LIMIT}
-            </motion.span>
-            <span className="text-[11px] text-muted-foreground font-medium mt-1 block">{labels.daily}</span>
-            <div className="mt-1.5">
-              <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-primary/10 text-primary">
-                {isFree ? labels.upgrade : labels.pro}
-              </span>
-            </div>
-          </motion.button>
         </div>
-      </div>
+      </button>
     </motion.div>
   );
 });
