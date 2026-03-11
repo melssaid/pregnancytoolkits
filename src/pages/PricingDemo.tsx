@@ -66,7 +66,7 @@ export default function PricingDemo() {
             className="text-center mb-3"
           >
             <motion.div
-              className="relative w-[88px] h-[88px] mx-auto mb-4 flex items-center justify-center"
+              className="relative w-[72px] h-[72px] mx-auto mb-3 flex items-center justify-center"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
