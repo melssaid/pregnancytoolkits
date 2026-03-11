@@ -5,6 +5,7 @@ import { Brain, Loader2, RefreshCw } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { toolTopicMap, genericTopics } from "@/data/toolTipTopics";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
