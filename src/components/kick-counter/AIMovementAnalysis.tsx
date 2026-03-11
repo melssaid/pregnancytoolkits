@@ -30,6 +30,9 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
 }) => {
   const { streamChat, isLoading } = usePregnancyAI();
   const { currentLanguage } = useLanguage();
+  const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
+  const navigate = useNavigate();
+  const isFree = tier === 'free';
   const [analysis, setAnalysis] = useState('');
   const [phase, setPhase] = useState<AnalysisPhase>('idle');
   const [progress, setProgress] = useState(0);
