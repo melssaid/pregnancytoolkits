@@ -348,7 +348,7 @@ const FooterCard = memo(function FooterCard() {
                   {t("pricing.trialBadge", { count: badgeDays })}
                 </motion.span>
               </div>
-              <p className="text-[12px] font-bold text-muted-foreground leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              <p className="text-[12px] font-bold text-muted-foreground leading-snug break-words">
                 {t("pricing.badge")}
               </p>
             </div>
