@@ -77,6 +77,7 @@ const journeyConfigs: JourneyConfig[] = [
 const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
   const { t } = useTranslation();
   const ToolIcon = tool.icon;
+  const hasPng = !!tool.pngIcon;
   const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", iconBg: "bg-muted/30", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
@@ -90,7 +91,16 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
     <Link to={isLocked ? "/pricing-demo" : tool.href} onClick={handleClick} className="block">
       <div className={`group flex items-center gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px] ${isLocked ? "opacity-50" : ""}`}>
         <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${style.iconBg} border border-border/15 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
-          <ToolIcon className={`w-5 h-5 ${style.iconColor} group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.8} />
+          {hasPng ? (
+            <img
+              src={tool.pngIcon}
+              alt=""
+              className="w-6 h-6 object-contain"
+              loading="lazy"
+            />
+          ) : (
+            <ToolIcon className={`w-5 h-5 ${style.iconColor} group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.8} />
+          )}
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-[13px] font-bold text-foreground leading-snug break-words" style={{ fontFamily: "'Tajawal', sans-serif" }}>{t(tool.titleKey)}</h3>
