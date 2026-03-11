@@ -400,38 +400,31 @@ const FooterCard = memo(function FooterCard() {
               </div>
 
               {/* Plan rows */}
-              <div className="flex-1 space-y-1.5">
-                <div className={`flex items-center justify-between px-3 py-2 rounded-lg ${
-                  isFree ? 'bg-muted/15' : 'bg-muted/5'
-                }`}>
-                  <span className="text-[11px] font-semibold text-muted-foreground">{labels.free}</span>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[15px] font-black text-muted-foreground tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>{FREE_LIMIT}</span>
-                    <span className="text-[9px] text-muted-foreground/50">{labels.daily}</span>
-                    {isFree && <span className="text-[8px] text-primary">●</span>}
+              <div className="flex-1 space-y-1">
+                {/* Free row */}
+                <div className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg ${isFree ? 'bg-muted/15' : 'bg-muted/5'}`}>
+                  <div className="flex items-center gap-1.5 min-w-[52px]">
+                    {isFree && <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 shrink-0" />}
+                    <span className="text-[11px] font-semibold text-muted-foreground">{labels.free}</span>
                   </div>
+                  <div className="flex-1 h-[6px] rounded-full bg-muted/20 overflow-hidden">
+                    <div className="h-full rounded-full bg-muted-foreground/30" style={{ width: `${(FREE_LIMIT / PRO_LIMIT) * 100}%` }} />
+                  </div>
+                  <span className="text-[12px] font-black text-muted-foreground tabular-nums min-w-[18px] text-end" style={{ fontFamily: "'Cairo', sans-serif" }}>{FREE_LIMIT}</span>
+                  <span className="text-[8px] text-muted-foreground/50">{labels.daily}</span>
                 </div>
 
-                <div className={`flex items-center justify-between px-3 py-2 rounded-lg ${
-                  !isFree ? 'bg-primary/5' : 'bg-primary/[0.02]'
-                }`}>
-                  <div className="flex items-center gap-1.5">
+                {/* PRO row */}
+                <div className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg ${!isFree ? 'bg-primary/5' : 'bg-primary/[0.02]'}`}>
+                  <div className="flex items-center gap-1.5 min-w-[52px]">
+                    {!isFree && <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />}
                     <span className="text-[11px] font-semibold text-primary">{labels.pro}</span>
-                    {isFree && (
-                      <motion.span
-                        className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary"
-                        animate={{ opacity: [0.6, 1, 0.6] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        {labels.upgrade}
-                      </motion.span>
-                    )}
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[15px] font-black text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>{PRO_LIMIT}</span>
-                    <span className="text-[9px] text-primary/50">{labels.daily}</span>
-                    {!isFree && <span className="text-[8px] text-primary">●</span>}
+                  <div className="flex-1 h-[6px] rounded-full bg-primary/10 overflow-hidden">
+                    <div className="h-full rounded-full bg-primary/60" style={{ width: '100%' }} />
                   </div>
+                  <span className="text-[12px] font-black text-primary tabular-nums min-w-[18px] text-end" style={{ fontFamily: "'Cairo', sans-serif" }}>{PRO_LIMIT}</span>
+                  <span className="text-[8px] text-primary/50">{labels.daily}</span>
                 </div>
               </div>
             </div>
