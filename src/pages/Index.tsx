@@ -14,7 +14,7 @@ import { toast } from "sonner";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
-import { lazy, Suspense } from "react";
+
 
 
 
