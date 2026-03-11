@@ -61,13 +61,13 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // FERTILITY & PLANNING — "أحلم بطفل" Journey
   // ═══════════════════════════════════════════════════════════════
-  { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Calendar, pngIcon: "/icons/cycle-tracker.png", categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 4 },
-  { id: "due-date-calculator", titleKey: "tools.dueDateCalculator.title", descriptionKey: "tools.dueDateCalculator.description", icon: Baby, pngIcon: "/icons/due-date.png", categoryKey: "categories.fertility", href: "/tools/due-date-calculator", priority: 5 },
+  { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Calendar, pngIcon: "https://img.icons8.com/3d-fluency/94/calendar.png", categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 4 },
+  { id: "due-date-calculator", titleKey: "tools.dueDateCalculator.title", descriptionKey: "tools.dueDateCalculator.description", icon: Baby, pngIcon: "https://img.icons8.com/3d-fluency/94/baby.png", categoryKey: "categories.fertility", href: "/tools/due-date-calculator", priority: 5 },
   
-  { id: "fertility-academy", titleKey: "tools.fertilityAcademy.title", descriptionKey: "tools.fertilityAcademy.description", icon: Star, pngIcon: "/icons/ovulation.png", categoryKey: "categories.fertility", href: "/tools/fertility-academy", priority: 7 },
-  { id: "nutrition-supplements", titleKey: "tools.nutritionSupplements.title", descriptionKey: "tools.nutritionSupplements.description", icon: Leaf, pngIcon: "/icons/vitamin-tracker.png", categoryKey: "categories.fertility", href: "/tools/nutrition-supplements", priority: 8 },
+  { id: "fertility-academy", titleKey: "tools.fertilityAcademy.title", descriptionKey: "tools.fertilityAcademy.description", icon: Star, pngIcon: "https://img.icons8.com/3d-fluency/94/graduation-cap.png", categoryKey: "categories.fertility", href: "/tools/fertility-academy", priority: 7 },
+  { id: "nutrition-supplements", titleKey: "tools.nutritionSupplements.title", descriptionKey: "tools.nutritionSupplements.description", icon: Leaf, pngIcon: "https://img.icons8.com/3d-fluency/94/pill.png", categoryKey: "categories.fertility", href: "/tools/nutrition-supplements", priority: 8 },
   
-  { id: "preconception-checkup", titleKey: "tools.preconceptionCheckup.title", descriptionKey: "tools.preconceptionCheckup.description", icon: CheckSquare, pngIcon: "/icons/doctor-questions.png", categoryKey: "categories.fertility", href: "/tools/preconception-checkup", priority: 10 },
+  { id: "preconception-checkup", titleKey: "tools.preconceptionCheckup.title", descriptionKey: "tools.preconceptionCheckup.description", icon: CheckSquare, pngIcon: "https://img.icons8.com/3d-fluency/94/stethoscope.png", categoryKey: "categories.fertility", href: "/tools/preconception-checkup", priority: 10 },
 
   // ═══════════════════════════════════════════════════════════════
   // PREGNANCY TRACKING
