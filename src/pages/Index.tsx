@@ -363,11 +363,11 @@ const FooterCard = memo(function FooterCard() {
           </div>
         </button>
 
-        {/* ─── Vertical Divider ─── */}
-        <div className="flex items-center gap-3 py-3">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent" />
-          <div className="w-1 h-1 rounded-full bg-primary/25" />
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent" />
+        {/* ─── Strong Divider ─── */}
+        <div className="flex items-center gap-2.5 py-4">
+          <div className="flex-1 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
+          <Sparkles className="w-3.5 h-3.5 text-primary/30" />
+          <div className="flex-1 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
         </div>
 
         {/* ─── AI Usage Section ─── */}
