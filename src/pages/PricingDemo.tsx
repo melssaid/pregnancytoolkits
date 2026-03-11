@@ -259,7 +259,7 @@ export default function PricingDemo() {
           <Button
             onClick={handleSubscribe}
             size="lg"
-            className="w-full h-[52px] text-[14px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
+            className="w-full h-[48px] text-[13px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
             style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
           >
             {t("pricing.cta")}
