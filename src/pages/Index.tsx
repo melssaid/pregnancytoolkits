@@ -301,16 +301,16 @@ const FooterCard = memo(function FooterCard() {
       initial={{ opacity: 0, y: 14, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="mt-3 rounded-2xl overflow-hidden bg-gradient-to-r from-primary/[0.06] via-card to-card border border-primary/15 shadow-[0_2px_16px_-4px_hsl(340,50%,55%,0.1)] relative"
+      className="mt-3 rounded-2xl overflow-hidden bg-gradient-to-r from-muted/30 via-card to-card border border-border/30 shadow-[0_2px_16px_-4px_hsl(0,0%,50%,0.08)] relative"
       style={{ fontFamily: "'Almarai', 'Tajawal', sans-serif" }}
     >
       {/* Breathing Glow */}
       <motion.div
-        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 blur-md -z-10"
+        className="absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-muted/20 via-muted/10 to-muted/20 blur-md -z-10"
         animate={{ opacity: [0, 0.5, 0], scale: [0.98, 1.02, 0.98] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-muted/10 blur-3xl" />
 
       <div className="relative p-4 space-y-0">
         {/* ─── Premium Section ─── */}
