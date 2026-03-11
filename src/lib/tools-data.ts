@@ -81,8 +81,8 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // NUTRITION & DIET
   // ═══════════════════════════════════════════════════════════════
-  { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, pngIcon: "/icons/meal-suggestion.png", categoryKey: "categories.nutrition", href: "/tools/ai-meal-suggestion", priority: 10, hasAI: true },
-  { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, pngIcon: "/icons/vitamin-tracker.png", categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 13, hasAI: true },
+  { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, pngIcon: "https://img.icons8.com/3d-fluency/94/salad.png", categoryKey: "categories.nutrition", href: "/tools/ai-meal-suggestion", priority: 10, hasAI: true },
+  { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, pngIcon: "https://img.icons8.com/3d-fluency/94/pill.png", categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 13, hasAI: true },
   
 
   // ═══════════════════════════════════════════════════════════════
