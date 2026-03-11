@@ -301,7 +301,7 @@ const FooterCard = memo(function FooterCard() {
       initial={{ opacity: 0, y: 14, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="mt-3 rounded-2xl overflow-hidden bg-gradient-to-r from-primary/[0.06] via-card to-card border border-primary/15 shadow-[0_2px_16px_-4px_hsl(340,50%,55%,0.1)] relative"
+      className="mt-3 rounded-2xl overflow-hidden bg-gradient-to-r from-muted/30 via-card to-card border border-border/30 shadow-[0_2px_16px_-4px_hsl(0,0%,50%,0.08)] relative"
       style={{ fontFamily: "'Almarai', 'Tajawal', sans-serif" }}
     >
       {/* Breathing Glow */}
