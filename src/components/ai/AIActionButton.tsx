@@ -164,10 +164,14 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
           <div className="flex items-center justify-between mt-1.5">
             <span className="text-[8px] text-muted-foreground">{labels.resetsDaily}</span>
             {isFree && !isLimitReached && (
-              <div className="flex items-center gap-1">
+              <motion.button
+                onClick={() => navigate('/pricing-demo')}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-1 cursor-pointer"
+              >
                 <Crown className="w-2.5 h-2.5 text-primary" />
-                <span className="text-[8px] text-primary font-semibold">{labels.upgrade}</span>
-              </div>
+                <span className="text-[8px] text-primary font-semibold underline underline-offset-2">{labels.upgrade}</span>
+              </motion.button>
             )}
           </div>
         </motion.div>
