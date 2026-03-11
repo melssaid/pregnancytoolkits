@@ -57,6 +57,7 @@ const PreconceptionCheckup = lazy(() => import("@/pages/tools/PreconceptionCheck
 // PREGNANCY TRACKING
 const FetalDevelopment3D = lazy(() => import("@/pages/tools/FetalDevelopment3D"));
 const SmartKickCounter = lazy(() => import("@/pages/tools/SmartKickCounter"));
+const ContractionTimer = lazy(() => import("@/pages/tools/ContractionTimer"));
 const SmartWeightGainAnalyzer = lazy(() => import("@/pages/tools/SmartWeightGainAnalyzer"));
 
 // MENTAL HEALTH
