@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Brain, Loader2, Sparkles, Crown, Zap } from 'lucide-react';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 interface AIActionButtonProps {
   onClick: () => void;
