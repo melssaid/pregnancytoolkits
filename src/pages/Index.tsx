@@ -310,7 +310,7 @@ const FooterCard = memo(function FooterCard() {
         animate={{ opacity: [0, 0.5, 0], scale: [0.98, 1.02, 0.98] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-muted/10 blur-3xl" />
 
       <div className="relative p-4 space-y-0">
         {/* ─── Premium Section ─── */}
