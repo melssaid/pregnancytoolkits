@@ -2422,7 +2422,12 @@
       "aiSuggestions": "اقتراحات AI",
       "aiSuggestionsLabel": "أسئلة مقترحة من AI:",
       "yourQuestions": "أسئلتك",
-      "addFirst": "أضيفي أول موعد لك!"
+      "addFirst": "أضيفي أول موعد لك!",
+      "details": "التفاصيل",
+      "notificationHint": "سيتم إرسال التذكيرات تلقائياً: قبل يوم، صباح الموعد، وقبل ساعتين من موعدك.",
+      "questionsHint": "يمكن للذكاء الاصطناعي اقتراح أسئلة مناسبة للأسبوع {{week}}",
+      "skipQuestions": "تخطي — حفظ بدون أسئلة",
+      "savedWithQuestions": "تم الحفظ مع {{count}} أسئلة للطبيب/ة"
     },
     "babyGrowth": {
       "title": "نمو الطفل",
