@@ -446,7 +446,7 @@ const Index = () => {
   return (
     <Layout>
       <SEOHead />
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-primary/10 via-primary/5 to-transparent z-30" />
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-muted/40 via-muted/20 to-transparent z-30" />
 
       <section className="pt-5 pb-0 relative z-10">
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
