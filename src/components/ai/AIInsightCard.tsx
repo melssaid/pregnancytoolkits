@@ -46,7 +46,7 @@ const MiniUsageBar: React.FC = () => {
 };
 
 export const AIInsightCard: React.FC<AIInsightCardProps> = ({
-  title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false,
+  title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false, aiType,
 }) => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language?.split('-')[0] || 'en';
