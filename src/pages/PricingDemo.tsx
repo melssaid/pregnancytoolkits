@@ -149,17 +149,17 @@ export default function PricingDemo() {
             <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-border/40 to-transparent" />
           </div>
 
-          {/* Plan cards */}
+          {/* Plan cards - side by side */}
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.18 }}
-            className="space-y-2.5"
+            className="grid grid-cols-2 gap-2.5"
           >
             {/* Yearly */}
             <button
               onClick={() => setSelected("yearly")}
-              className={`w-full px-3.5 py-3 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 relative overflow-hidden ${
+              className={`relative flex flex-col items-center text-center px-3 py-4 rounded-2xl border-2 transition-all duration-300 overflow-hidden ${
                 selected === "yearly"
                   ? "border-primary bg-primary/[0.04] shadow-[0_0_24px_-6px_hsl(var(--primary)/0.18)]"
                   : "border-border/30 bg-card/60 hover:border-border/50"
@@ -167,82 +167,60 @@ export default function PricingDemo() {
             >
               {selected === "yearly" && (
                 <div className="absolute top-0 end-0 px-2 py-0.5 rounded-es-lg bg-primary">
-                  <span
-                    className="text-[9px] font-bold text-primary-foreground"
-                    style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
-                  >
+                  <span className="text-[8px] font-bold text-primary-foreground font-cairo">
                     {t("pricing.bestValue")}
                   </span>
                 </div>
               )}
 
-              <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
                 selected === "yearly" ? "border-primary bg-primary" : "border-muted-foreground/25"
               }`}>
-                {selected === "yearly" && <Check className="w-3 h-3 text-primary-foreground" strokeWidth={3} />}
+                {selected === "yearly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
 
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span
-                    className="text-[13px] font-bold text-foreground"
-                    style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
-                  >
-                    {t("pricing.yearly")}
-                  </span>
-                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 leading-tight">
-                    {t("pricing.save")}
-                  </span>
-                </div>
-                <span className="text-[11px] text-muted-foreground mt-0.5 block">
+              <span className="text-[12px] font-bold text-foreground font-cairo mb-1">
+                {t("pricing.yearly")}
+              </span>
+
+              <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none font-cairo">
+                $19.99
+              </span>
+              <span className="text-[10px] text-muted-foreground mt-0.5 font-cairo">/{t("pricing.yr")}</span>
+
+              <div className="mt-2 flex flex-col items-center gap-1">
+                <span className="text-[9px] text-muted-foreground font-cairo">
                   $1.67/{t("pricing.mo")}
                 </span>
-              </div>
-
-              <div className="text-end shrink-0">
-                <span
-                  className="text-[20px] font-extrabold text-foreground tabular-nums"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  $19.99
+                <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 leading-tight">
+                  {t("pricing.save")}
                 </span>
-                <span className="text-[11px] text-muted-foreground">/{t("pricing.yr")}</span>
               </div>
             </button>
 
             {/* Monthly */}
             <button
               onClick={() => setSelected("monthly")}
-              className={`w-full px-3.5 py-3 rounded-2xl border-2 transition-all duration-300 text-start flex items-center gap-3 ${
+              className={`relative flex flex-col items-center text-center px-3 py-4 rounded-2xl border-2 transition-all duration-300 ${
                 selected === "monthly"
                   ? "border-primary bg-primary/[0.04] shadow-[0_0_24px_-6px_hsl(var(--primary)/0.18)]"
                   : "border-border/30 bg-card/60 hover:border-border/50"
               }`}
             >
-              <div className={`w-[22px] h-[22px] rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
                 selected === "monthly" ? "border-primary bg-primary" : "border-muted-foreground/25"
               }`}>
-                {selected === "monthly" && <Check className="w-3 h-3 text-primary-foreground" strokeWidth={3} />}
+                {selected === "monthly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
 
-              <div className="flex-1 min-w-0">
-                <span
-                  className="text-[13px] font-bold text-foreground"
-                  style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
-                >
-                  {t("pricing.monthly")}
-                </span>
-              </div>
+              <span className="text-[12px] font-bold text-foreground font-cairo mb-1">
+                {t("pricing.monthly")}
+              </span>
 
-              <div className="text-end shrink-0">
-                <span
-                  className="text-[20px] font-extrabold text-foreground tabular-nums"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  $2.99
-                </span>
-                <span className="text-[11px] text-muted-foreground">/{t("pricing.mo")}</span>
-              </div>
+              <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none font-cairo">
+                $2.99
+              </span>
+              <span className="text-[10px] text-muted-foreground mt-0.5 font-cairo">/{t("pricing.mo")}</span>
             </button>
           </motion.div>
         </div>
