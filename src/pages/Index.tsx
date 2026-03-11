@@ -95,7 +95,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
             <img
               src={tool.pngIcon}
               alt=""
-              className="w-6 h-6 object-contain"
+              className="w-7 h-7 object-contain"
               loading="lazy"
             />
           ) : (
