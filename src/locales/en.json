@@ -198,6 +198,10 @@
       "title": "Smart Birth Plan",
       "description": "Create your personalized birth plan with AI guidance."
     },
+    "contractionTimer": {
+      "title": "Contraction Timer",
+      "description": "Track contraction duration and intervals accurately."
+    },
     "smartAppointmentReminder": {
       "title": "Smart Appointment Planner",
       "description": "Never miss a prenatal appointment."
