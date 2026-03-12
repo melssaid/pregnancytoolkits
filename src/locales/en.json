@@ -3186,7 +3186,19 @@
       "mealSuggestionLink": "Meal Suggestions",
       "mealSuggestionLinkDesc": "Get healthy meal ideas",
       "aiAnalysisTitle": "AI Weight Analysis",
-      "aiAnalysisButton": "Analyze with AI"
+      "aiAnalysisButton": "Analyze with AI",
+      "weeklyDelta": "Change",
+      "weeklyRateGauge": "Weekly Gain Rate",
+      "healthyRange": "Healthy",
+      "kgPerWeek": "kg/wk",
+      "weeklyGoalTitle": "Your Goal for Next Week",
+      "goalRange": "Target",
+      "onTrackGoal": "You're on track! Keep it up",
+      "adjustGoal": "Slight adjustment may help reach your goal",
+      "trimesterComparison": "Trimester Comparison",
+      "step1": "Enter your height",
+      "step2": "Enter your pre-pregnancy weight",
+      "step3": "Log your first weight"
     },
     "bloodType": {
       "title": "Blood Type Calculator",
