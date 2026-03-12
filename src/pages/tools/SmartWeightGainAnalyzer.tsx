@@ -368,9 +368,9 @@ export default function SmartWeightGainAnalyzer() {
                       <div className="h-1.5 bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
                       <CardContent className="p-4 space-y-3">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-[13px] font-bold flex items-center gap-2">
-                            <Scale className="w-4 h-4 text-primary" />
+                          <h3 className="text-[13px] font-bold">
                             {t('toolsInternal.weightGain.addWeightEntry')}
+                          </h3>
                           </h3>
                           <button 
                             onClick={() => setShowAddForm(false)} 
