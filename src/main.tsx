@@ -9,40 +9,29 @@ import { registerServiceWorker } from "@/lib/pushNotifications";
 import { sendDailyScheduleToSW } from "@/lib/scheduleNotifications";
 import { maybeRunCleanup } from "@/lib/storageCleanup";
 
-// Run periodic storage cleanup (non-blocking)
 maybeRunCleanup();
-
-
-// Wait for translations before rendering to avoid showing raw keys
 updateDocumentDirection(i18n.language);
 
-import { i18nReady } from "./i18n";
+// Mount React immediately — don't wait for i18n (useSuspense:false handles it)
+createRoot(document.getElementById("root")!).render(
+  <SettingsProvider>
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
+  </SettingsProvider>
+);
 
-i18nReady.then(() => {
-  createRoot(document.getElementById("root")!).render(
-    <SettingsProvider>
-      <LanguageProvider>
-        <App />
-      </LanguageProvider>
-    </SettingsProvider>
-  );
-
-  // Fade out splash overlay after React has mounted
-  requestAnimationFrame(() => {
-    const splash = document.getElementById("splash-overlay");
-    if (splash) {
-      splash.style.opacity = "0";
-      splash.style.visibility = "hidden";
-      setTimeout(() => splash.remove(), 400);
-    }
-  });
+// Dismiss splash after mount
+requestAnimationFrame(() => {
+  const splash = document.getElementById("splash-overlay");
+  if (splash) {
+    splash.style.opacity = "0";
+    splash.style.visibility = "hidden";
+    setTimeout(() => splash.remove(), 300);
+  }
 });
 
-// Register Service Worker after render (deferred)
-
-// Register Service Worker after render
+// Register SW deferred
 registerServiceWorker().then(() => {
-  setTimeout(() => {
-    sendDailyScheduleToSW();
-  }, 3000);
+  setTimeout(() => sendDailyScheduleToSW(), 3000);
 });
