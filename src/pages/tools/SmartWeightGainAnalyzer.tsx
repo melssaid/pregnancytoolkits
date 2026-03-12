@@ -18,6 +18,10 @@ import { WeightGainChart } from '@/components/weight-gain/WeightGainChart';
 import { BMIScaleBar } from '@/components/weight-gain/BMIScaleBar';
 import { WeightDistributionCard } from '@/components/weight-gain/WeightDistributionCard';
 import { MedicalTipCard } from '@/components/weight-gain/MedicalTipCard';
+import { WeeklySummaryHero } from '@/components/weight-gain/WeeklySummaryHero';
+import { WeeklyRateGauge } from '@/components/weight-gain/WeeklyRateGauge';
+import { WeeklyGoalCard } from '@/components/weight-gain/WeeklyGoalCard';
+import { TrimesterComparison } from '@/components/weight-gain/TrimesterComparison';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
 
 interface WeightEntry {
@@ -442,96 +446,67 @@ export default function SmartWeightGainAnalyzer() {
               </AnimatePresence>
 
               {/* ═══ Stats Dashboard ═══ */}
+              {/* ─── Weekly Summary Hero ─── */}
               {status && entries.length > 0 && (
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-2.5">
-                  
-                  {/* ─── 3-Column Stats ─── */}
-                  <div className="grid grid-cols-3 gap-2">
-                    {/* Total Gain */}
-                    <Card className="border-primary/10 overflow-hidden">
-                      <div className="h-0.5 bg-primary/40" />
-                      <CardContent className="p-2.5 text-center">
-                        <p className="text-[8px] text-muted-foreground uppercase tracking-wider font-medium">{t('toolsInternal.weightGain.totalWeightGainLabel')}</p>
-                        <motion.p 
-                          className="text-xl font-black text-primary mt-1"
-                          key={totalGain}
-                          initial={{ scale: 0.85 }}
-                          animate={{ scale: 1 }}
-                          transition={{ type: 'spring', stiffness: 400 }}
-                        >
-                          {totalGain >= 0 ? '+' : ''}{totalGain.toFixed(1)}
-                        </motion.p>
-                        <p className="text-[9px] text-muted-foreground mt-0.5">kg</p>
-                      </CardContent>
-                    </Card>
+                <WeeklySummaryHero
+                  currentWeek={lastEntry?.week || parseInt(currentWeek)}
+                  latestWeight={lastEntry?.weight ?? null}
+                  previousWeight={entries.length >= 2 ? entries[entries.length - 2].weight : null}
+                  totalGain={totalGain}
+                  targetMin={range.min}
+                  targetMax={range.max}
+                  status={status}
+                  t={t}
+                />
+              )}
 
-                    {/* Progress Ring */}
-                    <Card className="border-border/30 overflow-hidden">
-                      <div className="h-0.5 bg-accent/40" />
-                      <CardContent className="p-2.5 flex flex-col items-center">
-                        <p className="text-[8px] text-muted-foreground uppercase tracking-wider font-medium">{t('toolsInternal.weightGain.progressToGoal')}</p>
-                        <div className="relative w-14 h-14 mt-1">
-                          <svg viewBox="0 0 48 48" className="w-full h-full -rotate-90">
-                            <circle cx="24" cy="24" r="19" fill="none" stroke="hsl(var(--muted))" strokeWidth="3" />
-                            <motion.circle 
-                              cx="24" cy="24" r="19" fill="none" 
-                              stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"
-                              strokeDasharray={`${2 * Math.PI * 19}`}
-                              initial={{ strokeDashoffset: 2 * Math.PI * 19 }}
-                              animate={{ strokeDashoffset: 2 * Math.PI * 19 * (1 - progressPercent / 100) }}
-                              transition={{ duration: 1.2, ease: 'easeOut' }}
-                            />
-                          </svg>
-                          <span className="absolute inset-0 flex items-center justify-center text-[12px] font-black text-foreground">
-                            {progressPercent}%
-                          </span>
-                        </div>
-                      </CardContent>
-                    </Card>
+              {/* ─── Weekly Rate Gauge ─── */}
+              {weeklyGainRate !== null && (
+                <WeeklyRateGauge
+                  rate={weeklyGainRate}
+                  healthyMin={currentTrimester === 'first' ? 0 : 0.3}
+                  healthyMax={currentTrimester === 'first' ? 0.2 : 0.6}
+                  t={t}
+                />
+              )}
 
-                    {/* Weekly Rate */}
-                    <Card className="border-border/30 overflow-hidden">
-                      <div className="h-0.5 bg-muted-foreground/20" />
-                      <CardContent className="p-2.5 text-center">
-                        <p className="text-[8px] text-muted-foreground uppercase tracking-wider font-medium">{t('toolsInternal.weightGain.weeklyRate', 'Weekly rate')}</p>
-                        <p className="text-xl font-black text-foreground mt-1">
-                          {weeklyGainRate !== null 
-                            ? `${weeklyGainRate >= 0 ? '+' : ''}${weeklyGainRate.toFixed(2)}`
-                            : '—'}
-                        </p>
-                        <p className="text-[9px] text-muted-foreground mt-0.5">
-                          {t('toolsInternal.weightGain.kgPerWeek', 'kg/wk')}
-                        </p>
-                      </CardContent>
-                    </Card>
+              {/* ─── Weekly Goal Card ─── */}
+              {entries.length > 0 && lastEntry && (
+                <WeeklyGoalCard
+                  currentWeek={lastEntry.week}
+                  currentWeight={lastEntry.weight}
+                  prePregnancyWeight={parseFloat(prePregnancyWeight)}
+                  getExpectedGainForWeek={getExpectedGainForWeek}
+                  t={t}
+                />
+              )}
+
+              {/* ─── Status Banner ─── */}
+              {status && entries.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                  className={`p-3 rounded-2xl border ${statusConfig[status].borderColor} ${statusConfig[status].bg} flex items-center gap-3`}
+                >
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${statusConfig[status].badge}`}>
+                    {React.createElement(statusConfig[status].icon, { className: `w-4.5 h-4.5 ${statusConfig[status].color}` })}
                   </div>
-
-                  {/* ─── Status Banner ─── */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15 }}
-                    className={`p-3 rounded-2xl border ${statusConfig[status].borderColor} ${statusConfig[status].bg} flex items-center gap-3`}
-                  >
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${statusConfig[status].badge}`}>
-                      {React.createElement(statusConfig[status].icon, { className: `w-4.5 h-4.5 ${statusConfig[status].color}` })}
+                  <div className="flex-1 min-w-0">
+                    <span className={`text-[11px] font-bold inline-block px-2 py-0.5 rounded-full ${statusConfig[status].badge}`}>
+                      {t(`toolsInternal.weightGain.statusMessages.${status}.message`)}
+                    </span>
+                    <p className="text-[10px] text-foreground/70 mt-1 leading-relaxed line-clamp-2">
+                      {t(`toolsInternal.weightGain.statusMessages.${status}.recommendation`)}
+                    </p>
+                  </div>
+                  {remainingGain !== null && remainingGain > 0 && (
+                    <div className="text-center shrink-0 px-2">
+                      <p className="text-[8px] text-muted-foreground uppercase font-medium">{t('toolsInternal.weightGain.remaining', 'Remaining')}</p>
+                      <p className="text-base font-black text-foreground">{remainingGain.toFixed(1)}</p>
+                      <p className="text-[8px] text-muted-foreground">kg</p>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <span className={`text-[11px] font-bold inline-block px-2 py-0.5 rounded-full ${statusConfig[status].badge}`}>
-                        {t(`toolsInternal.weightGain.statusMessages.${status}.message`)}
-                      </span>
-                      <p className="text-[10px] text-foreground/70 mt-1 leading-relaxed line-clamp-2">
-                        {t(`toolsInternal.weightGain.statusMessages.${status}.recommendation`)}
-                      </p>
-                    </div>
-                    {remainingGain !== null && remainingGain > 0 && (
-                      <div className="text-center shrink-0 px-2">
-                        <p className="text-[8px] text-muted-foreground uppercase font-medium">{t('toolsInternal.weightGain.remaining', 'Remaining')}</p>
-                        <p className="text-base font-black text-foreground">{remainingGain.toFixed(1)}</p>
-                        <p className="text-[8px] text-muted-foreground">kg</p>
-                      </div>
-                    )}
-                  </motion.div>
+                  )}
                 </motion.div>
               )}
 
@@ -543,23 +518,50 @@ export default function SmartWeightGainAnalyzer() {
                 <WeightGainChart chartData={chartData} t={t} />
               )}
 
-              {/* ─── Empty State ─── */}
+              {/* ─── Enhanced Empty State ─── */}
               {entries.length === 0 && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  <Card className="border-dashed border-2 border-primary/15">
-                    <CardContent className="p-8 text-center space-y-3">
+                  <Card className="border-dashed border-2 border-primary/15 overflow-hidden">
+                    <div className="h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                    <CardContent className="p-6 text-center space-y-4">
                       <motion.div
-                        animate={{ y: [0, -6, 0] }}
-                        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                        animate={{ y: [0, -8, 0], rotate: [0, -3, 3, 0] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                       >
-                        <Scale className="w-12 h-12 text-primary/20 mx-auto" />
+                        <Scale className="w-14 h-14 text-primary/25 mx-auto" />
                       </motion.div>
-                      <p className="text-[13px] font-bold text-muted-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
-                      <p className="text-[11px] text-muted-foreground/60 max-w-[220px] mx-auto leading-relaxed">{t('toolsInternal.weightGain.noEntriesHint')}</p>
+                      <div>
+                        <p className="text-[14px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
+                        <p className="text-[11px] text-muted-foreground/60 max-w-[240px] mx-auto leading-relaxed mt-1">{t('toolsInternal.weightGain.noEntriesHint')}</p>
+                      </div>
+                      
+                      {/* Steps */}
+                      <div className="space-y-2 max-w-[250px] mx-auto">
+                        {[
+                          { num: 1, text: t('toolsInternal.weightGain.step1', 'Enter your height'), icon: Ruler, done: !!height },
+                          { num: 2, text: t('toolsInternal.weightGain.step2', 'Enter your pre-pregnancy weight'), icon: Weight, done: !!prePregnancyWeight },
+                          { num: 3, text: t('toolsInternal.weightGain.step3', 'Log your first weight'), icon: Scale, done: false },
+                        ].map((step, i) => (
+                          <motion.div 
+                            key={step.num}
+                            className={`flex items-center gap-3 p-2.5 rounded-xl text-start ${step.done ? 'bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200/50 dark:border-emerald-800/50' : 'bg-muted/30 border border-border/30'}`}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 + i * 0.1 }}
+                          >
+                            <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold ${step.done ? 'bg-emerald-500 text-white' : 'bg-muted text-muted-foreground'}`}>
+                              {step.done ? <CheckCircle className="w-4 h-4" /> : step.num}
+                            </div>
+                            <span className={`text-[11px] ${step.done ? 'text-emerald-700 dark:text-emerald-400 font-semibold line-through' : 'text-foreground/70 font-medium'}`}>
+                              {step.text}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+
                       <Button 
-                        variant="outline" 
                         size="sm" 
-                        className="mt-2 gap-2 rounded-xl"
+                        className="mt-2 gap-2 rounded-xl shadow-md"
                         onClick={() => setShowAddForm(true)}
                       >
                         <Plus className="w-4 h-4" />
@@ -570,7 +572,7 @@ export default function SmartWeightGainAnalyzer() {
                 </motion.div>
               )}
 
-              {/* ─── Recent Entries ─── */}
+              {/* ─── Timeline Entries ─── */}
               {entries.length > 0 && (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
                   <Card className="overflow-hidden">
@@ -584,47 +586,77 @@ export default function SmartWeightGainAnalyzer() {
                           {entries.length} {t('toolsInternal.weightGain.reading')}
                         </span>
                       </div>
-                      <div className="space-y-1.5">
-                        {displayEntries.map((entry, i) => {
-                          const gain = entry.weight - parseFloat(prePregnancyWeight || '0');
-                          const expected = getExpectedGainForWeek(entry.week);
-                          const isInRange = gain >= expected.min && gain <= expected.max;
-                          return (
-                            <motion.div
-                              key={entry.id}
-                              layout
-                              initial={{ opacity: 0, x: -8 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: i * 0.05 }}
-                              className="flex items-center justify-between p-2.5 rounded-xl bg-muted/30 border border-border/30 hover:bg-muted/50 transition-colors group"
-                            >
-                              <div className="flex items-center gap-2.5">
-                                <div className={`w-2.5 h-2.5 rounded-full ${isInRange ? 'bg-emerald-500' : 'bg-amber-500'} shadow-sm`} />
-                                <div>
-                                  <span className="text-[11px] font-bold">{t('toolsInternal.weightGain.week')} {entry.week}</span>
-                                  <span className="text-[9px] text-muted-foreground mx-1">·</span>
-                                  <span className="text-[9px] text-muted-foreground">
-                                    {new Date(entry.date).toLocaleDateString()}
-                                  </span>
+                      {/* Vertical Timeline */}
+                      <div className="relative">
+                        {/* Timeline line */}
+                        <div className="absolute start-[11px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary/40 via-primary/20 to-transparent rounded-full" />
+                        
+                        <div className="space-y-0.5">
+                          {displayEntries.map((entry, i) => {
+                            const gain = entry.weight - parseFloat(prePregnancyWeight || '0');
+                            const expected = getExpectedGainForWeek(entry.week);
+                            const isInRange = gain >= expected.min && gain <= expected.max;
+                            const isFirst = i === 0;
+                            return (
+                              <motion.div
+                                key={entry.id}
+                                layout
+                                initial={{ opacity: 0, x: -8 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: i * 0.06 }}
+                                className="flex items-start gap-3 group relative"
+                              >
+                                {/* Timeline dot */}
+                                <div className="relative z-10 mt-3 shrink-0">
+                                  <motion.div 
+                                    className={`w-6 h-6 rounded-full border-[2.5px] flex items-center justify-center ${
+                                      isFirst 
+                                        ? 'border-primary bg-primary/10 shadow-sm shadow-primary/20' 
+                                        : isInRange 
+                                          ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/30' 
+                                          : 'border-amber-400 bg-amber-50 dark:bg-amber-950/30'
+                                    }`}
+                                    initial={isFirst ? { scale: 0 } : {}}
+                                    animate={isFirst ? { scale: [1, 1.15, 1] } : {}}
+                                    transition={isFirst ? { duration: 2, repeat: Infinity } : {}}
+                                  >
+                                    <div className={`w-2 h-2 rounded-full ${isFirst ? 'bg-primary' : isInRange ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                                  </motion.div>
                                 </div>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <div className="text-end">
-                                  <span className="text-[11px] font-bold">{entry.weight} kg</span>
-                                  <span className={`text-[10px] font-semibold ms-1.5 ${gain > 0 ? 'text-primary' : 'text-muted-foreground'}`}>
-                                    {gain >= 0 ? '+' : ''}{gain.toFixed(1)}
-                                  </span>
+
+                                {/* Content card */}
+                                <div className={`flex-1 p-2.5 rounded-xl mb-1 transition-colors ${isFirst ? 'bg-primary/5 border border-primary/15' : 'bg-muted/30 border border-border/20 hover:bg-muted/50'}`}>
+                                  <div className="flex items-center justify-between">
+                                    <div>
+                                      <span className={`text-[11px] font-bold ${isFirst ? 'text-primary' : 'text-foreground'}`}>
+                                        {t('toolsInternal.weightGain.week')} {entry.week}
+                                      </span>
+                                      <span className="text-[9px] text-muted-foreground ms-1.5">
+                                        {new Date(entry.date).toLocaleDateString()}
+                                      </span>
+                                    </div>
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-[12px] font-black text-foreground">{entry.weight} kg</span>
+                                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
+                                        isInRange 
+                                          ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400' 
+                                          : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'
+                                      }`}>
+                                        {gain >= 0 ? '+' : ''}{gain.toFixed(1)}
+                                      </span>
+                                      <button 
+                                        onClick={() => removeEntry(entry.id)}
+                                        className="p-1 rounded-md opacity-0 group-hover:opacity-100 hover:bg-destructive/10 text-muted-foreground/40 hover:text-destructive transition-all"
+                                      >
+                                        <Trash2 className="w-3 h-3" />
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
-                                <button 
-                                  onClick={() => removeEntry(entry.id)}
-                                  className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-destructive/10 text-muted-foreground/40 hover:text-destructive transition-all"
-                                >
-                                  <Trash2 className="w-3 h-3" />
-                                </button>
-                              </div>
-                            </motion.div>
-                          );
-                        })}
+                              </motion.div>
+                            );
+                          })}
+                        </div>
                       </div>
                       {entries.length > 3 && (
                         <button
@@ -641,6 +673,16 @@ export default function SmartWeightGainAnalyzer() {
                     </CardContent>
                   </Card>
                 </motion.div>
+              )}
+
+              {/* ─── Trimester Comparison ─── */}
+              {entries.length >= 2 && (
+                <TrimesterComparison
+                  entries={entries}
+                  prePregnancyWeight={parseFloat(prePregnancyWeight)}
+                  currentTrimester={currentTrimester}
+                  t={t}
+                />
               )}
 
               {/* ─── AI Weight Analysis ─── */}
