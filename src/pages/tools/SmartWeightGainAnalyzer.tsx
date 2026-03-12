@@ -350,7 +350,7 @@ export default function SmartWeightGainAnalyzer() {
                         </p>
                       )}
                     </div>
-                    <Scale className="w-5 h-5 opacity-40" />
+                    
                   </button>
                 </motion.div>
               )}
