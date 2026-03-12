@@ -18,6 +18,10 @@ import { WeightGainChart } from '@/components/weight-gain/WeightGainChart';
 import { BMIScaleBar } from '@/components/weight-gain/BMIScaleBar';
 import { WeightDistributionCard } from '@/components/weight-gain/WeightDistributionCard';
 import { MedicalTipCard } from '@/components/weight-gain/MedicalTipCard';
+import { WeeklySummaryHero } from '@/components/weight-gain/WeeklySummaryHero';
+import { WeeklyRateGauge } from '@/components/weight-gain/WeeklyRateGauge';
+import { WeeklyGoalCard } from '@/components/weight-gain/WeeklyGoalCard';
+import { TrimesterComparison } from '@/components/weight-gain/TrimesterComparison';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
 
 interface WeightEntry {
