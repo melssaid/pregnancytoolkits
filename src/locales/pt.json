@@ -198,6 +198,10 @@
       "title": "Plano de parto inteligente",
       "description": "Crie seu plano de parto personalizado com orientação de IA."
     },
+    "contractionTimer": {
+      "title": "Temporizador de contrações",
+      "description": "Acompanhe a duração e intervalos das contrações com precisão."
+    },
     "smartAppointmentReminder": {
       "title": "Planejador inteligente de consultas",
       "description": "Nunca perca uma consulta pré-natal."

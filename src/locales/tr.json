@@ -198,6 +198,10 @@
       "title": "Akıllı Doğum Planı",
       "description": "AI rehberliğiyle kişiselleştirilmiş doğum planınızı oluşturun."
     },
+    "contractionTimer": {
+      "title": "Kasılma Zamanlayıcı",
+      "description": "Kasılma süresini ve aralıklarını doğru şekilde takip edin."
+    },
     "smartAppointmentReminder": {
       "title": "Akıllı Randevu Planlayıcı",
       "description": "Asla bir doğum öncesi randevuyu kaçırmayın."

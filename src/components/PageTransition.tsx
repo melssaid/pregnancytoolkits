@@ -21,7 +21,7 @@ const variants = {
   },
 };
 
-export const PageTransition = ({ children, variant = "default" }: PageTransitionProps) => {
+export function PageTransition({ children, variant = "default" }: PageTransitionProps) {
   const v = variants[variant];
   return (
     <motion.div
@@ -34,4 +34,4 @@ export const PageTransition = ({ children, variant = "default" }: PageTransition
       {children}
     </motion.div>
   );
-};
+}
