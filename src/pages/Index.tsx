@@ -14,8 +14,8 @@ import { toast } from "sonner";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
-
-
+import WelcomeCard from "@/components/home/WelcomeCard";
+import QuickActions from "@/components/home/QuickActions";
 
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
