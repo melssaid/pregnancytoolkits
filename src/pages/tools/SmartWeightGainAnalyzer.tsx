@@ -683,11 +683,6 @@ Provide personalized weight management advice based on this data.`}
           </motion.div>
         )}
 
-        {/* ─── Medical Tip (always visible) ─── */}
-        <MedicalTipCard trimester={currentTrimester} t={t} />
-
-        {/* ─── Weight Distribution (always visible) ─── */}
-        <WeightDistributionCard t={t} />
       </div>
     </ToolFrame>
   );
