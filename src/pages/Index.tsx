@@ -14,8 +14,8 @@ import { toast } from "sonner";
 import { LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
-
-
+import WelcomeCard from "@/components/home/WelcomeCard";
+import QuickActions from "@/components/home/QuickActions";
 
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
@@ -197,9 +197,14 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className={`text-xl sm:text-2xl font-bold ${config.headerText} tracking-tight leading-snug break-words ar-heading`}>
-              {t(`journeys.${config.key}`)}
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${config.headerText} tracking-tight leading-snug break-words ar-heading`}>
+                {t(`journeys.${config.key}`)}
+              </h2>
+              <span className={`text-[10px] font-bold ${config.headerText} bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full`}>
+                {totalTools}
+              </span>
+            </div>
             <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 leading-snug break-words`}>
               {t(`journeys.${config.key}Desc`)}
             </p>
@@ -401,6 +406,12 @@ const Index = () => {
 
       <section className="pt-5 pb-0 relative z-10">
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
+          
+          {/* Smart Welcome Card */}
+          <WelcomeCard />
+
+          {/* Quick Actions */}
+          <QuickActions />
 
           {journeyConfigs.map((config, index) => (
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} />
