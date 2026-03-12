@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { updateDocumentDirection } from "./i18n";
+import { updateDocumentDirection, i18nReady } from "./i18n";
 import i18n from "./i18n";
 import { SettingsProvider } from "@/providers/SettingsProvider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -21,14 +21,17 @@ const dismissSplash = () => {
 window.addEventListener("app:first-render", dismissSplash, { once: true });
 setTimeout(dismissSplash, 5000); // safety fallback
 
-// ── Mount React (splash stays visible until Layout paints) ──
-createRoot(document.getElementById("root")!).render(
-  <SettingsProvider>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
-  </SettingsProvider>
-);
+// ── Wait for i18n bundles, then mount React ──
+i18nReady.then(() => {
+  updateDocumentDirection(i18n.language);
+  createRoot(document.getElementById("root")!).render(
+    <SettingsProvider>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </SettingsProvider>
+  );
+});
 
 // ── Deferred work (after first paint) ──────────────────────
 const deferAfterPaint = (fn: () => void) => {
