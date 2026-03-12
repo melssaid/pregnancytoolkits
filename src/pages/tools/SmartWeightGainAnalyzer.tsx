@@ -510,66 +510,10 @@ export default function SmartWeightGainAnalyzer() {
                 </motion.div>
               )}
 
-              {/* ─── Medical Tip ─── */}
-              <MedicalTipCard trimester={currentTrimester} t={t} />
 
               {/* ─── Chart ─── */}
               {entries.length > 0 && (
                 <WeightGainChart chartData={chartData} t={t} />
-              )}
-
-              {/* ─── Enhanced Empty State ─── */}
-              {entries.length === 0 && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  <Card className="border-dashed border-2 border-primary/15 overflow-hidden">
-                    <div className="h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                    <CardContent className="p-6 text-center space-y-4">
-                      <motion.div
-                        animate={{ y: [0, -8, 0], rotate: [0, -3, 3, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                      >
-                        <Scale className="w-14 h-14 text-primary/25 mx-auto" />
-                      </motion.div>
-                      <div>
-                        <p className="text-[14px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
-                        <p className="text-[11px] text-muted-foreground/60 max-w-[240px] mx-auto leading-relaxed mt-1">{t('toolsInternal.weightGain.noEntriesHint')}</p>
-                      </div>
-                      
-                      {/* Steps */}
-                      <div className="space-y-2 max-w-[250px] mx-auto">
-                        {[
-                          { num: 1, text: t('toolsInternal.weightGain.step1', 'Enter your height'), icon: Ruler, done: !!height },
-                          { num: 2, text: t('toolsInternal.weightGain.step2', 'Enter your pre-pregnancy weight'), icon: Weight, done: !!prePregnancyWeight },
-                          { num: 3, text: t('toolsInternal.weightGain.step3', 'Log your first weight'), icon: Scale, done: false },
-                        ].map((step, i) => (
-                          <motion.div 
-                            key={step.num}
-                            className={`flex items-center gap-3 p-2.5 rounded-xl text-start ${step.done ? 'bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200/50 dark:border-emerald-800/50' : 'bg-muted/30 border border-border/30'}`}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2 + i * 0.1 }}
-                          >
-                            <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold ${step.done ? 'bg-emerald-500 text-white' : 'bg-muted text-muted-foreground'}`}>
-                              {step.done ? <CheckCircle className="w-4 h-4" /> : step.num}
-                            </div>
-                            <span className={`text-[11px] ${step.done ? 'text-emerald-700 dark:text-emerald-400 font-semibold line-through' : 'text-foreground/70 font-medium'}`}>
-                              {step.text}
-                            </span>
-                          </motion.div>
-                        ))}
-                      </div>
-
-                      <Button 
-                        size="sm" 
-                        className="mt-2 gap-2 rounded-xl shadow-md"
-                        onClick={() => setShowAddForm(true)}
-                      >
-                        <Plus className="w-4 h-4" />
-                        {t('toolsInternal.weightGain.addFirstEntry', 'Add first entry')}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
               )}
 
               {/* ─── Timeline Entries ─── */}
@@ -710,11 +654,75 @@ Provide personalized weight management advice based on this data.`}
                 />
               )}
 
-              {/* ─── Weight Distribution ─── */}
-              <WeightDistributionCard t={t} />
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* Always-visible sections (even before profile completion)       */}
+        {/* ═══════════════════════════════════════════════════════════════ */}
+
+        {/* ─── Enhanced Empty State ─── */}
+        {entries.length === 0 && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <Card className="border-dashed border-2 border-primary/15 overflow-hidden">
+              <div className="h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+              <CardContent className="p-6 text-center space-y-4">
+                <motion.div
+                  animate={{ y: [0, -8, 0], rotate: [0, -3, 3, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <Scale className="w-14 h-14 text-primary/25 mx-auto" />
+                </motion.div>
+                <div>
+                  <p className="text-[14px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
+                  <p className="text-[11px] text-muted-foreground/60 max-w-[240px] mx-auto leading-relaxed mt-1">{t('toolsInternal.weightGain.noEntriesHint')}</p>
+                </div>
+                
+                {/* Steps */}
+                <div className="space-y-2 max-w-[250px] mx-auto">
+                  {[
+                    { num: 1, text: t('toolsInternal.weightGain.step1', 'Enter your height'), icon: Ruler, done: !!height },
+                    { num: 2, text: t('toolsInternal.weightGain.step2', 'Enter your pre-pregnancy weight'), icon: Weight, done: !!prePregnancyWeight },
+                    { num: 3, text: t('toolsInternal.weightGain.step3', 'Log your first weight'), icon: Scale, done: false },
+                  ].map((step, i) => (
+                    <motion.div 
+                      key={step.num}
+                      className={`flex items-center gap-3 p-2.5 rounded-xl text-start ${step.done ? 'bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200/50 dark:border-emerald-800/50' : 'bg-muted/30 border border-border/30'}`}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 + i * 0.1 }}
+                    >
+                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold ${step.done ? 'bg-emerald-500 text-white' : 'bg-muted text-muted-foreground'}`}>
+                        {step.done ? <CheckCircle className="w-4 h-4" /> : step.num}
+                      </div>
+                      <span className={`text-[11px] ${step.done ? 'text-emerald-700 dark:text-emerald-400 font-semibold line-through' : 'text-foreground/70 font-medium'}`}>
+                        {step.text}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {profileComplete && (
+                  <Button 
+                    size="sm" 
+                    className="mt-2 gap-2 rounded-xl shadow-md"
+                    onClick={() => setShowAddForm(true)}
+                  >
+                    <Plus className="w-4 h-4" />
+                    {t('toolsInternal.weightGain.addFirstEntry', 'Add first entry')}
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
+        {/* ─── Medical Tip (always visible) ─── */}
+        <MedicalTipCard trimester={currentTrimester} t={t} />
+
+        {/* ─── Weight Distribution (always visible) ─── */}
+        <WeightDistributionCard t={t} />
       </div>
     </ToolFrame>
   );
