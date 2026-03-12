@@ -320,19 +320,7 @@ export default function SmartWeightGainAnalyzer() {
                     {/* BMI Scale */}
                     <BMIScaleBar bmi={bmi} t={t} />
 
-                    {/* Start Analysis Button */}
-                    {!showAnalysis && (
-                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                        <Button 
-                          onClick={handleStartAnalysis} 
-                          className="w-full h-13 text-[13px] font-bold gap-2.5 rounded-2xl shadow-lg shadow-primary/20" 
-                          size="lg"
-                        >
-                          <TrendingUp className="w-5 h-5" />
-                          {t('toolsInternal.weightGain.startAnalysis')}
-                        </Button>
-                      </motion.div>
-                    )}
+                    {/* Start Analysis Button - hidden since analysis auto-shows */}
                   </motion.div>
                 )}
               </AnimatePresence>
