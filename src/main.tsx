@@ -26,6 +26,16 @@ i18nReady.then(() => {
       </LanguageProvider>
     </SettingsProvider>
   );
+
+  // Fade out splash overlay after React has mounted
+  requestAnimationFrame(() => {
+    const splash = document.getElementById("splash-overlay");
+    if (splash) {
+      splash.style.opacity = "0";
+      splash.style.visibility = "hidden";
+      setTimeout(() => splash.remove(), 400);
+    }
+  });
 });
 
 // Register Service Worker after render (deferred)
