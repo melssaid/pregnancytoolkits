@@ -10,21 +10,25 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 updateDocumentDirection(i18n.language);
 
 // ── Splash dismiss logic ──────────────────────────────────
+let splashDismissed = false;
 const dismissSplash = () => {
+  if (splashDismissed) return;
+  splashDismissed = true;
   const splash = document.getElementById("splash-overlay");
-  if (!splash || splash.dataset.hidden === "true") return;
-  splash.dataset.hidden = "true";
+  if (!splash) return;
   splash.style.opacity = "0";
   splash.style.visibility = "hidden";
-  setTimeout(() => splash.remove(), 350);
+  setTimeout(() => splash.remove(), 400);
 };
 window.addEventListener("app:first-render", dismissSplash, { once: true });
 setTimeout(dismissSplash, 5000); // safety fallback
 
-// ── Wait for i18n bundles, then mount React ──
+// ── Mount React immediately, i18n loads in background ──
+const root = createRoot(document.getElementById("root")!);
+
 i18nReady.then(() => {
   updateDocumentDirection(i18n.language);
-  createRoot(document.getElementById("root")!).render(
+  root.render(
     <SettingsProvider>
       <LanguageProvider>
         <App />
