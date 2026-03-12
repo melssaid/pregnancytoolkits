@@ -21,7 +21,7 @@ const DAILY_GOAL = 8;
 
 const DiaperTracker = () => {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.dir() === "rtl";
+  const isRTL = i18n.language === "ar";
   const [entries, setEntries] = useState<DiaperEntry[]>([]);
   const [lastAdded, setLastAdded] = useState<DiaperType | null>(null);
   const [elapsed, setElapsed] = useState({ hours: 0, minutes: 0, seconds: 0 });

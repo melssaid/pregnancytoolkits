@@ -43,7 +43,7 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
     profile.lastPeriodDate ? new Date(profile.lastPeriodDate + "T00:00:00") : undefined
   );
   const [lmpPopoverOpen, setLmpPopoverOpen] = useState(false);
-  const isRtl = i18n.dir() === 'rtl';
+  const isRtl = i18n.language === 'ar';
 
   // Preload ALL language bundles when onboarding opens — makes switching instant
   useEffect(() => {

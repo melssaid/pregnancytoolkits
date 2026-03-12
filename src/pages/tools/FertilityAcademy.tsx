@@ -161,7 +161,7 @@ const TAB_CONFIG = [
 
 export default function FertilityAcademy() {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.dir() === "rtl";
+  const isRTL = i18n.language === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const [activeTab, setActiveTab] = useState("lessons");
   const [expandedLesson, setExpandedLesson] = useState<string | null>(null);

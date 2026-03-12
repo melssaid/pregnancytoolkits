@@ -11,7 +11,7 @@ const DAY_KEYS = Array.from({ length: 14 }, (_, i) => `day${i + 1}`);
 
 export default function TWWCompanion() {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.dir() === "rtl";
+  const isRTL = i18n.language === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
 
