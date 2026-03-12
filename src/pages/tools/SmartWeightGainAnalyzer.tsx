@@ -372,13 +372,13 @@ export default function SmartWeightGainAnalyzer() {
               )}
 
               {/* ─── Add Weight Form ─── */}
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {showAddForm && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8, height: 0 }}
-                    animate={{ opacity: 1, y: 0, height: 'auto' }}
-                    exit={{ opacity: 0, y: -8, height: 0 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <Card className="border-primary/20 shadow-lg shadow-primary/10 overflow-hidden">
                       <div className="h-1.5 bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
@@ -411,12 +411,12 @@ export default function SmartWeightGainAnalyzer() {
                           <div className="relative">
                             <Input
                               type="number"
+                              inputMode="decimal"
                               step="0.1"
                               placeholder="62.5"
                               value={currentWeight}
                               onChange={(e) => setCurrentWeight(e.target.value)}
                               className="h-16 text-center text-2xl font-black border-primary/20 focus:border-primary/40 rounded-2xl"
-                              autoFocus
                             />
                             <span className="absolute end-4 top-1/2 -translate-y-1/2 text-sm text-muted-foreground/40 font-bold">kg</span>
                           </div>
