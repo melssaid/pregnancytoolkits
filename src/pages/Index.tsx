@@ -364,7 +364,8 @@ const FooterCard = memo(function FooterCard() {
                 <span className="text-[15px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                   {labels.aiTitle}
                 </span>
-                <p className="text-[11px] text-muted-foreground leading-snug mt-0.5">{labels.aiDesc}</p>
+                <p className="text-[11px] text-muted-foreground leading-snug mt-0.5">{labels.aiLine1}</p>
+                <p className="text-[10px] text-primary/70 font-semibold mt-1">{labels.aiLine2}</p>
               </div>
             </div>
 
