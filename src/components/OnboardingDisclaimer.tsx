@@ -103,7 +103,7 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.25 }}
-            className="w-full max-w-[380px] max-h-[90vh] rounded-2xl bg-card border border-border/40 shadow-xl overflow-y-auto"
+            className="w-full max-w-[360px] max-h-[88vh] rounded-2xl bg-card border border-border/40 shadow-xl overflow-y-auto"
             dir={isRtl ? 'rtl' : 'ltr'}
           >
             {/* Minimal progress */}
@@ -115,7 +115,7 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
             </div>
 
             {/* Step dots */}
-            <div className="flex justify-center gap-2 pt-3 pb-1">
+            <div className="flex justify-center gap-2 pt-2">
               {[0, 1].map(i => (
                 <div key={i} className={cn(
                   "h-1.5 rounded-full transition-all duration-200",
@@ -135,21 +135,21 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
                   transition={{ duration: 0.15 }}
                 >
                   {/* Logo & Title */}
-                  <div className="px-5 pt-3 pb-3 text-center">
-                    <div className="w-12 h-12 mx-auto mb-3 rounded-full overflow-hidden">
+                  <div className="px-5 pt-2 pb-2 text-center">
+                    <div className="w-11 h-11 mx-auto mb-2 rounded-full overflow-hidden">
                       <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
                     </div>
-                    <h2 className="text-base font-bold text-foreground">
+                    <h2 className="text-[15px] font-bold text-foreground">
                       {t('app.name', 'Pregnancy Toolkits')}
                     </h2>
-                    <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">
+                    <p className="text-[11px] text-muted-foreground mt-0.5">
                       {t('app.tagline', 'Your Complete Pregnancy Companion')}
                     </p>
                   </div>
 
                   {/* Compact value props */}
-                  <div className="px-5 pb-3">
-                    <div className="grid grid-cols-2 gap-1.5">
+                  <div className="px-4 pb-2">
+                    <div className="grid grid-cols-2 gap-1">
                       {[
                         { icon: Sparkles, key: 'aiAssistant247' },
                         { icon: Globe, key: 'sevenLangs' },
@@ -158,9 +158,9 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
                       ].map((vp, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-muted/40"
+                          className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-muted/40"
                         >
-                          <vp.icon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          <vp.icon className="w-3 h-3 text-primary flex-shrink-0" />
                           <span className="text-[10px] text-foreground/70 leading-tight">
                             {t(`onboarding.${vp.key}`)}
                           </span>
@@ -171,19 +171,19 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
 
                   {/* Language selector */}
                   <div className="px-4 pb-2">
-                    <div className="flex items-center gap-1.5 mb-1.5 px-1">
+                    <div className="flex items-center gap-1.5 mb-1 px-0.5">
                       <Globe className="w-3 h-3 text-muted-foreground" />
                       <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
-                        {t('onboarding.chooseLang', 'Language')}
+                        {t('onboarding.chooseLang', 'Choose Language')}
                       </span>
                     </div>
-                    <div className="grid grid-cols-2 gap-1">
+                    <div className="grid grid-cols-2 gap-0.5">
                       {languages.map((lang) => (
                         <button
                           key={lang.code}
                           onClick={() => { setSelectedLang(lang.code); changeLanguage(lang.code); }}
                           className={cn(
-                            "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border transition-colors text-start",
+                            "flex items-center gap-1.5 px-2 py-1.5 rounded-lg border transition-colors text-start",
                             selectedLang === lang.code
                               ? "bg-primary/8 border-primary/30"
                               : "bg-transparent border-transparent hover:bg-muted/60"
@@ -199,7 +199,7 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
                     </div>
                   </div>
 
-                  <div className="px-4 pb-4 pt-1">
+                  <div className="px-4 pb-3 pt-0.5">
                     <button
                       onClick={() => setStep('profile')}
                       className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity"
