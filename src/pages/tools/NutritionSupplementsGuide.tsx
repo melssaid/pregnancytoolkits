@@ -25,7 +25,7 @@ const VITAMIN_KEYS = [
 
 export default function NutritionSupplementsGuide() {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.dir() === "rtl";
+  const isRTL = i18n.language === "ar";
   const dir = isRTL ? "rtl" : "ltr";
   const lang = i18n.language?.split('-')[0] || 'en';
   const [expandedNutrition, setExpandedNutrition] = useState<string | null>(null);

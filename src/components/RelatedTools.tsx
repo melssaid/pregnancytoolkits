@@ -13,7 +13,7 @@ interface RelatedToolsProps {
 export const RelatedTools = forwardRef<HTMLDivElement, RelatedToolsProps>(
   ({ currentToolId, maxItems = 3 }, ref) => {
     const { t, i18n } = useTranslation();
-    const isRTL = i18n.dir() === "rtl";
+    const isRTL = i18n.language === "ar";
     const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
     
     const relatedTools = getRelatedTools(currentToolId, maxItems);

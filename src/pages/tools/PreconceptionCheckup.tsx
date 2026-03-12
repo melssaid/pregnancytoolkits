@@ -52,7 +52,7 @@ const STORAGE_KEY = "preconception-checkup-completed";
 
 export default function PreconceptionCheckup() {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.dir() === "rtl";
+  const isRTL = i18n.language === "ar";
   const dir = isRTL ? "rtl" : "ltr";
 
   // Persistent state
