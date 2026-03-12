@@ -15,14 +15,13 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const SUPPORTED_LANGUAGES = ['en', 'ar', 'de', 'tr', 'fr', 'es', 'pt'];
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { i18n } = useTranslation();
+  const { i18n: i18nHook } = useTranslation();
   const [isChanging, setIsChanging] = useState(false);
-  const resolvedLang = i18n.language?.split('-')[0];
+  const resolvedLang = (i18nHook.language || i18n.language || 'en').split('-')[0];
   const [currentLanguage, setCurrentLanguage] = useState(
     resolvedLang && SUPPORTED_LANGUAGES.includes(resolvedLang) ? resolvedLang : 'en'
   );
 
-  // Update state when i18n language changes
   useEffect(() => {
     const handleLanguageChanged = (lng: string) => {
       const normalizedLang = lng.split('-')[0];
@@ -36,7 +35,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return () => {
       i18n.off('languageChanged', handleLanguageChanged);
     };
-  }, [i18n]);
+  }, []);
 
   // Smooth language change with minimal transition
   const changeLanguage = useCallback(async (lang: string) => {
