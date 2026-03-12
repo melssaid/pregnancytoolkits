@@ -2,7 +2,7 @@ import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Activity, Scale, Brain, Baby, Calendar, Heart } from "lucide-react";
+import { Activity, TrendingUp, Brain, Baby, Calendar, Heart } from "lucide-react";
 
 interface QuickAction {
   icon: typeof Activity;
