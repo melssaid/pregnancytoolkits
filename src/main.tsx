@@ -12,7 +12,20 @@ import { maybeRunCleanup } from "@/lib/storageCleanup";
 maybeRunCleanup();
 updateDocumentDirection(i18n.language);
 
-// Mount React behind the splash — splash stays visible until content paints
+const dismissSplash = () => {
+  const splash = document.getElementById("splash-overlay");
+  if (!splash || splash.dataset.hidden === "true") return;
+  splash.dataset.hidden = "true";
+  splash.style.opacity = "0";
+  splash.style.visibility = "hidden";
+  setTimeout(() => splash.remove(), 350);
+};
+
+// Keep splash visible until app shell is really painted
+window.addEventListener("app:first-render", dismissSplash, { once: true });
+// Safety fallback (never leave splash forever)
+setTimeout(dismissSplash, 6000);
+
 createRoot(document.getElementById("root")!).render(
   <SettingsProvider>
     <LanguageProvider>
@@ -21,7 +34,6 @@ createRoot(document.getElementById("root")!).render(
   </SettingsProvider>
 );
 
-// Register SW deferred
 registerServiceWorker().then(() => {
   setTimeout(() => sendDailyScheduleToSW(), 3000);
 });

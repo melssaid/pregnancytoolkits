@@ -7,8 +7,7 @@ import { BackButton } from "./BackButton";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
-
-
+import { useEffect } from "react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +18,10 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.dir() === 'rtl';
   const trustTextSize = isRtl ? 'text-[9.5px]' : 'text-[8px]';
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("app:first-render"));
+  }, []);
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
