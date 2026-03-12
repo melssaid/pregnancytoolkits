@@ -180,29 +180,22 @@ export default function FertilityAcademy() {
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
       <div className="space-y-4" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
 
-        {/* ── Custom Tab Navigation ── */}
-        <div className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none -mx-1 px-1">
+        {/* ── Tab Navigation — text-only with accent underline ── */}
+        <div className="flex gap-1 overflow-x-auto pb-0.5 scrollbar-none -mx-1 px-1">
           {TAB_CONFIG.map(tab => {
-            const Icon = tab.icon;
             const isActive = activeTab === tab.key;
             return (
-              <motion.button
+              <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`relative flex flex-col items-center gap-1 min-w-[68px] px-3 py-2.5 rounded-2xl font-semibold whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                className={`relative px-3.5 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
                   isActive
-                    ? `bg-gradient-to-br ${tab.gradient} text-white shadow-lg shadow-black/10`
-                    : `${tab.lightBg} ${tab.darkBg} text-muted-foreground hover:text-foreground border border-border/20`
+                    ? `bg-gradient-to-br ${tab.gradient} text-white shadow-md shadow-black/8`
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
-                whileTap={{ scale: 0.95 }}
               >
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
-                  isActive ? "bg-white/20" : "bg-white/80 dark:bg-white/10"
-                }`}>
-                  <Icon className={`w-4.5 h-4.5 ${isActive ? "text-white" : ""}`} strokeWidth={1.8} />
-                </div>
-                <span className="text-[10px] leading-tight">{t(`tools.fertilityAcademy.${tab.key}Tab`)}</span>
-              </motion.button>
+                {t(`tools.fertilityAcademy.${tab.key}Tab`)}
+              </button>
             );
           })}
         </div>
