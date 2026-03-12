@@ -21,13 +21,12 @@ function escapeHtml(str: string): string {
 const VALID_PATH_PATTERN = /^\/[a-z0-9\-\/]*$/;
 
 const routeMeta: Record<string, { title: string; description: string }> = {
-  "/": { title: "Free Pregnancy Tracker & AI Companion | 42+ Tools", description: "Free pregnancy tracker app with 42+ AI-powered tools: due date calculator, kick counter, contraction timer, baby growth tracker, safe foods guide & more." },
+  "/": { title: "Free Pregnancy Tracker & AI Companion | 42+ Tools", description: "Free pregnancy tracker app with 42+ AI-powered tools: due date calculator, kick counter, contraction timer, baby growth tracker, safe foods guide & more. Available in 7 languages." },
   "/dashboard": { title: "Pregnancy Dashboard", description: "Your personalized pregnancy dashboard with AI assistant, health tracking, nutrition & exercise tools." },
   "/tools/due-date-calculator": { title: "Due Date Calculator", description: "Calculate your estimated due date based on your last menstrual period or conception date. Free and accurate pregnancy due date calculator." },
   "/tools/kick-counter": { title: "Baby Kick Counter", description: "Track your baby's movements with our smart kick counter. Monitor fetal activity patterns and get AI insights." },
   "/tools/baby-growth": { title: "Baby Growth Tracker", description: "Track your baby's growth week by week with percentile charts and developmental milestones." },
   "/tools/pregnancy-assistant": { title: "AI Pregnancy Assistant", description: "Get instant answers to your pregnancy questions from our AI-powered pregnancy companion. Safe, educational information." },
-  "/tools/wellness-diary": { title: "Pregnancy Wellness Diary", description: "Track your pregnancy symptoms, mood, and wellness daily. Get AI-powered insights and pattern analysis." },
   "/tools/ai-meal-suggestion": { title: "Pregnancy Meal Planner", description: "Get AI-powered meal suggestions tailored to your pregnancy week, dietary preferences, and nutritional needs." },
   "/tools/weekly-summary": { title: "Weekly Pregnancy Summary", description: "Get a personalized weekly summary of your pregnancy progress, baby's development, and health tips." },
   "/tools/smart-appointment-reminder": { title: "Prenatal Appointment Reminder", description: "Never miss a prenatal checkup. Smart appointment scheduling with AI-generated question lists for your doctor." },
@@ -50,6 +49,7 @@ const routeMeta: Record<string, { title: string; description: string }> = {
   "/tools/vitamin-tracker": { title: "Vitamin & Supplement Tracker", description: "Track your daily prenatal vitamins and supplements. Get reminders and AI-powered nutritional insights." },
   "/tools/fetal-growth": { title: "Fetal Development Tracker", description: "Week-by-week fetal development guide with size comparisons, milestones, and 3D visualizations." },
   "/tools/weight-gain": { title: "Pregnancy Weight Gain Tracker", description: "Track your pregnancy weight gain with healthy range charts and AI analysis based on BMI guidelines." },
+  "/tools/contraction-timer": { title: "Contraction Timer", description: "Time your contractions accurately. Track duration, intervals, and get 5-1-1 rule alerts for labor readiness." },
   "/tools/labor-progress": { title: "Labor Progress Tracker", description: "Track your labor progress with contraction timing, dilation estimates, and AI guidance for each stage." },
   "/tools/ai-birth-plan": { title: "AI Birth Plan Generator", description: "Create a personalized birth plan with AI assistance. Cover pain management, preferences, and contingency plans." },
   "/tools/gestational-diabetes": { title: "Gestational Diabetes Guide", description: "Gestational diabetes risk assessment, blood sugar tracking tips, and dietary guidance for a healthy pregnancy." },
@@ -61,6 +61,9 @@ const routeMeta: Record<string, { title: string; description: string }> = {
   "/tools/baby-cry-translator": { title: "Baby Cry Translator", description: "Understand your baby's cries with AI-powered analysis. Identify hunger, discomfort, tiredness, and more." },
   "/tools/baby-sleep-tracker": { title: "Baby Sleep Tracker", description: "Track your baby's sleep patterns and get AI-powered insights for better sleep routines." },
   "/tools/diaper-tracker": { title: "Diaper Tracker", description: "Track diaper changes with pattern analysis. Monitor your baby's health through diaper data." },
+  "/tools/ai-symptom-analyzer": { title: "Pregnancy Symptom Analyzer", description: "AI-powered pregnancy symptom analysis. Understand common symptoms and when to consult your doctor." },
+  "/tools/tww-companion": { title: "Two Week Wait Companion", description: "Support during the two-week wait. Symptom tracking, tips, and emotional support for TTC journeys." },
+  "/tools/pregnancy-comfort": { title: "Pregnancy Comfort Guide", description: "AI tips for pregnancy comfort: sleep positions, stretches, and relief techniques for common discomforts." },
   "/videos": { title: "Pregnancy Education Videos", description: "Free pregnancy education videos: exercises, nutrition, labor preparation, and baby care guides." },
   "/privacy": { title: "Privacy Policy", description: "Privacy policy for Pregnancy Toolkits. Your data stays on your device. GDPR & CCPA compliant." },
   "/terms": { title: "Terms of Service", description: "Terms of service for Pregnancy Toolkits. Educational & lifestyle companion, not a medical device." },
