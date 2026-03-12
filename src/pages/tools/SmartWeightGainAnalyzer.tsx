@@ -245,8 +245,7 @@ export default function SmartWeightGainAnalyzer() {
               {/* Equal-sized input fields */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <Label className="text-[10px] text-muted-foreground font-medium flex items-center gap-1">
-                    <Ruler className="w-3 h-3" />
+                  <Label className="text-[10px] text-muted-foreground font-medium truncate">
                     {t('toolsInternal.weightGain.heightCm')}
                   </Label>
                   <div className="relative">
@@ -262,8 +261,7 @@ export default function SmartWeightGainAnalyzer() {
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-[10px] text-muted-foreground font-medium flex items-center gap-1">
-                    <Weight className="w-3 h-3" />
+                  <Label className="text-[10px] text-muted-foreground font-medium truncate">
                     {t('toolsInternal.weightGain.prePregnancyWeightKg')}
                   </Label>
                   <div className="relative">
