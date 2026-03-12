@@ -696,6 +696,86 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/tools/diaper-tracker?lang=pt"/>
   </url>
 
+  <!-- Contraction Timer -->
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tools/contraction-timer</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer?lang=pt"/>
+  </url>
+
+  <!-- Symptom Analyzer -->
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/tools/ai-symptom-analyzer?lang=pt"/>
+  </url>
+
+  <!-- TWW Companion -->
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tools/tww-companion</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/tww-companion"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/tools/tww-companion?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pregnancytoolkits.lovable.app/tools/tww-companion?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pregnancytoolkits.lovable.app/tools/tww-companion?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pregnancytoolkits.lovable.app/tools/tww-companion?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pregnancytoolkits.lovable.app/tools/tww-companion?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://pregnancytoolkits.lovable.app/tools/tww-companion?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/tools/tww-companion?lang=pt"/>
+  </url>
+
+  <!-- Maternal Health Awareness -->
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tools/maternal-health</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/maternal-health"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/tools/maternal-health?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pregnancytoolkits.lovable.app/tools/maternal-health?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pregnancytoolkits.lovable.app/tools/maternal-health?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pregnancytoolkits.lovable.app/tools/maternal-health?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pregnancytoolkits.lovable.app/tools/maternal-health?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://pregnancytoolkits.lovable.app/tools/maternal-health?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/tools/maternal-health?lang=pt"/>
+  </url>
+
+  <!-- Pregnancy Comfort -->
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort?lang=pt"/>
+  </url>
+
   <!-- ═══════════════════════════════════════════════════════ -->
   <!-- MEDIA & CONTENT -->
   <!-- ═══════════════════════════════════════════════════════ -->
@@ -703,7 +783,7 @@
   <!-- Videos -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/videos</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/videos"/>
@@ -723,7 +803,7 @@
   <!-- Privacy -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/privacy</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-03-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -731,7 +811,7 @@
   <!-- Terms -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/terms</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-03-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -739,7 +819,7 @@
   <!-- Contact -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/contact</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-03-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
