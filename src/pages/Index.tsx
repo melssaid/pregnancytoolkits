@@ -310,37 +310,28 @@ const FooterCard = memo(function FooterCard() {
           />
 
           {/* ─── Top: PRO section ─── */}
-          <div className="p-5 pb-4">
-            <div className="flex items-center gap-3">
-              <div className="relative shrink-0">
-                <motion.div
-                  className="absolute inset-0 rounded-xl bg-primary/15"
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
-                />
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <ShieldCheck className="w-6 h-6 text-primary" strokeWidth={1.75} />
-                </div>
+          <div className="px-4 py-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-4.5 h-4.5 text-primary" strokeWidth={1.75} />
               </div>
-
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[15px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-[13px] font-extrabold text-primary uppercase tracking-wider" style={{ fontFamily: "'Cairo', sans-serif" }}>
                     PRO
                   </span>
                   <motion.span
-                    className="inline-flex items-center gap-1 px-2 py-[3px] rounded-md bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-bold shadow-sm"
-                    animate={{ scale: [1, 1.04, 1] }}
+                    className="inline-flex items-center gap-1 px-1.5 py-[2px] rounded bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[9px] font-bold"
+                    animate={{ scale: [1, 1.03, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <Clock className="w-3 h-3" strokeWidth={2.5} />
+                    <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
                     {t("pricing.trialBadge", { count: badgeDays })}
                   </motion.span>
                 </div>
-                <p className="text-[12px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
+                <p className="text-[10px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
               </div>
-
-              <ChevronRight className="w-5 h-5 text-primary/30 rtl:rotate-180 shrink-0" />
+              <ChevronRight className="w-4 h-4 text-primary/30 rtl:rotate-180 shrink-0" />
             </div>
           </div>
 
