@@ -47,7 +47,7 @@ export default function SmartWeightGainAnalyzer() {
   const [currentWeek, setCurrentWeek] = useState('20');
   const [entries, setEntries] = useState<WeightEntry[]>([]);
   const [bmiCategory, setBmiCategory] = useState('normal');
-  const [showAnalysis, setShowAnalysis] = useState(true);
+  const [showAnalysis, setShowAnalysis] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showAllEntries, setShowAllEntries] = useState(false);
 
