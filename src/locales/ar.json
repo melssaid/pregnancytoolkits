@@ -2876,7 +2876,18 @@
       "entryRemoved": "تم حذف القراءة",
       "weeklyRate": "معدل أسبوعي",
       "kgPerWeek": "كغ/أسبوع",
-      "addFirstEntry": "أضيفي أول قراءة"
+      "addFirstEntry": "أضيفي أول قراءة",
+      "weeklyDelta": "التغيّر",
+      "weeklyRateGauge": "معدل الزيادة الأسبوعي",
+      "healthyRange": "صحي",
+      "weeklyGoalTitle": "هدفك للأسبوع القادم",
+      "goalRange": "الهدف",
+      "onTrackGoal": "أنتِ على المسار الصحيح! استمري",
+      "adjustGoal": "تعديل بسيط قد يساعدك في الوصول لهدفك",
+      "trimesterComparison": "مقارنة الثلاثيات",
+      "step1": "أدخلي طولك",
+      "step2": "أدخلي وزنك قبل الحمل",
+      "step3": "سجّلي أول قراءة وزن"
     },
     "stressRelief": {
       "title": "دليل تخفيف التوتر الذكي",
