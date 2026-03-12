@@ -548,8 +548,8 @@ export default function SmartWeightGainAnalyzer() {
                                       <span className="text-[12px] font-black text-foreground">{entry.weight} kg</span>
                                       <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
                                         isInRange 
-                                          ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400' 
-                                          : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'
+                                          ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-200' 
+                                          : 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-200'
                                       }`}>
                                         {gain >= 0 ? '+' : ''}{gain.toFixed(1)}
                                       </span>
