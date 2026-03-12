@@ -2869,7 +2869,14 @@
       "mealSuggestionLink": "اقتراحات الوجبات",
       "mealSuggestionLinkDesc": "احصلي على أفكار وجبات صحية",
       "aiAnalysisTitle": "تحليل الوزن بالذكاء الاصطناعي",
-      "aiAnalysisButton": "حللي وزنك بالذكاء الاصطناعي"
+      "aiAnalysisButton": "حللي وزنك بالذكاء الاصطناعي",
+      "saveWeight": "سجّلي وزنك الآن",
+      "saveEntry": "حفظ الوزن",
+      "cancel": "إلغاء",
+      "entryRemoved": "تم حذف القراءة",
+      "weeklyRate": "معدل أسبوعي",
+      "kgPerWeek": "كغ/أسبوع",
+      "addFirstEntry": "أضيفي أول قراءة"
     },
     "stressRelief": {
       "title": "دليل تخفيف التوتر الذكي",
