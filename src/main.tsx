@@ -12,7 +12,7 @@ import { maybeRunCleanup } from "@/lib/storageCleanup";
 maybeRunCleanup();
 updateDocumentDirection(i18n.language);
 
-// Mount React immediately — don't wait for i18n (useSuspense:false handles it)
+// Mount React behind the splash — splash stays visible until content paints
 createRoot(document.getElementById("root")!).render(
   <SettingsProvider>
     <LanguageProvider>
@@ -20,16 +20,6 @@ createRoot(document.getElementById("root")!).render(
     </LanguageProvider>
   </SettingsProvider>
 );
-
-// Dismiss splash after mount
-requestAnimationFrame(() => {
-  const splash = document.getElementById("splash-overlay");
-  if (splash) {
-    splash.style.opacity = "0";
-    splash.style.visibility = "hidden";
-    setTimeout(() => splash.remove(), 300);
-  }
-});
 
 // Register SW deferred
 registerServiceWorker().then(() => {
