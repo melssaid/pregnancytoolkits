@@ -198,6 +198,10 @@
       "title": "Plan de parto inteligente",
       "description": "Crea tu plan de parto personalizado con guía de IA."
     },
+    "contractionTimer": {
+      "title": "Temporizador de contracciones",
+      "description": "Registra la duración e intervalos de las contracciones con precisión."
+    },
     "smartAppointmentReminder": {
       "title": "Planificador inteligente de citas",
       "description": "Nunca pierdas una cita prenatal."

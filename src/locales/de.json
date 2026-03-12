@@ -198,6 +198,10 @@
       "title": "Intelligenter Geburtsplan",
       "description": "Erstellen Sie Ihren personalisierten Geburtsplan mit KI-Anleitung."
     },
+    "contractionTimer": {
+      "title": "Wehentimer",
+      "description": "Wehen-Dauer und Abstände genau erfassen."
+    },
     "smartAppointmentReminder": {
       "title": "Intelligenter Terminplaner",
       "description": "Verpassen Sie nie einen Vorsorgetermin."

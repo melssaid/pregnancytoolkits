@@ -198,6 +198,10 @@
       "title": "Plan de naissance intelligent",
       "description": "Créez votre plan de naissance personnalisé avec l'aide de l'IA."
     },
+    "contractionTimer": {
+      "title": "Minuteur de contractions",
+      "description": "Suivez la durée et les intervalles des contractions avec précision."
+    },
     "smartAppointmentReminder": {
       "title": "Planificateur intelligent de rendez-vous",
       "description": "Ne manquez jamais un rendez-vous prénatal."
