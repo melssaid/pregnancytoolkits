@@ -572,7 +572,7 @@ export default function SmartWeightGainAnalyzer() {
                 </motion.div>
               )}
 
-              {/* ─── Recent Entries ─── */}
+              {/* ─── Timeline Entries ─── */}
               {entries.length > 0 && (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
                   <Card className="overflow-hidden">
@@ -586,47 +586,77 @@ export default function SmartWeightGainAnalyzer() {
                           {entries.length} {t('toolsInternal.weightGain.reading')}
                         </span>
                       </div>
-                      <div className="space-y-1.5">
-                        {displayEntries.map((entry, i) => {
-                          const gain = entry.weight - parseFloat(prePregnancyWeight || '0');
-                          const expected = getExpectedGainForWeek(entry.week);
-                          const isInRange = gain >= expected.min && gain <= expected.max;
-                          return (
-                            <motion.div
-                              key={entry.id}
-                              layout
-                              initial={{ opacity: 0, x: -8 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: i * 0.05 }}
-                              className="flex items-center justify-between p-2.5 rounded-xl bg-muted/30 border border-border/30 hover:bg-muted/50 transition-colors group"
-                            >
-                              <div className="flex items-center gap-2.5">
-                                <div className={`w-2.5 h-2.5 rounded-full ${isInRange ? 'bg-emerald-500' : 'bg-amber-500'} shadow-sm`} />
-                                <div>
-                                  <span className="text-[11px] font-bold">{t('toolsInternal.weightGain.week')} {entry.week}</span>
-                                  <span className="text-[9px] text-muted-foreground mx-1">·</span>
-                                  <span className="text-[9px] text-muted-foreground">
-                                    {new Date(entry.date).toLocaleDateString()}
-                                  </span>
+                      {/* Vertical Timeline */}
+                      <div className="relative">
+                        {/* Timeline line */}
+                        <div className="absolute start-[11px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary/40 via-primary/20 to-transparent rounded-full" />
+                        
+                        <div className="space-y-0.5">
+                          {displayEntries.map((entry, i) => {
+                            const gain = entry.weight - parseFloat(prePregnancyWeight || '0');
+                            const expected = getExpectedGainForWeek(entry.week);
+                            const isInRange = gain >= expected.min && gain <= expected.max;
+                            const isFirst = i === 0;
+                            return (
+                              <motion.div
+                                key={entry.id}
+                                layout
+                                initial={{ opacity: 0, x: -8 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: i * 0.06 }}
+                                className="flex items-start gap-3 group relative"
+                              >
+                                {/* Timeline dot */}
+                                <div className="relative z-10 mt-3 shrink-0">
+                                  <motion.div 
+                                    className={`w-6 h-6 rounded-full border-[2.5px] flex items-center justify-center ${
+                                      isFirst 
+                                        ? 'border-primary bg-primary/10 shadow-sm shadow-primary/20' 
+                                        : isInRange 
+                                          ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/30' 
+                                          : 'border-amber-400 bg-amber-50 dark:bg-amber-950/30'
+                                    }`}
+                                    initial={isFirst ? { scale: 0 } : {}}
+                                    animate={isFirst ? { scale: [1, 1.15, 1] } : {}}
+                                    transition={isFirst ? { duration: 2, repeat: Infinity } : {}}
+                                  >
+                                    <div className={`w-2 h-2 rounded-full ${isFirst ? 'bg-primary' : isInRange ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                                  </motion.div>
                                 </div>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <div className="text-end">
-                                  <span className="text-[11px] font-bold">{entry.weight} kg</span>
-                                  <span className={`text-[10px] font-semibold ms-1.5 ${gain > 0 ? 'text-primary' : 'text-muted-foreground'}`}>
-                                    {gain >= 0 ? '+' : ''}{gain.toFixed(1)}
-                                  </span>
+
+                                {/* Content card */}
+                                <div className={`flex-1 p-2.5 rounded-xl mb-1 transition-colors ${isFirst ? 'bg-primary/5 border border-primary/15' : 'bg-muted/30 border border-border/20 hover:bg-muted/50'}`}>
+                                  <div className="flex items-center justify-between">
+                                    <div>
+                                      <span className={`text-[11px] font-bold ${isFirst ? 'text-primary' : 'text-foreground'}`}>
+                                        {t('toolsInternal.weightGain.week')} {entry.week}
+                                      </span>
+                                      <span className="text-[9px] text-muted-foreground ms-1.5">
+                                        {new Date(entry.date).toLocaleDateString()}
+                                      </span>
+                                    </div>
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-[12px] font-black text-foreground">{entry.weight} kg</span>
+                                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
+                                        isInRange 
+                                          ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400' 
+                                          : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'
+                                      }`}>
+                                        {gain >= 0 ? '+' : ''}{gain.toFixed(1)}
+                                      </span>
+                                      <button 
+                                        onClick={() => removeEntry(entry.id)}
+                                        className="p-1 rounded-md opacity-0 group-hover:opacity-100 hover:bg-destructive/10 text-muted-foreground/40 hover:text-destructive transition-all"
+                                      >
+                                        <Trash2 className="w-3 h-3" />
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
-                                <button 
-                                  onClick={() => removeEntry(entry.id)}
-                                  className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-destructive/10 text-muted-foreground/40 hover:text-destructive transition-all"
-                                >
-                                  <Trash2 className="w-3 h-3" />
-                                </button>
-                              </div>
-                            </motion.div>
-                          );
-                        })}
+                              </motion.div>
+                            );
+                          })}
+                        </div>
                       </div>
                       {entries.length > 3 && (
                         <button
@@ -643,6 +673,16 @@ export default function SmartWeightGainAnalyzer() {
                     </CardContent>
                   </Card>
                 </motion.div>
+              )}
+
+              {/* ─── Trimester Comparison ─── */}
+              {entries.length >= 2 && (
+                <TrimesterComparison
+                  entries={entries}
+                  prePregnancyWeight={parseFloat(prePregnancyWeight)}
+                  currentTrimester={currentTrimester}
+                  t={t}
+                />
               )}
 
               {/* ─── AI Weight Analysis ─── */}
