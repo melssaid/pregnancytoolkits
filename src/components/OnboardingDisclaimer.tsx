@@ -219,9 +219,9 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.15 }}
                 >
-                  <div className="px-4 pt-2 pb-2 text-center">
-                    <div className="w-9 h-9 mx-auto mb-2 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Baby className="w-4.5 h-4.5 text-primary" />
+                  <div className="px-4 pt-2 pb-1.5 text-center">
+                    <div className="w-8 h-8 mx-auto mb-1.5 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <Baby className="w-4 h-4 text-primary" />
                     </div>
                     <h2 className="text-sm font-bold text-foreground">
                       {t('onboarding.profileTitle', 'Your Info')}
@@ -231,7 +231,7 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
                     </p>
                   </div>
 
-                  <div className="px-4 pb-3 space-y-3">
+                  <div className="px-4 pb-3 space-y-2.5">
                     {/* Pregnant / Not Pregnant Toggle */}
                     <div>
                       <label className="text-[11px] font-medium text-muted-foreground block mb-1.5">
