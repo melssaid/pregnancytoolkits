@@ -371,7 +371,6 @@ export default function SmartWeightGainAnalyzer() {
                           <h3 className="text-[13px] font-bold">
                             {t('toolsInternal.weightGain.addWeightEntry')}
                           </h3>
-                          </h3>
                           <button 
                             onClick={() => setShowAddForm(false)} 
                             className="w-7 h-7 rounded-full bg-muted/60 flex items-center justify-center hover:bg-muted transition-colors"
