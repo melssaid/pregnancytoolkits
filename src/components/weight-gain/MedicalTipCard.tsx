@@ -11,13 +11,13 @@ interface MedicalTipCardProps {
 
 export function MedicalTipCard({ trimester, t }: MedicalTipCardProps) {
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-      <Card className="border-amber-200/50 dark:border-amber-800/50 bg-amber-50/50 dark:bg-amber-950/20">
-        <CardContent className="p-3.5 flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
-            <Lightbulb className="w-3.5 h-3.5 text-amber-600" />
+    <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+      <Card className="border-amber-200/40 dark:border-amber-800/40 bg-gradient-to-br from-amber-50/60 to-amber-50/30 dark:from-amber-950/20 dark:to-amber-950/10 overflow-hidden">
+        <CardContent className="p-3 flex items-start gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
+            <Lightbulb className="w-4 h-4 text-amber-600" />
           </div>
-          <div>
+          <div className="flex-1 min-w-0">
             <p className="text-[11px] font-bold text-amber-800 dark:text-amber-400 mb-0.5">
               {t('toolsInternal.weightGain.tipTitle')}
             </p>
