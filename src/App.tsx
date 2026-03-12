@@ -6,12 +6,14 @@ import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { SmartScrollRestoration } from "@/components/SmartScrollRestoration";
 import { AnimatedRoutes } from "@/components/AnimatedRoutes";
-import { OnboardingDisclaimer } from "@/components/OnboardingDisclaimer";
 import { AIUsageProvider } from "@/contexts/AIUsageContext";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import { prefetchCriticalRoutes } from "@/lib/routePrefetch";
+
+// Lazy-load OnboardingDisclaimer — heavy imports (Calendar, date-fns) only needed on first visit
+const OnboardingDisclaimer = lazy(() => import("@/components/OnboardingDisclaimer").then(m => ({ default: m.OnboardingDisclaimer })));
 
 const queryClient = new QueryClient();
 
@@ -63,7 +65,7 @@ const App = () => {
         <BrowserRouter>
           <SmartScrollRestoration />
           <AnimatedRoutes />
-          <OnboardingDisclaimer />
+          <Suspense fallback={null}><OnboardingDisclaimer /></Suspense>
         </BrowserRouter>
       </TooltipProvider>
       </AIUsageProvider>

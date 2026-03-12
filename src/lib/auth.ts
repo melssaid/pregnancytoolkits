@@ -28,21 +28,35 @@ export async function initializeAuth(): Promise<void> {
   getLocalUserId();
 }
 
+// Singleton promise to avoid duplicate concurrent auth calls
+let authPromise: Promise<ReturnType<typeof supabase.auth.getUser> extends Promise<infer R> ? R extends { data: { user: infer U } } ? U : never : never> | null = null;
+
 /**
  * Ensure the user is authenticated with Supabase.
  * Uses anonymous sign-in for seamless experience with proper RLS isolation.
- * Returns the Supabase user object with a cryptographically verified ID.
+ * Deduplicates concurrent calls — only one network request at a time.
  */
 export async function ensureAuthenticated() {
-  // Check for existing session first
-  const { data: { user } } = await supabase.auth.getUser();
-  if (user) return user;
+  if (authPromise) return authPromise;
 
-  // No session — sign in anonymously
-  const { data, error } = await supabase.auth.signInAnonymously();
-  if (error) {
-    console.error('Anonymous auth failed:', error.message);
-    throw new Error('Authentication failed');
-  }
-  return data.user;
+  authPromise = (async () => {
+    try {
+      // Check for existing session first
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) return user;
+
+      // No session — sign in anonymously
+      const { data, error } = await supabase.auth.signInAnonymously();
+      if (error) {
+        console.error('Anonymous auth failed:', error.message);
+        throw new Error('Authentication failed');
+      }
+      return data.user;
+    } finally {
+      // Allow retry after completion
+      authPromise = null;
+    }
+  })();
+
+  return authPromise;
 }

@@ -5,13 +5,11 @@ import { updateDocumentDirection } from "./i18n";
 import i18n from "./i18n";
 import { SettingsProvider } from "@/providers/SettingsProvider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { registerServiceWorker } from "@/lib/pushNotifications";
-import { sendDailyScheduleToSW } from "@/lib/scheduleNotifications";
-import { maybeRunCleanup } from "@/lib/storageCleanup";
 
-maybeRunCleanup();
+// Sync: set document direction (instant, no I/O)
 updateDocumentDirection(i18n.language);
 
+// ── Splash dismiss logic ──────────────────────────────────
 const dismissSplash = () => {
   const splash = document.getElementById("splash-overlay");
   if (!splash || splash.dataset.hidden === "true") return;
@@ -20,12 +18,10 @@ const dismissSplash = () => {
   splash.style.visibility = "hidden";
   setTimeout(() => splash.remove(), 350);
 };
-
-// Keep splash visible until app shell is really painted
 window.addEventListener("app:first-render", dismissSplash, { once: true });
-// Safety fallback (never leave splash forever)
-setTimeout(dismissSplash, 6000);
+setTimeout(dismissSplash, 5000); // safety fallback
 
+// ── Mount React (splash stays visible until Layout paints) ──
 createRoot(document.getElementById("root")!).render(
   <SettingsProvider>
     <LanguageProvider>
@@ -34,6 +30,22 @@ createRoot(document.getElementById("root")!).render(
   </SettingsProvider>
 );
 
-registerServiceWorker().then(() => {
-  setTimeout(() => sendDailyScheduleToSW(), 3000);
+// ── Deferred work (after first paint) ──────────────────────
+const deferAfterPaint = (fn: () => void) => {
+  if ("requestIdleCallback" in window) {
+    (window as any).requestIdleCallback(fn, { timeout: 8000 });
+  } else {
+    setTimeout(fn, 3000);
+  }
+};
+
+deferAfterPaint(() => {
+  // Storage cleanup
+  import("@/lib/storageCleanup").then(m => m.maybeRunCleanup());
+  // Service Worker + push notifications
+  import("@/lib/pushNotifications").then(m => m.registerServiceWorker()).then(() => {
+    setTimeout(() => {
+      import("@/lib/scheduleNotifications").then(m => m.sendDailyScheduleToSW());
+    }, 2000);
+  });
 });
