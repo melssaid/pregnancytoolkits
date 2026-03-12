@@ -255,16 +255,16 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
 
 // ── Unified Footer Card — Premium + AI Usage ───────────────────────────
 const footerI18n: Record<string, {
-  aiTitle: string; aiDesc: string; free: string; pro: string; daily: string;
+  aiTitle: string; aiLine1: string; aiLine2: string; free: string; pro: string; daily: string;
   upgrade: string; unlockAll: string;
 }> = {
-  en: { aiTitle: 'Inner Mind', aiDesc: 'Your smart AI assistant — free plan includes 5 daily uses, upgrade to PRO for 30', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
-  ar: { aiTitle: 'العقل الداخلي', aiDesc: 'مساعدك الذكي بالذكاء الاصطناعي — الخطة المجانية تتيح لك 5 استخدامات يومياً، قم بالترقية للحصول على 30', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
-  de: { aiTitle: 'Innerer Geist', aiDesc: 'Dein smarter KI-Assistent — 5 kostenlose Nutzungen täglich, mit PRO bis zu 30', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
-  fr: { aiTitle: 'Esprit Interne', aiDesc: 'Votre assistant IA intelligent — 5 utilisations gratuites par jour, passez au PRO pour 30', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
-  es: { aiTitle: 'Mente Interna', aiDesc: 'Tu asistente IA inteligente — 5 usos diarios gratis, actualiza a PRO para obtener 30', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
-  pt: { aiTitle: 'Mente Interna', aiDesc: 'Seu assistente IA inteligente — 5 usos diários grátis, faça upgrade para 30 com o PRO', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
-  tr: { aiTitle: 'İç Zihin', aiDesc: 'Akıllı AI asistanınız — günlük 5 ücretsiz kullanım, PRO ile 30\'a yükseltin', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
+  en: { aiTitle: 'Inner Mind', aiLine1: 'Your smart AI-powered assistant', aiLine2: 'Free: 5/day · PRO: 30/day', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
+  ar: { aiTitle: 'العقل الداخلي', aiLine1: 'مساعدك الذكي المدعوم بالذكاء الاصطناعي', aiLine2: 'مجاني: 5 يومياً · PRO: 30 يومياً', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
+  de: { aiTitle: 'Innerer Geist', aiLine1: 'Dein smarter KI-Assistent', aiLine2: 'Gratis: 5/Tag · PRO: 30/Tag', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
+  fr: { aiTitle: 'Esprit Interne', aiLine1: 'Votre assistant IA intelligent', aiLine2: 'Gratuit: 5/jour · PRO: 30/jour', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
+  es: { aiTitle: 'Mente Interna', aiLine1: 'Tu asistente inteligente con IA', aiLine2: 'Gratis: 5/día · PRO: 30/día', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
+  pt: { aiTitle: 'Mente Interna', aiLine1: 'Seu assistente inteligente com IA', aiLine2: 'Grátis: 5/dia · PRO: 30/dia', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
+  tr: { aiTitle: 'İç Zihin', aiLine1: 'Akıllı yapay zekâ asistanınız', aiLine2: 'Ücretsiz: 5/gün · PRO: 30/gün', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
 };
 
 const FooterCard = memo(function FooterCard() {
