@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Scale, TrendingUp, CheckCircle, Plus, Trash2,
+  TrendingUp, CheckCircle, Plus, Trash2,
   Heart, ShieldCheck, Save, Calendar, Activity,
   ArrowUp, ArrowDown, ChevronDown, ChevronUp, X
 } from 'lucide-react';
