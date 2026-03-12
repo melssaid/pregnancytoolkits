@@ -391,8 +391,8 @@ export default function SmartWeightGainAnalyzer() {
                           label={t('toolsInternal.weightGain.pregnancyWeek')}
                         />
 
-                        <div>
-                          <Label className="text-[10px] text-muted-foreground mb-1.5 block">
+                        <div className="space-y-1.5">
+                          <Label className="text-[10px] text-muted-foreground font-medium">
                             {t('toolsInternal.weightGain.currentWeightKg')}
                           </Label>
                           <div className="relative">
@@ -403,9 +403,9 @@ export default function SmartWeightGainAnalyzer() {
                               placeholder="62.5"
                               value={currentWeight}
                               onChange={(e) => setCurrentWeight(e.target.value)}
-                              className="h-16 text-center text-2xl font-black border-primary/20 focus:border-primary/40 rounded-2xl"
+                              className="h-14 text-center text-lg font-black rounded-xl border-border focus:border-primary"
                             />
-                            <span className="absolute end-4 top-1/2 -translate-y-1/2 text-sm text-muted-foreground/40 font-bold">kg</span>
+                            <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/40 font-semibold">kg</span>
                           </div>
                         </div>
 
