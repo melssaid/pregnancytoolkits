@@ -641,10 +641,10 @@ Provide personalized weight management advice based on this data.`}
                 
                 {/* Steps */}
                 <div className="space-y-2 max-w-[250px] mx-auto">
-                  {[
-                    { num: 1, text: t('toolsInternal.weightGain.step1', 'Enter your height'), icon: Ruler, done: !!height },
-                    { num: 2, text: t('toolsInternal.weightGain.step2', 'Enter your pre-pregnancy weight'), icon: Weight, done: !!prePregnancyWeight },
-                    { num: 3, text: t('toolsInternal.weightGain.step3', 'Log your first weight'), icon: Scale, done: false },
+                   {[
+                     { num: 1, text: t('toolsInternal.weightGain.step1', 'Enter your height'), done: !!height },
+                     { num: 2, text: t('toolsInternal.weightGain.step2', 'Enter your pre-pregnancy weight'), done: !!prePregnancyWeight },
+                     { num: 3, text: t('toolsInternal.weightGain.step3', 'Log your first weight'), done: false },
                   ].map((step, i) => (
                     <motion.div 
                       key={step.num}
