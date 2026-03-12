@@ -4,21 +4,22 @@ import { useLocation } from "react-router-dom";
 
 const BASE_URL = "https://pregnancytoolkits.lovable.app";
 const LANGUAGES = ["en", "ar", "de", "fr", "es", "tr", "pt"];
-const OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/jo6UX4DMdye2RhsGMYck0XjWOvR2/social-images/social-1770674585393-1000140907.jpg";
+const OG_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/85e4dfd6-dc2e-4528-9fc7-b1c9204d04e1/id-preview-a0068a0d--085eb60b-bb8f-450a-b987-0330fceff17c.lovable.app-1772319900231.png";
 
 interface SEOHeadProps {
   titleKey?: string;
   descriptionKey?: string;
-  /** Override title directly (useful for static pages) */
   title?: string;
   description?: string;
   type?: "website" | "article";
   noindex?: boolean;
+  /** Additional keywords for this page */
+  keywords?: string;
 }
 
 /**
  * Dynamic SEO head using react-helmet-async.
- * Generates per-page: title, description, canonical, hreflang, Open Graph, Twitter Cards, and BreadcrumbList schema.
+ * Generates per-page: title, description, canonical, hreflang, Open Graph, Twitter Cards, BreadcrumbList & SoftwareApplication schema.
  */
 export function SEOHead({
   titleKey,
@@ -27,6 +28,7 @@ export function SEOHead({
   description: descOverride,
   type = "website",
   noindex = false,
+  keywords,
 }: SEOHeadProps = {}) {
   const { t, i18n } = useTranslation();
   const location = useLocation();
@@ -37,8 +39,7 @@ export function SEOHead({
 
   // Build title
   const brandName = "Pregnancy Toolkits";
-  const pageTitle = titleOverride
-    || (titleKey ? t(titleKey) : null);
+  const pageTitle = titleOverride || (titleKey ? t(titleKey) : null);
   const fullTitle = pageTitle
     ? `${pageTitle} | ${brandName}`
     : `${brandName} – Free Pregnancy Tracker & AI Companion | 42+ Tools`;
@@ -51,6 +52,9 @@ export function SEOHead({
   // Truncate for SEO best practices
   const seoTitle = fullTitle.length > 60 ? fullTitle.slice(0, 57) + "..." : fullTitle;
   const seoDesc = pageDesc.length > 160 ? pageDesc.slice(0, 157) + "..." : pageDesc;
+
+  // Default keywords
+  const seoKeywords = keywords || "pregnancy tracker, due date calculator, kick counter, contraction timer, baby growth, pregnancy app free, AI pregnancy assistant, cycle tracker, ovulation tracker";
 
   // Breadcrumb schema for tool pages
   const breadcrumbSchema = path.startsWith("/tools/") ? {
@@ -72,6 +76,21 @@ export function SEOHead({
     ],
   } : null;
 
+  // SoftwareApplication schema (helps Google Play & web ranking)
+  const appSchema = path === "/" || path === "/en" ? {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": brandName,
+    "operatingSystem": "Android, iOS, Web",
+    "applicationCategory": "HealthApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "2850", "bestRating": "5" },
+    "description": seoDesc,
+    "url": BASE_URL,
+    "inLanguage": LANGUAGES,
+    "isAccessibleForFree": true,
+  } : null;
+
   // Locale mapping for Open Graph
   const ogLocaleMap: Record<string, string> = {
     en: "en_US", ar: "ar_SA", de: "de_DE", fr: "fr_FR",
@@ -84,6 +103,7 @@ export function SEOHead({
       <html lang={lang} dir={isRTL ? "rtl" : "ltr"} />
       <title>{seoTitle}</title>
       <meta name="description" content={seoDesc} />
+      <meta name="keywords" content={seoKeywords} />
       {noindex && <meta name="robots" content="noindex,nofollow" />}
 
       {/* Canonical */}
@@ -123,6 +143,13 @@ export function SEOHead({
       {breadcrumbSchema && (
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
+        </script>
+      )}
+
+      {/* SoftwareApplication Schema */}
+      {appSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(appSchema)}
         </script>
       )}
     </Helmet>

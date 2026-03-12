@@ -12,6 +12,7 @@ Allow: /
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 2
 
 User-agent: Twitterbot
 Allow: /
@@ -25,8 +26,16 @@ Allow: /
 User-agent: Pinterest
 Allow: /
 
+User-agent: Applebot
+Allow: /
+
 User-agent: *
 Allow: /
+Crawl-delay: 3
+
+# Block unnecessary paths
+Disallow: /settings
+Disallow: /pricing
 
 # Sitemap
 Sitemap: https://pregnancytoolkits.lovable.app/sitemap.xml
