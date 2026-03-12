@@ -202,52 +202,34 @@
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-      <!-- Splash screen -->
-      <div id="pre-app" style="position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#fdf2f8 0%,#fce7f3 50%,#f5e6f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <div style="position:relative;display:flex;align-items:center;justify-content:center;">
-          <!-- Ripple rings -->
-          <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1.5px solid rgba(212,96,138,0.2);animation:splash-ripple 2.4s ease-out infinite;"></div>
-          <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1.5px solid rgba(212,96,138,0.15);animation:splash-ripple 2.4s ease-out 0.8s infinite;"></div>
-          <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1px solid rgba(212,96,138,0.1);animation:splash-ripple 2.4s ease-out 1.6s infinite;"></div>
-          <!-- Soft glow -->
-          <div style="position:absolute;width:72px;height:72px;border-radius:50%;background:radial-gradient(circle,rgba(212,96,138,0.1) 0%,transparent 70%);animation:splash-breathe 3s ease-in-out infinite;"></div>
-          <!-- Logo — scaled up to eliminate internal padding -->
-          <div style="position:relative;z-index:1;width:88px;height:88px;border-radius:50%;overflow:hidden;box-shadow:0 6px 24px rgba(212,96,138,0.18);animation:splash-fadein 0.6s ease-out;">
-            <img src="/logo.webp" alt="" width="132" height="132" style="width:132px;height:132px;object-fit:cover;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);" />
-          </div>
+    <!-- Splash overlay (outside #root so React doesn't displace it) -->
+    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#fdf2f8 0%,#fce7f3 50%,#f5e6f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.35s ease,visibility 0.35s ease;">
+      <div style="position:relative;display:flex;align-items:center;justify-content:center;">
+        <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1.5px solid rgba(212,96,138,0.2);animation:splash-ripple 2.4s ease-out infinite;"></div>
+        <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1.5px solid rgba(212,96,138,0.15);animation:splash-ripple 2.4s ease-out 0.8s infinite;"></div>
+        <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1px solid rgba(212,96,138,0.1);animation:splash-ripple 2.4s ease-out 1.6s infinite;"></div>
+        <div style="position:absolute;width:72px;height:72px;border-radius:50%;background:radial-gradient(circle,rgba(212,96,138,0.1) 0%,transparent 70%);animation:splash-breathe 3s ease-in-out infinite;"></div>
+        <div style="position:relative;z-index:1;width:88px;height:88px;border-radius:50%;overflow:hidden;box-shadow:0 6px 24px rgba(212,96,138,0.18);">
+          <img src="/logo.webp" alt="" width="132" height="132" style="width:132px;height:132px;object-fit:cover;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);" />
         </div>
-        <!-- Loading text in user's language -->
-        <div id="splash-text" style="margin-top:16px;font-size:12px;color:rgba(180,80,120,0.6);font-family:'Plus Jakarta Sans',system-ui,sans-serif;animation:splash-fadein 0.8s ease-out 0.3s both;letter-spacing:0.3px;"></div>
       </div>
-      <script>
-        (function(){
-          var m={ar:"جاري تحميل الأدوات...",en:"Loading tools...",fr:"Chargement des outils...",de:"Tools werden geladen...",es:"Cargando herramientas...",tr:"Araçlar yükleniyor...",pt:"Carregando ferramentas..."};
-          var lang=localStorage.getItem("selected_language")||localStorage.getItem("i18nextLng")||"ar";
-          lang=lang.substring(0,2);
-          var el=document.getElementById("splash-text");
-          if(el){
-            el.textContent=m[lang]||m.en;
-            if(lang==="ar") el.style.fontFamily="'Tajawal','Plus Jakarta Sans',sans-serif";
-          }
-        })();
-      </script>
-      <style>
-        @keyframes splash-ripple {
-          0% { transform:scale(1);opacity:0.7; }
-          100% { transform:scale(2.5);opacity:0; }
-        }
-        @keyframes splash-breathe {
-          0%,100% { transform:scale(1);opacity:0.5; }
-          50% { transform:scale(1.3);opacity:0.8; }
-        }
-        @keyframes splash-fadein {
-          0% { opacity:0;transform:scale(0.9); }
-          100% { opacity:1;transform:scale(1); }
-        }
-        #splash-text { transition:opacity 0.3s ease; }
-      </style>
+      <div id="splash-text" style="margin-top:16px;font-size:12px;color:rgba(180,80,120,0.6);font-family:'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:0.3px;"></div>
     </div>
+    <script>
+      (function(){
+        var m={ar:"جاري تحميل الأدوات...",en:"Loading tools...",fr:"Chargement des outils...",de:"Tools werden geladen...",es:"Cargando herramientas...",tr:"Araçlar yükleniyor...",pt:"Carregando ferramentas..."};
+        var lang=localStorage.getItem("selected_language")||localStorage.getItem("i18nextLng")||"ar";
+        lang=lang.substring(0,2);
+        var el=document.getElementById("splash-text");
+        if(el){el.textContent=m[lang]||m.en;if(lang==="ar")el.style.fontFamily="'Tajawal','Plus Jakarta Sans',sans-serif";}
+      })();
+    </script>
+    <style>
+      @keyframes splash-ripple{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.5);opacity:0}}
+      @keyframes splash-breathe{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.3);opacity:.8}}
+    </style>
+
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
