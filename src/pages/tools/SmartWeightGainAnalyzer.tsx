@@ -613,6 +613,12 @@ Provide personalized weight management advice based on this data.`}
                 />
               )}
 
+              {/* ─── Weight Distribution ─── */}
+              <WeightDistributionCard t={t} />
+
+              {/* ─── Medical Tip ─── */}
+              <MedicalTipCard trimester={currentTrimester} t={t} />
+
             </motion.div>
           )}
         </AnimatePresence>
