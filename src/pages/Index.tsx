@@ -197,9 +197,14 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className={`text-xl sm:text-2xl font-bold ${config.headerText} tracking-tight leading-snug break-words ar-heading`}>
-              {t(`journeys.${config.key}`)}
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className={`text-xl sm:text-2xl font-bold ${config.headerText} tracking-tight leading-snug break-words ar-heading`}>
+                {t(`journeys.${config.key}`)}
+              </h2>
+              <span className={`text-[10px] font-bold ${config.headerText} bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full`}>
+                {totalTools}
+              </span>
+            </div>
             <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 leading-snug break-words`}>
               {t(`journeys.${config.key}Desc`)}
             </p>
