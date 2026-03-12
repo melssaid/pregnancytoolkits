@@ -83,7 +83,8 @@ const getManualLanguage = (): string | null => {
 const getInitialLanguage = (): string => {
   const manualLang = getManualLanguage();
   if (manualLang && SUPPORTED_LANGUAGES.includes(manualLang)) return manualLang;
-  return getBrowserLanguage();
+  // Default to English on first visit — user picks language in onboarding
+  return 'en';
 };
 
 const initialLang = getInitialLanguage();
