@@ -267,7 +267,7 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
 
                     {/* Pregnancy fields */}
                     {isPregnant && (
-                      <div className="space-y-3">
+                      <div className="space-y-2.5">
                         <div>
                           <label className="text-[11px] font-medium text-muted-foreground block mb-1">
                             {t('onboarding.pregnancyWeek', 'Week')} (1–42)
