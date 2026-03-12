@@ -217,7 +217,18 @@
             <img src="/logo.webp" alt="" width="132" height="132" style="width:132px;height:132px;object-fit:cover;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);" />
           </div>
         </div>
+        <!-- Loading text cycling through 7 languages -->
+        <div id="splash-text" style="margin-top:16px;font-size:12px;color:rgba(180,80,120,0.6);font-family:'Plus Jakarta Sans',system-ui,sans-serif;animation:splash-fadein 0.8s ease-out 0.3s both;letter-spacing:0.3px;">
+          جاري تحميل الأدوات...
+        </div>
       </div>
+      <script>
+        (function(){
+          var msgs=["جاري تحميل الأدوات...","Loading tools...","Outils en chargement...","Tools werden geladen...","Cargando herramientas...","Araçlar yükleniyor...","Carregando ferramentas..."];
+          var i=0,el=document.getElementById("splash-text");
+          if(el) setInterval(function(){i=(i+1)%msgs.length;el.style.opacity="0";setTimeout(function(){el.textContent=msgs[i];el.style.opacity="1";},300);},2500);
+        })();
+      </script>
       <style>
         @keyframes splash-ripple {
           0% { transform:scale(1);opacity:0.7; }
