@@ -614,7 +614,7 @@ export default function SmartWeightGainAnalyzer() {
 Provide personalized weight management advice based on this data.`}
                   context={{ week: lastEntry?.week || parseInt(currentWeek), trimester: currentTrimester === 'first' ? 1 : currentTrimester === 'second' ? 2 : 3 }}
                   buttonText={t('toolsInternal.weightGain.aiAnalysisButton')}
-                  icon={<Scale className="w-4 h-4" />}
+                  icon={<TrendingUp className="w-4 h-4" />}
                 />
               )}
 
