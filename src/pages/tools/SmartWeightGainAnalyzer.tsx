@@ -8,9 +8,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Scale, TrendingUp, CheckCircle, Plus, Ruler, Weight, Trash2,
-  Heart, ShieldCheck, Save, Calendar, Target, Activity,
-  ArrowUp, ArrowDown, ChevronDown, ChevronUp, Sparkles, Trophy, Zap, X
+  Scale, TrendingUp, CheckCircle, Plus, Trash2,
+  Heart, ShieldCheck, Save, Calendar, Activity,
+  ArrowUp, ArrowDown, ChevronDown, ChevronUp, X
 } from 'lucide-react';
 import { WeekSlider } from '@/components/WeekSlider';
 import { toast } from 'sonner';
