@@ -228,106 +228,93 @@ export default function SmartWeightGainAnalyzer() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <Card className="border-primary/15 overflow-hidden">
-            {/* Top accent */}
             <div className="h-1 bg-gradient-to-r from-primary/30 via-primary to-primary/30" />
             
-            <CardContent className="p-4 space-y-3">
-              {/* Header */}
-              <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/15 shadow-sm">
-                  <Heart className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-[13px] font-bold text-foreground">{t('toolsInternal.weightGain.profileSetup')}</h3>
-                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.weightGain.profileSetupDesc')}</p>
-                </div>
+            <CardContent className="p-4 space-y-4">
+              {/* Compact header */}
+              <div className="flex items-center gap-2">
+                <Heart className="w-4 h-4 text-primary" />
+                <h3 className="text-[12px] font-bold text-foreground">{t('toolsInternal.weightGain.profileSetup')}</h3>
                 {profileComplete && (
-                  <motion.div 
-                    initial={{ scale: 0 }} 
-                    animate={{ scale: 1 }} 
-                    className="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center"
-                  >
-                    <CheckCircle className="w-4 h-4 text-emerald-600" />
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                    <CheckCircle className="w-4 h-4 text-emerald-500" />
                   </motion.div>
                 )}
               </div>
 
-              {/* Input fields with large touch targets */}
+              {/* Equal-sized input fields */}
               <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <Label className="text-[10px] text-muted-foreground flex items-center gap-1 mb-1.5">
-                    <Ruler className="w-3 h-3 text-primary/60" />
+                <div className="space-y-1.5">
+                  <Label className="text-[10px] text-muted-foreground font-medium flex items-center gap-1">
+                    <Ruler className="w-3 h-3" />
                     {t('toolsInternal.weightGain.heightCm')}
                   </Label>
                   <div className="relative">
                     <Input
                       type="number"
+                      inputMode="numeric"
                       placeholder="165"
                       value={height}
                       onChange={(e) => setHeight(e.target.value)}
-                      className="h-12 text-center font-extrabold text-base border-primary/15 focus:border-primary/40 rounded-xl"
+                      className="h-14 text-center font-black text-lg rounded-xl border-border focus:border-primary"
                     />
-                    <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-medium">cm</span>
+                    <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/40 font-semibold">cm</span>
                   </div>
                 </div>
-                <div>
-                  <Label className="text-[10px] text-muted-foreground flex items-center gap-1 mb-1.5">
-                    <Weight className="w-3 h-3 text-primary/60" />
+                <div className="space-y-1.5">
+                  <Label className="text-[10px] text-muted-foreground font-medium flex items-center gap-1">
+                    <Weight className="w-3 h-3" />
                     {t('toolsInternal.weightGain.prePregnancyWeightKg')}
                   </Label>
                   <div className="relative">
                     <Input
                       type="number"
+                      inputMode="decimal"
                       placeholder="60"
                       value={prePregnancyWeight}
                       onChange={(e) => setPrePregnancyWeight(e.target.value)}
-                      className="h-12 text-center font-extrabold text-base border-primary/15 focus:border-primary/40 rounded-xl"
+                      className="h-14 text-center font-black text-lg rounded-xl border-border focus:border-primary"
                     />
-                    <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-medium">kg</span>
+                    <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/40 font-semibold">kg</span>
                   </div>
                 </div>
               </div>
 
-              {/* BMI Result */}
-              <AnimatePresence>
-                {profileComplete && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="space-y-3"
-                  >
-                    {/* BMI Score Card */}
-                    <div className="flex items-center gap-3 p-3 rounded-2xl bg-gradient-to-br from-muted/60 to-muted/20 border border-border/40">
-                      <motion.div 
-                        className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex flex-col items-center justify-center border border-primary/15 shadow-sm"
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: 'spring', stiffness: 300 }}
-                      >
-                        <span className="text-[16px] font-black text-primary leading-none">{bmi.toFixed(1)}</span>
-                        <span className="text-[8px] text-primary/60 font-bold mt-0.5">BMI</span>
-                      </motion.div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-[12px] font-bold text-foreground">{t(`toolsInternal.weightGain.bmiCategories.${range.categoryKey}`)}</p>
-                        <p className="text-[10px] text-muted-foreground mt-0.5">
-                          {t('toolsInternal.weightGain.recommendedTotalGain')}
-                        </p>
-                        <p className="text-[13px] font-extrabold text-primary mt-0.5">{range.min} – {range.max} kg</p>
-                      </div>
-                      <div className="flex items-center gap-1 px-2 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200/50 dark:border-emerald-700/40">
-                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                        <span className="text-[8px] font-bold text-emerald-700 dark:text-emerald-400">IOM</span>
-                      </div>
+              {/* BMI Result — inline compact */}
+              {profileComplete && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="space-y-3"
+                >
+                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-muted/40 border border-border/30">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex flex-col items-center justify-center shrink-0">
+                      <span className="text-[15px] font-black text-primary leading-none">{bmi.toFixed(1)}</span>
+                      <span className="text-[7px] text-primary/50 font-bold">BMI</span>
                     </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[11px] font-bold">{t(`toolsInternal.weightGain.bmiCategories.${range.categoryKey}`)}</p>
+                      <p className="text-[10px] text-muted-foreground">{t('toolsInternal.weightGain.recommendedTotalGain')}: <span className="font-bold text-primary">{range.min}–{range.max} kg</span></p>
+                    </div>
+                    <div className="px-1.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200/40 dark:border-emerald-800/40 shrink-0">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                    </div>
+                  </div>
 
-                    {/* BMI Scale */}
-                    <BMIScaleBar bmi={bmi} t={t} />
+                  <BMIScaleBar bmi={bmi} t={t} />
 
-                    {/* Start Analysis Button - hidden since analysis auto-shows */}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  {/* Start Analysis Button */}
+                  {!showAnalysis && (
+                    <Button 
+                      onClick={handleStartAnalysis}
+                      className="w-full h-12 text-[13px] font-bold gap-2 rounded-xl shadow-lg shadow-primary/20"
+                    >
+                      <Activity className="w-4 h-4" />
+                      {t('toolsInternal.weightGain.startAnalysis')}
+                    </Button>
+                  )}
+                </motion.div>
+              )}
             </CardContent>
           </Card>
         </motion.div>
