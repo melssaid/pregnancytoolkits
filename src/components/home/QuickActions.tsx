@@ -17,8 +17,8 @@ const actions: QuickAction[] = [
   { icon: Activity, labelKey: "quickActions.kicks",     href: "/tools/kick-counter",        color: "text-[hsl(350,55%,55%)]", bg: "bg-[hsl(350,45%,95%)] dark:bg-[hsl(350,30%,15%)]" },
   { icon: Scale,    labelKey: "quickActions.weight",    href: "/tools/weight-gain",         color: "text-[hsl(15,60%,52%)]",  bg: "bg-[hsl(15,50%,95%)] dark:bg-[hsl(15,35%,15%)]" },
   { icon: Baby,     labelKey: "quickActions.growth",    href: "/tools/baby-growth",         color: "text-[hsl(280,40%,55%)]", bg: "bg-[hsl(280,30%,95%)] dark:bg-[hsl(280,20%,15%)]" },
-  { icon: Calendar, labelKey: "quickActions.dueDate",   href: "/tools/due-date",            color: "text-[hsl(160,40%,45%)]", bg: "bg-[hsl(160,30%,94%)] dark:bg-[hsl(160,20%,15%)]" },
-  { icon: Heart,    labelKey: "quickActions.symptoms",  href: "/tools/symptom-analyzer",    color: "text-[hsl(0,55%,55%)]",   bg: "bg-[hsl(0,40%,95%)] dark:bg-[hsl(0,30%,15%)]" },
+  { icon: Calendar, labelKey: "quickActions.dueDate",   href: "/tools/due-date-calculator", color: "text-[hsl(160,40%,45%)]", bg: "bg-[hsl(160,30%,94%)] dark:bg-[hsl(160,20%,15%)]" },
+  { icon: Heart,    labelKey: "quickActions.symptoms",  href: "/tools/wellness-diary",      color: "text-[hsl(0,55%,55%)]",   bg: "bg-[hsl(0,40%,95%)] dark:bg-[hsl(0,30%,15%)]" },
 ];
 
 const fallbackLabels: Record<string, Record<string, string>> = {
