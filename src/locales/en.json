@@ -1571,6 +1571,22 @@
       "goalReached": "Great job! Goal reached",
       "goalReachedDesc": "10 movements recorded — you can continue or save the session"
     },
+    "contractionTimer": {
+      "title": "Contraction Timer",
+      "subtitle": "Track duration and intervals between contractions",
+      "recording": "Recording...",
+      "startContraction": "Start Contraction",
+      "stop": "Stop",
+      "total": "Total",
+      "avgDuration": "Avg Duration",
+      "avgInterval": "Avg Interval",
+      "ruleMetTitle": "5-1-1 Rule Met!",
+      "ruleMetDesc": "Contractions are 5 minutes apart or less and lasting over 1 minute. It may be time to head to the hospital. Contact your doctor immediately.",
+      "history": "History",
+      "clearAll": "Clear All",
+      "duration": "duration",
+      "gap": "gap"
+    },
     "symptomAnalyzer": {
       "title": "Pregnancy Wellness Diary",
       "subtitle": "Log and reflect on your daily wellness",
