@@ -463,7 +463,13 @@ export default function SmartWeightGainAnalyzer() {
                   transition={{ delay: 0.15 }}
                   className={`p-3 rounded-2xl border ${statusConfig[status].borderColor} ${statusConfig[status].bg}`}
                 >
-                  <p className="text-[10px] text-foreground/70 leading-relaxed">
+                  <div className="flex items-center gap-2 mb-1">
+                    {React.createElement(statusConfig[status].icon, { className: `w-4 h-4 ${statusConfig[status].color}` })}
+                    <span className={`text-[11px] font-bold ${statusConfig[status].color}`}>
+                      {t(`toolsInternal.weightGain.statusMessages.${status}.message`)}
+                    </span>
+                  </div>
+                  <p className={`text-[10px] ${statusConfig[status].text} leading-relaxed`}>
                     {t(`toolsInternal.weightGain.statusMessages.${status}.recommendation`)}
                   </p>
                 </motion.div>
