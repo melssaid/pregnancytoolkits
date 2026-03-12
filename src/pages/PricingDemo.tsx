@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
+import pricingLogo from "@/assets/pricing-logo.png";
 
 const features = [
   { icon: Brain, key: "feature1" },
