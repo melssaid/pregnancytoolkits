@@ -34,7 +34,7 @@ export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_, _ref) => {
   const { t, i18n } = useTranslation();
   const { currentLanguage, changeLanguage } = useLanguage();
   const { profile, updateProfile, setLastPeriodDate } = useUserProfile();
-  const [selectedLang, setSelectedLang] = useState(currentLanguage);
+  const [selectedLang, setSelectedLang] = useState('en');
   const [isPregnant, setIsPregnant] = useState(true);
   const [week, setWeek] = useState<string>(profile.pregnancyWeek ? String(profile.pregnancyWeek) : '');
   const [weight, setWeight] = useState<string>(profile.weight ? String(profile.weight) : '');
