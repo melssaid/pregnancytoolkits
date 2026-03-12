@@ -310,37 +310,28 @@ const FooterCard = memo(function FooterCard() {
           />
 
           {/* ─── Top: PRO section ─── */}
-          <div className="p-5 pb-4">
-            <div className="flex items-center gap-3">
-              <div className="relative shrink-0">
-                <motion.div
-                  className="absolute inset-0 rounded-xl bg-primary/15"
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
-                />
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <ShieldCheck className="w-6 h-6 text-primary" strokeWidth={1.75} />
-                </div>
+          <div className="px-4 py-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-4.5 h-4.5 text-primary" strokeWidth={1.75} />
               </div>
-
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[15px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-[13px] font-extrabold text-primary uppercase tracking-wider" style={{ fontFamily: "'Cairo', sans-serif" }}>
                     PRO
                   </span>
                   <motion.span
-                    className="inline-flex items-center gap-1 px-2 py-[3px] rounded-md bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[10px] font-bold shadow-sm"
-                    animate={{ scale: [1, 1.04, 1] }}
+                    className="inline-flex items-center gap-1 px-1.5 py-[2px] rounded bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[9px] font-bold"
+                    animate={{ scale: [1, 1.03, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <Clock className="w-3 h-3" strokeWidth={2.5} />
+                    <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
                     {t("pricing.trialBadge", { count: badgeDays })}
                   </motion.span>
                 </div>
-                <p className="text-[12px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
+                <p className="text-[10px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
               </div>
-
-              <ChevronRight className="w-5 h-5 text-primary/30 rtl:rotate-180 shrink-0" />
+              <ChevronRight className="w-4 h-4 text-primary/30 rtl:rotate-180 shrink-0" />
             </div>
           </div>
 
@@ -348,75 +339,50 @@ const FooterCard = memo(function FooterCard() {
           <div className="mx-5 h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent" />
 
           {/* ─── Bottom: AI Usage section ─── */}
-          <div className="p-5 pt-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="relative shrink-0">
-                <motion.div
-                  className="absolute inset-0 rounded-xl bg-primary/15"
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
-                />
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Brain className="w-6 h-6 text-primary" strokeWidth={1.75} />
-                </div>
+          <div className="px-4 py-3">
+            <div className="flex items-center gap-2.5 mb-2">
+              <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Brain className="w-4.5 h-4.5 text-primary" strokeWidth={1.75} />
               </div>
               <div className="flex-1 min-w-0">
-                <span className="text-[15px] font-extrabold text-primary uppercase tracking-widest" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-                  {labels.aiTitle}
-                </span>
-                <p className="text-[11px] text-muted-foreground leading-snug mt-0.5">{labels.aiLine1}</p>
-                <p className="text-[10px] text-primary/70 font-semibold mt-1">{labels.aiLine2}</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-[13px] font-extrabold text-primary uppercase tracking-wider" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                    {labels.aiTitle}
+                  </span>
+                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${
+                    percent > 40 ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400'
+                    : percent > 15 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'
+                    : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400'
+                  }`}>
+                    {isFree ? labels.free : labels.pro}
+                  </span>
+                </div>
+                <p className="text-[10px] text-muted-foreground leading-snug">{labels.aiLine1}</p>
+              </div>
+              <div className="text-end shrink-0">
+                <motion.span
+                  className="text-[22px] font-black text-foreground tabular-nums leading-none"
+                  style={{ fontFamily: "'Cairo', sans-serif" }}
+                  key={remaining}
+                  initial={{ scale: 1.1, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                >
+                  {remaining}
+                </motion.span>
+                <span className="text-[9px] text-muted-foreground font-medium block">/ {limit}</span>
               </div>
             </div>
 
-            {/* Simple usage meter */}
-            <div className="space-y-2.5">
-              {/* Remaining count */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-baseline gap-1.5">
-                  <motion.span
-                    className="text-[28px] font-black text-foreground tabular-nums leading-none"
-                    style={{ fontFamily: "'Cairo', sans-serif" }}
-                    key={remaining}
-                    initial={{ scale: 1.15, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                  >
-                    {remaining}
-                  </motion.span>
-                  <span className="text-[12px] text-muted-foreground font-medium">/ {limit} {labels.daily}</span>
-                </div>
-                <span className={`text-[10px] font-bold px-2 py-1 rounded-md ${
-                  percent > 40 ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400'
-                  : percent > 15 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'
-                  : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400'
-                }`}>
-                  {isFree ? labels.free : labels.pro}
-                </span>
-              </div>
-
-              {/* Progress bar */}
-              <div className="h-2 rounded-full bg-muted/30 overflow-hidden">
-                <motion.div
-                  className={`h-full rounded-full ${barColor}`}
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${percent}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-                />
-              </div>
-
-              {/* Free vs PRO comparison */}
-              <div className="flex items-center gap-3">
-                <div className="flex-1 flex items-center gap-1.5 px-2 py-1 rounded-lg bg-muted/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40 shrink-0" />
-                  <span className="text-[10px] text-muted-foreground">{labels.free}: {FREE_LIMIT}/{labels.daily}</span>
-                </div>
-                <div className="flex-1 flex items-center gap-1.5 px-2 py-1 rounded-lg bg-primary/5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                  <span className="text-[10px] text-primary font-semibold">{labels.pro}: {PRO_LIMIT}/{labels.daily}</span>
-                </div>
-              </div>
+            {/* Progress bar */}
+            <div className="h-1.5 rounded-full bg-muted/30 overflow-hidden">
+              <motion.div
+                className={`h-full rounded-full ${barColor}`}
+                initial={{ width: 0 }}
+                whileInView={{ width: `${percent}%` }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
+              />
             </div>
           </div>
         </div>
