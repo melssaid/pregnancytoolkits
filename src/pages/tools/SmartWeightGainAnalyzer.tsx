@@ -445,16 +445,6 @@ export default function SmartWeightGainAnalyzer() {
                 />
               )}
 
-              {/* ─── Weekly Rate Gauge ─── */}
-              {weeklyGainRate !== null && (
-                <WeeklyRateGauge
-                  rate={weeklyGainRate}
-                  healthyMin={currentTrimester === 'first' ? 0 : 0.3}
-                  healthyMax={currentTrimester === 'first' ? 0.2 : 0.6}
-                  t={t}
-                />
-              )}
-
               {/* ─── Weekly Goal Card ─── */}
               {entries.length > 0 && lastEntry && (
                 <WeeklyGoalCard
@@ -466,32 +456,17 @@ export default function SmartWeightGainAnalyzer() {
                 />
               )}
 
-              {/* ─── Status Banner ─── */}
+              {/* ─── Status Recommendation ─── */}
               {status && entries.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 }}
-                  className={`p-3 rounded-2xl border ${statusConfig[status].borderColor} ${statusConfig[status].bg} flex items-center gap-3`}
+                  className={`p-3 rounded-2xl border ${statusConfig[status].borderColor} ${statusConfig[status].bg}`}
                 >
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${statusConfig[status].badge}`}>
-                    {React.createElement(statusConfig[status].icon, { className: `w-4.5 h-4.5 ${statusConfig[status].color}` })}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span className={`text-[11px] font-bold inline-block px-2 py-0.5 rounded-full ${statusConfig[status].badge}`}>
-                      {t(`toolsInternal.weightGain.statusMessages.${status}.message`)}
-                    </span>
-                    <p className="text-[10px] text-foreground/70 mt-1 leading-relaxed line-clamp-2">
-                      {t(`toolsInternal.weightGain.statusMessages.${status}.recommendation`)}
-                    </p>
-                  </div>
-                  {remainingGain !== null && remainingGain > 0 && (
-                    <div className="text-center shrink-0 px-2">
-                      <p className="text-[8px] text-muted-foreground uppercase font-medium">{t('toolsInternal.weightGain.remaining', 'Remaining')}</p>
-                      <p className="text-base font-black text-foreground">{remainingGain.toFixed(1)}</p>
-                      <p className="text-[8px] text-muted-foreground">kg</p>
-                    </div>
-                  )}
+                  <p className="text-[10px] text-foreground/70 leading-relaxed">
+                    {t(`toolsInternal.weightGain.statusMessages.${status}.recommendation`)}
+                  </p>
                 </motion.div>
               )}
 
