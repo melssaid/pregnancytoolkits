@@ -200,10 +200,10 @@ export default function SmartWeightGainAnalyzer() {
     return Math.max(0, midTarget - totalGain);
   }, [range, totalGain]);
 
-  const statusConfig: Record<string, { icon: any; color: string; bg: string; badge: string; borderColor: string }> = {
-    below:  { icon: ArrowDown, color: 'text-amber-600', bg: 'bg-amber-50 dark:bg-amber-950/30', badge: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300', borderColor: 'border-amber-200 dark:border-amber-800' },
-    above:  { icon: ArrowUp, color: 'text-destructive', bg: 'bg-red-50 dark:bg-red-950/30', badge: 'bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300', borderColor: 'border-red-200 dark:border-red-800' },
-    normal: { icon: CheckCircle, color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-950/30', badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300', borderColor: 'border-emerald-200 dark:border-emerald-800' },
+  const statusConfig: Record<string, { icon: any; color: string; bg: string; text: string; borderColor: string }> = {
+    below:  { icon: ArrowDown, color: 'text-amber-700 dark:text-amber-300', bg: 'bg-amber-50 dark:bg-amber-950/30', text: 'text-amber-900 dark:text-amber-200', borderColor: 'border-amber-300 dark:border-amber-800' },
+    above:  { icon: ArrowUp, color: 'text-red-700 dark:text-red-300', bg: 'bg-red-50 dark:bg-red-950/30', text: 'text-red-900 dark:text-red-200', borderColor: 'border-red-300 dark:border-red-800' },
+    normal: { icon: CheckCircle, color: 'text-emerald-700 dark:text-emerald-300', bg: 'bg-emerald-50 dark:bg-emerald-950/30', text: 'text-emerald-900 dark:text-emerald-200', borderColor: 'border-emerald-300 dark:border-emerald-800' },
   };
 
   const handleStartAnalysis = () => {
