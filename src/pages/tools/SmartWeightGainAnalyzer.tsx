@@ -350,7 +350,7 @@ export default function SmartWeightGainAnalyzer() {
                         </p>
                       )}
                     </div>
-                    <Scale className="w-5 h-5 opacity-40" />
+                    
                   </button>
                 </motion.div>
               )}
@@ -368,8 +368,7 @@ export default function SmartWeightGainAnalyzer() {
                       <div className="h-1.5 bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
                       <CardContent className="p-4 space-y-3">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-[13px] font-bold flex items-center gap-2">
-                            <Scale className="w-4 h-4 text-primary" />
+                          <h3 className="text-[13px] font-bold">
                             {t('toolsInternal.weightGain.addWeightEntry')}
                           </h3>
                           <button 
@@ -640,10 +639,11 @@ Provide personalized weight management advice based on this data.`}
               <div className="h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
               <CardContent className="p-6 text-center space-y-4">
                 <motion.div
-                  animate={{ y: [0, -8, 0], rotate: [0, -3, 3, 0] }}
+                  animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="text-4xl"
                 >
-                  <Scale className="w-14 h-14 text-primary/25 mx-auto" />
+                  ⚖️
                 </motion.div>
                 <div>
                   <p className="text-[14px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
