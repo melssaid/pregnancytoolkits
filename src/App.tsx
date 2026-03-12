@@ -15,12 +15,26 @@ import { prefetchCriticalRoutes } from "@/lib/routePrefetch";
 
 const queryClient = new QueryClient();
 
+const dismissSplash = () => {
+  const splash = document.getElementById("splash-overlay");
+  if (splash) {
+    splash.style.opacity = "0";
+    splash.style.visibility = "hidden";
+    setTimeout(() => splash.remove(), 350);
+  }
+};
+
 const App = () => {
-  // Initialize anonymous authentication on app load
+  // Initialize auth & dismiss splash once the app tree has painted
   useEffect(() => {
     initializeAuth();
-    // Prefetch critical routes after initial render
     prefetchCriticalRoutes();
+    // Wait for the browser to actually paint the first frame
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        dismissSplash();
+      });
+    });
   }, []);
 
   // Handle dynamic import failures (e.g., after app updates)
