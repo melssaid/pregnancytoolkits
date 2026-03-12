@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useEffect, useState, useCallback, useMemo, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 import { updateDocumentDirection, setManualLanguage } from '@/i18n';
 
 interface LanguageContextType {
