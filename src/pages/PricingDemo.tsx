@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
+import pricingLogo from "@/assets/pricing-logo.png";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -66,7 +67,7 @@ export default function PricingDemo() {
             className="text-center mb-3"
           >
             <motion.div
-              className="relative w-[72px] h-[72px] mx-auto mb-3 flex items-center justify-center"
+              className="relative w-[100px] h-[100px] mx-auto mb-4 flex items-center justify-center"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
@@ -77,7 +78,7 @@ export default function PricingDemo() {
                   key={i}
                   className="absolute inset-0 rounded-full border border-primary/20"
                   initial={{ scale: 0.5, opacity: 0.6 }}
-                  animate={{ scale: [0.5, 1.4], opacity: [0.5, 0] }}
+                  animate={{ scale: [0.5, 1.5], opacity: [0.5, 0] }}
                   transition={{
                     duration: 2.5,
                     delay: i * 0.7,
@@ -88,16 +89,49 @@ export default function PricingDemo() {
               ))}
               {/* Breathing aura */}
               <motion.div
-                className="absolute w-12 h-12 rounded-full bg-primary/10 blur-lg"
+                className="absolute w-16 h-16 rounded-full bg-primary/10 blur-lg"
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
+              {/* Orbiting hearts - primary */}
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={`heart-p-${i}`}
+                  className="absolute"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, delay: i * 2.66, repeat: Infinity, ease: "linear" }}
+                  style={{ width: 100, height: 100 }}
+                >
+                  <Heart
+                    className="absolute text-primary fill-primary"
+                    style={{ width: 10, height: 10, top: -4, left: '50%', transform: 'translateX(-50%)' }}
+                  />
+                </motion.div>
+              ))}
+              {/* Orbiting hearts - soft pink */}
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={`heart-s-${i}`}
+                  className="absolute"
+                  animate={{ rotate: [0, 20, -20, 0, 360] }}
+                  transition={{ duration: 12, delay: i * 4, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ width: 100, height: 100 }}
+                >
+                  <Heart
+                    className="absolute fill-pink-300/70 text-pink-300/70"
+                    style={{ width: 8, height: 8, bottom: -3, left: '50%', transform: 'translateX(-50%)' }}
+                  />
+                </motion.div>
+              ))}
               {/* Logo */}
-              <div className="relative w-13 h-13 rounded-full overflow-hidden shadow-lg shadow-primary/15 ring-2 ring-primary/15">
+              <div className="relative w-[72px] h-[72px] rounded-full overflow-hidden shadow-lg shadow-primary/15 ring-2 ring-primary/10 bg-white">
                 <img
-                  src="/logo.webp"
-                  alt="Logo"
+                  src={pricingLogo}
+                  alt="Pregnancy Toolkits"
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  width={72}
+                  height={72}
                 />
               </div>
             </motion.div>
