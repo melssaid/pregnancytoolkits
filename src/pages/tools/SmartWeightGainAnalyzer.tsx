@@ -640,10 +640,11 @@ Provide personalized weight management advice based on this data.`}
               <div className="h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
               <CardContent className="p-6 text-center space-y-4">
                 <motion.div
-                  animate={{ y: [0, -8, 0], rotate: [0, -3, 3, 0] }}
+                  animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="text-4xl"
                 >
-                  <Scale className="w-14 h-14 text-primary/25 mx-auto" />
+                  ⚖️
                 </motion.div>
                 <div>
                   <p className="text-[14px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
