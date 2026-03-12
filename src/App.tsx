@@ -65,7 +65,7 @@ const App = () => {
         <BrowserRouter>
           <SmartScrollRestoration />
           <AnimatedRoutes />
-          <OnboardingDisclaimer />
+          <Suspense fallback={null}><OnboardingDisclaimer /></Suspense>
         </BrowserRouter>
       </TooltipProvider>
       </AIUsageProvider>
