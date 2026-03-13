@@ -124,7 +124,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
 // ── Journey card ────────────────────────────────────────────────────────
 
 
-const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean }) {
+const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
@@ -228,7 +228,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: toolIdx * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
                       >
-                        <ToolRow tool={tool} isRTL={isRTL} isLocked={!isSubscriptionActive && isToolPremium(tool.id)} />
+                        <ToolRow tool={tool} isRTL={isRTL} isLocked={isToolPremium(tool.id, tier)} />
                       </motion.div>
                     ))}
                   </div>
@@ -382,7 +382,7 @@ const FooterCard = memo(function FooterCard() {
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
-  const { isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
+  const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
   return (
     <Layout>
       <SEOHead />
@@ -392,7 +392,7 @@ const Index = () => {
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
 
           {journeyConfigs.map((config, index) => (
-            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} />
+            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
           ))}
           
           <div className="mt-8">
