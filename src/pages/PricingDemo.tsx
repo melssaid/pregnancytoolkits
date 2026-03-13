@@ -96,12 +96,11 @@ export default function PricingDemo() {
               </div>
               {/* Blooming flowers */}
               {[
-                { angle: 0, radius: 52, size: 18, emoji: '🌸', dur: 7, delay: 0 },
-                { angle: 60, radius: 48, size: 14, emoji: '🌷', dur: 9, delay: 0.6 },
-                { angle: 120, radius: 54, size: 16, emoji: '🌺', dur: 8, delay: 1.2 },
-                { angle: 180, radius: 50, size: 13, emoji: '🌼', dur: 10, delay: 0.3 },
-                { angle: 240, radius: 53, size: 15, emoji: '🌸', dur: 8.5, delay: 0.9 },
-                { angle: 300, radius: 49, size: 14, emoji: '🌷', dur: 9.5, delay: 1.5 },
+                { angle: 0, radius: 52, size: 17, emoji: '🌸', dur: 7, delay: 0 },
+                { angle: 72, radius: 48, size: 14, emoji: '🌸', dur: 9, delay: 0.6 },
+                { angle: 144, radius: 54, size: 16, emoji: '🌸', dur: 8, delay: 1.2 },
+                { angle: 216, radius: 50, size: 13, emoji: '🌸', dur: 10, delay: 0.3 },
+                { angle: 288, radius: 53, size: 15, emoji: '🌸', dur: 8.5, delay: 0.9 },
               ].map((f, i) => (
                 <motion.span
                   key={`flower-${i}`}
