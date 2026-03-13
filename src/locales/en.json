@@ -5854,6 +5854,9 @@
       "fullAccess": "Full access with no limits"
     },
     "subscribeButton": "Subscribe Now",
+    "startTrial": "Start Free Trial",
+    "trialTitle": "3 Days Free! 🎁",
+    "trialDesc": "Try all premium features at no cost",
     "maybeLater": "Maybe later"
   }
 }
