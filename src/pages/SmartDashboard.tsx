@@ -76,7 +76,7 @@ const trackingTools = [
     tools: [
       { id: "fetal-growth", titleKey: "fetalGrowth", icon: TrendingUp, href: "/tools/fetal-growth",    descKey: "fetalGrowthDesc" },
       { id: "baby-growth",  titleKey: "babyGrowth",  icon: Ruler,      href: "/tools/baby-growth",     descKey: "babyGrowthDesc" },
-      { id: "bump-photos",  titleKey: "bumpPhotos",  icon: Camera,     href: "/tools/ai-bump-photos",  descKey: "bumpPhotosDesc" },
+      { id: "ai-bump-photos",  titleKey: "bumpPhotos",  icon: Camera,     href: "/tools/ai-bump-photos",  descKey: "bumpPhotosDesc" },
     ]
   },
   { 
