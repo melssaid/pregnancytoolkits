@@ -37,6 +37,12 @@ const PREMIUM_ONLY_TOOL_IDS = new Set([
   "baby-cry-translator",     // AI Baby Cry Translator
   "ai-pregnancy-skincare",   // AI Skincare
   "ai-partner-guide",        // AI Partner Guide
+  "ai-symptom-analyzer",     // AI Symptom Analyzer
+  "ai-meal-suggestion",      // AI Meal Suggestion
+  "ai-craving-alternatives", // AI Craving Alternatives
+  "ai-birth-plan",           // AI Birth Plan Generator
+  "ai-birth-position",       // AI Birth Position Guide
+  "postpartum-mental-health",// Postpartum Mental Health Coach
 ]);
 
 // Prevent multiple simultaneous trial creations
