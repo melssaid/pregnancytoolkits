@@ -5,8 +5,8 @@
  * Auto-creates a 3-day free trial on first app open.
  * 
  * Status logic:
- * - Active trial (trial_end > now) → unlocked
- * - Active paid subscription (status = 'active') → unlocked
+ * - Active trial (trial_end > now) → most tools unlocked, premium-only tools locked
+ * - Active paid subscription (status = 'active') → everything unlocked
  * - Trial expired & no paid sub → locked → redirect to paywall
  */
 
@@ -25,16 +25,18 @@ interface SubscriptionStatus {
   refresh: () => Promise<void>;
 }
 
-// Free tools that are always available (no premium gate)
-const FREE_TOOL_IDS = new Set([
-  "cycle-tracker",
-  "due-date-calculator",
-  "baby-growth",
-  "diaper-tracker",
-  "preconception-checkup",
-  "fertility-academy",
-  "nutrition-supplements",
-  "maternal-health-awareness",
+/**
+ * Premium-only tools — locked even during the free trial.
+ * Only unlocked with a paid subscription.
+ * Keep this list small to maximize trial value.
+ */
+const PREMIUM_ONLY_TOOL_IDS = new Set([
+  "fetal-growth",            // سونار / Ultrasound fetal tracking
+  "smart-pregnancy-plan",    // AI Smart Plan
+  "ai-bump-photos",          // AI Bump Photo analysis
+  "baby-cry-translator",     // AI Baby Cry Translator
+  "ai-pregnancy-skincare",   // AI Skincare
+  "ai-partner-guide",        // AI Partner Guide
 ]);
 
 // Prevent multiple simultaneous trial creations
@@ -157,8 +159,28 @@ export function useSubscriptionStatus(): SubscriptionStatus {
 }
 
 /**
- * Check if a specific tool requires premium access
+ * Check if a specific tool requires premium access.
+ * 
+ * Logic:
+ * - Premium-only tools → always locked unless paid subscription
+ * - All other tools → free for everyone (trial + free + premium)
+ * 
+ * @param toolId - The tool identifier
+ * @param tier - Current subscription tier (optional, for tier-aware gating)
  */
-export function isToolPremium(toolId: string): boolean {
-  return !FREE_TOOL_IDS.has(toolId);
+export function isToolPremium(toolId: string, tier?: SubscriptionTier): boolean {
+  const isPremiumOnly = PREMIUM_ONLY_TOOL_IDS.has(toolId);
+  
+  // If tier is provided, use tier-aware logic
+  if (tier !== undefined) {
+    // Premium subscribers → everything unlocked
+    if (tier === "premium") return false;
+    // Trial users → only premium-only tools are locked
+    if (tier === "trial") return isPremiumOnly;
+    // Free users (expired trial) → premium-only tools locked
+    return isPremiumOnly;
+  }
+  
+  // Default: just check if it's in the premium set
+  return isPremiumOnly;
 }
