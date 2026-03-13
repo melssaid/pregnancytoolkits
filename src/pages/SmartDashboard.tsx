@@ -130,8 +130,6 @@ const SmartDashboard = () => {
   });
   
   const [activeTab, setActiveTab] = useState<TabType>("home");
-  const [paywallOpen, setPaywallOpen] = useState(false);
-  const [paywallToolName, setPaywallToolName] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: t('dashboard.chat.welcomeMessage') }
   ]);
