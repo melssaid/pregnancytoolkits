@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Gift, Crown } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
@@ -128,24 +128,6 @@ export default function PricingDemo() {
             ))}
           </motion.div>
 
-          {/* Trial banner */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.15 }}
-            className="mb-4 relative rounded-2xl overflow-hidden border border-primary/20"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.06] via-transparent to-primary/[0.06]" />
-            <div className="relative px-4 py-2.5 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center flex-shrink-0 shadow-md shadow-primary/20">
-                <Gift className="w-4.5 h-4.5 text-primary-foreground" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[12px] font-bold text-foreground">{t('paywall.trialTitle', '3 أيام مجاناً! 🎁')}</p>
-                <p className="text-[10px] text-muted-foreground">{t('paywall.trialDesc', 'جرّبي جميع الميزات المميزة بدون أي رسوم')}</p>
-              </div>
-            </div>
-          </motion.div>
 
           {/* Plan cards — compact side by side */}
           <motion.div
