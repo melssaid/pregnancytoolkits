@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Lock, Sparkles, Brain, Shield, Heart, Crown, X } from "lucide-react";
+import { Lock, Sparkles, Brain, Shield, Heart, Crown, X, Clock, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 
 interface PaywallSheetProps {
   open: boolean;
