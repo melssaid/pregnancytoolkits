@@ -76,7 +76,7 @@ const journeyConfigs: JourneyConfig[] = [
 ];
 
 // ── Tool row component ──────────────────────────────────────────────────
-const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
+const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, onLockedClick }: { tool: Tool; isRTL: boolean; isLocked?: boolean; onLockedClick?: (toolName: string) => void }) {
   const { t } = useTranslation();
   const ToolIcon = tool.icon;
   const hasPng = !!tool.pngIcon;
@@ -86,11 +86,12 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
   const handleClick = (e: React.MouseEvent) => {
     if (isLocked) {
       e.preventDefault();
+      onLockedClick?.(t(tool.titleKey));
     }
   };
 
   return (
-    <Link to={isLocked ? "/pricing-demo" : tool.href} onClick={handleClick} className="block">
+    <Link to={isLocked ? "#" : tool.href} onClick={handleClick} className="block">
       <div className={`group flex items-center gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px] ${isLocked ? "opacity-50" : ""}`}>
         <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${style.iconBg} border border-border/15 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
           {hasPng ? (
