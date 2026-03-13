@@ -1,6 +1,7 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { PaywallSheet } from "@/components/PaywallSheet";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
 import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock, Sparkles, Brain } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
