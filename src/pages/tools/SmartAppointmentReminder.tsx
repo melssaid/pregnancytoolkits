@@ -272,7 +272,18 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
             }
           }
           
-          setSuggestedQuestions(questions.slice(0, 5));
+          const finalQuestions = questions.slice(0, 5);
+          setSuggestedQuestions(finalQuestions);
+          
+          // Auto-add all generated questions to the form
+          setFormData(prev => {
+            const existing = new Set(prev.questions);
+            const newQuestions = finalQuestions.filter(q => !existing.has(q));
+            return {
+              ...prev,
+              questions: [...prev.questions, ...newQuestions]
+            };
+          });
         }
       });
       
