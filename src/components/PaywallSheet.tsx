@@ -21,6 +21,8 @@ const benefits = [
 export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { tier, trialDaysLeft } = useSubscriptionStatus();
+  const showTrialOffer = tier === "free";
 
   const handleSubscribe = () => {
     onClose();
