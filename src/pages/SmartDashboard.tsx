@@ -85,7 +85,7 @@ const trackingTools = [
     tools: [
       { id: "baby-sleep",     titleKey: "babySleep",     icon: Moon,  href: "/tools/baby-sleep-tracker", descKey: "babySleepDesc" },
       { id: "diaper-tracker", titleKey: "diaperTracker", icon: Baby,  href: "/tools/diaper-tracker",     descKey: "diaperTrackerDesc" },
-      { id: "baby-cry",       titleKey: "babyCry",       icon: Brain, href: "/tools/baby-cry-translator",descKey: "babyCryDesc" },
+      { id: "baby-cry-translator",       titleKey: "babyCry",       icon: Brain, href: "/tools/baby-cry-translator",descKey: "babyCryDesc" },
     ]
   },
 ];
