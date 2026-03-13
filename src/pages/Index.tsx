@@ -3,7 +3,6 @@ import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
 import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock, Sparkles, Brain } from "lucide-react";
-import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock, Sparkles, Brain } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
