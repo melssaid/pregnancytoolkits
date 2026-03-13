@@ -462,22 +462,27 @@ const SmartDashboard = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/wellness-diary" },
-                    { title: t('dashboard.aiToolsList.weekly'),      icon: Sparkles,     href: "/tools/weekly-summary" },
-                    { title: t('dashboard.aiToolsList.mealPlan'),    icon: Salad,        href: "/tools/ai-meal-suggestion" },
-                    { title: t('dashboard.aiToolsList.fitness'),     icon: Dumbbell,     href: "/tools/ai-fitness-coach" },
-                  ].map((link, i) => (
+                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/wellness-diary",       toolId: "ai-symptom-analyzer" },
+                    { title: t('dashboard.aiToolsList.weekly'),      icon: Sparkles,     href: "/tools/weekly-summary",       toolId: "weekly-summary" },
+                    { title: t('dashboard.aiToolsList.mealPlan'),    icon: Salad,        href: "/tools/ai-meal-suggestion",   toolId: "ai-meal-suggestion" },
+                    { title: t('dashboard.aiToolsList.fitness'),     icon: Dumbbell,     href: "/tools/ai-fitness-coach",     toolId: "ai-fitness-coach" },
+                  ].map((link, i) => {
+                    const locked = isToolPremium(link.toolId);
+                    return (
                     <Link
                       key={i}
-                      to={link.href}
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/30 hover:bg-primary/10 transition-colors group"
+                      to={locked ? "#" : link.href}
+                      onClick={locked ? (e: React.MouseEvent) => e.preventDefault() : undefined}
+                      className={`flex items-center gap-2 p-2.5 rounded-lg transition-colors group ${locked ? 'opacity-50 grayscale bg-muted/30' : 'bg-muted/30 hover:bg-primary/10'}`}
                     >
-                      <div className="w-6 h-6 rounded-md bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                      <div className="relative w-6 h-6 rounded-md bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
                         <link.icon className="w-3 h-3 text-primary" strokeWidth={1.75} />
+                        {locked && <Lock className="w-2.5 h-2.5 text-muted-foreground absolute -top-1 -right-1" />}
                       </div>
                       <span className="text-xs font-medium">{link.title}</span>
                     </Link>
-                  ))}
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
