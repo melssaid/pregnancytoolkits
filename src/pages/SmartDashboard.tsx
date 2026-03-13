@@ -66,7 +66,7 @@ const trackingTools = [
     icon: Calendar,
     tools: [
       { id: "smart-appointment", titleKey: "appointments", icon: Bell,     href: "/tools/smart-appointment-reminder", descKey: "appointmentsDesc" },
-      { id: "birth-plan",        titleKey: "birthPlan",    icon: FileText, href: "/tools/ai-birth-plan",              descKey: "birthPlanDesc" },
+      { id: "ai-birth-plan",        titleKey: "birthPlan",    icon: FileText, href: "/tools/ai-birth-plan",              descKey: "birthPlanDesc" },
       { id: "hospital-bag",      titleKey: "hospitalBag",  icon: Briefcase,href: "/tools/ai-hospital-bag",            descKey: "hospitalBagDesc" },
     ]
   },
