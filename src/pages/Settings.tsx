@@ -163,10 +163,6 @@ const Settings: React.FC = () => {
                     {t('layout.footer.terms')}
                   </Link>
                 </div>
-                <p className="text-[9px] text-muted-foreground/50 flex items-center justify-center gap-1">
-                  <Stethoscope className="w-2.5 h-2.5" />
-                  {t('settings.medicalNote')}
-                </p>
               </div>
             </motion.div>
           ) : (
