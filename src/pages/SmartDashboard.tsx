@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { SEOHead } from "@/components/SEOHead";
+import { isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -64,7 +66,7 @@ const trackingTools = [
     icon: Calendar,
     tools: [
       { id: "smart-appointment", titleKey: "appointments", icon: Bell,     href: "/tools/smart-appointment-reminder", descKey: "appointmentsDesc" },
-      { id: "birth-plan",        titleKey: "birthPlan",    icon: FileText, href: "/tools/ai-birth-plan",              descKey: "birthPlanDesc" },
+      { id: "ai-birth-plan",        titleKey: "birthPlan",    icon: FileText, href: "/tools/ai-birth-plan",              descKey: "birthPlanDesc" },
       { id: "hospital-bag",      titleKey: "hospitalBag",  icon: Briefcase,href: "/tools/ai-hospital-bag",            descKey: "hospitalBagDesc" },
     ]
   },
@@ -74,7 +76,7 @@ const trackingTools = [
     tools: [
       { id: "fetal-growth", titleKey: "fetalGrowth", icon: TrendingUp, href: "/tools/fetal-growth",    descKey: "fetalGrowthDesc" },
       { id: "baby-growth",  titleKey: "babyGrowth",  icon: Ruler,      href: "/tools/baby-growth",     descKey: "babyGrowthDesc" },
-      { id: "bump-photos",  titleKey: "bumpPhotos",  icon: Camera,     href: "/tools/ai-bump-photos",  descKey: "bumpPhotosDesc" },
+      { id: "ai-bump-photos",  titleKey: "bumpPhotos",  icon: Camera,     href: "/tools/ai-bump-photos",  descKey: "bumpPhotosDesc" },
     ]
   },
   { 
@@ -83,7 +85,7 @@ const trackingTools = [
     tools: [
       { id: "baby-sleep",     titleKey: "babySleep",     icon: Moon,  href: "/tools/baby-sleep-tracker", descKey: "babySleepDesc" },
       { id: "diaper-tracker", titleKey: "diaperTracker", icon: Baby,  href: "/tools/diaper-tracker",     descKey: "diaperTrackerDesc" },
-      { id: "baby-cry",       titleKey: "babyCry",       icon: Brain, href: "/tools/baby-cry-translator",descKey: "babyCryDesc" },
+      { id: "baby-cry-translator",       titleKey: "babyCry",       icon: Brain, href: "/tools/baby-cry-translator",descKey: "babyCryDesc" },
     ]
   },
 ];
@@ -412,20 +414,24 @@ const SmartDashboard = () => {
                         </div>
                       </div>
                       <div className="grid grid-cols-3 gap-1.5">
-                        {category.tools.map((tool, toolIndex) => (
+                        {category.tools.map((tool, toolIndex) => {
+                          const locked = isToolPremium(tool.id);
+                          return (
                           <Link
                             key={tool.id}
-                            to={tool.href}
-                            className="group"
+                            to={locked ? "#" : tool.href}
+                            onClick={locked ? (e: React.MouseEvent) => e.preventDefault() : undefined}
+                            className={`group ${locked ? 'opacity-50 pointer-events-auto' : ''}`}
                           >
                             <motion.div
                               initial={{ opacity: 0, scale: 0.95 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: (catIndex * 3 + toolIndex) * 0.02 }}
-                              className="flex flex-col items-center p-2 rounded-lg bg-muted/30 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20"
+                              className={`flex flex-col items-center p-2 rounded-lg bg-muted/30 transition-all border border-transparent ${locked ? 'grayscale' : 'hover:bg-primary/10 hover:border-primary/20'}`}
                             >
-                              <div className="w-7 h-7 rounded-lg bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-1 transition-colors">
+                              <div className="relative w-7 h-7 rounded-lg bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-1 transition-colors">
                                 <tool.icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.75} />
+                                {locked && <Lock className="w-2.5 h-2.5 text-muted-foreground absolute -top-1 -right-1" />}
                               </div>
                               <span className="text-[10px] font-medium text-foreground text-center leading-tight">
                                 {t(`dashboard.trackingTools.${tool.titleKey}`)}
@@ -437,7 +443,8 @@ const SmartDashboard = () => {
                               )}
                             </motion.div>
                           </Link>
-                        ))}
+                          );
+                        })}
                       </div>
                     </motion.div>
                   );
@@ -455,22 +462,27 @@ const SmartDashboard = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/wellness-diary" },
-                    { title: t('dashboard.aiToolsList.weekly'),      icon: Sparkles,     href: "/tools/weekly-summary" },
-                    { title: t('dashboard.aiToolsList.mealPlan'),    icon: Salad,        href: "/tools/ai-meal-suggestion" },
-                    { title: t('dashboard.aiToolsList.fitness'),     icon: Dumbbell,     href: "/tools/ai-fitness-coach" },
-                  ].map((link, i) => (
+                    { title: t('dashboard.aiToolsList.symptoms'),    icon: Stethoscope,  href: "/tools/wellness-diary",       toolId: "ai-symptom-analyzer" },
+                    { title: t('dashboard.aiToolsList.weekly'),      icon: Sparkles,     href: "/tools/weekly-summary",       toolId: "weekly-summary" },
+                    { title: t('dashboard.aiToolsList.mealPlan'),    icon: Salad,        href: "/tools/ai-meal-suggestion",   toolId: "ai-meal-suggestion" },
+                    { title: t('dashboard.aiToolsList.fitness'),     icon: Dumbbell,     href: "/tools/ai-fitness-coach",     toolId: "ai-fitness-coach" },
+                  ].map((link, i) => {
+                    const locked = isToolPremium(link.toolId);
+                    return (
                     <Link
                       key={i}
-                      to={link.href}
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/30 hover:bg-primary/10 transition-colors group"
+                      to={locked ? "#" : link.href}
+                      onClick={locked ? (e: React.MouseEvent) => e.preventDefault() : undefined}
+                      className={`flex items-center gap-2 p-2.5 rounded-lg transition-colors group ${locked ? 'opacity-50 grayscale bg-muted/30' : 'bg-muted/30 hover:bg-primary/10'}`}
                     >
-                      <div className="w-6 h-6 rounded-md bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                      <div className="relative w-6 h-6 rounded-md bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
                         <link.icon className="w-3 h-3 text-primary" strokeWidth={1.75} />
+                        {locked && <Lock className="w-2.5 h-2.5 text-muted-foreground absolute -top-1 -right-1" />}
                       </div>
                       <span className="text-xs font-medium">{link.title}</span>
                     </Link>
-                  ))}
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
