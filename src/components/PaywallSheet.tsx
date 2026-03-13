@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Lock, Sparkles, Brain, Shield, Heart, Crown, X } from "lucide-react";
+import { Lock, Sparkles, Brain, Shield, Heart, Crown, X, Clock, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 
 interface PaywallSheetProps {
   open: boolean;
@@ -20,6 +21,8 @@ const benefits = [
 export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { tier, trialDaysLeft } = useSubscriptionStatus();
+  const showTrialOffer = tier === "free";
 
   const handleSubscribe = () => {
     onClose();
@@ -99,6 +102,31 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                   </div>
                 </div>
 
+                {/* Free Trial Offer */}
+                {showTrialOffer && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.18 }}
+                    className="relative rounded-2xl overflow-hidden border border-primary/25"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.08] via-primary/[0.04] to-primary/[0.08]" />
+                    <div className="relative px-4 py-3 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center flex-shrink-0 shadow-md shadow-primary/20">
+                        <Gift className="w-5 h-5 text-primary-foreground" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-bold text-foreground">
+                          {t('paywall.trialTitle', '3 أيام مجاناً!')}
+                        </p>
+                        <p className="text-[11px] text-muted-foreground leading-relaxed">
+                          {t('paywall.trialDesc', 'جرّبي جميع الميزات المميزة بدون أي رسوم')}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
                 {/* Benefits */}
                 <div className="space-y-2.5">
                   {benefits.map((benefit, i) => (
@@ -131,7 +159,10 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                     className="w-full h-12 rounded-2xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold text-base shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-shadow"
                   >
                     <Sparkles className="w-4 h-4 me-2" />
-                    {t('paywall.subscribeButton', 'اشتركي الآن')}
+                    {showTrialOffer
+                      ? t('paywall.startTrial', 'ابدئي التجربة المجانية')
+                      : t('paywall.subscribeButton', 'اشتركي الآن')
+                    }
                   </Button>
                   <button
                     onClick={onClose}
