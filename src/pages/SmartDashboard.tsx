@@ -420,7 +420,7 @@ const SmartDashboard = () => {
                           <Link
                             key={tool.id}
                             to={locked ? "#" : tool.href}
-                            onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); setPaywallToolName(t(`dashboard.trackingTools.${tool.titleKey}`)); setPaywallOpen(true); } : undefined}
+                            onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); navigate("/pricing-demo"); } : undefined}
                             className={`group ${locked ? 'opacity-50 pointer-events-auto' : ''}`}
                           >
                             <motion.div
