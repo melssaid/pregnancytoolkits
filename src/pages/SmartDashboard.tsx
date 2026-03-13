@@ -414,20 +414,24 @@ const SmartDashboard = () => {
                         </div>
                       </div>
                       <div className="grid grid-cols-3 gap-1.5">
-                        {category.tools.map((tool, toolIndex) => (
+                        {category.tools.map((tool, toolIndex) => {
+                          const locked = isToolPremium(tool.id);
+                          return (
                           <Link
                             key={tool.id}
-                            to={tool.href}
-                            className="group"
+                            to={locked ? "#" : tool.href}
+                            onClick={locked ? (e: React.MouseEvent) => e.preventDefault() : undefined}
+                            className={`group ${locked ? 'opacity-50 pointer-events-auto' : ''}`}
                           >
                             <motion.div
                               initial={{ opacity: 0, scale: 0.95 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: (catIndex * 3 + toolIndex) * 0.02 }}
-                              className="flex flex-col items-center p-2 rounded-lg bg-muted/30 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20"
+                              className={`flex flex-col items-center p-2 rounded-lg bg-muted/30 transition-all border border-transparent ${locked ? 'grayscale' : 'hover:bg-primary/10 hover:border-primary/20'}`}
                             >
-                              <div className="w-7 h-7 rounded-lg bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-1 transition-colors">
+                              <div className="relative w-7 h-7 rounded-lg bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-1 transition-colors">
                                 <tool.icon className="w-3.5 h-3.5 text-primary" strokeWidth={1.75} />
+                                {locked && <Lock className="w-2.5 h-2.5 text-muted-foreground absolute -top-1 -right-1" />}
                               </div>
                               <span className="text-[10px] font-medium text-foreground text-center leading-tight">
                                 {t(`dashboard.trackingTools.${tool.titleKey}`)}
@@ -439,7 +443,8 @@ const SmartDashboard = () => {
                               )}
                             </motion.div>
                           </Link>
-                        ))}
+                          );
+                        })}
                       </div>
                     </motion.div>
                   );
