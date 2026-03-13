@@ -76,8 +76,9 @@ const journeyConfigs: JourneyConfig[] = [
 ];
 
 // ── Tool row component ──────────────────────────────────────────────────
-const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, onLockedClick }: { tool: Tool; isRTL: boolean; isLocked?: boolean; onLockedClick?: (toolName: string) => void }) {
+const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const ToolIcon = tool.icon;
   const hasPng = !!tool.pngIcon;
   const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", iconBg: "bg-muted/30", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
@@ -86,7 +87,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, onLockedC
   const handleClick = (e: React.MouseEvent) => {
     if (isLocked) {
       e.preventDefault();
-      onLockedClick?.(t(tool.titleKey));
+      navigate("/pricing-demo");
     }
   };
 
