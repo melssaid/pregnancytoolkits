@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SEOHead } from '@/components/SEOHead';
 import { 
   Globe, User, Download, Trash2, Shield, Heart, 
-  ChevronRight, ChevronLeft, Shield, Heart, Lock
+  ChevronRight, ChevronLeft, Lock
 } from 'lucide-react';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
