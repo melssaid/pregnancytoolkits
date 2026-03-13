@@ -94,52 +94,53 @@ export default function PricingDemo() {
               <div className="relative z-0 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
                 <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
               </div>
-              {/* Orbiting butterflies */}
+              {/* Blooming flowers */}
               {[
-                { angle: 0, radius: 54, size: 16, color: 'hsl(var(--primary))', dur: 9, delay: 0 },
-                { angle: 72, radius: 50, size: 13, color: 'hsl(340, 75%, 65%)', dur: 11, delay: 0.5 },
-                { angle: 144, radius: 56, size: 15, color: 'hsl(280, 60%, 65%)', dur: 10, delay: 1 },
-                { angle: 216, radius: 48, size: 12, color: 'hsl(var(--primary))', dur: 12, delay: 1.5 },
-                { angle: 288, radius: 52, size: 14, color: 'hsl(320, 70%, 60%)', dur: 9.5, delay: 0.8 },
-              ].map((b, i) => (
+                { angle: 0, radius: 52, size: 18, emoji: '🌸', dur: 7, delay: 0 },
+                { angle: 60, radius: 48, size: 14, emoji: '🌷', dur: 9, delay: 0.6 },
+                { angle: 120, radius: 54, size: 16, emoji: '🌺', dur: 8, delay: 1.2 },
+                { angle: 180, radius: 50, size: 13, emoji: '🌼', dur: 10, delay: 0.3 },
+                { angle: 240, radius: 53, size: 15, emoji: '🌸', dur: 8.5, delay: 0.9 },
+                { angle: 300, radius: 49, size: 14, emoji: '🌷', dur: 9.5, delay: 1.5 },
+              ].map((f, i) => (
                 <motion.span
-                  key={`butterfly-${i}`}
+                  key={`flower-${i}`}
                   className="absolute z-10 pointer-events-none select-none"
                   style={{
                     left: '50%',
                     top: '50%',
-                    marginLeft: -b.size / 2,
-                    marginTop: -b.size / 2,
-                    fontSize: b.size,
-                    color: b.color,
-                    filter: `drop-shadow(0 0 4px ${b.color})`,
+                    marginLeft: -f.size / 2,
+                    marginTop: -f.size / 2,
+                    fontSize: f.size,
                   }}
+                  initial={{ scale: 0, opacity: 0 }}
                   animate={{
                     x: [
-                      Math.cos((b.angle * Math.PI) / 180) * b.radius,
-                      Math.cos(((b.angle + 120) * Math.PI) / 180) * (b.radius * 0.7),
-                      Math.cos(((b.angle + 240) * Math.PI) / 180) * (b.radius * 0.9),
-                      Math.cos(((b.angle + 360) * Math.PI) / 180) * b.radius,
+                      Math.cos((f.angle * Math.PI) / 180) * f.radius,
+                      Math.cos(((f.angle + 90) * Math.PI) / 180) * (f.radius * 0.85),
+                      Math.cos(((f.angle + 180) * Math.PI) / 180) * f.radius,
+                      Math.cos(((f.angle + 270) * Math.PI) / 180) * (f.radius * 0.85),
+                      Math.cos(((f.angle + 360) * Math.PI) / 180) * f.radius,
                     ],
                     y: [
-                      Math.sin((b.angle * Math.PI) / 180) * b.radius,
-                      Math.sin(((b.angle + 120) * Math.PI) / 180) * (b.radius * 0.7),
-                      Math.sin(((b.angle + 240) * Math.PI) / 180) * (b.radius * 0.9),
-                      Math.sin(((b.angle + 360) * Math.PI) / 180) * b.radius,
+                      Math.sin((f.angle * Math.PI) / 180) * f.radius,
+                      Math.sin(((f.angle + 90) * Math.PI) / 180) * (f.radius * 0.85),
+                      Math.sin(((f.angle + 180) * Math.PI) / 180) * f.radius,
+                      Math.sin(((f.angle + 270) * Math.PI) / 180) * (f.radius * 0.85),
+                      Math.sin(((f.angle + 360) * Math.PI) / 180) * f.radius,
                     ],
-                    rotate: [0, 25, -15, 10, 0],
-                    scale: [0.8, 1.2, 0.9, 1.1, 0.8],
-                    opacity: [0.6, 1, 0.7, 1, 0.6],
+                    scale: [0, 1.2, 1, 1.15, 0],
+                    opacity: [0, 1, 0.85, 1, 0],
+                    rotate: [0, 15, -10, 8, 0],
                   }}
                   transition={{
-                    x: { duration: b.dur, repeat: Infinity, ease: "easeInOut", delay: b.delay },
-                    y: { duration: b.dur, repeat: Infinity, ease: "easeInOut", delay: b.delay },
-                    rotate: { duration: b.dur * 0.6, repeat: Infinity, ease: "easeInOut", delay: b.delay },
-                    scale: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: b.delay },
-                    opacity: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: b.delay },
+                    duration: f.dur,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: f.delay,
                   }}
                 >
-                  🦋
+                  {f.emoji}
                 </motion.span>
               ))}
             </motion.div>
