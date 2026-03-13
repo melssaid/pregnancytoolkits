@@ -5842,5 +5842,18 @@
     "nutrition-supplements": "A complete guide to preconception nutrition and prenatal supplements. Dietary information and supplement details are general guidance. Consult your doctor or nutritionist for a plan tailored to your needs.",
     "tww-companion": "Daily encouragement and information during the two-week wait. Content is for emotional support and education. A pregnancy test is the only way to confirm pregnancy.",
     "preconception-checkup": "A checklist of common tests recommended before trying to conceive. This is a general guide. Your healthcare provider will determine which tests you need."
+  },
+  "paywall": {
+    "title": "Premium Feature ✨",
+    "toolLocked": "\"{{tool}}\" is available for subscribers only",
+    "subtitle": "Subscribe to unlock all smart tools",
+    "benefits": {
+      "allAITools": "34+ AI-powered tools",
+      "dailyAnalyses": "30 smart analyses per day",
+      "personalizedInsights": "Tips personalized to your week",
+      "fullAccess": "Full access with no limits"
+    },
+    "subscribeButton": "Subscribe Now",
+    "maybeLater": "Maybe later"
   }
 }
