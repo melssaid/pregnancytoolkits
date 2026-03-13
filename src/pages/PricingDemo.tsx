@@ -48,12 +48,14 @@ export default function PricingDemo() {
 
       {/* Close */}
       <div className="sticky top-0 z-30 px-4 py-3 flex justify-end">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded-full bg-muted/60 backdrop-blur-sm flex items-center justify-center hover:bg-muted transition-colors"
+        <motion.button
+          onClick={() => navigate("/")}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="w-9 h-9 rounded-full bg-card/80 backdrop-blur-md border border-border/40 shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
         >
           <X className="w-4 h-4 text-muted-foreground" />
-        </button>
+        </motion.button>
       </div>
 
       <div className="flex-1 px-5 pb-6 max-w-md mx-auto w-full flex flex-col justify-between relative z-10">
