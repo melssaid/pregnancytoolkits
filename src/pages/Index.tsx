@@ -385,6 +385,14 @@ const FooterCard = memo(function FooterCard() {
 const Index = () => {
   const { t } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
+  const [paywallOpen, setPaywallOpen] = useState(false);
+  const [paywallToolName, setPaywallToolName] = useState("");
+
+  const handleLockedClick = useCallback((toolName: string) => {
+    setPaywallToolName(toolName);
+    setPaywallOpen(true);
+  }, []);
+
   return (
     <Layout>
       <SEOHead />
@@ -394,7 +402,7 @@ const Index = () => {
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
 
           {journeyConfigs.map((config, index) => (
-            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
+            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} onLockedClick={handleLockedClick} />
           ))}
           
           <div className="mt-8">
@@ -407,6 +415,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      <PaywallSheet open={paywallOpen} onClose={() => setPaywallOpen(false)} toolName={paywallToolName} />
     </Layout>
   );
 };
