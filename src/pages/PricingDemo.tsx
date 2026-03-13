@@ -91,54 +91,55 @@ export default function PricingDemo() {
               />
               {/* Orbiting hearts */}
               {/* Logo */}
-              <div className="relative z-0 w-22 h-22 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
+              <div className="relative z-0 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
                 <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
               </div>
-              {/* Orbiting hearts — on top of logo */}
+              {/* Orbiting butterflies */}
               {[
-                { angle: 0, radius: 52, size: 12, isPink: false, dur: 8 },
-                { angle: 60, radius: 48, size: 10, isPink: true, dur: 10 },
-                { angle: 120, radius: 54, size: 11, isPink: false, dur: 9 },
-                { angle: 180, radius: 50, size: 9, isPink: true, dur: 11 },
-                { angle: 240, radius: 52, size: 10, isPink: false, dur: 8.5 },
-                { angle: 300, radius: 48, size: 11, isPink: true, dur: 10.5 },
-              ].map((h, i) => (
+                { angle: 0, radius: 54, size: 16, color: 'hsl(var(--primary))', dur: 9, delay: 0 },
+                { angle: 72, radius: 50, size: 13, color: 'hsl(340, 75%, 65%)', dur: 11, delay: 0.5 },
+                { angle: 144, radius: 56, size: 15, color: 'hsl(280, 60%, 65%)', dur: 10, delay: 1 },
+                { angle: 216, radius: 48, size: 12, color: 'hsl(var(--primary))', dur: 12, delay: 1.5 },
+                { angle: 288, radius: 52, size: 14, color: 'hsl(320, 70%, 60%)', dur: 9.5, delay: 0.8 },
+              ].map((b, i) => (
                 <motion.span
-                  key={`heart-${i}`}
-                  className="absolute z-10 pointer-events-none"
+                  key={`butterfly-${i}`}
+                  className="absolute z-10 pointer-events-none select-none"
                   style={{
                     left: '50%',
                     top: '50%',
-                    marginLeft: -h.size / 2,
-                    marginTop: -h.size / 2,
-                    fontSize: h.size,
-                    color: h.isPink ? 'hsl(340, 80%, 65%)' : 'hsl(var(--primary))',
-                    textShadow: '0 0 6px currentColor',
+                    marginLeft: -b.size / 2,
+                    marginTop: -b.size / 2,
+                    fontSize: b.size,
+                    color: b.color,
+                    filter: `drop-shadow(0 0 4px ${b.color})`,
                   }}
                   animate={{
                     x: [
-                      Math.cos((h.angle * Math.PI) / 180) * h.radius,
-                      Math.cos(((h.angle + 180) * Math.PI) / 180) * (h.radius * 0.8),
-                      Math.cos(((h.angle + 360) * Math.PI) / 180) * h.radius,
+                      Math.cos((b.angle * Math.PI) / 180) * b.radius,
+                      Math.cos(((b.angle + 120) * Math.PI) / 180) * (b.radius * 0.7),
+                      Math.cos(((b.angle + 240) * Math.PI) / 180) * (b.radius * 0.9),
+                      Math.cos(((b.angle + 360) * Math.PI) / 180) * b.radius,
                     ],
                     y: [
-                      Math.sin((h.angle * Math.PI) / 180) * h.radius,
-                      Math.sin(((h.angle + 180) * Math.PI) / 180) * (h.radius * 0.8),
-                      Math.sin(((h.angle + 360) * Math.PI) / 180) * h.radius,
+                      Math.sin((b.angle * Math.PI) / 180) * b.radius,
+                      Math.sin(((b.angle + 120) * Math.PI) / 180) * (b.radius * 0.7),
+                      Math.sin(((b.angle + 240) * Math.PI) / 180) * (b.radius * 0.9),
+                      Math.sin(((b.angle + 360) * Math.PI) / 180) * b.radius,
                     ],
-                    scale: [0.7, 1.3, 0.7],
-                    opacity: [0.5, 1, 0.5],
-                    rotate: h.isPink ? [0, 20, -20, 0] : [0, 0],
+                    rotate: [0, 25, -15, 10, 0],
+                    scale: [0.8, 1.2, 0.9, 1.1, 0.8],
+                    opacity: [0.6, 1, 0.7, 1, 0.6],
                   }}
                   transition={{
-                    x: { duration: h.dur, repeat: Infinity, ease: h.isPink ? "easeInOut" : "linear" },
-                    y: { duration: h.dur, repeat: Infinity, ease: h.isPink ? "easeInOut" : "linear" },
-                    scale: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 },
-                    opacity: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 },
-                    rotate: h.isPink ? { duration: 6, repeat: Infinity, ease: "easeInOut" } : undefined,
+                    x: { duration: b.dur, repeat: Infinity, ease: "easeInOut", delay: b.delay },
+                    y: { duration: b.dur, repeat: Infinity, ease: "easeInOut", delay: b.delay },
+                    rotate: { duration: b.dur * 0.6, repeat: Infinity, ease: "easeInOut", delay: b.delay },
+                    scale: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: b.delay },
+                    opacity: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: b.delay },
                   }}
                 >
-                  ♥
+                  🦋
                 </motion.span>
               ))}
             </motion.div>
