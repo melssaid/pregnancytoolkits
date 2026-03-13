@@ -382,7 +382,7 @@ const FooterCard = memo(function FooterCard() {
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
   const { t } = useTranslation();
-  const { isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
+  const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
   return (
     <Layout>
       <SEOHead />
