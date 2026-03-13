@@ -86,7 +86,7 @@ export function CategorySection({
                   href={tool.href}
                   categoryKey={tool.categoryKey}
                   index={index}
-                  isLocked={!isSubscriptionActive && isToolPremium(tool.id)}
+                  isLocked={isToolPremium(tool.id)}
                 />
               </motion.div>
             ))}
