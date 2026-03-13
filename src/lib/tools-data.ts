@@ -72,7 +72,7 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // PREGNANCY TRACKING
   // ═══════════════════════════════════════════════════════════════
-  { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, pngIcon: "/icons/fetal-growth.png", categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 6, hasAI: true },
+  { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/baby-in-womb.png", categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 6, hasAI: true },
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/document--v1.png", categoryKey: "categories.pregnancy", href: "/tools/ai-birth-plan", priority: 6.5, hasAI: true },
   { id: "contraction-timer", titleKey: "tools.contractionTimer.title", descriptionKey: "tools.contractionTimer.description", icon: Activity, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/timer.png", categoryKey: "categories.pregnancy", href: "/tools/contraction-timer", priority: 6.6 },
   { id: "kick-counter", titleKey: "tools.kickCounter.title", descriptionKey: "tools.kickCounter.description", icon: Hand, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/baby-feet.png", categoryKey: "categories.pregnancy", href: "/tools/kick-counter", priority: 7, hasAI: true },
