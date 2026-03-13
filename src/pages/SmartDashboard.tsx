@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { SEOHead } from "@/components/SEOHead";
+import { isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
