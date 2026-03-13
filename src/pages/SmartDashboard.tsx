@@ -1065,7 +1065,7 @@ const SmartDashboard = () => {
         </motion.div>
 
       </main>
-      <PaywallSheet open={paywallOpen} onClose={() => setPaywallOpen(false)} toolName={paywallToolName} />
+      
     </Layout>
   );
 };
