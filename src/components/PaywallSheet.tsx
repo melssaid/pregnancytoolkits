@@ -159,7 +159,10 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                     className="w-full h-12 rounded-2xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold text-base shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-shadow"
                   >
                     <Sparkles className="w-4 h-4 me-2" />
-                    {t('paywall.subscribeButton', 'اشتركي الآن')}
+                    {showTrialOffer
+                      ? t('paywall.startTrial', 'ابدئي التجربة المجانية')
+                      : t('paywall.subscribeButton', 'اشتركي الآن')
+                    }
                   </Button>
                   <button
                     onClick={onClose}
