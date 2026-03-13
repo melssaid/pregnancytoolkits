@@ -1,7 +1,6 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
-import { PaywallSheet } from "@/components/PaywallSheet";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
 import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock, Sparkles, Brain } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
@@ -77,8 +76,9 @@ const journeyConfigs: JourneyConfig[] = [
 ];
 
 // ── Tool row component ──────────────────────────────────────────────────
-const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, onLockedClick }: { tool: Tool; isRTL: boolean; isLocked?: boolean; onLockedClick?: (toolName: string) => void }) {
+const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const ToolIcon = tool.icon;
   const hasPng = !!tool.pngIcon;
   const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", iconBg: "bg-muted/30", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
@@ -87,7 +87,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, onLockedC
   const handleClick = (e: React.MouseEvent) => {
     if (isLocked) {
       e.preventDefault();
-      onLockedClick?.(t(tool.titleKey));
+      navigate("/pricing-demo");
     }
   };
 
@@ -126,7 +126,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, onLockedC
 // ── Journey card ────────────────────────────────────────────────────────
 
 
-const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier, onLockedClick }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier; onLockedClick?: (toolName: string) => void }) {
+const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
@@ -230,7 +230,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: toolIdx * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
                       >
-                        <ToolRow tool={tool} isRTL={isRTL} isLocked={isToolPremium(tool.id, tier)} onLockedClick={onLockedClick} />
+                        <ToolRow tool={tool} isRTL={isRTL} isLocked={isToolPremium(tool.id, tier)} />
                       </motion.div>
                     ))}
                   </div>
@@ -385,13 +385,6 @@ const FooterCard = memo(function FooterCard() {
 const Index = () => {
   const { t } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
-  const [paywallOpen, setPaywallOpen] = useState(false);
-  const [paywallToolName, setPaywallToolName] = useState("");
-
-  const handleLockedClick = useCallback((toolName: string) => {
-    setPaywallToolName(toolName);
-    setPaywallOpen(true);
-  }, []);
 
   return (
     <Layout>
@@ -402,7 +395,7 @@ const Index = () => {
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
 
           {journeyConfigs.map((config, index) => (
-            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} onLockedClick={handleLockedClick} />
+            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
           ))}
           
           <div className="mt-8">
@@ -415,7 +408,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-      <PaywallSheet open={paywallOpen} onClose={() => setPaywallOpen(false)} toolName={paywallToolName} />
     </Layout>
   );
 };

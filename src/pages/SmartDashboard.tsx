@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { SEOHead } from "@/components/SEOHead";
 import { isToolPremium } from "@/hooks/useSubscriptionStatus";
-import { PaywallSheet } from "@/components/PaywallSheet";
 import { Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -26,7 +25,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
 import { QuickStats } from "@/components/dashboard/QuickStats";
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
@@ -117,6 +116,7 @@ const symptomKeys = ["nausea", "headache", "fatigue", "backPain", "swelling", "h
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { currentLanguage } = useLanguage();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, toolSummaries, loading: statsLoading } = useTrackingStats();
@@ -130,8 +130,6 @@ const SmartDashboard = () => {
   });
   
   const [activeTab, setActiveTab] = useState<TabType>("home");
-  const [paywallOpen, setPaywallOpen] = useState(false);
-  const [paywallToolName, setPaywallToolName] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: t('dashboard.chat.welcomeMessage') }
   ]);
@@ -423,7 +421,7 @@ const SmartDashboard = () => {
                           <Link
                             key={tool.id}
                             to={locked ? "#" : tool.href}
-                            onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); setPaywallToolName(t(`dashboard.trackingTools.${tool.titleKey}`)); setPaywallOpen(true); } : undefined}
+                            onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); navigate("/pricing-demo"); } : undefined}
                             className={`group ${locked ? 'opacity-50 pointer-events-auto' : ''}`}
                           >
                             <motion.div
@@ -475,7 +473,7 @@ const SmartDashboard = () => {
                     <Link
                       key={i}
                       to={locked ? "#" : link.href}
-                      onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); setPaywallToolName(link.title); setPaywallOpen(true); } : undefined}
+                      onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); navigate("/pricing-demo"); } : undefined}
                       className={`flex items-center gap-2 p-2.5 rounded-lg transition-colors group ${locked ? 'opacity-50 grayscale bg-muted/30' : 'bg-muted/30 hover:bg-primary/10'}`}
                     >
                       <div className="relative w-6 h-6 rounded-md bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
@@ -1068,7 +1066,7 @@ const SmartDashboard = () => {
         </motion.div>
 
       </main>
-      <PaywallSheet open={paywallOpen} onClose={() => setPaywallOpen(false)} toolName={paywallToolName} />
+      
     </Layout>
   );
 };
