@@ -1,6 +1,7 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { PaywallSheet } from "@/components/PaywallSheet";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
 import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock, Sparkles, Brain } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
@@ -76,7 +77,7 @@ const journeyConfigs: JourneyConfig[] = [
 ];
 
 // ── Tool row component ──────────────────────────────────────────────────
-const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
+const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, onLockedClick }: { tool: Tool; isRTL: boolean; isLocked?: boolean; onLockedClick?: (toolName: string) => void }) {
   const { t } = useTranslation();
   const ToolIcon = tool.icon;
   const hasPng = !!tool.pngIcon;
@@ -86,11 +87,12 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
   const handleClick = (e: React.MouseEvent) => {
     if (isLocked) {
       e.preventDefault();
+      onLockedClick?.(t(tool.titleKey));
     }
   };
 
   return (
-    <Link to={isLocked ? "/pricing-demo" : tool.href} onClick={handleClick} className="block">
+    <Link to={isLocked ? "#" : tool.href} onClick={handleClick} className="block">
       <div className={`group flex items-center gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px] ${isLocked ? "opacity-50" : ""}`}>
         <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${style.iconBg} border border-border/15 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
           {hasPng ? (
@@ -124,7 +126,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
 // ── Journey card ────────────────────────────────────────────────────────
 
 
-const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier }) {
+const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier, onLockedClick }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier; onLockedClick?: (toolName: string) => void }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
@@ -228,7 +230,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: toolIdx * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
                       >
-                        <ToolRow tool={tool} isRTL={isRTL} isLocked={isToolPremium(tool.id, tier)} />
+                        <ToolRow tool={tool} isRTL={isRTL} isLocked={isToolPremium(tool.id, tier)} onLockedClick={onLockedClick} />
                       </motion.div>
                     ))}
                   </div>
@@ -383,6 +385,14 @@ const FooterCard = memo(function FooterCard() {
 const Index = () => {
   const { t } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
+  const [paywallOpen, setPaywallOpen] = useState(false);
+  const [paywallToolName, setPaywallToolName] = useState("");
+
+  const handleLockedClick = useCallback((toolName: string) => {
+    setPaywallToolName(toolName);
+    setPaywallOpen(true);
+  }, []);
+
   return (
     <Layout>
       <SEOHead />
@@ -392,7 +402,7 @@ const Index = () => {
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
 
           {journeyConfigs.map((config, index) => (
-            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
+            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} onLockedClick={handleLockedClick} />
           ))}
           
           <div className="mt-8">
@@ -405,6 +415,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      <PaywallSheet open={paywallOpen} onClose={() => setPaywallOpen(false)} toolName={paywallToolName} />
     </Layout>
   );
 };
