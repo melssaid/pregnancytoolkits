@@ -124,7 +124,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
 // ── Journey card ────────────────────────────────────────────────────────
 
 
-const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean }) {
+const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
