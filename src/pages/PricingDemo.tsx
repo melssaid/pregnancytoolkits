@@ -98,9 +98,22 @@ export default function PricingDemo() {
                 { angle: 240, radius: 52, size: 10, isPink: false, dur: 8.5 },
                 { angle: 300, radius: 48, size: 11, isPink: true, dur: 10.5 },
               ].map((h, i) => (
+              {/* Logo */}
+              <div className="relative w-22 h-22 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
+                <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
+              </div>
+              {/* Orbiting hearts — rendered AFTER logo so they appear on top */}
+              {[
+                { angle: 0, radius: 52, size: 12, isPink: false, dur: 8 },
+                { angle: 60, radius: 48, size: 10, isPink: true, dur: 10 },
+                { angle: 120, radius: 54, size: 11, isPink: false, dur: 9 },
+                { angle: 180, radius: 50, size: 9, isPink: true, dur: 11 },
+                { angle: 240, radius: 52, size: 10, isPink: false, dur: 8.5 },
+                { angle: 300, radius: 48, size: 11, isPink: true, dur: 10.5 },
+              ].map((h, i) => (
                 <motion.span
                   key={`heart-${i}`}
-                  className="absolute"
+                  className="absolute z-10 pointer-events-none"
                   style={{
                     left: '50%',
                     top: '50%',
@@ -108,6 +121,7 @@ export default function PricingDemo() {
                     marginTop: -h.size / 2,
                     fontSize: h.size,
                     color: h.isPink ? 'hsl(340, 80%, 65%)' : 'hsl(var(--primary))',
+                    textShadow: '0 0 6px currentColor',
                   }}
                   animate={{
                     x: [
@@ -135,10 +149,6 @@ export default function PricingDemo() {
                   ♥
                 </motion.span>
               ))}
-              {/* Logo */}
-              <div className="relative w-22 h-22 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
-                <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
-              </div>
             </motion.div>
 
             <h1
