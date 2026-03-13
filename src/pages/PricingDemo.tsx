@@ -89,34 +89,51 @@ export default function PricingDemo() {
                 animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              {/* Floating hearts */}
+              {/* Orbiting hearts */}
               {[
-                { x: -20, y: -24, size: 10, delay: 0, dur: 3 },
-                { x: 22, y: -18, size: 8, delay: 0.5, dur: 3.5 },
-                { x: -26, y: 10, size: 7, delay: 1, dur: 2.8 },
-                { x: 24, y: 16, size: 9, delay: 1.5, dur: 3.2 },
-                { x: 0, y: -30, size: 6, delay: 0.8, dur: 3.8 },
-                { x: -14, y: 26, size: 8, delay: 2, dur: 3 },
+                { angle: 0, radius: 52, size: 12, isPink: false, dur: 8 },
+                { angle: 60, radius: 48, size: 10, isPink: true, dur: 10 },
+                { angle: 120, radius: 54, size: 11, isPink: false, dur: 9 },
+                { angle: 180, radius: 50, size: 9, isPink: true, dur: 11 },
+                { angle: 240, radius: 52, size: 10, isPink: false, dur: 8.5 },
+                { angle: 300, radius: 48, size: 11, isPink: true, dur: 10.5 },
               ].map((h, i) => (
-                <motion.div
+                <motion.span
                   key={`heart-${i}`}
                   className="absolute"
-                  style={{ left: `calc(50% + ${h.x}px)`, top: `calc(50% + ${h.y}px)` }}
-                  animate={{
-                    y: [0, -8, 0],
-                    opacity: [0.3, 0.8, 0.3],
-                    scale: [0.8, 1.1, 0.8],
-                    rotate: [0, i % 2 === 0 ? 15 : -15, 0],
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    marginLeft: -h.size / 2,
+                    marginTop: -h.size / 2,
+                    fontSize: h.size,
+                    color: h.isPink ? 'hsl(340, 80%, 65%)' : 'hsl(var(--primary))',
                   }}
-                  transition={{ duration: h.dur, delay: h.delay, repeat: Infinity, ease: "easeInOut" }}
+                  animate={{
+                    x: [
+                      Math.cos((h.angle * Math.PI) / 180) * h.radius,
+                      Math.cos(((h.angle + 180) * Math.PI) / 180) * (h.radius * 0.8),
+                      Math.cos(((h.angle + 360) * Math.PI) / 180) * h.radius,
+                    ],
+                    y: [
+                      Math.sin((h.angle * Math.PI) / 180) * h.radius,
+                      Math.sin(((h.angle + 180) * Math.PI) / 180) * (h.radius * 0.8),
+                      Math.sin(((h.angle + 360) * Math.PI) / 180) * h.radius,
+                    ],
+                    scale: [0.7, 1.3, 0.7],
+                    opacity: [0.5, 1, 0.5],
+                    rotate: h.isPink ? [0, 20, -20, 0] : [0, 0],
+                  }}
+                  transition={{
+                    x: { duration: h.dur, repeat: Infinity, ease: h.isPink ? "easeInOut" : "linear" },
+                    y: { duration: h.dur, repeat: Infinity, ease: h.isPink ? "easeInOut" : "linear" },
+                    scale: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 },
+                    opacity: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 },
+                    rotate: h.isPink ? { duration: 6, repeat: Infinity, ease: "easeInOut" } : undefined,
+                  }}
                 >
-                  <Heart
-                    className={i % 2 === 0 ? "text-primary" : "text-pink-400"}
-                    style={{ width: h.size, height: h.size }}
-                    fill="currentColor"
-                    strokeWidth={0}
-                  />
-                </motion.div>
+                  ♥
+                </motion.span>
               ))}
               {/* Logo */}
               <div className="relative w-22 h-22 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>

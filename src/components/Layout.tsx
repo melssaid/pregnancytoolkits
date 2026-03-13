@@ -185,7 +185,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                     />
                   </>
                 )}
-                <div className={`rounded-full overflow-hidden shadow-lg ${showBack ? 'h-16 w-16' : 'h-[3.2rem] w-[3.2rem]'}`}>
+                <div className={`rounded-full overflow-hidden shadow-lg ${showBack ? 'h-11 w-11' : 'h-[3.2rem] w-[3.2rem]'}`}>
                   <img 
                     src={logoImage} 
                     alt="Pregnancy Toolkits" 
