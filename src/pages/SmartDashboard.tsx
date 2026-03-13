@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { SEOHead } from "@/components/SEOHead";
 import { isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { PaywallSheet } from "@/components/PaywallSheet";
 import { Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -129,6 +130,8 @@ const SmartDashboard = () => {
   });
   
   const [activeTab, setActiveTab] = useState<TabType>("home");
+  const [paywallOpen, setPaywallOpen] = useState(false);
+  const [paywallToolName, setPaywallToolName] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: t('dashboard.chat.welcomeMessage') }
   ]);
@@ -420,7 +423,7 @@ const SmartDashboard = () => {
                           <Link
                             key={tool.id}
                             to={locked ? "#" : tool.href}
-                            onClick={locked ? (e: React.MouseEvent) => e.preventDefault() : undefined}
+                            onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); setPaywallToolName(t(`dashboard.trackingTools.${tool.titleKey}`)); setPaywallOpen(true); } : undefined}
                             className={`group ${locked ? 'opacity-50 pointer-events-auto' : ''}`}
                           >
                             <motion.div
@@ -472,7 +475,7 @@ const SmartDashboard = () => {
                     <Link
                       key={i}
                       to={locked ? "#" : link.href}
-                      onClick={locked ? (e: React.MouseEvent) => e.preventDefault() : undefined}
+                      onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); setPaywallToolName(link.title); setPaywallOpen(true); } : undefined}
                       className={`flex items-center gap-2 p-2.5 rounded-lg transition-colors group ${locked ? 'opacity-50 grayscale bg-muted/30' : 'bg-muted/30 hover:bg-primary/10'}`}
                     >
                       <div className="relative w-6 h-6 rounded-md bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
@@ -1065,6 +1068,7 @@ const SmartDashboard = () => {
         </motion.div>
 
       </main>
+      <PaywallSheet open={paywallOpen} onClose={() => setPaywallOpen(false)} toolName={paywallToolName} />
     </Layout>
   );
 };
