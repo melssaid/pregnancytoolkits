@@ -475,7 +475,7 @@ const SmartDashboard = () => {
                     <Link
                       key={i}
                       to={locked ? "#" : link.href}
-                      onClick={locked ? (e: React.MouseEvent) => e.preventDefault() : undefined}
+                      onClick={locked ? (e: React.MouseEvent) => { e.preventDefault(); setPaywallToolName(link.title); setPaywallOpen(true); } : undefined}
                       className={`flex items-center gap-2 p-2.5 rounded-lg transition-colors group ${locked ? 'opacity-50 grayscale bg-muted/30' : 'bg-muted/30 hover:bg-primary/10'}`}
                     >
                       <div className="relative w-6 h-6 rounded-md bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
