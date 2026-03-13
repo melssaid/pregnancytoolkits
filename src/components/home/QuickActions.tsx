@@ -52,14 +52,13 @@ const QuickActions = memo(function QuickActions() {
           >
             <Link
               to={action.href}
-              className="flex flex-col items-center gap-1.5 group w-[60px]"
+              className="flex items-center justify-center group"
             >
-              <div className={`w-12 h-12 rounded-2xl ${action.bg} flex items-center justify-center border border-border/10 shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all duration-200`}>
-                <action.icon className={`w-5 h-5 ${action.color}`} strokeWidth={1.8} />
+              <div className={`px-3.5 py-2 rounded-full ${action.bg} border border-border/10 shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all duration-200`}>
+                <span className="text-[11px] font-semibold text-foreground whitespace-nowrap" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                  {getLabel(action.labelKey)}
+                </span>
               </div>
-              <span className="text-[10px] font-semibold text-muted-foreground text-center leading-tight line-clamp-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-                {getLabel(action.labelKey)}
-              </span>
             </Link>
           </motion.div>
         ))}
