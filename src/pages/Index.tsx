@@ -180,22 +180,6 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
         <div className="absolute -top-6 -end-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
         
         <div className="relative flex items-center gap-2.5 w-full">
-          <div className={`w-10 h-10 rounded-xl ${config.iconBg} backdrop-blur-sm flex items-center justify-center shadow-lg flex-shrink-0`}>
-            {config.customIcon === "footprints" ? (
-              <BabyFootprintsIcon className="w-6 h-6" />
-            ) : config.customIcon === "rockingBaby" ? (
-              <RockingBabyIcon className="w-6 h-6" />
-            ) : config.customIcon === "pregnancyHeart" ? (
-              <PregnancyHeartIcon className="w-6 h-6" />
-            ) : Icon ? (
-              <motion.div
-                animate={{ scale: [1, 1.12, 1] }}
-                transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
-              >
-                <Icon className={`w-5.5 h-5.5 ${config.headerText}`} strokeWidth={2} />
-              </motion.div>
-            ) : null}
-          </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h2 className={`text-xl sm:text-2xl font-bold ${config.headerText} tracking-tight leading-snug break-words ar-heading`}>
