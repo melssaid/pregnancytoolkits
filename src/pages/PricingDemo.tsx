@@ -48,12 +48,14 @@ export default function PricingDemo() {
 
       {/* Close */}
       <div className="sticky top-0 z-30 px-4 py-3 flex justify-end">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded-full bg-muted/60 backdrop-blur-sm flex items-center justify-center hover:bg-muted transition-colors"
+        <motion.button
+          onClick={() => navigate("/")}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="w-9 h-9 rounded-full bg-card/80 backdrop-blur-md border border-border/40 shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
         >
           <X className="w-4 h-4 text-muted-foreground" />
-        </button>
+        </motion.button>
       </div>
 
       <div className="flex-1 px-5 pb-6 max-w-md mx-auto w-full flex flex-col justify-between relative z-10">
@@ -66,7 +68,7 @@ export default function PricingDemo() {
             className="text-center mb-4"
           >
             <motion.div
-              className="relative w-20 h-20 mx-auto mb-3 flex items-center justify-center"
+              className="relative w-28 h-28 mx-auto mb-3 flex items-center justify-center"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
@@ -81,13 +83,44 @@ export default function PricingDemo() {
                   transition={{ duration: 2.5, delay: i * 0.7, repeat: Infinity, ease: "easeOut" }}
                 />
               ))}
+              {/* Breathing aura */}
               <motion.div
-                className="absolute w-14 h-14 rounded-full bg-primary/10 blur-lg"
-                animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+                className="absolute w-20 h-20 rounded-full bg-primary/10 blur-xl"
+                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-lg shadow-primary/15 ring-2 ring-primary/10 bg-white">
-                <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={64} height={64} />
+              {/* Floating hearts */}
+              {[
+                { x: -20, y: -24, size: 10, delay: 0, dur: 3 },
+                { x: 22, y: -18, size: 8, delay: 0.5, dur: 3.5 },
+                { x: -26, y: 10, size: 7, delay: 1, dur: 2.8 },
+                { x: 24, y: 16, size: 9, delay: 1.5, dur: 3.2 },
+                { x: 0, y: -30, size: 6, delay: 0.8, dur: 3.8 },
+                { x: -14, y: 26, size: 8, delay: 2, dur: 3 },
+              ].map((h, i) => (
+                <motion.div
+                  key={`heart-${i}`}
+                  className="absolute"
+                  style={{ left: `calc(50% + ${h.x}px)`, top: `calc(50% + ${h.y}px)` }}
+                  animate={{
+                    y: [0, -8, 0],
+                    opacity: [0.3, 0.8, 0.3],
+                    scale: [0.8, 1.1, 0.8],
+                    rotate: [0, i % 2 === 0 ? 15 : -15, 0],
+                  }}
+                  transition={{ duration: h.dur, delay: h.delay, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Heart
+                    className={i % 2 === 0 ? "text-primary" : "text-pink-400"}
+                    style={{ width: h.size, height: h.size }}
+                    fill="currentColor"
+                    strokeWidth={0}
+                  />
+                </motion.div>
+              ))}
+              {/* Logo */}
+              <div className="relative w-22 h-22 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
+                <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
               </div>
             </motion.div>
 
