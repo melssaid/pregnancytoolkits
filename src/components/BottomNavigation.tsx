@@ -293,8 +293,8 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                       <X className="w-5 h-5 relative z-10 text-primary transition-colors duration-200" strokeWidth={2.2} />
                     ) : (
                       <Icon 
-                        className={`w-5 h-5 relative z-10 transition-colors duration-200 ${
-                          active ? "text-primary" : "text-foreground/50"
+                        className={`w-[18px] h-[18px] relative z-10 transition-colors duration-200 ${
+                          active ? "text-[hsl(220,20%,40%)]" : "text-foreground/50"
                         }`} 
                         strokeWidth={active ? 2.2 : 1.8} 
                       />
