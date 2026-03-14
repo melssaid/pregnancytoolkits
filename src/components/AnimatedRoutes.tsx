@@ -82,6 +82,7 @@ const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
+const IconStylePreview = lazy(() => import("@/pages/IconStylePreview"));
 
 export function AnimatedRoutes() {
   return (
@@ -96,6 +97,7 @@ export function AnimatedRoutes() {
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/pricing-demo" element={<PageTransition><PricingDemo /></PageTransition>} />
+        <Route path="/icon-preview" element={<PageTransition><IconStylePreview /></PageTransition>} />
         
         
         
