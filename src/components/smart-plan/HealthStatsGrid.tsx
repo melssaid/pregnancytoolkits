@@ -1,4 +1,4 @@
-import { Baby, Scale, Flame, Droplets } from "lucide-react";
+import { Baby, Gauge, Flame, Droplets } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface HealthStatsGridProps {
@@ -13,7 +13,7 @@ export function HealthStatsGrid({ week, bmi, calories, bloodPressure }: HealthSt
 
   const stats = [
     { icon: Baby, label: t("smartPlan.currentWeek", "Week"), value: `${week}/40`, color: "text-primary" },
-    { icon: Scale, label: t("smartPlan.bmi", "BMI"), value: bmi, color: "text-blue-500" },
+    { icon: Gauge, label: t("smartPlan.bmi", "BMI"), value: bmi, color: "text-blue-500" },
     { icon: Flame, label: t("smartPlan.calories", "Calories"), value: `${calories}`, color: "text-orange-500" },
     { icon: Droplets, label: t("smartPlan.bp", "BP"), value: bloodPressure, color: "text-rose-500" },
   ];

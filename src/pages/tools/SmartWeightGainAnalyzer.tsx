@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp, CheckCircle, Plus, Trash2,
-  Save, Calendar, Activity, Scale, Ruler, Baby,
+  Save, Calendar, Activity, Gauge, Ruler, Baby,
   ArrowUp, ArrowDown, ChevronDown, ChevronUp, X, Info, Target, Sparkles
 } from 'lucide-react';
 import { WeekSlider } from '@/components/WeekSlider';
@@ -229,7 +229,7 @@ export default function SmartWeightGainAnalyzer() {
           >
             {[
               { done: step1Done, label: t('toolsInternal.weightGain.step1Short', 'الطول'), icon: Ruler },
-              { done: step2Done, label: t('toolsInternal.weightGain.step2Short', 'الوزن'), icon: Scale },
+              { done: step2Done, label: t('toolsInternal.weightGain.step2Short', 'الوزن'), icon: Gauge },
               { done: step3Done, label: t('toolsInternal.weightGain.step3Short', 'التسجيل'), icon: Plus },
             ].map((step, i) => (
               <React.Fragment key={i}>
@@ -304,7 +304,7 @@ export default function SmartWeightGainAnalyzer() {
                 {/* Pre-pregnancy weight */}
                 <div className="space-y-1">
                   <Label className="text-[10px] text-muted-foreground font-semibold flex items-center gap-1">
-                    <Scale className="w-3 h-3 text-primary/60" />
+                    <Gauge className="w-3 h-3 text-primary/60" />
                     {t('toolsInternal.weightGain.prePregnancyWeightKg')}
                   </Label>
                   <div className="relative">
@@ -458,7 +458,7 @@ export default function SmartWeightGainAnalyzer() {
                       <CardContent className="p-3.5 space-y-3">
                         <div className="flex items-center justify-between">
                           <h3 className="text-[13px] font-bold text-foreground flex items-center gap-1.5">
-                            <Scale className="w-4 h-4 text-primary" />
+                            <Gauge className="w-4 h-4 text-primary" />
                             {t('toolsInternal.weightGain.addWeightEntry')}
                           </h3>
                           <button 
@@ -496,7 +496,7 @@ export default function SmartWeightGainAnalyzer() {
 
                         <div>
                           <Label className="text-[10px] text-muted-foreground font-semibold mb-1 block flex items-center gap-1">
-                            <Scale className="w-3 h-3 text-primary/60" />
+                            <Gauge className="w-3 h-3 text-primary/60" />
                             {t('toolsInternal.weightGain.currentWeightKg')}
                           </Label>
                           <div className="relative">

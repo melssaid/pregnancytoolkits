@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Scale, Activity, Heart, Droplets, Calendar, Ruler } from "lucide-react";
+import { Gauge, Activity, Heart, Droplets, Calendar, Ruler } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -32,7 +32,7 @@ export function QuickStats({
   const stats = [
     {
       id: "weight",
-      icon: Scale,
+      icon: Gauge,
       labelKey: "dashboard.quickStats.weight",
       value: weight > 0 ? `${weight}` : "—",
       unit: weight > 0 ? "kg" : "",
