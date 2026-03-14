@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp, CheckCircle, Plus, Trash2,
-  Save, Calendar, Activity, Scale, Ruler, Baby,
+  Save, Calendar, Activity, Gauge, Ruler, Baby,
   ArrowUp, ArrowDown, ChevronDown, ChevronUp, X, Info, Target, Sparkles
 } from 'lucide-react';
 import { WeekSlider } from '@/components/WeekSlider';
