@@ -316,7 +316,7 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
                         </span>
                       </div>
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-pink-50 dark:bg-pink-950/20 border border-pink-100 dark:border-pink-900/30">
-                        <Scale className="w-3 h-3 text-pink-500" />
+                        <Gauge className="w-3 h-3 text-pink-500" />
                         <span className="text-[11px] font-semibold text-pink-700 dark:text-pink-400 tabular-nums" dir="ltr">
                           {formatMeasurement(currentData.weightValue, currentData.weightUnit)}
                         </span>

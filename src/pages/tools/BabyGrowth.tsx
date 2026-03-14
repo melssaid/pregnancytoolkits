@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Baby, Plus, Trash2, ChevronDown, ChevronUp, Ruler, Scale, CircleDot, Brain, TrendingUp, Sparkles, Loader2, RefreshCw, Heart } from "lucide-react";
+import { Baby, Plus, Trash2, ChevronDown, ChevronUp, Ruler, Gauge, CircleDot, Brain, TrendingUp, Sparkles, Loader2, RefreshCw, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
