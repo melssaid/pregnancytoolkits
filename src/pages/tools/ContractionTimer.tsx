@@ -1,9 +1,14 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Square, Trash2, Clock, Activity, AlertTriangle, RotateCcw } from "lucide-react";
+import { Play, Square, Timer } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { InlineDisclaimer } from "@/components/compliance";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { ContractionChart } from "@/components/contraction/ContractionChart";
+import { ContractionStats } from "@/components/contraction/ContractionStats";
+import { ContractionHistory } from "@/components/contraction/ContractionHistory";
+import { LaborPhaseIndicator } from "@/components/contraction/LaborPhaseIndicator";
 
 interface Contraction {
   id: string;
@@ -18,7 +23,9 @@ function loadContractions(): Contraction[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? JSON.parse(stored) : [];
-  } catch { return []; }
+  } catch {
+    return [];
+  }
 }
 
 function saveContractions(data: Contraction[]) {
@@ -29,10 +36,6 @@ function formatDuration(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${m}:${s.toString().padStart(2, "0")}`;
-}
-
-function formatTime(timestamp: number): string {
-  return new Date(timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 }
 
 export default function ContractionTimer() {
@@ -54,7 +57,9 @@ export default function ContractionTimer() {
       if (intervalRef.current) clearInterval(intervalRef.current);
       setElapsed(0);
     }
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, [isActive]);
 
   const handleStart = useCallback(() => {
@@ -80,196 +85,162 @@ export default function ContractionTimer() {
     saveContractions([]);
   }, []);
 
-  const handleDelete = useCallback((id: string) => {
-    const updated = contractions.filter(c => c.id !== id);
-    setContractions(updated);
-    saveContractions(updated);
-  }, [contractions]);
+  const handleDelete = useCallback(
+    (id: string) => {
+      const updated = contractions.filter((c) => c.id !== id);
+      setContractions(updated);
+      saveContractions(updated);
+    },
+    [contractions]
+  );
 
-  const stats = useMemo(() => {
+  // Compute stats for labor phase
+  const phaseStats = useMemo(() => {
     if (contractions.length < 2) return null;
-    const durations = contractions.map(c => c.duration);
+    const durations = contractions.map((c) => c.duration);
     const avgDuration = Math.round(durations.reduce((a, b) => a + b, 0) / durations.length);
-
     const intervals: number[] = [];
     for (let i = 0; i < contractions.length - 1; i++) {
-      const gap = Math.floor((contractions[i].start - (contractions[i + 1].end || contractions[i + 1].start)) / 1000);
+      const gap = Math.floor(
+        (contractions[i].start - (contractions[i + 1].end || contractions[i + 1].start)) / 1000
+      );
       if (gap > 0) intervals.push(gap);
     }
-    const avgInterval = intervals.length > 0 ? Math.round(intervals.reduce((a, b) => a + b, 0) / intervals.length) : 0;
-    const isIntense = avgInterval <= 300 && avgDuration >= 60;
-
-    return { avgDuration, avgInterval, isIntense, count: contractions.length };
+    const avgInterval =
+      intervals.length > 0
+        ? Math.round(intervals.reduce((a, b) => a + b, 0) / intervals.length)
+        : 0;
+    return { avgDuration, avgInterval, count: contractions.length };
   }, [contractions]);
+
+  // Last contraction info
+  const lastContraction = contractions.length > 0 ? contractions[0] : null;
+  const timeSinceLast = lastContraction
+    ? Math.floor((Date.now() - (lastContraction.end || lastContraction.start)) / 1000)
+    : 0;
 
   return (
     <ToolFrame
-      title={t('toolsInternal.contractionTimer.title', 'Contraction Timer')}
-      subtitle={t('toolsInternal.contractionTimer.subtitle', 'Track duration and intervals between contractions')}
+      title={t("toolsInternal.contractionTimer.title", "عداد الانقباضات")}
+      subtitle={t(
+        "toolsInternal.contractionTimer.subtitle",
+        "تتبعي مدة الانقباضات والفترات بينها"
+      )}
       customIcon="contraction-timer"
       mood="calm"
       toolId="contraction-timer"
     >
       <div className="space-y-4">
-        {/* Main Timer */}
-        <div className="text-center py-2">
+        {/* Timer Section */}
+        <div className="text-center py-1">
           <motion.div
-            className={`inline-flex items-center justify-center w-40 h-40 rounded-full border-4 ${
+            className={`relative inline-flex items-center justify-center w-36 h-36 rounded-full border-[3px] ${
               isActive
                 ? "border-destructive bg-destructive/5"
                 : "border-border/30 bg-card"
             } shadow-lg transition-colors duration-500`}
           >
+            {/* Pulsing ring when active */}
+            {isActive && (
+              <motion.div
+                className="absolute inset-0 rounded-full border-2 border-destructive/30"
+                animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+            )}
             <div>
-              <span className={`text-4xl font-extrabold tabular-nums ${isActive ? "text-destructive" : "text-foreground"}`}>
+              <span
+                className={`text-3xl font-extrabold tabular-nums ${
+                  isActive ? "text-destructive" : "text-foreground"
+                }`}
+              >
                 {formatDuration(elapsed)}
               </span>
               {isActive && (
                 <motion.p
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
-                  className="text-[11px] text-destructive font-medium mt-1"
+                  className="text-[10px] text-destructive font-medium mt-0.5"
                 >
-                  {t('toolsInternal.contractionTimer.recording', 'Recording...')}
+                  {t("toolsInternal.contractionTimer.recording", "جارٍ التسجيل...")}
                 </motion.p>
+              )}
+              {!isActive && lastContraction && (
+                <p className="text-[10px] text-muted-foreground mt-1">
+                  {t("toolsInternal.contractionTimer.lastOne", "آخر انقباض")}:{" "}
+                  {formatDuration(lastContraction.duration)}
+                </p>
               )}
             </div>
           </motion.div>
 
-          {/* Action buttons */}
-          <div className="flex items-center justify-center gap-4 mt-6">
+          {/* Action button */}
+          <div className="flex items-center justify-center gap-3 mt-5">
             {!isActive ? (
               <motion.button
                 whileTap={{ scale: 0.93 }}
                 onClick={handleStart}
-                className="flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-destructive text-destructive-foreground font-bold text-sm shadow-lg shadow-destructive/25 hover:opacity-90 transition-opacity"
+                className="flex items-center gap-2 px-7 py-3 rounded-2xl bg-destructive text-destructive-foreground font-bold text-sm shadow-lg shadow-destructive/25 hover:opacity-90 transition-opacity"
               >
-                <Play className="w-5 h-5" fill="currentColor" />
-                {t('toolsInternal.contractionTimer.startContraction', 'Start Contraction')}
+                <Play className="w-4.5 h-4.5" fill="currentColor" />
+                {t("toolsInternal.contractionTimer.startContraction", "بدء انقباض")}
               </motion.button>
             ) : (
               <motion.button
                 whileTap={{ scale: 0.93 }}
                 onClick={handleStop}
-                className="flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-foreground text-background font-bold text-sm shadow-lg"
+                className="flex items-center gap-2 px-7 py-3 rounded-2xl bg-foreground text-background font-bold text-sm shadow-lg"
               >
-                <Square className="w-5 h-5" fill="currentColor" />
-                {t('toolsInternal.contractionTimer.stop', 'Stop')}
+                <Square className="w-4.5 h-4.5" fill="currentColor" />
+                {t("toolsInternal.contractionTimer.stop", "انتهى")}
               </motion.button>
             )}
           </div>
         </div>
 
-        {/* Stats cards */}
-        {stats && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="grid grid-cols-3 gap-2"
-          >
-            <div className="bg-card rounded-xl p-3 text-center border border-border/15 shadow-sm">
-              <Activity className="w-4 h-4 mx-auto text-primary mb-1" />
-              <span className="text-lg font-extrabold text-foreground tabular-nums">{stats.count}</span>
-              <span className="text-[10px] text-muted-foreground block">{t('toolsInternal.contractionTimer.total', 'Total')}</span>
-            </div>
-            <div className="bg-card rounded-xl p-3 text-center border border-border/15 shadow-sm">
-              <Clock className="w-4 h-4 mx-auto text-primary mb-1" />
-              <span className="text-lg font-extrabold text-foreground tabular-nums">{formatDuration(stats.avgDuration)}</span>
-              <span className="text-[10px] text-muted-foreground block">{t('toolsInternal.contractionTimer.avgDuration', 'Avg Duration')}</span>
-            </div>
-            <div className="bg-card rounded-xl p-3 text-center border border-border/15 shadow-sm">
-              <Clock className="w-4 h-4 mx-auto text-amber-500 mb-1" />
-              <span className="text-lg font-extrabold text-foreground tabular-nums">{formatDuration(stats.avgInterval)}</span>
-              <span className="text-[10px] text-muted-foreground block">{t('toolsInternal.contractionTimer.avgInterval', 'Avg Interval')}</span>
-            </div>
-          </motion.div>
+        {/* Labor Phase Indicator */}
+        {phaseStats && (
+          <LaborPhaseIndicator
+            avgDuration={phaseStats.avgDuration}
+            avgInterval={phaseStats.avgInterval}
+            count={phaseStats.count}
+          />
         )}
 
-        {/* 5-1-1 Alert */}
-        {stats?.isIntense && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="p-4 rounded-xl bg-destructive/10 border border-destructive/20"
-          >
-            <div className="flex items-start gap-2">
-              <AlertTriangle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-sm font-bold text-destructive">
-                  🚨 {t('toolsInternal.contractionTimer.ruleMetTitle', '5-1-1 Rule Met!')}
-                </p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {t('toolsInternal.contractionTimer.ruleMetDesc', 'Contractions are 5 minutes apart or less and lasting over 1 minute. It may be time to head to the hospital. Contact your doctor immediately.')}
-                </p>
-              </div>
-            </div>
-          </motion.div>
+        {/* Stats */}
+        <ContractionStats contractions={contractions} />
+
+        {/* Tabs: Chart & History */}
+        {contractions.length >= 2 && (
+          <Tabs defaultValue="chart" className="w-full">
+            <TabsList className="w-full grid grid-cols-2 h-9">
+              <TabsTrigger value="chart" className="text-xs">
+                {t("toolsInternal.contractionTimer.chartTab", "📊 الرسم البياني")}
+              </TabsTrigger>
+              <TabsTrigger value="history" className="text-xs">
+                {t("toolsInternal.contractionTimer.historyTab", "📋 السجل")}
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="chart">
+              <ContractionChart contractions={contractions} />
+            </TabsContent>
+            <TabsContent value="history">
+              <ContractionHistory
+                contractions={contractions}
+                onDelete={handleDelete}
+                onClear={handleClear}
+              />
+            </TabsContent>
+          </Tabs>
         )}
 
-        {/* Contraction history */}
-        {contractions.length > 0 && (
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-bold text-foreground">
-                {t('toolsInternal.contractionTimer.history', 'History')}
-              </h3>
-              <button
-                onClick={handleClear}
-                className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-destructive transition-colors"
-              >
-                <RotateCcw className="w-3 h-3" />
-                {t('toolsInternal.contractionTimer.clearAll', 'Clear All')}
-              </button>
-            </div>
-
-            <div className="space-y-2">
-              {contractions.slice(0, 20).map((c, i) => {
-                const interval = i < contractions.length - 1
-                  ? Math.floor((c.start - (contractions[i + 1].end || contractions[i + 1].start)) / 1000)
-                  : null;
-
-                return (
-                  <motion.div
-                    key={c.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.03 }}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border/10 shadow-sm"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center text-[11px] font-bold text-destructive tabular-nums">
-                      #{contractions.length - i}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-foreground tabular-nums">
-                          {formatDuration(c.duration)}
-                        </span>
-                        <span className="text-[10px] text-muted-foreground">
-                          {t('toolsInternal.contractionTimer.duration', 'duration')}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-[10px] text-muted-foreground tabular-nums">
-                          {formatTime(c.start)}
-                        </span>
-                        {interval !== null && interval > 0 && (
-                          <span className="text-[10px] text-amber-600 dark:text-amber-400 font-medium">
-                            ← {formatDuration(interval)} {t('toolsInternal.contractionTimer.gap', 'gap')}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => handleDelete(c.id)}
-                      className="p-1.5 rounded-lg hover:bg-destructive/10 transition-colors"
-                    >
-                      <Trash2 className="w-3.5 h-3.5 text-muted-foreground/50 hover:text-destructive" />
-                    </button>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+        {/* Show history without tabs if only 1 contraction */}
+        {contractions.length === 1 && (
+          <ContractionHistory
+            contractions={contractions}
+            onDelete={handleDelete}
+            onClear={handleClear}
+          />
         )}
 
         <InlineDisclaimer />
