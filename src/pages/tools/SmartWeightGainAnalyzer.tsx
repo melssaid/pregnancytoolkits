@@ -9,8 +9,8 @@ import { Label } from '@/components/ui/label';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp, CheckCircle, Plus, Trash2,
-  Save, Calendar, Activity,
-  ArrowUp, ArrowDown, ChevronDown, ChevronUp, X
+  Save, Calendar, Activity, Scale, Ruler, Baby,
+  ArrowUp, ArrowDown, ChevronDown, ChevronUp, X, Info, Target, Sparkles
 } from 'lucide-react';
 import { WeekSlider } from '@/components/WeekSlider';
 import { toast } from 'sonner';
@@ -66,7 +66,6 @@ export default function SmartWeightGainAnalyzer() {
   }, [entries]);
 
   const setPrePregnancyWeight = (val: string) => {
-    // Allow empty, digits, and one decimal point
     const sanitized = val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
     setPrePregnancyWeightState(sanitized);
     const kg = parseFloat(sanitized);
@@ -173,12 +172,6 @@ export default function SmartWeightGainAnalyzer() {
     return data.sort((a, b) => a.week - b.week);
   }, [entries, prePregnancyWeight, getExpectedGainForWeek]);
 
-  const progressPercent = useMemo(() => {
-    if (!totalGain || !range) return 0;
-    const midTarget = (range.min + range.max) / 2;
-    return Math.min(Math.round((totalGain / midTarget) * 100), 100);
-  }, [totalGain, range]);
-
   const currentTrimester = useMemo(() => {
     const w = entries.length ? entries[entries.length - 1].week : parseInt(currentWeek);
     if (w <= 13) return 'first';
@@ -197,12 +190,6 @@ export default function SmartWeightGainAnalyzer() {
     return (last.weight - prev.weight) / weeksDiff;
   }, [entries]);
 
-  const remainingGain = useMemo(() => {
-    if (!range || !totalGain) return null;
-    const midTarget = (range.min + range.max) / 2;
-    return Math.max(0, midTarget - totalGain);
-  }, [range, totalGain]);
-
   const statusConfig: Record<string, { icon: any; color: string; bg: string; text: string; borderColor: string }> = {
     below:  { icon: ArrowDown, color: 'text-amber-700 dark:text-amber-300', bg: 'bg-amber-50 dark:bg-amber-950/30', text: 'text-amber-900 dark:text-amber-200', borderColor: 'border-amber-300 dark:border-amber-800' },
     above:  { icon: ArrowUp, color: 'text-red-700 dark:text-red-300', bg: 'bg-red-50 dark:bg-red-950/30', text: 'text-red-900 dark:text-red-200', borderColor: 'border-red-300 dark:border-red-800' },
@@ -210,10 +197,18 @@ export default function SmartWeightGainAnalyzer() {
   };
 
   const handleStartAnalysis = () => {
-    if (profileComplete) setShowAnalysis(true);
+    if (profileComplete) {
+      setShowAnalysis(true);
+      setShowAddForm(true);
+    }
   };
 
   const displayEntries = showAllEntries ? [...entries].reverse() : entries.slice(-3).reverse();
+
+  // Computed hints
+  const step1Done = !!height;
+  const step2Done = !!prePregnancyWeight;
+  const step3Done = entries.length > 0;
 
   return (
     <ToolFrame 
@@ -223,31 +218,55 @@ export default function SmartWeightGainAnalyzer() {
       mood="calm"
       toolId="weight-gain"
     >
-      <div className="space-y-2.5">
+      <div className="space-y-3">
 
-        {/* ═══ STEP 1: Profile Setup ═══ */}
+        {/* ═══ GUIDED FLOW: Step Indicator ═══ */}
+        {!step3Done && (
+          <motion.div 
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-1.5 px-1"
+          >
+            {[
+              { done: step1Done, label: t('toolsInternal.weightGain.step1Short', 'الطول'), icon: Ruler },
+              { done: step2Done, label: t('toolsInternal.weightGain.step2Short', 'الوزن'), icon: Scale },
+              { done: step3Done, label: t('toolsInternal.weightGain.step3Short', 'التسجيل'), icon: Plus },
+            ].map((step, i) => (
+              <React.Fragment key={i}>
+                <motion.div
+                  animate={!step.done && (i === 0 ? true : [step1Done, step2Done][i-1]) ? { scale: [1, 1.08, 1] } : {}}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[10px] font-bold transition-all ${
+                    step.done 
+                      ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300' 
+                      : (!step.done && (i === 0 || [step1Done, step2Done][i-1]))
+                        ? 'bg-primary/10 text-primary border border-primary/20'
+                        : 'bg-muted/40 text-muted-foreground/50'
+                  }`}
+                >
+                  {step.done ? <CheckCircle className="w-3 h-3" /> : <step.icon className="w-3 h-3" />}
+                  {step.label}
+                </motion.div>
+                {i < 2 && (
+                  <div className={`w-4 h-px ${step.done ? 'bg-emerald-300 dark:bg-emerald-700' : 'bg-border/30'}`} />
+                )}
+              </React.Fragment>
+            ))}
+          </motion.div>
+        )}
+
+        {/* ═══ STEP 1 & 2: Profile Setup ═══ */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
           <Card className="border-primary/15 overflow-hidden">
             <div className="h-0.5 bg-gradient-to-r from-primary/30 via-primary to-primary/30" />
             
             <CardContent className="p-3 space-y-3">
-              {/* Header */}
-              <div className="flex items-center justify-between">
-                <h3 className="text-[11px] font-bold text-foreground uppercase tracking-wide text-muted-foreground">
-                  {t('toolsInternal.weightGain.profileSetup')}
-                </h3>
-                {profileComplete && (
-                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
-                    <CheckCircle className="w-3.5 h-3.5" />
-                    <span className="text-[9px] font-bold">✓</span>
-                  </motion.div>
-                )}
-              </div>
-
-              {/* Compact 2-col inputs */}
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <Label className="text-[9px] text-muted-foreground font-medium mb-1 block">
+              {/* Inputs with inline hints */}
+              <div className="grid grid-cols-2 gap-2.5">
+                {/* Height */}
+                <div className="space-y-1">
+                  <Label className="text-[10px] text-muted-foreground font-semibold flex items-center gap-1">
+                    <Ruler className="w-3 h-3 text-primary/60" />
                     {t('toolsInternal.weightGain.heightCm')}
                   </Label>
                   <div className="relative">
@@ -258,13 +277,34 @@ export default function SmartWeightGainAnalyzer() {
                       placeholder="165"
                       value={height}
                       onChange={(e) => setHeight(e.target.value)}
-                      className="h-14 text-center font-black text-lg rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
+                      className={`h-14 text-center font-black text-lg rounded-xl transition-all ${
+                        step1Done 
+                          ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/30 dark:bg-emerald-950/10' 
+                          : 'border-primary/30 bg-primary/5 ring-2 ring-primary/10'
+                      }`}
                     />
                     <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">cm</span>
+                    {step1Done && (
+                      <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-1 -end-1">
+                        <CheckCircle className="w-4 h-4 text-emerald-500 fill-emerald-100" />
+                      </motion.div>
+                    )}
                   </div>
+                  {!step1Done && (
+                    <motion.p 
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="text-[9px] text-primary/70 text-center font-medium"
+                    >
+                      👆 {t('toolsInternal.weightGain.heightHint', 'أدخلي طولك هنا')}
+                    </motion.p>
+                  )}
                 </div>
-                <div>
-                  <Label className="text-[9px] text-muted-foreground font-medium mb-1 block">
+
+                {/* Pre-pregnancy weight */}
+                <div className="space-y-1">
+                  <Label className="text-[10px] text-muted-foreground font-semibold flex items-center gap-1">
+                    <Scale className="w-3 h-3 text-primary/60" />
                     {t('toolsInternal.weightGain.prePregnancyWeightKg')}
                   </Label>
                   <div className="relative">
@@ -275,47 +315,88 @@ export default function SmartWeightGainAnalyzer() {
                       placeholder="60"
                       value={prePregnancyWeight}
                       onChange={(e) => setPrePregnancyWeight(e.target.value)}
-                      className="h-14 text-center font-black text-lg rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
+                      className={`h-14 text-center font-black text-lg rounded-xl transition-all ${
+                        step2Done 
+                          ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/30 dark:bg-emerald-950/10' 
+                          : step1Done 
+                            ? 'border-primary/30 bg-primary/5 ring-2 ring-primary/10' 
+                            : 'border-border/50 bg-muted/20'
+                      }`}
                     />
                     <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">kg</span>
+                    {step2Done && (
+                      <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-1 -end-1">
+                        <CheckCircle className="w-4 h-4 text-emerald-500 fill-emerald-100" />
+                      </motion.div>
+                    )}
                   </div>
+                  {step1Done && !step2Done && (
+                    <motion.p 
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="text-[9px] text-primary/70 text-center font-medium"
+                    >
+                      👆 {t('toolsInternal.weightGain.weightHint', 'الوزن قبل الحمل')}
+                    </motion.p>
+                  )}
                 </div>
               </div>
 
-              {/* BMI Result — compact inline */}
-              {profileComplete && (
-                <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="space-y-2.5">
-                  <div className="flex items-center gap-2.5 p-2 rounded-xl bg-muted/30 border border-border/20">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 flex flex-col items-center justify-center shrink-0">
-                      <span className="text-sm font-black text-primary leading-none">{bmi.toFixed(1)}</span>
-                      <span className="text-[6px] text-primary/50 font-bold uppercase">BMI</span>
+              {/* BMI Result — appears after both inputs */}
+              <AnimatePresence>
+                {profileComplete && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }} 
+                    animate={{ opacity: 1, height: 'auto' }} 
+                    exit={{ opacity: 0, height: 0 }}
+                    className="space-y-2.5 overflow-hidden"
+                  >
+                    {/* BMI Badge */}
+                    <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/10">
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex flex-col items-center justify-center shrink-0 shadow-sm">
+                        <span className="text-base font-black text-primary leading-none">{bmi.toFixed(1)}</span>
+                        <span className="text-[7px] text-primary/50 font-bold uppercase">BMI</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <p className="text-[11px] font-bold text-foreground">{t(`toolsInternal.weightGain.bmiCategories.${range.categoryKey}`)}</p>
+                          <Info className="w-3 h-3 text-muted-foreground/40" />
+                        </div>
+                        <p className="text-[9px] text-muted-foreground mt-0.5">
+                          {t('toolsInternal.weightGain.recommendedTotalGain')}: 
+                          <span className="font-bold text-primary ms-1">{range.min}–{range.max} kg</span>
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[10px] font-bold text-foreground">{t(`toolsInternal.weightGain.bmiCategories.${range.categoryKey}`)}</p>
-                      <p className="text-[9px] text-muted-foreground">
-                        {t('toolsInternal.weightGain.recommendedTotalGain')}: <span className="font-bold text-primary">{range.min}–{range.max} kg</span>
-                      </p>
-                    </div>
-                  </div>
 
-                  <BMIScaleBar bmi={bmi} t={t} />
+                    <BMIScaleBar bmi={bmi} t={t} />
 
-                  {!showAnalysis && (
-                    <Button 
-                      onClick={handleStartAnalysis}
-                      className="w-full h-11 text-[12px] font-bold gap-2 rounded-xl shadow-md shadow-primary/15"
-                    >
-                      <Activity className="w-3.5 h-3.5" />
-                      {t('toolsInternal.weightGain.startAnalysis')}
-                    </Button>
-                  )}
-                </motion.div>
-              )}
+                    {/* CTA: Start Analysis — only if not started */}
+                    {!showAnalysis && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                      >
+                        <Button 
+                          onClick={handleStartAnalysis}
+                          className="w-full h-12 text-[13px] font-bold gap-2 rounded-xl shadow-md shadow-primary/15"
+                        >
+                          <Sparkles className="w-4 h-4" />
+                          {t('toolsInternal.weightGain.startAnalysis')}
+                        </Button>
+                        <p className="text-[9px] text-muted-foreground/60 text-center mt-1.5">
+                          {t('toolsInternal.weightGain.startAnalysisHint', 'سنساعدك في تتبع وزنك طوال فترة الحمل')}
+                        </p>
+                      </motion.div>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* ═══ STEP 2: Analysis Dashboard ═══ */}
+        {/* ═══ STEP 3: Analysis Dashboard ═══ */}
         <AnimatePresence>
           {showAnalysis && profileComplete && (
             <motion.div
@@ -327,22 +408,40 @@ export default function SmartWeightGainAnalyzer() {
 
               {/* ─── Add Weight CTA ─── */}
               {!showAddForm && (
-                <button 
+                <motion.button 
                   onClick={() => setShowAddForm(true)}
-                  className="w-full p-3 rounded-xl bg-gradient-to-r from-primary via-primary/95 to-primary/85 text-primary-foreground flex items-center gap-2.5 shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform"
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full p-3.5 rounded-xl bg-gradient-to-r from-primary via-primary/95 to-primary/85 text-primary-foreground flex items-center gap-3 shadow-lg shadow-primary/20"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-primary-foreground/15 flex items-center justify-center shrink-0">
-                    <Plus className="w-4 h-4" strokeWidth={2.5} />
+                  <div className="w-10 h-10 rounded-xl bg-primary-foreground/15 flex items-center justify-center shrink-0">
+                    <Plus className="w-5 h-5" strokeWidth={2.5} />
                   </div>
                   <div className="flex-1 text-start min-w-0">
-                    <p className="text-[12px] font-bold truncate">{t('toolsInternal.weightGain.saveWeight', 'Record your weight')}</p>
-                    {lastEntry && (
-                      <p className="text-[9px] opacity-70 truncate">
-                        {t('toolsInternal.weightGain.lastRecorded')}: {lastEntry.weight}kg · W{lastEntry.week}
+                    <p className="text-[13px] font-bold truncate">
+                      {entries.length === 0 
+                        ? t('toolsInternal.weightGain.addFirstWeight', 'سجّلي وزنك الحالي')
+                        : t('toolsInternal.weightGain.saveWeight', 'سجّلي وزنك')
+                      }
+                    </p>
+                    {lastEntry ? (
+                      <p className="text-[10px] opacity-70 truncate">
+                        {t('toolsInternal.weightGain.lastRecorded')}: {lastEntry.weight}kg · {t('toolsInternal.weightGain.week')} {lastEntry.week}
+                      </p>
+                    ) : (
+                      <p className="text-[10px] opacity-70">
+                        {t('toolsInternal.weightGain.addFirstWeightHint', 'ابدئي بتسجيل أول قراءة وزن')}
                       </p>
                     )}
                   </div>
-                </button>
+                  {entries.length === 0 && (
+                    <motion.div
+                      animate={{ x: [0, -4, 0] }}
+                      transition={{ duration: 1.2, repeat: Infinity }}
+                    >
+                      <ArrowDown className="w-4 h-4 opacity-60 rotate-[-90deg] rtl:rotate-90" />
+                    </motion.div>
+                  )}
+                </motion.button>
               )}
 
               {/* ─── Add Weight Form ─── */}
@@ -356,16 +455,17 @@ export default function SmartWeightGainAnalyzer() {
                   >
                     <Card className="border-primary/20 shadow-md overflow-hidden">
                       <div className="h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
-                      <CardContent className="p-3 space-y-2.5">
+                      <CardContent className="p-3.5 space-y-3">
                         <div className="flex items-center justify-between">
-                          <h3 className="text-[12px] font-bold text-foreground">
+                          <h3 className="text-[13px] font-bold text-foreground flex items-center gap-1.5">
+                            <Scale className="w-4 h-4 text-primary" />
                             {t('toolsInternal.weightGain.addWeightEntry')}
                           </h3>
                           <button 
                             onClick={() => setShowAddForm(false)} 
-                            className="w-6 h-6 rounded-full bg-muted/60 flex items-center justify-center hover:bg-muted transition-colors"
+                            className="w-7 h-7 rounded-full bg-muted/60 flex items-center justify-center hover:bg-muted transition-colors"
                           >
-                            <X className="w-3 h-3 text-muted-foreground" />
+                            <X className="w-3.5 h-3.5 text-muted-foreground" />
                           </button>
                         </div>
                         
@@ -377,8 +477,26 @@ export default function SmartWeightGainAnalyzer() {
                           label={t('toolsInternal.weightGain.pregnancyWeek')}
                         />
 
+                        {/* Expected range hint for selected week */}
+                        {currentWeek && (
+                          <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-muted/30 border border-border/15"
+                          >
+                            <Target className="w-3 h-3 text-primary/60 shrink-0" />
+                            <p className="text-[9px] text-muted-foreground">
+                              {t('toolsInternal.weightGain.expectedForWeek', 'الزيادة المتوقعة للأسبوع')} {currentWeek}:
+                              <span className="font-bold text-primary ms-1">
+                                {getExpectedGainForWeek(parseInt(currentWeek)).min.toFixed(1)}–{getExpectedGainForWeek(parseInt(currentWeek)).max.toFixed(1)} kg
+                              </span>
+                            </p>
+                          </motion.div>
+                        )}
+
                         <div>
-                          <Label className="text-[9px] text-muted-foreground font-medium mb-1 block">
+                          <Label className="text-[10px] text-muted-foreground font-semibold mb-1 block flex items-center gap-1">
+                            <Scale className="w-3 h-3 text-primary/60" />
                             {t('toolsInternal.weightGain.currentWeightKg')}
                           </Label>
                           <div className="relative">
@@ -393,27 +511,53 @@ export default function SmartWeightGainAnalyzer() {
                                 const sanitized = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
                                 setCurrentWeight(sanitized);
                               }}
-                              className="h-14 text-center text-lg font-black rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
+                              className="h-14 text-center text-lg font-black rounded-xl border-primary/30 bg-primary/5 ring-2 ring-primary/10 transition-all"
                             />
-                            <span className="absolute end-2.5 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground/40 font-bold">kg</span>
+                            <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">kg</span>
                           </div>
+                          
+                          {/* Live gain preview */}
+                          {currentWeight && prePregnancyWeight && (
+                            <motion.div 
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              className="mt-1.5 text-center"
+                            >
+                              {(() => {
+                                const gain = parseFloat(currentWeight) - parseFloat(prePregnancyWeight);
+                                const expected = getExpectedGainForWeek(parseInt(currentWeek));
+                                const inRange = gain >= expected.min && gain <= expected.max;
+                                return (
+                                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                                    inRange 
+                                      ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300'
+                                      : gain < expected.min
+                                        ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'
+                                        : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300'
+                                  }`}>
+                                    {inRange ? '✓' : gain < expected.min ? '↓' : '↑'} {gain >= 0 ? '+' : ''}{gain.toFixed(1)} kg {t('toolsInternal.weightGain.fromStart', 'من البداية')}
+                                  </span>
+                                );
+                              })()}
+                            </motion.div>
+                          )}
                         </div>
 
                         <div className="flex gap-2">
                           <Button 
                             onClick={addEntry} 
                             disabled={!currentWeight || !currentWeek}
-                            className="flex-1 h-11 text-[12px] font-bold gap-1.5 rounded-xl shadow-sm"
+                            className="flex-1 h-12 text-[13px] font-bold gap-1.5 rounded-xl shadow-sm"
                           >
-                            <Save className="w-3.5 h-3.5" />
-                            {t('toolsInternal.weightGain.saveEntry', 'Save')}
+                            <Save className="w-4 h-4" />
+                            {t('toolsInternal.weightGain.saveEntry', 'حفظ')}
                           </Button>
                           <Button 
                             variant="outline" 
                             onClick={() => setShowAddForm(false)}
-                            className="h-11 px-4 rounded-xl text-[11px]"
+                            className="h-12 px-5 rounded-xl text-[12px]"
                           >
-                            {t('toolsInternal.weightGain.cancel', 'Cancel')}
+                            {t('toolsInternal.weightGain.cancel', 'إلغاء')}
                           </Button>
                         </div>
                       </CardContent>
@@ -448,17 +592,21 @@ export default function SmartWeightGainAnalyzer() {
 
               {/* ─── Status Banner ─── */}
               {status && entries.length > 0 && (
-                <div className={`p-2.5 rounded-xl border ${statusConfig[status].borderColor} ${statusConfig[status].bg}`}>
-                  <div className="flex items-center gap-1.5 mb-0.5">
-                    {React.createElement(statusConfig[status].icon, { className: `w-3.5 h-3.5 ${statusConfig[status].color}` })}
-                    <span className={`text-[10px] font-bold ${statusConfig[status].color}`}>
+                <motion.div 
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className={`p-3 rounded-xl border ${statusConfig[status].borderColor} ${statusConfig[status].bg}`}
+                >
+                  <div className="flex items-center gap-1.5 mb-1">
+                    {React.createElement(statusConfig[status].icon, { className: `w-4 h-4 ${statusConfig[status].color}` })}
+                    <span className={`text-[11px] font-bold ${statusConfig[status].color}`}>
                       {t(`toolsInternal.weightGain.statusMessages.${status}.message`)}
                     </span>
                   </div>
-                  <p className={`text-[9px] ${statusConfig[status].text} leading-relaxed`}>
+                  <p className={`text-[10px] ${statusConfig[status].text} leading-relaxed`}>
                     {t(`toolsInternal.weightGain.statusMessages.${status}.recommendation`)}
                   </p>
-                </div>
+                </motion.div>
               )}
 
               {/* ─── Chart ─── */}
@@ -487,11 +635,13 @@ export default function SmartWeightGainAnalyzer() {
                         const isInRange = gain >= expected.min && gain <= expected.max;
                         const isFirst = i === 0;
                         return (
-                          <div
+                          <motion.div
                             key={entry.id}
+                            initial={{ opacity: 0, x: -6 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.05 }}
                             className={`flex items-center gap-2 p-2 rounded-lg transition-colors ${isFirst ? 'bg-primary/5 border border-primary/10' : 'bg-muted/20 border border-border/10'}`}
                           >
-                            {/* Week badge */}
                             <div className={`w-8 h-8 rounded-lg flex flex-col items-center justify-center shrink-0 text-[8px] font-bold ${
                               isFirst ? 'bg-primary/10 text-primary' : isInRange ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400' : 'bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400'
                             }`}>
@@ -499,7 +649,6 @@ export default function SmartWeightGainAnalyzer() {
                               <span className="leading-none">{t('toolsInternal.weightGain.week').slice(0, 1)}</span>
                             </div>
 
-                            {/* Info */}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-baseline gap-1.5">
                                 <span className="text-[12px] font-black text-foreground">{entry.weight} kg</span>
@@ -516,14 +665,13 @@ export default function SmartWeightGainAnalyzer() {
                               </span>
                             </div>
 
-                            {/* Delete */}
                             <button 
                               onClick={() => removeEntry(entry.id)}
                               className="p-1.5 rounded-md hover:bg-destructive/10 text-muted-foreground/30 hover:text-destructive transition-all shrink-0"
                             >
                               <Trash2 className="w-3 h-3" />
                             </button>
-                          </div>
+                          </motion.div>
                         );
                       })}
                     </div>
@@ -534,9 +682,9 @@ export default function SmartWeightGainAnalyzer() {
                         className="w-full mt-1.5 py-1.5 text-[10px] font-medium text-primary flex items-center justify-center gap-1 rounded-lg hover:bg-primary/5 transition-colors"
                       >
                         {showAllEntries ? (
-                          <><ChevronUp className="w-3 h-3" /> {t('toolsInternal.weightGain.showLess', 'Show less')}</>
+                          <><ChevronUp className="w-3 h-3" /> {t('toolsInternal.weightGain.showLess', 'عرض أقل')}</>
                         ) : (
-                          <><ChevronDown className="w-3 h-3" /> {t('toolsInternal.weightGain.showAll', 'Show all')} ({entries.length})</>
+                          <><ChevronDown className="w-3 h-3" /> {t('toolsInternal.weightGain.showAll', 'عرض الكل')} ({entries.length})</>
                         )}
                       </button>
                     )}
@@ -589,47 +737,30 @@ Provide personalized weight management advice based on this data.`}
           )}
         </AnimatePresence>
 
-        {/* ═══ Empty State ═══ */}
-        {entries.length === 0 && (
+        {/* ═══ Empty State — only when no analysis started ═══ */}
+        {!showAnalysis && entries.length === 0 && profileComplete && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <Card className="border-dashed border border-primary/15 overflow-hidden">
-              <CardContent className="p-4 text-center space-y-3">
-                <div className="text-3xl">⚖️</div>
-                <div>
-                  <p className="text-[13px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
-                  <p className="text-[10px] text-muted-foreground/60 max-w-[220px] mx-auto leading-relaxed mt-0.5">{t('toolsInternal.weightGain.noEntriesHint')}</p>
-                </div>
-                
-                <div className="space-y-1.5 max-w-[240px] mx-auto">
-                  {[
-                    { num: 1, text: t('toolsInternal.weightGain.step1', 'Enter your height'), done: !!height },
-                    { num: 2, text: t('toolsInternal.weightGain.step2', 'Enter your pre-pregnancy weight'), done: !!prePregnancyWeight },
-                    { num: 3, text: t('toolsInternal.weightGain.step3', 'Log your first weight'), done: false },
-                  ].map((step) => (
-                    <div 
-                      key={step.num}
-                      className={`flex items-center gap-2 p-2 rounded-lg text-start ${step.done ? 'bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200/40 dark:border-emerald-800/40' : 'bg-muted/20 border border-border/20'}`}
-                    >
-                      <div className={`w-6 h-6 rounded-md flex items-center justify-center text-[10px] font-bold shrink-0 ${step.done ? 'bg-emerald-500 text-white' : 'bg-muted text-muted-foreground'}`}>
-                        {step.done ? <CheckCircle className="w-3.5 h-3.5" /> : step.num}
-                      </div>
-                      <span className={`text-[10px] ${step.done ? 'text-emerald-700 dark:text-emerald-400 font-semibold line-through' : 'text-foreground/70 font-medium'}`}>
-                        {step.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+              <CardContent className="p-4 text-center space-y-2">
+                <Baby className="w-8 h-8 text-primary/30 mx-auto" />
+                <p className="text-[11px] text-muted-foreground/60 max-w-[220px] mx-auto leading-relaxed">
+                  {t('toolsInternal.weightGain.noEntriesHint')}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
 
-                {profileComplete && (
-                  <Button 
-                    size="sm" 
-                    className="mt-1 gap-1.5 rounded-xl shadow-sm text-[11px] h-9"
-                    onClick={() => setShowAddForm(true)}
-                  >
-                    <Plus className="w-3.5 h-3.5" />
-                    {t('toolsInternal.weightGain.addFirstEntry', 'Add first entry')}
-                  </Button>
-                )}
+        {/* ═══ Empty State — not profile complete ═══ */}
+        {!profileComplete && (
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+            <Card className="border-dashed border border-border/30 overflow-hidden">
+              <CardContent className="p-4 text-center space-y-2">
+                <div className="text-2xl">⚖️</div>
+                <p className="text-[12px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
+                <p className="text-[10px] text-muted-foreground/60 max-w-[220px] mx-auto leading-relaxed">
+                  {t('toolsInternal.weightGain.fillProfileHint', 'أدخلي طولك ووزنك قبل الحمل أعلاه للبدء')}
+                </p>
               </CardContent>
             </Card>
           </motion.div>
