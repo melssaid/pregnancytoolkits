@@ -458,7 +458,7 @@ export default function SmartWeightGainAnalyzer() {
                       <CardContent className="p-3.5 space-y-3">
                         <div className="flex items-center justify-between">
                           <h3 className="text-[13px] font-bold text-foreground flex items-center gap-1.5">
-                            <Scale className="w-4 h-4 text-primary" />
+                            <Gauge className="w-4 h-4 text-primary" />
                             {t('toolsInternal.weightGain.addWeightEntry')}
                           </h3>
                           <button 
