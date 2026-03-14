@@ -66,15 +66,18 @@ export default function SmartWeightGainAnalyzer() {
   }, [entries]);
 
   const setPrePregnancyWeight = (val: string) => {
-    setPrePregnancyWeightState(val);
-    const kg = parseFloat(val);
-    if (!isNaN(kg)) updateUserProfile({ prePregnancyWeight: kg });
+    // Allow empty, digits, and one decimal point
+    const sanitized = val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+    setPrePregnancyWeightState(sanitized);
+    const kg = parseFloat(sanitized);
+    if (!isNaN(kg) && kg > 0) updateUserProfile({ prePregnancyWeight: kg });
   };
 
   const setHeight = (val: string) => {
-    setHeightState(val);
-    const cm = parseFloat(val);
-    if (!isNaN(cm)) updateUserProfile({ height: cm });
+    const sanitized = val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+    setHeightState(sanitized);
+    const cm = parseFloat(sanitized);
+    if (!isNaN(cm) && cm > 0) updateUserProfile({ height: cm });
   };
 
   useEffect(() => {
