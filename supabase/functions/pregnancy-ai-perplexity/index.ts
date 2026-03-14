@@ -141,6 +141,7 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "pregnancy-plan":       { temperature: 0.4, max_tokens: 3000 },
   "baby-growth-analysis": { temperature: 0.3, max_tokens: 2500 },
   "weight-analysis":      { temperature: 0.3, max_tokens: 2500 },
+  "contraction-analysis": { temperature: 0.2, max_tokens: 3000 },
 };
 
 // ── Language configuration ──
@@ -538,6 +539,41 @@ Structure your response using this format:
 - Brief motivational note
 
 Be specific to their data. Reference their actual numbers. Keep advice practical and actionable.`;
+
+    case "contraction-analysis":
+      return persona + `You are a labor and delivery specialist. Analyze the user's contraction data and provide clear, actionable guidance.
+
+Structure your response using this format:
+
+## 🔴 Contraction Pattern Analysis
+- Assessment of contraction regularity, frequency, and duration
+- Whether the pattern suggests early labor, active labor, or Braxton Hicks
+
+## 📊 Key Metrics
+- Average duration vs. typical labor contractions (30-70 seconds)
+- Average interval and whether contractions are getting closer
+- Regularity assessment
+
+## 🏥 5-1-1 Rule Assessment
+- Contractions every **5** minutes or less
+- Lasting **1** minute or more
+- For at least **1** hour
+- Clear statement: Does this data meet the 5-1-1 criteria?
+
+## ✅ What To Do Now
+- 3-4 specific action steps based on current contraction pattern
+- When to call the doctor or go to the hospital
+
+## ⚠️ Go to Hospital Immediately If:
+- Water breaks
+- Heavy bleeding
+- Baby stops moving
+- Severe continuous pain
+
+## 💝 Reassurance
+- Brief calming note
+
+Be direct about whether they should seek medical attention. Safety is the top priority.`;
 
     default:
       return persona + "Provide helpful, well-organized pregnancy guidance.";
