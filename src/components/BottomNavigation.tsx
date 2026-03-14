@@ -314,8 +314,8 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                   </div>
                 );
 
-                const labelClass = `text-[9px] font-medium tracking-wide transition-colors duration-200 ${
-                  active ? "text-primary" : "text-foreground/50"
+                const labelClass = `text-[9px] font-medium tracking-wide transition-colors duration-200 mt-0.5 ${
+                  active ? "text-[hsl(220,20%,40%)]" : "text-foreground/50"
                 }`;
 
                 let navElement: React.ReactNode;
