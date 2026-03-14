@@ -2887,7 +2887,18 @@
       "trimesterComparison": "مقارنة الثلاثيات",
       "step1": "أدخلي طولك",
       "step2": "أدخلي وزنك قبل الحمل",
-      "step3": "سجّلي أول قراءة وزن"
+      "step3": "سجّلي أول قراءة وزن",
+      "step1Short": "الطول",
+      "step2Short": "الوزن",
+      "step3Short": "التسجيل",
+      "heightHint": "أدخلي طولك هنا",
+      "weightHint": "الوزن قبل الحمل",
+      "addFirstWeight": "سجّلي وزنك الحالي",
+      "addFirstWeightHint": "ابدئي بتسجيل أول قراءة وزن",
+      "expectedForWeek": "الزيادة المتوقعة للأسبوع",
+      "fromStart": "من البداية",
+      "fillProfileHint": "أدخلي طولك ووزنك قبل الحمل أعلاه للبدء",
+      "startAnalysisHint": "سنساعدك في تتبع وزنك طوال فترة الحمل"
     },
     "stressRelief": {
       "title": "دليل تخفيف التوتر الذكي",
