@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CalendarIcon, Save, Baby, Scale, Calendar, Ruler, Droplets, TrendingDown, TrendingUp, Minus, Heart } from 'lucide-react';
+import { CalendarIcon, Save, Baby, Gauge, Calendar, Ruler, Droplets, TrendingDown, TrendingUp, Minus, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
