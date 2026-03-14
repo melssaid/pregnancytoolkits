@@ -11,7 +11,7 @@ import {
   Dumbbell,
   CheckSquare,
   LucideIcon,
-  Scale,
+  Gauge,
   Moon,
   Sparkles,
   Ruler,
