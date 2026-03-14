@@ -269,11 +269,11 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
         {/* Bottom Navigation */}
         <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden safe-area-bottom">
           <div className="relative">
-            {/* Top accent line */}
-            <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent z-10" />
+            {/* Top accent line — silver frost */}
+            <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[hsl(220,15%,65%)] to-transparent z-10" />
             
-            {/* Clean background */}
-            <div className="absolute inset-0 bg-card/95 backdrop-blur-xl shadow-[0_-4px_30px_0px_hsl(340_65%_65%/0.3)]" />
+            {/* Silver frost gradient background — bottom to top */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[hsl(220,15%,90%)] via-card/95 to-card/95 backdrop-blur-xl shadow-[0_-6px_30px_-5px_hsl(220,15%,50%,0.2)]" />
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
               {NAV_ITEMS.map((item, idx) => {
@@ -286,15 +286,15 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 ) : null;
 
                 const iconContent = (
-                  <div className={`relative p-2.5 rounded-xl transition-all duration-200 active:scale-[0.92] ${active ? 'bg-primary/10' : ''}`}>
+                  <div className={`relative p-2 rounded-xl transition-all duration-200 active:scale-[0.92] ${active ? 'bg-gradient-to-t from-[hsl(220,15%,82%)] to-[hsl(220,8%,92%)]' : ''}`}>
                     {item.id === "more" && moreOpen ? (
                       <X className="w-5 h-5 relative z-10 text-primary transition-colors duration-200" strokeWidth={2.2} />
                     ) : item.id === "ai-tools" && aiToolsOpen ? (
                       <X className="w-5 h-5 relative z-10 text-primary transition-colors duration-200" strokeWidth={2.2} />
                     ) : (
                       <Icon 
-                        className={`w-5 h-5 relative z-10 transition-colors duration-200 ${
-                          active ? "text-primary" : "text-foreground/50"
+                        className={`w-[18px] h-[18px] relative z-10 transition-colors duration-200 ${
+                          active ? "text-[hsl(220,20%,40%)]" : "text-foreground/50"
                         }`} 
                         strokeWidth={active ? 2.2 : 1.8} 
                       />
@@ -309,13 +309,13 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
 
                     {/* Active dot indicator */}
                     {active && (
-                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full" />
+                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-[hsl(220,20%,45%)] rounded-full" />
                     )}
                   </div>
                 );
 
-                const labelClass = `text-[9px] font-medium tracking-wide transition-colors duration-200 ${
-                  active ? "text-primary" : "text-foreground/50"
+                const labelClass = `text-[9px] font-medium tracking-wide transition-colors duration-200 mt-0.5 ${
+                  active ? "text-[hsl(220,20%,40%)]" : "text-foreground/50"
                 }`;
 
                 let navElement: React.ReactNode;
