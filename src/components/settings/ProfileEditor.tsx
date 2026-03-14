@@ -215,7 +215,7 @@ export const ProfileEditor: React.FC<ProfileEditorProps> = ({ compact = false })
         {/* Weight */}
         <div className="space-y-1.5">
           <Label className="flex items-center gap-1.5 text-xs font-medium">
-            <Scale className="w-3.5 h-3.5 text-primary" />
+            <Gauge className="w-3.5 h-3.5 text-primary" />
             {t('onboarding.weight', 'Current Weight')}
           </Label>
           <div className="flex items-center gap-1.5">
