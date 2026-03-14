@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Square, Timer } from "lucide-react";
+import { Play, Square, Timer, TrendingUp } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { InlineDisclaimer } from "@/components/compliance";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -9,6 +9,7 @@ import { ContractionChart } from "@/components/contraction/ContractionChart";
 import { ContractionStats } from "@/components/contraction/ContractionStats";
 import { ContractionHistory } from "@/components/contraction/ContractionHistory";
 import { LaborPhaseIndicator } from "@/components/contraction/LaborPhaseIndicator";
+import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
 interface Contraction {
   id: string;
