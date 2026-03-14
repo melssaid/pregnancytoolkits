@@ -1,4 +1,4 @@
-import { Baby, Scale, Flame, Droplets } from "lucide-react";
+import { Baby, Gauge, Flame, Droplets } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface HealthStatsGridProps {

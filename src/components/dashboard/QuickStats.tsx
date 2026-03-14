@@ -32,7 +32,7 @@ export function QuickStats({
   const stats = [
     {
       id: "weight",
-      icon: Scale,
+      icon: Gauge,
       labelKey: "dashboard.quickStats.weight",
       value: weight > 0 ? `${weight}` : "—",
       unit: weight > 0 ? "kg" : "",
