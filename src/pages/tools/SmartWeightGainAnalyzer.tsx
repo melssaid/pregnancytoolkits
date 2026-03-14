@@ -304,7 +304,7 @@ export default function SmartWeightGainAnalyzer() {
                 {/* Pre-pregnancy weight */}
                 <div className="space-y-1">
                   <Label className="text-[10px] text-muted-foreground font-semibold flex items-center gap-1">
-                    <Scale className="w-3 h-3 text-primary/60" />
+                    <Gauge className="w-3 h-3 text-primary/60" />
                     {t('toolsInternal.weightGain.prePregnancyWeightKg')}
                   </Label>
                   <div className="relative">
