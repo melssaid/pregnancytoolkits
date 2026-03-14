@@ -307,9 +307,9 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                       </span>
                     )}
 
-                    {/* Active dot indicator */}
+                    {/* Active underline indicator */}
                     {active && (
-                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-[hsl(220,20%,45%)] rounded-full" />
+                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-gradient-to-r from-transparent via-[hsl(220,20%,45%)] to-transparent rounded-full" />
                     )}
                   </div>
                 );
