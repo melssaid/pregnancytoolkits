@@ -66,15 +66,18 @@ export default function SmartWeightGainAnalyzer() {
   }, [entries]);
 
   const setPrePregnancyWeight = (val: string) => {
-    setPrePregnancyWeightState(val);
-    const kg = parseFloat(val);
-    if (!isNaN(kg)) updateUserProfile({ prePregnancyWeight: kg });
+    // Allow empty, digits, and one decimal point
+    const sanitized = val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+    setPrePregnancyWeightState(sanitized);
+    const kg = parseFloat(sanitized);
+    if (!isNaN(kg) && kg > 0) updateUserProfile({ prePregnancyWeight: kg });
   };
 
   const setHeight = (val: string) => {
-    setHeightState(val);
-    const cm = parseFloat(val);
-    if (!isNaN(cm)) updateUserProfile({ height: cm });
+    const sanitized = val.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+    setHeightState(sanitized);
+    const cm = parseFloat(sanitized);
+    if (!isNaN(cm) && cm > 0) updateUserProfile({ height: cm });
   };
 
   useEffect(() => {
@@ -249,14 +252,15 @@ export default function SmartWeightGainAnalyzer() {
                   </Label>
                   <div className="relative">
                     <Input
-                      type="number"
-                      inputMode="numeric"
+                      type="text"
+                      inputMode="decimal"
+                      pattern="[0-9]*\.?[0-9]*"
                       placeholder="165"
                       value={height}
                       onChange={(e) => setHeight(e.target.value)}
-                      className="h-12 text-center font-black text-base rounded-xl border-border/50 focus:border-primary bg-muted/20"
+                      className="h-14 text-center font-black text-lg rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
                     />
-                    <span className="absolute end-2.5 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground/40 font-bold">cm</span>
+                    <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">cm</span>
                   </div>
                 </div>
                 <div>
@@ -265,14 +269,15 @@ export default function SmartWeightGainAnalyzer() {
                   </Label>
                   <div className="relative">
                     <Input
-                      type="number"
+                      type="text"
                       inputMode="decimal"
+                      pattern="[0-9]*\.?[0-9]*"
                       placeholder="60"
                       value={prePregnancyWeight}
                       onChange={(e) => setPrePregnancyWeight(e.target.value)}
-                      className="h-12 text-center font-black text-base rounded-xl border-border/50 focus:border-primary bg-muted/20"
+                      className="h-14 text-center font-black text-lg rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
                     />
-                    <span className="absolute end-2.5 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground/40 font-bold">kg</span>
+                    <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">kg</span>
                   </div>
                 </div>
               </div>
@@ -378,13 +383,17 @@ export default function SmartWeightGainAnalyzer() {
                           </Label>
                           <div className="relative">
                             <Input
-                              type="number"
+                              type="text"
                               inputMode="decimal"
+                              pattern="[0-9]*\.?[0-9]*"
                               step="0.1"
                               placeholder="62.5"
                               value={currentWeight}
-                              onChange={(e) => setCurrentWeight(e.target.value)}
-                              className="h-12 text-center text-base font-black rounded-xl border-border/50 focus:border-primary bg-muted/20"
+                              onChange={(e) => {
+                                const sanitized = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                                setCurrentWeight(sanitized);
+                              }}
+                              className="h-14 text-center text-lg font-black rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
                             />
                             <span className="absolute end-2.5 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground/40 font-bold">kg</span>
                           </div>
