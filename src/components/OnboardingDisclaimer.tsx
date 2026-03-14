@@ -34,7 +34,8 @@ export function OnboardingDisclaimer() {
   const { t, i18n } = useTranslation();
   const { currentLanguage, changeLanguage } = useLanguage();
   const { profile, updateProfile, setLastPeriodDate } = useUserProfile();
-  const [selectedLang, setSelectedLang] = useState(currentLanguage || 'en');
+  const detectedLang = currentLanguage || navigator.language?.split('-')[0] || 'en';
+  const [selectedLang, setSelectedLang] = useState(detectedLang);
   const [isPregnant, setIsPregnant] = useState(true);
   const [week, setWeek] = useState<string>(profile.pregnancyWeek ? String(profile.pregnancyWeek) : '');
   const [weight, setWeight] = useState<string>(profile.weight ? String(profile.weight) : '');

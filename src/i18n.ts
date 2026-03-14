@@ -83,11 +83,11 @@ const getManualLanguage = (): string | null => {
 const getInitialLanguage = (): string => {
   const manualLang = getManualLanguage();
   if (manualLang && SUPPORTED_LANGUAGES.includes(manualLang)) return manualLang;
-  // Check i18nextLng fallback (set by react-i18next internally)
+  // Check i18nextLng fallback
   const i18nextLng = localStorage.getItem('i18nextLng')?.split('-')[0];
   if (i18nextLng && SUPPORTED_LANGUAGES.includes(i18nextLng)) return i18nextLng;
-  // Default to English on first visit — user picks language in onboarding
-  return 'en';
+  // Auto-detect browser language for first-time users
+  return getBrowserLanguage();
 };
 
 const initialLang = getInitialLanguage();
