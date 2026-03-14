@@ -383,13 +383,17 @@ export default function SmartWeightGainAnalyzer() {
                           </Label>
                           <div className="relative">
                             <Input
-                              type="number"
+                              type="text"
                               inputMode="decimal"
+                              pattern="[0-9]*\.?[0-9]*"
                               step="0.1"
                               placeholder="62.5"
                               value={currentWeight}
-                              onChange={(e) => setCurrentWeight(e.target.value)}
-                              className="h-12 text-center text-base font-black rounded-xl border-border/50 focus:border-primary bg-muted/20"
+                              onChange={(e) => {
+                                const sanitized = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                                setCurrentWeight(sanitized);
+                              }}
+                              className="h-14 text-center text-lg font-black rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
                             />
                             <span className="absolute end-2.5 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground/40 font-bold">kg</span>
                           </div>
