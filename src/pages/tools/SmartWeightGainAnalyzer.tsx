@@ -496,7 +496,7 @@ export default function SmartWeightGainAnalyzer() {
 
                         <div>
                           <Label className="text-[10px] text-muted-foreground font-semibold mb-1 block flex items-center gap-1">
-                            <Scale className="w-3 h-3 text-primary/60" />
+                            <Gauge className="w-3 h-3 text-primary/60" />
                             {t('toolsInternal.weightGain.currentWeightKg')}
                           </Label>
                           <div className="relative">
