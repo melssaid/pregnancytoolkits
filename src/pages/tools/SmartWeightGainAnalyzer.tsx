@@ -229,7 +229,7 @@ export default function SmartWeightGainAnalyzer() {
           >
             {[
               { done: step1Done, label: t('toolsInternal.weightGain.step1Short', 'الطول'), icon: Ruler },
-              { done: step2Done, label: t('toolsInternal.weightGain.step2Short', 'الوزن'), icon: Scale },
+              { done: step2Done, label: t('toolsInternal.weightGain.step2Short', 'الوزن'), icon: Gauge },
               { done: step3Done, label: t('toolsInternal.weightGain.step3Short', 'التسجيل'), icon: Plus },
             ].map((step, i) => (
               <React.Fragment key={i}>
