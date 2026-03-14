@@ -3222,7 +3222,18 @@
       "trimesterComparison": "Trimester Comparison",
       "step1": "Enter your height",
       "step2": "Enter your pre-pregnancy weight",
-      "step3": "Log your first weight"
+      "step3": "Log your first weight",
+      "step1Short": "Height",
+      "step2Short": "Weight",
+      "step3Short": "Record",
+      "heightHint": "Enter your height here",
+      "weightHint": "Pre-pregnancy weight",
+      "addFirstWeight": "Record your current weight",
+      "addFirstWeightHint": "Start by recording your first weight",
+      "expectedForWeek": "Expected gain for week",
+      "fromStart": "from start",
+      "fillProfileHint": "Enter your height and pre-pregnancy weight above to start",
+      "startAnalysisHint": "We'll help you track your weight throughout pregnancy"
     },
     "bloodType": {
       "title": "Blood Type Calculator",
