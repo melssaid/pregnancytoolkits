@@ -244,6 +244,29 @@ export default function ContractionTimer() {
           />
         )}
 
+        {/* AI Analysis */}
+        {contractions.length >= 3 && phaseStats && (
+          <AIInsightCard
+            title={t("toolsInternal.contractionTimer.aiAnalysisTitle", "تحليل ذكي للانقباضات")}
+            aiType="contraction-analysis"
+            prompt={`Analyze my contraction data:
+- Total contractions: ${contractions.length}
+- Average duration: ${phaseStats.avgDuration} seconds
+- Average interval: ${phaseStats.avgInterval} seconds
+- Shortest contraction: ${Math.min(...contractions.map(c => c.duration))} seconds
+- Longest contraction: ${Math.max(...contractions.map(c => c.duration))} seconds
+- Session started: ${contractions.length > 0 ? new Date(contractions[contractions.length - 1].start).toLocaleTimeString() : 'N/A'}
+- Latest contraction: ${contractions.length > 0 ? new Date(contractions[0].start).toLocaleTimeString() : 'N/A'}
+- Recent 5 durations (seconds): ${contractions.slice(0, 5).map(c => c.duration).join(', ')}
+- Recent 5 intervals (seconds): ${contractions.slice(0, 5).map((c, i) => i < contractions.length - 1 ? Math.floor((c.start - (contractions[i + 1].end || contractions[i + 1].start)) / 1000) : 0).filter(v => v > 0).join(', ')}
+
+Analyze contraction pattern, regularity, and labor progression. Provide guidance on when to go to the hospital based on the 5-1-1 rule. Include safety recommendations.`}
+            context={{ week: 38 }}
+            buttonText={t("toolsInternal.contractionTimer.aiAnalysisButton", "تحليل الانقباضات بالذكاء الاصطناعي")}
+            icon={<TrendingUp className="w-4 h-4" />}
+          />
+        )}
+
         <InlineDisclaimer />
       </div>
     </ToolFrame>

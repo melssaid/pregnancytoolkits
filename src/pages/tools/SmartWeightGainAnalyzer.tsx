@@ -252,14 +252,15 @@ export default function SmartWeightGainAnalyzer() {
                   </Label>
                   <div className="relative">
                     <Input
-                      type="number"
-                      inputMode="numeric"
+                      type="text"
+                      inputMode="decimal"
+                      pattern="[0-9]*\.?[0-9]*"
                       placeholder="165"
                       value={height}
                       onChange={(e) => setHeight(e.target.value)}
-                      className="h-12 text-center font-black text-base rounded-xl border-border/50 focus:border-primary bg-muted/20"
+                      className="h-14 text-center font-black text-lg rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
                     />
-                    <span className="absolute end-2.5 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground/40 font-bold">cm</span>
+                    <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">cm</span>
                   </div>
                 </div>
                 <div>
@@ -268,14 +269,15 @@ export default function SmartWeightGainAnalyzer() {
                   </Label>
                   <div className="relative">
                     <Input
-                      type="number"
+                      type="text"
                       inputMode="decimal"
+                      pattern="[0-9]*\.?[0-9]*"
                       placeholder="60"
                       value={prePregnancyWeight}
                       onChange={(e) => setPrePregnancyWeight(e.target.value)}
-                      className="h-12 text-center font-black text-base rounded-xl border-border/50 focus:border-primary bg-muted/20"
+                      className="h-14 text-center font-black text-lg rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-muted/20 transition-all"
                     />
-                    <span className="absolute end-2.5 top-1/2 -translate-y-1/2 text-[9px] text-muted-foreground/40 font-bold">kg</span>
+                    <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">kg</span>
                   </div>
                 </div>
               </div>
