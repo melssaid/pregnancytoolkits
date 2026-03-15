@@ -221,7 +221,7 @@ export function usePregnancyAI() {
         setIsLoading(false);
       }
     },
-    [resolveError, isLimitReached, incrementUsage, syncFromServer, syncLimit, limit, t, getAuthHeader]
+    [resolveError, incrementUsage, syncFromServer, syncLimit, t, getAuthHeader]
   );
 
   const generateContent = useCallback(

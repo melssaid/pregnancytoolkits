@@ -13,7 +13,7 @@ import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { WeekSlider } from '@/components/WeekSlider';
 import { useTranslation } from 'react-i18next';
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { AILoadingDots } from '@/components/ai/AILoadingDots';
+import { AIActionButton } from '@/components/ai/AIActionButton';
 
 
 interface VitaminDef {
