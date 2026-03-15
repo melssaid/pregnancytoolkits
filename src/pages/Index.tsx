@@ -312,7 +312,7 @@ const FooterCard = memo(function FooterCard() {
               {lang === 'ar' ? 'مجاني • 3 أيام' : 'Free • 3 days'}
             </h4>
             <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">
-              {lang === 'ar' ? '5 تحليلات • أدوات محدودة' : '5 analyses • limited tools'}
+              {lang === 'ar' ? '5 تحليلات ذكاء اصطناعي • أدوات محدودة' : '5 AI analyses • limited tools'}
             </p>
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
@@ -349,7 +349,7 @@ const FooterCard = memo(function FooterCard() {
                 </span>
               </div>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
-                {lang === 'ar' ? '30 تحليل • كل الأدوات' : '30 analyses • all tools'}
+                {lang === 'ar' ? '30 تحليل ذكاء اصطناعي • كل الأدوات' : '30 AI analyses • all tools'}
               </p>
             </div>
             <ChevronRight className="w-4 h-4 text-primary/20 rtl:rotate-180 shrink-0 group-hover:text-primary/40 transition-colors" />
