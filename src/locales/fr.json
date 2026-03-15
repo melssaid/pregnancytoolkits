@@ -4574,7 +4574,8 @@
     "premiumPlan": "PRO",
     "freePlan": "Gratuit",
     "resetsDaily": "Réinitialisation quotidienne",
-    "usedOf": "{{used}} sur {{limit}} utilisées aujourd'hui"
+    "usedOf": "{{used}} sur {{limit}} utilisées aujourd'hui",
+    "subscribePro": "S'abonner à Pro"
   },
   "groceryList": {
     "title": "Liste de courses intelligente",
