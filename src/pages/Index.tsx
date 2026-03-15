@@ -252,7 +252,35 @@ const FooterCard = memo(function FooterCard() {
   const { tier, trialDaysLeft } = useSubscriptionStatus();
   const { remaining, limit } = useAIUsage();
 
-  if (tier === "premium") return null;
+  if (tier === "premium") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.3 }}
+        className="mt-3"
+      >
+        <div className="rounded-3xl border border-primary/15 bg-gradient-to-br from-card via-card to-primary/[0.03] shadow-[inset_0_1px_2px_0_hsl(var(--primary)/0.06),inset_0_-1px_3px_0_hsl(var(--primary)/0.04)] backdrop-blur-sm overflow-hidden px-4 py-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+              <Sparkles className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-[13px] font-extrabold text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                {t('footer.aiTitle', { defaultValue: lang === 'ar' ? 'العقل الداخلي' : 'Inner Mind' })}
+              </h3>
+              <p className="text-[11px] text-muted-foreground leading-snug">
+                {lang === 'ar' ? '30 استخدام يومي للذكاء الاصطناعي' : '30 daily AI uses'}
+              </p>
+            </div>
+            <span className="text-xs font-bold text-primary tabular-nums shrink-0 bg-primary/10 px-2.5 py-1 rounded-lg" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              {remaining} <span className="opacity-60 font-normal">/ 30</span>
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
 
   const isTrial = tier === "trial" && trialDaysLeft > 0;
   const badgeDays = isTrial ? trialDaysLeft : 3;
