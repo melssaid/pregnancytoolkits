@@ -417,7 +417,7 @@ const SmartDashboard = () => {
                       </div>
                       <div className="grid grid-cols-3 gap-1.5">
                         {category.tools.map((tool, toolIndex) => {
-                          const locked = isToolPremium(tool.id);
+                          const locked = isToolPremium(tool.id, tier);
                           return (
                           <Link
                             key={tool.id}
