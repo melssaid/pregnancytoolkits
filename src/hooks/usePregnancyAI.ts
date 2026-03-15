@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useAIUsageLimit } from "./useAIUsageLimit";
 import { supabase } from "@/integrations/supabase/client";
@@ -44,6 +44,12 @@ export function usePregnancyAI() {
 
   const languageRef = useRef(i18n.language);
   languageRef.current = i18n.language;
+
+  // Use refs to avoid stale closures in streamChat callback
+  const isLimitReachedRef = useRef(isLimitReached);
+  const limitRef = useRef(limit);
+  useEffect(() => { isLimitReachedRef.current = isLimitReached; }, [isLimitReached]);
+  useEffect(() => { limitRef.current = limit; }, [limit]);
 
   const resolveError = useCallback((status?: number, rawMsg?: string): { msg: string; type: AIErrorType } => {
     if (status === 429) return { msg: t('aiErrors.rateLimitMsg'), type: 'rate_limit' };
@@ -96,9 +102,9 @@ export function usePregnancyAI() {
       onDelta: (text: string) => void;
       onDone: () => void;
     }) => {
-      // Check daily limit
-      if (isLimitReached) {
-        const limitMsg = t('aiErrors.dailyLimitMsg', { limit, remaining: 0 });
+      // Check daily limit using ref for fresh value
+      if (isLimitReachedRef.current) {
+        const limitMsg = t('aiErrors.dailyLimitMsg', { limit: limitRef.current, remaining: 0 });
         setError(limitMsg);
         setErrorType('rate_limit');
         onDone();
@@ -215,7 +221,7 @@ export function usePregnancyAI() {
         setIsLoading(false);
       }
     },
-    [resolveError, isLimitReached, incrementUsage, syncFromServer, syncLimit, limit, t, getAuthHeader]
+    [resolveError, incrementUsage, syncFromServer, syncLimit, t, getAuthHeader]
   );
 
   const generateContent = useCallback(

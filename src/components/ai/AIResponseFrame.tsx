@@ -1,12 +1,12 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { Brain } from 'lucide-react';
+import { Brain, Crown } from 'lucide-react';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useTranslation } from 'react-i18next';
 import { useMemo, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 import { SaveResultButton } from './SaveResultButton';
-import { AIUsageWarning } from './AIUsageWarning';
-import { useAIUsageLimit } from '@/hooks/useAIUsageLimit';
+import { useAIUsage } from '@/contexts/AIUsageContext';
 
 interface AIResponseFrameProps {
   content: string;
@@ -34,7 +34,8 @@ export const AIResponseFrame = ({
 }: AIResponseFrameProps) => {
   const { t } = useTranslation();
   const { isRTL } = useLanguage();
-  const { remaining, limit, tier, isNearLimit, isLimitReached } = useAIUsageLimit();
+  const navigate = useNavigate();
+  const { remaining, limit, tier, isLimitReached } = useAIUsage();
 
   const rawProgress = useMemo(() => {
     if (!isLoading && content.length > 0) return 100;
@@ -50,6 +51,15 @@ export const AIResponseFrame = ({
   }, [rawProgress, springProgress]);
 
   const showProgress = isLoading || (rawProgress > 0 && rawProgress < 100);
+  const isFree = tier === 'free';
+  const pct = limit > 0 ? Math.round((remaining / limit) * 100) : 100;
+
+  // Dynamic color for usage pill
+  const usageColor = isLimitReached
+    ? 'text-destructive'
+    : pct <= 20
+      ? 'text-amber-600 dark:text-amber-400'
+      : 'text-muted-foreground';
 
   return (
     <motion.div
@@ -118,23 +128,25 @@ export const AIResponseFrame = ({
 
       {/* Content */}
       <div className="px-4 pb-4 pt-1">
-        {/* Usage warning */}
-        {(isNearLimit || isLimitReached) && <AIUsageWarning />}
-
         <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
           {children || <MarkdownRenderer content={content} isLoading={isLoading} />}
         </div>
         {footer}
 
-        {/* Usage counter */}
-        <div className="mt-2 flex items-center justify-center gap-1.5">
-          <span className="text-[9px] text-muted-foreground/50 tabular-nums">
-            {t('aiUsage.remaining', { remaining, limit, defaultValue: '{{remaining}}/{{limit}}' })}
+        {/* Single unified usage + Pro footer */}
+        <div className="mt-3 flex items-center justify-between gap-2 px-1">
+          <span className={`text-[10px] font-medium tabular-nums ${usageColor}`}>
+            {remaining}/{limit}
           </span>
-          {tier === 'free' && (
-            <span className="text-[8px] text-primary/50">
-              {t('aiUsage.freeLabel', '• Free')}
-            </span>
+
+          {isFree && (
+            <button
+              onClick={() => navigate('/pricing-demo')}
+              className="flex items-center gap-1 text-[10px] font-semibold text-primary hover:text-primary/80 transition-colors"
+            >
+              <Crown className="w-3 h-3" />
+              <span>{t('aiUsage.subscribePro', 'اشترك في Pro')}</span>
+            </button>
           )}
         </div>
 

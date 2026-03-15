@@ -4549,7 +4549,8 @@
     "premiumPlan": "PRO",
     "freePlan": "Kostenlos",
     "resetsDaily": "Wird täglich zurückgesetzt",
-    "usedOf": "{{used}} von {{limit}} heute verwendet"
+    "usedOf": "{{used}} von {{limit}} heute verwendet",
+    "subscribePro": "Pro abonnieren"
   },
   "groceryList": {
     "title": "Intelligente Einkaufsliste",
