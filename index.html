@@ -228,7 +228,7 @@
         var lang=localStorage.getItem("user_selected_language")||localStorage.getItem("selected_language")||localStorage.getItem("i18nextLng")||"en";
         lang=lang.substring(0,2);
         var el=document.getElementById("splash-text");
-        if(el){el.textContent=m[lang]||m.en;if(lang==="ar"){el.style.fontFamily="'Tajawal','Plus Jakarta Sans',sans-serif";}}
+        if(el){el.textContent=m[lang]||m.en;if(lang==="ar"){el.style.fontFamily="'Tajawal',system-ui,sans-serif";el.style.direction="rtl";}else{el.style.fontFamily="system-ui,'Plus Jakarta Sans',sans-serif";}}
       })();
     </script>
     <style>
