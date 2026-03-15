@@ -102,9 +102,9 @@ export function usePregnancyAI() {
       onDelta: (text: string) => void;
       onDone: () => void;
     }) => {
-      // Check daily limit
-      if (isLimitReached) {
-        const limitMsg = t('aiErrors.dailyLimitMsg', { limit, remaining: 0 });
+      // Check daily limit using ref for fresh value
+      if (isLimitReachedRef.current) {
+        const limitMsg = t('aiErrors.dailyLimitMsg', { limit: limitRef.current, remaining: 0 });
         setError(limitMsg);
         setErrorType('rate_limit');
         onDone();

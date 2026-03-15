@@ -89,11 +89,17 @@ export function useUserProfile() {
     if (profile.lastPeriodDate) {
       const computedWeek = computeWeekFromLMP(profile.lastPeriodDate);
       const computedDue = computeDueDateFromLMP(profile.lastPeriodDate);
-      setProfile(prev => ({
-        ...prev,
-        pregnancyWeek: computedWeek,
-        dueDate: prev.dueDate ?? computedDue,
-      }));
+      // Only update if values actually changed to prevent re-render loops
+      setProfile(prev => {
+        if (prev.pregnancyWeek === computedWeek && (prev.dueDate || computedDue) === (prev.dueDate ?? computedDue)) {
+          return prev; // No change — skip update
+        }
+        return {
+          ...prev,
+          pregnancyWeek: computedWeek,
+          dueDate: prev.dueDate ?? computedDue,
+        };
+      });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile.lastPeriodDate]);
