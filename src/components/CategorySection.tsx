@@ -25,6 +25,7 @@ export function CategorySection({
   isSubscriptionActive = false
 }: CategorySectionProps) {
   const { t } = useTranslation();
+  const { tier } = useSubscriptionStatus();
   
   if (tools.length === 0) return null;
   
