@@ -349,7 +349,7 @@ const FooterCard = memo(function FooterCard() {
                 </span>
               </div>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
-                {lang === 'ar' ? '30 تحليل • كل الأدوات' : '30 analyses • all tools'}
+                {lang === 'ar' ? '30 تحليل ذكاء اصطناعي • كل الأدوات' : '30 AI analyses • all tools'}
               </p>
             </div>
             <ChevronRight className="w-4 h-4 text-primary/20 rtl:rotate-180 shrink-0 group-hover:text-primary/40 transition-colors" />
