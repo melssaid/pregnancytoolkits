@@ -269,62 +269,72 @@ const FooterCard = memo(function FooterCard() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.3 }}
-      className="mt-3 space-y-3"
+      className="mt-3"
     >
-      {/* AI Usage Card */}
-      <div className="rounded-2xl border border-border/40 bg-card/80 backdrop-blur-sm p-4">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-            <Brain className="w-5 h-5 text-primary" strokeWidth={1.75} />
+      <div className="rounded-3xl border border-primary/15 bg-gradient-to-br from-card via-card to-primary/[0.03] shadow-[inset_0_1px_2px_0_hsl(var(--primary)/0.06),inset_0_-1px_3px_0_hsl(var(--primary)/0.04)] backdrop-blur-sm overflow-hidden">
+        {/* Section Title */}
+        <div className="px-4 pt-4 pb-2 flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center shadow-sm">
+            <Sparkles className="w-4 h-4 text-primary" strokeWidth={1.75} />
           </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-bold text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-              {t('footer.aiTitle', { defaultValue: lang === 'ar' ? 'العقل الداخلي' : 'Inner Mind' })}
-            </h3>
-            <p className="text-[11px] text-muted-foreground leading-snug">
-              {t('footer.aiDesc', { defaultValue: lang === 'ar' ? 'مساعدك الذكي بالذكاء الاصطناعي' : 'Your smart AI assistant' })}
-            </p>
-          </div>
+          <h3 className="text-base font-extrabold text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            {t('footer.aiTitle', { defaultValue: lang === 'ar' ? 'العقل الداخلي' : 'Inner Mind' })}
+          </h3>
         </div>
 
-        {/* Usage bar */}
-        <div className="flex items-center gap-3">
-          <div className="flex-1 h-2 rounded-full bg-muted/40 overflow-hidden">
-            <motion.div
-              className={`h-full rounded-full ${barColor}`}
-              initial={{ width: 0 }}
-              whileInView={{ width: `${percent}%` }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            />
-          </div>
-          <span className="text-xs font-bold text-foreground tabular-nums shrink-0" style={{ fontFamily: "'Cairo', sans-serif" }}>
-            {remaining}<span className="text-muted-foreground font-normal text-[10px]"> / {limit}</span>
-          </span>
-        </div>
-      </div>
-
-      {/* Upgrade Card */}
-      <button onClick={handleTap} className="w-full text-start">
-        <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] p-4 flex items-center gap-3 group hover:border-primary/30 transition-colors">
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-            <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-0.5">
-              <span className="text-sm font-extrabold text-primary" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                PRO
-              </span>
-              <span className="inline-flex items-center gap-1 px-1.5 py-[1px] rounded bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[9px] font-bold">
-                <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
-                {t("pricing.trialBadge", { count: badgeDays })}
-              </span>
+        {/* AI Usage Row */}
+        <div className="px-4 pb-3">
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-background/60 border border-border/10 shadow-[inset_0_1px_3px_0_hsl(0,0%,0%,0.03)]">
+            <div className="w-9 h-9 rounded-xl bg-primary/8 flex items-center justify-center shrink-0">
+              <Brain className="w-[18px] h-[18px] text-primary/80" strokeWidth={1.75} />
             </div>
-            <p className="text-[11px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
+            <div className="flex-1 min-w-0 space-y-1.5">
+              <p className="text-[11px] text-muted-foreground leading-none">
+                {t('footer.aiDesc', { defaultValue: lang === 'ar' ? 'رصيد الذكاء الاصطناعي' : 'AI credits' })}
+              </p>
+              <div className="flex items-center gap-2.5">
+                <div className="flex-1 h-[6px] rounded-full bg-muted/30 overflow-hidden">
+                  <motion.div
+                    className={`h-full rounded-full ${barColor}`}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${percent}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                  />
+                </div>
+                <span className="text-[11px] font-bold text-foreground tabular-nums shrink-0" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {remaining} <span className="text-muted-foreground font-normal opacity-60">/ {limit}</span>
+                </span>
+              </div>
+            </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-primary/30 rtl:rotate-180 shrink-0 group-hover:text-primary/50 transition-colors" />
         </div>
-      </button>
+
+        {/* Divider */}
+        <div className="mx-4 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
+
+        {/* Upgrade Row */}
+        <button onClick={handleTap} className="w-full text-start px-4 py-3 group">
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-background/60 border border-border/10 shadow-[inset_0_1px_3px_0_hsl(0,0%,0%,0.03)] group-hover:border-primary/20 transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-primary/8 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-[18px] h-[18px] text-primary/80" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="text-[12px] font-extrabold text-primary" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  PRO
+                </span>
+                <span className="inline-flex items-center gap-1 px-1.5 py-[1px] rounded-md bg-gradient-to-r from-primary to-[hsl(var(--primary)/0.7)] text-primary-foreground text-[9px] font-bold">
+                  <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
+                  {t("pricing.trialBadge", { count: badgeDays })}
+                </span>
+              </div>
+              <p className="text-[11px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
+            </div>
+            <ChevronRight className="w-4 h-4 text-primary/25 rtl:rotate-180 shrink-0 group-hover:text-primary/50 transition-colors" />
+          </div>
+        </button>
+      </div>
     </motion.div>
   );
 });
