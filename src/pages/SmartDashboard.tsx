@@ -120,6 +120,7 @@ const SmartDashboard = () => {
   const { currentLanguage } = useLanguage();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, toolSummaries, loading: statsLoading } = useTrackingStats();
+  const { tier } = useSubscriptionStatus();
   
   const { profile: userProfile, updateProfile: updateUserProfile } = useUserProfile();
 
