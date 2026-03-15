@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { SEOHead } from "@/components/SEOHead";
-import { isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 import { Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -120,6 +120,7 @@ const SmartDashboard = () => {
   const { currentLanguage } = useLanguage();
   const { streamChat, isLoading, error } = usePregnancyAI();
   const { stats, toolSummaries, loading: statsLoading } = useTrackingStats();
+  const { tier } = useSubscriptionStatus();
   
   const { profile: userProfile, updateProfile: updateUserProfile } = useUserProfile();
 
@@ -416,7 +417,7 @@ const SmartDashboard = () => {
                       </div>
                       <div className="grid grid-cols-3 gap-1.5">
                         {category.tools.map((tool, toolIndex) => {
-                          const locked = isToolPremium(tool.id);
+                          const locked = isToolPremium(tool.id, tier);
                           return (
                           <Link
                             key={tool.id}
@@ -468,7 +469,7 @@ const SmartDashboard = () => {
                     { title: t('dashboard.aiToolsList.mealPlan'),    icon: Salad,        href: "/tools/ai-meal-suggestion",   toolId: "ai-meal-suggestion" },
                     { title: t('dashboard.aiToolsList.fitness'),     icon: Dumbbell,     href: "/tools/ai-fitness-coach",     toolId: "ai-fitness-coach" },
                   ].map((link, i) => {
-                    const locked = isToolPremium(link.toolId);
+                    const locked = isToolPremium(link.toolId, tier);
                     return (
                     <Link
                       key={i}

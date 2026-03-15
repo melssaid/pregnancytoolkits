@@ -3,7 +3,7 @@ import { ChevronRight, LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ToolCard } from "./ToolCard";
 import { Tool } from "@/lib/tools-data";
-import { isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 
 interface CategorySectionProps {
   categoryKey: string;
@@ -25,6 +25,7 @@ export function CategorySection({
   isSubscriptionActive = false
 }: CategorySectionProps) {
   const { t } = useTranslation();
+  const { tier } = useSubscriptionStatus();
   
   if (tools.length === 0) return null;
   
@@ -86,7 +87,7 @@ export function CategorySection({
                   href={tool.href}
                   categoryKey={tool.categoryKey}
                   index={index}
-                  isLocked={isToolPremium(tool.id)}
+                  isLocked={isToolPremium(tool.id, tier)}
                 />
               </motion.div>
             ))}
