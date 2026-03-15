@@ -300,15 +300,18 @@ const FooterCard = memo(function FooterCard() {
       transition={{ duration: 0.4, delay: 0.3 }}
       className="mt-3"
     >
-      <div className="rounded-3xl border border-primary/15 bg-gradient-to-br from-card via-card to-primary/[0.03] shadow-[inset_0_1px_2px_0_hsl(var(--primary)/0.06),inset_0_-1px_3px_0_hsl(var(--primary)/0.04)] backdrop-blur-sm overflow-hidden">
+      <div className="rounded-3xl border border-border/20 bg-card shadow-[0_2px_16px_-4px_hsl(0,0%,0%,0.08)] overflow-hidden">
 
-        {/* Free trial info */}
-        <div className="px-4 pt-4 pb-2.5">
-          <div className="p-3 rounded-2xl bg-background/60 border border-border/10 shadow-[inset_0_1px_3px_0_hsl(0,0%,0%,0.03)]">
-            <h4 className="text-[13px] font-extrabold text-foreground mb-1" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+        {/* Free tier */}
+        <div className="px-4 pt-4 pb-3 flex items-start gap-3">
+          <div className="w-9 h-9 rounded-xl bg-muted/40 flex items-center justify-center shrink-0 mt-0.5">
+            <Sparkles className="w-[18px] h-[18px] text-muted-foreground/60" strokeWidth={1.75} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h4 className="text-[13px] font-extrabold text-foreground leading-snug" style={{ fontFamily: "'Tajawal', sans-serif" }}>
               {lang === 'ar' ? 'التجربة المجانية لمدة 3 أيام' : 'Free trial for 3 days'}
             </h4>
-            <p className="text-[11px] text-muted-foreground leading-relaxed">
+            <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">
               {lang === 'ar' ? 'بعض الأدوات + 5 تحليلات يومية بالذكاء الاصطناعي' : 'Some tools + 5 daily AI analyses'}
             </p>
             <div className="flex items-center gap-2.5 mt-2">
@@ -328,31 +331,28 @@ const FooterCard = memo(function FooterCard() {
           </div>
         </div>
 
-        {/* Visual connector — vertical timeline style */}
-        <div className="flex justify-center py-1.5">
-          <div className="flex flex-col items-center gap-[3px]">
-            <div className="w-[3px] h-3 rounded-full bg-gradient-to-b from-muted-foreground/20 to-primary/30" />
-            <div className="w-2 h-2 rounded-full bg-primary/40 shadow-[0_0_6px_1px_hsl(var(--primary)/0.2)]" />
-            <div className="w-[3px] h-3 rounded-full bg-gradient-to-b from-primary/30 to-primary/10" />
-          </div>
-        </div>
+        {/* Seamless divider */}
+        <div className="mx-4 h-px bg-border/15" />
 
-        {/* PRO upgrade */}
-        <button onClick={handleTap} className="w-full text-start px-4 pb-4 pt-1 group">
-          <div className="p-3 rounded-2xl bg-primary/[0.04] border border-primary/10 shadow-[inset_0_1px_3px_0_hsl(var(--primary)/0.05)] group-hover:border-primary/20 transition-colors">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-[13px] font-extrabold text-primary" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                PRO
-              </span>
-              <span className="inline-flex items-center gap-1 px-1.5 py-[1px] rounded-md bg-gradient-to-r from-primary to-[hsl(var(--primary)/0.7)] text-primary-foreground text-[9px] font-bold">
-                <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
-                {t("pricing.trialBadge", { count: badgeDays })}
-              </span>
-              <ChevronRight className="w-3.5 h-3.5 text-primary/25 rtl:rotate-180 shrink-0 ms-auto group-hover:text-primary/50 transition-colors" />
+        {/* PRO tier */}
+        <button onClick={handleTap} className="w-full text-start px-4 pt-3 pb-4 group">
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/15 transition-colors">
+              <Brain className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
             </div>
-            <p className="text-[11px] text-muted-foreground leading-relaxed">
-              {lang === 'ar' ? 'جميع الأدوات مفتوحة + 30 تحليل يومي بالذكاء الاصطناعي' : 'All tools unlocked + 30 daily AI analyses'}
-            </p>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="text-[13px] font-extrabold text-primary" style={{ fontFamily: "'Cairo', sans-serif" }}>PRO</span>
+                <span className="inline-flex items-center gap-1 px-1.5 py-[1px] rounded-md bg-gradient-to-r from-primary to-primary/70 text-primary-foreground text-[9px] font-bold">
+                  <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
+                  {t("pricing.trialBadge", { count: badgeDays })}
+                </span>
+                <ChevronRight className="w-3.5 h-3.5 text-primary/20 rtl:rotate-180 shrink-0 ms-auto group-hover:text-primary/40 transition-colors" />
+              </div>
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                {lang === 'ar' ? 'جميع الأدوات مفتوحة + 30 تحليل يومي بالذكاء الاصطناعي' : 'All tools unlocked + 30 daily AI analyses'}
+              </p>
+            </div>
           </div>
         </button>
       </div>
