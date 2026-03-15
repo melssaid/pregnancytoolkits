@@ -328,13 +328,13 @@ const FooterCard = memo(function FooterCard() {
           </div>
         </div>
 
-        {/* "Then" divider */}
-        <div className="flex items-center gap-3 px-6 py-1">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-          <span className="text-[15px] font-extrabold text-primary/70" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-            {lang === 'ar' ? 'ثم' : 'Then'}
-          </span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+        {/* Visual connector — vertical timeline style */}
+        <div className="flex justify-center py-1.5">
+          <div className="flex flex-col items-center gap-[3px]">
+            <div className="w-[3px] h-3 rounded-full bg-gradient-to-b from-muted-foreground/20 to-primary/30" />
+            <div className="w-2 h-2 rounded-full bg-primary/40 shadow-[0_0_6px_1px_hsl(var(--primary)/0.2)]" />
+            <div className="w-[3px] h-3 rounded-full bg-gradient-to-b from-primary/30 to-primary/10" />
+          </div>
         </div>
 
         {/* PRO upgrade */}
