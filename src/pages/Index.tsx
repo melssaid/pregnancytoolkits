@@ -244,26 +244,11 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   );
 });
 
-// ── Unified Footer Card — Premium + AI Usage ───────────────────────────
-const footerI18n: Record<string, {
-  aiTitle: string; aiLine1: string; aiLine2: string; free: string; pro: string; daily: string;
-  upgrade: string; unlockAll: string;
-}> = {
-  en: { aiTitle: 'Inner Mind', aiLine1: 'Your smart AI-powered assistant', aiLine2: 'Free: 5/day · PRO: 30/day', free: 'Free', pro: 'PRO', daily: 'daily', upgrade: 'Upgrade', unlockAll: 'Unlock all tools' },
-  ar: { aiTitle: 'العقل الداخلي', aiLine1: 'مساعدك الذكي المدعوم بالذكاء الاصطناعي', aiLine2: 'مجاني: 5 يومياً · PRO: 30 يومياً', free: 'مجاني', pro: 'PRO', daily: 'يومياً', upgrade: 'ترقية', unlockAll: 'افتح جميع الأدوات' },
-  de: { aiTitle: 'Innerer Geist', aiLine1: 'Dein smarter KI-Assistent', aiLine2: 'Gratis: 5/Tag · PRO: 30/Tag', free: 'Gratis', pro: 'PRO', daily: 'täglich', upgrade: 'Upgrade', unlockAll: 'Alle Tools freischalten' },
-  fr: { aiTitle: 'Esprit Interne', aiLine1: 'Votre assistant IA intelligent', aiLine2: 'Gratuit: 5/jour · PRO: 30/jour', free: 'Gratuit', pro: 'PRO', daily: 'par jour', upgrade: 'Passer au Pro', unlockAll: 'Débloquer tous les outils' },
-  es: { aiTitle: 'Mente Interna', aiLine1: 'Tu asistente inteligente con IA', aiLine2: 'Gratis: 5/día · PRO: 30/día', free: 'Gratis', pro: 'PRO', daily: 'diarios', upgrade: 'Mejorar', unlockAll: 'Desbloquear todo' },
-  pt: { aiTitle: 'Mente Interna', aiLine1: 'Seu assistente inteligente com IA', aiLine2: 'Grátis: 5/dia · PRO: 30/dia', free: 'Grátis', pro: 'PRO', daily: 'diários', upgrade: 'Upgrade', unlockAll: 'Desbloquear tudo' },
-  tr: { aiTitle: 'İç Zihin', aiLine1: 'Akıllı yapay zekâ asistanınız', aiLine2: 'Ücretsiz: 5/gün · PRO: 30/gün', free: 'Ücretsiz', pro: 'PRO', daily: 'günlük', upgrade: 'Yükselt', unlockAll: 'Tüm araçları aç' },
-};
-
+// ── Footer Card — Clean AI + Upgrade ────────────────────────────────────
 const FooterCard = memo(function FooterCard() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const isRTL = i18n.language === 'ar';
   const lang = i18n.language?.split('-')[0] || 'en';
-  const labels = footerI18n[lang] || footerI18n.en;
   const { tier, trialDaysLeft } = useSubscriptionStatus();
   const { remaining, limit } = useAIUsage();
 
@@ -271,11 +256,7 @@ const FooterCard = memo(function FooterCard() {
 
   const isTrial = tier === "trial" && trialDaysLeft > 0;
   const badgeDays = isTrial ? trialDaysLeft : 3;
-  const isFree = tier === 'free';
   const percent = limit > 0 ? Math.max(0, Math.min(100, (remaining / limit) * 100)) : 0;
-  const FREE_LIMIT = 5;
-  const PRO_LIMIT = 30;
-
   const barColor = percent > 40 ? 'bg-emerald-500' : percent > 15 ? 'bg-amber-500' : 'bg-destructive';
 
   const handleTap = () => {
@@ -288,87 +269,60 @@ const FooterCard = memo(function FooterCard() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.3 }}
-      className="mt-3"
-      style={{ fontFamily: "'Almarai', 'Tajawal', sans-serif" }}
+      className="mt-3 space-y-3"
     >
+      {/* AI Usage Card */}
+      <div className="rounded-2xl border border-border/40 bg-card/80 backdrop-blur-sm p-4">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+            <Brain className="w-5 h-5 text-primary" strokeWidth={1.75} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-bold text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              {t('footer.aiTitle', { defaultValue: lang === 'ar' ? 'العقل الداخلي' : 'Inner Mind' })}
+            </h3>
+            <p className="text-[11px] text-muted-foreground leading-snug">
+              {t('footer.aiDesc', { defaultValue: lang === 'ar' ? 'مساعدك الذكي بالذكاء الاصطناعي' : 'Your smart AI assistant' })}
+            </p>
+          </div>
+        </div>
+
+        {/* Usage bar */}
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-2 rounded-full bg-muted/40 overflow-hidden">
+            <motion.div
+              className={`h-full rounded-full ${barColor}`}
+              initial={{ width: 0 }}
+              whileInView={{ width: `${percent}%` }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+            />
+          </div>
+          <span className="text-xs font-bold text-foreground tabular-nums shrink-0" style={{ fontFamily: "'Cairo', sans-serif" }}>
+            {remaining}<span className="text-muted-foreground font-normal text-[10px]"> / {limit}</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Upgrade Card */}
       <button onClick={handleTap} className="w-full text-start">
-        <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/[0.04] to-card relative overflow-hidden">
-          {/* Shared glow */}
-          <motion.div
-            className="absolute -inset-2 rounded-3xl bg-primary/5 blur-2xl -z-10"
-            animate={{ opacity: [0.15, 0.4, 0.15] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-
-          {/* ─── Top: PRO section ─── */}
-          <div className="px-4 py-3">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-4.5 h-4.5 text-primary" strokeWidth={1.75} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-[13px] font-extrabold text-primary uppercase tracking-wider" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                    PRO
-                  </span>
-                  <motion.span
-                    className="inline-flex items-center gap-1 px-1.5 py-[2px] rounded bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[9px] font-bold"
-                    animate={{ scale: [1, 1.03, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
-                    {t("pricing.trialBadge", { count: badgeDays })}
-                  </motion.span>
-                </div>
-                <p className="text-[10px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
-              </div>
-              <ChevronRight className="w-4 h-4 text-primary/30 rtl:rotate-180 shrink-0" />
-            </div>
+        <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] p-4 flex items-center gap-3 group hover:border-primary/30 transition-colors">
+          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
           </div>
-
-          {/* ─── Divider ─── */}
-          <div className="mx-5 h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent" />
-
-          {/* ─── Bottom: AI Usage section ─── */}
-          <div className="px-4 py-3">
-            <div className="flex items-center gap-2.5 mb-2">
-              <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <Brain className="w-4.5 h-4.5 text-primary" strokeWidth={1.75} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <span className="text-[13px] font-extrabold text-primary uppercase tracking-wider" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-                    {labels.aiTitle}
-                  </span>
-                </div>
-                <p className="text-[10px] text-muted-foreground leading-snug">{labels.aiLine1}</p>
-              </div>
-              <div className="text-end shrink-0">
-                <motion.span
-                  className="text-[22px] font-black text-foreground tabular-nums leading-none"
-                  style={{ fontFamily: "'Cairo', sans-serif" }}
-                  key={remaining}
-                  initial={{ scale: 1.1, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                >
-                  {remaining}
-                </motion.span>
-                <span className="text-[9px] text-muted-foreground font-medium block">/ {limit}</span>
-              </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-0.5">
+              <span className="text-sm font-extrabold text-primary" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                PRO
+              </span>
+              <span className="inline-flex items-center gap-1 px-1.5 py-[1px] rounded bg-gradient-to-r from-[hsl(0,72%,45%)] to-[hsl(25,90%,52%)] text-white text-[9px] font-bold">
+                <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
+                {t("pricing.trialBadge", { count: badgeDays })}
+              </span>
             </div>
-
-            {/* Progress bar */}
-            <div className="h-1.5 rounded-full bg-muted/30 overflow-hidden">
-              <motion.div
-                className={`h-full rounded-full ${barColor}`}
-                initial={{ width: 0 }}
-                whileInView={{ width: `${percent}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-              />
-            </div>
+            <p className="text-[11px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
           </div>
+          <ChevronRight className="w-4 h-4 text-primary/30 rtl:rotate-180 shrink-0 group-hover:text-primary/50 transition-colors" />
         </div>
       </button>
     </motion.div>
