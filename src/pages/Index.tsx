@@ -252,6 +252,7 @@ const FooterCard = memo(function FooterCard() {
   const { tier, trialDaysLeft } = useSubscriptionStatus();
   const { remaining, limit } = useAIUsage();
 
+  // Premium users — simple usage card
   if (tier === "premium") {
     return (
       <motion.div
@@ -266,11 +267,11 @@ const FooterCard = memo(function FooterCard() {
               <Sparkles className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="text-[13px] font-extrabold text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-                {t('footer.aiTitle', { defaultValue: lang === 'ar' ? 'العقل الداخلي' : 'Inner Mind' })}
-              </h3>
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <span className="text-[12px] font-extrabold text-primary" style={{ fontFamily: "'Cairo', sans-serif" }}>PRO</span>
+              </div>
               <p className="text-[11px] text-muted-foreground leading-snug">
-                {lang === 'ar' ? '30 استخدام يومي للذكاء الاصطناعي' : '30 daily AI uses'}
+                {lang === 'ar' ? 'جميع الأدوات مفتوحة • 30 تحليل يومي بالذكاء الاصطناعي' : 'All tools unlocked • 30 daily AI analyses'}
               </p>
             </div>
             <span className="text-xs font-bold text-primary tabular-nums shrink-0 bg-primary/10 px-2.5 py-1 rounded-lg" style={{ fontFamily: "'Cairo', sans-serif" }}>
@@ -300,28 +301,27 @@ const FooterCard = memo(function FooterCard() {
       className="mt-3"
     >
       <div className="rounded-3xl border border-primary/15 bg-gradient-to-br from-card via-card to-primary/[0.03] shadow-[inset_0_1px_2px_0_hsl(var(--primary)/0.06),inset_0_-1px_3px_0_hsl(var(--primary)/0.04)] backdrop-blur-sm overflow-hidden">
-        {/* Section Title */}
-        <div className="px-4 pt-4 pb-2 flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center shadow-sm">
-            <Sparkles className="w-4 h-4 text-primary" strokeWidth={1.75} />
-          </div>
-          <h3 className="text-base font-extrabold text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-            {t('footer.aiTitle', { defaultValue: lang === 'ar' ? 'العقل الداخلي' : 'Inner Mind' })}
-          </h3>
-        </div>
 
-        {/* AI Usage Row */}
-        <div className="px-4 pb-3">
+        {/* Free tier info */}
+        <div className="px-4 pt-4 pb-3">
           <div className="flex items-center gap-3 p-3 rounded-2xl bg-background/60 border border-border/10 shadow-[inset_0_1px_3px_0_hsl(0,0%,0%,0.03)]">
-            <div className="w-9 h-9 rounded-xl bg-primary/8 flex items-center justify-center shrink-0">
-              <Brain className="w-[18px] h-[18px] text-primary/80" strokeWidth={1.75} />
+            <div className="w-9 h-9 rounded-xl bg-muted/40 flex items-center justify-center shrink-0">
+              <Brain className="w-[18px] h-[18px] text-muted-foreground" strokeWidth={1.75} />
             </div>
             <div className="flex-1 min-w-0 space-y-1.5">
-              <p className="text-[11px] text-muted-foreground leading-none">
-                {t('footer.aiDesc', { defaultValue: lang === 'ar' ? 'رصيد الذكاء الاصطناعي' : 'AI credits' })}
+              <div className="flex items-center gap-2">
+                <span className="text-[12px] font-bold text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                  {lang === 'ar' ? 'المجاني' : 'Free'}
+                </span>
+                <span className="text-[9px] text-muted-foreground bg-muted/50 px-1.5 py-0.5 rounded-md font-medium">
+                  {lang === 'ar' ? '3 أيام' : '3 days'}
+                </span>
+              </div>
+              <p className="text-[10.5px] text-muted-foreground leading-snug">
+                {lang === 'ar' ? 'أغلب الأدوات • 5 تحليلات يومية بالذكاء الاصطناعي' : 'Most tools • 5 daily AI analyses'}
               </p>
               <div className="flex items-center gap-2.5">
-                <div className="flex-1 h-[6px] rounded-full bg-muted/30 overflow-hidden">
+                <div className="flex-1 h-[5px] rounded-full bg-muted/30 overflow-hidden">
                   <motion.div
                     className={`h-full rounded-full ${barColor}`}
                     initial={{ width: 0 }}
@@ -330,7 +330,7 @@ const FooterCard = memo(function FooterCard() {
                     transition={{ duration: 0.8, ease: 'easeOut' }}
                   />
                 </div>
-                <span className="text-[11px] font-bold text-foreground tabular-nums shrink-0" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                <span className="text-[10px] font-bold text-foreground tabular-nums shrink-0" style={{ fontFamily: "'Cairo', sans-serif" }}>
                   {remaining} <span className="text-muted-foreground font-normal opacity-60">/ {limit}</span>
                 </span>
               </div>
@@ -341,11 +341,11 @@ const FooterCard = memo(function FooterCard() {
         {/* Divider */}
         <div className="mx-4 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
 
-        {/* Upgrade Row */}
+        {/* PRO upgrade */}
         <button onClick={handleTap} className="w-full text-start px-4 py-3 group">
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-background/60 border border-border/10 shadow-[inset_0_1px_3px_0_hsl(0,0%,0%,0.03)] group-hover:border-primary/20 transition-colors">
-            <div className="w-9 h-9 rounded-xl bg-primary/8 flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-[18px] h-[18px] text-primary/80" strokeWidth={1.75} />
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-primary/[0.04] border border-primary/10 shadow-[inset_0_1px_3px_0_hsl(var(--primary)/0.05)] group-hover:border-primary/20 transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-0.5">
@@ -357,7 +357,9 @@ const FooterCard = memo(function FooterCard() {
                   {t("pricing.trialBadge", { count: badgeDays })}
                 </span>
               </div>
-              <p className="text-[11px] text-muted-foreground leading-snug">{t("pricing.badge")}</p>
+              <p className="text-[10.5px] text-muted-foreground leading-snug">
+                {lang === 'ar' ? 'جميع الأدوات مفتوحة • 30 تحليل يومي بالذكاء الاصطناعي' : 'All tools unlocked • 30 daily AI analyses'}
+              </p>
             </div>
             <ChevronRight className="w-4 h-4 text-primary/25 rtl:rotate-180 shrink-0 group-hover:text-primary/50 transition-colors" />
           </div>
