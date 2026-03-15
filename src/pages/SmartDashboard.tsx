@@ -469,7 +469,7 @@ const SmartDashboard = () => {
                     { title: t('dashboard.aiToolsList.mealPlan'),    icon: Salad,        href: "/tools/ai-meal-suggestion",   toolId: "ai-meal-suggestion" },
                     { title: t('dashboard.aiToolsList.fitness'),     icon: Dumbbell,     href: "/tools/ai-fitness-coach",     toolId: "ai-fitness-coach" },
                   ].map((link, i) => {
-                    const locked = isToolPremium(link.toolId);
+                    const locked = isToolPremium(link.toolId, tier);
                     return (
                     <Link
                       key={i}
