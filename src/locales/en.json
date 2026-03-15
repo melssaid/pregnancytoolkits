@@ -5297,7 +5297,8 @@
     "premiumPlan": "PRO",
     "freePlan": "Free",
     "resetsDaily": "Resets daily",
-    "usedOf": "{{used}} of {{limit}} used today"
+    "usedOf": "{{used}} of {{limit}} used today",
+    "subscribePro": "Subscribe to Pro"
   },
   "settings.deleteAccount": {
     "title": "Delete All Data",
