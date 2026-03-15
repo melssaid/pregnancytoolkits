@@ -45,6 +45,12 @@ export function usePregnancyAI() {
   const languageRef = useRef(i18n.language);
   languageRef.current = i18n.language;
 
+  // Use refs to avoid stale closures in streamChat callback
+  const isLimitReachedRef = useRef(isLimitReached);
+  const limitRef = useRef(limit);
+  useEffect(() => { isLimitReachedRef.current = isLimitReached; }, [isLimitReached]);
+  useEffect(() => { limitRef.current = limit; }, [limit]);
+
   const resolveError = useCallback((status?: number, rawMsg?: string): { msg: string; type: AIErrorType } => {
     if (status === 429) return { msg: t('aiErrors.rateLimitMsg'), type: 'rate_limit' };
     if (status === 402) return { msg: t('aiErrors.paymentMsg'), type: 'payment' };
