@@ -178,20 +178,14 @@ const VitaminTracker: React.FC = () => {
               />
             </div>
 
-            <motion.button
+            <AIActionButton
               onClick={getAIAnalysis}
-              disabled={aiLoading}
-              whileTap={{ scale: 0.95 }}
-              className="w-full relative overflow-hidden rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              <div className="w-full flex items-center justify-center gap-2 px-4 h-10 font-semibold text-white text-[13px] rounded-xl bg-primary" style={{ boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.4)' }}>
-                {aiLoading ? (
-                  <AILoadingDots text={t('toolsInternal.vitaminTracker.analyzing')} />
-                ) : (
-                  <><Brain className="w-4 h-4 shrink-0" /><span>{t('toolsInternal.vitaminTracker.analyzeRoutine')}</span></>
-                )}
-              </div>
-            </motion.button>
+              isLoading={aiLoading}
+              label={t('toolsInternal.vitaminTracker.analyzeRoutine')}
+              loadingLabel={t('toolsInternal.vitaminTracker.analyzing')}
+              icon={Brain}
+              variant="compact"
+            />
           </CardContent>
         </Card>
 
