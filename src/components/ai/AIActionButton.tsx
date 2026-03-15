@@ -135,11 +135,6 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
           <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">
             {remaining}/{limit}
           </span>
-          {isFree && (
-            <button onClick={() => navigate('/pricing-demo')} className="shrink-0">
-              <Crown className="w-2.5 h-2.5 text-primary" />
-            </button>
-          )}
         </div>
       )}
     </div>
