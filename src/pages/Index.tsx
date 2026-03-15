@@ -311,7 +311,8 @@ const FooterCard = memo(function FooterCard() {
             <h4 className="text-[13px] font-extrabold text-foreground leading-snug" style={{ fontFamily: "'Tajawal', sans-serif" }}>
               {lang === 'ar' ? 'التجربة المجانية لمدة 3 أيام' : 'Free trial for 3 days'}
             </h4>
-            <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">
+            <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed inline-flex items-center gap-1 flex-wrap">
+              <Lock className="w-3 h-3 text-muted-foreground/50 shrink-0" strokeWidth={2} />
               {lang === 'ar' ? 'بعض الأدوات + 5 تحليلات يومية بالذكاء الاصطناعي' : 'Some tools + 5 daily AI analyses'}
             </p>
             <div className="flex items-center gap-2.5 mt-2">
