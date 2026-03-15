@@ -328,6 +328,11 @@ const FooterCard = memo(function FooterCard() {
     </motion.div>
   );
 });
+// ── Main page ───────────────────────────────────────────────────────────
+const Index = () => {
+  const { t } = useTranslation();
+  const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
+
   return (
     <Layout>
       <SEOHead />
