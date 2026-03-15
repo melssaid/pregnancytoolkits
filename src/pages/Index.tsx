@@ -315,20 +315,6 @@ const FooterCard = memo(function FooterCard() {
               {lang === 'ar' ? '5 تحليلات ذكاء اصطناعي • ' : '5 AI analyses • '}<span className="text-destructive/70 font-semibold">{lang === 'ar' ? 'أدوات محدودة' : 'limited tools'}</span>
             </p>
           </div>
-          <div className="flex items-center gap-1.5 shrink-0">
-            <div className="flex-shrink-0 h-[5px] w-14 rounded-full bg-muted/30 overflow-hidden">
-              <motion.div
-                className={`h-full rounded-full ${barColor}`}
-                initial={{ width: 0 }}
-                whileInView={{ width: `${percent}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-              />
-            </div>
-            <span className="text-[10px] font-bold text-muted-foreground tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              {remaining}/{limit}
-            </span>
-          </div>
         </div>
 
         {/* Divider */}
