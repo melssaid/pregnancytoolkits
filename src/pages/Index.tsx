@@ -340,13 +340,6 @@ const FooterCard = memo(function FooterCard() {
                   <span className="text-[13px] font-extrabold text-primary uppercase tracking-wider" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                     {labels.aiTitle}
                   </span>
-                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${
-                    percent > 40 ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400'
-                    : percent > 15 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'
-                    : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400'
-                  }`}>
-                    {isFree ? labels.free : labels.pro}
-                  </span>
                 </div>
                 <p className="text-[10px] text-muted-foreground leading-snug">{labels.aiLine1}</p>
               </div>

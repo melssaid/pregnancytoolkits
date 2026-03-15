@@ -133,7 +133,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             />
           </div>
           <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">
-            {remaining}/{limit}
+            {remaining} <span className="opacity-60">/ {limit}</span>
           </span>
         </div>
       )}
