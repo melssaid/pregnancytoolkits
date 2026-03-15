@@ -2,7 +2,7 @@ import { useMemo, memo, useState, useCallback } from "react";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 import { requestPurchase, isNativeApp } from "@/lib/googlePlayBilling";
-import { ChevronRight, ChevronLeft, ChevronDown, Lock, ShieldCheck, Clock, Sparkles, Brain } from "lucide-react";
+import { ChevronRight, ChevronLeft, ChevronDown, Lock, LockOpen, ShieldCheck, Clock, Sparkles, Brain } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
@@ -303,43 +303,42 @@ const FooterCard = memo(function FooterCard() {
       <div className="rounded-3xl border border-border/20 bg-card shadow-[0_2px_16px_-4px_hsl(0,0%,0%,0.08)] overflow-hidden">
 
         {/* Free tier */}
-        <div className="px-4 pt-4 pb-3 flex items-start gap-3">
-          <div className="w-9 h-9 rounded-xl bg-muted/40 flex items-center justify-center shrink-0 mt-0.5">
-            <Sparkles className="w-[18px] h-[18px] text-muted-foreground/60" strokeWidth={1.75} />
+        <div className="px-4 pt-4 pb-3 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-muted/40 flex items-center justify-center shrink-0">
+            <Lock className="w-[17px] h-[17px] text-muted-foreground/50" strokeWidth={1.8} />
           </div>
           <div className="flex-1 min-w-0">
             <h4 className="text-[13px] font-extrabold text-foreground leading-snug" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-              {lang === 'ar' ? 'التجربة المجانية لمدة 3 أيام' : 'Free trial for 3 days'}
+              {lang === 'ar' ? 'مجاني • 3 أيام' : 'Free • 3 days'}
             </h4>
-            <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed inline-flex items-center gap-1 flex-wrap">
-              <Lock className="w-3 h-3 text-muted-foreground/50 shrink-0" strokeWidth={2} />
-              {lang === 'ar' ? 'بعض الأدوات + 5 تحليلات يومية بالذكاء الاصطناعي' : 'Some tools + 5 daily AI analyses'}
+            <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">
+              {lang === 'ar' ? '5 تحليلات • أدوات محدودة' : '5 analyses • limited tools'}
             </p>
-            <div className="flex items-center gap-2.5 mt-2">
-              <div className="flex-1 h-[5px] rounded-full bg-muted/30 overflow-hidden">
-                <motion.div
-                  className={`h-full rounded-full ${barColor}`}
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${percent}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                />
-              </div>
-              <span className="text-[10px] font-bold text-foreground tabular-nums shrink-0" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                {remaining} <span className="text-muted-foreground font-normal opacity-60">/ {limit}</span>
-              </span>
+          </div>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <div className="flex-shrink-0 h-[5px] w-14 rounded-full bg-muted/30 overflow-hidden">
+              <motion.div
+                className={`h-full rounded-full ${barColor}`}
+                initial={{ width: 0 }}
+                whileInView={{ width: `${percent}%` }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+              />
             </div>
+            <span className="text-[10px] font-bold text-muted-foreground tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              {remaining}/{limit}
+            </span>
           </div>
         </div>
 
-        {/* Seamless divider */}
+        {/* Divider */}
         <div className="mx-4 h-px bg-border/15" />
 
         {/* PRO tier */}
         <button onClick={handleTap} className="w-full text-start px-4 pt-3 pb-4 group">
-          <div className="flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/15 transition-colors">
-              <Brain className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
+              <LockOpen className="w-[17px] h-[17px] text-primary" strokeWidth={1.8} />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-0.5">
@@ -348,12 +347,12 @@ const FooterCard = memo(function FooterCard() {
                   <Clock className="w-2.5 h-2.5" strokeWidth={2.5} />
                   {t("pricing.trialBadge", { count: badgeDays })}
                 </span>
-                <ChevronRight className="w-3.5 h-3.5 text-primary/20 rtl:rotate-180 shrink-0 ms-auto group-hover:text-primary/40 transition-colors" />
               </div>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
-                {lang === 'ar' ? 'جميع الأدوات مفتوحة + 30 تحليل يومي بالذكاء الاصطناعي' : 'All tools unlocked + 30 daily AI analyses'}
+                {lang === 'ar' ? '30 تحليل • كل الأدوات' : '30 analyses • all tools'}
               </p>
             </div>
+            <ChevronRight className="w-4 h-4 text-primary/20 rtl:rotate-180 shrink-0 group-hover:text-primary/40 transition-colors" />
           </div>
         </button>
       </div>
