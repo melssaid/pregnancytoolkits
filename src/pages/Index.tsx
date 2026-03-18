@@ -267,8 +267,8 @@ const FooterCard = memo(function FooterCard() {
             <Sparkles className="w-3 h-3" strokeWidth={2.5} />
             {isAr ? 'عرض الإطلاق' : 'LAUNCH OFFER'}
           </span>
-          <span className="text-[10px] text-muted-foreground font-medium">
-            {isAr ? '10 أيام مجاناً' : '10 Days Free'}
+          <span className="text-[13px] font-extrabold text-primary">
+            {isAr ? '🎁 10 أيام مجاناً' : '🎁 10 Days Free'}
           </span>
         </div>
 
