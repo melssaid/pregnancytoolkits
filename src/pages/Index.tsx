@@ -244,13 +244,81 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   );
 });
 
-// ── Footer Card — Clean AI + Upgrade ────────────────────────────────────
+// ── Footer Card — Launch Promo: Free until end of April ─────────────────
 const FooterCard = memo(function FooterCard() {
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
+  const { i18n } = useTranslation();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const { tier, trialDaysLeft } = useSubscriptionStatus();
-  const { remaining, limit } = useAIUsage();
+  const { remaining } = useAIUsage();
+  const isAr = lang === 'ar';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.3 }}
+      className="mt-3"
+    >
+      <div className="rounded-3xl border border-primary/20 bg-gradient-to-br from-card via-card to-primary/[0.04] shadow-[0_2px_20px_-4px_hsl(var(--primary)/0.12)] overflow-hidden relative">
+        {/* Decorative corner glow */}
+        <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/8 blur-2xl pointer-events-none" />
+        
+        {/* Launch badge */}
+        <div className="px-4 pt-4 pb-1 flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-primary to-primary/75 text-primary-foreground text-[10px] font-bold tracking-wide shadow-sm">
+            <Sparkles className="w-3 h-3" strokeWidth={2.5} />
+            {isAr ? 'عرض الإطلاق' : 'LAUNCH OFFER'}
+          </span>
+          <span className="text-[10px] text-muted-foreground font-medium">
+            {isAr ? 'حتى 30 أبريل 2025' : 'Until April 30, 2025'}
+          </span>
+        </div>
+
+        {/* Main content */}
+        <div className="px-4 pt-2 pb-3">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+              <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.8} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="text-[14px] font-extrabold text-foreground leading-snug" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                {isAr ? 'جميع الأدوات مجاناً' : 'All Tools — Free Access'}
+              </h4>
+              <p className="text-[11.5px] text-muted-foreground mt-1 leading-relaxed">
+                {isAr
+                  ? 'بمناسبة تدشين التطبيق في متجر Google Play، جميع أدوات الذكاء الاصطناعي متاحة مجاناً حتى نهاية أبريل.'
+                  : 'Celebrating our Google Play launch — all AI tools are free until end of April.'}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="mx-4 h-px bg-primary/10" />
+
+        {/* Stats row */}
+        <div className="px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1.5">
+              <Brain className="w-3.5 h-3.5 text-primary/60" strokeWidth={1.8} />
+              <span className="text-[11px] text-muted-foreground">
+                {isAr ? 'تحليلات اليوم' : "Today's analyses"}
+              </span>
+            </div>
+            <span className="text-[12px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              {remaining} <span className="opacity-50 font-normal">/ 30</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+              {isAr ? 'مفعّل' : 'Active'}
+            </span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+});
 
   // Premium users — simple usage card
   if (tier === "premium") {
