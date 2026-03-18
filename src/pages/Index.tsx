@@ -1,7 +1,7 @@
 import { useMemo, memo, useState, useCallback } from "react";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
-import { ChevronRight, ChevronLeft, ChevronDown, Lock, LockOpen, ShieldCheck, Clock, Sparkles, Brain } from "lucide-react";
+import { ChevronRight, ChevronLeft, ChevronDown, Lock, LockOpen, ShieldCheck, Clock, Sparkles, Brain, Gift } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
@@ -275,17 +275,26 @@ const FooterCard = memo(function FooterCard() {
         {/* Main content */}
         <div className="px-4 pt-2 pb-3">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-              <ShieldCheck className="w-5 h-5 text-primary" strokeWidth={1.8} />
-            </div>
+            <motion.div 
+              className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 flex items-center justify-center shrink-0 mt-0.5 border border-primary/15 shadow-sm relative overflow-hidden"
+              animate={{ scale: [1, 1.06, 1] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent"
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
+              />
+              <Gift className="w-5.5 h-5.5 text-primary relative z-10" strokeWidth={1.8} />
+            </motion.div>
             <div className="flex-1 min-w-0">
               <h4 className="text-[14px] font-extrabold text-foreground leading-snug" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                 {isAr ? 'جميع الأدوات مجاناً' : 'All Tools — Free Access'}
               </h4>
               <p className="text-[11.5px] text-muted-foreground mt-1 leading-relaxed">
                 {isAr
-                  ? 'بمناسبة تدشين التطبيق في متجر Google Play، جميع أدوات الذكاء الاصطناعي متاحة مجاناً حتى نهاية أبريل.'
-                  : 'Celebrating our Google Play launch — all AI tools are free until end of April.'}
+                  ? 'بمناسبة تدشين التطبيق في متجر Google Play، جميع أدوات الذكاء الاصطناعي متاحة مجاناً.'
+                  : 'Celebrating our Google Play launch — all AI tools are free for a limited time.'}
               </p>
             </div>
           </div>
