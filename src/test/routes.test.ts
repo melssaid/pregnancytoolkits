@@ -12,7 +12,7 @@ const definedRoutes = [
   "/tools/ai-fitness-coach", "/tools/ai-back-pain-relief", "/tools/vitamin-tracker",
   "/tools/ai-birth-plan",
   "/tools/cycle-tracker", "/tools/due-date-calculator", "/tools/fetal-growth",
-  "/tools/kick-counter", "/tools/weight-gain", "/tools/mental-health-coach",
+  "/tools/contraction-timer", "/tools/kick-counter", "/tools/weight-gain", "/tools/mental-health-coach",
   "/tools/maternal-health", "/tools/baby-gear-recommender",
   "/tools/ai-lactation-prep", "/tools/postpartum-recovery", "/tools/baby-cry-translator",
   "/tools/baby-sleep-tracker", "/tools/baby-growth", "/tools/diaper-tracker",
