@@ -100,29 +100,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         </div>
       </motion.div>
 
-      {/* Launch Promo Banner — medical-grade professional */}
-      <motion.div
-        className="relative overflow-hidden bg-gradient-to-r from-[hsl(160,45%,38%)] via-[hsl(162,42%,42%)] to-[hsl(160,45%,38%)] dark:from-[hsl(160,35%,25%)] dark:via-[hsl(162,32%,30%)] dark:to-[hsl(160,35%,25%)]"
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
-        transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      >
-        {/* Subtle shimmer */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/6 to-transparent"
-          initial={{ x: '-100%' }}
-          animate={{ x: '200%' }}
-          transition={{ duration: 3, repeat: Infinity, repeatDelay: 6, ease: 'linear' }}
-        />
-        <div className="relative flex items-center justify-center gap-2 py-[6px] px-3">
-          <span 
-            className={`${isRtl ? 'text-[11px]' : 'text-[10px]'} font-extrabold tracking-wide text-white`}
-            style={{ fontFamily: isRtl ? "'Tajawal', sans-serif" : "inherit" }}
-          >
-            {t('layout.trustBar.launchBanner')}
-          </span>
-        </div>
-      </motion.div>
 
       {/* Header - flush with trust bar */}
       <header className="sticky top-0 z-50 bg-card backdrop-blur-md border-b-0" style={{ boxShadow: '0 6px 30px -2px hsl(340 40% 25% / 0.25), 0 3px 12px -2px hsl(0 0% 0% / 0.15)' }}>
