@@ -560,7 +560,8 @@
     "trustBar": {
       "scienceBacked": "Scientifique",
       "aiTools": "32 Outils IA",
-      "premium": "Vos données restent privées"
+      "premium": "Vos données restent privées",
+      "launchBanner": "Offre de lancement — Tous les outils gratuits jusqu'au 30 avril"
     },
     "footer": {
       "privacy": "Confidentialité",

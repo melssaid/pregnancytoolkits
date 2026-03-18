@@ -560,7 +560,8 @@
     "trustBar": {
       "scienceBacked": "Wissenschaftlich",
       "aiTools": "32 KI-Tools",
-      "premium": "Deine Daten bleiben bei dir"
+      "premium": "Deine Daten bleiben bei dir",
+      "launchBanner": "Startangebot — Alle Tools kostenlos bis 30. April"
     },
     "footer": {
       "privacy": "Datenschutz",
