@@ -183,6 +183,8 @@ html[lang="ar"] .ar-heading {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
     background: hsl(0 0% 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html[dir="rtl"] body {
