@@ -114,11 +114,10 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           animate={{ x: '200%' }}
           transition={{ duration: 3, repeat: Infinity, repeatDelay: 6, ease: 'linear' }}
         />
-        <div className="relative flex items-center justify-center gap-1.5 py-[5px] px-3">
-          <Gift className="w-3 h-3 text-white/90 flex-shrink-0" strokeWidth={2} />
+        <div className="relative flex items-center justify-center gap-2 py-[6px] px-3">
           <span 
-            className={`${isRtl ? 'text-[9px]' : 'text-[8px]'} font-bold tracking-wider uppercase text-white/95`}
-            style={{ fontFamily: isRtl ? "'Tajawal', sans-serif" : "inherit", letterSpacing: isRtl ? '0.02em' : '0.08em' }}
+            className={`${isRtl ? 'text-[11px]' : 'text-[10px]'} font-extrabold tracking-wide text-white`}
+            style={{ fontFamily: isRtl ? "'Tajawal', sans-serif" : "inherit" }}
           >
             {t('layout.trustBar.launchBanner')}
           </span>
