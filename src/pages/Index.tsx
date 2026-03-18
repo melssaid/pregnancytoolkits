@@ -247,7 +247,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
 const FooterCard = memo(function FooterCard() {
   const { i18n } = useTranslation();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const { remaining } = useAIUsage();
+  const { remaining, limit } = useAIUsage();
   const isAr = lang === 'ar';
 
   return (
@@ -313,7 +313,7 @@ const FooterCard = memo(function FooterCard() {
               </span>
             </div>
             <span className="text-[12px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              {remaining} <span className="opacity-50 font-normal">/ 30</span>
+              {remaining} <span className="opacity-50 font-normal">/ {limit}</span>
             </span>
           </div>
           <div className="flex items-center gap-1">
