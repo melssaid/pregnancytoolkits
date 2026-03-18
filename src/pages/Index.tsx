@@ -247,7 +247,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
 const FooterCard = memo(function FooterCard() {
   const { i18n } = useTranslation();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const { remaining } = useAIUsage();
+  const { remaining, limit } = useAIUsage();
   const isAr = lang === 'ar';
 
   return (
