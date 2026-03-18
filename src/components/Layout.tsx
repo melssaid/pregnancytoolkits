@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Shield, Heart, Settings } from "lucide-react";
+import { Shield, Heart, Settings, Gift } from "lucide-react";
 const logoImage = "/logo.webp";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
