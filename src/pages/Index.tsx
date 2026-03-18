@@ -336,14 +336,7 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
           ))}
           
-          <div className="mt-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-              <div className="w-1.5 h-1.5 rounded-full bg-primary/30" />
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-            </div>
-            <FooterCard />
-          </div>
+          {/* FooterCard hidden temporarily — restore when needed */}
         </div>
       </section>
     </Layout>
