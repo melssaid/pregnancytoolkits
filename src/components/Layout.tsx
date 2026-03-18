@@ -219,7 +219,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                     loading="eager"
                     decoding="async"
                     fetchPriority="high"
-                    className="w-full h-full object-cover scale-[1.35]"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </div>
