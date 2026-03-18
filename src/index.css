@@ -399,7 +399,6 @@ html[lang="ar"] .ar-heading {
 
 .language-transition * {
   transition: transform 0.15s ease-out, opacity 0.15s ease-out !important;
-  font-family: inherit !important;
 }
 
 /* Fade effect during language change */
