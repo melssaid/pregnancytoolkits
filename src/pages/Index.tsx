@@ -268,7 +268,7 @@ const FooterCard = memo(function FooterCard() {
             {isAr ? 'عرض الإطلاق' : 'LAUNCH OFFER'}
           </span>
           <span className="text-[10px] text-muted-foreground font-medium">
-            {isAr ? 'حتى 30 أبريل 2025' : 'Until April 30, 2025'}
+            {isAr ? '10 أيام مجاناً' : '10 Days Free'}
           </span>
         </div>
 
