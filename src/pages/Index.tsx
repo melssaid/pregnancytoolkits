@@ -336,7 +336,7 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
           ))}
           
-          {/* FooterCard hidden temporarily — restore when needed */}
+          <FooterCard />
         </div>
       </section>
     </Layout>
