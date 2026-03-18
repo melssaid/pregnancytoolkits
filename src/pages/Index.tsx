@@ -313,7 +313,7 @@ const FooterCard = memo(function FooterCard() {
               </span>
             </div>
             <span className="text-[12px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              {remaining} <span className="opacity-50 font-normal">/ 30</span>
+              {remaining} <span className="opacity-50 font-normal">/ 10</span>
             </span>
           </div>
           <div className="flex items-center gap-1">
