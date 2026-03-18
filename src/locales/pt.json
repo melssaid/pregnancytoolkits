@@ -560,7 +560,8 @@
     "trustBar": {
       "scienceBacked": "Base Científica",
       "aiTools": "32 Ferramentas IA",
-      "premium": "Seus dados ficam com você"
+      "premium": "Seus dados ficam com você",
+      "launchBanner": "Oferta de lançamento — Todas as ferramentas grátis até 30 de abril"
     },
     "footer": {
       "privacy": "Privacidade",

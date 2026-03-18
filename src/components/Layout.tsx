@@ -100,25 +100,27 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         </div>
       </motion.div>
 
-      {/* Launch Promo Banner */}
+      {/* Launch Promo Banner — medical-grade professional */}
       <motion.div
-        className="relative overflow-hidden bg-gradient-to-r from-emerald-600/95 via-emerald-500 to-emerald-600/95 text-white"
+        className="relative overflow-hidden bg-gradient-to-r from-[hsl(160,45%,38%)] via-[hsl(162,42%,42%)] to-[hsl(160,45%,38%)] dark:from-[hsl(160,35%,25%)] dark:via-[hsl(162,32%,30%)] dark:to-[hsl(160,35%,25%)]"
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: 'auto' }}
         transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
+        {/* Subtle shimmer */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/6 to-transparent"
           initial={{ x: '-100%' }}
           animate={{ x: '200%' }}
-          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 5, ease: 'linear' }}
+          transition={{ duration: 3, repeat: Infinity, repeatDelay: 6, ease: 'linear' }}
         />
-        <div className="relative flex items-center justify-center gap-2 py-1.5 px-3">
-          <Gift className="w-3 h-3 flex-shrink-0" strokeWidth={2.2} />
-          <span className={`${isRtl ? 'text-[9.5px]' : 'text-[8.5px]'} font-bold tracking-wide`}>
-            {isRtl 
-              ? '🎉 عرض الإطلاق — جميع الأدوات مجاناً حتى 30 أبريل' 
-              : '🎉 LAUNCH OFFER — All tools free until April 30'}
+        <div className="relative flex items-center justify-center gap-1.5 py-[5px] px-3">
+          <Gift className="w-3 h-3 text-white/90 flex-shrink-0" strokeWidth={2} />
+          <span 
+            className={`${isRtl ? 'text-[9px]' : 'text-[8px]'} font-bold tracking-wider uppercase text-white/95`}
+            style={{ fontFamily: isRtl ? "'Tajawal', sans-serif" : "inherit", letterSpacing: isRtl ? '0.02em' : '0.08em' }}
+          >
+            {t('layout.trustBar.launchBanner')}
           </span>
         </div>
       </motion.div>
