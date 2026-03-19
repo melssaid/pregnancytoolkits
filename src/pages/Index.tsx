@@ -253,111 +253,80 @@ const FooterCard = memo(function FooterCard() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
       className="mt-4 px-1"
     >
-      <div className="rounded-[20px] overflow-hidden relative bg-card border border-border/40 shadow-[0_4px_24px_-6px_hsl(var(--primary)/0.14),0_1px_4px_0_hsl(0,0%,0%,0.06)]">
+      <div className="rounded-2xl overflow-hidden bg-card border border-border/40 shadow-sm">
         
-        {/* Top accent bar */}
-        <div className="h-[3px] bg-gradient-to-r from-primary/40 via-primary to-primary/40 relative overflow-hidden">
+        {/* Accent bar */}
+        <div className="h-[2.5px] bg-gradient-to-r from-primary/30 via-primary to-primary/30 relative overflow-hidden">
           <motion.div
-            className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent"
+            className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
             animate={{ x: ['-100%', '400%'] }}
-            transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
+            transition={{ duration: 3, repeat: Infinity, repeatDelay: 5, ease: 'linear' }}
           />
         </div>
 
-        {/* Header section */}
-        <div className="px-5 pt-4 pb-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {/* Gift icon with glow ring */}
-            <div className="relative">
-              <motion.div
-                className="absolute inset-0 rounded-2xl bg-primary/15 blur-md"
-                animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.7, 0.4] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <motion.div 
-                className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center border border-primary/20 shadow-sm"
-                animate={{ scale: [1, 1.04, 1] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <motion.div
-                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-primary/8 to-transparent"
-                  animate={{ x: ['-100%', '200%'] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
-                />
-                <Gift className="w-6 h-6 text-primary relative z-10" strokeWidth={1.6} />
-              </motion.div>
+        <div className="px-4 py-3.5 flex items-center gap-3">
+          {/* Gift icon */}
+          <motion.div 
+            className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/15"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Gift className="w-5 h-5 text-primary" strokeWidth={1.6} />
+          </motion.div>
+
+          {/* Title + status */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-1.5">
+              <h4 className="text-[13px] font-bold text-foreground leading-none" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                {isAr ? 'عرض الإطلاق' : 'Launch Offer'}
+              </h4>
+              <span className="inline-flex items-center gap-0.5 px-1.5 py-px rounded-md bg-primary/10 text-primary text-[9px] font-bold uppercase">
+                <Sparkles className="w-2.5 h-2.5" strokeWidth={2.5} />
+                {isAr ? 'مجاني' : 'FREE'}
+              </span>
             </div>
-            
-            <div>
-              <div className="flex items-center gap-2">
-                <h4 className="text-[15px] font-extrabold text-foreground leading-none" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-                  {isAr ? 'عرض الإطلاق' : 'Launch Offer'}
-                </h4>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[9px] font-bold tracking-wider uppercase">
-                  <Sparkles className="w-2.5 h-2.5" strokeWidth={2.5} />
-                  {isAr ? 'مجاني' : 'FREE'}
-                </span>
-              </div>
-              <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
-                {isAr ? '10 أيام — جميع أدوات الذكاء الاصطناعي' : '10 Days — All AI tools unlocked'}
-              </p>
-            </div>
+            <p className="text-[10.5px] text-muted-foreground mt-0.5 leading-snug">
+              {isAr ? '10 أيام — جميع الأدوات مفتوحة' : '10 Days — All tools unlocked'}
+            </p>
           </div>
-          
-          {/* Active status */}
-          <div className="flex flex-col items-center gap-1">
+
+          {/* Active dot */}
+          <div className="flex flex-col items-center gap-0.5 flex-shrink-0">
             <motion.div 
               className="w-2 h-2 rounded-full bg-[hsl(152,60%,48%)]"
-              animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 2, repeat: Infinity }}
             />
-            <span className="text-[9px] font-bold text-[hsl(152,50%,42%)] dark:text-[hsl(152,50%,58%)] tracking-wide uppercase">
+            <span className="text-[8px] font-bold text-[hsl(152,50%,42%)] dark:text-[hsl(152,50%,58%)] uppercase">
               {isAr ? 'مفعّل' : 'Active'}
             </span>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="mx-5 h-px bg-border/50" />
-
-        {/* Usage stats section */}
-        <div className="px-5 py-3.5">
-          <div className="flex items-center justify-between mb-2.5">
-            <div className="flex items-center gap-1.5">
-              <Brain className="w-3.5 h-3.5 text-primary/50" strokeWidth={1.8} />
-              <span className="text-[11px] font-medium text-muted-foreground">
-                {isAr ? 'تحليلات اليوم المتبقية' : "Today's remaining analyses"}
-              </span>
-            </div>
-            <span className="text-[14px] font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              {remaining}
-              <span className="text-[11px] opacity-40 font-normal ms-0.5">/ {limit}</span>
+        {/* Usage bar */}
+        <div className="px-4 pb-3.5">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+              <Brain className="w-3 h-3 text-primary/40" strokeWidth={1.8} />
+              {isAr ? 'التحليلات المتبقية' : 'Remaining analyses'}
+            </span>
+            <span className="text-[12px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              {remaining}<span className="text-[10px] opacity-40 font-normal">/{limit}</span>
             </span>
           </div>
-          
-          {/* Progress bar */}
-          <div className="h-[6px] rounded-full bg-muted/60 overflow-hidden">
+          <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-primary to-primary/70"
+              className="h-full rounded-full bg-gradient-to-r from-primary to-primary/60"
               initial={{ width: 0 }}
               animate={{ width: `${usagePercent}%` }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             />
           </div>
-        </div>
-
-        {/* Bottom message */}
-        <div className="px-5 pb-4 pt-0.5">
-          <p className="text-[10.5px] text-muted-foreground/70 leading-relaxed text-center">
-            {isAr
-              ? 'بمناسبة إطلاقنا في Google Play — استمتع بجميع الأدوات مجاناً لفترة محدودة'
-              : 'Celebrating our Google Play launch — enjoy all tools free for a limited time'}
-          </p>
         </div>
       </div>
     </motion.div>
