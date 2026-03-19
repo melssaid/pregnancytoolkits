@@ -270,14 +270,26 @@ const FooterCard = memo(function FooterCard() {
         </div>
 
         <div className="px-4 py-3.5 flex items-center gap-3">
-          {/* Gift icon */}
-          <motion.div 
-            className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/15"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Gift className="w-5 h-5 text-primary" strokeWidth={1.6} />
-          </motion.div>
+          {/* Gift icon with glow */}
+          <div className="relative flex-shrink-0">
+            <motion.div
+              className="absolute inset-0 rounded-xl bg-primary/20 blur-md"
+              animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center border border-primary/20 overflow-hidden"
+              animate={{ scale: [1, 1.06, 1] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
+              />
+              <Gift className="w-5 h-5 text-primary relative z-10" strokeWidth={1.6} />
+            </motion.div>
+          </div>
 
           {/* Title + status */}
           <div className="flex-1 min-w-0">
