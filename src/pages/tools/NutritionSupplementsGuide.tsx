@@ -155,7 +155,7 @@ export default function NutritionSupplementsGuide() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           className="w-full"
           style={{ maxHeight: 280 }}
         />
