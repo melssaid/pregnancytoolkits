@@ -1,14 +1,105 @@
 /**
- * Service Worker for Push Notifications
- * Handles showing notifications even when the app is in background/closed
+ * Service Worker for Push Notifications + Asset Caching
+ * Handles notifications in background + caches static assets for performance
  */
 
-const SW_VERSION = '2.0.1';
+const SW_VERSION = '3.0.0';
+const CACHE_NAME = `pt-cache-v${SW_VERSION}`;
+
+// Assets to pre-cache on install
+const PRECACHE_ASSETS = [
+  '/favicon.png',
+  '/logo.webp',
+];
+
+// Cache-first patterns (static assets)
+const CACHE_FIRST_PATTERNS = [
+  /\/assets\//,
+  /\/fonts\//,
+  /\/icons\//,
+  /\.woff2?$/,
+  /\.ttf$/,
+  /\.webp$/,
+  /\.png$/,
+  /\.jpg$/,
+  /\.svg$/,
+];
+
+// Network-first patterns (dynamic content)
+const NETWORK_FIRST_PATTERNS = [
+  /\/api\//,
+  /supabase/,
+  /ai\.gateway/,
+];
 
 let scheduledTimers = [];
 
-self.addEventListener('install', () => self.skipWaiting());
-self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(PRECACHE_ASSETS))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+      )
+    ).then(() => self.clients.claim())
+  );
+});
+
+// Fetch handler with caching strategies
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+
+  // Skip non-GET and cross-origin requests
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+
+  // Skip network-first patterns (API calls)
+  if (NETWORK_FIRST_PATTERNS.some(p => p.test(url.href))) return;
+
+  // Cache-first for static assets
+  if (CACHE_FIRST_PATTERNS.some(p => p.test(url.pathname))) {
+    event.respondWith(
+      caches.match(request).then(cached => {
+        if (cached) return cached;
+        return fetch(request).then(response => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+          }
+          return response;
+        });
+      })
+    );
+    return;
+  }
+
+  // Stale-while-revalidate for HTML/JS/CSS
+  if (url.origin === self.location.origin) {
+    event.respondWith(
+      caches.match(request).then(cached => {
+        const fetchPromise = fetch(request).then(response => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+          }
+          return response;
+        }).catch(() => cached);
+
+        return cached || fetchPromise;
+      })
+    );
+  }
+});
+
+// ── Notification handlers ──
 
 function clearAllTimers() {
   scheduledTimers.forEach(id => clearTimeout(id));
