@@ -9,6 +9,7 @@ import { useAIUsage } from '@/contexts/AIUsageContext';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import { useNavigate } from 'react-router-dom';
+import { PrintableReport } from '@/components/PrintableReport';
 
 interface AIInsightCardProps {
   title?: string;
@@ -19,6 +20,9 @@ interface AIInsightCardProps {
   variant?: 'default' | 'compact' | 'banner';
   autoExpand?: boolean;
   aiType?: string;
+  showPrintButton?: boolean;
+  showDisclaimer?: boolean;
+  printTitle?: string;
 }
 
 /** Mini usage bar shown inline with AI buttons in insight cards */
@@ -47,6 +51,7 @@ const MiniUsageBar: React.FC = () => {
 
 export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false, aiType,
+  showPrintButton = false, showDisclaimer = false, printTitle,
 }) => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language?.split('-')[0] || 'en';
@@ -217,8 +222,8 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   }
 
   /* ── DEFAULT ── */
-  return (
-    <Card className="border-primary/20 bg-primary/5">
+  const cardContent = (
+    <Card className="border-primary/20 bg-primary/5" data-printable-card>
       <CardContent className="pt-4 pb-4">
         <div
           className="flex items-center justify-between gap-3 cursor-pointer"
@@ -310,12 +315,30 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                   </Button>
                 </motion.div>
               )}
+
+              {showDisclaimer && insight && !isLoading && (
+                <div className="mt-3 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
+                  <p className="text-[9px] text-muted-foreground/60 tracking-wide">
+                    {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
+                  </p>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
       </CardContent>
     </Card>
   );
+
+  if (showPrintButton && insight && !isLoading) {
+    return (
+      <PrintableReport title={printTitle || displayTitle}>
+        {cardContent}
+      </PrintableReport>
+    );
+  }
+
+  return cardContent;
 };
 
 export default AIInsightCard;
