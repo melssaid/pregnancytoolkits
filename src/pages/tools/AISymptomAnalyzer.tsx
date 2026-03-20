@@ -394,6 +394,9 @@ Provide brief, supportive wellness insights about these feelings during week ${c
           </Card>
         )}
 
+        {/* When to Call Doctor — educational, non-diagnostic */}
+        <WhenToCallDoctorCard context="symptoms" />
+
         {/* Reminder Card */}
         <Card className="overflow-hidden border-primary/20 bg-primary/5">
           <CardContent className="p-3">
