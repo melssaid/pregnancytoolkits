@@ -6322,11 +6322,11 @@
           "2": "Are there foods I should avoid?"
         },
         "checklist": {
-          "0": "Take folic acid daily",
-          "1": "Drink 8 glasses of water",
-          "2": "Avoid smoking and alcohol",
-          "3": "Start looking for an OB-GYN",
-          "4": "Schedule your first visit"
+          "0": "Evde gebelik testi yapın",
+          "1": "İlk doğum öncesi muayene randevusu alın",
+          "2": "Demir içeren gebelik vitaminlerine başlayın",
+          "3": "Sigara ve alkolü tamamen bırakın",
+          "4": "Bir gebelik günlüğü tutmaya başlayın"
         }
       },
       "w5": {
@@ -6355,11 +6355,11 @@
           "2": "Are my current medications safe?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Avoid raw foods",
-          "3": "Track nausea symptoms",
-          "4": "Sleep at least 8 hours"
+          "0": "Gebeliği doktorunuzla doğrulayın",
+          "1": "İlaçlarınızı sağlık uzmanınızla gözden geçirin",
+          "2": "Bulantıya karşı az az sık sık yiyin",
+          "3": "Sabah bulantısına rağmen bol su için",
+          "4": "Ağır kaldırma ve ağır egzersizlerden kaçının"
         }
       },
       "w6": {
@@ -6388,11 +6388,11 @@
           "2": "Can I exercise?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Eat small, frequent meals",
-          "3": "Walk for 15 minutes",
-          "4": "Journal your feelings"
+          "0": "İlk doğum öncesi muayenenize gidin",
+          "1": "Kan testleri ve ilk taramaları yaptırın",
+          "2": "Sabah bulantısını doğal yollarla yönetin",
+          "3": "Bulantı için zencefil veya kraker yiyin",
+          "4": "Yorgun hissedince dinlenin"
         }
       },
       "w7": {
@@ -6421,11 +6421,11 @@
           "2": "Is travel safe?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Do 3 sets of Kegel exercises",
-          "3": "Note any new symptoms",
-          "4": "Sleep on your left side"
+          "0": "Gebelik vitaminlerini her gün almaya devam edin",
+          "1": "Yumuşak peynir ve işlenmiş etlerden kaçının",
+          "2": "Pelvik taban egzersizlerine (Kegel) başlayın",
+          "3": "Rahat ve destekleyici kıyafetler giyin",
+          "4": "Doktorunuzla genetik tarama seçeneklerini konuşun"
         }
       },
       "w8": {
@@ -6454,11 +6454,11 @@
           "2": "Is intimacy safe?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Eat an iron-rich meal",
-          "4": "Practice breathing exercises"
+          "0": "Tarihleme ultrasonunuzu planlayın",
+          "1": "Kabızlığı önlemek için lif alımını artırın",
+          "2": "Hafif yürüyüşlerle aktif kalın",
+          "3": "Çatlak önlemek için karnınızı nemlendirin",
+          "4": "Haberi eşinizle paylaşın"
         }
       },
       "w9": {
@@ -6487,11 +6487,11 @@
           "2": "How do I handle extreme fatigue?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Do 3 sets of Kegel exercises",
-          "3": "Eat fruits and vegetables",
-          "4": "Track body changes"
+          "0": "Tarihleme ultrasonunuza gidin",
+          "1": "Doğum seçeneklerini araştırmaya başlayın",
+          "2": "Demir açısından zengin yiyecekler yiyin (ıspanak, mercimek)",
+          "3": "Jakuzi ve saunalardan kaçının",
+          "4": "Bebek masrafları için bütçe planlamaya başlayın"
         }
       },
       "w10": {
@@ -6520,11 +6520,11 @@
           "2": "When can I know the gender?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Prepare for ultrasound",
-          "4": "Get enough protein"
+          "0": "NIPT veya birinci trimester taramasını düşünün",
+          "1": "Bol su için (günde 10 bardak)",
+          "2": "Kemikler için kalsiyum açısından zengin yiyecekler yiyin",
+          "3": "Hafif egzersiz rutininize devam edin",
+          "4": "Hamile kıyafetleri almaya başlayın"
         }
       },
       "w11": {
@@ -6553,11 +6553,11 @@
           "2": "Do I need additional tests?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Practice gentle yoga",
-          "3": "Talk to your baby",
-          "4": "Record your weight"
+          "0": "Tarama testi sonuçlarını kontrol edin",
+          "1": "Büyüme için protein alımını artırın",
+          "2": "Gevşeme ve derin nefes egzersizi yapın",
+          "3": "Diş randevularınızı aksatmayın",
+          "4": "Çocuk bakımı seçeneklerini erken araştırın"
         }
       },
       "w12": {
@@ -6586,11 +6586,11 @@
           "2": "When should I start birth prep classes?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Complete first trimester tests",
-          "3": "Plan pregnancy announcement",
-          "4": "Celebrate first trimester done"
+          "0": "İlk trimesterin sonunu kutlayın!",
+          "1": "İsterseniz haberi aile ve arkadaşlarla paylaşın",
+          "2": "Ense kalınlığı ölçümünü planlayın",
+          "3": "Omega-3 açısından zengin yiyecekler yiyin",
+          "4": "Kaşıntıyı önlemek için cildi nemlendirmeye başlayın"
         }
       },
       "w13": {
@@ -6619,11 +6619,11 @@
           "2": "Do I need medication adjustments?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Start light strength training",
-          "3": "Shop for maternity clothes",
-          "4": "Document pregnancy memories"
+          "0": "İkinci trimestere hoş geldiniz!",
+          "1": "Enerji seviyeniz artabilir — tadını çıkarın!",
+          "2": "Yan yatarak uyumaya başlayın",
+          "3": "Günlük kalori alımını 300 kcal artırın",
+          "4": "Doğuma hazırlık kurslarını araştırın"
         }
       },
       "w14": {
@@ -6652,11 +6652,11 @@
           "2": "How do I manage back pain?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Detay ultrasonunu planlayın (18-20. hafta)",
+          "1": "Hamile yogası veya yüzmeye başlayın",
+          "2": "Her gün C vitamini açısından zengin meyveler yiyin",
+          "3": "Düzenli kilo alımını takip edin",
+          "4": "Bebek ihtiyaç listesi oluşturun"
         }
       },
       "w15": {
@@ -6685,11 +6685,11 @@
           "2": "Do I need dietary changes?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Önerilmişse amniyosentez yaptırın",
+          "1": "Daha fazla demir açısından zengin yiyecek yiyin",
+          "2": "Karnınız büyürken iyi duruş pozisyonunu koruyun",
+          "3": "Her gün karın yağı veya kremi sürün",
+          "4": "Bebeğe isim aramaya başlayın"
         }
       },
       "w16": {
@@ -6718,11 +6718,11 @@
           "2": "Is vaginal discharge normal?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Bebeğin ilk hareketlerini hissedebilirsiniz!",
+          "1": "Su tüketimini günde 12 bardağa çıkarın",
+          "2": "Beyin gelişimi için DHA açısından zengin yiyecekler yiyin",
+          "3": "Hamile giyim temel parçalarıyla gardırobunuzu yenileyin",
+          "4": "Üçüncü trimesterden önce seyahatleri planlayın"
         }
       },
       "w17": {
@@ -6751,11 +6751,11 @@
           "2": "How do I handle dizziness?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "İlk tekmeleri ve hareketleri takip edin",
+          "1": "Bebek odasını planlamaya başlayın",
+          "2": "Potasyum açısından zengin yiyecekler yiyin (muz, avokado)",
+          "3": "Günde 10 dakika esneme yapın",
+          "4": "Bebeğinize konuşun veya şarkı söyleyin — sizi duyabilir!"
         }
       },
       "w18": {
@@ -6784,11 +6784,11 @@
           "2": "Do I need bed rest?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Anatomi taramasına hazırlanın (18-20. hafta)",
+          "1": "Tüm besin gruplarından dengeli öğünler yiyin",
+          "2": "Günde 3 kez Kegel egzersizi yapın",
+          "3": "Bir doula tutmayı düşünün",
+          "4": "Uyku öncesi gevşeme rutini başlatın"
         }
       },
       "w19": {
@@ -6817,11 +6817,11 @@
           "2": "Do I need a belly support band?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Anatomi ultrasonunuza gidin",
+          "1": "İsterseniz bebeğin cinsiyetini öğrenin",
+          "2": "Magnezyum alımını artırın (fındık, bitter çikolata)",
+          "3": "Ayaklar şişiyorsa destekli ayakkabı giyin",
+          "4": "Doğum planı taslağı yazmaya başlayın"
         }
       },
       "w20": {
@@ -6850,11 +6850,11 @@
           "2": "How do I manage breathlessness?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Yarı yoldasınız — kutlayın!",
+          "1": "Günlük fetal hareketleri saymaya başlayın",
+          "2": "Kemikler için kalsiyum açısından zengin yiyecekler yiyin",
+          "3": "Çatlak önleme kremi sürün",
+          "4": "Doğuma hazırlık kursuna kaydolun"
         }
       },
       "w21": {
@@ -6883,11 +6883,11 @@
           "2": "Do I need a glucose test?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Hareket paternlerini takip etmeye devam edin",
+          "1": "Demir alımını artırın — anemi riski artar",
+          "2": "Sırt ağrısı için esneme egzersizleri yapın",
+          "3": "Günde 20 dakika yürüyün",
+          "4": "Bölgenizdeki çocuk doktorlarını araştırın"
         }
       },
       "w22": {
@@ -6916,11 +6916,11 @@
           "2": "How do I prevent preeclampsia?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Glukoz tarama testini planlayın (24-28. hafta)",
+          "1": "Hemoroidleri önlemek için lifli yiyecekler yiyin",
+          "2": "Doğum için nefes teknikleri çalışın",
+          "3": "Hamile yastığı alın",
+          "4": "Doğum sonrası için yemek dondurma başlayın"
         }
       },
       "w23": {
@@ -6949,11 +6949,11 @@
           "2": "Do I need extra iron supplements?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Her ziyarette kan basıncınızı kontrol ettirin",
+          "1": "D vitamini açısından zengin yiyecekler yiyin veya güneşlenin",
+          "2": "Perine masajına başlayın",
+          "3": "Bebeğin uyku alanını hazırlayın",
+          "4": "Hastane çantası listesi oluşturun"
         }
       },
       "w24": {
@@ -6982,11 +6982,11 @@
           "2": "How do I manage skin itching?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Gestasyonel diyabet taramasını yaptırın",
+          "1": "Sürdürülebilir enerji için kompleks karbonhidrat yiyin",
+          "2": "Doğuma hazırlık için hafif çömelme egzersizleri yapın",
+          "3": "Emzirme kursuna kaydolun",
+          "4": "Sağlık sigortanızı ve doğum izninizi kontrol edin"
         }
       },
       "w25": {
@@ -7015,11 +7015,11 @@
           "2": "When should I start kick counting?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Glukoz sonuçlarını doktorunuzla konuşun",
+          "1": "Hızlı büyüme için protein artırın",
+          "2": "Doğum pozisyonları ve nefes çalışın",
+          "3": "Bebek giysilerini yıkayıp düzenleyin",
+          "4": "Doğum tercihleri belgesi oluşturun"
         }
       },
       "w26": {
@@ -7048,11 +7048,11 @@
           "2": "Do I need to adjust my iron dose?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Üçüncü trimester yaklaşıyor!",
+          "1": "Preeklampsi belirtilerini gözlemleyin",
+          "2": "Mide yanması için az az sık sık yiyin",
+          "3": "Bel ağrısı için pelvis eğmeleri yapın",
+          "4": "İsim seçimini sonlandırın"
         }
       },
       "w27": {
@@ -7081,11 +7081,11 @@
           "2": "How do I prepare for birth?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Boğmaca aşısı (Tdap) olun",
+          "1": "Önerilmişse demir takviyesi alın",
+          "2": "En iyi kan dolaşımı için sol yanınızda uyuyun",
+          "3": "Büyük kardeşleri yeni bebeğe hazırlayın",
+          "4": "Doğum tesisini gezin"
         }
       },
       "w28": {
@@ -7114,11 +7114,11 @@
           "2": "Do I need additional glucose testing?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "İki haftada bir doğum öncesi ziyaretlere başlayın",
+          "1": "Gerekirse Rh faktörü testi yaptırın",
+          "2": "Bağışıklık için çinko açısından zengin yiyecekler yiyin",
+          "3": "Her gün gevşeme teknikleri uygulayın",
+          "4": "Hastane çantanızı hazırlamaya başlayın"
         }
       },
       "w29": {
@@ -7147,11 +7147,11 @@
           "2": "How do I ease back pain?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Günlük fetal tekme sayımı yapın (2 saatte 10)",
+          "1": "Yağsız protein ve sağlıklı yağlar yiyin",
+          "2": "Bol su için — şişlik normaldir ama takip edin",
+          "3": "Doğuma hazırlık kurslarına katılın",
+          "4": "Bebek araba koltuğunu takın"
         }
       },
       "w30": {
@@ -7180,11 +7180,11 @@
           "2": "Do I need another ultrasound?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "İki haftada bir kontrollere devam edin",
+          "1": "K vitamini açısından zengin yiyecekler yiyin (brokoli, lahana)",
+          "2": "Şişliği azaltmak için ayak bileği çevreleri yapın",
+          "3": "Doğum planını doktorunuzla sonlandırın",
+          "4": "Doğum sonrası iyileşme malzemelerini hazırlayın"
         }
       },
       "w31": {
@@ -7213,11 +7213,11 @@
           "2": "When should I go to the hospital?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Her gün doğum nefes tekniklerini çalışın",
+          "1": "Konfor için az az sık sık yiyin",
+          "2": "Dizlerinizin arasına yastık koyarak uyuyun",
+          "3": "Hastaneye ön kayıt yaptırın",
+          "4": "Doğum sonrası temel ihtiyaçları stoklayın"
         }
       },
       "w32": {
@@ -7246,11 +7246,11 @@
           "2": "Do I need a C-section?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Erken doğum belirtilerini gözlemleyin",
+          "1": "Kemik sertleşmesi için kalsiyum artırın",
+          "2": "Günde 3 kez pelvik taban egzersizi yapın",
+          "3": "Tüm bebek nevresimlerini ve giysilerini yıkayın",
+          "4": "Ağrı yönetimi seçeneklerini doktorunuzla konuşun"
         }
       },
       "w33": {
@@ -7279,11 +7279,11 @@
           "2": "How do I recognize real labor?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Bebeğin günlük aktivite paternlerini not edin",
+          "1": "Kramplara karşı potasyum açısından zengin yiyecekler yiyin",
+          "2": "Eşinizle doğum pozisyonları çalışın",
+          "3": "Doğum sonrası için donmuş yemekler hazırlayın",
+          "4": "Emzirme pozisyonlarını ve tekniklerini gözden geçirin"
         }
       },
       "w34": {
@@ -7312,11 +7312,11 @@
           "2": "Does baby need a lung maturity injection?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Haftalık doğum öncesi ziyaretlere başlayın",
+          "1": "Hurma yiyin — doğum hazırlığına yardımcı olabilir",
+          "2": "Kalça ve sırt ağrıları için esneme yapın",
+          "3": "Hastane çantanızı tamamen hazırlayın",
+          "4": "Kordon kanı bankacılığı seçeneklerini konuşun"
         }
       },
       "w35": {
@@ -7345,11 +7345,11 @@
           "2": "Is the umbilical cord position normal?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Grup B streptokok testi yaptırın",
+          "1": "Hafif, kolay sindirilen yemekler yiyin",
+          "2": "Haftada 3-4 kez perine masajı yapın",
+          "3": "Çocuk bakımı düzenlemelerini sonlandırın",
+          "4": "Yenidoğan bakım temellerini öğrenin"
         }
       },
       "w36": {
@@ -7378,11 +7378,11 @@
           "2": "How do I know labor has started?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Bebek aşağı inebilir — daha rahat nefes alın!",
+          "1": "Bebeğin pozisyonunu doktorunuzla kontrol edin",
+          "2": "Doğum hazırlığı için demir açısından zengin yiyecekler yiyin",
+          "3": "Dinlenin ve doğum için enerji biriktirin",
+          "4": "Doğum destek ekibinizi onaylayın"
         }
       },
       "w37": {
@@ -7411,11 +7411,11 @@
           "2": "Do I need weekly checkups?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Bebeğiniz artık erken dönem doğum sayılır!",
+          "1": "Doğum belirtilerini izleyin (kasılmalar, su gelmesi)",
+          "2": "Besleyici yemekler yiyin ve bol su için",
+          "3": "Doğumu teşvik etmek için hafif yürüyün",
+          "4": "Ne zaman doktoru arayacağınızı veya hastaneye gideceğinizi bilin"
         }
       },
       "w38": {
@@ -7444,11 +7444,11 @@
           "2": "When exactly should I go to hospital?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Hareket etmeye devam edin — yürüyüş yardımcı olur",
+          "1": "Doğal hazırlık için hurma ve ananas yiyin",
+          "2": "Gevşeme ve görselleştirme egzersizleri yapın",
+          "3": "Hastane çantanızı tekrar kontrol edin",
+          "4": "Kasılmaları zamanlamayı pratik yapın"
         }
       },
       "w39": {
@@ -7477,11 +7477,11 @@
           "2": "How do I cope with labor pain?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Düzenli kasılma paternlerini izleyin",
+          "1": "Hafif, enerji veren yiyecekler yiyin",
+          "2": "Aktiviteler arasında mümkün olduğunca dinlenin",
+          "3": "Hastaneye ulaşım planını onaylayın",
+          "4": "Yenidoğan beslenme planını gözden geçirin"
         }
       },
       "w40": {
@@ -7510,11 +7510,11 @@
           "2": "Is the baby okay?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Beklenen doğum tarihiniz geldi — sabırlı olun!",
+          "1": "Rahatsanız yürüyün ve aktif kalın",
+          "2": "Enerjiyi korumak için dengeli yiyin",
+          "3": "Bebek hareketlerini dikkatle takip edin",
+          "4": "Kasılmalar başlarsa doktorunuza ulaşın"
         }
       },
       "w41": {
@@ -7543,11 +7543,11 @@
           "2": "How are the placenta and fluid?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Doktorunuzla indüksiyon seçeneklerini tartışın",
+          "1": "Sakin olun — birçok bebek tarihten sonra gelir",
+          "2": "Bebek hareketlerini izlemeye devam edin",
+          "3": "Dinlenin ve doğum için enerji biriktirin",
+          "4": "Ev ve hastaneye yakın kalın"
         }
       },
       "w42": {
@@ -7576,11 +7576,38 @@
           "2": "What is the next step?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Doktorunuzun yönlendirmelerini takip edin",
+          "1": "Fetal hareketleri çok yakından izleyin",
+          "2": "Planlanan kontrol randevunuza gidin",
+          "3": "Bol su için ve iyi dinlenin",
+          "4": "Tıbbi ekibinize güvenin — neredeyse oradasınız!"
+        }
+      },
+      "w1": {
+        "checklist": {
+          "0": "Folik asit almaya başlayın (günde 400µg)",
+          "1": "Sigarayı bırakın ve alkolden kaçının",
+          "2": "Gebelik öncesi kontrol randevusu alın",
+          "3": "Adet döngünüzü takip etmeye başlayın",
+          "4": "Yeşil yapraklı sebzelerle dengeli beslenin"
+        }
+      },
+      "w2": {
+        "checklist": {
+          "0": "Folik asit almaya devam edin",
+          "1": "Günde 8 bardak su için",
+          "2": "Çiğ balık ve az pişmiş etlerden kaçının",
+          "3": "Hafif bir egzersiz programına başlayın",
+          "4": "Yumurtlama belirtilerini takip edin"
+        }
+      },
+      "w3": {
+        "checklist": {
+          "0": "Folik asit alımını sürdürün",
+          "1": "Kimyasal maddelere maruz kalmaktan kaçının",
+          "2": "Yeterli uyku alın (7-9 saat)",
+          "3": "Kafeini günde 200mg'ın altına düşürün",
+          "4": "Erken gebelik belirtilerini not edin"
         }
       }
     }

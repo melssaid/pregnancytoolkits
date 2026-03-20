@@ -6609,11 +6609,11 @@
           "2": "Are there foods I should avoid?"
         },
         "checklist": {
-          "0": "Take folic acid daily",
-          "1": "Drink 8 glasses of water",
-          "2": "Avoid smoking and alcohol",
-          "3": "Start looking for an OB-GYN",
-          "4": "Schedule your first visit"
+          "0": "Machen Sie einen Schwangerschaftstest",
+          "1": "Vereinbaren Sie Ihren ersten Vorsorgetermin",
+          "2": "Beginnen Sie mit Schwangerschaftsvitaminen mit Eisen",
+          "3": "Hören Sie komplett mit Rauchen und Alkohol auf",
+          "4": "Beginnen Sie ein Schwangerschaftstagebuch"
         }
       },
       "w5": {
@@ -6642,11 +6642,11 @@
           "2": "Are my current medications safe?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Avoid raw foods",
-          "3": "Track nausea symptoms",
-          "4": "Sleep at least 8 hours"
+          "0": "Bestätigen Sie die Schwangerschaft beim Arzt",
+          "1": "Besprechen Sie Medikamente mit Ihrem Arzt",
+          "2": "Essen Sie kleine, häufige Mahlzeiten gegen Übelkeit",
+          "3": "Bleiben Sie trotz Morgenübelkeit hydriert",
+          "4": "Vermeiden Sie schweres Heben"
         }
       },
       "w6": {
@@ -6675,11 +6675,11 @@
           "2": "Can I exercise?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Eat small, frequent meals",
-          "3": "Walk for 15 minutes",
-          "4": "Journal your feelings"
+          "0": "Nehmen Sie Ihren ersten Vorsorgetermin wahr",
+          "1": "Lassen Sie Bluttests und erste Untersuchungen machen",
+          "2": "Behandeln Sie Morgenübelkeit natürlich",
+          "3": "Essen Sie Ingwer oder Cracker gegen Übelkeit",
+          "4": "Ruhen Sie sich aus, wenn Sie müde sind"
         }
       },
       "w7": {
@@ -6708,11 +6708,11 @@
           "2": "Is travel safe?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Do 3 sets of Kegel exercises",
-          "3": "Note any new symptoms",
-          "4": "Sleep on your left side"
+          "0": "Nehmen Sie täglich Schwangerschaftsvitamine",
+          "1": "Vermeiden Sie Weichkäse und Aufschnitt",
+          "2": "Beginnen Sie Beckenbodenübungen (Kegel)",
+          "3": "Tragen Sie bequeme, stützende Kleidung",
+          "4": "Besprechen Sie Optionen für Gentests"
         }
       },
       "w8": {
@@ -6741,11 +6741,11 @@
           "2": "Is intimacy safe?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Eat an iron-rich meal",
-          "4": "Practice breathing exercises"
+          "0": "Vereinbaren Sie Ihren Dating-Ultraschall",
+          "1": "Erhöhen Sie die Ballaststoffzufuhr gegen Verstopfung",
+          "2": "Bleiben Sie aktiv mit sanften Spaziergängen",
+          "3": "Pflegen Sie Ihren Bauch gegen Dehnungsstreifen",
+          "4": "Teilen Sie die Neuigkeit mit Ihrem Partner"
         }
       },
       "w9": {
@@ -6774,11 +6774,11 @@
           "2": "How do I handle extreme fatigue?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Do 3 sets of Kegel exercises",
-          "3": "Eat fruits and vegetables",
-          "4": "Track body changes"
+          "0": "Nehmen Sie den Dating-Ultraschall wahr",
+          "1": "Informieren Sie sich über Geburtsoptionen",
+          "2": "Essen Sie eisenreiche Lebensmittel (Spinat, Linsen)",
+          "3": "Vermeiden Sie Whirlpools und Saunen",
+          "4": "Beginnen Sie die finanzielle Planung für das Baby"
         }
       },
       "w10": {
@@ -6807,11 +6807,11 @@
           "2": "When can I know the gender?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Prepare for ultrasound",
-          "4": "Get enough protein"
+          "0": "Erwägen Sie NIPT oder Ersttrimester-Screening",
+          "1": "Trinken Sie viel Wasser (10 Tassen/Tag)",
+          "2": "Essen Sie kalziumreiche Lebensmittel für die Knochen",
+          "3": "Setzen Sie Ihr sanftes Training fort",
+          "4": "Kaufen Sie Umstandsmode"
         }
       },
       "w11": {
@@ -6840,11 +6840,11 @@
           "2": "Do I need additional tests?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Practice gentle yoga",
-          "3": "Talk to your baby",
-          "4": "Record your weight"
+          "0": "Überprüfen Sie die Screening-Ergebnisse",
+          "1": "Erhöhen Sie die Proteinzufuhr für das Wachstum",
+          "2": "Üben Sie Entspannung und tiefes Atmen",
+          "3": "Halten Sie Zahnarzttermine ein",
+          "4": "Informieren Sie sich früh über Kinderbetreuung"
         }
       },
       "w12": {
@@ -6873,11 +6873,11 @@
           "2": "When should I start birth prep classes?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Complete first trimester tests",
-          "3": "Plan pregnancy announcement",
-          "4": "Celebrate first trimester done"
+          "0": "Feiern Sie das Ende des 1. Trimesters!",
+          "1": "Teilen Sie die Nachricht mit Familie und Freunden",
+          "2": "Vereinbaren Sie die Nackentransparenzmessung",
+          "3": "Essen Sie Omega-3-reiche Lebensmittel",
+          "4": "Beginnen Sie, die Haut zu pflegen gegen Juckreiz"
         }
       },
       "w13": {
@@ -6906,11 +6906,11 @@
           "2": "Do I need medication adjustments?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Start light strength training",
-          "3": "Shop for maternity clothes",
-          "4": "Document pregnancy memories"
+          "0": "Willkommen im zweiten Trimester!",
+          "1": "Das Energieniveau kann sich verbessern!",
+          "2": "Beginnen Sie, auf der Seite zu schlafen",
+          "3": "Erhöhen Sie die Kalorienzufuhr um 300 kcal",
+          "4": "Suchen Sie nach Geburtsvorbereitungskursen"
         }
       },
       "w14": {
@@ -6939,11 +6939,11 @@
           "2": "How do I manage back pain?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Vereinbaren Sie den Ultraschall (Woche 18-20)",
+          "1": "Beginnen Sie mit Schwangerschaftsyoga oder Schwimmen",
+          "2": "Essen Sie täglich Vitamin-C-reiche Früchte",
+          "3": "Achten Sie auf stetige Gewichtszunahme",
+          "4": "Erstellen Sie eine Baby-Wunschliste"
         }
       },
       "w15": {
@@ -6972,11 +6972,11 @@
           "2": "Do I need dietary changes?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Lassen Sie eine Amniozentese machen, falls empfohlen",
+          "1": "Essen Sie mehr eisenreiche Lebensmittel",
+          "2": "Achten Sie auf gute Haltung bei wachsendem Bauch",
+          "3": "Tragen Sie täglich Bauchöl oder -creme auf",
+          "4": "Suchen Sie nach Babynamen"
         }
       },
       "w16": {
@@ -7005,11 +7005,11 @@
           "2": "Is vaginal discharge normal?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Sie könnten erste Kindsbewegungen spüren!",
+          "1": "Erhöhen Sie die Wasserzufuhr auf 12 Gläser/Tag",
+          "2": "Essen Sie DHA-reiche Lebensmittel für die Gehirnentwicklung",
+          "3": "Aktualisieren Sie Ihre Garderobe mit Umstandskleidung",
+          "4": "Planen Sie Reisen vor dem dritten Trimester"
         }
       },
       "w17": {
@@ -7038,11 +7038,11 @@
           "2": "How do I handle dizziness?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Verfolgen Sie die ersten Tritte und Bewegungen",
+          "1": "Beginnen Sie mit der Kinderzimmer-Planung",
+          "2": "Essen Sie kaliumreiche Lebensmittel (Bananen, Avocados)",
+          "3": "Dehnen Sie sich täglich 10 Minuten",
+          "4": "Sprechen oder singen Sie Ihrem Baby vor!"
         }
       },
       "w18": {
@@ -7071,11 +7071,11 @@
           "2": "Do I need bed rest?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Bereiten Sie sich auf den Anatomie-Scan vor",
+          "1": "Essen Sie ausgewogene Mahlzeiten aller Lebensmittelgruppen",
+          "2": "Machen Sie Kegel-Übungen 3-mal täglich",
+          "3": "Erwägen Sie eine Doula",
+          "4": "Beginnen Sie ein Entspannungsritual vor dem Schlafen"
         }
       },
       "w19": {
@@ -7104,11 +7104,11 @@
           "2": "Do I need a belly support band?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Nehmen Sie den Anatomie-Ultraschall wahr",
+          "1": "Erfahren Sie das Geschlecht, wenn gewünscht",
+          "2": "Erhöhen Sie Magnesium (Nüsse, dunkle Schokolade)",
+          "3": "Tragen Sie stützende Schuhe bei Schwellungen",
+          "4": "Beginnen Sie einen Geburtsplan-Entwurf"
         }
       },
       "w20": {
@@ -7137,11 +7137,11 @@
           "2": "How do I manage breathlessness?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Sie sind zur Hälfte da — feiern Sie!",
+          "1": "Zählen Sie täglich die Kindsbewegungen",
+          "2": "Essen Sie kalziumreiche Lebensmittel für die Knochen",
+          "3": "Verwenden Sie Dehnungsstreifen-Creme",
+          "4": "Melden Sie sich für einen Geburtsvorbereitungskurs an"
         }
       },
       "w21": {
@@ -7170,11 +7170,11 @@
           "2": "Do I need a glucose test?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Verfolgen Sie weiter die Bewegungsmuster",
+          "1": "Erhöhen Sie die Eisenzufuhr — Anämierisiko steigt",
+          "2": "Machen Sie Dehnübungen gegen Rückenschmerzen",
+          "3": "Gehen Sie täglich 20 Minuten spazieren",
+          "4": "Suchen Sie nach Kinderärzten in Ihrer Nähe"
         }
       },
       "w22": {
@@ -7203,11 +7203,11 @@
           "2": "How do I prevent preeclampsia?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Vereinbaren Sie den Glukose-Screening-Test (Woche 24-28)",
+          "1": "Essen Sie ballaststoffreiche Lebensmittel gegen Hämorrhoiden",
+          "2": "Üben Sie Atemtechniken für die Geburt",
+          "3": "Kaufen Sie ein Schwangerschaftskissen",
+          "4": "Beginnen Sie, Mahlzeiten für die Wochenbettzeit einzufrieren"
         }
       },
       "w23": {
@@ -7236,11 +7236,11 @@
           "2": "Do I need extra iron supplements?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Überwachen Sie Ihren Blutdruck bei jedem Besuch",
+          "1": "Essen Sie Vitamin-D-reiche Lebensmittel oder genießen Sie Sonne",
+          "2": "Beginnen Sie die Dammmassage",
+          "3": "Richten Sie den Schlafbereich des Babys ein",
+          "4": "Erstellen Sie eine Kliniktaschen-Checkliste"
         }
       },
       "w24": {
@@ -7269,11 +7269,11 @@
           "2": "How do I manage skin itching?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Machen Sie den Gestationsdiabetes-Screening",
+          "1": "Essen Sie komplexe Kohlenhydrate für anhaltende Energie",
+          "2": "Machen Sie sanfte Kniebeugen zur Geburtsvorbereitung",
+          "3": "Melden Sie sich für Stillkurse an",
+          "4": "Überprüfen Sie Ihre Krankenversicherung und den Mutterschutz"
         }
       },
       "w25": {
@@ -7302,11 +7302,11 @@
           "2": "When should I start kick counting?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Besprechen Sie die Glukose-Ergebnisse mit Ihrem Arzt",
+          "1": "Erhöhen Sie Protein für schnelles Wachstum des Babys",
+          "2": "Üben Sie Geburtspositionen und Atmung",
+          "3": "Waschen und sortieren Sie Babykleidung",
+          "4": "Erstellen Sie ein Geburtspräferenzen-Dokument"
         }
       },
       "w26": {
@@ -7335,11 +7335,11 @@
           "2": "Do I need to adjust my iron dose?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Bald beginnt das dritte Trimester!",
+          "1": "Achten Sie auf Anzeichen einer Präeklampsie",
+          "2": "Essen Sie kleine Mahlzeiten gegen Sodbrennen",
+          "3": "Machen Sie Beckenkippungen gegen Rückenschmerzen",
+          "4": "Finalisieren Sie die Namensauswahl"
         }
       },
       "w27": {
@@ -7368,11 +7368,11 @@
           "2": "How do I prepare for birth?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Lassen Sie sich gegen Keuchhusten impfen (Tdap)",
+          "1": "Nehmen Sie Eisenpräparate, falls empfohlen",
+          "2": "Schlafen Sie auf der linken Seite für beste Durchblutung",
+          "3": "Bereiten Sie ältere Geschwister auf das Baby vor",
+          "4": "Besichtigen Sie die Geburtsklinik"
         }
       },
       "w28": {
@@ -7401,11 +7401,11 @@
           "2": "Do I need additional glucose testing?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Beginnen Sie zweiwöchentliche Vorsorgeuntersuchungen",
+          "1": "Lassen Sie den Rh-Faktor testen, falls nötig",
+          "2": "Essen Sie zinkreiche Lebensmittel für die Immunstärke",
+          "3": "Üben Sie täglich Entspannungstechniken",
+          "4": "Beginnen Sie, die Kliniktasche zu packen"
         }
       },
       "w29": {
@@ -7434,11 +7434,11 @@
           "2": "How do I ease back pain?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Zählen Sie täglich die Tritte (10 in 2 Stunden)",
+          "1": "Essen Sie mageres Protein und gesunde Fette",
+          "2": "Bleiben Sie hydriert — Schwellungen sind normal",
+          "3": "Besuchen Sie Geburtsvorbereitungskurse",
+          "4": "Installieren Sie den Kindersitz"
         }
       },
       "w30": {
@@ -7467,11 +7467,11 @@
           "2": "Do I need another ultrasound?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Setzen Sie die zweiwöchentlichen Kontrollen fort",
+          "1": "Essen Sie Vitamin-K-reiche Lebensmittel (Brokkoli, Grünkohl)",
+          "2": "Machen Sie Knöchelkreise gegen Schwellungen",
+          "3": "Finalisieren Sie den Geburtsplan mit Ihrem Arzt",
+          "4": "Bereiten Sie Wochenbett-Zubehör vor"
         }
       },
       "w31": {
@@ -7500,11 +7500,11 @@
           "2": "When should I go to the hospital?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Üben Sie täglich Atemtechniken für die Geburt",
+          "1": "Essen Sie häufig kleine Mahlzeiten",
+          "2": "Schlafen Sie mit Kissen zwischen den Knien",
+          "3": "Registrieren Sie sich vorab im Krankenhaus",
+          "4": "Besorgen Sie Wochenbett-Essentials"
         }
       },
       "w32": {
@@ -7533,11 +7533,11 @@
           "2": "Do I need a C-section?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Achten Sie auf Anzeichen einer Frühgeburt",
+          "1": "Erhöhen Sie Kalzium für die Knochenhärtung",
+          "2": "Machen Sie Beckenbodenübungen 3x täglich",
+          "3": "Waschen Sie alle Baby-Bettwäsche und -Kleidung",
+          "4": "Besprechen Sie Schmerzmanagement-Optionen"
         }
       },
       "w33": {
@@ -7566,11 +7566,11 @@
           "2": "How do I recognize real labor?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Notieren Sie täglich die Aktivitätsmuster des Babys",
+          "1": "Essen Sie kaliumreiche Lebensmittel gegen Krämpfe",
+          "2": "Üben Sie Geburtspositionen mit Ihrem Partner",
+          "3": "Bereiten Sie eingefrorene Mahlzeiten für danach vor",
+          "4": "Lernen Sie Stillpositionen und -techniken"
         }
       },
       "w34": {
@@ -7599,11 +7599,11 @@
           "2": "Does baby need a lung maturity injection?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Beginnen Sie wöchentliche Vorsorgeuntersuchungen",
+          "1": "Essen Sie Datteln — kann bei der Geburtsvorbereitung helfen",
+          "2": "Dehnen Sie sich gegen Hüft- und Rückenschmerzen",
+          "3": "Packen Sie die Kliniktasche vollständig",
+          "4": "Besprechen Sie Nabelschnurblut-Banking"
         }
       },
       "w35": {
@@ -7632,11 +7632,11 @@
           "2": "Is the umbilical cord position normal?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Machen Sie den Gruppe-B-Streptokokken-Test",
+          "1": "Essen Sie leichte, leicht verdauliche Mahlzeiten",
+          "2": "Machen Sie Dammmassage 3-4x pro Woche",
+          "3": "Finalisieren Sie die Kinderbetreuung",
+          "4": "Lernen Sie Neugeborenpflege-Grundlagen"
         }
       },
       "w36": {
@@ -7665,11 +7665,11 @@
           "2": "How do I know labor has started?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Das Baby kann tiefer rutschen — leichteres Atmen!",
+          "1": "Überprüfen Sie die Position des Babys mit dem Arzt",
+          "2": "Essen Sie eisenreiche Lebensmittel zur Geburtsvorbereitung",
+          "3": "Ruhen Sie sich aus und sparen Sie Energie",
+          "4": "Bestätigen Sie Ihr Geburtsteam"
         }
       },
       "w37": {
@@ -7698,11 +7698,11 @@
           "2": "Do I need weekly checkups?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Das Baby gilt jetzt als früh-reif!",
+          "1": "Achten Sie auf Wehenzeichen (Kontraktionen, Fruchtblase)",
+          "2": "Essen Sie nährstoffreiche Mahlzeiten und bleiben Sie hydriert",
+          "3": "Gehen Sie sanft spazieren zur Wehenförderung",
+          "4": "Wissen Sie, wann Sie den Arzt rufen oder ins Krankenhaus fahren müssen"
         }
       },
       "w38": {
@@ -7731,11 +7731,11 @@
           "2": "When exactly should I go to hospital?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Bleiben Sie in Bewegung — Spaziergänge helfen",
+          "1": "Essen Sie Datteln und Ananas zur natürlichen Vorbereitung",
+          "2": "Machen Sie Entspannungs- und Visualisierungsübungen",
+          "3": "Überprüfen Sie Ihre Kliniktasche nochmals",
+          "4": "Üben Sie das Timing von Kontraktionen"
         }
       },
       "w39": {
@@ -7764,11 +7764,11 @@
           "2": "How do I cope with labor pain?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Achten Sie auf regelmäßige Kontraktionsmuster",
+          "1": "Essen Sie leichte, energiespendende Lebensmittel",
+          "2": "Ruhen Sie sich so viel wie möglich aus",
+          "3": "Bestätigen Sie den Transport zum Krankenhaus",
+          "4": "Überprüfen Sie den Ernährungsplan fürs Neugeborene"
         }
       },
       "w40": {
@@ -7797,11 +7797,11 @@
           "2": "Is the baby okay?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Ihr Geburtstermin ist da — seien Sie geduldig!",
+          "1": "Gehen Sie spazieren und bleiben Sie aktiv",
+          "2": "Essen Sie ausgewogen für Energie",
+          "3": "Überwachen Sie die Kindsbewegungen sorgfältig",
+          "4": "Kontaktieren Sie Ihren Arzt bei Wehenbeginn"
         }
       },
       "w41": {
@@ -7830,11 +7830,11 @@
           "2": "How are the placenta and fluid?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Besprechen Sie Einleitungsoptionen mit Ihrem Arzt",
+          "1": "Bleiben Sie ruhig — viele Babys kommen nach dem Termin",
+          "2": "Überwachen Sie weiter die Bewegungen",
+          "3": "Ruhen Sie sich aus und sparen Sie Energie",
+          "4": "Bleiben Sie in der Nähe von Zuhause und Krankenhaus"
         }
       },
       "w42": {
@@ -7863,11 +7863,38 @@
           "2": "What is the next step?"
         },
         "checklist": {
-          "0": "Take prenatal vitamins",
-          "1": "Drink 8 glasses of water",
-          "2": "Walk for 20 minutes",
-          "3": "Do 3 sets of Kegel exercises",
-          "4": "Track fetal movements"
+          "0": "Folgen Sie den Anweisungen Ihres Arztes",
+          "1": "Überwachen Sie die Kindsbewegungen sehr genau",
+          "2": "Nehmen Sie Ihren geplanten Kontrolltermin wahr",
+          "3": "Bleiben Sie hydriert und ruhen Sie sich aus",
+          "4": "Vertrauen Sie Ihrem medizinischen Team — Sie sind fast da!"
+        }
+      },
+      "w1": {
+        "checklist": {
+          "0": "Beginnen Sie mit Folsäure (400µg täglich)",
+          "1": "Hören Sie mit dem Rauchen auf und meiden Sie Alkohol",
+          "2": "Vereinbaren Sie eine Vorsorgeuntersuchung",
+          "3": "Beginnen Sie, Ihren Menstruationszyklus zu verfolgen",
+          "4": "Essen Sie ausgewogen mit viel Blattgemüse"
+        }
+      },
+      "w2": {
+        "checklist": {
+          "0": "Nehmen Sie weiterhin Folsäure",
+          "1": "Trinken Sie 8 Gläser Wasser täglich",
+          "2": "Vermeiden Sie rohen Fisch und unzureichend gegartes Fleisch",
+          "3": "Beginnen Sie ein leichtes Trainingsprogramm",
+          "4": "Verfolgen Sie Eisprung-Anzeichen"
+        }
+      },
+      "w3": {
+        "checklist": {
+          "0": "Halten Sie die Folsäure-Einnahme bei",
+          "1": "Vermeiden Sie Chemikalien und Giftstoffe",
+          "2": "Schlafen Sie ausreichend (7-9 Stunden)",
+          "3": "Reduzieren Sie Koffein auf unter 200mg/Tag",
+          "4": "Achten Sie auf frühe Schwangerschaftssymptome"
         }
       }
     }
