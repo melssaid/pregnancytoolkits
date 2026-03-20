@@ -713,43 +713,9 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
                             </div>
                           )}
 
-                          {/* Suggested Questions */}
+                          {/* AI Disclaimer after generation */}
                           {suggestedQuestions.length > 0 && (
-                            <div className="space-y-2 bg-gradient-to-br from-primary/5 to-accent/5 p-4 rounded-xl border border-primary/15">
-                              <p className="text-[11px] text-primary font-semibold flex items-center gap-1.5">
-                                <Sparkles className="w-3.5 h-3.5" />
-                                {t('toolsInternal.appointmentReminder.aiSuggestionsLabel')}
-                              </p>
-                              <div className="flex flex-col gap-2">
-                                {suggestedQuestions.map((q, i) => {
-                                  const isAdded = formData.questions.includes(q);
-                                  return (
-                                    <motion.button
-                                      key={i}
-                                      type="button"
-                                      onClick={() => !isAdded && addQuestion(q)}
-                                      disabled={isAdded}
-                                      initial={{ opacity: 0, y: 8 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      transition={{ delay: i * 0.08 }}
-                                      className={`flex items-start gap-2.5 w-full text-start p-3 rounded-xl border transition-all duration-200 ${
-                                        isAdded
-                                          ? 'bg-primary/10 border-primary/25 opacity-70'
-                                          : 'bg-card border-border/40 hover:border-primary/30 hover:shadow-sm active:scale-[0.98]'
-                                      }`}
-                                    >
-                                      <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                                        isAdded ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
-                                      }`}>
-                                        {isAdded ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
-                                      </div>
-                                      <span className="text-xs leading-relaxed flex-1">{q}</span>
-                                    </motion.button>
-                                  );
-                                })}
-                              </div>
-                              <AIResultDisclaimer />
-                            </div>
+                            <AIResultDisclaimer />
                           )}
                           
                           {aiError && (

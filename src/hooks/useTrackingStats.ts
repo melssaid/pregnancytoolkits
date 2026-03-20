@@ -64,8 +64,10 @@ export const useTrackingStats = () => {
       const waterGlasses = todayWater.reduce((sum: number, l: any) => sum + (l.glasses || 1), 0);
 
       // Planning Stats
-      const appointments = JSON.parse(localStorage.getItem(`appointments_${userId}`) || '[]');
-      const upcomingAppointments = appointments.filter((a: any) => new Date(a.date) >= new Date()).length;
+      // AppointmentService stores in 'appointments' key, filtered by user_id, with 'appointment_date' field
+      const allAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
+      const userAppointments = allAppointments.filter((a: any) => a.user_id === userId);
+      const upcomingAppointments = userAppointments.filter((a: any) => new Date(a.appointment_date || a.date) >= new Date()).length;
 
       const birthPlan = JSON.parse(localStorage.getItem(`birth_plan_${userId}`) || '{}');
       const birthPlanProgress = birthPlan.sections 
