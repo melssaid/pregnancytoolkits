@@ -1482,7 +1482,12 @@
           "afterBirth": "After birth only",
           "none": "No photography"
         }
-      }
+      },
+      "planDeleted": "Plan deleted",
+      "planGenerated": "Plan generated",
+      "planLoaded": "Plan loaded",
+      "planSaved": "Plan saved",
+      "selectPreference": "Select preference"
     },
     "dueDate": {
       "calculateTitle": "Calculate Your Due Date",
@@ -1757,7 +1762,10 @@
         "vitaminD": "Vitamin D",
         "omega3": "Omega 3",
         "prenatal": "Prenatal Vitamins"
-      }
+      },
+      "analyzing": "Analyzing...",
+      "dosages": "Dosages",
+      "importance": "Importance"
     },
     "common": {
       "week": "Week",
@@ -3299,7 +3307,11 @@
         "back": "Back",
         "next": "Next",
         "start": "Start Tracking"
-      }
+      },
+      "avgLabel": "Average",
+      "markPeriod": "Mark period",
+      "normal": "Normal",
+      "slightVariation": "Slight variation"
     },
     "weightGain": {
       "title": "Weight Gain Guide",
@@ -4008,7 +4020,11 @@
           "title": "Journal",
           "desc": "Write down 3 things you're grateful for"
         }
-      }
+      },
+      "helpfulVideos": "Helpful Videos",
+      "personalizedPlan": "Personalized Plan",
+      "retake": "Retake Assessment",
+      "scoreLabel": "Score"
     },
     "mealSuggestion": {
       "subtitle": "Smart meal suggestions for your pregnancy",
@@ -4173,6 +4189,39 @@
       "progress": "Recovery Progress",
       "getAIAdvice": "Get AI Recovery Advice",
       "aiAdviceTitle": "AI Recovery Guidance"
+    },
+    "fertilityAcademy": {
+      "lessons": "Lessons",
+      "lessonsCount": "{{count}} lessons"
+    },
+    "fertilitySigns": {
+      "signs": "Signs",
+      "signsCount": "{{count}} signs"
+    },
+    "preconceptionCheckup": {
+      "ai": "AI Analysis",
+      "allComplete": "All Complete",
+      "categories": "Categories",
+      "checks": "Checks",
+      "disclaimer": "Consult your doctor",
+      "progressLabel": "Progress",
+      "tracked": "Tracked"
+    },
+    "preconceptionNutrition": {
+      "categories": "Categories",
+      "categoriesCount": "{{count}} categories"
+    },
+    "prenatalVitamins": {
+      "supplementsCount": "{{count}} supplements",
+      "vitamins": "Vitamins"
+    },
+    "stressFertility": {
+      "topics": "Topics",
+      "topicsCount": "{{count}} topics"
+    },
+    "twwCompanion": {
+      "days": "Days",
+      "subtitle": "Two-week wait companion with daily tips"
     }
   },
   "welcome": {

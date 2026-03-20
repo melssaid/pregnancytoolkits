@@ -1265,7 +1265,11 @@
           "title": "دفتر اليوميات",
           "desc": "اكتبي 3 أشياء تشعرين بالامتنان لها"
         }
-      }
+      },
+      "helpfulVideos": "فيديوهات مفيدة",
+      "personalizedPlan": "خطة مخصصة",
+      "retake": "إعادة التقييم",
+      "scoreLabel": "النتيجة"
     },
     "weeklySummary": {
       "title": "ملخص الأسبوع",
@@ -1511,9 +1515,9 @@
       "preferencesSet": "{{count}} تفضيلات محددة",
       "load": "تحميل",
       "storageFull": "التخزين ممتلئ. احذفي خططاً قديمة لحفظ جديدة.",
-      "selectPreference": "يرجى اختيار تفضيل واحد على الأقل",
-      "planGenerated": "تم إنشاء خطة الولادة بنجاح!",
-      "planSaved": "تم حفظ خطة الولادة بنجاح!",
+      "selectPreference": "اختر تفضيلك",
+      "planGenerated": "تم إنشاء الخطة",
+      "planSaved": "تم حفظ الخطة",
       "planDeleted": "تم حذف الخطة",
       "planLoaded": "تم تحميل الخطة",
       "pdfSuccess": "تم تحميل ملف PDF بنجاح!",
@@ -1745,22 +1749,9 @@
         "omega3": "أوميغا 3",
         "prenatal": "فيتامينات الحمل"
       },
-      "dosages": {
-        "folicAcid": "400-800 مكغ",
-        "iron": "27 ملغ",
-        "calcium": "1000 ملغ",
-        "vitaminD": "600 وحدة دولية",
-        "omega3": "200-300 ملغ DHA",
-        "prenatal": "حسب التوجيهات"
-      },
-      "importance": {
-        "folicAcid": "ضروري لتطور الجهاز العصبي",
-        "iron": "يمنع فقر الدم",
-        "calcium": "لصحة العظام",
-        "vitaminD": "يساعد امتصاص الكالسيوم",
-        "omega3": "لتطور دماغ الطفل",
-        "prenatal": "متكامل ومتوازن"
-      }
+      "dosages": "الجرعات",
+      "importance": "الأهمية",
+      "analyzing": "جارٍ التحليل..."
     },
     "common": {
       "week": "الأسبوع",
@@ -3246,7 +3237,11 @@
         "start": "بدء التتبع"
       },
       "videosTitle": "فيديوهات الدورة الشهرية",
-      "videosSubtitle": "تعرفي على دورتك الشهرية"
+      "videosSubtitle": "تعرفي على دورتك الشهرية",
+      "avgLabel": "المتوسط",
+      "markPeriod": "تحديد الدورة",
+      "normal": "طبيعي",
+      "slightVariation": "تغيير طفيف"
     },
     "weightGain": {
       "title": "دليل زيادة الوزن",
@@ -3754,6 +3749,39 @@
       "progress": "تقدم التعافي",
       "getAIAdvice": "نصائح ذكاء اصطناعي للتعافي",
       "aiAdviceTitle": "إرشادات التعافي بالذكاء الاصطناعي"
+    },
+    "fertilityAcademy": {
+      "lessons": "الدروس",
+      "lessonsCount": "{{count}} دروس"
+    },
+    "fertilitySigns": {
+      "signs": "العلامات",
+      "signsCount": "{{count}} علامات"
+    },
+    "preconceptionCheckup": {
+      "ai": "تحليل الذكاء الاصطناعي",
+      "allComplete": "مكتمل بالكامل",
+      "categories": "الفئات",
+      "checks": "الفحوصات",
+      "disclaimer": "استشيري طبيبك",
+      "progressLabel": "التقدم",
+      "tracked": "تم التتبع"
+    },
+    "preconceptionNutrition": {
+      "categories": "الفئات",
+      "categoriesCount": "{{count}} فئات"
+    },
+    "prenatalVitamins": {
+      "supplementsCount": "{{count}} مكملات",
+      "vitamins": "الفيتامينات"
+    },
+    "stressFertility": {
+      "topics": "المواضيع",
+      "topicsCount": "{{count}} مواضيع"
+    },
+    "twwCompanion": {
+      "days": "أيام",
+      "subtitle": "رفيق فترة الانتظار مع نصائح يومية"
     }
   },
   "welcome": {

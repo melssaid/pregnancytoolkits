@@ -1538,9 +1538,9 @@
       "preferencesSet": "{{count}} preferencias establecidas",
       "load": "Cargar",
       "storageFull": "Almacenamiento lleno. Elimina planes antiguos para guardar nuevos.",
-      "selectPreference": "Por favor selecciona al menos una preferencia",
-      "planGenerated": "¡Plan de parto creado con éxito!",
-      "planSaved": "¡Plan de parto guardado!",
+      "selectPreference": "Seleccionar preferencia",
+      "planGenerated": "Plan generado",
+      "planSaved": "Plan guardado",
       "planDeleted": "Plan eliminado",
       "planLoaded": "Plan cargado",
       "pdfSuccess": "¡PDF descargado con éxito!",
@@ -1827,7 +1827,10 @@
         "vitaminD": "Vitamina D",
         "omega3": "Omega 3",
         "prenatal": "Vitaminas Prenatales"
-      }
+      },
+      "analyzing": "Analizando...",
+      "dosages": "Dosis",
+      "importance": "Importancia"
     },
     "common": {
       "week": "Semana",
@@ -2778,7 +2781,8 @@
           "risk": "medium",
           "icon": "⚠️"
         }
-      }
+      },
+      "yourRoutine": "Tu rutina"
     },
     "cravingAlternatives": {
       "title": "Alternativas a Antojos IA",
@@ -3737,9 +3741,33 @@
       "allComplete": "Todo completo",
       "ai": "Análisis IA",
       "disclaimer": "Consulte a su médico",
-      "tracked": "Seguimiento",
+      "tracked": "Registrado",
       "categories": "Categorías",
       "checks": "Chequeos"
+    },
+    "fertilityAcademy": {
+      "lessons": "Lecciones",
+      "lessonsCount": "{{count}} lecciones"
+    },
+    "fertilitySigns": {
+      "signs": "Señales",
+      "signsCount": "{{count}} señales"
+    },
+    "preconceptionNutrition": {
+      "categories": "Categorías",
+      "categoriesCount": "{{count}} categorías"
+    },
+    "prenatalVitamins": {
+      "supplementsCount": "{{count}} suplementos",
+      "vitamins": "Vitaminas"
+    },
+    "stressFertility": {
+      "topics": "Temas",
+      "topicsCount": "{{count}} temas"
+    },
+    "twwCompanion": {
+      "days": "Días",
+      "subtitle": "Compañero de la espera de dos semanas con consejos diarios"
     }
   },
   "preeclampsiaRisk": {

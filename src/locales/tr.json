@@ -1308,10 +1308,10 @@
           "desc": "Minnettar olduğunuz 3 şeyi yazın"
         }
       },
-      "personalizedPlan": "Kişiselleştirilmiş plan",
-      "retake": "Tekrar değerlendir",
+      "personalizedPlan": "Kişiselleştirilmiş Plan",
+      "retake": "Tekrar Değerlendir",
       "scoreLabel": "Puan",
-      "helpfulVideos": "Faydalı videolar"
+      "helpfulVideos": "Faydalı Videolar"
     },
     "weeklySummary": {
       "title": "Haftalık Özet",
@@ -1538,9 +1538,9 @@
       "preferencesSet": "{{count}} tercih belirlendi",
       "load": "Yükle",
       "storageFull": "Depolama dolu. Yeni kaydetmek için eski planları silin.",
-      "selectPreference": "Lütfen en az bir tercih seçin",
-      "planGenerated": "Doğum planı başarıyla oluşturuldu!",
-      "planSaved": "Doğum planı kaydedildi!",
+      "selectPreference": "Tercih seçin",
+      "planGenerated": "Plan oluşturuldu",
+      "planSaved": "Plan kaydedildi",
       "planDeleted": "Plan silindi",
       "planLoaded": "Plan yüklendi",
       "pdfSuccess": "PDF başarıyla indirildi!",
@@ -1829,7 +1829,10 @@
         "vitaminD": "D Vitamini",
         "omega3": "Omega 3",
         "prenatal": "Prenatal Vitaminler"
-      }
+      },
+      "analyzing": "Analiz ediliyor...",
+      "dosages": "Dozajlar",
+      "importance": "Önem"
     },
     "common": {
       "week": "Hafta",
@@ -2780,7 +2783,8 @@
           "risk": "medium",
           "icon": "⚠️"
         }
-      }
+      },
+      "yourRoutine": "Rutininiz"
     },
     "cravingAlternatives": {
       "title": "AI İstek Alternatifleri",
@@ -3742,6 +3746,30 @@
       "tracked": "Takip ediliyor",
       "categories": "Kategoriler",
       "checks": "Kontroller"
+    },
+    "fertilityAcademy": {
+      "lessons": "Dersler",
+      "lessonsCount": "{{count}} ders"
+    },
+    "fertilitySigns": {
+      "signs": "Belirtiler",
+      "signsCount": "{{count}} belirti"
+    },
+    "preconceptionNutrition": {
+      "categories": "Kategoriler",
+      "categoriesCount": "{{count}} kategori"
+    },
+    "prenatalVitamins": {
+      "supplementsCount": "{{count}} takviye",
+      "vitamins": "Vitaminler"
+    },
+    "stressFertility": {
+      "topics": "Konular",
+      "topicsCount": "{{count}} konu"
+    },
+    "twwCompanion": {
+      "days": "Günler",
+      "subtitle": "Günlük ipuçlarıyla iki hafta bekleme arkadaşı"
     }
   },
   "preeclampsiaRisk": {

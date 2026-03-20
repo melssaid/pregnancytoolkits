@@ -1345,7 +1345,11 @@
           "title": "Journal",
           "desc": "Écrivez 3 choses pour lesquelles vous êtes reconnaissante"
         }
-      }
+      },
+      "helpfulVideos": "Vidéos utiles",
+      "personalizedPlan": "Plan personnalisé",
+      "retake": "Refaire l'évaluation",
+      "scoreLabel": "Score"
     },
     "weeklySummary": {
       "title": "Aperçus hebdomadaires",
@@ -1572,9 +1576,9 @@
       "preferencesSet": "{{count}} préférences définies",
       "load": "Charger",
       "storageFull": "Stockage plein. Supprimez d'anciens plans pour en sauvegarder de nouveaux.",
-      "selectPreference": "Veuillez sélectionner au moins une préférence",
-      "planGenerated": "Plan de naissance créé avec succès !",
-      "planSaved": "Plan de naissance sauvegardé !",
+      "selectPreference": "Choisir préférence",
+      "planGenerated": "Plan généré",
+      "planSaved": "Plan enregistré",
       "planDeleted": "Plan supprimé",
       "planLoaded": "Plan chargé",
       "pdfSuccess": "PDF téléchargé avec succès !",
@@ -2189,7 +2193,10 @@
         "vitaminD": "Vitamine D",
         "omega3": "Oméga 3",
         "prenatal": "Vitamines prénatales"
-      }
+      },
+      "analyzing": "Analyse...",
+      "dosages": "Dosages",
+      "importance": "Importance"
     },
     "common": {
       "week": "Semaine",
@@ -2520,7 +2527,8 @@
           "risk": "medium",
           "icon": "⚠️"
         }
-      }
+      },
+      "yourRoutine": "Votre routine"
     },
     "cravingAlternatives": {
       "title": "Alternatives aux Envies IA",
@@ -3632,6 +3640,39 @@
       "progress": "Progression de la récupération",
       "getAIAdvice": "Conseils IA de récupération",
       "aiAdviceTitle": "Guidance IA de récupération"
+    },
+    "fertilityAcademy": {
+      "lessons": "Leçons",
+      "lessonsCount": "{{count}} leçons"
+    },
+    "fertilitySigns": {
+      "signs": "Signes",
+      "signsCount": "{{count}} signes"
+    },
+    "preconceptionCheckup": {
+      "ai": "Analyse IA",
+      "allComplete": "Tout terminé",
+      "categories": "Catégories",
+      "checks": "Examens",
+      "disclaimer": "Consultez votre médecin",
+      "progressLabel": "Progression",
+      "tracked": "Suivi"
+    },
+    "preconceptionNutrition": {
+      "categories": "Catégories",
+      "categoriesCount": "{{count}} catégories"
+    },
+    "prenatalVitamins": {
+      "supplementsCount": "{{count}} suppléments",
+      "vitamins": "Vitamines"
+    },
+    "stressFertility": {
+      "topics": "Sujets",
+      "topicsCount": "{{count}} sujets"
+    },
+    "twwCompanion": {
+      "days": "Jours",
+      "subtitle": "Compagnon de la période d'attente avec des conseils quotidiens"
     }
   },
   "preeclampsiaRisk": {

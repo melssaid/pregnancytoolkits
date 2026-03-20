@@ -1538,9 +1538,9 @@
       "preferencesSet": "{{count}} preferências definidas",
       "load": "Carregar",
       "storageFull": "Armazenamento cheio. Exclua planos antigos para salvar novos.",
-      "selectPreference": "Selecione pelo menos uma preferência",
-      "planGenerated": "Plano de parto criado com sucesso!",
-      "planSaved": "Plano de parto salvo!",
+      "selectPreference": "Selecionar preferência",
+      "planGenerated": "Plano gerado",
+      "planSaved": "Plano salvo",
       "planDeleted": "Plano excluído",
       "planLoaded": "Plano carregado",
       "pdfSuccess": "PDF baixado com sucesso!",
@@ -1829,7 +1829,10 @@
         "vitaminD": "Vitamina D",
         "omega3": "Ômega 3",
         "prenatal": "Vitaminas Pré-natais"
-      }
+      },
+      "analyzing": "Analisando...",
+      "dosages": "Dosagens",
+      "importance": "Importância"
     },
     "common": {
       "week": "Semana",
@@ -2780,7 +2783,8 @@
           "risk": "medium",
           "icon": "⚠️"
         }
-      }
+      },
+      "yourRoutine": "Sua rotina"
     },
     "cravingAlternatives": {
       "title": "Alternativas para Desejos IA",
@@ -3742,6 +3746,30 @@
       "tracked": "Acompanhado",
       "categories": "Categorias",
       "checks": "Verificações"
+    },
+    "fertilityAcademy": {
+      "lessons": "Lições",
+      "lessonsCount": "{{count}} lições"
+    },
+    "fertilitySigns": {
+      "signs": "Sinais",
+      "signsCount": "{{count}} sinais"
+    },
+    "preconceptionNutrition": {
+      "categories": "Categorias",
+      "categoriesCount": "{{count}} categorias"
+    },
+    "prenatalVitamins": {
+      "supplementsCount": "{{count}} suplementos",
+      "vitamins": "Vitaminas"
+    },
+    "stressFertility": {
+      "topics": "Tópicos",
+      "topicsCount": "{{count}} tópicos"
+    },
+    "twwCompanion": {
+      "days": "Dias",
+      "subtitle": "Companheiro da espera de duas semanas com dicas diárias"
     }
   },
   "preeclampsiaRisk": {

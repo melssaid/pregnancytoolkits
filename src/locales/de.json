@@ -1345,7 +1345,11 @@
           "title": "Tagebuch",
           "desc": "Schreibe 3 Dinge auf, für die du dankbar bist"
         }
-      }
+      },
+      "helpfulVideos": "Hilfreiche Videos",
+      "personalizedPlan": "Persönlicher Plan",
+      "retake": "Neu bewerten",
+      "scoreLabel": "Ergebnis"
     },
     "weeklySummary": {
       "title": "Wöchentliche Einblicke",
@@ -1572,9 +1576,9 @@
       "preferencesSet": "{{count}} Präferenzen festgelegt",
       "load": "Laden",
       "storageFull": "Speicher voll. Löschen Sie alte Pläne, um neue zu speichern.",
-      "selectPreference": "Bitte wählen Sie mindestens eine Präferenz",
-      "planGenerated": "Geburtsplan erfolgreich erstellt!",
-      "planSaved": "Geburtsplan gespeichert!",
+      "selectPreference": "Präferenz wählen",
+      "planGenerated": "Plan erstellt",
+      "planSaved": "Plan gespeichert",
       "planDeleted": "Plan gelöscht",
       "planLoaded": "Plan geladen",
       "pdfSuccess": "PDF erfolgreich heruntergeladen!",
@@ -2004,7 +2008,10 @@
         "vitaminD": "Vitamin D",
         "omega3": "Omega 3",
         "prenatal": "Pränatale Vitamine"
-      }
+      },
+      "analyzing": "Analyse...",
+      "dosages": "Dosierungen",
+      "importance": "Wichtigkeit"
     },
     "common": {
       "week": "Woche",
@@ -2335,7 +2342,8 @@
           "risk": "medium",
           "icon": "⚠️"
         }
-      }
+      },
+      "yourRoutine": "Ihre Routine"
     },
     "cravingAlternatives": {
       "title": "KI-Heißhunger-Alternativen",
@@ -3632,6 +3640,39 @@
       "progress": "Erholungsfortschritt",
       "getAIAdvice": "KI-Erholungsberatung",
       "aiAdviceTitle": "KI-Erholungshinweise"
+    },
+    "fertilityAcademy": {
+      "lessons": "Lektionen",
+      "lessonsCount": "{{count}} Lektionen"
+    },
+    "fertilitySigns": {
+      "signs": "Zeichen",
+      "signsCount": "{{count}} Zeichen"
+    },
+    "preconceptionCheckup": {
+      "ai": "KI-Analyse",
+      "allComplete": "Alles erledigt",
+      "categories": "Kategorien",
+      "checks": "Untersuchungen",
+      "disclaimer": "Konsultieren Sie Ihren Arzt",
+      "progressLabel": "Fortschritt",
+      "tracked": "Verfolgt"
+    },
+    "preconceptionNutrition": {
+      "categories": "Kategorien",
+      "categoriesCount": "{{count}} Kategorien"
+    },
+    "prenatalVitamins": {
+      "supplementsCount": "{{count}} Ergänzungen",
+      "vitamins": "Vitamine"
+    },
+    "stressFertility": {
+      "topics": "Themen",
+      "topicsCount": "{{count}} Themen"
+    },
+    "twwCompanion": {
+      "days": "Tage",
+      "subtitle": "Begleiter in der Wartezeit mit täglichen Tipps"
     }
   },
   "preeclampsiaRisk": {
