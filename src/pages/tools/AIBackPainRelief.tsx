@@ -10,6 +10,7 @@ import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { PrintableReport } from '@/components/PrintableReport';
 import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { BackPainAnimation } from '@/components/fitness/BackPainAnimation';
 import { ToolHubNav, FITNESS_HUB_TABS } from '@/components/ToolHubNav';

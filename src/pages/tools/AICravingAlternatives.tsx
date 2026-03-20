@@ -10,6 +10,7 @@ import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { PrintableReport } from '@/components/PrintableReport';
 import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { RelatedTools } from '@/components/RelatedTools';

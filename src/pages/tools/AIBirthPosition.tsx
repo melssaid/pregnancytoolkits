@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import { Baby, Sparkles, Clock, Brain, Loader2 } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";

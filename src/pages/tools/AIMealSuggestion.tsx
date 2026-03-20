@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { useTranslation } from "react-i18next";
 import {
   Utensils,

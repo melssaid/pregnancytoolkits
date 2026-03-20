@@ -14,6 +14,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { PrintableReport } from '@/components/PrintableReport';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";

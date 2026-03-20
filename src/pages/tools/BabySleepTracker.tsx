@@ -14,6 +14,7 @@ import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { Progress } from "@/components/ui/progress";
 
 
