@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Heart, CheckCircle, AlertTriangle, Info } from "lucide-react";
+import { WhenToCallDoctorCard } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -221,25 +222,8 @@ Encouraging message about proactive health management`}
                   />
                 )}
 
-                {/* Warning Signs */}
-                <Card className="overflow-hidden">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base">{t('preeclampsiaRisk.warningSignsTitle')}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <ul className="space-y-2">
-                      {warningSignKeys.map((key) => (
-                        <li key={key} className="flex items-start gap-2">
-                          <AlertTriangle className="h-4 w-4 text-warning mt-0.5 shrink-0" />
-                          <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{t(`preeclampsiaRisk.warningSigns.${key}`)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-3 text-xs sm:text-sm font-medium text-destructive">
-                      {t('preeclampsiaRisk.warningNote')}
-                    </p>
-                  </CardContent>
-                </Card>
+                {/* When to Call Doctor — Preeclampsia context */}
+                <WhenToCallDoctorCard context="preeclampsia" />
               </motion.div>
             )}
 
