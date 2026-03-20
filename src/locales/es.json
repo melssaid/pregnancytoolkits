@@ -1649,7 +1649,9 @@
       "aiGuideTitle": "Guía de Embarazo IA",
       "getWeeklyGuide": "Obtener Guía Semanal",
       "pickDate": "Elegir una fecha",
-      "fromProfile": "Completado automáticamente desde tu perfil"
+      "fromProfile": "Completado automáticamente desde tu perfil",
+      "videosTitle": "Videos sobre fecha de parto",
+      "videosSubtitle": "Aprende más sobre el parto"
     },
     "kickCounter": {
       "title": "Diario de movimientos del bebé",

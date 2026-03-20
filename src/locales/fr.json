@@ -1630,7 +1630,19 @@
       },
       "allergiesLabel": "Allergies",
       "prepTimeLabel": "Temps de préparation",
-      "noneSpecified": "Non spécifié"
+      "noneSpecified": "Non spécifié",
+      "allergies": {
+        "none": "Aucune",
+        "gluten": "Gluten",
+        "dairy": "Produits laitiers",
+        "nuts": "Noix",
+        "eggs": "Œufs"
+      },
+      "prepTimes": {
+        "quick": "Rapide (< 15 min)",
+        "moderate": "Modéré (15-30 min)",
+        "long": "Long (> 30 min)"
+      }
     },
     "dueDate": {
       "calculateTitle": "Calculez votre date d'accouchement",
@@ -3340,6 +3352,19 @@
         "pain": "Douleur",
         "returning": "Retour au travail",
         "storage": "Conservation du lait"
+      },
+      "noneSpecified": "Non spécifié",
+      "supplies": {
+        "pump": "Tire-lait",
+        "bags": "Sachets de conservation",
+        "pads": "Coussinets",
+        "cream": "Crème pour mamelons",
+        "pillow": "Coussin d'allaitement"
+      },
+      "workOptions": {
+        "partTime": "Temps partiel",
+        "fullTime": "Temps plein",
+        "remote": "Télétravail"
       }
     },
     "weeklyInsights": {

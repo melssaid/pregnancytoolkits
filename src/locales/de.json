@@ -1630,7 +1630,19 @@
       },
       "allergiesLabel": "Allergien",
       "prepTimeLabel": "Zubereitungszeit",
-      "noneSpecified": "Nicht angegeben"
+      "noneSpecified": "Nicht angegeben",
+      "allergies": {
+        "none": "Keine",
+        "gluten": "Gluten",
+        "dairy": "Milchprodukte",
+        "nuts": "Nüsse",
+        "eggs": "Eier"
+      },
+      "prepTimes": {
+        "quick": "Schnell (< 15 Min.)",
+        "moderate": "Mittel (15-30 Min.)",
+        "long": "Lang (> 30 Min.)"
+      }
     },
     "dueDate": {
       "calculateTitle": "Berechnen Sie Ihren Geburtstermin",
@@ -3340,6 +3352,19 @@
         "pain": "Schmerzen",
         "returning": "Rückkehr zur Arbeit",
         "storage": "Milch aufbewahren"
+      },
+      "noneSpecified": "Nicht angegeben",
+      "supplies": {
+        "pump": "Milchpumpe",
+        "bags": "Aufbewahrungsbeutel",
+        "pads": "Stilleinlagen",
+        "cream": "Brustwarzencreme",
+        "pillow": "Stillkissen"
+      },
+      "workOptions": {
+        "partTime": "Teilzeit",
+        "fullTime": "Vollzeit",
+        "remote": "Home-Office"
       }
     },
     "weeklyInsights": {
