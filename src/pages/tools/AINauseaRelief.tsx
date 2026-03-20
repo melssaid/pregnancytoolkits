@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Brain, Loader2, Sparkles, Heart, Utensils, Wind, AlertCircle } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -215,12 +216,14 @@ Be compassionate - morning sickness is exhausting!`;
 
         {/* AI Response */}
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.nauseaRelief.title')}
-            toolId="ai-nausea-relief"
-          />
+          <PrintableReport title={t('toolsInternal.nauseaRelief.title')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.nauseaRelief.title')}
+              toolId="ai-nausea-relief"
+            />
+          </PrintableReport>
         )}
 
         {/* Encouraging Note */}

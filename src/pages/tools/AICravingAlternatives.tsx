@@ -10,6 +10,7 @@ import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { PrintableReport } from '@/components/PrintableReport';
 import { AILoadingDots } from '@/components/ai/AILoadingDots';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { RelatedTools } from '@/components/RelatedTools';
@@ -213,11 +214,13 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                 </div>
               )}
               {result && (
-                <AIResponseFrame
-                  content={result}
-                  title={t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}
-                  icon={Salad}
-                />
+                <PrintableReport title={t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}>
+                  <AIResponseFrame
+                    content={result}
+                    title={t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}
+                    icon={Salad}
+                  />
+                </PrintableReport>
               )}
             </div>
           )}

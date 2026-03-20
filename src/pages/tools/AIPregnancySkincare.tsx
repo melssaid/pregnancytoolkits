@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Droplet, Sun, Moon as MoonIcon, AlertTriangle, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -192,13 +193,15 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <AIResponseFrame
-              content={response}
-              isLoading={isLoading}
-              title={t('toolsInternal.skincare.yourRoutine')}
-              icon={Sparkles}
-              toolId="ai-skincare"
-            />
+            <PrintableReport title={t('toolsInternal.skincare.yourRoutine')} isLoading={isLoading}>
+              <AIResponseFrame
+                content={response}
+                isLoading={isLoading}
+                title={t('toolsInternal.skincare.yourRoutine')}
+                icon={Sparkles}
+                toolId="ai-skincare"
+              />
+            </PrintableReport>
           </motion.div>
         )}
 

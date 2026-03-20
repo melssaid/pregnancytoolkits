@@ -22,6 +22,7 @@ import { MedicalDisclaimer } from "@/components/compliance";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { WeekSlider } from "@/components/WeekSlider";
@@ -227,13 +228,15 @@ export default function WeeklySummary() {
               )}
             </AnimatePresence>
 
-            <AIResponseFrame
-              title={t("toolsInternal.weeklySummary.weekSummary", { week })}
-              content={summary}
-              isLoading={isLoading}
-              icon={Baby}
-              toolId="weekly-summary"
-            />
+            <PrintableReport title={t("toolsInternal.weeklySummary.weekSummary", { week })} isLoading={isLoading}>
+              <AIResponseFrame
+                title={t("toolsInternal.weeklySummary.weekSummary", { week })}
+                content={summary}
+                isLoading={isLoading}
+                icon={Baby}
+                toolId="weekly-summary"
+              />
+            </PrintableReport>
 
             {/* Saved date indicator */}
             {currentWeekSaved && !isLoading && (

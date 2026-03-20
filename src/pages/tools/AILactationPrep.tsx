@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Brain, Loader2, Sparkles, Clock, ShoppingBag, AlertCircle } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -231,11 +232,13 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
         {/* AI Response */}
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.lactationPrep.title')}
-          />
+          <PrintableReport title={t('toolsInternal.lactationPrep.title')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.lactationPrep.title')}
+            />
+          </PrintableReport>
         )}
 
         {/* Support Note */}

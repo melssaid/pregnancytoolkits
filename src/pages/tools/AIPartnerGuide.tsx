@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Sparkles, Heart } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -163,12 +164,14 @@ Be warm, practical, and specific. Include real examples.`;
 
         {/* AI Response */}
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.partnerGuide.getAdvice')}
-            icon={Heart}
-          />
+          <PrintableReport title={t('toolsInternal.partnerGuide.getAdvice')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.partnerGuide.getAdvice')}
+              icon={Heart}
+            />
+          </PrintableReport>
         )}
 
         {/* Quick Tips */}

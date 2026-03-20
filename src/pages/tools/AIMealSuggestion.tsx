@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { useTranslation } from "react-i18next";
 import {
   Utensils,
@@ -278,14 +279,16 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
         ) : (
           <>
             {/* Suggestion Result */}
-            <AIResponseFrame
-              content={suggestion}
-              isLoading={isLoading}
-              title={t("toolsInternal.mealSuggestion.mealSuggestion")}
-              subtitle={t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
-              icon={Utensils}
-              toolId="ai-meal-suggestion"
-            />
+            <PrintableReport title={t("toolsInternal.mealSuggestion.mealSuggestion")} isLoading={isLoading}>
+              <AIResponseFrame
+                content={suggestion}
+                isLoading={isLoading}
+                title={t("toolsInternal.mealSuggestion.mealSuggestion")}
+                subtitle={t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
+                icon={Utensils}
+                toolId="ai-meal-suggestion"
+              />
+            </PrintableReport>
 
             {/* Actions */}
             <div className="flex gap-2">

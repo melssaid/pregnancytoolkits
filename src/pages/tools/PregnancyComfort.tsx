@@ -14,6 +14,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { PrintableReport } from '@/components/PrintableReport';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
@@ -281,11 +282,13 @@ function NauseaTab() {
       />
 
       {response && (
-        <AIResponseFrame
-          content={response}
-          isLoading={isLoading}
-          title={t('toolsInternal.nauseaRelief.title')}
-        />
+        <PrintableReport title={t('toolsInternal.nauseaRelief.title')} isLoading={isLoading}>
+          <AIResponseFrame
+            content={response}
+            isLoading={isLoading}
+            title={t('toolsInternal.nauseaRelief.title')}
+          />
+        </PrintableReport>
       )}
 
       <Card className="p-3 bg-muted/30 text-center">

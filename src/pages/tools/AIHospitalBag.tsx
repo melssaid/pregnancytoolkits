@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import { Briefcase, Baby, User, Heart, Plus, Share2, RotateCcw } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { AIActionButton } from "@/components/ai/AIActionButton";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -527,11 +528,13 @@ Include seasonal considerations and hospital-specific recommendations.`;
         </div>
 
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.hospitalBag.title')}
-          />
+          <PrintableReport title={t('toolsInternal.hospitalBag.title')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.hospitalBag.title')}
+            />
+          </PrintableReport>
         )}
 
         {/* Educational Videos */}

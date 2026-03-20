@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { PrintableReport } from '@/components/PrintableReport';
 import { motion } from 'framer-motion';
 import { 
   Brain, Info, Sparkles, Calendar, 
@@ -277,13 +278,15 @@ Provide brief, supportive wellness insights about these feelings during week ${c
 
         {/* AI Response */}
         {aiInsight && (
-          <AIResponseFrame
-            content={aiInsight}
-            isLoading={isGettingInsight}
-            title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}
-            icon={Brain}
-            toolId="ai-symptom-analyzer"
-          />
+          <PrintableReport title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')} isLoading={isGettingInsight}>
+            <AIResponseFrame
+              content={aiInsight}
+              isLoading={isGettingInsight}
+              title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}
+              icon={Brain}
+              toolId="ai-symptom-analyzer"
+            />
+          </PrintableReport>
         )}
 
         {/* Save Entry Button */}

@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { PrintableReport } from '@/components/PrintableReport';
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
@@ -269,36 +270,38 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
 
         {/* AI Response - Tabbed Content */}
         {(response || meditationScript || routinePlan) && (
-          <Card className="p-3 bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30">
-            <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
-              <TabsList className="w-full mb-3">
-                <TabsTrigger value="analysis" className="flex-1" disabled={!response}>
-                  <Brain className="w-4 h-4 me-1" />
-                  {t('toolsInternal.sleepOptimizer.sleepPlan')}
-                </TabsTrigger>
-                <TabsTrigger value="meditation" className="flex-1" disabled={!meditationScript}>
-                  <Wind className="w-4 h-4 me-1" />
-                  {t('toolsInternal.sleepOptimizer.meditation')}
-                </TabsTrigger>
-                <TabsTrigger value="routine" className="flex-1" disabled={!routinePlan}>
-                  <Bed className="w-4 h-4 me-1" />
-                  {t('toolsInternal.sleepOptimizer.routine')}
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="analysis" className="max-h-[400px] overflow-y-auto">
-                {response && <MarkdownRenderer content={response} isLoading={isLoading && activeTab === 'analysis'} />}
-              </TabsContent>
-              
-              <TabsContent value="meditation" className="max-h-[400px] overflow-y-auto">
-                {meditationScript && <MarkdownRenderer content={meditationScript} isLoading={isLoading && activeTab === 'meditation'} />}
-              </TabsContent>
-              
-              <TabsContent value="routine" className="max-h-[400px] overflow-y-auto">
-                {routinePlan && <MarkdownRenderer content={routinePlan} isLoading={isLoading && activeTab === 'routine'} />}
-              </TabsContent>
-            </Tabs>
-          </Card>
+          <PrintableReport title={t('toolsInternal.sleepOptimizer.title')} isLoading={isLoading}>
+            <Card className="p-3 bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30">
+              <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
+                <TabsList className="w-full mb-3">
+                  <TabsTrigger value="analysis" className="flex-1" disabled={!response}>
+                    <Brain className="w-4 h-4 me-1" />
+                    {t('toolsInternal.sleepOptimizer.sleepPlan')}
+                  </TabsTrigger>
+                  <TabsTrigger value="meditation" className="flex-1" disabled={!meditationScript}>
+                    <Wind className="w-4 h-4 me-1" />
+                    {t('toolsInternal.sleepOptimizer.meditation')}
+                  </TabsTrigger>
+                  <TabsTrigger value="routine" className="flex-1" disabled={!routinePlan}>
+                    <Bed className="w-4 h-4 me-1" />
+                    {t('toolsInternal.sleepOptimizer.routine')}
+                  </TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="analysis" className="max-h-[400px] overflow-y-auto">
+                  {response && <MarkdownRenderer content={response} isLoading={isLoading && activeTab === 'analysis'} />}
+                </TabsContent>
+                
+                <TabsContent value="meditation" className="max-h-[400px] overflow-y-auto">
+                  {meditationScript && <MarkdownRenderer content={meditationScript} isLoading={isLoading && activeTab === 'meditation'} />}
+                </TabsContent>
+                
+                <TabsContent value="routine" className="max-h-[400px] overflow-y-auto">
+                  {routinePlan && <MarkdownRenderer content={routinePlan} isLoading={isLoading && activeTab === 'routine'} />}
+                </TabsContent>
+              </Tabs>
+            </Card>
+          </PrintableReport>
         )}
 
         {/* Sleep Tips */}

@@ -14,6 +14,7 @@ import { AIActionButton } from '@/components/ai/AIActionButton';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
+import { PrintableReport } from '@/components/PrintableReport';
 import { Progress } from "@/components/ui/progress";
 
 
@@ -392,11 +393,13 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <AIResponseFrame
-                content={aiAdvice}
-                title={t('toolsInternal.babySleep.aiSleepAdvisor')}
-                icon={Sparkles}
-              />
+              <PrintableReport title={t('toolsInternal.babySleep.aiSleepAdvisor')}>
+                <AIResponseFrame
+                  content={aiAdvice}
+                  title={t('toolsInternal.babySleep.aiSleepAdvisor')}
+                  icon={Sparkles}
+                />
+              </PrintableReport>
             </motion.div>
           )}
         </AnimatePresence>
