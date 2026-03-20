@@ -32,16 +32,7 @@ const SmartKickCounter: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   
-  // AI States
-  const [aiResult, setAiResult] = useState('');
-  
-  
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const { toast } = useToast();
-
-  useResetOnLanguageChange(() => {
-    setAiResult('');
-  });
 
   useEffect(() => {
     // Sync week from central profile
