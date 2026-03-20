@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Square, Timer, TrendingUp } from "lucide-react";
+import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -270,7 +271,23 @@ Analyze contraction pattern, regularity, and labor progression. Provide guidance
           />
         )}
 
-        
+        {/* Evidence: 5-1-1 Rule */}
+        <EvidenceInfoBlock
+          title={t("safety.evidence.fiveOneOne.title")}
+          content={t("safety.evidence.fiveOneOne.content")}
+          source={t("safety.evidence.fiveOneOne.source")}
+        />
+
+        {/* Active labor warning */}
+        {phaseStats && phaseStats.avgInterval > 0 && phaseStats.avgInterval <= 300 && phaseStats.avgDuration >= 45 && (
+          <ContextualWarningBanner
+            level="urgent"
+            message={t("safety.banners.activeLabor")}
+          />
+        )}
+
+        {/* When to Call Doctor */}
+        <WhenToCallDoctorCard context="contraction" />
       </div>
     </ToolFrame>
   );
