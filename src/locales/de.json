@@ -6439,5 +6439,73 @@
     "nutrition-supplements": "Ein vollständiger Leitfaden zur Ernährung vor der Empfängnis und pränatalen Nahrungsergänzung. Ernährungs- und Ergänzungsinformationen sind allgemeine Orientierung. Konsultieren Sie Ihre Ärztin oder Ernährungsberaterin für einen individuellen Plan.",
     "tww-companion": "Tägliche Ermutigung und Informationen während der Wartezeit nach dem Eisprung. Inhalte dienen der emotionalen Unterstützung und Aufklärung. Ein Schwangerschaftstest ist die einzige Möglichkeit, eine Schwangerschaft zu bestätigen.",
     "preconception-checkup": "Eine Checkliste häufig empfohlener Untersuchungen vor dem Kinderwunsch. Dies ist ein allgemeiner Leitfaden. Ihre Ärztin legt fest, welche Tests Sie benötigen."
+  },
+  "dailyDashboard": {
+    "pageTitle": "Tägliches Dashboard",
+    "week": "Woche",
+    "daysLeft": "Tage übrig",
+    "complete": "abgeschlossen",
+    "trimester": {
+      "first": "Erstes Trimester",
+      "second": "Zweites Trimester",
+      "third": "Drittes Trimester"
+    },
+    "priorities": {
+      "title": "Heutige Prioritäten",
+      "vitamins": "Vitamine nehmen",
+      "kicks": "Kindsbewegungen aufzeichnen",
+      "water": "Wasser trinken",
+      "appointment": "Anstehende Termine"
+    },
+    "quickActions": {
+      "title": "Schnellzugriff",
+      "assistant": "Assistent",
+      "kicks": "Tritte",
+      "weight": "Gewicht",
+      "growth": "Wachstum",
+      "appointment": "Termin",
+      "symptoms": "Symptome",
+      "vitamins": "Vitamine",
+      "photos": "Fotos"
+    },
+    "hydration": {
+      "title": "Flüssigkeitszufuhr",
+      "addGlass": "+ Glas Wasser"
+    },
+    "symptoms": {
+      "title": "Symptomzusammenfassung",
+      "noSymptoms": "Keine Symptome aufgezeichnet"
+    },
+    "fetalMovement": {
+      "title": "Kindsbewegungen",
+      "goal": "Ziel",
+      "empty": "Beginnen Sie heute mit der Aufzeichnung"
+    },
+    "weight": {
+      "title": "Gewichtsverlauf",
+      "empty": "Gewicht eintragen"
+    },
+    "appointments": {
+      "title": "Anstehende Termine",
+      "empty": "Keine anstehenden Termine",
+      "add": "+ Termin hinzufügen",
+      "checkup": "Untersuchung",
+      "today": "Heute",
+      "tomorrow": "Morgen",
+      "inDays": "In {{days}} Tagen"
+    },
+    "alerts": {
+      "title": "Gesundheitswarnung",
+      "highBP": "Hoher Blutdruck — Ärztin konsultieren",
+      "lowBP": "Niedriger Blutdruck — trinken und ausruhen",
+      "lowKicks": "Weniger Bewegungen als üblich — beobachten und nachfragen"
+    },
+    "aiInsight": {
+      "title": "KI-Einblick",
+      "description": "Erhalten Sie persönliche Tipps für Ihre aktuelle Woche",
+      "generate": "Analyse starten",
+      "loading": "Analyse läuft...",
+      "prompt": "Geben Sie mir einen kurzen personalisierten Gesundheitstipp für Schwangerschaftswoche {{week}}. Fokus auf die 3 wichtigsten Punkte."
+    }
   }
 }
