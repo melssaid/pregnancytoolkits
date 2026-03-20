@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Baby, Play, TrendingUp, Clock, Loader2, Save, AlertTriangle, Activity, Brain, RefreshCw, Zap } from 'lucide-react';
+import { Baby, Play, TrendingUp, Clock, Loader2, Save, Zap } from 'lucide-react';
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
 import { KickPatternVisualizer } from '@/components/kick-counter/KickPatternVisualizer';
 import { AIMovementAnalysis } from '@/components/kick-counter/AIMovementAnalysis';
@@ -8,14 +8,12 @@ import { KickChart } from '@/components/charts/KickChart';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
-import { Progress } from '@/components/ui/progress';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { KickService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+
 import { useUserProfile } from '@/hooks/useUserProfile';
 
 const SmartKickCounter: React.FC = () => {
