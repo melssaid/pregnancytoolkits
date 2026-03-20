@@ -175,7 +175,57 @@
     "selectDate": "Selecionar data",
     "weeksUnit": "semanas",
     "autoWeekNote": "Semana calculada automaticamente",
-    "dueDateLabel": "Data prevista do parto"
+    "dueDateLabel": "Data prevista do parto",
+    "step2": {
+      "title": "Onde você está na sua jornada?",
+      "subtitle": "Vamos personalizar tudo para você",
+      "fertility": "Sonho com um bebê",
+      "fertilityDesc": "Acompanhamento de fertilidade e planejamento de gravidez",
+      "pregnant": "Minha gravidez",
+      "pregnantDesc": "Sua companheira completa durante a gravidez",
+      "postpartum": "Meu bebê",
+      "postpartumDesc": "Cuide do seu bebê e recupere-se com confiança"
+    },
+    "step3": {
+      "title": "Seus dados de saúde",
+      "subtitle": "Nos ajuda a dar recomendações precisas",
+      "bloodType": "Tipo sanguíneo",
+      "selectBloodType": "Selecionar",
+      "unknown": "Desconhecido",
+      "healthConsiderations": "Considerações de saúde",
+      "condition": {
+        "gestationalDiabetes": "Diabetes gestacional",
+        "highBloodPressure": "Pressão alta",
+        "twinPregnancy": "Gravidez gemelar",
+        "thyroidDisorder": "Distúrbio da tireoide",
+        "none": "Nenhuma das opções acima"
+      }
+    },
+    "step4": {
+      "title": "O que é mais importante para você?",
+      "subtitle": "Selecione suas prioridades",
+      "goal": {
+        "nutrition": "Nutrição saudável",
+        "fitness": "Exercício seguro",
+        "sleep": "Melhor sono",
+        "mentalHealth": "Saúde mental",
+        "weightTracking": "Controle de peso",
+        "babyCare": "Cuidados com o bebê"
+      },
+      "notifications": "Lembretes",
+      "notifVitamins": "Lembretes de vitaminas",
+      "notifWater": "Lembretes de água",
+      "notifAppointments": "Lembretes de consultas"
+    },
+    "step5": {
+      "title": "Sua privacidade em primeiro lugar",
+      "subtitle": "Levamos sua privacidade a sério",
+      "localData": "Seus dados são armazenados localmente no seu dispositivo",
+      "noThirdParty": "Sem compartilhamento com terceiros",
+      "fullControl": "Controle total sobre seus dados",
+      "disclaimerTitle": "Aviso médico",
+      "startJourney": "Comece sua jornada"
+    }
   },
   "tools": {
     "pregnancyAssistant": {

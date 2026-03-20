@@ -175,7 +175,57 @@
     "selectDate": "Datum auswählen",
     "weeksUnit": "Wochen",
     "autoWeekNote": "Woche wird automatisch berechnet",
-    "dueDateLabel": "Voraussichtlicher Geburtstermin"
+    "dueDateLabel": "Voraussichtlicher Geburtstermin",
+    "step2": {
+      "title": "Wo stehen Sie auf Ihrer Reise?",
+      "subtitle": "Wir passen alles für Sie an",
+      "fertility": "Kinderwunsch",
+      "fertilityDesc": "Fruchtbarkeits-Tracking und Schwangerschaftsplanung",
+      "pregnant": "Meine Schwangerschaft",
+      "pregnantDesc": "Ihre umfassende Schwangerschaftsbegleiterin",
+      "postpartum": "Mein Baby",
+      "postpartumDesc": "Babypflege und Erholung mit Zuversicht"
+    },
+    "step3": {
+      "title": "Ihre Gesundheitsdaten",
+      "subtitle": "Hilft uns, genaue Empfehlungen zu geben",
+      "bloodType": "Blutgruppe",
+      "selectBloodType": "Auswählen",
+      "unknown": "Unbekannt",
+      "healthConsiderations": "Gesundheitliche Aspekte",
+      "condition": {
+        "gestationalDiabetes": "Schwangerschaftsdiabetes",
+        "highBloodPressure": "Hoher Blutdruck",
+        "twinPregnancy": "Zwillingsschwangerschaft",
+        "thyroidDisorder": "Schilddrüsenstörung",
+        "none": "Keines der oben genannten"
+      }
+    },
+    "step4": {
+      "title": "Was ist Ihnen am wichtigsten?",
+      "subtitle": "Wählen Sie Ihre Prioritäten",
+      "goal": {
+        "nutrition": "Gesunde Ernährung",
+        "fitness": "Sichere Fitness",
+        "sleep": "Besserer Schlaf",
+        "mentalHealth": "Psychische Gesundheit",
+        "weightTracking": "Gewichtskontrolle",
+        "babyCare": "Babypflege"
+      },
+      "notifications": "Erinnerungen",
+      "notifVitamins": "Vitamin-Erinnerungen",
+      "notifWater": "Wasser-Erinnerungen",
+      "notifAppointments": "Termin-Erinnerungen"
+    },
+    "step5": {
+      "title": "Ihre Privatsphäre zuerst",
+      "subtitle": "Wir nehmen Ihre Privatsphäre ernst",
+      "localData": "Ihre Daten werden lokal auf Ihrem Gerät gespeichert",
+      "noThirdParty": "Keine Weitergabe an Dritte",
+      "fullControl": "Volle Kontrolle über Ihre Daten",
+      "disclaimerTitle": "Medizinischer Haftungsausschluss",
+      "startJourney": "Starten Sie Ihre Reise"
+    }
   },
   "tools": {
     "pregnancyAssistant": {

@@ -175,7 +175,57 @@
     "selectDate": "Choisir une date",
     "weeksUnit": "semaines",
     "autoWeekNote": "Semaine calculée automatiquement",
-    "dueDateLabel": "Date d'accouchement prévue"
+    "dueDateLabel": "Date d'accouchement prévue",
+    "step2": {
+      "title": "Où en êtes-vous dans votre parcours ?",
+      "subtitle": "Nous personnaliserons tout pour vous",
+      "fertility": "Rêve de bébé",
+      "fertilityDesc": "Suivi de fertilité et planification de grossesse",
+      "pregnant": "Ma grossesse",
+      "pregnantDesc": "Votre compagnon complet de grossesse",
+      "postpartum": "Mon bébé",
+      "postpartumDesc": "Prendre soin de votre bébé et récupérer en confiance"
+    },
+    "step3": {
+      "title": "Vos données de santé",
+      "subtitle": "Nous aide à donner des recommandations précises",
+      "bloodType": "Groupe sanguin",
+      "selectBloodType": "Sélectionner",
+      "unknown": "Inconnu",
+      "healthConsiderations": "Considérations de santé",
+      "condition": {
+        "gestationalDiabetes": "Diabète gestationnel",
+        "highBloodPressure": "Hypertension artérielle",
+        "twinPregnancy": "Grossesse gémellaire",
+        "thyroidDisorder": "Trouble thyroïdien",
+        "none": "Aucun des éléments ci-dessus"
+      }
+    },
+    "step4": {
+      "title": "Qu'est-ce qui compte le plus pour vous ?",
+      "subtitle": "Sélectionnez vos priorités",
+      "goal": {
+        "nutrition": "Nutrition saine",
+        "fitness": "Fitness sécuritaire",
+        "sleep": "Meilleur sommeil",
+        "mentalHealth": "Santé mentale",
+        "weightTracking": "Suivi du poids",
+        "babyCare": "Soins du bébé"
+      },
+      "notifications": "Rappels",
+      "notifVitamins": "Rappels de vitamines",
+      "notifWater": "Rappels d'hydratation",
+      "notifAppointments": "Rappels de rendez-vous"
+    },
+    "step5": {
+      "title": "Votre vie privée d'abord",
+      "subtitle": "Nous prenons votre vie privée au sérieux",
+      "localData": "Vos données sont stockées localement sur votre appareil",
+      "noThirdParty": "Aucun partage avec des tiers",
+      "fullControl": "Contrôle total de vos données",
+      "disclaimerTitle": "Avertissement médical",
+      "startJourney": "Commencez votre parcours"
+    }
   },
   "tools": {
     "pregnancyAssistant": {

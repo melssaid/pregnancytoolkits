@@ -6,16 +6,21 @@
 import { useState, useEffect, useCallback } from "react";
 import { safeSaveToLocalStorage, safeParseLocalStorage } from "@/lib/safeStorage";
 
+export type JourneyStage = 'fertility' | 'pregnant' | 'postpartum';
+
 export interface UserProfile {
-  isPregnant: boolean;           // هل المستخدمة حامل؟
-  pregnancyWeek: number;        // أسبوع الحمل الحالي (1-42)
-  weight: number | null;        // الوزن الحالي بالكيلوغرام
-  prePregnancyWeight: number | null; // الوزن قبل الحمل
-  height: number | null;        // الطول بالسنتيمتر
-  lastPeriodDate: string | null; // تاريخ آخر دورة شهرية (YYYY-MM-DD)
-  dueDate: string | null;       // تاريخ الولادة المتوقع (YYYY-MM-DD)
-  mood: string;                 // المزاج الحالي
-  bloodType: string | null;     // فصيلة الدم
+  isPregnant: boolean;
+  journeyStage: JourneyStage;
+  pregnancyWeek: number;
+  weight: number | null;
+  prePregnancyWeight: number | null;
+  height: number | null;
+  lastPeriodDate: string | null;
+  dueDate: string | null;
+  mood: string;
+  bloodType: string | null;
+  healthConditions: string[];
+  goals: string[];
   updatedAt: string;
 }
 
@@ -24,6 +29,7 @@ const LEGACY_PROFILE_KEY_PREFIX = "profile_";
 
 const DEFAULT_PROFILE: UserProfile = {
   isPregnant: true,
+  journeyStage: 'pregnant',
   pregnancyWeek: 0,
   weight: null,
   prePregnancyWeight: null,
@@ -32,6 +38,8 @@ const DEFAULT_PROFILE: UserProfile = {
   dueDate: null,
   mood: "Good",
   bloodType: null,
+  healthConditions: [],
+  goals: [],
   updatedAt: new Date().toISOString(),
 };
 

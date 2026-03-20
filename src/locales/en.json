@@ -175,7 +175,57 @@
     "selectDate": "Select date",
     "weeksUnit": "weeks",
     "autoWeekNote": "Week auto-calculated from this date",
-    "dueDateLabel": "Expected Due Date"
+    "dueDateLabel": "Expected Due Date",
+    "step2": {
+      "title": "Where are you in your journey?",
+      "subtitle": "We'll personalize everything for you",
+      "fertility": "Dreaming of a Baby",
+      "fertilityDesc": "Fertility tracking and pregnancy planning tools",
+      "pregnant": "My Pregnancy",
+      "pregnantDesc": "Your comprehensive pregnancy companion",
+      "postpartum": "My Baby",
+      "postpartumDesc": "Care for your baby and recover with confidence"
+    },
+    "step3": {
+      "title": "Your Health Data",
+      "subtitle": "Helps us give accurate recommendations",
+      "bloodType": "Blood Type",
+      "selectBloodType": "Select",
+      "unknown": "Unknown",
+      "healthConsiderations": "Health Considerations",
+      "condition": {
+        "gestationalDiabetes": "Gestational Diabetes",
+        "highBloodPressure": "High Blood Pressure",
+        "twinPregnancy": "Twin Pregnancy",
+        "thyroidDisorder": "Thyroid Disorder",
+        "none": "None of the above"
+      }
+    },
+    "step4": {
+      "title": "What matters most to you?",
+      "subtitle": "Select your priorities",
+      "goal": {
+        "nutrition": "Healthy Nutrition",
+        "fitness": "Safe Fitness",
+        "sleep": "Better Sleep",
+        "mentalHealth": "Mental Health",
+        "weightTracking": "Weight Tracking",
+        "babyCare": "Baby Care"
+      },
+      "notifications": "Reminders",
+      "notifVitamins": "Vitamin Reminders",
+      "notifWater": "Water Reminders",
+      "notifAppointments": "Appointment Reminders"
+    },
+    "step5": {
+      "title": "Your Privacy First",
+      "subtitle": "We take your privacy seriously",
+      "localData": "Your data is stored locally on your device",
+      "noThirdParty": "No sharing with third parties",
+      "fullControl": "Full control over your data",
+      "disclaimerTitle": "Medical Disclaimer",
+      "startJourney": "Start Your Journey"
+    }
   },
   "tools": {
     "pregnancyAssistant": {
