@@ -29,6 +29,7 @@ interface AIUsageContextValue {
   incrementUsage: () => void;
   syncFromServer: (serverUsed: number) => void;
   syncLimit: (newLimit: number, newTier?: SubscriptionTier) => void;
+  resetUsage: () => void;
 }
 
 function getTodayKey(): string {
@@ -96,6 +97,13 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
     setLocalUsage({ limit: newLimit, tier: newTier || 'free' });
   }, []);
 
+  const resetUsage = useCallback(() => {
+    setCount(0);
+    setLimit(PREMIUM_LIMIT);
+    setTier('premium');
+    setLocalUsage({ count: 0, limit: PREMIUM_LIMIT, tier: 'premium' });
+  }, []);
+
   return (
     <AIUsageContext.Provider value={{
       remaining,
@@ -107,6 +115,7 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
       incrementUsage,
       syncFromServer,
       syncLimit,
+      resetUsage,
     }}>
       {children}
     </AIUsageContext.Provider>
@@ -130,6 +139,7 @@ export function useAIUsage(): AIUsageContextValue {
       incrementUsage: () => {},
       syncFromServer: () => {},
       syncLimit: () => {},
+      resetUsage: () => {},
     };
   }
   return ctx;
