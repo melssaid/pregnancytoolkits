@@ -6152,5 +6152,73 @@
     "nutrition-supplements": "Gebelik öncesi beslenme ve doğum öncesi takviyelere ilişkin kapsamlı bir rehber. Beslenme bilgileri genel yönlendirmedir. Kişiselleştirilmiş bir plan için doktorunuza veya diyetisyeninize danışın.",
     "tww-companion": "Yumurtlama sonrası iki haftalık bekleme süresinde günlük teşvik ve bilgi. İçerik duygusal destek ve eğitim amaçlıdır. Hamileliği doğrulamanın tek yolu hamilelik testidir.",
     "preconception-checkup": "Gebe kalmaya çalışmadan önce yaygın olarak önerilen testlerin kontrol listesi. Bu genel bir rehberdir. Doktorunuz hangi testlere ihtiyacınız olduğunu belirleyecektir."
+  },
+  "dailyDashboard": {
+    "pageTitle": "Günlük Panel",
+    "week": "hafta",
+    "daysLeft": "gün kaldı",
+    "complete": "tamamlandı",
+    "trimester": {
+      "first": "İlk trimester",
+      "second": "İkinci trimester",
+      "third": "Üçüncü trimester"
+    },
+    "priorities": {
+      "title": "Bugünün öncelikleri",
+      "vitamins": "Vitamin al",
+      "kicks": "Bebek hareketlerini kaydet",
+      "water": "Su iç",
+      "appointment": "Yaklaşan randevular"
+    },
+    "quickActions": {
+      "title": "Hızlı işlemler",
+      "assistant": "Asistan",
+      "kicks": "Tepmeler",
+      "weight": "Ağırlık",
+      "growth": "Büyüme",
+      "appointment": "Randevu",
+      "symptoms": "Belirtiler",
+      "vitamins": "Vitaminler",
+      "photos": "Fotoğraflar"
+    },
+    "hydration": {
+      "title": "Su tüketimi",
+      "addGlass": "+ Bardak su"
+    },
+    "symptoms": {
+      "title": "Belirti özeti",
+      "noSymptoms": "Kayıtlı belirti yok"
+    },
+    "fetalMovement": {
+      "title": "Bebek hareketleri",
+      "goal": "hedef",
+      "empty": "Bugün bebek hareketlerini kaydetmeye başla"
+    },
+    "weight": {
+      "title": "Ağırlık trendi",
+      "empty": "Mevcut kilonuzu kaydedin"
+    },
+    "appointments": {
+      "title": "Yaklaşan randevular",
+      "empty": "Yaklaşan randevu yok",
+      "add": "+ Randevu ekle",
+      "checkup": "Sağlık kontrolü",
+      "today": "Bugün",
+      "tomorrow": "Yarın",
+      "inDays": "{{days}} gün sonra"
+    },
+    "alerts": {
+      "title": "Sağlık uyarısı",
+      "highBP": "Yüksek tansiyon — doktorunuza danışın",
+      "lowBP": "Düşük tansiyon — sıvı alın ve dinlenin",
+      "lowKicks": "Normalden az hareket — izleyin ve danışın"
+    },
+    "aiInsight": {
+      "title": "Yapay Zeka Görüşü",
+      "description": "Mevcut haftanız için kişisel tavsiyeler alın",
+      "generate": "Analiz al",
+      "loading": "Analiz ediliyor...",
+      "prompt": "Hamileliğin {{week}}. haftası için kısa ve kişisel bir sağlık ipucu verin. En önemli 3 noktaya odaklanın."
+    }
   }
 }

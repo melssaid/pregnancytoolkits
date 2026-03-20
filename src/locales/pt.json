@@ -6152,5 +6152,73 @@
     "nutrition-supplements": "Um guia completo de nutrição pré-concepcional e suplementos pré-natais. As informações nutricionais são orientação geral. Consulte seu médico ou nutricionista para um plano personalizado.",
     "tww-companion": "Encorajamento diário e informações durante as duas semanas de espera. O conteúdo é apoio emocional e educativo. Um teste de gravidez é a única forma de confirmar uma gravidez.",
     "preconception-checkup": "Uma lista de exames comumente recomendados antes de tentar engravidar. Este é um guia geral. Seu médico determinará quais exames você precisa."
+  },
+  "dailyDashboard": {
+    "pageTitle": "Painel diário",
+    "week": "semana",
+    "daysLeft": "dias restantes",
+    "complete": "completo",
+    "trimester": {
+      "first": "Primeiro trimestre",
+      "second": "Segundo trimestre",
+      "third": "Terceiro trimestre"
+    },
+    "priorities": {
+      "title": "Prioridades de hoje",
+      "vitamins": "Tomar vitaminas",
+      "kicks": "Registrar movimentos fetais",
+      "water": "Beber água",
+      "appointment": "Consultas próximas"
+    },
+    "quickActions": {
+      "title": "Ações rápidas",
+      "assistant": "Assistente",
+      "kicks": "Chutes",
+      "weight": "Peso",
+      "growth": "Crescimento",
+      "appointment": "Consulta",
+      "symptoms": "Sintomas",
+      "vitamins": "Vitaminas",
+      "photos": "Fotos"
+    },
+    "hydration": {
+      "title": "Hidratação",
+      "addGlass": "+ Copo de água"
+    },
+    "symptoms": {
+      "title": "Resumo de sintomas",
+      "noSymptoms": "Nenhum sintoma registrado"
+    },
+    "fetalMovement": {
+      "title": "Movimento fetal",
+      "goal": "meta",
+      "empty": "Comece a registrar os movimentos hoje"
+    },
+    "weight": {
+      "title": "Tendência de peso",
+      "empty": "Registre seu peso atual"
+    },
+    "appointments": {
+      "title": "Próximas consultas",
+      "empty": "Sem consultas próximas",
+      "add": "+ Adicionar consulta",
+      "checkup": "Consulta médica",
+      "today": "Hoje",
+      "tomorrow": "Amanhã",
+      "inDays": "Em {{days}} dias"
+    },
+    "alerts": {
+      "title": "Alerta de saúde",
+      "highBP": "Pressão alta — consulte seu médico",
+      "lowBP": "Pressão baixa — hidrate-se e descanse",
+      "lowKicks": "Menos movimentos que o normal — monitore e consulte"
+    },
+    "aiInsight": {
+      "title": "Análise IA",
+      "description": "Receba conselhos personalizados para sua semana atual",
+      "generate": "Obter análise",
+      "loading": "Analisando...",
+      "prompt": "Dê-me uma dica de saúde personalizada para a semana {{week}} da gravidez. Foque nos 3 pontos mais importantes."
+    }
   }
 }

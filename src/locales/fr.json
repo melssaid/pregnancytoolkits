@@ -6464,5 +6464,73 @@
     "nutrition-supplements": "Un guide complet de nutrition préconceptionnelle et de compléments prénataux. Les informations nutritionnelles sont des orientations générales. Consultez votre médecin ou nutritionniste pour un plan personnalisé.",
     "tww-companion": "Encouragement quotidien et informations pendant les deux semaines d'attente. Le contenu est un soutien émotionnel et éducatif. Un test de grossesse est le seul moyen de confirmer une grossesse.",
     "preconception-checkup": "Une liste des examens couramment recommandés avant de concevoir. C'est un guide général. Votre médecin déterminera les examens nécessaires."
+  },
+  "dailyDashboard": {
+    "pageTitle": "Tableau de bord quotidien",
+    "week": "semaine",
+    "daysLeft": "jours restants",
+    "complete": "terminé",
+    "trimester": {
+      "first": "Premier trimestre",
+      "second": "Deuxième trimestre",
+      "third": "Troisième trimestre"
+    },
+    "priorities": {
+      "title": "Priorités du jour",
+      "vitamins": "Prendre les vitamines",
+      "kicks": "Suivre les mouvements fœtaux",
+      "water": "Boire de l'eau",
+      "appointment": "Rendez-vous à venir"
+    },
+    "quickActions": {
+      "title": "Actions rapides",
+      "assistant": "Assistant",
+      "kicks": "Coups",
+      "weight": "Poids",
+      "growth": "Croissance",
+      "appointment": "RDV",
+      "symptoms": "Symptômes",
+      "vitamins": "Vitamines",
+      "photos": "Photos"
+    },
+    "hydration": {
+      "title": "Hydratation",
+      "addGlass": "+ Verre d'eau"
+    },
+    "symptoms": {
+      "title": "Résumé des symptômes",
+      "noSymptoms": "Aucun symptôme enregistré"
+    },
+    "fetalMovement": {
+      "title": "Mouvements fœtaux",
+      "goal": "objectif",
+      "empty": "Commencez à suivre les mouvements aujourd'hui"
+    },
+    "weight": {
+      "title": "Tendance du poids",
+      "empty": "Enregistrez votre poids"
+    },
+    "appointments": {
+      "title": "Prochains rendez-vous",
+      "empty": "Aucun rendez-vous à venir",
+      "add": "+ Ajouter un rendez-vous",
+      "checkup": "Examen médical",
+      "today": "Aujourd'hui",
+      "tomorrow": "Demain",
+      "inDays": "Dans {{days}} jours"
+    },
+    "alerts": {
+      "title": "Alerte santé",
+      "highBP": "Tension artérielle élevée — consultez votre médecin",
+      "lowBP": "Tension basse — hydratez-vous et reposez-vous",
+      "lowKicks": "Moins de mouvements que d'habitude — surveillez et consultez"
+    },
+    "aiInsight": {
+      "title": "Analyse IA",
+      "description": "Obtenez des conseils personnalisés pour votre semaine",
+      "generate": "Obtenir une analyse",
+      "loading": "Analyse en cours...",
+      "prompt": "Donnez-moi un conseil santé personnalisé pour la semaine {{week}} de grossesse. Focus sur les 3 points essentiels."
+    }
   }
 }

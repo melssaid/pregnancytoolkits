@@ -6544,5 +6544,73 @@
     "trialTitle": "3 Days Free! 🎁",
     "trialDesc": "Try all premium features at no cost",
     "maybeLater": "Maybe later"
+  },
+  "dailyDashboard": {
+    "pageTitle": "Daily Dashboard",
+    "week": "week",
+    "daysLeft": "days left",
+    "complete": "complete",
+    "trimester": {
+      "first": "First Trimester",
+      "second": "Second Trimester",
+      "third": "Third Trimester"
+    },
+    "priorities": {
+      "title": "Today's Priorities",
+      "vitamins": "Take vitamins",
+      "kicks": "Track fetal movements",
+      "water": "Drink water",
+      "appointment": "Upcoming appointments"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "assistant": "Assistant",
+      "kicks": "Kicks",
+      "weight": "Weight",
+      "growth": "Growth",
+      "appointment": "Appt.",
+      "symptoms": "Symptoms",
+      "vitamins": "Vitamins",
+      "photos": "Photos"
+    },
+    "hydration": {
+      "title": "Hydration",
+      "addGlass": "+ Glass of water"
+    },
+    "symptoms": {
+      "title": "Symptoms Summary",
+      "noSymptoms": "No symptoms logged"
+    },
+    "fetalMovement": {
+      "title": "Fetal Movement",
+      "goal": "goal",
+      "empty": "Start tracking your baby's movements today"
+    },
+    "weight": {
+      "title": "Weight Trend",
+      "empty": "Log your current weight"
+    },
+    "appointments": {
+      "title": "Upcoming Appointments",
+      "empty": "No upcoming appointments",
+      "add": "+ Add appointment",
+      "checkup": "Medical checkup",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "inDays": "In {{days}} days"
+    },
+    "alerts": {
+      "title": "Health Alert",
+      "highBP": "High blood pressure — consult your doctor",
+      "lowBP": "Low blood pressure — stay hydrated and rest",
+      "lowKicks": "Fewer movements than usual — monitor and consult"
+    },
+    "aiInsight": {
+      "title": "AI Insight",
+      "description": "Get personalized advice for your current week",
+      "generate": "Get Insight",
+      "loading": "Analyzing...",
+      "prompt": "Give me a brief personalized health tip for pregnancy week {{week}}. Focus on the top 3 things to watch."
+    }
   }
 }
