@@ -16,6 +16,23 @@ import { prefetchCriticalRoutes } from "@/lib/routePrefetch";
 const OnboardingDisclaimer = lazy(() => import("@/components/OnboardingDisclaimer").then(m => ({ default: m.OnboardingDisclaimer })));
 
 const queryClient = new QueryClient();
+const CHUNK_RECOVERY_KEY = "pt_chunk_recovery_done";
+
+const recoverFromChunkError = async () => {
+  if ("serviceWorker" in navigator) {
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registrations.map((registration) => registration.unregister()));
+  }
+
+  if ("caches" in window) {
+    const keys = await caches.keys();
+    await Promise.all(
+      keys
+        .filter((key) => key.startsWith("pt-cache-v") || key.includes("vite") || key.includes("workbox"))
+        .map((key) => caches.delete(key))
+    );
+  }
+};
 
 const App = () => {
   // Initialize anonymous auth & prefetch critical routes
@@ -34,17 +51,28 @@ const App = () => {
           message.includes('Loading chunk') ||
           message.includes('Loading CSS chunk')) {
         event.preventDefault();
+
+        const alreadyRecovered = sessionStorage.getItem(CHUNK_RECOVERY_KEY) === "1";
+        if (alreadyRecovered) {
+          toast.error("Still seeing cache mismatch", {
+            description: "Please do one hard refresh (Ctrl/Cmd + Shift + R).",
+            duration: 3500,
+          });
+          return;
+        }
+
+        sessionStorage.setItem(CHUNK_RECOVERY_KEY, "1");
         
-        // Show user-friendly message and reload
-        toast.error("App updated, reloading...", {
-          description: "Please wait...",
-          duration: 2000,
+        toast.error("Refreshing app cache...", {
+          description: "Reloading with a clean module cache.",
+          duration: 2500,
         });
-        
-        // Reload after a short delay
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
+
+        void recoverFromChunkError().finally(() => {
+          const nextUrl = new URL(window.location.href);
+          nextUrl.searchParams.set("__cache_bust", Date.now().toString());
+          window.location.replace(nextUrl.toString());
+        });
       }
     };
 

@@ -5,6 +5,9 @@
 
 const SW_VERSION = '3.0.0';
 const CACHE_NAME = `pt-cache-v${SW_VERSION}`;
+const IS_PREVIEW_HOST =
+  self.location.hostname.endsWith('.lovableproject.com') ||
+  self.location.hostname.startsWith('id-preview--');
 
 // Assets to pre-cache on install
 const PRECACHE_ASSETS = [
@@ -35,6 +38,11 @@ const NETWORK_FIRST_PATTERNS = [
 let scheduledTimers = [];
 
 self.addEventListener('install', (event) => {
+  if (IS_PREVIEW_HOST) {
+    event.waitUntil(self.skipWaiting());
+    return;
+  }
+
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(PRECACHE_ASSETS))
@@ -43,6 +51,13 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
+  if (IS_PREVIEW_HOST) {
+    event.waitUntil(
+      caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => self.clients.claim())
+    );
+    return;
+  }
+
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
@@ -54,6 +69,8 @@ self.addEventListener('activate', (event) => {
 
 // Fetch handler with caching strategies
 self.addEventListener('fetch', (event) => {
+  if (IS_PREVIEW_HOST) return;
+
   const { request } = event;
 
   // Skip non-GET and cross-origin requests
@@ -66,6 +83,7 @@ self.addEventListener('fetch', (event) => {
 
   // Never intercept Vite dev module/HMR requests
   if (
+    url.pathname.startsWith('/@') ||
     url.pathname.startsWith('/src/') ||
     url.pathname.startsWith('/node_modules/') ||
     url.searchParams.has('t')
