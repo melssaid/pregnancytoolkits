@@ -221,8 +221,8 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                     icon={Salad}
                   />
                 </PrintableReport>
+              )}
             </div>
-          )}
 
           {/* Tips Card */}
           {!result && !isLoading && (

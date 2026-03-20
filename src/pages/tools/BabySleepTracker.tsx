@@ -400,6 +400,7 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                   icon={Sparkles}
                 />
               </PrintableReport>
+            </motion.div>
           )}
         </AnimatePresence>
 
