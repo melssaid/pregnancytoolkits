@@ -278,12 +278,38 @@
       "title": "Exercice de Kegel",
       "description": "Exercices quotidiens du plancher pelvien avec minuterie et compteur."
     },
-    "smartStretchReminder": {"title": "Rappel d'étirement", "description": "Étirements personnalisés pour votre confort."},
-    "fertileWindow": {"title": "Fenêtre de fertilité", "description": "Identifiez vos jours les plus fertiles."},
-    "fertilityAcademy": {"title": "Académie de fertilité", "description": "Éducation complète sur la fertilité : leçons, signes corporels et gestion du stress.", "lessonsTab": "Leçons", "signsTab": "Signes corporels", "stressTab": "Stress & Calme", "twwTab": "Attente"},
-    "nutritionSupplements": {"title": "Guide des compléments alimentaires", "description": "Guide complet de nutrition et compléments prénataux.", "nutritionTab": "Nutrition", "supplementsTab": "Compléments", "videosTitle": "Vidéos éducatives", "videosSubtitle": "Découvrez la nutrition et les compléments prénataux"},
-    "twwCompanion": {"title": "Compagne d'attente", "description": "Soutien quotidien pendant les deux semaines d'attente."},
-    "preconceptionCheckup": {"title": "Bilan préconceptionnel", "description": "Examens essentiels avant la grossesse."},
+    "smartStretchReminder": {
+      "title": "Rappel d'étirement",
+      "description": "Étirements personnalisés pour votre confort."
+    },
+    "fertileWindow": {
+      "title": "Fenêtre de fertilité",
+      "description": "Identifiez vos jours les plus fertiles."
+    },
+    "fertilityAcademy": {
+      "title": "Académie de fertilité",
+      "description": "Éducation complète sur la fertilité : leçons, signes corporels et gestion du stress.",
+      "lessonsTab": "Leçons",
+      "signsTab": "Signes corporels",
+      "stressTab": "Stress & Calme",
+      "twwTab": "Attente"
+    },
+    "nutritionSupplements": {
+      "title": "Guide des compléments alimentaires",
+      "description": "Guide complet de nutrition et compléments prénataux.",
+      "nutritionTab": "Nutrition",
+      "supplementsTab": "Compléments",
+      "videosTitle": "Vidéos éducatives",
+      "videosSubtitle": "Découvrez la nutrition et les compléments prénataux"
+    },
+    "twwCompanion": {
+      "title": "Compagne d'attente",
+      "description": "Soutien quotidien pendant les deux semaines d'attente."
+    },
+    "preconceptionCheckup": {
+      "title": "Bilan préconceptionnel",
+      "description": "Examens essentiels avant la grossesse."
+    },
     "aiLaborProgress": {
       "title": "Journal des contractions",
       "description": "Consignez vos schémas de contractions."
@@ -629,7 +655,15 @@
         "aiProducts": {
           "title": "Fonctionnalités alimentées par l'IA",
           "desc": "Nous proposons des fonctionnalités alimentées par l'intelligence artificielle via des modèles IA cloud sécurisés (Google Gemini). Aucun fournisseur tiers n'a accès à vos données de santé stockées.",
-          "tools": ["Assistant Grossesse Intelligent", "Journal de bien-être de la grossesse", "Suggestions intelligentes de repas", "Planificateur intelligent de rendez-vous", "Coach fitness & souplesse", "Journal des contractions", "Galerie échographie"],
+          "tools": [
+            "Assistant Grossesse Intelligent",
+            "Journal de bien-être de la grossesse",
+            "Suggestions intelligentes de repas",
+            "Planificateur intelligent de rendez-vous",
+            "Coach fitness & souplesse",
+            "Journal des contractions",
+            "Galerie échographie"
+          ],
           "dataNote": "Lors de l'utilisation des fonctionnalités IA, seul le texte de votre requête est envoyé anonymement à notre serveur sécurisé. Vos données de santé restent entièrement sur votre appareil.",
           "noTraining": "Vos requêtes ne sont PAS utilisées pour entraîner des modèles IA"
         },
@@ -973,7 +1007,12 @@
       "bloodTypePlaceholder": "Sélectionner le groupe sanguin",
       "bloodTypeUnknown": "Inconnu / Non testé",
       "bmiLabel": "Indice de masse corporelle (IMC)",
-      "bmi": { "underweight": "Insuffisance pondérale", "normal": "Normal", "overweight": "Surpoids", "obese": "Obésité" }
+      "bmi": {
+        "underweight": "Insuffisance pondérale",
+        "normal": "Normal",
+        "overweight": "Surpoids",
+        "obese": "Obésité"
+      }
     },
     "securityPrivacy": "Sécurité et confidentialité",
     "securityDesc": "Chiffrement et protection des données",
@@ -1174,35 +1213,138 @@
       "mentalWellnessVideos": "Vidéos de bien-être mental",
       "videosSubtitle": "Ressources de soutien et d'auto-soins",
       "videos": {
-        "v1": { "title": "Qu'est-ce que la dépression post-partum ?", "description": "Signes, symptômes et quand chercher de l'aide", "category": "Éducation" },
-        "v2": { "title": "La dépression post-partum expliquée", "description": "Symptômes, facteurs de risque et options de traitement", "category": "Éducation" },
-        "v3": { "title": "Méditation de relaxation pendant la grossesse", "description": "Méditation apaisante pour une meilleure santé mentale", "category": "Relaxation" },
-        "v4": { "title": "Soins du nouveau-né - Semaine 1", "description": "Guide du pédiatre pour la première semaine avec bébé", "category": "Auto-soins" }
+        "v1": {
+          "title": "Qu'est-ce que la dépression post-partum ?",
+          "description": "Signes, symptômes et quand chercher de l'aide",
+          "category": "Éducation"
+        },
+        "v2": {
+          "title": "La dépression post-partum expliquée",
+          "description": "Symptômes, facteurs de risque et options de traitement",
+          "category": "Éducation"
+        },
+        "v3": {
+          "title": "Méditation de relaxation pendant la grossesse",
+          "description": "Méditation apaisante pour une meilleure santé mentale",
+          "category": "Relaxation"
+        },
+        "v4": {
+          "title": "Soins du nouveau-né - Semaine 1",
+          "description": "Guide du pédiatre pour la première semaine avec bébé",
+          "category": "Auto-soins"
+        }
       },
       "riskLevels": {
-        "low": { "title": "Risque faible", "message": "Vos réponses suggèrent que vous vous en sortez bien. Continuez à pratiquer l'auto-soin." },
-        "moderate": { "title": "Modéré", "message": "Envisagez de parler à votre médecin de ce que vous ressentez." },
-        "high": { "title": "Cherchez du soutien", "message": "Veuillez contacter votre médecin ou un professionnel de la santé mentale." }
+        "low": {
+          "title": "Risque faible",
+          "message": "Vos réponses suggèrent que vous vous en sortez bien. Continuez à pratiquer l'auto-soin."
+        },
+        "moderate": {
+          "title": "Modéré",
+          "message": "Envisagez de parler à votre médecin de ce que vous ressentez."
+        },
+        "high": {
+          "title": "Cherchez du soutien",
+          "message": "Veuillez contacter votre médecin ou un professionnel de la santé mentale."
+        }
       },
       "epds": {
-        "q1": { "question": "J'ai pu rire et voir le côté amusant des choses", "o0": "Autant que d'habitude", "o1": "Pas tout à fait autant maintenant", "o2": "Certainement pas autant maintenant", "o3": "Pas du tout" },
-        "q2": { "question": "J'ai attendu les choses avec plaisir", "o0": "Autant que jamais", "o1": "Plutôt moins qu'avant", "o2": "Certainement moins qu'avant", "o3": "Presque pas" },
-        "q3": { "question": "Je me suis blâmée inutilement quand les choses ont mal tourné", "o0": "Non, jamais", "o1": "Pas très souvent", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
-        "q4": { "question": "J'ai été anxieuse ou inquiète sans bonne raison", "o0": "Non, pas du tout", "o1": "Presque jamais", "o2": "Oui, parfois", "o3": "Oui, très souvent" },
-        "q5": { "question": "J'ai eu peur ou panique sans bonne raison", "o0": "Non, pas du tout", "o1": "Non, pas beaucoup", "o2": "Oui, parfois", "o3": "Oui, assez souvent" },
-        "q6": { "question": "J'ai eu du mal à dormir même quand j'en avais la possibilité", "o0": "Non, pas du tout", "o1": "Rarement", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
-        "q7": { "question": "Je me suis sentie triste ou j'ai pleuré", "o0": "Non, pas du tout", "o1": "Très rarement", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
-        "q8": { "question": "Mon appétit a changé de façon notable (augmenté ou diminué)", "o0": "Non, il est normal", "o1": "Légèrement changé", "o2": "Changé de façon notable", "o3": "J'ai perdu l'appétit ou je mange trop" },
-        "q9": { "question": "J'ai eu du mal à me concentrer ou à prendre des décisions", "o0": "Non, pas du tout", "o1": "Rarement", "o2": "Oui, parfois", "o3": "Oui, la plupart du temps" },
-        "q10": { "question": "Je me suis sentie épuisée et sans énergie", "o0": "Non, mon énergie est bonne", "o1": "Moins d'énergie que d'habitude", "o2": "Épuisée la plupart du temps", "o3": "Complètement vidée" }
+        "q1": {
+          "question": "J'ai pu rire et voir le côté amusant des choses",
+          "o0": "Autant que d'habitude",
+          "o1": "Pas tout à fait autant maintenant",
+          "o2": "Certainement pas autant maintenant",
+          "o3": "Pas du tout"
+        },
+        "q2": {
+          "question": "J'ai attendu les choses avec plaisir",
+          "o0": "Autant que jamais",
+          "o1": "Plutôt moins qu'avant",
+          "o2": "Certainement moins qu'avant",
+          "o3": "Presque pas"
+        },
+        "q3": {
+          "question": "Je me suis blâmée inutilement quand les choses ont mal tourné",
+          "o0": "Non, jamais",
+          "o1": "Pas très souvent",
+          "o2": "Oui, parfois",
+          "o3": "Oui, la plupart du temps"
+        },
+        "q4": {
+          "question": "J'ai été anxieuse ou inquiète sans bonne raison",
+          "o0": "Non, pas du tout",
+          "o1": "Presque jamais",
+          "o2": "Oui, parfois",
+          "o3": "Oui, très souvent"
+        },
+        "q5": {
+          "question": "J'ai eu peur ou panique sans bonne raison",
+          "o0": "Non, pas du tout",
+          "o1": "Non, pas beaucoup",
+          "o2": "Oui, parfois",
+          "o3": "Oui, assez souvent"
+        },
+        "q6": {
+          "question": "J'ai eu du mal à dormir même quand j'en avais la possibilité",
+          "o0": "Non, pas du tout",
+          "o1": "Rarement",
+          "o2": "Oui, parfois",
+          "o3": "Oui, la plupart du temps"
+        },
+        "q7": {
+          "question": "Je me suis sentie triste ou j'ai pleuré",
+          "o0": "Non, pas du tout",
+          "o1": "Très rarement",
+          "o2": "Oui, parfois",
+          "o3": "Oui, la plupart du temps"
+        },
+        "q8": {
+          "question": "Mon appétit a changé de façon notable (augmenté ou diminué)",
+          "o0": "Non, il est normal",
+          "o1": "Légèrement changé",
+          "o2": "Changé de façon notable",
+          "o3": "J'ai perdu l'appétit ou je mange trop"
+        },
+        "q9": {
+          "question": "J'ai eu du mal à me concentrer ou à prendre des décisions",
+          "o0": "Non, pas du tout",
+          "o1": "Rarement",
+          "o2": "Oui, parfois",
+          "o3": "Oui, la plupart du temps"
+        },
+        "q10": {
+          "question": "Je me suis sentie épuisée et sans énergie",
+          "o0": "Non, mon énergie est bonne",
+          "o1": "Moins d'énergie que d'habitude",
+          "o2": "Épuisée la plupart du temps",
+          "o3": "Complètement vidée"
+        }
       },
       "coping": {
-        "sunlight": { "title": "Lumière matinale", "desc": "Exposez-vous 10-15 minutes à la lumière naturelle chaque matin" },
-        "movement": { "title": "Mouvement doux", "desc": "Une courte promenade peut améliorer significativement l'humeur" },
-        "connect": { "title": "Connectez-vous quotidiennement", "desc": "Parlez à une amie ou un membre de la famille chaque jour" },
-        "rest": { "title": "Reposez-vous quand c'est possible", "desc": "Dormez quand bébé dort, même brièvement" },
-        "nourish": { "title": "Nourrissez-vous", "desc": "Mangez des repas réguliers et nutritifs" },
-        "journal": { "title": "Journal", "desc": "Écrivez 3 choses pour lesquelles vous êtes reconnaissante" }
+        "sunlight": {
+          "title": "Lumière matinale",
+          "desc": "Exposez-vous 10-15 minutes à la lumière naturelle chaque matin"
+        },
+        "movement": {
+          "title": "Mouvement doux",
+          "desc": "Une courte promenade peut améliorer significativement l'humeur"
+        },
+        "connect": {
+          "title": "Connectez-vous quotidiennement",
+          "desc": "Parlez à une amie ou un membre de la famille chaque jour"
+        },
+        "rest": {
+          "title": "Reposez-vous quand c'est possible",
+          "desc": "Dormez quand bébé dort, même brièvement"
+        },
+        "nourish": {
+          "title": "Nourrissez-vous",
+          "desc": "Mangez des repas réguliers et nutritifs"
+        },
+        "journal": {
+          "title": "Journal",
+          "desc": "Écrivez 3 choses pour lesquelles vous êtes reconnaissante"
+        }
       }
     },
     "weeklySummary": {
@@ -1212,24 +1354,17 @@
       "pregnancyWeek": "Semaine de grossesse",
       "week": "Semaine {{week}}",
       "showSummary": "Afficher le résumé de la semaine {{week}}",
+      "approximatelyRemaining": "Environ {{days}} jours restants",
       "babyGrowth": "Croissance du bébé",
       "momsHealth": "Santé de maman",
-      "checkups": "Examens",
+      "checkups": "Bilans",
       "normal": "Normal",
       "good": "Bon",
       "complete": "Complet",
-      "weekSummary": "Résumé de la semaine {{week}}",
+      "weekSummary": "Résumé semaine {{week}}",
       "differentWeek": "Changer la semaine",
       "refresh": "Actualiser",
       "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
-      "fetalDevLink": "Développement fœtal",
-      "fetalDevLinkDesc": "Voyez la taille et le développement de votre bébé cette semaine",
-      "kickCounterLink": "Compteur de coups",
-      "kickCounterLinkDesc": "Suivez et notez les mouvements de votre bébé",
-      "approximatelyRemaining": "Environ {{days}} jours restants",
-      "noSummariesYet": "Aucun résumé pour le moment",
-      "generateFirstHint": "Appuyez sur le bouton ci-dessus pour générer votre premier résumé hebdomadaire",
-      "previousSummaries": "Résumés précédents",
       "trimester": {
         "first": "Premier trimestre",
         "second": "Deuxième trimestre",
@@ -1237,74 +1372,82 @@
       }
     },
     "hospitalBag": {
-      "title": "Checklist du sac d’hôpital",
-      "subtitle": "Préparez votre sac sereinement pour le jour J",
-      "progress": "Progression",
-      "itemsPacked": "{{packed}} sur {{total}} articles préparés",
+      "title": "Sac d'hôpital IA",
+      "subtitle": "Liste de préparation pour le jour J",
+      "forMom": "Pour maman",
+      "forBaby": "Pour bébé",
+      "forPartner": "Pour le partenaire",
+      "documents": "Documents",
       "all": "Tout",
       "mom": "Maman",
       "baby": "Bébé",
       "partner": "Partenaire",
-      "documents": "Documents",
       "essential": "Essentiel",
-      "addCustomItem": "Ajouter un élément...",
-      "getAIList": "Obtenir une liste IA",
-      "generating": "Génération...",
-      "hospitalBagVideos": "Vidéos : sac d’hôpital",
-      "hospitalBagVideosSubtitle": "Conseils rapides pour mieux préparer",
-      "videos": {
-        "v1": { "title": "Les essentiels", "description": "Quoi mettre pour maman, bébé et partenaire", "category": "Bases" },
-        "v2": { "title": "Quand préparer", "description": "Quand commencer et quoi prioriser", "category": "Planification" },
-        "v3": { "title": "Documents", "description": "Papiers importants à ne pas oublier", "category": "Documents" },
-        "v4": { "title": "Astuces", "description": "Objets souvent oubliés et extras confort", "category": "Conseils" }
-      },
-      "items": {
-        "hospitalID": "Pièce d’identité & carte(s) d’assurance",
-        "birthPlanCopies": "Copies du plan de naissance",
-        "nightgown": "Chemise de nuit/peignoir confortable",
-        "supportiveBras": "Soutiens-gorge (2–3)",
-        "toiletries": "Trousse de toilette",
-        "slippersSocks": "Chaussons et chaussettes",
-        "goingHomeOutfitMom": "Tenue de retour (maman)",
-        "moisturizer": "Crème hydratante",
-        "hairTies": "Élastiques & serre-tête",
-        "phoneCharger": "Chargeur (câble long)",
-        "lipBalm": "Baume à lèvres",
-        "goingHomeOutfitBaby": "Tenue de retour (bébé)",
-        "carSeat": "Siège auto (installé)",
-        "swaddleBlankets": "Couvertures d’emmaillotage",
-        "newbornDiapers": "Couches nouveau-né",
-        "babyHat": "Bonnet bébé",
-        "changeOfClothes": "Vêtements de rechange",
-        "snacksDrinks": "Snacks & boissons",
-        "cameraCharger": "Chargeur appareil/téléphone",
-        "babyWipes": "Lingettes bébé",
-        "babyOil": "Huile/lait pour bébé",
-        "nursingPads": "Coussinets d'allaitement",
-        "maternityPads": "Serviettes de maternité",
-        "waterBottle": "Bouteille d'eau",
-        "babyMittens": "Moufles et chaussettes bébé",
-        "underwear": "Sous-vêtements (jetables)",
-        "towel": "Serviette",
-        "handSanitizer": "Gel hydroalcoolique",
-        "babyBottles": "Biberons",
-        "pacifier": "Tétine",
-        "extraBlanket": "Couverture supplémentaire",
-        "snacksMom": "Collations pour maman",
-        "diaperCream": "Crème pour couches",
-        "totalItems": "articles"
-      },
-      "packed": "Préparé",
-      "notPacked": "Non préparé",
       "recommended": "Recommandé",
       "optional": "Optionnel",
+      "generateList": "Générer la liste",
+      "getAIList": "Obtenir une liste IA personnalisée",
+      "generating": "Génération...",
+      "customizeList": "Personnaliser",
+      "packed": "Emballé",
+      "notPacked": "Non emballé",
+      "markAllPacked": "Tout marquer",
+      "resetList": "Réinitialiser",
+      "progress": "Progression",
+      "itemsPacked": "{{packed}} sur {{total}} articles emballés",
+      "addCustomItem": "Ajouter un article personnalisé...",
+      "hospitalBagVideos": "Vidéos de préparation du sac d'hôpital",
+      "hospitalBagVideosSubtitle": "Conseils de mamans expérimentées",
+      "videos": {
+        "v1": {
+          "title": "Liste du sac d'hôpital",
+          "description": "Conseils de sage-femme sur quoi emballer",
+          "category": "Essentiels"
+        },
+        "v2": {
+          "title": "Articles essentiels pour l'hôpital",
+          "description": "Indispensables pour le travail et l'accouchement",
+          "category": "Essentiels"
+        },
+        "v3": {
+          "title": "Conseils pour le sac d'hôpital",
+          "description": "Essentiels approuvés par les infirmières",
+          "category": "Conseils"
+        },
+        "v4": {
+          "title": "Quoi emballer pour bébé",
+          "description": "Essentiels nouveau-né pour le séjour à l'hôpital",
+          "category": "Bébé"
+        }
+      },
+      "items": {
+        "hospitalID": "Carte d'hôpital et d'assurance",
+        "birthPlanCopies": "Copies du plan de naissance",
+        "nightgown": "Chemise de nuit/robe de chambre confortable",
+        "supportiveBras": "Soutiens-gorge d'allaitement confortables (2-3)",
+        "toiletries": "Trousse de toilette",
+        "slippersSocks": "Chaussons et chaussettes",
+        "goingHomeOutfitMom": "Tenue de retour (Maman)",
+        "moisturizer": "Crème hydratante",
+        "hairTies": "Élastiques et bandeau",
+        "phoneCharger": "Chargeur de téléphone (câble long)",
+        "lipBalm": "Baume à lèvres",
+        "goingHomeOutfitBaby": "Tenue de retour (Bébé)",
+        "carSeat": "Siège auto (installé)",
+        "swaddleBlankets": "Couvertures d'emmaillotage (2)",
+        "newbornDiapers": "Couches nouveau-né",
+        "babyHat": "Bonnet de bébé",
+        "changeOfClothes": "Vêtements de rechange",
+        "snacksDrinks": "Collations et boissons",
+        "cameraCharger": "Chargeur appareil photo/téléphone",
+        "totalItems": "articles"
+      },
       "exportPDF": "Exporter PDF",
       "shareWhatsApp": "Partager via WhatsApp",
-      "resetList": "Réinitialiser la liste",
-      "resetConfirm": "Êtes-vous sûre de vouloir réinitialiser la liste ? Cela supprimera tous les éléments personnalisés et restaurera la liste par défaut.",
+      "resetConfirm": "Êtes-vous sûre de vouloir réinitialiser la liste ? Cela supprimera tous les articles personnalisés et restaurera la liste par défaut.",
       "resetSuccess": "La liste a été réinitialisée !",
       "exportSuccess": "Checklist exportée avec succès !",
-      "exportError": "Échec de l'exportation"
+      "exportError": "Échec de l'exportation de la checklist"
     },
     "birthPlan": {
       "title": "Générateur de Plan de Naissance IA",
@@ -1793,30 +1936,6 @@
       "learnAboutBloodTypes": "En savoir plus sur les groupes sanguins",
       "disclaimer": "Ce calculateur montre les groupes sanguins possibles basés sur la génétique. Le groupe sanguin réel sera confirmé par des tests après la naissance."
     },
-    "weeklySummary": {
-      "title": "Aperçus hebdomadaires",
-      "subtitle": "Suivi hebdomadaire intelligent de votre grossesse",
-      "daysToGo": "{{days}} jours restants",
-      "pregnancyWeek": "Semaine de grossesse",
-      "week": "Semaine {{week}}",
-      "showSummary": "Afficher le résumé de la semaine {{week}}",
-      "approximatelyRemaining": "Environ {{days}} jours restants",
-      "babyGrowth": "Croissance du bébé",
-      "momsHealth": "Santé de maman",
-      "checkups": "Bilans",
-      "normal": "Normal",
-      "good": "Bon",
-      "complete": "Complet",
-      "weekSummary": "Résumé semaine {{week}}",
-      "differentWeek": "Changer la semaine",
-      "refresh": "Actualiser",
-      "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
-      "trimester": {
-        "first": "Premier trimestre",
-        "second": "Deuxième trimestre",
-        "third": "Troisième trimestre"
-      }
-    },
     "bmi": {
       "title": "Calculateur IMC Grossesse",
       "subtitle": "Calculez votre IMC pré-grossesse et les recommandations de prise de poids",
@@ -1853,9 +1972,18 @@
       "preventionTipsTitle": "Conseils de prévention",
       "infoNote": "Les tests de diabète gestationnel sont généralement effectués entre les semaines 24 et 28. Si vous avez plusieurs facteurs de risque, votre médecin peut recommander des tests plus tôt. Cet outil est à but éducatif uniquement.",
       "riskLevels": {
-        "high": { "title": "Risque plus élevé", "description": "Vos facteurs de risque suggèrent une probabilité accrue. Un dépistage précoce peut être recommandé." },
-        "moderate": { "title": "Risque modéré", "description": "Vous avez quelques facteurs de risque. Le dépistage standard à 24-28 semaines est recommandé." },
-        "low": { "title": "Risque plus faible", "description": "Vous avez peu de facteurs de risque, mais le dépistage de routine à 24-28 semaines reste recommandé." }
+        "high": {
+          "title": "Risque plus élevé",
+          "description": "Vos facteurs de risque suggèrent une probabilité accrue. Un dépistage précoce peut être recommandé."
+        },
+        "moderate": {
+          "title": "Risque modéré",
+          "description": "Vous avez quelques facteurs de risque. Le dépistage standard à 24-28 semaines est recommandé."
+        },
+        "low": {
+          "title": "Risque plus faible",
+          "description": "Vous avez peu de facteurs de risque, mais le dépistage de routine à 24-28 semaines reste recommandé."
+        }
       },
       "riskFactors": {
         "age": "Âge de 35 ans ou plus",
@@ -1900,20 +2028,49 @@
       "developing": "En développement",
       "length": "Longueur",
       "weight": "Poids",
-      "units": { "cm": "cm", "g": "g", "kg": "kg" },
-      "organs": { "heart": "Cœur", "brain": "Cerveau", "ears": "Oreilles", "eyes": "Yeux", "hands": "Mains", "feet": "Pieds" },
+      "units": {
+        "cm": "cm",
+        "g": "g",
+        "kg": "kg"
+      },
+      "organs": {
+        "heart": "Cœur",
+        "brain": "Cerveau",
+        "ears": "Oreilles",
+        "eyes": "Yeux",
+        "hands": "Mains",
+        "feet": "Pieds"
+      },
       "thisWeeksDevelopment": "Développement de cette semaine",
       "aiWeeklyInsights": "Aperçus IA hebdomadaires",
       "development": "Développement",
       "nutrition": "Nutrition",
       "exercise": "Exercice",
-      "trimesters": { "first": "Premier trimestre", "second": "Deuxième trimestre", "third": "Troisième trimestre" },
+      "trimesters": {
+        "first": "Premier trimestre",
+        "second": "Deuxième trimestre",
+        "third": "Troisième trimestre"
+      },
       "sizes": {
-        "poppySeed": "Graine de pavot", "sweetPea": "Petit pois", "raspberry": "Framboise", "prune": "Pruneau",
-        "lime": "Citron vert", "lemon": "Citron", "avocado": "Avocat", "bellPepper": "Poivron",
-        "banana": "Banane", "papaya": "Papaye", "corn": "Épi de maïs", "lettuce": "Laitue",
-        "eggplant": "Aubergine", "cabbage": "Chou", "squash": "Courge", "cantaloupe": "Cantaloup",
-        "honeydew": "Melon miel", "pumpkin": "Citrouille", "watermelon": "Pastèque"
+        "poppySeed": "Graine de pavot",
+        "sweetPea": "Petit pois",
+        "raspberry": "Framboise",
+        "prune": "Pruneau",
+        "lime": "Citron vert",
+        "lemon": "Citron",
+        "avocado": "Avocat",
+        "bellPepper": "Poivron",
+        "banana": "Banane",
+        "papaya": "Papaye",
+        "corn": "Épi de maïs",
+        "lettuce": "Laitue",
+        "eggplant": "Aubergine",
+        "cabbage": "Chou",
+        "squash": "Courge",
+        "cantaloupe": "Cantaloup",
+        "honeydew": "Melon miel",
+        "pumpkin": "Citrouille",
+        "watermelon": "Pastèque"
       },
       "developments": {
         "week4": "Les cellules se divisent rapidement. Le tube neural se forme.",
@@ -2055,75 +2212,6 @@
       "clickToExpand": "Cliquez pour développer",
       "clickToCollapse": "Cliquez pour réduire"
     },
-    "hospitalBag": {
-      "title": "Sac d'hôpital IA",
-      "subtitle": "Liste de préparation pour le jour J",
-      "forMom": "Pour maman",
-      "forBaby": "Pour bébé",
-      "forPartner": "Pour le partenaire",
-      "documents": "Documents",
-      "all": "Tout",
-      "mom": "Maman",
-      "baby": "Bébé",
-      "partner": "Partenaire",
-      "essential": "Essentiel",
-      "recommended": "Recommandé",
-      "optional": "Optionnel",
-      "generateList": "Générer la liste",
-      "getAIList": "Obtenir une liste IA personnalisée",
-      "generating": "Génération...",
-      "customizeList": "Personnaliser",
-      "packed": "Emballé",
-      "notPacked": "Non emballé",
-      "markAllPacked": "Tout marquer",
-      "resetList": "Réinitialiser",
-      "progress": "Progression",
-      "itemsPacked": "{{packed}} sur {{total}} articles emballés",
-      "addCustomItem": "Ajouter un article personnalisé...",
-      "hospitalBagVideos": "Vidéos de préparation du sac d'hôpital",
-      "hospitalBagVideosSubtitle": "Conseils de mamans expérimentées",
-      "videos": {
-        "v1": { "title": "Liste du sac d'hôpital", "description": "Conseils de sage-femme sur quoi emballer", "category": "Essentiels" },
-        "v2": { "title": "Articles essentiels pour l'hôpital", "description": "Indispensables pour le travail et l'accouchement", "category": "Essentiels" },
-        "v3": { "title": "Conseils pour le sac d'hôpital", "description": "Essentiels approuvés par les infirmières", "category": "Conseils" },
-        "v4": { "title": "Quoi emballer pour bébé", "description": "Essentiels nouveau-né pour le séjour à l'hôpital", "category": "Bébé" }
-      },
-      "items": {
-        "hospitalID": "Carte d'hôpital et d'assurance",
-        "birthPlanCopies": "Copies du plan de naissance",
-        "nightgown": "Chemise de nuit/robe de chambre confortable",
-        "supportiveBras": "Soutiens-gorge d'allaitement confortables (2-3)",
-        "toiletries": "Trousse de toilette",
-        "slippersSocks": "Chaussons et chaussettes",
-        "goingHomeOutfitMom": "Tenue de retour (Maman)",
-        "moisturizer": "Crème hydratante",
-        "hairTies": "Élastiques et bandeau",
-        "phoneCharger": "Chargeur de téléphone (câble long)",
-        "lipBalm": "Baume à lèvres",
-        "goingHomeOutfitBaby": "Tenue de retour (Bébé)",
-        "carSeat": "Siège auto (installé)",
-        "swaddleBlankets": "Couvertures d'emmaillotage (2)",
-        "newbornDiapers": "Couches nouveau-né",
-        "babyHat": "Bonnet de bébé",
-        "changeOfClothes": "Vêtements de rechange",
-        "snacksDrinks": "Collations et boissons",
-        "cameraCharger": "Chargeur appareil photo/téléphone",
-        "babyWipes": "Lingettes bébé",
-        "babyOil": "Huile/lait pour bébé",
-        "nursingPads": "Coussinets d'allaitement",
-        "maternityPads": "Serviettes de maternité",
-        "waterBottle": "Bouteille d'eau",
-        "babyMittens": "Moufles et chaussettes bébé",
-        "underwear": "Sous-vêtements (jetables)",
-        "towel": "Serviette",
-        "handSanitizer": "Gel hydroalcoolique",
-        "babyBottles": "Biberons",
-        "pacifier": "Tétine",
-        "extraBlanket": "Couverture supplémentaire",
-        "snacksMom": "Collations pour maman",
-        "diaperCream": "Crème pour couches"
-      }
-    },
     "nauseaRelief": {
       "title": "Conseils confort nausées IA",
       "subtitle": "Remèdes pour les nausées matinales",
@@ -2153,12 +2241,30 @@
         "cooking": "Odeurs de cuisine"
       },
       "remedies": {
-        "lemonWater": { "name": "Eau citronnée", "tip": "Boire lentement au réveil" },
-        "ginger": { "name": "Gingembre", "tip": "Thé, bonbons ou frais" },
-        "iceChips": { "name": "Glaçons", "tip": "Sucer en cas de nausée" },
-        "dryCrackers": { "name": "Crackers secs", "tip": "Garder près du lit" },
-        "peppermint": { "name": "Menthe poivrée", "tip": "Inhaler ou en thé" },
-        "banana": { "name": "Banane", "tip": "Facile à digérer" }
+        "lemonWater": {
+          "name": "Eau citronnée",
+          "tip": "Boire lentement au réveil"
+        },
+        "ginger": {
+          "name": "Gingembre",
+          "tip": "Thé, bonbons ou frais"
+        },
+        "iceChips": {
+          "name": "Glaçons",
+          "tip": "Sucer en cas de nausée"
+        },
+        "dryCrackers": {
+          "name": "Crackers secs",
+          "tip": "Garder près du lit"
+        },
+        "peppermint": {
+          "name": "Menthe poivrée",
+          "tip": "Inhaler ou en thé"
+        },
+        "banana": {
+          "name": "Banane",
+          "tip": "Facile à digérer"
+        }
       }
     },
     "mentalHealth": {
@@ -2199,20 +2305,68 @@
       "partnerVideos": "Vidéos de Soutien pour Partenaires",
       "partnerVideosSubtitle": "Apprenez à être le meilleur partenaire de soutien",
       "videos": {
-        "v1": { "title": "Soins du nouveau-né semaine 1", "description": "Guide du pédiatre pour la première semaine avec bébé", "category": "Soins nouveau-né" },
-        "v2": { "title": "Prendre soin de votre nouveau-né", "description": "Guide complet des soins du nouveau-né pour nouveaux parents", "category": "Soins nouveau-né" },
-        "v3": { "title": "Positions de travail et d'accouchement", "description": "Comment les partenaires peuvent aider au confort pendant le travail", "category": "Soutien au travail" },
-        "v4": { "title": "Préparation du sac d'hôpital", "description": "Quoi emballer pour le travail et l'accouchement", "category": "Préparation" }
+        "v1": {
+          "title": "Soins du nouveau-né semaine 1",
+          "description": "Guide du pédiatre pour la première semaine avec bébé",
+          "category": "Soins nouveau-né"
+        },
+        "v2": {
+          "title": "Prendre soin de votre nouveau-né",
+          "description": "Guide complet des soins du nouveau-né pour nouveaux parents",
+          "category": "Soins nouveau-né"
+        },
+        "v3": {
+          "title": "Positions de travail et d'accouchement",
+          "description": "Comment les partenaires peuvent aider au confort pendant le travail",
+          "category": "Soutien au travail"
+        },
+        "v4": {
+          "title": "Préparation du sac d'hôpital",
+          "description": "Quoi emballer pour le travail et l'accouchement",
+          "category": "Préparation"
+        }
       },
       "topics": {
-        "emotional": {"label": "Soutien Émotionnel", "icon": "💝", "desc": "Comment être présent émotionnellement"},
-        "physical": {"label": "Confort Physique", "icon": "🤲", "desc": "Massage, aide aux tâches"},
-        "appointments": {"label": "Rendez-vous Médicaux", "icon": "🏥", "desc": "Participer aux soins prénataux"},
-        "communication": {"label": "Communication", "icon": "💬", "desc": "Comprendre les sautes d'humeur"},
-        "bonding": {"label": "Lien avec Bébé", "icon": "👶", "desc": "Se connecter avant la naissance"},
-        "labor": {"label": "Préparation à l'Accouchement", "icon": "⏰", "desc": "Être prêt pour le jour J"},
-        "postpartum": {"label": "Planification Post-partum", "icon": "🏠", "desc": "Après l'arrivée du bébé"},
-        "intimacy": {"label": "Intimité et Connexion", "icon": "❤️", "desc": "Maintenir la proximité"}
+        "emotional": {
+          "label": "Soutien Émotionnel",
+          "icon": "💝",
+          "desc": "Comment être présent émotionnellement"
+        },
+        "physical": {
+          "label": "Confort Physique",
+          "icon": "🤲",
+          "desc": "Massage, aide aux tâches"
+        },
+        "appointments": {
+          "label": "Rendez-vous Médicaux",
+          "icon": "🏥",
+          "desc": "Participer aux soins prénataux"
+        },
+        "communication": {
+          "label": "Communication",
+          "icon": "💬",
+          "desc": "Comprendre les sautes d'humeur"
+        },
+        "bonding": {
+          "label": "Lien avec Bébé",
+          "icon": "👶",
+          "desc": "Se connecter avant la naissance"
+        },
+        "labor": {
+          "label": "Préparation à l'Accouchement",
+          "icon": "⏰",
+          "desc": "Être prêt pour le jour J"
+        },
+        "postpartum": {
+          "label": "Planification Post-partum",
+          "icon": "🏠",
+          "desc": "Après l'arrivée du bébé"
+        },
+        "intimacy": {
+          "label": "Intimité et Connexion",
+          "icon": "❤️",
+          "desc": "Maintenir la proximité"
+        }
       }
     },
     "skincare": {
@@ -2240,28 +2394,92 @@
       "skincareVideos": "Vidéos Soins de Peau pour Femmes Enceintes",
       "skincareVideosSubtitle": "Conseils de soins de peau sûrs pendant la grossesse",
       "videos": {
-        "v1": { "title": "Routine de soins sûre pendant la grossesse", "description": "La dermatologue Dr. Joyce Park explique les produits sûrs", "category": "Routine de soins" },
-        "v2": { "title": "Soins de peau sûrs pendant la grossesse", "description": "Dr. Sheila Farhang sur les produits à utiliser et à éviter", "category": "Sécurité des produits" },
-        "v3": { "title": "Nutrition de grossesse pour la peau", "description": "Aliments qui favorisent une grossesse saine et une peau éclatante", "category": "Nutrition" },
-        "v4": { "title": "Guide d'alimentation de grossesse", "description": "Quoi manger pour une peau saine pendant la grossesse", "category": "Alimentation" }
+        "v1": {
+          "title": "Routine de soins sûre pendant la grossesse",
+          "description": "La dermatologue Dr. Joyce Park explique les produits sûrs",
+          "category": "Routine de soins"
+        },
+        "v2": {
+          "title": "Soins de peau sûrs pendant la grossesse",
+          "description": "Dr. Sheila Farhang sur les produits à utiliser et à éviter",
+          "category": "Sécurité des produits"
+        },
+        "v3": {
+          "title": "Nutrition de grossesse pour la peau",
+          "description": "Aliments qui favorisent une grossesse saine et une peau éclatante",
+          "category": "Nutrition"
+        },
+        "v4": {
+          "title": "Guide d'alimentation de grossesse",
+          "description": "Quoi manger pour une peau saine pendant la grossesse",
+          "category": "Alimentation"
+        }
       },
       "concerns": {
-        "acne": {"label": "Acné de Grossesse", "icon": "🔴"},
-        "melasma": {"label": "Mélasma/Taches Sombres", "icon": "🟤"},
-        "stretchMarks": {"label": "Vergetures", "icon": "〰️"},
-        "dryness": {"label": "Peau Sèche", "icon": "🏜️"},
-        "oiliness": {"label": "Peau Grasse/Brillante", "icon": "✨"},
-        "sensitivity": {"label": "Sensibilité", "icon": "❗"},
-        "itching": {"label": "Démangeaisons (PUPPP)", "icon": "🤚"},
-        "glow": {"label": "Je veux cet éclat de grossesse!", "icon": "💫"}
+        "acne": {
+          "label": "Acné de Grossesse",
+          "icon": "🔴"
+        },
+        "melasma": {
+          "label": "Mélasma/Taches Sombres",
+          "icon": "🟤"
+        },
+        "stretchMarks": {
+          "label": "Vergetures",
+          "icon": "〰️"
+        },
+        "dryness": {
+          "label": "Peau Sèche",
+          "icon": "🏜️"
+        },
+        "oiliness": {
+          "label": "Peau Grasse/Brillante",
+          "icon": "✨"
+        },
+        "sensitivity": {
+          "label": "Sensibilité",
+          "icon": "❗"
+        },
+        "itching": {
+          "label": "Démangeaisons (PUPPP)",
+          "icon": "🤚"
+        },
+        "glow": {
+          "label": "Je veux cet éclat de grossesse!",
+          "icon": "💫"
+        }
       },
       "unsafeIngredients": {
-        "retinol": {"name": "Rétinol/Rétinoïdes", "risk": "high", "icon": "🚫"},
-        "salicylic": {"name": "Acide Salicylique (% élevé)", "risk": "medium", "icon": "⚠️"},
-        "hydroquinone": {"name": "Hydroquinone", "risk": "high", "icon": "🚫"},
-        "formaldehyde": {"name": "Formaldéhyde", "risk": "high", "icon": "🚫"},
-        "chemicalSunscreens": {"name": "Écrans Solaires Chimiques", "risk": "medium", "icon": "⚠️"},
-        "essentialOils": {"name": "Huiles Essentielles (certaines)", "risk": "medium", "icon": "⚠️"}
+        "retinol": {
+          "name": "Rétinol/Rétinoïdes",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "salicylic": {
+          "name": "Acide Salicylique (% élevé)",
+          "risk": "medium",
+          "icon": "⚠️"
+        },
+        "hydroquinone": {
+          "name": "Hydroquinone",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "formaldehyde": {
+          "name": "Formaldéhyde",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "chemicalSunscreens": {
+          "name": "Écrans Solaires Chimiques",
+          "risk": "medium",
+          "icon": "⚠️"
+        },
+        "essentialOils": {
+          "name": "Huiles Essentielles (certaines)",
+          "risk": "medium",
+          "icon": "⚠️"
+        }
       }
     },
     "cravingAlternatives": {
@@ -2514,73 +2732,23 @@
       "birthPositionVideos": "Vidéos de positions d'accouchement",
       "birthPositionVideosSubtitle": "Guides visuels pour les positions de travail",
       "positions": {
-        "squatting": {"name": "Accroupie", "desc": "Ouvre le bassin de 30%"},
-        "handsKnees": {"name": "À quatre pattes", "desc": "Soulage les douleurs dorsales"},
-        "sideLying": {"name": "Sur le côté", "desc": "Repos entre les contractions"},
-        "standing": {"name": "Debout/Marche", "desc": "Utilise la gravité"}
+        "squatting": {
+          "name": "Accroupie",
+          "desc": "Ouvre le bassin de 30%"
+        },
+        "handsKnees": {
+          "name": "À quatre pattes",
+          "desc": "Soulage les douleurs dorsales"
+        },
+        "sideLying": {
+          "name": "Sur le côté",
+          "desc": "Repos entre les contractions"
+        },
+        "standing": {
+          "name": "Debout/Marche",
+          "desc": "Utilise la gravité"
+        }
       }
-    },
-    "hospitalBag": {
-      "title": "Sac d'hôpital IA",
-      "subtitle": "Liste de préparation pour le jour J",
-      "forMom": "Pour maman",
-      "forBaby": "Pour bébé",
-      "forPartner": "Pour le partenaire",
-      "documents": "Documents",
-      "all": "Tout",
-      "mom": "Maman",
-      "baby": "Bébé",
-      "partner": "Partenaire",
-      "essential": "Essentiel",
-      "recommended": "Recommandé",
-      "optional": "Optionnel",
-      "generateList": "Générer la liste",
-      "getAIList": "Obtenir une liste IA personnalisée",
-      "generating": "Génération...",
-      "customizeList": "Personnaliser",
-      "packed": "Emballé",
-      "notPacked": "Non emballé",
-      "markAllPacked": "Tout marquer",
-      "resetList": "Réinitialiser",
-      "progress": "Progression",
-      "itemsPacked": "{{packed}} sur {{total}} articles emballés",
-      "addCustomItem": "Ajouter un article personnalisé...",
-      "hospitalBagVideos": "Vidéos de préparation du sac d'hôpital",
-      "hospitalBagVideosSubtitle": "Conseils de mamans expérimentées",
-      "videos": {
-        "v1": { "title": "Liste du sac d'hôpital", "description": "Conseils de sage-femme sur quoi emballer", "category": "Essentiels" },
-        "v2": { "title": "Articles essentiels pour l'hôpital", "description": "Indispensables pour le travail et l'accouchement", "category": "Essentiels" },
-        "v3": { "title": "Conseils pour le sac d'hôpital", "description": "Essentiels approuvés par les infirmières", "category": "Conseils" },
-        "v4": { "title": "Quoi emballer pour bébé", "description": "Essentiels nouveau-né pour le séjour à l'hôpital", "category": "Bébé" }
-      },
-      "items": {
-        "hospitalID": "Carte d'hôpital et d'assurance",
-        "birthPlanCopies": "Copies du plan de naissance",
-        "nightgown": "Chemise de nuit/robe de chambre confortable",
-        "supportiveBras": "Soutiens-gorge d'allaitement confortables (2-3)",
-        "toiletries": "Trousse de toilette",
-        "slippersSocks": "Chaussons et chaussettes",
-        "goingHomeOutfitMom": "Tenue de retour (Maman)",
-        "moisturizer": "Crème hydratante",
-        "hairTies": "Élastiques et bandeau",
-        "phoneCharger": "Chargeur de téléphone (câble long)",
-        "lipBalm": "Baume à lèvres",
-        "goingHomeOutfitBaby": "Tenue de retour (Bébé)",
-        "carSeat": "Siège auto (installé)",
-        "swaddleBlankets": "Couvertures d'emmaillotage (2)",
-        "newbornDiapers": "Couches nouveau-né",
-        "babyHat": "Bonnet de bébé",
-        "changeOfClothes": "Vêtements de rechange",
-        "snacksDrinks": "Collations et boissons",
-        "cameraCharger": "Chargeur appareil photo/téléphone",
-        "totalItems": "articles"
-      },
-      "exportPDF": "Exporter PDF",
-      "shareWhatsApp": "Partager via WhatsApp",
-      "resetConfirm": "Êtes-vous sûre de vouloir réinitialiser la liste ? Cela supprimera tous les articles personnalisés et restaurera la liste par défaut.",
-      "resetSuccess": "La liste a été réinitialisée !",
-      "exportSuccess": "Checklist exportée avec succès !",
-      "exportError": "Échec de l'exportation de la checklist"
     },
     "stressRelief": {
       "title": "Guide Anti-Stress IA",
@@ -2757,14 +2925,38 @@
         "lowImpact": "Faible impact"
       },
       "videos": {
-        "fullBody": { "title": "Entraînement prénatal corps entier", "description": "25 minutes d'exercice doux pour tout le corps — sûr pour tous les trimestres" },
-        "strength": { "title": "Renforcement au poids du corps prénatal", "description": "35 minutes de renforcement sans équipement pour la grossesse" },
-        "stretching": { "title": "Étirements doux pour débutantes enceintes", "description": "20 minutes d'étirements sûrs pour tous les trimestres" },
-        "yoga": { "title": "Yoga prénatal de relaxation", "description": "Yoga de relaxation profonde pour la grossesse" },
-        "relaxation": { "title": "Méditation de relaxation grossesse", "description": "Méditation apaisante pour futures mamans" },
-        "birthPrep": { "title": "Cardio grossesse + préparation accouchement", "description": "30 minutes de cardio et exercices de préparation à l'accouchement" },
-        "core": { "title": "Entraînement abdominal prénatal sûr", "description": "10 minutes de gainage sûr pour le premier trimestre" },
-        "lowImpact": { "title": "Entraînement prénatal à faible impact", "description": "25 minutes d'exercice doux pour tout le corps" }
+        "fullBody": {
+          "title": "Entraînement prénatal corps entier",
+          "description": "25 minutes d'exercice doux pour tout le corps — sûr pour tous les trimestres"
+        },
+        "strength": {
+          "title": "Renforcement au poids du corps prénatal",
+          "description": "35 minutes de renforcement sans équipement pour la grossesse"
+        },
+        "stretching": {
+          "title": "Étirements doux pour débutantes enceintes",
+          "description": "20 minutes d'étirements sûrs pour tous les trimestres"
+        },
+        "yoga": {
+          "title": "Yoga prénatal de relaxation",
+          "description": "Yoga de relaxation profonde pour la grossesse"
+        },
+        "relaxation": {
+          "title": "Méditation de relaxation grossesse",
+          "description": "Méditation apaisante pour futures mamans"
+        },
+        "birthPrep": {
+          "title": "Cardio grossesse + préparation accouchement",
+          "description": "30 minutes de cardio et exercices de préparation à l'accouchement"
+        },
+        "core": {
+          "title": "Entraînement abdominal prénatal sûr",
+          "description": "10 minutes de gainage sûr pour le premier trimestre"
+        },
+        "lowImpact": {
+          "title": "Entraînement prénatal à faible impact",
+          "description": "25 minutes d'exercice doux pour tout le corps"
+        }
       },
       "sections": {
         "setup": "Configuration et préférences",
@@ -2773,8 +2965,8 @@
         "buildWorkoutDesc": "Choisissez votre énergie, objectif et durée",
         "workout": "Entraînement du jour",
         "workoutDesc": "Suivez vos exercices personnalisés",
-      "analysis": "Aperçus et conseils",
-      "analysisDesc": "Aperçus IA et conseils quotidiens",
+        "analysis": "Aperçus et conseils",
+        "analysisDesc": "Aperçus IA et conseils quotidiens",
         "resources": "Vidéos et sécurité",
         "resourcesDesc": "Contenu éducatif et rappels importants"
       },
@@ -2802,6 +2994,46 @@
           "relaxation": "Relaxation"
         }
       }
+    },
+    "contractionTimer": {
+      "title": "Minuteur de contractions",
+      "subtitle": "Suivez la durée et les intervalles entre les contractions",
+      "recording": "Enregistrement...",
+      "startContraction": "Démarrer la contraction",
+      "stop": "Arrêter",
+      "total": "Total",
+      "avgDuration": "Durée moy.",
+      "avgInterval": "Intervalle moy.",
+      "ruleMetTitle": "Règle 5-1-1 atteinte !",
+      "ruleMetDesc": "Les contractions surviennent toutes les 5 minutes ou moins et durent plus d'une minute. Il est peut-être temps de vous rendre à l'hôpital. Contactez votre médecin immédiatement.",
+      "history": "Historique",
+      "clearAll": "Tout effacer",
+      "duration": "Durée",
+      "gap": "Intervalle",
+      "chartTitle": "Schéma des contractions",
+      "chartTab": "Graphique",
+      "historyTab": "Journal",
+      "regularity": "Régularité",
+      "trendShortening": "Rapprochement",
+      "trendLengthening": "Espacement",
+      "trendStable": "Stable",
+      "trend": "Tendance",
+      "sessionTime": "Durée de session",
+      "lastOne": "Dernière contraction",
+      "time": "Heure",
+      "intensity": "Intensité",
+      "intensityStrong": "Très forte",
+      "intensityModerate": "Forte",
+      "intensityMild": "Modérée",
+      "intensityLight": "Légère",
+      "phaseEarly": "Phase précoce",
+      "phaseEarlyDesc": "Les contractions sont légères et espacées. Restez confortable chez vous et surveillez l'évolution.",
+      "phaseActive": "Phase active",
+      "phaseActiveDesc": "Les contractions sont régulières et plus fortes. Préparez-vous à aller à l'hôpital.",
+      "phaseTransition": "Phase de transition",
+      "phaseTransitionDesc": "Les contractions sont très fortes et très rapprochées. Rendez-vous immédiatement à l'hôpital !",
+      "aiAnalysisTitle": "Analyse IA des contractions",
+      "aiAnalysisButton": "Analyser les contractions avec l'IA"
     }
   },
   "preeclampsiaRisk": {
@@ -2838,9 +3070,21 @@
       "demographics": "Démographie"
     },
     "riskLevels": {
-      "high": { "title": "Nombreux facteurs", "description": "Vous avez un ou plusieurs facteurs significatifs. Votre médecin peut recommander de l'aspirine à faible dose dès la 12e semaine.", "recommendation": "Discutez de la prophylaxie par aspirine avec votre médecin" },
-      "moderate": { "title": "Quelques facteurs", "description": "Vous avez quelques facteurs. Un suivi renforcé et des modifications du mode de vie peuvent être recommandés.", "recommendation": "Envisagez de discuter de cela avec votre médecin" },
-      "low": { "title": "Peu de facteurs", "description": "Vous avez peu de facteurs identifiés. Continuez les soins prénataux habituels.", "recommendation": "Maintenez les visites prénatales régulières" }
+      "high": {
+        "title": "Nombreux facteurs",
+        "description": "Vous avez un ou plusieurs facteurs significatifs. Votre médecin peut recommander de l'aspirine à faible dose dès la 12e semaine.",
+        "recommendation": "Discutez de la prophylaxie par aspirine avec votre médecin"
+      },
+      "moderate": {
+        "title": "Quelques facteurs",
+        "description": "Vous avez quelques facteurs. Un suivi renforcé et des modifications du mode de vie peuvent être recommandés.",
+        "recommendation": "Envisagez de discuter de cela avec votre médecin"
+      },
+      "low": {
+        "title": "Peu de facteurs",
+        "description": "Vous avez peu de facteurs identifiés. Continuez les soins prénataux habituels.",
+        "recommendation": "Maintenez les visites prénatales régulières"
+      }
     },
     "warningSigns": {
       "headaches": "Maux de tête sévères qui ne disparaissent pas",
@@ -2959,10 +3203,22 @@
       "year": "Après 1 an"
     },
     "videos": {
-      "video1": {"title": "Allaiter un nouveau-né", "description": "Ce qui est normal, défis courants et conseils d'un pédiatre IBCLC"},
-      "video2": {"title": "Soins du nouveau-né Semaine 1", "description": "Guide du pédiatre incluant les bases de l'alimentation"},
-      "video3": {"title": "Prendre soin de votre nouveau-né", "description": "Guide complet incluant les horaires d'alimentation"},
-      "video4": {"title": "Guide de soins du bébé", "description": "Bases de manipulation, alimentation et sommeil"}
+      "video1": {
+        "title": "Allaiter un nouveau-né",
+        "description": "Ce qui est normal, défis courants et conseils d'un pédiatre IBCLC"
+      },
+      "video2": {
+        "title": "Soins du nouveau-né Semaine 1",
+        "description": "Guide du pédiatre incluant les bases de l'alimentation"
+      },
+      "video3": {
+        "title": "Prendre soin de votre nouveau-né",
+        "description": "Guide complet incluant les horaires d'alimentation"
+      },
+      "video4": {
+        "title": "Guide de soins du bébé",
+        "description": "Bases de manipulation, alimentation et sommeil"
+      }
     },
     "categories": {
       "gettingStarted": "Pour commencer",
@@ -2999,7 +3255,6 @@
     "captionPlaceholder": "Ajoutez une légende pour ce moment... (optionnel)",
     "compressing": "Compression et sauvegarde...",
     "takeOrUpload": "Prendre ou téléverser une photo",
-    "takePhoto": "Prendre une photo",
     "uploadFromGallery": "Depuis la galerie",
     "uploadHint": "📸 Vous pouvez prendre une photo de l'échographie lors de votre visite chez le médecin, ou demander une copie et la téléverser plus tard depuis votre galerie.",
     "localStorageWarning": "⚠️ Les photos sont stockées uniquement sur votre appareil. Si vous supprimez les données de l'application ou la désinstallez, toutes les photos seront définitivement supprimées. Nous recommandons de faire une sauvegarde.",
@@ -3145,16 +3400,46 @@
       "limit": "Limiter"
     },
     "foods": {
-      "sushi": { "name": "Sushi (Poisson Cru)", "reason": "Risque de parasites et bactéries comme la Listeria" },
-      "softCheese": { "name": "Fromage à pâte molle (Non pasteurisé)", "reason": "Risque de contamination par Listeria" },
-      "coffee": { "name": "Café", "reason": "Limiter la caféine à 200mg/jour pour réduire le risque de faible poids à la naissance" },
-      "salmon": { "name": "Saumon (Cuit)", "reason": "Excellente source d'Oméga-3. Assurez-vous qu'il est bien cuit." },
-      "deliMeat": { "name": "Charcuterie", "reason": "Risque de Listeria sauf si chauffée jusqu'à être fumante" },
-      "rawEggs": { "name": "Œufs Crus", "reason": "Risque de Salmonelle" },
-      "tuna": { "name": "Thon (Germon)", "reason": "Teneur en mercure plus élevée. Limiter à 170g par semaine." },
-      "alcohol": { "name": "Alcool", "reason": "Aucune quantité sûre connue. Peut causer le syndrome d'alcoolisme fœtal." },
-      "hardCheese": { "name": "Fromages à pâte dure", "reason": "Généralement sûrs car pasteurisés et à faible humidité" },
-      "chicken": { "name": "Poulet", "reason": "Excellente source de protéines. Doit être bien cuit." }
+      "sushi": {
+        "name": "Sushi (Poisson Cru)",
+        "reason": "Risque de parasites et bactéries comme la Listeria"
+      },
+      "softCheese": {
+        "name": "Fromage à pâte molle (Non pasteurisé)",
+        "reason": "Risque de contamination par Listeria"
+      },
+      "coffee": {
+        "name": "Café",
+        "reason": "Limiter la caféine à 200mg/jour pour réduire le risque de faible poids à la naissance"
+      },
+      "salmon": {
+        "name": "Saumon (Cuit)",
+        "reason": "Excellente source d'Oméga-3. Assurez-vous qu'il est bien cuit."
+      },
+      "deliMeat": {
+        "name": "Charcuterie",
+        "reason": "Risque de Listeria sauf si chauffée jusqu'à être fumante"
+      },
+      "rawEggs": {
+        "name": "Œufs Crus",
+        "reason": "Risque de Salmonelle"
+      },
+      "tuna": {
+        "name": "Thon (Germon)",
+        "reason": "Teneur en mercure plus élevée. Limiter à 170g par semaine."
+      },
+      "alcohol": {
+        "name": "Alcool",
+        "reason": "Aucune quantité sûre connue. Peut causer le syndrome d'alcoolisme fœtal."
+      },
+      "hardCheese": {
+        "name": "Fromages à pâte dure",
+        "reason": "Généralement sûrs car pasteurisés et à faible humidité"
+      },
+      "chicken": {
+        "name": "Poulet",
+        "reason": "Excellente source de protéines. Doit être bien cuit."
+      }
     }
   },
   "toolsInternal.conceptionPage": {
@@ -3340,14 +3625,48 @@
       "8": "Haute teneur en protéines pour la croissance musculaire et du bébé"
     },
     "ingredientItems": {
-      "1": { "0": "1 pomme moyenne", "1": "2 c.à.s. beurre d'amande" },
-      "2": { "0": "1 tasse yaourt grec", "1": "1/4 tasse granola", "2": "1/2 tasse baies", "3": "Filet de miel" },
-      "3": { "0": "Noix mélangées", "1": "Pépites de chocolat noir", "2": "Canneberges séchées" },
-      "4": { "0": "1 tranche pain complet", "1": "1/2 avocat", "2": "Sel", "3": "Assaisonnement" },
-      "5": { "0": "1/4 tasse houmous", "1": "Bâtonnets de carotte", "2": "Tranches de concombre", "3": "Lanières de poivron" },
-      "6": { "0": "4 crackers complets", "1": "60g fromage cheddar" },
-      "7": { "0": "1 banane", "1": "1 tasse flocons d'avoine", "2": "2 c.à.s. beurre de cacahuète", "3": "1 c.à.s. miel" },
-      "8": { "0": "1 tasse fromage cottage", "1": "Morceaux d'ananas", "2": "Noix" }
+      "1": {
+        "0": "1 pomme moyenne",
+        "1": "2 c.à.s. beurre d'amande"
+      },
+      "2": {
+        "0": "1 tasse yaourt grec",
+        "1": "1/4 tasse granola",
+        "2": "1/2 tasse baies",
+        "3": "Filet de miel"
+      },
+      "3": {
+        "0": "Noix mélangées",
+        "1": "Pépites de chocolat noir",
+        "2": "Canneberges séchées"
+      },
+      "4": {
+        "0": "1 tranche pain complet",
+        "1": "1/2 avocat",
+        "2": "Sel",
+        "3": "Assaisonnement"
+      },
+      "5": {
+        "0": "1/4 tasse houmous",
+        "1": "Bâtonnets de carotte",
+        "2": "Tranches de concombre",
+        "3": "Lanières de poivron"
+      },
+      "6": {
+        "0": "4 crackers complets",
+        "1": "60g fromage cheddar"
+      },
+      "7": {
+        "0": "1 banane",
+        "1": "1 tasse flocons d'avoine",
+        "2": "2 c.à.s. beurre de cacahuète",
+        "3": "1 c.à.s. miel"
+      },
+      "8": {
+        "0": "1 tasse fromage cottage",
+        "1": "Morceaux d'ananas",
+        "2": "Noix"
+      }
     },
     "recipes": {
       "2": "Disposer le yaourt, le granola et les baies en couches. Arroser de miel.",
@@ -3673,10 +3992,26 @@
     "mentalWellnessVideos": "Vidéos de bien-être mental",
     "videosSubtitle": "Ressources de soutien et d'auto-soins",
     "videos": {
-      "v1": { "title": "Qu'est-ce que la dépression post-partum ?", "description": "Signes, symptômes et quand chercher de l'aide professionnelle", "category": "Éducation" },
-      "v2": { "title": "La dépression post-partum expliquée", "description": "Symptômes, facteurs de risque et options de traitement", "category": "Éducation" },
-      "v3": { "title": "Méditation de relaxation pendant la grossesse", "description": "Méditation apaisante pour une meilleure santé mentale", "category": "Relaxation" },
-      "v4": { "title": "Soins du nouveau-né - Semaine 1", "description": "Guide du pédiatre pour la première semaine avec bébé", "category": "Auto-soins" }
+      "v1": {
+        "title": "Qu'est-ce que la dépression post-partum ?",
+        "description": "Signes, symptômes et quand chercher de l'aide professionnelle",
+        "category": "Éducation"
+      },
+      "v2": {
+        "title": "La dépression post-partum expliquée",
+        "description": "Symptômes, facteurs de risque et options de traitement",
+        "category": "Éducation"
+      },
+      "v3": {
+        "title": "Méditation de relaxation pendant la grossesse",
+        "description": "Méditation apaisante pour une meilleure santé mentale",
+        "category": "Relaxation"
+      },
+      "v4": {
+        "title": "Soins du nouveau-né - Semaine 1",
+        "description": "Guide du pédiatre pour la première semaine avec bébé",
+        "category": "Auto-soins"
+      }
     },
     "riskLevels": {
       "low": {
@@ -3782,14 +4117,38 @@
       "earlyLaborSigns": "Quels sont les signes du travail précoce?"
     },
     "categories": {
-      "checkups": { "label": "Examens", "icon": "🔬" },
-      "development": { "label": "Croissance bébé", "icon": "👶" },
-      "warning": { "label": "Signes d'alerte", "icon": "⚠️" },
-      "lifestyle": { "label": "Mode de vie", "icon": "🏃" },
-      "nutrition": { "label": "Nutrition", "icon": "🥗" },
-      "medications": { "label": "Médicaments", "icon": "💊" },
-      "preparation": { "label": "Préparation", "icon": "📋" },
-      "other": { "label": "Autre", "icon": "❓" }
+      "checkups": {
+        "label": "Examens",
+        "icon": "🔬"
+      },
+      "development": {
+        "label": "Croissance bébé",
+        "icon": "👶"
+      },
+      "warning": {
+        "label": "Signes d'alerte",
+        "icon": "⚠️"
+      },
+      "lifestyle": {
+        "label": "Mode de vie",
+        "icon": "🏃"
+      },
+      "nutrition": {
+        "label": "Nutrition",
+        "icon": "🥗"
+      },
+      "medications": {
+        "label": "Médicaments",
+        "icon": "💊"
+      },
+      "preparation": {
+        "label": "Préparation",
+        "icon": "📋"
+      },
+      "other": {
+        "label": "Autre",
+        "icon": "❓"
+      }
     },
     "priority": {
       "high": "Important",
@@ -3806,24 +4165,174 @@
   },
   "toolsInternal.babyCryTranslator": {
     "subtitle": "Comprenez ce que votre bébé essaie de vous dire",
-    "babyAge": "Âge du bébé", "weeks": "semaines", "cryPattern": "Type de pleurs", "cryDuration": "Combien de temps?", "whenCrying": "Quand bébé pleure-t-il?", "analyzeButton": "Analyser les pleurs", "analysisResult": "Analyse des pleurs", "newAnalysis": "Nouvelle analyse", "reanalyze": "Réanalyser", "recentLogs": "Analyses récentes", "tipsTitle": "Conseils utiles",
-    "patterns": { "continuous": "Pleurs continus", "intermittent": "Intermittent", "highPitch": "Aigu", "whimpering": "Gémissements", "rhythmic": "Rythmique", "sudden": "Cris soudains" },
-    "durations": { "under1": "Moins d'1 min", "1to5": "1-5 min", "5to15": "5-15 min", "over15": "Plus de 15 min" },
-    "contexts": { "afterFeeding": "Après le repas", "beforeSleep": "Avant de dormir", "afterWaking": "Au réveil", "duringChange": "Pendant le change", "noReason": "Sans raison apparente", "afterBath": "Après le bain" },
-    "tips": { "tip1": "Chaque bébé a un type de pleurs unique", "tip2": "Les bébés pleurent 1-3 heures par jour en moyenne — c'est normal", "tip3": "Si les pleurs sont inhabituels ou persistants, consultez votre pédiatre" }
+    "babyAge": "Âge du bébé",
+    "weeks": "semaines",
+    "cryPattern": "Type de pleurs",
+    "cryDuration": "Combien de temps?",
+    "whenCrying": "Quand bébé pleure-t-il?",
+    "analyzeButton": "Analyser les pleurs",
+    "analysisResult": "Analyse des pleurs",
+    "newAnalysis": "Nouvelle analyse",
+    "reanalyze": "Réanalyser",
+    "recentLogs": "Analyses récentes",
+    "tipsTitle": "Conseils utiles",
+    "patterns": {
+      "continuous": "Pleurs continus",
+      "intermittent": "Intermittent",
+      "highPitch": "Aigu",
+      "whimpering": "Gémissements",
+      "rhythmic": "Rythmique",
+      "sudden": "Cris soudains"
+    },
+    "durations": {
+      "under1": "Moins d'1 min",
+      "1to5": "1-5 min",
+      "5to15": "5-15 min",
+      "over15": "Plus de 15 min"
+    },
+    "contexts": {
+      "afterFeeding": "Après le repas",
+      "beforeSleep": "Avant de dormir",
+      "afterWaking": "Au réveil",
+      "duringChange": "Pendant le change",
+      "noReason": "Sans raison apparente",
+      "afterBath": "Après le bain"
+    },
+    "tips": {
+      "tip1": "Chaque bébé a un type de pleurs unique",
+      "tip2": "Les bébés pleurent 1-3 heures par jour en moyenne — c'est normal",
+      "tip3": "Si les pleurs sont inhabituels ou persistants, consultez votre pédiatre"
+    }
   },
   "toolsInternal.postpartumRecovery": {
     "subtitle": "Votre parcours de récupération personnalisé après l'accouchement",
-    "welcomeTitle": "Votre parcours de récupération", "welcomeDesc": "Un plan de récupération de 6 semaines adapté à votre accouchement", "selectBirthType": "Comment avez-vous accouché?",
-    "birthTypes": { "vaginal": "Accouchement vaginal", "cesarean": "Césarienne" },
-    "progress": "Progrès", "getAIAdvice": "Obtenir des conseils IA", "aiAdviceTitle": "Conseils de récupération personnalisés", "changeBirthType": "Changer le type d'accouchement",
-    "phases": { "week1": { "title": "Semaine 1 — Repos et guérison", "description": "Repos, soins et lien avec bébé" }, "week2": { "title": "Semaine 2 — Début en douceur", "description": "Mouvements doux et routines" }, "week3_4": { "title": "Semaines 3-4 — Renforcement", "description": "Exercices légers et bien-être émotionnel" }, "week5_6": { "title": "Semaines 5-6 — Nouvelle normalité", "description": "Reprise d'activité et planification" } },
-    "checklist": { "rest": { "title": "Prioriser le repos", "desc": "Dormez quand bébé dort" }, "hydration": { "title": "Rester hydratée", "desc": "8-10 verres d'eau par jour" }, "woundCare": { "title": "Soins de la plaie", "desc": "Suivez les instructions du médecin" }, "feedingSchedule": { "title": "Programme d'alimentation", "desc": "Établir une routine régulière" }, "painManagement": { "title": "Gestion de la douleur", "desc": "Prenez les médicaments prescrits" }, "gentleWalking": { "title": "Marche douce", "desc": "Courtes promenades à la maison" }, "emotionalCheck": { "title": "Bilan émotionnel", "desc": "Surveillez votre humeur" }, "nutrition": { "title": "Repas nutritifs", "desc": "Repas riches en fer et protéines" }, "sleepRoutine": { "title": "Routine de sommeil", "desc": "Créez un environnement reposant" }, "socialSupport": { "title": "Soutien social", "desc": "Restez connectée avec vos proches" }, "lightExercise": { "title": "Exercice léger", "desc": "Étirements doux et marche" }, "posturalExercises": { "title": "Exercices posturaux", "desc": "Renforcez doucement votre sangle abdominale" }, "kegelExercises": { "title": "Exercices de Kegel", "desc": "Commencez le périnée" }, "mentalHealthCheck": { "title": "Bilan santé mentale", "desc": "Dépistage dépression post-partum" }, "doctorVisit": { "title": "Visite médicale", "desc": "Planifiez votre suivi post-partum" }, "returnToExercise": { "title": "Reprise du sport", "desc": "Augmentez progressivement l'activité" }, "intimacyReadiness": { "title": "Reprise de l'intimité", "desc": "Discutez avec votre partenaire" }, "fullCheckup": { "title": "Bilan complet", "desc": "Examen post-partum complet" }, "longTermPlan": { "title": "Plan à long terme", "desc": "Contraception et projets futurs" }, "selfCare": { "title": "Routine d'auto-soins", "desc": "Établir des pratiques de soins personnels" } }
+    "welcomeTitle": "Votre parcours de récupération",
+    "welcomeDesc": "Un plan de récupération de 6 semaines adapté à votre accouchement",
+    "selectBirthType": "Comment avez-vous accouché?",
+    "birthTypes": {
+      "vaginal": "Accouchement vaginal",
+      "cesarean": "Césarienne"
+    },
+    "progress": "Progrès",
+    "getAIAdvice": "Obtenir des conseils IA",
+    "aiAdviceTitle": "Conseils de récupération personnalisés",
+    "changeBirthType": "Changer le type d'accouchement",
+    "phases": {
+      "week1": {
+        "title": "Semaine 1 — Repos et guérison",
+        "description": "Repos, soins et lien avec bébé"
+      },
+      "week2": {
+        "title": "Semaine 2 — Début en douceur",
+        "description": "Mouvements doux et routines"
+      },
+      "week3_4": {
+        "title": "Semaines 3-4 — Renforcement",
+        "description": "Exercices légers et bien-être émotionnel"
+      },
+      "week5_6": {
+        "title": "Semaines 5-6 — Nouvelle normalité",
+        "description": "Reprise d'activité et planification"
+      }
+    },
+    "checklist": {
+      "rest": {
+        "title": "Prioriser le repos",
+        "desc": "Dormez quand bébé dort"
+      },
+      "hydration": {
+        "title": "Rester hydratée",
+        "desc": "8-10 verres d'eau par jour"
+      },
+      "woundCare": {
+        "title": "Soins de la plaie",
+        "desc": "Suivez les instructions du médecin"
+      },
+      "feedingSchedule": {
+        "title": "Programme d'alimentation",
+        "desc": "Établir une routine régulière"
+      },
+      "painManagement": {
+        "title": "Gestion de la douleur",
+        "desc": "Prenez les médicaments prescrits"
+      },
+      "gentleWalking": {
+        "title": "Marche douce",
+        "desc": "Courtes promenades à la maison"
+      },
+      "emotionalCheck": {
+        "title": "Bilan émotionnel",
+        "desc": "Surveillez votre humeur"
+      },
+      "nutrition": {
+        "title": "Repas nutritifs",
+        "desc": "Repas riches en fer et protéines"
+      },
+      "sleepRoutine": {
+        "title": "Routine de sommeil",
+        "desc": "Créez un environnement reposant"
+      },
+      "socialSupport": {
+        "title": "Soutien social",
+        "desc": "Restez connectée avec vos proches"
+      },
+      "lightExercise": {
+        "title": "Exercice léger",
+        "desc": "Étirements doux et marche"
+      },
+      "posturalExercises": {
+        "title": "Exercices posturaux",
+        "desc": "Renforcez doucement votre sangle abdominale"
+      },
+      "kegelExercises": {
+        "title": "Exercices de Kegel",
+        "desc": "Commencez le périnée"
+      },
+      "mentalHealthCheck": {
+        "title": "Bilan santé mentale",
+        "desc": "Dépistage dépression post-partum"
+      },
+      "doctorVisit": {
+        "title": "Visite médicale",
+        "desc": "Planifiez votre suivi post-partum"
+      },
+      "returnToExercise": {
+        "title": "Reprise du sport",
+        "desc": "Augmentez progressivement l'activité"
+      },
+      "intimacyReadiness": {
+        "title": "Reprise de l'intimité",
+        "desc": "Discutez avec votre partenaire"
+      },
+      "fullCheckup": {
+        "title": "Bilan complet",
+        "desc": "Examen post-partum complet"
+      },
+      "longTermPlan": {
+        "title": "Plan à long terme",
+        "desc": "Contraception et projets futurs"
+      },
+      "selfCare": {
+        "title": "Routine d'auto-soins",
+        "desc": "Établir des pratiques de soins personnels"
+      }
+    }
   },
   "toolsInternal.mealSuggestion.allergiesLabel": "Allergies et intolérances",
-  "toolsInternal.mealSuggestion.allergies": { "gluten": "Gluten", "dairy": "Produits laitiers", "nuts": "Noix", "eggs": "Œufs", "soy": "Soja", "seafood": "Fruits de mer" },
+  "toolsInternal.mealSuggestion.allergies": {
+    "gluten": "Gluten",
+    "dairy": "Produits laitiers",
+    "nuts": "Noix",
+    "eggs": "Œufs",
+    "soy": "Soja",
+    "seafood": "Fruits de mer"
+  },
   "toolsInternal.mealSuggestion.prepTimeLabel": "Temps de préparation",
-  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Rapide (< 15 min)", "medium": "Moyen (15-30 min)", "elaborate": "Élaboré (30+ min)" },
+  "toolsInternal.mealSuggestion.prepTimes": {
+    "quick": "Rapide (< 15 min)",
+    "medium": "Moyen (15-30 min)",
+    "elaborate": "Élaboré (30+ min)"
+  },
   "toolsInternal.gdm": {
     "title": "Sensibilisation au diabète gestationnel (Infos générales)",
     "subtitle": "Cet outil fournit des informations simples sur le diabète gestationnel : facteurs courants, habitudes de vie associées et questions utiles à discuter avec votre médecin. Il ne mesure pas la glycémie, ne fournit pas de diagnostic ni de plan de traitement, et ne remplace pas le suivi prénatal avec votre équipe de soins.",
@@ -3835,9 +4344,18 @@
     "preventionTipsTitle": "Conseils de prévention",
     "infoNote": "Le test du diabète gestationnel a lieu entre les semaines 24-28. Si vous avez plusieurs facteurs de risque, votre médecin peut recommander un test plus précoce.",
     "riskLevels": {
-      "high": { "title": "Nombreux facteurs", "description": "Vos facteurs suggèrent une probabilité accrue. Un test précoce peut être recommandé." },
-      "moderate": { "title": "Quelques facteurs", "description": "Vous avez quelques facteurs. Le test standard aux semaines 24-28 est recommandé." },
-      "low": { "title": "Peu de facteurs", "description": "Vous avez peu de facteurs, mais le test de routine aux semaines 24-28 est toujours recommandé." }
+      "high": {
+        "title": "Nombreux facteurs",
+        "description": "Vos facteurs suggèrent une probabilité accrue. Un test précoce peut être recommandé."
+      },
+      "moderate": {
+        "title": "Quelques facteurs",
+        "description": "Vous avez quelques facteurs. Le test standard aux semaines 24-28 est recommandé."
+      },
+      "low": {
+        "title": "Peu de facteurs",
+        "description": "Vous avez peu de facteurs, mais le test de routine aux semaines 24-28 est toujours recommandé."
+      }
     },
     "riskFactors": {
       "age": "35 ans ou plus",
@@ -3936,10 +4454,22 @@
   "toolsInternal.mobilityCoach.tip4": "Étirez vos mollets avant de dormir pour prévenir les crampes nocturnes",
   "toolsInternal.mobilityCoach.tip5": "Maintenez des aliments riches en magnésium dans votre alimentation",
   "toolsInternal.mobilityCoach.legExercises": {
-    "calfRaises": {"name": "Élévations de mollets", "desc": "Debout, lever les talons puis redescendre lentement"},
-    "ankleCircles": {"name": "Cercles de chevilles", "desc": "Tourner chaque cheville en cercles"},
-    "toePoints": {"name": "Pointes de pieds", "desc": "Pointer et fléchir les orteils pour la circulation"},
-    "legStretches": {"name": "Étirements doux des jambes", "desc": "Étirer mollets et ischio-jambiers doucement"}
+    "calfRaises": {
+      "name": "Élévations de mollets",
+      "desc": "Debout, lever les talons puis redescendre lentement"
+    },
+    "ankleCircles": {
+      "name": "Cercles de chevilles",
+      "desc": "Tourner chaque cheville en cercles"
+    },
+    "toePoints": {
+      "name": "Pointes de pieds",
+      "desc": "Pointer et fléchir les orteils pour la circulation"
+    },
+    "legStretches": {
+      "name": "Étirements doux des jambes",
+      "desc": "Étirer mollets et ischio-jambiers doucement"
+    }
   },
   "toolsInternal.weightGain.yourProfile": "Votre profil",
   "toolsInternal.weightGain.heightCm": "Taille (cm)",
@@ -3962,9 +4492,18 @@
     "obese": "Obésité (IMC ≥ 30)"
   },
   "toolsInternal.weightGain.statusMessages": {
-    "below": { "message": "Votre prise de poids est inférieure à la plage recommandée.", "recommendation": "Consultez votre médecin concernant votre nutrition." },
-    "above": { "message": "Votre prise de poids est supérieure à la plage recommandée.", "recommendation": "Discutez avec votre médecin des habitudes alimentaires saines." },
-    "normal": { "message": "Votre prise de poids est dans la plage saine !", "recommendation": "Continuez ainsi avec une alimentation équilibrée." }
+    "below": {
+      "message": "Votre prise de poids est inférieure à la plage recommandée.",
+      "recommendation": "Consultez votre médecin concernant votre nutrition."
+    },
+    "above": {
+      "message": "Votre prise de poids est supérieure à la plage recommandée.",
+      "recommendation": "Discutez avec votre médecin des habitudes alimentaires saines."
+    },
+    "normal": {
+      "message": "Votre prise de poids est dans la plage saine !",
+      "recommendation": "Continuez ainsi avec une alimentation équilibrée."
+    }
   },
   "toolsInternal.weightGain.minRecommended": "Min. recommandé",
   "toolsInternal.weightGain.maxRecommended": "Max. recommandé",
@@ -3980,36 +4519,126 @@
   "toolsInternal.fertilityAcademy": {
     "lessonsCount": "{{count}} modules d'apprentissage",
     "lessons": {
-      "menstrualCycle": { "title": "Comprendre le cycle menstruel", "content": "Votre cycle menstruel se divise en quatre phases principales :\n\n1. Phase menstruelle (Jours 1–5) : La muqueuse utérine se détache, marquant le début d'un nouveau cycle.\n\n2. Phase folliculaire (Jours 1–13) : La FSH stimule les ovaires pour développer des follicules. L'œstrogène augmente et épaissit la muqueuse utérine.\n\n3. Ovulation (~Jour 14) : Une poussée de LH déclenche la libération d'un ovule mature. C'est votre moment le plus fertile.\n\n4. Phase lutéale (Jours 15–28) : Le follicule vide devient le corps jaune et produit de la progestérone. Sans fécondation, les hormones chutent et le cycle recommence.\n\nComprendre ces phases vous aide à identifier votre fenêtre fertile et à travailler avec le rythme naturel de votre corps." },
-      "ovulationProcess": { "title": "Comment fonctionne l'ovulation", "content": "L'ovulation est la libération d'un ovule mature par l'un de vos ovaires :\n\n• Dans les jours précédant l'ovulation, l'augmentation de l'œstrogène fait croître le follicule dominant.\n• Une poussée soudaine de LH provoque la rupture du follicule et la libération de l'ovule dans la trompe de Fallope.\n• L'ovule survit 12–24 heures après sa libération. Les spermatozoïdes peuvent survivre jusqu'à 5 jours dans le tractus reproducteur.\n• Cela signifie que votre fenêtre fertile s'étend sur environ 6 jours — les 5 jours avant l'ovulation et le jour de l'ovulation lui-même.\n\nCertaines femmes ressentent une légère douleur ou crampe (mittelschmerz) pendant l'ovulation." },
-      "fertilizationBasics": { "title": "Bases de la fécondation", "content": "Après l'ovulation, la fécondation peut se produire dans la trompe de Fallope :\n\n• Sur les millions de spermatozoïdes libérés, seuls quelques centaines atteignent l'ovule.\n• Un spermatozoïde pénètre la couche externe de l'ovule, déclenchant une réaction chimique empêchant les autres spermatozoïdes d'entrer.\n• L'ovule fécondé (zygote) commence à se diviser en voyageant vers l'utérus pendant 3–4 jours.\n• Environ 6–10 jours après l'ovulation, le blastocyste s'implante dans la muqueuse utérine.\n• L'implantation peut provoquer de légers saignements.\n• Une fois implanté, le corps commence à produire de l'hCG — l'hormone détectée par les tests de grossesse." },
-      "hormonesRole": { "title": "Rôle des hormones", "content": "Plusieurs hormones orchestrent votre fertilité :\n\n• FSH : Stimule la croissance folliculaire dans les ovaires. Testée au jour 3 de votre cycle.\n\n• LH : Déclenche l'ovulation. Les kits de prédiction de l'ovulation détectent la poussée de LH.\n\n• Œstrogène : Favorise le développement folliculaire et épaissit la muqueuse utérine.\n\n• Progestérone : Produite après l'ovulation, elle maintient la muqueuse utérine pour l'implantation potentielle.\n\n• AMH : Reflète le nombre d'ovules restants. Utile pour la planification de la fertilité.\n\n• Hormones thyroïdiennes (TSH, T3, T4) : Les déséquilibres peuvent perturber l'ovulation et la régularité du cycle." },
-      "ageAndFertility": { "title": "Âge et fertilité", "content": "L'âge est l'un des facteurs les plus significatifs affectant la fertilité :\n\n• Les femmes naissent avec tous les ovules qu'elles auront jamais — environ 1–2 millions à la naissance.\n• À la puberté, il reste environ 300 000–400 000 ovules. Seuls environ 300–400 seront ovulés au cours d'une vie.\n• La fertilité atteint son pic au milieu de la vingtaine. Un déclin progressif commence après 30 ans.\n• Après 35 ans, le déclin s'accélère. La qualité et la quantité des ovules diminuent.\n• À 40 ans, la chance de conception naturelle par cycle tombe à environ 5%.\n\nCela ne signifie pas que la grossesse après 35 est impossible — de nombreuses femmes conçoivent naturellement." },
-      "lifestyleFactors": { "title": "Facteurs liés au mode de vie", "content": "Vos habitudes quotidiennes influencent significativement la fertilité :\n\n• Poids : L'insuffisance pondérale (IMC < 18,5) et le surpoids (IMC > 30) peuvent perturber l'ovulation. Un changement de poids de 5–10% peut améliorer la régularité du cycle.\n\n• Tabac : Réduit la qualité des ovules et accélère leur perte.\n\n• Alcool : La consommation excessive est liée à des cycles irréguliers.\n\n• Caféine : Plus de 200–300mg/jour peut légèrement réduire la fertilité.\n\n• Exercice : L'activité modérée soutient la fertilité. L'exercice intense excessif peut perturber l'ovulation.\n\n• Sommeil : Un mauvais sommeil perturbe les hormones reproductrices. Visez 7–9 heures par nuit." },
-      "commonMyths": { "title": "Mythes fréquents", "content": "Séparons les faits de la fiction :\n\nMythe : On ne peut tomber enceinte que le jour de l'ovulation.\nFait : La fenêtre fertile s'étend sur environ 6 jours.\n\nMythe : La position pendant les rapports affecte la conception.\nFait : Aucune preuve scientifique ne le soutient.\n\nMythe : La contraception cause l'infertilité.\nFait : La fertilité revient typiquement en 1–3 mois.\n\nMythe : Le stress cause directement l'infertilité.\nFait : Le stress modéré seul empêche rarement la conception.\n\nMythe : Il faut avoir des rapports tous les jours.\nFait : Tous les 1–2 jours pendant la fenêtre fertile est suffisant." },
-      "whenToSeekHelp": { "title": "Quand consulter", "content": "Envisagez une consultation en fertilité si :\n\n• Vous avez moins de 35 ans et essayez depuis 12 mois sans succès.\n• Vous avez 35–39 ans et essayez depuis 6 mois.\n• Vous avez 40 ans ou plus — consultez tôt.\n• Vos règles sont irrégulières ou absentes.\n• Vous avez une condition connue : endométriose, SOPK, trouble thyroïdien.\n• Vous avez eu des fausses couches récurrentes (2 ou plus).\n\nUn spécialiste en fertilité peut effectuer des tests et discuter des options allant des changements de mode de vie à la reproduction assistée." },
-      "maleFertility": { "title": "Fertilité masculine", "content": "La fertilité masculine est tout aussi importante dans le parcours de conception :\n\n• La production de spermatozoïdes prend environ 74 jours. Les changements de mode de vie nécessitent du temps.\n• Une santé optimale des spermatozoïdes nécessite : éviter la chaleur excessive, maintenir un poids sain et gérer le stress.\n• Facteurs réduisant la qualité du sperme : tabac, alcool excessif, certains médicaments.\n• Le spermogramme est un test simple et non-invasif.\n• L'âge affecte aussi la fertilité masculine — la qualité du sperme diminue après 40 ans.\n• Nutriments clés : zinc, sélénium, vitamine C, vitamine E, folate et oméga-3." },
-      "emotionalWellbeing": { "title": "Bien-être émotionnel", "content": "Essayer de concevoir peut être des montagnes russes émotionnelles :\n\n• Il est normal de ressentir espoir, excitation, frustration et tristesse — parfois tout dans un seul cycle.\n• Environ 1 couple sur 6 rencontre des difficultés de conception. Vous n'êtes pas seule.\n• Le chagrin après un test négatif est valide. Permettez-vous de ressentir sans vous juger.\n• La communication avec votre partenaire est essentielle.\n• Envisagez de rejoindre un groupe de soutien.\n• Un accompagnement professionnel peut fournir des stratégies adaptées à votre situation.\n• Rappelez-vous : votre valeur n'est pas définie par votre fertilité." },
-      "trackingMethods": { "title": "Méthodes de suivi", "content": "Plusieurs méthodes peuvent vous aider à identifier votre fenêtre fertile :\n\n1. Méthode du calendrier : Suivez les durées de cycle sur plusieurs mois. L'ovulation se produit typiquement 14 jours avant les prochaines règles.\n\n2. Température basale (BBT) : Prenez votre température chaque matin avant de vous lever. Une légère hausse (0,2–0,5°C) confirme l'ovulation.\n\n3. Observation de la glaire cervicale : À l'approche de l'ovulation, la glaire devient claire, étirable et glissante.\n\n4. Tests d'ovulation (OPK) : Détectent la poussée de LH 12–36 heures avant l'ovulation.\n\n5. Moniteurs de fertilité : Appareils avancés qui suivent plusieurs hormones.\n\n6. Position du col : Le col devient plus haut, plus doux et plus ouvert autour de l'ovulation.\n\nCombiner plusieurs méthodes augmente la précision." },
-      "optimizingTiming": { "title": "Optimiser le timing", "content": "Le timing est crucial pour maximiser vos chances :\n\n• Les meilleurs jours pour la conception sont les 2–3 jours avant l'ovulation et le jour de l'ovulation.\n• Des rapports tous les 1–2 jours pendant la fenêtre fertile donnent les meilleurs résultats.\n• L'éjaculation quotidienne ne réduit pas significativement la qualité du sperme chez la plupart des hommes.\n• Certains lubrifiants commerciaux peuvent réduire la motilité des spermatozoïdes. Utilisez des marques fertilitaires si nécessaire.\n• Suivez votre cycle 2–3 mois avant d'essayer activement." },
-      "implantationWindow": { "title": "La fenêtre d'implantation", "content": "La fenêtre d'implantation est la brève période où la muqueuse utérine est prête à recevoir l'embryon :\n\n• Se produit typiquement entre les jours 6–10 après l'ovulation.\n• L'endomètre sécrète des protéines spéciales aidant l'embryon à s'attacher.\n• La progestérone joue un rôle central dans la préparation de la muqueuse.\n• Facteurs affectant la qualité : inflammation chronique, épaisseur insuffisante ou troubles immunitaires.\n• Le repos et une bonne nutrition pendant la phase lutéale soutiennent le processus." },
-      "cervicalHealth": { "title": "Santé cervicale & fertilité", "content": "Le col de l'utérus joue un rôle fondamental dans la fertilité :\n\n• Il produit de la glaire qui change tout au long du cycle pour faciliter ou bloquer le passage des spermatozoïdes.\n• La glaire fertile nourrit les spermatozoïdes et prolonge leur durée de vie jusqu'à 5 jours.\n• Les infections cervicales chroniques peuvent réduire la qualité de la glaire.\n• Les procédures cervicales antérieures peuvent affecter la production de glaire.\n• Un pH vaginal sain soutient l'environnement cervical optimal." },
-      "thyroidFertility": { "title": "Thyroïde & fertilité", "content": "Les troubles thyroïdiens sont parmi les causes les plus traitables de problèmes de fertilité :\n\n• L'hypothyroïdie peut causer des cycles irréguliers, l'absence d'ovulation ou une fausse couche précoce.\n• L'hyperthyroïdie est liée à des règles irrégulières et des difficultés de conception.\n• Même l'hypothyroïdie subclinique (TSH 2,5–4,0) peut affecter la fertilité.\n• Les anticorps thyroïdiens (Anti-TPO) sont fréquents et peuvent impacter l'implantation.\n• Les tests TSH et FT4 sont recommandés pour toutes les femmes planifiant une grossesse.\n• Le traitement par lévothyroxine est sûr et efficace pendant les essais de conception." },
-      "pcosManagement": { "title": "Gérer le SOPK & fertilité", "content": "Le Syndrome des Ovaires Polykystiques (SOPK) affecte 8–13% des femmes :\n\n• La cause la plus fréquente d'anovulation et d'infertilité liée à l'ovulation.\n• Symptômes clés : règles irrégulières, acné, pilosité excessive, résistance à l'insuline.\n• Les changements de mode de vie sont très efficaces : perdre 5–10% du poids peut restaurer l'ovulation.\n• L'inositol montre des résultats prometteurs pour améliorer la sensibilité à l'insuline.\n• Un régime faible en sucre et équilibré soutient la régularité hormonale.\n• Des médicaments comme le clomifène ou le létrozole stimulent l'ovulation avec succès dans de nombreux cas." },
-      "endometriosisAwareness": { "title": "Endométriose & fertilité", "content": "L'endométriose affecte 1 femme sur 10 :\n\n• Du tissu similaire à la muqueuse utérine se développe hors de l'utérus, causant inflammation et adhérences.\n• Peut affecter les trompes, les ovaires et la qualité des ovules.\n• Symptômes : douleurs menstruelles sévères, douleurs pendant les rapports, parfois aucun symptôme.\n• Un diagnostic précoce améliore les résultats. La laparoscopie est le standard.\n• De nombreuses femmes touchées conçoivent naturellement ou avec assistance." },
-      "nutritionFertility": { "title": "Nutrition optimale pour la fertilité", "content": "L'alimentation affecte directement la qualité des ovules et des spermatozoïdes :\n\n• Le régime méditerranéen a montré les meilleurs résultats dans les études de fertilité.\n• Les graisses saines (oméga-3, huile d'olive) soutiennent la production hormonale.\n• Les protéines végétales peuvent être meilleures que les protéines animales pour certaines femmes.\n• Évitez les graisses trans — elles doublent le risque d'infertilité liée à l'ovulation.\n• Les aliments biologiques réduisent l'exposition aux pesticides perturbateurs hormonaux." },
-      "sleepHormones": { "title": "Sommeil & hormones de fertilité", "content": "Le sommeil n'est pas un luxe — c'est une nécessité biologique pour la fertilité :\n\n• La mélatonine (hormone du sommeil) agit comme antioxydant protégeant les ovules.\n• Moins de 6 heures de sommeil augmente le cortisol et supprime le GnRH et l'ovulation.\n• Le travail posté est associé à des problèmes de cycle et de fertilité accrus.\n• Le rythme circadien régule la sécrétion de FSH et LH.\n• La lumière bleue des écrans supprime la mélatonine.\n• Objectif : 7–9 heures de sommeil dans une pièce sombre et fraîche avec une routine constante." },
-      "exerciseBalance": { "title": "Équilibrer exercice & fertilité", "content": "L'exercice est une arme à double tranchant pour la fertilité :\n\n• L'activité modérée (150 minutes/semaine) améliore l'ovulation et la fertilité.\n• L'exercice intense continu peut arrêter l'ovulation.\n• La marche, la natation et le yoga sont parmi les meilleures options.\n• La musculation modérée améliore la sensibilité à l'insuline (utile pour le SOPK).\n• Le yoga de fertilité combine mouvement et réduction du stress.\n• Si vos règles disparaissent avec un exercice intense, réduisez immédiatement l'intensité." },
-      "supplementsGuide": { "title": "Guide intelligent des compléments", "content": "Les compléments peuvent soutenir votre fertilité — mais tous ne sont pas égaux :\n\n• Acide folique/méthylfolate : Essentiel — commencez 3 mois avant d'essayer.\n• CoQ10 (200–600mg) : Soutient l'énergie des ovules, surtout après 35 ans.\n• Vitamine D (1000–2000 UI) : La plupart des femmes sont carencées.\n• Oméga-3 DHA (200–300mg) : Pour la santé hormonale et l'inflammation.\n• Inositol (4g myo + 100mg d-chiro) : Particulièrement utile avec le SOPK.\n• Fer : Uniquement si les tests montrent une carence.\n• Consultez toujours votre médecin avant de commencer tout nouveau complément." },
-      "environmentalToxins": { "title": "Toxines environnementales & fertilité", "content": "L'exposition quotidienne aux toxines environnementales peut affecter votre fertilité :\n\n• Le BPA dans les plastiques imite l'œstrogène et perturbe l'équilibre hormonal.\n• Les phtalates dans les cosmétiques perturbent le système endocrinien.\n• Les pesticides sur les fruits et légumes sont liés à une qualité d'ovules inférieure.\n• Les métaux lourds (plomb, mercure) affectent ovules et spermatozoïdes.\n• Étapes pratiques : contenants en verre, produits de nettoyage naturels, bien laver les fruits.\n• Filtrer l'eau potable réduit l'exposition aux polluants." },
-      "geneticFactors": { "title": "Facteurs génétiques & fertilité", "content": "Les gènes jouent un rôle plus important qu'attendu dans la fertilité :\n\n• Le dépistage génétique des porteurs révèle le risque de transmettre des maladies génétiques.\n• La mutation MTHFR affecte le métabolisme du folate — le méthylfolate peut être préférable.\n• Le syndrome de Turner et les anomalies chromosomiques affectent la réserve ovarienne.\n• Les antécédents familiaux de ménopause précoce peuvent signaler un déclin précoce.\n• Le caryotypage est recommandé en cas de fausses couches récurrentes." },
-      "immunologyFertility": { "title": "Immunologie & fertilité", "content": "Le système immunitaire joue un rôle délicat dans la grossesse :\n\n• Le corps doit accepter l'embryon sans le rejeter.\n• Les cellules NK utérines aident à l'implantation — mais une activité excessive peut l'entraver.\n• Les anticorps antiphospholipides sont liés aux fausses couches récurrentes.\n• Les maladies auto-immunes (lupus, Hashimoto) peuvent affecter la fertilité.\n• L'inflammation pelvienne chronique peut endommager les trompes.\n• Un mode de vie anti-inflammatoire soutient une immunité équilibrée." },
-      "secondaryInfertility": { "title": "Infertilité secondaire", "content": "L'infertilité secondaire signifie des difficultés à concevoir après un enfant précédent :\n\n• Représente environ 50% des cas d'infertilité — mais est moins discutée.\n• Causes : âge avançant, changements de poids, complications de grossesse antérieure.\n• Les adhérences de césarienne ou d'infection peuvent affecter la fertilité.\n• Les attentes sociales augmentent la charge psychologique.\n• Ne tardez pas à chercher de l'aide — les mêmes critères de temps s'appliquent." },
-      "recurrentLoss": { "title": "Comprendre la perte récurrente", "content": "La perte récurrente de grossesse (deux ou plus) nécessite une évaluation complète :\n\n• 15–20% des grossesses se terminent par une fausse couche — la plupart dues à des anomalies chromosomiques.\n• Causes traitables : troubles de la coagulation, anomalies utérines, problèmes thyroïdiens.\n• Le septum utérin est l'anomalie utérine la plus courante et peut être corrigé chirurgicalement.\n• Le syndrome antiphospholipide est traitable avec aspirine et héparine.\n• Le soutien psychologique est essentiel.\n• 60–70% des couples avec une perte récurrente inexpliquée réussissent lors de la grossesse suivante." },
-      "fertilityPreservation": { "title": "Préservation de la fertilité", "content": "La préservation de la fertilité vous offre de la flexibilité dans la planification :\n\n• Congélation d'ovules : Âge idéal avant 35 ans. Excellents résultats avec les techniques modernes.\n• Congélation d'embryons : Option pour les couples mariés. Taux de réussite supérieurs aux ovules seuls.\n• Raisons : maternité tardive, chimiothérapie, conditions médicales.\n• Le processus nécessite 10–14 jours de stimulation hormonale puis le prélèvement d'ovules.\n• Le coût et le stockage sont des facteurs à considérer." },
-      "assistedReproduction": { "title": "Techniques de reproduction assistée", "content": "Quand la conception naturelle ne réussit pas, des options efficaces existent :\n\n• Stimulation de l'ovulation : Médicaments stimulant la production d'ovules — traitement de première ligne.\n• Insémination intra-utérine (IIU) : Sperme traité injecté directement dans l'utérus.\n• Fécondation in vitro (FIV) : La technique la plus avancée. Taux de réussite 30–50% par cycle.\n• ICSI : Un seul spermatozoïde injecté directement dans l'ovule.\n• Test génétique préimplantatoire (PGT) : Dépistage des anomalies chromosomiques des embryons.\n• Chaque option a des indications spécifiques — un spécialiste vous guide vers la plus adaptée." },
-      "epigeneticsFertility": { "title": "Épigénétique & santé générationnelle", "content": "Les découvertes épigénétiques ont changé notre compréhension de la fertilité :\n\n• Votre nutrition et votre mode de vie peuvent influencer l'expression génétique de votre futur enfant.\n• La carence en folate avant la grossesse affecte la programmation génétique fœtale.\n• Le stress chronique peut laisser des 'empreintes' sur l'ADN transmises à l'embryon.\n• La pollution cause des changements épigénétiques pouvant affecter les générations.\n• Bonne nouvelle : les changements épigénétiques négatifs sont réversibles avec un mode de vie sain.\n• 3–6 mois d'améliorations avant la grossesse font une vraie différence." },
-      "mindBodyConnection": { "title": "La connexion corps-esprit", "content": "La relation entre l'esprit et le corps est plus profonde qu'on ne l'imagine pour la fertilité :\n\n• Le stress chronique active l'axe HPA qui supprime les hormones reproductrices.\n• Les techniques de relaxation (méditation, yoga, respiration profonde) améliorent mesurellement les résultats de fertilité.\n• La thérapie cognitivo-comportementale (TCC) montre des résultats positifs pour l'anxiété liée à la fertilité.\n• La visualisation positive et les affirmations activent des voies neuronales soutenant l'équilibre hormonal.\n• Les groupes de soutien réduisent le sentiment d'isolement.\n• L'art, la musique et l'écriture créative sont des outils thérapeutiques efficaces.\n• Cherchez une aide professionnelle si l'anxiété ou la tristesse dominent votre vie." }
+      "menstrualCycle": {
+        "title": "Comprendre le cycle menstruel",
+        "content": "Votre cycle menstruel se divise en quatre phases principales :\n\n1. Phase menstruelle (Jours 1–5) : La muqueuse utérine se détache, marquant le début d'un nouveau cycle.\n\n2. Phase folliculaire (Jours 1–13) : La FSH stimule les ovaires pour développer des follicules. L'œstrogène augmente et épaissit la muqueuse utérine.\n\n3. Ovulation (~Jour 14) : Une poussée de LH déclenche la libération d'un ovule mature. C'est votre moment le plus fertile.\n\n4. Phase lutéale (Jours 15–28) : Le follicule vide devient le corps jaune et produit de la progestérone. Sans fécondation, les hormones chutent et le cycle recommence.\n\nComprendre ces phases vous aide à identifier votre fenêtre fertile et à travailler avec le rythme naturel de votre corps."
+      },
+      "ovulationProcess": {
+        "title": "Comment fonctionne l'ovulation",
+        "content": "L'ovulation est la libération d'un ovule mature par l'un de vos ovaires :\n\n• Dans les jours précédant l'ovulation, l'augmentation de l'œstrogène fait croître le follicule dominant.\n• Une poussée soudaine de LH provoque la rupture du follicule et la libération de l'ovule dans la trompe de Fallope.\n• L'ovule survit 12–24 heures après sa libération. Les spermatozoïdes peuvent survivre jusqu'à 5 jours dans le tractus reproducteur.\n• Cela signifie que votre fenêtre fertile s'étend sur environ 6 jours — les 5 jours avant l'ovulation et le jour de l'ovulation lui-même.\n\nCertaines femmes ressentent une légère douleur ou crampe (mittelschmerz) pendant l'ovulation."
+      },
+      "fertilizationBasics": {
+        "title": "Bases de la fécondation",
+        "content": "Après l'ovulation, la fécondation peut se produire dans la trompe de Fallope :\n\n• Sur les millions de spermatozoïdes libérés, seuls quelques centaines atteignent l'ovule.\n• Un spermatozoïde pénètre la couche externe de l'ovule, déclenchant une réaction chimique empêchant les autres spermatozoïdes d'entrer.\n• L'ovule fécondé (zygote) commence à se diviser en voyageant vers l'utérus pendant 3–4 jours.\n• Environ 6–10 jours après l'ovulation, le blastocyste s'implante dans la muqueuse utérine.\n• L'implantation peut provoquer de légers saignements.\n• Une fois implanté, le corps commence à produire de l'hCG — l'hormone détectée par les tests de grossesse."
+      },
+      "hormonesRole": {
+        "title": "Rôle des hormones",
+        "content": "Plusieurs hormones orchestrent votre fertilité :\n\n• FSH : Stimule la croissance folliculaire dans les ovaires. Testée au jour 3 de votre cycle.\n\n• LH : Déclenche l'ovulation. Les kits de prédiction de l'ovulation détectent la poussée de LH.\n\n• Œstrogène : Favorise le développement folliculaire et épaissit la muqueuse utérine.\n\n• Progestérone : Produite après l'ovulation, elle maintient la muqueuse utérine pour l'implantation potentielle.\n\n• AMH : Reflète le nombre d'ovules restants. Utile pour la planification de la fertilité.\n\n• Hormones thyroïdiennes (TSH, T3, T4) : Les déséquilibres peuvent perturber l'ovulation et la régularité du cycle."
+      },
+      "ageAndFertility": {
+        "title": "Âge et fertilité",
+        "content": "L'âge est l'un des facteurs les plus significatifs affectant la fertilité :\n\n• Les femmes naissent avec tous les ovules qu'elles auront jamais — environ 1–2 millions à la naissance.\n• À la puberté, il reste environ 300 000–400 000 ovules. Seuls environ 300–400 seront ovulés au cours d'une vie.\n• La fertilité atteint son pic au milieu de la vingtaine. Un déclin progressif commence après 30 ans.\n• Après 35 ans, le déclin s'accélère. La qualité et la quantité des ovules diminuent.\n• À 40 ans, la chance de conception naturelle par cycle tombe à environ 5%.\n\nCela ne signifie pas que la grossesse après 35 est impossible — de nombreuses femmes conçoivent naturellement."
+      },
+      "lifestyleFactors": {
+        "title": "Facteurs liés au mode de vie",
+        "content": "Vos habitudes quotidiennes influencent significativement la fertilité :\n\n• Poids : L'insuffisance pondérale (IMC < 18,5) et le surpoids (IMC > 30) peuvent perturber l'ovulation. Un changement de poids de 5–10% peut améliorer la régularité du cycle.\n\n• Tabac : Réduit la qualité des ovules et accélère leur perte.\n\n• Alcool : La consommation excessive est liée à des cycles irréguliers.\n\n• Caféine : Plus de 200–300mg/jour peut légèrement réduire la fertilité.\n\n• Exercice : L'activité modérée soutient la fertilité. L'exercice intense excessif peut perturber l'ovulation.\n\n• Sommeil : Un mauvais sommeil perturbe les hormones reproductrices. Visez 7–9 heures par nuit."
+      },
+      "commonMyths": {
+        "title": "Mythes fréquents",
+        "content": "Séparons les faits de la fiction :\n\nMythe : On ne peut tomber enceinte que le jour de l'ovulation.\nFait : La fenêtre fertile s'étend sur environ 6 jours.\n\nMythe : La position pendant les rapports affecte la conception.\nFait : Aucune preuve scientifique ne le soutient.\n\nMythe : La contraception cause l'infertilité.\nFait : La fertilité revient typiquement en 1–3 mois.\n\nMythe : Le stress cause directement l'infertilité.\nFait : Le stress modéré seul empêche rarement la conception.\n\nMythe : Il faut avoir des rapports tous les jours.\nFait : Tous les 1–2 jours pendant la fenêtre fertile est suffisant."
+      },
+      "whenToSeekHelp": {
+        "title": "Quand consulter",
+        "content": "Envisagez une consultation en fertilité si :\n\n• Vous avez moins de 35 ans et essayez depuis 12 mois sans succès.\n• Vous avez 35–39 ans et essayez depuis 6 mois.\n• Vous avez 40 ans ou plus — consultez tôt.\n• Vos règles sont irrégulières ou absentes.\n• Vous avez une condition connue : endométriose, SOPK, trouble thyroïdien.\n• Vous avez eu des fausses couches récurrentes (2 ou plus).\n\nUn spécialiste en fertilité peut effectuer des tests et discuter des options allant des changements de mode de vie à la reproduction assistée."
+      },
+      "maleFertility": {
+        "title": "Fertilité masculine",
+        "content": "La fertilité masculine est tout aussi importante dans le parcours de conception :\n\n• La production de spermatozoïdes prend environ 74 jours. Les changements de mode de vie nécessitent du temps.\n• Une santé optimale des spermatozoïdes nécessite : éviter la chaleur excessive, maintenir un poids sain et gérer le stress.\n• Facteurs réduisant la qualité du sperme : tabac, alcool excessif, certains médicaments.\n• Le spermogramme est un test simple et non-invasif.\n• L'âge affecte aussi la fertilité masculine — la qualité du sperme diminue après 40 ans.\n• Nutriments clés : zinc, sélénium, vitamine C, vitamine E, folate et oméga-3."
+      },
+      "emotionalWellbeing": {
+        "title": "Bien-être émotionnel",
+        "content": "Essayer de concevoir peut être des montagnes russes émotionnelles :\n\n• Il est normal de ressentir espoir, excitation, frustration et tristesse — parfois tout dans un seul cycle.\n• Environ 1 couple sur 6 rencontre des difficultés de conception. Vous n'êtes pas seule.\n• Le chagrin après un test négatif est valide. Permettez-vous de ressentir sans vous juger.\n• La communication avec votre partenaire est essentielle.\n• Envisagez de rejoindre un groupe de soutien.\n• Un accompagnement professionnel peut fournir des stratégies adaptées à votre situation.\n• Rappelez-vous : votre valeur n'est pas définie par votre fertilité."
+      },
+      "trackingMethods": {
+        "title": "Méthodes de suivi",
+        "content": "Plusieurs méthodes peuvent vous aider à identifier votre fenêtre fertile :\n\n1. Méthode du calendrier : Suivez les durées de cycle sur plusieurs mois. L'ovulation se produit typiquement 14 jours avant les prochaines règles.\n\n2. Température basale (BBT) : Prenez votre température chaque matin avant de vous lever. Une légère hausse (0,2–0,5°C) confirme l'ovulation.\n\n3. Observation de la glaire cervicale : À l'approche de l'ovulation, la glaire devient claire, étirable et glissante.\n\n4. Tests d'ovulation (OPK) : Détectent la poussée de LH 12–36 heures avant l'ovulation.\n\n5. Moniteurs de fertilité : Appareils avancés qui suivent plusieurs hormones.\n\n6. Position du col : Le col devient plus haut, plus doux et plus ouvert autour de l'ovulation.\n\nCombiner plusieurs méthodes augmente la précision."
+      },
+      "optimizingTiming": {
+        "title": "Optimiser le timing",
+        "content": "Le timing est crucial pour maximiser vos chances :\n\n• Les meilleurs jours pour la conception sont les 2–3 jours avant l'ovulation et le jour de l'ovulation.\n• Des rapports tous les 1–2 jours pendant la fenêtre fertile donnent les meilleurs résultats.\n• L'éjaculation quotidienne ne réduit pas significativement la qualité du sperme chez la plupart des hommes.\n• Certains lubrifiants commerciaux peuvent réduire la motilité des spermatozoïdes. Utilisez des marques fertilitaires si nécessaire.\n• Suivez votre cycle 2–3 mois avant d'essayer activement."
+      },
+      "implantationWindow": {
+        "title": "La fenêtre d'implantation",
+        "content": "La fenêtre d'implantation est la brève période où la muqueuse utérine est prête à recevoir l'embryon :\n\n• Se produit typiquement entre les jours 6–10 après l'ovulation.\n• L'endomètre sécrète des protéines spéciales aidant l'embryon à s'attacher.\n• La progestérone joue un rôle central dans la préparation de la muqueuse.\n• Facteurs affectant la qualité : inflammation chronique, épaisseur insuffisante ou troubles immunitaires.\n• Le repos et une bonne nutrition pendant la phase lutéale soutiennent le processus."
+      },
+      "cervicalHealth": {
+        "title": "Santé cervicale & fertilité",
+        "content": "Le col de l'utérus joue un rôle fondamental dans la fertilité :\n\n• Il produit de la glaire qui change tout au long du cycle pour faciliter ou bloquer le passage des spermatozoïdes.\n• La glaire fertile nourrit les spermatozoïdes et prolonge leur durée de vie jusqu'à 5 jours.\n• Les infections cervicales chroniques peuvent réduire la qualité de la glaire.\n• Les procédures cervicales antérieures peuvent affecter la production de glaire.\n• Un pH vaginal sain soutient l'environnement cervical optimal."
+      },
+      "thyroidFertility": {
+        "title": "Thyroïde & fertilité",
+        "content": "Les troubles thyroïdiens sont parmi les causes les plus traitables de problèmes de fertilité :\n\n• L'hypothyroïdie peut causer des cycles irréguliers, l'absence d'ovulation ou une fausse couche précoce.\n• L'hyperthyroïdie est liée à des règles irrégulières et des difficultés de conception.\n• Même l'hypothyroïdie subclinique (TSH 2,5–4,0) peut affecter la fertilité.\n• Les anticorps thyroïdiens (Anti-TPO) sont fréquents et peuvent impacter l'implantation.\n• Les tests TSH et FT4 sont recommandés pour toutes les femmes planifiant une grossesse.\n• Le traitement par lévothyroxine est sûr et efficace pendant les essais de conception."
+      },
+      "pcosManagement": {
+        "title": "Gérer le SOPK & fertilité",
+        "content": "Le Syndrome des Ovaires Polykystiques (SOPK) affecte 8–13% des femmes :\n\n• La cause la plus fréquente d'anovulation et d'infertilité liée à l'ovulation.\n• Symptômes clés : règles irrégulières, acné, pilosité excessive, résistance à l'insuline.\n• Les changements de mode de vie sont très efficaces : perdre 5–10% du poids peut restaurer l'ovulation.\n• L'inositol montre des résultats prometteurs pour améliorer la sensibilité à l'insuline.\n• Un régime faible en sucre et équilibré soutient la régularité hormonale.\n• Des médicaments comme le clomifène ou le létrozole stimulent l'ovulation avec succès dans de nombreux cas."
+      },
+      "endometriosisAwareness": {
+        "title": "Endométriose & fertilité",
+        "content": "L'endométriose affecte 1 femme sur 10 :\n\n• Du tissu similaire à la muqueuse utérine se développe hors de l'utérus, causant inflammation et adhérences.\n• Peut affecter les trompes, les ovaires et la qualité des ovules.\n• Symptômes : douleurs menstruelles sévères, douleurs pendant les rapports, parfois aucun symptôme.\n• Un diagnostic précoce améliore les résultats. La laparoscopie est le standard.\n• De nombreuses femmes touchées conçoivent naturellement ou avec assistance."
+      },
+      "nutritionFertility": {
+        "title": "Nutrition optimale pour la fertilité",
+        "content": "L'alimentation affecte directement la qualité des ovules et des spermatozoïdes :\n\n• Le régime méditerranéen a montré les meilleurs résultats dans les études de fertilité.\n• Les graisses saines (oméga-3, huile d'olive) soutiennent la production hormonale.\n• Les protéines végétales peuvent être meilleures que les protéines animales pour certaines femmes.\n• Évitez les graisses trans — elles doublent le risque d'infertilité liée à l'ovulation.\n• Les aliments biologiques réduisent l'exposition aux pesticides perturbateurs hormonaux."
+      },
+      "sleepHormones": {
+        "title": "Sommeil & hormones de fertilité",
+        "content": "Le sommeil n'est pas un luxe — c'est une nécessité biologique pour la fertilité :\n\n• La mélatonine (hormone du sommeil) agit comme antioxydant protégeant les ovules.\n• Moins de 6 heures de sommeil augmente le cortisol et supprime le GnRH et l'ovulation.\n• Le travail posté est associé à des problèmes de cycle et de fertilité accrus.\n• Le rythme circadien régule la sécrétion de FSH et LH.\n• La lumière bleue des écrans supprime la mélatonine.\n• Objectif : 7–9 heures de sommeil dans une pièce sombre et fraîche avec une routine constante."
+      },
+      "exerciseBalance": {
+        "title": "Équilibrer exercice & fertilité",
+        "content": "L'exercice est une arme à double tranchant pour la fertilité :\n\n• L'activité modérée (150 minutes/semaine) améliore l'ovulation et la fertilité.\n• L'exercice intense continu peut arrêter l'ovulation.\n• La marche, la natation et le yoga sont parmi les meilleures options.\n• La musculation modérée améliore la sensibilité à l'insuline (utile pour le SOPK).\n• Le yoga de fertilité combine mouvement et réduction du stress.\n• Si vos règles disparaissent avec un exercice intense, réduisez immédiatement l'intensité."
+      },
+      "supplementsGuide": {
+        "title": "Guide intelligent des compléments",
+        "content": "Les compléments peuvent soutenir votre fertilité — mais tous ne sont pas égaux :\n\n• Acide folique/méthylfolate : Essentiel — commencez 3 mois avant d'essayer.\n• CoQ10 (200–600mg) : Soutient l'énergie des ovules, surtout après 35 ans.\n• Vitamine D (1000–2000 UI) : La plupart des femmes sont carencées.\n• Oméga-3 DHA (200–300mg) : Pour la santé hormonale et l'inflammation.\n• Inositol (4g myo + 100mg d-chiro) : Particulièrement utile avec le SOPK.\n• Fer : Uniquement si les tests montrent une carence.\n• Consultez toujours votre médecin avant de commencer tout nouveau complément."
+      },
+      "environmentalToxins": {
+        "title": "Toxines environnementales & fertilité",
+        "content": "L'exposition quotidienne aux toxines environnementales peut affecter votre fertilité :\n\n• Le BPA dans les plastiques imite l'œstrogène et perturbe l'équilibre hormonal.\n• Les phtalates dans les cosmétiques perturbent le système endocrinien.\n• Les pesticides sur les fruits et légumes sont liés à une qualité d'ovules inférieure.\n• Les métaux lourds (plomb, mercure) affectent ovules et spermatozoïdes.\n• Étapes pratiques : contenants en verre, produits de nettoyage naturels, bien laver les fruits.\n• Filtrer l'eau potable réduit l'exposition aux polluants."
+      },
+      "geneticFactors": {
+        "title": "Facteurs génétiques & fertilité",
+        "content": "Les gènes jouent un rôle plus important qu'attendu dans la fertilité :\n\n• Le dépistage génétique des porteurs révèle le risque de transmettre des maladies génétiques.\n• La mutation MTHFR affecte le métabolisme du folate — le méthylfolate peut être préférable.\n• Le syndrome de Turner et les anomalies chromosomiques affectent la réserve ovarienne.\n• Les antécédents familiaux de ménopause précoce peuvent signaler un déclin précoce.\n• Le caryotypage est recommandé en cas de fausses couches récurrentes."
+      },
+      "immunologyFertility": {
+        "title": "Immunologie & fertilité",
+        "content": "Le système immunitaire joue un rôle délicat dans la grossesse :\n\n• Le corps doit accepter l'embryon sans le rejeter.\n• Les cellules NK utérines aident à l'implantation — mais une activité excessive peut l'entraver.\n• Les anticorps antiphospholipides sont liés aux fausses couches récurrentes.\n• Les maladies auto-immunes (lupus, Hashimoto) peuvent affecter la fertilité.\n• L'inflammation pelvienne chronique peut endommager les trompes.\n• Un mode de vie anti-inflammatoire soutient une immunité équilibrée."
+      },
+      "secondaryInfertility": {
+        "title": "Infertilité secondaire",
+        "content": "L'infertilité secondaire signifie des difficultés à concevoir après un enfant précédent :\n\n• Représente environ 50% des cas d'infertilité — mais est moins discutée.\n• Causes : âge avançant, changements de poids, complications de grossesse antérieure.\n• Les adhérences de césarienne ou d'infection peuvent affecter la fertilité.\n• Les attentes sociales augmentent la charge psychologique.\n• Ne tardez pas à chercher de l'aide — les mêmes critères de temps s'appliquent."
+      },
+      "recurrentLoss": {
+        "title": "Comprendre la perte récurrente",
+        "content": "La perte récurrente de grossesse (deux ou plus) nécessite une évaluation complète :\n\n• 15–20% des grossesses se terminent par une fausse couche — la plupart dues à des anomalies chromosomiques.\n• Causes traitables : troubles de la coagulation, anomalies utérines, problèmes thyroïdiens.\n• Le septum utérin est l'anomalie utérine la plus courante et peut être corrigé chirurgicalement.\n• Le syndrome antiphospholipide est traitable avec aspirine et héparine.\n• Le soutien psychologique est essentiel.\n• 60–70% des couples avec une perte récurrente inexpliquée réussissent lors de la grossesse suivante."
+      },
+      "fertilityPreservation": {
+        "title": "Préservation de la fertilité",
+        "content": "La préservation de la fertilité vous offre de la flexibilité dans la planification :\n\n• Congélation d'ovules : Âge idéal avant 35 ans. Excellents résultats avec les techniques modernes.\n• Congélation d'embryons : Option pour les couples mariés. Taux de réussite supérieurs aux ovules seuls.\n• Raisons : maternité tardive, chimiothérapie, conditions médicales.\n• Le processus nécessite 10–14 jours de stimulation hormonale puis le prélèvement d'ovules.\n• Le coût et le stockage sont des facteurs à considérer."
+      },
+      "assistedReproduction": {
+        "title": "Techniques de reproduction assistée",
+        "content": "Quand la conception naturelle ne réussit pas, des options efficaces existent :\n\n• Stimulation de l'ovulation : Médicaments stimulant la production d'ovules — traitement de première ligne.\n• Insémination intra-utérine (IIU) : Sperme traité injecté directement dans l'utérus.\n• Fécondation in vitro (FIV) : La technique la plus avancée. Taux de réussite 30–50% par cycle.\n• ICSI : Un seul spermatozoïde injecté directement dans l'ovule.\n• Test génétique préimplantatoire (PGT) : Dépistage des anomalies chromosomiques des embryons.\n• Chaque option a des indications spécifiques — un spécialiste vous guide vers la plus adaptée."
+      },
+      "epigeneticsFertility": {
+        "title": "Épigénétique & santé générationnelle",
+        "content": "Les découvertes épigénétiques ont changé notre compréhension de la fertilité :\n\n• Votre nutrition et votre mode de vie peuvent influencer l'expression génétique de votre futur enfant.\n• La carence en folate avant la grossesse affecte la programmation génétique fœtale.\n• Le stress chronique peut laisser des 'empreintes' sur l'ADN transmises à l'embryon.\n• La pollution cause des changements épigénétiques pouvant affecter les générations.\n• Bonne nouvelle : les changements épigénétiques négatifs sont réversibles avec un mode de vie sain.\n• 3–6 mois d'améliorations avant la grossesse font une vraie différence."
+      },
+      "mindBodyConnection": {
+        "title": "La connexion corps-esprit",
+        "content": "La relation entre l'esprit et le corps est plus profonde qu'on ne l'imagine pour la fertilité :\n\n• Le stress chronique active l'axe HPA qui supprime les hormones reproductrices.\n• Les techniques de relaxation (méditation, yoga, respiration profonde) améliorent mesurellement les résultats de fertilité.\n• La thérapie cognitivo-comportementale (TCC) montre des résultats positifs pour l'anxiété liée à la fertilité.\n• La visualisation positive et les affirmations activent des voies neuronales soutenant l'équilibre hormonal.\n• Les groupes de soutien réduisent le sentiment d'isolement.\n• L'art, la musique et l'écriture créative sont des outils thérapeutiques efficaces.\n• Cherchez une aide professionnelle si l'anxiété ou la tristesse dominent votre vie."
+      }
     }
   },
   "toolsInternal.fertileWindow": {
@@ -4025,82 +4654,306 @@
   "toolsInternal.fertilitySigns": {
     "signsCount": "{{count}} signes à connaître",
     "signs": {
-      "cervicalMucus": { "title": "Changements de la glaire cervicale", "description": "À l'approche de l'ovulation, la glaire devient plus abondante, claire et élastique — semblable au blanc d'œuf cru. Elle facilite le passage des spermatozoïdes. Après l'ovulation, elle devient plus épaisse ou s'assèche.", "tip": "Vérifiez quotidiennement en vous essuyant. La glaire la plus fertile s'étire entre les doigts sans se casser." },
-      "basalTemp": { "title": "Température basale", "description": "Après l'ovulation, la progestérone provoque une augmentation de 0,2 à 0,5°C. En suivant votre température sur plusieurs cycles, vous identifierez votre schéma d'ovulation.", "tip": "Prenez votre température chaque matin à la même heure, avant de vous lever. Utilisez un thermomètre BBT." },
-      "cervicalPosition": { "title": "Position du col utérin", "description": "Pendant la fenêtre fertile, le col remonte, s'adoucit et s'ouvre légèrement. Après l'ovulation, il redescend, durcit et se ferme.", "tip": "Vérifiez dans la même position chaque jour. Cela demande de la pratique — soyez patiente." },
-      "ovulationPain": { "title": "Douleur d'ovulation (Mittelschmerz)", "description": "Certaines femmes ressentent une légère douleur dans le bas-ventre pendant l'ovulation, causée par la rupture du follicule. Elle dure de quelques minutes à quelques heures.", "tip": "Notez de quel côté vous ressentez la sensation — elle peut alterner entre les cycles." },
-      "breastTenderness": { "title": "Sensibilité des seins", "description": "La progestérone croissante après l'ovulation peut causer une sensibilité et une sensation de plénitude des seins. L'un des symptômes les plus courants de la phase lutéale.", "tip": "Suivez le début et la fin de la sensibilité pour la corréler avec votre schéma d'ovulation." },
-      "libidoChanges": { "title": "Changements de désir", "description": "Beaucoup de femmes remarquent une augmentation naturelle du désir autour de l'ovulation, due à la montée d'œstrogène et de testostérone.", "tip": "Soyez attentive à ces changements — ils coïncident souvent avec vos jours les plus fertiles." },
-      "moodShifts": { "title": "Changements d'humeur et d'énergie", "description": "L'augmentation de l'œstrogène améliore souvent l'humeur et l'énergie. Après l'ovulation, la progestérone peut apporter calme ou irritabilité. Ces fluctuations sont normales.", "tip": "Tenir un journal d'humeur quotidien peut révéler des schémas liés à vos phases de cycle." },
-      "bloating": { "title": "Légers ballonnements", "description": "Les changements hormonaux autour de l'ovulation peuvent causer rétention d'eau et légers ballonnements — signe de la transition vers la phase lutéale.", "tip": "Rester hydratée et réduire le sel aide à gérer les ballonnements liés à l'ovulation." },
-      "lightSpotting": { "title": "Spotting d'ovulation", "description": "De légères pertes rosées autour de l'ovulation peuvent être causées par la baisse d'œstrogène ou la rupture du follicule. Généralement très légères et brèves.", "tip": "Le spotting d'ovulation diffère du saignement d'implantation (6–12 jours après). Suivez le timing." },
-      "heightenedSenses": { "title": "Sens aiguisés", "description": "Certaines femmes rapportent un odorat plus développé pendant l'ovulation, possiblement dû à l'œstrogène élevé.", "tip": "Si les odeurs semblent plus fortes à mi-cycle, cela peut être un indicateur personnel d'ovulation." }
+      "cervicalMucus": {
+        "title": "Changements de la glaire cervicale",
+        "description": "À l'approche de l'ovulation, la glaire devient plus abondante, claire et élastique — semblable au blanc d'œuf cru. Elle facilite le passage des spermatozoïdes. Après l'ovulation, elle devient plus épaisse ou s'assèche.",
+        "tip": "Vérifiez quotidiennement en vous essuyant. La glaire la plus fertile s'étire entre les doigts sans se casser."
+      },
+      "basalTemp": {
+        "title": "Température basale",
+        "description": "Après l'ovulation, la progestérone provoque une augmentation de 0,2 à 0,5°C. En suivant votre température sur plusieurs cycles, vous identifierez votre schéma d'ovulation.",
+        "tip": "Prenez votre température chaque matin à la même heure, avant de vous lever. Utilisez un thermomètre BBT."
+      },
+      "cervicalPosition": {
+        "title": "Position du col utérin",
+        "description": "Pendant la fenêtre fertile, le col remonte, s'adoucit et s'ouvre légèrement. Après l'ovulation, il redescend, durcit et se ferme.",
+        "tip": "Vérifiez dans la même position chaque jour. Cela demande de la pratique — soyez patiente."
+      },
+      "ovulationPain": {
+        "title": "Douleur d'ovulation (Mittelschmerz)",
+        "description": "Certaines femmes ressentent une légère douleur dans le bas-ventre pendant l'ovulation, causée par la rupture du follicule. Elle dure de quelques minutes à quelques heures.",
+        "tip": "Notez de quel côté vous ressentez la sensation — elle peut alterner entre les cycles."
+      },
+      "breastTenderness": {
+        "title": "Sensibilité des seins",
+        "description": "La progestérone croissante après l'ovulation peut causer une sensibilité et une sensation de plénitude des seins. L'un des symptômes les plus courants de la phase lutéale.",
+        "tip": "Suivez le début et la fin de la sensibilité pour la corréler avec votre schéma d'ovulation."
+      },
+      "libidoChanges": {
+        "title": "Changements de désir",
+        "description": "Beaucoup de femmes remarquent une augmentation naturelle du désir autour de l'ovulation, due à la montée d'œstrogène et de testostérone.",
+        "tip": "Soyez attentive à ces changements — ils coïncident souvent avec vos jours les plus fertiles."
+      },
+      "moodShifts": {
+        "title": "Changements d'humeur et d'énergie",
+        "description": "L'augmentation de l'œstrogène améliore souvent l'humeur et l'énergie. Après l'ovulation, la progestérone peut apporter calme ou irritabilité. Ces fluctuations sont normales.",
+        "tip": "Tenir un journal d'humeur quotidien peut révéler des schémas liés à vos phases de cycle."
+      },
+      "bloating": {
+        "title": "Légers ballonnements",
+        "description": "Les changements hormonaux autour de l'ovulation peuvent causer rétention d'eau et légers ballonnements — signe de la transition vers la phase lutéale.",
+        "tip": "Rester hydratée et réduire le sel aide à gérer les ballonnements liés à l'ovulation."
+      },
+      "lightSpotting": {
+        "title": "Spotting d'ovulation",
+        "description": "De légères pertes rosées autour de l'ovulation peuvent être causées par la baisse d'œstrogène ou la rupture du follicule. Généralement très légères et brèves.",
+        "tip": "Le spotting d'ovulation diffère du saignement d'implantation (6–12 jours après). Suivez le timing."
+      },
+      "heightenedSenses": {
+        "title": "Sens aiguisés",
+        "description": "Certaines femmes rapportent un odorat plus développé pendant l'ovulation, possiblement dû à l'œstrogène élevé.",
+        "tip": "Si les odeurs semblent plus fortes à mi-cycle, cela peut être un indicateur personnel d'ovulation."
+      }
     }
   },
   "toolsInternal.preconceptionNutrition": {
     "categoriesCount": "{{count}} catégories nutritionnelles",
     "categories": {
-      "folateRich": { "title": "Aliments riches en folates", "description": "Le folate est crucial pour prévenir les anomalies du tube neural. Dose recommandée : 400–800 µg/jour. Commencez 1–3 mois avant la conception.", "foods": "Légumes verts foncés, lentilles, pois chiches, asperges, brocoli, avocat, céréales enrichies, agrumes, betteraves" },
-      "ironSources": { "title": "Aliments riches en fer", "description": "Le fer soutient la production sanguine et le transport d'oxygène. Les femmes ont besoin d'environ 18 mg/jour. La carence peut affecter l'ovulation.", "foods": "Viande rouge, volaille, poisson, lentilles, épinards, céréales enrichies, graines de citrouille, tofu, chocolat noir" },
-      "omega3": { "title": "Acides gras oméga-3", "description": "Soutiennent la production hormonale, réduisent l'inflammation et sont essentiels au développement cérébral et oculaire du fœtus.", "foods": "Saumon, sardines, maquereau, noix, graines de chia, lin, chanvre, suppléments DHA à base d'algues" },
-      "antioxidants": { "title": "Aliments antioxydants", "description": "Protègent les ovules et spermatozoïdes du stress oxydatif. Vitamines C et E, sélénium et CoQ10 sont particulièrement importants.", "foods": "Baies, tomates, poivrons, noix, graines, thé vert, légumes verts, patates douces" },
-      "zinc": { "title": "Sources de zinc", "description": "Essentiel pour l'équilibre hormonal, la qualité des ovules et la division cellulaire. Rôle crucial dans la fertilité masculine aussi.", "foods": "Huîtres, bœuf, graines de citrouille, noix de cajou, pois chiches, lentilles, yaourt, fromage, céréales complètes" },
-      "vitaminD": { "title": "Sources de vitamine D", "description": "Ses récepteurs se trouvent dans les ovaires et l'utérus. La carence est liée aux cycles irréguliers et au SOPK.", "foods": "Exposition au soleil (15–20 min/jour), poisson gras, jaunes d'œufs, lait enrichi, champignons" },
-      "calcium": { "title": "Sources de calcium", "description": "Vital pour la fonction reproductive et le développement embryonnaire. Visez 1000 mg/jour.", "foods": "Produits laitiers, laits végétaux enrichis, chou frisé, brocoli, amandes, sardines, tofu, figues" },
-      "protein": { "title": "Protéines de qualité", "description": "Fournissent les éléments constitutifs des hormones et des cellules. Remplacer une partie des protéines animales par des végétales peut améliorer les résultats.", "foods": "Œufs, volaille, poisson, légumineuses, noix, graines, yaourt grec, tofu, quinoa" },
-      "hydration": { "title": "Hydratation", "description": "L'eau est essentielle pour la production de glaire cervicale, le transport des nutriments et l'équilibre hormonal. Visez 8–10 verres/jour.", "foods": "Eau, tisanes, eau de coco, fruits riches en eau (pastèque, concombre, oranges)" },
-      "avoidList": { "title": "Aliments à réduire", "description": "Certains aliments peuvent impacter négativement la fertilité. Les réduire lors de la conception optimise la préparation du corps.", "foods": "Caféine excessive (>200 mg/jour), alcool, graisses trans, aliments ultra-transformés, poissons à haute teneur en mercure, sucre excessif" }
+      "folateRich": {
+        "title": "Aliments riches en folates",
+        "description": "Le folate est crucial pour prévenir les anomalies du tube neural. Dose recommandée : 400–800 µg/jour. Commencez 1–3 mois avant la conception.",
+        "foods": "Légumes verts foncés, lentilles, pois chiches, asperges, brocoli, avocat, céréales enrichies, agrumes, betteraves"
+      },
+      "ironSources": {
+        "title": "Aliments riches en fer",
+        "description": "Le fer soutient la production sanguine et le transport d'oxygène. Les femmes ont besoin d'environ 18 mg/jour. La carence peut affecter l'ovulation.",
+        "foods": "Viande rouge, volaille, poisson, lentilles, épinards, céréales enrichies, graines de citrouille, tofu, chocolat noir"
+      },
+      "omega3": {
+        "title": "Acides gras oméga-3",
+        "description": "Soutiennent la production hormonale, réduisent l'inflammation et sont essentiels au développement cérébral et oculaire du fœtus.",
+        "foods": "Saumon, sardines, maquereau, noix, graines de chia, lin, chanvre, suppléments DHA à base d'algues"
+      },
+      "antioxidants": {
+        "title": "Aliments antioxydants",
+        "description": "Protègent les ovules et spermatozoïdes du stress oxydatif. Vitamines C et E, sélénium et CoQ10 sont particulièrement importants.",
+        "foods": "Baies, tomates, poivrons, noix, graines, thé vert, légumes verts, patates douces"
+      },
+      "zinc": {
+        "title": "Sources de zinc",
+        "description": "Essentiel pour l'équilibre hormonal, la qualité des ovules et la division cellulaire. Rôle crucial dans la fertilité masculine aussi.",
+        "foods": "Huîtres, bœuf, graines de citrouille, noix de cajou, pois chiches, lentilles, yaourt, fromage, céréales complètes"
+      },
+      "vitaminD": {
+        "title": "Sources de vitamine D",
+        "description": "Ses récepteurs se trouvent dans les ovaires et l'utérus. La carence est liée aux cycles irréguliers et au SOPK.",
+        "foods": "Exposition au soleil (15–20 min/jour), poisson gras, jaunes d'œufs, lait enrichi, champignons"
+      },
+      "calcium": {
+        "title": "Sources de calcium",
+        "description": "Vital pour la fonction reproductive et le développement embryonnaire. Visez 1000 mg/jour.",
+        "foods": "Produits laitiers, laits végétaux enrichis, chou frisé, brocoli, amandes, sardines, tofu, figues"
+      },
+      "protein": {
+        "title": "Protéines de qualité",
+        "description": "Fournissent les éléments constitutifs des hormones et des cellules. Remplacer une partie des protéines animales par des végétales peut améliorer les résultats.",
+        "foods": "Œufs, volaille, poisson, légumineuses, noix, graines, yaourt grec, tofu, quinoa"
+      },
+      "hydration": {
+        "title": "Hydratation",
+        "description": "L'eau est essentielle pour la production de glaire cervicale, le transport des nutriments et l'équilibre hormonal. Visez 8–10 verres/jour.",
+        "foods": "Eau, tisanes, eau de coco, fruits riches en eau (pastèque, concombre, oranges)"
+      },
+      "avoidList": {
+        "title": "Aliments à réduire",
+        "description": "Certains aliments peuvent impacter négativement la fertilité. Les réduire lors de la conception optimise la préparation du corps.",
+        "foods": "Caféine excessive (>200 mg/jour), alcool, graisses trans, aliments ultra-transformés, poissons à haute teneur en mercure, sucre excessif"
+      }
     }
   },
   "toolsInternal.prenatalVitamins": {
     "supplementsCount": "{{count}} suppléments à examiner",
     "vitamins": {
-      "folicAcid": { "title": "Acide folique (Vitamine B9)", "description": "Le supplément préconceptionnel le plus important. Réduit significativement le risque d'anomalies du tube neural. Commencez 1–3 mois avant.", "dosage": "400–800 µg/jour. Certaines femmes nécessitent 4–5 mg — consultez votre médecin." },
-      "iron": { "title": "Fer", "description": "Les besoins augmentent de 18 à 27 mg/jour pendant la grossesse. Constituer des réserves prévient l'anémie.", "dosage": "18 mg/jour. Prendre avec de la vitamine C. Éviter calcium et thé simultanément." },
-      "vitaminD": { "title": "Vitamine D", "description": "Soutient l'immunité, l'absorption du calcium et la santé reproductive. La carence est liée au diabète gestationnel et à la prééclampsie.", "dosage": "600–2000 UI/jour. Dose plus élevée si carence avérée." },
-      "omega3DHA": { "title": "Oméga-3 DHA", "description": "Crucial pour le développement cérébral et rétinien du fœtus. Commencer avant la grossesse assure des réserves suffisantes.", "dosage": "200–300 mg DHA/jour. Choisir des suppléments testés pour le mercure." },
-      "calcium": { "title": "Calcium", "description": "Si l'apport maternel est insuffisant, le bébé puisera le calcium dans les os de la mère. Constituer des réserves protège la santé osseuse.", "dosage": "1000 mg/jour. Mieux absorbé en doses de 500 mg ou moins." },
-      "iodine": { "title": "Iode", "description": "Essentiel pour la thyroïde, qui affecte directement la fertilité et le développement cérébral du fœtus.", "dosage": "150 µg avant la grossesse, 220 µg pendant. Vérifiez votre supplément prénatal." },
-      "zinc": { "title": "Zinc", "description": "Soutient la qualité des ovules, l'équilibre hormonal, l'immunité et la synthèse de l'ADN.", "dosage": "8 mg/jour. La plupart des suppléments prénataux en contiennent suffisamment." },
-      "vitaminB12": { "title": "Vitamine B12", "description": "Travaille avec le folate pour la synthèse de l'ADN et le système nerveux. Carence plus fréquente chez les végétariennes.", "dosage": "2,4 µg/jour. Les véganes doivent supplémenter." },
-      "vitaminC": { "title": "Vitamine C", "description": "Antioxydant puissant protégeant les ovules, améliorant l'absorption du fer et soutenant l'immunité.", "dosage": "75–90 mg/jour. Présente dans les agrumes, baies et poivrons." },
-      "vitaminE": { "title": "Vitamine E", "description": "Soutient l'épaisseur et la qualité de la muqueuse utérine et protège les membranes cellulaires.", "dosage": "15 mg/jour. Présente dans les noix, graines et huiles végétales." },
-      "coq10": { "title": "CoQ10", "description": "Antioxydant soutenant la fonction mitochondriale des ovules, particulièrement pour les femmes de plus de 35 ans.", "dosage": "100–600 mg/jour. La forme Ubiquinol est mieux absorbée. Consultez votre médecin." },
-      "probiotics": { "title": "Probiotiques", "description": "Un microbiome sain soutient la fertilité et un pH vaginal optimal pour la survie des spermatozoïdes.", "dosage": "Probiotique multi-souches avec Lactobacillus. Aliments fermentés : yaourt, kéfir, choucroute." }
+      "folicAcid": {
+        "title": "Acide folique (Vitamine B9)",
+        "description": "Le supplément préconceptionnel le plus important. Réduit significativement le risque d'anomalies du tube neural. Commencez 1–3 mois avant.",
+        "dosage": "400–800 µg/jour. Certaines femmes nécessitent 4–5 mg — consultez votre médecin."
+      },
+      "iron": {
+        "title": "Fer",
+        "description": "Les besoins augmentent de 18 à 27 mg/jour pendant la grossesse. Constituer des réserves prévient l'anémie.",
+        "dosage": "18 mg/jour. Prendre avec de la vitamine C. Éviter calcium et thé simultanément."
+      },
+      "vitaminD": {
+        "title": "Vitamine D",
+        "description": "Soutient l'immunité, l'absorption du calcium et la santé reproductive. La carence est liée au diabète gestationnel et à la prééclampsie.",
+        "dosage": "600–2000 UI/jour. Dose plus élevée si carence avérée."
+      },
+      "omega3DHA": {
+        "title": "Oméga-3 DHA",
+        "description": "Crucial pour le développement cérébral et rétinien du fœtus. Commencer avant la grossesse assure des réserves suffisantes.",
+        "dosage": "200–300 mg DHA/jour. Choisir des suppléments testés pour le mercure."
+      },
+      "calcium": {
+        "title": "Calcium",
+        "description": "Si l'apport maternel est insuffisant, le bébé puisera le calcium dans les os de la mère. Constituer des réserves protège la santé osseuse.",
+        "dosage": "1000 mg/jour. Mieux absorbé en doses de 500 mg ou moins."
+      },
+      "iodine": {
+        "title": "Iode",
+        "description": "Essentiel pour la thyroïde, qui affecte directement la fertilité et le développement cérébral du fœtus.",
+        "dosage": "150 µg avant la grossesse, 220 µg pendant. Vérifiez votre supplément prénatal."
+      },
+      "zinc": {
+        "title": "Zinc",
+        "description": "Soutient la qualité des ovules, l'équilibre hormonal, l'immunité et la synthèse de l'ADN.",
+        "dosage": "8 mg/jour. La plupart des suppléments prénataux en contiennent suffisamment."
+      },
+      "vitaminB12": {
+        "title": "Vitamine B12",
+        "description": "Travaille avec le folate pour la synthèse de l'ADN et le système nerveux. Carence plus fréquente chez les végétariennes.",
+        "dosage": "2,4 µg/jour. Les véganes doivent supplémenter."
+      },
+      "vitaminC": {
+        "title": "Vitamine C",
+        "description": "Antioxydant puissant protégeant les ovules, améliorant l'absorption du fer et soutenant l'immunité.",
+        "dosage": "75–90 mg/jour. Présente dans les agrumes, baies et poivrons."
+      },
+      "vitaminE": {
+        "title": "Vitamine E",
+        "description": "Soutient l'épaisseur et la qualité de la muqueuse utérine et protège les membranes cellulaires.",
+        "dosage": "15 mg/jour. Présente dans les noix, graines et huiles végétales."
+      },
+      "coq10": {
+        "title": "CoQ10",
+        "description": "Antioxydant soutenant la fonction mitochondriale des ovules, particulièrement pour les femmes de plus de 35 ans.",
+        "dosage": "100–600 mg/jour. La forme Ubiquinol est mieux absorbée. Consultez votre médecin."
+      },
+      "probiotics": {
+        "title": "Probiotiques",
+        "description": "Un microbiome sain soutient la fertilité et un pH vaginal optimal pour la survie des spermatozoïdes.",
+        "dosage": "Probiotique multi-souches avec Lactobacillus. Aliments fermentés : yaourt, kéfir, choucroute."
+      }
     }
   },
   "toolsInternal.twwCompanion": {
     "subtitle": "Votre guide quotidien pendant les deux semaines d'attente",
     "days": {
-      "day1": { "title": "Ovulation + 1", "body": "Si l'ovulation a eu lieu hier, l'ovule voyage dans la trompe de Fallope. La fécondation se produit dans les 12–24 heures. Aujourd'hui, vous ne pouvez pas influencer le résultat — et c'est normal.", "tip": "Respirez profondément. Le voyage a commencé. Concentrez-vous sur quelque chose qui vous plaît aujourd'hui." },
-      "day2": { "title": "Débuts cellulaires", "body": "Si fécondation il y a, la cellule commence à se diviser — d'abord en 2, puis 4 cellules. Ce petit amas voyage vers l'utérus.", "tip": "Restez hydratée et mangez sainement. Votre corps fait un travail incroyable au niveau cellulaire." },
-      "day3": { "title": "Stade morula", "body": "Les cellules forment une boule solide appelée morula (environ 16 cellules). La progestérone monte, préparant la muqueuse utérine.", "tip": "L'activité douce est tout à fait acceptable. Pas besoin de modifier votre routine." },
-      "day4": { "title": "Entrée dans l'utérus", "body": "La morula atteint l'utérus vers le jour 4. Elle forme une cavité remplie de liquide, devenant un blastocyste. La muqueuse s'épaissit.", "tip": "Pratiquez la pleine conscience ou des étirements légers. Gérer l'attente fait partie du parcours." },
-      "day5": { "title": "Formation du blastocyste", "body": "Le blastocyste a deux groupes cellulaires : la masse cellulaire interne (futur embryon) et le trophoblaste (futur placenta). Il flotte dans la cavité utérine.", "tip": "Bon jour pour écrire vos pensées et sentiments. L'expression de soi est thérapeutique." },
-      "day6": { "title": "L'implantation peut commencer", "body": "Le blastocyste cherche un site idéal. Les cellules du trophoblaste commencent à s'enfoncer dans la muqueuse. De légers saignements sont possibles.", "tip": "De légers saignements sont normaux à ce stade. Pas de panique — et ne testez pas encore." },
-      "day7": { "title": "Fenêtre d'implantation", "body": "Les jours 6–10 sont la fenêtre d'implantation typique. Le blastocyste s'enfonce plus profondément. Des signaux précoces s'échangent entre l'embryon et votre corps.", "tip": "Continuez vos activités normales. Reposez-vous quand nécessaire. Faites confiance au processus." },
-      "day8": { "title": "Début de l'hCG", "body": "Si l'implantation progresse, de petites quantités d'hCG sont produites. Cette hormone maintient le corps jaune actif. Les niveaux sont encore trop bas pour être détectés.", "tip": "Résistez à l'envie de tester. L'hCG a besoin de temps. La patience est votre meilleure alliée." },
-      "day9": { "title": "Signaux croissants", "body": "Les niveaux d'hCG augmentent mais peuvent être sous le seuil de détection. L'implantation devrait être complète ou presque.", "tip": "Offrez-vous quelque chose d'apaisant — un bain chaud, votre thé préféré, ou une promenade dans la nature." },
-      "day10": { "title": "Presque là", "body": "Si l'implantation a réussi, l'hCG double environ toutes les 48 heures. Certains tests sensibles peuvent détecter une grossesse précoce. Un résultat négatif ne signifie pas que vous n'êtes pas enceinte.", "tip": "Négatif aujourd'hui ? Ne perdez pas espoir. Beaucoup de grossesses réussies ne se montrent positives qu'aux jours 12–14." },
-      "day11": { "title": "Anticipation croissante", "body": "L'hCG continue de monter. Vous remarquez peut-être de légers crampes, sensibilité mammaire ou fatigue. Ces symptômes peuvent aussi être dus à la progestérone.", "tip": "L'observation des symptômes est naturelle mais peut augmenter l'anxiété. Restez présente dans votre quotidien." },
-      "day12": { "title": "Tests plus fiables", "body": "La plupart des tests deviennent fiables à partir d'aujourd'hui. Utilisez les premières urines du matin. Une ligne faible est un résultat positif.", "tip": "Quel que soit le résultat : un cycle ne définit pas votre parcours. Soyez douce avec vous-même." },
-      "day13": { "title": "La veille", "body": "Demain vos règles sont attendues (cycle de 28 jours). Si elles n'arrivent pas et le test montre une ligne faible, les félicitations pourraient être de mise.", "tip": "Préparez-vous émotionnellement aux deux résultats. Les deux sont valides." },
-      "day14": { "title": "Le jour de la réponse", "body": "Aujourd'hui vos règles sont attendues. Leur absence avec un test positif est un indicateur fort. Si positif, contactez votre médecin pour le premier rendez-vous (vers 6–8 semaines).", "tip": "Positif ? Célébrez ce moment. Négatif ? Vous êtes forte et résiliente. Les deux résultats méritent de la compassion." }
+      "day1": {
+        "title": "Ovulation + 1",
+        "body": "Si l'ovulation a eu lieu hier, l'ovule voyage dans la trompe de Fallope. La fécondation se produit dans les 12–24 heures. Aujourd'hui, vous ne pouvez pas influencer le résultat — et c'est normal.",
+        "tip": "Respirez profondément. Le voyage a commencé. Concentrez-vous sur quelque chose qui vous plaît aujourd'hui."
+      },
+      "day2": {
+        "title": "Débuts cellulaires",
+        "body": "Si fécondation il y a, la cellule commence à se diviser — d'abord en 2, puis 4 cellules. Ce petit amas voyage vers l'utérus.",
+        "tip": "Restez hydratée et mangez sainement. Votre corps fait un travail incroyable au niveau cellulaire."
+      },
+      "day3": {
+        "title": "Stade morula",
+        "body": "Les cellules forment une boule solide appelée morula (environ 16 cellules). La progestérone monte, préparant la muqueuse utérine.",
+        "tip": "L'activité douce est tout à fait acceptable. Pas besoin de modifier votre routine."
+      },
+      "day4": {
+        "title": "Entrée dans l'utérus",
+        "body": "La morula atteint l'utérus vers le jour 4. Elle forme une cavité remplie de liquide, devenant un blastocyste. La muqueuse s'épaissit.",
+        "tip": "Pratiquez la pleine conscience ou des étirements légers. Gérer l'attente fait partie du parcours."
+      },
+      "day5": {
+        "title": "Formation du blastocyste",
+        "body": "Le blastocyste a deux groupes cellulaires : la masse cellulaire interne (futur embryon) et le trophoblaste (futur placenta). Il flotte dans la cavité utérine.",
+        "tip": "Bon jour pour écrire vos pensées et sentiments. L'expression de soi est thérapeutique."
+      },
+      "day6": {
+        "title": "L'implantation peut commencer",
+        "body": "Le blastocyste cherche un site idéal. Les cellules du trophoblaste commencent à s'enfoncer dans la muqueuse. De légers saignements sont possibles.",
+        "tip": "De légers saignements sont normaux à ce stade. Pas de panique — et ne testez pas encore."
+      },
+      "day7": {
+        "title": "Fenêtre d'implantation",
+        "body": "Les jours 6–10 sont la fenêtre d'implantation typique. Le blastocyste s'enfonce plus profondément. Des signaux précoces s'échangent entre l'embryon et votre corps.",
+        "tip": "Continuez vos activités normales. Reposez-vous quand nécessaire. Faites confiance au processus."
+      },
+      "day8": {
+        "title": "Début de l'hCG",
+        "body": "Si l'implantation progresse, de petites quantités d'hCG sont produites. Cette hormone maintient le corps jaune actif. Les niveaux sont encore trop bas pour être détectés.",
+        "tip": "Résistez à l'envie de tester. L'hCG a besoin de temps. La patience est votre meilleure alliée."
+      },
+      "day9": {
+        "title": "Signaux croissants",
+        "body": "Les niveaux d'hCG augmentent mais peuvent être sous le seuil de détection. L'implantation devrait être complète ou presque.",
+        "tip": "Offrez-vous quelque chose d'apaisant — un bain chaud, votre thé préféré, ou une promenade dans la nature."
+      },
+      "day10": {
+        "title": "Presque là",
+        "body": "Si l'implantation a réussi, l'hCG double environ toutes les 48 heures. Certains tests sensibles peuvent détecter une grossesse précoce. Un résultat négatif ne signifie pas que vous n'êtes pas enceinte.",
+        "tip": "Négatif aujourd'hui ? Ne perdez pas espoir. Beaucoup de grossesses réussies ne se montrent positives qu'aux jours 12–14."
+      },
+      "day11": {
+        "title": "Anticipation croissante",
+        "body": "L'hCG continue de monter. Vous remarquez peut-être de légers crampes, sensibilité mammaire ou fatigue. Ces symptômes peuvent aussi être dus à la progestérone.",
+        "tip": "L'observation des symptômes est naturelle mais peut augmenter l'anxiété. Restez présente dans votre quotidien."
+      },
+      "day12": {
+        "title": "Tests plus fiables",
+        "body": "La plupart des tests deviennent fiables à partir d'aujourd'hui. Utilisez les premières urines du matin. Une ligne faible est un résultat positif.",
+        "tip": "Quel que soit le résultat : un cycle ne définit pas votre parcours. Soyez douce avec vous-même."
+      },
+      "day13": {
+        "title": "La veille",
+        "body": "Demain vos règles sont attendues (cycle de 28 jours). Si elles n'arrivent pas et le test montre une ligne faible, les félicitations pourraient être de mise.",
+        "tip": "Préparez-vous émotionnellement aux deux résultats. Les deux sont valides."
+      },
+      "day14": {
+        "title": "Le jour de la réponse",
+        "body": "Aujourd'hui vos règles sont attendues. Leur absence avec un test positif est un indicateur fort. Si positif, contactez votre médecin pour le premier rendez-vous (vers 6–8 semaines).",
+        "tip": "Positif ? Célébrez ce moment. Négatif ? Vous êtes forte et résiliente. Les deux résultats méritent de la compassion."
+      }
     }
   },
   "toolsInternal.stressFertility": {
     "topicsCount": "{{count}} sujets à explorer",
     "topics": {
-      "stressHormones": { "title": "Comment le stress affecte la fertilité", "content": "Le stress chronique libère cortisol et adrénaline, perturbant l'axe HPG — la voie hormonale contrôlant l'ovulation. Un cortisol élevé peut supprimer la GnRH.", "practice": "Identifiez vos 3 principaux facteurs de stress cette semaine. Pour chacun, notez une petite action pour réduire son impact." },
-      "cortisol": { "title": "Comprendre le cortisol", "content": "Le cortisol est l'hormone du stress principale. En petites doses, il est utile. Chroniquement élevé, il supprime les hormones reproductives et perturbe le sommeil.", "practice": "Technique 4-7-8 : inspirez 4 secondes, retenez 7, expirez 8. Répétez 4 fois." },
-      "mindfulness": { "title": "Pleine conscience et fertilité", "content": "La pleine conscience signifie être présente sans jugement. Les études montrent qu'elle réduit anxiété et dépression. Même 10 minutes par jour abaissent le cortisol.", "practice": "Scan corporel de 5 min : fermez les yeux, respirez, déplacez votre attention des orteils à la tête." },
-      "breathing": { "title": "Techniques de respiration", "content": "La respiration contrôlée active le nerf vague, déclenchant la relaxation. Elle abaisse le rythme cardiaque, la tension et le cortisol.", "practice": "Respiration carrée : inspirez 4 temps → retenez 4 → expirez 4 → retenez 4. Pendant 5 minutes." },
-      "journaling": { "title": "Journal thérapeutique", "content": "Écrire sur ses émotions réduit le stress et améliore l'immunité. L'objectif : traiter les émotions et célébrer les petites victoires.", "practice": "Ce soir, écrivez : 1) Gratitude, 2) Inquiétude à libérer, 3) Chose gentille faite pour vous-même." },
-      "sleep": { "title": "Sommeil et fertilité", "content": "Le sommeil est le moment de réparation et de production hormonale. Un mauvais sommeil perturbe la mélatonine et augmente le cortisol. Moins de 6h est lié à une fertilité réduite.", "practice": "Routine du soir : pas d'écrans 30 min avant, lumières tamisées, lavande, chambre fraîche (18–20°C)." },
-      "exercise": { "title": "Mouvement et gestion du stress", "content": "L'exercice modéré régulier est l'un des meilleurs anti-stress. Mais l'exercice excessif peut supprimer l'ovulation. L'équilibre est la clé.", "practice": "Cette semaine : 30 min de mouvement modéré 5 jours : marche, yoga, natation ou danse." },
-      "socialSupport": { "title": "Construire votre réseau de soutien", "content": "L'isolement amplifie le stress. Partager votre parcours avec des proches de confiance réduit considérablement la charge émotionnelle.", "practice": "Identifiez une personne de confiance. Partagez quelque chose de votre parcours cette semaine." },
-      "professionalHelp": { "title": "Quand chercher un soutien professionnel", "content": "Si l'anxiété affecte votre vie quotidienne, sommeil ou relations, un soutien professionnel peut aider.", "practice": "Cherchez un thérapeute spécialisé en psychologie reproductive. Beaucoup proposent des séances virtuelles." },
-      "acceptance": { "title": "Pratiquer l'acceptation", "content": "L'acceptation ne signifie pas abandonner — c'est reconnaître que certaines choses échappent à votre contrôle tout en vous concentrant sur ce que vous pouvez influencer.", "practice": "Répétez : 'Je fais tout ce que je peux. Je fais confiance à mon corps et à mon parcours. Le résultat ne définit pas ma valeur.'" }
+      "stressHormones": {
+        "title": "Comment le stress affecte la fertilité",
+        "content": "Le stress chronique libère cortisol et adrénaline, perturbant l'axe HPG — la voie hormonale contrôlant l'ovulation. Un cortisol élevé peut supprimer la GnRH.",
+        "practice": "Identifiez vos 3 principaux facteurs de stress cette semaine. Pour chacun, notez une petite action pour réduire son impact."
+      },
+      "cortisol": {
+        "title": "Comprendre le cortisol",
+        "content": "Le cortisol est l'hormone du stress principale. En petites doses, il est utile. Chroniquement élevé, il supprime les hormones reproductives et perturbe le sommeil.",
+        "practice": "Technique 4-7-8 : inspirez 4 secondes, retenez 7, expirez 8. Répétez 4 fois."
+      },
+      "mindfulness": {
+        "title": "Pleine conscience et fertilité",
+        "content": "La pleine conscience signifie être présente sans jugement. Les études montrent qu'elle réduit anxiété et dépression. Même 10 minutes par jour abaissent le cortisol.",
+        "practice": "Scan corporel de 5 min : fermez les yeux, respirez, déplacez votre attention des orteils à la tête."
+      },
+      "breathing": {
+        "title": "Techniques de respiration",
+        "content": "La respiration contrôlée active le nerf vague, déclenchant la relaxation. Elle abaisse le rythme cardiaque, la tension et le cortisol.",
+        "practice": "Respiration carrée : inspirez 4 temps → retenez 4 → expirez 4 → retenez 4. Pendant 5 minutes."
+      },
+      "journaling": {
+        "title": "Journal thérapeutique",
+        "content": "Écrire sur ses émotions réduit le stress et améliore l'immunité. L'objectif : traiter les émotions et célébrer les petites victoires.",
+        "practice": "Ce soir, écrivez : 1) Gratitude, 2) Inquiétude à libérer, 3) Chose gentille faite pour vous-même."
+      },
+      "sleep": {
+        "title": "Sommeil et fertilité",
+        "content": "Le sommeil est le moment de réparation et de production hormonale. Un mauvais sommeil perturbe la mélatonine et augmente le cortisol. Moins de 6h est lié à une fertilité réduite.",
+        "practice": "Routine du soir : pas d'écrans 30 min avant, lumières tamisées, lavande, chambre fraîche (18–20°C)."
+      },
+      "exercise": {
+        "title": "Mouvement et gestion du stress",
+        "content": "L'exercice modéré régulier est l'un des meilleurs anti-stress. Mais l'exercice excessif peut supprimer l'ovulation. L'équilibre est la clé.",
+        "practice": "Cette semaine : 30 min de mouvement modéré 5 jours : marche, yoga, natation ou danse."
+      },
+      "socialSupport": {
+        "title": "Construire votre réseau de soutien",
+        "content": "L'isolement amplifie le stress. Partager votre parcours avec des proches de confiance réduit considérablement la charge émotionnelle.",
+        "practice": "Identifiez une personne de confiance. Partagez quelque chose de votre parcours cette semaine."
+      },
+      "professionalHelp": {
+        "title": "Quand chercher un soutien professionnel",
+        "content": "Si l'anxiété affecte votre vie quotidienne, sommeil ou relations, un soutien professionnel peut aider.",
+        "practice": "Cherchez un thérapeute spécialisé en psychologie reproductive. Beaucoup proposent des séances virtuelles."
+      },
+      "acceptance": {
+        "title": "Pratiquer l'acceptation",
+        "content": "L'acceptation ne signifie pas abandonner — c'est reconnaître que certaines choses échappent à votre contrôle tout en vous concentrant sur ce que vous pouvez influencer.",
+        "practice": "Répétez : 'Je fais tout ce que je peux. Je fais confiance à mon corps et à mon parcours. Le résultat ne définit pas ma valeur.'"
+      }
     }
   },
   "toolsInternal.preconceptionCheckup": {
@@ -4129,21 +4982,56 @@
     },
     "disclaimer": "Cette liste est une référence éducative pour organiser vos discussions avec votre médecin. Elle ne remplace pas un avis médical, un diagnostic ou un traitement professionnel. Tous les examens doivent être discutés et prescrits par un professionnel de santé qualifié.",
     "checks": {
-      "generalCheckup": { "title": "Bilan de santé général", "description": "Examen physique complet pour évaluer votre santé, tension artérielle, poids et discuter de vos projets de grossesse." },
-      "bloodWork": { "title": "Numération formule sanguine", "description": "Vérifie l'anémie, les infections et la santé sanguine. Identifie la carence en fer à traiter avant la grossesse." },
-      "pap": { "title": "Frottis cervical", "description": "Dépiste les anomalies cervicales. À faire de préférence avant la grossesse." },
-      "thyroid": { "title": "Test thyroïdien (TSH)", "description": "Les troubles thyroïdiens sont fréquents et peuvent significativement affecter fertilité et grossesse." },
-      "rubella": { "title": "Immunité contre la rubéole", "description": "La rubéole pendant la grossesse peut causer des malformations graves. Vaccination recommandée au moins 1 mois avant." },
-      "hepatitis": { "title": "Dépistage hépatite B & C", "description": "L'hépatite B peut être transmise au bébé à la naissance. Connaître votre statut permet la prévention." },
-      "hiv": { "title": "Dépistage VIH & IST", "description": "Le dépistage routinier protège votre santé et celle de votre futur bébé. La détection précoce permet un traitement efficace." },
-      "dental": { "title": "Bilan dentaire", "description": "Les maladies gingivales sont liées à la prématurité. Les changements hormonaux peuvent aggraver les problèmes existants." },
-      "geneticScreening": { "title": "Dépistage génétique", "description": "Teste si vous ou votre partenaire portez des gènes pour la mucoviscidose, la drépanocytose ou la thalassémie." },
-      "mentalHealth": { "title": "Évaluation de la santé mentale", "description": "Discutez de tout antécédent de dépression ou d'anxiété avec votre médecin. Les conditions existantes peuvent être gérées proactivement." },
-      "medications": { "title": "Revue des médicaments", "description": "Passez en revue tous les médicaments et compléments. Certains ne sont pas sûrs pendant la grossesse — organisez des alternatives." },
-      "vaccinations": { "title": "Revue des vaccinations", "description": "Assurez-vous d'être à jour sur les vaccins recommandés. Certains ne peuvent pas être administrés pendant la grossesse." }
+      "generalCheckup": {
+        "title": "Bilan de santé général",
+        "description": "Examen physique complet pour évaluer votre santé, tension artérielle, poids et discuter de vos projets de grossesse."
+      },
+      "bloodWork": {
+        "title": "Numération formule sanguine",
+        "description": "Vérifie l'anémie, les infections et la santé sanguine. Identifie la carence en fer à traiter avant la grossesse."
+      },
+      "pap": {
+        "title": "Frottis cervical",
+        "description": "Dépiste les anomalies cervicales. À faire de préférence avant la grossesse."
+      },
+      "thyroid": {
+        "title": "Test thyroïdien (TSH)",
+        "description": "Les troubles thyroïdiens sont fréquents et peuvent significativement affecter fertilité et grossesse."
+      },
+      "rubella": {
+        "title": "Immunité contre la rubéole",
+        "description": "La rubéole pendant la grossesse peut causer des malformations graves. Vaccination recommandée au moins 1 mois avant."
+      },
+      "hepatitis": {
+        "title": "Dépistage hépatite B & C",
+        "description": "L'hépatite B peut être transmise au bébé à la naissance. Connaître votre statut permet la prévention."
+      },
+      "hiv": {
+        "title": "Dépistage VIH & IST",
+        "description": "Le dépistage routinier protège votre santé et celle de votre futur bébé. La détection précoce permet un traitement efficace."
+      },
+      "dental": {
+        "title": "Bilan dentaire",
+        "description": "Les maladies gingivales sont liées à la prématurité. Les changements hormonaux peuvent aggraver les problèmes existants."
+      },
+      "geneticScreening": {
+        "title": "Dépistage génétique",
+        "description": "Teste si vous ou votre partenaire portez des gènes pour la mucoviscidose, la drépanocytose ou la thalassémie."
+      },
+      "mentalHealth": {
+        "title": "Évaluation de la santé mentale",
+        "description": "Discutez de tout antécédent de dépression ou d'anxiété avec votre médecin. Les conditions existantes peuvent être gérées proactivement."
+      },
+      "medications": {
+        "title": "Revue des médicaments",
+        "description": "Passez en revue tous les médicaments et compléments. Certains ne sont pas sûrs pendant la grossesse — organisez des alternatives."
+      },
+      "vaccinations": {
+        "title": "Revue des vaccinations",
+        "description": "Assurez-vous d'être à jour sur les vaccins recommandés. Certains ne peuvent pas être administrés pendant la grossesse."
+      }
     }
   },
-
   "socialProof": {
     "title": "Tout ce dont vous avez besoin 💕",
     "subtitle": "Votre compagnon de grossesse complet",
@@ -4517,14 +5405,46 @@
       "tip4": "Restez hydratée pour des muscles souples"
     },
     "stretches": {
-      "neckRolls": { "name": "Rotations du cou", "desc": "Faites rouler doucement la tête en cercles", "bodyPart": "Cou" },
-      "shoulderShrugs": { "name": "Haussements d'épaules", "desc": "Levez les épaules vers les oreilles, puis relâchez", "bodyPart": "Épaules" },
-      "wristCircles": { "name": "Cercles des poignets", "desc": "Faites tourner les poignets dans les deux sens", "bodyPart": "Poignets" },
-      "sideStretch": { "name": "Étirement latéral", "desc": "Tendez le bras au-dessus de la tête et penchez-vous", "bodyPart": "Dos" },
-      "catCow": { "name": "Chat-Vache", "desc": "Alternez entre arrondir et creuser le dos", "bodyPart": "Colonne" },
-      "hipCircles": { "name": "Cercles de hanches", "desc": "Debout, faites des cercles avec les hanches", "bodyPart": "Hanches" },
-      "calfRaises": { "name": "Élévations des mollets", "desc": "Montez sur la pointe des pieds, puis redescendez", "bodyPart": "Jambes" },
-      "deepBreathing": { "name": "Respiration profonde", "desc": "Respirations lentes et profondes, mains sur le ventre", "bodyPart": "Relaxation" }
+      "neckRolls": {
+        "name": "Rotations du cou",
+        "desc": "Faites rouler doucement la tête en cercles",
+        "bodyPart": "Cou"
+      },
+      "shoulderShrugs": {
+        "name": "Haussements d'épaules",
+        "desc": "Levez les épaules vers les oreilles, puis relâchez",
+        "bodyPart": "Épaules"
+      },
+      "wristCircles": {
+        "name": "Cercles des poignets",
+        "desc": "Faites tourner les poignets dans les deux sens",
+        "bodyPart": "Poignets"
+      },
+      "sideStretch": {
+        "name": "Étirement latéral",
+        "desc": "Tendez le bras au-dessus de la tête et penchez-vous",
+        "bodyPart": "Dos"
+      },
+      "catCow": {
+        "name": "Chat-Vache",
+        "desc": "Alternez entre arrondir et creuser le dos",
+        "bodyPart": "Colonne"
+      },
+      "hipCircles": {
+        "name": "Cercles de hanches",
+        "desc": "Debout, faites des cercles avec les hanches",
+        "bodyPart": "Hanches"
+      },
+      "calfRaises": {
+        "name": "Élévations des mollets",
+        "desc": "Montez sur la pointe des pieds, puis redescendez",
+        "bodyPart": "Jambes"
+      },
+      "deepBreathing": {
+        "name": "Respiration profonde",
+        "desc": "Respirations lentes et profondes, mains sur le ventre",
+        "bodyPart": "Relaxation"
+      }
     }
   },
   "kegel": {
@@ -4548,8 +5468,8 @@
     "step2": "Serrez et maintenez pendant 5 secondes, en gardant les abdos et les cuisses détendus.",
     "step3": "Relâchez pendant 5 secondes et laissez les muscles se détendre complètement.",
     "step4": "Répétez 10 à 15 fois par série, 3 séries par jour pour de meilleurs résultats."
-  }
-  ,"aiErrors": {
+  },
+  "aiErrors": {
     "rateLimitTitle": "Trop de requêtes",
     "rateLimitMsg": "Vous avez envoyé trop de requêtes. Veuillez attendre un moment et réessayer.",
     "paymentTitle": "Service indisponible",
