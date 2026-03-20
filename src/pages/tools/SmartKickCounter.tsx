@@ -13,10 +13,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { KickService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { AIActionButton } from '@/components/ai/AIActionButton';
-import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
